@@ -1,0 +1,145 @@
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import ReactMarkdown from "react-markdown";
+import Masthead from "@/components/Masthead";
+import SiteFooter from "@/components/SiteFooter";
+import ArticleCard from "@/components/ArticleCard";
+import SectionRule from "@/components/SectionRule";
+import {
+  Article,
+  formatLongDate,
+  getArticleBySlug,
+  getRelated,
+  readingTime,
+} from "@/lib/articles";
+
+export default function ArticlePage() {
+  const { slug = "" } = useParams();
+  const [article, setArticle] = useState<Article | null | undefined>(undefined);
+  const [related, setRelated] = useState<Article[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const a = await getArticleBySlug(slug);
+      if (cancelled) return;
+      setArticle(a ?? null);
+      if (a) setRelated(await getRelated(a.category, a.slug, 3));
+      window.scrollTo(0, 0);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [slug]);
+
+  if (article === undefined) {
+    return (
+      <div className="min-h-screen">
+        <Masthead />
+        <main className="container py-20 text-center text-muted-foreground">Loading…</main>
+      </div>
+    );
+  }
+
+  if (article === null) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Masthead />
+        <main className="container py-24 text-center flex-1">
+          <p className="smallcaps text-primary">404</p>
+          <h1 className="font-serif text-4xl mt-3">Article not found</h1>
+          <Link to="/" className="inline-block mt-6 text-primary underline underline-offset-4">
+            Back to homepage
+          </Link>
+        </main>
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  const time = readingTime(article.body);
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>{article.title} — The Videshi</title>
+        <meta name="description" content={article.excerpt} />
+        <meta property="og:title" content={article.title} />
+        <meta property="og:description" content={article.excerpt} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={article.hero_image_url} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={article.title} />
+        <meta name="twitter:description" content={article.excerpt} />
+        <meta name="twitter:image" content={article.hero_image_url} />
+        <link rel="canonical" href={`/articles/${article.slug}`} />
+      </Helmet>
+
+      <Masthead />
+
+      <main className="container flex-1 pt-8 md:pt-12">
+        <article className="max-w-3xl mx-auto">
+          <p className="smallcaps text-primary">{article.category}</p>
+          <h1 className="font-serif text-[2rem] md:text-5xl lg:text-[3.5rem] leading-[1.08] mt-3 font-bold">
+            {article.title}
+          </h1>
+          <p className="mt-5 text-lg md:text-xl text-foreground/75 font-serif italic leading-relaxed">
+            {article.excerpt}
+          </p>
+          <div className="mt-6 flex flex-wrap gap-x-2 gap-y-1 text-xs text-muted-foreground">
+            <span>By {article.author}</span>
+            <span>·</span>
+            <span>{formatLongDate(article.published_at)}</span>
+            <span>·</span>
+            <span>{time} min read</span>
+          </div>
+        </article>
+
+        <figure className="mt-10 max-w-5xl mx-auto">
+          <img
+            src={article.hero_image_url}
+            alt={article.title}
+            className="w-full aspect-[16/9] object-cover"
+          />
+        </figure>
+
+        <div className="article-prose max-w-2xl mx-auto mt-12">
+          <ReactMarkdown>{article.body}</ReactMarkdown>
+        </div>
+
+        {article.sources && article.sources.length > 0 && (
+          <aside className="max-w-2xl mx-auto mt-10 pt-6 border-t hairline">
+            <p className="smallcaps text-muted-foreground mb-3">Sources & attribution</p>
+            <ul className="text-sm text-muted-foreground space-y-1.5">
+              {article.sources.map((s, i) => (
+                <li key={i}>
+                  {s.url ? (
+                    <a href={s.url} className="underline underline-offset-2 hover:text-primary">
+                      {s.label}
+                    </a>
+                  ) : (
+                    s.label
+                  )}
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
+
+        {related.length > 0 && (
+          <section className="mt-8">
+            <SectionRule label="Read More" />
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+              {related.map((a) => (
+                <ArticleCard key={a.id} article={a} variant="card" />
+              ))}
+            </div>
+          </section>
+        )}
+      </main>
+
+      <SiteFooter />
+    </div>
+  );
+}
