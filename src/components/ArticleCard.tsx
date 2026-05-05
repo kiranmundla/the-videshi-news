@@ -53,7 +53,7 @@ export default function ArticleCard({
             {article.excerpt}
           </p>
           <p className="mt-5 text-xs text-muted-foreground">
-            By {article.author} · {time} min read
+            {article.author ? `By ${article.author} · ` : ""}{time} min read
           </p>
         </div>
       </Link>
@@ -89,7 +89,7 @@ export default function ArticleCard({
         </p>
       ) : null}
       <p className="mt-3 text-xs text-muted-foreground">
-        By {article.author} · {formatShortDate(article.published_at)} · {time} min read
+        {article.author ? `By ${article.author} · ` : ""}{formatShortDate(article.published_at)} · {time} min read
       </p>
     </Link>
   );

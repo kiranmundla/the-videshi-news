@@ -10,7 +10,7 @@ import {
   Article,
   formatLongDate,
   getArticleBySlug,
-  getRelated,
+  getRelatedArticles,
   readingTime,
 } from "@/lib/articles";
 
@@ -25,7 +25,7 @@ export default function ArticlePage() {
       const a = await getArticleBySlug(slug);
       if (cancelled) return;
       setArticle(a ?? null);
-      if (a) setRelated(await getRelated(a.category, a.slug, 3));
+      if (a) setRelated(await getRelatedArticles(a.slug, a.category, 3));
       window.scrollTo(0, 0);
     })();
     return () => {
@@ -88,8 +88,12 @@ export default function ArticlePage() {
             {article.excerpt}
           </p>
           <div className="mt-6 flex flex-wrap gap-x-2 gap-y-1 text-xs text-muted-foreground">
-            <span>By {article.author}</span>
-            <span>·</span>
+            {article.author && (
+              <>
+                <span>By {article.author}</span>
+                <span>·</span>
+              </>
+            )}
             <span>{formatLongDate(article.published_at)}</span>
             <span>·</span>
             <span>{time} min read</span>
