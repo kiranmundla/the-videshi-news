@@ -10,7 +10,7 @@ import {
   Article,
   formatLongDate,
   getArticleBySlug,
-  getRelated,
+  getRelatedArticles,
   readingTime,
 } from "@/lib/articles";
 
@@ -25,7 +25,7 @@ export default function ArticlePage() {
       const a = await getArticleBySlug(slug);
       if (cancelled) return;
       setArticle(a ?? null);
-      if (a) setRelated(await getRelated(a.category, a.slug, 3));
+      if (a) setRelated(await getRelatedArticles(a.slug, a.category, 3));
       window.scrollTo(0, 0);
     })();
     return () => {
