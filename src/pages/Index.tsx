@@ -4,20 +4,43 @@ import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
 import SectionRule from "@/components/SectionRule";
-import { Article, getArticles } from "@/lib/articles";
+import { Article, getPublishedArticles } from "@/lib/articles";
 
 export default function Index() {
   const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getArticles().then(setArticles);
+    getPublishedArticles().then((a) => {
+      setArticles(a);
+      setLoading(false);
+    });
   }, []);
 
-  if (!articles.length) {
+  if (loading) {
     return (
       <div className="min-h-screen">
         <Masthead />
         <main className="container py-20 text-center text-muted-foreground">Loading…</main>
+      </div>
+    );
+  }
+
+  if (!articles.length) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Helmet>
+          <title>The Videshi — News for the global Indian diaspora</title>
+        </Helmet>
+        <Masthead />
+        <main className="container flex-1 py-24 md:py-32 text-center">
+          <p className="smallcaps text-primary">The Videshi</p>
+          <h1 className="font-serif text-4xl md:text-6xl mt-4 font-bold">Coming soon</h1>
+          <p className="mt-5 max-w-xl mx-auto text-foreground/75 font-serif italic text-lg">
+            News and reporting for the global Indian diaspora is on its way. Check back shortly.
+          </p>
+        </main>
+        <SiteFooter />
       </div>
     );
   }
