@@ -1,15 +1,8 @@
 import { Link } from "react-router-dom";
 import { Article, formatShortDate, readingTime } from "@/lib/articles";
+import HeroImage from "@/components/HeroImage";
 
 type Variant = "hero" | "featured" | "card" | "long" | "compact";
-
-const FALLBACK_IMG = "/placeholder.svg";
-
-function handleImgError(e: React.SyntheticEvent<HTMLImageElement>) {
-  const img = e.currentTarget;
-  if (img.src.endsWith(FALLBACK_IMG)) return;
-  img.src = FALLBACK_IMG;
-}
 
 export default function ArticleCard({
   article,
@@ -24,10 +17,11 @@ export default function ArticleCard({
   if (variant === "compact") {
     return (
       <Link to={href} className="group flex gap-4 items-start">
-        <img
-          src={article.hero_image_url || FALLBACK_IMG} onError={handleImgError}
+        <HeroImage
+          src={article.hero_image_url}
           alt={article.title}
           loading="lazy"
+          category={article.category}
           className="w-24 h-24 md:w-28 md:h-28 object-cover flex-shrink-0"
         />
         <div className="min-w-0">
@@ -46,10 +40,11 @@ export default function ArticleCard({
         to={href}
         className="group grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-secondary/60 p-6 md:p-10 border hairline"
       >
-        <img
-          src={article.hero_image_url || FALLBACK_IMG} onError={handleImgError}
+        <HeroImage
+          src={article.hero_image_url}
           alt={article.title}
           loading="lazy"
+          category={article.category}
           className="w-full aspect-[4/3] object-cover"
         />
         <div>
@@ -80,10 +75,11 @@ export default function ArticleCard({
   return (
     <Link to={href} className="group block">
       <div className="overflow-hidden">
-        <img
-          src={article.hero_image_url || FALLBACK_IMG} onError={handleImgError}
+        <HeroImage
+          src={article.hero_image_url}
           alt={article.title}
           loading={variant === "hero" ? "eager" : "lazy"}
+          category={article.category}
           className={`w-full ${aspect} object-cover group-hover:scale-[1.01] transition-transform duration-500`}
         />
       </div>
@@ -91,11 +87,9 @@ export default function ArticleCard({
       <h2 className={`font-serif text-foreground group-hover:text-primary transition-colors ${headlineSize}`}>
         {article.title}
       </h2>
-      {variant !== "card" || true ? (
-        <p className="mt-3 text-foreground/75 leading-relaxed text-[0.95rem] md:text-base line-clamp-2">
-          {article.excerpt}
-        </p>
-      ) : null}
+      <p className="mt-3 text-foreground/75 leading-relaxed text-[0.95rem] md:text-base line-clamp-2">
+        {article.excerpt}
+      </p>
       <p className="mt-3 text-xs text-muted-foreground">
         {article.author ? `By ${article.author} · ` : ""}{formatShortDate(article.published_at)} · {time} min read
       </p>
