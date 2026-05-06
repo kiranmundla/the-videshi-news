@@ -42,10 +42,10 @@ export default function PlaceholderCard({ variant = "card" }: { variant?: Varian
   const aspect = "aspect-[16/9]";
   const maxH =
     variant === "hero"
-      ? "max-h-[480px]"
+      ? "md:max-h-[min(480px,60vh)]"
       : variant === "featured"
-        ? "max-h-[240px]"
-        : "max-h-[180px]";
+        ? "md:max-h-[240px]"
+        : "md:max-h-[180px]";
 
   return (
     <div className="block opacity-80">
