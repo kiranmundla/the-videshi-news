@@ -25,7 +25,7 @@ export default function ArticleCard({
     return (
       <Link to={href} className="group flex gap-4 items-start">
         <img
-          src={article.hero_image_url}
+          src={article.hero_image_url || FALLBACK_IMG} onError={handleImgError}
           alt={article.title}
           loading="lazy"
           className="w-24 h-24 md:w-28 md:h-28 object-cover flex-shrink-0"
@@ -47,7 +47,7 @@ export default function ArticleCard({
         className="group grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-secondary/60 p-6 md:p-10 border hairline"
       >
         <img
-          src={article.hero_image_url}
+          src={article.hero_image_url || FALLBACK_IMG} onError={handleImgError}
           alt={article.title}
           loading="lazy"
           className="w-full aspect-[4/3] object-cover"
@@ -81,7 +81,7 @@ export default function ArticleCard({
     <Link to={href} className="group block">
       <div className="overflow-hidden">
         <img
-          src={article.hero_image_url}
+          src={article.hero_image_url || FALLBACK_IMG} onError={handleImgError}
           alt={article.title}
           loading={variant === "hero" ? "eager" : "lazy"}
           className={`w-full ${aspect} object-cover group-hover:scale-[1.01] transition-transform duration-500`}
