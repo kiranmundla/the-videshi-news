@@ -102,9 +102,11 @@ export default function ArticlePage() {
         </article>
 
         <figure className="mt-10 max-w-5xl mx-auto">
-          <img
-            src={article.hero_image_url || FALLBACK_IMG} onError={handleImgError}
+          <HeroImage
+            src={article.hero_image_url}
             alt={article.title}
+            loading="eager"
+            category={article.category}
             className="w-full aspect-[16/9] object-cover"
           />
         </figure>
