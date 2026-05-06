@@ -65,9 +65,9 @@ export default function Index() {
 
         {/* Money & Markets */}
         <SectionRule label="Money & Markets" />
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10">
-          {slot(m1, "featured")}
-          {slot(m2, "featured")}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          {slot(m1, "card")}
+          {slot(m2, "card")}
         </div>
 
         {/* India & Culture */}
