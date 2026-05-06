@@ -14,6 +14,12 @@ import {
   readingTime,
 } from "@/lib/articles";
 
+const FALLBACK_IMG = "/placeholder.svg";
+const handleImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+  const img = e.currentTarget;
+  if (!img.src.endsWith(FALLBACK_IMG)) img.src = FALLBACK_IMG;
+};
+
 export default function ArticlePage() {
   const { slug = "" } = useParams();
   const [article, setArticle] = useState<Article | null | undefined>(undefined);
