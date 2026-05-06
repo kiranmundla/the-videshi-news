@@ -22,11 +22,11 @@ export default function ArticleCard({
           alt={article.title}
           loading="lazy"
           category={article.category}
-          className="w-24 h-24 md:w-28 md:h-28 object-cover flex-shrink-0"
+          className="w-20 h-20 object-cover flex-shrink-0"
         />
         <div className="min-w-0">
-          <p className="smallcaps text-primary mb-1.5">{article.category}</p>
-          <h3 className="font-serif text-base md:text-lg leading-snug text-foreground group-hover:text-primary transition-colors">
+          <p className="smallcaps text-primary mb-1">{article.category}</p>
+          <h3 className="font-serif text-[0.95rem] md:text-base leading-snug text-foreground group-hover:text-primary transition-colors">
             {article.title}
           </h3>
         </div>
@@ -65,12 +65,18 @@ export default function ArticleCard({
 
   const headlineSize =
     variant === "hero"
-      ? "text-[1.75rem] md:text-[2.5rem] lg:text-[3rem] leading-[1.1]"
+      ? "text-[2rem] md:text-[2.75rem] lg:text-[3rem] leading-[1.05]"
       : variant === "featured"
-      ? "text-[1.35rem] md:text-2xl leading-[1.2]"
-      : "text-[1.125rem] md:text-xl leading-snug";
+      ? "text-[1.35rem] md:text-[1.5rem] leading-[1.2]"
+      : "text-[1.05rem] md:text-[1.125rem] leading-snug";
 
-  const aspect = variant === "hero" ? "aspect-[16/9]" : "aspect-[16/10]";
+  const aspect = "aspect-[16/9]";
+  const maxH =
+    variant === "hero"
+      ? "max-h-[480px]"
+      : variant === "featured"
+      ? "max-h-[240px]"
+      : "max-h-[180px]";
 
   return (
     <Link to={href} className="group block">
@@ -80,7 +86,7 @@ export default function ArticleCard({
           alt={article.title}
           loading={variant === "hero" ? "eager" : "lazy"}
           category={article.category}
-          className={`w-full ${aspect} object-cover group-hover:scale-[1.01] transition-transform duration-500`}
+          className={`w-full ${aspect} ${maxH} object-cover group-hover:scale-[1.01] transition-transform duration-500`}
         />
       </div>
       <p className="smallcaps text-primary mt-4 mb-2">{article.category}</p>
