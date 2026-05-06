@@ -13,12 +13,7 @@ import {
   getRelatedArticles,
   readingTime,
 } from "@/lib/articles";
-
-const FALLBACK_IMG = "/placeholder.svg";
-const handleImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-  const img = e.currentTarget;
-  if (!img.src.endsWith(FALLBACK_IMG)) img.src = FALLBACK_IMG;
-};
+import HeroImage from "@/components/HeroImage";
 
 export default function ArticlePage() {
   const { slug = "" } = useParams();
@@ -107,9 +102,11 @@ export default function ArticlePage() {
         </article>
 
         <figure className="mt-10 max-w-5xl mx-auto">
-          <img
-            src={article.hero_image_url || FALLBACK_IMG} onError={handleImgError}
+          <HeroImage
+            src={article.hero_image_url}
             alt={article.title}
+            loading="eager"
+            category={article.category}
             className="w-full aspect-[16/9] object-cover"
           />
         </figure>
