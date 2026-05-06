@@ -3,6 +3,14 @@ import { Article, formatShortDate, readingTime } from "@/lib/articles";
 
 type Variant = "hero" | "featured" | "card" | "long" | "compact";
 
+const FALLBACK_IMG = "/placeholder.svg";
+
+function handleImgError(e: React.SyntheticEvent<HTMLImageElement>) {
+  const img = e.currentTarget;
+  if (img.src.endsWith(FALLBACK_IMG)) return;
+  img.src = FALLBACK_IMG;
+}
+
 export default function ArticleCard({
   article,
   variant = "card",
