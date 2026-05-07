@@ -1,35 +1,60 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
+import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
-import SectionRule from "@/components/SectionRule";
 import { Article, getPublishedArticles } from "@/lib/articles";
+import { CATEGORIES } from "@/lib/categories";
 
-const SECTIONS = [
-  { label: "Breaking", needle: "breaking" },
-  { label: "Politics", needle: "politics" },
-  { label: "US-India", needle: "us-india" },
-  { label: "Business", needle: "business" },
-  { label: "Technology", needle: "technology" },
-  { label: "Entertainment", needle: "entertainment" },
-  { label: "Sports", needle: "sports" },
-  { label: "Health", needle: "health" },
-  { label: "Crime", needle: "crime" },
-  { label: "World", needle: "world" },
+const SECTION_ORDER: { slug: string; label: string }[] = [
+  { slug: "markets-finance", label: "Markets & Finance" },
+  { slug: "technology", label: "Technology" },
+  { slug: "sports", label: "Sports" },
+  { slug: "lifestyle-health", label: "Lifestyle & Health" },
+  { slug: "travel", label: "Travel" },
 ];
 
-function matches(article: Article, needle: string) {
-  return (article.category ?? "").toLowerCase().includes(needle);
+const PLACEHOLDER_SECTIONS = [
+  { slug: "events", label: "Events", message: "Community events coming soon." },
+  { slug: "classifieds", label: "Classifieds", message: "Be the first to post." },
+];
+
+const CLUSTERS: { label: string; tags: string[] }[] = [
+  { label: "Bengal Elections", tags: ["west bengal", "bjp bengal", "bengal"] },
+  { label: "Tamil Nadu", tags: ["tamil nadu", "tamilnadu"] },
+];
+
+function tagsLower(a: Article) {
+  return (a.tags ?? []).map((t) => t.toLowerCase());
+}
+
+function matchesCluster(a: Article, tags: string[]) {
+  const at = tagsLower(a);
+  return tags.some((t) => at.some((x) => x.includes(t)));
+}
+
+function SectionHeader({ label, href }: { label: string; href?: string }) {
+  return (
+    <div className="flex items-end justify-between mt-14 mb-7 gap-4">
+      <div className="flex items-center gap-4 flex-1 min-w-0">
+        <span className="smallcaps text-primary whitespace-nowrap">{label}</span>
+        <span className="flex-1 bg-rule" style={{ height: "0.5px" }} />
+      </div>
+      {href && (
+        <Link to={href} className="smallcaps text-foreground/70 hover:text-primary whitespace-nowrap">
+          View all →
+        </Link>
+      )}
+    </div>
+  );
 }
 
 export default function Index() {
   const [allArticles, setAllArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
-  const [searchParams] = useSearchParams();
-  const category = searchParams.get("c");
 
   useEffect(() => {
     getPublishedArticles().then((a) => {
@@ -39,79 +64,65 @@ export default function Index() {
     });
   }, []);
 
-  const filtered = useMemo(() => {
-    if (!category) return allArticles;
-    const needle = category.toLowerCase();
-    return allArticles.filter((a) => matches(a, needle));
-  }, [allArticles, category]);
+  const layout = useMemo(() => {
+    const used = new Set<string>();
 
-  const PAGE_SIZE = 20;
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  useEffect(() => { setVisibleCount(PAGE_SIZE); }, [category]);
+    const featured =
+      allArticles.find((a) => a.article_type === "feature") ?? allArticles[0] ?? null;
+    if (featured) used.add(featured.id);
+
+    const newsAll = allArticles.filter((a) => a.category === "news");
+
+    // Build clusters
+    const clusters: { label: string; items: Article[] }[] = [];
+    const clusteredIds = new Set<string>();
+    for (const c of CLUSTERS) {
+      const items = newsAll.filter((a) => !used.has(a.id) && matchesCluster(a, c.tags));
+      if (items.length > 0) {
+        clusters.push({ label: c.label, items });
+        items.forEach((a) => clusteredIds.add(a.id));
+      }
+    }
+
+    const remainingNews = newsAll.filter((a) => !used.has(a.id) && !clusteredIds.has(a.id));
+    // Pick 6 latest news total, distributing across clusters + chrono
+    const newsItemsForLatest: Article[] = [];
+    clusters.forEach((c) => c.items.forEach((a) => newsItemsForLatest.push(a)));
+    remainingNews.forEach((a) => newsItemsForLatest.push(a));
+    const latestNews = newsItemsForLatest.slice(0, 6);
+    latestNews.forEach((a) => used.add(a.id));
+
+    // Trim cluster items to those in latestNews
+    const latestNewsIds = new Set(latestNews.map((a) => a.id));
+    const visibleClusters = clusters
+      .map((c) => ({ label: c.label, items: c.items.filter((a) => latestNewsIds.has(a.id)) }))
+      .filter((c) => c.items.length > 0);
+    const clusteredVisibleIds = new Set<string>();
+    visibleClusters.forEach((c) => c.items.forEach((a) => clusteredVisibleIds.add(a.id)));
+    const ungroupedNews = latestNews.filter((a) => !clusteredVisibleIds.has(a.id));
+
+    const sections = SECTION_ORDER.map((s) => {
+      const items = allArticles
+        .filter((a) => a.category === s.slug && !used.has(a.id))
+        .slice(0, 6);
+      items.forEach((a) => used.add(a.id));
+      return { ...s, items };
+    });
+
+    return { featured, visibleClusters, ungroupedNews, sections };
+  }, [allArticles]);
 
   if (loading) {
     return (
       <div className="min-h-screen">
         <Masthead />
+        <CategoryPills />
         <main className="container py-20 text-center text-muted-foreground">Loading…</main>
       </div>
     );
   }
 
-  // ---- Category view: simple chronological grid ----
-  if (category) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <Helmet>
-          <title>{category} — The Videshi</title>
-          <meta name="description" content={`${category} stories from The Videshi.`} />
-          <link rel="canonical" href={`/?c=${encodeURIComponent(category)}`} />
-        </Helmet>
-        <Masthead />
-        <main className="container flex-1 pt-8 md:pt-10">
-          <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-8">{category}</h1>
-          {filtered.length === 0 ? (
-            <p className="py-20 text-center text-muted-foreground">No stories yet in this section.</p>
-          ) : (
-            <>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-12 md:gap-y-16">
-              {filtered.slice(0, visibleCount).map((a) => (
-                <ArticleCard key={a.id} article={a} variant="card" hideCategory />
-              ))}
-            </div>
-            {visibleCount < filtered.length && (
-              <div className="mt-10 mb-4 flex justify-center">
-                <button
-                  onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-                  className="smallcaps border border-rule px-6 py-3 text-foreground hover:text-primary hover:border-primary transition-colors"
-                >
-                  More stories →
-                </button>
-              </div>
-            )}
-            </>
-          )}
-        </main>
-        <SiteFooter lastUpdated={lastUpdated} />
-      </div>
-    );
-  }
-
-  // ---- Home view: hero + latest + top 3 per section (deduped by id) ----
-  const hero = allArticles[0];
-  const rest = hero ? allArticles.filter((a) => a.id !== hero.id) : allArticles;
-  const LATEST_COUNT = 6;
-  const latest = rest.slice(0, LATEST_COUNT);
-  const shownIds = new Set<string>([
-    ...(hero ? [hero.id] : []),
-    ...latest.map((a) => a.id),
-  ]);
-  const sectionLists = SECTIONS.map((s) => ({
-    ...s,
-    items: rest
-      .filter((a) => matches(a, s.needle) && !shownIds.has(a.id))
-      .slice(0, 3),
-  })).filter((s) => s.items.length > 0);
+  const { featured, visibleClusters, ungroupedNews, sections } = layout;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -119,62 +130,70 @@ export default function Index() {
         <title>The Videshi — News for the global Indian diaspora</title>
         <meta
           name="description"
-          content="Editorial reporting and analysis for the global Indian diaspora — India, NRI affairs, US-India, business, culture, sports, and voices."
+          content="Editorial reporting and analysis for the global Indian diaspora — news, travel, lifestyle & health, markets, technology, and sports."
         />
         <meta property="og:title" content="The Videshi" />
         <meta property="og:description" content="News for the global Indian diaspora" />
-        {hero && <meta property="og:image" content={hero.hero_image_url} />}
+        {featured && <meta property="og:image" content={featured.hero_image_url} />}
         <link rel="canonical" href="/" />
       </Helmet>
 
       <Masthead />
+      <CategoryPills />
 
       <main className="container flex-1 pt-8 md:pt-10">
-        {hero && (
+        {featured && (
           <div>
             <div className="flex items-center gap-4 mb-5">
               <span className="smallcaps text-primary whitespace-nowrap">Featured</span>
               <span className="flex-1 bg-rule" style={{ height: "0.5px" }} />
             </div>
-            <ArticleCard article={hero} variant="hero" />
+            <ArticleCard article={featured} variant="hero" />
           </div>
         )}
 
-        {rest.length > 0 && (
+        {(visibleClusters.length > 0 || ungroupedNews.length > 0) && (
           <section>
-            <div className="flex items-end justify-between mt-14 mb-7 gap-4">
-              <div className="flex items-center gap-4 flex-1 min-w-0">
-                <span className="smallcaps text-primary whitespace-nowrap">Latest</span>
-                <span className="flex-1 bg-rule" style={{ height: "0.5px" }} />
+            <SectionHeader label="Latest News" href="/news" />
+
+            {visibleClusters.map((c) => (
+              <div key={c.label} className="mb-10">
+                <p className="smallcaps text-foreground/70 mb-4">{c.label}</p>
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+                  {c.items.map((a) => (
+                    <ArticleCard key={a.id} article={a} variant="card" hideCategory />
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-              {latest.map((a) => (
-                <ArticleCard key={a.id} article={a} variant="card" />
-              ))}
-            </div>
+            ))}
+
+            {ungroupedNews.length > 0 && (
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+                {ungroupedNews.map((a) => (
+                  <ArticleCard key={a.id} article={a} variant="card" hideCategory />
+                ))}
+              </div>
+            )}
           </section>
         )}
 
-        {sectionLists.map((s) => (
-          <section key={s.label}>
-            <div className="flex items-end justify-between mt-14 mb-7 gap-4">
-              <div className="flex items-center gap-4 flex-1 min-w-0">
-                <span className="smallcaps text-primary whitespace-nowrap">{s.label}</span>
-                <span className="flex-1 bg-rule" style={{ height: "0.5px" }} />
+        {sections.map((s) =>
+          s.items.length > 0 ? (
+            <section key={s.slug}>
+              <SectionHeader label={s.label} href={`/${s.slug}`} />
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+                {s.items.map((a) => (
+                  <ArticleCard key={a.id} article={a} variant="card" hideCategory />
+                ))}
               </div>
-              <Link
-                to={`/?c=${encodeURIComponent(s.label)}`}
-                className="smallcaps text-foreground/70 hover:text-primary whitespace-nowrap"
-              >
-                View all →
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-              {s.items.map((a) => (
-                <ArticleCard key={a.id} article={a} variant="card" hideCategory />
-              ))}
-            </div>
+            </section>
+          ) : null
+        )}
+
+        {PLACEHOLDER_SECTIONS.map((s) => (
+          <section key={s.slug}>
+            <SectionHeader label={s.label} href={`/${s.slug}`} />
+            <p className="py-8 text-center text-muted-foreground">{s.message}</p>
           </section>
         ))}
       </main>
