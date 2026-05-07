@@ -99,9 +99,8 @@ export default function ArticleCard({
           category={article.category}
           className={`w-full ${aspect} object-cover object-top group-hover:scale-[1.01] transition-transform duration-500`}
         />
-        <figcaption className="mt-2 text-xs italic text-muted-foreground">
-          {imageCaption(article.title)}
-        </figcaption>
+        <ImageCaption caption={article.image_caption} credit={article.image_credit} truncate />
+
       </figure>
       {!hideCategory && (
         <p className="smallcaps text-primary mt-4 mb-2">
