@@ -7,9 +7,11 @@ type Variant = "hero" | "featured" | "card" | "long" | "compact";
 export default function ArticleCard({
   article,
   variant = "card",
+  hideCategory = false,
 }: {
   article: Article;
   variant?: Variant;
+  hideCategory?: boolean;
 }) {
   const time = readingTime(article.body);
   const href = `/articles/${article.slug}`;
