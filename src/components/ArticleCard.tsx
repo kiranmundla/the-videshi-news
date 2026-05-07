@@ -74,7 +74,7 @@ export default function ArticleCard({
 
   const aspect =
     variant === "hero"
-      ? "aspect-[21/9] md:aspect-[12/5] max-h-[420px]"
+      ? "aspect-[21/9] md:aspect-[12/5] max-h-[40vh]"
       : "aspect-[3/2]";
 
   return (

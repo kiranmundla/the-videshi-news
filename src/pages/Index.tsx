@@ -99,9 +99,10 @@ export default function Index() {
 
   // ---- Home view: hero + top 3 per section ----
   const hero = allArticles[0];
+  const rest = hero ? allArticles.filter((a) => a.id !== hero.id) : allArticles;
   const sectionLists = SECTIONS.map((s) => ({
     ...s,
-    items: allArticles.filter((a) => matches(a, s.needle)).slice(0, 3),
+    items: rest.filter((a) => matches(a, s.needle)).slice(0, 3),
   })).filter((s) => s.items.length > 0);
 
   return (
