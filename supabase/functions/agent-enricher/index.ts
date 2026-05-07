@@ -140,6 +140,11 @@ Deno.serve(async (req) => {
     const draft = job.article_draft || {};
     const brief = job.story_brief || {};
 
+    const articleType = brief.article_type === "feature" ? "feature" : "news";
+    const totalLen =
+      articleType === "feature"
+        ? "1,000–1,500 words MAXIMUM including all sections combined (in-depth analysis/feature)"
+        : "300–400 words MAXIMUM including all sections combined (concise news brief)";
     const userPrompt = `Take this factual draft and turn it into a rich, deeply contextual article for the Indian-American diaspora.
 
 STORY BRIEF:
@@ -148,11 +153,13 @@ ${JSON.stringify(brief, null, 2)}
 FACTUAL DRAFT:
 ${JSON.stringify(draft, null, 2)}
 
+ARTICLE TYPE: ${articleType.toUpperCase()}
+
 DO ALL OF THE FOLLOWING (with strict constraints):
 - NRI Angle: 150–250 words MAXIMUM. Format as exactly 3 bullets: (1) why it matters, (2) what to watch, (3) what action if any.
 - Wikipedia Context: 2–3 sentences MAXIMUM. ALWAYS substantially paraphrase — never copy sentence structure from Wikipedia. ALWAYS attribute with the phrase "According to Wikipedia".
 - Pull Quotes: only use quotes that appear VERBATIM in the sources_used. If you cannot verify the exact wording, paraphrase inside a normal paragraph and DO NOT format as a pull_quote blockquote.
-- Total article length: 500–800 words MAXIMUM including all sections combined.
+- Total article length: ${totalLen}.
 - Seat counts and numbers: when sources conflict, always use the most CONSERVATIVE figure and append "(preliminary)".
 - DO NOT add organizational history, founding dates, or background older than 5 years unless directly relevant to the breaking news.
 - Key Facts Box: 4–6 bullets at the top.
