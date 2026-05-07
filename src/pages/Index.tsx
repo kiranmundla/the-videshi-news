@@ -132,6 +132,22 @@ export default function Index() {
           </div>
         )}
 
+        {rest.length > 0 && (
+          <section>
+            <div className="flex items-end justify-between mt-14 mb-7 gap-4">
+              <div className="flex items-center gap-4 flex-1 min-w-0">
+                <span className="smallcaps text-primary whitespace-nowrap">Latest</span>
+                <span className="flex-1 bg-rule" style={{ height: "0.5px" }} />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+              {rest.map((a) => (
+                <ArticleCard key={a.id} article={a} variant="card" />
+              ))}
+            </div>
+          </section>
+        )}
+
         {sectionLists.map((s) => (
           <section key={s.label}>
             <div className="flex items-end justify-between mt-14 mb-7 gap-4">
