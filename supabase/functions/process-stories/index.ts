@@ -303,6 +303,16 @@ Deno.serve(async (req) => {
       .sort((a, b) => a.priority - b.priority)
       .slice(0, MAX_ARTICLES_PER_RUN);
 
+    // Fetch recent published articles (last 48h) for duplicate detection
+    const recentSince = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
+    const { data: recentArticles } = await supabase
+      .from("articles")
+      .select("id, title, summary")
+      .eq("is_published", true)
+      .gte("published_at", recentSince)
+      .order("published_at", { ascending: false })
+      .limit(50);
+
     const successfullyProcessedRawIds = new Set<string>();
 
     for (const group of topGroups) {
@@ -310,6 +320,40 @@ Deno.serve(async (req) => {
         (a) => a.id === group.bestArticleId
       );
       if (!bestArticle) continue;
+
+      // Option A: ask Claude if this story is already covered in the last 48h
+      if (recentArticles && recentArticles.length > 0) {
+        const dupPrompt = `You are checking for duplicate news coverage.
+
+CANDIDATE NEW STORY:
+Headline: ${group.storyHeadline}
+Best excerpt: ${bestArticle.title} — ${bestArticle.description?.slice(0, 200)}
+
+ALREADY-PUBLISHED ARTICLES (last 48h):
+${recentArticles.map((a, i) => `${i + 1}. ${a.title}\n   ${a.summary?.slice(0, 150)}`).join("\n\n")}
+
+Is the candidate story substantially the same news event as any already-published article?
+Treat them as the same story if they cover the same incident/event/announcement, even with new minor details.
+Treat them as different if it is a genuinely new development, a different incident, or a separate announcement.
+
+Respond ONLY with valid JSON: {"duplicate": true|false, "reason": "short reason"}`;
+
+        try {
+          const dupRes = await callClaude(dupPrompt);
+          const m = dupRes.match(/\{[\s\S]*\}/);
+          if (m) {
+            const parsed = JSON.parse(m[0]);
+            if (parsed.duplicate === true) {
+              console.log(`Skipping duplicate: "${group.storyHeadline}" — ${parsed.reason}`);
+              // Mark raw articles processed so we don't keep re-checking them
+              for (const rid of group.articleIds) successfullyProcessedRawIds.add(rid);
+              continue;
+            }
+          }
+        } catch (err) {
+          console.warn("Duplicate check failed, proceeding to generate:", (err as Error).message);
+        }
+      }
 
       console.log(`Generating article: "${group.storyHeadline}"`);
       const generated = await generateArticle(group, bestArticle);
