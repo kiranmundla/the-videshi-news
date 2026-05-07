@@ -10,7 +10,7 @@ const corsHeaders = {
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY")!;
-const MODEL = "claude-sonnet-4-6";
+const MODEL = "claude-haiku-4-5-20251001";
 
 const SYSTEM_PROMPT =
   "You are a senior features editor at The Videshi, a news platform for Indian-Americans. Your job is to take a factual draft and transform it into a rich, beautiful, deeply contextual article that resonates specifically with the Indian-American diaspora.";
@@ -24,7 +24,16 @@ function extractJson(text: string): any {
   return JSON.parse(raw.slice(start, end + 1));
 }
 
-async function callClaudeWithSearch(userPrompt: string): Promise<string> {
+async function callClaudeWithSearch(userPrompt: string, useWebSearch: boolean): Promise<string> {
+  const body: any = {
+    model: MODEL,
+    max_tokens: 6144,
+    system: SYSTEM_PROMPT,
+    messages: [{ role: "user", content: userPrompt }],
+  };
+  if (useWebSearch) {
+    body.tools = [{ type: "web_search_20250305", name: "web_search", max_uses: 6 }];
+  }
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -32,15 +41,7 @@ async function callClaudeWithSearch(userPrompt: string): Promise<string> {
       "anthropic-version": "2023-06-01",
       "content-type": "application/json",
     },
-    body: JSON.stringify({
-      model: MODEL,
-      max_tokens: 6144,
-      system: SYSTEM_PROMPT,
-      tools: [
-        { type: "web_search_20250305", name: "web_search", max_uses: 6 },
-      ],
-      messages: [{ role: "user", content: userPrompt }],
-    }),
+    body: JSON.stringify(body),
   });
   if (!res.ok) {
     throw new Error(`Claude error ${res.status}: ${await res.text()}`);
@@ -63,6 +64,18 @@ Deno.serve(async (req) => {
       status,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
+
+  // Daily article cap: stop if 10+ articles already published today
+  const startOfDay = new Date();
+  startOfDay.setUTCHours(0, 0, 0, 0);
+  const { count: todayCount } = await supabase
+    .from("articles")
+    .select("id", { count: "exact", head: true })
+    .eq("is_published", true)
+    .gte("published_at", startOfDay.toISOString());
+  if ((todayCount ?? 0) >= 10) {
+    return respond(200, { ok: true, message: `Daily cap reached (${todayCount} articles today)` });
+  }
 
   const { data: claimed, error: claimErr } = await supabase.rpc("claim_queue_job", {
     p_status: "enriching",
@@ -130,7 +143,10 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
   "read_time_min": 0
 }`;
 
-    const text = await callClaudeWithSearch(userPrompt);
+    const sourceCount = Number(brief?.source_count ?? 99);
+    const useWebSearch =
+      brief?.diaspora_relevance === "high" || sourceCount < 2;
+    const text = await callClaudeWithSearch(userPrompt, useWebSearch);
     const enriched = extractJson(text);
 
     if (!enriched.title || !Array.isArray(enriched.body)) {
