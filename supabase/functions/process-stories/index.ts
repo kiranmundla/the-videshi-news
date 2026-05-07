@@ -211,14 +211,21 @@ YOUR TASKS:
     if (!jsonMatch) throw new Error("No JSON found in response");
 
     const parsed = JSON.parse(jsonMatch[0]);
-    const wordCount = parsed.body?.split(/\s+/).length || 0;
+    const stripCitations = (s: string) =>
+      typeof s === "string"
+        ? s.replace(/<\/?cite\b[^>]*>/gi, "").replace(/\[\d+(?:[-,\s]\d+)*\]/g, "")
+        : s;
+    const cleanedBody = stripCitations(parsed.body || "");
+    const cleanedSummary = stripCitations(parsed.summary || "");
+    const cleanedNri = parsed.nriAngle ? stripCitations(parsed.nriAngle) : null;
+    const wordCount = cleanedBody.split(/\s+/).filter(Boolean).length;
 
     return {
       title: parsed.title || group.storyHeadline,
       slug: parsed.slug || slugify(group.storyHeadline),
-      summary: parsed.summary || "",
-      body: parsed.body || "",
-      nriAngle: parsed.nriAngle || null,
+      summary: cleanedSummary,
+      body: cleanedBody,
+      nriAngle: cleanedNri,
       sourcesUsed: parsed.sourcesUsed || [],
       tags: parsed.tags || [],
       wordCount,
