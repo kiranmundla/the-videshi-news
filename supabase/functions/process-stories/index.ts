@@ -321,7 +321,8 @@ Respond ONLY with valid JSON (no markdown wrapper):
     const response = await callClaude(
       prompt,
       true,
-      "You are a professional journalist updating an existing article with new developments. Be factual and conservative — only add what the new sources support."
+      "You are a professional journalist updating an existing article with new developments. Be factual and conservative — only add what the new sources support.",
+      "claude-sonnet-4-20250514"
     );
     const cleaned = response.replace(/```json|```/g, "").trim();
     const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
