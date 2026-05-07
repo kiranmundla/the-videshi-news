@@ -246,6 +246,10 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
           published_at: new Date().toISOString(),
           sources_used: draft.sources_used || null,
           nri_angle: enriched.nri_relevance || null,
+          article_type:
+            (job.story_brief as any)?.article_type === "feature"
+              ? "feature"
+              : "news",
         })
         .select()
         .single();
