@@ -56,7 +56,7 @@ export default function ArticleCard({
             alt={article.title}
             loading="lazy"
             category={article.category}
-            className="w-full aspect-[16/9] object-cover object-center-top"
+            className="w-full aspect-[16/9] object-cover object-top"
           />
           <figcaption className="mt-2 text-xs italic text-muted-foreground">
             {imageCaption(article.title)}
@@ -97,7 +97,7 @@ export default function ArticleCard({
           alt={article.title}
           loading={variant === "hero" ? "eager" : "lazy"}
           category={article.category}
-          className={`w-full ${aspect} object-cover object-center-top group-hover:scale-[1.01] transition-transform duration-500`}
+          className={`w-full ${aspect} object-cover object-top group-hover:scale-[1.01] transition-transform duration-500`}
         />
         <figcaption className="mt-2 text-xs italic text-muted-foreground">
           {imageCaption(article.title)}
