@@ -184,7 +184,11 @@ ${JSON.stringify(enriched, null, 2)}
 ORIGINAL FACTUAL DRAFT (for cross-checking sources/quotes):
 ${JSON.stringify(draft, null, 2)}
 
-Be thorough but fair — only revise/reject for real problems.
+DECISION RULES (apply strictly):
+- If quality_score >= 6/10, decision MUST be "publish".
+- Only use "revise" for scores 4-5.
+- Only use "reject" for scores below 4 OR clear copyright violations (verbatim/near-verbatim copying from sources).
+- Minor issues like word count being slightly off, NRI section length, or source citation formatting must NOT trigger "revise" — note them in issues/revision_notes but still publish.
 
 Return ONLY valid JSON (no prose, no fences) in this exact shape:
 {
@@ -202,7 +206,10 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
     const revisionCount = job.revision_count || 0;
     const maxRevisions = job.max_revisions || 2;
 
-    if (decision === "publish" || (decision === "revise" && revisionCount >= maxRevisions)) {
+    const exhaustedRevisions = revisionCount >= maxRevisions;
+    const forcePublish = exhaustedRevisions && enriched && enriched.title;
+
+    if (decision === "publish" || forcePublish || (decision === "revise" && exhaustedRevisions)) {
       // Publish
       const slug =
         enriched.slug ||
@@ -220,8 +227,8 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
         enriched.read_time_min || Math.max(1, Math.round(wordCount / 220));
 
       const editorNote =
-        decision === "revise"
-          ? `Auto-published after ${revisionCount} revision attempts. Editor notes: ${review.revision_notes || ""}`
+        decision !== "publish"
+          ? `Auto-published after ${revisionCount} revision attempts (decision was ${decision}). Notes: ${review.revision_notes || review.rejection_reason || ""}`
           : null;
 
       const { data: inserted, error: insErr } = await supabase
