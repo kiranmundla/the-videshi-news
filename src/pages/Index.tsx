@@ -97,12 +97,20 @@ export default function Index() {
     );
   }
 
-  // ---- Home view: hero + top 3 per section ----
+  // ---- Home view: hero + latest + top 3 per section (deduped by id) ----
   const hero = allArticles[0];
   const rest = hero ? allArticles.filter((a) => a.id !== hero.id) : allArticles;
+  const LATEST_COUNT = 6;
+  const latest = rest.slice(0, LATEST_COUNT);
+  const shownIds = new Set<string>([
+    ...(hero ? [hero.id] : []),
+    ...latest.map((a) => a.id),
+  ]);
   const sectionLists = SECTIONS.map((s) => ({
     ...s,
-    items: rest.filter((a) => matches(a, s.needle)).slice(0, 3),
+    items: rest
+      .filter((a) => matches(a, s.needle) && !shownIds.has(a.id))
+      .slice(0, 3),
   })).filter((s) => s.items.length > 0);
 
   return (
