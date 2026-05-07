@@ -76,7 +76,7 @@ function parseRSS(xml: string, sourceName: string, sourceUrl: string): RawArticl
       attr(/<enclosure\b[^>]*\burl=["']([^"']+)["'][^>]*\btype=["']image\/[^"']+["'][^>]*>/i) ||
       attr(/<enclosure\b[^>]*\btype=["']image\/[^"']+["'][^>]*\burl=["']([^"']+)["'][^>]*>/i) ||
       // 4. First <img src="..."> inside <description> (CDATA-wrapped HTML)
-      attr(new RegExp(`<img\\b[^>]*\\bsrc=["']([^"']+)["']`, "i").exec(rawDescription) ? new RegExp(`<img\\b[^>]*\\bsrc=["']([^"']+)["']`, "i") : /^$/) ||
+      rawDescription.match(/<img\b[^>]*\bsrc=["']([^"']+)["']/i)?.[1]?.trim() ||
       // 5. og:image (some feeds embed it inline)
       attr(/<meta\b[^>]*\bproperty=["']og:image["'][^>]*\bcontent=["']([^"']+)["']/i) ||
       attr(/<meta\b[^>]*\bcontent=["']([^"']+)["'][^>]*\bproperty=["']og:image["']/i) ||
