@@ -156,15 +156,19 @@ ${JSON.stringify(draft, null, 2)}
 ARTICLE TYPE: ${articleType.toUpperCase()}
 
 DO ALL OF THE FOLLOWING (with strict constraints):
-- NRI Angle: 150–250 words MAXIMUM. Format as exactly 3 bullets: (1) why it matters, (2) what to watch, (3) what action if any.
-- Wikipedia Context: 2–3 sentences MAXIMUM. ALWAYS substantially paraphrase — never copy sentence structure from Wikipedia. ALWAYS attribute with the phrase "According to Wikipedia".
-- Pull Quotes: only use quotes that appear VERBATIM in the sources_used. If you cannot verify the exact wording, paraphrase inside a normal paragraph and DO NOT format as a pull_quote blockquote.
+- NRI/Diaspora Angle — STRICT RULES:
+  * Maximum 3 sentences total. No bullets, no numbered lists, no subheadings inside this section.
+  * Sentence 1: WHY this matters to Indian-Americans. Sentence 2: WHAT to watch next. Sentence 3 (optional): action or resources.
+  * Do NOT include organizational history. Do NOT include demographic statistics unless directly sourced in sources_used.
+  * Example of correct length and tone: "For the ~2.5 million Bengali-Americans, this shift marks the end of a regional government many saw as culturally protective. Watch how the new BJP administration handles Bengali-language policy and diaspora investment channels in the coming months."
+- Wikipedia / Background Context: keep historical context sections — they are valuable. Paraphrasing Wikipedia is encouraged but MUST be clearly attributed (e.g. "According to Wikipedia").
+- Geographic Context boxes: keep them — they are valuable for diaspora readers.
+- "Understanding the Players" explainer boxes: keep them.
+- Pull Quotes: only use quotes that appear VERBATIM in sources_used AND are attributed to a NAMED individual with a specific source. NEVER use vague attributions like "— Political analysts" or "— Observers". If you cannot verify the exact wording or named source, paraphrase inside a normal paragraph and do NOT format as a pull_quote.
 - Total article length: ${totalLen}.
 - Seat counts and numbers: when sources conflict, always use the most CONSERVATIVE figure and append "(preliminary)".
-- DO NOT add organizational history, founding dates, or background older than 5 years unless directly relevant to the breaking news.
 - Key Facts Box: 4–6 bullets at the top.
 - Subheadings every 2–3 paragraphs.
-- Geographic Context: one-line note about location for diaspora readers.
 
 IMPORTANT: Your entire response must be a single valid JSON object. Do not use unescaped double quotes inside string values. Use single quotes for dialogue and apostrophes only. Do not include any text outside the JSON object.
 
