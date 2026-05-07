@@ -14,6 +14,7 @@ export type Article = {
   status: "published" | "draft";
   sources?: { label: string; url?: string }[];
   nri_angle?: string;
+  article_type?: "news" | "feature";
 };
 
 type ArticleRow = {
