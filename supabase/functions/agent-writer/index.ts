@@ -155,6 +155,9 @@ INSTRUCTIONS:
 - Do NOT add NRI/diaspora angle (that's a separate step).
 - Do NOT editorialize or add opinion.
 
+
+IMPORTANT: Your entire response must be a single valid JSON object. Do not use unescaped double quotes inside string values. Use single quotes for dialogue and apostrophes only. Do not include any text outside the JSON object.
+
 Return ONLY valid JSON (no prose, no markdown fences) in this exact shape:
 {
   "title": "string",
@@ -170,7 +173,7 @@ Return ONLY valid JSON (no prose, no markdown fences) in this exact shape:
     const useWebSearch =
       brief?.diaspora_relevance === "high" || sourceCount < 2;
     const text = await callClaudeWithSearch(userPrompt, useWebSearch);
-    const draft = extractJson(text);
+    const draft = await extractJsonWithRepair(text);
 
     if (!draft.title || !draft.body_markdown) {
       throw new Error("Draft missing required fields");
