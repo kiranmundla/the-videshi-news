@@ -69,6 +69,7 @@ function mapRow(row: ArticleRow): Article {
     status: row.is_published ? "published" : "draft",
     sources: parseSources(row.sources_used),
     nri_angle: row.nri_angle ?? undefined,
+    article_type: (row.article_type === "feature" ? "feature" : "news"),
     author: "Diaspora Desk",
   };
 }
