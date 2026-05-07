@@ -91,7 +91,6 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
-  const workerId = `writer-${crypto.randomUUID()}`;
 
   const respond = (status: number, body: unknown) =>
     new Response(JSON.stringify(body), {
@@ -111,34 +110,44 @@ Deno.serve(async (req) => {
     return respond(200, { ok: true, message: `Daily cap reached (${todayCount} articles today)` });
   }
 
-  // Claim a job atomically
-  const { data: claimed, error: claimErr } = await supabase.rpc(
-    "claim_queue_job",
-    { p_status: "pending", p_worker_id: workerId, p_lock_secs: 300 },
-  );
-  if (claimErr) {
-    console.error("claim error", claimErr);
-    return respond(500, { ok: false, error: claimErr.message });
-  }
-  if (!claimed || !claimed.id) {
-    return respond(200, { ok: true, message: "No pending jobs" });
-  }
+  const MAX_JOBS_PER_INVOCATION = 3;
+  const results: any[] = [];
 
-  const job = claimed;
-  const { data: runRow } = await supabase
-    .from("pipeline_runs")
-    .insert({ run_type: "writer", status: "running" })
-    .select()
-    .single();
-  const runId = runRow?.id;
+  for (let i = 0; i < MAX_JOBS_PER_INVOCATION; i++) {
+    const workerId = `writer-${crypto.randomUUID()}`;
 
-  // Mark as writing
-  await supabase
-    .from("story_queue")
-    .update({ status: "writing", updated_at: new Date().toISOString() })
-    .eq("id", job.id);
+    // Claim a job atomically
+    const { data: claimed, error: claimErr } = await supabase.rpc(
+      "claim_queue_job",
+      { p_status: "pending", p_worker_id: workerId, p_lock_secs: 300 },
+    );
+    if (claimErr) {
+      console.error("claim error", claimErr);
+      results.push({ ok: false, error: claimErr.message });
+      break;
+    }
+    if (!claimed || !claimed.id) {
+      if (results.length === 0) {
+        return respond(200, { ok: true, message: "No pending jobs" });
+      }
+      break;
+    }
 
-  try {
+    const job = claimed;
+    const { data: runRow } = await supabase
+      .from("pipeline_runs")
+      .insert({ run_type: "writer", status: "running" })
+      .select()
+      .single();
+    const runId = runRow?.id;
+
+    // Mark as writing
+    await supabase
+      .from("story_queue")
+      .update({ status: "writing", updated_at: new Date().toISOString() })
+      .eq("id", job.id);
+
+    try {
     const brief = job.story_brief || {};
     const userPrompt = `You have a story brief. Write a factual first draft.
 
