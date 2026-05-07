@@ -54,8 +54,15 @@ async function shortHash(input: string): Promise<string> {
 }
 
 function firstImageUrl(html: string): string | null {
-  const m = html.match(/<img[^>]+src=["']([^"']+)["']/i);
-  return m ? m[1] : null;
+  const re = /<img[^>]+src=["']([^"']+)["']/gi;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(html)) !== null) {
+    const url = m[1];
+    // Skip tracking pixels and counters
+    if (/counter\.|\/count\.gif|pixel|tracking|1x1|\.gif(\?|$)/i.test(url)) continue;
+    return url;
+  }
+  return null;
 }
 
 function buildExcerpt(markdown: string): string {
