@@ -185,10 +185,10 @@ ORIGINAL FACTUAL DRAFT (for cross-checking sources/quotes):
 ${JSON.stringify(draft, null, 2)}
 
 DECISION RULES (apply strictly):
-- If quality_score >= 6/10, decision MUST be "publish".
-- Only use "revise" for scores 4-5.
-- Only use "reject" for scores below 4 OR clear copyright violations (verbatim/near-verbatim copying from sources).
-- Minor issues like word count being slightly off, NRI section length, or source citation formatting must NOT trigger "revise" — note them in issues/revision_notes but still publish.
+- If quality_score >= 6/10, decision MUST be "publish" — no exceptions.
+- Minor formatting issues (word count slightly off, NRI section length, citation formatting, missing subheading, etc.) → "publish" with notes in issues. NEVER "revise" for formatting.
+- Only use "revise" for: clear copyright violation, fabricated/unverifiable quotes, or major factual error.
+- Only use "reject" for: quality_score below 4, or complete plagiarism.
 
 Return ONLY valid JSON (no prose, no fences) in this exact shape:
 {
