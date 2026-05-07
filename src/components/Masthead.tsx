@@ -3,15 +3,11 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { formatLongDate } from "@/lib/articles";
 
+import { CATEGORIES } from "@/lib/categories";
+
 const NAV = [
   { label: "Home", to: "/" },
-  { label: "India", to: "/?c=India" },
-  { label: "NRI Affairs", to: "/?c=NRI%20Affairs" },
-  { label: "US-India", to: "/?c=US-India" },
-  { label: "Business", to: "/?c=Business" },
-  { label: "Culture", to: "/?c=Culture" },
-  { label: "Sports", to: "/?c=Sports" },
-  { label: "Voices", to: "/?c=Voices" },
+  ...CATEGORIES.map((c) => ({ label: c.label, to: c.path })),
 ];
 
 export default function Masthead() {
