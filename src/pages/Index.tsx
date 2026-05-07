@@ -8,13 +8,16 @@ import SectionRule from "@/components/SectionRule";
 import { Article, getPublishedArticles } from "@/lib/articles";
 
 const SECTIONS = [
-  { label: "India", needle: "india" },
-  { label: "NRI Affairs", needle: "nri" },
+  { label: "Breaking", needle: "breaking" },
+  { label: "Politics", needle: "politics" },
   { label: "US-India", needle: "us-india" },
   { label: "Business", needle: "business" },
-  { label: "Culture", needle: "culture" },
+  { label: "Technology", needle: "technology" },
+  { label: "Entertainment", needle: "entertainment" },
   { label: "Sports", needle: "sports" },
-  { label: "Voices", needle: "voices" },
+  { label: "Health", needle: "health" },
+  { label: "Crime", needle: "crime" },
+  { label: "World", needle: "world" },
 ];
 
 function matches(article: Article, needle: string) {
