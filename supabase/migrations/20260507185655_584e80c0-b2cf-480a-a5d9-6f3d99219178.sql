@@ -1,0 +1,1 @@
+select cron.unschedule('agent-scout-every-15-min');
