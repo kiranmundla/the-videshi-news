@@ -11,7 +11,8 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
-const FEED_URL = "https://theconversation.com/in/articles.atom";
+const FEED_URL =
+  "https://theconversation.com/topics/india-1429/articles.atom";
 
 const turndown = new TurndownService({
   headingStyle: "atx",
