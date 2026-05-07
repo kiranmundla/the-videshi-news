@@ -114,6 +114,7 @@ export default function ArticlePage() {
         <div className="article-prose max-w-2xl mx-auto mt-12">
           <ReactMarkdown
             components={{
+              h1: () => null,
               a: ({ href, children, ...props }) => {
                 // If the link only wraps an image, drop the link and render the image alone
                 const arr = Array.isArray(children) ? children : [children];
