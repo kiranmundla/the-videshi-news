@@ -15,13 +15,49 @@ const MODEL = "claude-sonnet-4-6";
 const SYSTEM_PROMPT =
   "You are an experienced journalist writing for The Videshi, a news platform for Indian-Americans. Write factually, neutrally, and with depth. Always search for official sources first — PIB, Newsonair, ANI, ECI, NIA, RBI. Then wire services — PTI, IANS. Then reputable news outlets.";
 
-function extractJson(text: string): any {
+function stripFences(text: string): string {
   const fence = text.match(/```(?:json)?\s*([\s\S]*?)```/);
   const raw = fence ? fence[1] : text;
   const start = raw.indexOf("{");
   const end = raw.lastIndexOf("}");
-  if (start === -1 || end === -1) throw new Error("No JSON object found");
-  return JSON.parse(raw.slice(start, end + 1));
+  if (start === -1 || end === -1) return raw.trim();
+  return raw.slice(start, end + 1);
+}
+
+async function repairJsonWithHaiku(malformed: string): Promise<string> {
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "x-api-key": ANTHROPIC_API_KEY,
+      "anthropic-version": "2023-06-01",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "claude-haiku-4-5-20251001",
+      max_tokens: 8192,
+      messages: [{
+        role: "user",
+        content: `The following is malformed JSON. Fix it and return only valid JSON, nothing else: ${malformed}`,
+      }],
+    }),
+  });
+  if (!res.ok) throw new Error(`Repair failed ${res.status}: ${await res.text()}`);
+  const data = await res.json();
+  return (data.content || [])
+    .filter((b: any) => b.type === "text")
+    .map((b: any) => b.text)
+    .join("\n");
+}
+
+async function extractJsonWithRepair(text: string): Promise<any> {
+  const candidate = stripFences(text);
+  try {
+    return JSON.parse(candidate);
+  } catch (_e) {
+    console.warn("Initial JSON parse failed, attempting repair via Haiku");
+    const repaired = await repairJsonWithHaiku(candidate);
+    return JSON.parse(stripFences(repaired));
+  }
 }
 
 async function callClaudeWithSearch(userPrompt: string, useWebSearch: boolean): Promise<string> {
@@ -119,6 +155,9 @@ INSTRUCTIONS:
 - Do NOT add NRI/diaspora angle (that's a separate step).
 - Do NOT editorialize or add opinion.
 
+
+IMPORTANT: Your entire response must be a single valid JSON object. Do not use unescaped double quotes inside string values. Use single quotes for dialogue and apostrophes only. Do not include any text outside the JSON object.
+
 Return ONLY valid JSON (no prose, no markdown fences) in this exact shape:
 {
   "title": "string",
@@ -134,7 +173,7 @@ Return ONLY valid JSON (no prose, no markdown fences) in this exact shape:
     const useWebSearch =
       brief?.diaspora_relevance === "high" || sourceCount < 2;
     const text = await callClaudeWithSearch(userPrompt, useWebSearch);
-    const draft = extractJson(text);
+    const draft = await extractJsonWithRepair(text);
 
     if (!draft.title || !draft.body_markdown) {
       throw new Error("Draft missing required fields");
