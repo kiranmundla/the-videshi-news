@@ -33,7 +33,7 @@ async function callClaude(
 ): Promise<string> {
   const body: Record<string, unknown> = {
     model: "claude-sonnet-4-5",
-    max_tokens: 2000,
+    max_tokens: 8000,
     messages: [{ role: "user", content: prompt }],
   };
   if (systemPrompt) body.system = systemPrompt;
@@ -125,10 +125,32 @@ Respond ONLY with valid JSON, no markdown:
   const response = await callClaude(prompt);
   try {
     const cleaned = response.replace(/```json|```/g, "").trim();
-    const parsed = JSON.parse(cleaned);
+    // Tolerate truncated responses: extract the largest balanced JSON object we can
+    const start = cleaned.indexOf("{");
+    if (start === -1) throw new Error("no JSON object in response");
+    let depth = 0;
+    let end = -1;
+    let inStr = false;
+    let esc = false;
+    for (let i = start; i < cleaned.length; i++) {
+      const ch = cleaned[i];
+      if (inStr) {
+        if (esc) { esc = false; continue; }
+        if (ch === "\\") { esc = true; continue; }
+        if (ch === '"') inStr = false;
+        continue;
+      }
+      if (ch === '"') { inStr = true; continue; }
+      if (ch === "{") depth++;
+      else if (ch === "}") { depth--; if (depth === 0) { end = i; break; } }
+    }
+    const slice = end !== -1 ? cleaned.slice(start, end + 1) : cleaned.slice(start);
+    const parsed = JSON.parse(slice);
     return parsed.groups || [];
-  } catch {
-    console.error("Failed to parse ranking response:", response.slice(0, 200));
+  } catch (err) {
+    console.error("Failed to parse ranking response. len=" + response.length + " err=" + (err as Error).message);
+    console.error("First 500 chars:", response.slice(0, 500));
+    console.error("Last 300 chars:", response.slice(-300));
     return [];
   }
 }
