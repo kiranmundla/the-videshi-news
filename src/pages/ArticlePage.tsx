@@ -115,7 +115,8 @@ export default function ArticlePage() {
           <ReactMarkdown
             components={{
               img: ({ src, alt }) => {
-                if (src && article.hero_image_url && src === article.hero_image_url) {
+                const norm = (u?: string) => (u ?? "").replace(/&amp;/g, "&").split("?")[0];
+                if (src && article.hero_image_url && norm(src) === norm(article.hero_image_url)) {
                   return null;
                 }
                 return <img src={src} alt={alt ?? ""} loading="lazy" />;
