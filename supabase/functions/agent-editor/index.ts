@@ -184,7 +184,11 @@ ${JSON.stringify(enriched, null, 2)}
 ORIGINAL FACTUAL DRAFT (for cross-checking sources/quotes):
 ${JSON.stringify(draft, null, 2)}
 
-Be thorough but fair — only revise/reject for real problems.
+DECISION RULES (apply strictly):
+- If quality_score >= 6/10, decision MUST be "publish".
+- Only use "revise" for scores 4-5.
+- Only use "reject" for scores below 4 OR clear copyright violations (verbatim/near-verbatim copying from sources).
+- Minor issues like word count being slightly off, NRI section length, or source citation formatting must NOT trigger "revise" — note them in issues/revision_notes but still publish.
 
 Return ONLY valid JSON (no prose, no fences) in this exact shape:
 {
