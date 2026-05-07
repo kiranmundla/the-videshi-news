@@ -343,33 +343,89 @@ Deno.serve(async (req) => {
       );
       if (!bestArticle) continue;
 
-      // Option A: ask Claude if this story is already covered in the last 48h
+      // Option B: ask Claude if this story matches a recent article, and if so
+      // whether the new raw articles add a materially new development.
       if (recentArticles && recentArticles.length > 0) {
-        const dupPrompt = `You are checking for duplicate news coverage.
+        const dupPrompt = `You are checking whether a candidate news story matches a recently-published article, and if so whether it adds a materially new development.
 
 CANDIDATE NEW STORY:
 Headline: ${group.storyHeadline}
-Best excerpt: ${bestArticle.title} — ${bestArticle.description?.slice(0, 200)}
+Best excerpt: ${bestArticle.title} — ${bestArticle.description?.slice(0, 300)}
+Other raw items in this group:
+${(rawArticles as RawArticle[])
+  .filter((a) => group.articleIds.includes(a.id) && a.id !== group.bestArticleId)
+  .slice(0, 5)
+  .map((a, i) => `${i + 1}. ${a.title} — ${a.description?.slice(0, 200)}`)
+  .join("\n") || "(none)"}
 
 ALREADY-PUBLISHED ARTICLES (last 48h):
-${recentArticles.map((a, i) => `${i + 1}. ${a.title}\n   ${a.summary?.slice(0, 150)}`).join("\n\n")}
+${recentArticles.map((a, i) => `[${i}] id=${a.id}\n  Title: ${a.title}\n  Summary: ${a.summary?.slice(0, 200)}`).join("\n\n")}
 
-Is the candidate story substantially the same news event as any already-published article?
-Treat them as the same story if they cover the same incident/event/announcement, even with new minor details.
-Treat them as different if it is a genuinely new development, a different incident, or a separate announcement.
+Decide:
+1. Does the candidate cover the SAME underlying news event/incident/announcement as one of the published articles? (match)
+2. If matched, does the candidate add a MATERIALLY NEW development? (e.g., new casualty figures, new official statement, arrest, court ruling, escalation, retraction). Minor rephrasing or the same facts = NOT material.
 
-Respond ONLY with valid JSON: {"duplicate": true|false, "reason": "short reason"}`;
+Respond ONLY with valid JSON:
+{"match": true|false, "matchedIndex": <number or null>, "materialUpdate": true|false, "reason": "short reason"}`;
 
         try {
           const dupRes = await callClaude(dupPrompt);
           const m = dupRes.match(/\{[\s\S]*\}/);
           if (m) {
             const parsed = JSON.parse(m[0]);
-            if (parsed.duplicate === true) {
-              console.log(`Skipping duplicate: "${group.storyHeadline}" — ${parsed.reason}`);
-              // Mark raw articles processed so we don't keep re-checking them
-              for (const rid of group.articleIds) successfullyProcessedRawIds.add(rid);
-              continue;
+            if (parsed.match === true && typeof parsed.matchedIndex === "number") {
+              const matched = recentArticles[parsed.matchedIndex];
+              if (matched && parsed.materialUpdate !== true) {
+                console.log(`Skipping duplicate: "${group.storyHeadline}" — ${parsed.reason}`);
+                for (const rid of group.articleIds) successfullyProcessedRawIds.add(rid);
+                continue;
+              }
+              if (matched && parsed.materialUpdate === true) {
+                console.log(`Updating existing article ${matched.id}: "${group.storyHeadline}" — ${parsed.reason}`);
+                const updated = await regenerateArticleUpdate(group, bestArticle, matched, rawArticles as RawArticle[]);
+                if (updated) {
+                  const nowIso = new Date().toISOString();
+                  const updateLine = `_Updated: ${nowIso}_\n\n`;
+                  const newBody = updateLine + updated.body;
+                  const existingSources = Array.isArray(matched.sources_used) ? matched.sources_used : [];
+                  const seen = new Set(existingSources.map((s: { url?: string }) => s?.url).filter(Boolean));
+                  const mergedSources = [
+                    ...existingSources,
+                    ...updated.sourcesUsed.filter((s) => s?.url && !seen.has(s.url)),
+                  ];
+                  const wordCount = newBody.split(/\s+/).filter(Boolean).length;
+                  const { error: updErr } = await supabase
+                    .from("articles")
+                    .update({
+                      summary: updated.summary || matched.summary,
+                      body: newBody,
+                      nri_angle: updated.nriAngle ?? matched.nri_angle,
+                      sources_used: mergedSources,
+                      tags: updated.tags?.length ? updated.tags : matched.tags,
+                      word_count: wordCount,
+                      read_time_min: Math.ceil(wordCount / 200),
+                      image_url: matched.image_url || bestArticle.image_url || null,
+                      updated_at: nowIso,
+                    })
+                    .eq("id", matched.id);
+                  if (!updErr) {
+                    articlesCreated++;
+                    for (const rid of group.articleIds) successfullyProcessedRawIds.add(rid);
+                    await supabase
+                      .from("story_groups")
+                      .update({ enriched: true })
+                      .eq("priority", group.priority)
+                      .eq("run_id", runId);
+                  } else {
+                    console.error("Article update error:", updErr.message);
+                  }
+                } else {
+                  console.warn("Regeneration failed; leaving existing article unchanged");
+                  for (const rid of group.articleIds) successfullyProcessedRawIds.add(rid);
+                }
+                await new Promise((r) => setTimeout(r, 2000));
+                continue;
+              }
             }
           }
         } catch (err) {
