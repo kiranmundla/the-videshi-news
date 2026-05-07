@@ -123,7 +123,7 @@ Respond ONLY with valid JSON, no markdown:
   ]
 }`;
 
-  const response = await callClaude(prompt);
+  const response = await callClaude(prompt, false, undefined, "claude-haiku-4-5-20251001");
   try {
     const cleaned = response.replace(/```json|```/g, "").trim();
     // Tolerate truncated responses: extract the largest balanced JSON object we can
