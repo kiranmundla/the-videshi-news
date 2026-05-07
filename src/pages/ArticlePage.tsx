@@ -156,7 +156,7 @@ export default function ArticlePage() {
                     if (article.hero_image_url && norm(src) === norm(article.hero_image_url)) {
                       return null;
                     }
-                    return <img src={src} alt={alt ?? ""} loading="lazy" />;
+                    return <img src={src} alt={alt || article.title} loading="lazy" />;
                   },
                 }}
               >
