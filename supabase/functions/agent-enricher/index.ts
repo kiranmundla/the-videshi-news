@@ -157,6 +157,8 @@ DO ALL OF THE FOLLOWING:
 - Historical Context: 1 paragraph on how this fits into modern India
 - "What This Means For You" section with specific Indian-American implications
 
+IMPORTANT: Your entire response must be a single valid JSON object. Do not use unescaped double quotes inside string values. Use single quotes for dialogue and apostrophes only. Do not include any text outside the JSON object.
+
 Return ONLY valid JSON (no prose, no fences) in this exact shape:
 {
   "title": "string",
@@ -184,7 +186,7 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
     const useWebSearch =
       brief?.diaspora_relevance === "high" || sourceCount < 2;
     const text = await callClaudeWithSearch(userPrompt, useWebSearch);
-    const enriched = extractJson(text);
+    const enriched = await extractJsonWithRepair(text);
 
     if (!enriched.title || !Array.isArray(enriched.body)) {
       throw new Error("Enriched article missing required fields");
