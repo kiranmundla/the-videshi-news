@@ -146,8 +146,8 @@ STORY BRIEF:
 ${JSON.stringify(brief, null, 2)}
 
 INSTRUCTIONS:
-- Use the web_search tool with the suggested_search_queries to find official statements, wire reports, named officials, and specific numbers.
-- Prioritize: official sources (PIB, Newsonair, ANI, ECI, NIA, RBI) → wire services (PTI, IANS) → reputable news outlets.
+- Work ONLY from the story brief above. Do NOT call any external tools or perform web searches.
+- Use the sources already provided in the brief; cite them by name/url in sources_used.
 - Write a 400–600 word factual first draft in markdown with: lead paragraph, key facts, official reactions, background context.
 - Do NOT add NRI/diaspora angle (that's a separate step).
 - Do NOT editorialize or add opinion.
@@ -166,10 +166,7 @@ Return ONLY valid JSON (no prose, no markdown fences) in this exact shape:
   "confidence": "high|medium|low"
 }`;
 
-    const sourceCount = Number(brief?.source_count ?? 99);
-    const useWebSearch =
-      brief?.diaspora_relevance === "high" || sourceCount < 2;
-    const text = await callClaudeWithSearch(userPrompt, useWebSearch);
+    const text = await callClaude(userPrompt);
     const draft = await extractJsonWithRepair(text);
 
     if (!draft.title || !draft.body_markdown) {
