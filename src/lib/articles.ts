@@ -30,6 +30,7 @@ type ArticleRow = {
   is_published: boolean | null;
   sources_used: unknown;
   nri_angle: string | null;
+  article_type: string | null;
 };
 
 function parseSources(raw: unknown): Article["sources"] {
