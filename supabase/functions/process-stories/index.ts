@@ -460,7 +460,7 @@ Respond ONLY with valid JSON:
 {"match": true|false, "matchedIndex": <number or null>, "materialUpdate": true|false, "reason": "short reason"}`;
 
         try {
-          const dupRes = await callClaude(dupPrompt);
+          const dupRes = await callClaude(dupPrompt, false, undefined, "claude-haiku-4-5-20251001");
           const m = dupRes.match(/\{[\s\S]*\}/);
           if (m) {
             const parsed = JSON.parse(m[0]);
