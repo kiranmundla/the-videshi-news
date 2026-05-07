@@ -91,6 +91,7 @@ export default function ArticleCard({
       {!hideCategory && <p className="smallcaps text-primary mt-4 mb-2">{article.category}</p>}
       <h2 className={`font-serif text-foreground group-hover:text-primary transition-colors ${hideCategory ? "mt-2" : ""} ${headlineSize}`}>
         {article.title}
+      </h2>
       <p className="hidden md:block mt-3 text-foreground/75 leading-relaxed text-base line-clamp-2">
         {article.excerpt}
       </p>
