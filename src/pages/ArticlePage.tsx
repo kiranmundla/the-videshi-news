@@ -132,8 +132,19 @@ export default function ArticlePage() {
               img: ({ src, alt }) => {
                 const norm = (u?: string) => (u ?? "").replace(/&amp;/g, "&").split("?")[0];
                 if (!src) return null;
-                // Skip analytics/tracking pixels
-                if (/counter\.theconversation\.com|\/count\.gif|pixel|tracker/i.test(src)) return null;
+                // Render tracking/counter pixels as invisible 1x1 so they still fire
+                if (/counter\.theconversation\.com|\/count\.gif|pixel|tracker/i.test(src)) {
+                  return (
+                    <img
+                      src={src}
+                      alt=""
+                      width={1}
+                      height={1}
+                      aria-hidden="true"
+                      style={{ position: "absolute", width: 1, height: 1, opacity: 0, pointerEvents: "none", margin: 0 }}
+                    />
+                  );
+                }
                 if (article.hero_image_url && norm(src) === norm(article.hero_image_url)) {
                   return null;
                 }
