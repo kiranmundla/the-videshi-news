@@ -109,8 +109,11 @@ export default function ArticlePage() {
             alt={article.title}
             loading="eager"
             category={article.category}
-            className="w-full aspect-[16/9] object-cover"
+            className="w-full h-[420px] object-cover object-top"
           />
+          <figcaption className="mt-2 text-sm italic text-muted-foreground text-center">
+            {imageCaption(article.title)}
+          </figcaption>
         </figure>
 
         <div className="article-prose max-w-2xl mx-auto mt-12">
