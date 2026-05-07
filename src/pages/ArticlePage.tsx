@@ -14,6 +14,7 @@ import {
   readingTime,
 } from "@/lib/articles";
 import HeroImage from "@/components/HeroImage";
+import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
 
 export default function ArticlePage() {
   const { slug = "" } = useParams();
