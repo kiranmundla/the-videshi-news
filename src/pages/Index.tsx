@@ -21,8 +21,12 @@ const PLACEHOLDER_SECTIONS = [
   { slug: "classifieds", label: "Classifieds", message: "Be the first to post." },
 ];
 
-const CLUSTERS: { label: string; tags: string[] }[] = [
-  { label: "Bengal Elections", tags: ["west bengal", "bjp bengal", "bengal"] },
+const CLUSTERS: { label: string; tags: string[]; excludeSlugs?: string[] }[] = [
+  {
+    label: "Bengal Elections",
+    tags: ["west bengal", "mamata", "bjp bengal"],
+    excludeSlugs: ["election-commission-seizures-1400-crore-assembly-polls-2025"],
+  },
   { label: "Tamil Nadu", tags: ["tamil nadu", "tamilnadu"] },
 ];
 
@@ -32,7 +36,7 @@ function tagsLower(a: Article) {
 
 function matchesCluster(a: Article, tags: string[]) {
   const at = tagsLower(a);
-  return tags.some((t) => at.some((x) => x.includes(t)));
+  return tags.some((t) => at.some((x) => x === t || x.includes(t)));
 }
 
 function SectionHeader({ label, href }: { label: string; href?: string }) {
@@ -77,7 +81,12 @@ export default function Index() {
     const clusters: { label: string; items: Article[] }[] = [];
     const clusteredIds = new Set<string>();
     for (const c of CLUSTERS) {
-      const items = newsAll.filter((a) => !used.has(a.id) && matchesCluster(a, c.tags));
+      const items = newsAll.filter(
+        (a) =>
+          !used.has(a.id) &&
+          !(c.excludeSlugs ?? []).includes(a.slug) &&
+          matchesCluster(a, c.tags)
+      );
       if (items.length > 0) {
         clusters.push({ label: c.label, items });
         items.forEach((a) => clusteredIds.add(a.id));
@@ -85,11 +94,11 @@ export default function Index() {
     }
 
     const remainingNews = newsAll.filter((a) => !used.has(a.id) && !clusteredIds.has(a.id));
-    // Pick 6 latest news total, distributing across clusters + chrono
+    // Pick latest news, ensuring all clustered items are included
     const newsItemsForLatest: Article[] = [];
     clusters.forEach((c) => c.items.forEach((a) => newsItemsForLatest.push(a)));
     remainingNews.forEach((a) => newsItemsForLatest.push(a));
-    const latestNews = newsItemsForLatest.slice(0, 6);
+    const latestNews = newsItemsForLatest.slice(0, 9);
     latestNews.forEach((a) => used.add(a.id));
 
     // Trim cluster items to those in latestNews
