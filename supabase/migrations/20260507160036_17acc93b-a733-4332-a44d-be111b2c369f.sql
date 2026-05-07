@@ -1,0 +1,1 @@
+update story_queue set status = 'pending', attempts = 0, error_message = null where status = 'failed';
