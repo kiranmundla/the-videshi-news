@@ -53,8 +53,6 @@ export default function Index() {
 
   // ---- Category view: simple chronological grid ----
   if (category) {
-    const hero = filtered[0];
-    const rest = filtered.slice(1);
     return (
       <div className="min-h-screen flex flex-col">
         <Helmet>
