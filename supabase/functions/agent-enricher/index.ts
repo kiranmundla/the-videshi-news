@@ -182,9 +182,7 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
   "read_time_min": 0
 }`;
 
-    const sourceCount = Number(brief?.source_count ?? 99);
-    const useWebSearch =
-      brief?.diaspora_relevance === "high" || sourceCount < 2;
+    const useWebSearch = brief?.diaspora_relevance === "high";
     const text = await callClaudeWithSearch(userPrompt, useWebSearch);
     const enriched = await extractJsonWithRepair(text);
 
