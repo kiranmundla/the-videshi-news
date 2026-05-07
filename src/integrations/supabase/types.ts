@@ -216,12 +216,131 @@ export type Database = {
           },
         ]
       }
+      story_queue: {
+        Row: {
+          article_draft: Json | null
+          attempts: number
+          category: string | null
+          created_at: string
+          diaspora_relevance: string | null
+          draft_version: number
+          editor_decision: string | null
+          editor_notes: string | null
+          enriched_article: Json | null
+          error_message: string | null
+          id: string
+          locked_by: string | null
+          locked_until: string | null
+          max_attempts: number
+          max_revisions: number
+          priority: number | null
+          published_article_id: string | null
+          raw_article_ids: string[] | null
+          revision_count: number
+          sources_found: Json | null
+          status: string
+          story_brief: Json | null
+          updated_at: string
+        }
+        Insert: {
+          article_draft?: Json | null
+          attempts?: number
+          category?: string | null
+          created_at?: string
+          diaspora_relevance?: string | null
+          draft_version?: number
+          editor_decision?: string | null
+          editor_notes?: string | null
+          enriched_article?: Json | null
+          error_message?: string | null
+          id?: string
+          locked_by?: string | null
+          locked_until?: string | null
+          max_attempts?: number
+          max_revisions?: number
+          priority?: number | null
+          published_article_id?: string | null
+          raw_article_ids?: string[] | null
+          revision_count?: number
+          sources_found?: Json | null
+          status?: string
+          story_brief?: Json | null
+          updated_at?: string
+        }
+        Update: {
+          article_draft?: Json | null
+          attempts?: number
+          category?: string | null
+          created_at?: string
+          diaspora_relevance?: string | null
+          draft_version?: number
+          editor_decision?: string | null
+          editor_notes?: string | null
+          enriched_article?: Json | null
+          error_message?: string | null
+          id?: string
+          locked_by?: string | null
+          locked_until?: string | null
+          max_attempts?: number
+          max_revisions?: number
+          priority?: number | null
+          published_article_id?: string | null
+          raw_article_ids?: string[] | null
+          revision_count?: number
+          sources_found?: Json | null
+          status?: string
+          story_brief?: Json | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "story_queue_published_article_id_fkey"
+            columns: ["published_article_id"]
+            isOneToOne: false
+            referencedRelation: "articles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      claim_queue_job: {
+        Args: { p_lock_secs?: number; p_status: string; p_worker_id: string }
+        Returns: {
+          article_draft: Json | null
+          attempts: number
+          category: string | null
+          created_at: string
+          diaspora_relevance: string | null
+          draft_version: number
+          editor_decision: string | null
+          editor_notes: string | null
+          enriched_article: Json | null
+          error_message: string | null
+          id: string
+          locked_by: string | null
+          locked_until: string | null
+          max_attempts: number
+          max_revisions: number
+          priority: number | null
+          published_article_id: string | null
+          raw_article_ids: string[] | null
+          revision_count: number
+          sources_found: Json | null
+          status: string
+          story_brief: Json | null
+          updated_at: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "story_queue"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
     }
     Enums: {
       [_ in never]: never
