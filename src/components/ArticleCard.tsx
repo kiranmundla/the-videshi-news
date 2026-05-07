@@ -75,8 +75,8 @@ export default function ArticleCard({
     variant === "hero"
       ? "md:max-h-[min(480px,60vh)]"
       : variant === "featured"
-      ? "md:max-h-[240px]"
-      : "md:max-h-[180px]";
+      ? "max-h-[260px] md:max-h-[240px]"
+      : "max-h-[240px] md:max-h-[180px]";
 
   return (
     <Link to={href} className="group block">
