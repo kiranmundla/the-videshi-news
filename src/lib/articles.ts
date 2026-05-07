@@ -76,6 +76,8 @@ function mapRow(row: ArticleRow): Article {
     body: row.body ?? "",
     category: row.category ?? "",
     hero_image_url: row.image_url ?? "",
+    image_caption: row.image_caption ?? null,
+    image_credit: row.image_credit ?? null,
     published_at: row.published_at ?? row.created_at,
     created_at: row.created_at,
     status: row.is_published ? "published" : "draft",
