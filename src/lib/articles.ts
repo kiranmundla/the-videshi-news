@@ -15,6 +15,7 @@ export type Article = {
   sources?: { label: string; url?: string }[];
   nri_angle?: string;
   article_type?: "news" | "feature";
+  tags?: string[];
 };
 
 type ArticleRow = {
@@ -31,6 +32,7 @@ type ArticleRow = {
   sources_used: unknown;
   nri_angle: string | null;
   article_type: string | null;
+  tags: string[] | null;
 };
 
 function parseSources(raw: unknown): Article["sources"] {
@@ -70,6 +72,7 @@ function mapRow(row: ArticleRow): Article {
     sources: parseSources(row.sources_used),
     nri_angle: row.nri_angle ?? undefined,
     article_type: (row.article_type === "feature" ? "feature" : "news"),
+    tags: Array.isArray(row.tags) ? row.tags : undefined,
     author: "Diaspora Desk",
   };
 }
