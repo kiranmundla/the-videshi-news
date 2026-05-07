@@ -131,7 +131,10 @@ export default function ArticlePage() {
               },
               img: ({ src, alt }) => {
                 const norm = (u?: string) => (u ?? "").replace(/&amp;/g, "&").split("?")[0];
-                if (src && article.hero_image_url && norm(src) === norm(article.hero_image_url)) {
+                if (!src) return null;
+                // Skip analytics/tracking pixels
+                if (/counter\.theconversation\.com|\/count\.gif|pixel|tracker/i.test(src)) return null;
+                if (article.hero_image_url && norm(src) === norm(article.hero_image_url)) {
                   return null;
                 }
                 return <img src={src} alt={alt ?? ""} loading="lazy" />;
