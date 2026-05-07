@@ -17,3 +17,6 @@ verify_jwt = false
 
 [functions.agent-editor]
 verify_jwt = false
+
+[functions.agent-cleanup]
+verify_jwt = false
