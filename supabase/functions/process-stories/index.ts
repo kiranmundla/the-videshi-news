@@ -53,6 +53,10 @@ async function callClaude(
   });
 
   const data = await res.json();
+  if (!res.ok || !data.content) {
+    console.error("Claude API error:", res.status, JSON.stringify(data).slice(0, 500));
+    return "";
+  }
   return (data.content || [])
     .filter((b: { type: string }) => b.type === "text")
     .map((b: { text: string }) => b.text)
