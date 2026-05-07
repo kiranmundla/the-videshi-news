@@ -112,7 +112,18 @@ export default function ArticlePage() {
         </figure>
 
         <div className="article-prose max-w-2xl mx-auto mt-12">
-          <ReactMarkdown>{article.body}</ReactMarkdown>
+          <ReactMarkdown
+            components={{
+              img: ({ src, alt }) => {
+                if (src && article.hero_image_url && src === article.hero_image_url) {
+                  return null;
+                }
+                return <img src={src} alt={alt ?? ""} loading="lazy" />;
+              },
+            }}
+          >
+            {article.body}
+          </ReactMarkdown>
         </div>
 
         {article.sources && article.sources.length > 0 && (
