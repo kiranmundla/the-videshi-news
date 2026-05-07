@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { Article, formatShortDate, readingTime, imageCaption } from "@/lib/articles";
+import { Article, formatShortDate, readingTime } from "@/lib/articles";
 import HeroImage from "@/components/HeroImage";
+import ImageCaption from "@/components/ImageCaption";
 
 type Variant = "hero" | "featured" | "card" | "long" | "compact";
 
