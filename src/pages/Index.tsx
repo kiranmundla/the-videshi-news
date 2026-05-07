@@ -42,6 +42,10 @@ export default function Index() {
     return allArticles.filter((a) => matches(a, needle));
   }, [allArticles, category]);
 
+  const PAGE_SIZE = 20;
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  useEffect(() => { setVisibleCount(PAGE_SIZE); }, [category]);
+
   if (loading) {
     return (
       <div className="min-h-screen">
@@ -71,10 +75,20 @@ export default function Index() {
           ) : (
             <>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-              {filtered.map((a) => (
+              {filtered.slice(0, visibleCount).map((a) => (
                 <ArticleCard key={a.id} article={a} variant="card" />
               ))}
             </div>
+            {visibleCount < filtered.length && (
+              <div className="mt-10 mb-4 flex justify-center">
+                <button
+                  onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+                  className="smallcaps border border-rule px-6 py-3 text-foreground hover:text-primary hover:border-primary transition-colors"
+                >
+                  More stories →
+                </button>
+              </div>
+            )}
             </>
           )}
         </main>
