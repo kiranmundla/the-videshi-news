@@ -260,9 +260,9 @@ Deno.serve(async (req) => {
   try {
     const { data: articles, error } = await supabase
       .from("articles")
-      .select("id, title, category, image_url")
+      .select("id, title, category, image_url, image_caption")
       .eq("is_published", true)
-      .or("image_url.is.null,image_url.eq.")
+      .or("image_url.is.null,image_url.eq.,image_caption.is.null")
       .order("published_at", { ascending: false })
       .limit(MAX_PER_RUN);
 
