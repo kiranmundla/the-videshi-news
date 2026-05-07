@@ -1,0 +1,1 @@
+UPDATE public.articles SET status = 'published' WHERE status = 'draft' AND category = 'india';
