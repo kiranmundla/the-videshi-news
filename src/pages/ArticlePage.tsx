@@ -113,49 +113,53 @@ export default function ArticlePage() {
         </figure>
 
         <div className="article-prose max-w-2xl mx-auto mt-12">
-          <ReactMarkdown
-            components={{
-              h1: () => null,
-              a: ({ href, children, ...props }) => {
-                // If the link only wraps an image, drop the link and render the image alone
-                const arr = Array.isArray(children) ? children : [children];
-                const onlyImage =
-                  arr.filter((c) => typeof c !== "string" || c.trim() !== "").length === 1 &&
-                  arr.some(
-                    (c: any) => c && typeof c === "object" && (c.type === "img" || c.props?.node?.tagName === "img")
-                  );
-                if (onlyImage) return <>{children}</>;
-                return (
-                  <a href={href} {...props}>
-                    {children}
-                  </a>
-                );
-              },
-              img: ({ src, alt }) => {
-                const norm = (u?: string) => (u ?? "").replace(/&amp;/g, "&").split("?")[0];
-                if (!src) return null;
-                // Render tracking/counter pixels as invisible 1x1 so they still fire
-                if (/counter\.theconversation\.com|\/count\.gif|pixel|tracker/i.test(src)) {
-                  return (
-                    <img
-                      src={src}
-                      alt=""
-                      width={1}
-                      height={1}
-                      aria-hidden="true"
-                      style={{ position: "absolute", width: 1, height: 1, opacity: 0, pointerEvents: "none", margin: 0 }}
-                    />
-                  );
-                }
-                if (article.hero_image_url && norm(src) === norm(article.hero_image_url)) {
-                  return null;
-                }
-                return <img src={src} alt={alt ?? ""} loading="lazy" />;
-              },
-            }}
-          >
-            {article.body}
-          </ReactMarkdown>
+          {(() => {
+            const blocks = tryParseBlocks(article.body);
+            if (blocks) return <ArticleBlocks blocks={blocks} />;
+            return (
+              <ReactMarkdown
+                components={{
+                  h1: () => null,
+                  a: ({ href, children, ...props }) => {
+                    const arr = Array.isArray(children) ? children : [children];
+                    const onlyImage =
+                      arr.filter((c) => typeof c !== "string" || c.trim() !== "").length === 1 &&
+                      arr.some(
+                        (c: any) => c && typeof c === "object" && (c.type === "img" || c.props?.node?.tagName === "img")
+                      );
+                    if (onlyImage) return <>{children}</>;
+                    return (
+                      <a href={href} {...props}>
+                        {children}
+                      </a>
+                    );
+                  },
+                  img: ({ src, alt }) => {
+                    const norm = (u?: string) => (u ?? "").replace(/&amp;/g, "&").split("?")[0];
+                    if (!src) return null;
+                    if (/counter\.theconversation\.com|\/count\.gif|pixel|tracker/i.test(src)) {
+                      return (
+                        <img
+                          src={src}
+                          alt=""
+                          width={1}
+                          height={1}
+                          aria-hidden="true"
+                          style={{ position: "absolute", width: 1, height: 1, opacity: 0, pointerEvents: "none", margin: 0 }}
+                        />
+                      );
+                    }
+                    if (article.hero_image_url && norm(src) === norm(article.hero_image_url)) {
+                      return null;
+                    }
+                    return <img src={src} alt={alt ?? ""} loading="lazy" />;
+                  },
+                }}
+              >
+                {article.body}
+              </ReactMarkdown>
+            );
+          })()}
         </div>
 
         {article.sources && article.sources.length > 0 && (
