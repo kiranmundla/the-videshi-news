@@ -74,11 +74,11 @@ function injectMeta(html: string, article: Article, canonical: string, origin: s
     `<meta property="og:description" content="${desc}" />`,
     `<meta property="og:type" content="article" />`,
     `<meta property="og:url" content="${escapeAttr(canonical)}" />`,
-    image ? `<meta property="og:image" content="${image}" />` : "",
+    `<meta property="og:image" content="${image}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${escapeAttr(article.title)}" />`,
     `<meta name="twitter:description" content="${desc}" />`,
-    image ? `<meta name="twitter:image" content="${image}" />` : "",
+    `<meta name="twitter:image" content="${image}" />`,
   ]
     .filter(Boolean)
     .join("\n    ");
@@ -104,7 +104,7 @@ export default async function middleware(request: Request) {
   const html = await shellRes.text();
 
   const canonical = `${url.origin}/articles/${article.slug ?? slug}`;
-  const transformed = injectMeta(html, article, canonical);
+  const transformed = injectMeta(html, article, canonical, url.origin);
 
   return new Response(transformed, {
     status: 200,
