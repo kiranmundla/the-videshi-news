@@ -1,7 +1,6 @@
 // agent-images: Find and attach images to articles missing image_url.
-// Strategy: Wikimedia Commons first (free, great for politicians/landmarks),
-// then Unsplash fallback (lifestyle/travel/generic).
-// Stores source URL directly in articles.image_url + image_credit.
+// Strategy: Claude Haiku extracts best keyword -> Wikipedia REST summary
+// -> Unsplash -> Pexels. Stores source URL in articles.image_url + image_credit.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
@@ -14,84 +13,72 @@ const corsHeaders = {
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const UNSPLASH_ACCESS_KEY = Deno.env.get("UNSPLASH_ACCESS_KEY") ?? "";
+const PEXELS_API_KEY = Deno.env.get("PEXELS_API_KEY") ?? "";
+const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY") ?? "";
 
 const MAX_PER_RUN = 10;
 
-const STOPWORDS = new Set([
-  "the","a","an","and","or","but","of","in","on","at","to","for","with","by",
-  "from","as","is","are","was","were","be","been","being","this","that","these",
-  "those","it","its","into","over","after","before","amid","amidst","says","said",
-  "new","amid","up","down","out","off","near","vs","vs.","over","under","about"
-]);
-
-function pickKeywords(title: string, tags: string[] | null, limit = 4): string[] {
-  const fromTags = (tags ?? [])
-    .map(t => t.trim())
-    .filter(t => t.length > 1)
-    .slice(0, 3);
-  const titleWords = title
-    .replace(/[^A-Za-z0-9 \-]/g, " ")
-    .split(/\s+/)
-    .filter(w => w.length > 2 && !STOPWORDS.has(w.toLowerCase()))
-    .slice(0, 6);
-  const merged = [...fromTags, ...titleWords];
-  // dedupe (case-insensitive)
-  const seen = new Set<string>();
-  const out: string[] = [];
-  for (const w of merged) {
-    const k = w.toLowerCase();
-    if (!seen.has(k)) {
-      seen.add(k);
-      out.push(w);
-    }
-    if (out.length >= limit) break;
+async function extractKeyword(title: string, category: string): Promise<string> {
+  if (!ANTHROPIC_API_KEY) {
+    // Fallback: strip punctuation, take first 3 words
+    return title.replace(/[^A-Za-z0-9 ]/g, " ").split(/\s+/).slice(0, 3).join(" ").trim();
   }
-  return out;
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "x-api-key": ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "claude-haiku-4-5",
+        max_tokens: 50,
+        messages: [
+          {
+            role: "user",
+            content:
+              `Extract the single best image-search keyword from this news headline. ` +
+              `For news (politics/business/world) prefer the main person or place name. ` +
+              `For lifestyle/travel/sports/food/culture use the main topic. ` +
+              `Return ONLY the keyword, no quotes, no punctuation, max 4 words.\n\n` +
+              `Category: ${category}\nHeadline: ${title}`,
+          },
+        ],
+      }),
+    });
+    if (!res.ok) throw new Error(`anthropic ${res.status}`);
+    const data = await res.json();
+    const text = data?.content?.[0]?.text?.trim() ?? "";
+    return text.replace(/^["']|["']$/g, "").slice(0, 80) || title;
+  } catch (e) {
+    console.error("extractKeyword error", e);
+    return title.split(/\s+/).slice(0, 3).join(" ");
+  }
 }
 
-async function searchWikimedia(query: string): Promise<{ url: string; credit: string } | null> {
+async function searchWikipedia(keyword: string): Promise<{ url: string; credit: string } | null> {
   try {
-    // Step 1: search for files matching query
-    const searchUrl =
-      `https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*` +
-      `&generator=search&gsrnamespace=6&gsrlimit=5&gsrsearch=${encodeURIComponent(query)}` +
-      `&prop=imageinfo&iiprop=url|extmetadata|mime&iiurlwidth=1200`;
-    const res = await fetch(searchUrl, {
+    const slug = encodeURIComponent(keyword.trim().replace(/\s+/g, "_"));
+    const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${slug}`, {
       headers: { "User-Agent": "TheVideshi/1.0 (https://thevideshi.com)" },
     });
     if (!res.ok) return null;
     const data = await res.json();
-    const pages = data?.query?.pages;
-    if (!pages) return null;
-    for (const k of Object.keys(pages)) {
-      const p = pages[k];
-      const info = p?.imageinfo?.[0];
-      if (!info) continue;
-      const mime: string = info.mime ?? "";
-      if (!mime.startsWith("image/")) continue;
-      if (mime.includes("svg")) continue;
-      const url = info.thumburl || info.url;
-      if (!url) continue;
-      const artist = info.extmetadata?.Artist?.value
-        ?.replace(/<[^>]+>/g, "")
-        ?.trim();
-      const credit = artist
-        ? `Photo: ${artist} / Wikimedia Commons`
-        : "Photo: Wikimedia Commons";
-      return { url, credit };
-    }
-    return null;
+    const url = data?.originalimage?.source || data?.thumbnail?.source;
+    if (!url) return null;
+    return { url, credit: "Photo: Wikimedia Commons" };
   } catch (e) {
-    console.error("wikimedia error", e);
+    console.error("wikipedia error", e);
     return null;
   }
 }
 
-async function searchUnsplash(query: string): Promise<{ url: string; credit: string } | null> {
+async function searchUnsplash(keyword: string): Promise<{ url: string; credit: string } | null> {
   if (!UNSPLASH_ACCESS_KEY) return null;
   try {
     const url =
-      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}` +
+      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(keyword)}` +
       `&per_page=1&orientation=landscape&content_filter=high`;
     const res = await fetch(url, {
       headers: { Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}` },
@@ -102,39 +89,47 @@ async function searchUnsplash(query: string): Promise<{ url: string; credit: str
     if (!photo) return null;
     const imgUrl = photo.urls?.regular || photo.urls?.full;
     const name = photo.user?.name ?? "Unknown";
-    const credit = `Photo: ${name} / Unsplash`;
-    return { url: imgUrl, credit };
+    return { url: imgUrl, credit: `Photo: ${name} / Unsplash` };
   } catch (e) {
     console.error("unsplash error", e);
     return null;
   }
 }
 
-async function findImage(title: string, tags: string[] | null, category: string): Promise<{ url: string; credit: string } | null> {
-  const keywords = pickKeywords(title, tags);
-
-  // Try multi-keyword Wikimedia query (good for "Mamata Banerjee", "BJP", landmarks)
-  const wikiQueries = [
-    keywords.slice(0, 2).join(" "),
-    keywords[0],
-  ].filter(q => q && q.length > 1);
-
-  for (const q of wikiQueries) {
-    const hit = await searchWikimedia(q);
-    if (hit) return hit;
+async function searchPexels(keyword: string): Promise<{ url: string; credit: string } | null> {
+  if (!PEXELS_API_KEY) return null;
+  try {
+    const url =
+      `https://api.pexels.com/v1/search?query=${encodeURIComponent(keyword)}` +
+      `&per_page=1&orientation=landscape`;
+    const res = await fetch(url, {
+      headers: { Authorization: PEXELS_API_KEY },
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const photo = data?.photos?.[0];
+    if (!photo) return null;
+    const imgUrl = photo.src?.large2x || photo.src?.large || photo.src?.original;
+    const name = photo.photographer ?? "Unknown";
+    return { url: imgUrl, credit: `Photo: ${name} / Pexels` };
+  } catch (e) {
+    console.error("pexels error", e);
+    return null;
   }
+}
 
-  // Unsplash fallback — better for travel/lifestyle/generic
-  const unsplashQueries = [
-    keywords.slice(0, 2).join(" "),
-    keywords[0],
-    category,
-  ].filter(q => q && q.length > 1);
+async function findImage(title: string, category: string): Promise<{ url: string; credit: string } | null> {
+  const keyword = await extractKeyword(title, category);
+  console.log(`keyword for "${title}" -> "${keyword}"`);
 
-  for (const q of unsplashQueries) {
-    const hit = await searchUnsplash(q);
-    if (hit) return hit;
-  }
+  const wiki = await searchWikipedia(keyword);
+  if (wiki) return wiki;
+
+  const uns = await searchUnsplash(keyword);
+  if (uns) return uns;
+
+  const px = await searchPexels(keyword);
+  if (px) return px;
 
   return null;
 }
@@ -151,9 +146,7 @@ Deno.serve(async (req) => {
     .insert({ run_type: "images", status: "running" })
     .select()
     .single();
-  if (runErr) {
-    console.error("failed to create pipeline_runs row", runErr);
-  }
+  if (runErr) console.error("failed to create pipeline_runs row", runErr);
   const runId = run?.id;
 
   let processed = 0;
@@ -163,7 +156,7 @@ Deno.serve(async (req) => {
   try {
     const { data: articles, error } = await supabase
       .from("articles")
-      .select("id, title, tags, category, image_url")
+      .select("id, title, category, image_url")
       .eq("is_published", true)
       .or("image_url.is.null,image_url.eq.")
       .order("published_at", { ascending: false })
@@ -173,7 +166,7 @@ Deno.serve(async (req) => {
 
     for (const a of articles ?? []) {
       processed++;
-      const hit = await findImage(a.title, a.tags as string[] | null, a.category);
+      const hit = await findImage(a.title, a.category);
       if (!hit) {
         console.log(`no image found for: ${a.title}`);
         continue;
