@@ -148,15 +148,16 @@ ${JSON.stringify(brief, null, 2)}
 FACTUAL DRAFT:
 ${JSON.stringify(draft, null, 2)}
 
-DO ALL OF THE FOLLOWING:
-- NRI Angle: why does this matter to Indian-Americans? (family ties, visa/remittance/trade policy, cultural connection, community orgs, "what you can do")
-- Wikipedia Context: search Wikipedia for background on key people, places, parties, historical events; add 1–2 context paragraphs
-- Pull Quotes: extract 2–3 most powerful quotes as blockquotes between passages
-- Key Facts Box: 4–6 bullets at the top
-- Subheadings every 2–3 paragraphs
-- Geographic Context: one-line note about location for diaspora readers
-- Historical Context: 1 paragraph on how this fits into modern India
-- "What This Means For You" section with specific Indian-American implications
+DO ALL OF THE FOLLOWING (with strict constraints):
+- NRI Angle: 150–250 words MAXIMUM. Format as exactly 3 bullets: (1) why it matters, (2) what to watch, (3) what action if any.
+- Wikipedia Context: 2–3 sentences MAXIMUM. ALWAYS substantially paraphrase — never copy sentence structure from Wikipedia. ALWAYS attribute with the phrase "According to Wikipedia".
+- Pull Quotes: only use quotes that appear VERBATIM in the sources_used. If you cannot verify the exact wording, paraphrase inside a normal paragraph and DO NOT format as a pull_quote blockquote.
+- Total article length: 500–800 words MAXIMUM including all sections combined.
+- Seat counts and numbers: when sources conflict, always use the most CONSERVATIVE figure and append "(preliminary)".
+- DO NOT add organizational history, founding dates, or background older than 5 years unless directly relevant to the breaking news.
+- Key Facts Box: 4–6 bullets at the top.
+- Subheadings every 2–3 paragraphs.
+- Geographic Context: one-line note about location for diaspora readers.
 
 IMPORTANT: Your entire response must be a single valid JSON object. Do not use unescaped double quotes inside string values. Use single quotes for dialogue and apostrophes only. Do not include any text outside the JSON object.
 
