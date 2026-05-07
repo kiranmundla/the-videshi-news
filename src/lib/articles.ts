@@ -1,5 +1,11 @@
 import { supabase } from "@/integrations/supabase/client";
 
+export function imageCaption(title: string): string {
+  const words = title.trim().split(/\s+/);
+  if (words.length <= 6) return title;
+  return words.slice(0, 6).join(" ") + "…";
+}
+
 export type Article = {
   id: string;
   slug: string;

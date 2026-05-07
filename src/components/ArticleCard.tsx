@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Article, formatShortDate, readingTime } from "@/lib/articles";
+import { Article, formatShortDate, readingTime, imageCaption } from "@/lib/articles";
 import HeroImage from "@/components/HeroImage";
 
 type Variant = "hero" | "featured" | "card" | "long" | "compact";
@@ -50,13 +50,18 @@ export default function ArticleCard({
         to={href}
         className="group grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-secondary/60 p-6 md:p-10 border hairline"
       >
-        <HeroImage
-          src={article.hero_image_url}
-          alt={article.title}
-          loading="lazy"
-          category={article.category}
-          className="w-full aspect-[4/3] object-cover"
-        />
+        <figure>
+          <HeroImage
+            src={article.hero_image_url}
+            alt={article.title}
+            loading="lazy"
+            category={article.category}
+            className="w-full aspect-[16/9] object-cover object-top"
+          />
+          <figcaption className="mt-2 text-xs italic text-muted-foreground">
+            {imageCaption(article.title)}
+          </figcaption>
+        </figure>
         <div>
           <p className="smallcaps text-primary mb-3">
             {featureLabel ? "Feature" : "Long read"} · {article.category}
@@ -82,14 +87,11 @@ export default function ArticleCard({
       ? "text-[1.35rem] md:text-[1.5rem] leading-[1.2]"
       : "text-[1.05rem] md:text-[1.125rem] leading-snug";
 
-  const aspect =
-    variant === "hero"
-      ? "aspect-[30/9] md:aspect-[24/7] max-h-[28vh]"
-      : "aspect-[3/2]";
+  const aspect = "aspect-[16/9]";
 
   return (
     <Link to={href} className="group block">
-      <div className="overflow-hidden">
+      <figure className="overflow-hidden">
         <HeroImage
           src={article.hero_image_url}
           alt={article.title}
@@ -97,7 +99,10 @@ export default function ArticleCard({
           category={article.category}
           className={`w-full ${aspect} object-cover object-top group-hover:scale-[1.01] transition-transform duration-500`}
         />
-      </div>
+        <figcaption className="mt-2 text-xs italic text-muted-foreground">
+          {imageCaption(article.title)}
+        </figcaption>
+      </figure>
       {!hideCategory && (
         <p className="smallcaps text-primary mt-4 mb-2">
           {featureLabel && (
