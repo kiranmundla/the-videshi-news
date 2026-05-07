@@ -144,7 +144,7 @@ export default function Index() {
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
               {s.items.map((a) => (
-                <ArticleCard key={a.id} article={a} variant="card" />
+                <ArticleCard key={a.id} article={a} variant="card" hideCategory />
               ))}
             </div>
           </section>
