@@ -88,7 +88,7 @@ export default function ArticleCard({
           className={`w-full ${aspect} object-cover object-center group-hover:scale-[1.01] transition-transform duration-500`}
         />
       </div>
-      <p className="smallcaps text-primary mt-4 mb-2">{article.category}</p>
+      {!hideCategory && <p className="smallcaps text-primary mt-4 mb-2">{article.category}</p>}
       <h2 className={`font-serif text-foreground group-hover:text-primary transition-colors ${headlineSize}`}>
         {article.title}
       </h2>
