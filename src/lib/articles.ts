@@ -67,6 +67,7 @@ function mapRow(row: ArticleRow): Article {
     status: row.is_published ? "published" : "draft",
     sources: parseSources(row.sources_used),
     nri_angle: row.nri_angle ?? undefined,
+    author: "Diaspora Desk",
   };
 }
 
@@ -149,3 +150,18 @@ export async function getRelatedArticles(
 export const getArticles = getPublishedArticles;
 export const getRelated = (category: string, excludeSlug: string, limit = 3) =>
   getRelatedArticles(excludeSlug, category, limit);
+
+export async function getArticlesByCategory(
+  category: string,
+  limit = 20
+): Promise<Article[]> {
+  const { data, error } = await supabase
+    .from("articles")
+    .select("*")
+    .eq("is_published", true)
+    .eq("category", category)
+    .order("published_at", { ascending: false })
+    .limit(limit);
+  if (error) { console.error(error); return []; }
+  return (data as ArticleRow[]).map(mapRow);
+}
