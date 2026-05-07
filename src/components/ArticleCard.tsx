@@ -51,7 +51,7 @@ export default function ArticleCard({
         />
         <div>
           <p className="smallcaps text-primary mb-3">Long read · {article.category}</p>
-          <h2 className="font-serif text-2xl md:text-4xl leading-[1.15] text-foreground group-hover:text-primary transition-colors">
+          <h2 className="font-serif font-bold text-2xl md:text-4xl leading-[1.15] text-foreground group-hover:text-primary transition-colors">
             {article.title}
           </h2>
           <p className="mt-4 text-foreground/75 leading-relaxed text-[0.98rem]">
