@@ -1,0 +1,1 @@
+update public.raw_articles set processed = false;
