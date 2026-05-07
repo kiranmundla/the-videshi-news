@@ -185,6 +185,23 @@ async function searchPexels(keyword: string): Promise<Hit | null> {
   }
 }
 
+async function generateCaption(imageUrl: string, title: string): Promise<string> {
+  let filename = "";
+  try {
+    const u = new URL(imageUrl);
+    filename = decodeURIComponent(u.pathname.split("/").pop() ?? "");
+  } catch (_e) { /* ignore */ }
+  const prompt =
+    `Image URL: ${imageUrl}\n` +
+    `Filename: ${filename}\n` +
+    `Article title: ${title}\n\n` +
+    `Write a single short caption (max 10 words) describing what this specific image likely shows. ` +
+    `Be specific — name the person, place, or object if identifiable from the filename. ` +
+    `Do NOT repeat the article headline. No quotes, no trailing period.`;
+  const out = await callHaiku(prompt, 40);
+  return out.replace(/^["']|["'.]+$/g, "").trim();
+}
+
 async function findImage(title: string, category: string): Promise<Hit | null> {
   const keywords = await extractKeywords(title, category);
   console.log(`keywords for "${title}":`, keywords);
