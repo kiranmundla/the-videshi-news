@@ -28,7 +28,7 @@ export default function ArticleCard({
         />
         <div className="min-w-0">
           <p className="smallcaps text-primary mb-1">{article.category}</p>
-          <h3 className="font-serif text-[0.95rem] md:text-base leading-snug text-foreground group-hover:text-primary transition-colors">
+          <h3 className="font-serif font-semibold text-[0.95rem] md:text-base leading-snug text-foreground group-hover:text-primary transition-colors">
             {article.title}
           </h3>
         </div>
