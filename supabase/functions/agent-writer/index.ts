@@ -60,16 +60,13 @@ async function extractJsonWithRepair(text: string): Promise<any> {
   }
 }
 
-async function callClaudeWithSearch(userPrompt: string, useWebSearch: boolean): Promise<string> {
+async function callClaude(userPrompt: string): Promise<string> {
   const body: any = {
     model: MODEL,
     max_tokens: 4096,
     system: SYSTEM_PROMPT,
     messages: [{ role: "user", content: userPrompt }],
   };
-  if (useWebSearch) {
-    body.tools = [{ type: "web_search_20250305", name: "web_search", max_uses: 6 }];
-  }
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
