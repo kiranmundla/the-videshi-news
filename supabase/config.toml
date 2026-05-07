@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.agent-writer]
 verify_jwt = false
+
+[functions.agent-enricher]
+verify_jwt = false
