@@ -72,14 +72,11 @@ export default function Index() {
             <p className="py-20 text-center text-muted-foreground">No stories yet in this section.</p>
           ) : (
             <>
-              {hero && <ArticleCard article={hero} variant="hero" />}
-              {rest.length > 0 && (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mt-12 pt-10 border-t hairline">
-                  {rest.map((a) => (
-                    <ArticleCard key={a.id} article={a} variant="card" />
-                  ))}
-                </div>
-              )}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+              {filtered.map((a) => (
+                <ArticleCard key={a.id} article={a} variant="card" />
+              ))}
+            </div>
             </>
           )}
         </main>
