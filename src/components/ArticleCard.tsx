@@ -50,13 +50,18 @@ export default function ArticleCard({
         to={href}
         className="group grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-secondary/60 p-6 md:p-10 border hairline"
       >
-        <HeroImage
-          src={article.hero_image_url}
-          alt={article.title}
-          loading="lazy"
-          category={article.category}
-          className="w-full aspect-[4/3] object-cover"
-        />
+        <figure>
+          <HeroImage
+            src={article.hero_image_url}
+            alt={article.title}
+            loading="lazy"
+            category={article.category}
+            className="w-full aspect-[16/9] object-cover object-center-top"
+          />
+          <figcaption className="mt-2 text-xs italic text-muted-foreground">
+            {imageCaption(article.title)}
+          </figcaption>
+        </figure>
         <div>
           <p className="smallcaps text-primary mb-3">
             {featureLabel ? "Feature" : "Long read"} · {article.category}
