@@ -66,10 +66,7 @@ export default function Index() {
         </Helmet>
         <Masthead />
         <main className="container flex-1 pt-8 md:pt-10">
-          <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-2">{category}</h1>
-          <p className="smallcaps text-muted-foreground mb-8">
-            {filtered.length} {filtered.length === 1 ? "story" : "stories"}
-          </p>
+          <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-8">{category}</h1>
           {filtered.length === 0 ? (
             <p className="py-20 text-center text-muted-foreground">No stories yet in this section.</p>
           ) : (
