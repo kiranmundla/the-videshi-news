@@ -24,7 +24,7 @@ const supabase = createClient(
 
 const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY")!;
 
-const MAX_ARTICLES_PER_RUN = 5;
+const MAX_ARTICLES_PER_RUN = 3;
 
 async function callClaude(
   prompt: string,
@@ -303,6 +303,8 @@ Deno.serve(async (req) => {
       .sort((a, b) => a.priority - b.priority)
       .slice(0, MAX_ARTICLES_PER_RUN);
 
+    const successfullyProcessedRawIds = new Set<string>();
+
     for (const group of topGroups) {
       const bestArticle = (rawArticles as RawArticle[]).find(
         (a) => a.id === group.bestArticleId
@@ -332,6 +334,8 @@ Deno.serve(async (req) => {
 
       if (!articleErr) {
         articlesCreated++;
+        // Mark only the raw articles in this successfully-published group as processed
+        for (const rid of group.articleIds) successfullyProcessedRawIds.add(rid);
         await supabase
           .from("story_groups")
           .update({ enriched: true })
@@ -344,11 +348,14 @@ Deno.serve(async (req) => {
       await new Promise((r) => setTimeout(r, 2000));
     }
 
-    const processedIds = (rawArticles as RawArticle[]).map((a) => a.id);
-    await supabase
-      .from("raw_articles")
-      .update({ processed: true })
-      .in("id", processedIds);
+    // Only mark raw articles processed if their group produced a published article.
+    // Unprocessed raw articles will be retried on the next run.
+    if (successfullyProcessedRawIds.size > 0) {
+      await supabase
+        .from("raw_articles")
+        .update({ processed: true })
+        .in("id", Array.from(successfullyProcessedRawIds));
+    }
 
     await supabase
       .from("pipeline_runs")
