@@ -42,6 +42,10 @@ export default function Index() {
     return allArticles.filter((a) => matches(a, needle));
   }, [allArticles, category]);
 
+  const PAGE_SIZE = 20;
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  useEffect(() => { setVisibleCount(PAGE_SIZE); }, [category]);
+
   if (loading) {
     return (
       <div className="min-h-screen">
