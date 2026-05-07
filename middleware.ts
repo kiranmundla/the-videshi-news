@@ -51,10 +51,13 @@ async function fetchArticle(slug: string): Promise<Article | null> {
   }
 }
 
-function injectMeta(html: string, article: Article, canonical: string): string {
+function injectMeta(html: string, article: Article, canonical: string, origin: string): string {
   const title = escapeHtml(`${article.title} — The Videshi`);
   const desc = escapeAttr((article.summary ?? "").slice(0, 300));
-  const image = article.image_url ? escapeAttr(article.image_url) : "";
+  const rawImage = article.image_url && article.image_url.trim().length > 0
+    ? article.image_url
+    : `${origin}/og-default.jpg`;
+  const image = escapeAttr(rawImage);
 
   // Replace <title>
   let out = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
