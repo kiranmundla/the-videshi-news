@@ -33,7 +33,7 @@ interface RawArticle {
   title: string;
   url: string;
   description: string;
-  image_url: string;
+  image_url: string | null;
   source_name: string;
   source_url: string;
   published_at: string;
