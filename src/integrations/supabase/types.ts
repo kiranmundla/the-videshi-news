@@ -21,6 +21,7 @@ export type Database = {
           category: string
           created_at: string | null
           id: string
+          image_credit: string | null
           image_url: string | null
           is_published: boolean | null
           nri_angle: string | null
@@ -41,6 +42,7 @@ export type Database = {
           category: string
           created_at?: string | null
           id?: string
+          image_credit?: string | null
           image_url?: string | null
           is_published?: boolean | null
           nri_angle?: string | null
@@ -61,6 +63,7 @@ export type Database = {
           category?: string
           created_at?: string | null
           id?: string
+          image_credit?: string | null
           image_url?: string | null
           is_published?: boolean | null
           nri_angle?: string | null
