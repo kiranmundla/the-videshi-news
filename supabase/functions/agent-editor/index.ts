@@ -206,7 +206,10 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
     const revisionCount = job.revision_count || 0;
     const maxRevisions = job.max_revisions || 2;
 
-    if (decision === "publish" || (decision === "revise" && revisionCount >= maxRevisions)) {
+    const exhaustedRevisions = revisionCount >= maxRevisions;
+    const forcePublish = exhaustedRevisions && enriched && enriched.title;
+
+    if (decision === "publish" || forcePublish || (decision === "revise" && exhaustedRevisions)) {
       // Publish
       const slug =
         enriched.slug ||
