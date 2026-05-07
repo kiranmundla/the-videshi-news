@@ -325,11 +325,11 @@ Deno.serve(async (req) => {
       .sort((a, b) => a.priority - b.priority)
       .slice(0, MAX_ARTICLES_PER_RUN);
 
-    // Fetch recent published articles (last 48h) for duplicate detection
+    // Fetch recent published articles (last 48h) for duplicate detection / update
     const recentSince = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
     const { data: recentArticles } = await supabase
       .from("articles")
-      .select("id, title, summary")
+      .select("id, slug, title, summary, body, sources_used, category, tags, nri_angle, image_url")
       .eq("is_published", true)
       .gte("published_at", recentSince)
       .order("published_at", { ascending: false })
