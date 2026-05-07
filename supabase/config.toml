@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.agent-scout]
 verify_jwt = false
+
+[functions.agent-writer]
+verify_jwt = false
