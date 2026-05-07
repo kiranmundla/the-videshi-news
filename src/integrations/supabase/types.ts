@@ -21,6 +21,7 @@ export type Database = {
           category: string
           created_at: string | null
           id: string
+          image_caption: string | null
           image_credit: string | null
           image_url: string | null
           is_published: boolean | null
@@ -42,6 +43,7 @@ export type Database = {
           category: string
           created_at?: string | null
           id?: string
+          image_caption?: string | null
           image_credit?: string | null
           image_url?: string | null
           is_published?: boolean | null
@@ -63,6 +65,7 @@ export type Database = {
           category?: string
           created_at?: string | null
           id?: string
+          image_caption?: string | null
           image_credit?: string | null
           image_url?: string | null
           is_published?: boolean | null
