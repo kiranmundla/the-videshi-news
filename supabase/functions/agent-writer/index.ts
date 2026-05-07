@@ -205,12 +205,14 @@ Return ONLY valid JSON (no prose, no markdown fences) in this exact shape:
     const attempts = job.attempts || 0;
     const maxAttempts = job.max_attempts || 3;
     const nextStatus = attempts >= maxAttempts ? "failed" : "pending";
+    const prevErr = job.error_message || "";
+    const appended = `${prevErr}${prevErr ? " | " : ""}attempt ${attempts}: ${msg}`.slice(0, 2000);
 
     await supabase
       .from("story_queue")
       .update({
         status: nextStatus,
-        error_message: msg.slice(0, 2000),
+        error_message: appended,
         locked_by: null,
         locked_until: null,
         updated_at: new Date().toISOString(),
