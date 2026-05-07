@@ -117,7 +117,7 @@ Tasks:
 2. Rank groups by source count (more sources = higher priority).
 3. Score diaspora_relevance as: high | medium | low | none.
 4. Assign a category: breaking | politics | business | us-india | technology | entertainment | sports | health | crime | world.
-5. For the top 5 groups, write a story_brief.
+5. For the top 3 groups, write a story_brief.
 
 Return ONLY valid JSON in this exact shape (no prose, no markdown):
 {
