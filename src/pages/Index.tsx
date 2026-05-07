@@ -118,7 +118,15 @@ export default function Index() {
       <Masthead />
 
       <main className="container flex-1 pt-8 md:pt-10">
-        {hero && <ArticleCard article={hero} variant="hero" />}
+        {hero && (
+          <div>
+            <div className="flex items-center gap-4 mb-5">
+              <span className="smallcaps text-primary whitespace-nowrap">Featured</span>
+              <span className="flex-1 bg-rule" style={{ height: "0.5px" }} />
+            </div>
+            <ArticleCard article={hero} variant="hero" />
+          </div>
+        )}
 
         {sectionLists.map((s) => (
           <section key={s.label}>
