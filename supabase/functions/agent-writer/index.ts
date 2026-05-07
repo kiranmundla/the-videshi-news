@@ -10,7 +10,7 @@ const corsHeaders = {
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY")!;
-const MODEL = "claude-sonnet-4-20250514";
+const MODEL = "claude-sonnet-4-6";
 
 const SYSTEM_PROMPT =
   "You are an experienced journalist writing for The Videshi, a news platform for Indian-Americans. Write factually, neutrally, and with depth. Always search for official sources first — PIB, Newsonair, ANI, ECI, NIA, RBI. Then wire services — PTI, IANS. Then reputable news outlets.";
