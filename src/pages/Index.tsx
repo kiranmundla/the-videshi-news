@@ -1,12 +1,25 @@
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
-import PlaceholderCard from "@/components/PlaceholderCard";
 import SectionRule from "@/components/SectionRule";
 import { Article, getPublishedArticles } from "@/lib/articles";
+
+const SECTIONS = [
+  { label: "India", needle: "india" },
+  { label: "NRI Affairs", needle: "nri" },
+  { label: "US-India", needle: "us-india" },
+  { label: "Business", needle: "business" },
+  { label: "Culture", needle: "culture" },
+  { label: "Sports", needle: "sports" },
+  { label: "Voices", needle: "voices" },
+];
+
+function matches(article: Article, needle: string) {
+  return (article.category ?? "").toLowerCase().includes(needle);
+}
 
 export default function Index() {
   const [allArticles, setAllArticles] = useState<Article[]>([]);
@@ -23,12 +36,10 @@ export default function Index() {
     });
   }, []);
 
-  const articles = useMemo(() => {
+  const filtered = useMemo(() => {
     if (!category) return allArticles;
     const needle = category.toLowerCase();
-    return allArticles.filter((a) =>
-      (a.category ?? "").toLowerCase().includes(needle),
-    );
+    return allArticles.filter((a) => matches(a, needle));
   }, [allArticles, category]);
 
   if (loading) {
@@ -40,14 +51,49 @@ export default function Index() {
     );
   }
 
-  const [hero, f1, f2, m1, m2, c1, c2, c3, longRead, also1, also2] = articles;
-  const remaining = articles.slice(11);
+  // ---- Category view: simple chronological grid ----
+  if (category) {
+    const hero = filtered[0];
+    const rest = filtered.slice(1);
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Helmet>
+          <title>{category} — The Videshi</title>
+          <meta name="description" content={`${category} stories from The Videshi.`} />
+          <link rel="canonical" href={`/?c=${encodeURIComponent(category)}`} />
+        </Helmet>
+        <Masthead />
+        <main className="container flex-1 pt-8 md:pt-10">
+          <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-2">{category}</h1>
+          <p className="smallcaps text-muted-foreground mb-8">
+            {filtered.length} {filtered.length === 1 ? "story" : "stories"}
+          </p>
+          {filtered.length === 0 ? (
+            <p className="py-20 text-center text-muted-foreground">No stories yet in this section.</p>
+          ) : (
+            <>
+              {hero && <ArticleCard article={hero} variant="hero" />}
+              {rest.length > 0 && (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mt-12 pt-10 border-t hairline">
+                  {rest.map((a) => (
+                    <ArticleCard key={a.id} article={a} variant="card" />
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+        </main>
+        <SiteFooter lastUpdated={lastUpdated} />
+      </div>
+    );
+  }
 
-  const slot = (
-    a: Article | undefined,
-    variant: "hero" | "featured" | "card" | "long" | "compact"
-  ) =>
-    a ? <ArticleCard article={a} variant={variant} /> : <PlaceholderCard variant={variant} />;
+  // ---- Home view: hero + top 3 per section ----
+  const hero = allArticles[0];
+  const sectionLists = SECTIONS.map((s) => ({
+    ...s,
+    items: allArticles.filter((a) => matches(a, s.needle)).slice(0, 3),
+  })).filter((s) => s.items.length > 0);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -66,51 +112,29 @@ export default function Index() {
       <Masthead />
 
       <main className="container flex-1 pt-8 md:pt-10">
-        {/* Hero */}
-        {slot(hero, "hero")}
+        {hero && <ArticleCard article={hero} variant="hero" />}
 
-        {/* Two featured */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10 mt-12 pt-10 border-t hairline">
-          {slot(f1, "featured")}
-          {slot(f2, "featured")}
-        </div>
-
-        {/* Money & Markets */}
-        <SectionRule label="Money & Markets" />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          {slot(m1, "card")}
-          {slot(m2, "card")}
-        </div>
-
-        {/* India & Culture */}
-        <SectionRule label="India & Culture" />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          {slot(c1, "card")}
-          {slot(c2, "card")}
-          {slot(c3, "card")}
-        </div>
-
-        {/* Long read */}
-        <div className="mt-16">{slot(longRead, "long")}</div>
-
-        {/* Also Today */}
-        <SectionRule label="Also Today" />
-        <div className="grid md:grid-cols-2 gap-8">
-          {slot(also1, "compact")}
-          {slot(also2, "compact")}
-        </div>
-
-        {/* More stories */}
-        {remaining.length > 0 && (
-          <>
-            <SectionRule label="More Stories" />
+        {sectionLists.map((s) => (
+          <section key={s.label}>
+            <div className="flex items-end justify-between mt-14 mb-7 gap-4">
+              <div className="flex items-center gap-4 flex-1 min-w-0">
+                <span className="smallcaps text-primary whitespace-nowrap">{s.label}</span>
+                <span className="flex-1 bg-rule" style={{ height: "0.5px" }} />
+              </div>
+              <Link
+                to={`/?c=${encodeURIComponent(s.label)}`}
+                className="smallcaps text-foreground/70 hover:text-primary whitespace-nowrap"
+              >
+                View all →
+              </Link>
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-              {remaining.map((a) => (
+              {s.items.map((a) => (
                 <ArticleCard key={a.id} article={a} variant="card" />
               ))}
             </div>
-          </>
-        )}
+          </section>
+        ))}
       </main>
 
       <SiteFooter lastUpdated={lastUpdated} />
