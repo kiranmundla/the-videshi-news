@@ -27,13 +27,19 @@ function parseSources(raw: string | null | undefined): Article["sources"] {
     const parsed = JSON.parse(trimmed);
     if (Array.isArray(parsed)) {
       return parsed
-        .map((s) =>
-          typeof s === "string"
-            ? { label: s }
-            : s && typeof s === "object" && "label" in s
-              ? { label: String(s.label), url: s.url ? String(s.url) : undefined }
-              : null
-        )
+        .map((s) => {
+          if (typeof s === "string") return { label: s };
+          if (s && typeof s === "object") {
+            const url = s.url ? String(s.url) : undefined;
+            const name = s.label ?? s.name ?? s.title;
+            const author = s.author ? String(s.author) : undefined;
+            const license = s.license ? String(s.license) : undefined;
+            const parts = [name, author, license].filter(Boolean).join(" — ");
+            const label = parts || url || "Source";
+            return { label, url };
+          }
+          return null;
+        })
         .filter(Boolean) as Article["sources"];
     }
   } catch {
