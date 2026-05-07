@@ -341,8 +341,15 @@ export type Database = {
           isSetofReturn: false
         }
       }
-      show_limit: { Args: never; Returns: number }
-      show_trgm: { Args: { "": string }; Returns: string[] }
+      find_similar_articles: {
+        Args: { p_hours?: number; p_threshold?: number; p_title: string }
+        Returns: {
+          id: string
+          similarity: number
+          slug: string
+          title: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
