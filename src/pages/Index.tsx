@@ -21,8 +21,12 @@ const PLACEHOLDER_SECTIONS = [
   { slug: "classifieds", label: "Classifieds", message: "Be the first to post." },
 ];
 
-const CLUSTERS: { label: string; tags: string[] }[] = [
-  { label: "Bengal Elections", tags: ["west bengal", "bjp bengal", "bengal"] },
+const CLUSTERS: { label: string; tags: string[]; excludeSlugs?: string[] }[] = [
+  {
+    label: "Bengal Elections",
+    tags: ["west bengal", "mamata", "bjp bengal"],
+    excludeSlugs: ["election-commission-seizures-1400-crore-assembly-polls-2025"],
+  },
   { label: "Tamil Nadu", tags: ["tamil nadu", "tamilnadu"] },
 ];
 
@@ -32,7 +36,7 @@ function tagsLower(a: Article) {
 
 function matchesCluster(a: Article, tags: string[]) {
   const at = tagsLower(a);
-  return tags.some((t) => at.some((x) => x.includes(t)));
+  return tags.some((t) => at.some((x) => x === t || x.includes(t)));
 }
 
 function SectionHeader({ label, href }: { label: string; href?: string }) {
