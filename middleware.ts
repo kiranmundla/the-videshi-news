@@ -51,10 +51,13 @@ async function fetchArticle(slug: string): Promise<Article | null> {
   }
 }
 
-function injectMeta(html: string, article: Article, canonical: string): string {
+function injectMeta(html: string, article: Article, canonical: string, origin: string): string {
   const title = escapeHtml(`${article.title} — The Videshi`);
   const desc = escapeAttr((article.summary ?? "").slice(0, 300));
-  const image = article.image_url ? escapeAttr(article.image_url) : "";
+  const rawImage = article.image_url && article.image_url.trim().length > 0
+    ? article.image_url
+    : `${origin}/og-default.jpg`;
+  const image = escapeAttr(rawImage);
 
   // Replace <title>
   let out = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
@@ -71,11 +74,11 @@ function injectMeta(html: string, article: Article, canonical: string): string {
     `<meta property="og:description" content="${desc}" />`,
     `<meta property="og:type" content="article" />`,
     `<meta property="og:url" content="${escapeAttr(canonical)}" />`,
-    image ? `<meta property="og:image" content="${image}" />` : "",
+    `<meta property="og:image" content="${image}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${escapeAttr(article.title)}" />`,
     `<meta name="twitter:description" content="${desc}" />`,
-    image ? `<meta name="twitter:image" content="${image}" />` : "",
+    `<meta name="twitter:image" content="${image}" />`,
   ]
     .filter(Boolean)
     .join("\n    ");
@@ -101,7 +104,7 @@ export default async function middleware(request: Request) {
   const html = await shellRes.text();
 
   const canonical = `${url.origin}/articles/${article.slug ?? slug}`;
-  const transformed = injectMeta(html, article, canonical);
+  const transformed = injectMeta(html, article, canonical, url.origin);
 
   return new Response(transformed, {
     status: 200,
