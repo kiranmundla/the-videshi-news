@@ -73,7 +73,8 @@
     font-size: 0.72rem;
     font-weight: 600;
   }
-  .article-prose p { @apply text-[1.075rem] leading-[1.8] text-foreground/90 mb-6; }
+  .article-prose { font-family: 'Newsreader', 'Source Serif Pro', Georgia, serif; font-feature-settings: "liga","kern","onum"; }
+  .article-prose p { @apply text-[1.18rem] md:text-[1.22rem] leading-[1.7] text-foreground/90 mb-6; font-weight: 400; }
   .article-prose img { @apply w-full h-auto my-6 rounded; max-width: 100%; }
   .article-prose h2 { @apply font-serif text-2xl md:text-3xl mt-10 mb-4; }
   .article-prose h3 { @apply font-serif text-xl md:text-2xl mt-8 mb-3; }
