@@ -14,6 +14,8 @@ export type Article = {
   body: string;
   category: string;
   hero_image_url: string;
+  image_caption?: string | null;
+  image_credit?: string | null;
   author?: string;
   published_at: string;
   created_at: string;
@@ -32,6 +34,8 @@ type ArticleRow = {
   body: string;
   category: string;
   image_url: string | null;
+  image_caption: string | null;
+  image_credit: string | null;
   published_at: string | null;
   created_at: string;
   is_published: boolean | null;
