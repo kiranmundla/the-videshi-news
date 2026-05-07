@@ -41,6 +41,7 @@ export default function Index() {
   }
 
   const [hero, f1, f2, m1, m2, c1, c2, c3, longRead, also1, also2] = articles;
+  const remaining = articles.slice(11);
 
   const slot = (
     a: Article | undefined,
@@ -98,6 +99,18 @@ export default function Index() {
           {slot(also1, "compact")}
           {slot(also2, "compact")}
         </div>
+
+        {/* More stories */}
+        {remaining.length > 0 && (
+          <>
+            <SectionRule label="More Stories" />
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+              {remaining.map((a) => (
+                <ArticleCard key={a.id} article={a} variant="card" />
+              ))}
+            </div>
+          </>
+        )}
       </main>
 
       <SiteFooter lastUpdated={lastUpdated} />
