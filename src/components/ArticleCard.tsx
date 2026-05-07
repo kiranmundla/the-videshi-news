@@ -89,7 +89,7 @@ export default function ArticleCard({
         />
       </div>
       {!hideCategory && <p className="smallcaps text-primary mt-4 mb-2">{article.category}</p>}
-      <h2 className={`font-serif text-foreground group-hover:text-primary transition-colors ${headlineSize}`}>
+      <h2 className={`font-serif text-foreground group-hover:text-primary transition-colors ${hideCategory ? "mt-4" : ""} ${headlineSize}`}>
         {article.title}
       </h2>
       <p className="mt-3 text-foreground/75 leading-relaxed text-[0.95rem] md:text-base line-clamp-2">
