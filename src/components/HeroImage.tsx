@@ -10,7 +10,8 @@ type Props = {
 
 export default function HeroImage({ src, alt, className = "", loading = "lazy", category }: Props) {
   const [failed, setFailed] = useState(false);
-  const valid = typeof src === "string" && src.trim().length > 0;
+  const isBlocked = typeof src === "string" && /hindustantimes\.com|htmedia/i.test(src);
+  const valid = typeof src === "string" && src.trim().length > 0 && !isBlocked;
 
   if (!valid || failed) {
     return (
