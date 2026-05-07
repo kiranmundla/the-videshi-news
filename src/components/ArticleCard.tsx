@@ -87,22 +87,22 @@ export default function ArticleCard({
       ? "text-[1.35rem] md:text-[1.5rem] leading-[1.2]"
       : "text-[1.05rem] md:text-[1.125rem] leading-snug";
 
-  const aspect =
-    variant === "hero"
-      ? "aspect-[30/9] md:aspect-[24/7] max-h-[28vh]"
-      : "aspect-[3/2]";
+  const aspect = "aspect-[16/9]";
 
   return (
     <Link to={href} className="group block">
-      <div className="overflow-hidden">
+      <figure className="overflow-hidden">
         <HeroImage
           src={article.hero_image_url}
           alt={article.title}
           loading={variant === "hero" ? "eager" : "lazy"}
           category={article.category}
-          className={`w-full ${aspect} object-cover object-top group-hover:scale-[1.01] transition-transform duration-500`}
+          className={`w-full ${aspect} object-cover object-center-top group-hover:scale-[1.01] transition-transform duration-500`}
         />
-      </div>
+        <figcaption className="mt-2 text-xs italic text-muted-foreground">
+          {imageCaption(article.title)}
+        </figcaption>
+      </figure>
       {!hideCategory && (
         <p className="smallcaps text-primary mt-4 mb-2">
           {featureLabel && (
