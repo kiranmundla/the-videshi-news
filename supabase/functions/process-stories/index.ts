@@ -29,10 +29,11 @@ const MAX_ARTICLES_PER_RUN = 3;
 async function callClaude(
   prompt: string,
   useWebSearch = false,
-  systemPrompt?: string
+  systemPrompt?: string,
+  model = "claude-sonnet-4-20250514"
 ): Promise<string> {
   const body: Record<string, unknown> = {
-    model: "claude-sonnet-4-5",
+    model,
     max_tokens: 8000,
     messages: [{ role: "user", content: prompt }],
   };
