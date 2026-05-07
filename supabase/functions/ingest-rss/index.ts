@@ -58,17 +58,29 @@ function parseRSS(xml: string, sourceName: string, sourceUrl: string): RawArticl
     const link = get("link") || item.match(/<link>([^<]*)<\/link>/)?.[1]?.trim() || "";
     if (!title || !link) continue;
 
-    const description = get("description")
+    const rawDescription = get("description");
+    const description = rawDescription
       .replace(/<[^>]*>/g, "")
       .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
       .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
       .slice(0, 500);
 
+    // Image extraction — try patterns in order until one returns a value
+    const attr = (re: RegExp) => item.match(re)?.[1]?.trim();
     const image =
-      item.match(/<media:content[^>]*url="([^"]*)"[^>]*\/>/)?.[1] ||
-      item.match(/<media:thumbnail[^>]*url="([^"]*)"[^>]*\/>/)?.[1] ||
-      item.match(/<enclosure[^>]*url="([^"]*)"[^>]*type="image[^"]*"[^>]*\/>/)?.[1] ||
-      "";
+      // 1. <media:content url="..." medium="image" .../>  (or no medium attr)
+      attr(/<media:content\b[^>]*\burl=["']([^"']+)["'][^>]*>/i) ||
+      // 2. <media:thumbnail url="..."/>
+      attr(/<media:thumbnail\b[^>]*\burl=["']([^"']+)["'][^>]*>/i) ||
+      // 3. <enclosure url="..." type="image/..."/>  (either attr order)
+      attr(/<enclosure\b[^>]*\burl=["']([^"']+)["'][^>]*\btype=["']image\/[^"']+["'][^>]*>/i) ||
+      attr(/<enclosure\b[^>]*\btype=["']image\/[^"']+["'][^>]*\burl=["']([^"']+)["'][^>]*>/i) ||
+      // 4. First <img src="..."> inside <description> (CDATA-wrapped HTML)
+      attr(new RegExp(`<img\\b[^>]*\\bsrc=["']([^"']+)["']`, "i").exec(rawDescription) ? new RegExp(`<img\\b[^>]*\\bsrc=["']([^"']+)["']`, "i") : /^$/) ||
+      // 5. og:image (some feeds embed it inline)
+      attr(/<meta\b[^>]*\bproperty=["']og:image["'][^>]*\bcontent=["']([^"']+)["']/i) ||
+      attr(/<meta\b[^>]*\bcontent=["']([^"']+)["'][^>]*\bproperty=["']og:image["']/i) ||
+      null;
 
     const pubDateStr = get("pubDate");
     const publishedAt = pubDateStr
