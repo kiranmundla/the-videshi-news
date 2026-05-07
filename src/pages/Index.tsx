@@ -71,7 +71,7 @@ export default function Index() {
             <p className="py-20 text-center text-muted-foreground">No stories yet in this section.</p>
           ) : (
             <>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-12 md:gap-y-16">
               {filtered.slice(0, visibleCount).map((a) => (
                 <ArticleCard key={a.id} article={a} variant="card" hideCategory />
               ))}
