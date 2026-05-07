@@ -226,7 +226,8 @@ YOUR TASKS:
     const response = await callClaude(
       prompt,
       true,
-      "You are a professional journalist. Always search for official and wire sources first. Write factually and neutrally."
+      "You are a professional journalist. Always search for official and wire sources first. Write factually and neutrally.",
+      "claude-sonnet-4-20250514"
     );
 
     const cleaned = response.replace(/```json|```/g, "").trim();
