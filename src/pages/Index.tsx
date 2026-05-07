@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
@@ -8,17 +9,27 @@ import SectionRule from "@/components/SectionRule";
 import { Article, getPublishedArticles } from "@/lib/articles";
 
 export default function Index() {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [allArticles, setAllArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get("c");
 
   useEffect(() => {
     getPublishedArticles().then((a) => {
-      setArticles(a);
+      setAllArticles(a);
       setLastUpdated(new Date());
       setLoading(false);
     });
   }, []);
+
+  const articles = useMemo(() => {
+    if (!category) return allArticles;
+    const needle = category.toLowerCase();
+    return allArticles.filter((a) =>
+      (a.category ?? "").toLowerCase().includes(needle),
+    );
+  }, [allArticles, category]);
 
   if (loading) {
     return (
