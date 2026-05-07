@@ -15,7 +15,8 @@ export default function ArticleCard({
 }) {
   const time = readingTime(article.body);
   const href = `/articles/${article.slug}`;
-
+  const isFeature = article.article_type === "feature";
+  const featureLabel = isFeature ? "FEATURE" : null;
   if (variant === "compact") {
     return (
       <Link to={href} className="group flex gap-4 items-start">
