@@ -74,7 +74,7 @@ export default function ArticleCard({
 
   const aspect =
     variant === "hero"
-      ? "aspect-[16/9]"
+      ? "aspect-[21/9] md:aspect-[12/5] max-h-[420px]"
       : "aspect-[3/2]";
 
   return (
@@ -85,7 +85,7 @@ export default function ArticleCard({
           alt={article.title}
           loading={variant === "hero" ? "eager" : "lazy"}
           category={article.category}
-          className={`w-full ${aspect} object-cover object-center group-hover:scale-[1.01] transition-transform duration-500`}
+          className={`w-full ${aspect} object-cover object-top group-hover:scale-[1.01] transition-transform duration-500`}
         />
       </div>
       {!hideCategory && <p className="smallcaps text-primary mt-4 mb-2">{article.category}</p>}
