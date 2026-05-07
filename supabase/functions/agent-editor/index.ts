@@ -131,6 +131,41 @@ Deno.serve(async (req) => {
     const enriched = job.enriched_article || {};
     const draft = job.article_draft || {};
 
+    // 1. Duplicate article check via pg_trgm similarity
+    let duplicateMatch: { title: string; slug: string; similarity: number } | null = null;
+    if (enriched.title) {
+      const { data: dupes, error: dupErr } = await supabase.rpc(
+        "find_similar_articles",
+        { p_title: enriched.title, p_hours: 48, p_threshold: 0.6 },
+      );
+      if (dupErr) console.error("dup check error", dupErr);
+      if (dupes && dupes.length > 0) duplicateMatch = dupes[0];
+    }
+
+    if (duplicateMatch) {
+      const reason = `duplicate: similar article already published at ${duplicateMatch.slug} (similarity ${duplicateMatch.similarity.toFixed(2)})`;
+      await supabase
+        .from("story_queue")
+        .update({
+          status: "rejected",
+          editor_decision: "reject",
+          editor_notes: reason,
+          locked_by: null,
+          locked_until: null,
+          error_message: null,
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", job.id);
+
+      if (runId) {
+        await supabase
+          .from("pipeline_runs")
+          .update({ status: "ok", finished_at: new Date().toISOString() })
+          .eq("id", runId);
+      }
+      return respond(200, { ok: true, job_id: job.id, decision: "reject", reason });
+    }
+
     const userPrompt = `You are reviewing an article before publication. Run this checklist:
 
 1. Copyright: any verbatim quotes longer than 15 words copied from a source? Flag them.
@@ -141,6 +176,7 @@ Deno.serve(async (req) => {
 6. Structure: subheadings, pull quotes, key facts box?
 7. Word count: between 400 and 800 words?
 8. Overall quality: would an Indian-American reader find this genuinely valuable?
+9. Content similarity: compare the article body against the sources_used URLs in the original draft. Flag any passage that appears verbatim or near-verbatim (>10 words in sequence) from a source. If found, decision MUST be "revise" with revision_notes telling the writer to paraphrase the flagged sections (quote the offending passage and name the source).
 
 ENRICHED ARTICLE:
 ${JSON.stringify(enriched, null, 2)}
