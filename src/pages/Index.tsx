@@ -41,6 +41,7 @@ export default function Index() {
   }
 
   const [hero, f1, f2, m1, m2, c1, c2, c3, longRead, also1, also2] = articles;
+  const remaining = articles.slice(11);
 
   const slot = (
     a: Article | undefined,
