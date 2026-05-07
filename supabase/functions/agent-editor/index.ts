@@ -227,8 +227,8 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
         enriched.read_time_min || Math.max(1, Math.round(wordCount / 220));
 
       const editorNote =
-        decision === "revise"
-          ? `Auto-published after ${revisionCount} revision attempts. Editor notes: ${review.revision_notes || ""}`
+        decision !== "publish"
+          ? `Auto-published after ${revisionCount} revision attempts (decision was ${decision}). Notes: ${review.revision_notes || review.rejection_reason || ""}`
           : null;
 
       const { data: inserted, error: insErr } = await supabase
