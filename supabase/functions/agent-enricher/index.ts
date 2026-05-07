@@ -102,7 +102,8 @@ Deno.serve(async (req) => {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
 
-  // Daily article cap: stop if 10+ articles already published today
+  // Daily article cap (configurable via DAILY_ARTICLE_CAP secret, default 10)
+  const dailyCap = parseInt(Deno.env.get("DAILY_ARTICLE_CAP") ?? "10", 10);
   const startOfDay = new Date();
   startOfDay.setUTCHours(0, 0, 0, 0);
   const { count: todayCount } = await supabase
@@ -110,8 +111,8 @@ Deno.serve(async (req) => {
     .select("id", { count: "exact", head: true })
     .eq("is_published", true)
     .gte("published_at", startOfDay.toISOString());
-  if ((todayCount ?? 0) >= 10) {
-    return respond(200, { ok: true, message: `Daily cap reached (${todayCount} articles today)` });
+  if ((todayCount ?? 0) >= dailyCap) {
+    return respond(200, { ok: true, message: `Daily cap reached (${todayCount}/${dailyCap} articles today)` });
   }
 
   const { data: claimed, error: claimErr } = await supabase.rpc("claim_queue_job", {
