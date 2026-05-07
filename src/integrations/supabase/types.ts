@@ -16,48 +16,205 @@ export type Database = {
     Tables: {
       articles: {
         Row: {
-          body: string | null
-          category: string | null
-          created_at: string
-          excerpt: string | null
-          hero_image_url: string | null
-          id: number
+          body: string
+          category: string
+          created_at: string | null
+          id: string
+          image_url: string | null
+          is_published: boolean | null
+          nri_angle: string | null
           published_at: string | null
+          read_time_min: number | null
           slug: string | null
-          source_url: string | null
-          sources: string | null
-          status: string | null
+          sources_used: Json | null
+          story_group_id: string | null
+          summary: string
+          tags: string[] | null
           title: string
+          updated_at: string | null
+          word_count: number | null
         }
         Insert: {
-          body?: string | null
-          category?: string | null
-          created_at?: string
-          excerpt?: string | null
-          hero_image_url?: string | null
-          id?: number
+          body: string
+          category: string
+          created_at?: string | null
+          id?: string
+          image_url?: string | null
+          is_published?: boolean | null
+          nri_angle?: string | null
           published_at?: string | null
+          read_time_min?: number | null
           slug?: string | null
-          source_url?: string | null
-          sources?: string | null
-          status?: string | null
+          sources_used?: Json | null
+          story_group_id?: string | null
+          summary: string
+          tags?: string[] | null
           title: string
+          updated_at?: string | null
+          word_count?: number | null
         }
         Update: {
-          body?: string | null
-          category?: string | null
-          created_at?: string
-          excerpt?: string | null
-          hero_image_url?: string | null
-          id?: number
+          body?: string
+          category?: string
+          created_at?: string | null
+          id?: string
+          image_url?: string | null
+          is_published?: boolean | null
+          nri_angle?: string | null
           published_at?: string | null
+          read_time_min?: number | null
           slug?: string | null
-          source_url?: string | null
-          sources?: string | null
-          status?: string | null
+          sources_used?: Json | null
+          story_group_id?: string | null
+          summary?: string
+          tags?: string[] | null
           title?: string
+          updated_at?: string | null
+          word_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "articles_story_group_id_fkey"
+            columns: ["story_group_id"]
+            isOneToOne: false
+            referencedRelation: "story_groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pipeline_runs: {
+        Row: {
+          articles_created: number | null
+          error_message: string | null
+          finished_at: string | null
+          groups_created: number | null
+          id: string
+          raw_fetched: number | null
+          raw_new: number | null
+          run_type: string
+          started_at: string | null
+          status: string
+        }
+        Insert: {
+          articles_created?: number | null
+          error_message?: string | null
+          finished_at?: string | null
+          groups_created?: number | null
+          id?: string
+          raw_fetched?: number | null
+          raw_new?: number | null
+          run_type: string
+          started_at?: string | null
+          status: string
+        }
+        Update: {
+          articles_created?: number | null
+          error_message?: string | null
+          finished_at?: string | null
+          groups_created?: number | null
+          id?: string
+          raw_fetched?: number | null
+          raw_new?: number | null
+          run_type?: string
+          started_at?: string | null
+          status?: string
         }
         Relationships: []
+      }
+      raw_articles: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          fetched_at: string | null
+          id: string
+          image_url: string | null
+          processed: boolean | null
+          published_at: string | null
+          source_name: string
+          source_url: string | null
+          title: string
+          url: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          fetched_at?: string | null
+          id?: string
+          image_url?: string | null
+          processed?: boolean | null
+          published_at?: string | null
+          source_name: string
+          source_url?: string | null
+          title: string
+          url: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          fetched_at?: string | null
+          id?: string
+          image_url?: string | null
+          processed?: boolean | null
+          published_at?: string | null
+          source_name?: string
+          source_url?: string | null
+          title?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      story_groups: {
+        Row: {
+          best_article_id: string | null
+          category: string
+          created_at: string | null
+          diaspora_relevant: boolean | null
+          enriched: boolean | null
+          id: string
+          priority: number
+          raw_article_ids: string[]
+          run_id: string
+          source_count: number
+          sources: string[]
+          story_headline: string
+        }
+        Insert: {
+          best_article_id?: string | null
+          category: string
+          created_at?: string | null
+          diaspora_relevant?: boolean | null
+          enriched?: boolean | null
+          id?: string
+          priority: number
+          raw_article_ids: string[]
+          run_id: string
+          source_count: number
+          sources: string[]
+          story_headline: string
+        }
+        Update: {
+          best_article_id?: string | null
+          category?: string
+          created_at?: string | null
+          diaspora_relevant?: boolean | null
+          enriched?: boolean | null
+          id?: string
+          priority?: number
+          raw_article_ids?: string[]
+          run_id?: string
+          source_count?: number
+          sources?: string[]
+          story_headline?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "story_groups_best_article_id_fkey"
+            columns: ["best_article_id"]
+            isOneToOne: false
+            referencedRelation: "raw_articles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
