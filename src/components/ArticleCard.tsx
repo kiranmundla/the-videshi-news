@@ -7,9 +7,11 @@ type Variant = "hero" | "featured" | "card" | "long" | "compact";
 export default function ArticleCard({
   article,
   variant = "card",
+  hideCategory = false,
 }: {
   article: Article;
   variant?: Variant;
+  hideCategory?: boolean;
 }) {
   const time = readingTime(article.body);
   const href = `/articles/${article.slug}`;
@@ -86,8 +88,8 @@ export default function ArticleCard({
           className={`w-full ${aspect} object-cover object-center group-hover:scale-[1.01] transition-transform duration-500`}
         />
       </div>
-      <p className="smallcaps text-primary mt-4 mb-2">{article.category}</p>
-      <h2 className={`font-serif text-foreground group-hover:text-primary transition-colors ${headlineSize}`}>
+      {!hideCategory && <p className="smallcaps text-primary mt-4 mb-2">{article.category}</p>}
+      <h2 className={`font-serif text-foreground group-hover:text-primary transition-colors ${hideCategory ? "mt-4" : ""} ${headlineSize}`}>
         {article.title}
       </h2>
       <p className="mt-3 text-foreground/75 leading-relaxed text-[0.95rem] md:text-base line-clamp-2">
