@@ -1,7 +1,7 @@
 import { supabase } from "@/integrations/supabase/client";
 
 export type Article = {
-  id: number;
+  id: string;
   slug: string;
   title: string;
   excerpt: string;
@@ -13,49 +13,60 @@ export type Article = {
   created_at: string;
   status: "published" | "draft";
   sources?: { label: string; url?: string }[];
+  nri_angle?: string;
 };
 
-type ArticleRow = Omit<Article, "sources" | "author"> & {
-  sources: string | null;
+type ArticleRow = {
+  id: string;
+  slug: string | null;
+  title: string;
+  summary: string;
+  body: string;
+  category: string;
+  image_url: string | null;
+  published_at: string | null;
+  created_at: string;
+  is_published: boolean | null;
+  sources_used: unknown;
+  nri_angle: string | null;
 };
 
-function parseSources(raw: string | null | undefined): Article["sources"] {
+function parseSources(raw: unknown): Article["sources"] {
   if (!raw) return undefined;
-  const trimmed = raw.trim();
-  if (!trimmed) return undefined;
-  try {
-    const parsed = JSON.parse(trimmed);
-    if (Array.isArray(parsed)) {
-      return parsed
-        .map((s) => {
-          if (typeof s === "string") return { label: s };
-          if (s && typeof s === "object") {
-            const url = s.url ? String(s.url) : undefined;
-            const name = s.label ?? s.name ?? s.title;
-            const author = s.author ? String(s.author) : undefined;
-            const license = s.license ? String(s.license) : undefined;
-            const parts = [name, author, license].filter(Boolean).join(" — ");
-            const label = parts || url || "Source";
-            return { label, url };
-          }
-          return null;
-        })
-        .filter(Boolean) as Article["sources"];
-    }
-  } catch {
-    // Fallback: treat as newline-separated list
-  }
-  return trimmed
-    .split(/\r?\n/)
-    .map((l) => l.trim())
-    .filter(Boolean)
-    .map((label) => ({ label }));
+  if (!Array.isArray(raw)) return undefined;
+  return raw
+    .map((s) => {
+      if (typeof s === "string") return { label: s };
+      if (s && typeof s === "object") {
+        const o = s as Record<string, unknown>;
+        const url = o.url ? String(o.url) : undefined;
+        const label =
+          (o.name as string) ||
+          (o.label as string) ||
+          (o.title as string) ||
+          url ||
+          "Source";
+        return { label, url };
+      }
+      return null;
+    })
+    .filter(Boolean) as Article["sources"];
 }
 
 function mapRow(row: ArticleRow): Article {
   return {
-    ...row,
-    sources: parseSources(row.sources),
+    id: row.id,
+    slug: row.slug ?? row.id,
+    title: row.title,
+    excerpt: row.summary ?? "",
+    body: row.body ?? "",
+    category: row.category ?? "",
+    hero_image_url: row.image_url ?? "",
+    published_at: row.published_at ?? row.created_at,
+    created_at: row.created_at,
+    status: row.is_published ? "published" : "draft",
+    sources: parseSources(row.sources_used),
+    nri_angle: row.nri_angle ?? undefined,
   };
 }
 
@@ -88,7 +99,7 @@ export async function getPublishedArticles(): Promise<Article[]> {
   const { data, error } = await supabase
     .from("articles")
     .select("*")
-    .eq("status", "published")
+    .eq("is_published", true)
     .order("published_at", { ascending: false });
 
   if (error) {
@@ -103,7 +114,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     .from("articles")
     .select("*")
     .eq("slug", slug)
-    .eq("status", "published")
+    .eq("is_published", true)
     .maybeSingle();
 
   if (error) {
@@ -121,7 +132,7 @@ export async function getRelatedArticles(
   const { data, error } = await supabase
     .from("articles")
     .select("*")
-    .eq("status", "published")
+    .eq("is_published", true)
     .eq("category", category)
     .neq("slug", currentSlug)
     .order("published_at", { ascending: false })
