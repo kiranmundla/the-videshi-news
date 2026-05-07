@@ -60,16 +60,13 @@ async function extractJsonWithRepair(text: string): Promise<any> {
   }
 }
 
-async function callClaudeWithSearch(userPrompt: string, useWebSearch: boolean): Promise<string> {
+async function callClaude(userPrompt: string): Promise<string> {
   const body: any = {
     model: MODEL,
     max_tokens: 4096,
     system: SYSTEM_PROMPT,
     messages: [{ role: "user", content: userPrompt }],
   };
-  if (useWebSearch) {
-    body.tools = [{ type: "web_search_20250305", name: "web_search", max_uses: 6 }];
-  }
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -149,8 +146,8 @@ STORY BRIEF:
 ${JSON.stringify(brief, null, 2)}
 
 INSTRUCTIONS:
-- Use the web_search tool with the suggested_search_queries to find official statements, wire reports, named officials, and specific numbers.
-- Prioritize: official sources (PIB, Newsonair, ANI, ECI, NIA, RBI) → wire services (PTI, IANS) → reputable news outlets.
+- Work ONLY from the story brief above. Do NOT call any external tools or perform web searches.
+- Use the sources already provided in the brief; cite them by name/url in sources_used.
 - Write a 400–600 word factual first draft in markdown with: lead paragraph, key facts, official reactions, background context.
 - Do NOT add NRI/diaspora angle (that's a separate step).
 - Do NOT editorialize or add opinion.
@@ -169,10 +166,7 @@ Return ONLY valid JSON (no prose, no markdown fences) in this exact shape:
   "confidence": "high|medium|low"
 }`;
 
-    const sourceCount = Number(brief?.source_count ?? 99);
-    const useWebSearch =
-      brief?.diaspora_relevance === "high" || sourceCount < 2;
-    const text = await callClaudeWithSearch(userPrompt, useWebSearch);
+    const text = await callClaude(userPrompt);
     const draft = await extractJsonWithRepair(text);
 
     if (!draft.title || !draft.body_markdown) {
@@ -211,12 +205,14 @@ Return ONLY valid JSON (no prose, no markdown fences) in this exact shape:
     const attempts = job.attempts || 0;
     const maxAttempts = job.max_attempts || 3;
     const nextStatus = attempts >= maxAttempts ? "failed" : "pending";
+    const prevErr = job.error_message || "";
+    const appended = `${prevErr}${prevErr ? " | " : ""}attempt ${attempts}: ${msg}`.slice(0, 2000);
 
     await supabase
       .from("story_queue")
       .update({
         status: nextStatus,
-        error_message: msg.slice(0, 2000),
+        error_message: appended,
         locked_by: null,
         locked_until: null,
         updated_at: new Date().toISOString(),

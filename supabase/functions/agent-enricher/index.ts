@@ -182,9 +182,7 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
   "read_time_min": 0
 }`;
 
-    const sourceCount = Number(brief?.source_count ?? 99);
-    const useWebSearch =
-      brief?.diaspora_relevance === "high" || sourceCount < 2;
+    const useWebSearch = brief?.diaspora_relevance === "high";
     const text = await callClaudeWithSearch(userPrompt, useWebSearch);
     const enriched = await extractJsonWithRepair(text);
 
@@ -223,12 +221,14 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
     const attempts = job.attempts || 0;
     const maxAttempts = job.max_attempts || 3;
     const nextStatus = attempts >= maxAttempts ? "failed" : "enriching";
+    const prevErr = job.error_message || "";
+    const appended = `${prevErr}${prevErr ? " | " : ""}attempt ${attempts}: ${msg}`.slice(0, 2000);
 
     await supabase
       .from("story_queue")
       .update({
         status: nextStatus,
-        error_message: msg.slice(0, 2000),
+        error_message: appended,
         locked_by: null,
         locked_until: null,
         updated_at: new Date().toISOString(),
