@@ -114,6 +114,21 @@ export default function ArticlePage() {
         <div className="article-prose max-w-2xl mx-auto mt-12">
           <ReactMarkdown
             components={{
+              a: ({ href, children, ...props }) => {
+                // If the link only wraps an image, drop the link and render the image alone
+                const arr = Array.isArray(children) ? children : [children];
+                const onlyImage =
+                  arr.filter((c) => typeof c !== "string" || c.trim() !== "").length === 1 &&
+                  arr.some(
+                    (c: any) => c && typeof c === "object" && (c.type === "img" || c.props?.node?.tagName === "img")
+                  );
+                if (onlyImage) return <>{children}</>;
+                return (
+                  <a href={href} {...props}>
+                    {children}
+                  </a>
+                );
+              },
               img: ({ src, alt }) => {
                 const norm = (u?: string) => (u ?? "").replace(/&amp;/g, "&").split("?")[0];
                 if (src && article.hero_image_url && norm(src) === norm(article.hero_image_url)) {
