@@ -70,7 +70,7 @@ export default function Index() {
             <p className="py-20 text-center text-muted-foreground">No stories yet in this section.</p>
           ) : (
             <>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
               {filtered.map((a) => (
                 <ArticleCard key={a.id} article={a} variant="card" />
               ))}
