@@ -261,6 +261,94 @@ YOUR TASKS:
   }
 }
 
+interface ExistingArticle {
+  id: string;
+  slug: string | null;
+  title: string;
+  summary: string | null;
+  body: string | null;
+  sources_used: unknown;
+  category: string;
+  tags: string[] | null;
+  nri_angle: string | null;
+  image_url: string | null;
+}
+
+async function regenerateArticleUpdate(
+  group: StoryGroup,
+  _bestArticle: RawArticle,
+  existing: ExistingArticle,
+  allRaw: RawArticle[]
+): Promise<GeneratedArticle | null> {
+  const newRaw = allRaw.filter((a) => group.articleIds.includes(a.id));
+  const prompt = `You are updating an existing news article with a materially new development.
+
+EXISTING ARTICLE:
+Title: ${existing.title}
+Summary: ${existing.summary}
+Body (markdown):
+${existing.body}
+
+NEW RAW SOURCES (just arrived) for the same underlying story:
+${newRaw
+  .map(
+    (a, i) =>
+      `${i + 1}. [${a.source_name}] ${a.title}\n   ${a.description?.slice(0, 300)}\n   URL: ${a.url}`
+  )
+  .join("\n\n")}
+
+YOUR TASKS:
+1. Use web_search if helpful to confirm the new development from official/wire sources.
+2. Rewrite the full article body (300-500 words, markdown) so it incorporates the new development naturally — keep prior context, update facts, add any new official statements/numbers/reactions.
+3. Do NOT prepend any "Updated:" line yourself — the system adds it.
+4. Keep the same overall story; do not pivot to a different event.
+5. Update summary only if the lede has meaningfully changed.
+6. ${group.diasporaRelevant ? "Keep/refresh the NRI angle paragraph." : "Skip NRI angle if not strongly relevant."}
+
+Respond ONLY with valid JSON (no markdown wrapper):
+{
+  "title": "Updated headline (or keep existing)",
+  "summary": "2-3 sentence summary",
+  "body": "Full updated article in markdown",
+  "nriAngle": "1-2 sentence NRI angle, or null",
+  "sourcesUsed": [{"name":"...","url":"...","type":"official|wire|news"}],
+  "tags": ["..."]
+}`;
+
+  try {
+    const response = await callClaude(
+      prompt,
+      true,
+      "You are a professional journalist updating an existing article with new developments. Be factual and conservative — only add what the new sources support."
+    );
+    const cleaned = response.replace(/```json|```/g, "").trim();
+    const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error("No JSON found in response");
+    const parsed = JSON.parse(jsonMatch[0]);
+    const stripCitations = (s: string) =>
+      typeof s === "string"
+        ? s.replace(/<\/?cite\b[^>]*>/gi, "").replace(/\[\d+(?:[-,\s]\d+)*\]/g, "")
+        : s;
+    const cleanedBody = stripCitations(parsed.body || "");
+    const cleanedSummary = stripCitations(parsed.summary || "");
+    const cleanedNri = parsed.nriAngle ? stripCitations(parsed.nriAngle) : null;
+    const wordCount = cleanedBody.split(/\s+/).filter(Boolean).length;
+    return {
+      title: parsed.title || existing.title,
+      slug: existing.slug || slugify(existing.title),
+      summary: cleanedSummary,
+      body: cleanedBody,
+      nriAngle: cleanedNri,
+      sourcesUsed: parsed.sourcesUsed || [],
+      tags: parsed.tags || existing.tags || [],
+      wordCount,
+    };
+  } catch (err) {
+    console.error(`Article update failed for "${existing.title}":`, (err as Error).message);
+    return null;
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
@@ -325,11 +413,11 @@ Deno.serve(async (req) => {
       .sort((a, b) => a.priority - b.priority)
       .slice(0, MAX_ARTICLES_PER_RUN);
 
-    // Fetch recent published articles (last 48h) for duplicate detection
+    // Fetch recent published articles (last 48h) for duplicate detection / update
     const recentSince = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
     const { data: recentArticles } = await supabase
       .from("articles")
-      .select("id, title, summary")
+      .select("id, slug, title, summary, body, sources_used, category, tags, nri_angle, image_url")
       .eq("is_published", true)
       .gte("published_at", recentSince)
       .order("published_at", { ascending: false })
@@ -343,33 +431,89 @@ Deno.serve(async (req) => {
       );
       if (!bestArticle) continue;
 
-      // Option A: ask Claude if this story is already covered in the last 48h
+      // Option B: ask Claude if this story matches a recent article, and if so
+      // whether the new raw articles add a materially new development.
       if (recentArticles && recentArticles.length > 0) {
-        const dupPrompt = `You are checking for duplicate news coverage.
+        const dupPrompt = `You are checking whether a candidate news story matches a recently-published article, and if so whether it adds a materially new development.
 
 CANDIDATE NEW STORY:
 Headline: ${group.storyHeadline}
-Best excerpt: ${bestArticle.title} — ${bestArticle.description?.slice(0, 200)}
+Best excerpt: ${bestArticle.title} — ${bestArticle.description?.slice(0, 300)}
+Other raw items in this group:
+${(rawArticles as RawArticle[])
+  .filter((a) => group.articleIds.includes(a.id) && a.id !== group.bestArticleId)
+  .slice(0, 5)
+  .map((a, i) => `${i + 1}. ${a.title} — ${a.description?.slice(0, 200)}`)
+  .join("\n") || "(none)"}
 
 ALREADY-PUBLISHED ARTICLES (last 48h):
-${recentArticles.map((a, i) => `${i + 1}. ${a.title}\n   ${a.summary?.slice(0, 150)}`).join("\n\n")}
+${recentArticles.map((a, i) => `[${i}] id=${a.id}\n  Title: ${a.title}\n  Summary: ${a.summary?.slice(0, 200)}`).join("\n\n")}
 
-Is the candidate story substantially the same news event as any already-published article?
-Treat them as the same story if they cover the same incident/event/announcement, even with new minor details.
-Treat them as different if it is a genuinely new development, a different incident, or a separate announcement.
+Decide:
+1. Does the candidate cover the SAME underlying news event/incident/announcement as one of the published articles? (match)
+2. If matched, does the candidate add a MATERIALLY NEW development? (e.g., new casualty figures, new official statement, arrest, court ruling, escalation, retraction). Minor rephrasing or the same facts = NOT material.
 
-Respond ONLY with valid JSON: {"duplicate": true|false, "reason": "short reason"}`;
+Respond ONLY with valid JSON:
+{"match": true|false, "matchedIndex": <number or null>, "materialUpdate": true|false, "reason": "short reason"}`;
 
         try {
           const dupRes = await callClaude(dupPrompt);
           const m = dupRes.match(/\{[\s\S]*\}/);
           if (m) {
             const parsed = JSON.parse(m[0]);
-            if (parsed.duplicate === true) {
-              console.log(`Skipping duplicate: "${group.storyHeadline}" — ${parsed.reason}`);
-              // Mark raw articles processed so we don't keep re-checking them
-              for (const rid of group.articleIds) successfullyProcessedRawIds.add(rid);
-              continue;
+            if (parsed.match === true && typeof parsed.matchedIndex === "number") {
+              const matched = recentArticles[parsed.matchedIndex];
+              if (matched && parsed.materialUpdate !== true) {
+                console.log(`Skipping duplicate: "${group.storyHeadline}" — ${parsed.reason}`);
+                for (const rid of group.articleIds) successfullyProcessedRawIds.add(rid);
+                continue;
+              }
+              if (matched && parsed.materialUpdate === true) {
+                console.log(`Updating existing article ${matched.id}: "${group.storyHeadline}" — ${parsed.reason}`);
+                const updated = await regenerateArticleUpdate(group, bestArticle, matched, rawArticles as RawArticle[]);
+                if (updated) {
+                  const nowIso = new Date().toISOString();
+                  const updateLine = `_Updated: ${nowIso}_\n\n`;
+                  const newBody = updateLine + updated.body;
+                  const existingSources = Array.isArray(matched.sources_used) ? matched.sources_used : [];
+                  const seen = new Set(existingSources.map((s: { url?: string }) => s?.url).filter(Boolean));
+                  const mergedSources = [
+                    ...existingSources,
+                    ...updated.sourcesUsed.filter((s) => s?.url && !seen.has(s.url)),
+                  ];
+                  const wordCount = newBody.split(/\s+/).filter(Boolean).length;
+                  const { error: updErr } = await supabase
+                    .from("articles")
+                    .update({
+                      summary: updated.summary || matched.summary,
+                      body: newBody,
+                      nri_angle: updated.nriAngle ?? matched.nri_angle,
+                      sources_used: mergedSources,
+                      tags: updated.tags?.length ? updated.tags : matched.tags,
+                      word_count: wordCount,
+                      read_time_min: Math.ceil(wordCount / 200),
+                      image_url: matched.image_url || bestArticle.image_url || null,
+                      updated_at: nowIso,
+                    })
+                    .eq("id", matched.id);
+                  if (!updErr) {
+                    articlesCreated++;
+                    for (const rid of group.articleIds) successfullyProcessedRawIds.add(rid);
+                    await supabase
+                      .from("story_groups")
+                      .update({ enriched: true })
+                      .eq("priority", group.priority)
+                      .eq("run_id", runId);
+                  } else {
+                    console.error("Article update error:", updErr.message);
+                  }
+                } else {
+                  console.warn("Regeneration failed; leaving existing article unchanged");
+                  for (const rid of group.articleIds) successfullyProcessedRawIds.add(rid);
+                }
+                await new Promise((r) => setTimeout(r, 2000));
+                continue;
+              }
             }
           }
         } catch (err) {
