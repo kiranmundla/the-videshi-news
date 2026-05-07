@@ -42,8 +42,10 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (req.method !== "GET") return json(405, { error: "Method not allowed" });
 
-  // API key check (constant-time-ish)
-  const provided = req.headers.get("x-videshi-key") || "";
+  const url = new URL(req.url);
+  // API key check — accept header OR ?key= query param
+  const provided =
+    req.headers.get("x-videshi-key") || url.searchParams.get("key") || "";
   if (!VIDESHI_API_KEY || provided !== VIDESHI_API_KEY) {
     return json(401, { error: "Unauthorized" });
   }
