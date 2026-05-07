@@ -70,13 +70,10 @@ export default function ArticleCard({
       ? "text-[1.35rem] md:text-[1.5rem] leading-[1.2]"
       : "text-[1.05rem] md:text-[1.125rem] leading-snug";
 
-  const aspect = "aspect-[16/9]";
-  const maxH =
+  const aspect =
     variant === "hero"
-      ? "md:max-h-[min(480px,60vh)]"
-      : variant === "featured"
-      ? "max-h-[260px] md:max-h-[240px]"
-      : "max-h-[240px] md:max-h-[180px]";
+      ? "aspect-[16/9]"
+      : "aspect-[3/2]";
 
   return (
     <Link to={href} className="group block">
@@ -86,7 +83,7 @@ export default function ArticleCard({
           alt={article.title}
           loading={variant === "hero" ? "eager" : "lazy"}
           category={article.category}
-          className={`w-full ${aspect} ${maxH} object-cover object-center group-hover:scale-[1.01] transition-transform duration-500`}
+          className={`w-full ${aspect} object-cover object-center group-hover:scale-[1.01] transition-transform duration-500`}
         />
       </div>
       <p className="smallcaps text-primary mt-4 mb-2">{article.category}</p>
