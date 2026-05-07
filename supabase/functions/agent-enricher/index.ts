@@ -15,13 +15,50 @@ const MODEL = "claude-haiku-4-5-20251001";
 const SYSTEM_PROMPT =
   "You are a senior features editor at The Videshi, a news platform for Indian-Americans. Your job is to take a factual draft and transform it into a rich, beautiful, deeply contextual article that resonates specifically with the Indian-American diaspora.";
 
-function extractJson(text: string): any {
+function stripFences(text: string): string {
   const fence = text.match(/```(?:json)?\s*([\s\S]*?)```/);
   const raw = fence ? fence[1] : text;
   const start = raw.indexOf("{");
   const end = raw.lastIndexOf("}");
-  if (start === -1 || end === -1) throw new Error("No JSON object found");
-  return JSON.parse(raw.slice(start, end + 1));
+  if (start === -1 || end === -1) return raw.trim();
+  return raw.slice(start, end + 1);
+}
+
+async function repairJsonWithHaiku(malformed: string): Promise<string> {
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "x-api-key": ANTHROPIC_API_KEY,
+      "anthropic-version": "2023-06-01",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "claude-haiku-4-5-20251001",
+      max_tokens: 8192,
+      messages: [{
+        role: "user",
+        content: `The following is malformed JSON. Fix it and return only valid JSON, nothing else: ${malformed}`,
+      }],
+    }),
+  });
+  if (!res.ok) throw new Error(`Repair failed ${res.status}: ${await res.text()}`);
+  const data = await res.json();
+  return (data.content || [])
+    .filter((b: any) => b.type === "text")
+    .map((b: any) => b.text)
+    .join("\n");
+}
+
+async function extractJsonWithRepair(text: string): Promise<any> {
+  const candidate = stripFences(text);
+  try {
+    return JSON.parse(candidate);
+  } catch (_e) {
+    console.warn("Initial JSON parse failed, attempting repair via Haiku");
+    const repaired = await repairJsonWithHaiku(candidate);
+    const repairedCandidate = stripFences(repaired);
+    return JSON.parse(repairedCandidate);
+  }
 }
 
 async function callClaudeWithSearch(userPrompt: string, useWebSearch: boolean): Promise<string> {
