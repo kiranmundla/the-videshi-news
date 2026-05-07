@@ -180,6 +180,18 @@ ${JSON.stringify(compact)}`;
         ? s.raw_article_ids.filter((x: any) => typeof x === "string")
         : [];
 
+      const sourceCount =
+        typeof s.source_count === "number"
+          ? s.source_count
+          : Array.isArray(s.sources)
+          ? s.sources.length
+          : rawIds.length;
+      const articleType =
+        s.diaspora_relevance === "high" && sourceCount >= 3
+          ? "feature"
+          : "news";
+      s.article_type = articleType;
+
       const { error: insErr } = await supabase.from("story_queue").insert({
         status: "pending",
         story_brief: s,

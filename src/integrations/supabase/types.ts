@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       articles: {
         Row: {
+          article_type: string
           body: string
           category: string
           created_at: string | null
@@ -35,6 +36,7 @@ export type Database = {
           word_count: number | null
         }
         Insert: {
+          article_type?: string
           body: string
           category: string
           created_at?: string | null
@@ -54,6 +56,7 @@ export type Database = {
           word_count?: number | null
         }
         Update: {
+          article_type?: string
           body?: string
           category?: string
           created_at?: string | null

@@ -158,15 +158,22 @@ Deno.serve(async (req) => {
 
     try {
     const brief = job.story_brief || {};
+    const articleType = brief.article_type === "feature" ? "feature" : "news";
+    const targetLen =
+      articleType === "feature"
+        ? "1,000–1,500 word in-depth feature/analysis draft"
+        : "300–400 word factual news brief";
     const userPrompt = `You have a story brief. Write a factual first draft.
 
 STORY BRIEF:
 ${JSON.stringify(brief, null, 2)}
 
+ARTICLE TYPE: ${articleType.toUpperCase()}
+
 INSTRUCTIONS:
 - Work ONLY from the story brief above. Do NOT call any external tools or perform web searches.
 - Use the sources already provided in the brief; cite them by name/url in sources_used.
-- Write a 400–600 word factual first draft in markdown with: lead paragraph, key facts, official reactions, background context.
+- Write a ${targetLen} in markdown with: lead paragraph, key facts, official reactions, background context${articleType === "feature" ? ", deeper analysis, multiple perspectives, and historical context" : ""}.
 - Do NOT add NRI/diaspora angle (that's a separate step).
 - Do NOT editorialize or add opinion.
 

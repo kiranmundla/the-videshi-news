@@ -15,7 +15,8 @@ export default function ArticleCard({
 }) {
   const time = readingTime(article.body);
   const href = `/articles/${article.slug}`;
-
+  const isFeature = article.article_type === "feature";
+  const featureLabel = isFeature ? "FEATURE" : null;
   if (variant === "compact") {
     return (
       <Link to={href} className="group flex gap-4 items-start">
@@ -27,7 +28,14 @@ export default function ArticleCard({
           className="w-20 h-20 object-cover flex-shrink-0"
         />
         <div className="min-w-0">
-          <p className="smallcaps text-primary mb-1">{article.category}</p>
+          <p className="smallcaps text-primary mb-1">
+            {featureLabel && (
+              <span className="bg-primary text-primary-foreground px-1 py-0.5 mr-1.5 tracking-wider">
+                {featureLabel}
+              </span>
+            )}
+            {article.category}
+          </p>
           <h3 className="font-serif font-semibold text-[0.95rem] md:text-base leading-snug text-foreground group-hover:text-primary transition-colors">
             {article.title}
           </h3>
@@ -50,7 +58,9 @@ export default function ArticleCard({
           className="w-full aspect-[4/3] object-cover"
         />
         <div>
-          <p className="smallcaps text-primary mb-3">Long read · {article.category}</p>
+          <p className="smallcaps text-primary mb-3">
+            {featureLabel ? "Feature" : "Long read"} · {article.category}
+          </p>
           <h2 className="font-serif font-bold text-2xl md:text-4xl leading-[1.15] text-foreground group-hover:text-primary transition-colors">
             {article.title}
           </h2>
@@ -88,7 +98,16 @@ export default function ArticleCard({
           className={`w-full ${aspect} object-cover object-top group-hover:scale-[1.01] transition-transform duration-500`}
         />
       </div>
-      {!hideCategory && <p className="smallcaps text-primary mt-4 mb-2">{article.category}</p>}
+      {!hideCategory && (
+        <p className="smallcaps text-primary mt-4 mb-2">
+          {featureLabel && (
+            <span className="bg-primary text-primary-foreground px-1.5 py-0.5 mr-2 tracking-wider">
+              {featureLabel}
+            </span>
+          )}
+          {article.category}
+        </p>
+      )}
       <h2 className={`font-serif font-bold text-foreground group-hover:text-primary transition-colors ${hideCategory ? "mt-2" : ""} ${headlineSize}`}>
         {article.title}
       </h2>
