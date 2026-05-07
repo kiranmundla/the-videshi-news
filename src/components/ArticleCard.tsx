@@ -89,7 +89,16 @@ export default function ArticleCard({
           className={`w-full ${aspect} object-cover object-top group-hover:scale-[1.01] transition-transform duration-500`}
         />
       </div>
-      {!hideCategory && <p className="smallcaps text-primary mt-4 mb-2">{article.category}</p>}
+      {!hideCategory && (
+        <p className="smallcaps text-primary mt-4 mb-2">
+          {featureLabel && (
+            <span className="bg-primary text-primary-foreground px-1.5 py-0.5 mr-2 tracking-wider">
+              {featureLabel}
+            </span>
+          )}
+          {article.category}
+        </p>
+      )}
       <h2 className={`font-serif font-bold text-foreground group-hover:text-primary transition-colors ${hideCategory ? "mt-2" : ""} ${headlineSize}`}>
         {article.title}
       </h2>
