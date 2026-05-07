@@ -270,21 +270,33 @@ Deno.serve(async (req) => {
 
     for (const a of articles ?? []) {
       processed++;
-      const hit = await findImage(a.title, a.category);
-      if (!hit) {
-        console.log(`✗ no image found for: ${a.title}`);
-        continue;
+      const hasImage = typeof a.image_url === "string" && a.image_url.trim().length > 0;
+      let imgUrl = a.image_url as string | null;
+      let credit: string | null = null;
+
+      if (!hasImage) {
+        const hit = await findImage(a.title, a.category);
+        if (!hit) {
+          console.log(`✗ no image found for: ${a.title}`);
+          continue;
+        }
+        imgUrl = hit.url;
+        credit = hit.credit;
       }
-      const caption = await generateCaption(hit.url, a.title);
-      const { error: updErr } = await supabase
-        .from("articles")
-        .update({ image_url: hit.url, image_credit: hit.credit, image_caption: caption || null })
-        .eq("id", a.id);
+
+      const caption = await generateCaption(imgUrl!, a.title);
+      const patch: Record<string, unknown> = { image_caption: caption || null };
+      if (!hasImage) {
+        patch.image_url = imgUrl;
+        patch.image_credit = credit;
+      }
+
+      const { error: updErr } = await supabase.from("articles").update(patch).eq("id", a.id);
       if (updErr) {
         console.error(`update failed for ${a.id}`, updErr);
       } else {
         updated++;
-        console.log(`✓ ${a.title} -> ${hit.url} | "${caption}"`);
+        console.log(`✓ ${a.title} | "${caption}"`);
       }
     }
   } catch (e) {
