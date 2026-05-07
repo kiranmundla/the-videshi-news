@@ -32,7 +32,7 @@ async function callClaude(
   systemPrompt?: string
 ): Promise<string> {
   const body: Record<string, unknown> = {
-    model: "claude-sonnet-4-20250514",
+    model: "claude-sonnet-4-5",
     max_tokens: 2000,
     messages: [{ role: "user", content: prompt }],
   };
@@ -53,6 +53,10 @@ async function callClaude(
   });
 
   const data = await res.json();
+  if (!res.ok || !data.content) {
+    console.error("Claude API error:", res.status, JSON.stringify(data).slice(0, 500));
+    return "";
+  }
   return (data.content || [])
     .filter((b: { type: string }) => b.type === "text")
     .map((b: { text: string }) => b.text)
