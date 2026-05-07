@@ -2,3 +2,6 @@ project_id = "lboecaekpynbpyijrbfz"
 
 [functions.ingest-rss]
 verify_jwt = false
+
+[functions.process-stories]
+verify_jwt = false
