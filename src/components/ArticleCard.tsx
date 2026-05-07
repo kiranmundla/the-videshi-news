@@ -28,7 +28,14 @@ export default function ArticleCard({
           className="w-20 h-20 object-cover flex-shrink-0"
         />
         <div className="min-w-0">
-          <p className="smallcaps text-primary mb-1">{article.category}</p>
+          <p className="smallcaps text-primary mb-1">
+            {featureLabel && (
+              <span className="bg-primary text-primary-foreground px-1 py-0.5 mr-1.5 tracking-wider">
+                {featureLabel}
+              </span>
+            )}
+            {article.category}
+          </p>
           <h3 className="font-serif font-semibold text-[0.95rem] md:text-base leading-snug text-foreground group-hover:text-primary transition-colors">
             {article.title}
           </h3>
