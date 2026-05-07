@@ -59,9 +59,8 @@ export default function ArticleCard({
             category={article.category}
             className="w-full aspect-[16/9] object-cover object-top"
           />
-          <figcaption className="mt-2 text-xs italic text-muted-foreground">
-            {imageCaption(article.title)}
-          </figcaption>
+          <ImageCaption caption={article.image_caption} credit={article.image_credit} truncate />
+
         </figure>
         <div>
           <p className="smallcaps text-primary mb-3">
