@@ -261,6 +261,94 @@ YOUR TASKS:
   }
 }
 
+interface ExistingArticle {
+  id: string;
+  slug: string | null;
+  title: string;
+  summary: string | null;
+  body: string | null;
+  sources_used: unknown;
+  category: string;
+  tags: string[] | null;
+  nri_angle: string | null;
+  image_url: string | null;
+}
+
+async function regenerateArticleUpdate(
+  group: StoryGroup,
+  _bestArticle: RawArticle,
+  existing: ExistingArticle,
+  allRaw: RawArticle[]
+): Promise<GeneratedArticle | null> {
+  const newRaw = allRaw.filter((a) => group.articleIds.includes(a.id));
+  const prompt = `You are updating an existing news article with a materially new development.
+
+EXISTING ARTICLE:
+Title: ${existing.title}
+Summary: ${existing.summary}
+Body (markdown):
+${existing.body}
+
+NEW RAW SOURCES (just arrived) for the same underlying story:
+${newRaw
+  .map(
+    (a, i) =>
+      `${i + 1}. [${a.source_name}] ${a.title}\n   ${a.description?.slice(0, 300)}\n   URL: ${a.url}`
+  )
+  .join("\n\n")}
+
+YOUR TASKS:
+1. Use web_search if helpful to confirm the new development from official/wire sources.
+2. Rewrite the full article body (300-500 words, markdown) so it incorporates the new development naturally — keep prior context, update facts, add any new official statements/numbers/reactions.
+3. Do NOT prepend any "Updated:" line yourself — the system adds it.
+4. Keep the same overall story; do not pivot to a different event.
+5. Update summary only if the lede has meaningfully changed.
+6. ${group.diasporaRelevant ? "Keep/refresh the NRI angle paragraph." : "Skip NRI angle if not strongly relevant."}
+
+Respond ONLY with valid JSON (no markdown wrapper):
+{
+  "title": "Updated headline (or keep existing)",
+  "summary": "2-3 sentence summary",
+  "body": "Full updated article in markdown",
+  "nriAngle": "1-2 sentence NRI angle, or null",
+  "sourcesUsed": [{"name":"...","url":"...","type":"official|wire|news"}],
+  "tags": ["..."]
+}`;
+
+  try {
+    const response = await callClaude(
+      prompt,
+      true,
+      "You are a professional journalist updating an existing article with new developments. Be factual and conservative — only add what the new sources support."
+    );
+    const cleaned = response.replace(/```json|```/g, "").trim();
+    const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error("No JSON found in response");
+    const parsed = JSON.parse(jsonMatch[0]);
+    const stripCitations = (s: string) =>
+      typeof s === "string"
+        ? s.replace(/<\/?cite\b[^>]*>/gi, "").replace(/\[\d+(?:[-,\s]\d+)*\]/g, "")
+        : s;
+    const cleanedBody = stripCitations(parsed.body || "");
+    const cleanedSummary = stripCitations(parsed.summary || "");
+    const cleanedNri = parsed.nriAngle ? stripCitations(parsed.nriAngle) : null;
+    const wordCount = cleanedBody.split(/\s+/).filter(Boolean).length;
+    return {
+      title: parsed.title || existing.title,
+      slug: existing.slug || slugify(existing.title),
+      summary: cleanedSummary,
+      body: cleanedBody,
+      nriAngle: cleanedNri,
+      sourcesUsed: parsed.sourcesUsed || [],
+      tags: parsed.tags || existing.tags || [],
+      wordCount,
+    };
+  } catch (err) {
+    console.error(`Article update failed for "${existing.title}":`, (err as Error).message);
+    return null;
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
