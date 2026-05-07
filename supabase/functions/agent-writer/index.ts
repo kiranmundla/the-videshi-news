@@ -121,17 +121,25 @@ Deno.serve(async (req) => {
       "claim_queue_job",
       { p_status: "pending", p_worker_id: workerId, p_lock_secs: 300 },
     );
+    console.log(
+      `[writer iter ${i}] worker=${workerId} claim result:`,
+      JSON.stringify(claimed),
+      "error:",
+      JSON.stringify(claimErr),
+    );
     if (claimErr) {
       console.error("claim error", claimErr);
       results.push({ ok: false, error: claimErr.message });
       break;
     }
     if (!claimed || !claimed.id) {
+      console.log(`[writer iter ${i}] No jobs claimed — exiting loop`);
       if (results.length === 0) {
         return respond(200, { ok: true, message: "No pending jobs" });
       }
       break;
     }
+    console.log(`[writer iter ${i}] Claimed job id=${claimed.id} attempts=${claimed.attempts}`);
 
     const job = claimed;
     const { data: runRow } = await supabase
