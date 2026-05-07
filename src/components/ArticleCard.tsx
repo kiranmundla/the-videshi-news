@@ -28,7 +28,7 @@ export default function ArticleCard({
         />
         <div className="min-w-0">
           <p className="smallcaps text-primary mb-1">{article.category}</p>
-          <h3 className="font-serif text-[0.95rem] md:text-base leading-snug text-foreground group-hover:text-primary transition-colors">
+          <h3 className="font-serif font-semibold text-[0.95rem] md:text-base leading-snug text-foreground group-hover:text-primary transition-colors">
             {article.title}
           </h3>
         </div>
@@ -51,7 +51,7 @@ export default function ArticleCard({
         />
         <div>
           <p className="smallcaps text-primary mb-3">Long read · {article.category}</p>
-          <h2 className="font-serif text-2xl md:text-4xl leading-[1.15] text-foreground group-hover:text-primary transition-colors">
+          <h2 className="font-serif font-bold text-2xl md:text-4xl leading-[1.15] text-foreground group-hover:text-primary transition-colors">
             {article.title}
           </h2>
           <p className="mt-4 text-foreground/75 leading-relaxed text-[0.98rem]">
@@ -89,7 +89,7 @@ export default function ArticleCard({
         />
       </div>
       {!hideCategory && <p className="smallcaps text-primary mt-4 mb-2">{article.category}</p>}
-      <h2 className={`font-serif text-foreground group-hover:text-primary transition-colors ${hideCategory ? "mt-2" : ""} ${headlineSize}`}>
+      <h2 className={`font-serif font-bold text-foreground group-hover:text-primary transition-colors ${hideCategory ? "mt-2" : ""} ${headlineSize}`}>
         {article.title}
       </h2>
       <p className="hidden md:block mt-3 text-foreground/75 leading-relaxed text-base line-clamp-2">
