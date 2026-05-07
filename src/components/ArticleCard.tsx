@@ -73,10 +73,10 @@ export default function ArticleCard({
   const aspect = "aspect-[16/9]";
   const maxH =
     variant === "hero"
-      ? "md:max-h-[min(480px,60vh)]"
+      ? "max-h-[260px] md:max-h-[min(480px,60vh)]"
       : variant === "featured"
-      ? "md:max-h-[240px]"
-      : "md:max-h-[180px]";
+      ? "max-h-[220px] md:max-h-[240px]"
+      : "max-h-[200px] md:max-h-[180px]";
 
   return (
     <Link to={href} className="group block">
