@@ -206,39 +206,42 @@ Return ONLY valid JSON (no prose, no markdown fences) in this exact shape:
         .eq("id", runId);
     }
 
-    return respond(200, { ok: true, job_id: job.id, status: "enriching" });
-  } catch (e) {
-    const msg = e instanceof Error ? e.message : String(e);
-    console.error("agent-writer error", msg);
+      results.push({ ok: true, job_id: job.id, status: "enriching" });
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      console.error("agent-writer error", msg);
 
-    const attempts = job.attempts || 0;
-    const maxAttempts = job.max_attempts || 3;
-    const nextStatus = attempts >= maxAttempts ? "failed" : "pending";
-    const prevErr = job.error_message || "";
-    const appended = `${prevErr}${prevErr ? " | " : ""}attempt ${attempts}: ${msg}`.slice(0, 2000);
+      const attempts = job.attempts || 0;
+      const maxAttempts = job.max_attempts || 3;
+      const nextStatus = attempts >= maxAttempts ? "failed" : "pending";
+      const prevErr = job.error_message || "";
+      const appended = `${prevErr}${prevErr ? " | " : ""}attempt ${attempts}: ${msg}`.slice(0, 2000);
 
-    await supabase
-      .from("story_queue")
-      .update({
-        status: nextStatus,
-        error_message: appended,
-        locked_by: null,
-        locked_until: null,
-        updated_at: new Date().toISOString(),
-      })
-      .eq("id", job.id);
-
-    if (runId) {
       await supabase
-        .from("pipeline_runs")
+        .from("story_queue")
         .update({
-          status: "error",
-          finished_at: new Date().toISOString(),
-          error_message: msg,
+          status: nextStatus,
+          error_message: appended,
+          locked_by: null,
+          locked_until: null,
+          updated_at: new Date().toISOString(),
         })
-        .eq("id", runId);
-    }
+        .eq("id", job.id);
 
-    return respond(500, { ok: false, job_id: job.id, status: nextStatus, error: msg });
+      if (runId) {
+        await supabase
+          .from("pipeline_runs")
+          .update({
+            status: "error",
+            finished_at: new Date().toISOString(),
+            error_message: msg,
+          })
+          .eq("id", runId);
+      }
+
+      results.push({ ok: false, job_id: job.id, status: nextStatus, error: msg });
+    }
   }
+
+  return respond(200, { ok: true, processed: results.length, results });
 });
