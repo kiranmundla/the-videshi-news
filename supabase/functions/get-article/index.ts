@@ -59,7 +59,6 @@ Deno.serve(async (req) => {
     return json(429, { error: "Rate limit exceeded (60/min)" }, { "Retry-After": "60" });
   }
 
-  const url = new URL(req.url);
   const slug = url.searchParams.get("slug")?.trim();
   if (!slug) return json(400, { error: "Missing 'slug' query parameter" });
 
