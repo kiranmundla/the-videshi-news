@@ -29,10 +29,11 @@ const MAX_ARTICLES_PER_RUN = 3;
 async function callClaude(
   prompt: string,
   useWebSearch = false,
-  systemPrompt?: string
+  systemPrompt?: string,
+  model = "claude-sonnet-4-20250514"
 ): Promise<string> {
   const body: Record<string, unknown> = {
-    model: "claude-sonnet-4-5",
+    model,
     max_tokens: 8000,
     messages: [{ role: "user", content: prompt }],
   };
@@ -122,7 +123,7 @@ Respond ONLY with valid JSON, no markdown:
   ]
 }`;
 
-  const response = await callClaude(prompt);
+  const response = await callClaude(prompt, false, undefined, "claude-haiku-4-5-20251001");
   try {
     const cleaned = response.replace(/```json|```/g, "").trim();
     // Tolerate truncated responses: extract the largest balanced JSON object we can
@@ -225,7 +226,8 @@ YOUR TASKS:
     const response = await callClaude(
       prompt,
       true,
-      "You are a professional journalist. Always search for official and wire sources first. Write factually and neutrally."
+      "You are a professional journalist. Always search for official and wire sources first. Write factually and neutrally.",
+      "claude-sonnet-4-20250514"
     );
 
     const cleaned = response.replace(/```json|```/g, "").trim();
@@ -319,7 +321,8 @@ Respond ONLY with valid JSON (no markdown wrapper):
     const response = await callClaude(
       prompt,
       true,
-      "You are a professional journalist updating an existing article with new developments. Be factual and conservative — only add what the new sources support."
+      "You are a professional journalist updating an existing article with new developments. Be factual and conservative — only add what the new sources support.",
+      "claude-sonnet-4-20250514"
     );
     const cleaned = response.replace(/```json|```/g, "").trim();
     const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
@@ -457,7 +460,7 @@ Respond ONLY with valid JSON:
 {"match": true|false, "matchedIndex": <number or null>, "materialUpdate": true|false, "reason": "short reason"}`;
 
         try {
-          const dupRes = await callClaude(dupPrompt);
+          const dupRes = await callClaude(dupPrompt, false, undefined, "claude-haiku-4-5-20251001");
           const m = dupRes.match(/\{[\s\S]*\}/);
           if (m) {
             const parsed = JSON.parse(m[0]);
