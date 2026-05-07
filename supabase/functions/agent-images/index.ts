@@ -275,15 +275,16 @@ Deno.serve(async (req) => {
         console.log(`✗ no image found for: ${a.title}`);
         continue;
       }
+      const caption = await generateCaption(hit.url, a.title);
       const { error: updErr } = await supabase
         .from("articles")
-        .update({ image_url: hit.url, image_credit: hit.credit })
+        .update({ image_url: hit.url, image_credit: hit.credit, image_caption: caption || null })
         .eq("id", a.id);
       if (updErr) {
         console.error(`update failed for ${a.id}`, updErr);
       } else {
         updated++;
-        console.log(`✓ ${a.title} -> ${hit.url}`);
+        console.log(`✓ ${a.title} -> ${hit.url} | "${caption}"`);
       }
     }
   } catch (e) {
