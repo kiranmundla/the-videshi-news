@@ -113,13 +113,13 @@ export default function Index() {
       .slice(0, NEWS_SECTION.limit);
     newsUngrouped.forEach((a) => used.add(a.id));
 
-    // 3. Category sections
+    // 3. Category sections — pool up to 12 per section, claim them upfront
     const sections = CATEGORY_SECTIONS.map((s) => {
-      const items = allArticles
+      const pool = allArticles
         .filter((a) => a.category === s.slug && !used.has(a.id))
-        .slice(0, s.limit);
-      items.forEach((a) => used.add(a.id));
-      return { ...s, items };
+        .slice(0, 12);
+      pool.forEach((a) => used.add(a.id));
+      return { ...s, pool };
     });
 
     return { featured, newsClusters, newsUngrouped, sections };
