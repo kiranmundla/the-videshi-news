@@ -48,12 +48,15 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
 
   // ── Entertainment ─────────────────────────────────────────
   { name: "Bollywood Hungama", url: "https://www.bollywoodhungama.com/rss/news.xml", credibility: "entertainment" },
-  { name: "Filmfare",          url: "https://www.filmfare.com/rss/news.rss",         credibility: "entertainment" },
+  // Filmfare & SiliconIndia & Moneycontrol & Gulf News India return 403/404 to
+  // server-side fetchers (Akamai / no public RSS endpoint). Disabled.
+  // { name: "Filmfare",         url: "https://www.filmfare.com/rss/news.rss",                 credibility: "entertainment" },
+  // { name: "Silicon India",    url: "https://www.siliconindia.com/rss/news.xml",             credibility: "nri" },
+  // { name: "Moneycontrol",     url: "https://www.moneycontrol.com/rss/latestnews.xml",       credibility: "tier3" },
+  // { name: "Gulf News India",  url: "https://gulfnews.com/rss/india",                        credibility: "nri" },
 
   // ── Business ──────────────────────────────────────────────
   { name: "Economic Times", url: "https://economictimes.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3" },
-  { name: "Moneycontrol",   url: "https://www.moneycontrol.com/rss/latestnews.xml",             credibility: "tier3" },
-];
 
 interface RawArticle {
   credibility?: string;
