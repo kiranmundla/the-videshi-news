@@ -66,10 +66,12 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   // ── Google News aggregated feeds (fallback for blocked publishers) ─────────
   // news.google.com returns 503 "Sorry..." (bot detection) to Supabase edge IPs,
   // so we route through rss2json. Aggregates NDTV, BS, IE, Bollywood Life, etc.
-  { name: "Google News Business India", url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dindia%2Bbusiness%2Beconomy%26hl%3Den-IN%26gl%3DIN%26ceid%3DIN%3Aen", credibility: "tier3", category: "markets-finance", parser: "rss2json" },
-  { name: "Google News Cricket",        url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dindia%2Bcricket%2Bipl%26hl%3Den-IN%26gl%3DIN%26ceid%3DIN%3Aen",       credibility: "tier3", category: "sports", parser: "rss2json" },
-  { name: "Google News Bollywood",      url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dbollywood%2Bmovies%26hl%3Den-IN%26gl%3DIN%26ceid%3DIN%3Aen",         credibility: "tier3", category: "entertainment", parser: "rss2json" },
-  { name: "Google News Diaspora",       url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dindian%2Bdiaspora%2Bnri%26hl%3Den-IN%26gl%3DIN%26ceid%3DIN%3Aen",    credibility: "tier3", category: "nri-world", parser: "rss2json" },
+  { name: "Google News Business India",          url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dindia%2Bbusiness%2Beconomy%26hl%3Den-IN%26gl%3DIN%26ceid%3DIN%3Aen",                          credibility: "tier3", category: "markets-finance", parser: "rss2json" },
+  { name: "Google News Cricket",                 url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dindia%2Bcricket%2Bipl%26hl%3Den-IN%26gl%3DIN%26ceid%3DIN%3Aen",                              credibility: "tier3", category: "sports", parser: "rss2json" },
+  { name: "Google News Bollywood",               url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dbollywood%2Bmovies%26hl%3Den-IN%26gl%3DIN%26ceid%3DIN%3Aen",                                  credibility: "tier3", category: "entertainment", parser: "rss2json" },
+  { name: "Google News NRI",                     url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dindian%2Bamerican%2Bdiaspora%2BNRI%26hl%3Den%26gl%3DUS%26ceid%3DUS%3Aen",                     credibility: "tier3", category: "nri-world", parser: "rss2json" },
+  { name: "Google News Indian Origin Leaders",   url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dindian%2Borigin%2Bpolitician%2BUS%2BUK%2BCanada%26hl%3Den%26gl%3DUS%26ceid%3DUS%3Aen",        credibility: "tier3", category: "nri-world", parser: "rss2json" },
+  { name: "Google News India Tech",              url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dindia%2Btechnology%2Bstartup%26hl%3Den-IN%26gl%3DIN%26ceid%3DIN%3Aen",                        credibility: "tier3", category: "technology", parser: "rss2json" },
 ];
 
 interface RawArticle {
