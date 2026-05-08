@@ -26,3 +26,6 @@ verify_jwt = false
 
 [functions.recaption-images]
 verify_jwt = false
+
+[functions.reverify-images]
+verify_jwt = false
