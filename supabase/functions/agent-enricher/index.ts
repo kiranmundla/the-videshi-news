@@ -205,6 +205,20 @@ async function fetchImageForArticle(title: string, category: string): Promise<Im
       image_score: 0,
     };
   }
+  // Final fallback: never exit without an image. Search Unsplash by category alone.
+  console.warn(`[image] all 3 sources failed for "${title}" — using category fallback`);
+  const categoryQuery = `India ${category || "news"}`.trim();
+  const fb = await tryUnsplash(categoryQuery);
+  if (fb) {
+    return {
+      image_url: fb.url,
+      image_caption: title,
+      image_credit: fb.credit,
+      image_verified: false,
+      image_score: 0,
+    };
+  }
+  console.error(`[image] category fallback ALSO failed for "${title}" (query="${categoryQuery}")`);
   return null;
 }
 
