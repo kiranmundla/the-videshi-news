@@ -163,7 +163,7 @@ export async function getPublishedArticles(): Promise<Article[]> {
     .eq("status", "published")
     .eq("is_featured", false)
     .order("published_at", { ascending: false })
-    .limit(20);
+    .limit(100);
 
   if (error) {
     console.error("[articles] getPublishedArticles", error);
