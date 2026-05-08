@@ -47,6 +47,19 @@ async function callClaude(userPrompt: string): Promise<string> {
     .join("\n");
 }
 
+// Strip HTML tags + citation markers Claude sometimes leaks into the body.
+function sanitizeMarkdown(text: string): string {
+  if (!text) return "";
+  let t = text;
+  // Remove paired/standalone citation/reference tags
+  t = t.replace(/<\/?(?:cite|ref|sup|sub|span|div|a|small|figure|figcaption|abbr|cited|source)\b[^>]*>/gi, "");
+  // Remove any other HTML-ish tag (keep markdown intact)
+  t = t.replace(/<\/?[a-zA-Z][^>]*>/g, "");
+  // Collapse whitespace artifacts
+  t = t.replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n");
+  return t.trim();
+}
+
 function bodyToMarkdown(body: any[]): string {
   if (!Array.isArray(body)) return "";
   const out: string[] = [];
@@ -219,7 +232,9 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
           .replace(/^-+|-+$/g, "")
           .slice(0, 80);
 
-      const bodyMd = bodyToMarkdown(enriched.body || []);
+      const bodyMd = sanitizeMarkdown(bodyToMarkdown(enriched.body || []));
+      const cleanSummary = sanitizeMarkdown(enriched.summary || "");
+      const cleanTitle = sanitizeMarkdown(enriched.title || "").trim();
       const wordCount =
         enriched.word_count ||
         bodyMd.split(/\s+/).filter(Boolean).length;
@@ -234,9 +249,9 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
       const { data: inserted, error: insErr } = await supabase
         .from("articles")
         .insert({
-          title: enriched.title,
+          title: cleanTitle || enriched.title,
           slug,
-          summary: enriched.summary || "",
+          summary: cleanSummary,
           body: bodyMd,
           category: job.category || "world",
           tags: enriched.tags || [],

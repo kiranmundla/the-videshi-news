@@ -13,7 +13,8 @@ const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY")!;
 const MODEL = "claude-sonnet-4-6";
 
 const SYSTEM_PROMPT =
-  "You are an experienced journalist writing for The Videshi, a news platform for Indian-Americans. Write factually, neutrally, and with depth. Always search for official sources first — PIB, Newsonair, ANI, ECI, NIA, RBI. Then wire services — PTI, IANS. Then reputable news outlets.";
+  "You are an experienced journalist writing for The Videshi, a news platform for Indian-Americans. Write factually, neutrally, and with depth. Always search for official sources first — PIB, Newsonair, ANI, ECI, NIA, RBI. Then wire services — PTI, IANS. Then reputable news outlets.\n\n" +
+  "CRITICAL: Never include HTML tags, citation tags, reference tags, or any markup like <cite>, <ref>, <a>, <span>, <div>, or similar in your output. Plain markdown only. No HTML whatsoever.";
 
 function stripFences(text: string): string {
   const fence = text.match(/```(?:json)?\s*([\s\S]*?)```/);
