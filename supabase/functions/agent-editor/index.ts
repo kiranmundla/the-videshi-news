@@ -47,6 +47,19 @@ async function callClaude(userPrompt: string): Promise<string> {
     .join("\n");
 }
 
+// Strip HTML tags + citation markers Claude sometimes leaks into the body.
+function sanitizeMarkdown(text: string): string {
+  if (!text) return "";
+  let t = text;
+  // Remove paired/standalone citation/reference tags
+  t = t.replace(/<\/?(?:cite|ref|sup|sub|span|div|a|small|figure|figcaption|abbr|cited|source)\b[^>]*>/gi, "");
+  // Remove any other HTML-ish tag (keep markdown intact)
+  t = t.replace(/<\/?[a-zA-Z][^>]*>/g, "");
+  // Collapse whitespace artifacts
+  t = t.replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n");
+  return t.trim();
+}
+
 function bodyToMarkdown(body: any[]): string {
   if (!Array.isArray(body)) return "";
   const out: string[] = [];
