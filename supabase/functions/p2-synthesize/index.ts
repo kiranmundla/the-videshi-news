@@ -14,6 +14,18 @@ const supabase = createClient(
 
 const anthropic = new Anthropic({ apiKey: Deno.env.get("ANTHROPIC_API_KEY")! });
 
+const VERTICAL_TO_CATEGORY: Record<string, string> = {
+  politics: 'news',
+  economy: 'markets-finance',
+  tech: 'technology',
+  immigration: 'nri-world',
+  diaspora: 'nri-world',
+  science: 'technology',
+  culture: 'lifestyle-health',
+  sports: 'sports',
+  entertainment: 'entertainment',
+};
+
 function stripCitations(text: string): string {
   return text
     // Remove <cite index="...">text</cite> tags, keep inner text
@@ -209,6 +221,7 @@ Return this exact JSON structure:
           ? stripCitations(String(article.diaspora_angle)).slice(0, 500)
           : null,
         vertical: topic.vertical,
+        category: VERTICAL_TO_CATEGORY[topic.vertical] ?? 'news',
         tags: Array.isArray(article.tags) ? article.tags : [],
         urgency: topic.urgency,
         sources: Array.isArray(article.sources) ? article.sources : [],
