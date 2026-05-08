@@ -14,6 +14,19 @@ const supabase = createClient(
 
 const anthropic = new Anthropic({ apiKey: Deno.env.get("ANTHROPIC_API_KEY")! });
 
+function stripCitations(text: string): string {
+  return text
+    // Remove <cite index="...">text</cite> tags, keep inner text
+    .replace(/<cite[^>]*>([\s\S]*?)<\/cite>/g, '$1')
+    // Remove bare [0], [1], [2] reference markers
+    .replace(/\[\d+\]/g, '')
+    // Remove (Source: ...) inline citations
+    .replace(/\(Source:[^)]+\)/gi, '')
+    // Clean up any double spaces left behind
+    .replace(/  +/g, ' ')
+    .trim();
+}
+
 function slugify(text: string): string {
   return (
     text
