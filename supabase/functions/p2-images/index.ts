@@ -143,7 +143,7 @@ Deno.serve(async (req) => {
     }
 
     if (!imageUrl) {
-      const fallbackQuery = `India ${article.vertical}`
+      const fallbackQuery = VERTICAL_IMAGE_TERMS[article.vertical] ?? 'India news'
       imageUrl = (await fetchUnsplash(fallbackQuery)) ?? (await fetchPexels(fallbackQuery))
       source = 'fallback'
     }
