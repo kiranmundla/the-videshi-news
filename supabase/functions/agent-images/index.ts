@@ -304,15 +304,40 @@ async function uploadToStorage(
   }
 }
 
+async function isImageUrlInUse(
+  supabase: ReturnType<typeof createClient>,
+  url: string,
+  excludeArticleId?: string,
+): Promise<boolean> {
+  let q = supabase
+    .from("articles")
+    .select("id", { count: "exact", head: true })
+    .eq("image_url", url)
+    .eq("is_published", true);
+  if (excludeArticleId) q = q.neq("id", excludeArticleId);
+  const { count, error } = await q;
+  if (error) {
+    console.error("dedupe check failed", error);
+    return false;
+  }
+  return (count ?? 0) > 0;
+}
+
 async function pickBestImage(
   title: string,
   category: string,
+  supabase: ReturnType<typeof createClient>,
+  articleId: string,
 ): Promise<ChosenImage | null> {
   const candidates = await gatherCandidates(title, category);
   if (candidates.length === 0) return null;
 
   let best: { c: Candidate; v: VisionVerdict } | null = null;
   for (const c of candidates) {
+    if (await isImageUrlInUse(supabase, c.url, articleId)) {
+      console.log(`  · skip ${c.source} — url already used by another article`);
+      continue;
+    }
     const v = await verifyImage(c.url, title, category);
     if (!v) continue;
     console.log(`  · ${c.source} score=${v.score} photo=${v.is_real_photo} — ${v.description}`);
@@ -368,7 +393,7 @@ Deno.serve(async (req) => {
     for (const a of articles ?? []) {
       processed++;
       console.log(`→ ${a.title} (current score=${a.image_score ?? "?"})`);
-      const chosen = await pickBestImage(a.title, a.category);
+      const chosen = await pickBestImage(a.title, a.category, supabase, a.id);
       if (!chosen) {
         console.log(`· no candidate beat current — keeping existing image`);
         continue;

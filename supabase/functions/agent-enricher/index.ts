@@ -167,6 +167,20 @@ async function detectPerson(title: string): Promise<string | null> {
   return trimmed;
 }
 
+async function isImageUrlInUse(url: string): Promise<boolean> {
+  if (!_sb) return false;
+  const { count, error } = await _sb
+    .from("articles")
+    .select("id", { count: "exact", head: true })
+    .eq("image_url", url)
+    .eq("is_published", true);
+  if (error) {
+    console.error("[image] dedupe check failed", error);
+    return false;
+  }
+  return (count ?? 0) > 0;
+}
+
 async function fetchImageForArticle(title: string, category: string): Promise<ImageResult | null> {
   const person = await detectPerson(title);
   if (person) console.log(`[image] detected person="${person}"`);
@@ -186,6 +200,10 @@ async function fetchImageForArticle(title: string, category: string): Promise<Im
   for (const src of sources) {
     const cand = await src();
     if (!cand) continue;
+    if (await isImageUrlInUse(cand.url)) {
+      console.log(`[image] skip ${cand.credit} — url already used by another article`);
+      continue;
+    }
     const v = await visionScore(cand.url, title);
     console.log(`[image] ${cand.credit} score=${v.score}`);
     if (v.score >= 6) {
@@ -211,21 +229,11 @@ async function fetchImageForArticle(title: string, category: string): Promise<Im
       image_score: best.score,
     };
   }
-  const ult = await tryUnsplash(keyword);
-  if (ult) {
-    return {
-      image_url: ult.url,
-      image_caption: title,
-      image_credit: ult.credit,
-      image_verified: false,
-      image_score: 0,
-    };
-  }
-  // Final fallback: never exit without an image. Search Unsplash by category alone.
-  console.warn(`[image] all 3 sources failed for "${title}" — using category fallback`);
+  // Try a category-level Unsplash fallback, but still enforce uniqueness.
+  console.warn(`[image] all primary sources exhausted or already used for "${title}" — trying category fallback`);
   const categoryQuery = `India ${category || "news"}`.trim();
   const fb = await tryUnsplash(categoryQuery);
-  if (fb) {
+  if (fb && !(await isImageUrlInUse(fb.url))) {
     return {
       image_url: fb.url,
       image_caption: title,
@@ -234,7 +242,8 @@ async function fetchImageForArticle(title: string, category: string): Promise<Im
       image_score: 0,
     };
   }
-  console.error(`[image] category fallback ALSO failed for "${title}" (query="${categoryQuery}")`);
+  // No unique image available — leave null so agent-images can try again later.
+  console.error(`[image] no unique image available for "${title}" — leaving image_url null`);
   return null;
 }
 
