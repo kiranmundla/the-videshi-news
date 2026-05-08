@@ -21,11 +21,24 @@ export default function HeroCarousel() {
 
   useEffect(() => {
     let cancelled = false;
-    supabase.functions.invoke("unsplash-hero").then(({ data }) => {
-      if (cancelled) return;
-      const imgs = (data as { images?: HeroImage[] } | null)?.images ?? [];
-      if (imgs.length) setImages(imgs);
-    });
+    // Always fetch fresh from carousel_images (no client cache).
+    const today = new Date().toISOString().slice(0, 10);
+    supabase
+      .from("carousel_images")
+      .select("image_url,caption,credit,location")
+      .eq("date", today)
+      .order("position", { ascending: true })
+      .then(({ data }) => {
+        if (cancelled || !data) return;
+        const imgs: HeroImage[] = data.map((r: any) => ({
+          url: r.image_url,
+          alt: r.caption ?? "",
+          credit: r.credit ?? "",
+          caption: r.caption ?? "",
+          location: r.location ?? "",
+        }));
+        if (imgs.length) setImages(imgs);
+      });
     return () => { cancelled = true; };
   }, []);
 

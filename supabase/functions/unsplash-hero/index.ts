@@ -1,8 +1,6 @@
-// Daily homepage carousel sourced from real news photos.
-// Primary: The News API (thenewsapi.com) — top world headlines with images.
-// Secondary: Wikimedia Commons Picture of the Day — high-quality featured image.
-// Optional: Claude Haiku Vision filter (score >= 7) for visual quality / news relevance.
-// Caches the day's set in public.carousel_images.
+// Homepage carousel — refreshed every 6 hours.
+// Primary: The News API (top world headlines with images).
+// Fallback: Unsplash, only when News API returns fewer than 5 usable images.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
@@ -13,9 +11,13 @@ const corsHeaders = {
 };
 
 const NEWS_API_KEY = Deno.env.get("NEWS_API_KEY") ?? "";
+const UNSPLASH_ACCESS_KEY = Deno.env.get("UNSPLASH_ACCESS_KEY") ?? "";
 const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY") ?? "";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") ?? "";
 const SERVICE_ROLE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+
+const TARGET = 10;
+const NEWS_FALLBACK_THRESHOLD = 5;
 
 type HeroImage = {
   url: string;
@@ -27,7 +29,7 @@ type HeroImage = {
 };
 
 function truncateWords(s: string, n: number) {
-  const parts = (s ?? "").trim().split(/\s+/);
+  const parts = (s ?? "").trim().split(/\s+/).filter(Boolean);
   return parts.slice(0, n).join(" ") + (parts.length > n ? "…" : "");
 }
 
@@ -48,12 +50,13 @@ async function fetchTheNewsAPI(): Promise<HeroImage[]> {
     const out: HeroImage[] = [];
     for (const it of items) {
       const u = it.image_url;
-      if (!u || typeof u !== "string") continue;
+      if (!u || typeof u !== "string" || u.trim() === "") continue;
+      const headline = (it.title ?? "").trim();
       out.push({
         url: u,
-        alt: it.title ?? "",
-        credit: it.source ?? "",
-        caption: truncateWords(it.title ?? "", 10),
+        alt: headline,
+        credit: it.source ?? "News",
+        caption: truncateWords(headline, 8),
         location: "",
         search_term: it.categories?.[0] ?? "news",
       });
@@ -65,57 +68,38 @@ async function fetchTheNewsAPI(): Promise<HeroImage[]> {
   }
 }
 
-async function fetchWikimediaPOTD(): Promise<HeroImage | null> {
+async function fetchUnsplashFallback(needed: number): Promise<HeroImage[]> {
+  if (!UNSPLASH_ACCESS_KEY || needed <= 0) return [];
+  const queries = ["world news", "city skyline", "global politics", "stock market", "sports action", "technology"];
+  const out: HeroImage[] = [];
   try {
-    const day = new Date().toISOString().slice(0, 10);
-    const res = await fetch(
-      `https://api.wikimedia.org/feed/v1/wikipedia/en/featured/${day.replace(/-/g, "/")}`,
-      { signal: AbortSignal.timeout(15000) },
-    );
-    if (!res.ok) return null;
-    const json = await res.json();
-    const img = json?.image;
-    const url = img?.image?.source ?? img?.thumbnail?.source;
-    if (!url) return null;
-    const caption = truncateWords(
-      img?.description?.text ?? img?.title ?? "Wikimedia Picture of the Day",
-      10,
-    );
-    return {
-      url,
-      alt: caption,
-      credit: img?.artist?.text ? `Wikimedia · ${img.artist.text.replace(/<[^>]+>/g, "")}` : "Wikimedia Commons",
-      caption,
-      location: "",
-      search_term: "wikimedia-potd",
-    };
+    for (const q of queries) {
+      if (out.length >= needed) break;
+      const r = await fetch(
+        `https://api.unsplash.com/search/photos?query=${encodeURIComponent(q)}&per_page=5&orientation=landscape&content_filter=high`,
+        { headers: { Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}` }, signal: AbortSignal.timeout(15000) },
+      );
+      if (!r.ok) continue;
+      const j = await r.json();
+      for (const p of (j?.results ?? [])) {
+        const url = p?.urls?.regular || p?.urls?.full;
+        if (!url) continue;
+        const desc = (p?.description || p?.alt_description || q).trim();
+        out.push({
+          url,
+          alt: desc,
+          credit: p?.user?.name ? `${p.user.name} / Unsplash` : "Unsplash",
+          caption: truncateWords(desc, 8),
+          location: "",
+          search_term: q,
+        });
+        if (out.length >= needed) break;
+      }
+    }
   } catch (e) {
-    console.error("wikimedia POTD exception", e);
-    return null;
+    console.error("unsplash fallback exception", e);
   }
-}
-
-async function fetchNasaAPOD(): Promise<HeroImage | null> {
-  try {
-    const res = await fetch(
-      "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY",
-      { signal: AbortSignal.timeout(15000) },
-    );
-    if (!res.ok) return null;
-    const j = await res.json();
-    if (j.media_type !== "image" || !j.url) return null;
-    return {
-      url: j.hdurl ?? j.url,
-      alt: j.title ?? "NASA Astronomy Picture of the Day",
-      credit: j.copyright ? `NASA · ${j.copyright.trim()}` : "NASA APOD",
-      caption: truncateWords(j.title ?? "NASA Picture of the Day", 10),
-      location: "",
-      search_term: "nasa-apod",
-    };
-  } catch (e) {
-    console.error("nasa apod exception", e);
-    return null;
-  }
+  return out;
 }
 
 async function claudeVerify(img: HeroImage): Promise<boolean> {
@@ -140,8 +124,8 @@ async function claudeVerify(img: HeroImage): Promise<boolean> {
               text:
                 `Headline: "${img.alt}".\n` +
                 `Score 0-10 for news-carousel quality.\n` +
-                `REJECT (score <7): celebrity award close-ups, pure logos/text, blurry, watermarked stock thumbs.\n` +
-                `ACCEPT (score >=7): crowds, landscapes with context, people in action, world leaders, events, sports moments, science imagery.\n` +
+                `REJECT (<7): celebrity award close-ups, pure logos/text, blurry, watermarked stock thumbs.\n` +
+                `ACCEPT (>=7): crowds, landscapes with context, people in action, world leaders, events, sports moments.\n` +
                 `Reply ONLY as JSON: {"score": <number>}`,
             },
           ],
@@ -161,29 +145,30 @@ async function claudeVerify(img: HeroImage): Promise<boolean> {
   }
 }
 
-async function buildDailySet(): Promise<HeroImage[]> {
+async function buildSet(): Promise<HeroImage[]> {
   const news = await fetchTheNewsAPI();
 
-  // Filter via Claude vision (parallel, capped)
-  const verified: HeroImage[] = [];
+  // Vision filter (parallel)
   const checks = await Promise.all(news.map(async (img) => ({ img, ok: await claudeVerify(img) })));
+  const verified: HeroImage[] = [];
   for (const { img, ok } of checks) {
     if (ok) verified.push(img);
-    if (verified.length >= 8) break;
   }
 
-  const [potd, apod] = await Promise.all([fetchWikimediaPOTD(), fetchNasaAPOD()]);
-  const extras = [potd, apod].filter(Boolean) as HeroImage[];
+  // Use Unsplash only if News produced fewer than threshold
+  let combined = [...verified];
+  if (verified.length < NEWS_FALLBACK_THRESHOLD) {
+    const fb = await fetchUnsplashFallback(TARGET - verified.length);
+    combined = [...combined, ...fb];
+  }
 
-  const combined = [...verified, ...extras];
-  // Dedupe by url
   const seen = new Set<string>();
   const final: HeroImage[] = [];
   for (const i of combined) {
     if (seen.has(i.url)) continue;
     seen.add(i.url);
     final.push(i);
-    if (final.length >= 10) break;
+    if (final.length >= TARGET) break;
   }
   return final;
 }
@@ -196,34 +181,12 @@ Deno.serve(async (req) => {
   const day = new Date().toISOString().slice(0, 10);
   const supabase = SUPABASE_URL && SERVICE_ROLE ? createClient(SUPABASE_URL, SERVICE_ROLE) : null;
 
-  if (supabase && !force) {
-    const { data: cached } = await supabase
-      .from("carousel_images")
-      .select("image_url,caption,credit,search_term,location,position")
-      .eq("date", day)
-      .order("position", { ascending: true });
-    if (cached && cached.length > 0) {
-      const images = cached.map((r: any) => ({
-        url: r.image_url,
-        alt: r.caption ?? "",
-        credit: r.credit ?? "",
-        caption: r.caption ?? "",
-        location: r.location ?? "",
-        search_term: r.search_term ?? "",
-      }));
-      return new Response(JSON.stringify({ images, cached: true, date: day }), {
-        headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "public, max-age=3600" },
-      });
-    }
-  }
-
   try {
-    const images = await buildDailySet();
+    const images = await buildSet();
 
     if (supabase && images.length > 0) {
-      if (force) {
-        await supabase.from("carousel_images").delete().eq("date", day);
-      }
+      // Replace today's set entirely on every refresh (cron runs every 6h).
+      await supabase.from("carousel_images").delete().eq("date", day);
       const rows = images.map((img, i) => ({
         date: day,
         position: i,
@@ -235,20 +198,16 @@ Deno.serve(async (req) => {
       }));
       const { error } = await supabase
         .from("carousel_images")
-        .upsert(rows, { onConflict: "date,position" });
-      if (error) console.error("carousel cache insert error", error);
+        .insert(rows);
+      if (error) console.error("carousel insert error", error);
     }
 
-    return new Response(JSON.stringify({ images, cached: false, date: day }), {
-      headers: {
-        ...corsHeaders,
-        "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=3600",
-      },
+    return new Response(JSON.stringify({ images, refreshed: true, date: day, force }), {
+      headers: { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "no-store" },
     });
   } catch (e) {
     console.error("carousel build exception", e);
-    return new Response(JSON.stringify({ images: [] }), {
+    return new Response(JSON.stringify({ images: [], error: String(e) }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
