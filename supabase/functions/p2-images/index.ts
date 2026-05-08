@@ -490,6 +490,16 @@ Deno.serve(async () => {
           winner_rank: winnerRank,
         })
 
+        if (winner?.source_id) {
+          await supabase.from('videshi_source_logs').insert({
+            source_id: winner.source_id,
+            agent: 'p2-images',
+            status: 'ok',
+            items_fetched: candidates.length,
+            items_accepted: 1,
+          })
+        }
+
         results.push({
           headline: article.headline,
           status: 'ok',
