@@ -22,7 +22,7 @@ const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY") ?? "";
 const MAX_PER_RUN = 5;
 const HAIKU_MODEL = "claude-haiku-4-5";
 const ACCEPT_VERIFIED_MIN = 7;
-const ACCEPT_UNVERIFIED_MIN = 5;
+const ACCEPT_UNVERIFIED_MIN = 3;
 
 // ---------- Anthropic helpers ----------
 
