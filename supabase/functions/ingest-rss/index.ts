@@ -20,7 +20,8 @@ const supabase = createClient(
 
 // ── RSS Sources ──────────────────────────────────────────────
 type Credibility = "official" | "tier1" | "tier2" | "tier3" | "nri" | "entertainment";
-const RSS_SOURCES: { name: string; url: string; category?: string; region?: string; credibility: Credibility }[] = [
+type Parser = "rss" | "html-mea";
+const RSS_SOURCES: { name: string; url: string; category?: string; region?: string; credibility: Credibility; parser?: Parser }[] = [
   { name: "Times of India",  url: "https://timesofindia.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3" },
   { name: "NDTV",            url: "https://feeds.feedburner.com/ndtvnews-top-stories", credibility: "tier3" },
   { name: "The Hindu",       url: "https://www.thehindu.com/news/national/feeder/default.rss", credibility: "tier3" },
@@ -28,11 +29,11 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   { name: "India Today",     url: "https://www.indiatoday.in/rss/1206578", credibility: "tier3" },
 
   // ── Tier 1 — Official sources ─────────────────────────────
-  // MEA & Newsonair still blocked by Akamai bot-challenge / 301 loop. Disabled
-  // until we add a headless fetcher.
+  // Newsonair has no working RSS endpoint (timeout / 301 loop). Disabled.
   { name: "PIB Press Releases", url: "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1&reg=1", credibility: "official" },
   { name: "PIB Photos",         url: "https://www.pib.gov.in/RssMain.aspx?ModId=8&Lang=1&Regid=1&reg=1", credibility: "official" },
-  // { name: "MEA India",   url: "https://www.mea.gov.in/rss/pressrelease.xml", credibility: "official" },
+  // MEA's RSS endpoint is Akamai-blocked, but the public HTML listing is fetchable. Scrape it.
+  { name: "MEA Press Releases", url: "https://www.mea.gov.in/press-releases.htm?51/Press_Releases", credibility: "official", parser: "html-mea" },
   // { name: "Newsonair",   url: "https://www.newsonair.gov.in/feed/",          credibility: "official" },
   { name: "USCIS",       url: "https://www.uscis.gov/news/rss-feed/53",          credibility: "official", category: "nri-world", region: "us" },
   { name: "RBI",         url: "https://rbi.org.in/pressreleases_rss.xml",        credibility: "official" },
@@ -131,6 +132,48 @@ function parseRSS(xml: string, sourceName: string, sourceUrl: string, credibilit
   return items;
 }
 
+// ── MEA HTML listing parser ──────────────────────────────────
+// Each press release is an <li> containing an <a class="searchContent" href="press-releases.htm?dtl/...">
+// followed by a <p> with a fa-calendar span and a date like "May 08, 2026".
+function parseMeaHtml(
+  html: string,
+  sourceName: string,
+  sourceUrl: string,
+  credibility: string
+): RawArticle[] {
+  const items: RawArticle[] = [];
+  const base = "https://www.mea.gov.in/";
+  const liRe = /<li\b[\s\S]*?<\/li>/g;
+  const linkRe = /<a\b[^>]*class="[^"]*searchContent[^"]*"[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/i;
+  const dateRe = /fa-calendar[^>]*><\/span>\s*([A-Za-z]+\s+\d{1,2},\s+\d{4})/i;
+
+  for (const li of html.match(liRe) || []) {
+    const linkMatch = li.match(linkRe);
+    if (!linkMatch) continue;
+    const href = linkMatch[1].trim();
+    const title = linkMatch[2].replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+    if (!title || !href) continue;
+    const url = href.startsWith("http") ? href : base + href.replace(/^\/+/, "");
+
+    const dateMatch = li.match(dateRe);
+    const publishedAt = dateMatch
+      ? new Date(dateMatch[1]).toISOString()
+      : new Date().toISOString();
+
+    items.push({
+      title,
+      url,
+      description: "",
+      image_url: null,
+      source_name: sourceName,
+      source_url: sourceUrl,
+      published_at: publishedAt,
+      credibility,
+    });
+  }
+  return items;
+}
+
 async function fetchFeed(source: typeof RSS_SOURCES[0]): Promise<RawArticle[]> {
   try {
     const res = await fetch(source.url, {
@@ -151,16 +194,23 @@ async function fetchFeed(source: typeof RSS_SOURCES[0]): Promise<RawArticle[]> {
       );
       return [];
     }
-    const xml = await res.text();
-    const trimmed = xml.trimStart().slice(0, 200);
+    const body = await res.text();
+
+    if (source.parser === "html-mea") {
+      const items = parseMeaHtml(body, source.name, source.url, source.credibility);
+      console.log(`[ingest-rss] ${source.name} → ${items.length} items (html-mea)`);
+      return items;
+    }
+
+    const trimmed = body.trimStart().slice(0, 200);
     // Detect HTML / bot-challenge pages returned with 200
     if (!/^<\?xml|^<rss|^<feed/i.test(trimmed)) {
       console.error(
-        `[ingest-rss] ${source.name} returned non-RSS content (${xml.length} bytes) — ${source.url} :: ${trimmed.replace(/\s+/g, " ")}`
+        `[ingest-rss] ${source.name} returned non-RSS content (${body.length} bytes) — ${source.url} :: ${trimmed.replace(/\s+/g, " ")}`
       );
       return [];
     }
-    const items = parseRSS(xml, source.name, source.url, source.credibility);
+    const items = parseRSS(body, source.name, source.url, source.credibility);
     console.log(`[ingest-rss] ${source.name} → ${items.length} items`);
     return items;
   } catch (err) {
