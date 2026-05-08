@@ -96,7 +96,7 @@ function isLandscape(w?: number, h?: number, minW = 800): boolean {
 
 const BAD_PATTERNS = /flag|banner|logo|diagram|chart|map|sankey|poll|report|icon|symbol|svg/i;
 
-async function tryWikipedia(subject: string): Promise<{ url: string; credit: string } | null> {
+async function tryWikipedia(subject: string, allowPortrait: boolean): Promise<{ url: string; credit: string; source: string } | null> {
   try {
     const slug = encodeURIComponent(subject.trim().replace(/\s+/g, "_"));
     const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${slug}`, {
@@ -106,13 +106,20 @@ async function tryWikipedia(subject: string): Promise<{ url: string; credit: str
     const d = await res.json();
     const orig = d?.originalimage;
     const thumb = d?.thumbnail;
-    const pick = isLandscape(orig?.width, orig?.height) ? orig : isLandscape(thumb?.width, thumb?.height) ? thumb : null;
+    const acceptable = (img: any) => {
+      if (!img?.source) return false;
+      const w = img.width, h = img.height;
+      if (!w || !h) return false;
+      if (allowPortrait) return w >= 400 && h >= 400;
+      return w > h && w >= 800;
+    };
+    const pick = acceptable(orig) ? orig : acceptable(thumb) ? thumb : null;
     if (!pick?.source) return null;
-    return { url: pick.source, credit: "Photo: Wikimedia Commons" };
+    return { url: pick.source, credit: "Wikipedia", source: "Wikipedia" };
   } catch { return null; }
 }
 
-async function tryCommons(subject: string): Promise<{ url: string; credit: string } | null> {
+async function tryCommons(subject: string, allowPortrait: boolean): Promise<{ url: string; credit: string; source: string } | null> {
   try {
     const u = `https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrnamespace=6&gsrlimit=8&gsrsearch=${encodeURIComponent(subject)}&prop=imageinfo&iiprop=url|mime|size&iiurlwidth=1200`;
     const res = await fetch(u, { headers: { "User-Agent": "TheVideshi/1.0" } });
@@ -126,16 +133,18 @@ async function tryCommons(subject: string): Promise<{ url: string; credit: strin
       if (mime !== "image/jpeg") continue;
       const w = info.thumbwidth || info.width;
       const h = info.thumbheight || info.height;
-      if (!isLandscape(w, h)) continue;
+      if (!w || !h) continue;
+      if (!allowPortrait && !isLandscape(w, h)) continue;
+      if (allowPortrait && (w < 400 || h < 400)) continue;
       const url = info.thumburl || info.url;
       if (!url || BAD_PATTERNS.test(url)) continue;
-      return { url, credit: "Photo: Wikimedia Commons" };
+      return { url, credit: "Wikimedia Commons", source: "Wikimedia Commons" };
     }
     return null;
   } catch { return null; }
 }
 
-async function tryUnsplash(keyword: string): Promise<{ url: string; credit: string } | null> {
+async function tryUnsplash(keyword: string): Promise<{ url: string; credit: string; source: string } | null> {
   if (!UNSPLASH_ACCESS_KEY) return null;
   try {
     const u = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(keyword + " India")}&per_page=3&orientation=landscape&content_filter=high`;
@@ -146,15 +155,29 @@ async function tryUnsplash(keyword: string): Promise<{ url: string; credit: stri
       const w = p?.width ?? 0;
       if (w < 1200) continue;
       const url = p?.urls?.regular || p?.urls?.full;
-      if (url) return { url, credit: "Photo: Unsplash" };
+      if (url) return { url, credit: "Unsplash", source: "Unsplash" };
     }
     const p = d?.results?.[0];
     const url = p?.urls?.regular || p?.urls?.full;
-    return url ? { url, credit: "Photo: Unsplash" } : null;
+    return url ? { url, credit: "Unsplash", source: "Unsplash" } : null;
   } catch { return null; }
 }
 
-async function visionScore(imageUrl: string, title: string): Promise<{ score: number; description: string }> {
+async function tryPexels(keyword: string): Promise<{ url: string; credit: string; source: string } | null> {
+  const key = Deno.env.get("PEXELS_API_KEY") ?? "";
+  if (!key) return null;
+  try {
+    const u = `https://api.pexels.com/v1/search?query=${encodeURIComponent(keyword + " India")}&per_page=3&orientation=landscape`;
+    const res = await fetch(u, { headers: { Authorization: key } });
+    if (!res.ok) return null;
+    const d = await res.json();
+    const p = d?.photos?.[0];
+    const url = p?.src?.large2x || p?.src?.large || p?.src?.original;
+    return url ? { url, credit: "Pexels", source: "Pexels" } : null;
+  } catch { return null; }
+}
+
+async function visionScore(imageUrl: string, classification: Classification): Promise<{ score: number; description: string; shows_subject: boolean }> {
   try {
     const data = await anthropicFetch({
       model: VISION_MODEL,
@@ -163,15 +186,23 @@ async function visionScore(imageUrl: string, title: string): Promise<{ score: nu
         role: "user",
         content: [
           { type: "image", source: { type: "url", url: imageUrl } },
-          { type: "text", text: `Article: "${title}". Score this image 1-10 for relevance. Reply JSON only: {"score": N, "description": "8 words or fewer describing only what you see — no analysis, no relevance explanation. Examples: 'Kolkata Victoria Memorial at dusk', 'Indian Air Force fighter jet', 'Mamata Banerjee at press conference'"}` },
+          { type: "text", text: `Article subject: ${classification.type} = "${classification.subject}".
+
+Does this image show ${classification.subject}? Score 1-10 where 10 = clearly shows the exact ${classification.type === "PERSON" ? "person" : classification.type === "PLACE" ? "place" : "subject"}, 1 = unrelated.
+
+Reply JSON only: {"score": N, "shows_subject": true|false, "description": "5 words or fewer — subject and location only, no verbs, no analysis"}` },
         ],
       }],
     });
     const text = (data?.content?.[0]?.text ?? "").trim().replace(/^```(?:json)?\s*|\s*```$/g, "");
     const m = text.match(/\{[\s\S]*\}/);
     const j = JSON.parse(m ? m[0] : text);
-    return { score: Number(j.score) || 0, description: String(j.description || "").trim() };
-  } catch { return { score: 0, description: "" }; }
+    return {
+      score: Number(j.score) || 0,
+      description: String(j.description || "").trim(),
+      shows_subject: !!j.shows_subject,
+    };
+  } catch { return { score: 0, description: "", shows_subject: false }; }
 }
 
 async function detectPerson(title: string): Promise<string | null> {
