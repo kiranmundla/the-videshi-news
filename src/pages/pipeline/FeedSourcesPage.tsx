@@ -65,7 +65,7 @@ export default function FeedSourcesPage() {
   const activeCount = rows.filter((r: any) => r.is_active).length;
 
   async function toggleActive(row: any) {
-    qc.setQueryData(["feed_sources"], (old: any[] = []) =>
+    qc.setQueryData(["p2_feed_sources"], (old: any[] = []) =>
       old.map((r) => (r.id === row.id ? { ...r, is_active: !row.is_active } : r))
     );
     const { error } = await supabase
