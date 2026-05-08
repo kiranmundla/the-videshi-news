@@ -15,11 +15,11 @@ export default function ReviewQueuePage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const { data: articles = [], isLoading } = useQuery({
-    queryKey: ["pipeline-review"],
+    queryKey: ["p2_articles-review"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("articles_pipeline")
-        .select("*, topics(score_total, signal_count, urgency, vertical)")
+        .from("p2_articles")
+        .select("*, p2_topics(score_total, signal_count, urgency, vertical)")
         .eq("status", "review")
         .order("created_at", { ascending: false });
       if (error) throw error;
@@ -71,7 +71,7 @@ export default function ReviewQueuePage() {
           })}
         </div>
 
-        {selected && <ArticleDetail article={selected} onSaved={() => qc.invalidateQueries({ queryKey: ["pipeline-review"] })} />}
+        {selected && <ArticleDetail article={selected} onSaved={() => qc.invalidateQueries({ queryKey: ["p2_articles-review"] })} />}
       </div>
     </div>
   );
@@ -103,7 +103,7 @@ function ArticleDetail({ article, onSaved }: { article: any; onSaved: () => void
   async function save(extra: Record<string, any> = {}, msg = "Saved") {
     setSaving(true);
     const { error } = await supabase
-      .from("articles_pipeline")
+      .from("p2_articles")
       .update({ headline, subheadline, body, diaspora_angle: diaspora, tags, word_count: wordCount, ...extra })
       .eq("id", article.id);
     setSaving(false);

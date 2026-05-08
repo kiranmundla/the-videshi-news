@@ -31,10 +31,10 @@ export default function RunLogPage() {
       const today = new Date(); today.setHours(0, 0, 0, 0);
       const iso = today.toISOString();
       const [signals, topics, articles, published] = await Promise.all([
-        supabase.from("raw_signals").select("*", { count: "exact", head: true }).gte("fetched_at", iso),
-        supabase.from("topics").select("*", { count: "exact", head: true }).gte("created_at", iso),
-        supabase.from("articles_pipeline").select("*", { count: "exact", head: true }).gte("created_at", iso),
-        supabase.from("articles_pipeline").select("*", { count: "exact", head: true }).eq("status", "published").gte("published_at", iso),
+        supabase.from("p2_signals").select("*", { count: "exact", head: true }).gte("fetched_at", iso),
+        supabase.from("p2_topics").select("*", { count: "exact", head: true }).gte("created_at", iso),
+        supabase.from("p2_articles").select("*", { count: "exact", head: true }).gte("created_at", iso),
+        supabase.from("p2_articles").select("*", { count: "exact", head: true }).eq("status", "published").gte("published_at", iso),
       ]);
       return {
         signals: signals.count ?? 0,

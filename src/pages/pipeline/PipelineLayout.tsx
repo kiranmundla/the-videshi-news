@@ -30,7 +30,7 @@ export default function PipelineLayout() {
     queryKey: ["pipeline-review-count"],
     queryFn: async () => {
       const { count } = await supabase
-        .from("articles_pipeline")
+        .from("p2_articles")
         .select("*", { count: "exact", head: true })
         .eq("status", "review");
       return count ?? 0;
