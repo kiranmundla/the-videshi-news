@@ -348,15 +348,16 @@ Deno.serve(async (req) => {
   let errorMessage: string | null = null;
 
   try {
-    // Upgrade-only mode: re-evaluate articles whose existing image is unverified
-    // or scored below 8, and replace ONLY if we find something strictly better.
-    // Never delete an existing image.
+    // Process only articles that need work:
+    //   - no image yet, OR
+    //   - image_score < 6, OR
+    //   - image_url is still an external (non-supabase) URL.
+    // Skip any article that already has a self-hosted image AND score >= 6.
     const { data: articles, error } = await supabase
       .from("articles")
       .select("id, title, category, image_url, image_verified, image_score")
       .eq("is_published", true)
-      .not("image_url", "is", null)
-      .or("image_verified.eq.false,image_score.is.null,image_score.lt.8")
+      .or("image_url.is.null,image_score.is.null,image_score.lt.6,image_url.not.ilike.%supabase%")
       .order("published_at", { ascending: false })
       .limit(MAX_PER_RUN);
 
