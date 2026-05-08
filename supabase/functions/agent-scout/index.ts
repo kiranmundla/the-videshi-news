@@ -116,7 +116,7 @@ Tasks:
 1. Group articles covering the same story semantically.
 2. Rank groups by source count (more sources = higher priority).
 3. Score diaspora_relevance as: high | medium | low | none.
-4. Assign a category from EXACTLY this list: news | travel | lifestyle-health | markets-finance | technology | sports. (Note: 'news' covers breaking, politics, world, crime, US-India coverage. Events and Classifieds are user-generated and excluded.)
+4. Assign a category from EXACTLY this list: news | travel | lifestyle-health | markets-finance | technology | sports | entertainment | food. (Note: 'news' covers breaking, politics, world, crime, US-India coverage. Events and Classifieds are user-generated and excluded.)
 5. For the top 3 groups, write a story_brief.
 
 Return ONLY valid JSON in this exact shape (no prose, no markdown):
