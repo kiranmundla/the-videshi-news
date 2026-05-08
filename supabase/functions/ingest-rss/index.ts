@@ -62,6 +62,14 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
 
   // ── Business ──────────────────────────────────────────────
   { name: "Economic Times", url: "https://economictimes.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3", category: "markets-finance" },
+
+  // ── Google News aggregated feeds (fallback for blocked publishers) ─────────
+  // news.google.com returns 503 "Sorry..." (bot detection) to Supabase edge IPs,
+  // so we route through rss2json. Aggregates NDTV, BS, IE, Bollywood Life, etc.
+  { name: "Google News Business India", url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dindia%2Bbusiness%2Beconomy%26hl%3Den-IN%26gl%3DIN%26ceid%3DIN%3Aen", credibility: "tier3", category: "markets-finance", parser: "rss2json" },
+  { name: "Google News Cricket",        url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dindia%2Bcricket%2Bipl%26hl%3Den-IN%26gl%3DIN%26ceid%3DIN%3Aen",       credibility: "tier3", category: "sports", parser: "rss2json" },
+  { name: "Google News Bollywood",      url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dbollywood%2Bmovies%26hl%3Den-IN%26gl%3DIN%26ceid%3DIN%3Aen",         credibility: "tier3", category: "entertainment", parser: "rss2json" },
+  { name: "Google News Diaspora",       url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3Dindian%2Bdiaspora%2Bnri%26hl%3Den-IN%26gl%3DIN%26ceid%3DIN%3Aen",    credibility: "tier3", category: "nri-world", parser: "rss2json" },
 ];
 
 interface RawArticle {
