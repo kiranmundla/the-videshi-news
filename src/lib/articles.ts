@@ -213,7 +213,7 @@ export async function getArticlesByCategory(
     .from("p2_articles")
     .select(P2_COLS)
     .eq("status", "published")
-    .eq("category", category)
+    .eq("vertical", category)
     .order("published_at", { ascending: false })
     .range(offset, offset + limit - 1);
   if (error) {
