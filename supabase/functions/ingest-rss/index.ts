@@ -118,6 +118,7 @@ function parseRSS(xml: string, sourceName: string, sourceUrl: string, credibilit
       source_name: sourceName,
       source_url: sourceUrl,
       published_at: publishedAt,
+      credibility,
     });
   }
 
