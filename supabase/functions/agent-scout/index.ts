@@ -130,7 +130,7 @@ Return ONLY valid JSON in this exact shape (no prose, no markdown):
       "key_facts": ["string"],
       "suggested_search_queries": ["string"],
       "diaspora_relevance": "high|medium|low|none",
-      "category": "news|travel|lifestyle-health|markets-finance|technology|sports|entertainment|food",
+      "category": "news|nri-world|travel|lifestyle-health|markets-finance|technology|sports|entertainment|food",
       "raw_article_ids": ["uuid"],
       "best_article_id": "uuid",
       "source_count": 0,
