@@ -202,11 +202,11 @@ Return this exact JSON structure:
 
       const { error: insertErr } = await supabase.from("p2_articles").insert({
         topic_id: topic.id,
-        headline: String(article.headline).slice(0, 200),
-        subheadline: article.subheadline ? String(article.subheadline).slice(0, 300) : null,
-        body: article.body,
+        headline: stripCitations(String(article.headline)).slice(0, 200),
+        subheadline: article.subheadline ? stripCitations(String(article.subheadline)).slice(0, 300) : null,
+        body: stripCitations(String(article.body)),
         diaspora_angle: article.diaspora_angle
-          ? String(article.diaspora_angle).slice(0, 500)
+          ? stripCitations(String(article.diaspora_angle)).slice(0, 500)
           : null,
         vertical: topic.vertical,
         tags: Array.isArray(article.tags) ? article.tags : [],
