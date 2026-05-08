@@ -1,9 +1,10 @@
-// agent-images: Find and attach images to articles missing image_url.
-// Pipeline:
-//   1. Claude Haiku extracts up to 3 ranked search keywords (always include "India" if relevant).
-//   2. Try Wikipedia REST summary API for each keyword (most reliable, properly attributed).
-//   3. Fallback to Unsplash, then Pexels.
-//   4. Validate every candidate via Claude Haiku ("does this URL look relevant?") before saving.
+// agent-images: Vision-verified image fetcher.
+//
+// For each article without a verified image, gather up to 3 candidates
+// (Wikipedia summary, Wikimedia Commons search, Unsplash), then ask
+// Claude Haiku Vision to look at each and score 1-10 for relevance.
+// Pick the highest scorer; require ≥7 to mark verified, accept 5-6 unverified,
+// reject <5. Use the AI-generated description as the caption.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
@@ -16,15 +17,16 @@ const corsHeaders = {
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const UNSPLASH_ACCESS_KEY = Deno.env.get("UNSPLASH_ACCESS_KEY") ?? "";
-const PEXELS_API_KEY = Deno.env.get("PEXELS_API_KEY") ?? "";
 const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY") ?? "";
 
-const MAX_PER_RUN = 10;
+const MAX_PER_RUN = 5;
 const HAIKU_MODEL = "claude-haiku-4-5";
+const ACCEPT_VERIFIED_MIN = 7;
+const ACCEPT_UNVERIFIED_MIN = 5;
 
-// ---------- Claude helpers ----------
+// ---------- Anthropic helpers ----------
 
-async function callHaiku(prompt: string, maxTokens = 200): Promise<string> {
+async function callHaikuText(prompt: string, maxTokens = 200): Promise<string> {
   if (!ANTHROPIC_API_KEY) return "";
   try {
     const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -41,14 +43,84 @@ async function callHaiku(prompt: string, maxTokens = 200): Promise<string> {
       }),
     });
     if (!res.ok) {
-      console.error("haiku error", res.status, await res.text());
+      console.error("haiku text error", res.status, await res.text());
       return "";
     }
     const data = await res.json();
     return data?.content?.[0]?.text?.trim() ?? "";
   } catch (e) {
-    console.error("haiku exception", e);
+    console.error("haiku text exception", e);
     return "";
+  }
+}
+
+type VisionVerdict = {
+  description: string;
+  relevant: boolean;
+  is_real_photo: boolean;
+  score: number;
+};
+
+async function verifyImage(
+  imageUrl: string,
+  articleTitle: string,
+  category: string,
+): Promise<VisionVerdict | null> {
+  if (!ANTHROPIC_API_KEY) return null;
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "x-api-key": ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        model: HAIKU_MODEL,
+        max_tokens: 200,
+        messages: [{
+          role: "user",
+          content: [
+            { type: "image", source: { type: "url", url: imageUrl } },
+            {
+              type: "text",
+              text:
+`Article title: "${articleTitle}"
+Category: ${category}
+
+Look at this image and respond in JSON only (no prose, no code fences):
+{"description": "one sentence of what you see", "relevant": true|false, "is_real_photo": true|false, "score": 1-10}
+
+Score criteria:
+- 9-10: Perfect match — shows the exact person, place, or event named in the article.
+- 7-8: Good match — clearly related to the article topic.
+- 5-6: Loosely related, generic stock.
+- 1-4: Wrong topic, misleading, or a flag/logo/diagram/chart/map/graphic.`,
+            },
+          ],
+        }],
+      }),
+    });
+    if (!res.ok) {
+      console.error("vision error", res.status, await res.text());
+      return null;
+    }
+    const data = await res.json();
+    const text = (data?.content?.[0]?.text ?? "").trim();
+    // Strip code fences if model added them
+    const cleaned = text.replace(/^```(?:json)?\s*|\s*```$/g, "").trim();
+    const match = cleaned.match(/\{[\s\S]*\}/);
+    const json = match ? match[0] : cleaned;
+    const parsed = JSON.parse(json);
+    return {
+      description: String(parsed.description ?? "").trim(),
+      relevant: !!parsed.relevant,
+      is_real_photo: !!parsed.is_real_photo,
+      score: Number(parsed.score) || 0,
+    };
+  } catch (e) {
+    console.error(`verify failed for ${imageUrl}`, e);
+    return null;
   }
 }
 
@@ -58,41 +130,13 @@ async function extractKeywords(title: string, category: string): Promise<string[
 
 RULES:
 - Identify the PRIMARY subject: a specific person, place, or named event.
-- ALWAYS append "India" if the article is about India (it almost always is).
+- ALWAYS append "India" if the article is about India.
 - NEVER return generic terms alone like "election", "democracy", "politics", "government".
-- Return 3 ranked queries, most specific first, one per line, no numbering, no quotes.
+- Return 3 ranked queries, most specific first, one per line. No numbering, no quotes.
 
-EXAMPLES:
-Title: "Mamata Banerjee refuses to resign after BJP victory in West Bengal"
-Mamata Banerjee
-West Bengal Chief Minister India
-Bharatiya Janata Party West Bengal
-
-Title: "Ernakulam Junction redevelopment to ease traffic"
-Ernakulam Junction railway station India
-Ernakulam railway station Kerala
-Kochi railway India
-
-Title: "Supreme Court questions CEC appointment law"
-Supreme Court of India
-Chief Election Commissioner India
-Election Commission of India
-
-Title: "Operation Sindoor one year on"
-Operation Sindoor India Pakistan
-Indian Army Operation Sindoor
-India Pakistan border 2025
-
-Title: "Vijay's TVK gains ground in Tamil Nadu"
-Thalapathy Vijay actor
-Tamilaga Vettri Kazhagam Tamil Nadu
-Vijay TVK rally India
-
-Now do this one.
 Category: ${category}
 Title: ${title}`;
-
-  const out = await callHaiku(prompt, 150);
+  const out = await callHaikuText(prompt, 150);
   if (!out) return fallback;
   const lines = out
     .split("\n")
@@ -102,31 +146,11 @@ Title: ${title}`;
   return lines.length ? lines : fallback;
 }
 
-async function isImageRelevant(imageUrl: string, title: string): Promise<boolean> {
-  if (!ANTHROPIC_API_KEY) return true; // can't validate, accept
-  // Pull filename + last path segments — that's all the signal we have without downloading.
-  let signal = imageUrl;
-  try {
-    const u = new URL(imageUrl);
-    signal = decodeURIComponent(u.pathname.split("/").slice(-2).join("/"));
-  } catch (_e) { /* ignore */ }
-  const prompt =
-    `Article title: "${title}"\n` +
-    `Image URL filename/path: "${signal}"\n\n` +
-    `Could this image plausibly illustrate the article? ` +
-    `Be lenient — accept anything topically related (person, place, institution, event). ` +
-    `Reject only if clearly unrelated (e.g. wrong country, wrong person, generic stock unrelated to topic).\n` +
-    `Answer with one word: yes or no.`;
-  const ans = (await callHaiku(prompt, 5)).toLowerCase();
-  if (!ans) return true;
-  return ans.startsWith("y");
-}
+// ---------- Image source candidates ----------
 
-// ---------- Image sources ----------
+type Candidate = { url: string; credit: string; source: string };
 
-type Hit = { url: string; credit: string };
-
-async function searchWikipedia(keyword: string): Promise<Hit | null> {
+async function wikipediaSummary(keyword: string): Promise<Candidate | null> {
   try {
     const slug = encodeURIComponent(keyword.trim().replace(/\s+/g, "_"));
     const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${slug}`, {
@@ -136,42 +160,42 @@ async function searchWikipedia(keyword: string): Promise<Hit | null> {
     const data = await res.json();
     const url = data?.originalimage?.source || data?.thumbnail?.source;
     if (!url) return null;
-    if (!isLikelyPhoto(url)) {
-      console.log(`✗ rejecting non-photo wikipedia asset: ${url}`);
-      return null;
-    }
-    return { url, credit: "Photo: Wikimedia Commons" };
+    return { url, credit: "Photo: Wikimedia Commons", source: "wikipedia" };
   } catch (e) {
     console.error("wikipedia error", e);
     return null;
   }
 }
 
-// Reject graphics (flags, logos, diagrams, charts, maps, icons) — accept real photos only.
-const NON_PHOTO_PATTERNS = [
-  "banner", "flag", "logo", "diagram", "chart", "map", "sankey",
-  "poll", "report", "icon", "symbol", "emblem", "seal", "coat_of_arms",
-  "crest", "infographic", "graph", "plot", "schematic",
-];
-
-function isLikelyPhoto(url: string): boolean {
-  let filename = "";
+async function commonsSearch(keyword: string): Promise<Candidate | null> {
   try {
-    const u = new URL(url);
-    filename = decodeURIComponent(u.pathname.split("/").pop() ?? "").toLowerCase();
-  } catch {
-    filename = url.toLowerCase();
+    const u =
+      `https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*` +
+      `&generator=search&gsrnamespace=6&gsrlimit=5&gsrsearch=${encodeURIComponent(keyword)}` +
+      `&prop=imageinfo&iiprop=url|mime&iiurlwidth=1200`;
+    const res = await fetch(u, {
+      headers: { "User-Agent": "TheVideshi/1.0 (https://thevideshi.com)" },
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const pages = data?.query?.pages;
+    if (!pages) return null;
+    for (const k of Object.keys(pages)) {
+      const info = pages[k]?.imageinfo?.[0];
+      const mime: string = info?.mime ?? "";
+      if (!mime.startsWith("image/") || mime.includes("svg")) continue;
+      const url = info.thumburl || info.url;
+      if (!url) continue;
+      return { url, credit: "Photo: Wikimedia Commons", source: "commons" };
+    }
+    return null;
+  } catch (e) {
+    console.error("commons error", e);
+    return null;
   }
-  // Must look like a JPEG photo
-  if (!/\.(jpe?g)(?:$|[?#])/.test(filename)) return false;
-  // Reject if any graphic keyword appears
-  for (const p of NON_PHOTO_PATTERNS) {
-    if (filename.includes(p)) return false;
-  }
-  return true;
 }
 
-async function searchUnsplash(keyword: string): Promise<Hit | null> {
+async function unsplashSearch(keyword: string): Promise<Candidate | null> {
   if (!UNSPLASH_ACCESS_KEY) return null;
   try {
     const url =
@@ -186,106 +210,70 @@ async function searchUnsplash(keyword: string): Promise<Hit | null> {
     if (!photo) return null;
     const imgUrl = photo.urls?.regular || photo.urls?.full;
     if (!imgUrl) return null;
-    return { url: imgUrl, credit: "Photo: Unsplash" };
+    return { url: imgUrl, credit: "Photo: Unsplash", source: "unsplash" };
   } catch (e) {
     console.error("unsplash error", e);
     return null;
   }
 }
 
-async function searchPexels(keyword: string): Promise<Hit | null> {
-  if (!PEXELS_API_KEY) return null;
-  try {
-    const url =
-      `https://api.pexels.com/v1/search?query=${encodeURIComponent(keyword)}` +
-      `&per_page=1&orientation=landscape`;
-    const res = await fetch(url, { headers: { Authorization: PEXELS_API_KEY } });
-    if (!res.ok) return null;
-    const data = await res.json();
-    const photo = data?.photos?.[0];
-    if (!photo) return null;
-    const imgUrl = photo.src?.large2x || photo.src?.large || photo.src?.original;
-    if (!imgUrl) return null;
-    return { url: imgUrl, credit: "Photo: Pexels" };
-  } catch (e) {
-    console.error("pexels error", e);
-    return null;
-  }
-}
-
-async function generateCaption(imageUrl: string, title: string): Promise<string> {
-  let filename = "";
-  try {
-    const u = new URL(imageUrl);
-    filename = decodeURIComponent(u.pathname.split("/").pop() ?? "");
-  } catch (_e) { /* ignore */ }
-  const prompt =
-    `You are writing a short newspaper-style caption. You CANNOT see the image — only its filename and the article it accompanies. ` +
-    `Make a confident plausible guess based on the article topic.\n\n` +
-    `Article title: ${title}\n` +
-    `Image filename: ${filename || "(no filename)"}\n\n` +
-    `Output rules:\n` +
-    `- Exactly one caption, max 10 words.\n` +
-    `- Describe what the image most likely depicts (a person, place, object, or scene related to the article).\n` +
-    `- If a name is in the filename or article, use it.\n` +
-    `- Never apologise, never say "I can't" or "unable", never explain — just output the caption.\n` +
-    `- No quotes, no trailing period.\n\n` +
-    `Caption:`;
-  const out = await callHaiku(prompt, 40);
-  let caption = out.replace(/^["']|["'.]+$/g, "").trim();
-  // Reject obvious refusals
-  if (/^(i\s|i'm|i am|sorry|unable|i cannot|i can't|as an ai)/i.test(caption)) return "";
-  // Trim to 10 words
-  const words = caption.split(/\s+/);
-  if (words.length > 12) caption = words.slice(0, 10).join(" ");
-  return caption;
-}
-
-// Categories where we ONLY trust Wikipedia/Wikimedia (real photos of real people/places).
-// Stock photos from Unsplash/Pexels often mislead for hard news.
-const NEWS_ONLY_CATEGORIES = new Set(["news", "politics", "world", "india", "us-india", "nri-affairs"]);
-
-async function findImage(title: string, category: string): Promise<Hit | null> {
+async function gatherCandidates(
+  title: string,
+  category: string,
+): Promise<Candidate[]> {
   const keywords = await extractKeywords(title, category);
   console.log(`keywords for "${title}":`, keywords);
-
-  // Pass 1: Wikipedia summary for each keyword (most likely to be on-topic).
-  for (const kw of keywords) {
-    const hit = await searchWikipedia(kw);
-    if (hit && (await isImageRelevant(hit.url, title))) {
-      console.log(`✓ wikipedia hit for "${kw}"`);
-      return hit;
-    }
-  }
-
-  const isNews = NEWS_ONLY_CATEGORIES.has((category ?? "").toLowerCase().trim());
-  if (isNews) {
-    console.log(`✗ news article — skipping stock photo fallbacks for "${title}"`);
-    return null;
-  }
-
-  // Pass 2: Unsplash (lifestyle/travel/sports/etc only).
-  for (const kw of keywords) {
-    const hit = await searchUnsplash(kw);
-    if (hit && (await isImageRelevant(hit.url, title))) {
-      console.log(`✓ unsplash hit for "${kw}"`);
-      return hit;
-    }
-  }
-
-  // Pass 3: Pexels.
-  for (const kw of keywords) {
-    const hit = await searchPexels(kw);
-    if (hit && (await isImageRelevant(hit.url, title))) {
-      console.log(`✓ pexels hit for "${kw}"`);
-      return hit;
-    }
-  }
-
-  return null;
+  const primary = keywords[0] ?? title;
+  const list: (Candidate | null)[] = await Promise.all([
+    wikipediaSummary(primary),
+    commonsSearch(primary),
+    unsplashSearch(keywords[1] ?? primary),
+  ]);
+  // dedupe by url
+  const seen = new Set<string>();
+  return list.filter((c): c is Candidate => {
+    if (!c) return false;
+    if (seen.has(c.url)) return false;
+    seen.add(c.url);
+    return true;
+  });
 }
 
 // ---------- Main handler ----------
+
+type ChosenImage = {
+  url: string;
+  credit: string;
+  caption: string;
+  score: number;
+  verified: boolean;
+};
+
+async function pickBestImage(
+  title: string,
+  category: string,
+): Promise<ChosenImage | null> {
+  const candidates = await gatherCandidates(title, category);
+  if (candidates.length === 0) return null;
+
+  let best: { c: Candidate; v: VisionVerdict } | null = null;
+  for (const c of candidates) {
+    const v = await verifyImage(c.url, title, category);
+    if (!v) continue;
+    console.log(`  · ${c.source} score=${v.score} photo=${v.is_real_photo} — ${v.description}`);
+    if (!v.is_real_photo) continue;
+    if (!best || v.score > best.v.score) best = { c, v };
+  }
+  if (!best) return null;
+  if (best.v.score < ACCEPT_UNVERIFIED_MIN) return null;
+  return {
+    url: best.c.url,
+    credit: best.c.credit,
+    caption: best.v.description,
+    score: best.v.score,
+    verified: best.v.score >= ACCEPT_VERIFIED_MIN,
+  };
+}
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -307,11 +295,13 @@ Deno.serve(async (req) => {
   let errorMessage: string | null = null;
 
   try {
+    // Re-verify any article that isn't yet verified (covers both no-image and
+    // existing-but-unverified rows).
     const { data: articles, error } = await supabase
       .from("articles")
-      .select("id, title, category, image_url, image_caption")
+      .select("id, title, category, image_url, image_verified")
       .eq("is_published", true)
-      .or("image_url.is.null,image_url.eq.,image_caption.is.null")
+      .or("image_verified.is.null,image_verified.eq.false")
       .order("published_at", { ascending: false })
       .limit(MAX_PER_RUN);
 
@@ -319,33 +309,38 @@ Deno.serve(async (req) => {
 
     for (const a of articles ?? []) {
       processed++;
-      const hasImage = typeof a.image_url === "string" && a.image_url.trim().length > 0;
-      let imgUrl = a.image_url as string | null;
-      let credit: string | null = null;
-
-      if (!hasImage) {
-        const hit = await findImage(a.title, a.category);
-        if (!hit) {
-          console.log(`✗ no image found for: ${a.title}`);
-          continue;
-        }
-        imgUrl = hit.url;
-        credit = hit.credit;
+      console.log(`→ ${a.title}`);
+      const chosen = await pickBestImage(a.title, a.category);
+      if (!chosen) {
+        // Clear any previous wrong image so cards show placeholder instead.
+        await supabase
+          .from("articles")
+          .update({
+            image_url: null,
+            image_caption: null,
+            image_credit: null,
+            image_verified: false,
+            image_score: null,
+          })
+          .eq("id", a.id);
+        console.log(`✗ no acceptable image for: ${a.title}`);
+        continue;
       }
-
-      const caption = await generateCaption(imgUrl!, a.title);
-      const patch: Record<string, unknown> = { image_caption: caption || null };
-      if (!hasImage) {
-        patch.image_url = imgUrl;
-        patch.image_credit = credit;
-      }
-
-      const { error: updErr } = await supabase.from("articles").update(patch).eq("id", a.id);
+      const { error: updErr } = await supabase
+        .from("articles")
+        .update({
+          image_url: chosen.url,
+          image_caption: chosen.caption,
+          image_credit: chosen.credit,
+          image_verified: chosen.verified,
+          image_score: chosen.score,
+        })
+        .eq("id", a.id);
       if (updErr) {
         console.error(`update failed for ${a.id}`, updErr);
       } else {
         updated++;
-        console.log(`✓ ${a.title} | "${caption}"`);
+        console.log(`✓ ${a.title} score=${chosen.score} verified=${chosen.verified}`);
       }
     }
   } catch (e) {
