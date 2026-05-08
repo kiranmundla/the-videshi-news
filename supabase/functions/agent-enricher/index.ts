@@ -24,6 +24,49 @@ const VISION_MODEL = "claude-haiku-4-5";
 let _sb: SupabaseClient;
 let _jobId: string | undefined;
 
+// ---------------- Google News URL unwrap ----------------
+// Google News RSS items use opaque news.google.com/rss/articles/... redirect URLs.
+// Try to follow them to the real publisher URL. HEAD is faster than GET.
+// Google now serves a JS interstitial in many cases, so unwrapping often no-ops;
+// per spec we keep the original URL on any failure.
+async function unwrapGoogleNewsUrl(url: string): Promise<{ url: string; domain: string | null }> {
+  try {
+    const u = new URL(url);
+    if (!u.hostname.includes("news.google.com")) {
+      return { url, domain: u.hostname.replace(/^www\./, "") };
+    }
+    const res = await fetch(url, {
+      method: "HEAD",
+      redirect: "follow",
+      signal: AbortSignal.timeout(5000),
+      headers: { "User-Agent": "Mozilla/5.0 TheVideshi/1.0" },
+    });
+    const finalUrl = res.url;
+    const finalHost = new URL(finalUrl).hostname;
+    if (finalUrl !== url && !finalHost.includes("news.google.com")) {
+      return { url: finalUrl, domain: finalHost.replace(/^www\./, "") };
+    }
+  } catch (e) {
+    console.warn(`[enricher] gnews unwrap failed for ${url}: ${(e as Error).message}`);
+  }
+  return { url, domain: null };
+}
+
+async function unwrapDraftSources(draft: any): Promise<void> {
+  if (!draft || !Array.isArray(draft.sources_used)) return;
+  let unwrapped = 0;
+  for (const s of draft.sources_used) {
+    if (typeof s?.url !== "string" || !s.url.includes("news.google.com")) continue;
+    const { url: realUrl, domain } = await unwrapGoogleNewsUrl(s.url);
+    if (realUrl !== s.url) {
+      s.url = realUrl;
+      if (domain && (!s.name || /^google news/i.test(s.name))) s.name = domain;
+      unwrapped++;
+    }
+  }
+  if (unwrapped > 0) console.log(`[enricher] unwrapped ${unwrapped} google-news source URL(s)`);
+}
+
 // ---------------- Image fetching helpers ----------------
 
 type ImageResult = {
@@ -469,6 +512,9 @@ Deno.serve(async (req) => {
   try {
     const draft = job.article_draft || {};
     const brief = job.story_brief || {};
+
+    // Unwrap Google News redirect URLs in sources_used to publisher domains.
+    await unwrapDraftSources(draft);
 
     const articleType = brief.article_type === "feature" ? "feature" : "news";
     const totalLen =
