@@ -183,8 +183,7 @@ Return this exact JSON structure:
       const slug = slugify(article.headline);
       const wordCount = String(article.body).split(/\s+/).filter(Boolean).length;
 
-      const autoPublish =
-        topic.score_total >= 80 && Number(article.confidence ?? 0) >= 80;
+      const autoPublish = topic.score_total >= 72 && (article.confidence ?? 0) >= 72;
       const status = autoPublish ? "published" : "review";
       const publishedAt = autoPublish ? new Date().toISOString() : null;
 
