@@ -25,25 +25,45 @@ function stripFences(text: string): string {
   return raw.slice(start, end + 1);
 }
 
+async function anthropicFetch(body: any, maxRetries = 3): Promise<any> {
+  for (let i = 0; i < maxRetries; i++) {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "x-api-key": ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    const text = await res.text();
+    let data: any = null;
+    try { data = text ? JSON.parse(text) : null; } catch { /* keep null */ }
+
+    const overloaded = res.status === 529 || data?.error?.type === "overloaded_error";
+    if (overloaded && i < maxRetries - 1) {
+      const waitMs = Math.pow(2, i) * 5000; // 5s, 10s, 20s
+      console.log(`[anthropic] overloaded (status=${res.status}), retrying in ${waitMs}ms (attempt ${i + 1}/${maxRetries})`);
+      await new Promise((r) => setTimeout(r, waitMs));
+      continue;
+    }
+    if (!res.ok) {
+      throw new Error(`Claude error ${res.status}: ${text.slice(0, 500)}`);
+    }
+    return data;
+  }
+  throw new Error("Claude API overloaded after retries");
+}
+
 async function repairJsonWithHaiku(malformed: string): Promise<string> {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "x-api-key": ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 8192,
-      messages: [{
-        role: "user",
-        content: `The following is malformed JSON. Fix it and return only valid JSON, nothing else: ${malformed}`,
-      }],
-    }),
+  const data = await anthropicFetch({
+    model: "claude-haiku-4-5-20251001",
+    max_tokens: 8192,
+    messages: [{
+      role: "user",
+      content: `The following is malformed JSON. Fix it and return only valid JSON, nothing else: ${malformed}`,
+    }],
   });
-  if (!res.ok) throw new Error(`Repair failed ${res.status}: ${await res.text()}`);
-  const data = await res.json();
   return (data.content || [])
     .filter((b: any) => b.type === "text")
     .map((b: any) => b.text)
@@ -62,26 +82,12 @@ async function extractJsonWithRepair(text: string): Promise<any> {
 }
 
 async function callClaude(userPrompt: string): Promise<string> {
-  const body: any = {
+  const data = await anthropicFetch({
     model: MODEL,
     max_tokens: 4096,
     system: SYSTEM_PROMPT,
     messages: [{ role: "user", content: userPrompt }],
-  };
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "x-api-key": ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(body),
   });
-  if (!res.ok) {
-    throw new Error(`Claude error ${res.status}: ${await res.text()}`);
-  }
-  const data = await res.json();
-  // concatenate all text blocks (web_search produces interleaved tool_use/result blocks)
   const parts = (data.content || [])
     .filter((b: any) => b.type === "text")
     .map((b: any) => b.text);

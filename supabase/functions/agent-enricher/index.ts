@@ -24,8 +24,8 @@ type ImageResult = {
   image_score: number;
 };
 
-async function haikuJson(prompt: string, maxTokens = 200): Promise<any | null> {
-  try {
+async function anthropicFetch(body: any, maxRetries = 3): Promise<any> {
+  for (let i = 0; i < maxRetries; i++) {
     const res = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
@@ -33,14 +33,34 @@ async function haikuJson(prompt: string, maxTokens = 200): Promise<any | null> {
         "anthropic-version": "2023-06-01",
         "content-type": "application/json",
       },
-      body: JSON.stringify({
-        model: VISION_MODEL,
-        max_tokens: maxTokens,
-        messages: [{ role: "user", content: prompt }],
-      }),
+      body: JSON.stringify(body),
     });
-    if (!res.ok) return null;
-    const data = await res.json();
+    const text = await res.text();
+    let data: any = null;
+    try { data = text ? JSON.parse(text) : null; } catch { /* keep null */ }
+
+    const overloaded = res.status === 529 || data?.error?.type === "overloaded_error";
+    if (overloaded && i < maxRetries - 1) {
+      const waitMs = Math.pow(2, i) * 5000;
+      console.log(`[anthropic] overloaded (status=${res.status}), retrying in ${waitMs}ms (attempt ${i + 1}/${maxRetries})`);
+      await new Promise((r) => setTimeout(r, waitMs));
+      continue;
+    }
+    if (!res.ok) {
+      throw new Error(`Claude error ${res.status}: ${text.slice(0, 500)}`);
+    }
+    return data;
+  }
+  throw new Error("Claude API overloaded after retries");
+}
+
+async function haikuJson(prompt: string, maxTokens = 200): Promise<any | null> {
+  try {
+    const data = await anthropicFetch({
+      model: VISION_MODEL,
+      max_tokens: maxTokens,
+      messages: [{ role: "user", content: prompt }],
+    });
     const text = (data?.content?.[0]?.text ?? "").trim();
     const cleaned = text.replace(/^```(?:json)?\s*|\s*```$/g, "").trim();
     const m = cleaned.match(/\{[\s\S]*\}/);
@@ -127,27 +147,17 @@ async function tryUnsplash(keyword: string): Promise<{ url: string; credit: stri
 
 async function visionScore(imageUrl: string, title: string): Promise<{ score: number; description: string }> {
   try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "x-api-key": ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        model: VISION_MODEL,
-        max_tokens: 150,
-        messages: [{
-          role: "user",
-          content: [
-            { type: "image", source: { type: "url", url: imageUrl } },
-            { type: "text", text: `Article: "${title}". Score this image 1-10 for relevance. Reply JSON only: {"score": N, "description": "8 words or fewer describing only what you see — no analysis, no relevance explanation. Examples: 'Kolkata Victoria Memorial at dusk', 'Indian Air Force fighter jet', 'Mamata Banerjee at press conference'"}` },
-          ],
-        }],
-      }),
+    const data = await anthropicFetch({
+      model: VISION_MODEL,
+      max_tokens: 150,
+      messages: [{
+        role: "user",
+        content: [
+          { type: "image", source: { type: "url", url: imageUrl } },
+          { type: "text", text: `Article: "${title}". Score this image 1-10 for relevance. Reply JSON only: {"score": N, "description": "8 words or fewer describing only what you see — no analysis, no relevance explanation. Examples: 'Kolkata Victoria Memorial at dusk', 'Indian Air Force fighter jet', 'Mamata Banerjee at press conference'"}` },
+        ],
+      }],
     });
-    if (!res.ok) return { score: 0, description: "" };
-    const data = await res.json();
     const text = (data?.content?.[0]?.text ?? "").trim().replace(/^```(?:json)?\s*|\s*```$/g, "");
     const m = text.match(/\{[\s\S]*\}/);
     const j = JSON.parse(m ? m[0] : text);
@@ -236,24 +246,14 @@ function stripFences(text: string): string {
 }
 
 async function repairJsonWithHaiku(malformed: string): Promise<string> {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "x-api-key": ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 8192,
-      messages: [{
-        role: "user",
-        content: `The following is malformed JSON. Fix it and return only valid JSON, nothing else: ${malformed}`,
-      }],
-    }),
+  const data = await anthropicFetch({
+    model: "claude-haiku-4-5-20251001",
+    max_tokens: 8192,
+    messages: [{
+      role: "user",
+      content: `The following is malformed JSON. Fix it and return only valid JSON, nothing else: ${malformed}`,
+    }],
   });
-  if (!res.ok) throw new Error(`Repair failed ${res.status}: ${await res.text()}`);
-  const data = await res.json();
   return (data.content || [])
     .filter((b: any) => b.type === "text")
     .map((b: any) => b.text)
@@ -282,19 +282,7 @@ async function callClaudeWithSearch(userPrompt: string, useWebSearch: boolean): 
   if (useWebSearch) {
     body.tools = [{ type: "web_search_20250305", name: "web_search", max_uses: 6 }];
   }
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "x-api-key": ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) {
-    throw new Error(`Claude error ${res.status}: ${await res.text()}`);
-  }
-  const data = await res.json();
+  const data = await anthropicFetch(body);
   return (data.content || [])
     .filter((b: any) => b.type === "text")
     .map((b: any) => b.text)
