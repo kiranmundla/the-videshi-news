@@ -156,6 +156,7 @@ export default function ArticlePage() {
                           width={1}
                           height={1}
                           aria-hidden="true"
+                          referrerPolicy="no-referrer"
                           style={{ position: "absolute", width: 1, height: 1, opacity: 0, pointerEvents: "none", margin: 0 }}
                         />
                       );
@@ -163,7 +164,7 @@ export default function ArticlePage() {
                     if (article.hero_image_url && norm(src) === norm(article.hero_image_url)) {
                       return null;
                     }
-                    return <img src={src} alt={alt || article.title} loading="lazy" />;
+                    return <img src={src} alt={alt || article.title} loading="lazy" referrerPolicy="no-referrer" />;
                   },
                 }}
               >
