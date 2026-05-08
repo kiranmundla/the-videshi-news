@@ -376,8 +376,9 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
     if (stack) console.error(`[agent-editor] stack:`, stack);
 
     const attempts = job.attempts || 0;
-    const maxAttempts = job.max_attempts || 3;
-    const nextStatus = attempts >= maxAttempts ? "failed" : "editing";
+    const maxAttempts = job.max_attempts || 5;
+    const exhausted = attempts >= maxAttempts;
+    const nextStatus = exhausted ? "failed" : "editing";
     const prevErr = job.error_message || "";
     const appended = `${prevErr}${prevErr ? " | " : ""}attempt ${attempts}: ${fullErr}`.slice(0, 4000);
 
@@ -408,6 +409,32 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
         started_at: new Date().toISOString(),
         finished_at: new Date().toISOString(),
         error_message: `job=${job.id} attempt=${attempts}: ${fullErr}`.slice(0, 4000),
+      });
+    }
+
+    await logAlert(supabase, {
+      severity: exhausted ? "critical" : "warning",
+      agent: AGENT,
+      errorType: (e as any)?.errorType ?? "exception",
+      message: msg,
+      jobId: job.id,
+    });
+
+    if (exhausted) {
+      const history = appended.split(" | ");
+      await moveToDLQ(supabase, {
+        jobId: job.id,
+        agent: AGENT,
+        storyBrief: job.story_brief,
+        errorHistory: history,
+        failureReason: msg,
+      });
+      await sendAlertEmail({
+        severity: "critical",
+        agent: AGENT,
+        errorType: (e as any)?.errorType ?? "max_attempts",
+        jobId: job.id,
+        message: `Job exhausted ${maxAttempts} attempts. Last error: ${msg}`,
       });
     }
 
