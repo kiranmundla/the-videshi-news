@@ -35,7 +35,7 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   // MEA's RSS endpoint is Akamai-blocked, but the public HTML listing is fetchable. Scrape it.
   { name: "MEA Press Releases", url: "https://www.mea.gov.in/press-releases.htm?51/Press_Releases", credibility: "official", parser: "html-mea" },
   // { name: "Newsonair",   url: "https://www.newsonair.gov.in/feed/",          credibility: "official" },
-  { name: "USCIS",       url: "https://www.uscis.gov/news/rss-feed/53",          credibility: "official", category: "nri-world", region: "us" },
+  { name: "USCIS",       url: "https://www.uscis.gov/news/rss-feed/59144",       credibility: "official", category: "nri-world", region: "us" },
   { name: "RBI",         url: "https://rbi.org.in/pressreleases_rss.xml",        credibility: "official" },
   { name: "RBI Notifications", url: "https://rbi.org.in/notifications_rss.xml",  credibility: "official" },
 
