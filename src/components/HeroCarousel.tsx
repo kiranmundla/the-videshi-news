@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-type HeroImage = { url: string; alt: string; credit: string };
+type HeroImage = { url: string; alt: string; credit: string; caption?: string };
 
 const AUTO_MS = 5000;
 
@@ -64,8 +64,18 @@ export default function HeroCarousel() {
         />
       ))}
 
-      {/* bottom gradient overlay */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent" />
+      {/* bottom gradient overlay + caption */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+      {images[index]?.caption && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-10 md:bottom-12 px-6 md:px-12">
+          <p className="text-white font-bold text-base md:text-2xl leading-snug max-w-3xl drop-shadow">
+            {images[index].caption}
+          </p>
+          <p className="text-white/70 text-xs md:text-sm mt-1">
+            Photo: Unsplash{images[index].credit ? ` · ${images[index].credit}` : ""}
+          </p>
+        </div>
+      )}
 
       {/* desktop arrows */}
       {images.length > 1 && (
