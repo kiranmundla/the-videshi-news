@@ -154,7 +154,9 @@ export async function getPublishedArticles(): Promise<Article[]> {
     .from("p2_articles")
     .select(P2_COLS)
     .eq("status", "published")
-    .order("published_at", { ascending: false });
+    .eq("is_featured", false)
+    .order("published_at", { ascending: false })
+    .limit(20);
 
   if (error) {
     console.error("[articles] getPublishedArticles", error);
