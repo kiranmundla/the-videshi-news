@@ -105,6 +105,7 @@ export type Database = {
           date: string
           id: string
           image_url: string
+          location: string | null
           position: number
           search_term: string | null
         }
@@ -115,6 +116,7 @@ export type Database = {
           date: string
           id?: string
           image_url: string
+          location?: string | null
           position: number
           search_term?: string | null
         }
@@ -125,6 +127,7 @@ export type Database = {
           date?: string
           id?: string
           image_url?: string
+          location?: string | null
           position?: number
           search_term?: string | null
         }
