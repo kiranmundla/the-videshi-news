@@ -70,6 +70,43 @@ function EmptyPlaceholder({ message }: { message: string }) {
   return <p className="py-8 text-center text-muted-foreground">{message}</p>;
 }
 
+type HomeSection = { slug: string; label: string; limit: number; href: string; pool: Article[] };
+
+function HomeCategorySection({ section }: { section: HomeSection }) {
+  const initial = Math.min(section.limit, section.pool.length);
+  const [visible, setVisible] = useState(initial);
+  const items = section.pool.slice(0, visible);
+  const canLoadMore = visible < section.pool.length;
+  return (
+    <section>
+      <SectionHeader label={section.label} href={section.href} id={`section-${section.slug}`} />
+      {items.length > 0 ? (
+        <>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+            {items.map((a, i) => (
+              <div key={a.id} className={i >= initial ? "animate-fade-in" : ""}>
+                <ArticleCard article={a} variant="card" hideCategory />
+              </div>
+            ))}
+          </div>
+          {canLoadMore && (
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setVisible((v) => Math.min(12, v + 3))}
+                className="smallcaps text-foreground/80 hover:text-primary border-b border-rule hover:border-primary pb-1 transition-colors"
+              >
+                More {section.label} stories →
+              </button>
+            </div>
+          )}
+        </>
+      ) : (
+        <EmptyPlaceholder message="More stories coming soon." />
+      )}
+    </section>
+  );
+}
+
 export default function Index() {
   const [allArticles, setAllArticles] = useState<Article[]>([]);
   const [featuredArticle, setFeaturedArticle] = useState<Article | null>(null);
