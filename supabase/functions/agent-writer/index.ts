@@ -141,6 +141,7 @@ Deno.serve(async (req) => {
     console.log(`[writer iter ${i}] Claimed job id=${claimed.id} attempts=${claimed.attempts}`);
 
     const job = claimed;
+    _jobId = job.id;
     const { data: runRow } = await supabase
       .from("pipeline_runs")
       .insert({ run_type: "writer", status: "running" })
