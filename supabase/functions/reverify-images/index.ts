@@ -28,6 +28,7 @@ async function haikuText(prompt: string, maxTokens = 200): Promise<string> {
       max_tokens: maxTokens,
       messages: [{ role: "user", content: prompt }],
     }),
+    signal: AbortSignal.timeout(50000),
   });
   if (!res.ok) {
     console.error("haiku err", res.status, await res.text());
@@ -94,6 +95,7 @@ async function score(imageUrl: string, title: string): Promise<{ score: number; 
           ],
         }],
       }),
+      signal: AbortSignal.timeout(50000),
     });
     if (!res.ok) {
       console.error("score err", res.status, await res.text());

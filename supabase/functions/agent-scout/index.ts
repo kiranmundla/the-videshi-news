@@ -29,6 +29,7 @@ async function callClaude(userPrompt: string): Promise<string> {
       system: SYSTEM_PROMPT,
       messages: [{ role: "user", content: userPrompt }],
     }),
+    signal: AbortSignal.timeout(50000),
   });
   if (!res.ok) {
     throw new Error(`Claude error ${res.status}: ${await res.text()}`);

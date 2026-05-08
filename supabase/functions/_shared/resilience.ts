@@ -240,6 +240,9 @@ export async function callClaudeResilient(opts: ResilientCallOpts): Promise<any>
           "content-type": "application/json",
         },
         body: JSON.stringify(body),
+        // Hard 50s ceiling so Supabase's 60s function timeout doesn't kill us mid-call.
+        // AbortError name "TimeoutError" / message "timed out" -> classified TRANSIENT and retried.
+        signal: AbortSignal.timeout(50000),
       });
       text = await res.text();
       try { data = text ? JSON.parse(text) : null; } catch { /* leave null */ }
