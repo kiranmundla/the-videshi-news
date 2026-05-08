@@ -112,6 +112,77 @@ export type Database = {
           },
         ]
       }
+      articles_pipeline: {
+        Row: {
+          body: string
+          created_at: string
+          diaspora_angle: string | null
+          headline: string
+          id: string
+          is_featured: boolean
+          published_at: string | null
+          reviewed_at: string | null
+          slug: string | null
+          sources: Json
+          status: string
+          subheadline: string | null
+          tags: string[]
+          topic_id: string | null
+          updated_at: string
+          urgency: string | null
+          vertical: string
+          word_count: number | null
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          diaspora_angle?: string | null
+          headline: string
+          id?: string
+          is_featured?: boolean
+          published_at?: string | null
+          reviewed_at?: string | null
+          slug?: string | null
+          sources?: Json
+          status?: string
+          subheadline?: string | null
+          tags?: string[]
+          topic_id?: string | null
+          updated_at?: string
+          urgency?: string | null
+          vertical: string
+          word_count?: number | null
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          diaspora_angle?: string | null
+          headline?: string
+          id?: string
+          is_featured?: boolean
+          published_at?: string | null
+          reviewed_at?: string | null
+          slug?: string | null
+          sources?: Json
+          status?: string
+          subheadline?: string | null
+          tags?: string[]
+          topic_id?: string | null
+          updated_at?: string
+          urgency?: string | null
+          vertical?: string
+          word_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "articles_pipeline_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: true
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       carousel_images: {
         Row: {
           caption: string | null
@@ -181,6 +252,51 @@ export type Database = {
         }
         Relationships: []
       }
+      feed_sources: {
+        Row: {
+          avg_items_per_day: number | null
+          created_at: string
+          fetch_interval_min: number
+          id: string
+          is_active: boolean
+          last_fetched_at: string | null
+          layer: string
+          name: string
+          tier: string
+          type: string
+          url: string
+          verticals: string[]
+        }
+        Insert: {
+          avg_items_per_day?: number | null
+          created_at?: string
+          fetch_interval_min?: number
+          id?: string
+          is_active?: boolean
+          last_fetched_at?: string | null
+          layer: string
+          name: string
+          tier?: string
+          type: string
+          url: string
+          verticals?: string[]
+        }
+        Update: {
+          avg_items_per_day?: number | null
+          created_at?: string
+          fetch_interval_min?: number
+          id?: string
+          is_active?: boolean
+          last_fetched_at?: string | null
+          layer?: string
+          name?: string
+          tier?: string
+          type?: string
+          url?: string
+          verticals?: string[]
+        }
+        Relationships: []
+      }
       pipeline_alerts: {
         Row: {
           agent: string
@@ -211,6 +327,33 @@ export type Database = {
           message?: string
           resolved?: boolean
           severity?: string
+        }
+        Relationships: []
+      }
+      pipeline_run_log: {
+        Row: {
+          created_at: string
+          id: string
+          items_processed: number
+          notes: string | null
+          stage: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          items_processed?: number
+          notes?: string | null
+          stage: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          items_processed?: number
+          notes?: string | null
+          stage?: string
+          status?: string
         }
         Relationships: []
       }
@@ -297,6 +440,104 @@ export type Database = {
           url?: string
         }
         Relationships: []
+      }
+      raw_signals: {
+        Row: {
+          feed_source_id: string | null
+          fetched_at: string
+          id: string
+          is_processed: boolean
+          original_url: string
+          published_at: string | null
+          title: string
+          topic_id: string | null
+          url_hash: string
+        }
+        Insert: {
+          feed_source_id?: string | null
+          fetched_at?: string
+          id?: string
+          is_processed?: boolean
+          original_url: string
+          published_at?: string | null
+          title: string
+          topic_id?: string | null
+          url_hash: string
+        }
+        Update: {
+          feed_source_id?: string | null
+          fetched_at?: string
+          id?: string
+          is_processed?: boolean
+          original_url?: string
+          published_at?: string | null
+          title?: string
+          topic_id?: string | null
+          url_hash?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "raw_signals_feed_source_id_fkey"
+            columns: ["feed_source_id"]
+            isOneToOne: false
+            referencedRelation: "feed_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      source_hunts: {
+        Row: {
+          content: string | null
+          feed_source_id: string | null
+          fetched_at: string
+          id: string
+          is_used: boolean
+          published_at: string | null
+          relevance_score: number | null
+          title: string
+          topic_id: string | null
+          url: string
+        }
+        Insert: {
+          content?: string | null
+          feed_source_id?: string | null
+          fetched_at?: string
+          id?: string
+          is_used?: boolean
+          published_at?: string | null
+          relevance_score?: number | null
+          title: string
+          topic_id?: string | null
+          url: string
+        }
+        Update: {
+          content?: string | null
+          feed_source_id?: string | null
+          fetched_at?: string
+          id?: string
+          is_used?: boolean
+          published_at?: string | null
+          relevance_score?: number | null
+          title?: string
+          topic_id?: string | null
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "source_hunts_feed_source_id_fkey"
+            columns: ["feed_source_id"]
+            isOneToOne: false
+            referencedRelation: "feed_sources"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "source_hunts_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       story_clusters: {
         Row: {
@@ -481,6 +722,57 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      topics: {
+        Row: {
+          canonical_title: string
+          created_at: string
+          id: string
+          keywords: string[]
+          score_diaspora: number | null
+          score_recency: number | null
+          score_significance: number | null
+          score_source_avail: number | null
+          score_total: number | null
+          signal_count: number
+          status: string
+          updated_at: string
+          urgency: string
+          vertical: string
+        }
+        Insert: {
+          canonical_title: string
+          created_at?: string
+          id?: string
+          keywords?: string[]
+          score_diaspora?: number | null
+          score_recency?: number | null
+          score_significance?: number | null
+          score_source_avail?: number | null
+          score_total?: number | null
+          signal_count?: number
+          status?: string
+          updated_at?: string
+          urgency?: string
+          vertical: string
+        }
+        Update: {
+          canonical_title?: string
+          created_at?: string
+          id?: string
+          keywords?: string[]
+          score_diaspora?: number | null
+          score_recency?: number | null
+          score_significance?: number | null
+          score_source_avail?: number | null
+          score_total?: number | null
+          signal_count?: number
+          status?: string
+          updated_at?: string
+          urgency?: string
+          vertical?: string
+        }
+        Relationships: []
       }
     }
     Views: {
