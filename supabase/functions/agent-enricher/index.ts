@@ -24,8 +24,8 @@ type ImageResult = {
   image_score: number;
 };
 
-async function haikuJson(prompt: string, maxTokens = 200): Promise<any | null> {
-  try {
+async function anthropicFetch(body: any, maxRetries = 3): Promise<any> {
+  for (let i = 0; i < maxRetries; i++) {
     const res = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
@@ -33,14 +33,34 @@ async function haikuJson(prompt: string, maxTokens = 200): Promise<any | null> {
         "anthropic-version": "2023-06-01",
         "content-type": "application/json",
       },
-      body: JSON.stringify({
-        model: VISION_MODEL,
-        max_tokens: maxTokens,
-        messages: [{ role: "user", content: prompt }],
-      }),
+      body: JSON.stringify(body),
     });
-    if (!res.ok) return null;
-    const data = await res.json();
+    const text = await res.text();
+    let data: any = null;
+    try { data = text ? JSON.parse(text) : null; } catch { /* keep null */ }
+
+    const overloaded = res.status === 529 || data?.error?.type === "overloaded_error";
+    if (overloaded && i < maxRetries - 1) {
+      const waitMs = Math.pow(2, i) * 5000;
+      console.log(`[anthropic] overloaded (status=${res.status}), retrying in ${waitMs}ms (attempt ${i + 1}/${maxRetries})`);
+      await new Promise((r) => setTimeout(r, waitMs));
+      continue;
+    }
+    if (!res.ok) {
+      throw new Error(`Claude error ${res.status}: ${text.slice(0, 500)}`);
+    }
+    return data;
+  }
+  throw new Error("Claude API overloaded after retries");
+}
+
+async function haikuJson(prompt: string, maxTokens = 200): Promise<any | null> {
+  try {
+    const data = await anthropicFetch({
+      model: VISION_MODEL,
+      max_tokens: maxTokens,
+      messages: [{ role: "user", content: prompt }],
+    });
     const text = (data?.content?.[0]?.text ?? "").trim();
     const cleaned = text.replace(/^```(?:json)?\s*|\s*```$/g, "").trim();
     const m = cleaned.match(/\{[\s\S]*\}/);
