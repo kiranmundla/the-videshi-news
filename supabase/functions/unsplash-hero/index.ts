@@ -99,6 +99,7 @@ async function claudeVerify(
           },
         ],
       }),
+      signal: AbortSignal.timeout(50000),
     });
     if (!res.ok) return { ok: true, caption: term, location: hint };
     const data = await res.json();

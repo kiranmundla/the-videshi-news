@@ -41,6 +41,7 @@ async function callHaikuText(prompt: string, maxTokens = 200): Promise<string> {
         max_tokens: maxTokens,
         messages: [{ role: "user", content: prompt }],
       }),
+      signal: AbortSignal.timeout(50000),
     });
     if (!res.ok) {
       console.error("haiku text error", res.status, await res.text());
@@ -100,6 +101,7 @@ Score criteria:
           ],
         }],
       }),
+      signal: AbortSignal.timeout(50000),
     });
     if (!res.ok) {
       console.error("vision error", res.status, await res.text());

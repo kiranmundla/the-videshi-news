@@ -34,6 +34,7 @@ async function captionImage(imageUrl: string): Promise<string | null> {
           ],
         }],
       }),
+      signal: AbortSignal.timeout(50000),
     });
     if (!res.ok) {
       console.error("vision error", res.status, await res.text());

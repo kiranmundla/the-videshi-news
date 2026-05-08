@@ -51,6 +51,7 @@ async function callClaude(
       ...(useWebSearch ? { "anthropic-beta": "web-search-2025-03-05" } : {}),
     },
     body: JSON.stringify(body),
+    signal: AbortSignal.timeout(50000),
   });
 
   const data = await res.json();
