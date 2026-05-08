@@ -6,7 +6,7 @@ import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
 import HeroCarousel from "@/components/HeroCarousel";
-import { Article, getFeaturedArticle, getPublishedArticles } from "@/lib/articles";
+import { Article, getArticlesByCategory, getFeaturedArticle, getPublishedArticles } from "@/lib/articles";
 
 type SectionDef = { slug: string; label: string; limit: number; href: string };
 
@@ -108,34 +108,44 @@ function HomeCategorySection({ section }: { section: HomeSection }) {
 }
 
 export default function Index() {
-  const [allArticles, setAllArticles] = useState<Article[]>([]);
+  const [newsPool, setNewsPool] = useState<Article[]>([]);
+  const [sectionPools, setSectionPools] = useState<Record<string, Article[]>>({});
   const [featuredArticle, setFeaturedArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   useEffect(() => {
-    Promise.all([getPublishedArticles(), getFeaturedArticle()]).then(([a, f]) => {
-      setAllArticles(a);
-      setFeaturedArticle(f);
+    const sectionFetches = CATEGORY_SECTIONS.map((s) =>
+      getArticlesByCategory(s.slug, 6).then((items) => [s.slug, items] as const)
+    );
+    Promise.all([
+      getArticlesByCategory(NEWS_SECTION.slug, 12),
+      getFeaturedArticle(),
+      ...sectionFetches,
+    ]).then((results) => {
+      const [news, featured, ...sectionResults] = results as [
+        Article[],
+        Article | null,
+        ...(readonly [string, Article[]])[]
+      ];
+      setNewsPool(news);
+      setFeaturedArticle(featured);
+      setSectionPools(
+        Object.fromEntries(sectionResults as (readonly [string, Article[]])[])
+      );
       setLastUpdated(new Date());
       setLoading(false);
     });
   }, []);
 
   const layout = useMemo(() => {
-    const used = new Set<string>();
-
-    // 1. Featured (must have image; getFeaturedArticle handles fallback)
     const featured = featuredArticle;
-    if (featured) used.add(featured.id);
 
-    // 2. Latest — news category articles only
     const clusterUsed = new Set<string>();
     const newsClusters: { label: string; items: Article[] }[] = [];
     for (const c of CLUSTERS) {
-      const items = allArticles.filter(
+      const items = newsPool.filter(
         (a) =>
-          a.category === "news" &&
           !clusterUsed.has(a.id) &&
           !(c.excludeSlugs ?? []).includes(a.slug) &&
           matchesCluster(a, c.tags)
@@ -145,24 +155,17 @@ export default function Index() {
         items.forEach((a) => clusterUsed.add(a.id));
       }
     }
-    const newsUngrouped = allArticles
-      .filter((a) => a.category === "news" && !clusterUsed.has(a.id))
+    const newsUngrouped = newsPool
+      .filter((a) => !clusterUsed.has(a.id))
       .slice(0, NEWS_SECTION.limit);
-    // Reserve cluster + ungrouped articles from category sections, but keep featured visible here
-    clusterUsed.forEach((id) => used.add(id));
-    newsUngrouped.forEach((a) => used.add(a.id));
 
-    // 3. Category sections — pool up to 12 per section, claim them upfront
-    const sections = CATEGORY_SECTIONS.map((s) => {
-      const pool = allArticles
-        .filter((a) => a.category === s.slug && !used.has(a.id))
-        .slice(0, 12);
-      pool.forEach((a) => used.add(a.id));
-      return { ...s, pool };
-    });
+    const sections = CATEGORY_SECTIONS.map((s) => ({
+      ...s,
+      pool: (sectionPools[s.slug] ?? []).slice(0, 6),
+    }));
 
     return { featured, newsClusters, newsUngrouped, sections };
-  }, [allArticles, featuredArticle]);
+  }, [newsPool, sectionPools, featuredArticle]);
 
   if (loading) {
     return (
