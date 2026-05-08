@@ -117,7 +117,7 @@ Tasks:
 1. Group articles covering the same story semantically.
 2. Rank groups by source count (more sources = higher priority).
 3. Score diaspora_relevance as: high | medium | low | none.
-4. Assign a category from EXACTLY this list: news | nri-world | travel | lifestyle-health | markets-finance | technology | sports | entertainment | food. (Note: 'news' covers breaking, politics, world, crime, US-India coverage. 'nri-world' covers Indians abroad / global diaspora — see special instructions below. Events and Classifieds are user-generated and excluded.)
+4. Assign a category from EXACTLY this list (no other values allowed): news | sports | markets-finance | technology | entertainment | lifestyle-health | travel | nri-world. ('news' covers breaking, politics, world, crime, and US-India coverage. 'nri-world' covers Indians abroad / global diaspora — see special instructions below. Events and Classifieds are user-generated and excluded.)
 
    Special instructions for nri-world: For nri-world category, prioritize stories mentioning these people: Vivek Ramaswamy, Usha Vance, Kamala Harris, Rishi Sunak, Jagmeet Singh, Sundar Pichai, Satya Nadella, Ajay Banga, Ro Khanna, Pramila Jayapal, Ami Bera, Raja Krishnamoorthi, Anita Anand, Ed Husic. Also prioritize: H-1B visa news, OCI card updates, Indian immigration policy in US/UK/Canada/Australia/UAE, Indian diaspora community events, and Indian-origin business leaders making news globally.
 5. For the top 3 groups, write a story_brief.
@@ -131,7 +131,7 @@ Return ONLY valid JSON in this exact shape (no prose, no markdown):
       "key_facts": ["string"],
       "suggested_search_queries": ["string"],
       "diaspora_relevance": "high|medium|low|none",
-      "category": "news|nri-world|travel|lifestyle-health|markets-finance|technology|sports|entertainment|food",
+      "category": "news|sports|markets-finance|technology|entertainment|lifestyle-health|travel|nri-world",
       "raw_article_ids": ["uuid"],
       "best_article_id": "uuid",
       "source_count": 0,
