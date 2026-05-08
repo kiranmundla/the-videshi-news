@@ -226,13 +226,16 @@ Return ONLY valid JSON (no prose, no markdown fences) in this exact shape:
       results.push({ ok: true, job_id: job.id, status: "enriching" });
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
-      console.error("agent-writer error", msg);
+      const stack = e instanceof Error && e.stack ? e.stack : "";
+      const fullErr = stack ? `${msg}\n${stack}` : msg;
+      console.error(`[agent-writer] job=${job.id} attempt=${job.attempts}/${job.max_attempts} FAILED:`, msg);
+      if (stack) console.error(`[agent-writer] stack:`, stack);
 
       const attempts = job.attempts || 0;
       const maxAttempts = job.max_attempts || 3;
       const nextStatus = attempts >= maxAttempts ? "failed" : "pending";
       const prevErr = job.error_message || "";
-      const appended = `${prevErr}${prevErr ? " | " : ""}attempt ${attempts}: ${msg}`.slice(0, 2000);
+      const appended = `${prevErr}${prevErr ? " | " : ""}attempt ${attempts}: ${fullErr}`.slice(0, 4000);
 
       await supabase
         .from("story_queue")
@@ -251,9 +254,17 @@ Return ONLY valid JSON (no prose, no markdown fences) in this exact shape:
           .update({
             status: "error",
             finished_at: new Date().toISOString(),
-            error_message: msg,
+            error_message: fullErr.slice(0, 4000),
           })
           .eq("id", runId);
+      } else {
+        await supabase.from("pipeline_runs").insert({
+          run_type: "agent-writer",
+          status: "error",
+          started_at: new Date().toISOString(),
+          finished_at: new Date().toISOString(),
+          error_message: `job=${job.id} attempt=${attempts}: ${fullErr}`.slice(0, 4000),
+        });
       }
 
       results.push({ ok: false, job_id: job.id, status: nextStatus, error: msg });
