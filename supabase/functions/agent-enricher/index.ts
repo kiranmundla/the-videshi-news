@@ -513,6 +513,9 @@ Deno.serve(async (req) => {
     const draft = job.article_draft || {};
     const brief = job.story_brief || {};
 
+    // Unwrap Google News redirect URLs in sources_used to publisher domains.
+    await unwrapDraftSources(draft);
+
     const articleType = brief.article_type === "feature" ? "feature" : "news";
     const totalLen =
       articleType === "feature"
