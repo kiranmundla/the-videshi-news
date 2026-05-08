@@ -1,3 +1,5 @@
+import ReactMarkdown from "react-markdown";
+
 type Block =
   | { type: "paragraph"; text?: string; content?: string }
   | { type: "pull_quote"; text?: string; content?: string; attribution?: string }
@@ -5,6 +7,17 @@ type Block =
   | { type: "nri_angle"; text?: string; content?: string; title?: string }
   | { type: "key_facts"; title?: string; items?: string[]; facts?: string[] }
   | { type: string; [k: string]: unknown };
+
+// Convert "• **Label:** text" or "• text" runs into a real markdown list so
+// each bullet renders on its own line with spacing.
+function bulletsToMarkdown(text: string): string {
+  if (!text) return "";
+  let t = text.replace(/\r\n/g, "\n");
+  // Insert a newline before every • that isn't already at the start of a line
+  t = t.replace(/\s*•\s*/g, "\n- ");
+  // Trim leading blank line if we created one
+  return t.replace(/^\n+/, "").trim();
+}
 
 export function tryParseBlocks(body: string): Block[] | null {
   const trimmed = (body ?? "").trim();
