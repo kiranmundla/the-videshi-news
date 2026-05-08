@@ -433,6 +433,8 @@ ARTICLE TYPE: ${articleType.toUpperCase()}
 
 DO ALL OF THE FOLLOWING (with strict constraints):
 - NRI/Diaspora Angle — STRICT RULES:
+  * SIGNAL-BASED FOCUS — tailor the angle using these detected signals (highest priority instructions):
+  * ${nriFocusBlock}
   * Format the nri_angle block content as a markdown bulleted list using "- " (dash + space) bullets — NEVER use the • character.
   * Exactly 2-3 bullets, each on its own line, in this order:
     - **Why It Matters:** one sentence on why Indian-Americans should care
