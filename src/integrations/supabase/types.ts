@@ -36,6 +36,8 @@ export type Database = {
           slug: string | null
           sources_used: Json | null
           story_group_id: string | null
+          subject_name: string | null
+          subject_type: string | null
           summary: string
           tags: string[] | null
           title: string
@@ -63,6 +65,8 @@ export type Database = {
           slug?: string | null
           sources_used?: Json | null
           story_group_id?: string | null
+          subject_name?: string | null
+          subject_type?: string | null
           summary: string
           tags?: string[] | null
           title: string
@@ -90,6 +94,8 @@ export type Database = {
           slug?: string | null
           sources_used?: Json | null
           story_group_id?: string | null
+          subject_name?: string | null
+          subject_type?: string | null
           summary?: string
           tags?: string[] | null
           title?: string

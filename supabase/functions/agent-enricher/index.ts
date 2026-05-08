@@ -61,14 +61,33 @@ async function haikuJson(prompt: string, maxTokens = 200): Promise<any | null> {
   }
 }
 
-async function extractImageSubject(title: string, category: string): Promise<{ primary: string; keyword: string }> {
+type SubjectType = "PERSON" | "PLACE" | "EVENT" | "TOPIC";
+type Classification = { type: SubjectType; subject: string; keyword: string };
+
+async function classifySubject(title: string, firstPara: string, category: string): Promise<Classification> {
   const out = await haikuJson(
-    `Article title: "${title}"\nCategory: ${category}\n\nReturn JSON only:\n{"primary":"named person OR specific place/event - the main visual subject","keyword":"1-2 word general topic for stock photo fallback"}\n\nRules: If a named person is the subject, use their full name. Otherwise use a specific place or event name. Never return generic terms.`
+    `Classify this article's primary subject.
+
+Title: "${title}"
+First paragraph: "${(firstPara || "").slice(0, 600)}"
+Category: ${category}
+
+Return JSON only:
+{"type":"PERSON|PLACE|EVENT|TOPIC","subject":"specific name","keyword":"1-2 word general topic for stock fallback"}
+
+Rules:
+- PERSON if mainly about a named individual — set subject to their full common name.
+- PLACE if mainly about a specific city/state/landmark — set subject to that place name.
+- EVENT if mainly about a specific event/incident — set subject to its main keyword/name.
+- TOPIC if it's a general topic/issue — set subject to the main keyword.
+- Never return generic words like "election", "policy", "news".`,
+    200,
   );
-  return {
-    primary: out?.primary || title.split(/[:|—-]/)[0].trim(),
-    keyword: out?.keyword || category,
-  };
+  const rawType = String(out?.type || "TOPIC").toUpperCase();
+  const type: SubjectType = (["PERSON", "PLACE", "EVENT", "TOPIC"].includes(rawType) ? rawType : "TOPIC") as SubjectType;
+  const subject = String(out?.subject || title.split(/[:|—-]/)[0].trim()).trim();
+  const keyword = String(out?.keyword || category).trim();
+  return { type, subject, keyword };
 }
 
 function isLandscape(w?: number, h?: number, minW = 800): boolean {
