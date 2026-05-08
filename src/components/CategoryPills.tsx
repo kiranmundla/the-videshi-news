@@ -6,7 +6,7 @@ export default function CategoryPills() {
   const items = [{ slug: "all", label: "All", path: "/" }, ...CATEGORIES.map((c) => ({ slug: c.slug, label: c.label, path: c.path }))];
 
   return (
-    <div className="bg-background border-b hairline">
+    <div className="bg-background border-b hairline md:hidden">
       <div className="container">
         <div className="flex gap-2 overflow-x-auto py-3 -mx-1 px-1 scrollbar-none whitespace-nowrap">
           {items.map((it) => {
