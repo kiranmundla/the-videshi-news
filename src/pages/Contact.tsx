@@ -6,18 +6,38 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const name = String(fd.get("name") ?? "").trim();
+    const email = String(fd.get("email") ?? "").trim();
+    const message = String(fd.get("message") ?? "").trim();
+
+    if (!name || !email || !message) {
+      toast("Please fill out all fields.");
+      return;
+    }
+
     setSubmitting(true);
-    setTimeout(() => {
+    try {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: { name, email, message },
+      });
+      if (error) throw error;
+      form.reset();
+      toast("Thank you, we'll be in touch soon");
+    } catch (err) {
+      console.error(err);
+      toast("Sorry — something went wrong. Please email us directly.");
+    } finally {
       setSubmitting(false);
-      (e.target as HTMLFormElement).reset();
-      toast("Thanks — we'll be in touch.");
-    }, 400);
+    }
   }
 
   return (
@@ -43,9 +63,9 @@ export default function Contact() {
         </p>
 
         <form onSubmit={onSubmit} className="mt-10 space-y-4">
-          <Input name="name" placeholder="Name" required />
-          <Input name="email" type="email" placeholder="Email" required />
-          <Textarea name="message" placeholder="Message" rows={5} required />
+          <Input name="name" placeholder="Name" required maxLength={100} />
+          <Input name="email" type="email" placeholder="Email" required maxLength={255} />
+          <Textarea name="message" placeholder="Message" rows={5} required maxLength={5000} />
           <Button type="submit" disabled={submitting}>
             {submitting ? "Sending…" : "Submit"}
           </Button>
