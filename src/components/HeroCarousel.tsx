@@ -1,15 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-type HeroImage = { url: string; alt: string; credit: string; caption?: string; location?: string };
+type HeroImage = {
+  url: string;
+  alt: string;
+  credit: string;
+  caption?: string;
+  location?: string;
+};
+
+const AUTO_MS = 6000;
+const SWIPE_THRESHOLD = 50;
 
 export default function HeroCarousel() {
   const [images, setImages] = useState<HeroImage[]>([]);
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [dragDx, setDragDx] = useState(0);
   const dragStartX = useRef<number | null>(null);
-  const dragDx = useRef(0);
-  const [dragging, setDragging] = useState(false);
-  const [offset, setOffset] = useState(0);
+  const dragging = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -21,168 +30,130 @@ export default function HeroCarousel() {
     return () => { cancelled = true; };
   }, []);
 
+  useEffect(() => {
+    if (images.length < 2 || paused) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % images.length);
+    }, AUTO_MS);
+    return () => window.clearInterval(id);
+  }, [images.length, paused]);
+
   if (images.length === 0) return null;
 
   const total = images.length;
   const wrap = (n: number) => ((n % total) + total) % total;
-  const go = (next: number) => setIndex(wrap(next));
+  const go = (n: number) => setIndex(wrap(n));
 
-  const onPointerDown = (e: React.PointerEvent) => {
-    dragStartX.current = e.clientX;
-    dragDx.current = 0;
-    setDragging(true);
-    (e.target as Element).setPointerCapture?.(e.pointerId);
+  const startDrag = (x: number) => {
+    dragStartX.current = x;
+    dragging.current = true;
+    setPaused(true);
   };
-  const onPointerMove = (e: React.PointerEvent) => {
-    if (dragStartX.current == null) return;
-    dragDx.current = e.clientX - dragStartX.current;
-    setOffset(dragDx.current);
+  const moveDrag = (x: number) => {
+    if (!dragging.current || dragStartX.current == null) return;
+    setDragDx(x - dragStartX.current);
   };
-  const onPointerUp = () => {
-    if (dragStartX.current == null) return;
-    const dx = dragDx.current;
-    if (Math.abs(dx) > 60) go(index + (dx < 0 ? 1 : -1));
+  const endDrag = () => {
+    if (!dragging.current) return;
+    const dx = dragDx;
+    if (Math.abs(dx) > SWIPE_THRESHOLD) go(index + (dx < 0 ? 1 : -1));
     dragStartX.current = null;
-    dragDx.current = 0;
-    setDragging(false);
-    setOffset(0);
+    dragging.current = false;
+    setDragDx(0);
+    setTimeout(() => setPaused(false), 800);
   };
 
   const current = images[index];
-  const prev = images[wrap(index - 1)];
-  const next = images[wrap(index + 1)];
-  const counter = (n: number) => String(n + 1).padStart(2, "0");
 
   return (
-    <section className="relative w-full bg-background border-y border-border/60 py-10 md:py-16 select-none">
-      {/* Editorial header */}
-      <div className="container flex items-end justify-between mb-6 md:mb-10">
-        <div>
-          <p className="smallcaps text-primary">The Wheel</p>
-          <h2 className="font-serif text-2xl md:text-4xl leading-tight mt-1">
-            Dispatches in pictures
-          </h2>
-        </div>
-        <p className="smallcaps text-foreground/60 hidden md:block">Drag · spin · explore</p>
-      </div>
-
-      {/* Stage */}
+    <section
+      className="relative w-full overflow-hidden bg-muted h-[280px] md:h-[560px] group select-none"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => { endDrag(); setPaused(false); }}
+      onTouchStart={(e) => startDrag(e.touches[0].clientX)}
+      onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
+      onTouchEnd={endDrag}
+      onMouseDown={(e) => startDrag(e.clientX)}
+      onMouseMove={(e) => moveDrag(e.clientX)}
+      onMouseUp={endDrag}
+      aria-roledescription="carousel"
+      style={{ cursor: dragging.current ? "grabbing" : "grab" }}
+    >
+      {/* Slides — translate track */}
       <div
-        className="relative w-full overflow-hidden"
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
-        style={{ cursor: dragging ? "grabbing" : "grab", touchAction: "pan-y" }}
+        className="absolute inset-0 flex"
+        style={{
+          width: `${total * 100}%`,
+          transform: `translateX(calc(${-index * (100 / total)}% + ${dragDx}px))`,
+          transition: dragging.current ? "none" : "transform 0.4s ease-in-out",
+        }}
       >
-        <div className="container">
-          <div className="relative h-[320px] md:h-[560px] flex items-center justify-center">
-            {/* Side peek — prev */}
-            <div
-              className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 w-[18%] h-[78%] overflow-hidden opacity-40 hover:opacity-70 transition-opacity cursor-pointer"
-              onClick={() => go(index - 1)}
-              style={{ transform: `translate(${offset * 0.2}px, -50%)` }}
-              aria-hidden
-            >
-              <img src={prev.url} alt="" referrerPolicy="no-referrer"
-                className="w-full h-full object-cover grayscale" />
-            </div>
-
-            {/* Side peek — next */}
-            <div
-              className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[18%] h-[78%] overflow-hidden opacity-40 hover:opacity-70 transition-opacity cursor-pointer"
-              onClick={() => go(index + 1)}
-              style={{ transform: `translate(${offset * 0.2}px, -50%)` }}
-              aria-hidden
-            >
-              <img src={next.url} alt="" referrerPolicy="no-referrer"
-                className="w-full h-full object-cover grayscale" />
-            </div>
-
-            {/* Center frame */}
-            <div
-              className="relative w-full md:w-[60%] h-full bg-muted overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.45)] ring-1 ring-border/40"
-              style={{
-                transform: `translateX(${offset}px) rotate(${offset * 0.01}deg)`,
-                transition: dragging ? "none" : "transform 600ms cubic-bezier(.22,1,.36,1)",
-              }}
-            >
-              {images.map((img, i) => (
-                <img
-                  key={img.url}
-                  src={img.url}
-                  alt={img.alt}
-                  referrerPolicy="no-referrer"
-                  draggable={false}
-                  loading={i === 0 ? "eager" : "lazy"}
-                  className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${
-                    i === index ? "opacity-100 scale-100" : "opacity-0 scale-105"
-                  }`}
-                />
-              ))}
-
-              {/* index marker top-left */}
-              <div className="absolute top-4 left-4 md:top-6 md:left-6 text-white/90 mix-blend-difference">
-                <span className="font-serif text-xl md:text-3xl tracking-tight">{counter(index)}</span>
-                <span className="font-serif text-xs md:text-sm opacity-70"> / {counter(total - 1)}</span>
-              </div>
-            </div>
+        {images.map((img, i) => (
+          <div key={img.url} className="relative h-full" style={{ width: `${100 / total}%` }}>
+            <img
+              src={img.url}
+              alt={img.alt}
+              referrerPolicy="no-referrer"
+              draggable={false}
+              loading={i === 0 ? "eager" : "lazy"}
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            />
           </div>
-
-          {/* Caption — editorial layout below frame */}
-          <div className="mt-6 md:mt-8 grid grid-cols-12 gap-4 md:gap-8 items-start">
-            <div className="col-span-12 md:col-span-2">
-              <p className="smallcaps text-foreground/60">
-                {current.location || "Dispatch"}
-              </p>
-            </div>
-            <div className="col-span-12 md:col-span-7">
-              <p className="font-serif text-lg md:text-2xl leading-snug text-foreground">
-                {current.caption || current.alt}
-              </p>
-            </div>
-            <div className="col-span-12 md:col-span-3 md:text-right">
-              <p className="smallcaps text-foreground/50">
-                Photo · Unsplash{current.credit ? ` / ${current.credit}` : ""}
-              </p>
-            </div>
-          </div>
-
-          {/* Controls — thin editorial */}
-          <div className="mt-6 md:mt-8 flex items-center justify-between border-t border-border/60 pt-4">
-            <button
-              type="button"
-              onClick={() => go(index - 1)}
-              className="smallcaps text-foreground/70 hover:text-primary transition flex items-center gap-2"
-              aria-label="Previous"
-            >
-              <span className="text-xl leading-none">←</span> Prev
-            </button>
-
-            <div className="flex items-center gap-3">
-              {images.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => go(i)}
-                  aria-label={`Go to ${i + 1}`}
-                  className={`h-px transition-all ${
-                    i === index ? "w-10 bg-primary" : "w-5 bg-foreground/30 hover:bg-foreground/60"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => go(index + 1)}
-              className="smallcaps text-foreground/70 hover:text-primary transition flex items-center gap-2"
-              aria-label="Next"
-            >
-              Next <span className="text-xl leading-none">→</span>
-            </button>
-          </div>
-        </div>
+        ))}
       </div>
+
+      {/* Caption overlay */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 px-6 md:px-12 pt-20 pb-10 md:pb-14"
+        style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 55%, transparent 100%)" }}
+      >
+        <p className="text-white font-bold text-base md:text-2xl leading-snug max-w-3xl drop-shadow">
+          {current.location ? `${current.location} · ` : ""}
+          {current.caption || current.alt}
+        </p>
+        <p className="text-white/70 text-xs md:text-sm mt-1.5">
+          Photo{current.credit ? `: ${current.credit} / Unsplash` : ": Unsplash"}
+        </p>
+      </div>
+
+      {/* Hover arrows (desktop only) */}
+      {total > 1 && (
+        <>
+          <button
+            type="button"
+            aria-label="Previous slide"
+            onClick={() => go(index - 1)}
+            className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 items-center justify-center rounded-full bg-black/30 text-white text-2xl opacity-0 group-hover:opacity-100 hover:bg-black/60 transition-opacity duration-300"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            aria-label="Next slide"
+            onClick={() => go(index + 1)}
+            className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 items-center justify-center rounded-full bg-black/30 text-white text-2xl opacity-0 group-hover:opacity-100 hover:bg-black/60 transition-opacity duration-300"
+          >
+            ›
+          </button>
+        </>
+      )}
+
+      {/* Dot indicators */}
+      {total > 1 && (
+        <div className="absolute bottom-3 md:bottom-5 left-0 right-0 flex justify-center gap-2 z-10">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Go to slide ${i + 1}`}
+              onClick={() => go(i)}
+              className={`h-2.5 w-2.5 rounded-full border border-white transition-all ${
+                i === index ? "bg-white" : "bg-transparent hover:bg-white/40"
+              }`}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
