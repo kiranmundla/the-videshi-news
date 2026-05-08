@@ -18,10 +18,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 
 const items = [
-  { title: "Feed Sources", url: "/pipeline/feeds", icon: Radio },
-  { title: "Topic Radar", url: "/pipeline/topics", icon: Target },
-  { title: "Review Queue", url: "/pipeline/review", icon: PenSquare, badgeKey: "review" },
-  { title: "Run Log", url: "/pipeline/run", icon: Settings },
+  { title: "Feed Sources", url: "/admin/p2/feeds", icon: Radio },
+  { title: "Topic Radar", url: "/admin/p2/topics", icon: Target },
+  { title: "Review Queue", url: "/admin/p2/review", icon: PenSquare, badgeKey: "review" },
+  { title: "Run Log", url: "/admin/p2/run", icon: Settings },
 ];
 
 export default function PipelineLayout() {
