@@ -151,7 +151,6 @@ export default function Index() {
 
       <Masthead />
       <CategoryPills />
-      <HeroCarousel />
 
       <main className="container flex-1 pt-8 md:pt-10">
         {featured && (
