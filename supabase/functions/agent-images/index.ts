@@ -21,7 +21,7 @@ const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY") ?? "";
 
 const MAX_PER_RUN = 10;
 const HAIKU_MODEL = "claude-haiku-4-5";
-const ACCEPT_VERIFIED_MIN = 7;
+const ACCEPT_VERIFIED_MIN = 8;
 const ACCEPT_UNVERIFIED_MIN = 3;
 
 // ---------- Anthropic helpers ----------
@@ -348,16 +348,16 @@ Deno.serve(async (req) => {
   let errorMessage: string | null = null;
 
   try {
-    // Process only articles that need work:
+    // Process only articles that aren't "good enough":
     //   - no image yet, OR
-    //   - image_score < 6, OR
+    //   - image_score < 8 (always retry to try to beat it), OR
     //   - image_url is still an external (non-supabase) URL.
-    // Skip any article that already has a self-hosted image AND score >= 6.
+    // Once score >= 8 AND self-hosted, mark verified and never touch again.
     const { data: articles, error } = await supabase
       .from("articles")
       .select("id, title, category, image_url, image_verified, image_score")
       .eq("is_published", true)
-      .or("image_url.is.null,image_score.is.null,image_score.lt.6,image_url.not.ilike.%supabase%")
+      .or("image_url.is.null,image_score.is.null,image_score.lt.8,image_url.not.ilike.%supabase%")
       .order("published_at", { ascending: false })
       .limit(MAX_PER_RUN);
 
