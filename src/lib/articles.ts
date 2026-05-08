@@ -23,31 +23,28 @@ export type Article = {
   pinned_until?: string | null;
 };
 
-type ArticleRow = {
+type P2Row = {
   id: string;
   slug: string | null;
-  title: string;
-  summary: string;
+  headline: string;
+  subheadline: string | null;
   body: string;
-  category: string;
-  image_url: string | null;
-  image_caption: string | null;
-  image_credit: string | null;
+  category: string | null;
+  vertical: string;
+  status: string;
+  is_featured: boolean | null;
   published_at: string | null;
   created_at: string;
-  is_published: boolean | null;
-  sources_used: unknown;
-  nri_angle: string | null;
-  article_type: string | null;
+  sources: unknown;
+  diaspora_angle: string | null;
   tags: string[] | null;
-  featured_score: number | null;
-  is_pinned_featured: boolean | null;
-  pinned_until: string | null;
 };
 
+const P2_COLS =
+  "id, slug, headline, subheadline, body, category, vertical, status, is_featured, published_at, created_at, sources, diaspora_angle, tags";
+
 function parseSources(raw: unknown): Article["sources"] {
-  if (!raw) return undefined;
-  if (!Array.isArray(raw)) return undefined;
+  if (!raw || !Array.isArray(raw)) return undefined;
   return raw
     .map((s) => {
       if (typeof s === "string") return { label: s };
@@ -67,58 +64,58 @@ function parseSources(raw: unknown): Article["sources"] {
     .filter(Boolean) as Article["sources"];
 }
 
-function mapRow(row: ArticleRow): Article {
+function deriveExcerpt(subheadline: string | null, body: string): string {
+  if (subheadline && subheadline.trim()) return subheadline.trim();
+  const plain = (body ?? "").replace(/[#*_>`~\-]+/g, "").trim();
+  if (!plain) return "";
+  return plain.length > 220 ? plain.slice(0, 217).trimEnd() + "…" : plain;
+}
+
+function mapRow(row: P2Row): Article {
   return {
     id: row.id,
     slug: row.slug ?? row.id,
-    title: row.title,
-    excerpt: row.summary ?? "",
+    title: row.headline,
+    excerpt: deriveExcerpt(row.subheadline, row.body),
     body: row.body ?? "",
-    category: row.category ?? "",
-    hero_image_url: row.image_url ?? "",
-    image_caption: row.image_caption ?? null,
-    image_credit: row.image_credit ?? null,
+    category: row.category ?? row.vertical ?? "",
+    hero_image_url: "",
+    image_caption: null,
+    image_credit: null,
     published_at: row.published_at ?? row.created_at,
     created_at: row.created_at,
-    status: row.is_published ? "published" : "draft",
-    sources: parseSources(row.sources_used),
-    nri_angle: row.nri_angle ?? undefined,
-    article_type: (row.article_type === "feature" ? "feature" : "news"),
+    status: row.status === "published" ? "published" : "draft",
+    sources: parseSources(row.sources),
+    nri_angle: row.diaspora_angle ?? undefined,
+    article_type: "news",
     tags: Array.isArray(row.tags) ? row.tags : undefined,
     author: "Diaspora Desk",
-    featured_score: row.featured_score ?? 0,
-    is_pinned_featured: row.is_pinned_featured ?? false,
-    pinned_until: row.pinned_until ?? null,
+    featured_score: 0,
+    is_pinned_featured: !!row.is_featured,
+    pinned_until: null,
   };
 }
 
 export async function getFeaturedArticle(): Promise<Article | null> {
-  const sinceIso = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
-
-  const { data, error } = await supabase
-    .from("articles")
-    .select("*, story_queue!inner(priority, diaspora_relevance, raw_article_ids)")
-    .eq("is_published", true)
-    .eq("story_queue.status", "published")
-    .gte("published_at", sinceIso)
-    .order("priority", { ascending: true, foreignTable: "story_queue" })
-    .order("image_score", { ascending: false })
+  const { data } = await supabase
+    .from("p2_articles")
+    .select(P2_COLS)
+    .eq("status", "published")
+    .eq("is_featured", true)
+    .order("published_at", { ascending: false })
     .limit(1)
     .maybeSingle();
 
-  if (error || !data) {
-    const { data: fallback } = await supabase
-      .from("articles")
-      .select("*")
-      .eq("is_published", true)
-      .order("published_at", { ascending: false })
-      .order("image_score", { ascending: false })
-      .limit(1)
-      .maybeSingle();
-    return fallback ? mapRow(fallback as ArticleRow) : null;
-  }
+  if (data) return mapRow(data as P2Row);
 
-  return mapRow(data as ArticleRow);
+  const { data: fallback } = await supabase
+    .from("p2_articles")
+    .select(P2_COLS)
+    .eq("status", "published")
+    .order("published_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  return fallback ? mapRow(fallback as P2Row) : null;
 }
 
 export function readingTime(markdown: string) {
@@ -148,31 +145,31 @@ export function formatShortDate(iso: string) {
 
 export async function getPublishedArticles(): Promise<Article[]> {
   const { data, error } = await supabase
-    .from("articles")
-    .select("*")
-    .eq("is_published", true)
+    .from("p2_articles")
+    .select(P2_COLS)
+    .eq("status", "published")
     .order("published_at", { ascending: false });
 
   if (error) {
     console.error("[articles] getPublishedArticles", error);
     return [];
   }
-  return (data as ArticleRow[]).map(mapRow);
+  return (data as P2Row[]).map(mapRow);
 }
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   const { data, error } = await supabase
-    .from("articles")
-    .select("*")
+    .from("p2_articles")
+    .select(P2_COLS)
+    .eq("status", "published")
     .eq("slug", slug)
-    .eq("is_published", true)
     .maybeSingle();
 
   if (error) {
     console.error("[articles] getArticleBySlug", error);
     return null;
   }
-  return data ? mapRow(data as ArticleRow) : null;
+  return data ? mapRow(data as P2Row) : null;
 }
 
 export async function getRelatedArticles(
@@ -180,20 +177,21 @@ export async function getRelatedArticles(
   category: string,
   limit = 3
 ): Promise<Article[]> {
-  const { data, error } = await supabase
-    .from("articles")
-    .select("*")
-    .eq("is_published", true)
-    .eq("category", category)
+  let query = supabase
+    .from("p2_articles")
+    .select(P2_COLS)
+    .eq("status", "published")
     .neq("slug", currentSlug)
     .order("published_at", { ascending: false })
     .limit(limit);
+  if (category) query = query.eq("category", category);
 
+  const { data, error } = await query;
   if (error) {
     console.error("[articles] getRelatedArticles", error);
     return [];
   }
-  return (data as ArticleRow[]).map(mapRow);
+  return (data as P2Row[]).map(mapRow);
 }
 
 // Backwards-compatible aliases
@@ -207,12 +205,15 @@ export async function getArticlesByCategory(
   offset = 0
 ): Promise<Article[]> {
   const { data, error } = await supabase
-    .from("articles")
-    .select("*")
-    .eq("is_published", true)
+    .from("p2_articles")
+    .select(P2_COLS)
+    .eq("status", "published")
     .eq("category", category)
     .order("published_at", { ascending: false })
     .range(offset, offset + limit - 1);
-  if (error) { console.error(error); return []; }
-  return (data as ArticleRow[]).map(mapRow);
+  if (error) {
+    console.error("[articles] getArticlesByCategory", error);
+    return [];
+  }
+  return (data as P2Row[]).map(mapRow);
 }
