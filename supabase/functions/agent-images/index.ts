@@ -264,6 +264,44 @@ type ChosenImage = {
   verified: boolean;
 };
 
+async function uploadToStorage(
+  supabase: ReturnType<typeof createClient>,
+  sourceUrl: string,
+  articleId: string,
+): Promise<string | null> {
+  try {
+    const r = await fetch(sourceUrl, {
+      headers: { "User-Agent": "TheVideshi/1.0 (https://thevideshi.com)" },
+    });
+    if (!r.ok) {
+      console.error(`download failed ${r.status} for ${sourceUrl}`);
+      return null;
+    }
+    const buf = await r.arrayBuffer();
+    const contentType = r.headers.get("content-type") || "image/jpeg";
+    const ext = contentType.includes("png") ? "png" : contentType.includes("webp") ? "webp" : "jpg";
+    const filename = `${articleId}-${Date.now()}.${ext}`;
+    const { error } = await supabase.storage
+      .from("article-images")
+      .upload(filename, buf, {
+        contentType,
+        cacheControl: "31536000",
+        upsert: false,
+      });
+    if (error) {
+      console.error("storage upload error", error);
+      return null;
+    }
+    const { data: { publicUrl } } = supabase.storage
+      .from("article-images")
+      .getPublicUrl(filename);
+    return publicUrl;
+  } catch (e) {
+    console.error("uploadToStorage exception", e);
+    return null;
+  }
+}
+
 async function pickBestImage(
   title: string,
   category: string,
