@@ -20,7 +20,8 @@ const supabase = createClient(
 
 // ── RSS Sources ──────────────────────────────────────────────
 type Credibility = "official" | "tier1" | "tier2" | "tier3" | "nri" | "entertainment";
-const RSS_SOURCES: { name: string; url: string; category?: string; region?: string; credibility: Credibility }[] = [
+type Parser = "rss" | "html-mea";
+const RSS_SOURCES: { name: string; url: string; category?: string; region?: string; credibility: Credibility; parser?: Parser }[] = [
   { name: "Times of India",  url: "https://timesofindia.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3" },
   { name: "NDTV",            url: "https://feeds.feedburner.com/ndtvnews-top-stories", credibility: "tier3" },
   { name: "The Hindu",       url: "https://www.thehindu.com/news/national/feeder/default.rss", credibility: "tier3" },
@@ -28,11 +29,11 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   { name: "India Today",     url: "https://www.indiatoday.in/rss/1206578", credibility: "tier3" },
 
   // ── Tier 1 — Official sources ─────────────────────────────
-  // MEA & Newsonair still blocked by Akamai bot-challenge / 301 loop. Disabled
-  // until we add a headless fetcher.
+  // Newsonair has no working RSS endpoint (timeout / 301 loop). Disabled.
   { name: "PIB Press Releases", url: "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1&reg=1", credibility: "official" },
   { name: "PIB Photos",         url: "https://www.pib.gov.in/RssMain.aspx?ModId=8&Lang=1&Regid=1&reg=1", credibility: "official" },
-  // { name: "MEA India",   url: "https://www.mea.gov.in/rss/pressrelease.xml", credibility: "official" },
+  // MEA's RSS endpoint is Akamai-blocked, but the public HTML listing is fetchable. Scrape it.
+  { name: "MEA Press Releases", url: "https://www.mea.gov.in/press-releases.htm?51/Press_Releases", credibility: "official", parser: "html-mea" },
   // { name: "Newsonair",   url: "https://www.newsonair.gov.in/feed/",          credibility: "official" },
   { name: "USCIS",       url: "https://www.uscis.gov/news/rss-feed/53",          credibility: "official", category: "nri-world", region: "us" },
   { name: "RBI",         url: "https://rbi.org.in/pressreleases_rss.xml",        credibility: "official" },
