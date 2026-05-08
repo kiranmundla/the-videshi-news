@@ -375,10 +375,15 @@ Deno.serve(async (req) => {
         console.log(`· candidate score=${chosen.score} ≤ current ${currentScore} — keeping`);
         continue;
       }
+      const hostedUrl = await uploadToStorage(supabase, chosen.url, a.id);
+      if (!hostedUrl) {
+        console.error(`· upload to storage failed — keeping existing`);
+        continue;
+      }
       const { error: updErr } = await supabase
         .from("articles")
         .update({
-          image_url: chosen.url,
+          image_url: hostedUrl,
           image_caption: chosen.caption,
           image_credit: chosen.credit,
           image_verified: chosen.verified,
