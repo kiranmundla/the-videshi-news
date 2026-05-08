@@ -22,19 +22,21 @@ const supabase = createClient(
 type Credibility = "official" | "tier1" | "tier2" | "tier3" | "nri" | "entertainment";
 type Parser = "rss" | "html-mea";
 const RSS_SOURCES: { name: string; url: string; category?: string; region?: string; credibility: Credibility; parser?: Parser }[] = [
-  { name: "Times of India",  url: "https://timesofindia.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3" },
-  { name: "NDTV",            url: "https://feeds.feedburner.com/ndtvnews-top-stories", credibility: "tier3" },
-  { name: "The Hindu",       url: "https://www.thehindu.com/news/national/feeder/default.rss", credibility: "tier3" },
-  { name: "Hindustan Times", url: "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml", credibility: "tier3" },
-  { name: "India Today",     url: "https://www.indiatoday.in/rss/1206578", credibility: "tier3" },
+  { name: "Times of India",  url: "https://timesofindia.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3", category: "news" },
+  { name: "NDTV",            url: "https://feeds.feedburner.com/ndtvnews-top-stories", credibility: "tier3", category: "news" },
+  { name: "The Hindu",       url: "https://www.thehindu.com/news/national/feeder/default.rss", credibility: "tier3", category: "news" },
+  { name: "Hindustan Times", url: "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml", credibility: "tier3", category: "news" },
+  { name: "India Today",     url: "https://www.indiatoday.in/rss/1206578", credibility: "tier3", category: "news" },
+  { name: "Indian Express",  url: "https://indianexpress.com/feed", credibility: "tier3", category: "news" }, // verified 2026-05: returned 403 (Akamai). Re-test later.
+  { name: "Deccan Herald",   url: "https://www.deccanherald.com/feed", credibility: "tier3", category: "news" },
 
   // ── Tier 1 — Official sources ─────────────────────────────
-  // Newsonair has no working RSS endpoint (timeout / 301 loop). Disabled.
-  { name: "PIB Press Releases", url: "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1&reg=1", credibility: "official" },
-  { name: "PIB Photos",         url: "https://www.pib.gov.in/RssMain.aspx?ModId=8&Lang=1&Regid=1&reg=1", credibility: "official" },
+  // PIB English-language feed (verified 2026-05 — old ModId=6&Regid=1 was returning Hindi).
+  { name: "PIB English",        url: "https://pib.gov.in/RssMain.aspx?ModId=6&lang=1", credibility: "official", category: "news" },
+  // PIB PMO (ModId=2) returns HTML, not RSS — disabled.
+  // { name: "PIB PMO",          url: "https://pib.gov.in/RssMain.aspx?ModId=2&lang=1", credibility: "official" },
   // MEA's RSS endpoint is Akamai-blocked, but the public HTML listing is fetchable. Scrape it.
   { name: "MEA Press Releases", url: "https://www.mea.gov.in/press-releases.htm?51/Press_Releases", credibility: "official", parser: "html-mea" },
-  // { name: "Newsonair",   url: "https://www.newsonair.gov.in/feed/",          credibility: "official" },
   { name: "USCIS",        url: "https://www.uscis.gov/news/rss-feed/59144",      credibility: "official", category: "nri-world", region: "us" },
   { name: "USCIS Alerts", url: "https://www.uscis.gov/news/rss-feed/22984",      credibility: "official", category: "nri-world", region: "us" },
   { name: "RBI",         url: "https://rbi.org.in/pressreleases_rss.xml",        credibility: "official" },
@@ -45,18 +47,19 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   { name: "Indian Link Australia", url: "https://www.indianlink.com.au/feed",         credibility: "nri", category: "nri-world", region: "australia" },
   { name: "SBS Hindi",             url: "https://www.sbs.com.au/language/hindi/rss",  credibility: "nri", category: "nri-world", region: "australia" },
   { name: "BBC India",             url: "https://feeds.bbci.co.uk/news/world/asia/india/rss.xml", credibility: "nri", category: "nri-world", region: "uk" },
-  // Silicon India & Gulf News India have no working public RSS (403/404). Disabled.
-  // { name: "Silicon India",   url: "https://www.siliconindia.com/rss/news.xml", credibility: "nri", category: "nri-world", region: "us" },
-  // { name: "Gulf News India", url: "https://gulfnews.com/rss/india",            credibility: "nri", category: "nri-world", region: "uae" },
 
   // ── Entertainment ─────────────────────────────────────────
-  { name: "Bollywood Hungama", url: "https://www.bollywoodhungama.com/rss/news.xml", credibility: "entertainment" },
-  // Filmfare & Moneycontrol return 403/404 to server-side fetchers (Akamai). Disabled.
-  // { name: "Filmfare",     url: "https://www.filmfare.com/rss/news.rss",           credibility: "entertainment" },
-  // { name: "Moneycontrol", url: "https://www.moneycontrol.com/rss/latestnews.xml", credibility: "tier3" },
+  { name: "Bollywood Hungama", url: "https://www.bollywoodhungama.com/rss/news.xml", credibility: "entertainment", category: "entertainment" },
+  { name: "Filmfare",          url: "https://www.filmfare.com/feeds/feeds.xml",      credibility: "entertainment", category: "entertainment" },
+  // Bollywood Life (bollywoodlife.com/feed) returns 403 (Akamai). Disabled.
+
+  // ── Sports ────────────────────────────────────────────────
+  { name: "CricketTimes", url: "https://crickettimes.com/feed", credibility: "tier3", category: "sports" },
+  { name: "InsideSport",  url: "https://insidesport.in/feed",   credibility: "tier3", category: "sports" },
+  // NDTV Sports / NDTV Cricket / Business Standard / Moneycontrol all 403/404 from server-side fetchers. Disabled.
 
   // ── Business ──────────────────────────────────────────────
-  { name: "Economic Times", url: "https://economictimes.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3" },
+  { name: "Economic Times", url: "https://economictimes.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3", category: "markets-finance" },
 ];
 
 interface RawArticle {
