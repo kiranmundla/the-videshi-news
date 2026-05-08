@@ -398,6 +398,42 @@ export type Database = {
           },
         ]
       }
+      p2_topic_signals: {
+        Row: {
+          created_at: string
+          id: string
+          signal_id: string
+          topic_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          signal_id: string
+          topic_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          signal_id?: string
+          topic_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "p2_topic_signals_signal_id_fkey"
+            columns: ["signal_id"]
+            isOneToOne: false
+            referencedRelation: "p2_signals"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "p2_topic_signals_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "p2_topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       p2_topics: {
         Row: {
           canonical_title: string
