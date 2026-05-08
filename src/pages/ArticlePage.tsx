@@ -103,20 +103,22 @@ export default function ArticlePage() {
           </div>
         </article>
 
-        <figure className="mt-10 max-w-5xl mx-auto">
+        <figure className="mt-10 w-full">
           <HeroImage
             src={article.hero_image_url}
             alt={article.title}
             loading="eager"
             category={article.category}
-            className="w-full h-[420px] object-cover object-top"
+            className="block w-full h-[240px] md:h-[480px] object-cover object-top"
           />
-          <ImageCaption
-            caption={article.image_caption}
-            credit={article.image_credit}
-            size="md"
-            align="center"
-          />
+          <div className="text-center">
+            <ImageCaption
+              caption={article.image_caption}
+              credit={article.image_credit}
+              size="md"
+              align="center"
+            />
+          </div>
         </figure>
 
         <div className="article-prose max-w-2xl mx-auto mt-12">
