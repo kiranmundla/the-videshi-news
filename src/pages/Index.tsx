@@ -190,6 +190,8 @@ export default function Index() {
           )}
         </section>
 
+        <HeroCarousel />
+
         {sections.map((s) => (
           <section key={s.slug}>
             <SectionHeader label={s.label} href={s.href} id={`section-${s.slug}`} />
