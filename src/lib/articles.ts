@@ -1,4 +1,9 @@
-import { supabase } from "@/integrations/supabase/client";
+import { supabase as supabaseTyped } from "@/integrations/supabase/client";
+
+// Cast to any: Supabase types haven't regenerated since `category` was added to p2_articles.
+const supabase = supabaseTyped as unknown as {
+  from: (table: string) => any;
+};
 
 export type Article = {
   id: string;
