@@ -200,7 +200,8 @@ export const getRelated = (category: string, excludeSlug: string, limit = 3) =>
 
 export async function getArticlesByCategory(
   category: string,
-  limit = 20
+  limit = 12,
+  offset = 0
 ): Promise<Article[]> {
   const { data, error } = await supabase
     .from("articles")
@@ -208,7 +209,7 @@ export async function getArticlesByCategory(
     .eq("is_published", true)
     .eq("category", category)
     .order("published_at", { ascending: false })
-    .limit(limit);
+    .range(offset, offset + limit - 1);
   if (error) { console.error(error); return []; }
   return (data as ArticleRow[]).map(mapRow);
 }
