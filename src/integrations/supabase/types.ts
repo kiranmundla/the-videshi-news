@@ -20,14 +20,17 @@ export type Database = {
           body: string
           category: string
           created_at: string | null
+          featured_score: number
           id: string
           image_caption: string | null
           image_credit: string | null
           image_score: number | null
           image_url: string | null
           image_verified: boolean | null
+          is_pinned_featured: boolean
           is_published: boolean | null
           nri_angle: string | null
+          pinned_until: string | null
           published_at: string | null
           read_time_min: number | null
           slug: string | null
@@ -44,14 +47,17 @@ export type Database = {
           body: string
           category: string
           created_at?: string | null
+          featured_score?: number
           id?: string
           image_caption?: string | null
           image_credit?: string | null
           image_score?: number | null
           image_url?: string | null
           image_verified?: boolean | null
+          is_pinned_featured?: boolean
           is_published?: boolean | null
           nri_angle?: string | null
+          pinned_until?: string | null
           published_at?: string | null
           read_time_min?: number | null
           slug?: string | null
@@ -68,14 +74,17 @@ export type Database = {
           body?: string
           category?: string
           created_at?: string | null
+          featured_score?: number
           id?: string
           image_caption?: string | null
           image_credit?: string | null
           image_score?: number | null
           image_url?: string | null
           image_verified?: boolean | null
+          is_pinned_featured?: boolean
           is_published?: boolean | null
           nri_angle?: string | null
+          pinned_until?: string | null
           published_at?: string | null
           read_time_min?: number | null
           slug?: string | null
@@ -424,6 +433,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      calculate_featured_score: {
+        Args: { article_id: string }
+        Returns: number
+      }
       claim_queue_job: {
         Args: { p_lock_secs?: number; p_status: string; p_worker_id: string }
         Returns: {
