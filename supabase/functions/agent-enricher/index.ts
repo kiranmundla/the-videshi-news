@@ -410,6 +410,17 @@ Deno.serve(async (req) => {
       articleType === "feature"
         ? "1,000–1,500 words MAXIMUM including all sections combined (in-depth analysis/feature)"
         : "300–400 words MAXIMUM including all sections combined (concise news brief)";
+
+    // Detect NRI signals from brief + draft text so we can tailor the angle.
+    const signalHaystack = [
+      brief.headline, brief.why_it_matters,
+      ...(Array.isArray(brief.key_facts) ? brief.key_facts : []),
+      draft.title, draft.summary,
+      typeof draft.body === "string" ? draft.body : JSON.stringify(draft.body ?? ""),
+    ].filter(Boolean).join(" \n ");
+    const nriSignals = detectNriSignals(signalHaystack);
+    const nriFocusBlock = nriAngleFocus(nriSignals);
+    console.log(`[enricher] nri signals job=${job.id}`, nriSignals.all);
     const userPrompt = `Take this factual draft and turn it into a rich, deeply contextual article for the Indian-American diaspora.
 
 STORY BRIEF:
