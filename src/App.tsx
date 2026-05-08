@@ -11,6 +11,11 @@ import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Admin from "./pages/Admin.tsx";
+import PipelineLayout from "./pages/pipeline/PipelineLayout.tsx";
+import FeedSourcesPage from "./pages/pipeline/FeedSourcesPage.tsx";
+import TopicRadarPage from "./pages/pipeline/TopicRadarPage.tsx";
+import ReviewQueuePage from "./pages/pipeline/ReviewQueuePage.tsx";
+import RunLogPage from "./pages/pipeline/RunLogPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +32,13 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/articles/:slug" element={<ArticlePage />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/pipeline" element={<PipelineLayout />}>
+              <Route index element={<FeedSourcesPage />} />
+              <Route path="feeds" element={<FeedSourcesPage />} />
+              <Route path="topics" element={<TopicRadarPage />} />
+              <Route path="review" element={<ReviewQueuePage />} />
+              <Route path="run" element={<RunLogPage />} />
+            </Route>
             <Route path="/:category" element={<CategoryPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
