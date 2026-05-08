@@ -1,0 +1,1 @@
+ALTER TABLE public.raw_articles ADD COLUMN IF NOT EXISTS credibility text DEFAULT 'tier3';
