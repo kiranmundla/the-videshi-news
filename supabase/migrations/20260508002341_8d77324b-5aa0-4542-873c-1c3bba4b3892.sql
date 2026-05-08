@@ -1,0 +1,1 @@
+update public.articles set image_verified = false, image_score = null where is_published = true;
