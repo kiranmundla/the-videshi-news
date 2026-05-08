@@ -306,6 +306,51 @@ export type Database = {
         }
         Relationships: []
       }
+      p2_image_sources: {
+        Row: {
+          api_key_secret: string | null
+          created_at: string
+          endpoint_url: string | null
+          good_for_verticals: string[]
+          id: string
+          is_active: boolean
+          max_candidates: number
+          name: string
+          notes: string | null
+          priority: number
+          skip_for_verticals: string[]
+          source_type: string
+        }
+        Insert: {
+          api_key_secret?: string | null
+          created_at?: string
+          endpoint_url?: string | null
+          good_for_verticals?: string[]
+          id?: string
+          is_active?: boolean
+          max_candidates?: number
+          name: string
+          notes?: string | null
+          priority?: number
+          skip_for_verticals?: string[]
+          source_type: string
+        }
+        Update: {
+          api_key_secret?: string | null
+          created_at?: string
+          endpoint_url?: string | null
+          good_for_verticals?: string[]
+          id?: string
+          is_active?: boolean
+          max_candidates?: number
+          name?: string
+          notes?: string | null
+          priority?: number
+          skip_for_verticals?: string[]
+          source_type?: string
+        }
+        Relationships: []
+      }
       p2_signals: {
         Row: {
           feed_source_id: string | null
@@ -794,6 +839,155 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      videshi_source_logs: {
+        Row: {
+          agent: string
+          duration_ms: number | null
+          error_message: string | null
+          fetched_at: string
+          id: string
+          items_accepted: number | null
+          items_fetched: number | null
+          items_new: number | null
+          source_id: string
+          status: string | null
+        }
+        Insert: {
+          agent: string
+          duration_ms?: number | null
+          error_message?: string | null
+          fetched_at?: string
+          id?: string
+          items_accepted?: number | null
+          items_fetched?: number | null
+          items_new?: number | null
+          source_id: string
+          status?: string | null
+        }
+        Update: {
+          agent?: string
+          duration_ms?: number | null
+          error_message?: string | null
+          fetched_at?: string
+          id?: string
+          items_accepted?: number | null
+          items_fetched?: number | null
+          items_new?: number | null
+          source_id?: string
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "videshi_source_logs_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "videshi_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      videshi_sources: {
+        Row: {
+          acceptance_rate: number | null
+          api_key_secret: string | null
+          attribution_text: string | null
+          avg_items_per_day: number | null
+          categories: string[]
+          consecutive_errors: number
+          created_at: string
+          description: string | null
+          endpoint_url: string | null
+          fetch_interval_min: number
+          id: string
+          is_active: boolean
+          last_error: string | null
+          last_error_at: string | null
+          last_fetched_at: string | null
+          license_type: string | null
+          max_items: number
+          name: string
+          notes: string | null
+          pipeline_stage: string
+          priority: number
+          proxy_type: string | null
+          requires_attribution: boolean
+          requires_proxy: boolean
+          skip_verticals: string[]
+          slug: string
+          source_type: string
+          total_fetches: number
+          total_items: number
+          updated_at: string
+          verticals: string[]
+        }
+        Insert: {
+          acceptance_rate?: number | null
+          api_key_secret?: string | null
+          attribution_text?: string | null
+          avg_items_per_day?: number | null
+          categories?: string[]
+          consecutive_errors?: number
+          created_at?: string
+          description?: string | null
+          endpoint_url?: string | null
+          fetch_interval_min?: number
+          id?: string
+          is_active?: boolean
+          last_error?: string | null
+          last_error_at?: string | null
+          last_fetched_at?: string | null
+          license_type?: string | null
+          max_items?: number
+          name: string
+          notes?: string | null
+          pipeline_stage: string
+          priority?: number
+          proxy_type?: string | null
+          requires_attribution?: boolean
+          requires_proxy?: boolean
+          skip_verticals?: string[]
+          slug: string
+          source_type: string
+          total_fetches?: number
+          total_items?: number
+          updated_at?: string
+          verticals?: string[]
+        }
+        Update: {
+          acceptance_rate?: number | null
+          api_key_secret?: string | null
+          attribution_text?: string | null
+          avg_items_per_day?: number | null
+          categories?: string[]
+          consecutive_errors?: number
+          created_at?: string
+          description?: string | null
+          endpoint_url?: string | null
+          fetch_interval_min?: number
+          id?: string
+          is_active?: boolean
+          last_error?: string | null
+          last_error_at?: string | null
+          last_fetched_at?: string | null
+          license_type?: string | null
+          max_items?: number
+          name?: string
+          notes?: string | null
+          pipeline_stage?: string
+          priority?: number
+          proxy_type?: string | null
+          requires_attribution?: boolean
+          requires_proxy?: boolean
+          skip_verticals?: string[]
+          slug?: string
+          source_type?: string
+          total_fetches?: number
+          total_items?: number
+          updated_at?: string
+          verticals?: string[]
+        }
+        Relationships: []
       }
     }
     Views: {
