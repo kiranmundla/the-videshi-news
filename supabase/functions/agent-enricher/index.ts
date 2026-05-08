@@ -1,5 +1,11 @@
 // agent-enricher: claims an 'enriching' job and produces a rich, diaspora-focused article structure.
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+import { createClient, type SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+import {
+  callClaudeResilient,
+  logAlert,
+  sendAlertEmail,
+  moveToDLQ,
+} from "../_shared/resilience.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -7,12 +13,16 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+const AGENT = "agent-enricher";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY")!;
 const UNSPLASH_ACCESS_KEY = Deno.env.get("UNSPLASH_ACCESS_KEY") ?? "";
 const MODEL = "claude-haiku-4-5-20251001";
 const VISION_MODEL = "claude-haiku-4-5";
+
+let _sb: SupabaseClient;
+let _jobId: string | undefined;
 
 // ---------------- Image fetching helpers ----------------
 
@@ -24,34 +34,14 @@ type ImageResult = {
   image_score: number;
 };
 
-async function anthropicFetch(body: any, maxRetries = 3): Promise<any> {
-  for (let i = 0; i < maxRetries; i++) {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "x-api-key": ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-    const text = await res.text();
-    let data: any = null;
-    try { data = text ? JSON.parse(text) : null; } catch { /* keep null */ }
-
-    const overloaded = res.status === 529 || data?.error?.type === "overloaded_error";
-    if (overloaded && i < maxRetries - 1) {
-      const waitMs = Math.pow(2, i) * 5000;
-      console.log(`[anthropic] overloaded (status=${res.status}), retrying in ${waitMs}ms (attempt ${i + 1}/${maxRetries})`);
-      await new Promise((r) => setTimeout(r, waitMs));
-      continue;
-    }
-    if (!res.ok) {
-      throw new Error(`Claude error ${res.status}: ${text.slice(0, 500)}`);
-    }
-    return data;
-  }
-  throw new Error("Claude API overloaded after retries");
+async function anthropicFetch(body: any): Promise<any> {
+  return await callClaudeResilient({
+    apiKey: ANTHROPIC_API_KEY,
+    body,
+    agent: AGENT,
+    jobId: _jobId,
+    supabase: _sb,
+  });
 }
 
 async function haikuJson(prompt: string, maxTokens = 200): Promise<any | null> {
