@@ -241,6 +241,10 @@ async function generateCaption(imageUrl: string, title: string): Promise<string>
   return caption;
 }
 
+// Categories where we ONLY trust Wikipedia/Wikimedia (real photos of real people/places).
+// Stock photos from Unsplash/Pexels often mislead for hard news.
+const NEWS_ONLY_CATEGORIES = new Set(["news", "politics", "world", "india", "us-india", "nri-affairs"]);
+
 async function findImage(title: string, category: string): Promise<Hit | null> {
   const keywords = await extractKeywords(title, category);
   console.log(`keywords for "${title}":`, keywords);
@@ -254,7 +258,13 @@ async function findImage(title: string, category: string): Promise<Hit | null> {
     }
   }
 
-  // Pass 2: Unsplash.
+  const isNews = NEWS_ONLY_CATEGORIES.has((category ?? "").toLowerCase().trim());
+  if (isNews) {
+    console.log(`✗ news article — skipping stock photo fallbacks for "${title}"`);
+    return null;
+  }
+
+  // Pass 2: Unsplash (lifestyle/travel/sports/etc only).
   for (const kw of keywords) {
     const hit = await searchUnsplash(kw);
     if (hit && (await isImageRelevant(hit.url, title))) {
