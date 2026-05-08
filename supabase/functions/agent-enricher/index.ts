@@ -141,7 +141,7 @@ async function visionScore(imageUrl: string, title: string): Promise<{ score: nu
           role: "user",
           content: [
             { type: "image", source: { type: "url", url: imageUrl } },
-            { type: "text", text: `Article: "${title}". Score this image 1-10 for relevance. Reply JSON only: {"score": N, "description": "what you see in one sentence"}` },
+            { type: "text", text: `Article: "${title}". Score this image 1-10 for relevance. Reply JSON only: {"score": N, "description": "8 words or fewer describing only what you see — no analysis, no relevance explanation. Examples: 'Kolkata Victoria Memorial at dusk', 'Indian Air Force fighter jet', 'Mamata Banerjee at press conference'"}` },
           ],
         }],
       }),
