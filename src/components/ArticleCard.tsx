@@ -1,9 +1,27 @@
 import { Link } from "react-router-dom";
 import { Article, formatShortDate, readingTime } from "@/lib/articles";
-import HeroImage from "@/components/HeroImage";
-
+import HeroImage, { isValidImage } from "@/components/HeroImage";
 
 type Variant = "hero" | "featured" | "card" | "long" | "compact";
+
+const ACCENT: Record<string, string> = {
+  news: "hsl(var(--primary))",
+  politics: "hsl(var(--primary))",
+  economy: "#2a7a4b",
+  "markets-finance": "#2a7a4b",
+  immigration: "#6b4fa0",
+  "nri-world": "#6b4fa0",
+  diaspora: "#6b4fa0",
+  tech: "#1a6fa8",
+  technology: "#1a6fa8",
+  culture: "#8a6a1a",
+  "lifestyle-health": "#8a6a1a",
+};
+
+function accentFor(category?: string): string {
+  if (!category) return "hsl(var(--primary))";
+  return ACCENT[category.toLowerCase()] ?? "hsl(var(--primary))";
+}
 
 export default function ArticleCard({
   article,
@@ -19,20 +37,25 @@ export default function ArticleCard({
   const time = readingTime(article.body);
   const href = `/articles/${article.slug}`;
   const featureLabel = featured ? "FEATURED" : null;
-  if (typeof window !== "undefined" && /bengal|election/i.test(article.title)) {
-    console.log("[ArticleCard]", article.title, "image_url=", article.hero_image_url);
-  }
+  const hasImage = isValidImage(article.hero_image_url);
+  const accent = accentFor(article.category);
+
+  // ===================== COMPACT =====================
   if (variant === "compact") {
     return (
       <Link to={href} className="group flex gap-4 items-start">
-        <HeroImage
-          src={article.hero_image_url}
-          alt={article.title}
-          loading="lazy"
-          category={article.category}
-          className="w-20 h-20 object-cover flex-shrink-0"
-        />
-        <div className="min-w-0">
+        {hasImage && (
+          <HeroImage
+            src={article.hero_image_url}
+            alt={article.title}
+            loading="lazy"
+            className="w-20 h-20 object-cover flex-shrink-0"
+          />
+        )}
+        <div
+          className={`min-w-0 ${hasImage ? "" : "border-l-2 pl-3"}`}
+          style={hasImage ? undefined : { borderColor: accent }}
+        >
           <p className="smallcaps text-primary mb-1">
             {featureLabel && (
               <span className="bg-primary text-primary-foreground px-1 py-0.5 mr-1.5 tracking-wider">
@@ -49,7 +72,32 @@ export default function ArticleCard({
     );
   }
 
+  // ===================== LONG =====================
   if (variant === "long") {
+    if (!hasImage) {
+      return (
+        <Link
+          to={href}
+          className="group block bg-secondary/60 p-6 md:p-10 border hairline border-l-2"
+          style={{ borderLeftColor: accent }}
+        >
+          <p className="smallcaps text-primary mb-3">
+            {featureLabel ? "Feature" : "Long read"} · {article.category}
+          </p>
+          <h2 className="font-serif font-bold text-[1.75rem] md:text-[2.5rem] leading-[1.15] text-foreground group-hover:text-primary transition-colors">
+            {article.title}
+          </h2>
+          {article.excerpt && (
+            <p className="mt-4 text-foreground/75 leading-relaxed text-[0.98rem] line-clamp-3">
+              {article.excerpt}
+            </p>
+          )}
+          <p className="mt-5 text-xs text-muted-foreground">
+            {article.author ? `By ${article.author} · ` : ""}{time} min read
+          </p>
+        </Link>
+      );
+    }
     return (
       <Link
         to={href}
@@ -61,7 +109,6 @@ export default function ArticleCard({
               src={article.hero_image_url}
               alt={article.title}
               loading="lazy"
-              category={article.category}
               className="w-full h-full object-cover object-center"
             />
           </div>
@@ -84,28 +131,72 @@ export default function ArticleCard({
     );
   }
 
-  const headlineSize =
+  // ===================== HERO / FEATURED / CARD =====================
+  // Headline sizes (text-first cards bump up ~20%)
+  const headlineSizeWithImage =
     variant === "hero"
       ? "text-[2rem] md:text-[2.75rem] lg:text-[3rem] leading-[1.05]"
       : variant === "featured"
       ? "text-[1.35rem] md:text-[1.5rem] leading-[1.2]"
       : "text-[1.05rem] md:text-[1.125rem] leading-snug";
 
-  const aspect = "aspect-[16/9]";
+  const headlineSizeNoImage =
+    variant === "hero"
+      ? "text-[2.4rem] md:text-[3.25rem] lg:text-[3.6rem] leading-[1.05]"
+      : variant === "featured"
+      ? "text-[1.6rem] md:text-[1.8rem] leading-[1.2]"
+      : "text-[1.25rem] md:text-[1.35rem] leading-snug";
+
+  if (!hasImage) {
+    return (
+      <Link
+        to={href}
+        className="group block border-l-2 pl-4 md:pl-5"
+        style={{ borderColor: accent }}
+      >
+        {!hideCategory && (
+          <p className="smallcaps text-primary mb-2">
+            {featureLabel && (
+              <span className="bg-primary text-primary-foreground px-1.5 py-0.5 mr-2 tracking-wider">
+                {featureLabel}
+              </span>
+            )}
+            {article.category}
+          </p>
+        )}
+        <h2
+          className={`font-serif font-bold text-foreground group-hover:text-primary transition-colors ${headlineSizeNoImage}`}
+        >
+          {article.title}
+        </h2>
+        {article.excerpt && (
+          <p
+            className={`mt-3 text-foreground/70 leading-relaxed line-clamp-2 ${
+              variant === "hero" ? "text-base md:text-lg" : "text-[0.95rem]"
+            }`}
+          >
+            {article.excerpt}
+          </p>
+        )}
+        <p className="mt-3 text-xs text-muted-foreground">
+          {article.author ? `By ${article.author} · ` : ""}
+          {formatShortDate(article.published_at)} · {time} min read
+        </p>
+      </Link>
+    );
+  }
 
   return (
     <Link to={href} className="group block">
       <figure className="w-full">
-        <div className={`w-full ${aspect} overflow-hidden`}>
+        <div className="w-full aspect-[16/9] overflow-hidden">
           <HeroImage
             src={article.hero_image_url}
             alt={article.title}
             loading={variant === "hero" ? "eager" : "lazy"}
-            category={article.category}
             className="w-full h-full object-cover object-center group-hover:scale-[1.01] transition-transform duration-500"
           />
         </div>
-        
       </figure>
       {!hideCategory && (
         <p className="smallcaps text-primary mt-4 mb-2">
@@ -117,14 +208,16 @@ export default function ArticleCard({
           {article.category}
         </p>
       )}
-      <h2 className={`font-serif font-bold text-foreground group-hover:text-primary transition-colors ${hideCategory ? "mt-2" : ""} ${headlineSize}`}>
+      <h2
+        className={`font-serif font-bold text-foreground group-hover:text-primary transition-colors ${
+          hideCategory ? "mt-2" : ""
+        } ${headlineSizeWithImage}`}
+      >
         {article.title}
       </h2>
-      <p className="hidden mt-3 text-foreground/75 leading-relaxed text-base line-clamp-2">
-        {article.excerpt}
-      </p>
       <p className="mt-3 text-xs text-muted-foreground">
-        {article.author ? `By ${article.author} · ` : ""}{formatShortDate(article.published_at)} · {time} min read
+        {article.author ? `By ${article.author} · ` : ""}
+        {formatShortDate(article.published_at)} · {time} min read
       </p>
     </Link>
   );

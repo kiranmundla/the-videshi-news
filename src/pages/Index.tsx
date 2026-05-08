@@ -125,9 +125,8 @@ export default function Index() {
   const layout = useMemo(() => {
     const used = new Set<string>();
 
-    // 1. Featured (pinned > highest featured_score)
-    const featured =
-      featuredArticle ?? allArticles[0] ?? null;
+    // 1. Featured (must have image; getFeaturedArticle handles fallback)
+    const featured = featuredArticle;
     if (featured) used.add(featured.id);
 
     // 2. Latest — ALL published articles (do not dedupe featured, no category filter)
