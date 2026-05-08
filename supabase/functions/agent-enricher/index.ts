@@ -552,13 +552,22 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
 
     // Fetch hero image inline so no article is published without one.
     try {
-      const img = await fetchImageForArticle(enriched.title, job.category || "world");
+      const firstPara = (() => {
+        if (Array.isArray(enriched.body)) {
+          const p = enriched.body.find((b: any) => b?.type === "paragraph" && typeof b.content === "string");
+          if (p) return p.content as string;
+        }
+        return enriched.summary || "";
+      })();
+      const img = await fetchImageForArticle(enriched.title, firstPara, job.category || "world");
       if (img) {
         enriched.image_url = img.image_url;
         enriched.image_caption = img.image_caption;
         enriched.image_credit = img.image_credit;
         enriched.image_verified = img.image_verified;
         enriched.image_score = img.image_score;
+        enriched.subject_type = img.subject_type;
+        enriched.subject_name = img.subject_name;
       } else {
         console.warn(`[image] no image found for "${enriched.title}"`);
       }
