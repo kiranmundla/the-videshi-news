@@ -40,16 +40,12 @@ export default function PlaceholderCard({ variant = "card" }: { variant?: Varian
         : "text-[1.05rem] md:text-[1.125rem] leading-snug";
 
   const aspect = "aspect-[16/9]";
-  const maxH =
-    variant === "hero"
-      ? "md:max-h-[min(480px,60vh)]"
-      : variant === "featured"
-        ? "md:max-h-[240px]"
-        : "md:max-h-[180px]";
 
   return (
     <div className="block opacity-80">
-      <div className={`w-full ${aspect} ${maxH} bg-muted`} />
+      <div className={`w-full ${aspect} bg-muted overflow-hidden flex items-center justify-center`}>
+        <span className="smallcaps text-muted-foreground text-xs">Coming soon</span>
+      </div>
       <p className="smallcaps text-primary mt-4 mb-2">Coming soon</p>
       <h2 className={`font-serif text-muted-foreground ${headlineSize}`}>
         More stories coming soon
