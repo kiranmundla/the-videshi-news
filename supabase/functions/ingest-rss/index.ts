@@ -40,23 +40,22 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
 
   // ── Tier 3 — NRI / diaspora sources ───────────────────────
   { name: "NRI Pulse",             url: "https://nripulse.com/feed",                  credibility: "nri", category: "nri-world", region: "us" },
-  { name: "Silicon India",         url: "https://www.siliconindia.com/rss/news.xml",  credibility: "nri", category: "nri-world", region: "us" },
-  { name: "Gulf News India",       url: "https://gulfnews.com/rss/india",             credibility: "nri", category: "nri-world", region: "uae" },
   { name: "Indian Link Australia", url: "https://www.indianlink.com.au/feed",         credibility: "nri", category: "nri-world", region: "australia" },
   { name: "SBS Hindi",             url: "https://www.sbs.com.au/language/hindi/rss",  credibility: "nri", category: "nri-world", region: "australia" },
   { name: "BBC India",             url: "https://feeds.bbci.co.uk/news/world/asia/india/rss.xml", credibility: "nri", category: "nri-world", region: "uk" },
+  // Silicon India & Gulf News India have no working public RSS (403/404). Disabled.
+  // { name: "Silicon India",   url: "https://www.siliconindia.com/rss/news.xml", credibility: "nri", category: "nri-world", region: "us" },
+  // { name: "Gulf News India", url: "https://gulfnews.com/rss/india",            credibility: "nri", category: "nri-world", region: "uae" },
 
   // ── Entertainment ─────────────────────────────────────────
   { name: "Bollywood Hungama", url: "https://www.bollywoodhungama.com/rss/news.xml", credibility: "entertainment" },
-  // Filmfare & SiliconIndia & Moneycontrol & Gulf News India return 403/404 to
-  // server-side fetchers (Akamai / no public RSS endpoint). Disabled.
-  // { name: "Filmfare",         url: "https://www.filmfare.com/rss/news.rss",                 credibility: "entertainment" },
-  // { name: "Silicon India",    url: "https://www.siliconindia.com/rss/news.xml",             credibility: "nri" },
-  // { name: "Moneycontrol",     url: "https://www.moneycontrol.com/rss/latestnews.xml",       credibility: "tier3" },
-  // { name: "Gulf News India",  url: "https://gulfnews.com/rss/india",                        credibility: "nri" },
+  // Filmfare & Moneycontrol return 403/404 to server-side fetchers (Akamai). Disabled.
+  // { name: "Filmfare",     url: "https://www.filmfare.com/rss/news.rss",           credibility: "entertainment" },
+  // { name: "Moneycontrol", url: "https://www.moneycontrol.com/rss/latestnews.xml", credibility: "tier3" },
 
   // ── Business ──────────────────────────────────────────────
   { name: "Economic Times", url: "https://economictimes.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3" },
+];
 
 interface RawArticle {
   credibility?: string;
