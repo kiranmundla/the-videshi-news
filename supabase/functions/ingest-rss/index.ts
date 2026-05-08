@@ -152,16 +152,23 @@ async function fetchFeed(source: typeof RSS_SOURCES[0]): Promise<RawArticle[]> {
       );
       return [];
     }
-    const xml = await res.text();
-    const trimmed = xml.trimStart().slice(0, 200);
+    const body = await res.text();
+
+    if (source.parser === "html-mea") {
+      const items = parseMeaHtml(body, source.name, source.url, source.credibility);
+      console.log(`[ingest-rss] ${source.name} → ${items.length} items (html-mea)`);
+      return items;
+    }
+
+    const trimmed = body.trimStart().slice(0, 200);
     // Detect HTML / bot-challenge pages returned with 200
     if (!/^<\?xml|^<rss|^<feed/i.test(trimmed)) {
       console.error(
-        `[ingest-rss] ${source.name} returned non-RSS content (${xml.length} bytes) — ${source.url} :: ${trimmed.replace(/\s+/g, " ")}`
+        `[ingest-rss] ${source.name} returned non-RSS content (${body.length} bytes) — ${source.url} :: ${trimmed.replace(/\s+/g, " ")}`
       );
       return [];
     }
-    const items = parseRSS(xml, source.name, source.url, source.credibility);
+    const items = parseRSS(body, source.name, source.url, source.credibility);
     console.log(`[ingest-rss] ${source.name} → ${items.length} items`);
     return items;
   } catch (err) {
