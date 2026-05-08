@@ -1,4 +1,5 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import Anthropic from 'https://esm.sh/@anthropic-ai/sdk@0.27.0'
 
 const supabase = createClient(
   Deno.env.get('SUPABASE_URL')!,
@@ -7,8 +8,11 @@ const supabase = createClient(
 
 const UNSPLASH_KEY = Deno.env.get('UNSPLASH_ACCESS_KEY')!
 const PEXELS_KEY = Deno.env.get('PEXELS_API_KEY')!
+const ANTHROPIC_KEY = Deno.env.get('ANTHROPIC_API_KEY')!
 const BUCKET = 'article-images'
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!
+
+const SKIP_IMAGE_VERTICALS = ['politics','economy','immigration','tech']
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -67,35 +71,85 @@ function buildQuery(headline: string, tags: string[], vertical: string): string 
   return VERTICAL_IMAGE_TERMS[vertical] ?? 'India news'
 }
 
-async function fetchUnsplash(query: string): Promise<string | null> {
+async function fetchUnsplashMany(query: string, count: number): Promise<string[]> {
   try {
     const res = await fetch(
-      `https://api.unsplash.com/photos/random?query=${encodeURIComponent(query)}&orientation=landscape&content_filter=high`,
+      `https://api.unsplash.com/photos/random?query=${encodeURIComponent(query)}&orientation=landscape&content_filter=high&count=${count}`,
       { headers: { Authorization: `Client-ID ${UNSPLASH_KEY}` } }
     )
-    if (!res.ok) return null
+    if (!res.ok) return []
     const data = await res.json()
-    return data?.urls?.regular ?? null
+    if (!Array.isArray(data)) return []
+    return data.map((p: any) => p?.urls?.regular).filter(Boolean) as string[]
   } catch {
-    return null
+    return []
   }
 }
 
-async function fetchPexels(query: string): Promise<string | null> {
+async function fetchPexelsMany(query: string, count: number): Promise<string[]> {
   try {
     const res = await fetch(
-      `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=5&orientation=landscape`,
+      `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=${count}&orientation=landscape`,
       { headers: { Authorization: PEXELS_KEY } }
     )
-    if (!res.ok) return null
+    if (!res.ok) return []
     const data = await res.json()
     const photos = data?.photos ?? []
-    if (photos.length === 0) return null
-    const pick = photos[Math.floor(Math.random() * photos.length)]
-    return pick?.src?.large2x ?? pick?.src?.large ?? null
+    return photos
+      .map((p: any) => p?.src?.large2x ?? p?.src?.large)
+      .filter(Boolean) as string[]
   } catch {
-    return null
+    return []
   }
+}
+
+async function scoreCandidates(urls: string[]): Promise<{ url: string | null; score: number }> {
+  const client = new Anthropic({ apiKey: ANTHROPIC_KEY })
+
+  let bestUrl: string | null = null
+  let bestScore = 0
+
+  for (const url of urls) {
+    try {
+      const res = await fetch(url)
+      if (!res.ok) continue
+      const buffer = await res.arrayBuffer()
+      const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)))
+      const contentType = res.headers.get('content-type') ?? 'image/jpeg'
+
+      const response = await client.messages.create({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 100,
+        messages: [{
+          role: 'user',
+          content: [
+            {
+              type: 'image',
+              source: { type: 'base64', media_type: contentType as any, data: base64 }
+            },
+            {
+              type: 'text',
+              text: `Score this image 1-10 for use as a news article thumbnail. 
+Consider: Is it clear and high quality? Does it look professional? 
+Is it relevant for Indian diaspora news (avoid: generic stock photos 
+of random Western people, abstract shapes, low resolution)?
+Reply with ONLY a number 1-10.`
+            }
+          ]
+        }]
+      })
+
+      const score = parseInt((response.content[0] as any).text.trim())
+      if (!isNaN(score) && score > bestScore) {
+        bestScore = score
+        bestUrl = url
+      }
+    } catch {
+      continue
+    }
+  }
+
+  return { url: bestScore >= 8 ? bestUrl : null, score: bestScore }
 }
 
 async function downloadToStorage(imageUrl: string, articleId: string): Promise<string | null> {
@@ -139,41 +193,47 @@ Deno.serve(async (req) => {
   const results: any[] = []
 
   for (const article of articles) {
-    let query = buildQuery(article.headline, article.tags ?? [], article.vertical)
+    if (SKIP_IMAGE_VERTICALS.includes(article.vertical)) {
+      results.push({ id: article.id, headline: article.headline, status: 'skipped_vertical', vertical: article.vertical })
+      continue
+    }
 
+    let query = buildQuery(article.headline, article.tags ?? [], article.vertical)
     if (query.split(' ').some(w => POOR_IMAGE_KEYWORDS.has(w.toLowerCase()))) {
       query = VERTICAL_IMAGE_TERMS[article.vertical] ?? 'India news'
     }
 
-    let imageUrl = await fetchUnsplash(query)
-    let source = 'unsplash'
-
-    if (!imageUrl) {
-      imageUrl = await fetchPexels(query)
-      source = 'pexels'
+    // Fetch 3 candidates: Unsplash first, supplement with Pexels
+    const candidates: string[] = []
+    candidates.push(...(await fetchUnsplashMany(query, 3)))
+    if (candidates.length < 3) {
+      const need = 3 - candidates.length
+      candidates.push(...(await fetchPexelsMany(query, need)))
     }
 
-    if (!imageUrl) {
-      const fallbackQuery = VERTICAL_IMAGE_TERMS[article.vertical] ?? 'India news'
-      imageUrl = (await fetchUnsplash(fallbackQuery)) ?? (await fetchPexels(fallbackQuery))
-      source = 'fallback'
-    }
-
-    if (!imageUrl) {
-      results.push({ id: article.id, headline: article.headline, status: 'no_image_found' })
+    if (candidates.length === 0) {
+      results.push({ id: article.id, headline: article.headline, status: 'no_candidates' })
       continue
     }
 
-    const storedUrl = await downloadToStorage(imageUrl, article.id)
+    const { url: bestUrl, score } = await scoreCandidates(candidates)
+
+    if (!bestUrl) {
+      // Score < 8 — leave image_url null, do not download
+      results.push({ id: article.id, headline: article.headline, status: 'rejected_low_score', score, query })
+      continue
+    }
+
+    const storedUrl = await downloadToStorage(bestUrl, article.id)
 
     if (!storedUrl) {
-      await supabase.from('p2_articles').update({ image_url: imageUrl }).eq('id', article.id)
-      results.push({ id: article.id, status: 'direct_url', source })
+      await supabase.from('p2_articles').update({ image_url: bestUrl }).eq('id', article.id)
+      results.push({ id: article.id, status: 'direct_url', score, query })
       continue
     }
 
     await supabase.from('p2_articles').update({ image_url: storedUrl }).eq('id', article.id)
-    results.push({ id: article.id, headline: article.headline, status: 'ok', source, query })
+    results.push({ id: article.id, headline: article.headline, status: 'ok', score, query })
 
     await new Promise(r => setTimeout(r, 300))
   }
