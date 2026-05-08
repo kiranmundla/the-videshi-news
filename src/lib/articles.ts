@@ -189,7 +189,7 @@ export async function getRelatedArticles(
     .neq("slug", currentSlug)
     .order("published_at", { ascending: false })
     .limit(limit);
-  if (category) query = query.eq("category", category);
+  if (category) query = query.eq("vertical", category);
 
   const { data, error } = await query;
   if (error) {
