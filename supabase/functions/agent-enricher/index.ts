@@ -400,6 +400,22 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
       throw new Error("Enriched article missing required fields");
     }
 
+    // Fetch hero image inline so no article is published without one.
+    try {
+      const img = await fetchImageForArticle(enriched.title, job.category || "world");
+      if (img) {
+        enriched.image_url = img.image_url;
+        enriched.image_caption = img.image_caption;
+        enriched.image_credit = img.image_credit;
+        enriched.image_verified = img.image_verified;
+        enriched.image_score = img.image_score;
+      } else {
+        console.warn(`[image] no image found for "${enriched.title}"`);
+      }
+    } catch (e) {
+      console.error("[image] fetch failed", e);
+    }
+
     await supabase
       .from("story_queue")
       .update({
