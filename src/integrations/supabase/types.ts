@@ -188,6 +188,7 @@ export type Database = {
           diaspora_angle: string | null
           headline: string
           id: string
+          image_url: string | null
           is_featured: boolean
           published_at: string | null
           reviewed_at: string | null
@@ -208,6 +209,7 @@ export type Database = {
           diaspora_angle?: string | null
           headline: string
           id?: string
+          image_url?: string | null
           is_featured?: boolean
           published_at?: string | null
           reviewed_at?: string | null
@@ -228,6 +230,7 @@ export type Database = {
           diaspora_angle?: string | null
           headline?: string
           id?: string
+          image_url?: string | null
           is_featured?: boolean
           published_at?: string | null
           reviewed_at?: string | null

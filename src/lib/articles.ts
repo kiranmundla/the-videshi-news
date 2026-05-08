@@ -43,10 +43,11 @@ type P2Row = {
   sources: unknown;
   diaspora_angle: string | null;
   tags: string[] | null;
+  image_url: string | null;
 };
 
 const P2_COLS =
-  "id, slug, headline, subheadline, body, vertical, status, is_featured, published_at, created_at, sources, diaspora_angle, tags";
+  "id, slug, headline, subheadline, body, vertical, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url";
 
 function parseSources(raw: unknown): Article["sources"] {
   if (!raw || !Array.isArray(raw)) return undefined;
@@ -84,7 +85,7 @@ function mapRow(row: P2Row): Article {
     excerpt: deriveExcerpt(row.subheadline, row.body),
     body: row.body ?? "",
     category: row.vertical ?? "",
-    hero_image_url: "",
+    hero_image_url: row.image_url ?? "",
     image_caption: null,
     image_credit: null,
     published_at: row.published_at ?? row.created_at,
