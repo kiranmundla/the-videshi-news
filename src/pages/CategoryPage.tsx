@@ -69,7 +69,9 @@ export default function CategoryPage() {
         ) : loading ? (
           <p className="py-20 text-center text-muted-foreground">Loading…</p>
         ) : articles.length === 0 ? (
-          <p className="py-20 text-center text-muted-foreground">No stories yet in this section.</p>
+          <p className="py-20 text-center text-muted-foreground">
+            We're publishing fresh stories — check back in a few hours.
+          </p>
         ) : (
           <>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-12 md:gap-y-16">
