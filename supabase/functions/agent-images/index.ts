@@ -192,14 +192,25 @@ async function generateCaption(imageUrl: string, title: string): Promise<string>
     filename = decodeURIComponent(u.pathname.split("/").pop() ?? "");
   } catch (_e) { /* ignore */ }
   const prompt =
-    `Image URL: ${imageUrl}\n` +
-    `Filename: ${filename}\n` +
-    `Article title: ${title}\n\n` +
-    `Write a single short caption (max 10 words) describing what this specific image likely shows. ` +
-    `Be specific — name the person, place, or object if identifiable from the filename. ` +
-    `Do NOT repeat the article headline. No quotes, no trailing period.`;
+    `You are writing a short newspaper-style caption. You CANNOT see the image — only its filename and the article it accompanies. ` +
+    `Make a confident plausible guess based on the article topic.\n\n` +
+    `Article title: ${title}\n` +
+    `Image filename: ${filename || "(no filename)"}\n\n` +
+    `Output rules:\n` +
+    `- Exactly one caption, max 10 words.\n` +
+    `- Describe what the image most likely depicts (a person, place, object, or scene related to the article).\n` +
+    `- If a name is in the filename or article, use it.\n` +
+    `- Never apologise, never say "I can't" or "unable", never explain — just output the caption.\n` +
+    `- No quotes, no trailing period.\n\n` +
+    `Caption:`;
   const out = await callHaiku(prompt, 40);
-  return out.replace(/^["']|["'.]+$/g, "").trim();
+  let caption = out.replace(/^["']|["'.]+$/g, "").trim();
+  // Reject obvious refusals
+  if (/^(i\s|i'm|i am|sorry|unable|i cannot|i can't|as an ai)/i.test(caption)) return "";
+  // Trim to 10 words
+  const words = caption.split(/\s+/);
+  if (words.length > 12) caption = words.slice(0, 10).join(" ");
+  return caption;
 }
 
 async function findImage(title: string, category: string): Promise<Hit | null> {
