@@ -1,0 +1,1 @@
+ALTER TABLE public.story_queue ADD COLUMN IF NOT EXISTS featured_score numeric NOT NULL DEFAULT 0;
