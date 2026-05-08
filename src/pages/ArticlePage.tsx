@@ -103,25 +103,27 @@ export default function ArticlePage() {
           </div>
         </article>
 
-        <figure className="mt-10 w-full max-w-full md:max-w-[780px] md:mx-auto">
-          <div className="w-full max-w-full aspect-[16/9] overflow-hidden relative">
-            <HeroImage
-              src={article.hero_image_url}
-              alt={article.title}
-              loading="eager"
-              category={article.category}
-              className="block w-full h-full object-cover object-center"
-            />
-          </div>
-          <div className="text-center">
-            <ImageCaption
-              caption={article.image_caption}
-              credit={article.image_credit}
-              size="md"
-              align="center"
-            />
-          </div>
-        </figure>
+        {article.hero_image_url && article.hero_image_url.trim().length > 0 && (
+          <figure className="mt-10 w-full max-w-full md:max-w-[780px] md:mx-auto">
+            <div className="w-full max-w-full aspect-[16/9] overflow-hidden relative">
+              <HeroImage
+                src={article.hero_image_url}
+                alt={article.title}
+                loading="eager"
+                category={article.category}
+                className="block w-full h-full object-cover object-center"
+              />
+            </div>
+            <div className="text-center">
+              <ImageCaption
+                caption={article.image_caption}
+                credit={article.image_credit}
+                size="md"
+                align="center"
+              />
+            </div>
+          </figure>
+        )}
 
         <div className="article-prose max-w-2xl mx-auto mt-12">
           {(() => {
