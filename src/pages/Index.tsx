@@ -207,22 +207,38 @@ export default function Index() {
           <SectionHeader label={NEWS_SECTION.label} href={NEWS_SECTION.href} id="section-news" />
           {hasNewsContent ? (
             <>
-              {newsClusters.map((c) => (
-                <div key={c.label} className="mb-10">
-                  <p className="smallcaps text-foreground/70 mb-4">{c.label}</p>
+              {newsClusters.map((c, idx) => {
+                const isLast = idx === newsClusters.length - 1 && newsUngrouped.length === 0;
+                return (
+                  <div key={c.label}>
+                    <div className="rounded-lg border border-rule bg-secondary/40 p-4 md:p-5 mb-8">
+                      <p className="border-l-[3px] border-primary pl-2 mb-3 text-[11px] font-bold uppercase tracking-[0.1em] text-primary">
+                        {c.label}
+                      </p>
+                      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+                        {c.items.map((a) => (
+                          <ArticleCard key={a.id} article={a} variant="card" hideCategory />
+                        ))}
+                      </div>
+                    </div>
+                    {!isLast && <hr className="border-0 border-t border-rule mt-10 mb-6" />}
+                  </div>
+                );
+              })}
+              {newsUngrouped.length > 0 && (
+                <>
+                  {newsClusters.length > 0 && (
+                    <>
+                      <hr className="border-0 border-t border-rule mt-10 mb-6" />
+                      <p className="smallcaps text-foreground/70 mb-4">Latest</p>
+                    </>
+                  )}
                   <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-                    {c.items.map((a) => (
+                    {newsUngrouped.map((a) => (
                       <ArticleCard key={a.id} article={a} variant="card" hideCategory />
                     ))}
                   </div>
-                </div>
-              ))}
-              {newsUngrouped.length > 0 && (
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-                  {newsUngrouped.map((a) => (
-                    <ArticleCard key={a.id} article={a} variant="card" hideCategory />
-                  ))}
-                </div>
+                </>
               )}
             </>
           ) : (
