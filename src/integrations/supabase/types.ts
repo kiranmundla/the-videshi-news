@@ -399,6 +399,7 @@ export type Database = {
           editor_notes: string | null
           enriched_article: Json | null
           error_message: string | null
+          featured_score: number
           id: string
           locked_by: string | null
           locked_until: string | null
@@ -424,6 +425,7 @@ export type Database = {
           editor_notes?: string | null
           enriched_article?: Json | null
           error_message?: string | null
+          featured_score?: number
           id?: string
           locked_by?: string | null
           locked_until?: string | null
@@ -449,6 +451,7 @@ export type Database = {
           editor_notes?: string | null
           enriched_article?: Json | null
           error_message?: string | null
+          featured_score?: number
           id?: string
           locked_by?: string | null
           locked_until?: string | null
@@ -495,6 +498,7 @@ export type Database = {
           editor_notes: string | null
           enriched_article: Json | null
           error_message: string | null
+          featured_score: number
           id: string
           locked_by: string | null
           locked_until: string | null

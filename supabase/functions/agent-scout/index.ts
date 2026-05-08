@@ -84,7 +84,7 @@ Deno.serve(async (req) => {
 
     const { data: raws, error: rawErr } = await supabase
       .from("raw_articles")
-      .select("id, title, description, source_name, url, published_at")
+      .select("id, title, description, source_name, url, published_at, credibility")
       .eq("processed", false)
       .gte("fetched_at", threeHoursAgo)
       .limit(100);
@@ -104,23 +104,44 @@ Deno.serve(async (req) => {
       return respond(200, { ok: true, message: "No new raw articles" });
     }
 
+    // Topic heat: count of all raw articles in last 24h (used as denominator
+    // by Claude when scoring how "hot" a topic is right now).
+    const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    const { count: heatTotal } = await supabase
+      .from("raw_articles")
+      .select("id", { count: "exact", head: true })
+      .gte("fetched_at", twentyFourHoursAgo);
+
     const compact = raws.map((r) => ({
       id: r.id,
       title: r.title,
       source: r.source_name,
+      credibility: r.credibility || "tier3",
+      published_at: r.published_at,
       desc: (r.description || "").slice(0, 300),
     }));
 
-    const userPrompt = `Here are ${raws.length} raw news articles fetched in the last 3 hours.
+    const userPrompt = `Here are ${raws.length} raw news articles fetched in the last 3 hours. Total raw articles in last 24h across all topics: ${heatTotal ?? raws.length}. Current time (UTC): ${new Date().toISOString()}.
 
 Tasks:
 1. Group articles covering the same story semantically.
-2. Rank groups by source count (more sources = higher priority).
+2. Rank groups by importance using the multi-factor priority score below.
 3. Score diaspora_relevance as: high | medium | low | none.
 4. Assign a category from EXACTLY this list (no other values allowed): news | sports | markets-finance | technology | entertainment | lifestyle-health | travel | nri-world. ('news' covers breaking, politics, world, crime, and US-India coverage. 'nri-world' covers Indians abroad / global diaspora — see special instructions below. Events and Classifieds are user-generated and excluded.)
 
    Special instructions for nri-world: For nri-world category, prioritize stories mentioning these people: Vivek Ramaswamy, Usha Vance, Kamala Harris, Rishi Sunak, Jagmeet Singh, Sundar Pichai, Satya Nadella, Ajay Banga, Ro Khanna, Pramila Jayapal, Ami Bera, Raja Krishnamoorthi, Anita Anand, Ed Husic. Also prioritize: H-1B visa news, OCI card updates, Indian immigration policy in US/UK/Canada/Australia/UAE, Indian diaspora community events, and Indian-origin business leaders making news globally.
 5. For the top 3 groups, write a story_brief.
+
+Credibility tiers per article: "official" (govt/regulator, weight 5), "tier1" (weight 4), "tier2" (weight 3), "tier3" (weight 2), "nri" (weight 3), "entertainment" (weight 2). credibility_score = sum of weights across all sources in the group.
+
+NRI signal keywords to detect: H-1B, H1B, OCI, PIO, green card, visa, immigration, Indian-American, NRI, diaspora, Indian-origin, desi, Bollywood abroad, remittance, ICC, USCIS, consulate, embassy, Silicon Valley Indian, FIIA, AAPI.
+
+Score each story's priority 1-100 based on:
+- Source count and credibility (40%)
+- Diaspora/NRI relevance and direct impact (30%)
+- Breaking news recency, story <2h old = full points (20%)
+- Named notable Indian-origin persons mentioned (10%)
+Higher = more important.
 
 Return ONLY valid JSON in this exact shape (no prose, no markdown):
 {
@@ -135,7 +156,14 @@ Return ONLY valid JSON in this exact shape (no prose, no markdown):
       "raw_article_ids": ["uuid"],
       "best_article_id": "uuid",
       "source_count": 0,
-      "sources": ["string"]
+      "sources": ["string"],
+      "credibility_score": 0,
+      "nri_signals": ["string"],
+      "nri_impact_score": 0,
+      "topic_heat": 0,
+      "breaking": false,
+      "named_persons": ["string"],
+      "priority": 0
     }
   ]
 }
@@ -234,10 +262,16 @@ Does the new story brief contain materially new facts not covered in the existin
           : "news";
       s.article_type = articleType;
 
+      const priorityScore =
+        typeof s.priority === "number" && s.priority > 0
+          ? Math.min(100, Math.max(1, Math.round(s.priority)))
+          : sourceCount;
+
       const { error: insErr } = await supabase.from("story_queue").insert({
         status: "pending",
         story_brief: s,
-        priority: stories.length - i,
+        priority: priorityScore,
+        featured_score: priorityScore,
         category: s.category,
         diaspora_relevance: s.diaspora_relevance,
         raw_article_ids: rawIds,
