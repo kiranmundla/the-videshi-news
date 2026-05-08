@@ -1,38 +1,52 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
+import LoadMoreButton from "@/components/LoadMoreButton";
 import { Article, getArticlesByCategory } from "@/lib/articles";
 import { getCategoryBySlug } from "@/lib/categories";
 import NotFound from "@/pages/NotFound";
 
-const PER_PAGE = 12;
+const PAGE_SIZE = 12;
 
 export default function CategoryPage() {
   const { category = "" } = useParams();
   const def = getCategoryBySlug(category);
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [fadeFrom, setFadeFrom] = useState(0);
 
   useEffect(() => {
-    setPage(1);
-    if (!def?.hasPipeline) { setLoading(false); return; }
+    if (!def?.hasPipeline) {
+      setArticles([]);
+      setLoading(false);
+      setHasMore(false);
+      return;
+    }
     setLoading(true);
-    getArticlesByCategory(def.slug, 240).then((a) => {
+    setHasMore(true);
+    setFadeFrom(0);
+    getArticlesByCategory(def.slug, PAGE_SIZE, 0).then((a) => {
       setArticles(a);
+      setHasMore(a.length === PAGE_SIZE);
       setLoading(false);
     });
   }, [def?.slug, def?.hasPipeline]);
 
-  const totalPages = Math.max(1, Math.ceil(articles.length / PER_PAGE));
-  const visible = useMemo(
-    () => articles.slice((page - 1) * PER_PAGE, page * PER_PAGE),
-    [articles, page]
-  );
+  const loadMore = async () => {
+    if (!def?.hasPipeline || loadingMore || !hasMore) return;
+    setLoadingMore(true);
+    const next = await getArticlesByCategory(def.slug, PAGE_SIZE, articles.length);
+    if (next.length < PAGE_SIZE) setHasMore(false);
+    setFadeFrom(articles.length);
+    setArticles((prev) => [...prev, ...next]);
+    setLoadingMore(false);
+  };
 
   if (!def) return <NotFound />;
 
@@ -59,32 +73,18 @@ export default function CategoryPage() {
         ) : (
           <>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-12 md:gap-y-16">
-              {visible.map((a) => (
-                <ArticleCard key={a.id} article={a} variant="card" hideCategory />
+              {articles.map((a, i) => (
+                <div key={a.id} className={i >= fadeFrom ? "animate-fade-in" : ""}>
+                  <ArticleCard article={a} variant="card" hideCategory />
+                </div>
               ))}
             </div>
 
-            {totalPages > 1 && (
-              <div className="flex items-center justify-center gap-2 mt-16">
-                <button
-                  onClick={() => { setPage((p) => Math.max(1, p - 1)); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-                  disabled={page === 1}
-                  className="smallcaps px-4 py-2 border border-rule rounded-full disabled:opacity-30 hover:text-primary hover:border-primary transition-colors"
-                >
-                  ← Prev
-                </button>
-                <span className="smallcaps text-foreground/70 px-4">
-                  Page {page} of {totalPages}
-                </span>
-                <button
-                  onClick={() => { setPage((p) => Math.min(totalPages, p + 1)); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-                  disabled={page === totalPages}
-                  className="smallcaps px-4 py-2 border border-rule rounded-full disabled:opacity-30 hover:text-primary hover:border-primary transition-colors"
-                >
-                  Next →
-                </button>
-              </div>
-            )}
+            <LoadMoreButton
+              onClick={loadMore}
+              loading={loadingMore}
+              hasMore={hasMore}
+            />
           </>
         )}
       </main>
