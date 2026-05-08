@@ -35,10 +35,10 @@ export default function Contact() {
         </p>
         <p className="mt-2">
           <a
-            href="mailto:hello@thevideshi.com"
+            href="mailto:editor@thevideshi.com"
             className="text-primary hover:underline"
           >
-            hello@thevideshi.com
+            editor@thevideshi.com
           </a>
         </p>
 
