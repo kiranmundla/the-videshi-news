@@ -150,6 +150,13 @@ Title: ${title}`;
 
 type Candidate = { url: string; credit: string; source: string };
 
+function isAcceptableSize(w?: number, h?: number): boolean {
+  if (!w || !h) return false;
+  if (w <= h) return false; // landscape only
+  if (w < 800) return false;
+  return true;
+}
+
 async function wikipediaSummary(keyword: string): Promise<Candidate | null> {
   try {
     const slug = encodeURIComponent(keyword.trim().replace(/\s+/g, "_"));
@@ -158,9 +165,14 @@ async function wikipediaSummary(keyword: string): Promise<Candidate | null> {
     });
     if (!res.ok) return null;
     const data = await res.json();
-    const url = data?.originalimage?.source || data?.thumbnail?.source;
-    if (!url) return null;
-    return { url, credit: "Photo: Wikimedia Commons", source: "wikipedia" };
+    const orig = data?.originalimage;
+    const thumb = data?.thumbnail;
+    // Prefer original if landscape & big enough, else thumbnail.
+    let pick: { source?: string; width?: number; height?: number } | null = null;
+    if (orig && isAcceptableSize(orig.width, orig.height)) pick = orig;
+    else if (thumb && isAcceptableSize(thumb.width, thumb.height)) pick = thumb;
+    if (!pick?.source) return null;
+    return { url: pick.source, credit: "Photo: Wikimedia Commons", source: "wikipedia" };
   } catch (e) {
     console.error("wikipedia error", e);
     return null;
@@ -171,8 +183,8 @@ async function commonsSearch(keyword: string): Promise<Candidate | null> {
   try {
     const u =
       `https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*` +
-      `&generator=search&gsrnamespace=6&gsrlimit=5&gsrsearch=${encodeURIComponent(keyword)}` +
-      `&prop=imageinfo&iiprop=url|mime&iiurlwidth=1200`;
+      `&generator=search&gsrnamespace=6&gsrlimit=8&gsrsearch=${encodeURIComponent(keyword)}` +
+      `&prop=imageinfo&iiprop=url|mime|size&iiurlwidth=1200`;
     const res = await fetch(u, {
       headers: { "User-Agent": "TheVideshi/1.0 (https://thevideshi.com)" },
     });
@@ -184,6 +196,9 @@ async function commonsSearch(keyword: string): Promise<Candidate | null> {
       const info = pages[k]?.imageinfo?.[0];
       const mime: string = info?.mime ?? "";
       if (!mime.startsWith("image/") || mime.includes("svg")) continue;
+      const w = info.thumbwidth || info.width;
+      const h = info.thumbheight || info.height;
+      if (!isAcceptableSize(w, h)) continue;
       const url = info.thumburl || info.url;
       if (!url) continue;
       return { url, credit: "Photo: Wikimedia Commons", source: "commons" };
