@@ -236,9 +236,9 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
       const { data: inserted, error: insErr } = await supabase
         .from("articles")
         .insert({
-          title: enriched.title,
+          title: cleanTitle || enriched.title,
           slug,
-          summary: enriched.summary || "",
+          summary: cleanSummary,
           body: bodyMd,
           category: job.category || "world",
           tags: enriched.tags || [],
