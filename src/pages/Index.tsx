@@ -18,6 +18,7 @@ const NEWS_SECTION: SectionDef = {
 };
 
 const CATEGORY_SECTIONS: SectionDef[] = [
+  { slug: "nri-world", label: "Indians Around the World", limit: 6, href: "/nri-world" },
   { slug: "markets-finance", label: "Markets & Finance", limit: 3, href: "/markets-finance" },
   { slug: "entertainment", label: "Entertainment", limit: 3, href: "/entertainment" },
   { slug: "technology", label: "Technology", limit: 3, href: "/technology" },
