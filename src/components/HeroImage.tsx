@@ -62,6 +62,7 @@ export default function HeroImage({ src, alt, className = "", loading = "lazy", 
       src={src as string}
       alt={alt}
       loading={loading}
+      referrerPolicy="no-referrer"
       onError={() => setFailed(true)}
       className={className}
     />
