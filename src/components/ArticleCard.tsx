@@ -91,7 +91,7 @@ export default function ArticleCard({
 
   return (
     <Link to={href} className="group block">
-      <figure className="overflow-hidden">
+      <figure className="w-full">
         <HeroImage
           src={article.hero_image_url}
           alt={article.title}
