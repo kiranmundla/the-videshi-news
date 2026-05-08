@@ -101,7 +101,7 @@ function HomeCategorySection({ section }: { section: HomeSection }) {
           )}
         </>
       ) : (
-        <EmptyPlaceholder message="More stories coming soon." />
+        <EmptyPlaceholder message="We're publishing fresh stories — check back in a few hours." />
       )}
     </section>
   );
@@ -242,7 +242,7 @@ export default function Index() {
               )}
             </>
           ) : (
-            <EmptyPlaceholder message="More stories coming soon." />
+            <EmptyPlaceholder message="We're publishing fresh stories — check back in a few hours." />
           )}
         </section>
 
