@@ -20,7 +20,7 @@ const supabase = createClient(
 
 // ── RSS Sources ──────────────────────────────────────────────
 type Credibility = "official" | "tier1" | "tier2" | "tier3" | "nri" | "entertainment";
-type Parser = "rss" | "html-mea";
+type Parser = "rss" | "html-mea" | "rss2json";
 const RSS_SOURCES: { name: string; url: string; category?: string; region?: string; credibility: Credibility; parser?: Parser }[] = [
   { name: "Times of India",  url: "https://timesofindia.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3", category: "news" },
   { name: "NDTV",            url: "https://feeds.feedburner.com/ndtvnews-top-stories", credibility: "tier3", category: "news" },
@@ -31,9 +31,9 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   { name: "Deccan Herald",   url: "https://www.deccanherald.com/feed", credibility: "tier3", category: "news" },
 
   // ── Tier 1 — Official sources ─────────────────────────────
-  // PIB English (RssMain.aspx?ModId=6&lang=1) responds 200 to local curl but Akamai 403s
-  // from Supabase edge IPs. Disabled until we route through a proxy.
-  // { name: "PIB English", url: "https://pib.gov.in/RssMain.aspx?ModId=6&lang=1", credibility: "official", category: "news" },
+  // PIB English is Akamai-blocked from Supabase edge IPs. Routed through rss2json proxy.
+  // Note: rss2json `count` param requires a paid API key; default returns 10 items.
+  { name: "PIB English", url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fpib.gov.in%2FRssMain.aspx%3FModId%3D6%26lang%3D1", credibility: "official", category: "news", parser: "rss2json" },
   // PIB PMO (ModId=2) returns HTML, not RSS — disabled.
   // MEA's RSS endpoint is Akamai-blocked, but the public HTML listing is fetchable. Scrape it.
   { name: "MEA Press Releases", url: "https://www.mea.gov.in/press-releases.htm?51/Press_Releases", credibility: "official", parser: "html-mea" },
@@ -56,7 +56,9 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   // ── Sports ────────────────────────────────────────────────
   { name: "CricketTimes", url: "https://crickettimes.com/feed", credibility: "tier3", category: "sports" },
   { name: "InsideSport",  url: "https://insidesport.in/feed",   credibility: "tier3", category: "sports" },
-  // NDTV Sports / NDTV Cricket / Business Standard / Moneycontrol all 403/404 from server-side fetchers. Disabled.
+  // NDTV Sports / NDTV Cricket / Business Standard / Indian Express / Bollywood Life:
+  // origins block both Supabase edge IPs AND rss2json's servers (rss2json returns
+  // "Cannot download this RSS feed"). Disabled until we find a working proxy.
 
   // ── Business ──────────────────────────────────────────────
   { name: "Economic Times", url: "https://economictimes.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3", category: "markets-finance" },
@@ -204,6 +206,58 @@ async function fetchFeed(source: typeof RSS_SOURCES[0]): Promise<RawArticle[]> {
       const items = parseMeaHtml(body, source.name, source.url, source.credibility);
       console.log(`[ingest-rss] ${source.name} → ${items.length} items (html-mea)`);
       return items;
+    }
+
+    if (source.parser === "rss2json") {
+      try {
+        const json = JSON.parse(body) as {
+          status?: string;
+          message?: string;
+          items?: Array<{
+            title?: string;
+            link?: string;
+            pubDate?: string;
+            description?: string;
+            thumbnail?: string;
+            enclosure?: { link?: string; type?: string };
+          }>;
+        };
+        if (json.status !== "ok" || !Array.isArray(json.items)) {
+          console.error(
+            `[ingest-rss] ${source.name} rss2json error — ${json.message || "no items"}`
+          );
+          return [];
+        }
+        const items: RawArticle[] = json.items
+          .filter((it) => it.title && it.link)
+          .map((it) => {
+            const description = (it.description || "")
+              .replace(/<[^>]*>/g, "")
+              .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+              .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+              .slice(0, 500);
+            const image =
+              it.thumbnail ||
+              (it.enclosure && it.enclosure.type?.startsWith("image/") ? it.enclosure.link : null) ||
+              (it.description?.match(/<img\b[^>]*\bsrc=["']([^"']+)["']/i)?.[1] ?? null) ||
+              null;
+            return {
+              title: it.title!.trim(),
+              url: it.link!.trim(),
+              description,
+              image_url: image,
+              source_name: source.name,
+              source_url: source.url,
+              published_at: it.pubDate ? new Date(it.pubDate).toISOString() : new Date().toISOString(),
+              credibility: source.credibility,
+            };
+          });
+        console.log(`[ingest-rss] ${source.name} → ${items.length} items (rss2json)`);
+        return items;
+      } catch (e) {
+        console.error(`[ingest-rss] ${source.name} rss2json parse failed :: ${(e as Error).message}`);
+        return [];
+      }
     }
 
     const trimmed = body.trimStart().slice(0, 200);
