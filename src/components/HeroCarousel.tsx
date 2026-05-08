@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 type HeroImage = {
@@ -10,15 +10,14 @@ type HeroImage = {
 };
 
 const AUTO_MS = 6000;
-const SWIPE_THRESHOLD = 50;
+const MIN_SWIPE_DISTANCE = 30;
 
 export default function HeroCarousel() {
   const [images, setImages] = useState<HeroImage[]>([]);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [dragDx, setDragDx] = useState(0);
-  const dragStartX = useRef<number | null>(null);
-  const dragging = useRef(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -43,24 +42,25 @@ export default function HeroCarousel() {
   const total = images.length;
   const wrap = (n: number) => ((n % total) + total) % total;
   const go = (n: number) => setIndex(wrap(n));
+  const goNext = () => go(index + 1);
+  const goPrev = () => go(index - 1);
 
-  const startDrag = (x: number) => {
-    dragStartX.current = x;
-    dragging.current = true;
-    setPaused(true);
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
   };
-  const moveDrag = (x: number) => {
-    if (!dragging.current || dragStartX.current == null) return;
-    setDragDx(x - dragStartX.current);
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
   };
-  const endDrag = () => {
-    if (!dragging.current) return;
-    const dx = dragDx;
-    if (Math.abs(dx) > SWIPE_THRESHOLD) go(index + (dx < 0 ? 1 : -1));
-    dragStartX.current = null;
-    dragging.current = false;
-    setDragDx(0);
-    setTimeout(() => setPaused(false), 800);
+
+  const onTouchEnd = () => {
+    if (touchStart == null || touchEnd == null) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > MIN_SWIPE_DISTANCE;
+    const isRightSwipe = distance < -MIN_SWIPE_DISTANCE;
+    if (isLeftSwipe) goNext();
+    if (isRightSwipe) goPrev();
   };
 
   const current = images[index];
@@ -69,23 +69,18 @@ export default function HeroCarousel() {
     <section
       className="relative w-full overflow-hidden bg-muted h-[280px] md:h-[560px] group select-none"
       onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => { endDrag(); setPaused(false); }}
-      onTouchStart={(e) => startDrag(e.touches[0].clientX)}
-      onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
-      onTouchEnd={endDrag}
-      onMouseDown={(e) => startDrag(e.clientX)}
-      onMouseMove={(e) => moveDrag(e.clientX)}
-      onMouseUp={endDrag}
+      onMouseLeave={() => setPaused(false)}
       aria-roledescription="carousel"
-      style={{ cursor: dragging.current ? "grabbing" : "grab" }}
     >
-      {/* Slides — translate track */}
       <div
-        className="absolute inset-0 flex"
+        className="absolute inset-0 flex touch-pan-y"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
         style={{
           width: `${total * 100}%`,
-          transform: `translateX(calc(${-index * (100 / total)}% + ${dragDx}px))`,
-          transition: dragging.current ? "none" : "transform 0.4s ease-in-out",
+          transform: `translateX(${-index * (100 / total)}%)`,
+          transition: "transform 0.4s ease-in-out",
         }}
       >
         {images.map((img, i) => (
@@ -116,22 +111,22 @@ export default function HeroCarousel() {
         </p>
       </div>
 
-      {/* Hover arrows (desktop only) */}
+      {/* Arrow buttons — always visible, semi-transparent */}
       {total > 1 && (
         <>
           <button
             type="button"
             aria-label="Previous slide"
-            onClick={() => go(index - 1)}
-            className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 items-center justify-center rounded-full bg-black/30 text-white text-2xl opacity-0 group-hover:opacity-100 hover:bg-black/60 transition-opacity duration-300"
+            onClick={goPrev}
+            className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 h-10 w-10 md:h-12 md:w-12 flex items-center justify-center rounded-full bg-black/40 text-white text-xl md:text-2xl hover:bg-black/60 transition-colors"
           >
             ‹
           </button>
           <button
             type="button"
             aria-label="Next slide"
-            onClick={() => go(index + 1)}
-            className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 items-center justify-center rounded-full bg-black/30 text-white text-2xl opacity-0 group-hover:opacity-100 hover:bg-black/60 transition-opacity duration-300"
+            onClick={goNext}
+            className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 h-10 w-10 md:h-12 md:w-12 flex items-center justify-center rounded-full bg-black/40 text-white text-xl md:text-2xl hover:bg-black/60 transition-colors"
           >
             ›
           </button>
