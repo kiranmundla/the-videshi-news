@@ -74,8 +74,12 @@ async function unsplashSearch(query: string) {
   return results;
 }
 
-async function claudeVerify(imageUrl: string, term: string): Promise<{ ok: boolean; caption: string }> {
-  if (!ANTHROPIC_API_KEY) return { ok: true, caption: term };
+async function claudeVerify(
+  imageUrl: string,
+  term: string,
+  hint: string,
+): Promise<{ ok: boolean; caption: string; location: string }> {
+  if (!ANTHROPIC_API_KEY) return { ok: true, caption: term, location: hint };
   try {
     const res = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -86,37 +90,38 @@ async function claudeVerify(imageUrl: string, term: string): Promise<{ ok: boole
       },
       body: JSON.stringify({
         model: "claude-3-5-haiku-20241022",
-        max_tokens: 200,
+        max_tokens: 300,
         messages: [
           {
             role: "user",
             content: [
-              {
-                type: "image",
-                source: { type: "url", url: imageUrl },
-              },
+              { type: "image", source: { type: "url", url: imageUrl } },
               {
                 type: "text",
                 text:
-                  `Search term: "${term}". Score this image 0-10 for "news/event relevance" (people, events, journalism scenes — not pure nature, food, or abstract). ` +
-                  `Reply ONLY as JSON: {"score": <number>, "caption": "<8 words max describing scene>"}`,
+                  `Search term: "${term}". Photographer hint (may include location): "${hint}".\n` +
+                  `1) Score 0-10 for "news/event relevance" (people, events, journalism scenes — NOT pure nature, food, abstract, or stock-y).\n` +
+                  `2) Write an accurate factual caption (max 14 words) describing what is actually visible. Do NOT invent names of people or events. If unsure, describe the scene generically.\n` +
+                  `3) Extract the location if it is explicitly stated in the hint or clearly visible (e.g., signage). Format "City, Country" or "Country". If unknown, return "".\n` +
+                  `Reply ONLY as JSON: {"score": <number>, "caption": "<string>", "location": "<string>"}`,
               },
             ],
           },
         ],
       }),
     });
-    if (!res.ok) return { ok: true, caption: term };
+    if (!res.ok) return { ok: true, caption: term, location: hint };
     const data = await res.json();
     const text = data?.content?.[0]?.text ?? "";
     const m = text.match(/\{[\s\S]*\}/);
-    if (!m) return { ok: true, caption: term };
+    if (!m) return { ok: true, caption: term, location: hint };
     const parsed = JSON.parse(m[0]);
     const score = Number(parsed.score ?? 0);
-    const caption = String(parsed.caption ?? term).split(/\s+/).slice(0, 8).join(" ");
-    return { ok: score >= 7, caption };
+    const caption = String(parsed.caption ?? term).split(/\s+/).slice(0, 14).join(" ");
+    const location = String(parsed.location ?? "").trim();
+    return { ok: score >= 7, caption, location };
   } catch (_e) {
-    return { ok: true, caption: term };
+    return { ok: true, caption: term, location: hint };
   }
 }
 
@@ -128,13 +133,26 @@ async function buildDailySet(day: string): Promise<HeroImage[]> {
     if (!results || results.length === 0) continue;
     let chosen: any = null;
     let chosenCaption = term;
+    let chosenLocation = "";
     for (const p of results) {
       const url = p.urls?.regular ?? p.urls?.full;
       if (!url) continue;
-      const v = await claudeVerify(url, term);
+      const hint = [
+        p.location?.name,
+        p.location?.city,
+        p.location?.country,
+        p.alt_description,
+        p.description,
+      ].filter(Boolean).join(" · ");
+      const v = await claudeVerify(url, term, hint);
       if (v.ok) {
         chosen = p;
         chosenCaption = v.caption;
+        chosenLocation =
+          v.location ||
+          [p.location?.city, p.location?.country].filter(Boolean).join(", ") ||
+          p.location?.name ||
+          "";
         break;
       }
     }
@@ -144,6 +162,7 @@ async function buildDailySet(day: string): Promise<HeroImage[]> {
       alt: chosen.alt_description ?? term,
       credit: chosen.user?.name ?? "",
       caption: chosenCaption,
+      location: chosenLocation,
       search_term: term,
     });
   }
