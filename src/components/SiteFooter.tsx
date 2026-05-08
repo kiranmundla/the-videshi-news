@@ -11,9 +11,8 @@ export default function SiteFooter({ lastUpdated }: { lastUpdated?: Date | null 
           </p>
         </div>
         <ul className="space-y-2 text-sm text-foreground/80">
-          <li><Link to="/" className="hover:text-primary">About</Link></li>
-          <li><Link to="/" className="hover:text-primary">Contact</Link></li>
-          <li><Link to="/" className="hover:text-primary">Newsletter</Link></li>
+          <li><Link to="/about" className="hover:text-primary">About</Link></li>
+          <li><Link to="/contact" className="hover:text-primary">Contact</Link></li>
         </ul>
         <div className="text-xs text-muted-foreground md:text-right self-end space-y-1">
           {lastUpdated && (
