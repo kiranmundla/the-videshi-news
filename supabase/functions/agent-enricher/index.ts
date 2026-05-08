@@ -246,24 +246,14 @@ function stripFences(text: string): string {
 }
 
 async function repairJsonWithHaiku(malformed: string): Promise<string> {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "x-api-key": ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 8192,
-      messages: [{
-        role: "user",
-        content: `The following is malformed JSON. Fix it and return only valid JSON, nothing else: ${malformed}`,
-      }],
-    }),
+  const data = await anthropicFetch({
+    model: "claude-haiku-4-5-20251001",
+    max_tokens: 8192,
+    messages: [{
+      role: "user",
+      content: `The following is malformed JSON. Fix it and return only valid JSON, nothing else: ${malformed}`,
+    }],
   });
-  if (!res.ok) throw new Error(`Repair failed ${res.status}: ${await res.text()}`);
-  const data = await res.json();
   return (data.content || [])
     .filter((b: any) => b.type === "text")
     .map((b: any) => b.text)
@@ -292,19 +282,7 @@ async function callClaudeWithSearch(userPrompt: string, useWebSearch: boolean): 
   if (useWebSearch) {
     body.tools = [{ type: "web_search_20250305", name: "web_search", max_uses: 6 }];
   }
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "x-api-key": ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) {
-    throw new Error(`Claude error ${res.status}: ${await res.text()}`);
-  }
-  const data = await res.json();
+  const data = await anthropicFetch(body);
   return (data.content || [])
     .filter((b: any) => b.type === "text")
     .map((b: any) => b.text)
