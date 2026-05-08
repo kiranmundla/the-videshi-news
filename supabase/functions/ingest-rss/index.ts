@@ -52,6 +52,7 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
 ];
 
 interface RawArticle {
+  credibility?: string;
   title: string;
   url: string;
   description: string;
