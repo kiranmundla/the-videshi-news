@@ -302,6 +302,24 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
         })
         .eq("id", job.id);
 
+      // Compute initial featured_score now that story_queue is linked.
+      try {
+        const { data: scoreData, error: scoreErr } = await supabase.rpc(
+          "calculate_featured_score",
+          { article_id: inserted.id },
+        );
+        if (scoreErr) {
+          console.error("[agent-editor] featured_score rpc failed:", scoreErr);
+        } else {
+          await supabase
+            .from("articles")
+            .update({ featured_score: scoreData ?? 0 })
+            .eq("id", inserted.id);
+        }
+      } catch (e) {
+        console.error("[agent-editor] featured_score update failed:", e);
+      }
+
       if (runId) {
         await supabase
           .from("pipeline_runs")
