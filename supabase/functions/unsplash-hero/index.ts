@@ -17,26 +17,16 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL") ?? "";
 const SERVICE_ROLE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
 
 const SEARCH_TERMS = [
-  "world leaders summit",
-  "United Nations assembly",
-  "protest demonstration",
-  "award ceremony winners",
-  "election voting",
-  "world news event",
-  "climate conference",
-  "sports champion trophy",
-  "India parliament",
-  "diaspora community",
-  "humanitarian crisis",
-  "technology conference",
-  "peace agreement signing",
-  "natural disaster response",
-  "cultural festival celebration",
-  "stock market trading floor",
-  "space exploration launch",
-  "Olympic athletes",
-  "geopolitical meeting",
-  "refugee crisis",
+  "world leaders 2025",
+  "United Nations conference",
+  "G20 summit leaders",
+  "protest march crowd",
+  "award ceremony red carpet",
+  "election rally crowd",
+  "Olympic athletes podium",
+  "climate summit delegates",
+  "tech conference keynote",
+  "humanitarian aid workers",
 ];
 
 type HeroImage = {
