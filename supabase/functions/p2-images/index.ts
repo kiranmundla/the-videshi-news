@@ -5,251 +5,433 @@ const supabase = createClient(
   Deno.env.get('SUPABASE_URL')!,
   Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
 )
-
+const anthropic = new Anthropic({
+  apiKey: Deno.env.get('ANTHROPIC_API_KEY')!
+})
 const UNSPLASH_KEY = Deno.env.get('UNSPLASH_ACCESS_KEY')!
 const PEXELS_KEY = Deno.env.get('PEXELS_API_KEY')!
-const ANTHROPIC_KEY = Deno.env.get('ANTHROPIC_API_KEY')!
 const BUCKET = 'article-images'
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!
 
-const SKIP_IMAGE_VERTICALS = ['politics','economy','immigration','tech']
+// ── Step 1: Claude extracts main entity + search query ────
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-}
+async function extractEntityAndQuery(
+  headline: string,
+  vertical: string
+): Promise<{ entity: string | null; query: string }> {
+  const response = await anthropic.messages.create({
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 150,
+    messages: [{
+      role: 'user',
+      content: `Given this news headline: "${headline}" (vertical: ${vertical})
 
-const VERTICAL_IMAGE_TERMS: Record<string, string> = {
-  politics:      'India parliament New Delhi government',
-  economy:       'Indian rupee finance economy',
-  tech:          'India technology innovation',
-  immigration:   'passport travel airport customs',
-  diaspora:      'Indian American family community',
-  science:       'rocket launch space research',
-  culture:       'Indian festival celebration',
-  sports:        'cricket India stadium',
-  entertainment: 'Bollywood cinema film India',
-}
+Extract:
+1. entity: The single most specific named entity (person, org, 
+   place, product, event) that a photo search would find. 
+   Examples: "Agni-5 missile", "Zepto company", "Reserve Bank 
+   of India", "Vivek Ramaswamy". 
+   Return null if no specific entity (e.g. generic policy story).
+2. query: Best 4-6 word image search query for stock photos.
+   Make it visual and specific. NOT generic like "India news".
+   Examples: "India missile launch test", "Indian passport visa 
+   application", "Zepto grocery delivery app India"
 
-const POOR_IMAGE_KEYWORDS = new Set([
-  'epfo','pf','provident','repo','sebi','rbi','irdai',
-  'monetary','fiscal','gazette','notification','circular',
-  'agni','missile','icbm','nuclear','ballistic',
-  'uscis','visa bulletin','h1b','eb2','gc','i-140'
-])
+Reply JSON only: {"entity": "..." or null, "query": "..."}`
+    }]
+  })
 
-function buildQuery(headline: string, tags: string[], vertical: string): string {
-  const SKIP_TAGS = new Set([
-    'india','news','breaking','latest','update',
-    'government','policy','report','analysis'
-  ])
-  const goodTags = (tags ?? [])
-    .filter(t => !SKIP_TAGS.has(t.toLowerCase()) && t.length > 3)
-    .slice(0, 2)
-  if (goodTags.length >= 2) {
-    return goodTags.join(' ')
+  try {
+    const text = (response.content[0] as any).text.trim()
+    return JSON.parse(text)
+  } catch {
+    return { entity: null, query: `India ${vertical} news` }
   }
+}
 
-  const stopWords = new Set([
-    'the','a','an','in','on','at','to','for','of',
-    'and','or','is','are','was','will','has','have',
-    'its','this','that','with','from','by','as','up'
-  ])
-  const headlineWords = headline
-    .replace(/[^a-zA-Z\s]/g, ' ')
-    .split(/\s+/)
-    .filter(w =>
-      !stopWords.has(w.toLowerCase()) &&
-      !SKIP_TAGS.has(w.toLowerCase()) &&
-      w.length > 3
+// ── Step 2a: Wikipedia lead image ─────────────────────────
+
+async function getWikipediaImage(
+  entity: string
+): Promise<string | null> {
+  try {
+    const slug = encodeURIComponent(entity.replace(/\s+/g, '_'))
+    const res = await fetch(
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${slug}`,
+      { headers: { 'User-Agent': 'TheVideshi/1.0 (thevideshi.com)' } }
     )
-    .slice(0, 3)
-  if (headlineWords.length >= 2) {
-    return headlineWords.join(' ')
+    if (!res.ok) return null
+    const data = await res.json()
+    return data?.thumbnail?.source ?? data?.originalimage?.source ?? null
+  } catch {
+    return null
   }
-
-  return VERTICAL_IMAGE_TERMS[vertical] ?? 'India news'
 }
 
-async function fetchUnsplashMany(query: string, count: number): Promise<string[]> {
+// ── Step 2b: Wikimedia Commons search ─────────────────────
+
+async function getWikimediaImages(
+  query: string,
+  limit = 8
+): Promise<string[]> {
+  try {
+    const searchRes = await fetch(
+      `https://commons.wikimedia.org/w/api.php?` +
+      `action=query&list=search&srsearch=${encodeURIComponent(query)}` +
+      `&srnamespace=6&srlimit=${limit}&format=json`,
+      { headers: { 'User-Agent': 'TheVideshi/1.0 (thevideshi.com)' } }
+    )
+    if (!searchRes.ok) return []
+    const searchData = await searchRes.json()
+    const files: string[] = (searchData?.query?.search ?? [])
+      .map((r: any) => r.title as string)
+      .filter((t: string) => /\.(jpg|jpeg|png|webp)$/i.test(t))
+
+    // Convert file titles to thumbnail URLs
+    return files.map(title => {
+      const filename = encodeURIComponent(title.replace('File:', ''))
+      return `https://commons.wikimedia.org/wiki/Special:FilePath/${filename}?width=600`
+    })
+  } catch {
+    return []
+  }
+}
+
+// ── Step 2c: og:image from source hunt URLs ───────────────
+
+async function getOgImage(sourceUrl: string): Promise<string | null> {
+  try {
+    const res = await fetch(sourceUrl, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; TheVideshi/1.0)',
+      },
+      signal: AbortSignal.timeout(5000),
+    })
+    if (!res.ok) return null
+    const html = await res.text()
+
+    // Parse og:image meta tag
+    const match =
+      html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i) ??
+      html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i)
+
+    const url = match?.[1] ?? null
+    if (!url || url.startsWith('data:')) return null
+
+    // Resolve relative URLs
+    if (url.startsWith('/')) {
+      const base = new URL(sourceUrl)
+      return `${base.origin}${url}`
+    }
+    return url
+  } catch {
+    return null
+  }
+}
+
+// ── Step 2d: Unsplash search (15 candidates) ──────────────
+
+async function searchUnsplash(query: string): Promise<string[]> {
   try {
     const res = await fetch(
-      `https://api.unsplash.com/photos/random?query=${encodeURIComponent(query)}&orientation=landscape&content_filter=high&count=${count}`,
+      `https://api.unsplash.com/search/photos?` +
+      `query=${encodeURIComponent(query)}&per_page=15` +
+      `&orientation=landscape&content_filter=high`,
       { headers: { Authorization: `Client-ID ${UNSPLASH_KEY}` } }
     )
     if (!res.ok) return []
     const data = await res.json()
-    if (!Array.isArray(data)) return []
-    return data.map((p: any) => p?.urls?.regular).filter(Boolean) as string[]
+    return (data?.results ?? [])
+      .map((p: any) => p?.urls?.small ?? p?.urls?.regular)
+      .filter(Boolean)
   } catch {
     return []
   }
 }
 
-async function fetchPexelsMany(query: string, count: number): Promise<string[]> {
+// ── Step 2e: Pexels search (15 candidates) ────────────────
+
+async function searchPexels(query: string): Promise<string[]> {
   try {
     const res = await fetch(
-      `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=${count}&orientation=landscape`,
+      `https://api.pexels.com/v1/search?` +
+      `query=${encodeURIComponent(query)}&per_page=15&orientation=landscape`,
       { headers: { Authorization: PEXELS_KEY } }
     )
     if (!res.ok) return []
     const data = await res.json()
-    const photos = data?.photos ?? []
-    return photos
-      .map((p: any) => p?.src?.large2x ?? p?.src?.large)
-      .filter(Boolean) as string[]
+    return (data?.photos ?? [])
+      .map((p: any) => p?.src?.medium ?? p?.src?.large)
+      .filter(Boolean)
   } catch {
     return []
   }
 }
 
-async function scoreCandidates(urls: string[]): Promise<{ url: string | null; score: number }> {
-  const client = new Anthropic({ apiKey: ANTHROPIC_KEY })
+// ── Step 3: Fetch thumbnail as base64 ────────────────────
 
-  let bestUrl: string | null = null
-  let bestScore = 0
-
-  for (const url of urls) {
-    try {
-      const res = await fetch(url)
-      if (!res.ok) continue
-      const buffer = await res.arrayBuffer()
-      const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)))
-      const contentType = res.headers.get('content-type') ?? 'image/jpeg'
-
-      const response = await client.messages.create({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 100,
-        messages: [{
-          role: 'user',
-          content: [
-            {
-              type: 'image',
-              source: { type: 'base64', media_type: contentType as any, data: base64 }
-            },
-            {
-              type: 'text',
-              text: `Score this image 1-10 for use as a news article thumbnail. 
-Consider: Is it clear and high quality? Does it look professional? 
-Is it relevant for Indian diaspora news (avoid: generic stock photos 
-of random Western people, abstract shapes, low resolution)?
-Reply with ONLY a number 1-10.`
-            }
-          ]
-        }]
-      })
-
-      const score = parseInt((response.content[0] as any).text.trim())
-      if (!isNaN(score) && score > bestScore) {
-        bestScore = score
-        bestUrl = url
-      }
-    } catch {
-      continue
-    }
+async function fetchThumbnail(
+  url: string
+): Promise<{ base64: string; mediaType: string } | null> {
+  try {
+    const res = await fetch(url, {
+      headers: { 'User-Agent': 'TheVideshi/1.0' },
+      signal: AbortSignal.timeout(8000),
+    })
+    if (!res.ok) return null
+    const contentType = res.headers.get('content-type') ?? 'image/jpeg'
+    if (!contentType.startsWith('image/')) return null
+    const buffer = await res.arrayBuffer()
+    // Skip images > 500KB (too large for batch vision)
+    if (buffer.byteLength > 500_000) return null
+    const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)))
+    const mediaType = contentType.split(';')[0] as any
+    return { base64, mediaType }
+  } catch {
+    return null
   }
-
-  return { url: bestScore >= 8 ? bestUrl : null, score: bestScore }
 }
 
-async function downloadToStorage(imageUrl: string, articleId: string): Promise<string | null> {
+// ── Step 4: Claude Vision picks best candidate ────────────
+
+async function claudePickBest(
+  candidates: Array<{ url: string; source: string }>,
+  headline: string,
+  vertical: string
+): Promise<string | null> {
+  if (candidates.length === 0) return null
+
+  // Fetch thumbnails in parallel (max 12 candidates for Vision)
+  const subset = candidates.slice(0, 12)
+  const thumbnails = await Promise.all(
+    subset.map(async (c, i) => ({
+      index: i,
+      url: c.url,
+      source: c.source,
+      thumb: await fetchThumbnail(c.url),
+    }))
+  )
+
+  const valid = thumbnails.filter(t => t.thumb !== null)
+  if (valid.length === 0) return null
+
+  // Build multi-image Claude message
+  const imageBlocks = valid.flatMap((t, i) => [
+    {
+      type: 'text' as const,
+      text: `Image ${i + 1} (source: ${t.source}):`,
+    },
+    {
+      type: 'image' as const,
+      source: {
+        type: 'base64' as const,
+        media_type: t.thumb!.mediaType,
+        data: t.thumb!.base64,
+      },
+    },
+  ])
+
+  const response = await anthropic.messages.create({
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 100,
+    messages: [{
+      role: 'user',
+      content: [
+        ...imageBlocks,
+        {
+          type: 'text',
+          text: `Article headline: "${headline}"
+Vertical: ${vertical}
+Platform: The Videshi — premium Indian diaspora news site
+
+Which image number (1-${valid.length}) best represents this 
+article as a thumbnail? Criteria:
+- Directly relevant to the story subject
+- Professional quality, publication-ready
+- Not a generic stock photo unrelated to the topic
+- Suitable for Indian-American news audience
+
+If NO image is suitable (irrelevant, low quality, generic 
+unrelated stock photo), reply 0.
+
+Reply with a single number only.`,
+        },
+      ],
+    }],
+  })
+
+  const pick = parseInt((response.content[0] as any).text.trim())
+  if (isNaN(pick) || pick === 0 || pick > valid.length) return null
+  return valid[pick - 1].url
+}
+
+// ── Step 5: Download winner to Supabase Storage ───────────
+
+async function downloadToStorage(
+  imageUrl: string,
+  articleId: string
+): Promise<string | null> {
   try {
-    const res = await fetch(imageUrl)
+    const res = await fetch(imageUrl, {
+      headers: { 'User-Agent': 'TheVideshi/1.0' },
+    })
     if (!res.ok) return null
     const contentType = res.headers.get('content-type') ?? 'image/jpeg'
     const ext = contentType.includes('png') ? 'png' : 'jpg'
     const filename = `p2-${articleId}-${Date.now()}.${ext}`
     const buffer = await res.arrayBuffer()
+
     const { error } = await supabase.storage
       .from(BUCKET)
       .upload(filename, buffer, { contentType, upsert: false })
-    if (error) return null
+
+    if (error) return imageUrl // fallback: use direct URL
+
     return `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${filename}`
   } catch {
     return null
   }
 }
 
-Deno.serve(async (req) => {
-  if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
+// ── Main handler ──────────────────────────────────────────
 
+Deno.serve(async () => {
   const startTime = Date.now()
 
+  // Fetch articles needing images
   const { data: articles, error } = await supabase
     .from('p2_articles')
-    .select('id, headline, tags, vertical')
+    .select(`
+      id, headline, vertical, tags,
+      topic_id,
+      p2_topics ( keywords )
+    `)
     .is('image_url', null)
     .in('status', ['published', 'review'])
     .order('published_at', { ascending: false, nullsFirst: false })
-    .limit(10)
+    .limit(8)
 
   if (error || !articles || articles.length === 0) {
     return new Response(
       JSON.stringify({ ok: true, message: 'No articles need images' }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      { headers: { 'Content-Type': 'application/json' } }
     )
   }
 
   const results: any[] = []
 
   for (const article of articles) {
-    if (SKIP_IMAGE_VERTICALS.includes(article.vertical)) {
-      results.push({ id: article.id, headline: article.headline, status: 'skipped_vertical', vertical: article.vertical })
-      continue
+    try {
+      // Get source hunt URLs for this topic
+      const { data: hunts } = await supabase
+        .from('p2_source_hunts')
+        .select('url')
+        .eq('topic_id', article.topic_id)
+        .not('url', 'is', null)
+        .limit(3)
+
+      const sourceUrls = (hunts ?? []).map(h => h.url)
+
+      // ── Step 1: Claude extracts entity + query
+      const { entity, query } = await extractEntityAndQuery(
+        article.headline,
+        article.vertical
+      )
+
+      // ── Step 2: Collect candidates from all tiers
+      const candidates: Array<{ url: string; source: string }> = []
+
+      // Tier 1a: Wikipedia entity image (highest relevance)
+      if (entity) {
+        const wikiImage = await getWikipediaImage(entity)
+        if (wikiImage) candidates.push({ url: wikiImage, source: 'wikipedia' })
+
+        // Tier 1b: Wikimedia Commons
+        const commonsImages = await getWikimediaImages(entity, 6)
+        candidates.push(...commonsImages.map(u => ({ url: u, source: 'wikimedia' })))
+      }
+
+      // Tier 2: og:image from primary source URLs
+      for (const sourceUrl of sourceUrls) {
+        const ogImage = await getOgImage(sourceUrl)
+        if (ogImage) candidates.push({ url: ogImage, source: 'og:image' })
+      }
+
+      // Tier 3: Unsplash + Pexels (if < 6 candidates so far)
+      if (candidates.length < 6) {
+        const [unsplashImages, pexelsImages] = await Promise.all([
+          searchUnsplash(query),
+          searchPexels(query),
+        ])
+        candidates.push(...unsplashImages.map(u => ({ url: u, source: 'unsplash' })))
+        candidates.push(...pexelsImages.map(u => ({ url: u, source: 'pexels' })))
+      }
+
+      if (candidates.length === 0) {
+        results.push({ headline: article.headline, status: 'no_candidates' })
+        continue
+      }
+
+      // ── Step 3: Claude Vision picks best
+      const winnerUrl = await claudePickBest(
+        candidates,
+        article.headline,
+        article.vertical
+      )
+
+      if (!winnerUrl) {
+        results.push({
+          headline: article.headline,
+          status: 'rejected',
+          candidates: candidates.length,
+        })
+        continue
+      }
+
+      // ── Step 4: Download winner to Storage
+      const storedUrl = await downloadToStorage(winnerUrl, article.id)
+
+      if (storedUrl) {
+        await supabase
+          .from('p2_articles')
+          .update({ image_url: storedUrl })
+          .eq('id', article.id)
+
+        results.push({
+          headline: article.headline,
+          status: 'ok',
+          source: candidates.find(c => c.url === winnerUrl)?.source,
+          candidates: candidates.length,
+        })
+      }
+
+      // Delay between articles to respect rate limits
+      await new Promise(r => setTimeout(r, 500))
+
+    } catch (err: any) {
+      await supabase.from('pipeline_alerts').insert({
+        agent: 'p2-images',
+        severity: 'error',
+        error_type: 'image_error',
+        message: `${article.headline}: ${err.message}`,
+      })
+      results.push({ headline: article.headline, status: 'error', error: err.message })
     }
-
-    let query = buildQuery(article.headline, article.tags ?? [], article.vertical)
-    if (query.split(' ').some(w => POOR_IMAGE_KEYWORDS.has(w.toLowerCase()))) {
-      query = VERTICAL_IMAGE_TERMS[article.vertical] ?? 'India news'
-    }
-
-    // Fetch 3 candidates: Unsplash first, supplement with Pexels
-    const candidates: string[] = []
-    candidates.push(...(await fetchUnsplashMany(query, 3)))
-    if (candidates.length < 3) {
-      const need = 3 - candidates.length
-      candidates.push(...(await fetchPexelsMany(query, need)))
-    }
-
-    if (candidates.length === 0) {
-      results.push({ id: article.id, headline: article.headline, status: 'no_candidates' })
-      continue
-    }
-
-    const { url: bestUrl, score } = await scoreCandidates(candidates)
-
-    if (!bestUrl) {
-      // Score < 8 — leave image_url null, do not download
-      results.push({ id: article.id, headline: article.headline, status: 'rejected_low_score', score, query })
-      continue
-    }
-
-    const storedUrl = await downloadToStorage(bestUrl, article.id)
-
-    if (!storedUrl) {
-      await supabase.from('p2_articles').update({ image_url: bestUrl }).eq('id', article.id)
-      results.push({ id: article.id, status: 'direct_url', score, query })
-      continue
-    }
-
-    await supabase.from('p2_articles').update({ image_url: storedUrl }).eq('id', article.id)
-    results.push({ id: article.id, headline: article.headline, status: 'ok', score, query })
-
-    await new Promise(r => setTimeout(r, 300))
   }
 
   const elapsed = Date.now() - startTime
-  const succeeded = results.filter(r => r.status === 'ok' || r.status === 'direct_url').length
+  const succeeded = results.filter(r => r.status === 'ok').length
+  const rejected = results.filter(r => r.status === 'rejected').length
 
   await supabase.from('pipeline_alerts').insert({
     agent: 'p2-images',
     severity: 'info',
     error_type: null,
-    message: `p2-images: ${succeeded}/${articles.length} images fetched in ${elapsed}ms`,
+    message: `p2-images: ${succeeded} images sourced, ${rejected} rejected by Vision in ${elapsed}ms`,
   })
 
   return new Response(
-    JSON.stringify({ ok: true, succeeded, total: articles.length, elapsed, results }),
-    { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    JSON.stringify({ ok: true, succeeded, rejected, elapsed, results }),
+    { headers: { 'Content-Type': 'application/json' } }
   )
 })
