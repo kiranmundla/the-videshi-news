@@ -278,6 +278,8 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
           image_credit: enriched.image_credit || null,
           image_verified: enriched.image_verified ?? false,
           image_score: enriched.image_score ?? null,
+          subject_type: enriched.subject_type ?? null,
+          subject_name: enriched.subject_name ?? null,
           article_type:
             (job.story_brief as any)?.article_type === "feature"
               ? "feature"
