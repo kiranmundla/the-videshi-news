@@ -61,14 +61,33 @@ async function haikuJson(prompt: string, maxTokens = 200): Promise<any | null> {
   }
 }
 
-async function extractImageSubject(title: string, category: string): Promise<{ primary: string; keyword: string }> {
+type SubjectType = "PERSON" | "PLACE" | "EVENT" | "TOPIC";
+type Classification = { type: SubjectType; subject: string; keyword: string };
+
+async function classifySubject(title: string, firstPara: string, category: string): Promise<Classification> {
   const out = await haikuJson(
-    `Article title: "${title}"\nCategory: ${category}\n\nReturn JSON only:\n{"primary":"named person OR specific place/event - the main visual subject","keyword":"1-2 word general topic for stock photo fallback"}\n\nRules: If a named person is the subject, use their full name. Otherwise use a specific place or event name. Never return generic terms.`
+    `Classify this article's primary subject.
+
+Title: "${title}"
+First paragraph: "${(firstPara || "").slice(0, 600)}"
+Category: ${category}
+
+Return JSON only:
+{"type":"PERSON|PLACE|EVENT|TOPIC","subject":"specific name","keyword":"1-2 word general topic for stock fallback"}
+
+Rules:
+- PERSON if mainly about a named individual — set subject to their full common name.
+- PLACE if mainly about a specific city/state/landmark — set subject to that place name.
+- EVENT if mainly about a specific event/incident — set subject to its main keyword/name.
+- TOPIC if it's a general topic/issue — set subject to the main keyword.
+- Never return generic words like "election", "policy", "news".`,
+    200,
   );
-  return {
-    primary: out?.primary || title.split(/[:|—-]/)[0].trim(),
-    keyword: out?.keyword || category,
-  };
+  const rawType = String(out?.type || "TOPIC").toUpperCase();
+  const type: SubjectType = (["PERSON", "PLACE", "EVENT", "TOPIC"].includes(rawType) ? rawType : "TOPIC") as SubjectType;
+  const subject = String(out?.subject || title.split(/[:|—-]/)[0].trim()).trim();
+  const keyword = String(out?.keyword || category).trim();
+  return { type, subject, keyword };
 }
 
 function isLandscape(w?: number, h?: number, minW = 800): boolean {
@@ -77,7 +96,7 @@ function isLandscape(w?: number, h?: number, minW = 800): boolean {
 
 const BAD_PATTERNS = /flag|banner|logo|diagram|chart|map|sankey|poll|report|icon|symbol|svg/i;
 
-async function tryWikipedia(subject: string): Promise<{ url: string; credit: string } | null> {
+async function tryWikipedia(subject: string, allowPortrait: boolean): Promise<{ url: string; credit: string; source: string } | null> {
   try {
     const slug = encodeURIComponent(subject.trim().replace(/\s+/g, "_"));
     const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${slug}`, {
@@ -87,13 +106,20 @@ async function tryWikipedia(subject: string): Promise<{ url: string; credit: str
     const d = await res.json();
     const orig = d?.originalimage;
     const thumb = d?.thumbnail;
-    const pick = isLandscape(orig?.width, orig?.height) ? orig : isLandscape(thumb?.width, thumb?.height) ? thumb : null;
+    const acceptable = (img: any) => {
+      if (!img?.source) return false;
+      const w = img.width, h = img.height;
+      if (!w || !h) return false;
+      if (allowPortrait) return w >= 400 && h >= 400;
+      return w > h && w >= 800;
+    };
+    const pick = acceptable(orig) ? orig : acceptable(thumb) ? thumb : null;
     if (!pick?.source) return null;
-    return { url: pick.source, credit: "Photo: Wikimedia Commons" };
+    return { url: pick.source, credit: "Wikipedia", source: "Wikipedia" };
   } catch { return null; }
 }
 
-async function tryCommons(subject: string): Promise<{ url: string; credit: string } | null> {
+async function tryCommons(subject: string, allowPortrait: boolean): Promise<{ url: string; credit: string; source: string } | null> {
   try {
     const u = `https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrnamespace=6&gsrlimit=8&gsrsearch=${encodeURIComponent(subject)}&prop=imageinfo&iiprop=url|mime|size&iiurlwidth=1200`;
     const res = await fetch(u, { headers: { "User-Agent": "TheVideshi/1.0" } });
@@ -107,16 +133,18 @@ async function tryCommons(subject: string): Promise<{ url: string; credit: strin
       if (mime !== "image/jpeg") continue;
       const w = info.thumbwidth || info.width;
       const h = info.thumbheight || info.height;
-      if (!isLandscape(w, h)) continue;
+      if (!w || !h) continue;
+      if (!allowPortrait && !isLandscape(w, h)) continue;
+      if (allowPortrait && (w < 400 || h < 400)) continue;
       const url = info.thumburl || info.url;
       if (!url || BAD_PATTERNS.test(url)) continue;
-      return { url, credit: "Photo: Wikimedia Commons" };
+      return { url, credit: "Wikimedia Commons", source: "Wikimedia Commons" };
     }
     return null;
   } catch { return null; }
 }
 
-async function tryUnsplash(keyword: string): Promise<{ url: string; credit: string } | null> {
+async function tryUnsplash(keyword: string): Promise<{ url: string; credit: string; source: string } | null> {
   if (!UNSPLASH_ACCESS_KEY) return null;
   try {
     const u = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(keyword + " India")}&per_page=3&orientation=landscape&content_filter=high`;
@@ -127,15 +155,29 @@ async function tryUnsplash(keyword: string): Promise<{ url: string; credit: stri
       const w = p?.width ?? 0;
       if (w < 1200) continue;
       const url = p?.urls?.regular || p?.urls?.full;
-      if (url) return { url, credit: "Photo: Unsplash" };
+      if (url) return { url, credit: "Unsplash", source: "Unsplash" };
     }
     const p = d?.results?.[0];
     const url = p?.urls?.regular || p?.urls?.full;
-    return url ? { url, credit: "Photo: Unsplash" } : null;
+    return url ? { url, credit: "Unsplash", source: "Unsplash" } : null;
   } catch { return null; }
 }
 
-async function visionScore(imageUrl: string, title: string): Promise<{ score: number; description: string }> {
+async function tryPexels(keyword: string): Promise<{ url: string; credit: string; source: string } | null> {
+  const key = Deno.env.get("PEXELS_API_KEY") ?? "";
+  if (!key) return null;
+  try {
+    const u = `https://api.pexels.com/v1/search?query=${encodeURIComponent(keyword + " India")}&per_page=3&orientation=landscape`;
+    const res = await fetch(u, { headers: { Authorization: key } });
+    if (!res.ok) return null;
+    const d = await res.json();
+    const p = d?.photos?.[0];
+    const url = p?.src?.large2x || p?.src?.large || p?.src?.original;
+    return url ? { url, credit: "Pexels", source: "Pexels" } : null;
+  } catch { return null; }
+}
+
+async function visionScore(imageUrl: string, classification: Classification): Promise<{ score: number; description: string; shows_subject: boolean }> {
   try {
     const data = await anthropicFetch({
       model: VISION_MODEL,
@@ -144,27 +186,23 @@ async function visionScore(imageUrl: string, title: string): Promise<{ score: nu
         role: "user",
         content: [
           { type: "image", source: { type: "url", url: imageUrl } },
-          { type: "text", text: `Article: "${title}". Score this image 1-10 for relevance. Reply JSON only: {"score": N, "description": "8 words or fewer describing only what you see — no analysis, no relevance explanation. Examples: 'Kolkata Victoria Memorial at dusk', 'Indian Air Force fighter jet', 'Mamata Banerjee at press conference'"}` },
+          { type: "text", text: `Article subject: ${classification.type} = "${classification.subject}".
+
+Does this image show ${classification.subject}? Score 1-10 where 10 = clearly shows the exact ${classification.type === "PERSON" ? "person" : classification.type === "PLACE" ? "place" : "subject"}, 1 = unrelated.
+
+Reply JSON only: {"score": N, "shows_subject": true|false, "description": "5 words or fewer — subject and location only, no verbs, no analysis"}` },
         ],
       }],
     });
     const text = (data?.content?.[0]?.text ?? "").trim().replace(/^```(?:json)?\s*|\s*```$/g, "");
     const m = text.match(/\{[\s\S]*\}/);
     const j = JSON.parse(m ? m[0] : text);
-    return { score: Number(j.score) || 0, description: String(j.description || "").trim() };
-  } catch { return { score: 0, description: "" }; }
-}
-
-async function detectPerson(title: string): Promise<string | null> {
-  const out = await haikuJson(
-    `Is this article primarily about a specific named person (politician, cricketer, actor, business leader, athlete, etc.) — vs. an event, place, or organization?\n\nArticle title: "${title}"\n\nReturn JSON only: {"person": "Full Name" or null}\n\nRules: Only return a name if the article is clearly centered on that individual. Use their full common name (e.g., "Mitchell Marsh", "Mamata Banerjee", "Narendra Modi"). If the article is about an event, team, place, or multiple people, return null.`,
-    100,
-  );
-  const name = out?.person;
-  if (!name || typeof name !== "string") return null;
-  const trimmed = name.trim();
-  if (!trimmed || trimmed.toLowerCase() === "null") return null;
-  return trimmed;
+    return {
+      score: Number(j.score) || 0,
+      description: String(j.description || "").trim(),
+      shows_subject: !!j.shows_subject,
+    };
+  } catch { return { score: 0, description: "", shows_subject: false }; }
 }
 
 async function isImageUrlInUse(url: string): Promise<boolean> {
@@ -181,38 +219,63 @@ async function isImageUrlInUse(url: string): Promise<boolean> {
   return (count ?? 0) > 0;
 }
 
-async function fetchImageForArticle(title: string, category: string): Promise<ImageResult | null> {
-  const person = await detectPerson(title);
-  if (person) console.log(`[image] detected person="${person}"`);
+type ImageResultExt = ImageResult & { subject_type: SubjectType; subject_name: string };
 
-  const { primary, keyword } = await extractImageSubject(title, category);
-  console.log(`[image] subject="${primary}" keyword="${keyword}"`);
+function sourcesFor(c: Classification, category: string): Array<() => Promise<{ url: string; credit: string; source: string } | null>> {
+  const allowPortrait = c.type === "PERSON";
+  switch (c.type) {
+    case "PERSON":
+      return [
+        () => tryWikipedia(c.subject, true),
+        () => tryCommons(c.subject, true),
+      ];
+    case "PLACE":
+      return [
+        () => tryWikipedia(c.subject, false),
+        () => tryCommons(`${c.subject} India`, false),
+        () => tryUnsplash(c.subject),
+      ];
+    case "EVENT":
+      return [
+        () => tryCommons(c.subject, false),
+        () => tryUnsplash(c.keyword || c.subject),
+        () => tryPexels(c.keyword || c.subject),
+      ];
+    case "TOPIC":
+    default:
+      return [
+        () => tryUnsplash(`${c.keyword || c.subject}`),
+        () => tryPexels(`${c.keyword || c.subject}`),
+        () => tryUnsplash(`India ${category || "news"}`),
+      ];
+  }
+}
 
-  const sources: Array<() => Promise<{ url: string; credit: string } | null>> = [
-    ...(person ? [() => tryWikipedia(person)] : []),
-    () => tryWikipedia(primary),
-    () => tryCommons(person ?? primary),
-    () => tryUnsplash(keyword),
-  ];
+async function fetchImageForArticle(title: string, firstPara: string, category: string): Promise<ImageResultExt | null> {
+  const classification = await classifySubject(title, firstPara, category);
+  console.log(`[image] classified type=${classification.type} subject="${classification.subject}" keyword="${classification.keyword}"`);
 
-  let best: { url: string; credit: string; description: string; score: number } | null = null;
+  const sources = sourcesFor(classification, category);
+  let best: { url: string; credit: string; source: string; description: string; score: number } | null = null;
 
   for (const src of sources) {
     const cand = await src();
     if (!cand) continue;
     if (await isImageUrlInUse(cand.url)) {
-      console.log(`[image] skip ${cand.credit} — url already used by another article`);
+      console.log(`[image] skip ${cand.source} — url already used`);
       continue;
     }
-    const v = await visionScore(cand.url, title);
-    console.log(`[image] ${cand.credit} score=${v.score}`);
-    if (v.score >= 6) {
+    const v = await visionScore(cand.url, classification);
+    console.log(`[image] ${cand.source} score=${v.score} shows=${v.shows_subject} — ${v.description}`);
+    if (v.score >= 7) {
       return {
         image_url: cand.url,
-        image_caption: v.description || title,
-        image_credit: cand.credit,
+        image_caption: `${v.description || classification.subject} · Photo: ${cand.source}`,
+        image_credit: `Photo: ${cand.credit}`,
         image_verified: true,
         image_score: v.score,
+        subject_type: classification.type,
+        subject_name: classification.subject,
       };
     }
     if (!best || v.score > best.score) {
@@ -223,27 +286,29 @@ async function fetchImageForArticle(title: string, category: string): Promise<Im
   if (best) {
     return {
       image_url: best.url,
-      image_caption: best.description || title,
-      image_credit: best.credit,
+      image_caption: `${best.description || classification.subject} · Photo: ${best.source}`,
+      image_credit: `Photo: ${best.credit}`,
       image_verified: false,
       image_score: best.score,
+      subject_type: classification.type,
+      subject_name: classification.subject,
     };
   }
-  // Try a category-level Unsplash fallback, but still enforce uniqueness.
-  console.warn(`[image] all primary sources exhausted or already used for "${title}" — trying category fallback`);
-  const categoryQuery = `India ${category || "news"}`.trim();
-  const fb = await tryUnsplash(categoryQuery);
+  // Generic India + category fallback.
+  console.warn(`[image] all sources exhausted for "${title}" — trying generic India fallback`);
+  const fb = (await tryUnsplash(`India ${category || "news"}`)) ?? (await tryPexels(`India ${category || "news"}`));
   if (fb && !(await isImageUrlInUse(fb.url))) {
     return {
       image_url: fb.url,
-      image_caption: title,
-      image_credit: fb.credit,
+      image_caption: `${classification.subject} · Photo: ${fb.source}`,
+      image_credit: `Photo: ${fb.credit}`,
       image_verified: false,
       image_score: 0,
+      subject_type: classification.type,
+      subject_name: classification.subject,
     };
   }
-  // No unique image available — leave null so agent-images can try again later.
-  console.error(`[image] no unique image available for "${title}" — leaving image_url null`);
+  console.error(`[image] no unique image available for "${title}"`);
   return null;
 }
 
@@ -487,13 +552,22 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
 
     // Fetch hero image inline so no article is published without one.
     try {
-      const img = await fetchImageForArticle(enriched.title, job.category || "world");
+      const firstPara = (() => {
+        if (Array.isArray(enriched.body)) {
+          const p = enriched.body.find((b: any) => b?.type === "paragraph" && typeof b.content === "string");
+          if (p) return p.content as string;
+        }
+        return enriched.summary || "";
+      })();
+      const img = await fetchImageForArticle(enriched.title, firstPara, job.category || "world");
       if (img) {
         enriched.image_url = img.image_url;
         enriched.image_caption = img.image_caption;
         enriched.image_credit = img.image_credit;
         enriched.image_verified = img.image_verified;
         enriched.image_score = img.image_score;
+        enriched.subject_type = img.subject_type;
+        enriched.subject_name = img.subject_name;
       } else {
         console.warn(`[image] no image found for "${enriched.title}"`);
       }
