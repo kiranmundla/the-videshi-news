@@ -289,6 +289,48 @@ export type Database = {
         }
         Relationships: []
       }
+      story_clusters: {
+        Row: {
+          article_ids: string[] | null
+          auto_generated: boolean | null
+          created_at: string | null
+          description: string | null
+          expires_at: string | null
+          id: string
+          is_active: boolean | null
+          label: string
+          slug: string | null
+          source_count: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          article_ids?: string[] | null
+          auto_generated?: boolean | null
+          created_at?: string | null
+          description?: string | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          label: string
+          slug?: string | null
+          source_count?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          article_ids?: string[] | null
+          auto_generated?: boolean | null
+          created_at?: string | null
+          description?: string | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          label?: string
+          slug?: string | null
+          source_count?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       story_groups: {
         Row: {
           best_article_id: string | null
