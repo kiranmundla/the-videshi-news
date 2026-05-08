@@ -133,7 +133,7 @@ async function fetchFeed(source: typeof RSS_SOURCES[0]): Promise<RawArticle[]> {
     });
     if (!res.ok) return [];
     const xml = await res.text();
-    return parseRSS(xml, source.name, source.url);
+    return parseRSS(xml, source.name, source.url, source.credibility);
   } catch (err) {
     console.error(`Failed to fetch ${source.name}:`, (err as Error).message);
     return [];
