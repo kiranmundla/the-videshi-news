@@ -89,7 +89,7 @@ async function verifyImage(
 Category: ${category}
 
 Look at this image and respond in JSON only (no prose, no code fences):
-{"description": "8 words or fewer describing only what you see — no analysis, no relevance. e.g. 'Kolkata Victoria Memorial at dusk', 'Indian Air Force fighter jet'", "relevant": true|false, "is_real_photo": true|false, "score": 1-10}
+{"description": "Describe this image in 5 words or fewer. Subject and location only. No verbs. No analysis. Examples: 'Victoria Memorial, Kolkata' or 'Charminar, Hyderabad' or 'IAF Sukhoi jet' or 'Mamata Banerjee press conference'", "relevant": true|false, "is_real_photo": true|false, "score": 1-10}
 
 Score criteria:
 - 9-10: Perfect match — shows the exact person, place, or event named in the article.
