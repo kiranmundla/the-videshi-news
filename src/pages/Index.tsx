@@ -123,7 +123,7 @@ export default function Index() {
     });
 
     return { featured, newsClusters, newsUngrouped, sections };
-  }, [allArticles]);
+  }, [allArticles, featuredArticle]);
 
   if (loading) {
     return (
