@@ -6,17 +6,28 @@ import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
 import { Article, getPublishedArticles } from "@/lib/articles";
-import { CATEGORIES } from "@/lib/categories";
 
-const SECTION_ORDER: { slug: string; label: string }[] = [
-  { slug: "markets-finance", label: "Markets & Finance" },
-  { slug: "entertainment", label: "Entertainment" },
-  { slug: "technology", label: "Technology" },
-  { slug: "sports", label: "Sports" },
+type SectionDef = { slug: string; label: string; limit: number; href: string };
+
+const NEWS_SECTION: SectionDef = {
+  slug: "news",
+  label: "News",
+  limit: 6,
+  href: "/news",
+};
+
+const CATEGORY_SECTIONS: SectionDef[] = [
+  { slug: "markets-finance", label: "Markets & Finance", limit: 3, href: "/markets-finance" },
+  { slug: "entertainment", label: "Entertainment", limit: 3, href: "/entertainment" },
+  { slug: "technology", label: "Technology", limit: 3, href: "/technology" },
+  { slug: "sports", label: "Sports", limit: 3, href: "/sports" },
+  { slug: "travel", label: "Travel", limit: 3, href: "/travel" },
+  { slug: "lifestyle-health", label: "Lifestyle & Health", limit: 3, href: "/lifestyle-health" },
+  { slug: "food", label: "Food", limit: 3, href: "/food" },
 ];
 
 const PLACEHOLDER_SECTIONS = [
-  { slug: "events", label: "Events", message: "Community events coming soon." },
+  { slug: "events", label: "Events", message: "Coming soon." },
   { slug: "classifieds", label: "Classifieds", message: "Be the first to post." },
 ];
 
@@ -29,21 +40,17 @@ const CLUSTERS: { label: string; tags: string[]; excludeSlugs?: string[] }[] = [
   { label: "Tamil Nadu", tags: ["tamil nadu", "tamilnadu"] },
 ];
 
-const MIN_SECTION_ITEMS = 2;
-const NEWS_LIMIT = 6;
-
 function tagsLower(a: Article) {
   return (a.tags ?? []).map((t) => t.toLowerCase());
 }
-
 function matchesCluster(a: Article, tags: string[]) {
   const at = tagsLower(a);
   return tags.some((t) => at.some((x) => x === t || x.includes(t)));
 }
 
-function SectionHeader({ label, href }: { label: string; href?: string }) {
+function SectionHeader({ label, href, id }: { label: string; href?: string; id?: string }) {
   return (
-    <div className="flex items-end justify-between mt-14 mb-7 gap-4">
+    <div id={id} className="flex items-end justify-between mt-14 mb-7 gap-4 scroll-mt-24">
       <div className="flex items-center gap-4 flex-1 min-w-0">
         <span className="smallcaps text-primary whitespace-nowrap">{label}</span>
         <span className="flex-1 bg-rule" style={{ height: "0.5px" }} />
@@ -55,6 +62,10 @@ function SectionHeader({ label, href }: { label: string; href?: string }) {
       )}
     </div>
   );
+}
+
+function EmptyPlaceholder({ message }: { message: string }) {
+  return <p className="py-8 text-center text-muted-foreground">{message}</p>;
 }
 
 export default function Index() {
@@ -78,9 +89,9 @@ export default function Index() {
       allArticles.find((a) => a.article_type === "feature") ?? allArticles[0] ?? null;
     if (featured) used.add(featured.id);
 
-    // 2. Clusters (from news category, matching tags). Only keep if 2+ items.
-    const newsAll = allArticles.filter((a) => a.category === "news");
-    const visibleClusters: { label: string; items: Article[] }[] = [];
+    // 2. News + clusters within News
+    const newsAll = allArticles.filter((a) => a.category === "news" && !used.has(a.id));
+    const newsClusters: { label: string; items: Article[] }[] = [];
     for (const c of CLUSTERS) {
       const items = newsAll.filter(
         (a) =>
@@ -88,38 +99,26 @@ export default function Index() {
           !(c.excludeSlugs ?? []).includes(a.slug) &&
           matchesCluster(a, c.tags)
       );
-      if (items.length >= MIN_SECTION_ITEMS) {
-        visibleClusters.push({ label: c.label, items });
+      if (items.length >= 2) {
+        newsClusters.push({ label: c.label, items });
         items.forEach((a) => used.add(a.id));
       }
     }
+    const newsUngrouped = newsAll
+      .filter((a) => !used.has(a.id))
+      .slice(0, NEWS_SECTION.limit);
+    newsUngrouped.forEach((a) => used.add(a.id));
 
-    // 3. Category sections — only if 2+ items. Singles get folded into News.
-    const foldedSingles: Article[] = [];
-    const sections = SECTION_ORDER.map((s) => {
+    // 3. Category sections
+    const sections = CATEGORY_SECTIONS.map((s) => {
       const items = allArticles
         .filter((a) => a.category === s.slug && !used.has(a.id))
-        .slice(0, 6);
-      if (items.length >= MIN_SECTION_ITEMS) {
-        items.forEach((a) => used.add(a.id));
-        return { ...s, items };
-      }
-      // Fold singles into News pool, mark used so we don't double-show
-      items.forEach((a) => {
-        foldedSingles.push(a);
-        used.add(a.id);
-      });
-      return { ...s, items: [] };
-    }).filter((s) => s.items.length > 0);
+        .slice(0, s.limit);
+      items.forEach((a) => used.add(a.id));
+      return { ...s, items };
+    });
 
-    // 4. News — 6 most recent from category=news not yet used, plus folded singles
-    const newsSection = [
-      ...newsAll.filter((a) => !used.has(a.id)),
-      ...foldedSingles,
-    ].slice(0, NEWS_LIMIT);
-    newsSection.forEach((a) => used.add(a.id));
-
-    return { featured, newsSection, visibleClusters, sections };
+    return { featured, newsClusters, newsUngrouped, sections };
   }, [allArticles]);
 
   if (loading) {
@@ -132,7 +131,8 @@ export default function Index() {
     );
   }
 
-  const { featured, newsSection, visibleClusters, sections } = layout;
+  const { featured, newsClusters, newsUngrouped, sections } = layout;
+  const hasNewsContent = newsClusters.length > 0 || newsUngrouped.length > 0;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -162,43 +162,52 @@ export default function Index() {
           </div>
         )}
 
-        {newsSection.length > 0 && (
-          <section>
-            <SectionHeader label="News" href="/news" />
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-              {newsSection.map((a) => (
-                <ArticleCard key={a.id} article={a} variant="card" hideCategory />
+        <section>
+          <SectionHeader label={NEWS_SECTION.label} href={NEWS_SECTION.href} id="section-news" />
+          {hasNewsContent ? (
+            <>
+              {newsClusters.map((c) => (
+                <div key={c.label} className="mb-10">
+                  <p className="smallcaps text-foreground/70 mb-4">{c.label}</p>
+                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+                    {c.items.map((a) => (
+                      <ArticleCard key={a.id} article={a} variant="card" hideCategory />
+                    ))}
+                  </div>
+                </div>
               ))}
-            </div>
-          </section>
-        )}
-
-        {visibleClusters.map((c) => (
-          <section key={c.label}>
-            <SectionHeader label={c.label} />
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-              {c.items.map((a) => (
-                <ArticleCard key={a.id} article={a} variant="card" hideCategory />
-              ))}
-            </div>
-          </section>
-        ))}
+              {newsUngrouped.length > 0 && (
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+                  {newsUngrouped.map((a) => (
+                    <ArticleCard key={a.id} article={a} variant="card" hideCategory />
+                  ))}
+                </div>
+              )}
+            </>
+          ) : (
+            <EmptyPlaceholder message="More stories coming soon." />
+          )}
+        </section>
 
         {sections.map((s) => (
           <section key={s.slug}>
-            <SectionHeader label={s.label} href={`/${s.slug}`} />
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-              {s.items.map((a) => (
-                <ArticleCard key={a.id} article={a} variant="card" hideCategory />
-              ))}
-            </div>
+            <SectionHeader label={s.label} href={s.href} id={`section-${s.slug}`} />
+            {s.items.length > 0 ? (
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+                {s.items.map((a) => (
+                  <ArticleCard key={a.id} article={a} variant="card" hideCategory />
+                ))}
+              </div>
+            ) : (
+              <EmptyPlaceholder message="More stories coming soon." />
+            )}
           </section>
         ))}
 
         {PLACEHOLDER_SECTIONS.map((s) => (
           <section key={s.slug}>
-            <SectionHeader label={s.label} href={`/${s.slug}`} />
-            <p className="py-8 text-center text-muted-foreground">{s.message}</p>
+            <SectionHeader label={s.label} id={`section-${s.slug}`} />
+            <EmptyPlaceholder message={s.message} />
           </section>
         ))}
       </main>
@@ -207,4 +216,3 @@ export default function Index() {
     </div>
   );
 }
-
