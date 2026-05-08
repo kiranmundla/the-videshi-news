@@ -132,6 +132,48 @@ function parseRSS(xml: string, sourceName: string, sourceUrl: string, credibilit
   return items;
 }
 
+// ── MEA HTML listing parser ──────────────────────────────────
+// Each press release is an <li> containing an <a class="searchContent" href="press-releases.htm?dtl/...">
+// followed by a <p> with a fa-calendar span and a date like "May 08, 2026".
+function parseMeaHtml(
+  html: string,
+  sourceName: string,
+  sourceUrl: string,
+  credibility: string
+): RawArticle[] {
+  const items: RawArticle[] = [];
+  const base = "https://www.mea.gov.in/";
+  const liRe = /<li\b[\s\S]*?<\/li>/g;
+  const linkRe = /<a\b[^>]*class="[^"]*searchContent[^"]*"[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/i;
+  const dateRe = /fa-calendar[^>]*><\/span>\s*([A-Za-z]+\s+\d{1,2},\s+\d{4})/i;
+
+  for (const li of html.match(liRe) || []) {
+    const linkMatch = li.match(linkRe);
+    if (!linkMatch) continue;
+    const href = linkMatch[1].trim();
+    const title = linkMatch[2].replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+    if (!title || !href) continue;
+    const url = href.startsWith("http") ? href : base + href.replace(/^\/+/, "");
+
+    const dateMatch = li.match(dateRe);
+    const publishedAt = dateMatch
+      ? new Date(dateMatch[1]).toISOString()
+      : new Date().toISOString();
+
+    items.push({
+      title,
+      url,
+      description: "",
+      image_url: null,
+      source_name: sourceName,
+      source_url: sourceUrl,
+      published_at: publishedAt,
+      credibility,
+    });
+  }
+  return items;
+}
+
 async function fetchFeed(source: typeof RSS_SOURCES[0]): Promise<RawArticle[]> {
   try {
     const res = await fetch(source.url, {
