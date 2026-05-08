@@ -9,15 +9,16 @@ export default function ArticleCard({
   article,
   variant = "card",
   hideCategory = false,
+  featured = false,
 }: {
   article: Article;
   variant?: Variant;
   hideCategory?: boolean;
+  featured?: boolean;
 }) {
   const time = readingTime(article.body);
   const href = `/articles/${article.slug}`;
-  const isFeature = article.article_type === "feature";
-  const featureLabel = isFeature ? "FEATURE" : null;
+  const featureLabel = featured ? "FEATURED" : null;
   if (typeof window !== "undefined" && /bengal|election/i.test(article.title)) {
     console.log("[ArticleCard]", article.title, "image_url=", article.hero_image_url);
   }
