@@ -262,10 +262,16 @@ Does the new story brief contain materially new facts not covered in the existin
           : "news";
       s.article_type = articleType;
 
+      const priorityScore =
+        typeof s.priority === "number" && s.priority > 0
+          ? Math.min(100, Math.max(1, Math.round(s.priority)))
+          : sourceCount;
+
       const { error: insErr } = await supabase.from("story_queue").insert({
         status: "pending",
         story_brief: s,
-        priority: stories.length - i,
+        priority: priorityScore,
+        featured_score: priorityScore,
         category: s.category,
         diaspora_relevance: s.diaspora_relevance,
         raw_article_ids: rawIds,
