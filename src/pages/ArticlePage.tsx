@@ -109,7 +109,7 @@ export default function ArticlePage() {
             alt={article.title}
             loading="eager"
             category={article.category}
-            className="block w-full h-[240px] md:h-[480px] object-cover object-center"
+            className="block w-full aspect-[4/3] md:aspect-[16/9] object-cover object-center"
           />
           <div className="text-center">
             <ImageCaption
