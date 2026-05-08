@@ -104,7 +104,7 @@ export default function ArticleCard({
             className="w-full h-full object-cover object-center group-hover:scale-[1.01] transition-transform duration-500"
           />
         </div>
-        <ImageCaption caption={article.image_caption} credit={article.image_credit} truncate />
+        
       </figure>
       {!hideCategory && (
         <p className="smallcaps text-primary mt-4 mb-2">
