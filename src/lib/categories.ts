@@ -12,6 +12,8 @@ export const CATEGORIES: CategoryDef[] = [
   { slug: "markets-finance", label: "Markets & Finance", path: "/markets-finance", hasPipeline: true },
   { slug: "technology", label: "Technology", path: "/technology", hasPipeline: true },
   { slug: "sports", label: "Sports", path: "/sports", hasPipeline: true },
+  { slug: "entertainment", label: "Entertainment", path: "/entertainment", hasPipeline: true },
+  { slug: "food", label: "Food", path: "/food", hasPipeline: true },
   { slug: "events", label: "Events", path: "/events", hasPipeline: false },
   { slug: "classifieds", label: "Classifieds", path: "/classifieds", hasPipeline: false },
 ];
