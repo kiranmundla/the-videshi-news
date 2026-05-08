@@ -147,27 +147,17 @@ async function tryUnsplash(keyword: string): Promise<{ url: string; credit: stri
 
 async function visionScore(imageUrl: string, title: string): Promise<{ score: number; description: string }> {
   try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "x-api-key": ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        model: VISION_MODEL,
-        max_tokens: 150,
-        messages: [{
-          role: "user",
-          content: [
-            { type: "image", source: { type: "url", url: imageUrl } },
-            { type: "text", text: `Article: "${title}". Score this image 1-10 for relevance. Reply JSON only: {"score": N, "description": "8 words or fewer describing only what you see — no analysis, no relevance explanation. Examples: 'Kolkata Victoria Memorial at dusk', 'Indian Air Force fighter jet', 'Mamata Banerjee at press conference'"}` },
-          ],
-        }],
-      }),
+    const data = await anthropicFetch({
+      model: VISION_MODEL,
+      max_tokens: 150,
+      messages: [{
+        role: "user",
+        content: [
+          { type: "image", source: { type: "url", url: imageUrl } },
+          { type: "text", text: `Article: "${title}". Score this image 1-10 for relevance. Reply JSON only: {"score": N, "description": "8 words or fewer describing only what you see — no analysis, no relevance explanation. Examples: 'Kolkata Victoria Memorial at dusk', 'Indian Air Force fighter jet', 'Mamata Banerjee at press conference'"}` },
+        ],
+      }],
     });
-    if (!res.ok) return { score: 0, description: "" };
-    const data = await res.json();
     const text = (data?.content?.[0]?.text ?? "").trim().replace(/^```(?:json)?\s*|\s*```$/g, "");
     const m = text.match(/\{[\s\S]*\}/);
     const j = JSON.parse(m ? m[0] : text);
