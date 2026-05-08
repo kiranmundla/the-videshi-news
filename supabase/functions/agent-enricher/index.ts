@@ -354,10 +354,14 @@ ARTICLE TYPE: ${articleType.toUpperCase()}
 
 DO ALL OF THE FOLLOWING (with strict constraints):
 - NRI/Diaspora Angle — STRICT RULES:
-  * Maximum 3 sentences total. No bullets, no numbered lists, no subheadings inside this section.
-  * Sentence 1: WHY this matters to Indian-Americans. Sentence 2: WHAT to watch next. Sentence 3 (optional): action or resources.
+  * Format the nri_angle block content as a markdown bulleted list using "- " (dash + space) bullets — NEVER use the • character.
+  * Exactly 2-3 bullets, each on its own line, in this order:
+    - **Why It Matters:** one sentence on why Indian-Americans should care
+    - **What To Watch:** one sentence on what comes next
+    - **Action If Any:** (optional) one sentence on resources or steps
+  * Each bullet bold label must be wrapped in markdown bold (**Label:**), followed by a space and the sentence.
   * Do NOT include organizational history. Do NOT include demographic statistics unless directly sourced in sources_used.
-  * Example of correct length and tone: "For the ~2.5 million Bengali-Americans, this shift marks the end of a regional government many saw as culturally protective. Watch how the new BJP administration handles Bengali-language policy and diaspora investment channels in the coming months."
+  * Example content value:\n    "- **Why It Matters:** For the ~2.5 million Bengali-Americans, this shift ends a culturally protective regional government.\n- **What To Watch:** How the new BJP administration handles Bengali-language policy and diaspora investment channels.\n- **Action If Any:** Diaspora groups can lobby through FIA-NY for cultural funding continuity."
 - Wikipedia / Background Context: keep historical context sections — they are valuable. Paraphrasing Wikipedia is encouraged but MUST be clearly attributed (e.g. "According to Wikipedia").
 - Geographic Context boxes: keep them — they are valuable for diaspora readers.
 - "Understanding the Players" explainer boxes: keep them.

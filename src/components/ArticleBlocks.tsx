@@ -1,3 +1,5 @@
+import ReactMarkdown from "react-markdown";
+
 type Block =
   | { type: "paragraph"; text?: string; content?: string }
   | { type: "pull_quote"; text?: string; content?: string; attribution?: string }
@@ -5,6 +7,17 @@ type Block =
   | { type: "nri_angle"; text?: string; content?: string; title?: string }
   | { type: "key_facts"; title?: string; items?: string[]; facts?: string[] }
   | { type: string; [k: string]: unknown };
+
+// Convert "• **Label:** text" or "• text" runs into a real markdown list so
+// each bullet renders on its own line with spacing.
+function bulletsToMarkdown(text: string): string {
+  if (!text) return "";
+  let t = text.replace(/\r\n/g, "\n");
+  // Insert a newline before every • that isn't already at the start of a line
+  t = t.replace(/\s*•\s*/g, "\n- ");
+  // Trim leading blank line if we created one
+  return t.replace(/^\n+/, "").trim();
+}
 
 export function tryParseBlocks(body: string): Block[] | null {
   const trimmed = (body ?? "").trim();
@@ -74,7 +87,8 @@ export default function ArticleBlocks({ blocks }: { blocks: Block[] }) {
             );
           }
 
-          case "nri_angle":
+          case "nri_angle": {
+            const md = bulletsToMarkdown(getText(b));
             return (
               <aside
                 key={i}
@@ -83,9 +97,12 @@ export default function ArticleBlocks({ blocks }: { blocks: Block[] }) {
                 <p className="smallcaps text-primary mb-2">
                   {b.title ?? "The NRI Angle"}
                 </p>
-                <p className="m-0 text-foreground/90">{getText(b)}</p>
+                <div className="nri-prose text-foreground/90 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-3 [&_li]:leading-relaxed [&_p]:m-0 [&_p+ul]:mt-3">
+                  <ReactMarkdown>{md}</ReactMarkdown>
+                </div>
               </aside>
             );
+          }
 
           case "key_facts": {
             const items = getItems(b);
