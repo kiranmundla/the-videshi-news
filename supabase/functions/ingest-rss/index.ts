@@ -31,9 +31,9 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   { name: "Deccan Herald",   url: "https://www.deccanherald.com/feed", credibility: "tier3", category: "news" },
 
   // ── Tier 1 — Official sources ─────────────────────────────
-  // PIB English (RssMain.aspx?ModId=6&lang=1) responds 200 to local curl but Akamai 403s
-  // from Supabase edge IPs. Disabled until we route through a proxy.
-  // { name: "PIB English", url: "https://pib.gov.in/RssMain.aspx?ModId=6&lang=1", credibility: "official", category: "news" },
+  // PIB English is Akamai-blocked from Supabase edge IPs. Routed through rss2json proxy.
+  // Note: rss2json `count` param requires a paid API key; default returns 10 items.
+  { name: "PIB English", url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fpib.gov.in%2FRssMain.aspx%3FModId%3D6%26lang%3D1", credibility: "official", category: "news", parser: "rss2json" },
   // PIB PMO (ModId=2) returns HTML, not RSS — disabled.
   // MEA's RSS endpoint is Akamai-blocked, but the public HTML listing is fetchable. Scrape it.
   { name: "MEA Press Releases", url: "https://www.mea.gov.in/press-releases.htm?51/Press_Releases", credibility: "official", parser: "html-mea" },
