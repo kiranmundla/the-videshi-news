@@ -130,24 +130,26 @@ export default function Index() {
       featuredArticle ?? allArticles[0] ?? null;
     if (featured) used.add(featured.id);
 
-    // 2. News + clusters within News
-    const newsAll = allArticles.filter((a) => a.category === "news" && !used.has(a.id));
+    // 2. Latest — ALL published articles (do not dedupe featured, no category filter)
+    const clusterUsed = new Set<string>();
     const newsClusters: { label: string; items: Article[] }[] = [];
     for (const c of CLUSTERS) {
-      const items = newsAll.filter(
+      const items = allArticles.filter(
         (a) =>
-          !used.has(a.id) &&
+          !clusterUsed.has(a.id) &&
           !(c.excludeSlugs ?? []).includes(a.slug) &&
           matchesCluster(a, c.tags)
       );
       if (items.length >= 2) {
         newsClusters.push({ label: c.label, items });
-        items.forEach((a) => used.add(a.id));
+        items.forEach((a) => clusterUsed.add(a.id));
       }
     }
-    const newsUngrouped = newsAll
-      .filter((a) => !used.has(a.id))
+    const newsUngrouped = allArticles
+      .filter((a) => !clusterUsed.has(a.id))
       .slice(0, NEWS_SECTION.limit);
+    // Reserve cluster + ungrouped articles from category sections, but keep featured visible here
+    clusterUsed.forEach((id) => used.add(id));
     newsUngrouped.forEach((a) => used.add(a.id));
 
     // 3. Category sections — pool up to 12 per section, claim them upfront
