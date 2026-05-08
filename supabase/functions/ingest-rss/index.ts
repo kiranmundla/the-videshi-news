@@ -19,25 +19,40 @@ const supabase = createClient(
 );
 
 // ── RSS Sources ──────────────────────────────────────────────
-const RSS_SOURCES: { name: string; url: string; category?: string; region?: string }[] = [
-  { name: "Times of India",  url: "https://timesofindia.indiatimes.com/rssfeedstopstories.cms" },
-  { name: "NDTV",            url: "https://feeds.feedburner.com/ndtvnews-top-stories" },
-  { name: "The Hindu",       url: "https://www.thehindu.com/news/national/feeder/default.rss" },
-  { name: "Hindustan Times", url: "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml" },
-  { name: "India Today",     url: "https://www.indiatoday.in/rss/1206578" },
-  // Public domain — All India Radio (full text publishable)
-  { name: "Newsonair",       url: "https://www.newsonair.gov.in/feed/" },
+type Credibility = "official" | "tier1" | "tier2" | "tier3" | "nri" | "entertainment";
+const RSS_SOURCES: { name: string; url: string; category?: string; region?: string; credibility: Credibility }[] = [
+  { name: "Times of India",  url: "https://timesofindia.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3" },
+  { name: "NDTV",            url: "https://feeds.feedburner.com/ndtvnews-top-stories", credibility: "tier3" },
+  { name: "The Hindu",       url: "https://www.thehindu.com/news/national/feeder/default.rss", credibility: "tier3" },
+  { name: "Hindustan Times", url: "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml", credibility: "tier3" },
+  { name: "India Today",     url: "https://www.indiatoday.in/rss/1206578", credibility: "tier3" },
 
-  // ── nri-world: Indians abroad / diaspora sources ──────────
-  { name: "USCIS Newsroom",        url: "https://www.uscis.gov/feeds/rss/newsroom/news.xml",         category: "nri-world", region: "us" },
-  { name: "NRI Pulse",             url: "https://nripulse.com/feed",                                  category: "nri-world", region: "us" },
-  { name: "Indian Link Australia", url: "https://www.indianlink.com.au/feed",                         category: "nri-world", region: "australia" },
-  { name: "Gulf News India",       url: "https://gulfnews.com/rss/india",                             category: "nri-world", region: "uae" },
-  { name: "SBS Hindi",             url: "https://www.sbs.com.au/language/hindi/rss",                  category: "nri-world", region: "australia" },
-  { name: "BBC India",             url: "https://feeds.bbci.co.uk/news/world/asia/india/rss.xml",     category: "nri-world", region: "uk" },
+  // ── Tier 1 — Official sources ─────────────────────────────
+  { name: "PIB India",       url: "https://pib.gov.in/rss.aspx",                            credibility: "official" },
+  { name: "MEA India",       url: "https://www.mea.gov.in/rss/pressrelease.xml",            credibility: "official" },
+  { name: "USCIS",           url: "https://www.uscis.gov/feeds/rss/newsroom/news.xml",      credibility: "official", category: "nri-world", region: "us" },
+  { name: "RBI",             url: "https://rbi.org.in/rss.aspx",                            credibility: "official" },
+  { name: "Newsonair",       url: "https://www.newsonair.gov.in/feed/",                     credibility: "official" },
+
+  // ── Tier 3 — NRI / diaspora sources ───────────────────────
+  { name: "NRI Pulse",             url: "https://nripulse.com/feed",                  credibility: "nri", category: "nri-world", region: "us" },
+  { name: "Silicon India",         url: "https://www.siliconindia.com/rss/news.xml",  credibility: "nri", category: "nri-world", region: "us" },
+  { name: "Gulf News India",       url: "https://gulfnews.com/rss/india",             credibility: "nri", category: "nri-world", region: "uae" },
+  { name: "Indian Link Australia", url: "https://www.indianlink.com.au/feed",         credibility: "nri", category: "nri-world", region: "australia" },
+  { name: "SBS Hindi",             url: "https://www.sbs.com.au/language/hindi/rss",  credibility: "nri", category: "nri-world", region: "australia" },
+  { name: "BBC India",             url: "https://feeds.bbci.co.uk/news/world/asia/india/rss.xml", credibility: "nri", category: "nri-world", region: "uk" },
+
+  // ── Entertainment ─────────────────────────────────────────
+  { name: "Bollywood Hungama", url: "https://www.bollywoodhungama.com/rss/news.xml", credibility: "entertainment" },
+  { name: "Filmfare",          url: "https://www.filmfare.com/rss/news.rss",         credibility: "entertainment" },
+
+  // ── Business ──────────────────────────────────────────────
+  { name: "Economic Times", url: "https://economictimes.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3" },
+  { name: "Moneycontrol",   url: "https://www.moneycontrol.com/rss/latestnews.xml",             credibility: "tier3" },
 ];
 
 interface RawArticle {
+  credibility?: string;
   title: string;
   url: string;
   description: string;
@@ -48,7 +63,7 @@ interface RawArticle {
 }
 
 // ── Simple RSS/XML Parser ────────────────────────────────────
-function parseRSS(xml: string, sourceName: string, sourceUrl: string): RawArticle[] {
+function parseRSS(xml: string, sourceName: string, sourceUrl: string, credibility: string): RawArticle[] {
   const items: RawArticle[] = [];
   const itemMatches = xml.match(/<item[\s\S]*?<\/item>/g) || [];
 
@@ -103,6 +118,7 @@ function parseRSS(xml: string, sourceName: string, sourceUrl: string): RawArticl
       source_name: sourceName,
       source_url: sourceUrl,
       published_at: publishedAt,
+      credibility,
     });
   }
 
@@ -117,7 +133,7 @@ async function fetchFeed(source: typeof RSS_SOURCES[0]): Promise<RawArticle[]> {
     });
     if (!res.ok) return [];
     const xml = await res.text();
-    return parseRSS(xml, source.name, source.url);
+    return parseRSS(xml, source.name, source.url, source.credibility);
   } catch (err) {
     console.error(`Failed to fetch ${source.name}:`, (err as Error).message);
     return [];

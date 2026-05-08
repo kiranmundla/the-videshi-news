@@ -250,6 +250,7 @@ export type Database = {
       raw_articles: {
         Row: {
           created_at: string | null
+          credibility: string | null
           description: string | null
           fetched_at: string | null
           id: string
@@ -263,6 +264,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string | null
+          credibility?: string | null
           description?: string | null
           fetched_at?: string | null
           id?: string
@@ -276,6 +278,7 @@ export type Database = {
         }
         Update: {
           created_at?: string | null
+          credibility?: string | null
           description?: string | null
           fetched_at?: string | null
           id?: string
