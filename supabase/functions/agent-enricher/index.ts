@@ -319,6 +319,7 @@ Deno.serve(async (req) => {
   }
 
   const job = claimed;
+  _jobId = job.id;
   const { data: runRow } = await supabase
     .from("pipeline_runs")
     .insert({ run_type: "enricher", status: "running" })
