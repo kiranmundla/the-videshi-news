@@ -18,6 +18,9 @@ export type Article = {
   nri_angle?: string;
   article_type?: "news" | "feature";
   tags?: string[];
+  featured_score?: number;
+  is_pinned_featured?: boolean;
+  pinned_until?: string | null;
 };
 
 type ArticleRow = {
@@ -37,6 +40,9 @@ type ArticleRow = {
   nri_angle: string | null;
   article_type: string | null;
   tags: string[] | null;
+  featured_score: number | null;
+  is_pinned_featured: boolean | null;
+  pinned_until: string | null;
 };
 
 function parseSources(raw: unknown): Article["sources"] {
@@ -80,7 +86,36 @@ function mapRow(row: ArticleRow): Article {
     article_type: (row.article_type === "feature" ? "feature" : "news"),
     tags: Array.isArray(row.tags) ? row.tags : undefined,
     author: "Diaspora Desk",
+    featured_score: row.featured_score ?? 0,
+    is_pinned_featured: row.is_pinned_featured ?? false,
+    pinned_until: row.pinned_until ?? null,
   };
+}
+
+export async function getFeaturedArticle(): Promise<Article | null> {
+  const nowIso = new Date().toISOString();
+  // 1) Active pinned article wins.
+  const { data: pinned } = await supabase
+    .from("articles")
+    .select("*")
+    .eq("is_published", true)
+    .eq("is_pinned_featured", true)
+    .gt("pinned_until", nowIso)
+    .order("pinned_until", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (pinned) return mapRow(pinned as ArticleRow);
+
+  // 2) Otherwise highest featured_score among recent articles.
+  const { data: top } = await supabase
+    .from("articles")
+    .select("*")
+    .eq("is_published", true)
+    .order("featured_score", { ascending: false })
+    .order("published_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  return top ? mapRow(top as ArticleRow) : null;
 }
 
 export function readingTime(markdown: string) {

@@ -6,7 +6,7 @@ import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
 import HeroCarousel from "@/components/HeroCarousel";
-import { Article, getPublishedArticles } from "@/lib/articles";
+import { Article, getFeaturedArticle, getPublishedArticles } from "@/lib/articles";
 
 type SectionDef = { slug: string; label: string; limit: number; href: string };
 
@@ -72,12 +72,14 @@ function EmptyPlaceholder({ message }: { message: string }) {
 
 export default function Index() {
   const [allArticles, setAllArticles] = useState<Article[]>([]);
+  const [featuredArticle, setFeaturedArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   useEffect(() => {
-    getPublishedArticles().then((a) => {
+    Promise.all([getPublishedArticles(), getFeaturedArticle()]).then(([a, f]) => {
       setAllArticles(a);
+      setFeaturedArticle(f);
       setLastUpdated(new Date());
       setLoading(false);
     });
@@ -86,9 +88,9 @@ export default function Index() {
   const layout = useMemo(() => {
     const used = new Set<string>();
 
-    // 1. Featured
+    // 1. Featured (pinned > highest featured_score)
     const featured =
-      allArticles.find((a) => a.article_type === "feature") ?? allArticles[0] ?? null;
+      featuredArticle ?? allArticles[0] ?? null;
     if (featured) used.add(featured.id);
 
     // 2. News + clusters within News
@@ -121,7 +123,7 @@ export default function Index() {
     });
 
     return { featured, newsClusters, newsUngrouped, sections };
-  }, [allArticles]);
+  }, [allArticles, featuredArticle]);
 
   if (loading) {
     return (

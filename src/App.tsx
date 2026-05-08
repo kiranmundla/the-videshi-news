@@ -10,6 +10,7 @@ import CategoryPage from "./pages/CategoryPage.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import Admin from "./pages/Admin.tsx";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/articles/:slug" element={<ArticlePage />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="/:category" element={<CategoryPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
