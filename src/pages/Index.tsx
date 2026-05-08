@@ -196,18 +196,7 @@ export default function Index() {
         <HeroCarousel />
 
         {sections.map((s) => (
-          <section key={s.slug}>
-            <SectionHeader label={s.label} href={s.href} id={`section-${s.slug}`} />
-            {s.items.length > 0 ? (
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-                {s.items.map((a) => (
-                  <ArticleCard key={a.id} article={a} variant="card" hideCategory />
-                ))}
-              </div>
-            ) : (
-              <EmptyPlaceholder message="More stories coming soon." />
-            )}
-          </section>
+          <HomeCategorySection key={s.slug} section={s} />
         ))}
 
         {PLACEHOLDER_SECTIONS.map((s) => (
