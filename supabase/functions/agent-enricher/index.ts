@@ -501,6 +501,12 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
       console.error("[image] fetch failed", e);
     }
 
+    // Merge detected NRI signals into tags for future filtering.
+    const existingTags = Array.isArray(enriched.tags) ? enriched.tags.map((t: any) => String(t)) : [];
+    const signalTags = nriSignals.all.map((s) => `nri:${s.toLowerCase().replace(/\s+/g, "-")}`);
+    enriched.tags = Array.from(new Set([...existingTags, ...signalTags]));
+    enriched.nri_signals = nriSignals.all;
+
     await supabase
       .from("story_queue")
       .update({
