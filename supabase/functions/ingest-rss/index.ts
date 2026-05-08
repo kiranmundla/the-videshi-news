@@ -56,7 +56,9 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   // ── Sports ────────────────────────────────────────────────
   { name: "CricketTimes", url: "https://crickettimes.com/feed", credibility: "tier3", category: "sports" },
   { name: "InsideSport",  url: "https://insidesport.in/feed",   credibility: "tier3", category: "sports" },
-  // NDTV Sports / NDTV Cricket / Business Standard / Moneycontrol all 403/404 from server-side fetchers. Disabled.
+  // NDTV Sports / NDTV Cricket / Business Standard / Indian Express / Bollywood Life:
+  // origins block both Supabase edge IPs AND rss2json's servers (rss2json returns
+  // "Cannot download this RSS feed"). Disabled until we find a working proxy.
 
   // ── Business ──────────────────────────────────────────────
   { name: "Economic Times", url: "https://economictimes.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3", category: "markets-finance" },
