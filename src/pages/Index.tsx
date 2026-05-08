@@ -10,10 +10,9 @@ import { CATEGORIES } from "@/lib/categories";
 
 const SECTION_ORDER: { slug: string; label: string }[] = [
   { slug: "markets-finance", label: "Markets & Finance" },
+  { slug: "entertainment", label: "Entertainment" },
   { slug: "technology", label: "Technology" },
   { slug: "sports", label: "Sports" },
-  { slug: "lifestyle-health", label: "Lifestyle & Health" },
-  { slug: "travel", label: "Travel" },
 ];
 
 const PLACEHOLDER_SECTIONS = [
@@ -29,6 +28,9 @@ const CLUSTERS: { label: string; tags: string[]; excludeSlugs?: string[] }[] = [
   },
   { label: "Tamil Nadu", tags: ["tamil nadu", "tamilnadu"] },
 ];
+
+const MIN_SECTION_ITEMS = 2;
+const NEWS_LIMIT = 6;
 
 function tagsLower(a: Article) {
   return (a.tags ?? []).map((t) => t.toLowerCase());
@@ -71,15 +73,14 @@ export default function Index() {
   const layout = useMemo(() => {
     const used = new Set<string>();
 
+    // 1. Featured
     const featured =
       allArticles.find((a) => a.article_type === "feature") ?? allArticles[0] ?? null;
     if (featured) used.add(featured.id);
 
+    // 2. Clusters (from news category, matching tags). Only keep if 2+ items.
     const newsAll = allArticles.filter((a) => a.category === "news");
-
-    // Build clusters
-    const clusters: { label: string; items: Article[] }[] = [];
-    const clusteredIds = new Set<string>();
+    const visibleClusters: { label: string; items: Article[] }[] = [];
     for (const c of CLUSTERS) {
       const items = newsAll.filter(
         (a) =>
@@ -87,38 +88,38 @@ export default function Index() {
           !(c.excludeSlugs ?? []).includes(a.slug) &&
           matchesCluster(a, c.tags)
       );
-      if (items.length > 0) {
-        clusters.push({ label: c.label, items });
-        items.forEach((a) => clusteredIds.add(a.id));
+      if (items.length >= MIN_SECTION_ITEMS) {
+        visibleClusters.push({ label: c.label, items });
+        items.forEach((a) => used.add(a.id));
       }
     }
 
-    const remainingNews = newsAll.filter((a) => !used.has(a.id) && !clusteredIds.has(a.id));
-    // Pick latest news, ensuring all clustered items are included
-    const newsItemsForLatest: Article[] = [];
-    clusters.forEach((c) => c.items.forEach((a) => newsItemsForLatest.push(a)));
-    remainingNews.forEach((a) => newsItemsForLatest.push(a));
-    const latestNews = newsItemsForLatest.slice(0, 9);
-    latestNews.forEach((a) => used.add(a.id));
-
-    // Trim cluster items to those in latestNews
-    const latestNewsIds = new Set(latestNews.map((a) => a.id));
-    const visibleClusters = clusters
-      .map((c) => ({ label: c.label, items: c.items.filter((a) => latestNewsIds.has(a.id)) }))
-      .filter((c) => c.items.length > 0);
-    const clusteredVisibleIds = new Set<string>();
-    visibleClusters.forEach((c) => c.items.forEach((a) => clusteredVisibleIds.add(a.id)));
-    const ungroupedNews = latestNews.filter((a) => !clusteredVisibleIds.has(a.id));
-
+    // 3. Category sections — only if 2+ items. Singles get folded into News.
+    const foldedSingles: Article[] = [];
     const sections = SECTION_ORDER.map((s) => {
       const items = allArticles
         .filter((a) => a.category === s.slug && !used.has(a.id))
         .slice(0, 6);
-      items.forEach((a) => used.add(a.id));
-      return { ...s, items };
-    });
+      if (items.length >= MIN_SECTION_ITEMS) {
+        items.forEach((a) => used.add(a.id));
+        return { ...s, items };
+      }
+      // Fold singles into News pool, mark used so we don't double-show
+      items.forEach((a) => {
+        foldedSingles.push(a);
+        used.add(a.id);
+      });
+      return { ...s, items: [] };
+    }).filter((s) => s.items.length > 0);
 
-    return { featured, visibleClusters, ungroupedNews, sections };
+    // 4. News — 6 most recent from category=news not yet used, plus folded singles
+    const newsSection = [
+      ...newsAll.filter((a) => !used.has(a.id)),
+      ...foldedSingles,
+    ].slice(0, NEWS_LIMIT);
+    newsSection.forEach((a) => used.add(a.id));
+
+    return { featured, newsSection, visibleClusters, sections };
   }, [allArticles]);
 
   if (loading) {
@@ -131,7 +132,7 @@ export default function Index() {
     );
   }
 
-  const { featured, visibleClusters, ungroupedNews, sections } = layout;
+  const { featured, newsSection, visibleClusters, sections } = layout;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -161,43 +162,38 @@ export default function Index() {
           </div>
         )}
 
-        {(visibleClusters.length > 0 || ungroupedNews.length > 0) && (
+        {newsSection.length > 0 && (
           <section>
-            <SectionHeader label="Latest News" href="/news" />
-
-            {visibleClusters.map((c) => (
-              <div key={c.label} className="mb-10">
-                <p className="smallcaps text-foreground/70 mb-4">{c.label}</p>
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-                  {c.items.map((a) => (
-                    <ArticleCard key={a.id} article={a} variant="card" hideCategory />
-                  ))}
-                </div>
-              </div>
-            ))}
-
-            {ungroupedNews.length > 0 && (
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-                {ungroupedNews.map((a) => (
-                  <ArticleCard key={a.id} article={a} variant="card" hideCategory />
-                ))}
-              </div>
-            )}
+            <SectionHeader label="News" href="/news" />
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+              {newsSection.map((a) => (
+                <ArticleCard key={a.id} article={a} variant="card" hideCategory />
+              ))}
+            </div>
           </section>
         )}
 
-        {sections.map((s) =>
-          s.items.length > 0 ? (
-            <section key={s.slug}>
-              <SectionHeader label={s.label} href={`/${s.slug}`} />
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-                {s.items.map((a) => (
-                  <ArticleCard key={a.id} article={a} variant="card" hideCategory />
-                ))}
-              </div>
-            </section>
-          ) : null
-        )}
+        {visibleClusters.map((c) => (
+          <section key={c.label}>
+            <SectionHeader label={c.label} />
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+              {c.items.map((a) => (
+                <ArticleCard key={a.id} article={a} variant="card" hideCategory />
+              ))}
+            </div>
+          </section>
+        ))}
+
+        {sections.map((s) => (
+          <section key={s.slug}>
+            <SectionHeader label={s.label} href={`/${s.slug}`} />
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+              {s.items.map((a) => (
+                <ArticleCard key={a.id} article={a} variant="card" hideCategory />
+              ))}
+            </div>
+          </section>
+        ))}
 
         {PLACEHOLDER_SECTIONS.map((s) => (
           <section key={s.slug}>
@@ -211,3 +207,4 @@ export default function Index() {
     </div>
   );
 }
+
