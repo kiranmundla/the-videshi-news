@@ -28,27 +28,33 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   { name: "India Today",     url: "https://www.indiatoday.in/rss/1206578", credibility: "tier3" },
 
   // ── Tier 1 — Official sources ─────────────────────────────
-  { name: "PIB India",       url: "https://pib.gov.in/rss.aspx",                            credibility: "official" },
-  { name: "MEA India",       url: "https://www.mea.gov.in/rss/pressrelease.xml",            credibility: "official" },
-  { name: "USCIS",           url: "https://www.uscis.gov/feeds/rss/newsroom/news.xml",      credibility: "official", category: "nri-world", region: "us" },
-  { name: "RBI",             url: "https://rbi.org.in/rss.aspx",                            credibility: "official" },
-  { name: "Newsonair",       url: "https://www.newsonair.gov.in/feed/",                     credibility: "official" },
+  // PIB & MEA are protected by Akamai bot-challenge — server-side fetch returns
+  // a JS challenge / "Access Denied" page instead of XML. Disabled until we add
+  // a headless fetcher. Newsonair has no working RSS endpoint (timeout / 301 loop).
+  // { name: "PIB India",   url: "https://pib.gov.in/rss.aspx",                 credibility: "official" },
+  // { name: "MEA India",   url: "https://www.mea.gov.in/rss/pressrelease.xml", credibility: "official" },
+  // { name: "Newsonair",   url: "https://www.newsonair.gov.in/feed/",          credibility: "official" },
+  { name: "USCIS",       url: "https://www.uscis.gov/news/rss-feed/53",          credibility: "official", category: "nri-world", region: "us" },
+  { name: "RBI",         url: "https://rbi.org.in/pressreleases_rss.xml",        credibility: "official" },
+  { name: "RBI Notifications", url: "https://rbi.org.in/notifications_rss.xml",  credibility: "official" },
 
   // ── Tier 3 — NRI / diaspora sources ───────────────────────
   { name: "NRI Pulse",             url: "https://nripulse.com/feed",                  credibility: "nri", category: "nri-world", region: "us" },
-  { name: "Silicon India",         url: "https://www.siliconindia.com/rss/news.xml",  credibility: "nri", category: "nri-world", region: "us" },
-  { name: "Gulf News India",       url: "https://gulfnews.com/rss/india",             credibility: "nri", category: "nri-world", region: "uae" },
   { name: "Indian Link Australia", url: "https://www.indianlink.com.au/feed",         credibility: "nri", category: "nri-world", region: "australia" },
   { name: "SBS Hindi",             url: "https://www.sbs.com.au/language/hindi/rss",  credibility: "nri", category: "nri-world", region: "australia" },
   { name: "BBC India",             url: "https://feeds.bbci.co.uk/news/world/asia/india/rss.xml", credibility: "nri", category: "nri-world", region: "uk" },
+  // Silicon India & Gulf News India have no working public RSS (403/404). Disabled.
+  // { name: "Silicon India",   url: "https://www.siliconindia.com/rss/news.xml", credibility: "nri", category: "nri-world", region: "us" },
+  // { name: "Gulf News India", url: "https://gulfnews.com/rss/india",            credibility: "nri", category: "nri-world", region: "uae" },
 
   // ── Entertainment ─────────────────────────────────────────
   { name: "Bollywood Hungama", url: "https://www.bollywoodhungama.com/rss/news.xml", credibility: "entertainment" },
-  { name: "Filmfare",          url: "https://www.filmfare.com/rss/news.rss",         credibility: "entertainment" },
+  // Filmfare & Moneycontrol return 403/404 to server-side fetchers (Akamai). Disabled.
+  // { name: "Filmfare",     url: "https://www.filmfare.com/rss/news.rss",           credibility: "entertainment" },
+  // { name: "Moneycontrol", url: "https://www.moneycontrol.com/rss/latestnews.xml", credibility: "tier3" },
 
   // ── Business ──────────────────────────────────────────────
   { name: "Economic Times", url: "https://economictimes.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3" },
-  { name: "Moneycontrol",   url: "https://www.moneycontrol.com/rss/latestnews.xml",             credibility: "tier3" },
 ];
 
 interface RawArticle {
@@ -128,14 +134,39 @@ function parseRSS(xml: string, sourceName: string, sourceUrl: string, credibilit
 async function fetchFeed(source: typeof RSS_SOURCES[0]): Promise<RawArticle[]> {
   try {
     const res = await fetch(source.url, {
-      headers: { "User-Agent": "DiasporaNewsBot/1.0" },
+      headers: {
+        // Some publishers (Akamai-fronted .gov.in / moneycontrol / siliconindia)
+        // 403 / serve a JS challenge to non-browser User-Agents.
+        "User-Agent":
+          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36 DiasporaNewsBot/1.0",
+        "Accept": "application/rss+xml, application/xml, text/xml, */*",
+      },
+      redirect: "follow",
       signal: AbortSignal.timeout(8000),
     });
-    if (!res.ok) return [];
+    if (!res.ok) {
+      const body = (await res.text()).slice(0, 200).replace(/\s+/g, " ");
+      console.error(
+        `[ingest-rss] ${source.name} HTTP ${res.status} ${res.statusText} — ${source.url} :: ${body}`
+      );
+      return [];
+    }
     const xml = await res.text();
-    return parseRSS(xml, source.name, source.url, source.credibility);
+    const trimmed = xml.trimStart().slice(0, 200);
+    // Detect HTML / bot-challenge pages returned with 200
+    if (!/^<\?xml|^<rss|^<feed/i.test(trimmed)) {
+      console.error(
+        `[ingest-rss] ${source.name} returned non-RSS content (${xml.length} bytes) — ${source.url} :: ${trimmed.replace(/\s+/g, " ")}`
+      );
+      return [];
+    }
+    const items = parseRSS(xml, source.name, source.url, source.credibility);
+    console.log(`[ingest-rss] ${source.name} → ${items.length} items`);
+    return items;
   } catch (err) {
-    console.error(`Failed to fetch ${source.name}:`, (err as Error).message);
+    console.error(
+      `[ingest-rss] ${source.name} fetch failed — ${source.url} :: ${(err as Error).message}`
+    );
     return [];
   }
 }
