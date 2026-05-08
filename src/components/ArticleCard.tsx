@@ -57,7 +57,7 @@ export default function ArticleCard({
             alt={article.title}
             loading="lazy"
             category={article.category}
-            className="w-full aspect-[16/9] object-cover object-top"
+            className="w-full aspect-[16/9] object-cover object-center"
           />
           <ImageCaption caption={article.image_caption} credit={article.image_credit} truncate />
 
