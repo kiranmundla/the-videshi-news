@@ -64,7 +64,6 @@ export default function ArticleCard({
               className="w-full h-full object-cover object-center"
             />
           </div>
-          <ImageCaption caption={article.image_caption} credit={article.image_credit} truncate />
         </figure>
         <div>
           <p className="smallcaps text-primary mb-3">
