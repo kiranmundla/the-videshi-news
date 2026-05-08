@@ -219,7 +219,9 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
           .replace(/^-+|-+$/g, "")
           .slice(0, 80);
 
-      const bodyMd = bodyToMarkdown(enriched.body || []);
+      const bodyMd = sanitizeMarkdown(bodyToMarkdown(enriched.body || []));
+      const cleanSummary = sanitizeMarkdown(enriched.summary || "");
+      const cleanTitle = sanitizeMarkdown(enriched.title || "").trim();
       const wordCount =
         enriched.word_count ||
         bodyMd.split(/\s+/).filter(Boolean).length;
