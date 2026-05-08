@@ -19,17 +19,19 @@ export default function ImageCaption({
   const captionSize = size === "md" ? "text-[13px]" : "text-[11px]";
   const creditSize = size === "md" ? "text-[11px]" : "text-[10px]";
   const alignCls = align === "center" ? "text-center" : "text-left";
-  const clampStyle: React.CSSProperties = truncate
-    ? { display: "-webkit-box", WebkitLineClamp: 1, WebkitBoxOrient: "vertical", overflow: "hidden" }
-    : { display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" };
+
+  // Limit caption to max 10 words with ellipsis
+  let displayCaption = caption ?? "";
+  if (displayCaption) {
+    const words = displayCaption.trim().split(/\s+/);
+    if (words.length > 10) displayCaption = words.slice(0, 10).join(" ") + "…";
+  }
+
   return (
     <figcaption className={`mt-2 leading-snug ${alignCls} max-w-full`}>
-      {caption && (
-        <span
-          className={`${captionSize} italic text-foreground/60 block`}
-          style={clampStyle}
-        >
-          {caption}
+      {displayCaption && (
+        <span className={`${captionSize} italic text-foreground/60 block`}>
+          {displayCaption}
         </span>
       )}
       {credit && (
