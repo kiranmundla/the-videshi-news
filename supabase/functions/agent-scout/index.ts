@@ -247,7 +247,7 @@ Does the new story brief contain materially new facts not covered in the existin
         continue;
       }
       inserted++;
-      recentKeywordSets.push(kwSet);
+      recentWithKw.push({ brief: s, kw: kwSet });
       rawIds.forEach((id) => usedRawIds.add(id));
     }
 
