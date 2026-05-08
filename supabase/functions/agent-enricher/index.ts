@@ -283,6 +283,7 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+  _sb = supabase;
   const workerId = `enricher-${crypto.randomUUID()}`;
 
   const respond = (status: number, body: unknown) =>
