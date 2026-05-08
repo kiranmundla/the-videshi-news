@@ -251,6 +251,55 @@ const SYSTEM_PROMPT =
   "You are a senior features editor at The Videshi, a news platform for Indian-Americans. Your job is to take a factual draft and transform it into a rich, beautiful, deeply contextual article that resonates specifically with the Indian-American diaspora.\n\n" +
   "CRITICAL: Never include HTML tags, citation tags, reference tags, or any markup like <cite>, <ref>, <a>, <span>, <div>, or similar in your output. Plain markdown only. No HTML whatsoever.";
 
+// ---------------- NRI signal detection ----------------
+const VISA_SIGNALS = ["H-1B", "H1B", "OCI", "green card", "visa", "immigration", "USCIS", "work permit"];
+const REMITTANCE_SIGNALS = ["remittance", "wire transfer", "NRE account", "NRO", "FEMA", "foreign exchange"];
+const PROPERTY_SIGNALS = ["NRI investment", "real estate", "property", "realty"];
+const PERSON_SIGNALS = [
+  "Sundar Pichai", "Satya Nadella", "Vivek Ramaswamy", "Kamala Harris",
+  "Usha Vance", "Ajay Banga", "Rishi Sunak", "Jagmeet Singh",
+  "Indra Nooyi", "Pramila Jayapal", "Ro Khanna", "Ami Bera",
+];
+const COMMUNITY_SIGNALS = ["Indian-American", "diaspora", "NRI", "Indian origin", "South Asian"];
+
+type NriSignals = {
+  visa: string[];
+  remittance: string[];
+  property: string[];
+  persons: string[];
+  community: string[];
+  all: string[];
+};
+
+function detectNriSignals(haystack: string): NriSignals {
+  const lower = haystack.toLowerCase();
+  const match = (sigs: string[]) => sigs.filter((s) => lower.includes(s.toLowerCase()));
+  const visa = match(VISA_SIGNALS);
+  const remittance = match(REMITTANCE_SIGNALS);
+  const property = match(PROPERTY_SIGNALS);
+  const persons = match(PERSON_SIGNALS);
+  const community = match(COMMUNITY_SIGNALS);
+  const all = Array.from(new Set([...visa, ...remittance, ...property, ...persons, ...community]));
+  return { visa, remittance, property, persons, community, all };
+}
+
+function nriAngleFocus(sig: NriSignals): string {
+  const parts: string[] = [];
+  if (sig.visa.length)
+    parts.push(`VISA focus — center the NRI angle on direct policy impact for H-1B / OCI / green card / visa holders. Detected: ${sig.visa.join(", ")}.`);
+  if (sig.remittance.length)
+    parts.push(`REMITTANCE focus — center the NRI angle on impact to the ~$125B annual India-US remittance corridor and NRE/NRO account holders. Detected: ${sig.remittance.join(", ")}.`);
+  if (sig.property.length)
+    parts.push(`PROPERTY focus — center the NRI angle on NRI real-estate / realty investment implications. Detected: ${sig.property.join(", ")}.`);
+  if (sig.persons.length)
+    parts.push(`PERSON focus — center the NRI angle on the diaspora significance of: ${sig.persons.join(", ")}.`);
+  if (sig.community.length)
+    parts.push(`COMMUNITY focus — center the NRI angle on Indian-American community organization response. Detected: ${sig.community.join(", ")}.`);
+  if (parts.length === 0)
+    parts.push(`GENERIC focus — no specific NRI signals matched. Use a generic "why Indians abroad should care" angle, kept short.`);
+  return parts.join("\n  * ");
+}
+
 function stripFences(text: string): string {
   const fence = text.match(/```(?:json)?\s*([\s\S]*?)```/);
   const raw = fence ? fence[1] : text;
