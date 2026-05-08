@@ -20,7 +20,7 @@ const supabase = createClient(
 
 // ── RSS Sources ──────────────────────────────────────────────
 type Credibility = "official" | "tier1" | "tier2" | "tier3" | "nri" | "entertainment";
-type Parser = "rss" | "html-mea";
+type Parser = "rss" | "html-mea" | "rss2json";
 const RSS_SOURCES: { name: string; url: string; category?: string; region?: string; credibility: Credibility; parser?: Parser }[] = [
   { name: "Times of India",  url: "https://timesofindia.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3", category: "news" },
   { name: "NDTV",            url: "https://feeds.feedburner.com/ndtvnews-top-stories", credibility: "tier3", category: "news" },
