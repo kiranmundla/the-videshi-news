@@ -136,11 +136,39 @@ async function searchWikipedia(keyword: string): Promise<Hit | null> {
     const data = await res.json();
     const url = data?.originalimage?.source || data?.thumbnail?.source;
     if (!url) return null;
+    if (!isLikelyPhoto(url)) {
+      console.log(`✗ rejecting non-photo wikipedia asset: ${url}`);
+      return null;
+    }
     return { url, credit: "Photo: Wikimedia Commons" };
   } catch (e) {
     console.error("wikipedia error", e);
     return null;
   }
+}
+
+// Reject graphics (flags, logos, diagrams, charts, maps, icons) — accept real photos only.
+const NON_PHOTO_PATTERNS = [
+  "banner", "flag", "logo", "diagram", "chart", "map", "sankey",
+  "poll", "report", "icon", "symbol", "emblem", "seal", "coat_of_arms",
+  "crest", "infographic", "graph", "plot", "schematic",
+];
+
+function isLikelyPhoto(url: string): boolean {
+  let filename = "";
+  try {
+    const u = new URL(url);
+    filename = decodeURIComponent(u.pathname.split("/").pop() ?? "").toLowerCase();
+  } catch {
+    filename = url.toLowerCase();
+  }
+  // Must look like a JPEG photo
+  if (!/\.(jpe?g)(?:$|[?#])/.test(filename)) return false;
+  // Reject if any graphic keyword appears
+  for (const p of NON_PHOTO_PATTERNS) {
+    if (filename.includes(p)) return false;
+  }
+  return true;
 }
 
 async function searchUnsplash(keyword: string): Promise<Hit | null> {
