@@ -28,10 +28,10 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   { name: "India Today",     url: "https://www.indiatoday.in/rss/1206578", credibility: "tier3" },
 
   // ── Tier 1 — Official sources ─────────────────────────────
-  // PIB & MEA are protected by Akamai bot-challenge — server-side fetch returns
-  // a JS challenge / "Access Denied" page instead of XML. Disabled until we add
-  // a headless fetcher. Newsonair has no working RSS endpoint (timeout / 301 loop).
-  // { name: "PIB India",   url: "https://pib.gov.in/rss.aspx",                 credibility: "official" },
+  // MEA & Newsonair still blocked by Akamai bot-challenge / 301 loop. Disabled
+  // until we add a headless fetcher.
+  { name: "PIB Press Releases", url: "https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1&reg=1", credibility: "official" },
+  { name: "PIB Photos",         url: "https://www.pib.gov.in/RssMain.aspx?ModId=8&Lang=1&Regid=1&reg=1", credibility: "official" },
   // { name: "MEA India",   url: "https://www.mea.gov.in/rss/pressrelease.xml", credibility: "official" },
   // { name: "Newsonair",   url: "https://www.newsonair.gov.in/feed/",          credibility: "official" },
   { name: "USCIS",       url: "https://www.uscis.gov/news/rss-feed/53",          credibility: "official", category: "nri-world", region: "us" },
