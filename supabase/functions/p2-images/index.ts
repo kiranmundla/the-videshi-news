@@ -367,12 +367,21 @@ Deno.serve(async () => {
         article.vertical
       )
 
-      // ── Step 2: Load active image sources from registry
-      const { data: imageSources } = await supabase
-        .from('p2_image_sources')
+      // ── Step 2: Load active image sources from videshi_sources registry
+      const { data: imageSourcesRaw } = await supabase
+        .from('videshi_sources')
         .select('*')
         .eq('is_active', true)
+        .eq('pipeline_stage', 'image')
         .order('priority', { ascending: true })
+
+      // Normalize fields so the rest of the loop matches the previous schema
+      const imageSources = (imageSourcesRaw ?? []).map((s: any) => ({
+        ...s,
+        max_candidates: s.max_items ?? 10,
+        good_for_verticals: s.verticals ?? [],
+        skip_for_verticals: s.skip_verticals ?? [],
+      }))
 
       function sourceAppliesToVertical(source: any, vertical: string): boolean {
         if (source.skip_for_verticals?.includes(vertical)) return false
@@ -385,14 +394,17 @@ Deno.serve(async () => {
         source: string
         source_type: string
         priority: number
+        source_id: string
       }> = []
 
-      for (const source of (imageSources ?? [])) {
+      for (const source of imageSources) {
         if (!sourceAppliesToVertical(source, article.vertical)) continue
 
         let newCandidates: string[] = []
+        // Accept both "wikipedia" and "img_wikipedia" style
+        const stype = (source.source_type ?? '').replace(/^img_/, '')
 
-        switch (source.source_type) {
+        switch (stype) {
           case 'wikipedia':
             if (entity) {
               const img = await getWikipediaImage(entity)
@@ -429,6 +441,7 @@ Deno.serve(async () => {
           source: source.name,
           source_type: source.source_type,
           priority: source.priority,
+          source_id: source.id,
         })))
 
         // Stop early if we already have enough high-priority candidates
@@ -476,6 +489,16 @@ Deno.serve(async () => {
           candidates: candidates.length,
           winner_rank: winnerRank,
         })
+
+        if (winner?.source_id) {
+          await supabase.from('videshi_source_logs').insert({
+            source_id: winner.source_id,
+            agent: 'p2-images',
+            status: 'ok',
+            items_fetched: candidates.length,
+            items_accepted: 1,
+          })
+        }
 
         results.push({
           headline: article.headline,

@@ -16,6 +16,7 @@ import FeedSourcesPage from "./pages/pipeline/FeedSourcesPage.tsx";
 import TopicRadarPage from "./pages/pipeline/TopicRadarPage.tsx";
 import ReviewQueuePage from "./pages/pipeline/ReviewQueuePage.tsx";
 import RunLogPage from "./pages/pipeline/RunLogPage.tsx";
+import SourcesPage from "./pages/admin/SourcesPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/articles/:slug" element={<ArticlePage />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/sources" element={<SourcesPage />} />
             <Route path="/admin/p2" element={<PipelineLayout />}>
               <Route index element={<FeedSourcesPage />} />
               <Route path="feeds" element={<FeedSourcesPage />} />
