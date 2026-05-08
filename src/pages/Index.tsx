@@ -5,6 +5,7 @@ import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
+import HeroCarousel from "@/components/HeroCarousel";
 import { Article, getPublishedArticles } from "@/lib/articles";
 
 type SectionDef = { slug: string; label: string; limit: number; href: string };
