@@ -28,11 +28,15 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   { name: "India Today",     url: "https://www.indiatoday.in/rss/1206578", credibility: "tier3" },
 
   // ── Tier 1 — Official sources ─────────────────────────────
-  { name: "PIB India",       url: "https://pib.gov.in/rss.aspx",                            credibility: "official" },
-  { name: "MEA India",       url: "https://www.mea.gov.in/rss/pressrelease.xml",            credibility: "official" },
-  { name: "USCIS",           url: "https://www.uscis.gov/feeds/rss/newsroom/news.xml",      credibility: "official", category: "nri-world", region: "us" },
-  { name: "RBI",             url: "https://rbi.org.in/rss.aspx",                            credibility: "official" },
-  { name: "Newsonair",       url: "https://www.newsonair.gov.in/feed/",                     credibility: "official" },
+  // PIB & MEA are protected by Akamai bot-challenge — server-side fetch returns
+  // a JS challenge / "Access Denied" page instead of XML. Disabled until we add
+  // a headless fetcher. Newsonair has no working RSS endpoint (timeout / 301 loop).
+  // { name: "PIB India",   url: "https://pib.gov.in/rss.aspx",                 credibility: "official" },
+  // { name: "MEA India",   url: "https://www.mea.gov.in/rss/pressrelease.xml", credibility: "official" },
+  // { name: "Newsonair",   url: "https://www.newsonair.gov.in/feed/",          credibility: "official" },
+  { name: "USCIS",       url: "https://www.uscis.gov/news/rss-feed/53",          credibility: "official", category: "nri-world", region: "us" },
+  { name: "RBI",         url: "https://rbi.org.in/pressreleases_rss.xml",        credibility: "official" },
+  { name: "RBI Notifications", url: "https://rbi.org.in/notifications_rss.xml",  credibility: "official" },
 
   // ── Tier 3 — NRI / diaspora sources ───────────────────────
   { name: "NRI Pulse",             url: "https://nripulse.com/feed",                  credibility: "nri", category: "nri-world", region: "us" },
