@@ -10,7 +10,203 @@ const corsHeaders = {
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY")!;
+const UNSPLASH_ACCESS_KEY = Deno.env.get("UNSPLASH_ACCESS_KEY") ?? "";
 const MODEL = "claude-haiku-4-5-20251001";
+const VISION_MODEL = "claude-haiku-4-5";
+
+// ---------------- Image fetching helpers ----------------
+
+type ImageResult = {
+  image_url: string;
+  image_caption: string;
+  image_credit: string;
+  image_verified: boolean;
+  image_score: number;
+};
+
+async function haikuJson(prompt: string, maxTokens = 200): Promise<any | null> {
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "x-api-key": ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        model: VISION_MODEL,
+        max_tokens: maxTokens,
+        messages: [{ role: "user", content: prompt }],
+      }),
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const text = (data?.content?.[0]?.text ?? "").trim();
+    const cleaned = text.replace(/^```(?:json)?\s*|\s*```$/g, "").trim();
+    const m = cleaned.match(/\{[\s\S]*\}/);
+    return JSON.parse(m ? m[0] : cleaned);
+  } catch (e) {
+    console.error("haikuJson error", e);
+    return null;
+  }
+}
+
+async function extractImageSubject(title: string, category: string): Promise<{ primary: string; keyword: string }> {
+  const out = await haikuJson(
+    `Article title: "${title}"\nCategory: ${category}\n\nReturn JSON only:\n{"primary":"named person OR specific place/event - the main visual subject","keyword":"1-2 word general topic for stock photo fallback"}\n\nRules: If a named person is the subject, use their full name. Otherwise use a specific place or event name. Never return generic terms.`
+  );
+  return {
+    primary: out?.primary || title.split(/[:|—-]/)[0].trim(),
+    keyword: out?.keyword || category,
+  };
+}
+
+function isLandscape(w?: number, h?: number, minW = 800): boolean {
+  return !!(w && h && w > h && w >= minW);
+}
+
+const BAD_PATTERNS = /flag|banner|logo|diagram|chart|map|sankey|poll|report|icon|symbol|svg/i;
+
+async function tryWikipedia(subject: string): Promise<{ url: string; credit: string } | null> {
+  try {
+    const slug = encodeURIComponent(subject.trim().replace(/\s+/g, "_"));
+    const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${slug}`, {
+      headers: { "User-Agent": "TheVideshi/1.0" },
+    });
+    if (!res.ok) return null;
+    const d = await res.json();
+    const orig = d?.originalimage;
+    const thumb = d?.thumbnail;
+    const pick = isLandscape(orig?.width, orig?.height) ? orig : isLandscape(thumb?.width, thumb?.height) ? thumb : null;
+    if (!pick?.source) return null;
+    return { url: pick.source, credit: "Photo: Wikimedia Commons" };
+  } catch { return null; }
+}
+
+async function tryCommons(subject: string): Promise<{ url: string; credit: string } | null> {
+  try {
+    const u = `https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrnamespace=6&gsrlimit=8&gsrsearch=${encodeURIComponent(subject)}&prop=imageinfo&iiprop=url|mime|size&iiurlwidth=1200`;
+    const res = await fetch(u, { headers: { "User-Agent": "TheVideshi/1.0" } });
+    if (!res.ok) return null;
+    const d = await res.json();
+    const pages = d?.query?.pages;
+    if (!pages) return null;
+    for (const k of Object.keys(pages)) {
+      const info = pages[k]?.imageinfo?.[0];
+      const mime: string = info?.mime ?? "";
+      if (mime !== "image/jpeg") continue;
+      const w = info.thumbwidth || info.width;
+      const h = info.thumbheight || info.height;
+      if (!isLandscape(w, h)) continue;
+      const url = info.thumburl || info.url;
+      if (!url || BAD_PATTERNS.test(url)) continue;
+      return { url, credit: "Photo: Wikimedia Commons" };
+    }
+    return null;
+  } catch { return null; }
+}
+
+async function tryUnsplash(keyword: string): Promise<{ url: string; credit: string } | null> {
+  if (!UNSPLASH_ACCESS_KEY) return null;
+  try {
+    const u = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(keyword + " India")}&per_page=3&orientation=landscape&content_filter=high`;
+    const res = await fetch(u, { headers: { Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}` } });
+    if (!res.ok) return null;
+    const d = await res.json();
+    for (const p of (d?.results ?? [])) {
+      const w = p?.width ?? 0;
+      if (w < 1200) continue;
+      const url = p?.urls?.regular || p?.urls?.full;
+      if (url) return { url, credit: "Photo: Unsplash" };
+    }
+    const p = d?.results?.[0];
+    const url = p?.urls?.regular || p?.urls?.full;
+    return url ? { url, credit: "Photo: Unsplash" } : null;
+  } catch { return null; }
+}
+
+async function visionScore(imageUrl: string, title: string): Promise<{ score: number; description: string }> {
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "x-api-key": ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        model: VISION_MODEL,
+        max_tokens: 150,
+        messages: [{
+          role: "user",
+          content: [
+            { type: "image", source: { type: "url", url: imageUrl } },
+            { type: "text", text: `Article: "${title}". Score this image 1-10 for relevance. Reply JSON only: {"score": N, "description": "what you see in one sentence"}` },
+          ],
+        }],
+      }),
+    });
+    if (!res.ok) return { score: 0, description: "" };
+    const data = await res.json();
+    const text = (data?.content?.[0]?.text ?? "").trim().replace(/^```(?:json)?\s*|\s*```$/g, "");
+    const m = text.match(/\{[\s\S]*\}/);
+    const j = JSON.parse(m ? m[0] : text);
+    return { score: Number(j.score) || 0, description: String(j.description || "").trim() };
+  } catch { return { score: 0, description: "" }; }
+}
+
+async function fetchImageForArticle(title: string, category: string): Promise<ImageResult | null> {
+  const { primary, keyword } = await extractImageSubject(title, category);
+  console.log(`[image] subject="${primary}" keyword="${keyword}"`);
+
+  const sources: Array<() => Promise<{ url: string; credit: string } | null>> = [
+    () => tryWikipedia(primary),
+    () => tryCommons(primary),
+    () => tryUnsplash(keyword),
+  ];
+
+  let best: { url: string; credit: string; description: string; score: number } | null = null;
+
+  for (const src of sources) {
+    const cand = await src();
+    if (!cand) continue;
+    const v = await visionScore(cand.url, title);
+    console.log(`[image] ${cand.credit} score=${v.score}`);
+    if (v.score >= 6) {
+      return {
+        image_url: cand.url,
+        image_caption: v.description || title,
+        image_credit: cand.credit,
+        image_verified: true,
+        image_score: v.score,
+      };
+    }
+    if (!best || v.score > best.score) {
+      best = { ...cand, description: v.description, score: v.score };
+    }
+  }
+
+  if (best) {
+    return {
+      image_url: best.url,
+      image_caption: best.description || title,
+      image_credit: best.credit,
+      image_verified: false,
+      image_score: best.score,
+    };
+  }
+  const ult = await tryUnsplash(keyword);
+  if (ult) {
+    return {
+      image_url: ult.url,
+      image_caption: title,
+      image_credit: ult.credit,
+      image_verified: false,
+      image_score: 0,
+    };
+  }
+  return null;
+}
 
 const SYSTEM_PROMPT =
   "You are a senior features editor at The Videshi, a news platform for Indian-Americans. Your job is to take a factual draft and transform it into a rich, beautiful, deeply contextual article that resonates specifically with the Indian-American diaspora.\n\n" +
@@ -202,6 +398,22 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
 
     if (!enriched.title || !Array.isArray(enriched.body)) {
       throw new Error("Enriched article missing required fields");
+    }
+
+    // Fetch hero image inline so no article is published without one.
+    try {
+      const img = await fetchImageForArticle(enriched.title, job.category || "world");
+      if (img) {
+        enriched.image_url = img.image_url;
+        enriched.image_caption = img.image_caption;
+        enriched.image_credit = img.image_credit;
+        enriched.image_verified = img.image_verified;
+        enriched.image_score = img.image_score;
+      } else {
+        console.warn(`[image] no image found for "${enriched.title}"`);
+      }
+    } catch (e) {
+      console.error("[image] fetch failed", e);
     }
 
     await supabase

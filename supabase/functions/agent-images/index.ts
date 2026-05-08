@@ -310,13 +310,15 @@ Deno.serve(async (req) => {
   let errorMessage: string | null = null;
 
   try {
-    // Re-verify any article that isn't yet verified (covers both no-image and
-    // existing-but-unverified rows).
+    // Upgrade-only mode: re-evaluate articles whose existing image is unverified
+    // or scored below 8, and replace ONLY if we find something strictly better.
+    // Never delete an existing image.
     const { data: articles, error } = await supabase
       .from("articles")
-      .select("id, title, category, image_url, image_verified")
+      .select("id, title, category, image_url, image_verified, image_score")
       .eq("is_published", true)
-      .or("image_verified.is.null,image_verified.eq.false")
+      .not("image_url", "is", null)
+      .or("image_verified.eq.false,image_score.is.null,image_score.lt.8")
       .order("published_at", { ascending: false })
       .limit(MAX_PER_RUN);
 
@@ -324,21 +326,15 @@ Deno.serve(async (req) => {
 
     for (const a of articles ?? []) {
       processed++;
-      console.log(`→ ${a.title}`);
+      console.log(`→ ${a.title} (current score=${a.image_score ?? "?"})`);
       const chosen = await pickBestImage(a.title, a.category);
       if (!chosen) {
-        // Clear any previous wrong image so cards show placeholder instead.
-        await supabase
-          .from("articles")
-          .update({
-            image_url: null,
-            image_caption: null,
-            image_credit: null,
-            image_verified: false,
-            image_score: null,
-          })
-          .eq("id", a.id);
-        console.log(`✗ no acceptable image for: ${a.title}`);
+        console.log(`· no candidate beat current — keeping existing image`);
+        continue;
+      }
+      const currentScore = a.image_score ?? 0;
+      if (chosen.score <= currentScore) {
+        console.log(`· candidate score=${chosen.score} ≤ current ${currentScore} — keeping`);
         continue;
       }
       const { error: updErr } = await supabase
@@ -355,7 +351,7 @@ Deno.serve(async (req) => {
         console.error(`update failed for ${a.id}`, updErr);
       } else {
         updated++;
-        console.log(`✓ ${a.title} score=${chosen.score} verified=${chosen.verified}`);
+        console.log(`✓ upgraded ${a.title} ${currentScore} → ${chosen.score}`);
       }
     }
   } catch (e) {

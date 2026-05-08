@@ -261,6 +261,11 @@ Return ONLY valid JSON (no prose, no fences) in this exact shape:
           published_at: new Date().toISOString(),
           sources_used: draft.sources_used || null,
           nri_angle: enriched.nri_relevance || null,
+          image_url: enriched.image_url || null,
+          image_caption: enriched.image_caption || null,
+          image_credit: enriched.image_credit || null,
+          image_verified: enriched.image_verified ?? false,
+          image_score: enriched.image_score ?? null,
           article_type:
             (job.story_brief as any)?.article_type === "feature"
               ? "feature"
