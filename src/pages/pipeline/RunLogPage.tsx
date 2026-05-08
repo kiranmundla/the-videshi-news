@@ -13,10 +13,10 @@ const PAGE_SIZE = 20;
 
 export default function RunLogPage() {
   const { data: logs = [], isLoading } = useQuery({
-    queryKey: ["pipeline_run_log"],
+    queryKey: ["pipeline_alerts"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("pipeline_run_log")
+        .from("pipeline_alerts")
         .select("*")
         .order("created_at", { ascending: false })
         .limit(PAGE_SIZE);
@@ -31,10 +31,10 @@ export default function RunLogPage() {
       const today = new Date(); today.setHours(0, 0, 0, 0);
       const iso = today.toISOString();
       const [signals, topics, articles, published] = await Promise.all([
-        supabase.from("raw_signals").select("*", { count: "exact", head: true }).gte("fetched_at", iso),
-        supabase.from("topics").select("*", { count: "exact", head: true }).gte("created_at", iso),
-        supabase.from("articles_pipeline").select("*", { count: "exact", head: true }).gte("created_at", iso),
-        supabase.from("articles_pipeline").select("*", { count: "exact", head: true }).eq("status", "published").gte("published_at", iso),
+        supabase.from("p2_signals").select("*", { count: "exact", head: true }).gte("fetched_at", iso),
+        supabase.from("p2_topics").select("*", { count: "exact", head: true }).gte("created_at", iso),
+        supabase.from("p2_articles").select("*", { count: "exact", head: true }).gte("created_at", iso),
+        supabase.from("p2_articles").select("*", { count: "exact", head: true }).eq("status", "published").gte("published_at", iso),
       ]);
       return {
         signals: signals.count ?? 0,
@@ -69,28 +69,28 @@ export default function RunLogPage() {
           <TableHeader>
             <TableRow>
               <TableHead>Timestamp</TableHead>
-              <TableHead>Stage</TableHead>
-              <TableHead>Items</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Notes</TableHead>
+              <TableHead>Agent</TableHead>
+              <TableHead>Severity</TableHead>
+              <TableHead>Error Type</TableHead>
+              <TableHead>Message</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {isLoading && <TableRow><TableCell colSpan={5} className="text-center py-8 text-muted-foreground">Loading…</TableCell></TableRow>}
             {!isLoading && logs.length === 0 && (
-              <TableRow><TableCell colSpan={5} className="text-center py-8 text-muted-foreground">No runs logged yet.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={5} className="text-center py-8 text-muted-foreground">No alerts logged yet.</TableCell></TableRow>
             )}
             {(logs as any[]).map((l) => (
               <TableRow key={l.id}>
                 <TableCell className="text-xs text-muted-foreground">{relTime(l.created_at)}</TableCell>
-                <TableCell><Badge variant="outline">{l.stage}</Badge></TableCell>
-                <TableCell>{l.items_processed}</TableCell>
+                <TableCell><Badge variant="outline">{l.agent}</Badge></TableCell>
                 <TableCell>
-                  <Badge className={l.status === "success" ? "bg-emerald-200 text-emerald-900" : "bg-red-200 text-red-900"}>
-                    {l.status}
+                  <Badge className={l.severity === "error" || l.severity === "critical" ? "bg-red-200 text-red-900" : l.severity === "warning" ? "bg-yellow-200 text-yellow-900" : "bg-emerald-200 text-emerald-900"}>
+                    {l.severity}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-xs text-muted-foreground max-w-md truncate">{l.notes}</TableCell>
+                <TableCell className="text-xs">{l.error_type ?? "—"}</TableCell>
+                <TableCell className="text-xs text-muted-foreground max-w-md truncate">{l.message}</TableCell>
               </TableRow>
             ))}
           </TableBody>

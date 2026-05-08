@@ -27,19 +27,19 @@ export default function TopicRadarPage() {
   const [page, setPage] = useState(1);
 
   const { data: topics = [], isLoading, refetch } = useQuery({
-    queryKey: ["topics"],
+    queryKey: ["p2_topics"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("topics").select("*");
+      const { data, error } = await supabase.from("p2_topics").select("*");
       if (error) throw error;
       return data;
     },
   });
 
   const { data: summary } = useQuery({
-    queryKey: ["topics-summary"],
+    queryKey: ["p2_topics-summary"],
     queryFn: async () => {
       const today = new Date(); today.setHours(0, 0, 0, 0);
-      const { data } = await supabase.from("topics").select("status, created_at");
+      const { data } = await supabase.from("p2_topics").select("status, created_at");
       const todays = (data ?? []).filter((t: any) => new Date(t.created_at) >= today);
       const byStatus = (s: string) => (data ?? []).filter((t: any) => t.status === s).length;
       return {
@@ -69,7 +69,7 @@ export default function TopicRadarPage() {
   const pageRows = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   async function reject(id: string) {
-    const { error } = await supabase.from("topics").update({ status: "rejected" }).eq("id", id);
+    const { error } = await supabase.from("p2_topics").update({ status: "rejected" }).eq("id", id);
     if (error) toast.error(error.message);
     else { toast.success("Marked rejected"); refetch(); }
   }
@@ -202,23 +202,23 @@ function SummaryCard({ label, value }: { label: string; value: number }) {
 
 function ExpandedTopic({ topic }: { topic: any }) {
   const { data: signals = [] } = useQuery({
-    queryKey: ["signals", topic.id],
+    queryKey: ["p2_signals", topic.id],
     queryFn: async () => {
-      const { data } = await supabase.from("raw_signals").select("*, feed_sources(name)").eq("topic_id", topic.id);
+      const { data } = await supabase.from("p2_signals").select("*, p2_feed_sources(name)").eq("topic_id", topic.id);
       return data ?? [];
     },
   });
   const { data: hunts = [] } = useQuery({
-    queryKey: ["hunts", topic.id],
+    queryKey: ["p2_source_hunts", topic.id],
     queryFn: async () => {
-      const { data } = await supabase.from("source_hunts").select("*, feed_sources(name)").eq("topic_id", topic.id);
+      const { data } = await supabase.from("p2_source_hunts").select("*, p2_feed_sources(name)").eq("topic_id", topic.id);
       return data ?? [];
     },
   });
   const { data: article } = useQuery({
-    queryKey: ["article-pipeline", topic.id],
+    queryKey: ["p2_articles", topic.id],
     queryFn: async () => {
-      const { data } = await supabase.from("articles_pipeline").select("*").eq("topic_id", topic.id).maybeSingle();
+      const { data } = await supabase.from("p2_articles").select("*").eq("topic_id", topic.id).maybeSingle();
       return data;
     },
   });

@@ -42,10 +42,10 @@ export default function FeedSourcesPage() {
   const [page, setPage] = useState(1);
 
   const { data: rows = [], isLoading } = useQuery({
-    queryKey: ["feed_sources"],
+    queryKey: ["p2_feed_sources"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("feed_sources")
+        .from("p2_feed_sources")
         .select("*")
         .order("created_at", { ascending: false });
       if (error) throw error;
@@ -65,26 +65,26 @@ export default function FeedSourcesPage() {
   const activeCount = rows.filter((r: any) => r.is_active).length;
 
   async function toggleActive(row: any) {
-    qc.setQueryData(["feed_sources"], (old: any[] = []) =>
+    qc.setQueryData(["p2_feed_sources"], (old: any[] = []) =>
       old.map((r) => (r.id === row.id ? { ...r, is_active: !row.is_active } : r))
     );
     const { error } = await supabase
-      .from("feed_sources")
+      .from("p2_feed_sources")
       .update({ is_active: !row.is_active })
       .eq("id", row.id);
     if (error) {
       toast.error("Failed to toggle");
-      qc.invalidateQueries({ queryKey: ["feed_sources"] });
+      qc.invalidateQueries({ queryKey: ["p2_feed_sources"] });
     }
   }
 
   async function deleteRow(id: string) {
     if (!confirm("Delete this feed?")) return;
-    const { error } = await supabase.from("feed_sources").delete().eq("id", id);
+    const { error } = await supabase.from("p2_feed_sources").delete().eq("id", id);
     if (error) toast.error(error.message);
     else {
       toast.success("Deleted");
-      qc.invalidateQueries({ queryKey: ["feed_sources"] });
+      qc.invalidateQueries({ queryKey: ["p2_feed_sources"] });
     }
   }
 
@@ -108,7 +108,7 @@ export default function FeedSourcesPage() {
             onSaved={() => {
               setOpen(false);
               setEditing(null);
-              qc.invalidateQueries({ queryKey: ["feed_sources"] });
+              qc.invalidateQueries({ queryKey: ["p2_feed_sources"] });
             }}
           />
         </Dialog>
@@ -238,8 +238,8 @@ function FeedFormDialog({ row, onSaved }: { row: any | null; onSaved: () => void
     setSaving(true);
     const payload = { name, url, type, layer, tier, verticals, fetch_interval_min: interval };
     const res = row
-      ? await supabase.from("feed_sources").update(payload).eq("id", row.id)
-      : await supabase.from("feed_sources").insert(payload);
+      ? await supabase.from("p2_feed_sources").update(payload).eq("id", row.id)
+      : await supabase.from("p2_feed_sources").insert(payload);
     setSaving(false);
     if (res.error) return toast.error(res.error.message);
     toast.success(row ? "Updated" : "Added");
