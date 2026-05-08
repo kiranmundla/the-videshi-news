@@ -27,7 +27,7 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   { name: "The Hindu",       url: "https://www.thehindu.com/news/national/feeder/default.rss", credibility: "tier3", category: "news" },
   { name: "Hindustan Times", url: "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml", credibility: "tier3", category: "news" },
   { name: "India Today",     url: "https://www.indiatoday.in/rss/1206578", credibility: "tier3", category: "news" },
-  { name: "Indian Express",  url: "https://indianexpress.com/feed", credibility: "tier3", category: "news" }, // verified 2026-05: returned 403 (Akamai). Re-test later.
+  // Indian Express (indianexpress.com/feed) returns 403 (Akamai) to server-side fetchers. Disabled.
   { name: "Deccan Herald",   url: "https://www.deccanherald.com/feed", credibility: "tier3", category: "news" },
 
   // ── Tier 1 — Official sources ─────────────────────────────
