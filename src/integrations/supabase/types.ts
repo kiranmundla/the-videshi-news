@@ -184,6 +184,7 @@ export type Database = {
       p2_articles: {
         Row: {
           body: string
+          category: string | null
           created_at: string
           diaspora_angle: string | null
           headline: string
@@ -205,6 +206,7 @@ export type Database = {
         }
         Insert: {
           body: string
+          category?: string | null
           created_at?: string
           diaspora_angle?: string | null
           headline: string
@@ -226,6 +228,7 @@ export type Database = {
         }
         Update: {
           body?: string
+          category?: string | null
           created_at?: string
           diaspora_angle?: string | null
           headline?: string
