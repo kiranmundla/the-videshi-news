@@ -87,7 +87,8 @@ export default function ArticleBlocks({ blocks }: { blocks: Block[] }) {
             );
           }
 
-          case "nri_angle":
+          case "nri_angle": {
+            const md = bulletsToMarkdown(getText(b));
             return (
               <aside
                 key={i}
@@ -96,9 +97,12 @@ export default function ArticleBlocks({ blocks }: { blocks: Block[] }) {
                 <p className="smallcaps text-primary mb-2">
                   {b.title ?? "The NRI Angle"}
                 </p>
-                <p className="m-0 text-foreground/90">{getText(b)}</p>
+                <div className="nri-prose text-foreground/90 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-3 [&_li]:leading-relaxed [&_p]:m-0 [&_p+ul]:mt-3">
+                  <ReactMarkdown>{md}</ReactMarkdown>
+                </div>
               </aside>
             );
+          }
 
           case "key_facts": {
             const items = getItems(b);
