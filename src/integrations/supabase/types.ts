@@ -23,7 +23,9 @@ export type Database = {
           id: string
           image_caption: string | null
           image_credit: string | null
+          image_score: number | null
           image_url: string | null
+          image_verified: boolean | null
           is_published: boolean | null
           nri_angle: string | null
           published_at: string | null
@@ -45,7 +47,9 @@ export type Database = {
           id?: string
           image_caption?: string | null
           image_credit?: string | null
+          image_score?: number | null
           image_url?: string | null
+          image_verified?: boolean | null
           is_published?: boolean | null
           nri_angle?: string | null
           published_at?: string | null
@@ -67,7 +71,9 @@ export type Database = {
           id?: string
           image_caption?: string | null
           image_credit?: string | null
+          image_score?: number | null
           image_url?: string | null
+          image_verified?: boolean | null
           is_published?: boolean | null
           nri_angle?: string | null
           published_at?: string | null
