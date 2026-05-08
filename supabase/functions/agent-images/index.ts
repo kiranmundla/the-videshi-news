@@ -57,26 +57,55 @@ async function callHaikuText(prompt: string, maxTokens = 200): Promise<string> {
 }
 
 type VisionVerdict = {
+type SubjectType = "PERSON" | "PLACE" | "EVENT" | "TOPIC";
+type Classification = { type: SubjectType; subject: string; keyword: string };
+
+type VisionVerdict = {
   description: string;
-  relevant: boolean;
+  shows_subject: boolean;
   is_real_photo: boolean;
   score: number;
 };
 
-async function verifyImage(
-  imageUrl: string,
-  articleTitle: string,
-  category: string,
-): Promise<VisionVerdict | null> {
+async function classifySubject(title: string, firstPara: string, category: string): Promise<Classification> {
+  const prompt = `Classify this article's primary subject.
+
+Title: "${title}"
+First paragraph: "${(firstPara || "").slice(0, 600)}"
+Category: ${category}
+
+Return JSON only:
+{"type":"PERSON|PLACE|EVENT|TOPIC","subject":"specific name","keyword":"1-2 word general topic for stock fallback"}
+
+Rules:
+- PERSON if mainly about a named individual — full common name.
+- PLACE if mainly about a specific city/state/landmark — that place name.
+- EVENT if mainly about a specific event/incident.
+- TOPIC if it's a general topic/issue.
+- Never return generic words like "election", "policy", "news".`;
+  const out = await callHaikuText(prompt, 200);
+  try {
+    const cleaned = out.replace(/^```(?:json)?\s*|\s*```$/g, "").trim();
+    const m = cleaned.match(/\{[\s\S]*\}/);
+    const j = JSON.parse(m ? m[0] : cleaned);
+    const rawType = String(j.type || "TOPIC").toUpperCase();
+    const type: SubjectType = (["PERSON", "PLACE", "EVENT", "TOPIC"].includes(rawType) ? rawType : "TOPIC") as SubjectType;
+    return {
+      type,
+      subject: String(j.subject || title.split(/[:|—-]/)[0]).trim(),
+      keyword: String(j.keyword || category).trim(),
+    };
+  } catch {
+    return { type: "TOPIC", subject: title, keyword: category };
+  }
+}
+
+async function verifyImage(imageUrl: string, c: Classification): Promise<VisionVerdict | null> {
   if (!ANTHROPIC_API_KEY) return null;
   try {
     const res = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
-      headers: {
-        "x-api-key": ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
-      },
+      headers: { "x-api-key": ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
       body: JSON.stringify({
         model: HAIKU_MODEL,
         max_tokens: 200,
@@ -84,41 +113,26 @@ async function verifyImage(
           role: "user",
           content: [
             { type: "image", source: { type: "url", url: imageUrl } },
-            {
-              type: "text",
-              text:
-`Article title: "${articleTitle}"
-Category: ${category}
+            { type: "text", text:
+`Article subject: ${c.type} = "${c.subject}".
 
-Look at this image and respond in JSON only (no prose, no code fences):
-{"description": "Describe this image in 5 words or fewer. Subject and location only. No verbs. No analysis. Examples: 'Victoria Memorial, Kolkata' or 'Charminar, Hyderabad' or 'IAF Sukhoi jet' or 'Mamata Banerjee press conference'", "relevant": true|false, "is_real_photo": true|false, "score": 1-10}
+Does this image show ${c.subject}? Score 1-10 where 10 = clearly shows the exact ${c.type === "PERSON" ? "person" : c.type === "PLACE" ? "place" : "subject"}, 1 = unrelated.
 
-Score criteria:
-- 9-10: Perfect match — shows the exact person, place, or event named in the article.
-- 7-8: Good match — clearly related to the article topic.
-- 5-6: Loosely related, generic stock.
-- 1-4: Wrong topic, misleading, or a flag/logo/diagram/chart/map/graphic.`,
-            },
+Reply JSON only: {"score": N, "shows_subject": true|false, "is_real_photo": true|false, "description": "5 words or fewer — subject and location only, no verbs"}` },
           ],
         }],
       }),
       signal: AbortSignal.timeout(50000),
     });
-    if (!res.ok) {
-      console.error("vision error", res.status, await res.text());
-      return null;
-    }
+    if (!res.ok) { console.error("vision error", res.status, await res.text()); return null; }
     const data = await res.json();
-    const text = (data?.content?.[0]?.text ?? "").trim();
-    // Strip code fences if model added them
-    const cleaned = text.replace(/^```(?:json)?\s*|\s*```$/g, "").trim();
-    const match = cleaned.match(/\{[\s\S]*\}/);
-    const json = match ? match[0] : cleaned;
-    const parsed = JSON.parse(json);
+    const text = (data?.content?.[0]?.text ?? "").trim().replace(/^```(?:json)?\s*|\s*```$/g, "");
+    const match = text.match(/\{[\s\S]*\}/);
+    const parsed = JSON.parse(match ? match[0] : text);
     return {
       description: String(parsed.description ?? "").trim(),
-      relevant: !!parsed.relevant,
-      is_real_photo: !!parsed.is_real_photo,
+      shows_subject: !!parsed.shows_subject,
+      is_real_photo: parsed.is_real_photo !== false,
       score: Number(parsed.score) || 0,
     };
   } catch (e) {
@@ -127,40 +141,19 @@ Score criteria:
   }
 }
 
-async function extractKeywords(title: string, category: string): Promise<string[]> {
-  const fallback = [title.replace(/[^A-Za-z0-9 ]/g, " ").split(/\s+/).slice(0, 4).join(" ").trim()];
-  const prompt = `You generate image-search queries for an Indian-diaspora news site.
-
-RULES:
-- Identify the PRIMARY subject: a specific person, place, or named event.
-- ALWAYS append "India" if the article is about India.
-- NEVER return generic terms alone like "election", "democracy", "politics", "government".
-- Return 3 ranked queries, most specific first, one per line. No numbering, no quotes.
-
-Category: ${category}
-Title: ${title}`;
-  const out = await callHaikuText(prompt, 150);
-  if (!out) return fallback;
-  const lines = out
-    .split("\n")
-    .map((l) => l.replace(/^[-*\d.\s"']+|["']+$/g, "").trim())
-    .filter((l) => l.length > 1 && l.length < 80)
-    .slice(0, 3);
-  return lines.length ? lines : fallback;
-}
-
 // ---------- Image source candidates ----------
 
 type Candidate = { url: string; credit: string; source: string };
 
-function isAcceptableSize(w?: number, h?: number): boolean {
-  if (!w || !h) return false;
-  if (w <= h) return false; // landscape only
-  if (w < 800) return false;
-  return true;
+function isLandscape(w?: number, h?: number, minW = 800): boolean {
+  return !!(w && h && w > h && w >= minW);
 }
 
-async function wikipediaSummary(keyword: string): Promise<Candidate | null> {
+function isAcceptablePortrait(w?: number, h?: number): boolean {
+  return !!(w && h && w >= 400 && h >= 400);
+}
+
+async function wikipediaSummary(keyword: string, allowPortrait: boolean): Promise<Candidate | null> {
   try {
     const slug = encodeURIComponent(keyword.trim().replace(/\s+/g, "_"));
     const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${slug}`, {
@@ -170,27 +163,20 @@ async function wikipediaSummary(keyword: string): Promise<Candidate | null> {
     const data = await res.json();
     const orig = data?.originalimage;
     const thumb = data?.thumbnail;
-    // Prefer original if landscape & big enough, else thumbnail.
-    let pick: { source?: string; width?: number; height?: number } | null = null;
-    if (orig && isAcceptableSize(orig.width, orig.height)) pick = orig;
-    else if (thumb && isAcceptableSize(thumb.width, thumb.height)) pick = thumb;
+    const ok = (img: any) => img?.source && (allowPortrait ? isAcceptablePortrait(img.width, img.height) : isLandscape(img.width, img.height));
+    const pick = ok(orig) ? orig : ok(thumb) ? thumb : null;
     if (!pick?.source) return null;
-    return { url: pick.source, credit: "Photo: Wikimedia Commons", source: "wikipedia" };
-  } catch (e) {
-    console.error("wikipedia error", e);
-    return null;
-  }
+    return { url: pick.source, credit: "Photo: Wikipedia", source: "Wikipedia" };
+  } catch (e) { console.error("wikipedia error", e); return null; }
 }
 
-async function commonsSearch(keyword: string): Promise<Candidate | null> {
+async function commonsSearch(keyword: string, allowPortrait: boolean): Promise<Candidate | null> {
   try {
     const u =
       `https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*` +
       `&generator=search&gsrnamespace=6&gsrlimit=8&gsrsearch=${encodeURIComponent(keyword)}` +
       `&prop=imageinfo&iiprop=url|mime|size&iiurlwidth=1200`;
-    const res = await fetch(u, {
-      headers: { "User-Agent": "TheVideshi/1.0 (https://thevideshi.com)" },
-    });
+    const res = await fetch(u, { headers: { "User-Agent": "TheVideshi/1.0 (https://thevideshi.com)" } });
     if (!res.ok) return null;
     const data = await res.json();
     const pages = data?.query?.pages;
@@ -201,58 +187,79 @@ async function commonsSearch(keyword: string): Promise<Candidate | null> {
       if (!mime.startsWith("image/") || mime.includes("svg")) continue;
       const w = info.thumbwidth || info.width;
       const h = info.thumbheight || info.height;
-      if (!isAcceptableSize(w, h)) continue;
+      if (allowPortrait ? !isAcceptablePortrait(w, h) : !isLandscape(w, h)) continue;
       const url = info.thumburl || info.url;
       if (!url) continue;
-      return { url, credit: "Photo: Wikimedia Commons", source: "commons" };
+      return { url, credit: "Photo: Wikimedia Commons", source: "Wikimedia Commons" };
     }
     return null;
-  } catch (e) {
-    console.error("commons error", e);
-    return null;
-  }
+  } catch (e) { console.error("commons error", e); return null; }
 }
 
 async function unsplashSearch(keyword: string): Promise<Candidate | null> {
   if (!UNSPLASH_ACCESS_KEY) return null;
   try {
-    const url =
-      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(keyword)}` +
-      `&per_page=1&orientation=landscape&content_filter=high`;
-    const res = await fetch(url, {
-      headers: { Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}` },
-    });
+    const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(keyword)}&per_page=3&orientation=landscape&content_filter=high`;
+    const res = await fetch(url, { headers: { Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}` } });
     if (!res.ok) return null;
     const data = await res.json();
     const photo = data?.results?.[0];
     if (!photo) return null;
     const imgUrl = photo.urls?.regular || photo.urls?.full;
     if (!imgUrl) return null;
-    return { url: imgUrl, credit: "Photo: Unsplash", source: "unsplash" };
-  } catch (e) {
-    console.error("unsplash error", e);
-    return null;
-  }
+    return { url: imgUrl, credit: "Photo: Unsplash", source: "Unsplash" };
+  } catch (e) { console.error("unsplash error", e); return null; }
 }
 
-async function gatherCandidates(
-  title: string,
-  category: string,
-): Promise<Candidate[]> {
-  const keywords = await extractKeywords(title, category);
-  console.log(`keywords for "${title}":`, keywords);
-  const primary = keywords[0] ?? title;
-  const list: (Candidate | null)[] = await Promise.all([
-    wikipediaSummary(primary),
-    commonsSearch(primary),
-    unsplashSearch(keywords[1] ?? primary),
-  ]);
-  // dedupe by url
+async function pexelsSearch(keyword: string): Promise<Candidate | null> {
+  if (!PEXELS_API_KEY) return null;
+  try {
+    const u = `https://api.pexels.com/v1/search?query=${encodeURIComponent(keyword)}&per_page=3&orientation=landscape`;
+    const res = await fetch(u, { headers: { Authorization: PEXELS_API_KEY } });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const p = data?.photos?.[0];
+    const url = p?.src?.large2x || p?.src?.large || p?.src?.original;
+    return url ? { url, credit: "Photo: Pexels", source: "Pexels" } : null;
+  } catch (e) { console.error("pexels error", e); return null; }
+}
+
+async function gatherCandidates(c: Classification, category: string): Promise<Candidate[]> {
+  console.log(`classification: type=${c.type} subject="${c.subject}" keyword="${c.keyword}"`);
+  let raw: (Candidate | null)[] = [];
+  switch (c.type) {
+    case "PERSON":
+      raw = await Promise.all([
+        wikipediaSummary(c.subject, true),
+        commonsSearch(c.subject, true),
+      ]);
+      break;
+    case "PLACE":
+      raw = await Promise.all([
+        wikipediaSummary(c.subject, false),
+        commonsSearch(`${c.subject} India`, false),
+        unsplashSearch(`${c.subject} India`),
+      ]);
+      break;
+    case "EVENT":
+      raw = await Promise.all([
+        commonsSearch(c.subject, false),
+        unsplashSearch(`${c.keyword || c.subject} India`),
+        pexelsSearch(`${c.keyword || c.subject} India`),
+      ]);
+      break;
+    case "TOPIC":
+    default:
+      raw = await Promise.all([
+        unsplashSearch(`${c.keyword || c.subject} India`),
+        pexelsSearch(`${c.keyword || c.subject} India`),
+        unsplashSearch(`India ${category || "news"}`),
+      ]);
+  }
   const seen = new Set<string>();
-  return list.filter((c): c is Candidate => {
-    if (!c) return false;
-    if (seen.has(c.url)) return false;
-    seen.add(c.url);
+  return raw.filter((x): x is Candidate => {
+    if (!x || seen.has(x.url)) return false;
+    seen.add(x.url);
     return true;
   });
 }
