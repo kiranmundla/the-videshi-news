@@ -205,18 +205,6 @@ Reply JSON only: {"score": N, "shows_subject": true|false, "description": "5 wor
   } catch { return { score: 0, description: "", shows_subject: false }; }
 }
 
-async function detectPerson(title: string): Promise<string | null> {
-  const out = await haikuJson(
-    `Is this article primarily about a specific named person (politician, cricketer, actor, business leader, athlete, etc.) — vs. an event, place, or organization?\n\nArticle title: "${title}"\n\nReturn JSON only: {"person": "Full Name" or null}\n\nRules: Only return a name if the article is clearly centered on that individual. Use their full common name (e.g., "Mitchell Marsh", "Mamata Banerjee", "Narendra Modi"). If the article is about an event, team, place, or multiple people, return null.`,
-    100,
-  );
-  const name = out?.person;
-  if (!name || typeof name !== "string") return null;
-  const trimmed = name.trim();
-  if (!trimmed || trimmed.toLowerCase() === "null") return null;
-  return trimmed;
-}
-
 async function isImageUrlInUse(url: string): Promise<boolean> {
   if (!_sb) return false;
   const { count, error } = await _sb
@@ -231,38 +219,63 @@ async function isImageUrlInUse(url: string): Promise<boolean> {
   return (count ?? 0) > 0;
 }
 
-async function fetchImageForArticle(title: string, category: string): Promise<ImageResult | null> {
-  const person = await detectPerson(title);
-  if (person) console.log(`[image] detected person="${person}"`);
+type ImageResultExt = ImageResult & { subject_type: SubjectType; subject_name: string };
 
-  const { primary, keyword } = await extractImageSubject(title, category);
-  console.log(`[image] subject="${primary}" keyword="${keyword}"`);
+function sourcesFor(c: Classification, category: string): Array<() => Promise<{ url: string; credit: string; source: string } | null>> {
+  const allowPortrait = c.type === "PERSON";
+  switch (c.type) {
+    case "PERSON":
+      return [
+        () => tryWikipedia(c.subject, true),
+        () => tryCommons(c.subject, true),
+      ];
+    case "PLACE":
+      return [
+        () => tryWikipedia(c.subject, false),
+        () => tryCommons(`${c.subject} India`, false),
+        () => tryUnsplash(c.subject),
+      ];
+    case "EVENT":
+      return [
+        () => tryCommons(c.subject, false),
+        () => tryUnsplash(c.keyword || c.subject),
+        () => tryPexels(c.keyword || c.subject),
+      ];
+    case "TOPIC":
+    default:
+      return [
+        () => tryUnsplash(`${c.keyword || c.subject}`),
+        () => tryPexels(`${c.keyword || c.subject}`),
+        () => tryUnsplash(`India ${category || "news"}`),
+      ];
+  }
+}
 
-  const sources: Array<() => Promise<{ url: string; credit: string } | null>> = [
-    ...(person ? [() => tryWikipedia(person)] : []),
-    () => tryWikipedia(primary),
-    () => tryCommons(person ?? primary),
-    () => tryUnsplash(keyword),
-  ];
+async function fetchImageForArticle(title: string, firstPara: string, category: string): Promise<ImageResultExt | null> {
+  const classification = await classifySubject(title, firstPara, category);
+  console.log(`[image] classified type=${classification.type} subject="${classification.subject}" keyword="${classification.keyword}"`);
 
-  let best: { url: string; credit: string; description: string; score: number } | null = null;
+  const sources = sourcesFor(classification, category);
+  let best: { url: string; credit: string; source: string; description: string; score: number } | null = null;
 
   for (const src of sources) {
     const cand = await src();
     if (!cand) continue;
     if (await isImageUrlInUse(cand.url)) {
-      console.log(`[image] skip ${cand.credit} — url already used by another article`);
+      console.log(`[image] skip ${cand.source} — url already used`);
       continue;
     }
-    const v = await visionScore(cand.url, title);
-    console.log(`[image] ${cand.credit} score=${v.score}`);
-    if (v.score >= 6) {
+    const v = await visionScore(cand.url, classification);
+    console.log(`[image] ${cand.source} score=${v.score} shows=${v.shows_subject} — ${v.description}`);
+    if (v.score >= 7) {
       return {
         image_url: cand.url,
-        image_caption: v.description || title,
-        image_credit: cand.credit,
+        image_caption: `${v.description || classification.subject} · Photo: ${cand.source}`,
+        image_credit: `Photo: ${cand.credit}`,
         image_verified: true,
         image_score: v.score,
+        subject_type: classification.type,
+        subject_name: classification.subject,
       };
     }
     if (!best || v.score > best.score) {
@@ -273,27 +286,29 @@ async function fetchImageForArticle(title: string, category: string): Promise<Im
   if (best) {
     return {
       image_url: best.url,
-      image_caption: best.description || title,
-      image_credit: best.credit,
+      image_caption: `${best.description || classification.subject} · Photo: ${best.source}`,
+      image_credit: `Photo: ${best.credit}`,
       image_verified: false,
       image_score: best.score,
+      subject_type: classification.type,
+      subject_name: classification.subject,
     };
   }
-  // Try a category-level Unsplash fallback, but still enforce uniqueness.
-  console.warn(`[image] all primary sources exhausted or already used for "${title}" — trying category fallback`);
-  const categoryQuery = `India ${category || "news"}`.trim();
-  const fb = await tryUnsplash(categoryQuery);
+  // Generic India + category fallback.
+  console.warn(`[image] all sources exhausted for "${title}" — trying generic India fallback`);
+  const fb = (await tryUnsplash(`India ${category || "news"}`)) ?? (await tryPexels(`India ${category || "news"}`));
   if (fb && !(await isImageUrlInUse(fb.url))) {
     return {
       image_url: fb.url,
-      image_caption: title,
-      image_credit: fb.credit,
+      image_caption: `${classification.subject} · Photo: ${fb.source}`,
+      image_credit: `Photo: ${fb.credit}`,
       image_verified: false,
       image_score: 0,
+      subject_type: classification.type,
+      subject_name: classification.subject,
     };
   }
-  // No unique image available — leave null so agent-images can try again later.
-  console.error(`[image] no unique image available for "${title}" — leaving image_url null`);
+  console.error(`[image] no unique image available for "${title}"`);
   return null;
 }
 
