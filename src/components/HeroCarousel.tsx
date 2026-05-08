@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-type HeroImage = { url: string; alt: string; credit: string };
+type HeroImage = { url: string; alt: string; credit: string; caption?: string };
 
 const AUTO_MS = 5000;
 

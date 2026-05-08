@@ -97,6 +97,39 @@ export type Database = {
           },
         ]
       }
+      carousel_images: {
+        Row: {
+          caption: string | null
+          created_at: string
+          credit: string | null
+          date: string
+          id: string
+          image_url: string
+          position: number
+          search_term: string | null
+        }
+        Insert: {
+          caption?: string | null
+          created_at?: string
+          credit?: string | null
+          date: string
+          id?: string
+          image_url: string
+          position: number
+          search_term?: string | null
+        }
+        Update: {
+          caption?: string | null
+          created_at?: string
+          credit?: string | null
+          date?: string
+          id?: string
+          image_url?: string
+          position?: number
+          search_term?: string | null
+        }
+        Relationships: []
+      }
       pipeline_runs: {
         Row: {
           articles_created: number | null
