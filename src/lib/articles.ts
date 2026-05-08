@@ -34,7 +34,7 @@ type P2Row = {
   headline: string;
   subheadline: string | null;
   body: string;
-  category: string | null;
+
   vertical: string;
   status: string;
   is_featured: boolean | null;
@@ -46,7 +46,7 @@ type P2Row = {
 };
 
 const P2_COLS =
-  "id, slug, headline, subheadline, body, category, vertical, status, is_featured, published_at, created_at, sources, diaspora_angle, tags";
+  "id, slug, headline, subheadline, body, vertical, status, is_featured, published_at, created_at, sources, diaspora_angle, tags";
 
 function parseSources(raw: unknown): Article["sources"] {
   if (!raw || !Array.isArray(raw)) return undefined;
@@ -83,7 +83,7 @@ function mapRow(row: P2Row): Article {
     title: row.headline,
     excerpt: deriveExcerpt(row.subheadline, row.body),
     body: row.body ?? "",
-    category: row.category ?? row.vertical ?? "",
+    category: row.vertical ?? "",
     hero_image_url: "",
     image_caption: null,
     image_credit: null,
@@ -189,7 +189,7 @@ export async function getRelatedArticles(
     .neq("slug", currentSlug)
     .order("published_at", { ascending: false })
     .limit(limit);
-  if (category) query = query.eq("category", category);
+  if (category) query = query.eq("vertical", category);
 
   const { data, error } = await query;
   if (error) {
@@ -213,7 +213,7 @@ export async function getArticlesByCategory(
     .from("p2_articles")
     .select(P2_COLS)
     .eq("status", "published")
-    .eq("category", category)
+    .eq("vertical", category)
     .order("published_at", { ascending: false })
     .range(offset, offset + limit - 1);
   if (error) {

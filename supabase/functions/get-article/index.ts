@@ -66,7 +66,7 @@ Deno.serve(async (req) => {
   const { data, error } = await supabase
     .from("p2_articles")
     .select(
-      "id, slug, headline, subheadline, body, category, vertical, diaspora_angle, sources, tags, urgency, word_count, published_at, created_at, updated_at, status, is_featured",
+      "id, slug, headline, subheadline, body, vertical, diaspora_angle, sources, tags, urgency, word_count, published_at, created_at, updated_at, status, is_featured",
     )
     .eq("slug", slug)
     .eq("status", "published")
@@ -85,7 +85,7 @@ Deno.serve(async (req) => {
     title: data.headline,
     summary: data.subheadline ?? "",
     body: data.body,
-    category: data.category ?? data.vertical,
+    category: data.vertical,
     article_type: "news",
     nri_angle: data.diaspora_angle,
     sources_used: data.sources,
