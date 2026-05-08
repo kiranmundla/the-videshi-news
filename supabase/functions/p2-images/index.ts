@@ -16,16 +16,23 @@ const corsHeaders = {
 }
 
 const VERTICAL_IMAGE_TERMS: Record<string, string> = {
-  politics:      'India parliament government Delhi',
-  economy:       'India finance rupee stock market Mumbai',
-  tech:          'India technology startup innovation',
-  immigration:   'passport visa travel documents',
-  diaspora:      'Indian American community diversity',
-  science:       'India space research technology ISRO',
-  culture:       'Indian culture festival celebration',
-  sports:        'India cricket stadium sport',
-  entertainment: 'Bollywood India cinema film',
+  politics:      'India parliament New Delhi government',
+  economy:       'Indian rupee finance economy',
+  tech:          'India technology innovation',
+  immigration:   'passport travel airport customs',
+  diaspora:      'Indian American family community',
+  science:       'rocket launch space research',
+  culture:       'Indian festival celebration',
+  sports:        'cricket India stadium',
+  entertainment: 'Bollywood cinema film India',
 }
+
+const POOR_IMAGE_KEYWORDS = new Set([
+  'epfo','pf','provident','repo','sebi','rbi','irdai',
+  'monetary','fiscal','gazette','notification','circular',
+  'agni','missile','icbm','nuclear','ballistic',
+  'uscis','visa bulletin','h1b','eb2','gc','i-140'
+])
 
 function buildQuery(headline: string, tags: string[], vertical: string): string {
   const SKIP_TAGS = new Set([
@@ -132,7 +139,11 @@ Deno.serve(async (req) => {
   const results: any[] = []
 
   for (const article of articles) {
-    const query = buildQuery(article.headline, article.tags ?? [], article.vertical)
+    let query = buildQuery(article.headline, article.tags ?? [], article.vertical)
+
+    if (query.split(' ').some(w => POOR_IMAGE_KEYWORDS.has(w.toLowerCase()))) {
+      query = VERTICAL_IMAGE_TERMS[article.vertical] ?? 'India news'
+    }
 
     let imageUrl = await fetchUnsplash(query)
     let source = 'unsplash'
