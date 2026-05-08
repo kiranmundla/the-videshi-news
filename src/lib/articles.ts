@@ -85,7 +85,7 @@ function mapRow(row: P2Row): Article {
     excerpt: deriveExcerpt(row.subheadline, row.body),
     body: row.body ?? "",
     category: row.vertical ?? "",
-    hero_image_url: "",
+    hero_image_url: row.image_url ?? "",
     image_caption: null,
     image_credit: null,
     published_at: row.published_at ?? row.created_at,
