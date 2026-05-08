@@ -93,29 +93,32 @@ function mapRow(row: ArticleRow): Article {
 }
 
 export async function getFeaturedArticle(): Promise<Article | null> {
-  const nowIso = new Date().toISOString();
-  // 1) Active pinned article wins.
-  const { data: pinned } = await supabase
-    .from("articles")
-    .select("*")
-    .eq("is_published", true)
-    .eq("is_pinned_featured", true)
-    .gt("pinned_until", nowIso)
-    .order("pinned_until", { ascending: false })
-    .limit(1)
-    .maybeSingle();
-  if (pinned) return mapRow(pinned as ArticleRow);
+  const sinceIso = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
 
-  // 2) Otherwise highest featured_score among recent articles.
-  const { data: top } = await supabase
+  const { data, error } = await supabase
     .from("articles")
-    .select("*")
+    .select("*, story_queue!inner(priority, diaspora_relevance, raw_article_ids)")
     .eq("is_published", true)
-    .order("featured_score", { ascending: false })
-    .order("published_at", { ascending: false })
+    .eq("story_queue.status", "published")
+    .gte("published_at", sinceIso)
+    .order("priority", { ascending: true, foreignTable: "story_queue" })
+    .order("image_score", { ascending: false })
     .limit(1)
     .maybeSingle();
-  return top ? mapRow(top as ArticleRow) : null;
+
+  if (error || !data) {
+    const { data: fallback } = await supabase
+      .from("articles")
+      .select("*")
+      .eq("is_published", true)
+      .order("published_at", { ascending: false })
+      .order("image_score", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    return fallback ? mapRow(fallback as ArticleRow) : null;
+  }
+
+  return mapRow(data as ArticleRow);
 }
 
 export function readingTime(markdown: string) {

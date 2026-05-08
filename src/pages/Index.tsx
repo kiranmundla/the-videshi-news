@@ -199,7 +199,7 @@ export default function Index() {
               <span className="smallcaps text-primary whitespace-nowrap">Featured</span>
               <span className="flex-1 bg-rule" style={{ height: "0.5px" }} />
             </div>
-            <ArticleCard article={featured} variant="hero" />
+            <ArticleCard article={featured} variant="hero" featured />
           </div>
         )}
 
