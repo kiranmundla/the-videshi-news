@@ -15,16 +15,49 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
-function buildQuery(headline: string, tags: string[]): string {
-  if (tags && tags.length > 0) {
-    return tags.slice(0, 2).join(' ')
+const VERTICAL_IMAGE_TERMS: Record<string, string> = {
+  politics:      'India parliament government Delhi',
+  economy:       'India finance rupee stock market Mumbai',
+  tech:          'India technology startup innovation',
+  immigration:   'passport visa travel documents',
+  diaspora:      'Indian American community diversity',
+  science:       'India space research technology ISRO',
+  culture:       'Indian culture festival celebration',
+  sports:        'India cricket stadium sport',
+  entertainment: 'Bollywood India cinema film',
+}
+
+function buildQuery(headline: string, tags: string[], vertical: string): string {
+  const SKIP_TAGS = new Set([
+    'india','news','breaking','latest','update',
+    'government','policy','report','analysis'
+  ])
+  const goodTags = (tags ?? [])
+    .filter(t => !SKIP_TAGS.has(t.toLowerCase()) && t.length > 3)
+    .slice(0, 2)
+  if (goodTags.length >= 2) {
+    return goodTags.join(' ')
   }
-  const stopWords = new Set(['the','a','an','in','on','at','to','for','of','and','or','is','are','was'])
-  return headline
-    .split(' ')
-    .filter(w => !stopWords.has(w.toLowerCase()) && w.length > 2)
-    .slice(0, 4)
-    .join(' ')
+
+  const stopWords = new Set([
+    'the','a','an','in','on','at','to','for','of',
+    'and','or','is','are','was','will','has','have',
+    'its','this','that','with','from','by','as','up'
+  ])
+  const headlineWords = headline
+    .replace(/[^a-zA-Z\s]/g, ' ')
+    .split(/\s+/)
+    .filter(w =>
+      !stopWords.has(w.toLowerCase()) &&
+      !SKIP_TAGS.has(w.toLowerCase()) &&
+      w.length > 3
+    )
+    .slice(0, 3)
+  if (headlineWords.length >= 2) {
+    return headlineWords.join(' ')
+  }
+
+  return VERTICAL_IMAGE_TERMS[vertical] ?? 'India news'
 }
 
 async function fetchUnsplash(query: string): Promise<string | null> {
