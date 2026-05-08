@@ -103,8 +103,8 @@ export default function ArticlePage() {
           </div>
         </article>
 
-        <figure className="mt-10 w-screen md:w-full relative left-1/2 right-1/2 -translate-x-1/2 md:left-auto md:right-auto md:translate-x-0">
-          <div className="w-full aspect-[16/9] overflow-hidden relative">
+        <figure className="mt-10 w-full max-w-full">
+          <div className="w-full max-w-full aspect-[16/9] overflow-hidden relative">
             <HeroImage
               src={article.hero_image_url}
               alt={article.title}
@@ -113,7 +113,7 @@ export default function ArticlePage() {
               className="block w-full h-full object-cover object-center"
             />
           </div>
-          <div className="text-center px-4 md:px-0">
+          <div className="text-center">
             <ImageCaption
               caption={article.image_caption}
               credit={article.image_credit}

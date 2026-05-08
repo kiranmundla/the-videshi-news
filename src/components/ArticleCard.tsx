@@ -18,6 +18,9 @@ export default function ArticleCard({
   const href = `/articles/${article.slug}`;
   const isFeature = article.article_type === "feature";
   const featureLabel = isFeature ? "FEATURE" : null;
+  if (typeof window !== "undefined" && /bengal|election/i.test(article.title)) {
+    console.log("[ArticleCard]", article.title, "image_url=", article.hero_image_url);
+  }
   if (variant === "compact") {
     return (
       <Link to={href} className="group flex gap-4 items-start">
