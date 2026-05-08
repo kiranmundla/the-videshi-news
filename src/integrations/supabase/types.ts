@@ -133,6 +133,72 @@ export type Database = {
         }
         Relationships: []
       }
+      dead_letter_queue: {
+        Row: {
+          agent: string | null
+          can_retry: boolean
+          created_at: string
+          error_history: string[] | null
+          failure_reason: string | null
+          id: string
+          original_job_id: string | null
+          story_brief: Json | null
+        }
+        Insert: {
+          agent?: string | null
+          can_retry?: boolean
+          created_at?: string
+          error_history?: string[] | null
+          failure_reason?: string | null
+          id?: string
+          original_job_id?: string | null
+          story_brief?: Json | null
+        }
+        Update: {
+          agent?: string | null
+          can_retry?: boolean
+          created_at?: string
+          error_history?: string[] | null
+          failure_reason?: string | null
+          id?: string
+          original_job_id?: string | null
+          story_brief?: Json | null
+        }
+        Relationships: []
+      }
+      pipeline_alerts: {
+        Row: {
+          agent: string
+          created_at: string
+          error_type: string | null
+          id: string
+          job_id: string | null
+          message: string
+          resolved: boolean
+          severity: string
+        }
+        Insert: {
+          agent: string
+          created_at?: string
+          error_type?: string | null
+          id?: string
+          job_id?: string | null
+          message: string
+          resolved?: boolean
+          severity: string
+        }
+        Update: {
+          agent?: string
+          created_at?: string
+          error_type?: string | null
+          id?: string
+          job_id?: string | null
+          message?: string
+          resolved?: boolean
+          severity?: string
+        }
+        Relationships: []
+      }
       pipeline_runs: {
         Row: {
           articles_created: number | null

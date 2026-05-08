@@ -38,3 +38,6 @@ verify_jwt = false
 
 [functions.unsplash-hero]
 verify_jwt = false
+
+[functions.pipeline-health]
+verify_jwt = false
