@@ -1,5 +1,11 @@
 // agent-writer: claims a pending story_queue job and writes a first draft using Claude Sonnet + web search.
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+import { createClient, type SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+import {
+  callClaudeResilient,
+  logAlert,
+  sendAlertEmail,
+  moveToDLQ,
+} from "../_shared/resilience.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -7,6 +13,7 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+const AGENT = "agent-writer";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY")!;
@@ -15,6 +22,9 @@ const MODEL = "claude-sonnet-4-6";
 const SYSTEM_PROMPT =
   "You are an experienced journalist writing for The Videshi, a news platform for Indian-Americans. Write factually, neutrally, and with depth. Always search for official sources first — PIB, Newsonair, ANI, ECI, NIA, RBI. Then wire services — PTI, IANS. Then reputable news outlets.\n\n" +
   "CRITICAL: Never include HTML tags, citation tags, reference tags, or any markup like <cite>, <ref>, <a>, <span>, <div>, or similar in your output. Plain markdown only. No HTML whatsoever.";
+
+let _sb: SupabaseClient;
+let _jobId: string | undefined;
 
 function stripFences(text: string): string {
   const fence = text.match(/```(?:json)?\s*([\s\S]*?)```/);
@@ -25,34 +35,14 @@ function stripFences(text: string): string {
   return raw.slice(start, end + 1);
 }
 
-async function anthropicFetch(body: any, maxRetries = 3): Promise<any> {
-  for (let i = 0; i < maxRetries; i++) {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "x-api-key": ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-    const text = await res.text();
-    let data: any = null;
-    try { data = text ? JSON.parse(text) : null; } catch { /* keep null */ }
-
-    const overloaded = res.status === 529 || data?.error?.type === "overloaded_error";
-    if (overloaded && i < maxRetries - 1) {
-      const waitMs = Math.pow(2, i) * 5000; // 5s, 10s, 20s
-      console.log(`[anthropic] overloaded (status=${res.status}), retrying in ${waitMs}ms (attempt ${i + 1}/${maxRetries})`);
-      await new Promise((r) => setTimeout(r, waitMs));
-      continue;
-    }
-    if (!res.ok) {
-      throw new Error(`Claude error ${res.status}: ${text.slice(0, 500)}`);
-    }
-    return data;
-  }
-  throw new Error("Claude API overloaded after retries");
+async function anthropicFetch(body: any): Promise<any> {
+  return await callClaudeResilient({
+    apiKey: ANTHROPIC_API_KEY,
+    body,
+    agent: AGENT,
+    jobId: _jobId,
+    supabase: _sb,
+  });
 }
 
 async function repairJsonWithHaiku(malformed: string): Promise<string> {
