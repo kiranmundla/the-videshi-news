@@ -43,10 +43,11 @@ type P2Row = {
   sources: unknown;
   diaspora_angle: string | null;
   tags: string[] | null;
+  image_url: string | null;
 };
 
 const P2_COLS =
-  "id, slug, headline, subheadline, body, vertical, status, is_featured, published_at, created_at, sources, diaspora_angle, tags";
+  "id, slug, headline, subheadline, body, vertical, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url";
 
 function parseSources(raw: unknown): Article["sources"] {
   if (!raw || !Array.isArray(raw)) return undefined;
