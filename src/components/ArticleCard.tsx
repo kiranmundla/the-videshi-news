@@ -52,15 +52,16 @@ export default function ArticleCard({
         className="group grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-secondary/60 p-6 md:p-10 border hairline"
       >
         <figure>
-          <HeroImage
-            src={article.hero_image_url}
-            alt={article.title}
-            loading="lazy"
-            category={article.category}
-            className="w-full aspect-[16/9] object-cover object-center"
-          />
+          <div className="w-full aspect-[16/9] overflow-hidden">
+            <HeroImage
+              src={article.hero_image_url}
+              alt={article.title}
+              loading="lazy"
+              category={article.category}
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
           <ImageCaption caption={article.image_caption} credit={article.image_credit} truncate />
-
         </figure>
         <div>
           <p className="smallcaps text-primary mb-3">

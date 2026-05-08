@@ -1,7 +1,7 @@
 type Props = {
   caption?: string | null;
   credit?: string | null;
-  /** truncate caption to one line (used on cards) */
+  /** truncate caption to one line (used on small cards) */
   truncate?: boolean;
   /** larger sizing for article hero */
   size?: "sm" | "md";
@@ -19,18 +19,21 @@ export default function ImageCaption({
   const captionSize = size === "md" ? "text-[13px]" : "text-[11px]";
   const creditSize = size === "md" ? "text-[11px]" : "text-[10px]";
   const alignCls = align === "center" ? "text-center" : "text-left";
+  const clampStyle: React.CSSProperties = truncate
+    ? { display: "-webkit-box", WebkitLineClamp: 1, WebkitBoxOrient: "vertical", overflow: "hidden" }
+    : { display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" };
   return (
-    <figcaption className={`mt-2 leading-snug ${alignCls}`}>
+    <figcaption className={`mt-2 leading-snug ${alignCls} max-w-full`}>
       {caption && (
         <span
-          className={`${captionSize} italic text-foreground/60 ${truncate ? "block truncate" : ""}`}
+          className={`${captionSize} italic text-foreground/60 block`}
+          style={clampStyle}
         >
           {caption}
         </span>
       )}
       {credit && (
-        <span className={`${creditSize} text-muted-foreground ${caption ? "ml-1" : ""}`}>
-          {caption ? "· " : ""}
+        <span className={`${creditSize} text-muted-foreground block`}>
           {credit}
         </span>
       )}
