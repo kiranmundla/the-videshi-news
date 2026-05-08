@@ -1,6 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import { formatLongDate } from "@/lib/articles";
 
 import { CATEGORIES } from "@/lib/categories";
@@ -11,11 +9,7 @@ const NAV = [
 ];
 
 export default function Masthead() {
-  const [open, setOpen] = useState(false);
   const today = formatLongDate(new Date().toISOString());
-  const { pathname } = useLocation();
-
-  useEffect(() => setOpen(false), [pathname]);
 
   return (
     <header className="bg-background">
@@ -32,13 +26,6 @@ export default function Masthead() {
           <div className="hidden md:block text-right">
             <p className="smallcaps text-muted-foreground">{today}</p>
           </div>
-          <button
-            aria-label="Open menu"
-            className="md:hidden p-2 -mr-2 text-foreground"
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
         </div>
         <div className="md:hidden pb-3">
           <p className="smallcaps text-muted-foreground">{today}</p>
@@ -59,19 +46,6 @@ export default function Masthead() {
           </ul>
         </nav>
         <div style={{ height: "0.5px" }} className="hidden md:block bg-rule w-full" />
-        {open && (
-          <nav className="md:hidden py-3 border-b hairline">
-            <ul className="flex flex-col gap-3 text-base">
-              {NAV.map((n) => (
-                <li key={n.label}>
-                  <Link to={n.to} className="text-foreground/90 hover:text-primary">
-                    {n.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        )}
       </div>
     </header>
   );
