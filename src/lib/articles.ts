@@ -18,6 +18,9 @@ export type Article = {
   nri_angle?: string;
   article_type?: "news" | "feature";
   tags?: string[];
+  featured_score?: number;
+  is_pinned_featured?: boolean;
+  pinned_until?: string | null;
 };
 
 type ArticleRow = {
@@ -37,6 +40,9 @@ type ArticleRow = {
   nri_angle: string | null;
   article_type: string | null;
   tags: string[] | null;
+  featured_score: number | null;
+  is_pinned_featured: boolean | null;
+  pinned_until: string | null;
 };
 
 function parseSources(raw: unknown): Article["sources"] {
