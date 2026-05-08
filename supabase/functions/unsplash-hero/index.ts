@@ -179,15 +179,16 @@ Deno.serve(async (req) => {
   if (supabase) {
     const { data: cached } = await supabase
       .from("carousel_images")
-      .select("image_url,caption,credit,search_term,position")
+      .select("image_url,caption,credit,search_term,location,position")
       .eq("date", day)
       .order("position", { ascending: true });
     if (cached && cached.length > 0) {
-      const images = cached.map((r) => ({
+      const images = cached.map((r: any) => ({
         url: r.image_url,
         alt: r.caption ?? "",
         credit: r.credit ?? "",
         caption: r.caption ?? "",
+        location: r.location ?? "",
         search_term: r.search_term ?? "",
       }));
       return new Response(JSON.stringify({ images, cached: true, date: day }), {
@@ -213,6 +214,7 @@ Deno.serve(async (req) => {
         image_url: img.url,
         caption: img.caption,
         credit: img.credit,
+        location: img.location,
         search_term: img.search_term,
       }));
       const { error } = await supabase
