@@ -208,6 +208,58 @@ async function fetchFeed(source: typeof RSS_SOURCES[0]): Promise<RawArticle[]> {
       return items;
     }
 
+    if (source.parser === "rss2json") {
+      try {
+        const json = JSON.parse(body) as {
+          status?: string;
+          message?: string;
+          items?: Array<{
+            title?: string;
+            link?: string;
+            pubDate?: string;
+            description?: string;
+            thumbnail?: string;
+            enclosure?: { link?: string; type?: string };
+          }>;
+        };
+        if (json.status !== "ok" || !Array.isArray(json.items)) {
+          console.error(
+            `[ingest-rss] ${source.name} rss2json error — ${json.message || "no items"}`
+          );
+          return [];
+        }
+        const items: RawArticle[] = json.items
+          .filter((it) => it.title && it.link)
+          .map((it) => {
+            const description = (it.description || "")
+              .replace(/<[^>]*>/g, "")
+              .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+              .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+              .slice(0, 500);
+            const image =
+              it.thumbnail ||
+              (it.enclosure && it.enclosure.type?.startsWith("image/") ? it.enclosure.link : null) ||
+              (it.description?.match(/<img\b[^>]*\bsrc=["']([^"']+)["']/i)?.[1] ?? null) ||
+              null;
+            return {
+              title: it.title!.trim(),
+              url: it.link!.trim(),
+              description,
+              image_url: image,
+              source_name: source.name,
+              source_url: source.url,
+              published_at: it.pubDate ? new Date(it.pubDate).toISOString() : new Date().toISOString(),
+              credibility: source.credibility,
+            };
+          });
+        console.log(`[ingest-rss] ${source.name} → ${items.length} items (rss2json)`);
+        return items;
+      } catch (e) {
+        console.error(`[ingest-rss] ${source.name} rss2json parse failed :: ${(e as Error).message}`);
+        return [];
+      }
+    }
+
     const trimmed = body.trimStart().slice(0, 200);
     // Detect HTML / bot-challenge pages returned with 200
     if (!/^<\?xml|^<rss|^<feed/i.test(trimmed)) {
