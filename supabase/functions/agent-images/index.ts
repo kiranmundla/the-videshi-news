@@ -393,7 +393,7 @@ Deno.serve(async (req) => {
     for (const a of articles ?? []) {
       processed++;
       console.log(`→ ${a.title} (current score=${a.image_score ?? "?"})`);
-      const chosen = await pickBestImage(a.title, a.category);
+      const chosen = await pickBestImage(a.title, a.category, supabase, a.id);
       if (!chosen) {
         console.log(`· no candidate beat current — keeping existing image`);
         continue;
