@@ -185,6 +185,34 @@ async function searchPexels(keyword: string): Promise<Hit | null> {
   }
 }
 
+async function generateCaption(imageUrl: string, title: string): Promise<string> {
+  let filename = "";
+  try {
+    const u = new URL(imageUrl);
+    filename = decodeURIComponent(u.pathname.split("/").pop() ?? "");
+  } catch (_e) { /* ignore */ }
+  const prompt =
+    `You are writing a short newspaper-style caption. You CANNOT see the image — only its filename and the article it accompanies. ` +
+    `Make a confident plausible guess based on the article topic.\n\n` +
+    `Article title: ${title}\n` +
+    `Image filename: ${filename || "(no filename)"}\n\n` +
+    `Output rules:\n` +
+    `- Exactly one caption, max 10 words.\n` +
+    `- Describe what the image most likely depicts (a person, place, object, or scene related to the article).\n` +
+    `- If a name is in the filename or article, use it.\n` +
+    `- Never apologise, never say "I can't" or "unable", never explain — just output the caption.\n` +
+    `- No quotes, no trailing period.\n\n` +
+    `Caption:`;
+  const out = await callHaiku(prompt, 40);
+  let caption = out.replace(/^["']|["'.]+$/g, "").trim();
+  // Reject obvious refusals
+  if (/^(i\s|i'm|i am|sorry|unable|i cannot|i can't|as an ai)/i.test(caption)) return "";
+  // Trim to 10 words
+  const words = caption.split(/\s+/);
+  if (words.length > 12) caption = words.slice(0, 10).join(" ");
+  return caption;
+}
+
 async function findImage(title: string, category: string): Promise<Hit | null> {
   const keywords = await extractKeywords(title, category);
   console.log(`keywords for "${title}":`, keywords);
@@ -243,9 +271,9 @@ Deno.serve(async (req) => {
   try {
     const { data: articles, error } = await supabase
       .from("articles")
-      .select("id, title, category, image_url")
+      .select("id, title, category, image_url, image_caption")
       .eq("is_published", true)
-      .or("image_url.is.null,image_url.eq.")
+      .or("image_url.is.null,image_url.eq.,image_caption.is.null")
       .order("published_at", { ascending: false })
       .limit(MAX_PER_RUN);
 
@@ -253,20 +281,33 @@ Deno.serve(async (req) => {
 
     for (const a of articles ?? []) {
       processed++;
-      const hit = await findImage(a.title, a.category);
-      if (!hit) {
-        console.log(`✗ no image found for: ${a.title}`);
-        continue;
+      const hasImage = typeof a.image_url === "string" && a.image_url.trim().length > 0;
+      let imgUrl = a.image_url as string | null;
+      let credit: string | null = null;
+
+      if (!hasImage) {
+        const hit = await findImage(a.title, a.category);
+        if (!hit) {
+          console.log(`✗ no image found for: ${a.title}`);
+          continue;
+        }
+        imgUrl = hit.url;
+        credit = hit.credit;
       }
-      const { error: updErr } = await supabase
-        .from("articles")
-        .update({ image_url: hit.url, image_credit: hit.credit })
-        .eq("id", a.id);
+
+      const caption = await generateCaption(imgUrl!, a.title);
+      const patch: Record<string, unknown> = { image_caption: caption || null };
+      if (!hasImage) {
+        patch.image_url = imgUrl;
+        patch.image_credit = credit;
+      }
+
+      const { error: updErr } = await supabase.from("articles").update(patch).eq("id", a.id);
       if (updErr) {
         console.error(`update failed for ${a.id}`, updErr);
       } else {
         updated++;
-        console.log(`✓ ${a.title} -> ${hit.url}`);
+        console.log(`✓ ${a.title} | "${caption}"`);
       }
     }
   } catch (e) {

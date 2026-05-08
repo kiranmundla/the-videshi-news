@@ -1,11 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
 
-export function imageCaption(title: string): string {
-  const words = title.trim().split(/\s+/);
-  if (words.length <= 6) return title;
-  return words.slice(0, 6).join(" ") + "…";
-}
-
 export type Article = {
   id: string;
   slug: string;
@@ -14,6 +8,8 @@ export type Article = {
   body: string;
   category: string;
   hero_image_url: string;
+  image_caption?: string | null;
+  image_credit?: string | null;
   author?: string;
   published_at: string;
   created_at: string;
@@ -32,6 +28,8 @@ type ArticleRow = {
   body: string;
   category: string;
   image_url: string | null;
+  image_caption: string | null;
+  image_credit: string | null;
   published_at: string | null;
   created_at: string;
   is_published: boolean | null;
@@ -72,6 +70,8 @@ function mapRow(row: ArticleRow): Article {
     body: row.body ?? "",
     category: row.category ?? "",
     hero_image_url: row.image_url ?? "",
+    image_caption: row.image_caption ?? null,
+    image_credit: row.image_credit ?? null,
     published_at: row.published_at ?? row.created_at,
     created_at: row.created_at,
     status: row.is_published ? "published" : "draft",

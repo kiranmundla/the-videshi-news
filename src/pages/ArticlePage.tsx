@@ -12,9 +12,9 @@ import {
   getArticleBySlug,
   getRelatedArticles,
   readingTime,
-  imageCaption,
 } from "@/lib/articles";
 import HeroImage from "@/components/HeroImage";
+import ImageCaption from "@/components/ImageCaption";
 import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
 
 export default function ArticlePage() {
@@ -111,9 +111,12 @@ export default function ArticlePage() {
             category={article.category}
             className="w-full h-[420px] object-cover object-top"
           />
-          <figcaption className="mt-2 text-sm italic text-muted-foreground text-center">
-            {imageCaption(article.title)}
-          </figcaption>
+          <ImageCaption
+            caption={article.image_caption}
+            credit={article.image_credit}
+            size="md"
+            align="center"
+          />
         </figure>
 
         <div className="article-prose max-w-2xl mx-auto mt-12">
