@@ -404,7 +404,7 @@ Deno.serve(async (req) => {
     // Once score >= 8 AND self-hosted, mark verified and never touch again.
     const { data: articles, error } = await supabase
       .from("articles")
-      .select("id, title, category, image_url, image_verified, image_score")
+      .select("id, title, body, category, image_url, image_verified, image_score, subject_type, subject_name")
       .eq("is_published", true)
       .or("image_url.is.null,image_score.is.null,image_score.lt.8,image_url.not.ilike.%supabase%")
       .order("published_at", { ascending: false })
@@ -415,7 +415,10 @@ Deno.serve(async (req) => {
     for (const a of articles ?? []) {
       processed++;
       console.log(`→ ${a.title} (current score=${a.image_score ?? "?"})`);
-      const chosen = await pickBestImage(a.title, a.category, supabase, a.id);
+      const existingClass = a.subject_type && a.subject_name
+        ? { type: a.subject_type as SubjectType, subject: a.subject_name }
+        : null;
+      const chosen = await pickBestImage(a.title, a.body, a.category, supabase, a.id, existingClass);
       if (!chosen) {
         console.log(`· no candidate beat current — keeping existing image`);
         continue;
@@ -438,6 +441,8 @@ Deno.serve(async (req) => {
           image_credit: chosen.credit,
           image_verified: chosen.verified,
           image_score: chosen.score,
+          subject_type: chosen.subject_type,
+          subject_name: chosen.subject_name,
         })
         .eq("id", a.id);
       if (updErr) {
