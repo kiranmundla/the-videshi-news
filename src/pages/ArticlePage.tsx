@@ -103,7 +103,7 @@ export default function ArticlePage() {
           </div>
         </article>
 
-        <figure className="mt-10 w-full max-w-full">
+        <figure className="mt-10 w-full max-w-full md:max-w-[780px] md:mx-auto">
           <div className="w-full max-w-full aspect-[16/9] overflow-hidden relative">
             <HeroImage
               src={article.hero_image_url}
