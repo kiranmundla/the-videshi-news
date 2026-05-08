@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment as FragmentRow, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
@@ -145,8 +145,8 @@ export default function TopicRadarPage() {
               <TableRow><TableCell colSpan={9} className="text-center py-8 text-muted-foreground">No topics yet.</TableCell></TableRow>
             )}
             {pageRows.map((t: any, i: number) => (
-              <>
-                <TableRow key={t.id} className="cursor-pointer" onClick={() => setExpanded(expanded === t.id ? null : t.id)}>
+              <FragmentRow key={t.id}>
+                <TableRow className="cursor-pointer" onClick={() => setExpanded(expanded === t.id ? null : t.id)}>
                   <TableCell className="text-muted-foreground">{(page - 1) * PAGE_SIZE + i + 1}</TableCell>
                   <TableCell className={scoreColor(t.score_total)}>{t.score_total ?? "—"}</TableCell>
                   <TableCell className="font-medium max-w-md">{t.canonical_title}</TableCell>
@@ -168,13 +168,13 @@ export default function TopicRadarPage() {
                   </TableCell>
                 </TableRow>
                 {expanded === t.id && (
-                  <TableRow key={t.id + "-x"}>
+                  <TableRow>
                     <TableCell colSpan={9} className="bg-muted/30 p-4">
                       <ExpandedTopic topic={t} />
                     </TableCell>
                   </TableRow>
                 )}
-              </>
+              </FragmentRow>
             ))}
           </TableBody>
         </Table>
