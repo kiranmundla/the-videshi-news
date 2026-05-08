@@ -36,6 +36,7 @@ type P2Row = {
   body: string;
 
   vertical: string;
+  category: string | null;
   status: string;
   is_featured: boolean | null;
   published_at: string | null;
@@ -47,7 +48,7 @@ type P2Row = {
 };
 
 const P2_COLS =
-  "id, slug, headline, subheadline, body, vertical, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url";
+  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url";
 
 function parseSources(raw: unknown): Article["sources"] {
   if (!raw || !Array.isArray(raw)) return undefined;
@@ -84,7 +85,7 @@ function mapRow(row: P2Row): Article {
     title: row.headline,
     excerpt: deriveExcerpt(row.subheadline, row.body),
     body: row.body ?? "",
-    category: row.vertical ?? "",
+    category: row.category ?? row.vertical ?? "",
     hero_image_url: row.image_url ?? "",
     image_caption: null,
     image_credit: null,
@@ -216,7 +217,7 @@ export async function getArticlesByCategory(
     .from("p2_articles")
     .select(P2_COLS)
     .eq("status", "published")
-    .eq("vertical", category)
+    .eq("category", category)
     .order("published_at", { ascending: false })
     .range(offset, offset + limit - 1);
   if (error) {
