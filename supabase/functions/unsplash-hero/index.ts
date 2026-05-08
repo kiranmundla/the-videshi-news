@@ -44,6 +44,7 @@ type HeroImage = {
   alt: string;
   credit: string;
   caption: string;
+  location: string;
   search_term: string;
 };
 
