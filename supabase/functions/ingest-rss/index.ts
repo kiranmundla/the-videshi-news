@@ -62,6 +62,13 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
 
   // ── Business ──────────────────────────────────────────────
   { name: "Economic Times", url: "https://economictimes.indiatimes.com/rssfeedstopstories.cms", credibility: "tier3", category: "markets-finance" },
+
+  // ── Google News aggregated feeds (fallback for blocked publishers) ─────────
+  // Public, no Akamai blocking. Aggregates NDTV, BS, IE, Bollywood Life, etc.
+  { name: "Google News Business India", url: "https://news.google.com/rss/search?q=india+business+economy&hl=en-IN&gl=IN&ceid=IN:en", credibility: "tier3", category: "markets-finance" },
+  { name: "Google News Cricket",        url: "https://news.google.com/rss/search?q=india+cricket+ipl&hl=en-IN&gl=IN&ceid=IN:en",       credibility: "tier3", category: "sports" },
+  { name: "Google News Bollywood",      url: "https://news.google.com/rss/search?q=bollywood+movies&hl=en-IN&gl=IN&ceid=IN:en",         credibility: "tier3", category: "entertainment" },
+  { name: "Google News Diaspora",       url: "https://news.google.com/rss/search?q=indian+diaspora+nri&hl=en-IN&gl=IN&ceid=IN:en",      credibility: "tier3", category: "nri-world" },
 ];
 
 interface RawArticle {
