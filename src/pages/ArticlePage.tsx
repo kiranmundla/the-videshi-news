@@ -12,9 +12,9 @@ import {
   getArticleBySlug,
   getRelatedArticles,
   readingTime,
-  imageCaption,
 } from "@/lib/articles";
 import HeroImage from "@/components/HeroImage";
+import ImageCaption from "@/components/ImageCaption";
 import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
 
 export default function ArticlePage() {
