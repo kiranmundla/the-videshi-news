@@ -153,6 +153,7 @@ Deno.serve(async (req) => {
   for (const result of fetched) {
     const { source, items, error, skipped } = result;
     if (skipped) continue;
+    const fetchStart = Date.now();
 
     if (error) {
       await supabase.from("pipeline_alerts").insert({
@@ -161,18 +162,42 @@ Deno.serve(async (req) => {
         error_type: "fetch_failed",
         message: `Failed to fetch ${source.name}: ${error}`,
       });
+      await supabase.from("videshi_source_logs").insert({
+        source_id: source.id,
+        agent: "p2-ingest",
+        status: "error",
+        error_message: error,
+        duration_ms: Date.now() - fetchStart,
+      });
+      await supabase
+        .from("videshi_sources")
+        .update({
+          consecutive_errors: (source.consecutive_errors ?? 0) + 1,
+          last_error: error,
+          last_error_at: new Date().toISOString(),
+        })
+        .eq("id", source.id);
       results.push({ source: source.name, status: "error", error });
       continue;
     }
 
     if (items.length === 0) {
+      await supabase.from("videshi_source_logs").insert({
+        source_id: source.id,
+        agent: "p2-ingest",
+        status: "empty",
+        items_fetched: 0,
+        items_new: 0,
+        duration_ms: Date.now() - fetchStart,
+      });
       results.push({ source: source.name, status: "empty" });
       continue;
     }
 
-    // Build signal rows (cap 50 per feed)
+    // Build signal rows (cap per feed)
+    const cap = source.max_items ?? 50;
     const signalRows = await Promise.all(
-      items.slice(0, 50).map(async (item: any) => ({
+      items.slice(0, cap).map(async (item: any) => ({
         feed_source_id: source.id,
         title: item.title.slice(0, 500),
         original_url: item.url.slice(0, 1000),
@@ -221,13 +246,30 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Update last_fetched_at + rolling avg
+    // Update last_fetched_at + rolling avg + reset error counter
     const prevAvg = source.avg_items_per_day ?? items.length;
     const newAvg = Math.round((prevAvg * 6 + items.length * 48) / 7);
     await supabase
-      .from("p2_feed_sources")
-      .update({ last_fetched_at: new Date().toISOString(), avg_items_per_day: newAvg })
+      .from("videshi_sources")
+      .update({
+        last_fetched_at: new Date().toISOString(),
+        avg_items_per_day: newAvg,
+        consecutive_errors: 0,
+        total_fetches: (source.total_fetches ?? 0) + 1,
+        total_items: (source.total_items ?? 0) + items.length,
+      })
       .eq("id", source.id);
+
+    await supabase.from("videshi_source_logs").insert({
+      source_id: source.id,
+      agent: "p2-ingest",
+      status: insertErr ? "partial" : "ok",
+      items_fetched: items.length,
+      items_new: inserted,
+      items_accepted: inserted,
+      duration_ms: Date.now() - fetchStart,
+      error_message: insertErr?.message ?? null,
+    });
 
     results.push({
       source: source.name,
