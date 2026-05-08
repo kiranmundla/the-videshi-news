@@ -19,7 +19,7 @@ const supabase = createClient(
 );
 
 // ── RSS Sources ──────────────────────────────────────────────
-const RSS_SOURCES = [
+const RSS_SOURCES: { name: string; url: string; category?: string; region?: string }[] = [
   { name: "Times of India",  url: "https://timesofindia.indiatimes.com/rssfeedstopstories.cms" },
   { name: "NDTV",            url: "https://feeds.feedburner.com/ndtvnews-top-stories" },
   { name: "The Hindu",       url: "https://www.thehindu.com/news/national/feeder/default.rss" },
@@ -27,6 +27,14 @@ const RSS_SOURCES = [
   { name: "India Today",     url: "https://www.indiatoday.in/rss/1206578" },
   // Public domain — All India Radio (full text publishable)
   { name: "Newsonair",       url: "https://www.newsonair.gov.in/feed/" },
+
+  // ── nri-world: Indians abroad / diaspora sources ──────────
+  { name: "USCIS Newsroom",        url: "https://www.uscis.gov/feeds/rss/newsroom/news.xml",         category: "nri-world", region: "us" },
+  { name: "NRI Pulse",             url: "https://nripulse.com/feed",                                  category: "nri-world", region: "us" },
+  { name: "Indian Link Australia", url: "https://www.indianlink.com.au/feed",                         category: "nri-world", region: "australia" },
+  { name: "Gulf News India",       url: "https://gulfnews.com/rss/india",                             category: "nri-world", region: "uae" },
+  { name: "SBS Hindi",             url: "https://www.sbs.com.au/language/hindi/rss",                  category: "nri-world", region: "australia" },
+  { name: "BBC India",             url: "https://feeds.bbci.co.uk/news/world/asia/india/rss.xml",     category: "nri-world", region: "uk" },
 ];
 
 interface RawArticle {
