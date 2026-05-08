@@ -64,12 +64,12 @@ Deno.serve(async (req) => {
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
   const { data, error } = await supabase
-    .from("articles")
+    .from("p2_articles")
     .select(
-      "id, slug, title, summary, body, category, article_type, nri_angle, sources_used, image_url, tags, word_count, read_time_min, published_at, created_at, updated_at, is_published",
+      "id, slug, headline, subheadline, body, category, vertical, diaspora_angle, sources, tags, urgency, word_count, published_at, created_at, updated_at, status, is_featured",
     )
     .eq("slug", slug)
-    .eq("is_published", true)
+    .eq("status", "published")
     .maybeSingle();
 
   if (error) {
@@ -78,5 +78,26 @@ Deno.serve(async (req) => {
   }
   if (!data) return json(404, { error: "Article not found" });
 
-  return json(200, { article: data });
+  // Map to legacy field names for API consumers.
+  const article = {
+    id: data.id,
+    slug: data.slug,
+    title: data.headline,
+    summary: data.subheadline ?? "",
+    body: data.body,
+    category: data.category ?? data.vertical,
+    article_type: "news",
+    nri_angle: data.diaspora_angle,
+    sources_used: data.sources,
+    image_url: null,
+    tags: data.tags,
+    word_count: data.word_count,
+    read_time_min: data.word_count ? Math.max(1, Math.round(data.word_count / 225)) : null,
+    published_at: data.published_at,
+    created_at: data.created_at,
+    updated_at: data.updated_at,
+    is_published: data.status === "published",
+  };
+
+  return json(200, { article });
 });
