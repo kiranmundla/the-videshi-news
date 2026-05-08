@@ -155,13 +155,29 @@ async function visionScore(imageUrl: string, title: string): Promise<{ score: nu
   } catch { return { score: 0, description: "" }; }
 }
 
+async function detectPerson(title: string): Promise<string | null> {
+  const out = await haikuJson(
+    `Is this article primarily about a specific named person (politician, cricketer, actor, business leader, athlete, etc.) — vs. an event, place, or organization?\n\nArticle title: "${title}"\n\nReturn JSON only: {"person": "Full Name" or null}\n\nRules: Only return a name if the article is clearly centered on that individual. Use their full common name (e.g., "Mitchell Marsh", "Mamata Banerjee", "Narendra Modi"). If the article is about an event, team, place, or multiple people, return null.`,
+    100,
+  );
+  const name = out?.person;
+  if (!name || typeof name !== "string") return null;
+  const trimmed = name.trim();
+  if (!trimmed || trimmed.toLowerCase() === "null") return null;
+  return trimmed;
+}
+
 async function fetchImageForArticle(title: string, category: string): Promise<ImageResult | null> {
+  const person = await detectPerson(title);
+  if (person) console.log(`[image] detected person="${person}"`);
+
   const { primary, keyword } = await extractImageSubject(title, category);
   console.log(`[image] subject="${primary}" keyword="${keyword}"`);
 
   const sources: Array<() => Promise<{ url: string; credit: string } | null>> = [
+    ...(person ? [() => tryWikipedia(person)] : []),
     () => tryWikipedia(primary),
-    () => tryCommons(primary),
+    () => tryCommons(person ?? primary),
     () => tryUnsplash(keyword),
   ];
 
