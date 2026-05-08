@@ -119,12 +119,22 @@ Deno.serve(async (req) => {
   const startTime = Date.now();
   const results: any[] = [];
 
-  const { data: sources, error: srcErr } = await supabase
-    .from("p2_feed_sources")
+  const { data: sourcesRaw, error: srcErr } = await supabase
+    .from("videshi_sources")
     .select("*")
-    .eq("is_active", true);
+    .eq("is_active", true)
+    .in("pipeline_stage", ["discovery", "primary"]);
 
-  if (srcErr || !sources) {
+  // Normalize so the rest of the function (which expects {url, layer, type})
+  // keeps working without further changes.
+  const sources = (sourcesRaw ?? []).map((s: any) => ({
+    ...s,
+    url: s.endpoint_url,
+    type: s.source_type,
+    layer: s.pipeline_stage,
+  }));
+
+  if (srcErr || !sourcesRaw) {
     return new Response(JSON.stringify({ error: "Failed to load feed sources", detail: srcErr?.message }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
