@@ -264,6 +264,44 @@ type ChosenImage = {
   verified: boolean;
 };
 
+async function uploadToStorage(
+  supabase: ReturnType<typeof createClient>,
+  sourceUrl: string,
+  articleId: string,
+): Promise<string | null> {
+  try {
+    const r = await fetch(sourceUrl, {
+      headers: { "User-Agent": "TheVideshi/1.0 (https://thevideshi.com)" },
+    });
+    if (!r.ok) {
+      console.error(`download failed ${r.status} for ${sourceUrl}`);
+      return null;
+    }
+    const buf = await r.arrayBuffer();
+    const contentType = r.headers.get("content-type") || "image/jpeg";
+    const ext = contentType.includes("png") ? "png" : contentType.includes("webp") ? "webp" : "jpg";
+    const filename = `${articleId}-${Date.now()}.${ext}`;
+    const { error } = await supabase.storage
+      .from("article-images")
+      .upload(filename, buf, {
+        contentType,
+        cacheControl: "31536000",
+        upsert: false,
+      });
+    if (error) {
+      console.error("storage upload error", error);
+      return null;
+    }
+    const { data: { publicUrl } } = supabase.storage
+      .from("article-images")
+      .getPublicUrl(filename);
+    return publicUrl;
+  } catch (e) {
+    console.error("uploadToStorage exception", e);
+    return null;
+  }
+}
+
 async function pickBestImage(
   title: string,
   category: string,
@@ -337,10 +375,15 @@ Deno.serve(async (req) => {
         console.log(`· candidate score=${chosen.score} ≤ current ${currentScore} — keeping`);
         continue;
       }
+      const hostedUrl = await uploadToStorage(supabase, chosen.url, a.id);
+      if (!hostedUrl) {
+        console.error(`· upload to storage failed — keeping existing`);
+        continue;
+      }
       const { error: updErr } = await supabase
         .from("articles")
         .update({
-          image_url: chosen.url,
+          image_url: hostedUrl,
           image_caption: chosen.caption,
           image_credit: chosen.credit,
           image_verified: chosen.verified,
