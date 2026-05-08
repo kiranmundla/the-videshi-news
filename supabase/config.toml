@@ -23,3 +23,6 @@ verify_jwt = false
 
 [functions.agent-images]
 verify_jwt = false
+
+[functions.recaption-images]
+verify_jwt = false
