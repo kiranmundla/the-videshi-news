@@ -16,6 +16,7 @@ import FeedSourcesPage from "./pages/pipeline/FeedSourcesPage.tsx";
 import TopicRadarPage from "./pages/pipeline/TopicRadarPage.tsx";
 import ReviewQueuePage from "./pages/pipeline/ReviewQueuePage.tsx";
 import RunLogPage from "./pages/pipeline/RunLogPage.tsx";
+import SourcesPage from "./pages/admin/SourcesPage.tsx";
 
 const queryClient = new QueryClient();
 
