@@ -306,6 +306,44 @@ export type Database = {
         }
         Relationships: []
       }
+      p2_image_source_log: {
+        Row: {
+          article_id: string | null
+          candidates: number | null
+          created_at: string
+          id: string
+          image_source: string | null
+          source_type: string | null
+          winner_rank: number | null
+        }
+        Insert: {
+          article_id?: string | null
+          candidates?: number | null
+          created_at?: string
+          id?: string
+          image_source?: string | null
+          source_type?: string | null
+          winner_rank?: number | null
+        }
+        Update: {
+          article_id?: string | null
+          candidates?: number | null
+          created_at?: string
+          id?: string
+          image_source?: string | null
+          source_type?: string | null
+          winner_rank?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "p2_image_source_log_article_id_fkey"
+            columns: ["article_id"]
+            isOneToOne: false
+            referencedRelation: "p2_articles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       p2_image_sources: {
         Row: {
           api_key_secret: string | null
