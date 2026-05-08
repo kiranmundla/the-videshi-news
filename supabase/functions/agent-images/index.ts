@@ -272,6 +272,8 @@ type ChosenImage = {
   caption: string;
   score: number;
   verified: boolean;
+  subject_type: SubjectType;
+  subject_name: string;
 };
 
 async function uploadToStorage(
@@ -293,23 +295,11 @@ async function uploadToStorage(
     const filename = `${articleId}-${Date.now()}.${ext}`;
     const { error } = await supabase.storage
       .from("article-images")
-      .upload(filename, buf, {
-        contentType,
-        cacheControl: "31536000",
-        upsert: false,
-      });
-    if (error) {
-      console.error("storage upload error", error);
-      return null;
-    }
-    const { data: { publicUrl } } = supabase.storage
-      .from("article-images")
-      .getPublicUrl(filename);
+      .upload(filename, buf, { contentType, cacheControl: "31536000", upsert: false });
+    if (error) { console.error("storage upload error", error); return null; }
+    const { data: { publicUrl } } = supabase.storage.from("article-images").getPublicUrl(filename);
     return publicUrl;
-  } catch (e) {
-    console.error("uploadToStorage exception", e);
-    return null;
-  }
+  } catch (e) { console.error("uploadToStorage exception", e); return null; }
 }
 
 async function isImageUrlInUse(
@@ -317,39 +307,61 @@ async function isImageUrlInUse(
   url: string,
   excludeArticleId?: string,
 ): Promise<boolean> {
-  let q = supabase
-    .from("articles")
-    .select("id", { count: "exact", head: true })
-    .eq("image_url", url)
-    .eq("is_published", true);
+  let q = supabase.from("articles").select("id", { count: "exact", head: true }).eq("image_url", url).eq("is_published", true);
   if (excludeArticleId) q = q.neq("id", excludeArticleId);
   const { count, error } = await q;
-  if (error) {
-    console.error("dedupe check failed", error);
-    return false;
-  }
+  if (error) { console.error("dedupe check failed", error); return false; }
   return (count ?? 0) > 0;
+}
+
+function firstParagraphFromBody(body: unknown): string {
+  if (typeof body === "string") {
+    const m = body.match(/[^\n]{40,}/);
+    return m ? m[0] : body.slice(0, 400);
+  }
+  if (Array.isArray(body)) {
+    const p = body.find((b: any) => b?.type === "paragraph" && typeof b.content === "string");
+    if (p) return p.content as string;
+  }
+  return "";
 }
 
 async function pickBestImage(
   title: string,
+  body: unknown,
   category: string,
   supabase: ReturnType<typeof createClient>,
   articleId: string,
+  existingClass?: { type: SubjectType; subject: string } | null,
 ): Promise<ChosenImage | null> {
-  const candidates = await gatherCandidates(title, category);
+  const classification: Classification = existingClass
+    ? { type: existingClass.type, subject: existingClass.subject, keyword: category }
+    : await classifySubject(title, firstParagraphFromBody(body), category);
+
+  const candidates = await gatherCandidates(classification, category);
   if (candidates.length === 0) return null;
 
   let best: { c: Candidate; v: VisionVerdict } | null = null;
   for (const c of candidates) {
     if (await isImageUrlInUse(supabase, c.url, articleId)) {
-      console.log(`  · skip ${c.source} — url already used by another article`);
+      console.log(`  · skip ${c.source} — url already used`);
       continue;
     }
-    const v = await verifyImage(c.url, title, category);
+    const v = await verifyImage(c.url, classification);
     if (!v) continue;
-    console.log(`  · ${c.source} score=${v.score} photo=${v.is_real_photo} — ${v.description}`);
+    console.log(`  · ${c.source} score=${v.score} shows=${v.shows_subject} — ${v.description}`);
     if (!v.is_real_photo) continue;
+    if (v.score >= 7) {
+      return {
+        url: c.url,
+        credit: c.credit,
+        caption: `${v.description || classification.subject} · Photo: ${c.source}`,
+        score: v.score,
+        verified: true,
+        subject_type: classification.type,
+        subject_name: classification.subject,
+      };
+    }
     if (!best || v.score > best.v.score) best = { c, v };
   }
   if (!best) return null;
@@ -357,9 +369,11 @@ async function pickBestImage(
   return {
     url: best.c.url,
     credit: best.c.credit,
-    caption: best.v.description,
+    caption: `${best.v.description || classification.subject} · Photo: ${best.c.source}`,
     score: best.v.score,
-    verified: best.v.score >= ACCEPT_VERIFIED_MIN,
+    verified: false,
+    subject_type: classification.type,
+    subject_name: classification.subject,
   };
 }
 
