@@ -132,7 +132,7 @@ Deno.serve(async (req) => {
   const results: any[] = []
 
   for (const article of articles) {
-    const query = buildQuery(article.headline, article.tags ?? [])
+    const query = buildQuery(article.headline, article.tags ?? [], article.vertical)
 
     let imageUrl = await fetchUnsplash(query)
     let source = 'unsplash'
