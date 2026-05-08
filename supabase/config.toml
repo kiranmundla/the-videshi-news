@@ -41,3 +41,6 @@ verify_jwt = false
 
 [functions.pipeline-health]
 verify_jwt = false
+
+[functions.admin-pin-article]
+verify_jwt = false
