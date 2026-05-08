@@ -31,10 +31,10 @@ const RSS_SOURCES: { name: string; url: string; category?: string; region?: stri
   { name: "Deccan Herald",   url: "https://www.deccanherald.com/feed", credibility: "tier3", category: "news" },
 
   // ── Tier 1 — Official sources ─────────────────────────────
-  // PIB English-language feed (verified 2026-05 — old ModId=6&Regid=1 was returning Hindi).
-  { name: "PIB English",        url: "https://pib.gov.in/RssMain.aspx?ModId=6&lang=1", credibility: "official", category: "news" },
+  // PIB English (RssMain.aspx?ModId=6&lang=1) responds 200 to local curl but Akamai 403s
+  // from Supabase edge IPs. Disabled until we route through a proxy.
+  // { name: "PIB English", url: "https://pib.gov.in/RssMain.aspx?ModId=6&lang=1", credibility: "official", category: "news" },
   // PIB PMO (ModId=2) returns HTML, not RSS — disabled.
-  // { name: "PIB PMO",          url: "https://pib.gov.in/RssMain.aspx?ModId=2&lang=1", credibility: "official" },
   // MEA's RSS endpoint is Akamai-blocked, but the public HTML listing is fetchable. Scrape it.
   { name: "MEA Press Releases", url: "https://www.mea.gov.in/press-releases.htm?51/Press_Releases", credibility: "official", parser: "html-mea" },
   { name: "USCIS",        url: "https://www.uscis.gov/news/rss-feed/59144",      credibility: "official", category: "nri-world", region: "us" },
