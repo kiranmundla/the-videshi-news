@@ -63,7 +63,7 @@ interface RawArticle {
 }
 
 // ── Simple RSS/XML Parser ────────────────────────────────────
-function parseRSS(xml: string, sourceName: string, sourceUrl: string): RawArticle[] {
+function parseRSS(xml: string, sourceName: string, sourceUrl: string, credibility: string): RawArticle[] {
   const items: RawArticle[] = [];
   const itemMatches = xml.match(/<item[\s\S]*?<\/item>/g) || [];
 
