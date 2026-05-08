@@ -129,12 +129,13 @@ export default function Index() {
     const featured = featuredArticle;
     if (featured) used.add(featured.id);
 
-    // 2. Latest — ALL published articles (do not dedupe featured, no category filter)
+    // 2. Latest — news category articles only
     const clusterUsed = new Set<string>();
     const newsClusters: { label: string; items: Article[] }[] = [];
     for (const c of CLUSTERS) {
       const items = allArticles.filter(
         (a) =>
+          a.category === "news" &&
           !clusterUsed.has(a.id) &&
           !(c.excludeSlugs ?? []).includes(a.slug) &&
           matchesCluster(a, c.tags)
@@ -145,7 +146,7 @@ export default function Index() {
       }
     }
     const newsUngrouped = allArticles
-      .filter((a) => !clusterUsed.has(a.id))
+      .filter((a) => a.category === "news" && !clusterUsed.has(a.id))
       .slice(0, NEWS_SECTION.limit);
     // Reserve cluster + ungrouped articles from category sections, but keep featured visible here
     clusterUsed.forEach((id) => used.add(id));
