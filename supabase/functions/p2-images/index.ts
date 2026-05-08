@@ -441,6 +441,7 @@ Deno.serve(async () => {
           source: source.name,
           source_type: source.source_type,
           priority: source.priority,
+          source_id: source.id,
         })))
 
         // Stop early if we already have enough high-priority candidates
