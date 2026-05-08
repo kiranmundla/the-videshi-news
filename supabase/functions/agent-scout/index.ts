@@ -157,10 +157,35 @@ ${JSON.stringify(compact)}`;
       .neq("status", "failed")
       .gte("created_at", fortyEightHoursAgo);
 
-    const recentKeywordSets = (recentQueue || []).map((row: any) => {
-      const h = row.story_brief?.headline || "";
-      return new Set(keywords(h));
-    });
+    const recentBriefs = (recentQueue || [])
+      .map((row: any) => row.story_brief)
+      .filter((b: any) => b && b.headline);
+
+    const recentWithKw = recentBriefs.map((b: any) => ({
+      brief: b,
+      kw: new Set(keywords(b.headline || "")),
+    }));
+
+    // Ask Claude whether the new brief contains materially new facts vs. an existing one.
+    async function hasNewFacts(existing: any, candidate: any): Promise<boolean> {
+      try {
+        const prompt = `Existing article brief:
+Headline: ${existing.headline}
+Key facts: ${JSON.stringify(existing.key_facts || [])}
+
+New story brief:
+Headline: ${candidate.headline}
+Key facts: ${JSON.stringify(candidate.key_facts || [])}
+
+Does the new story brief contain materially new facts not covered in the existing article? Answer "yes" or "no" only.`;
+        const ans = (await callClaude(prompt)).trim().toLowerCase();
+        return ans.startsWith("yes");
+      } catch (e) {
+        console.error("hasNewFacts error", e);
+        // On failure, allow through rather than block real news.
+        return true;
+      }
+    }
 
     let inserted = 0;
     const usedRawIds = new Set<string>();
@@ -171,12 +196,26 @@ ${JSON.stringify(compact)}`;
       const kw = keywords(s.headline);
       const kwSet = new Set(kw);
 
-      // dedupe vs last 48h
-      const isDup = recentKeywordSets.some((existing) => {
+      // Find topically-similar existing briefs from last 48h.
+      const similar = recentWithKw.filter(({ kw: existing }) => {
         let overlap = 0;
         for (const w of kwSet) if (existing.has(w)) overlap++;
         return overlap >= 3 || (kwSet.size > 0 && overlap / kwSet.size >= 0.6);
       });
+
+      // If similar exist, only block when NONE of them lack the new facts
+      // (i.e. every similar one already covers the new facts).
+      let isDup = false;
+      if (similar.length > 0) {
+        isDup = true;
+        for (const { brief } of similar) {
+          const isNew = await hasNewFacts(brief, s);
+          if (isNew) {
+            isDup = false;
+            break;
+          }
+        }
+      }
       if (isDup) continue;
 
       const rawIds: string[] = Array.isArray(s.raw_article_ids)
