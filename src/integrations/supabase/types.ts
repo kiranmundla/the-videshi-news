@@ -885,6 +885,86 @@ export type Database = {
           },
         ]
       }
+      videshi_entities: {
+        Row: {
+          aliases: string[] | null
+          canonical_name: string
+          context_keywords: string[] | null
+          country: string | null
+          created_at: string | null
+          diaspora_base_score: number | null
+          entity_id: string
+          entity_type: string
+          mention_count: number | null
+          state: string | null
+          subtype: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          aliases?: string[] | null
+          canonical_name: string
+          context_keywords?: string[] | null
+          country?: string | null
+          created_at?: string | null
+          diaspora_base_score?: number | null
+          entity_id: string
+          entity_type: string
+          mention_count?: number | null
+          state?: string | null
+          subtype?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          aliases?: string[] | null
+          canonical_name?: string
+          context_keywords?: string[] | null
+          country?: string | null
+          created_at?: string | null
+          diaspora_base_score?: number | null
+          entity_id?: string
+          entity_type?: string
+          mention_count?: number | null
+          state?: string | null
+          subtype?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      videshi_event_fingerprints: {
+        Row: {
+          created_at: string | null
+          entity_ids: string[] | null
+          event_date: string | null
+          event_type: string | null
+          fingerprint: string
+          topic_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          entity_ids?: string[] | null
+          event_date?: string | null
+          event_type?: string | null
+          fingerprint: string
+          topic_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          entity_ids?: string[] | null
+          event_date?: string | null
+          event_type?: string | null
+          fingerprint?: string
+          topic_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "videshi_event_fingerprints_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "p2_topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       videshi_image_log: {
         Row: {
           article_id: string | null
@@ -1074,6 +1154,36 @@ export type Database = {
           verticals?: string[]
         }
         Relationships: []
+      }
+      videshi_topic_entities: {
+        Row: {
+          entity_id: string
+          topic_id: string
+        }
+        Insert: {
+          entity_id: string
+          topic_id: string
+        }
+        Update: {
+          entity_id?: string
+          topic_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "videshi_topic_entities_entity_id_fkey"
+            columns: ["entity_id"]
+            isOneToOne: false
+            referencedRelation: "videshi_entities"
+            referencedColumns: ["entity_id"]
+          },
+          {
+            foreignKeyName: "videshi_topic_entities_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "p2_topics"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
