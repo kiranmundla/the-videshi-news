@@ -463,10 +463,10 @@ Deno.serve(async () => {
         candidates.push(...commonsImages.map(u => ({ url: u, source: 'wikimedia' })))
       }
 
-      // Tier 2: og:image from primary source URLs
-      for (const sourceUrl of sourceUrls) {
-        const ogImage = await getOgImage(sourceUrl)
-        if (ogImage) candidates.push({ url: ogImage, source: 'og:image' })
+      // Tier 2: scrape ALL meaningful images from source pages
+      const sourceResults = await scrapeSourceImages(sourceUrls)
+      for (const r of sourceResults) {
+        candidates.push({ url: r.url, source: 'source-scrape' })
       }
 
       // Tier 3: Unsplash + Pexels (if < 6 candidates so far)
