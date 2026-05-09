@@ -79,6 +79,7 @@ Group headlines covering the SAME story. For each unique topic:
 5. urgency: breaking|daily|evergreen
 6. keywords: 3-5 search terms for finding govt press releases on this topic
 7. signal_indices: array of the [N] indices from the input that belong to this topic
+8. key_entities: array of 2-5 specific named entities central to the story — people (e.g. "Suvendu Adhikari"), places (e.g. "West Bengal"), organizations ("BJP"), or events. Use canonical names. Lowercase not required; comparison is case-insensitive.
 
 Only include topics with score_total >= 45. Max 20 topics.
 
@@ -86,7 +87,7 @@ Headlines:
 ${headlineList}
 
 Return JSON array of objects with these exact keys:
-canonical_title, vertical, score_diaspora, score_significance, score_recency, score_source_avail, score_total, urgency, keywords, signal_indices`;
+canonical_title, vertical, score_diaspora, score_significance, score_recency, score_source_avail, score_total, urgency, keywords, key_entities, signal_indices`;
 
   let topics: any[] = [];
   try {
