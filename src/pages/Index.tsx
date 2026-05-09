@@ -251,7 +251,7 @@ export default function Index() {
           )}
         </section>
 
-        <HeroCarousel />
+        <ArticleCarousel />
 
         {sections.map((s) => (
           <HomeCategorySection key={s.slug} section={s} />
