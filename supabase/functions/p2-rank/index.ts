@@ -35,6 +35,7 @@ Deno.serve(async (req) => {
     .from("p2_signals")
     .select("id, title, feed_source_id, published_at, p2_feed_sources(name, layer, verticals)")
     .eq("is_processed", false)
+    .gte("published_at", new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString())
     .order("published_at", { ascending: false, nullsFirst: false })
     .limit(120);
 
