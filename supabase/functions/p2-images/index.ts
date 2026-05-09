@@ -330,7 +330,9 @@ async function claudePickBest(
             },
             {
               type: 'text' as const,
-              text: `You are selecting a thumbnail for: '${headline}'
+              text: `Images are presented in priority order: government/press release photos first, stock photos last. Prefer earlier images unless they are completely wrong for the topic. A real event photo scores 2 points higher than an equivalent stock photo.
+
+You are selecting a thumbnail for: '${headline}'
 
 The image MUST show: ${imageMustShow}
 
