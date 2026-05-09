@@ -56,7 +56,6 @@ async function callHaikuText(prompt: string, maxTokens = 200): Promise<string> {
   }
 }
 
-type VisionVerdict = {
 type SubjectType = "PERSON" | "PLACE" | "EVENT" | "TOPIC";
 type Classification = { type: SubjectType; subject: string; keyword: string };
 
