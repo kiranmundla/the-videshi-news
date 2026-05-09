@@ -437,10 +437,10 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "raw_signals_feed_source_id_fkey"
+            foreignKeyName: "p2_signals_feed_source_id_fkey"
             columns: ["feed_source_id"]
             isOneToOne: false
-            referencedRelation: "p2_feed_sources"
+            referencedRelation: "videshi_sources"
             referencedColumns: ["id"]
           },
         ]

@@ -190,10 +190,19 @@ Deno.serve(async (req) => {
       continue;
     }
 
+    // Filter out items older than 48 hours (keep items with no publishedAt)
+    const cutoff = new Date();
+    cutoff.setHours(cutoff.getHours() - 48);
+    const recentItems = items.filter((item: any) => {
+      if (!item.publishedAt) return true;
+      const d = new Date(item.publishedAt);
+      return !isNaN(d.getTime()) && d >= cutoff;
+    });
+
     // Build signal rows (cap per feed)
     const cap = source.max_items ?? 50;
     const signalRows = await Promise.all(
-      items.slice(0, cap).map(async (item: any) => ({
+      recentItems.slice(0, cap).map(async (item: any) => ({
         feed_source_id: source.id,
         title: item.title.slice(0, 500),
         original_url: item.url.slice(0, 1000),
@@ -221,7 +230,7 @@ Deno.serve(async (req) => {
 
     // Primary feeds also feed p2_source_hunts (pre-content for matching)
     if (source.layer === "primary" && !insertErr) {
-      const huntRows = items
+      const huntRows = recentItems
         .slice(0, 30)
         .filter((i: any) => i.content && i.content.length > 100)
         .map((item: any) => ({
