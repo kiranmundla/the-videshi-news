@@ -39,6 +39,34 @@ function stripCitations(text: string): string {
     .trim();
 }
 
+function safeParseArticle(text: string) {
+  let cleaned = text
+    .replace(/^```json\s*/i, '')
+    .replace(/^```\s*/i, '')
+    .replace(/```\s*$/i, '')
+    .trim()
+
+  try { return JSON.parse(cleaned) } catch {}
+
+  const match = cleaned.match(/\{[\s\S]*\}/)
+  if (match) {
+    try { return JSON.parse(match[0]) } catch {}
+  }
+
+  try {
+    const fixed = cleaned.replace(/:\s*"([\s\S]*?)"/g, (_m, val) =>
+      ': "' + val
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g, '\\r')
+        .replace(/\t/g, '\\t')
+        .replace(/"/g, '\\"') + '"'
+    )
+    return JSON.parse(fixed)
+  } catch {}
+
+  return null
+}
+
 function slugify(text: string): string {
   return (
     text
