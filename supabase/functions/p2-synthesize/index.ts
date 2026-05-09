@@ -175,7 +175,9 @@ Writing style:
 
 The diaspora_angle must be exactly 1 sentence explaining why Indian-Americans specifically should care.
 
-Return ONLY valid JSON. No markdown, no code fences, raw JSON only.`;
+Return ONLY valid JSON. No markdown, no code fences, raw JSON only.
+
+CRITICAL: Your response must be valid JSON. Never use unescaped double quotes inside string values. Use single quotes or escaped \\" instead. Never include raw newlines inside JSON string values — use \\n instead. Wrap all string values carefully.`;
 
       const userPrompt = `Write a news article for The Videshi about this topic:
 
