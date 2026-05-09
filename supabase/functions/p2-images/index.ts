@@ -97,36 +97,103 @@ async function getWikimediaImages(
   }
 }
 
-// ── Step 2c: og:image from source hunt URLs ───────────────
+// ── Step 2c: Scrape ALL meaningful images from source pages ─
 
-async function getOgImage(sourceUrl: string): Promise<string | null> {
-  try {
-    const res = await fetch(sourceUrl, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; TheVideshi/1.0)',
-      },
-      signal: AbortSignal.timeout(5000),
-    })
-    if (!res.ok) return null
-    const html = await res.text()
+async function scrapeSourceImages(
+  sourceUrls: string[]
+): Promise<Array<{url: string, attribution: string | null}>> {
+  const results: Array<{url: string, attribution: string | null}> = []
+  for (const sourceUrl of sourceUrls.slice(0, 5)) {
+    try {
+      const res = await fetch(sourceUrl, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; TheVideshi/1.0)',
+          'Accept': 'text/html'
+        },
+        signal: AbortSignal.timeout(8000),
+      })
+      if (!res.ok) continue
+      const html = await res.text()
+      const pageImages: string[] = []
 
-    // Parse og:image meta tag
-    const match =
-      html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i) ??
-      html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i)
+      // og:image and twitter:image
+      const metaPatterns = [
+        /property=["']og:image["'][^>]+content=["']([^"']+)["']/i,
+        /content=["']([^"']+)["'][^>]+property=["']og:image["']/i,
+        /name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i,
+        /content=["']([^"']+)["'][^>]+name=["']twitter:image["']/i,
+      ]
+      for (const pattern of metaPatterns) {
+        const match = html.match(pattern)
+        if (match?.[1] && !match[1].startsWith('data:')) {
+          pageImages.push(match[1])
+        }
+      }
 
-    const url = match?.[1] ?? null
-    if (!url || url.startsWith('data:')) return null
-    
-    // Resolve relative URLs
-    if (url.startsWith('/')) {
+      // All img tags — try to isolate article body first
+      let articleHtml = html
+      const bodyPatterns = [
+        /<article[^>]*>([\s\S]*?)<\/article>/i,
+        /<div[^>]*class="[^"]*(?:content|body|article|press-release|release)[^"]*"[^>]*>([\s\S]*?)<\/div>/i,
+        /<div[^>]*id="[^"]*(?:content|body|article|release)[^"]*"[^>]*>([\s\S]*?)<\/div>/i,
+      ]
+      for (const pattern of bodyPatterns) {
+        const match = html.match(pattern)
+        if (match?.[1]) { articleHtml = match[1]; break }
+      }
+
+      const imgRegex = /<img[^>]+src=["']([^"']+)["'][^>]*>/gi
+      let imgMatch
+      while ((imgMatch = imgRegex.exec(articleHtml)) !== null) {
+        const tag = imgMatch[0]
+        const url = imgMatch[1]
+        if (url.startsWith('data:')) continue
+        if (/icon|logo|avatar|sprite|pixel|tracking/i.test(url)) continue
+        if (url.endsWith('.gif')) continue
+        const w = parseInt(tag.match(/width=["']?(\d+)/i)?.[1] || '0')
+        const h = parseInt(tag.match(/height=["']?(\d+)/i)?.[1] || '0')
+        if ((w > 0 && w < 200) || (h > 0 && h < 150)) continue
+        pageImages.push(url)
+      }
+
+      // srcset — highest resolution variant
+      const srcsetRegex = /srcset=["']([^"']+)["']/gi
+      let srcsetMatch
+      while ((srcsetMatch = srcsetRegex.exec(articleHtml)) !== null) {
+        const candidates = srcsetMatch[1].split(',')
+          .map(s => {
+            const parts = s.trim().split(/\s+/)
+            return {
+              url: parts[0],
+              w: parseInt((parts[1] || '0').replace(/[wx]/g, ''))
+            }
+          })
+          .filter(c => c.url && !c.url.startsWith('data:'))
+          .sort((a, b) => b.w - a.w)
+        if (candidates[0]?.url) pageImages.push(candidates[0].url)
+      }
+
+      // Resolve relative URLs
       const base = new URL(sourceUrl)
-      return `${base.origin}${url}`
-    }
-    return url
-  } catch {
-    return null
+      const isGovt =
+        /\.gov\.in|pib\.gov|uscis\.gov|rbi\.org\.in|sebi\.gov|ddnews\.gov/.test(sourceUrl)
+      const attribution = isGovt ? 'Government of India' : null
+      const seen = new Set<string>()
+      for (const imgUrl of pageImages) {
+        try {
+          const resolved = imgUrl.startsWith('http')
+            ? imgUrl
+            : new URL(imgUrl, base.origin).href
+          if (!seen.has(resolved)) {
+            seen.add(resolved)
+            results.push({ url: resolved, attribution })
+          }
+          if (results.length >= 15) break
+        } catch { continue }
+      }
+    } catch { continue }
   }
+  return results
 }
 
 // ── Step 2d: Unsplash search (15 candidates) ──────────────
