@@ -589,13 +589,7 @@ Deno.serve(async () => {
       )
       let remaining = candidates.slice()
       while (vision.url) {
-        const { data: dup } = await supabase
-          .from('p2_articles')
-          .select('id')
-          .eq('image_url', vision.url)
-          .neq('id', article.id)
-          .limit(1)
-        if (!dup || dup.length === 0) break
+        if (!usedUrls.has(vision.url)) break
         remaining = remaining.filter(c => c.url !== vision.url)
         if (remaining.length === 0) {
           vision = { url: null, source: null, pickIndex: 0, score: 0, candidatesEvaluated: 0 } as any
