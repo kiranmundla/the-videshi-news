@@ -215,6 +215,30 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
     const clamp = (v: any) => Math.min(100, Math.max(0, Math.round(Number(v) || 50)));
     const indices: number[] = Array.isArray(topic.signal_indices) ? topic.signal_indices : [];
 
+    // Source prominence: max priority among contributing sources
+    const validIdx = indices.filter((i) => i >= 0 && i < signals.length);
+    const maxPriority = validIdx.length > 0
+      ? Math.max(...validIdx.map((i) => sourceMap[signals[i].feed_source_id]?.priority ?? 50))
+      : 50;
+
+    // Recency: average of actual published_at scores
+    const avgRecency = validIdx.length > 0
+      ? validIdx.reduce((sum, i) => sum + calcRecency(signals[i].published_at), 0) / validIdx.length
+      : 50;
+
+    // Signal count boost: each extra source = +5, capped at 30
+    const signalBoost = Math.min((indices.length - 1) * 5, 30);
+
+    const scoreDiaspora = clamp(topic.score_diaspora);
+    const scoreSignificance = clamp(topic.score_significance);
+    const computedTotal = Math.round(
+      scoreDiaspora * 0.40 +
+        scoreSignificance * 0.20 +
+        maxPriority * 0.20 +
+        avgRecency * 0.10 +
+        signalBoost * 0.10,
+    );
+
     const { data: newTopic, error: topicErr } = await supabase
       .from("p2_topics")
       .insert({
@@ -222,11 +246,11 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
         vertical,
         category,
         urgency: topic.urgency ?? "daily",
-        score_diaspora: clamp(topic.score_diaspora),
-        score_significance: clamp(topic.score_significance),
-        score_recency: clamp(topic.score_recency),
+        score_diaspora: scoreDiaspora,
+        score_significance: scoreSignificance,
+        score_recency: Math.round(avgRecency),
         score_source_avail: clamp(topic.score_source_avail),
-        score_total: clamp(topic.score_total),
+        score_total: computedTotal,
         signal_count: indices.length || 1,
         status: "pending",
         keywords: Array.isArray(topic.keywords) ? topic.keywords : [],
