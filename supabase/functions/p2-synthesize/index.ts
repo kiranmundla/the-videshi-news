@@ -229,7 +229,8 @@ Return this exact JSON structure:
       if (firstBrace > 0 || lastBrace < jsonText.length - 1) {
         jsonText = jsonText.slice(firstBrace, lastBrace + 1);
       }
-      const article = JSON.parse(jsonText);
+      const article = safeParseArticle(jsonText);
+      if (!article) throw new Error("Failed to parse Claude JSON response");
 
       if (!article.headline || !article.body) {
         throw new Error("Missing required fields in Claude response");
