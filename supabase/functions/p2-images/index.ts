@@ -489,6 +489,15 @@ Deno.serve(async () => {
   const results: any[] = []
   let skipped = 0
 
+  // Track URLs already used across articles (DB + this run)
+  const { data: usedImages } = await supabase
+    .from('p2_articles')
+    .select('image_url')
+    .not('image_url', 'is', null)
+  const usedUrls = new Set(
+    (usedImages ?? []).map((a: any) => a.image_url)
+  )
+
   const TEXT_FIRST_KEYWORDS = [
     'military', 'strike', 'operation sindoor',
     'ceasefire', 'missile', 'drone supply',
