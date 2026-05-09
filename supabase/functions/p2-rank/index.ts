@@ -33,11 +33,32 @@ Deno.serve(async (req) => {
   // 1. Fetch unprocessed signals
   const { data: signals, error: sigErr } = await supabase
     .from("p2_signals")
-    .select("id, title, feed_source_id, published_at, p2_feed_sources(name, layer, verticals)")
+    .select("id, title, feed_source_id, published_at")
     .eq("is_processed", false)
     .gte("published_at", new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString())
     .order("published_at", { ascending: false, nullsFirst: false })
     .limit(120);
+
+  // 1b. Fetch source metadata from videshi_sources
+  const sourceIds = [...new Set((signals ?? []).map((s: any) => s.feed_source_id).filter(Boolean))];
+  const { data: sourcesData } = await supabase
+    .from("videshi_sources")
+    .select("id, name, categories, priority")
+    .in("id", sourceIds);
+  const sourceMap: Record<string, any> = Object.fromEntries(
+    (sourcesData ?? []).map((s: any) => [s.id, s])
+  );
+
+  const calcRecency = (publishedAt: string | null): number => {
+    if (!publishedAt) return 50;
+    const hoursAgo = (Date.now() - new Date(publishedAt).getTime()) / 3_600_000;
+    if (hoursAgo <= 2) return 100;
+    if (hoursAgo <= 6) return 90;
+    if (hoursAgo <= 12) return 80;
+    if (hoursAgo <= 24) return 65;
+    if (hoursAgo <= 36) return 45;
+    return 25;
+  };
 
   if (sigErr) {
     return new Response(JSON.stringify({ ok: false, error: sigErr.message }), {
