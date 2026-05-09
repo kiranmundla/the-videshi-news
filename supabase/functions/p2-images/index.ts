@@ -270,7 +270,7 @@ type VisionResult = {
 }
 
 async function claudePickBest(
-  candidates: Array<{ url: string; source: string }>,
+  candidates: Array<{ url: string; source: string; attribution?: string | null }>,
   headline: string,
   vertical: string
 ): Promise<VisionResult> {
@@ -278,8 +278,23 @@ async function claudePickBest(
     return { url: null, source: null, pickIndex: 0, score: 0, candidatesEvaluated: 0 }
   }
 
+  // Reorder: government/press release sources first,
+  // then wikipedia/wikimedia, then stock photos last
+  const reordered = [
+    ...candidates.filter(c =>
+      c.attribution?.includes('Government') ||
+      c.attribution?.includes('PIB') ||
+      c.attribution?.includes('Wikimedia')
+    ),
+    ...candidates.filter(c =>
+      !c.attribution?.includes('Government') &&
+      !c.attribution?.includes('PIB') &&
+      !c.attribution?.includes('Wikimedia')
+    )
+  ]
+
   // Fetch thumbnails in parallel (max 12 candidates for Vision)
-  const subset = candidates.slice(0, 12)
+  const subset = reordered.slice(0, 12)
   const thumbnails = await Promise.all(
     subset.map(async (c, i) => ({
       index: i,
