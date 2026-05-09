@@ -75,34 +75,30 @@ async function hashUrl(url: string): Promise<string> {
 async function fetchFeed(source: any) {
   if (source.type === "scrape") return { source, items: [], skipped: true };
 
-  const isRSS2JSON = source.url.includes("rss2json.com");
-  try {
-    let items: any[] = [];
+  // Unwrap rss2json proxy URLs — fetch the underlying RSS feed directly
+  // (rss2json has been returning HTTP 422 for several Indian publishers)
+  let fetchUrl = source.url;
+  if (fetchUrl.includes("rss2json.com")) {
+    try {
+      const proxied = new URL(fetchUrl);
+      const inner = proxied.searchParams.get("rss_url");
+      if (inner) fetchUrl = inner;
+    } catch { /* fall through with original url */ }
+  }
 
-    if (isRSS2JSON) {
-      const url = RSS2JSON_KEY
-        ? source.url + (source.url.includes("?") ? "&" : "?") + `api_key=${RSS2JSON_KEY}`
-        : source.url;
-      const res = await fetch(url, {
-        headers: { "User-Agent": "Videshi/1.0" },
-        signal: AbortSignal.timeout(20000),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      items = parseRSS2JSON(await res.json());
-    } else {
-      const res = await fetch(source.url, {
-        headers: {
-          "User-Agent": "Mozilla/5.0 (compatible; Videshi/1.0; +https://thevideshi.com)",
-          "Accept": "application/rss+xml, application/xml, text/xml, */*",
-        },
-        signal: AbortSignal.timeout(20000),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const text = await res.text();
-      items = text.trim().startsWith("{")
-        ? parseRSS2JSON(JSON.parse(text))
-        : parseRSSXML(text);
-    }
+  try {
+    const res = await fetch(fetchUrl, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (compatible; Videshi/1.0; +https://thevideshi.com)",
+        "Accept": "application/rss+xml, application/xml, text/xml, */*",
+      },
+      signal: AbortSignal.timeout(20000),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const text = await res.text();
+    const items = text.trim().startsWith("{")
+      ? parseRSS2JSON(JSON.parse(text))
+      : parseRSSXML(text);
 
     return { source, items, skipped: false };
   } catch (err: any) {
