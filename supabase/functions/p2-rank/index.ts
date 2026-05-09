@@ -240,7 +240,8 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
       ...new Set([...claudeEntities, ...titleEntities].map((e) => e.toLowerCase())),
     ];
 
-    if (isDuplicate(candidateEntities)) {
+    const urgency = topic.urgency ?? "daily";
+    if (urgency !== "breaking" && isDuplicate(candidateEntities, vertical)) {
       skippedDupes++;
       continue;
     }
