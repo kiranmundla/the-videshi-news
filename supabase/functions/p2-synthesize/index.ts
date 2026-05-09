@@ -205,7 +205,7 @@ CRITICAL JSON RULES — never break these:
 OUTPUT FORMAT: Respond with valid JSON only.
 The body field will contain article text.
 Any quotation marks within the body text MUST use single quotes instead of double quotes.
-Example: He said 'this matters' not He said "this matters".
+Example: He said 'this matters' not He said 'this matters'.
 Never use \" escape sequences.
 Write body text as if double quotes do not exist.`;
 
