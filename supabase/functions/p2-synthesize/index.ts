@@ -264,6 +264,11 @@ Return this exact JSON structure:
           severity: 'warning',
           message: 'Skipped topic — unparseable JSON response'
         });
+        results.push({
+          topic: topic.canonical_title,
+          status: "error",
+          error: "Skipped topic — unparseable JSON response",
+        });
         continue;
       }
 
