@@ -90,6 +90,8 @@ function mapRow(row: P2Row): Article {
     hero_image_url: row.image_url ?? "",
     image_caption: null,
     image_credit: row.image_attribution ?? null,
+    // expose raw attribution for callers that want it separately
+    // (kept on image_credit too for backwards compat)
     published_at: row.published_at ?? row.created_at,
     created_at: row.created_at,
     status: row.status === "published" ? "published" : "draft",
