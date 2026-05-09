@@ -254,7 +254,7 @@ Return this exact JSON structure:
           : null,
         vertical: topic.vertical,
         category: VERTICAL_TO_CATEGORY[topic.vertical] ?? 'news',
-        tags: Array.isArray(article.tags) ? article.tags : [],
+        tags: Array.isArray(article.tags) ? article.tags.map((t: any) => stripCitations(String(t))) : [],
         urgency: topic.urgency,
         sources: Array.isArray(article.sources) ? article.sources : [],
         slug,
