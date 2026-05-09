@@ -402,10 +402,6 @@ Reply JSON: {pick: N, score: N, reason: 'one line'}`,
           ],
         }],
       })
-            },
-          ],
-        }],
-      })
 
       const raw = (resp.content[0] as any).text.trim()
       const match = raw.match(/\{[\s\S]*\}/)
