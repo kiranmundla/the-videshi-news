@@ -547,14 +547,16 @@ Deno.serve(async () => {
         candidates.push({ url: r.url, source: 'source-scrape', attribution: r.attribution })
       }
 
-      // Tier 3: Unsplash + Pexels (if < 6 candidates so far)
+      // Tier 3: Unsplash + Pexels + Pixabay (if < 6 candidates so far)
       if (candidates.length < 6) {
-        const [unsplashImages, pexelsImages] = await Promise.all([
+        const [unsplashImages, pexelsImages, pixabayImages] = await Promise.all([
           searchUnsplash(query),
           searchPexels(query),
+          searchPixabay(query, 10),
         ])
         candidates.push(...unsplashImages.map(u => ({ url: u, source: 'unsplash', attribution: null })))
         candidates.push(...pexelsImages.map(u => ({ url: u, source: 'pexels', attribution: null })))
+        candidates.push(...pixabayImages.map(p => ({ url: p.url, source: 'pixabay', attribution: p.attribution })))
       }
 
       if (candidates.length === 0) {
