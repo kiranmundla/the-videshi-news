@@ -469,9 +469,17 @@ Deno.serve(async () => {
       const storedUrl = await downloadToStorage(vision.url, article.id)
 
       if (storedUrl) {
+        const attribution =
+          vision.source === 'wikipedia' || vision.source === 'wikimedia'
+            ? 'Wikimedia Commons'
+            : vision.source === 'unsplash'
+            ? 'Unsplash'
+            : vision.source === 'pexels'
+            ? 'Pexels'
+            : null
         await supabase
           .from('p2_articles')
-          .update({ image_url: storedUrl })
+          .update({ image_url: storedUrl, image_attribution: attribution })
           .eq('id', article.id)
 
         await supabase.from('videshi_image_log').insert({
