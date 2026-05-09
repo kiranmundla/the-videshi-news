@@ -413,18 +413,34 @@ Deno.serve(async () => {
       }
 
       if (candidates.length === 0) {
+        await supabase.from('videshi_image_log').insert({
+          article_id: article.id,
+          headline: article.headline,
+          source_used: null,
+          candidates_count: 0,
+          vision_pick: 0,
+          vision_score: 0,
+        })
         results.push({ headline: article.headline, status: 'no_candidates' })
         continue
       }
 
       // ── Step 3: Claude Vision picks best
-      const winnerUrl = await claudePickBest(
+      const vision = await claudePickBest(
         candidates,
         article.headline,
         article.vertical
       )
 
-      if (!winnerUrl) {
+      if (!vision.url) {
+        await supabase.from('videshi_image_log').insert({
+          article_id: article.id,
+          headline: article.headline,
+          source_used: null,
+          candidates_count: candidates.length,
+          vision_pick: 0,
+          vision_score: vision.score,
+        })
         results.push({
           headline: article.headline,
           status: 'rejected',
@@ -434,7 +450,7 @@ Deno.serve(async () => {
       }
 
       // ── Step 4: Download winner to Storage
-      const storedUrl = await downloadToStorage(winnerUrl, article.id)
+      const storedUrl = await downloadToStorage(vision.url, article.id)
 
       if (storedUrl) {
         await supabase
@@ -442,11 +458,21 @@ Deno.serve(async () => {
           .update({ image_url: storedUrl })
           .eq('id', article.id)
 
+        await supabase.from('videshi_image_log').insert({
+          article_id: article.id,
+          headline: article.headline,
+          source_used: vision.source,
+          candidates_count: candidates.length,
+          vision_pick: vision.pickIndex,
+          vision_score: vision.score,
+        })
+
         results.push({
           headline: article.headline,
           status: 'ok',
-          source: candidates.find(c => c.url === winnerUrl)?.source,
+          source: vision.source,
           candidates: candidates.length,
+          vision_score: vision.score,
         })
       }
 
@@ -465,14 +491,15 @@ Deno.serve(async () => {
   }
 
   const elapsed = Date.now() - startTime
-  const succeeded = results.filter(r => r.status === 'ok').length
+  const sourced = results.filter(r => r.status === 'ok').length
   const rejected = results.filter(r => r.status === 'rejected').length
+  const textFirst = results.filter(r => r.status === 'no_candidates' || r.status === 'rejected').length
 
   await supabase.from('pipeline_alerts').insert({
     agent: 'p2-images',
     severity: 'info',
     error_type: null,
-    message: `p2-images: ${succeeded} images sourced, ${rejected} rejected by Vision in ${elapsed}ms`,
+    message: `p2-images: ${sourced} sourced, ${rejected} rejected by Vision, ${textFirst} text-first in ${elapsed}ms`,
   })
 
   return new Response(
