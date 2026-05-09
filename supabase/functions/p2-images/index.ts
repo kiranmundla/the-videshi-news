@@ -630,6 +630,7 @@ Deno.serve(async () => {
         await supabase
           .from('p2_articles')
           .update({ image_url: storedUrl, image_attribution: attribution })
+        usedUrls.add(storedUrl)
           .eq('id', article.id)
 
         await supabase.from('videshi_image_log').insert({
