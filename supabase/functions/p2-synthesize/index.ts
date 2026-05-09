@@ -233,6 +233,9 @@ Return this exact JSON structure:
   "diaspora_angle": "exactly 1 sentence: why Indian-Americans should care",
   "tags": ["tag1", "tag2", "tag3", "tag4"],
   "sources": [{"name": "Source Name", "url": "https://..."}],
+  "image_search_query": "concise 3-6 word image search query for the lead photo",
+  "image_must_show": "what the image must clearly depict (e.g. 'Narendra Modi at a podium')",
+  "image_entities": ["key entity 1", "key entity 2"],
   "confidence": 0-100
 }`;
 
@@ -302,6 +305,9 @@ Return this exact JSON structure:
         tags: Array.isArray(article.tags) ? article.tags.map((t: any) => stripCitations(String(t))) : [],
         urgency: topic.urgency,
         sources: Array.isArray(article.sources) ? article.sources : [],
+        image_entities: Array.isArray(article.image_entities) ? article.image_entities : [],
+        image_must_show: article.image_must_show ?? null,
+        image_search_query: article.image_search_query ?? null,
         slug,
         word_count: wordCount,
         status,
