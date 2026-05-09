@@ -107,16 +107,18 @@ function mapRow(row: P2Row): Article {
 }
 
 export async function getFeaturedArticle(): Promise<Article | null> {
-  // Featured hero requires a real image. Try featured-with-image first,
-  // then fall back to most recent published article that has an image.
+  // Featured hero: highest score_total among published articles in the last 24h
+  // (must have a real image).
+  const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+
   const { data } = await supabase
     .from("p2_articles")
     .select(P2_COLS)
     .eq("status", "published")
-    .eq("is_featured", true)
+    .gte("published_at", since)
     .not("image_url", "is", null)
     .neq("image_url", "")
-    .order("published_at", { ascending: false })
+    .order("score_total", { ascending: false })
     .limit(1)
     .maybeSingle();
 
@@ -128,7 +130,7 @@ export async function getFeaturedArticle(): Promise<Article | null> {
     .eq("status", "published")
     .not("image_url", "is", null)
     .neq("image_url", "")
-    .order("published_at", { ascending: false })
+    .order("score_total", { ascending: false })
     .limit(1)
     .maybeSingle();
   return fallback ? mapRow(fallback as P2Row) : null;
