@@ -235,6 +235,40 @@ async function searchPexels(query: string): Promise<string[]> {
   }
 }
 
+// ── Step 2f: Pixabay search ───────────────────────────────
+
+async function searchPixabay(
+  query: string,
+  limit = 10
+): Promise<Array<{url: string, attribution: string}>> {
+  const PIXABAY_KEY = Deno.env.get('PIXABAY_API_KEY')
+  if (!PIXABAY_KEY) return []
+
+  try {
+    const indiaQuery = query.toLowerCase().includes('india')
+      ? query
+      : query + ' India'
+
+    const res = await fetch(
+      'https://pixabay.com/api/?' +
+      'key=' + PIXABAY_KEY +
+      '&q=' + encodeURIComponent(indiaQuery) +
+      '&per_page=' + limit +
+      '&image_type=photo' +
+      '&orientation=horizontal' +
+      '&safesearch=true' +
+      '&order=popular',
+      { signal: AbortSignal.timeout(5000) }
+    )
+    if (!res.ok) return []
+    const data = await res.json()
+    return (data?.hits ?? []).map((p: any) => ({
+      url: p.largeImageURL ?? p.webformatURL,
+      attribution: 'Pixabay',
+    })).filter((p: any) => p.url)
+  } catch { return [] }
+}
+
 // ── Step 3: Fetch thumbnail as base64 ────────────────────
 
 async function fetchThumbnail(
