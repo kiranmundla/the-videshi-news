@@ -281,15 +281,15 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
       const src = sourceMap[s.feed_source_id];
       return src && TIER1_SLUGS.has(src.slug ?? '');
     });
-    const tier1Boost = hasTier1Source ? 20 : 0;
+    const tier1Boost = hasTier1Source ? 10 : 0;
 
     // Boost 2: Signal count (uncapped-ish)
-    const signalCountBoost = Math.min((indices.length - 1) * 7, 35);
+    const signalCountBoost = Math.min((indices.length - 1) * 5, 20);
 
     // Boost 3: Diaspora state
     const titleLower = String(topic.canonical_title).toLowerCase();
     const isDiasporaState = DIASPORA_STATES.some((s) => titleLower.includes(s));
-    const diasporaStateBoost = isDiasporaState ? 15 : 0;
+    const diasporaStateBoost = isDiasporaState ? 10 : 0;
 
     // Boost 4: India-US bilateral
     const isIndiUS = titleLower.includes('india-us') ||
@@ -300,20 +300,20 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
       titleLower.includes('trump') ||
       titleLower.includes('biden') ||
       titleLower.includes('us-india');
-    const indiUSBoost = isIndiUS ? 10 : 0;
+    const indiUSBoost = isIndiUS ? 8 : 0;
 
     // Boost 5: Penalty for India-domestic only
     const scoreDiaspora = clamp(topic.score_diaspora);
     const isDomesticOnly = scoreDiaspora < 50;
-    const domesticPenalty = isDomesticOnly ? -10 : 0;
+    const domesticPenalty = isDomesticOnly ? -15 : 0;
 
     const scoreSignificance = clamp(topic.score_significance);
 
-    // New base score (no source_priority in base)
+    // New weights — diaspora is the primary driver
     const baseScore = Math.round(
-      scoreDiaspora * 0.45 +
-        scoreSignificance * 0.25 +
-        avgRecency * 0.30,
+      scoreDiaspora     * 0.55 +
+        scoreSignificance * 0.35 +
+        avgRecency        * 0.10,
     );
 
     // Apply boosts
