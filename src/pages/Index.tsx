@@ -140,11 +140,16 @@ export default function Index() {
 
   const layout = useMemo(() => {
     const featured = featuredArticle;
+    const featuredId = featured?.id;
+
+    const filteredNewsPool = featuredId
+      ? newsPool.filter((a) => a.id !== featuredId)
+      : newsPool;
 
     const clusterUsed = new Set<string>();
     const newsClusters: { label: string; items: Article[] }[] = [];
     for (const c of CLUSTERS) {
-      const items = newsPool.filter(
+      const items = filteredNewsPool.filter(
         (a) =>
           !clusterUsed.has(a.id) &&
           !(c.excludeSlugs ?? []).includes(a.slug) &&
@@ -155,13 +160,15 @@ export default function Index() {
         items.forEach((a) => clusterUsed.add(a.id));
       }
     }
-    const newsUngrouped = newsPool
+    const newsUngrouped = filteredNewsPool
       .filter((a) => !clusterUsed.has(a.id))
       .slice(0, NEWS_SECTION.limit);
 
     const sections = CATEGORY_SECTIONS.map((s) => ({
       ...s,
-      pool: (sectionPools[s.slug] ?? []).slice(0, 6),
+      pool: (sectionPools[s.slug] ?? [])
+        .filter((a) => a.id !== featuredId)
+        .slice(0, 6),
     }));
 
     return { featured, newsClusters, newsUngrouped, sections };
