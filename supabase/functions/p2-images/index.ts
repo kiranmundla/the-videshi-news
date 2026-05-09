@@ -294,7 +294,9 @@ async function claudePickBest(
     return { url: null, source: null, pickIndex: 0, score: 0, candidatesEvaluated: 0 }
   }
 
-  const scoringRubric = `Score this image 1-10 for use as a news article thumbnail on The Videshi, a premium Indian diaspora news platform.
+  const scoringRubric = `IMPORTANT: Images scraped directly from press releases or source articles are STRONGLY PREFERRED over stock photos. If an image shows the actual event, person, or object described in the headline — even if the composition is imperfect — score it 9 or 10. Only reject press release images if they are site navigation elements, logos unrelated to the story, or completely off-topic.
+
+Score this image 1-10 for use as a news article thumbnail on The Videshi, a premium Indian diaspora news platform.
 
 AUTOMATIC SCORE OF 1 (reject immediately):
 - Brand logos used as visual puns (VISA card for visa application, Apple logo for tech story)
