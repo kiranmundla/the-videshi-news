@@ -251,8 +251,20 @@ article as a thumbnail? Criteria:
 - Not a generic stock photo unrelated to the topic
 - Suitable for Indian-American news audience
 
+Tone match (critical): Does the image mood match the story tone?
+- Military/conflict stories need serious imagery, never celebratory or friendly scenes
+- Economic crisis stories need concerned/downward imagery, not prosperity
+- Immigration enforcement needs formal/serious imagery
+- A wrong tone scores 1-2 regardless of subject match
+
+Automatic score of 1 (reject) for:
+- Happy people when story is about conflict/military action
+- Brand logos (VISA, McDonald's etc) when story is about a different use of that word
+- Protest/crime imagery for neutral policy stories
+- Stock photo clichés (handshakes, lightbulbs, puzzle pieces)
+
 If NO image is suitable (irrelevant, low quality, generic 
-unrelated stock photo), reply 0.
+unrelated stock photo, or wrong tone), reply 0.
 
 Reply with a single number only.`,
         },
