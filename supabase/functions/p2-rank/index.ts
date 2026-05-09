@@ -339,7 +339,7 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
         canonical_title: String(topic.canonical_title).slice(0, 200),
         vertical,
         category,
-        urgency: topic.urgency ?? "daily",
+        urgency,
         score_diaspora: scoreDiaspora,
         score_significance: scoreSignificance,
         score_recency: Math.round(avgRecency),
