@@ -40,30 +40,39 @@ function stripCitations(text: string): string {
     .trim()
 }
 
-function safeParseArticle(text: string) {
-  let cleaned = text
+function extractArticle(raw: string): any {
+  let text = raw
     .replace(/^```json\s*/i, '')
     .replace(/^```\s*/i, '')
     .replace(/```\s*$/i, '')
     .trim()
 
-  try { return JSON.parse(cleaned) } catch {}
+  const start = text.indexOf('{')
+  const end = text.lastIndexOf('}')
+  if (start === -1 || end === -1) return null
+  text = text.slice(start, end + 1)
 
-  const match = cleaned.match(/\{[\s\S]*\}/)
-  if (match) {
-    try { return JSON.parse(match[0]) } catch {}
-  }
+  try { return JSON.parse(text) } catch {}
 
-  try {
-    const fixed = cleaned.replace(/:\s*"([\s\S]*?)"/g, (_m, val) =>
-      ': "' + val
+  text = text
+    .replace(/[\u201C\u201D]/g, '"')
+    .replace(/[\u2018\u2019]/g, "'")
+
+  try { return JSON.parse(text) } catch {}
+
+  text = text.replace(
+    /("(?:body|headline|subheadline|diaspora_angle)"\s*:\s*")([\s\S]*?)("(?:,|\s*[}\]]))/g,
+    (_, prefix, content, suffix) => {
+      const fixed = content
+        .replace(/(?<!\\)"/g, "'")
         .replace(/\n/g, '\\n')
-        .replace(/\r/g, '\\r')
-        .replace(/\t/g, '\\t')
-        .replace(/"/g, '\\"') + '"'
-    )
-    return JSON.parse(fixed)
-  } catch {}
+        .replace(/\r/g, '')
+        .replace(/\t/g, ' ')
+      return prefix + fixed + suffix
+    }
+  )
+
+  try { return JSON.parse(text) } catch {}
 
   return null
 }
@@ -198,7 +207,12 @@ Write in the style of The Economist — precise, authoritative, one idea per sen
 
 Return ONLY valid JSON. No markdown, no code fences, raw JSON only.
 
-CRITICAL: Your response must be valid JSON. Never use unescaped double quotes inside string values. Use single quotes or escaped \\" instead. Never include raw newlines inside JSON string values — use \\n instead. Wrap all string values carefully.`;
+CRITICAL JSON RULES — never break these:
+- Never use straight double quotes " inside any string value in your JSON response
+- For dialogue or attribution use single quotes: He said 'this is important'
+- For emphasis use asterisks: *important point*
+- Your entire response must be parseable by JSON.parse() with no pre-processing
+- Test mentally: would JSON.parse(yourResponse) throw an error? If yes, fix it before responding`;
 
       const userPrompt = `Write a news article for The Videshi about this topic:
 
@@ -243,15 +257,27 @@ Return this exact JSON structure:
 
       if (!textContent.trim()) throw new Error("No text content in Claude response");
 
-      // Extract JSON from response (Claude sometimes adds prose around it)
-      let jsonText = textContent.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
-      const firstBrace = jsonText.indexOf("{");
-      const lastBrace = jsonText.lastIndexOf("}");
-      if (firstBrace > 0 || lastBrace < jsonText.length - 1) {
-        jsonText = jsonText.slice(firstBrace, lastBrace + 1);
+      const article = extractArticle(textContent);
+      if (!article) {
+        console.error("Failed to parse Claude JSON response", {
+          topicId: topic.id,
+          topic: topic.canonical_title,
+          responsePreview: textContent.slice(0, 2000),
+        });
+        await supabase.from("p2_topics").update({ status: "pending" }).eq("id", topic.id);
+        await supabase.from("pipeline_alerts").insert({
+          agent: "p2-synthesize",
+          severity: "error",
+          error_type: "json_parse_failed",
+          message: `Failed to parse Claude JSON response for ${topic.canonical_title}`,
+        });
+        results.push({
+          topic: topic.canonical_title,
+          status: "error",
+          error: "Failed to parse Claude JSON response",
+        });
+        continue;
       }
-      const article = safeParseArticle(jsonText);
-      if (!article) throw new Error("Failed to parse Claude JSON response");
 
       if (!article.headline || !article.body) {
         throw new Error("Missing required fields in Claude response");
