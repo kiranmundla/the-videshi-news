@@ -27,16 +27,17 @@ const VERTICAL_TO_CATEGORY: Record<string, string> = {
 };
 
 function stripCitations(text: string): string {
+  if (!text) return text
   return text
-    // Remove <cite index="...">text</cite> tags, keep inner text
-    .replace(/<cite[^>]*>([\s\S]*?)<\/cite>/g, '$1')
-    // Remove bare [0], [1], [2] reference markers
-    .replace(/\[\d+\]/g, '')
-    // Remove (Source: ...) inline citations
-    .replace(/\(Source:[^)]+\)/gi, '')
-    // Clean up any double spaces left behind
+    // Remove <cite index="...">text</cite> — keep inner text
+    .replace(/<cite[^>]*>([\s\S]*?)<\/cite>/gi, '$1')
+    // Remove standalone [N] or [N-N] citation markers
+    .replace(/\s*\[\d+(?:[–\-]\d+)?\]/g, '')
+    // Remove leftover empty cite tags
+    .replace(/<\/?cite[^>]*>/gi, '')
+    // Clean up double spaces
     .replace(/  +/g, ' ')
-    .trim();
+    .trim()
 }
 
 function safeParseArticle(text: string) {
@@ -175,6 +176,26 @@ Writing style:
 
 The diaspora_angle must be exactly 1 sentence explaining why Indian-Americans specifically should care.
 
+ARTICLE STRUCTURE (mandatory for every article):
+Every article body MUST have this structure:
+
+[Opening paragraph — 2-3 sentences, the core news]
+
+**[Section header — what happened]:**
+[2-3 sentences of detail]
+
+**[Section header — context or implications]:**
+[2-3 sentences of context]
+
+**[Section header — what to watch]:**
+[1-2 sentences on what comes next]
+
+Section headers MUST use **bold:** format.
+Every article must have at least 2 bold section headers — never write a wall of plain paragraphs.
+Do not use ## markdown headers — use **bold:** only.
+Do not use bullet points or numbered lists.
+Write in the style of The Economist — precise, authoritative, one idea per sentence.
+
 Return ONLY valid JSON. No markdown, no code fences, raw JSON only.
 
 CRITICAL: Your response must be valid JSON. Never use unescaped double quotes inside string values. Use single quotes or escaped \\" instead. Never include raw newlines inside JSON string values — use \\n instead. Wrap all string values carefully.`;
@@ -253,7 +274,7 @@ Return this exact JSON structure:
           : null,
         vertical: topic.vertical,
         category: VERTICAL_TO_CATEGORY[topic.vertical] ?? 'news',
-        tags: Array.isArray(article.tags) ? article.tags : [],
+        tags: Array.isArray(article.tags) ? article.tags.map((t: any) => stripCitations(String(t))) : [],
         urgency: topic.urgency,
         sources: Array.isArray(article.sources) ? article.sources : [],
         slug,
