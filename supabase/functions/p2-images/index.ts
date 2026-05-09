@@ -117,7 +117,7 @@ async function getOgImage(sourceUrl: string): Promise<string | null> {
 
     const url = match?.[1] ?? null
     if (!url || url.startsWith('data:')) return null
-
+    
     // Resolve relative URLs
     if (url.startsWith('/')) {
       const base = new URL(sourceUrl)
@@ -129,13 +129,13 @@ async function getOgImage(sourceUrl: string): Promise<string | null> {
   }
 }
 
-// ── Step 2d: Unsplash search ──────────────────────────────
+// ── Step 2d: Unsplash search (15 candidates) ──────────────
 
-async function searchUnsplash(query: string, limit = 15): Promise<string[]> {
+async function searchUnsplash(query: string): Promise<string[]> {
   try {
     const res = await fetch(
       `https://api.unsplash.com/search/photos?` +
-      `query=${encodeURIComponent(query)}&per_page=${limit}` +
+      `query=${encodeURIComponent(query)}&per_page=15` +
       `&orientation=landscape&content_filter=high`,
       { headers: { Authorization: `Client-ID ${UNSPLASH_KEY}` } }
     )
@@ -149,13 +149,13 @@ async function searchUnsplash(query: string, limit = 15): Promise<string[]> {
   }
 }
 
-// ── Step 2e: Pexels search ────────────────────────────────
+// ── Step 2e: Pexels search (15 candidates) ────────────────
 
-async function searchPexels(query: string, limit = 15): Promise<string[]> {
+async function searchPexels(query: string): Promise<string[]> {
   try {
     const res = await fetch(
       `https://api.pexels.com/v1/search?` +
-      `query=${encodeURIComponent(query)}&per_page=${limit}&orientation=landscape`,
+      `query=${encodeURIComponent(query)}&per_page=15&orientation=landscape`,
       { headers: { Authorization: PEXELS_KEY } }
     )
     if (!res.ok) return []
@@ -163,35 +163,6 @@ async function searchPexels(query: string, limit = 15): Promise<string[]> {
     return (data?.photos ?? [])
       .map((p: any) => p?.src?.medium ?? p?.src?.large)
       .filter(Boolean)
-  } catch {
-    return []
-  }
-}
-
-// ── Step 2f: RSS photo feed ───────────────────────────────
-
-async function getRSSPhotos(feedUrl: string, limit: number): Promise<string[]> {
-  try {
-    const res = await fetch(feedUrl, {
-      headers: { 'User-Agent': 'TheVideshi/1.0' },
-      signal: AbortSignal.timeout(8000),
-    })
-    if (!res.ok) return []
-    const xml = await res.text()
-    const urls: string[] = []
-
-    const enclosureRegex = /<enclosure[^>]+url=["']([^"']+)["'][^>]+type=["']image[^"']*["']/gi
-    let m: RegExpExecArray | null
-    while ((m = enclosureRegex.exec(xml)) && urls.length < limit) {
-      urls.push(m[1])
-    }
-
-    const mediaRegex = /<media:content[^>]+url=["']([^"']+)["']/gi
-    while ((m = mediaRegex.exec(xml)) && urls.length < limit) {
-      urls.push(m[1])
-    }
-
-    return urls
   } catch {
     return []
   }
@@ -367,86 +338,33 @@ Deno.serve(async () => {
         article.vertical
       )
 
-      // ── Step 2: Load active image sources from videshi_sources registry
-      const { data: imageSourcesRaw } = await supabase
-        .from('videshi_sources')
-        .select('*')
-        .eq('is_active', true)
-        .eq('pipeline_stage', 'image')
-        .order('priority', { ascending: true })
+      // ── Step 2: Collect candidates from all tiers
+      const candidates: Array<{ url: string; source: string }> = []
 
-      // Normalize fields so the rest of the loop matches the previous schema
-      const imageSources = (imageSourcesRaw ?? []).map((s: any) => ({
-        ...s,
-        max_candidates: s.max_items ?? 10,
-        good_for_verticals: s.verticals ?? [],
-        skip_for_verticals: s.skip_verticals ?? [],
-      }))
+      // Tier 1a: Wikipedia entity image (highest relevance)
+      if (entity) {
+        const wikiImage = await getWikipediaImage(entity)
+        if (wikiImage) candidates.push({ url: wikiImage, source: 'wikipedia' })
 
-      function sourceAppliesToVertical(source: any, vertical: string): boolean {
-        if (source.skip_for_verticals?.includes(vertical)) return false
-        if (!source.good_for_verticals || source.good_for_verticals.length === 0) return true
-        return source.good_for_verticals.includes(vertical)
+        // Tier 1b: Wikimedia Commons
+        const commonsImages = await getWikimediaImages(entity, 6)
+        candidates.push(...commonsImages.map(u => ({ url: u, source: 'wikimedia' })))
       }
 
-      const candidates: Array<{
-        url: string
-        source: string
-        source_type: string
-        priority: number
-        source_id: string
-      }> = []
+      // Tier 2: og:image from primary source URLs
+      for (const sourceUrl of sourceUrls) {
+        const ogImage = await getOgImage(sourceUrl)
+        if (ogImage) candidates.push({ url: ogImage, source: 'og:image' })
+      }
 
-      for (const source of imageSources) {
-        if (!sourceAppliesToVertical(source, article.vertical)) continue
-
-        let newCandidates: string[] = []
-        // Accept both "wikipedia" and "img_wikipedia" style
-        const stype = (source.source_type ?? '').replace(/^img_/, '')
-
-        switch (stype) {
-          case 'wikipedia':
-            if (entity) {
-              const img = await getWikipediaImage(entity)
-              if (img) newCandidates = [img]
-            }
-            break
-          case 'wikimedia':
-            newCandidates = await getWikimediaImages(entity ?? query, source.max_candidates)
-            break
-          case 'og_image':
-            for (const url of sourceUrls.slice(0, 3)) {
-              const img = await getOgImage(url)
-              if (img) newCandidates.push(img)
-            }
-            break
-          case 'rss_photos':
-            if (source.endpoint_url) {
-              newCandidates = await getRSSPhotos(source.endpoint_url, source.max_candidates)
-            }
-            break
-          case 'unsplash':
-            newCandidates = await searchUnsplash(query, source.max_candidates)
-            break
-          case 'pexels':
-            newCandidates = await searchPexels(query, source.max_candidates)
-            break
-          default:
-            // Unknown source type (e.g. direct_url with API key) — skip silently
-            break
-        }
-
-        candidates.push(...newCandidates.map(url => ({
-          url,
-          source: source.name,
-          source_type: source.source_type,
-          priority: source.priority,
-          source_id: source.id,
-        })))
-
-        // Stop early if we already have enough high-priority candidates
-        const tier1Count = candidates.filter(c => c.priority <= 25).length
-        if (tier1Count >= 5) break
+      // Tier 3: Unsplash + Pexels (if < 6 candidates so far)
+      if (candidates.length < 6) {
+        const [unsplashImages, pexelsImages] = await Promise.all([
+          searchUnsplash(query),
+          searchPexels(query),
+        ])
+        candidates.push(...unsplashImages.map(u => ({ url: u, source: 'unsplash' })))
+        candidates.push(...pexelsImages.map(u => ({ url: u, source: 'pexels' })))
       }
 
       if (candidates.length === 0) {
@@ -479,34 +397,11 @@ Deno.serve(async () => {
           .update({ image_url: storedUrl })
           .eq('id', article.id)
 
-        const winner = candidates.find(c => c.url === winnerUrl)
-        const winnerRank = candidates.findIndex(c => c.url === winnerUrl) + 1
-
-        await supabase.from('p2_image_source_log').insert({
-          article_id: article.id,
-          image_source: winner?.source ?? null,
-          source_type: winner?.source_type ?? null,
-          candidates: candidates.length,
-          winner_rank: winnerRank,
-        })
-
-        if (winner?.source_id) {
-          await supabase.from('videshi_source_logs').insert({
-            source_id: winner.source_id,
-            agent: 'p2-images',
-            status: 'ok',
-            items_fetched: candidates.length,
-            items_accepted: 1,
-          })
-        }
-
         results.push({
           headline: article.headline,
           status: 'ok',
-          source: winner?.source,
-          source_type: winner?.source_type,
+          source: candidates.find(c => c.url === winnerUrl)?.source,
           candidates: candidates.length,
-          winner_rank: winnerRank,
         })
       }
 
