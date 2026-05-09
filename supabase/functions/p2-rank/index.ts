@@ -212,12 +212,16 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
   });
 
   // Duplicate if 2+ shared entities with any recent topic
-  const isDuplicate = (candidateEntities: string[]): boolean => {
+  // Politics/news verticals need a higher threshold because celebrity names
+  // (e.g. "Vijay") collide across entertainment and politics contexts.
+  const HIGH_THRESHOLD_VERTICALS = new Set(["politics", "news"]);
+  const isDuplicate = (candidateEntities: string[], vertical: string): boolean => {
     if (candidateEntities.length === 0) return false;
+    const threshold = HIGH_THRESHOLD_VERTICALS.has(vertical) ? 3 : 2;
     for (const r of recentEntitySets) {
       let shared = 0;
       for (const e of candidateEntities) if (r.entities.has(e)) shared++;
-      if (shared >= 2) return true;
+      if (shared >= threshold) return true;
     }
     return false;
   };
@@ -236,7 +240,8 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
       ...new Set([...claudeEntities, ...titleEntities].map((e) => e.toLowerCase())),
     ];
 
-    if (isDuplicate(candidateEntities)) {
+    const urgency = topic.urgency ?? "daily";
+    if (urgency !== "breaking" && isDuplicate(candidateEntities, vertical)) {
       skippedDupes++;
       continue;
     }
@@ -334,7 +339,7 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
         canonical_title: String(topic.canonical_title).slice(0, 200),
         vertical,
         category,
-        urgency: topic.urgency ?? "daily",
+        urgency,
         score_diaspora: scoreDiaspora,
         score_significance: scoreSignificance,
         score_recency: Math.round(avgRecency),
