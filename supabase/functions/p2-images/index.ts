@@ -502,8 +502,8 @@ Deno.serve(async () => {
           searchUnsplash(query),
           searchPexels(query),
         ])
-        candidates.push(...unsplashImages.map(u => ({ url: u, source: 'unsplash' })))
-        candidates.push(...pexelsImages.map(u => ({ url: u, source: 'pexels' })))
+        candidates.push(...unsplashImages.map(u => ({ url: u, source: 'unsplash', attribution: null })))
+        candidates.push(...pexelsImages.map(u => ({ url: u, source: 'pexels', attribution: null })))
       }
 
       if (candidates.length === 0) {
