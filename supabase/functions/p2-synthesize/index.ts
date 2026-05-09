@@ -312,6 +312,7 @@ Return this exact JSON structure:
         word_count: wordCount,
         status,
         is_featured: topic.score_total >= 82,
+        score_total: topic.score_total,
         published_at: publishedAt,
       });
 
