@@ -102,6 +102,7 @@ async function findSourceHunts(_topicId: string, keywords: string[]) {
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   const startTime = Date.now();
+  const start = Date.now();
 
   // 1. Top-scored pending topics
   const { data: topics, error: topicErr } = await supabase
@@ -124,6 +125,7 @@ Deno.serve(async (req) => {
       { headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   }
+  console.log(`[timing] topics fetched: ${Date.now() - start}ms`)
 
   // Skip topics that already have an article
   const topicIds = topics.map((t: any) => t.id);
@@ -149,6 +151,7 @@ Deno.serve(async (req) => {
 
       const sourceHunts = await findSourceHunts(topic.id, topic.keywords ?? []);
       const hasPreloadedSources = sourceHunts.length > 0;
+      console.log(`[timing] source hunts fetched: ${Date.now() - start}ms`)
 
       const sourceContext = hasPreloadedSources
         ? sourceHunts
@@ -237,6 +240,7 @@ Return this exact JSON structure:
         ? [{ type: "web_search_20250305" as const, name: "web_search" }]
         : undefined;
 
+      console.log(`[timing] calling Claude for: ${topic.canonical_title}`)
       const response = await anthropic.messages.create({
         model: "claude-sonnet-4-6",
         max_tokens: 2000,
@@ -251,8 +255,10 @@ Return this exact JSON structure:
         .join("");
 
       if (!textContent.trim()) throw new Error("No text content in Claude response");
+      console.log(`[timing] Claude responded: ${Date.now() - start}ms`)
 
       const article = extractArticle(textContent);
+      console.log(`[timing] parsed response: ${Date.now() - start}ms`)
       if (!article) {
         console.error("Failed to parse Claude JSON response", {
           topicId: topic.id,
@@ -304,6 +310,7 @@ Return this exact JSON structure:
       });
 
       if (insertErr) throw new Error(`Insert failed: ${insertErr.message}`);
+      console.log(`[timing] saved to db: ${Date.now() - start}ms`)
 
       if (hasPreloadedSources) {
         await supabase
