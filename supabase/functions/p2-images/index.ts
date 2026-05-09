@@ -294,32 +294,7 @@ async function claudePickBest(
     return { url: null, source: null, pickIndex: 0, score: 0, candidatesEvaluated: 0 }
   }
 
-  const scoringRubric = `IMPORTANT: Images scraped directly from press releases or source articles are STRONGLY PREFERRED over stock photos. If an image shows the actual event, person, or object described in the headline — even if the composition is imperfect — score it 9 or 10. Only reject press release images if they are site navigation elements, logos unrelated to the story, or completely off-topic.
-
-Score this image 1-10 for use as a news article thumbnail on The Videshi, a premium Indian diaspora news platform.
-
-AUTOMATIC SCORE OF 1 (reject immediately):
-- Brand logos used as visual puns (VISA card for visa application, Apple logo for tech story)
-- Happy/celebratory imagery for conflict/military stories (smiling people for war, protests, enforcement stories)
-- Crime scene tape, police, violence for neutral policy stories
-- Generic stock clichés: handshakes, lightbulbs, puzzle pieces, people pointing at whiteboards
-- Wrong subject entirely (motorbike for election, flowers for missile test)
-- Text/signage in wrong language for the story context
-
-TONE MATCH IS MANDATORY:
-- Military/conflict stories: serious, strategic imagery only
-- Economic crisis: concerned, downward trend imagery
-- Immigration enforcement: formal, official imagery
-- Policy announcements: neutral, institutional imagery
-- Celebratory/achievement stories: positive imagery ok
-
-Score 9-10: Perfect subject + tone match, publication quality
-Score 7-8: Good match, acceptable quality
-Score 5-6: Loose connection, generic but inoffensive
-Score 3-4: Wrong subject OR wrong tone
-Score 1-2: Automatic reject (see above)
-
-Only scores 8+ are accepted.`
+  const imageMustShow = headline
 
   // Score each image individually so we get score + reason per image
   const scored = await Promise.all(valid.map(async (t) => {
@@ -340,14 +315,42 @@ Only scores 8+ are accepted.`
             },
             {
               type: 'text' as const,
-              text: `Article headline: "${headline}"
-Vertical: ${vertical}
+              text: `You are selecting a thumbnail for: '${headline}'
+
+The image MUST show: ${imageMustShow}
+
 Image source: ${t.source}
+Vertical: ${vertical}
 
-${scoringRubric}
+RULE 1 — SOURCE PRIORITY (apply before scoring):
+If any candidate comes from a government press release, company press release, or official source (PIB, DRDO, Ministry, company website), that image gets +3 bonus added to its raw score. Real event photos beat stock photos even if less polished.
 
-Reply with JSON only:
-{"score": N, "reason": "one sentence", "reject_reason": "if score < 8, why rejected"}`,
+RULE 2 — AUTOMATIC TEXT-FIRST (score 0, skip all):
+If headline contains any of these topics, return pick: 0 immediately without reviewing images:
+- Military strikes, armed conflict, ceasefire
+- Separatist movements, terrorism warnings
+- Drug crisis, crime enforcement
+- Sanctions, geopolitical conflict
+
+RULE 3 — ENTITY MATCH REQUIRED:
+Image must specifically show ${imageMustShow}. Generic India/Pakistan/Canada imagery scores max 4 even if visually beautiful.
+
+RULE 4 — REJECT STOCK CLICHÉS:
+Handshakes, lightbulbs, puzzle pieces, people at whiteboards, coin stacks → max score 3.
+
+Score 9-10: Real event photo OR perfect entity match
+Score 7-8: Good entity match, acceptable quality
+Score 4-6: Loose connection, generic
+Score 1-3: Wrong entity or stock cliché
+Score 0: Automatic text-first (Rule 2)
+
+Threshold: only accept score 8+.
+
+Reply JSON: {pick: N, score: N, reason: 'one line'}`,
+            },
+          ],
+        }],
+      })
             },
           ],
         }],
