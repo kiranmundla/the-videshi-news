@@ -436,9 +436,31 @@ Deno.serve(async () => {
   }
 
   const results: any[] = []
+  let skipped = 0
+
+  const TEXT_FIRST_KEYWORDS = [
+    'military', 'strike', 'operation sindoor',
+    'ceasefire', 'missile', 'drone supply',
+    'khalistan', 'separatist', 'terror',
+    'drug crisis', 'sanctions', 'iran',
+    'doctrine', 'armed conflict', 'warfare'
+  ]
 
   for (const article of articles) {
     try {
+      const headlineLower = article.headline.toLowerCase()
+      const isTextFirst = TEXT_FIRST_KEYWORDS.some(
+        kw => headlineLower.includes(kw)
+      )
+      if (isTextFirst || !(article as any).image_must_show) {
+        skipped++
+        results.push({
+          headline: article.headline,
+          status: 'text_first_by_topic'
+        })
+        continue
+      }
+
       // Get source hunt URLs for this topic
       const { data: hunts } = await supabase
         .from('p2_source_hunts')
@@ -456,22 +478,22 @@ Deno.serve(async () => {
       )
 
       // ── Step 2: Collect candidates from all tiers
-      const candidates: Array<{ url: string; source: string }> = []
+      const candidates: Array<{ url: string; source: string; attribution: string | null }> = []
 
       // Tier 1a: Wikipedia entity image (highest relevance)
       if (entity) {
         const wikiImage = await getWikipediaImage(entity)
-        if (wikiImage) candidates.push({ url: wikiImage, source: 'wikipedia' })
+        if (wikiImage) candidates.push({ url: wikiImage, source: 'wikipedia', attribution: 'Wikimedia Commons' })
 
         // Tier 1b: Wikimedia Commons
         const commonsImages = await getWikimediaImages(entity, 6)
-        candidates.push(...commonsImages.map(u => ({ url: u, source: 'wikimedia' })))
+        candidates.push(...commonsImages.map(u => ({ url: u, source: 'wikimedia', attribution: 'Wikimedia Commons' })))
       }
 
       // Tier 2: scrape ALL meaningful images from source pages
       const sourceResults = await scrapeSourceImages(sourceUrls)
       for (const r of sourceResults) {
-        candidates.push({ url: r.url, source: 'source-scrape' })
+        candidates.push({ url: r.url, source: 'source-scrape', attribution: r.attribution })
       }
 
       // Tier 3: Unsplash + Pexels (if < 6 candidates so far)
