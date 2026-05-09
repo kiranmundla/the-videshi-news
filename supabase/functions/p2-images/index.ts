@@ -194,12 +194,22 @@ async function fetchThumbnail(
 
 // ── Step 4: Claude Vision picks best candidate ────────────
 
+type VisionResult = {
+  url: string | null
+  source: string | null
+  pickIndex: number   // 1-based index of chosen candidate, 0 = rejected all
+  score: number       // Claude's score for the winner (0 if rejected)
+  candidatesEvaluated: number
+}
+
 async function claudePickBest(
   candidates: Array<{ url: string; source: string }>,
   headline: string,
   vertical: string
-): Promise<string | null> {
-  if (candidates.length === 0) return null
+): Promise<VisionResult> {
+  if (candidates.length === 0) {
+    return { url: null, source: null, pickIndex: 0, score: 0, candidatesEvaluated: 0 }
+  }
 
   // Fetch thumbnails in parallel (max 12 candidates for Vision)
   const subset = candidates.slice(0, 12)
@@ -213,68 +223,91 @@ async function claudePickBest(
   )
 
   const valid = thumbnails.filter(t => t.thumb !== null)
-  if (valid.length === 0) return null
+  if (valid.length === 0) {
+    return { url: null, source: null, pickIndex: 0, score: 0, candidatesEvaluated: 0 }
+  }
 
-  // Build multi-image Claude message
-  const imageBlocks = valid.flatMap((t, i) => [
-    {
-      type: 'text' as const,
-      text: `Image ${i + 1} (source: ${t.source}):`,
-    },
-    {
-      type: 'image' as const,
-      source: {
-        type: 'base64' as const,
-        media_type: t.thumb!.mediaType,
-        data: t.thumb!.base64,
-      },
-    },
-  ])
+  const scoringRubric = `Score this image 1-10 for use as a news article thumbnail on The Videshi, a premium Indian diaspora news platform.
 
-  const response = await anthropic.messages.create({
-    model: 'claude-haiku-4-5-20251001',
-    max_tokens: 100,
-    messages: [{
-      role: 'user',
-      content: [
-        ...imageBlocks,
-        {
-          type: 'text',
-          text: `Article headline: "${headline}"
+AUTOMATIC SCORE OF 1 (reject immediately):
+- Brand logos used as visual puns (VISA card for visa application, Apple logo for tech story)
+- Happy/celebratory imagery for conflict/military stories (smiling people for war, protests, enforcement stories)
+- Crime scene tape, police, violence for neutral policy stories
+- Generic stock clichés: handshakes, lightbulbs, puzzle pieces, people pointing at whiteboards
+- Wrong subject entirely (motorbike for election, flowers for missile test)
+- Text/signage in wrong language for the story context
+
+TONE MATCH IS MANDATORY:
+- Military/conflict stories: serious, strategic imagery only
+- Economic crisis: concerned, downward trend imagery
+- Immigration enforcement: formal, official imagery
+- Policy announcements: neutral, institutional imagery
+- Celebratory/achievement stories: positive imagery ok
+
+Score 9-10: Perfect subject + tone match, publication quality
+Score 7-8: Good match, acceptable quality
+Score 5-6: Loose connection, generic but inoffensive
+Score 3-4: Wrong subject OR wrong tone
+Score 1-2: Automatic reject (see above)
+
+Only scores 8+ are accepted.`
+
+  // Score each image individually so we get score + reason per image
+  const scored = await Promise.all(valid.map(async (t) => {
+    try {
+      const resp = await anthropic.messages.create({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 200,
+        messages: [{
+          role: 'user',
+          content: [
+            {
+              type: 'image' as const,
+              source: {
+                type: 'base64' as const,
+                media_type: t.thumb!.mediaType,
+                data: t.thumb!.base64,
+              },
+            },
+            {
+              type: 'text' as const,
+              text: `Article headline: "${headline}"
 Vertical: ${vertical}
-Platform: The Videshi — premium Indian diaspora news site
+Image source: ${t.source}
 
-Which image number (1-${valid.length}) best represents this 
-article as a thumbnail? Criteria:
-- Directly relevant to the story subject
-- Professional quality, publication-ready
-- Not a generic stock photo unrelated to the topic
-- Suitable for Indian-American news audience
+${scoringRubric}
 
-Tone match (critical): Does the image mood match the story tone?
-- Military/conflict stories need serious imagery, never celebratory or friendly scenes
-- Economic crisis stories need concerned/downward imagery, not prosperity
-- Immigration enforcement needs formal/serious imagery
-- A wrong tone scores 1-2 regardless of subject match
+Reply with JSON only:
+{"score": N, "reason": "one sentence", "reject_reason": "if score < 8, why rejected"}`,
+            },
+          ],
+        }],
+      })
 
-Automatic score of 1 (reject) for:
-- Happy people when story is about conflict/military action
-- Brand logos (VISA, McDonald's etc) when story is about a different use of that word
-- Protest/crime imagery for neutral policy stories
-- Stock photo clichés (handshakes, lightbulbs, puzzle pieces)
+      const raw = (resp.content[0] as any).text.trim()
+      const match = raw.match(/\{[\s\S]*\}/)
+      if (!match) return { ...t, score: 0 }
+      const parsed = JSON.parse(match[0])
+      const score = Number(parsed.score) || 0
+      return { ...t, score }
+    } catch {
+      return { ...t, score: 0 }
+    }
+  }))
 
-If NO image is suitable (irrelevant, low quality, generic 
-unrelated stock photo, or wrong tone), reply 0.
-
-Reply with a single number only.`,
-        },
-      ],
-    }],
-  })
-
-  const pick = parseInt((response.content[0] as any).text.trim())
-  if (isNaN(pick) || pick === 0 || pick > valid.length) return null
-  return valid[pick - 1].url
+  // Pick highest score; only accept if >= 8
+  const best = scored.reduce((a, b) => (b.score > a.score ? b : a), scored[0])
+  if (!best || best.score < 8) {
+    return { url: null, source: null, pickIndex: 0, score: best?.score ?? 0, candidatesEvaluated: valid.length }
+  }
+  const pickIdx = valid.findIndex(v => v.url === best.url) + 1
+  return {
+    url: best.url,
+    source: best.source,
+    pickIndex: pickIdx,
+    score: best.score,
+    candidatesEvaluated: valid.length,
+  }
 }
 
 // ── Step 5: Download winner to Supabase Storage ───────────
@@ -380,18 +413,34 @@ Deno.serve(async () => {
       }
 
       if (candidates.length === 0) {
+        await supabase.from('videshi_image_log').insert({
+          article_id: article.id,
+          headline: article.headline,
+          source_used: null,
+          candidates_count: 0,
+          vision_pick: 0,
+          vision_score: 0,
+        })
         results.push({ headline: article.headline, status: 'no_candidates' })
         continue
       }
 
       // ── Step 3: Claude Vision picks best
-      const winnerUrl = await claudePickBest(
+      const vision = await claudePickBest(
         candidates,
         article.headline,
         article.vertical
       )
 
-      if (!winnerUrl) {
+      if (!vision.url) {
+        await supabase.from('videshi_image_log').insert({
+          article_id: article.id,
+          headline: article.headline,
+          source_used: null,
+          candidates_count: candidates.length,
+          vision_pick: 0,
+          vision_score: vision.score,
+        })
         results.push({
           headline: article.headline,
           status: 'rejected',
@@ -401,7 +450,7 @@ Deno.serve(async () => {
       }
 
       // ── Step 4: Download winner to Storage
-      const storedUrl = await downloadToStorage(winnerUrl, article.id)
+      const storedUrl = await downloadToStorage(vision.url, article.id)
 
       if (storedUrl) {
         await supabase
@@ -409,11 +458,21 @@ Deno.serve(async () => {
           .update({ image_url: storedUrl })
           .eq('id', article.id)
 
+        await supabase.from('videshi_image_log').insert({
+          article_id: article.id,
+          headline: article.headline,
+          source_used: vision.source,
+          candidates_count: candidates.length,
+          vision_pick: vision.pickIndex,
+          vision_score: vision.score,
+        })
+
         results.push({
           headline: article.headline,
           status: 'ok',
-          source: candidates.find(c => c.url === winnerUrl)?.source,
+          source: vision.source,
           candidates: candidates.length,
+          vision_score: vision.score,
         })
       }
 
@@ -432,18 +491,19 @@ Deno.serve(async () => {
   }
 
   const elapsed = Date.now() - startTime
-  const succeeded = results.filter(r => r.status === 'ok').length
+  const sourced = results.filter(r => r.status === 'ok').length
   const rejected = results.filter(r => r.status === 'rejected').length
+  const textFirst = results.filter(r => r.status === 'no_candidates' || r.status === 'rejected').length
 
   await supabase.from('pipeline_alerts').insert({
     agent: 'p2-images',
     severity: 'info',
     error_type: null,
-    message: `p2-images: ${succeeded} images sourced, ${rejected} rejected by Vision in ${elapsed}ms`,
+    message: `p2-images: ${sourced} sourced, ${rejected} rejected by Vision, ${textFirst} text-first in ${elapsed}ms`,
   })
 
   return new Response(
-    JSON.stringify({ ok: true, succeeded, rejected, elapsed, results }),
+    JSON.stringify({ ok: true, sourced, rejected, textFirst, elapsed, results }),
     { headers: { 'Content-Type': 'application/json' } }
   )
 })

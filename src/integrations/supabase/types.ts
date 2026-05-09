@@ -878,6 +878,47 @@ export type Database = {
           },
         ]
       }
+      videshi_image_log: {
+        Row: {
+          article_id: string | null
+          candidates_count: number | null
+          created_at: string
+          headline: string | null
+          id: string
+          source_used: string | null
+          vision_pick: number | null
+          vision_score: number | null
+        }
+        Insert: {
+          article_id?: string | null
+          candidates_count?: number | null
+          created_at?: string
+          headline?: string | null
+          id?: string
+          source_used?: string | null
+          vision_pick?: number | null
+          vision_score?: number | null
+        }
+        Update: {
+          article_id?: string | null
+          candidates_count?: number | null
+          created_at?: string
+          headline?: string | null
+          id?: string
+          source_used?: string | null
+          vision_pick?: number | null
+          vision_score?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "videshi_image_log_article_id_fkey"
+            columns: ["article_id"]
+            isOneToOne: false
+            referencedRelation: "p2_articles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       videshi_source_logs: {
         Row: {
           agent: string
