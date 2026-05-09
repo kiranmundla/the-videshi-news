@@ -190,6 +190,9 @@ export type Database = {
           headline: string
           id: string
           image_attribution: string | null
+          image_entities: string[] | null
+          image_must_show: string | null
+          image_search_query: string | null
           image_url: string | null
           is_featured: boolean
           published_at: string | null
@@ -213,6 +216,9 @@ export type Database = {
           headline: string
           id?: string
           image_attribution?: string | null
+          image_entities?: string[] | null
+          image_must_show?: string | null
+          image_search_query?: string | null
           image_url?: string | null
           is_featured?: boolean
           published_at?: string | null
@@ -236,6 +242,9 @@ export type Database = {
           headline?: string
           id?: string
           image_attribution?: string | null
+          image_entities?: string[] | null
+          image_must_show?: string | null
+          image_search_query?: string | null
           image_url?: string | null
           is_featured?: boolean
           published_at?: string | null

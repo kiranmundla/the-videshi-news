@@ -489,6 +489,15 @@ Deno.serve(async () => {
   const results: any[] = []
   let skipped = 0
 
+  // Track URLs already used across articles (DB + this run)
+  const { data: usedImages } = await supabase
+    .from('p2_articles')
+    .select('image_url')
+    .not('image_url', 'is', null)
+  const usedUrls = new Set(
+    (usedImages ?? []).map((a: any) => a.image_url)
+  )
+
   const TEXT_FIRST_KEYWORDS = [
     'military', 'strike', 'operation sindoor',
     'ceasefire', 'missile', 'drone supply',
@@ -580,13 +589,7 @@ Deno.serve(async () => {
       )
       let remaining = candidates.slice()
       while (vision.url) {
-        const { data: dup } = await supabase
-          .from('p2_articles')
-          .select('id')
-          .eq('image_url', vision.url)
-          .neq('id', article.id)
-          .limit(1)
-        if (!dup || dup.length === 0) break
+        if (!usedUrls.has(vision.url)) break
         remaining = remaining.filter(c => c.url !== vision.url)
         if (remaining.length === 0) {
           vision = { url: null, source: null, pickIndex: 0, score: 0, candidatesEvaluated: 0 } as any
@@ -628,6 +631,7 @@ Deno.serve(async () => {
           .from('p2_articles')
           .update({ image_url: storedUrl, image_attribution: attribution })
           .eq('id', article.id)
+        usedUrls.add(storedUrl)
 
         await supabase.from('videshi_image_log').insert({
           article_id: article.id,
