@@ -101,12 +101,44 @@ Group headlines covering the SAME story. For each unique topic:
 
 1. Pick the clearest canonical_title (max 100 chars)
 2. Assign vertical (one of): politics|economy|tech|immigration|diaspora|science|culture|sports|entertainment
-3. Score 0-100:
-   - score_diaspora: Does this directly affect Indian-Americans? (visa/immigration/US-India = 90+, major India news = 60-75, local India = 30-50)
-   - score_significance: How important is this for India overall?
-   - score_recency: Do NOT score recency — leave score_recency as 70, it will be recalculated in code.
-   - score_source_avail: Likely covered by PIB/RBI/USCIS press releases? yes=85, maybe=50, no=15
-4. score_total: weighted average (diaspora×0.35 + significance×0.25 + recency×0.20 + source_avail×0.20)
+3. Score each topic 0-100 on these THREE dimensions only (do NOT score recency or source_avail — these are calculated in code):
+
+score_diaspora: How relevant is this to Indians living abroad (US, UK, Australia, UAE, Canada)?
+  90-100: Directly affects diaspora lives
+    - H-1B, visa, immigration, work permits
+    - Indian American discrimination or achievement
+    - USCIS/DHS policy changes
+    - India-US bilateral relations, trade deals
+  75-89: Major India event diaspora follows closely
+    - National elections or major political shifts
+    - India-Pakistan/China conflict or diplomacy
+    - Big Indian company IPO or market move (Zepto, etc)
+    - Bollywood A-list news, cricket World Cup/IPL finals
+  65-74: Diaspora-heavy STATE events — ALWAYS score 65+:
+    - Tamil Nadu (large Tamil diaspora: US, UK, Singapore)
+    - Kerala (large Malayali diaspora: Gulf, US, UK)
+    - Punjab (large Sikh diaspora: UK, Canada, US)
+    - Andhra/Telangana (Telugu diaspora: US tech hubs)
+    - Karnataka (Kannada diaspora: Silicon Valley)
+    - Gujarat (Gujarati diaspora: US, UK, East Africa)
+    - Maharashtra (Marathi diaspora: US, UK)
+    - West Bengal (Bengali diaspora: US, UK)
+  50-64: India news diaspora is aware of but not directly affected
+    - General national politics, Supreme Court rulings
+    - India economy indicators, budget
+    - Sports (non-cricket or non-major cricket)
+  30-49: India-domestic, minimal diaspora relevance
+    - Local state crime, local politics
+    - Hyper-local city news
+    - Routine government appointments
+
+score_significance: How important is this story overall?
+  80-100: National/global scale, affects millions
+  60-79: Major regional or sectoral impact
+  40-59: Moderate significance
+  20-39: Minor or niche story
+
+4. score_total: leave as 50 — recalculated in code.
 5. urgency: breaking|daily|evergreen
 6. keywords: 3-5 search terms for finding govt press releases on this topic
 7. signal_indices: array of the [N] indices from the input that belong to this topic
