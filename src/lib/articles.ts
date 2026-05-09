@@ -45,10 +45,11 @@ type P2Row = {
   diaspora_angle: string | null;
   tags: string[] | null;
   image_url: string | null;
+  image_attribution: string | null;
 };
 
 const P2_COLS =
-  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url";
+  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url, image_attribution";
 
 function parseSources(raw: unknown): Article["sources"] {
   if (!raw || !Array.isArray(raw)) return undefined;
@@ -88,7 +89,9 @@ function mapRow(row: P2Row): Article {
     category: row.category ?? row.vertical ?? "",
     hero_image_url: row.image_url ?? "",
     image_caption: null,
-    image_credit: null,
+    image_credit: row.image_attribution ?? null,
+    // expose raw attribution for callers that want it separately
+    // (kept on image_credit too for backwards compat)
     published_at: row.published_at ?? row.created_at,
     created_at: row.created_at,
     status: row.status === "published" ? "published" : "draft",

@@ -425,12 +425,28 @@ Deno.serve(async () => {
         continue
       }
 
-      // ── Step 3: Claude Vision picks best
-      const vision = await claudePickBest(
+      // ── Step 3: Claude Vision picks best (skip duplicates already used)
+      let vision = await claudePickBest(
         candidates,
         article.headline,
         article.vertical
       )
+      let remaining = candidates.slice()
+      while (vision.url) {
+        const { data: dup } = await supabase
+          .from('p2_articles')
+          .select('id')
+          .eq('image_url', vision.url)
+          .neq('id', article.id)
+          .limit(1)
+        if (!dup || dup.length === 0) break
+        remaining = remaining.filter(c => c.url !== vision.url)
+        if (remaining.length === 0) {
+          vision = { url: null, source: null, pickIndex: 0, score: 0, candidatesEvaluated: 0 } as any
+          break
+        }
+        vision = await claudePickBest(remaining, article.headline, article.vertical)
+      }
 
       if (!vision.url) {
         await supabase.from('videshi_image_log').insert({
@@ -453,9 +469,17 @@ Deno.serve(async () => {
       const storedUrl = await downloadToStorage(vision.url, article.id)
 
       if (storedUrl) {
+        const attribution =
+          vision.source === 'wikipedia' || vision.source === 'wikimedia'
+            ? 'Wikimedia Commons'
+            : vision.source === 'unsplash'
+            ? 'Unsplash'
+            : vision.source === 'pexels'
+            ? 'Pexels'
+            : null
         await supabase
           .from('p2_articles')
-          .update({ image_url: storedUrl })
+          .update({ image_url: storedUrl, image_attribution: attribution })
           .eq('id', article.id)
 
         await supabase.from('videshi_image_log').insert({

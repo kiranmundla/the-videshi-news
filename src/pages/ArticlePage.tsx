@@ -117,11 +117,19 @@ export default function ArticlePage() {
             <div className="text-center">
               <ImageCaption
                 caption={article.image_caption}
-                credit={article.image_credit}
+                credit={null}
                 size="md"
                 align="center"
               />
             </div>
+            {article.image_credit && (
+              <p
+                className="mt-2 text-right italic"
+                style={{ fontSize: "11px", color: "#888" }}
+              >
+                Photo: {article.image_credit}
+              </p>
+            )}
           </figure>
         )}
 
