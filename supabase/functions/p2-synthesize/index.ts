@@ -39,6 +39,34 @@ function stripCitations(text: string): string {
     .trim();
 }
 
+function safeParseArticle(text: string) {
+  let cleaned = text
+    .replace(/^```json\s*/i, '')
+    .replace(/^```\s*/i, '')
+    .replace(/```\s*$/i, '')
+    .trim()
+
+  try { return JSON.parse(cleaned) } catch {}
+
+  const match = cleaned.match(/\{[\s\S]*\}/)
+  if (match) {
+    try { return JSON.parse(match[0]) } catch {}
+  }
+
+  try {
+    const fixed = cleaned.replace(/:\s*"([\s\S]*?)"/g, (_m, val) =>
+      ': "' + val
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g, '\\r')
+        .replace(/\t/g, '\\t')
+        .replace(/"/g, '\\"') + '"'
+    )
+    return JSON.parse(fixed)
+  } catch {}
+
+  return null
+}
+
 function slugify(text: string): string {
   return (
     text
@@ -147,7 +175,9 @@ Writing style:
 
 The diaspora_angle must be exactly 1 sentence explaining why Indian-Americans specifically should care.
 
-Return ONLY valid JSON. No markdown, no code fences, raw JSON only.`;
+Return ONLY valid JSON. No markdown, no code fences, raw JSON only.
+
+CRITICAL: Your response must be valid JSON. Never use unescaped double quotes inside string values. Use single quotes or escaped \\" instead. Never include raw newlines inside JSON string values — use \\n instead. Wrap all string values carefully.`;
 
       const userPrompt = `Write a news article for The Videshi about this topic:
 
@@ -199,7 +229,8 @@ Return this exact JSON structure:
       if (firstBrace > 0 || lastBrace < jsonText.length - 1) {
         jsonText = jsonText.slice(firstBrace, lastBrace + 1);
       }
-      const article = JSON.parse(jsonText);
+      const article = safeParseArticle(jsonText);
+      if (!article) throw new Error("Failed to parse Claude JSON response");
 
       if (!article.headline || !article.body) {
         throw new Error("Missing required fields in Claude response");
