@@ -33,11 +33,32 @@ Deno.serve(async (req) => {
   // 1. Fetch unprocessed signals
   const { data: signals, error: sigErr } = await supabase
     .from("p2_signals")
-    .select("id, title, feed_source_id, published_at, p2_feed_sources(name, layer, verticals)")
+    .select("id, title, feed_source_id, published_at")
     .eq("is_processed", false)
     .gte("published_at", new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString())
     .order("published_at", { ascending: false, nullsFirst: false })
     .limit(120);
+
+  // 1b. Fetch source metadata from videshi_sources
+  const sourceIds = [...new Set((signals ?? []).map((s: any) => s.feed_source_id).filter(Boolean))];
+  const { data: sourcesData } = await supabase
+    .from("videshi_sources")
+    .select("id, name, categories, priority")
+    .in("id", sourceIds);
+  const sourceMap: Record<string, any> = Object.fromEntries(
+    (sourcesData ?? []).map((s: any) => [s.id, s])
+  );
+
+  const calcRecency = (publishedAt: string | null): number => {
+    if (!publishedAt) return 50;
+    const hoursAgo = (Date.now() - new Date(publishedAt).getTime()) / 3_600_000;
+    if (hoursAgo <= 2) return 100;
+    if (hoursAgo <= 6) return 90;
+    if (hoursAgo <= 12) return 80;
+    if (hoursAgo <= 24) return 65;
+    if (hoursAgo <= 36) return 45;
+    return 25;
+  };
 
   if (sigErr) {
     return new Response(JSON.stringify({ ok: false, error: sigErr.message }), {
@@ -54,9 +75,18 @@ Deno.serve(async (req) => {
 
   // 2. Build headline list
   const headlineList = signals
-    .map((s: any, i: number) =>
-      `[${i}] "${s.title}" — ${s.p2_feed_sources?.name ?? "unknown"}`
-    )
+    .map((s: any, i: number) => {
+      const src = sourceMap[s.feed_source_id];
+      const hoursAgo = s.published_at
+        ? Math.round((Date.now() - new Date(s.published_at).getTime()) / 3_600_000)
+        : 24;
+      const tier = (src?.priority ?? 50) >= 80
+        ? "TOP-STORY"
+        : (src?.priority ?? 50) >= 60
+        ? "SECTION"
+        : "SPECIALIST";
+      return `[${i}] "${s.title}" — ${src?.name ?? "unknown"} [${tier}, ${hoursAgo}h ago]`;
+    })
     .join("\n");
 
   // 3. Claude clustering
@@ -74,7 +104,7 @@ Group headlines covering the SAME story. For each unique topic:
 3. Score 0-100:
    - score_diaspora: Does this directly affect Indian-Americans? (visa/immigration/US-India = 90+, major India news = 60-75, local India = 30-50)
    - score_significance: How important is this for India overall?
-   - score_recency: breaking news=90, today=70, this week=50, older=30
+   - score_recency: Do NOT score recency — leave score_recency as 70, it will be recalculated in code.
    - score_source_avail: Likely covered by PIB/RBI/USCIS press releases? yes=85, maybe=50, no=15
 4. score_total: weighted average (diaspora×0.35 + significance×0.25 + recency×0.20 + source_avail×0.20)
 5. urgency: breaking|daily|evergreen
@@ -185,6 +215,30 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
     const clamp = (v: any) => Math.min(100, Math.max(0, Math.round(Number(v) || 50)));
     const indices: number[] = Array.isArray(topic.signal_indices) ? topic.signal_indices : [];
 
+    // Source prominence: max priority among contributing sources
+    const validIdx = indices.filter((i) => i >= 0 && i < signals.length);
+    const maxPriority = validIdx.length > 0
+      ? Math.max(...validIdx.map((i) => sourceMap[signals[i].feed_source_id]?.priority ?? 50))
+      : 50;
+
+    // Recency: average of actual published_at scores
+    const avgRecency = validIdx.length > 0
+      ? validIdx.reduce((sum, i) => sum + calcRecency(signals[i].published_at), 0) / validIdx.length
+      : 50;
+
+    // Signal count boost: each extra source = +5, capped at 30
+    const signalBoost = Math.min((indices.length - 1) * 5, 30);
+
+    const scoreDiaspora = clamp(topic.score_diaspora);
+    const scoreSignificance = clamp(topic.score_significance);
+    const computedTotal = Math.round(
+      scoreDiaspora * 0.40 +
+        scoreSignificance * 0.20 +
+        maxPriority * 0.20 +
+        avgRecency * 0.10 +
+        signalBoost * 0.10,
+    );
+
     const { data: newTopic, error: topicErr } = await supabase
       .from("p2_topics")
       .insert({
@@ -192,11 +246,11 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
         vertical,
         category,
         urgency: topic.urgency ?? "daily",
-        score_diaspora: clamp(topic.score_diaspora),
-        score_significance: clamp(topic.score_significance),
-        score_recency: clamp(topic.score_recency),
+        score_diaspora: scoreDiaspora,
+        score_significance: scoreSignificance,
+        score_recency: Math.round(avgRecency),
         score_source_avail: clamp(topic.score_source_avail),
-        score_total: clamp(topic.score_total),
+        score_total: computedTotal,
         signal_count: indices.length || 1,
         status: "pending",
         keywords: Array.isArray(topic.keywords) ? topic.keywords : [],
