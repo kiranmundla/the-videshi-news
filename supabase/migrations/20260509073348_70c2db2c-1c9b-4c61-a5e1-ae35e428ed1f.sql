@@ -1,0 +1,1 @@
+ALTER TABLE public.p2_articles ADD COLUMN IF NOT EXISTS score_total smallint;
