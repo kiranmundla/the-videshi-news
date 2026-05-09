@@ -230,7 +230,7 @@ Deno.serve(async (req) => {
 
     // Primary feeds also feed p2_source_hunts (pre-content for matching)
     if (source.layer === "primary" && !insertErr) {
-      const huntRows = items
+      const huntRows = recentItems
         .slice(0, 30)
         .filter((i: any) => i.content && i.content.length > 100)
         .map((item: any) => ({
