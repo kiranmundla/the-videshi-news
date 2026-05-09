@@ -503,7 +503,7 @@ Deno.serve(async () => {
   })
 
   return new Response(
-    JSON.stringify({ ok: true, succeeded, rejected, elapsed, results }),
+    JSON.stringify({ ok: true, sourced, rejected, textFirst, elapsed, results }),
     { headers: { 'Content-Type': 'application/json' } }
   )
 })
