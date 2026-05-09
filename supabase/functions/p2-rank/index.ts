@@ -79,6 +79,7 @@ Group headlines covering the SAME story. For each unique topic:
 5. urgency: breaking|daily|evergreen
 6. keywords: 3-5 search terms for finding govt press releases on this topic
 7. signal_indices: array of the [N] indices from the input that belong to this topic
+8. key_entities: array of 2-5 specific named entities central to the story — people (e.g. "Suvendu Adhikari"), places (e.g. "West Bengal"), organizations ("BJP"), or events. Use canonical names.
 
 Only include topics with score_total >= 45. Max 20 topics.
 
@@ -86,7 +87,7 @@ Headlines:
 ${headlineList}
 
 Return JSON array of objects with these exact keys:
-canonical_title, vertical, score_diaspora, score_significance, score_recency, score_source_avail, score_total, urgency, keywords, signal_indices`;
+canonical_title, vertical, score_diaspora, score_significance, score_recency, score_source_avail, score_total, urgency, keywords, key_entities, signal_indices`;
 
   let topics: any[] = [];
   try {
@@ -113,29 +114,72 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
     });
   }
 
-  const sinceIso = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  // 48h dedup window with entity-aware comparison
+  const sinceIso = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
   let insertedTopics = 0;
   let skippedDupes = 0;
+
+  const { data: recentTopics } = await supabase
+    .from("p2_topics")
+    .select("id, canonical_title, keywords")
+    .gte("created_at", sinceIso);
+
+  // Lightweight extractor: capitalized 1-3 word proper-noun phrases
+  const PROPER_NOUN_RE = /\b([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+){0,2})\b/g;
+  const STOPWORDS = new Set([
+    "The", "A", "An", "In", "On", "At", "Of", "And", "Or", "But", "For", "To",
+    "From", "By", "With", "After", "Before", "India", "Indian",
+  ]);
+  const extractEntities = (title: string): string[] => {
+    const out = new Set<string>();
+    const matches = title.match(PROPER_NOUN_RE) ?? [];
+    for (const m of matches) {
+      if (STOPWORDS.has(m)) continue;
+      out.add(m.toLowerCase());
+    }
+    return [...out];
+  };
+
+  const recentEntitySets = (recentTopics ?? []).map((t: any) => {
+    const fromTitle = extractEntities(String(t.canonical_title ?? ""));
+    const fromKeywords = (Array.isArray(t.keywords) ? t.keywords : []).map((k: any) =>
+      String(k).toLowerCase()
+    );
+    return { entities: new Set<string>([...fromTitle, ...fromKeywords]) };
+  });
+
+  // Duplicate if 2+ shared entities with any recent topic
+  const isDuplicate = (candidateEntities: string[]): boolean => {
+    if (candidateEntities.length === 0) return false;
+    for (const r of recentEntitySets) {
+      let shared = 0;
+      for (const e of candidateEntities) if (r.entities.has(e)) shared++;
+      if (shared >= 2) return true;
+    }
+    return false;
+  };
 
   for (const topic of topics) {
     if (!topic?.canonical_title || !topic?.vertical) continue;
 
     const vertical = String(topic.vertical);
     const category = VERTICAL_TO_CATEGORY[vertical] ?? "news";
-    const titleSnippet = String(topic.canonical_title).slice(0, 40).replace(/[%_]/g, " ");
 
-    // 24h dedup by partial title match
-    const { data: existing } = await supabase
-      .from("p2_topics")
-      .select("id")
-      .ilike("canonical_title", `%${titleSnippet}%`)
-      .gte("created_at", sinceIso)
-      .limit(1);
+    const claudeEntities: string[] = Array.isArray(topic.key_entities)
+      ? topic.key_entities.map((e: any) => String(e))
+      : [];
+    const titleEntities = extractEntities(String(topic.canonical_title));
+    const candidateEntities = [
+      ...new Set([...claudeEntities, ...titleEntities].map((e) => e.toLowerCase())),
+    ];
 
-    if (existing && existing.length > 0) {
+    if (isDuplicate(candidateEntities)) {
       skippedDupes++;
       continue;
     }
+
+    // Track this topic so subsequent topics in the same run also dedup against it
+    recentEntitySets.push({ entities: new Set<string>(candidateEntities) });
 
     const clamp = (v: any) => Math.min(100, Math.max(0, Math.round(Number(v) || 50)));
     const indices: number[] = Array.isArray(topic.signal_indices) ? topic.signal_indices : [];
