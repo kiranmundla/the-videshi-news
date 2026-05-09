@@ -102,6 +102,7 @@ async function findSourceHunts(_topicId: string, keywords: string[]) {
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   const startTime = Date.now();
+  const start = Date.now();
 
   // 1. Top-scored pending topics
   const { data: topics, error: topicErr } = await supabase
