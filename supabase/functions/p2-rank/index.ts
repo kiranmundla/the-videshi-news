@@ -309,11 +309,11 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
 
     const scoreSignificance = clamp(topic.score_significance);
 
-    // New base score (no source_priority in base)
+    // New weights — diaspora is the primary driver
     const baseScore = Math.round(
-      scoreDiaspora * 0.45 +
-        scoreSignificance * 0.25 +
-        avgRecency * 0.30,
+      scoreDiaspora     * 0.55 +
+        scoreSignificance * 0.35 +
+        avgRecency        * 0.10,
     );
 
     // Apply boosts
