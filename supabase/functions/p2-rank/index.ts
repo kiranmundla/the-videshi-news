@@ -75,9 +75,18 @@ Deno.serve(async (req) => {
 
   // 2. Build headline list
   const headlineList = signals
-    .map((s: any, i: number) =>
-      `[${i}] "${s.title}" — ${s.p2_feed_sources?.name ?? "unknown"}`
-    )
+    .map((s: any, i: number) => {
+      const src = sourceMap[s.feed_source_id];
+      const hoursAgo = s.published_at
+        ? Math.round((Date.now() - new Date(s.published_at).getTime()) / 3_600_000)
+        : 24;
+      const tier = (src?.priority ?? 50) >= 80
+        ? "TOP-STORY"
+        : (src?.priority ?? 50) >= 60
+        ? "SECTION"
+        : "SPECIALIST";
+      return `[${i}] "${s.title}" — ${src?.name ?? "unknown"} [${tier}, ${hoursAgo}h ago]`;
+    })
     .join("\n");
 
   // 3. Claude clustering
@@ -95,7 +104,7 @@ Group headlines covering the SAME story. For each unique topic:
 3. Score 0-100:
    - score_diaspora: Does this directly affect Indian-Americans? (visa/immigration/US-India = 90+, major India news = 60-75, local India = 30-50)
    - score_significance: How important is this for India overall?
-   - score_recency: breaking news=90, today=70, this week=50, older=30
+   - score_recency: Do NOT score recency — leave score_recency as 70, it will be recalculated in code.
    - score_source_avail: Likely covered by PIB/RBI/USCIS press releases? yes=85, maybe=50, no=15
 4. score_total: weighted average (diaspora×0.35 + significance×0.25 + recency×0.20 + source_avail×0.20)
 5. urgency: breaking|daily|evergreen
