@@ -44,3 +44,6 @@ verify_jwt = false
 
 [functions.admin-pin-article]
 verify_jwt = false
+
+[functions.gemini-test]
+verify_jwt = false
