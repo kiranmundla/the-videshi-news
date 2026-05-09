@@ -110,7 +110,7 @@ Deno.serve(async (req) => {
     .eq("status", "pending")
     .gte("score_total", 60)
     .order("score_total", { ascending: false })
-    .limit(6);
+    .limit(2);
 
   if (topicErr) {
     return new Response(JSON.stringify({ ok: false, error: topicErr.message }), {
