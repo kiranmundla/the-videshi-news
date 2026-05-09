@@ -259,17 +259,10 @@ Return this exact JSON structure:
           topic: topic.canonical_title,
           responsePreview: textContent.slice(0, 2000),
         });
-        await supabase.from("p2_topics").update({ status: "pending" }).eq("id", topic.id);
         await supabase.from("pipeline_alerts").insert({
-          agent: "p2-synthesize",
-          severity: "error",
-          error_type: "json_parse_failed",
-          message: `Failed to parse Claude JSON response for ${topic.canonical_title}`,
-        });
-        results.push({
-          topic: topic.canonical_title,
-          status: "error",
-          error: "Failed to parse Claude JSON response",
+          agent: 'p2-synthesize',
+          severity: 'warning',
+          message: 'Skipped topic — unparseable JSON response'
         });
         continue;
       }
