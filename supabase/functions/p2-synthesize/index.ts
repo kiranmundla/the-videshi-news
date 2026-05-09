@@ -40,41 +40,30 @@ function stripCitations(text: string): string {
     .trim()
 }
 
-function extractArticle(raw: string): any {
-  let text = raw
+function extractArticle(text: string): any {
+  const clean = text
     .replace(/^```json\s*/i, '')
     .replace(/^```\s*/i, '')
     .replace(/```\s*$/i, '')
     .trim()
 
-  const start = text.indexOf('{')
-  const end = text.lastIndexOf('}')
-  if (start === -1 || end === -1) return null
-  text = text.slice(start, end + 1)
+  let article = null
 
-  try { return JSON.parse(text) } catch {}
-
-  text = text
-    .replace(/[\u201C\u201D]/g, '"')
-    .replace(/[\u2018\u2019]/g, "'")
-
-  try { return JSON.parse(text) } catch {}
-
-  text = text.replace(
-    /("(?:body|headline|subheadline|diaspora_angle)"\s*:\s*")([\s\S]*?)("(?:,|\s*[}\]]))/g,
-    (_, prefix, content, suffix) => {
-      const fixed = content
-        .replace(/(?<!\\)"/g, "'")
-        .replace(/\n/g, '\\n')
-        .replace(/\r/g, '')
-        .replace(/\t/g, ' ')
-      return prefix + fixed + suffix
+  try {
+    article = JSON.parse(clean)
+  } catch {
+    const start = clean.indexOf('{')
+    const end = clean.lastIndexOf('}')
+    if (start !== -1 && end !== -1) {
+      try {
+        article = JSON.parse(clean.slice(start, end + 1))
+      } catch {
+        article = null
+      }
     }
-  )
+  }
 
-  try { return JSON.parse(text) } catch {}
-
-  return null
+  return article
 }
 
 function slugify(text: string): string {
@@ -212,7 +201,13 @@ CRITICAL JSON RULES — never break these:
 - For dialogue or attribution use single quotes: He said 'this is important'
 - For emphasis use asterisks: *important point*
 - Your entire response must be parseable by JSON.parse() with no pre-processing
-- Test mentally: would JSON.parse(yourResponse) throw an error? If yes, fix it before responding`;
+- Test mentally: would JSON.parse(yourResponse) throw an error? If yes, fix it before responding
+OUTPUT FORMAT: Respond with valid JSON only.
+The body field will contain article text.
+Any quotation marks within the body text MUST use single quotes instead of double quotes.
+Example: He said 'this matters' not He said 'this matters'.
+Never use \" escape sequences.
+Write body text as if double quotes do not exist.`;
 
       const userPrompt = `Write a news article for The Videshi about this topic:
 
@@ -264,17 +259,15 @@ Return this exact JSON structure:
           topic: topic.canonical_title,
           responsePreview: textContent.slice(0, 2000),
         });
-        await supabase.from("p2_topics").update({ status: "pending" }).eq("id", topic.id);
         await supabase.from("pipeline_alerts").insert({
-          agent: "p2-synthesize",
-          severity: "error",
-          error_type: "json_parse_failed",
-          message: `Failed to parse Claude JSON response for ${topic.canonical_title}`,
+          agent: 'p2-synthesize',
+          severity: 'warning',
+          message: 'Skipped topic — unparseable JSON response'
         });
         results.push({
           topic: topic.canonical_title,
           status: "error",
-          error: "Failed to parse Claude JSON response",
+          error: "Skipped topic — unparseable JSON response",
         });
         continue;
       }
