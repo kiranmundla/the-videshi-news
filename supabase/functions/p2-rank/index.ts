@@ -43,7 +43,7 @@ Deno.serve(async (req) => {
   const sourceIds = [...new Set((signals ?? []).map((s: any) => s.feed_source_id).filter(Boolean))];
   const { data: sourcesData } = await supabase
     .from("videshi_sources")
-    .select("id, name, categories, priority")
+    .select("id, name, slug, categories, priority")
     .in("id", sourceIds);
   const sourceMap: Record<string, any> = Object.fromEntries(
     (sourcesData ?? []).map((s: any) => [s.id, s])
