@@ -435,15 +435,7 @@ export type Database = {
           topic_id?: string | null
           url_hash?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "p2_signals_feed_source_id_fkey"
-            columns: ["feed_source_id"]
-            isOneToOne: false
-            referencedRelation: "videshi_sources"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       p2_source_hunts: {
         Row: {
