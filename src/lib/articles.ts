@@ -107,33 +107,18 @@ function mapRow(row: P2Row): Article {
 }
 
 export async function getFeaturedArticle(): Promise<Article | null> {
-  // Featured hero: highest score_total among published articles in the last 24h
-  // (must have a real image).
-  const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-
+  // Featured hero: highest score_total among published articles in the last 24h.
   const { data } = await supabase
     .from("p2_articles")
     .select(P2_COLS)
     .eq("status", "published")
-    .gte("published_at", since)
-    .not("image_url", "is", null)
-    .neq("image_url", "")
+    .gte("published_at", new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString())
+    .not("score_total", "is", null)
     .order("score_total", { ascending: false })
     .limit(1)
     .maybeSingle();
 
-  if (data) return mapRow(data as P2Row);
-
-  const { data: fallback } = await supabase
-    .from("p2_articles")
-    .select(P2_COLS)
-    .eq("status", "published")
-    .not("image_url", "is", null)
-    .neq("image_url", "")
-    .order("score_total", { ascending: false })
-    .limit(1)
-    .maybeSingle();
-  return fallback ? mapRow(fallback as P2Row) : null;
+  return data ? mapRow(data as P2Row) : null;
 }
 
 export function readingTime(markdown: string) {
