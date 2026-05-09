@@ -466,12 +466,12 @@ Deno.serve(async () => {
   const { data: articles, error } = await supabase
     .from('p2_articles')
     .select(`
-      id, headline, vertical, tags,
+      id, headline, vertical, tags, image_must_show,
       topic_id,
       p2_topics ( keywords )
     `)
     .is('image_url', null)
-    .in('status', ['published', 'review'])
+    .eq('status', 'published')
     .order('published_at', { ascending: false, nullsFirst: false })
     .limit(8)
 
