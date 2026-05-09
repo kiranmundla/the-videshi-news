@@ -197,6 +197,7 @@ export type Database = {
           is_featured: boolean
           published_at: string | null
           reviewed_at: string | null
+          score_total: number | null
           slug: string | null
           sources: Json
           status: string
@@ -223,6 +224,7 @@ export type Database = {
           is_featured?: boolean
           published_at?: string | null
           reviewed_at?: string | null
+          score_total?: number | null
           slug?: string | null
           sources?: Json
           status?: string
@@ -249,6 +251,7 @@ export type Database = {
           is_featured?: boolean
           published_at?: string | null
           reviewed_at?: string | null
+          score_total?: number | null
           slug?: string | null
           sources?: Json
           status?: string
