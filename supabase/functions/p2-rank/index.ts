@@ -386,28 +386,15 @@ Maximum 20 ranked_topics.
       ? Math.max(...validIdx.map((i) => sourceMap[signals[i].feed_source_id]?.priority ?? 50))
       : 50;
 
-    // Recency: average of actual published_at scores
-    const avgRecency = validIdx.length > 0
-      ? validIdx.reduce((sum, i) => sum + calcRecency(signals[i].published_at), 0) / validIdx.length
-      : 50;
-
     const scoreDiaspora = clamp(topic.score_diaspora);
     const scoreSignificance = clamp(topic.score_significance);
 
-    // Option B: Trust Gemini's diaspora scoring
-    // Only add what Gemini can't know: recency + signal count
-    const signalBoost = Math.min((indices.length - 1) * 7, 21);
-
-    const computedTotal = Math.min(100, Math.max(0, Math.round(
+    const computedTotal = Math.min(100, Math.round(
       scoreDiaspora    * 0.60 +
-      scoreSignificance * 0.30 +
-      avgRecency        * 0.10 +
-      signalBoost
-      + (scoreDiaspora < 50 ? -10 : 0)
-    )));
+      scoreSignificance * 0.30
+    ));
 
-    // Hard reject: not diaspora relevant
-    if (computedTotal < 55 || scoreDiaspora < 45) continue;
+    if (scoreDiaspora < 45) continue;
 
     const { data: newTopic, error: topicErr } = await supabase
       .from("p2_topics")
