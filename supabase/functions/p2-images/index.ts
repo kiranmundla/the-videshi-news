@@ -468,7 +468,7 @@ Deno.serve(async () => {
     .select(`
       id, headline, vertical, tags, image_must_show,
       topic_id,
-      p2_topics ( keywords )
+      p2_topics ( keywords, image_search_query )
     `)
     .is('image_url', null)
     .eq('status', 'published')
@@ -527,11 +527,11 @@ Deno.serve(async () => {
 
       const sourceUrls = (hunts ?? []).map(h => h.url)
 
-      // ── Step 1: Claude extracts entity + query
-      const { entity, query } = await extractEntityAndQuery(
-        article.headline,
-        article.vertical
-      )
+      // ── Step 1: Use Gemini-provided query if available, else Claude extracts
+      const geminiQuery = (article as any).p2_topics?.image_search_query;
+      const { entity, query } = geminiQuery
+        ? { entity: geminiQuery, query: geminiQuery }
+        : await extractEntityAndQuery(article.headline, article.vertical);
 
       // ── Step 2: Collect candidates from all tiers
       const candidates: Array<{ url: string; source: string; attribution: string | null }> = []

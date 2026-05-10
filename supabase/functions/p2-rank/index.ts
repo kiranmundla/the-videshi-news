@@ -169,7 +169,7 @@ For each topic return:
 - synthesis_angle: one sentence diaspora angle
 - image:
   {
-    url: direct accessible image URL,
+    search_query: best 4-6 word image search query e.g. 'Kerala Congress Chief Minister assembly' NOT generic like 'India politics news'. Use specific names, places, events,
     source: "Wikimedia Commons|PIB|Unsplash|Pexels",
     attribution: exact credit text for display,
     alt_text: image description,
@@ -424,6 +424,7 @@ Maximum 20 ranked_topics.
         image_url: topic.image?.url ?? null,
         image_attribution: topic.image?.attribution ?? null,
         image_license: topic.image?.license ?? null,
+        image_search_query: topic.image?.search_query ?? null,
       })
       .select("id")
       .single();

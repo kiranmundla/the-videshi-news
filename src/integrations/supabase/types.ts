@@ -559,6 +559,7 @@ export type Database = {
           id: string
           image_attribution: string | null
           image_license: string | null
+          image_search_query: string | null
           image_url: string | null
           keywords: string[]
           score_diaspora: number | null
@@ -579,6 +580,7 @@ export type Database = {
           id?: string
           image_attribution?: string | null
           image_license?: string | null
+          image_search_query?: string | null
           image_url?: string | null
           keywords?: string[]
           score_diaspora?: number | null
@@ -599,6 +601,7 @@ export type Database = {
           id?: string
           image_attribution?: string | null
           image_license?: string | null
+          image_search_query?: string | null
           image_url?: string | null
           keywords?: string[]
           score_diaspora?: number | null
