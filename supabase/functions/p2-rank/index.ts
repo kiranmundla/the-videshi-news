@@ -364,7 +364,7 @@ Maximum 20 ranked_topics.
     )));
 
     // Hard reject: not diaspora relevant
-    if (computedTotal < 45 || scoreDiaspora < 35) continue;
+    if (computedTotal < 55 || scoreDiaspora < 45) continue;
 
     const { data: newTopic, error: topicErr } = await supabase
       .from("p2_topics")
