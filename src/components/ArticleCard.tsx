@@ -49,7 +49,7 @@ export default function ArticleCard({
             src={article.hero_image_url}
             alt={article.title}
             loading="lazy"
-            className="w-20 h-20 object-cover flex-shrink-0"
+            className="w-20 h-20 object-cover object-top flex-shrink-0"
           />
         )}
         <div
@@ -109,7 +109,7 @@ export default function ArticleCard({
               src={article.hero_image_url}
               alt={article.title}
               loading="lazy"
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-top"
             />
           </div>
         </figure>
@@ -201,7 +201,7 @@ export default function ArticleCard({
             src={article.hero_image_url}
             alt={article.title}
             loading={variant === "hero" ? "eager" : "lazy"}
-            className="w-full h-full object-cover object-center group-hover:scale-[1.01] transition-transform duration-500"
+            className="w-full h-full object-cover object-top group-hover:scale-[1.01] transition-transform duration-500"
           />
         </div>
       </figure>
