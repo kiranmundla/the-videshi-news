@@ -533,13 +533,22 @@ Deno.serve(async () => {
       if (geminiImageUrl) {
         try {
           const testRes = await fetch(geminiImageUrl, {
-            method: 'HEAD',
+            method: 'GET',
             headers: { 'User-Agent': 'TheVideshi/1.0' },
             signal: AbortSignal.timeout(5000)
           });
-          if (testRes.ok &&
-              testRes.headers.get('content-type')?.startsWith('image/')) {
-            const storedUrl = await downloadToStorage(geminiImageUrl, article.id);
+          const contentType = testRes.headers.get('content-type') ?? '';
+          if (testRes.ok && contentType.startsWith('image/')) {
+            // Use the response body directly instead of downloading again
+            const buffer = await testRes.arrayBuffer();
+            const ext = contentType.includes('png') ? 'png' : 'jpg';
+            const filename = `p2-${article.id}-${Date.now()}.${ext}`;
+            const { error: upErr } = await supabase.storage
+              .from(BUCKET)
+              .upload(filename, buffer, { contentType, upsert: false });
+            const storedUrl = upErr
+              ? geminiImageUrl
+              : `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${filename}`;
             if (storedUrl) {
               await supabase.from('p2_articles')
                 .update({
