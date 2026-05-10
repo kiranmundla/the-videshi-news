@@ -9,7 +9,6 @@ export default {
       center: true,
       padding: "1.25rem",
       screens: { "2xl": "1200px" },
-      maxWidth: "1200px",
     },
     extend: {
       fontFamily: {
