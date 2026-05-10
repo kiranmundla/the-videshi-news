@@ -118,7 +118,7 @@ export default function ArticleCard({
         </figure>
         <div>
           <p className="smallcaps text-primary mb-3">
-            {featureLabel ? "Feature" : "Long read"} · {article.category}
+            {article.category}
           </p>
           <h2 className="font-serif font-bold text-2xl md:text-4xl leading-[1.15] text-foreground group-hover:text-primary transition-colors">
             {article.title}
