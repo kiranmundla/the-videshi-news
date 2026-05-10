@@ -181,6 +181,27 @@ export type Database = {
         }
         Relationships: []
       }
+      gemini_test_results: {
+        Row: {
+          created_at: string | null
+          gemini_response: Json | null
+          headlines: Json | null
+          id: string
+        }
+        Insert: {
+          created_at?: string | null
+          gemini_response?: Json | null
+          headlines?: Json | null
+          id?: string
+        }
+        Update: {
+          created_at?: string | null
+          gemini_response?: Json | null
+          headlines?: Json | null
+          id?: string
+        }
+        Relationships: []
+      }
       p2_articles: {
         Row: {
           body: string
