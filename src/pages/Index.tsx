@@ -270,6 +270,8 @@ export default function Index() {
         ))}
       </main>
 
+      <ArticleCarousel />
+
       <SiteFooter lastUpdated={lastUpdated} />
     </div>
   );
