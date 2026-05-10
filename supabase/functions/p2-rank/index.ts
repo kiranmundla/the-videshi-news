@@ -421,6 +421,9 @@ Maximum 20 ranked_topics.
         signal_count: indices.length || 1,
         status: "pending",
         keywords: Array.isArray(topic.keywords) ? topic.keywords : [],
+        image_url: topic.image?.url ?? null,
+        image_attribution: topic.image?.attribution ?? null,
+        image_license: topic.image?.license ?? null,
       })
       .select("id")
       .single();
