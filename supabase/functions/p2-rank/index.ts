@@ -12,9 +12,6 @@ const supabase = createClient(
   Deno.env.get("SUPABASE_URL")!,
   Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
 );
-
-const anthropic = new Anthropic({ apiKey: Deno.env.get("ANTHROPIC_API_KEY")! });
-
 const VERTICAL_TO_CATEGORY: Record<string, string> = {
   politics: "news",
   economy: "markets-finance",
