@@ -1313,6 +1313,7 @@ export type Database = {
           title: string
         }[]
       }
+      trigger_full_pipeline: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
