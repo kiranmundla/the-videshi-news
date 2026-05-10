@@ -487,7 +487,7 @@ Maximum 20 ranked_topics.
             image_source: p.image?.source,
             image_attribution: p.image?.attribution,
             image_license: p.image?.license,
-            related_topic: p.related_article_topic,
+            related_topic: p.related_topic,
             fetched_at: new Date().toISOString(),
           })),
         { onConflict: "image_url", ignoreDuplicates: true }
