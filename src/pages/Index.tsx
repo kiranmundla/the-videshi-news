@@ -295,10 +295,12 @@ export default function Index() {
       <Masthead />
       <CategoryPills />
 
-      {featuredArticle && <FeaturedHero article={featuredArticle} />}
-
-      <main className="container flex-1 pt-8 md:pt-10">
-        {topStories.length >= 2 && <TopStoriesSection initial={topStories} />}
+      {featuredArticle && (
+        <main className="container flex-1 pt-6 md:pt-8">
+          <div className="mb-10">
+            <FeaturedHero article={featuredArticle} />
+          </div>
+          {topStories.length >= 2 && <TopStoriesSection initial={topStories} />}
 
         {topClusters.length > 0 && (
           <section className="mt-12">
