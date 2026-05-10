@@ -79,7 +79,7 @@ export default function ArticleCard({
   if (variant === "long") {
     if (!hasImage) {
       return (
-        <Link
+        <Link onClick={saveScroll}
           to={href}
           className="group block bg-secondary/60 p-6 md:p-10 border hairline border-l-2"
           style={{ borderLeftColor: accent }}
@@ -102,7 +102,7 @@ export default function ArticleCard({
       );
     }
     return (
-      <Link
+      <Link onClick={saveScroll}
         to={href}
         className="group grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-secondary/60 p-6 md:p-10 border hairline"
       >
@@ -155,7 +155,7 @@ export default function ArticleCard({
     const isLarge = variant === "hero" || variant === "featured";
     const RED = "#C0392B";
     return (
-      <Link
+      <Link onClick={saveScroll}
         to={href}
         className={`group block bg-secondary/50 border-l-4 hairline border-t border-r border-b ${
           isLarge ? "p-6 md:p-8" : "p-4"
