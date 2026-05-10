@@ -9,7 +9,7 @@ type Slide = {
   category: string | null;
 };
 
-const AUTO_MS = 6000;
+const AUTO_MS = 5000;
 const MIN_SWIPE = 30;
 
 export default function ArticleCarousel() {
@@ -31,7 +31,16 @@ export default function ArticleCarousel() {
       .limit(3)
       .then(({ data }: { data: Slide[] | null }) => {
         if (cancelled || !data) return;
-        setSlides(data.filter((d) => d.slug && d.image_url));
+        const valid = data.filter(
+          (d) =>
+            d.slug &&
+            d.image_url &&
+            !d.image_url.toLowerCase().endsWith(".svg") &&
+            !/Flag_of_|flag_of_/i.test(d.image_url) &&
+            !/hindustantimes\.com|htmedia/i.test(d.image_url)
+        );
+        if (valid.length < 2) return;
+        setSlides(valid);
       });
     return () => {
       cancelled = true;
@@ -68,7 +77,7 @@ export default function ArticleCarousel() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-muted h-[280px] md:h-[560px] my-10 select-none"
+      className="relative w-full overflow-hidden bg-muted h-[200px] my-6 select-none"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carousel"

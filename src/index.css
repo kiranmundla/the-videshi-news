@@ -65,6 +65,8 @@
 }
 
 @layer utilities {
+  .font-display { font-family: 'Playfair Display', Georgia, serif; }
+  .font-body-serif { font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif; }
   .hairline { border-color: hsl(var(--rule)); }
   .smallcaps {
     font-family: 'Inter', sans-serif;

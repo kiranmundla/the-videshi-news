@@ -6,40 +6,34 @@ import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
 import ArticleCarousel from "@/components/ArticleCarousel";
-import { Article, getArticlesByCategory, getFeaturedArticle, getPublishedArticles } from "@/lib/articles";
+import FeaturedHero from "@/components/FeaturedHero";
+import EventCluster from "@/components/EventCluster";
+import TopStoriesCard from "@/components/TopStoriesCard";
+import {
+  Article,
+  getArticlesByCategory,
+  getFeaturedArticle,
+  getTopStories,
+} from "@/lib/articles";
 
-type SectionDef = { slug: string; label: string; limit: number; href: string };
-
-const NEWS_SECTION: SectionDef = {
-  slug: "news",
-  label: "News",
-  limit: 6,
-  href: "/news",
-};
+type SectionDef = { slug: string; label: string; href: string };
 
 const CATEGORY_SECTIONS: SectionDef[] = [
-  { slug: "nri-world", label: "Indians Around the World", limit: 6, href: "/nri-world" },
-  { slug: "markets-finance", label: "Markets & Finance", limit: 3, href: "/markets-finance" },
-  { slug: "entertainment", label: "Entertainment", limit: 3, href: "/entertainment" },
-  { slug: "technology", label: "Technology", limit: 3, href: "/technology" },
-  { slug: "sports", label: "Sports", limit: 3, href: "/sports" },
-  { slug: "travel", label: "Travel", limit: 3, href: "/travel" },
-  { slug: "lifestyle-health", label: "Lifestyle & Health", limit: 3, href: "/lifestyle-health" },
-  { slug: "food", label: "Food", limit: 3, href: "/food" },
+  { slug: "nri-world", label: "Indians Around the World", href: "/nri-world" },
+  { slug: "markets-finance", label: "Markets & Finance", href: "/markets-finance" },
+  { slug: "sports", label: "Sports", href: "/sports" },
+  { slug: "technology", label: "Technology", href: "/technology" },
+  { slug: "entertainment", label: "Entertainment", href: "/entertainment" },
+  { slug: "lifestyle-health", label: "Lifestyle & Health", href: "/lifestyle-health" },
+  { slug: "travel", label: "Travel", href: "/travel" },
+  { slug: "food", label: "Food", href: "/food" },
 ];
 
-const PLACEHOLDER_SECTIONS = [
-  { slug: "events", label: "Events", message: "Coming soon." },
-  { slug: "classifieds", label: "Classifieds", message: "Be the first to post." },
-];
-
-const CLUSTERS: { label: string; tags: string[]; excludeSlugs?: string[] }[] = [
-  {
-    label: "Bengal Elections",
-    tags: ["west bengal", "mamata", "bjp bengal"],
-    excludeSlugs: ["election-commission-seizures-1400-crore-assembly-polls-2025"],
-  },
-  { label: "Tamil Nadu", tags: ["tamil nadu", "tamilnadu"] },
+const CLUSTERS: { label: string; tags: string[] }[] = [
+  { label: "BENGAL: BJP TAKES POWER", tags: ["bengal elections", "bjp bengal", "suvendu"] },
+  { label: "TAMIL NADU: VIJAY'S GOVERNMENT", tags: ["tamil nadu", "vijay cm", "tvk"] },
+  { label: "GULF CRISIS: OIL & WAR", tags: ["iran", "us-iran", "hormuz"] },
+  { label: "IPL 2026 PLAYOFF RACE", tags: ["ipl 2026", "ipl playoffs"] },
 ];
 
 function tagsLower(a: Article) {
@@ -52,13 +46,23 @@ function matchesCluster(a: Article, tags: string[]) {
 
 function SectionHeader({ label, href, id }: { label: string; href?: string; id?: string }) {
   return (
-    <div id={id} className="flex items-end justify-between mt-14 mb-7 gap-4 scroll-mt-24">
-      <div className="flex items-center gap-4 flex-1 min-w-0">
-        <span className="smallcaps text-primary whitespace-nowrap">{label}</span>
-        <span className="flex-1 bg-rule" style={{ height: "0.5px" }} />
-      </div>
+    <div
+      id={id}
+      className="flex items-center justify-between mt-14 mb-6 gap-4 pb-3 scroll-mt-24"
+      style={{ borderBottom: "1px solid hsl(var(--rule))" }}
+    >
+      <span
+        className="font-bold uppercase"
+        style={{ fontSize: 11, letterSpacing: "0.12em", color: "#888" }}
+      >
+        {label}
+      </span>
       {href && (
-        <Link to={href} className="smallcaps text-foreground/70 hover:text-primary whitespace-nowrap">
+        <Link
+          to={href}
+          className="font-bold uppercase hover:text-primary"
+          style={{ fontSize: 11, letterSpacing: "0.12em", color: "#888" }}
+        >
           View all →
         </Link>
       )}
@@ -66,49 +70,8 @@ function SectionHeader({ label, href, id }: { label: string; href?: string; id?:
   );
 }
 
-function EmptyPlaceholder({ message }: { message: string }) {
-  return <p className="py-8 text-center text-muted-foreground">{message}</p>;
-}
-
-type HomeSection = { slug: string; label: string; limit: number; href: string; pool: Article[] };
-
-function HomeCategorySection({ section }: { section: HomeSection }) {
-  const initial = Math.min(section.limit, section.pool.length);
-  const [visible, setVisible] = useState(initial);
-  const items = section.pool.slice(0, visible);
-  const canLoadMore = visible < section.pool.length;
-  return (
-    <section>
-      <SectionHeader label={section.label} href={section.href} id={`section-${section.slug}`} />
-      {items.length > 0 ? (
-        <>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-            {items.map((a, i) => (
-              <div key={a.id} className={i >= initial ? "animate-fade-in" : ""}>
-                <ArticleCard article={a} variant="card" hideCategory />
-              </div>
-            ))}
-          </div>
-          {canLoadMore && (
-            <div className="mt-8 text-center">
-              <button
-                onClick={() => setVisible((v) => Math.min(12, v + 3))}
-                className="smallcaps text-foreground/80 hover:text-primary border-b border-rule hover:border-primary pb-1 transition-colors"
-              >
-                More {section.label} stories →
-              </button>
-            </div>
-          )}
-        </>
-      ) : (
-        <EmptyPlaceholder message="We're publishing fresh stories — check back in a few hours." />
-      )}
-    </section>
-  );
-}
-
 export default function Index() {
-  const [newsPool, setNewsPool] = useState<Article[]>([]);
+  const [topPool, setTopPool] = useState<Article[]>([]);
   const [sectionPools, setSectionPools] = useState<Record<string, Article[]>>({});
   const [featuredArticle, setFeaturedArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
@@ -116,19 +79,19 @@ export default function Index() {
 
   useEffect(() => {
     const sectionFetches = CATEGORY_SECTIONS.map((s) =>
-      getArticlesByCategory(s.slug, 6).then((items) => [s.slug, items] as const)
+      getArticlesByCategory(s.slug, 3).then((items) => [s.slug, items] as const)
     );
     Promise.all([
-      getArticlesByCategory(NEWS_SECTION.slug, 12),
+      getTopStories(20),
       getFeaturedArticle(),
       ...sectionFetches,
     ]).then((results) => {
-      const [news, featured, ...sectionResults] = results as [
+      const [top, featured, ...sectionResults] = results as [
         Article[],
         Article | null,
         ...(readonly [string, Article[]])[]
       ];
-      setNewsPool(news);
+      setTopPool(top);
       setFeaturedArticle(featured);
       setSectionPools(
         Object.fromEntries(sectionResults as (readonly [string, Article[]])[])
@@ -139,40 +102,34 @@ export default function Index() {
   }, []);
 
   const layout = useMemo(() => {
-    const featured = featuredArticle;
-    const featuredId = featured?.id;
+    const featuredId = featuredArticle?.id;
+    const filtered = featuredId ? topPool.filter((a) => a.id !== featuredId) : topPool;
 
-    const filteredNewsPool = featuredId
-      ? newsPool.filter((a) => a.id !== featuredId)
-      : newsPool;
-
-    const clusterUsed = new Set<string>();
-    const newsClusters: { label: string; items: Article[] }[] = [];
+    const used = new Set<string>();
+    const clusters: { label: string; items: Article[] }[] = [];
     for (const c of CLUSTERS) {
-      const items = filteredNewsPool.filter(
-        (a) =>
-          !clusterUsed.has(a.id) &&
-          !(c.excludeSlugs ?? []).includes(a.slug) &&
-          matchesCluster(a, c.tags)
+      const items = filtered.filter(
+        (a) => !used.has(a.id) && matchesCluster(a, c.tags)
       );
       if (items.length >= 2) {
-        newsClusters.push({ label: c.label, items });
-        items.forEach((a) => clusterUsed.add(a.id));
+        clusters.push({ label: c.label, items });
+        items.forEach((a) => used.add(a.id));
       }
     }
-    const newsUngrouped = filteredNewsPool
-      .filter((a) => !clusterUsed.has(a.id))
-      .slice(0, NEWS_SECTION.limit);
+    const topClusters = clusters.slice(0, 2);
+    topClusters.forEach((c) => c.items.forEach((a) => used.add(a.id)));
+
+    const topStories = filtered.filter((a) => !used.has(a.id)).slice(0, 6);
 
     const sections = CATEGORY_SECTIONS.map((s) => ({
       ...s,
-      pool: (sectionPools[s.slug] ?? [])
+      items: (sectionPools[s.slug] ?? [])
         .filter((a) => a.id !== featuredId)
-        .slice(0, 6),
-    }));
+        .slice(0, 3),
+    })).filter((s) => s.items.length >= 2);
 
-    return { featured, newsClusters, newsUngrouped, sections };
-  }, [newsPool, sectionPools, featuredArticle]);
+    return { topClusters, topStories, sections };
+  }, [topPool, sectionPools, featuredArticle]);
 
   if (loading) {
     return (
@@ -184,8 +141,7 @@ export default function Index() {
     );
   }
 
-  const { featured, newsClusters, newsUngrouped, sections } = layout;
-  const hasNewsContent = newsClusters.length > 0 || newsUngrouped.length > 0;
+  const { topClusters, topStories, sections } = layout;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -197,77 +153,49 @@ export default function Index() {
         />
         <meta property="og:title" content="The Videshi" />
         <meta property="og:description" content="News for the global Indian diaspora" />
-        {featured && <meta property="og:image" content={featured.hero_image_url} />}
+        {featuredArticle && <meta property="og:image" content={featuredArticle.hero_image_url} />}
         <link rel="canonical" href="/" />
       </Helmet>
 
       <Masthead />
       <CategoryPills />
 
+      {featuredArticle && <FeaturedHero article={featuredArticle} />}
+
+      <ArticleCarousel />
+
       <main className="container flex-1 pt-8 md:pt-10">
-        {featured && (
-          <div>
-            <div className="flex items-center gap-4 mb-5">
-              <span className="smallcaps text-primary whitespace-nowrap">Featured</span>
-              <span className="flex-1 bg-rule" style={{ height: "0.5px" }} />
+        {topStories.length >= 2 && (
+          <section>
+            <SectionHeader label="Top Stories" id="section-top" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 auto-rows-fr">
+              {topStories.map((a, i) => (
+                <div key={a.id} className={i === 0 ? "md:col-span-2" : ""}>
+                  <TopStoriesCard article={a} size={i === 0 ? "lg" : "md"} />
+                </div>
+              ))}
             </div>
-            <ArticleCard article={featured} variant="hero" featured />
-          </div>
+          </section>
         )}
 
-        <section>
-          <SectionHeader label={NEWS_SECTION.label} href={NEWS_SECTION.href} id="section-news" />
-          {hasNewsContent ? (
-            <>
-              {newsClusters.map((c, idx) => {
-                const isLast = idx === newsClusters.length - 1 && newsUngrouped.length === 0;
-                return (
-                  <div key={c.label}>
-                    <div className="rounded-lg border border-rule bg-secondary/40 p-4 md:p-5 mb-8">
-                      <p className="border-l-[3px] border-primary pl-2 mb-3 text-[11px] font-bold uppercase tracking-[0.1em] text-primary">
-                        {c.label}
-                      </p>
-                      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-                        {c.items.map((a) => (
-                          <ArticleCard key={a.id} article={a} variant="card" hideCategory />
-                        ))}
-                      </div>
-                    </div>
-                    {!isLast && <hr className="border-0 border-t border-rule mt-10 mb-6" />}
-                  </div>
-                );
-              })}
-              {newsUngrouped.length > 0 && (
-                <>
-                  {newsClusters.length > 0 && (
-                    <>
-                      <hr className="border-0 border-t border-rule mt-10 mb-6" />
-                      <p className="smallcaps text-foreground/70 mb-4">Latest</p>
-                    </>
-                  )}
-                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
-                    {newsUngrouped.map((a) => (
-                      <ArticleCard key={a.id} article={a} variant="card" hideCategory />
-                    ))}
-                  </div>
-                </>
-              )}
-            </>
-          ) : (
-            <EmptyPlaceholder message="We're publishing fresh stories — check back in a few hours." />
-          )}
-        </section>
-
-        <ArticleCarousel />
+        {topClusters.length > 0 && (
+          <section className="mt-12">
+            {topClusters.map((c) => (
+              <EventCluster key={c.label} label={c.label} items={c.items} />
+            ))}
+          </section>
+        )}
 
         {sections.map((s) => (
-          <HomeCategorySection key={s.slug} section={s} />
-        ))}
-
-        {PLACEHOLDER_SECTIONS.map((s) => (
           <section key={s.slug}>
-            <SectionHeader label={s.label} id={`section-${s.slug}`} />
-            <EmptyPlaceholder message={s.message} />
+            <SectionHeader label={s.label} href={s.href} id={`section-${s.slug}`} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 auto-rows-fr items-stretch">
+              {s.items.map((a) => (
+                <div key={a.id} className="h-full">
+                  <ArticleCard article={a} variant="card" hideCategory />
+                </div>
+              ))}
+            </div>
           </section>
         ))}
       </main>
