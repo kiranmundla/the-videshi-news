@@ -48,17 +48,6 @@ Deno.serve(async (req) => {
     (sourcesData ?? []).map((s: any) => [s.id, s])
   );
 
-  const calcRecency = (publishedAt: string | null): number => {
-    if (!publishedAt) return 50;
-    const hoursAgo = (Date.now() - new Date(publishedAt).getTime()) / 3_600_000;
-    if (hoursAgo <= 2) return 100;
-    if (hoursAgo <= 6) return 90;
-    if (hoursAgo <= 12) return 80;
-    if (hoursAgo <= 24) return 65;
-    if (hoursAgo <= 36) return 45;
-    return 25;
-  };
-
   if (sigErr) {
     return new Response(JSON.stringify({ ok: false, error: sigErr.message }), {
       status: 500,
@@ -88,17 +77,22 @@ Deno.serve(async (req) => {
     })
     .join("\n");
 
-  // 2b. Fetch recently published headlines (to avoid republishing)
+  // 2b. Fetch recently published articles (for re-ranking)
   const { data: recentArticles } = await supabase
     .from("p2_articles")
-    .select("headline, category")
+    .select("id, headline, category, published_at")
     .eq("status", "published")
-    .gte("published_at", new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString())
+    .gte("published_at", new Date(Date.now() - 96 * 60 * 60 * 1000).toISOString())
     .order("published_at", { ascending: false })
-    .limit(20);
+    .limit(40);
 
   const publishedHeadlines = (recentArticles ?? [])
-    .map((a: any) => `- ${a.headline} [${a.category}]`)
+    .map((a: any) => {
+      const hoursAgo = a.published_at
+        ? Math.round((Date.now() - new Date(a.published_at).getTime()) / 3_600_000)
+        : 0;
+      return `- ${a.id} | "${a.headline}" [${a.category}, ${hoursAgo}h ago]`;
+    })
     .join("\n");
 
   // 3. Gemini clustering + discovery + carousel (with Google Search grounding)
@@ -106,7 +100,7 @@ Deno.serve(async (req) => {
 You are the chief editor of The Videshi, a premium news platform for the Indian diaspora globally (US, UK, Australia, UAE, Canada, Singapore).
 
 ═══════════════════════════════════════
-PART A: ALREADY PUBLISHED — DO NOT REPUBLISH
+PART A: EXISTING PUBLISHED ARTICLES (RE-RANK THESE)
 ═══════════════════════════════════════
 ${publishedHeadlines}
 
@@ -116,11 +110,48 @@ PART B: RSS SIGNALS TO RANK
 ${headlineList}
 
 ═══════════════════════════════════════
-YOUR JOB: TWO TASKS
+YOUR JOB: THREE TASKS
 ═══════════════════════════════════════
 
 ──────────────────────────────────────
-TASK 1: RANK AND CLUSTER RSS SIGNALS
+TASK 1: RE-RANK EXISTING ARTICLES
+──────────────────────────────────────
+Today's date and time: ${new Date().toISOString()}
+
+For each article in PART A, return a single
+final score that accounts for ALL factors:
+- Diaspora relevance to Indian diaspora globally
+- Story significance and importance
+- Age of the article relative to TODAY
+- Whether story is still developing or resolved
+- Whether topic is evergreen or time-sensitive
+
+Scoring guidance with age:
+  Breaking (< 6h):    score at full value
+  Fresh (6-24h):      slight decay if resolved
+  Yesterday (24-48h): significant decay unless developing
+  Old (48-72h):       heavy decay unless evergreen
+  Archive (72h+):     minimal score unless truly evergreen
+
+Examples:
+  'Vijay Deverakonda Birthday' at 36h → score 20
+    (stale celebrity news, fully resolved)
+  'H-1B Wage Floor Bill' at 36h → score 78
+    (developing policy story, still relevant to diaspora)
+  'IPL 2026 Final Result' at 48h → score 45
+    (resolved sports result, fading relevance)
+  'Indian Passport Ranked 82nd' at 72h → score 65
+    (evergreen diaspora content, stays relevant)
+
+Return as 're_ranked' array:
+{
+  id: article UUID,
+  score_final: 0-100 single final score,
+  freshness_note: 'breaking'|'developing'|'resolved'|'evergreen'|'stale'
+}
+
+──────────────────────────────────────
+TASK 2: RANK AND CLUSTER RSS SIGNALS
 ──────────────────────────────────────
 Group signals into unique story topics.
 Skip stories already in PART A.
@@ -194,7 +225,7 @@ For each topic return:
   - NEVER suggest Getty/AP/Reuters/news site images
 
 ──────────────────────────────────────
-TASK 2: CAROUSEL PHOTOS
+TASK 3: CAROUSEL PHOTOS
 ──────────────────────────────────────
 Suggest 5 high-quality images for our homepage photo carousel — major events, cultural moments, sports from the last 48 hours relevant to diaspora.
 
@@ -216,6 +247,7 @@ OUTPUT FORMAT
 ═══════════════════════════════════════
 Return a single valid JSON object:
 {
+  "re_ranked": [...],
   "ranked_topics": [...],
   "carousel_photos": [...]
 }
@@ -227,6 +259,7 @@ Maximum 20 ranked_topics.
   let topics: any[] = [];
   let discoveredTopics: any[] = [];
   let carouselPhotos: any[] = [];
+  let reRanked: any[] = [];
   try {
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`,
@@ -249,6 +282,7 @@ Maximum 20 ranked_topics.
     const data = JSON.parse(cleaned);
     topics = Array.isArray(data) ? data : (data?.ranked_topics ?? []);
     carouselPhotos = data?.carousel_photos ?? [];
+    reRanked = data?.re_ranked ?? [];
   } catch (err: any) {
     await supabase.from("pipeline_alerts").insert({
       agent: "p2-rank",
@@ -260,6 +294,15 @@ Maximum 20 ranked_topics.
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
+  }
+
+  // Apply re-ranking to existing articles
+  for (const item of reRanked) {
+    if (!item?.id || item?.score_final === undefined) continue;
+    await supabase
+      .from('p2_articles')
+      .update({ score_total: Math.round(item.score_final) })
+      .eq('id', item.id);
   }
 
   // 48h dedup window with entity-aware comparison
@@ -343,28 +386,15 @@ Maximum 20 ranked_topics.
       ? Math.max(...validIdx.map((i) => sourceMap[signals[i].feed_source_id]?.priority ?? 50))
       : 50;
 
-    // Recency: average of actual published_at scores
-    const avgRecency = validIdx.length > 0
-      ? validIdx.reduce((sum, i) => sum + calcRecency(signals[i].published_at), 0) / validIdx.length
-      : 50;
-
     const scoreDiaspora = clamp(topic.score_diaspora);
     const scoreSignificance = clamp(topic.score_significance);
 
-    // Option B: Trust Gemini's diaspora scoring
-    // Only add what Gemini can't know: recency + signal count
-    const signalBoost = Math.min((indices.length - 1) * 7, 21);
-
-    const computedTotal = Math.min(100, Math.max(0, Math.round(
+    const computedTotal = Math.min(100, Math.round(
       scoreDiaspora    * 0.60 +
-      scoreSignificance * 0.30 +
-      avgRecency        * 0.10 +
-      signalBoost
-      + (scoreDiaspora < 50 ? -10 : 0)
-    )));
+      scoreSignificance * 0.30
+    ));
 
-    // Hard reject: not diaspora relevant
-    if (computedTotal < 55 || scoreDiaspora < 45) continue;
+    if (scoreDiaspora < 45) continue;
 
     const { data: newTopic, error: topicErr } = await supabase
       .from("p2_topics")
@@ -375,7 +405,7 @@ Maximum 20 ranked_topics.
         urgency,
         score_diaspora: scoreDiaspora,
         score_significance: scoreSignificance,
-        score_recency: Math.round(avgRecency),
+        score_recency: 50,
         score_source_avail: clamp(topic.score_source_avail),
         score_total: computedTotal,
         signal_count: indices.length || 1,
