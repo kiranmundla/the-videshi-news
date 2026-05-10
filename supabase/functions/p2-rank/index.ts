@@ -459,6 +459,58 @@ Maximum 20 ranked_topics + 5 discovered_topics.
     }
   }
 
+  // Insert discovered topics (from Google Search, no RSS signals attached)
+  let insertedDiscovered = 0;
+  for (const topic of discoveredTopics) {
+    if (!topic?.canonical_title || !topic?.vertical) continue;
+    const vertical = String(topic.vertical);
+    const category = VERTICAL_TO_CATEGORY[vertical] ?? "news";
+    const clamp = (v: any) => Math.min(100, Math.max(0, Math.round(Number(v) || 50)));
+    const scoreDiaspora = clamp(topic.score_diaspora);
+    if (scoreDiaspora < 40) continue;
+    const scoreSignificance = clamp(topic.score_significance);
+    const scoreTotal = Math.round(scoreDiaspora * 0.6 + scoreSignificance * 0.4);
+
+    const { error: discErr } = await supabase
+      .from("p2_topics")
+      .insert({
+        canonical_title: String(topic.canonical_title).slice(0, 200),
+        vertical,
+        category,
+        urgency: topic.urgency ?? "daily",
+        score_diaspora: scoreDiaspora,
+        score_significance: scoreSignificance,
+        score_recency: 80,
+        score_source_avail: 50,
+        score_total: scoreTotal,
+        signal_count: 0,
+        status: "pending",
+        keywords: Array.isArray(topic.keywords) ? topic.keywords : [],
+      });
+    if (!discErr) insertedDiscovered++;
+  }
+
+  // Store carousel photos
+  if (carouselPhotos.length > 0) {
+    await supabase
+      .from("videshi_carousel_photos")
+      .upsert(
+        carouselPhotos
+          .filter((p: any) => p?.image?.url)
+          .map((p: any) => ({
+            title: p.title,
+            description: p.description,
+            image_url: p.image?.url,
+            image_source: p.image?.source,
+            image_attribution: p.image?.attribution,
+            image_license: p.image?.license,
+            related_topic: p.related_article_topic,
+            fetched_at: new Date().toISOString(),
+          })),
+        { onConflict: "image_url", ignoreDuplicates: true }
+      );
+  }
+
   // Mark all processed signals
   const signalIds = signals.map((s: any) => s.id);
   await supabase.from("p2_signals").update({ is_processed: true }).in("id", signalIds);
