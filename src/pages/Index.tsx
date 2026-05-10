@@ -123,46 +123,19 @@ function CategorySection({
   initialPool: Article[];
   hideCategory?: boolean;
 }) {
-  const [pool, setPool] = useState<Article[]>(initialPool);
   const [visibleCount, setVisibleCount] = useState(3);
-  const [offset, setOffset] = useState(initialPool.length);
-  const [hasMore, setHasMore] = useState(false);
-
-  // Check on mount if server has more
-  useEffect(() => {
-    getArticlesByCategory(slug, 1, initialPool.length).then((more) =>
-      setHasMore(more.length > 0)
-    );
-  }, [slug, initialPool.length]);
-  const [loading, setLoading] = useState(false);
 
   const clusterDefs = CATEGORY_CLUSTERS[slug] ?? [];
 
-  const loadMore = async () => {
-    setLoading(true);
-    try {
-      // If we have more in pool already (from initial fetch), reveal first.
-      if (visibleCount < pool.length) {
-        setVisibleCount((v) => Math.min(v + 3, pool.length));
-        return;
-      }
-      const more = await getArticlesByCategory(slug, 3, offset);
-      if (more.length < 3) setHasMore(false);
-      if (more.length > 0) {
-        setPool((prev) => [...prev, ...more]);
-        setVisibleCount((v) => v + more.length);
-        setOffset((prev) => prev + more.length);
-      } else {
-        setHasMore(false);
-      }
-    } finally {
-      setLoading(false);
-    }
+  if (initialPool.length < 2) return null;
+
+  const visible = initialPool.slice(0, visibleCount);
+  const hasMore = initialPool.length > visibleCount;
+
+  const loadMore = () => {
+    setVisibleCount((prev) => Math.min(prev + 3, initialPool.length));
   };
 
-  if (pool.length < 2) return null;
-
-  const visible = pool.slice(0, visibleCount);
   const { clusters, remaining } = clusterDefs.length
     ? extractClusters(visible, clusterDefs)
     : { clusters: [] as { label: string; items: Article[] }[], remaining: visible };
@@ -174,7 +147,7 @@ function CategorySection({
         <EventCluster key={c.label} label={c.label} items={c.items} />
       ))}
       <FullRowsGrid articles={remaining} hideCategory={hideCategory} />
-      <MoreStoriesButton onClick={loadMore} loading={loading} hasMore={hasMore} />
+      <MoreStoriesButton onClick={loadMore} loading={false} hasMore={hasMore} />
     </section>
   );
 }
