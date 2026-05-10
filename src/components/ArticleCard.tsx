@@ -151,16 +151,17 @@ export default function ArticleCard({
       : "text-[1.25rem] md:text-[1.35rem] leading-snug";
 
   if (!hasImage) {
-    // Text-first card — denser layout with uniform red left accent bar.
+    // Text-first card — denser layout with red top accent bar.
     const isLarge = variant === "hero" || variant === "featured";
     const RED = "#C0392B";
     return (
-      <Link onClick={saveScroll}
+      <Link
+        onClick={saveScroll}
         to={href}
-        className={`group block bg-secondary/50 border-l-4 hairline border-t border-r border-b ${
-          isLarge ? "p-6 md:p-8" : "p-4"
-        } md:max-h-none max-h-[160px] overflow-hidden`}
-        style={{ borderLeftColor: RED }}
+        className={`group block h-full bg-stone-50 border-t-[3px] hairline border-l border-r border-b ${
+          isLarge ? "p-4 md:p-8" : "p-3 md:p-4"
+        }`}
+        style={{ borderTopColor: RED }}
       >
         {!hideCategory && (
           <p className="smallcaps mb-2" style={{ color: RED }}>
@@ -174,21 +175,21 @@ export default function ArticleCard({
         )}
         <h2
           className={`font-serif font-bold text-foreground group-hover:text-primary transition-colors ${
-            isLarge ? headlineSizeNoImage : "text-[18px] leading-snug"
+            isLarge ? headlineSizeNoImage : "text-[17px] md:text-[18px] leading-snug"
           }`}
         >
           {article.title}
         </h2>
         {article.excerpt && (
           <p
-            className={`mt-3 text-foreground/70 leading-relaxed hidden md:block ${
-              isLarge ? "text-base md:text-lg line-clamp-3" : "text-[0.95rem] line-clamp-3"
+            className={`mt-2 text-muted-foreground leading-snug hidden md:block ${
+              isLarge ? "text-base line-clamp-3" : "text-sm line-clamp-2"
             }`}
           >
             {article.excerpt}
           </p>
         )}
-        <p className="mt-3 text-xs text-muted-foreground">
+        <p className="mt-2 text-xs text-muted-foreground">
           {article.author ? `By ${article.author} · ` : ""}
           {formatShortDate(article.published_at)} · {time} min read
         </p>
