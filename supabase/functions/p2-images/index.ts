@@ -416,7 +416,7 @@ Reply JSON: {pick: N, score: N, reason: 'one line'}`,
 
   // Pick highest score; only accept if >= 8
   const best = scored.reduce((a, b) => (b.score > a.score ? b : a), scored[0])
-  if (!best || best.score < 8) {
+  if (!best || best.score < 6) {
     return { url: null, source: null, pickIndex: 0, score: best?.score ?? 0, candidatesEvaluated: valid.length }
   }
   const pickIdx = valid.findIndex(v => v.url === best.url) + 1
@@ -508,7 +508,7 @@ Deno.serve(async () => {
       const isTextFirst = TEXT_FIRST_KEYWORDS.some(
         kw => headlineLower.includes(kw)
       )
-      if (isTextFirst || !(article as any).image_must_show) {
+      if (isTextFirst) {
         skipped++
         results.push({
           headline: article.headline,
