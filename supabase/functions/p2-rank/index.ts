@@ -259,6 +259,7 @@ Maximum 20 ranked_topics.
   let topics: any[] = [];
   let discoveredTopics: any[] = [];
   let carouselPhotos: any[] = [];
+  let reRanked: any[] = [];
   try {
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`,
@@ -281,6 +282,7 @@ Maximum 20 ranked_topics.
     const data = JSON.parse(cleaned);
     topics = Array.isArray(data) ? data : (data?.ranked_topics ?? []);
     carouselPhotos = data?.carousel_photos ?? [];
+    reRanked = data?.re_ranked ?? [];
   } catch (err: any) {
     await supabase.from("pipeline_alerts").insert({
       agent: "p2-rank",
@@ -292,6 +294,15 @@ Maximum 20 ranked_topics.
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
+  }
+
+  // Apply re-ranking to existing articles
+  for (const item of reRanked) {
+    if (!item?.id || item?.score_final === undefined) continue;
+    await supabase
+      .from('p2_articles')
+      .update({ score_total: Math.round(item.score_final) })
+      .eq('id', item.id);
   }
 
   // 48h dedup window with entity-aware comparison
