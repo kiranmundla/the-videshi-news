@@ -47,3 +47,6 @@ verify_jwt = false
 
 [functions.gemini-test]
 verify_jwt = false
+
+[functions.p2-orchestrate]
+verify_jwt = false
