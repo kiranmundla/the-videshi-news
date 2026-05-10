@@ -350,6 +350,10 @@ Maximum 20 ranked_topics.
     return { entities: new Set<string>([...fromTitle, ...fromKeywords]) };
   });
 
+  const publishedEntitySets = (existingArticles ?? []).map((a: any) => ({
+    entities: new Set<string>(extractEntities(String(a.headline)))
+  }));
+
   // Duplicate if 2+ shared entities with any recent topic
   // Politics/news verticals need a higher threshold because celebrity names
   // (e.g. "Vijay") collide across entertainment and politics contexts.
@@ -357,10 +361,17 @@ Maximum 20 ranked_topics.
   const isDuplicate = (candidateEntities: string[], vertical: string): boolean => {
     if (candidateEntities.length === 0) return false;
     const threshold = HIGH_THRESHOLD_VERTICALS.has(vertical) ? 3 : 2;
+    // Check recent topics
     for (const r of recentEntitySets) {
       let shared = 0;
       for (const e of candidateEntities) if (r.entities.has(e)) shared++;
       if (shared >= threshold) return true;
+    }
+    // Check published articles (threshold always 2)
+    for (const r of publishedEntitySets) {
+      let shared = 0;
+      for (const e of candidateEntities) if (r.entities.has(e)) shared++;
+      if (shared >= 2) return true;
     }
     return false;
   };
