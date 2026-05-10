@@ -382,7 +382,7 @@ Maximum 20 ranked_topics.
     return { entities: new Set<string>([...fromTitle, ...fromKeywords]) };
   });
 
-  const publishedEntitySets = (existingArticles ?? []).map((a: any) => ({
+  const publishedEntitySets = (recentArticles ?? []).map((a: any) => ({
     entities: new Set<string>(extractEntities(String(a.headline)))
   }));
 
