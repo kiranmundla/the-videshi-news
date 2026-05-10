@@ -323,6 +323,31 @@ Maximum 20 ranked_topics.
       .eq('id', item.id);
   }
 
+  // Fallback decay for articles not returned by re-ranking
+  const reRankedIds = new Set(reRanked.map((r: any) => r.id));
+  for (const article of recentArticles ?? []) {
+    if (reRankedIds.has(article.id)) continue;
+
+    const hoursAgo = (Date.now() - new Date(article.published_at).getTime()) / 3_600_000;
+
+    const freshness =
+      hoursAgo <= 6  ? 1.00 :
+      hoursAgo <= 12 ? 0.90 :
+      hoursAgo <= 24 ? 0.75 :
+      hoursAgo <= 48 ? 0.55 :
+      hoursAgo <= 72 ? 0.35 : 0.20;
+
+    const currentScore = article.score_total ?? 50;
+    const decayedScore = Math.round(currentScore * freshness);
+
+    if (decayedScore !== currentScore) {
+      await supabase
+        .from('p2_articles')
+        .update({ score_total: decayedScore })
+        .eq('id', article.id);
+    }
+  }
+
   // 48h dedup window with entity-aware comparison
   const sinceIso = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
   let insertedTopics = 0;
