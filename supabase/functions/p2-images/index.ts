@@ -468,7 +468,7 @@ Deno.serve(async () => {
     .select(`
       id, headline, vertical, tags, image_must_show,
       topic_id,
-      p2_topics ( keywords )
+      p2_topics ( keywords, image_search_query )
     `)
     .is('image_url', null)
     .eq('status', 'published')
