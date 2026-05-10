@@ -218,27 +218,31 @@ export default function Index() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   useEffect(() => {
-    const sectionFetches = CATEGORY_SECTIONS.map((s) =>
-      getArticlesByCategory(s.slug, 6).then((items) => [s.slug, items] as const)
-    );
-    Promise.all([
-      getTopStories(20),
-      getFeaturedArticle(),
-      ...sectionFetches,
-    ]).then((results) => {
-      const [top, featured, ...sectionResults] = results as [
-        Article[],
-        Article | null,
-        ...(readonly [string, Article[]])[]
-      ];
-      setTopPool(top);
+    (async () => {
+      const [featured, top] = await Promise.all([
+        getFeaturedArticle(),
+        getTopStories(20),
+      ]);
+
+      const shownIds = new Set<string>();
+      if (featured?.id) shownIds.add(featured.id);
+      const filteredTop = top.filter((a) => !shownIds.has(a.id));
+      filteredTop.forEach((a) => shownIds.add(a.id));
+
+      const pools: Record<string, Article[]> = {};
+      for (const s of CATEGORY_SECTIONS) {
+        const items = await getArticlesByCategory(s.slug, 12);
+        const filtered = items.filter((a) => !shownIds.has(a.id));
+        filtered.forEach((a) => shownIds.add(a.id));
+        pools[s.slug] = filtered;
+      }
+
       setFeaturedArticle(featured);
-      setSectionPools(
-        Object.fromEntries(sectionResults as (readonly [string, Article[]])[])
-      );
+      setTopPool(filteredTop);
+      setSectionPools(pools);
       setLastUpdated(new Date());
       setLoading(false);
-    });
+    })();
   }, []);
 
   // Save scroll position when leaving the homepage
