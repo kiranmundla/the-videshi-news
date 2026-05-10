@@ -77,7 +77,7 @@ export default function ArticleCarousel() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-muted h-[140px] md:h-[180px] my-6 select-none"
+      className="relative w-full overflow-hidden bg-muted h-[100px] md:h-[140px] my-6 select-none"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carousel"
