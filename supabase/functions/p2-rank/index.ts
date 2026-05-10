@@ -109,7 +109,44 @@ YOUR JOB: TWO TASKS
 ═══════════════════════════════════════
 
 ──────────────────────────────────────
-TASK 1: RANK AND CLUSTER RSS SIGNALS
+TASK 1: RE-RANK EXISTING ARTICLES
+──────────────────────────────────────
+Today's date and time: ${new Date().toISOString()}
+
+For each article in PART A, return a single
+final score that accounts for ALL factors:
+- Diaspora relevance to Indian diaspora globally
+- Story significance and importance
+- Age of the article relative to TODAY
+- Whether story is still developing or resolved
+- Whether topic is evergreen or time-sensitive
+
+Scoring guidance with age:
+  Breaking (< 6h):    score at full value
+  Fresh (6-24h):      slight decay if resolved
+  Yesterday (24-48h): significant decay unless developing
+  Old (48-72h):       heavy decay unless evergreen
+  Archive (72h+):     minimal score unless truly evergreen
+
+Examples:
+  'Vijay Deverakonda Birthday' at 36h → score 20
+    (stale celebrity news, fully resolved)
+  'H-1B Wage Floor Bill' at 36h → score 78
+    (developing policy story, still relevant to diaspora)
+  'IPL 2026 Final Result' at 48h → score 45
+    (resolved sports result, fading relevance)
+  'Indian Passport Ranked 82nd' at 72h → score 65
+    (evergreen diaspora content, stays relevant)
+
+Return as 're_ranked' array:
+{
+  id: article UUID,
+  score_final: 0-100 single final score,
+  freshness_note: 'breaking'|'developing'|'resolved'|'evergreen'|'stale'
+}
+
+──────────────────────────────────────
+TASK 2: RANK AND CLUSTER RSS SIGNALS
 ──────────────────────────────────────
 Group signals into unique story topics.
 Skip stories already in PART A.
