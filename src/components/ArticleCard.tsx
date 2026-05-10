@@ -39,11 +39,14 @@ export default function ArticleCard({
   const featureLabel = featured ? "FEATURED" : null;
   const hasImage = isValidImage(article.hero_image_url);
   const accent = accentFor(article.category);
+  const saveScroll = () => {
+    sessionStorage.setItem("homeScrollY", window.scrollY.toString());
+  };
 
   // ===================== COMPACT =====================
   if (variant === "compact") {
     return (
-      <Link to={href} className="group flex gap-4 items-start">
+      <Link to={href} onClick={saveScroll} className="group flex gap-4 items-start">
         {hasImage && (
           <HeroImage
             src={article.hero_image_url}
@@ -76,7 +79,7 @@ export default function ArticleCard({
   if (variant === "long") {
     if (!hasImage) {
       return (
-        <Link
+        <Link onClick={saveScroll}
           to={href}
           className="group block bg-secondary/60 p-6 md:p-10 border hairline border-l-2"
           style={{ borderLeftColor: accent }}
@@ -99,7 +102,7 @@ export default function ArticleCard({
       );
     }
     return (
-      <Link
+      <Link onClick={saveScroll}
         to={href}
         className="group grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-secondary/60 p-6 md:p-10 border hairline"
       >
@@ -152,7 +155,7 @@ export default function ArticleCard({
     const isLarge = variant === "hero" || variant === "featured";
     const RED = "#C0392B";
     return (
-      <Link
+      <Link onClick={saveScroll}
         to={href}
         className={`group block bg-secondary/50 border-l-4 hairline border-t border-r border-b ${
           isLarge ? "p-6 md:p-8" : "p-4"
@@ -194,7 +197,7 @@ export default function ArticleCard({
   }
 
   return (
-    <Link to={href} className="group block">
+    <Link to={href} onClick={saveScroll} className="group block">
       <figure className="w-full">
         <div className="w-full aspect-[16/9] overflow-hidden">
           <HeroImage
