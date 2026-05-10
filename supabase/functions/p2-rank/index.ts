@@ -220,7 +220,7 @@ For each topic return:
   - NEVER suggest Getty/AP/Reuters/news site images
 
 ──────────────────────────────────────
-TASK 2: CAROUSEL PHOTOS
+TASK 3: CAROUSEL PHOTOS
 ──────────────────────────────────────
 Suggest 5 high-quality images for our homepage photo carousel — major events, cultural moments, sports from the last 48 hours relevant to diaspora.
 
@@ -242,6 +242,7 @@ OUTPUT FORMAT
 ═══════════════════════════════════════
 Return a single valid JSON object:
 {
+  "re_ranked": [...],
   "ranked_topics": [...],
   "carousel_photos": [...]
 }
