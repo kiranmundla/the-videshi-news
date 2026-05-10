@@ -36,7 +36,7 @@ Deno.serve(async (req) => {
     .eq("is_processed", false)
     .gte("published_at", new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString())
     .order("published_at", { ascending: false, nullsFirst: false })
-    .limit(120);
+    .limit(80);
 
   // 1b. Fetch source metadata from videshi_sources
   const sourceIds = [...new Set((signals ?? []).map((s: any) => s.feed_source_id).filter(Boolean))];
@@ -260,7 +260,7 @@ Return a single valid JSON object:
 }
 No markdown. Raw JSON only.
 Exclude topics with score_diaspora < 40.
-Maximum 20 ranked_topics.
+Maximum 12 ranked_topics.
 `;
 
   let topics: any[] = [];
@@ -278,7 +278,8 @@ Maximum 20 ranked_topics.
           tools: [{ googleSearch: {} }],
           generationConfig: {
             temperature: 0.1,
-            thinkingConfig: { thinkingBudget: 0 }
+            thinkingConfig: { thinkingBudget: 0 },
+            maxOutputTokens: 8192
           }
         })
       }
