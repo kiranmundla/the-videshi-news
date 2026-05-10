@@ -147,6 +147,34 @@ Deno.serve(async (req) => {
 
   for (const topic of toProcess) {
     try {
+      // Check for duplicate published article
+      const topicWords = topic.canonical_title
+        .toLowerCase()
+        .split(/\s+/)
+        .filter((w: string) => w.length > 4);
+      const { data: similarArticles } = await supabase
+        .from('p2_articles')
+        .select('id, headline')
+        .eq('status', 'published')
+        .gte('published_at', new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString())
+        .limit(50);
+      const isDuplicateArticle = (similarArticles ?? []).some((a: any) => {
+        const articleWords = a.headline
+          .toLowerCase()
+          .split(/\s+/)
+          .filter((w: string) => w.length > 4);
+        const shared = topicWords.filter((w: string) => articleWords.includes(w)).length;
+        // If 3+ meaningful words match → duplicate
+        return shared >= 3;
+      });
+      if (isDuplicateArticle) {
+        await supabase
+          .from('p2_topics')
+          .update({ status: 'rejected' })
+          .eq('id', topic.id);
+        continue;
+      }
+
       await supabase.from("p2_topics").update({ status: "synthesizing" }).eq("id", topic.id);
 
       const sourceHunts = await findSourceHunts(topic.id, topic.keywords ?? []);
