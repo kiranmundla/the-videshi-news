@@ -97,7 +97,7 @@ export default function ArticleCarousel() {
               referrerPolicy="no-referrer"
               draggable={false}
               loading={i === 0 ? "eager" : "lazy"}
-              className="absolute inset-0 w-full h-full object-cover object-top"
+              className="absolute inset-0 w-full h-full object-cover object-[center_20%]"
             />
           </Link>
         ))}
