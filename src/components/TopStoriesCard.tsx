@@ -48,7 +48,7 @@ export default function TopStoriesCard({
             loading="lazy"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-            style={{ objectPosition: "center 20%" }}
+            style={{ objectPosition: "center 25%" }}
           />
         </div>
         <div className="flex-1 flex flex-col p-4">
