@@ -80,7 +80,7 @@ Deno.serve(async (req) => {
   // 2b. Fetch recently published articles (for re-ranking)
   const { data: recentArticles } = await supabase
     .from("p2_articles")
-    .select("id, headline, category, published_at")
+    .select("id, headline, category, score_total, published_at")
     .eq("status", "published")
     .gte("published_at", new Date(Date.now() - 96 * 60 * 60 * 1000).toISOString())
     .order("published_at", { ascending: false })
