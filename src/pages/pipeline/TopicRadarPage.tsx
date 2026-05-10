@@ -15,6 +15,7 @@ import {
 import { ChevronDown, MoreHorizontal } from "lucide-react";
 import { toast } from "sonner";
 import { VERTICALS, VERTICAL_COLORS, URGENCY_COLORS, STATUS_COLORS, scoreColor, relTime } from "./shared";
+import { adminWrite } from "@/lib/adminWrite";
 
 const PAGE_SIZE = 20;
 
