@@ -45,7 +45,7 @@ function matchesCluster(a: Article, tags: string[]) {
   return tags.some((t) => at.some((x) => x === t || x.includes(t)));
 }
 
-function SectionHeader({ label, href, id }: { label: string; href?: string; id?: string }) {
+function SectionHeader({ label, id }: { label: string; id?: string }) {
   return (
     <div
       id={id}
@@ -58,16 +58,87 @@ function SectionHeader({ label, href, id }: { label: string; href?: string; id?:
       >
         {label}
       </span>
-      {href && (
-        <Link
-          to={href}
-          className="font-bold uppercase hover:text-primary"
-          style={{ fontSize: 11, letterSpacing: "0.12em", color: "#888" }}
-        >
-          View all →
-        </Link>
-      )}
     </div>
+  );
+}
+
+function CategorySection({
+  slug,
+  label,
+  initial,
+}: {
+  slug: string;
+  label: string;
+  initial: Article[];
+}) {
+  const [articles, setArticles] = useState<Article[]>(initial);
+  const [offset, setOffset] = useState(initial.length);
+  const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+  const loadMore = async () => {
+    setLoading(true);
+    try {
+      const more = await getArticlesByCategory(slug, 3, offset);
+      if (more.length < 3) setHasMore(false);
+      if (more.length > 0) {
+        setArticles((prev) => [...prev, ...more]);
+        setOffset((prev) => prev + more.length);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <section>
+      <SectionHeader label={label} id={`section-${slug}`} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 auto-rows-fr items-stretch">
+        {articles.map((a) => (
+          <div key={a.id} className="h-full">
+            <ArticleCard article={a} variant="card" hideCategory />
+          </div>
+        ))}
+      </div>
+      <MoreStoriesButton onClick={loadMore} loading={loading} hasMore={hasMore} />
+    </section>
+  );
+}
+
+function TopStoriesSection({ initial }: { initial: Article[] }) {
+  const [articles, setArticles] = useState<Article[]>(initial);
+  const [offset, setOffset] = useState(20);
+  const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+  const loadMore = async () => {
+    setLoading(true);
+    try {
+      const more = await getTopStories(3, offset);
+      const seen = new Set(articles.map((a) => a.id));
+      const fresh = more.filter((a) => !seen.has(a.id));
+      if (more.length < 3) setHasMore(false);
+      if (fresh.length > 0) {
+        setArticles((prev) => [...prev, ...fresh]);
+      }
+      setOffset((prev) => prev + 3);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <section>
+      <SectionHeader label="Top Stories" id="section-top" />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 auto-rows-fr">
+        {articles.map((a, i) => (
+          <div key={a.id} className={i === 0 ? "md:col-span-2" : ""}>
+            <TopStoriesCard article={a} size={i === 0 ? "lg" : "md"} />
+          </div>
+        ))}
+      </div>
+      <MoreStoriesButton onClick={loadMore} loading={loading} hasMore={hasMore} />
+    </section>
   );
 }
 
