@@ -154,12 +154,13 @@ export default function ArticleCard({
     // Text-first card — denser layout with red top accent bar.
     const isLarge = variant === "hero" || variant === "featured";
     const RED = "#C0392B";
+    const smallPadding = hideCategory ? "p-4" : "p-4 md:p-5";
     return (
       <Link
         onClick={saveScroll}
         to={href}
         className={`group block h-full bg-stone-50 border-t-[3px] hairline border-l border-r border-b ${
-          isLarge ? "p-4 md:p-8" : "p-3 md:p-4"
+          isLarge ? "p-4 md:p-8" : smallPadding
         }`}
         style={{ borderTopColor: RED }}
       >
@@ -175,7 +176,7 @@ export default function ArticleCard({
         )}
         <h2
           className={`font-serif font-bold text-foreground group-hover:text-primary transition-colors ${
-            isLarge ? headlineSizeNoImage : "text-[17px] md:text-[18px] leading-snug"
+            isLarge ? headlineSizeNoImage : "text-[1.1rem] md:text-[1.2rem] leading-snug"
           }`}
         >
           {article.title}
