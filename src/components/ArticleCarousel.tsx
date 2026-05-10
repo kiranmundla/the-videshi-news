@@ -27,7 +27,7 @@ export default function ArticleCarousel() {
       .eq("status", "published")
       .not("image_url", "is", null)
       .neq("image_url", "")
-      .order("published_at", { ascending: false })
+      .order("score_total", { ascending: false })
       .limit(3)
       .then(({ data }: { data: Slide[] | null }) => {
         if (cancelled || !data) return;
@@ -97,7 +97,7 @@ export default function ArticleCarousel() {
               referrerPolicy="no-referrer"
               draggable={false}
               loading={i === 0 ? "eager" : "lazy"}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover object-top"
             />
           </Link>
         ))}
