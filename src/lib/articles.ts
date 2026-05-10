@@ -181,14 +181,14 @@ export async function getPublishedArticles(): Promise<Article[]> {
   return (data as P2Row[]).map(mapRow);
 }
 
-export async function getTopStories(limit = 12): Promise<Article[]> {
+export async function getTopStories(limit = 12, offset = 0): Promise<Article[]> {
   const { data, error } = await supabase
     .from("p2_articles")
     .select(P2_COLS)
     .eq("status", "published")
     .order("score_total", { ascending: false })
     .order("published_at", { ascending: false })
-    .limit(limit);
+    .range(offset, offset + limit - 1);
   if (error) {
     console.error("[articles] getTopStories", error);
     return [];
