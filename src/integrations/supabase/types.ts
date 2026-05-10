@@ -557,6 +557,9 @@ export type Database = {
           category: string | null
           created_at: string
           id: string
+          image_attribution: string | null
+          image_license: string | null
+          image_url: string | null
           keywords: string[]
           score_diaspora: number | null
           score_recency: number | null
@@ -574,6 +577,9 @@ export type Database = {
           category?: string | null
           created_at?: string
           id?: string
+          image_attribution?: string | null
+          image_license?: string | null
+          image_url?: string | null
           keywords?: string[]
           score_diaspora?: number | null
           score_recency?: number | null
@@ -591,6 +597,9 @@ export type Database = {
           category?: string | null
           created_at?: string
           id?: string
+          image_attribution?: string | null
+          image_license?: string | null
+          image_url?: string | null
           keywords?: string[]
           score_diaspora?: number | null
           score_recency?: number | null
@@ -905,6 +914,45 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      videshi_carousel_photos: {
+        Row: {
+          description: string | null
+          fetched_at: string | null
+          id: string
+          image_attribution: string | null
+          image_license: string | null
+          image_source: string | null
+          image_url: string | null
+          is_active: boolean | null
+          related_topic: string | null
+          title: string | null
+        }
+        Insert: {
+          description?: string | null
+          fetched_at?: string | null
+          id?: string
+          image_attribution?: string | null
+          image_license?: string | null
+          image_source?: string | null
+          image_url?: string | null
+          is_active?: boolean | null
+          related_topic?: string | null
+          title?: string | null
+        }
+        Update: {
+          description?: string | null
+          fetched_at?: string | null
+          id?: string
+          image_attribution?: string | null
+          image_license?: string | null
+          image_source?: string | null
+          image_url?: string | null
+          is_active?: boolean | null
+          related_topic?: string | null
+          title?: string | null
+        }
+        Relationships: []
       }
       videshi_entities: {
         Row: {
