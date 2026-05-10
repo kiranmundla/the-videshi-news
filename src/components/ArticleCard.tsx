@@ -49,7 +49,7 @@ export default function ArticleCard({
             src={article.hero_image_url}
             alt={article.title}
             loading="lazy"
-            className="w-20 h-20 object-cover object-[center_20%] flex-shrink-0"
+            className="w-20 h-20 object-cover object-[center_25%] flex-shrink-0"
           />
         )}
         <div
@@ -109,7 +109,7 @@ export default function ArticleCard({
               src={article.hero_image_url}
               alt={article.title}
               loading="lazy"
-              className="w-full h-full object-cover object-[center_20%]"
+              className="w-full h-full object-cover object-[center_25%]"
             />
           </div>
         </figure>
@@ -148,21 +148,19 @@ export default function ArticleCard({
       : "text-[1.25rem] md:text-[1.35rem] leading-snug";
 
   if (!hasImage) {
-    // Text-first card — tinted block with category accent bar on top.
+    // Text-first card — denser layout with uniform red left accent bar.
     const isLarge = variant === "hero" || variant === "featured";
+    const RED = "#C0392B";
     return (
       <Link
         to={href}
-        className={`group block bg-secondary/50 border-t-[3px] hairline border-l border-r border-b ${
-          isLarge ? "p-6 md:p-10" : "p-5 md:p-6"
-        }`}
-        style={{ borderTopColor: accent }}
+        className={`group block bg-secondary/50 border-l-4 hairline border-t border-r border-b ${
+          isLarge ? "p-6 md:p-8" : "p-4"
+        } md:max-h-none max-h-[160px] overflow-hidden`}
+        style={{ borderLeftColor: RED }}
       >
         {!hideCategory && (
-          <p
-            className="smallcaps mb-3"
-            style={{ color: accent }}
-          >
+          <p className="smallcaps mb-2" style={{ color: RED }}>
             {featureLabel && (
               <span className="bg-primary text-primary-foreground px-1.5 py-0.5 mr-2 tracking-wider">
                 {featureLabel}
@@ -172,20 +170,22 @@ export default function ArticleCard({
           </p>
         )}
         <h2
-          className={`font-serif font-bold text-foreground group-hover:text-primary transition-colors ${headlineSizeNoImage}`}
+          className={`font-serif font-bold text-foreground group-hover:text-primary transition-colors ${
+            isLarge ? headlineSizeNoImage : "text-[18px] leading-snug"
+          }`}
         >
           {article.title}
         </h2>
         {article.excerpt && (
           <p
-            className={`mt-3 text-foreground/70 leading-relaxed ${
+            className={`mt-3 text-foreground/70 leading-relaxed hidden md:block ${
               isLarge ? "text-base md:text-lg line-clamp-3" : "text-[0.95rem] line-clamp-3"
             }`}
           >
             {article.excerpt}
           </p>
         )}
-        <p className="mt-4 text-xs text-muted-foreground">
+        <p className="mt-3 text-xs text-muted-foreground">
           {article.author ? `By ${article.author} · ` : ""}
           {formatShortDate(article.published_at)} · {time} min read
         </p>
@@ -201,7 +201,7 @@ export default function ArticleCard({
             src={article.hero_image_url}
             alt={article.title}
             loading={variant === "hero" ? "eager" : "lazy"}
-            className="w-full h-full object-cover object-[center_20%] group-hover:scale-[1.01] transition-transform duration-500"
+            className="w-full h-full object-cover object-[center_25%] group-hover:scale-[1.01] transition-transform duration-500"
           />
         </div>
       </figure>

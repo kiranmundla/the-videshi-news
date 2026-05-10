@@ -13,7 +13,8 @@ export function isValidImage(src?: string | null): boolean {
   if (src.trim().length === 0) return false;
   if (/hindustantimes\.com|htmedia/i.test(src)) return false;
   if (src.toLowerCase().endsWith(".svg")) return false;
-  if (/Flag_of_|flag_of_/i.test(src)) return false;
+  if (/Flag_of_|flag_of_|_flag\.|national.flag/i.test(src)) return false;
+  if (src.includes("Flag_of_Canada")) return false;
   return true;
 }
 
