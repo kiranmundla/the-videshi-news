@@ -91,7 +91,7 @@ Deno.serve(async (req) => {
   // 2b. Fetch recently published headlines (to avoid republishing)
   const { data: recentArticles } = await supabase
     .from("p2_articles")
-    .select("headline, category, published_at")
+    .select("headline, category")
     .eq("status", "published")
     .gte("published_at", new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString())
     .order("published_at", { ascending: false })
