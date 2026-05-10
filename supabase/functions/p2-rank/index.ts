@@ -150,6 +150,13 @@ Return as 're_ranked' array:
   freshness_note: 'breaking'|'developing'|'resolved'|'evergreen'|'stale'
 }
 
+CRITICAL: If a new signal in PART B covers the SAME EVENT as an article in PART A — even from a different angle or source — do NOT create a new topic for it. The event is already covered.
+Same event examples:
+- 'Vijay sworn in' + 'Vijay takes oath' = SAME EVENT
+- 'Vijay cabinet announced' = DIFFERENT EVENT ✅
+- 'Trisha attends Vijay ceremony' = SAME EVENT ❌
+Only create new topics for genuinely new events.
+
 ──────────────────────────────────────
 TASK 2: RANK AND CLUSTER RSS SIGNALS
 ──────────────────────────────────────
