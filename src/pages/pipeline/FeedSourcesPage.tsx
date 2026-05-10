@@ -18,6 +18,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Copy, Plus, Trash2 } from "lucide-react";
 import { VERTICALS, relTime } from "./shared";
+import { adminWrite } from "@/lib/adminWrite";
 
 const TYPE_VARIANT: Record<string, string> = {
   rss: "bg-emerald-100 text-emerald-900 border-emerald-200",
