@@ -8,10 +8,13 @@ type Props = {
   category?: string;
 };
 
-const BLOCKED_RE = /hindustantimes\.com|htmedia/i;
-
 export function isValidImage(src?: string | null): boolean {
-  return typeof src === "string" && src.trim().length > 0 && !BLOCKED_RE.test(src);
+  if (!src || typeof src !== "string") return false;
+  if (src.trim().length === 0) return false;
+  if (/hindustantimes\.com|htmedia/i.test(src)) return false;
+  if (src.toLowerCase().endsWith(".svg")) return false;
+  if (/Flag_of_|flag_of_/i.test(src)) return false;
+  return true;
 }
 
 export default function HeroImage({ src, alt, className = "", loading = "lazy" }: Props) {
