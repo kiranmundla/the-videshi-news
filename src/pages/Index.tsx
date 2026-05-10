@@ -116,10 +116,12 @@ function CategorySection({
   slug,
   label,
   initialPool,
+  hideCategory = true,
 }: {
   slug: string;
   label: string;
   initialPool: Article[];
+  hideCategory?: boolean;
 }) {
   const [pool, setPool] = useState<Article[]>(initialPool);
   const [visibleCount, setVisibleCount] = useState(3);
