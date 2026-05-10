@@ -691,6 +691,48 @@ Deno.serve(async () => {
     }
   }
 
+  // ── Carousel image processing ─────────────────────────
+  const { data: carouselItems } = await supabase
+    .from('videshi_carousel_photos')
+    .select('id, title, image_url, image_source')
+    .is('stored_image_url', null)
+    .eq('is_active', true)
+    .limit(5);
+
+  for (const item of carouselItems ?? []) {
+    try {
+      if (item.image_url) {
+        const testRes = await fetch(item.image_url, {
+          method: 'HEAD',
+          headers: { 'User-Agent': 'TheVideshi/1.0' },
+          signal: AbortSignal.timeout(5000)
+        });
+        if (testRes.ok &&
+            testRes.headers.get('content-type')?.startsWith('image/')) {
+          const storedUrl = await downloadToStorage(item.image_url, item.id);
+          if (storedUrl) {
+            await supabase
+              .from('videshi_carousel_photos')
+              .update({ stored_image_url: storedUrl })
+              .eq('id', item.id);
+            continue;
+          }
+        }
+      }
+      // Fallback: search Unsplash with title
+      const unsplashUrls = await searchUnsplash(item.title);
+      if (unsplashUrls[0]) {
+        const storedUrl = await downloadToStorage(unsplashUrls[0], item.id);
+        if (storedUrl) {
+          await supabase
+            .from('videshi_carousel_photos')
+            .update({ stored_image_url: storedUrl })
+            .eq('id', item.id);
+        }
+      }
+    } catch { continue; }
+  }
+
   const elapsed = Date.now() - startTime
   const sourced = results.filter(r => r.status === 'ok').length
   const rejected = results.filter(r => r.status === 'rejected').length
