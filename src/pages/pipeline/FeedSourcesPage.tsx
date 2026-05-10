@@ -69,20 +69,20 @@ export default function FeedSourcesPage() {
     qc.setQueryData(["p2_feed_sources"], (old: any[] = []) =>
       old.map((r) => (r.id === row.id ? { ...r, is_active: !row.is_active } : r))
     );
-    const { error } = await supabase
-      .from("p2_feed_sources")
-      .update({ is_active: !row.is_active })
-      .eq("id", row.id);
+    const { error } = await adminWrite({
+      table: "p2_feed_sources", op: "update", id: row.id,
+      payload: { is_active: !row.is_active },
+    });
     if (error) {
-      toast.error("Failed to toggle");
+      toast.error(error);
       qc.invalidateQueries({ queryKey: ["p2_feed_sources"] });
     }
   }
 
   async function deleteRow(id: string) {
     if (!confirm("Delete this feed?")) return;
-    const { error } = await supabase.from("p2_feed_sources").delete().eq("id", id);
-    if (error) toast.error(error.message);
+    const { error } = await adminWrite({ table: "p2_feed_sources", op: "delete", id });
+    if (error) toast.error(error);
     else {
       toast.success("Deleted");
       qc.invalidateQueries({ queryKey: ["p2_feed_sources"] });
