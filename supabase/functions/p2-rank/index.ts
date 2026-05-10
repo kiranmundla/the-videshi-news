@@ -77,17 +77,22 @@ Deno.serve(async (req) => {
     })
     .join("\n");
 
-  // 2b. Fetch recently published headlines (to avoid republishing)
+  // 2b. Fetch recently published articles (for re-ranking)
   const { data: recentArticles } = await supabase
     .from("p2_articles")
-    .select("headline, category")
+    .select("id, headline, category, published_at")
     .eq("status", "published")
-    .gte("published_at", new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString())
+    .gte("published_at", new Date(Date.now() - 96 * 60 * 60 * 1000).toISOString())
     .order("published_at", { ascending: false })
-    .limit(20);
+    .limit(40);
 
   const publishedHeadlines = (recentArticles ?? [])
-    .map((a: any) => `- ${a.headline} [${a.category}]`)
+    .map((a: any) => {
+      const hoursAgo = a.published_at
+        ? Math.round((Date.now() - new Date(a.published_at).getTime()) / 3_600_000)
+        : 0;
+      return `- ${a.id} | "${a.headline}" [${a.category}, ${hoursAgo}h ago]`;
+    })
     .join("\n");
 
   // 3. Gemini clustering + discovery + carousel (with Google Search grounding)
@@ -95,7 +100,7 @@ Deno.serve(async (req) => {
 You are the chief editor of The Videshi, a premium news platform for the Indian diaspora globally (US, UK, Australia, UAE, Canada, Singapore).
 
 ═══════════════════════════════════════
-PART A: ALREADY PUBLISHED — DO NOT REPUBLISH
+PART A: EXISTING PUBLISHED ARTICLES (RE-RANK THESE)
 ═══════════════════════════════════════
 ${publishedHeadlines}
 
@@ -105,7 +110,7 @@ PART B: RSS SIGNALS TO RANK
 ${headlineList}
 
 ═══════════════════════════════════════
-YOUR JOB: TWO TASKS
+YOUR JOB: THREE TASKS
 ═══════════════════════════════════════
 
 ──────────────────────────────────────
