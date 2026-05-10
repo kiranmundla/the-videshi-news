@@ -85,7 +85,7 @@ export default function ArticleCard({
           style={{ borderLeftColor: accent }}
         >
           <p className="smallcaps text-primary mb-3">
-            {featureLabel ? "Feature" : "Long read"} · {article.category}
+            {article.category}
           </p>
           <h2 className="font-serif font-bold text-[1.75rem] md:text-[2.5rem] leading-[1.15] text-foreground group-hover:text-primary transition-colors">
             {article.title}
