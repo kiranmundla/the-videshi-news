@@ -339,9 +339,10 @@ export default function Index() {
             />
           );
         })}
+
+        <ArticleCarousel />
       </main>
 
-      <ArticleCarousel />
 
       <SiteFooter lastUpdated={lastUpdated} />
     </div>
