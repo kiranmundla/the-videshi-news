@@ -426,10 +426,10 @@ function SourceFormSheet({ row, onSaved }: { row: any | null; onSaved: () => voi
       is_active: isActive,
     };
     const res = row
-      ? await supabase.from("videshi_sources").update(payload).eq("id", row.id)
-      : await supabase.from("videshi_sources").insert(payload);
+      ? await adminWrite({ table: "videshi_sources", op: "update", id: row.id, payload })
+      : await adminWrite({ table: "videshi_sources", op: "insert", payload });
     setSaving(false);
-    if (res.error) return toast.error(res.error.message);
+    if (res.error) return toast.error(res.error);
     toast.success(row ? "Updated" : "Added");
     onSaved();
   }
