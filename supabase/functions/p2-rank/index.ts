@@ -167,19 +167,31 @@ For each topic return:
     PIB (pib.gov.in) → Wikipedia → official govt sites
     NEVER link to NDTV, TOI, Hindu, IE, BBC
 - synthesis_angle: one sentence diaspora angle
-- image:
+- image: Find the best available image for this story. Return ONE image object:
   {
-    search_query: best 4-6 word image search query e.g. 'Kerala Congress Chief Minister assembly' NOT generic like 'India politics news'. Use specific names, places, events,
-    source: "Wikimedia Commons|PIB|Unsplash|Pexels",
-    attribution: exact credit text for display,
-    alt_text: image description,
-    license: "public-domain|cc-by|cc-by-sa|free-to-use"
+    url: direct accessible image URL — use this format for Wikimedia:
+      https://commons.wikimedia.org/wiki/Special:FilePath/FILENAME.jpg
+      This format works for download (NOT the /thumb/ hotlink format).
+      Leave null for Unsplash/Pexels — provide search_query instead,
+    search_query: 4-6 word specific image search query always required
+      e.g. 'Kerala Congress Chief Minister assembly 2026'
+      NOT generic like 'India politics news',
+    source: "wikimedia-commons|pib|unsplash|pexels|pixabay",
+    attribution: exact credit line e.g.
+      Photo: Wikimedia Commons / CC BY-SA 4.0
+      Image: Press Information Bureau, Govt of India
+      Photo: Unsplash,
+    alt_text: describe what ideal image shows,
+    license: "cc-by-sa|cc-by|public-domain|free-to-use"
   }
-  - Politicians/officials → Wikimedia Commons or PIB
-  - Cricket/IPL → Wikimedia Commons
-  - Places → Unsplash or Wikimedia Commons
-  - Bollywood → Wikimedia Commons
-  - Generic → Unsplash or Pexels
+  RULES:
+  - Wikimedia Special:FilePath format only — never /thumb/ URLs
+  - For politicians: search their Wikipedia/Commons page name
+  - For cricket/IPL: Commons has extensive cricket images
+  - For Bollywood actors: Commons has actor pages
+  - For places: Commons or Unsplash landmark photos
+  - For PIB: use pib.gov.in for Indian government stories
+  - NEVER suggest Getty/AP/Reuters/news site images
 
 ──────────────────────────────────────
 TASK 2: CAROUSEL PHOTOS
