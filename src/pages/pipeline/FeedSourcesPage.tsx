@@ -18,6 +18,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Copy, Plus, Trash2 } from "lucide-react";
 import { VERTICALS, relTime } from "./shared";
+import { adminWrite } from "@/lib/adminWrite";
 
 const TYPE_VARIANT: Record<string, string> = {
   rss: "bg-emerald-100 text-emerald-900 border-emerald-200",
@@ -68,20 +69,20 @@ export default function FeedSourcesPage() {
     qc.setQueryData(["p2_feed_sources"], (old: any[] = []) =>
       old.map((r) => (r.id === row.id ? { ...r, is_active: !row.is_active } : r))
     );
-    const { error } = await supabase
-      .from("p2_feed_sources")
-      .update({ is_active: !row.is_active })
-      .eq("id", row.id);
+    const { error } = await adminWrite({
+      table: "p2_feed_sources", op: "update", id: row.id,
+      payload: { is_active: !row.is_active },
+    });
     if (error) {
-      toast.error("Failed to toggle");
+      toast.error(error);
       qc.invalidateQueries({ queryKey: ["p2_feed_sources"] });
     }
   }
 
   async function deleteRow(id: string) {
     if (!confirm("Delete this feed?")) return;
-    const { error } = await supabase.from("p2_feed_sources").delete().eq("id", id);
-    if (error) toast.error(error.message);
+    const { error } = await adminWrite({ table: "p2_feed_sources", op: "delete", id });
+    if (error) toast.error(error);
     else {
       toast.success("Deleted");
       qc.invalidateQueries({ queryKey: ["p2_feed_sources"] });
@@ -238,10 +239,10 @@ function FeedFormDialog({ row, onSaved }: { row: any | null; onSaved: () => void
     setSaving(true);
     const payload = { name, url, type, layer, tier, verticals, fetch_interval_min: interval };
     const res = row
-      ? await supabase.from("p2_feed_sources").update(payload).eq("id", row.id)
-      : await supabase.from("p2_feed_sources").insert(payload);
+      ? await adminWrite({ table: "p2_feed_sources", op: "update", id: row.id, payload })
+      : await adminWrite({ table: "p2_feed_sources", op: "insert", payload });
     setSaving(false);
-    if (res.error) return toast.error(res.error.message);
+    if (res.error) return toast.error(res.error);
     toast.success(row ? "Updated" : "Added");
     onSaved();
   }

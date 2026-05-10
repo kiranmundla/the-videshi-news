@@ -24,6 +24,7 @@ import {
 import { toast } from "sonner";
 import { Plus, Trash2, Pause, Play } from "lucide-react";
 import { relTime } from "@/pages/pipeline/shared";
+import { adminWrite } from "@/lib/adminWrite";
 
 const VERTICALS = [
   "politics", "economy", "tech", "immigration", "diaspora",
@@ -106,18 +107,20 @@ export default function SourcesPage() {
   async function toggleActive(row: any) {
     qc.setQueryData(["videshi_sources"], (old: any[] = []) =>
       old.map(r => r.id === row.id ? { ...r, is_active: !row.is_active } : r));
-    const { error } = await supabase
-      .from("videshi_sources").update({ is_active: !row.is_active }).eq("id", row.id);
+    const { error } = await adminWrite({
+      table: "videshi_sources", op: "update", id: row.id,
+      payload: { is_active: !row.is_active },
+    });
     if (error) {
-      toast.error("Failed to toggle");
+      toast.error(error);
       qc.invalidateQueries({ queryKey: ["videshi_sources"] });
     }
   }
 
   async function deleteRow(id: string) {
     if (!confirm("Delete this source? This cannot be undone.")) return;
-    const { error } = await supabase.from("videshi_sources").delete().eq("id", id);
-    if (error) toast.error(error.message);
+    const { error } = await adminWrite({ table: "videshi_sources", op: "delete", id });
+    if (error) toast.error(error);
     else {
       toast.success("Deleted");
       qc.invalidateQueries({ queryKey: ["videshi_sources"] });
@@ -423,10 +426,10 @@ function SourceFormSheet({ row, onSaved }: { row: any | null; onSaved: () => voi
       is_active: isActive,
     };
     const res = row
-      ? await supabase.from("videshi_sources").update(payload).eq("id", row.id)
-      : await supabase.from("videshi_sources").insert(payload);
+      ? await adminWrite({ table: "videshi_sources", op: "update", id: row.id, payload })
+      : await adminWrite({ table: "videshi_sources", op: "insert", payload });
     setSaving(false);
-    if (res.error) return toast.error(res.error.message);
+    if (res.error) return toast.error(res.error);
     toast.success(row ? "Updated" : "Added");
     onSaved();
   }

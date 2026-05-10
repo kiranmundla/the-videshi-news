@@ -15,6 +15,7 @@ import {
 import { ChevronDown, MoreHorizontal } from "lucide-react";
 import { toast } from "sonner";
 import { VERTICALS, VERTICAL_COLORS, URGENCY_COLORS, STATUS_COLORS, scoreColor, relTime } from "./shared";
+import { adminWrite } from "@/lib/adminWrite";
 
 const PAGE_SIZE = 20;
 
@@ -69,8 +70,8 @@ export default function TopicRadarPage() {
   const pageRows = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   async function reject(id: string) {
-    const { error } = await supabase.from("p2_topics").update({ status: "rejected" }).eq("id", id);
-    if (error) toast.error(error.message);
+    const { error } = await adminWrite({ table: "p2_topics", op: "update", id, payload: { status: "rejected" } });
+    if (error) toast.error(error);
     else { toast.success("Marked rejected"); refetch(); }
   }
 

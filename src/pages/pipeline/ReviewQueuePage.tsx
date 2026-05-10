@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { VERTICAL_COLORS, URGENCY_COLORS, scoreColor, relTime } from "./shared";
+import { adminWrite } from "@/lib/adminWrite";
 
 export default function ReviewQueuePage() {
   const qc = useQueryClient();
@@ -102,12 +103,12 @@ function ArticleDetail({ article, onSaved }: { article: any; onSaved: () => void
 
   async function save(extra: Record<string, any> = {}, msg = "Saved") {
     setSaving(true);
-    const { error } = await supabase
-      .from("p2_articles")
-      .update({ headline, subheadline, body, diaspora_angle: diaspora, tags, word_count: wordCount, ...extra })
-      .eq("id", article.id);
+    const { error } = await adminWrite({
+      table: "p2_articles", op: "update", id: article.id,
+      payload: { headline, subheadline, body, diaspora_angle: diaspora, tags, word_count: wordCount, ...extra },
+    });
     setSaving(false);
-    if (error) toast.error(error.message);
+    if (error) toast.error(error);
     else { toast.success(msg); onSaved(); }
   }
 
