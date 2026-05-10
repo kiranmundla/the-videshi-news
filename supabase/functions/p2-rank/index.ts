@@ -302,11 +302,12 @@ Maximum 20 ranked_topics.
     carouselPhotos = data?.carousel_photos ?? [];
     reRanked = data?.re_ranked ?? [];
   } catch (err: any) {
+    const safeErr = (err?.message ?? String(err)).replace(/https?:\/\/\S+/g, '[URL]');
     await supabase.from("pipeline_alerts").insert({
       agent: "p2-rank",
       severity: "error",
       error_type: "claude_error",
-      message: `Claude ranking failed: ${err?.message ?? String(err)}`,
+      message: `Claude ranking failed: ${safeErr}`,
     });
     return new Response(JSON.stringify({ ok: false, error: err?.message ?? String(err) }), {
       status: 500,
