@@ -280,6 +280,12 @@ Maximum 20 ranked_topics.
     const raw = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ?? "";
     const cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
     const data = JSON.parse(cleaned);
+    await supabase.from('pipeline_alerts').insert({
+      agent: 'p2-rank',
+      severity: 'info',
+      error_type: 'debug',
+      message: `DEBUG: response keys=${Object.keys(data ?? {}).join(', ')}, re_ranked=${JSON.stringify(data?.re_ranked ?? data?.reRanked ?? []).slice(0, 200)}, ranked_topics_count=${(data?.ranked_topics ?? []).length}`
+    });
     topics = Array.isArray(data) ? data : (data?.ranked_topics ?? []);
     carouselPhotos = data?.carousel_photos ?? [];
     reRanked = data?.re_ranked ?? [];
