@@ -22,6 +22,7 @@ const VERTICAL_TO_CATEGORY: Record<string, string> = {
   culture: "lifestyle-health",
   sports: "sports",
   entertainment: "entertainment",
+  education: "news",
 };
 
 Deno.serve(async (req) => {
