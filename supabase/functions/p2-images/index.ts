@@ -468,7 +468,7 @@ Deno.serve(async () => {
     .select(`
       id, headline, vertical, tags, image_must_show,
       topic_id,
-      p2_topics ( keywords, image_search_query )
+      p2_topics ( keywords, image_search_query, image_url, image_attribution )
     `)
     .is('image_url', null)
     .eq('status', 'published')
@@ -527,8 +527,38 @@ Deno.serve(async () => {
 
       const sourceUrls = (hunts ?? []).map(h => h.url)
 
-      // ── Step 1: Use Gemini-provided query if available, else Claude extracts
+      // ── Step 0: Try Gemini-provided image URL directly
+      const geminiImageUrl = (article as any).p2_topics?.image_url;
       const geminiQuery = (article as any).p2_topics?.image_search_query;
+      if (geminiImageUrl) {
+        try {
+          const testRes = await fetch(geminiImageUrl, {
+            method: 'HEAD',
+            headers: { 'User-Agent': 'TheVideshi/1.0' },
+            signal: AbortSignal.timeout(5000)
+          });
+          if (testRes.ok &&
+              testRes.headers.get('content-type')?.startsWith('image/')) {
+            const storedUrl = await downloadToStorage(geminiImageUrl, article.id);
+            if (storedUrl) {
+              await supabase.from('p2_articles')
+                .update({
+                  image_url: storedUrl,
+                  image_attribution: (article as any).p2_topics?.image_attribution
+                })
+                .eq('id', article.id);
+              results.push({
+                headline: article.headline,
+                status: 'ok',
+                source: 'gemini'
+              });
+              continue;
+            }
+          }
+        } catch { /* fall through */ }
+      }
+
+      // ── Step 1: Use Gemini-provided query if available, else Claude extracts
       const { entity, query } = geminiQuery
         ? { entity: geminiQuery, query: geminiQuery }
         : await extractEntityAndQuery(article.headline, article.vertical);
@@ -659,6 +689,48 @@ Deno.serve(async () => {
       })
       results.push({ headline: article.headline, status: 'error', error: err.message })
     }
+  }
+
+  // ── Carousel image processing ─────────────────────────
+  const { data: carouselItems } = await supabase
+    .from('videshi_carousel_photos')
+    .select('id, title, image_url, image_source')
+    .is('stored_image_url', null)
+    .eq('is_active', true)
+    .limit(5);
+
+  for (const item of carouselItems ?? []) {
+    try {
+      if (item.image_url) {
+        const testRes = await fetch(item.image_url, {
+          method: 'HEAD',
+          headers: { 'User-Agent': 'TheVideshi/1.0' },
+          signal: AbortSignal.timeout(5000)
+        });
+        if (testRes.ok &&
+            testRes.headers.get('content-type')?.startsWith('image/')) {
+          const storedUrl = await downloadToStorage(item.image_url, item.id);
+          if (storedUrl) {
+            await supabase
+              .from('videshi_carousel_photos')
+              .update({ stored_image_url: storedUrl })
+              .eq('id', item.id);
+            continue;
+          }
+        }
+      }
+      // Fallback: search Unsplash with title
+      const unsplashUrls = await searchUnsplash(item.title);
+      if (unsplashUrls[0]) {
+        const storedUrl = await downloadToStorage(unsplashUrls[0], item.id);
+        if (storedUrl) {
+          await supabase
+            .from('videshi_carousel_photos')
+            .update({ stored_image_url: storedUrl })
+            .eq('id', item.id);
+        }
+      }
+    } catch { continue; }
   }
 
   const elapsed = Date.now() - startTime

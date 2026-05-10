@@ -1,0 +1,1 @@
+ALTER TABLE public.videshi_carousel_photos ADD COLUMN IF NOT EXISTS stored_image_url text;
