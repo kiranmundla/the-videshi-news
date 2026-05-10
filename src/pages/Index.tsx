@@ -164,7 +164,7 @@ function CategorySection({
       {clusters.map((c) => (
         <EventCluster key={c.label} label={c.label} items={c.items} />
       ))}
-      <FullRowsGrid articles={remaining} hideCategory={false} />
+      <FullRowsGrid articles={remaining} hideCategory={hideCategory} />
       <MoreStoriesButton onClick={loadMore} loading={loading} hasMore={hasMore} />
     </section>
   );
@@ -322,6 +322,7 @@ export default function Index() {
               slug={s.slug}
               label={s.label}
               initialPool={pool}
+              hideCategory={s.slug !== "news"}
             />
           );
         })}
