@@ -22,6 +22,7 @@ const VERTICAL_TO_CATEGORY: Record<string, string> = {
   culture: "lifestyle-health",
   sports: "sports",
   entertainment: "entertainment",
+  education: "news",
 };
 
 Deno.serve(async (req) => {
@@ -131,6 +132,9 @@ score_diaspora: How relevant is this to Indians living abroad (US, UK, Australia
     - Local state crime, local politics
     - Hyper-local city news
     - Routine government appointments
+    - Non-Indian celebrities (Harrison Ford, John Cena, Taylor Swift etc) = score_diaspora 5-15, should_publish false.
+    - Indian state board exam results (HPBOSE, CBSE, state boards) = score_diaspora 25-35 only.
+    - Medical/science research from India = score_diaspora 40-50.
 
 score_significance: How important is this story overall?
   80-100: National/global scale, affects millions
