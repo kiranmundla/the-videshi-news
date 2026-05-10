@@ -235,18 +235,7 @@ export default function Index() {
       {featuredArticle && <FeaturedHero article={featuredArticle} />}
 
       <main className="container flex-1 pt-8 md:pt-10">
-        {topStories.length >= 2 && (
-          <section>
-            <SectionHeader label="Top Stories" id="section-top" />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 auto-rows-fr">
-              {topStories.map((a, i) => (
-                <div key={a.id} className={i === 0 ? "md:col-span-2" : ""}>
-                  <TopStoriesCard article={a} size={i === 0 ? "lg" : "md"} />
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+        {topStories.length >= 2 && <TopStoriesSection initial={topStories} />}
 
         {topClusters.length > 0 && (
           <section className="mt-12">
@@ -257,16 +246,7 @@ export default function Index() {
         )}
 
         {sections.map((s) => (
-          <section key={s.slug}>
-            <SectionHeader label={s.label} href={s.href} id={`section-${s.slug}`} />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 auto-rows-fr items-stretch">
-              {s.items.map((a) => (
-                <div key={a.id} className="h-full">
-                  <ArticleCard article={a} variant="card" hideCategory />
-                </div>
-              ))}
-            </div>
-          </section>
+          <CategorySection key={s.slug} slug={s.slug} label={s.label} initial={s.items} />
         ))}
       </main>
 
