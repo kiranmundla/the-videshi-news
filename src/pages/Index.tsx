@@ -173,6 +173,25 @@ export default function Index() {
     });
   }, []);
 
+  // Save scroll position when leaving the homepage
+  useEffect(() => {
+    return () => {
+      sessionStorage.setItem("homeScrollY", window.scrollY.toString());
+    };
+  }, []);
+
+  // Restore scroll position once content has rendered
+  useEffect(() => {
+    if (loading) return;
+    const savedY = sessionStorage.getItem("homeScrollY");
+    if (!savedY) return;
+    const t = setTimeout(() => {
+      window.scrollTo(0, parseInt(savedY, 10));
+      sessionStorage.removeItem("homeScrollY");
+    }, 100);
+    return () => clearTimeout(t);
+  }, [loading]);
+
   const layout = useMemo(() => {
     const featuredId = featuredArticle?.id;
     const filtered = featuredId ? topPool.filter((a) => a.id !== featuredId) : topPool;
