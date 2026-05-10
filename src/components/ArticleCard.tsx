@@ -46,7 +46,7 @@ export default function ArticleCard({
   // ===================== COMPACT =====================
   if (variant === "compact") {
     return (
-      <Link to={href} className="group flex gap-4 items-start">
+      <Link to={href} onClick={saveScroll} className="group flex gap-4 items-start">
         {hasImage && (
           <HeroImage
             src={article.hero_image_url}
@@ -197,7 +197,7 @@ export default function ArticleCard({
   }
 
   return (
-    <Link to={href} className="group block">
+    <Link to={href} onClick={saveScroll} className="group block">
       <figure className="w-full">
         <div className="w-full aspect-[16/9] overflow-hidden">
           <HeroImage
