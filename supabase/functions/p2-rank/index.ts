@@ -348,75 +348,23 @@ Maximum 20 ranked_topics.
       ? validIdx.reduce((sum, i) => sum + calcRecency(signals[i].published_at), 0) / validIdx.length
       : 50;
 
-    // Tier 1 top-story feeds (highest prominence)
-    const TIER1_SLUGS = new Set([
-      'ndtv-top-stories', 'ndtv-india-news', 'times-of-india',
-      'toi-most-recent', 'the-hindu', 'bbc-india',
-      'hindustan-times', 'indian-express',
-    ]);
-
-    // Diaspora-heavy state keywords
-    const DIASPORA_STATES = [
-      'tamil nadu', 'kerala', 'punjab', 'andhra', 'telangana',
-      'karnataka', 'gujarat', 'maharashtra', 'west bengal', 'bengal',
-      'vijay', 'tvk', 'dmk', 'aiadmk', 'bjp bengal',
-    ];
-
-    const topicSignals = indices
-      .filter((i) => i >= 0 && i < signals.length)
-      .map((i) => signals[i]);
-
-    // Boost 1: Tier 1 top-story source
-    const hasTier1Source = topicSignals.some((s: any) => {
-      const src = sourceMap[s.feed_source_id];
-      return src && TIER1_SLUGS.has(src.slug ?? '');
-    });
-    const tier1Boost = hasTier1Source ? 10 : 0;
-
-    // Boost 2: Signal count (uncapped-ish)
-    const signalCountBoost = Math.min((indices.length - 1) * 5, 20);
-
-    // Boost 3: Diaspora state
-    const titleLower = String(topic.canonical_title).toLowerCase();
-    const isDiasporaState = DIASPORA_STATES.some((s) => titleLower.includes(s));
-    const diasporaStateBoost = isDiasporaState ? 10 : 0;
-
-    // Boost 4: India-US bilateral
-    const isIndiUS = titleLower.includes('india-us') ||
-      titleLower.includes('india us') ||
-      titleLower.includes('white house') ||
-      titleLower.includes('washington') ||
-      titleLower.includes('pentagon') ||
-      titleLower.includes('trump') ||
-      titleLower.includes('biden') ||
-      titleLower.includes('us-india');
-    const indiUSBoost = isIndiUS ? 8 : 0;
-
-    // Boost 5: Penalty for India-domestic only
     const scoreDiaspora = clamp(topic.score_diaspora);
-    const isDomesticOnly = scoreDiaspora < 50;
-    const domesticPenalty = isDomesticOnly ? -15 : 0;
-
     const scoreSignificance = clamp(topic.score_significance);
 
-    // New weights — diaspora is the primary driver
-    const baseScore = Math.round(
-      scoreDiaspora     * 0.55 +
-        scoreSignificance * 0.35 +
-        avgRecency        * 0.10,
-    );
+    // Option B: Trust Gemini's diaspora scoring
+    // Only add what Gemini can't know: recency + signal count
+    const signalBoost = Math.min((indices.length - 1) * 7, 21);
 
-    // Apply boosts
-    const computedTotal = Math.min(100, Math.max(0,
-      baseScore
-        + tier1Boost
-        + signalCountBoost
-        + diasporaStateBoost
-        + indiUSBoost
-        + domesticPenalty,
-    ));
+    const computedTotal = Math.min(100, Math.max(0, Math.round(
+      scoreDiaspora    * 0.60 +
+      scoreSignificance * 0.30 +
+      avgRecency        * 0.10 +
+      signalBoost
+      + (scoreDiaspora < 50 ? -10 : 0)
+    )));
 
-    if (computedTotal < 45 || scoreDiaspora < 40) continue;
+    // Hard reject: not diaspora relevant
+    if (computedTotal < 45 || scoreDiaspora < 35) continue;
 
     const { data: newTopic, error: topicErr } = await supabase
       .from("p2_topics")
