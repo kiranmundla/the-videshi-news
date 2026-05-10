@@ -63,7 +63,7 @@ function SectionHeader({ label, id }: { label: string; id?: string }) {
   );
 }
 
-function OrphanGrid({ articles }: { articles: Article[] }) {
+function OrphanGrid({ articles, hideCategory = false }: { articles: Article[]; hideCategory?: boolean }) {
   const fullCount = Math.floor(articles.length / 3) * 3;
   const full = articles.slice(0, fullCount);
   const orphans = articles.slice(fullCount);
@@ -74,14 +74,14 @@ function OrphanGrid({ articles }: { articles: Article[] }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 auto-rows-fr items-stretch">
           {full.map((a) => (
             <div key={a.id} className="h-full">
-              <ArticleCard article={a} variant="card" hideCategory />
+              <ArticleCard article={a} variant="card" hideCategory={hideCategory} />
             </div>
           ))}
         </div>
       )}
       {orphans.length === 1 && (
         <div className={full.length > 0 ? "mt-5 md:mt-8" : ""}>
-          <ArticleCard article={orphans[0]} variant="long" hideCategory />
+          <ArticleCard article={orphans[0]} variant="long" hideCategory={hideCategory} />
         </div>
       )}
       {orphans.length === 2 && (
@@ -92,7 +92,7 @@ function OrphanGrid({ articles }: { articles: Article[] }) {
         >
           {orphans.map((a) => (
             <div key={a.id} className="h-full">
-              <ArticleCard article={a} variant="card" hideCategory />
+              <ArticleCard article={a} variant="card" hideCategory={hideCategory} />
             </div>
           ))}
         </div>
