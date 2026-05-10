@@ -63,6 +63,44 @@ function SectionHeader({ label, id }: { label: string; id?: string }) {
   );
 }
 
+function OrphanGrid({ articles }: { articles: Article[] }) {
+  const fullCount = Math.floor(articles.length / 3) * 3;
+  const full = articles.slice(0, fullCount);
+  const orphans = articles.slice(fullCount);
+
+  return (
+    <>
+      {full.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 auto-rows-fr items-stretch">
+          {full.map((a) => (
+            <div key={a.id} className="h-full">
+              <ArticleCard article={a} variant="card" hideCategory />
+            </div>
+          ))}
+        </div>
+      )}
+      {orphans.length === 1 && (
+        <div className={full.length > 0 ? "mt-5 md:mt-8" : ""}>
+          <ArticleCard article={orphans[0]} variant="long" hideCategory />
+        </div>
+      )}
+      {orphans.length === 2 && (
+        <div
+          className={`grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-8 auto-rows-fr items-stretch ${
+            full.length > 0 ? "mt-5 md:mt-8" : ""
+          }`}
+        >
+          {orphans.map((a) => (
+            <div key={a.id} className="h-full">
+              <ArticleCard article={a} variant="card" hideCategory />
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
+
 function CategorySection({
   slug,
   label,
@@ -94,13 +132,7 @@ function CategorySection({
   return (
     <section>
       <SectionHeader label={label} id={`section-${slug}`} />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 auto-rows-fr items-stretch">
-        {articles.map((a) => (
-          <div key={a.id} className="h-full">
-            <ArticleCard article={a} variant="card" hideCategory />
-          </div>
-        ))}
-      </div>
+      <OrphanGrid articles={articles} />
       <MoreStoriesButton onClick={loadMore} loading={loading} hasMore={hasMore} />
     </section>
   );
@@ -128,16 +160,27 @@ function TopStoriesSection({ initial }: { initial: Article[] }) {
     }
   };
 
+  // First two articles form the hero row (2-col + 1-col); remainder uses orphan-aware grid.
+  const hero = articles.slice(0, 2);
+  const rest = articles.slice(2);
+
   return (
     <section>
       <SectionHeader label="Top Stories" id="section-top" />
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 auto-rows-fr">
-        {articles.map((a, i) => (
-          <div key={a.id} className={i === 0 ? "md:col-span-2" : ""}>
-            <TopStoriesCard article={a} size={i === 0 ? "lg" : "md"} />
-          </div>
-        ))}
-      </div>
+      {hero.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 auto-rows-fr">
+          {hero.map((a, i) => (
+            <div key={a.id} className={i === 0 ? "md:col-span-2" : ""}>
+              <TopStoriesCard article={a} size={i === 0 ? "lg" : "md"} />
+            </div>
+          ))}
+        </div>
+      )}
+      {rest.length > 0 && (
+        <div className="mt-5 md:mt-6">
+          <OrphanGrid articles={rest} />
+        </div>
+      )}
       <MoreStoriesButton onClick={loadMore} loading={loading} hasMore={hasMore} />
     </section>
   );
