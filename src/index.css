@@ -85,3 +85,5 @@
   .article-prose ul { @apply list-disc pl-6 mb-6 space-y-2; }
   .article-prose ol { @apply list-decimal pl-6 mb-6 space-y-2; }
 }
+
+.container { max-width: 1200px !important; }
