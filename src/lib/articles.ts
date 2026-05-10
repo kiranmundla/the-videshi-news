@@ -121,6 +121,8 @@ export async function getFeaturedArticle(): Promise<Article | null> {
     .neq("category", "sports")
     .in("category", ["nri-world", "news", "markets-finance", "entertainment"])
     .order("score_total", { ascending: false })
+    .order("published_at", { ascending: false })
+    .order("id", { ascending: true })
     .limit(1)
     .maybeSingle();
 
@@ -134,6 +136,8 @@ export async function getFeaturedArticle(): Promise<Article | null> {
     .not("score_total", "is", null)
     .neq("category", "sports")
     .order("score_total", { ascending: false })
+    .order("published_at", { ascending: false })
+    .order("id", { ascending: true })
     .limit(1)
     .maybeSingle();
 
@@ -172,6 +176,7 @@ export async function getPublishedArticles(): Promise<Article[]> {
     .eq("status", "published")
     .eq("is_featured", false)
     .order("published_at", { ascending: false })
+    .order("id", { ascending: true })
     .limit(100);
 
   if (error) {
@@ -250,6 +255,7 @@ export async function getArticlesByCategory(
     .eq("category", category)
     .order("score_total", { ascending: false })
     .order("published_at", { ascending: false })
+    .order("id", { ascending: true })
     .range(offset, offset + limit - 1);
   if (error) {
     console.error("[articles] getArticlesByCategory", error);
