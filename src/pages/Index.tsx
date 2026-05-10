@@ -162,8 +162,6 @@ export default function Index() {
 
       {featuredArticle && <FeaturedHero article={featuredArticle} />}
 
-      <ArticleCarousel />
-
       <main className="container flex-1 pt-8 md:pt-10">
         {topStories.length >= 2 && (
           <section>
