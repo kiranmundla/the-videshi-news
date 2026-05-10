@@ -527,8 +527,38 @@ Deno.serve(async () => {
 
       const sourceUrls = (hunts ?? []).map(h => h.url)
 
-      // ── Step 1: Use Gemini-provided query if available, else Claude extracts
+      // ── Step 0: Try Gemini-provided image URL directly
+      const geminiImageUrl = (article as any).p2_topics?.image_url;
       const geminiQuery = (article as any).p2_topics?.image_search_query;
+      if (geminiImageUrl) {
+        try {
+          const testRes = await fetch(geminiImageUrl, {
+            method: 'HEAD',
+            headers: { 'User-Agent': 'TheVideshi/1.0' },
+            signal: AbortSignal.timeout(5000)
+          });
+          if (testRes.ok &&
+              testRes.headers.get('content-type')?.startsWith('image/')) {
+            const storedUrl = await downloadToStorage(geminiImageUrl, article.id);
+            if (storedUrl) {
+              await supabase.from('p2_articles')
+                .update({
+                  image_url: storedUrl,
+                  image_attribution: (article as any).p2_topics?.image_attribution
+                })
+                .eq('id', article.id);
+              results.push({
+                headline: article.headline,
+                status: 'ok',
+                source: 'gemini'
+              });
+              continue;
+            }
+          }
+        } catch { /* fall through */ }
+      }
+
+      // ── Step 1: Use Gemini-provided query if available, else Claude extracts
       const { entity, query } = geminiQuery
         ? { entity: geminiQuery, query: geminiQuery }
         : await extractEntityAndQuery(article.headline, article.vertical);
