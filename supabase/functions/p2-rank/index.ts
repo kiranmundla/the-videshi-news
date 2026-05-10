@@ -48,17 +48,6 @@ Deno.serve(async (req) => {
     (sourcesData ?? []).map((s: any) => [s.id, s])
   );
 
-  const calcRecency = (publishedAt: string | null): number => {
-    if (!publishedAt) return 50;
-    const hoursAgo = (Date.now() - new Date(publishedAt).getTime()) / 3_600_000;
-    if (hoursAgo <= 2) return 100;
-    if (hoursAgo <= 6) return 90;
-    if (hoursAgo <= 12) return 80;
-    if (hoursAgo <= 24) return 65;
-    if (hoursAgo <= 36) return 45;
-    return 25;
-  };
-
   if (sigErr) {
     return new Response(JSON.stringify({ ok: false, error: sigErr.message }), {
       status: 500,
