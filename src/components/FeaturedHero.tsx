@@ -53,10 +53,10 @@ export default function FeaturedHero({ article }: { article: Article }) {
 
   return (
     <section
-      className="relative w-full h-[260px] md:h-[320px] flex items-center justify-center px-5 md:px-12"
+      className="relative w-full h-[260px] md:h-[300px] flex items-center px-6 md:px-10 rounded-lg overflow-hidden"
       style={{ background: "#1C1C1E" }}
     >
-      <Link to={href} className="block max-w-4xl mx-auto">
+      <Link to={href} className="block max-w-4xl">
         <p className="smallcaps mb-3" style={{ color: "hsl(var(--primary))" }}>
           <span className="bg-primary text-primary-foreground px-2 py-1 mr-2 tracking-wider">
             FEATURED
