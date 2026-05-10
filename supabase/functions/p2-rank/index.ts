@@ -1,6 +1,7 @@
 // p2-rank — clusters unprocessed p2_signals into p2_topics using Claude Haiku.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import Anthropic from "https://esm.sh/@anthropic-ai/sdk@0.27.0";
+
+const GEMINI_KEY = Deno.env.get("GEMINI_API_KEY")!;
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -91,9 +92,11 @@ Deno.serve(async (req) => {
 
   // 3. Claude clustering
   const systemPrompt =
-    `You are a news editor for The Videshi, a premium news platform for Indian-Americans. Your job is to analyze news headlines from Indian sources and identify unique, publishable story topics.
+    `You are a news editor for The Videshi, a premium news platform for Indian-Americans and Indian diaspora globally (US, UK, Australia, UAE, Canada).
 
-Return ONLY a valid JSON array. No markdown, no explanation, no code fences. Raw JSON array only.`;
+Analyze headlines and identify unique publishable story topics with precise entity disambiguation.
+
+Return ONLY a valid JSON array. No markdown, no explanation, no code fences.`;
 
   const userPrompt =
     `Analyze these ${signals.length} news headlines from Indian sources.
@@ -142,7 +145,29 @@ score_significance: How important is this story overall?
 5. urgency: breaking|daily|evergreen
 6. keywords: 3-5 search terms for finding govt press releases on this topic
 7. signal_indices: array of the [N] indices from the input that belong to this topic
-8. key_entities: array of 2-5 specific named entities central to the story — people (e.g. "Suvendu Adhikari"), places (e.g. "West Bengal"), organizations ("BJP"), or events. Use canonical names.
+8. key_entities: array of 2-5 typed entity objects:
+{
+  name: full canonical name (NEVER abbreviate),
+  type: politician|actor|athlete|businessman|organization|place|event|policy,
+  entity_id: disambiguated slug e.g.:
+    vijay-politician-tamil-nadu
+    vijay-deverakonda-actor-telugu
+    rahul-gandhi-politician-congress
+    us-congress-organization-usa
+    supreme-court-india
+    supreme-court-usa
+    delhi-capitals-ipl-team
+    delhi-place-capital
+}
+
+DISAMBIGUATION RULES:
+- Same first name ≠ same person
+- Vijay (TVK/Tamil Nadu/CM) → vijay-politician-tamil-nadu
+- Vijay Deverakonda (actor/Telugu/film) → vijay-deverakonda-actor-telugu
+- Rahul Gandhi (Congress) → rahul-gandhi-politician-congress
+- Congress India → inc-organization-india
+- Congress USA → us-congress-organization-usa
+- Always use full names in canonical_title
 
 Only include topics with score_total >= 45. Max 20 topics.
 
@@ -154,16 +179,27 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
 
   let topics: any[] = [];
   try {
-    const response = await anthropic.messages.create({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 4000,
-      messages: [{ role: "user", content: userPrompt }],
-      system: systemPrompt,
-    });
-    const raw = (response.content[0] as any).text.trim();
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{ text: systemPrompt + "\n\n" + userPrompt }]
+          }],
+          generationConfig: {
+            temperature: 0.1,
+            thinkingConfig: { thinkingBudget: 0 }
+          }
+        })
+      }
+    );
+    const geminiData = await response.json();
+    const raw = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ?? "";
     const cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
     topics = JSON.parse(cleaned);
-    if (!Array.isArray(topics)) throw new Error("Claude did not return an array");
+    if (!Array.isArray(topics)) throw new Error("Gemini did not return an array");
   } catch (err: any) {
     await supabase.from("pipeline_alerts").insert({
       agent: "p2-rank",
