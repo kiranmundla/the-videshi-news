@@ -107,18 +107,20 @@ export default function SourcesPage() {
   async function toggleActive(row: any) {
     qc.setQueryData(["videshi_sources"], (old: any[] = []) =>
       old.map(r => r.id === row.id ? { ...r, is_active: !row.is_active } : r));
-    const { error } = await supabase
-      .from("videshi_sources").update({ is_active: !row.is_active }).eq("id", row.id);
+    const { error } = await adminWrite({
+      table: "videshi_sources", op: "update", id: row.id,
+      payload: { is_active: !row.is_active },
+    });
     if (error) {
-      toast.error("Failed to toggle");
+      toast.error(error);
       qc.invalidateQueries({ queryKey: ["videshi_sources"] });
     }
   }
 
   async function deleteRow(id: string) {
     if (!confirm("Delete this source? This cannot be undone.")) return;
-    const { error } = await supabase.from("videshi_sources").delete().eq("id", id);
-    if (error) toast.error(error.message);
+    const { error } = await adminWrite({ table: "videshi_sources", op: "delete", id });
+    if (error) toast.error(error);
     else {
       toast.success("Deleted");
       qc.invalidateQueries({ queryKey: ["videshi_sources"] });
