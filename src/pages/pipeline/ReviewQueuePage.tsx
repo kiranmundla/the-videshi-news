@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { VERTICAL_COLORS, URGENCY_COLORS, scoreColor, relTime } from "./shared";
+import { adminWrite } from "@/lib/adminWrite";
 
 export default function ReviewQueuePage() {
   const qc = useQueryClient();
