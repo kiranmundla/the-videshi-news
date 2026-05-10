@@ -91,7 +91,7 @@ Deno.serve(async (req) => {
   // 2b. Fetch recently published headlines (to avoid republishing)
   const { data: recentArticles } = await supabase
     .from("p2_articles")
-    .select("headline, category, published_at")
+    .select("headline, category")
     .eq("status", "published")
     .gte("published_at", new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString())
     .order("published_at", { ascending: false })
@@ -105,130 +105,111 @@ Deno.serve(async (req) => {
   const userPrompt = `
 You are the chief editor of The Videshi, a premium news platform for the Indian diaspora globally (US, UK, Australia, UAE, Canada, Singapore).
 
-You have access to Google Search — use it actively.
-
 ═══════════════════════════════════════
-PART A: ALREADY PUBLISHED (DO NOT REPUBLISH)
+PART A: ALREADY PUBLISHED — DO NOT REPUBLISH
 ═══════════════════════════════════════
 ${publishedHeadlines}
 
 ═══════════════════════════════════════
-PART B: RSS SIGNALS (what our feeds caught)
+PART B: RSS SIGNALS TO RANK
 ═══════════════════════════════════════
 ${headlineList}
 
 ═══════════════════════════════════════
-PART C: YOUR JOB
+YOUR JOB: TWO TASKS
 ═══════════════════════════════════════
-
-Do THREE things:
 
 ──────────────────────────────────────
 TASK 1: RANK AND CLUSTER RSS SIGNALS
 ──────────────────────────────────────
-Group the RSS signals above into unique story topics.
-Skip any story already in PART A (published).
+Group signals into unique story topics.
+Skip stories already in PART A.
 
-For each topic return a JSON object with ALL these fields:
-- canonical_title: clear headline (max 100 chars, full names)
+For each topic return:
+- canonical_title: clear headline, full names always
 - vertical: politics|economy|tech|immigration|diaspora|science|culture|sports|entertainment|education
 - category: news|entertainment|sports|markets-finance|technology|nri-world|lifestyle-health|travel|food
-- event_type: election-result|swearing-in|policy-announcement|policy-update|match-result|match-preview|birthday|film-release|arrest-raid|court-ruling|market-move|diplomatic-meeting|natural-disaster|obituary|protest|accident|appointment|resignation|award|interview|statement|report-release|other
-- event_date: YYYY-MM-DD when event occurred
+- event_type: election-result|swearing-in|policy-announcement|policy-update|match-result|match-preview|birthday|film-release|arrest-raid|court-ruling|market-move|diplomatic-meeting|natural-disaster|obituary|protest|accident|appointment|resignation|award|statement|report-release|other
+- event_date: YYYY-MM-DD
 - score_diaspora: 0-100
-    90-100: H-1B/visa/immigration, Indian-Americans in news, India-US policy directly affecting diaspora
-    75-89: National India elections, India-Pakistan/China, Bollywood A-list, cricket World Cup/IPL finals
-    65-74: Tamil Nadu, Kerala, Punjab, Andhra/Telangana, Karnataka, Gujarat, Maharashtra, West Bengal (always 65+ for these diaspora-heavy states)
-    50-64: National India politics, economy, IPL regular season
+    90-100: H-1B/visa/immigration, Indian-Americans in news, India-US policy
+    75-89: National elections, India-Pakistan/China, Bollywood A-list, cricket World Cup/IPL finals
+    65-74: Tamil Nadu, Kerala, Punjab, Andhra/Telangana, Karnataka, Gujarat, Maharashtra, West Bengal
+    50-64: National India politics, economy, IPL
     30-49: India-domestic, minimal diaspora relevance
     5-25:  Non-Indian celebrities, unrelated global news
-    NEVER score Indian state board exams above 35
-    NEVER score non-Indian celebrities above 20
+    RULES:
+    - Indian state board exams (HPBOSE, CBSE) = max 35
+    - Non-Indian celebrities = max 20
+    - Celebrity birthdays = max 55
+    - Local India crime = max 30
 - score_significance: 0-100
 - urgency: breaking|daily|evergreen
-- keywords: 3-5 search terms for govt press releases
-- signal_indices: array of [N] indices from PART B
-- key_entities: array of typed entity objects:
+- keywords: 3-5 search terms
+- signal_indices: [N] indices from PART B
+- key_entities: typed entity objects:
   {
-    name: "full canonical name — never abbreviate",
+    name: "full canonical name",
     type: "politician|actor|athlete|businessman|organization|place|event|policy",
-    entity_id: "disambiguated-slug e.g.
-      vijay-politician-tamil-nadu (NOT vijay-deverakonda)
-      vijay-deverakonda-actor-telugu (Telugu film actor)
-      rahul-gandhi-politician-congress
-      inc-organization-india (Indian National Congress)
-      us-congress-organization-usa (US Congress)
-      supreme-court-india vs supreme-court-usa
-      delhi-capitals-ipl-team vs delhi-place-capital"
+    entity_id: "disambiguated-slug"
   }
-- free_sources: 2-3 copyright-free URLs for synthesis:
-    Priority: PIB (pib.gov.in) → Wikipedia → official govt sites → Wikimedia Commons
-    NEVER link to NDTV, TOI, Hindu, IE, BBC (copyrighted)
-- synthesis_angle: one sentence on diaspora relevance angle
-- image: single best image object:
+  DISAMBIGUATION:
+  - Vijay (TVK/Tamil Nadu/CM) = vijay-politician-tamil-nadu
+  - Vijay Deverakonda (actor) = vijay-deverakonda-actor-telugu
+  - Rahul Gandhi = rahul-gandhi-politician-congress
+  - Congress India = inc-organization-india
+  - Congress USA = us-congress-organization-usa
+  - Supreme Court India = supreme-court-india
+  - Supreme Court USA = supreme-court-usa
+  - Delhi Capitals (IPL) = delhi-capitals-ipl-team
+  - Delhi (city) = delhi-place-capital
+- free_sources: 2-3 copyright-free URLs:
+    PIB (pib.gov.in) → Wikipedia → official govt sites
+    NEVER link to NDTV, TOI, Hindu, IE, BBC
+- synthesis_angle: one sentence diaspora angle
+- image:
   {
     url: direct accessible image URL,
-    source: "Wikimedia Commons|PIB|Unsplash|Pexels|Official Govt|AP Archive",
-    attribution: exact credit text to display on site,
-    alt_text: description of image,
+    source: "Wikimedia Commons|PIB|Unsplash|Pexels",
+    attribution: exact credit text for display,
+    alt_text: image description,
     license: "public-domain|cc-by|cc-by-sa|free-to-use"
   }
-  Sources by story type:
   - Politicians/officials → Wikimedia Commons or PIB
-  - Cricket/IPL → Wikimedia Commons team pages
-  - Places → Wikimedia Commons or Unsplash
-  - Bollywood → Wikimedia Commons actor pages
-  - Generic/concept → Unsplash or Pexels
+  - Cricket/IPL → Wikimedia Commons
+  - Places → Unsplash or Wikimedia Commons
+  - Bollywood → Wikimedia Commons
+  - Generic → Unsplash or Pexels
 
 ──────────────────────────────────────
-TASK 2: DISCOVER STORIES WE MISSED
+TASK 2: CAROUSEL PHOTOS
 ──────────────────────────────────────
-Search Google News right now for stories important to Indian diaspora that are NOT in our RSS signals and NOT already published (PART A).
-Find 3-5 additional high-value stories.
-Focus on:
-- Breaking India-US news (visa, immigration, policy)
-- Major India events in last 6 hours
-- Stories trending in Indian diaspora communities
-- Events our RSS feeds likely missed
+Suggest 5 high-quality images for our homepage photo carousel — major events, cultural moments, sports from the last 48 hours relevant to diaspora.
 
-For each discovered story return same JSON format as Task 1 but add:
-- source: "google_discovery" (to distinguish from RSS)
-- signal_indices: [] (empty — not from our RSS)
-- discovered_url: the URL where you found this story
-
-──────────────────────────────────────
-TASK 3: EVENT PHOTOS FOR CAROUSEL
-──────────────────────────────────────
-Find 5 high-quality news event photos from the last 48 hours relevant to Indian diaspora. These are for our homepage photo carousel.
-Search Google for recent event images. Return:
-[
-  {
-    "carousel": true,
-    "title": "short caption for carousel",
-    "description": "2-3 sentence context",
-    "image": {
-      "url": direct image URL,
-      "source": "AP Archive|Reuters|PIB|Wikimedia|Getty",
-      "attribution": "credit text",
-      "license": "public-domain|press-use|cc-by"
-    },
-    "related_article_topic": "topic this relates to if any"
-  }
-]
-Prioritize: official govt events, sports moments, cultural events, landmark occasions.
+Return as "carousel_photos" array:
+{
+  title: short carousel caption,
+  description: 2-3 sentence context,
+  image: {
+    url: direct image URL,
+    source: "Wikimedia Commons|PIB|Unsplash|Pexels",
+    attribution: credit text,
+    license: "public-domain|cc-by|cc-by-sa|free-to-use"
+  },
+  related_topic: topic this relates to if any
+}
 
 ═══════════════════════════════════════
 OUTPUT FORMAT
 ═══════════════════════════════════════
 Return a single valid JSON object:
 {
-  "ranked_topics": [...],     ← Task 1: RSS ranked clusters
-  "discovered_topics": [...], ← Task 2: Google-found stories
-  "carousel_photos": [...]    ← Task 3: Event photos
+  "ranked_topics": [...],
+  "carousel_photos": [...]
 }
-No markdown. No explanation. Raw JSON only.
-Score topics with score_diaspora < 40 are excluded.
-Maximum 20 ranked_topics + 5 discovered_topics.
+No markdown. Raw JSON only.
+Exclude topics with score_diaspora < 40.
+Maximum 20 ranked_topics.
 `;
 
   let topics: any[] = [];
@@ -254,9 +235,8 @@ Maximum 20 ranked_topics + 5 discovered_topics.
     const raw = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ?? "";
     const cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
     const data = JSON.parse(cleaned);
-    topics = Array.isArray(data?.ranked_topics) ? data.ranked_topics : [];
-    discoveredTopics = Array.isArray(data?.discovered_topics) ? data.discovered_topics : [];
-    carouselPhotos = Array.isArray(data?.carousel_photos) ? data.carousel_photos : [];
+    topics = Array.isArray(data) ? data : (data?.ranked_topics ?? []);
+    carouselPhotos = data?.carousel_photos ?? [];
   } catch (err: any) {
     await supabase.from("pipeline_alerts").insert({
       agent: "p2-rank",
@@ -441,6 +421,9 @@ Maximum 20 ranked_topics + 5 discovered_topics.
         signal_count: indices.length || 1,
         status: "pending",
         keywords: Array.isArray(topic.keywords) ? topic.keywords : [],
+        image_url: topic.image?.url ?? null,
+        image_attribution: topic.image?.attribution ?? null,
+        image_license: topic.image?.license ?? null,
       })
       .select("id")
       .single();
@@ -504,7 +487,7 @@ Maximum 20 ranked_topics + 5 discovered_topics.
             image_source: p.image?.source,
             image_attribution: p.image?.attribution,
             image_license: p.image?.license,
-            related_topic: p.related_article_topic,
+            related_topic: p.related_topic,
             fetched_at: new Date().toISOString(),
           })),
         { onConflict: "image_url", ignoreDuplicates: true }
