@@ -603,6 +603,49 @@ Deno.serve(async () => {
         candidates.push(...pixabayImages.map(p => ({ url: p.url, source: 'pixabay', attribution: p.attribution })))
       }
 
+      // ── Step 2.5: If Gemini provided a query, skip Claude Vision and
+      // take the first Wikimedia/Wikipedia candidate that downloads.
+      if (geminiQuery) {
+        const wikiCandidates = candidates.filter(
+          c => (c.source === 'wikipedia' || c.source === 'wikimedia') && !usedUrls.has(c.url)
+        );
+        let tookGeminiFastPath = false;
+        for (const cand of wikiCandidates) {
+          const storedUrl = await downloadToStorage(cand.url, article.id);
+          if (storedUrl) {
+            await supabase
+              .from('p2_articles')
+              .update({ image_url: storedUrl, image_attribution: 'Wikimedia Commons' })
+              .eq('id', article.id);
+            usedUrls.add(storedUrl);
+
+            await supabase.from('videshi_image_log').insert({
+              article_id: article.id,
+              headline: article.headline,
+              source_used: cand.source,
+              candidates_count: candidates.length,
+              vision_pick: 0,
+              vision_score: 0,
+            });
+
+            results.push({
+              headline: article.headline,
+              status: 'ok',
+              source: cand.source,
+              candidates: candidates.length,
+              vision_score: 0,
+            });
+            tookGeminiFastPath = true;
+            break;
+          }
+        }
+        if (tookGeminiFastPath) {
+          await new Promise(r => setTimeout(r, 500));
+          continue;
+        }
+        // else fall through to Claude Vision below
+      }
+
       if (candidates.length === 0) {
         await supabase.from('videshi_image_log').insert({
           article_id: article.id,
