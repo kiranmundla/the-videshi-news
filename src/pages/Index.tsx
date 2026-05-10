@@ -126,7 +126,14 @@ function CategorySection({
   const [pool, setPool] = useState<Article[]>(initialPool);
   const [visibleCount, setVisibleCount] = useState(3);
   const [offset, setOffset] = useState(initialPool.length);
-  const [hasMore, setHasMore] = useState(initialPool.length >= 3);
+  const [hasMore, setHasMore] = useState(false);
+
+  // Check on mount if server has more
+  useEffect(() => {
+    getArticlesByCategory(slug, 1, initialPool.length).then((more) =>
+      setHasMore(more.length > 0)
+    );
+  }, [slug, initialPool.length]);
   const [loading, setLoading] = useState(false);
 
   const clusterDefs = CATEGORY_CLUSTERS[slug] ?? [];
