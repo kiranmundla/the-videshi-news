@@ -88,97 +88,152 @@ Deno.serve(async (req) => {
     })
     .join("\n");
 
-  // 3. Claude clustering
-  const systemPrompt =
-    `You are a news editor for The Videshi, a premium news platform for Indian-Americans and Indian diaspora globally (US, UK, Australia, UAE, Canada).
+  // 2b. Fetch recently published headlines (to avoid republishing)
+  const { data: recentArticles } = await supabase
+    .from("p2_articles")
+    .select("headline, category, published_at")
+    .eq("status", "published")
+    .gte("published_at", new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString())
+    .order("published_at", { ascending: false })
+    .limit(20);
 
-Analyze headlines and identify unique publishable story topics with precise entity disambiguation.
+  const publishedHeadlines = (recentArticles ?? [])
+    .map((a: any) => `- ${a.headline} [${a.category}]`)
+    .join("\n");
 
-Return ONLY a valid JSON array. No markdown, no explanation, no code fences.`;
+  // 3. Gemini clustering + discovery + carousel (with Google Search grounding)
+  const userPrompt = `
+You are the chief editor of The Videshi, a premium news platform for the Indian diaspora globally (US, UK, Australia, UAE, Canada, Singapore).
 
-  const userPrompt =
-    `Analyze these ${signals.length} news headlines from Indian sources.
-Group headlines covering the SAME story. For each unique topic:
+You have access to Google Search — use it actively.
 
-1. Pick the clearest canonical_title (max 100 chars)
-2. Assign vertical (one of): politics|economy|tech|immigration|diaspora|science|culture|sports|entertainment
-3. Score each topic 0-100 on these THREE dimensions only (do NOT score recency or source_avail — these are calculated in code):
+═══════════════════════════════════════
+PART A: ALREADY PUBLISHED (DO NOT REPUBLISH)
+═══════════════════════════════════════
+${publishedHeadlines}
 
-score_diaspora: How relevant is this to Indians living abroad (US, UK, Australia, UAE, Canada)?
-  90-100: Directly affects diaspora lives
-    - H-1B, visa, immigration, work permits
-    - Indian American discrimination or achievement
-    - USCIS/DHS policy changes
-    - India-US bilateral relations, trade deals
-  75-89: Major India event diaspora follows closely
-    - National elections or major political shifts
-    - India-Pakistan/China conflict or diplomacy
-    - Big Indian company IPO or market move (Zepto, etc)
-    - Bollywood A-list news, cricket World Cup/IPL finals
-  65-74: Diaspora-heavy STATE events — ALWAYS score 65+:
-    - Tamil Nadu (large Tamil diaspora: US, UK, Singapore)
-    - Kerala (large Malayali diaspora: Gulf, US, UK)
-    - Punjab (large Sikh diaspora: UK, Canada, US)
-    - Andhra/Telangana (Telugu diaspora: US tech hubs)
-    - Karnataka (Kannada diaspora: Silicon Valley)
-    - Gujarat (Gujarati diaspora: US, UK, East Africa)
-    - Maharashtra (Marathi diaspora: US, UK)
-    - West Bengal (Bengali diaspora: US, UK)
-  50-64: India news diaspora is aware of but not directly affected
-    - General national politics, Supreme Court rulings
-    - India economy indicators, budget
-    - Sports (non-cricket or non-major cricket)
-  30-49: India-domestic, minimal diaspora relevance
-    - Local state crime, local politics
-    - Hyper-local city news
-    - Routine government appointments
-    - Non-Indian celebrities (Harrison Ford, John Cena, Taylor Swift etc) = score_diaspora 5-15, should_publish false.
-    - Indian state board exam results (HPBOSE, CBSE, state boards) = score_diaspora 25-35 only.
-    - Medical/science research from India = score_diaspora 40-50.
-
-score_significance: How important is this story overall?
-  80-100: National/global scale, affects millions
-  60-79: Major regional or sectoral impact
-  40-59: Moderate significance
-  20-39: Minor or niche story
-
-4. score_total: leave as 50 — recalculated in code.
-5. urgency: breaking|daily|evergreen
-6. keywords: 3-5 search terms for finding govt press releases on this topic
-7. signal_indices: array of the [N] indices from the input that belong to this topic
-8. key_entities: array of 2-5 typed entity objects:
-{
-  name: full canonical name (NEVER abbreviate),
-  type: politician|actor|athlete|businessman|organization|place|event|policy,
-  entity_id: disambiguated slug e.g.:
-    vijay-politician-tamil-nadu
-    vijay-deverakonda-actor-telugu
-    rahul-gandhi-politician-congress
-    us-congress-organization-usa
-    supreme-court-india
-    supreme-court-usa
-    delhi-capitals-ipl-team
-    delhi-place-capital
-}
-
-DISAMBIGUATION RULES:
-- Same first name ≠ same person
-- Vijay (TVK/Tamil Nadu/CM) → vijay-politician-tamil-nadu
-- Vijay Deverakonda (actor/Telugu/film) → vijay-deverakonda-actor-telugu
-- Rahul Gandhi (Congress) → rahul-gandhi-politician-congress
-- Congress India → inc-organization-india
-- Congress USA → us-congress-organization-usa
-- Always use full names in canonical_title
-
-Only include topics with score_total >= 45. Max 20 topics.
-
-Headlines:
+═══════════════════════════════════════
+PART B: RSS SIGNALS (what our feeds caught)
+═══════════════════════════════════════
 ${headlineList}
 
-Return JSON array of objects with these exact keys:
-canonical_title, vertical, score_diaspora, score_significance, score_recency, score_source_avail, score_total, urgency, keywords, key_entities, signal_indices`;
+═══════════════════════════════════════
+PART C: YOUR JOB
+═══════════════════════════════════════
+
+Do THREE things:
+
+──────────────────────────────────────
+TASK 1: RANK AND CLUSTER RSS SIGNALS
+──────────────────────────────────────
+Group the RSS signals above into unique story topics.
+Skip any story already in PART A (published).
+
+For each topic return a JSON object with ALL these fields:
+- canonical_title: clear headline (max 100 chars, full names)
+- vertical: politics|economy|tech|immigration|diaspora|science|culture|sports|entertainment|education
+- category: news|entertainment|sports|markets-finance|technology|nri-world|lifestyle-health|travel|food
+- event_type: election-result|swearing-in|policy-announcement|policy-update|match-result|match-preview|birthday|film-release|arrest-raid|court-ruling|market-move|diplomatic-meeting|natural-disaster|obituary|protest|accident|appointment|resignation|award|interview|statement|report-release|other
+- event_date: YYYY-MM-DD when event occurred
+- score_diaspora: 0-100
+    90-100: H-1B/visa/immigration, Indian-Americans in news, India-US policy directly affecting diaspora
+    75-89: National India elections, India-Pakistan/China, Bollywood A-list, cricket World Cup/IPL finals
+    65-74: Tamil Nadu, Kerala, Punjab, Andhra/Telangana, Karnataka, Gujarat, Maharashtra, West Bengal (always 65+ for these diaspora-heavy states)
+    50-64: National India politics, economy, IPL regular season
+    30-49: India-domestic, minimal diaspora relevance
+    5-25:  Non-Indian celebrities, unrelated global news
+    NEVER score Indian state board exams above 35
+    NEVER score non-Indian celebrities above 20
+- score_significance: 0-100
+- urgency: breaking|daily|evergreen
+- keywords: 3-5 search terms for govt press releases
+- signal_indices: array of [N] indices from PART B
+- key_entities: array of typed entity objects:
+  {
+    name: "full canonical name — never abbreviate",
+    type: "politician|actor|athlete|businessman|organization|place|event|policy",
+    entity_id: "disambiguated-slug e.g.
+      vijay-politician-tamil-nadu (NOT vijay-deverakonda)
+      vijay-deverakonda-actor-telugu (Telugu film actor)
+      rahul-gandhi-politician-congress
+      inc-organization-india (Indian National Congress)
+      us-congress-organization-usa (US Congress)
+      supreme-court-india vs supreme-court-usa
+      delhi-capitals-ipl-team vs delhi-place-capital"
+  }
+- free_sources: 2-3 copyright-free URLs for synthesis:
+    Priority: PIB (pib.gov.in) → Wikipedia → official govt sites → Wikimedia Commons
+    NEVER link to NDTV, TOI, Hindu, IE, BBC (copyrighted)
+- synthesis_angle: one sentence on diaspora relevance angle
+- image: single best image object:
+  {
+    url: direct accessible image URL,
+    source: "Wikimedia Commons|PIB|Unsplash|Pexels|Official Govt|AP Archive",
+    attribution: exact credit text to display on site,
+    alt_text: description of image,
+    license: "public-domain|cc-by|cc-by-sa|free-to-use"
+  }
+  Sources by story type:
+  - Politicians/officials → Wikimedia Commons or PIB
+  - Cricket/IPL → Wikimedia Commons team pages
+  - Places → Wikimedia Commons or Unsplash
+  - Bollywood → Wikimedia Commons actor pages
+  - Generic/concept → Unsplash or Pexels
+
+──────────────────────────────────────
+TASK 2: DISCOVER STORIES WE MISSED
+──────────────────────────────────────
+Search Google News right now for stories important to Indian diaspora that are NOT in our RSS signals and NOT already published (PART A).
+Find 3-5 additional high-value stories.
+Focus on:
+- Breaking India-US news (visa, immigration, policy)
+- Major India events in last 6 hours
+- Stories trending in Indian diaspora communities
+- Events our RSS feeds likely missed
+
+For each discovered story return same JSON format as Task 1 but add:
+- source: "google_discovery" (to distinguish from RSS)
+- signal_indices: [] (empty — not from our RSS)
+- discovered_url: the URL where you found this story
+
+──────────────────────────────────────
+TASK 3: EVENT PHOTOS FOR CAROUSEL
+──────────────────────────────────────
+Find 5 high-quality news event photos from the last 48 hours relevant to Indian diaspora. These are for our homepage photo carousel.
+Search Google for recent event images. Return:
+[
+  {
+    "carousel": true,
+    "title": "short caption for carousel",
+    "description": "2-3 sentence context",
+    "image": {
+      "url": direct image URL,
+      "source": "AP Archive|Reuters|PIB|Wikimedia|Getty",
+      "attribution": "credit text",
+      "license": "public-domain|press-use|cc-by"
+    },
+    "related_article_topic": "topic this relates to if any"
+  }
+]
+Prioritize: official govt events, sports moments, cultural events, landmark occasions.
+
+═══════════════════════════════════════
+OUTPUT FORMAT
+═══════════════════════════════════════
+Return a single valid JSON object:
+{
+  "ranked_topics": [...],     ← Task 1: RSS ranked clusters
+  "discovered_topics": [...], ← Task 2: Google-found stories
+  "carousel_photos": [...]    ← Task 3: Event photos
+}
+No markdown. No explanation. Raw JSON only.
+Score topics with score_diaspora < 40 are excluded.
+Maximum 20 ranked_topics + 5 discovered_topics.
+`;
 
   let topics: any[] = [];
+  let discoveredTopics: any[] = [];
+  let carouselPhotos: any[] = [];
   try {
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`,
@@ -186,9 +241,8 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          contents: [{
-            parts: [{ text: systemPrompt + "\n\n" + userPrompt }]
-          }],
+          contents: [{ parts: [{ text: userPrompt }] }],
+          tools: [{ googleSearch: {} }],
           generationConfig: {
             temperature: 0.1,
             thinkingConfig: { thinkingBudget: 0 }
@@ -199,8 +253,10 @@ canonical_title, vertical, score_diaspora, score_significance, score_recency, sc
     const geminiData = await response.json();
     const raw = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ?? "";
     const cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
-    topics = JSON.parse(cleaned);
-    if (!Array.isArray(topics)) throw new Error("Gemini did not return an array");
+    const data = JSON.parse(cleaned);
+    topics = Array.isArray(data?.ranked_topics) ? data.ranked_topics : [];
+    discoveredTopics = Array.isArray(data?.discovered_topics) ? data.discovered_topics : [];
+    carouselPhotos = Array.isArray(data?.carousel_photos) ? data.carousel_photos : [];
   } catch (err: any) {
     await supabase.from("pipeline_alerts").insert({
       agent: "p2-rank",
