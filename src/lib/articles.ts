@@ -214,6 +214,7 @@ export async function getArticlesByCategory(
     .select(P2_COLS)
     .eq("status", "published")
     .eq("category", category)
+    .order("score_total", { ascending: false })
     .order("published_at", { ascending: false })
     .range(offset, offset + limit - 1);
   if (error) {
