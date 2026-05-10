@@ -29,40 +29,14 @@ Deno.serve(async (req) => {
       });
     }
 
+    const geminiKey = Deno.env.get('GEMINI_API_KEY');
+
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${Deno.env.get('GEMINI_API_KEY')}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{
-            parts: [{
-              text: `You are a news editor for The Videshi, a news platform for Indian diaspora (US, UK, Australia, UAE, Canada).
-
-Analyze these 10 headlines and for each one return:
-- canonical_title: clearest version of the headline
-- category: news|entertainment|sports|markets-finance|technology|nri-world|lifestyle-health|travel|food
-- score_diaspora: 0-100 how relevant to Indians abroad
-- score_significance: 0-100 how important overall
-- event_type: election-result|swearing-in|birthday|match-result|policy-announcement|other
-- entities: array of {name, type, entity_id} objects where entity_id disambiguates (e.g. vijay-politician-tamil-nadu vs vijay-deverakonda-actor-telugu)
-- location_relevance: {bay_area, london, dubai, toronto, sydney} scores 0-100
-- free_sources: 2-3 URLs of copyright-free sources (Wikipedia, PIB, official govt sites)
-- synthesis_angle: one sentence on diaspora angle to take when writing the article
-
-Headlines:
-${signals.map((s, i) => `[${i}] ${s.title}`).join('\n')}
-
-Return ONLY a valid JSON array. No markdown.`
-            }]
-          }],
-          generationConfig: {
-            temperature: 0.1,
-            responseMimeType: "application/json"
-          }
-        })
-      }
+      `https://generativelanguage.googleapis.com/v1beta/models?key=${geminiKey}`,
+      { method: 'GET' }
     );
+
+    const data = await response.json();
 
     const data = await response.json();
 
