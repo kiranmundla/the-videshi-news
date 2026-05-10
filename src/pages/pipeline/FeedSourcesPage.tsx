@@ -239,10 +239,10 @@ function FeedFormDialog({ row, onSaved }: { row: any | null; onSaved: () => void
     setSaving(true);
     const payload = { name, url, type, layer, tier, verticals, fetch_interval_min: interval };
     const res = row
-      ? await supabase.from("p2_feed_sources").update(payload).eq("id", row.id)
-      : await supabase.from("p2_feed_sources").insert(payload);
+      ? await adminWrite({ table: "p2_feed_sources", op: "update", id: row.id, payload })
+      : await adminWrite({ table: "p2_feed_sources", op: "insert", payload });
     setSaving(false);
-    if (res.error) return toast.error(res.error.message);
+    if (res.error) return toast.error(res.error);
     toast.success(row ? "Updated" : "Added");
     onSaved();
   }
