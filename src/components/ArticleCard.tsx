@@ -148,14 +148,21 @@ export default function ArticleCard({
       : "text-[1.25rem] md:text-[1.35rem] leading-snug";
 
   if (!hasImage) {
+    // Text-first card — tinted block with category accent bar on top.
+    const isLarge = variant === "hero" || variant === "featured";
     return (
       <Link
         to={href}
-        className="group block border-l-2 pl-4 md:pl-5"
-        style={{ borderColor: accent }}
+        className={`group block bg-secondary/50 border-t-[3px] hairline border-l border-r border-b ${
+          isLarge ? "p-6 md:p-10" : "p-5 md:p-6"
+        }`}
+        style={{ borderTopColor: accent }}
       >
         {!hideCategory && (
-          <p className="smallcaps text-primary mb-2">
+          <p
+            className="smallcaps mb-3"
+            style={{ color: accent }}
+          >
             {featureLabel && (
               <span className="bg-primary text-primary-foreground px-1.5 py-0.5 mr-2 tracking-wider">
                 {featureLabel}
@@ -171,14 +178,14 @@ export default function ArticleCard({
         </h2>
         {article.excerpt && (
           <p
-            className={`mt-3 text-foreground/70 leading-relaxed line-clamp-2 ${
-              variant === "hero" ? "text-base md:text-lg" : "text-[0.95rem]"
+            className={`mt-3 text-foreground/70 leading-relaxed ${
+              isLarge ? "text-base md:text-lg line-clamp-3" : "text-[0.95rem] line-clamp-3"
             }`}
           >
             {article.excerpt}
           </p>
         )}
-        <p className="mt-3 text-xs text-muted-foreground">
+        <p className="mt-4 text-xs text-muted-foreground">
           {article.author ? `By ${article.author} · ` : ""}
           {formatShortDate(article.published_at)} · {time} min read
         </p>
