@@ -24,6 +24,7 @@ import {
 import { toast } from "sonner";
 import { Plus, Trash2, Pause, Play } from "lucide-react";
 import { relTime } from "@/pages/pipeline/shared";
+import { adminWrite } from "@/lib/adminWrite";
 
 const VERTICALS = [
   "politics", "economy", "tech", "immigration", "diaspora",
