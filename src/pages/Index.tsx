@@ -5,7 +5,7 @@ import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
-import ArticleCarousel from "@/components/ArticleCarousel";
+
 import FeaturedHero from "@/components/FeaturedHero";
 import EventCluster from "@/components/EventCluster";
 import TopStoriesCard from "@/components/TopStoriesCard";
@@ -161,8 +161,6 @@ export default function Index() {
       <CategoryPills />
 
       {featuredArticle && <FeaturedHero article={featuredArticle} />}
-
-      <ArticleCarousel />
 
       <main className="container flex-1 pt-8 md:pt-10">
         {topStories.length >= 2 && (
