@@ -277,7 +277,12 @@ Maximum 20 ranked_topics.
       }
     );
     const geminiData = await response.json();
-    const raw = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ?? "";
+    // With grounding, find the part that contains JSON
+    const parts = geminiData?.candidates?.[0]?.content?.parts ?? [];
+    const raw = parts
+      .map((p: any) => p?.text ?? "")
+      .join("")
+      .trim();
     const cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
     const data = JSON.parse(cleaned);
     await supabase.from('pipeline_alerts').insert({
