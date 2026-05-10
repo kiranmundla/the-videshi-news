@@ -424,6 +424,7 @@ Maximum 20 ranked_topics.
         image_url: topic.image?.url ?? null,
         image_attribution: topic.image?.attribution ?? null,
         image_license: topic.image?.license ?? null,
+        image_search_query: topic.image?.search_query ?? null,
       })
       .select("id")
       .single();
