@@ -115,6 +115,7 @@ export async function getFeaturedArticle(): Promise<Article | null> {
     .gte("published_at", new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString())
     .not("score_total", "is", null)
     .order("score_total", { ascending: false })
+    .in("category", ["nri-world", "news", "markets-finance", "entertainment", "sports"])
     .limit(1)
     .maybeSingle();
 
