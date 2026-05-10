@@ -405,7 +405,7 @@ Maximum 20 ranked_topics.
         urgency,
         score_diaspora: scoreDiaspora,
         score_significance: scoreSignificance,
-        score_recency: Math.round(avgRecency),
+        score_recency: 50,
         score_source_avail: clamp(topic.score_source_avail),
         score_total: computedTotal,
         signal_count: indices.length || 1,
