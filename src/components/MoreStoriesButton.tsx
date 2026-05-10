@@ -14,18 +14,18 @@ export default function MoreStoriesButton({ onClick, loading, hasMore }: Props) 
         disabled={loading}
         className="inline-flex items-center justify-center gap-2 transition-colors disabled:cursor-not-allowed"
         style={{
-          border: "1px solid #ccc",
+          border: "1px solid #d0ccc7",
           background: "transparent",
-          color: "#666",
-          fontSize: 13,
-          letterSpacing: "0.1em",
+          color: "#888",
+          fontSize: 11,
+          letterSpacing: "0.12em",
           textTransform: "uppercase",
-          padding: "10px 32px",
+          padding: "10px 36px",
           borderRadius: 2,
           fontWeight: 600,
         }}
         onMouseEnter={(e) => {
-          if (!loading) (e.currentTarget.style.background = "#f5f5f5");
+          if (!loading) (e.currentTarget.style.background = "#f5f3f0");
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.background = "transparent";
