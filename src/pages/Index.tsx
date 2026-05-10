@@ -132,7 +132,7 @@ function CategorySection({
   return (
     <section>
       <SectionHeader label={label} id={`section-${slug}`} />
-      <OrphanGrid articles={articles} />
+      <OrphanGrid articles={articles} hideCategory={false} />
       <MoreStoriesButton onClick={loadMore} loading={loading} hasMore={hasMore} />
     </section>
   );
@@ -178,7 +178,7 @@ function TopStoriesSection({ initial }: { initial: Article[] }) {
       )}
       {rest.length > 0 && (
         <div className="mt-5 md:mt-6">
-          <OrphanGrid articles={rest} />
+          <OrphanGrid articles={rest} hideCategory={true} />
         </div>
       )}
       <MoreStoriesButton onClick={loadMore} loading={loading} hasMore={hasMore} />
