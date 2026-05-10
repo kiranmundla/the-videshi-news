@@ -8,7 +8,7 @@ export default function FeaturedHero({ article }: { article: Article }) {
 
   if (hasImage) {
     return (
-      <section className="relative w-full h-[320px] md:h-[480px] overflow-hidden">
+      <section className="relative w-full min-h-[280px] md:min-h-[420px] h-[320px] md:h-[480px] overflow-hidden">
         <img
           src={article.hero_image_url}
           alt={article.title}
@@ -51,7 +51,7 @@ export default function FeaturedHero({ article }: { article: Article }) {
 
   return (
     <section
-      className="relative w-full px-5 md:px-12 py-12 md:py-20"
+      className="relative w-full min-h-[280px] md:min-h-[420px] flex items-center px-5 md:px-12 py-12 md:py-20"
       style={{ background: "#1C1C1E" }}
     >
       <Link to={href} className="block max-w-4xl mx-auto">
