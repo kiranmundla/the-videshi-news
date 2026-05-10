@@ -10,7 +10,7 @@ export default function FeaturedHero({ article }: { article: Article }) {
 
   if (hasImage) {
     return (
-      <section className="relative w-full h-[260px] md:h-[320px] overflow-hidden">
+      <section className="relative w-full h-[260px] md:h-[300px] overflow-hidden rounded-lg">
         <img
           src={article.hero_image_url}
           alt={article.title}
