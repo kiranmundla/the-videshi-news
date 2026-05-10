@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
-import CategoryPills from "@/components/CategoryPills";
+
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
 import MoreStoriesButton from "@/components/MoreStoriesButton";
@@ -289,7 +289,6 @@ export default function Index() {
     return (
       <div className="min-h-screen">
         <Masthead />
-        <CategoryPills />
         <main className="container py-20 text-center text-muted-foreground">Loading…</main>
       </div>
     );
@@ -313,7 +312,7 @@ export default function Index() {
       </Helmet>
 
       <Masthead />
-      <CategoryPills />
+
 
       <main className="container flex-1 pt-6 md:pt-8">
         {featuredArticle && (
