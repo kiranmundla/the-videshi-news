@@ -5,6 +5,7 @@ import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
+import MoreStoriesButton from "@/components/MoreStoriesButton";
 
 import FeaturedHero from "@/components/FeaturedHero";
 import EventCluster from "@/components/EventCluster";
