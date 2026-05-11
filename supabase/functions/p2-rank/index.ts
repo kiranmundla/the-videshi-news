@@ -95,8 +95,118 @@ Deno.serve(async (req) => {
     })
     .join("\n");
 
-  // 3. Gemini clustering + discovery + carousel (with Google Search grounding)
-  const userPrompt = `
+  // 3. Three independent Gemini prompts (split to avoid 503/MAX_TOKENS on one giant call)
+
+  // ---- Prompt A: Re-rank existing published articles ----
+  const promptRerank = `
+You are the chief editor of The Videshi (Indian diaspora news platform).
+Today's date and time: ${new Date().toISOString()}
+
+EXISTING PUBLISHED ARTICLES (re-rank these):
+${publishedHeadlines}
+
+For each article return a single final score 0-100 considering:
+- Diaspora relevance, story significance
+- Age relative to NOW
+- Whether story is developing/resolved/evergreen/stale
+
+Decay guidance:
+  Breaking (<6h): full value
+  Fresh (6-24h): slight decay if resolved
+  Yesterday (24-48h): significant decay unless developing
+  Old (48-72h): heavy decay unless evergreen
+  Archive (72h+): minimal unless truly evergreen
+
+Return ONLY raw JSON, no markdown:
+{ "re_ranked": [ { "id": "uuid", "score_final": 0-100, "freshness_note": "breaking|developing|resolved|evergreen|stale" } ] }
+`;
+
+  // ---- Prompt B: Cluster + rank new RSS signals ----
+  const promptCluster = `
+You are the chief editor of The Videshi, a premium news platform for the Indian diaspora globally (US, UK, Australia, UAE, Canada, Singapore).
+Today's date: ${new Date().toISOString()}
+
+ALREADY PUBLISHED (do NOT recreate topics already covering these events):
+${publishedHeadlines}
+
+NEW RSS SIGNALS TO CLUSTER:
+${headlineList}
+
+Group signals into unique story topics. Skip events already covered above.
+Same event examples:
+- 'Vijay sworn in' + 'Vijay takes oath' = SAME EVENT (skip)
+- 'Vijay cabinet announced' = DIFFERENT EVENT (include)
+Only create new topics for genuinely new events.
+
+For each topic return:
+- canonical_title: clear headline, full names
+- vertical: politics|economy|tech|immigration|diaspora|science|culture|sports|entertainment|education
+- category: news|entertainment|sports|markets-finance|technology|nri-world|lifestyle-health|travel|food
+  CATEGORY RULES:
+  Use 'news' ONLY for India-domestic stories (events INSIDE India).
+  Use 'nri-world' for Indian-origin people OUTSIDE India (Pramila Jayapal, Sundar Pichai, Satya Nadella, etc.).
+- event_type: election-result|swearing-in|policy-announcement|policy-update|match-result|match-preview|birthday|film-release|arrest-raid|court-ruling|market-move|diplomatic-meeting|natural-disaster|obituary|protest|accident|appointment|resignation|award|statement|report-release|other
+- event_date: YYYY-MM-DD
+- score_diaspora: 0-100
+    90-100: H-1B/visa/immigration, Indian-Americans, India-US policy
+    75-89: National elections, India-Pakistan/China, Bollywood A-list, cricket WC/IPL finals
+    65-74: Major Indian state politics
+    50-64: National India politics, economy, IPL
+    30-49: India-domestic, minimal diaspora relevance
+    5-25: Non-Indian celebs, unrelated global news
+    Indian state board exams = max 35; non-Indian celebs = max 20;
+    celebrity birthdays = max 55; local India crime = max 30
+- score_significance: 0-100
+- urgency: breaking|daily|evergreen
+- keywords: 3-5 search terms
+- signal_indices: [N] indices from RSS list above
+- key_entities: [{ name, type: politician|actor|athlete|businessman|organization|place|event|policy, entity_id: "disambiguated-slug" }]
+  DISAMBIGUATION examples:
+  - Vijay (TVK Tamil Nadu CM) = vijay-politician-tamil-nadu
+  - Vijay Deverakonda (actor) = vijay-deverakonda-actor-telugu
+  - Congress India = inc-organization-india vs Congress USA = us-congress-organization-usa
+- free_sources: 2-3 copyright-free URLs (PIB → Wikipedia → official govt). NEVER NDTV/TOI/Hindu/IE/BBC.
+- synthesis_angle: one sentence diaspora angle
+- image: ONE object {
+    url: direct image URL — for Wikimedia use https://commons.wikimedia.org/wiki/Special:FilePath/FILENAME.jpg (NOT /thumb/), null for Unsplash/Pexels,
+    search_query: 4-6 word specific query (always required),
+    source: "wikimedia-commons|pib|unsplash|pexels|pixabay",
+    attribution: e.g. "Photo: Wikimedia Commons / CC BY-SA 4.0",
+    alt_text: describe ideal image,
+    license: "cc-by-sa|cc-by|public-domain|free-to-use"
+  }
+  NEVER suggest Getty/AP/Reuters/news site images.
+
+Return ONLY raw JSON, no markdown:
+{ "ranked_topics": [...] }
+Exclude topics with score_diaspora < 40. Maximum 12 topics.
+`;
+
+  // ---- Prompt C: Carousel photos ----
+  const promptCarousel = `
+You are the photo editor of The Videshi (Indian diaspora news platform).
+Today: ${new Date().toISOString()}
+
+Suggest 5 high-quality images for the homepage carousel — major events, cultural moments, sports from the last 48 hours relevant to the Indian diaspora.
+
+Return ONLY raw JSON, no markdown:
+{
+  "carousel_photos": [
+    {
+      "title": "short caption",
+      "description": "2-3 sentence context",
+      "image": {
+        "url": "direct image URL",
+        "source": "Wikimedia Commons|PIB|Unsplash|Pexels",
+        "attribution": "credit text",
+        "license": "public-domain|cc-by|cc-by-sa|free-to-use"
+      },
+      "related_topic": "topic name or null"
+    }
+  ]
+}
+Use only copyright-free sources. NEVER Getty/AP/Reuters.
+`;
 You are the chief editor of The Videshi, a premium news platform for the Indian diaspora globally (US, UK, Australia, UAE, Canada, Singapore).
 
 ═══════════════════════════════════════
