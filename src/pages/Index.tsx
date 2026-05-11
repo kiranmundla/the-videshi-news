@@ -276,7 +276,7 @@ export default function Index() {
           label={INDIA_NEWS.label}
           clusters={layout.india.clusters}
           pool={layout.india.ungrouped}
-          hideCategory={false}
+          hideCategory={true}
         />
 
         <HomeCategorySection
