@@ -299,12 +299,22 @@ Maximum 12 ranked_topics.
       }
     );
     const geminiData = await response.json();
-    // With grounding, find the part that contains JSON
-    const parts = geminiData?.candidates?.[0]?.content?.parts ?? [];
+    const candidate = geminiData?.candidates?.[0];
+    const finishReason = candidate?.finishReason;
+    const parts = candidate?.content?.parts ?? [];
     const raw = parts
       .map((p: any) => p?.text ?? "")
       .join("")
       .trim();
+    if (!raw) {
+      await supabase.from("pipeline_alerts").insert({
+        agent: "p2-rank",
+        severity: "error",
+        error_type: "empty_response",
+        message: `Gemini returned no text. finishReason=${finishReason} parts=${parts.length} keys=${Object.keys(geminiData ?? {}).join(',')} err=${JSON.stringify(geminiData?.error ?? geminiData?.promptFeedback ?? {}).slice(0,500)}`,
+      });
+      throw new Error(`Gemini empty response (finishReason=${finishReason})`);
+    }
     let cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
     // Strip unescaped control chars (Gemini sometimes emits raw \n inside strings)
     cleaned = cleaned.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "");
