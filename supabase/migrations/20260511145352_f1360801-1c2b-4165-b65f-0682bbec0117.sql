@@ -1,0 +1,1 @@
+UPDATE public.p2_topics SET status = 'pending', updated_at = now() WHERE status = 'synthesizing' AND updated_at < now() - interval '1 hour';
