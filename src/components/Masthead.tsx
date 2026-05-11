@@ -1,16 +1,6 @@
 import { Link } from "react-router-dom";
 import { formatLongDate } from "@/lib/articles";
 
-import { CATEGORIES } from "@/lib/categories";
-
-const NAV = [
-  { label: "Home", to: "/" },
-  ...CATEGORIES.map((c) => ({ label: c.label, to: c.path })),
-];
-
-export default function Masthead() {
-  const today = formatLongDate(new Date().toISOString());
-
   return (
     <header className="bg-background">
       <div className="container">
