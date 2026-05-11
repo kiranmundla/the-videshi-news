@@ -112,7 +112,7 @@ function FullRowsGrid({
   const items = articles.slice(0, fullCount);
   if (items.length === 0) return null;
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 auto-rows-fr items-stretch">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-10 items-start">
       {items.map((a) => (
         <div key={a.id} className="h-full">
           <ArticleCard article={a} variant="card" hideCategory={hideCategory} />

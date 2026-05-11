@@ -154,13 +154,12 @@ export default function ArticleCard({
     // Text-first card — denser layout with red top accent bar.
     const isLarge = variant === "hero" || variant === "featured";
     const RED = "#C0392B";
-    const smallPadding = hideCategory ? "p-4" : "p-4 md:p-5";
     return (
       <Link
         onClick={saveScroll}
         to={href}
-        className={`group block h-full bg-stone-50 border-t-[3px] hairline border-l border-r border-b ${
-          isLarge ? "p-4 md:p-8" : smallPadding
+        className={`group block h-auto bg-stone-50 border-t-[3px] hairline border-l border-r border-b ${
+          isLarge ? "p-5 md:p-10" : "p-4 md:p-5"
         }`}
         style={{ borderTopColor: RED }}
       >
@@ -184,7 +183,7 @@ export default function ArticleCard({
         {article.excerpt && (
           <p
             className={`mt-2 text-muted-foreground leading-snug hidden md:block ${
-              isLarge ? "text-base line-clamp-3" : "text-sm line-clamp-2"
+              isLarge ? "text-base line-clamp-2 md:line-clamp-3" : "text-sm line-clamp-2"
             }`}
           >
             {article.excerpt}
