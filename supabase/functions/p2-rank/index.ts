@@ -282,8 +282,9 @@ Maximum 12 ranked_topics.
   let carouselPhotos: any[] = [];
   let reRanked: any[] = [];
   try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`,
+    // Try gemini-2.5-flash with retry; fall back to gemini-2.0-flash on persistent overload.
+    const callGemini = async (model: string) => fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_KEY}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -298,7 +299,22 @@ Maximum 12 ranked_topics.
         })
       }
     );
-    const geminiData = await response.json();
+
+    const models = ["gemini-2.5-flash", "gemini-2.5-flash", "gemini-2.0-flash"];
+    let geminiData: any = null;
+    let lastStatus = 0;
+    for (let i = 0; i < models.length; i++) {
+      if (i > 0) await new Promise((r) => setTimeout(r, 2000 * i));
+      const response = await callGemini(models[i]);
+      lastStatus = response.status;
+      geminiData = await response.json().catch(() => null);
+      const overloaded = response.status === 503 || geminiData?.error?.code === 503;
+      const hasText = geminiData?.candidates?.[0]?.content?.parts?.some?.((p: any) => p?.text);
+      if (response.ok && hasText) break;
+      if (!overloaded && i === 0) break; // non-overload error: don't waste retries
+      console.warn(`[p2-rank] model=${models[i]} status=${response.status} overloaded=${overloaded} retrying…`);
+    }
+    if (!geminiData) throw new Error(`Gemini fetch failed (status=${lastStatus})`);
     const candidate = geminiData?.candidates?.[0];
     const finishReason = candidate?.finishReason;
     const parts = candidate?.content?.parts ?? [];
