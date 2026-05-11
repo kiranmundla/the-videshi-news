@@ -4,73 +4,84 @@ import Masthead from "@/components/Masthead";
 
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
-import MoreStoriesButton from "@/components/MoreStoriesButton";
 import ArticleCarousel from "@/components/ArticleCarousel";
 import FeaturedHero from "@/components/FeaturedHero";
 import EventCluster from "@/components/EventCluster";
-import TopStoriesCard from "@/components/TopStoriesCard";
 import {
   Article,
   getArticlesByCategory,
   getFeaturedArticle,
-  getTopStories,
 } from "@/lib/articles";
 
-type SectionDef = { slug: string; label: string };
+const INDIA_NEWS = { slug: "news", label: "INDIA NEWS", limit: 18 };
+const WORLD_NEWS = { slug: "nri-world", label: "WORLD NEWS", limit: 12 };
 
-const CATEGORY_SECTIONS: SectionDef[] = [
-  { slug: "news", label: "India News" },
-  { slug: "nri-world", label: "World News" },
-  { slug: "markets-finance", label: "Markets & Finance" },
-  { slug: "sports", label: "Sports" },
-  { slug: "technology", label: "Technology" },
-  { slug: "entertainment", label: "Entertainment" },
-  { slug: "lifestyle-health", label: "Lifestyle & Health" },
-  { slug: "travel", label: "Travel" },
-  { slug: "food", label: "Food" },
+const CATEGORY_SECTIONS = [
+  { slug: "markets-finance", label: "MARKETS & FINANCE", limit: 12 },
+  { slug: "sports", label: "SPORTS", limit: 12 },
+  { slug: "technology", label: "TECHNOLOGY", limit: 12 },
+  { slug: "entertainment", label: "ENTERTAINMENT", limit: 12 },
+  { slug: "lifestyle-health", label: "LIFESTYLE & HEALTH", limit: 12 },
+  { slug: "travel", label: "TRAVEL", limit: 12 },
+  { slug: "food", label: "FOOD", limit: 12 },
 ];
 
-type ClusterDef = { label: string; tags: string[] };
-
-const TOP_CLUSTERS: ClusterDef[] = [
-  { label: "BENGAL: BJP TAKES POWER", tags: ["bengal elections", "bjp bengal", "suvendu"] },
-  { label: "TAMIL NADU: VIJAY'S GOVERNMENT", tags: ["tamil nadu", "vijay cm", "tvk"] },
-  { label: "GULF CRISIS: OIL & WAR", tags: ["iran", "us-iran", "hormuz"] },
-  { label: "IPL 2026 PLAYOFF RACE", tags: ["ipl 2026", "ipl playoffs"] },
+const CLUSTERS: { label: string; require: string[]; also: string[] }[] = [
+  {
+    label: "TAMIL NADU: VIJAY'S GOVERNMENT",
+    require: ["tamil nadu", "tamilnadu"],
+    also: ["vijay", "tvk", "chief minister", "swearing", "dravidian", "cm", "oath"],
+  },
+  {
+    label: "BENGAL: BJP TAKES POWER",
+    require: ["west bengal", "bengal"],
+    also: ["bjp", "suvendu", "adhikari", "mamata", "trinamool", "cm"],
+  },
+  {
+    label: "KERALA: CM DEADLOCK",
+    require: ["kerala"],
+    also: ["congress", "chief minister", "cm", "rahul", "pick"],
+  },
+  {
+    label: "GULF CRISIS: OIL & WAR",
+    require: ["iran", "hormuz", "gulf"],
+    also: ["war", "oil", "ceasefire", "tanker", "strait", "attack"],
+  },
+  {
+    label: "IPL 2026 PLAYOFF RACE",
+    require: ["ipl", "ipl 2026"],
+    also: ["playoff", "final", "match", "qualifier", "cricket"],
+  },
+  {
+    label: "H-1B & VISAS",
+    require: ["h-1b", "h1b"],
+    also: ["silicon valley", "wage", "trap", "bias", "immigration", "eeoc"],
+  },
 ];
-
-const CATEGORY_CLUSTERS: Record<string, ClusterDef[]> = {
-  news: [
-    { label: "TAMIL NADU: VIJAY'S GOVERNMENT", tags: ["tamil nadu", "tamilnadu", "tvk"] },
-    { label: "BENGAL: BJP TAKES POWER", tags: ["west bengal", "bjp bengal", "suvendu"] },
-    { label: "KERALA: CM DEADLOCK", tags: ["kerala", "congress kerala"] },
-  ],
-  "nri-world": [
-    { label: "GULF CRISIS: OIL & WAR", tags: ["iran", "us-iran", "hormuz", "gulf"] },
-    { label: "H-1B & VISAS", tags: ["h-1b", "h1b", "visa", "silicon valley"] },
-  ],
-};
 
 function tagsLower(a: Article) {
   return (a.tags ?? []).map((t) => t.toLowerCase());
 }
-function matchesCluster(a: Article, tags: string[]) {
-  const at = tagsLower(a);
-  return tags.some((t) => at.some((x) => x === t || x.includes(t)));
+
+function matchesCluster(a: Article, c: typeof CLUSTERS[number]): boolean {
+  const tags = tagsLower(a);
+  const hasReq = c.require.some((r) => tags.some((t) => t.includes(r)));
+  const hasCtx = c.also.some((x) => tags.some((t) => t.includes(x)));
+  return hasReq && hasCtx;
 }
 
-function extractClusters(pool: Article[], defs: ClusterDef[]) {
+function buildClusters(pool: Article[]) {
   const used = new Set<string>();
   const clusters: { label: string; items: Article[] }[] = [];
-  for (const c of defs) {
-    const items = pool.filter((a) => !used.has(a.id) && matchesCluster(a, c.tags));
+  for (const c of CLUSTERS) {
+    const items = pool.filter((a) => !used.has(a.id) && matchesCluster(a, c));
     if (items.length >= 2) {
       clusters.push({ label: c.label, items });
       items.forEach((a) => used.add(a.id));
     }
   }
-  const remaining = pool.filter((a) => !used.has(a.id));
-  return { clusters, remaining };
+  const ungrouped = pool.filter((a) => !used.has(a.id));
+  return { clusters, ungrouped };
 }
 
 function SectionHeader({ label, id }: { label: string; id?: string }) {
@@ -90,10 +101,9 @@ function SectionHeader({ label, id }: { label: string; id?: string }) {
   );
 }
 
-// Render only complete rows of 3.
 function FullRowsGrid({
   articles,
-  hideCategory = false,
+  hideCategory = true,
 }: {
   articles: Article[];
   hideCategory?: boolean;
@@ -112,33 +122,26 @@ function FullRowsGrid({
   );
 }
 
-function CategorySection({
-  slug,
+function HomeCategorySection({
   label,
-  initialPool,
+  slug,
+  clusters,
+  pool,
   hideCategory = true,
 }: {
-  slug: string;
   label: string;
-  initialPool: Article[];
+  slug: string;
+  clusters: { label: string; items: Article[] }[];
+  pool: Article[];
   hideCategory?: boolean;
 }) {
   const [visibleCount, setVisibleCount] = useState(3);
 
-  const clusterDefs = CATEGORY_CLUSTERS[slug] ?? [];
+  const hasContent = clusters.length > 0 || pool.length > 0;
+  if (!hasContent) return null;
 
-  if (initialPool.length < 2) return null;
-
-  const visible = initialPool.slice(0, visibleCount);
-  const hasMore = initialPool.length > visibleCount;
-
-  const loadMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 3, initialPool.length));
-  };
-
-  const { clusters, remaining } = clusterDefs.length
-    ? extractClusters(visible, clusterDefs)
-    : { clusters: [] as { label: string; items: Article[] }[], remaining: visible };
+  const shownPool = pool.slice(0, visibleCount);
+  const hasMore = pool.length > visibleCount;
 
   return (
     <section>
@@ -146,44 +149,15 @@ function CategorySection({
       {clusters.map((c) => (
         <EventCluster key={c.label} label={c.label} items={c.items} />
       ))}
-      <FullRowsGrid articles={remaining} hideCategory={hideCategory} />
-      <MoreStoriesButton onClick={loadMore} loading={false} hasMore={hasMore} />
-    </section>
-  );
-}
-
-function TopStoriesSection({
-  topStories,
-  clusters,
-}: {
-  topStories: Article[];
-  clusters: { label: string; items: Article[] }[];
-}) {
-  // First two articles form the hero row (2-col + 1-col); remainder uses 3-col grid (complete rows only).
-  const hero = topStories.slice(0, 2);
-  const restAll = topStories.slice(2);
-  // Cap at total of 6 (so rest = up to 4, but keep complete rows of 3 in the grid below the hero pair).
-  const restFullCount = Math.floor(Math.min(restAll.length, 4) / 3) * 3;
-  const rest = restAll.slice(0, restFullCount);
-
-  return (
-    <section>
-      <SectionHeader label="Top Stories" id="section-top" />
-      {clusters.map((c) => (
-        <EventCluster key={c.label} label={c.label} items={c.items} />
-      ))}
-      {hero.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 auto-rows-fr">
-          {hero.map((a, i) => (
-            <div key={a.id} className={i === 0 ? "md:col-span-2" : ""}>
-              <TopStoriesCard article={a} size={i === 0 ? "lg" : "md"} />
-            </div>
-          ))}
-        </div>
-      )}
-      {rest.length > 0 && (
-        <div className="mt-5 md:mt-6">
-          <FullRowsGrid articles={rest} hideCategory={true} />
+      <FullRowsGrid articles={shownPool} hideCategory={hideCategory} />
+      {hasMore && (
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => setVisibleCount((v) => v + 3)}
+            className="smallcaps tracking-[0.12em] text-[11px] text-foreground/60 border border-rule px-8 py-2.5 hover:border-foreground/40 hover:text-foreground/80 bg-transparent transition-colors"
+          >
+            MORE STORIES
+          </button>
         </div>
       )}
     </section>
@@ -191,38 +165,33 @@ function TopStoriesSection({
 }
 
 export default function Index() {
-  const [topPool, setTopPool] = useState<Article[]>([]);
-  const [sectionPools, setSectionPools] = useState<Record<string, Article[]>>({});
   const [featuredArticle, setFeaturedArticle] = useState<Article | null>(null);
+  const [newsPool, setNewsPool] = useState<Article[]>([]);
+  const [nriPool, setNriPool] = useState<Article[]>([]);
+  const [sectionPools, setSectionPools] = useState<Record<string, Article[]>>({});
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   useEffect(() => {
-    (async () => {
-      const [featured, top] = await Promise.all([
-        getFeaturedArticle(),
-        getTopStories(20),
-      ]);
-
-      const shownIds = new Set<string>();
-      if (featured?.id) shownIds.add(featured.id);
-      const filteredTop = top.filter((a) => !shownIds.has(a.id));
-      filteredTop.forEach((a) => shownIds.add(a.id));
-
-      const pools: Record<string, Article[]> = {};
-      for (const s of CATEGORY_SECTIONS) {
-        const items = await getArticlesByCategory(s.slug, 12);
-        const filtered = items.filter((a) => !shownIds.has(a.id));
-        filtered.forEach((a) => shownIds.add(a.id));
-        pools[s.slug] = filtered;
-      }
-
-      setFeaturedArticle(featured);
-      setTopPool(filteredTop);
-      setSectionPools(pools);
+    Promise.all([
+      getFeaturedArticle(),
+      getArticlesByCategory(INDIA_NEWS.slug, INDIA_NEWS.limit),
+      getArticlesByCategory(WORLD_NEWS.slug, WORLD_NEWS.limit),
+      ...CATEGORY_SECTIONS.map((s) =>
+        getArticlesByCategory(s.slug, s.limit).then(
+          (items) => [s.slug, items] as const,
+        ),
+      ),
+    ]).then(([featured, indiaNews, worldNews, ...catResults]) => {
+      setFeaturedArticle(featured as Article | null);
+      setNewsPool(indiaNews as Article[]);
+      setNriPool(worldNews as Article[]);
+      setSectionPools(
+        Object.fromEntries(catResults as Array<readonly [string, Article[]]>),
+      );
       setLastUpdated(new Date());
       setLoading(false);
-    })();
+    });
   }, []);
 
   // Save scroll position when leaving the homepage
@@ -246,17 +215,29 @@ export default function Index() {
 
   const layout = useMemo(() => {
     const featuredId = featuredArticle?.id;
-    const filtered = featuredId ? topPool.filter((a) => a.id !== featuredId) : topPool;
+    const shownIds = new Set<string>(
+      [featuredId].filter(Boolean) as string[],
+    );
 
-    const { clusters, remaining } = extractClusters(filtered, TOP_CLUSTERS);
-    const topClusters = clusters.slice(0, 2);
-    // Show only complete rows of 3, max 6 ungrouped Top Stories.
-    const ungroupedAll = remaining.slice(0, 6);
-    const completeCount = Math.floor(ungroupedAll.length / 3) * 3;
-    const topStories = ungroupedAll.slice(0, completeCount);
+    // INDIA NEWS
+    const indiaPoolFiltered = newsPool.filter((a) => !shownIds.has(a.id));
+    const india = buildClusters(indiaPoolFiltered);
+    indiaPoolFiltered.forEach((a) => shownIds.add(a.id));
 
-    return { topClusters, topStories };
-  }, [topPool, featuredArticle]);
+    // WORLD NEWS
+    const worldPoolFiltered = nriPool.filter((a) => !shownIds.has(a.id));
+    const world = buildClusters(worldPoolFiltered);
+    worldPoolFiltered.forEach((a) => shownIds.add(a.id));
+
+    // CATEGORY SECTIONS
+    const sections = CATEGORY_SECTIONS.map((s) => ({
+      ...s,
+      pool: (sectionPools[s.slug] ?? []).filter((a) => !shownIds.has(a.id)),
+    }));
+    sections.forEach((s) => s.pool.forEach((a) => shownIds.add(a.id)));
+
+    return { india, world, sections };
+  }, [newsPool, nriPool, sectionPools, featuredArticle]);
 
   if (loading) {
     return (
@@ -266,9 +247,6 @@ export default function Index() {
       </div>
     );
   }
-
-  const { topClusters, topStories } = layout;
-  const featuredId = featuredArticle?.id;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -286,7 +264,6 @@ export default function Index() {
 
       <Masthead />
 
-
       <main className="container flex-1 pt-6 md:pt-8">
         {featuredArticle && (
           <div className="mb-10">
@@ -294,27 +271,35 @@ export default function Index() {
           </div>
         )}
 
-        {(topStories.length > 0 || topClusters.length > 0) && (
-          <TopStoriesSection topStories={topStories} clusters={topClusters} />
-        )}
+        <HomeCategorySection
+          slug={INDIA_NEWS.slug}
+          label={INDIA_NEWS.label}
+          clusters={layout.india.clusters}
+          pool={layout.india.ungrouped}
+          hideCategory={false}
+        />
 
-        {CATEGORY_SECTIONS.map((s) => {
-          const pool = (sectionPools[s.slug] ?? []).filter((a) => a.id !== featuredId);
-          if (pool.length < 2) return null;
-          return (
-            <CategorySection
+        <HomeCategorySection
+          slug={WORLD_NEWS.slug}
+          label={WORLD_NEWS.label}
+          clusters={layout.world.clusters}
+          pool={layout.world.ungrouped}
+        />
+
+        {layout.sections
+          .filter((s) => s.pool.length >= 2)
+          .map((s) => (
+            <HomeCategorySection
               key={s.slug}
               slug={s.slug}
               label={s.label}
-              initialPool={pool}
-              hideCategory={s.slug !== "news"}
+              clusters={[]}
+              pool={s.pool}
             />
-          );
-        })}
+          ))}
 
         <ArticleCarousel />
       </main>
-
 
       <SiteFooter lastUpdated={lastUpdated} />
     </div>
