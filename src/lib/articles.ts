@@ -109,39 +109,28 @@ function mapRow(row: P2Row): Article {
 export async function getFeaturedArticle(): Promise<Article | null> {
   const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
 
-  // Prefer recent non-sports articles with images, ranked by score.
-  const { data: withImage } = await supabase
-    .from("p2_articles")
-    .select(P2_COLS)
-    .eq("status", "published")
-    .gte("published_at", since)
-    .not("score_total", "is", null)
+  const buildBase = () =>
+    supabase
+      .from("p2_articles")
+      .select(P2_COLS)
+      .eq("status", "published")
+      .gte("published_at", since)
+      .not("score_total", "is", null)
+      .order("score_total", { ascending: false })
+      .order("published_at", { ascending: false })
+      .order("id", { ascending: true });
+
+  // Try with image first
+  const { data: withImage } = await buildBase()
     .not("image_url", "is", null)
     .neq("image_url", "")
-    .neq("category", "sports")
-    .in("category", ["nri-world", "news", "markets-finance", "entertainment"])
-    .order("score_total", { ascending: false })
-    .order("published_at", { ascending: false })
-    .order("id", { ascending: true })
     .limit(1)
     .maybeSingle();
-
   if (withImage) return mapRow(withImage as P2Row);
 
-  // Fallback: highest-scoring non-sports article (any time, image optional).
-  const { data: fallback } = await supabase
-    .from("p2_articles")
-    .select(P2_COLS)
-    .eq("status", "published")
-    .not("score_total", "is", null)
-    .neq("category", "sports")
-    .order("score_total", { ascending: false })
-    .order("published_at", { ascending: false })
-    .order("id", { ascending: true })
-    .limit(1)
-    .maybeSingle();
-
-  return fallback ? mapRow(fallback as P2Row) : null;
+  // Fall back to any top article
+  const { data } = await buildBase().limit(1).maybeSingle();
+  return data ? mapRow(data as P2Row) : null;
 }
 
 export function readingTime(markdown: string) {

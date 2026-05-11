@@ -167,6 +167,20 @@ For each topic return:
 - canonical_title: clear headline, full names always
 - vertical: politics|economy|tech|immigration|diaspora|science|culture|sports|entertainment|education
 - category: news|entertainment|sports|markets-finance|technology|nri-world|lifestyle-health|travel|food
+
+  CATEGORY ASSIGNMENT — critical distinction:
+  Use 'news' ONLY for India-domestic stories:
+    → Indian politics, Indian elections, events happening INSIDE India
+  Use 'nri-world' for Indian diaspora stories:
+    → Indian-origin people OUTSIDE India
+    → Indian-Americans, British Indians, Canadian Indians, etc.
+    → Pramila Jayapal (US Congresswoman) = nri-world
+    → Dr. Karan Rajan (UK doctor) = nri-world
+    → Sundar Pichai, Satya Nadella = nri-world
+    → ANY story where main actor lives/works OUTSIDE India = nri-world
+  Rule: If the story's primary subject is an Indian-origin person living outside India,
+  ALWAYS use nri-world, never news.
+
 - event_type: election-result|swearing-in|policy-announcement|policy-update|match-result|match-preview|birthday|film-release|arrest-raid|court-ruling|market-move|diplomatic-meeting|natural-disaster|obituary|protest|accident|appointment|resignation|award|statement|report-release|other
 - event_date: YYYY-MM-DD
 - score_diaspora: 0-100
