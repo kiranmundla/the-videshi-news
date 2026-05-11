@@ -105,15 +105,15 @@ export default function ArticlePage() {
 
         {article.hero_image_url && article.hero_image_url.trim().length > 0 && (
           <figure className="mt-10 w-full max-w-full md:max-w-[780px] md:mx-auto">
-            <div className="w-full max-w-full aspect-[16/9] overflow-hidden relative">
-              <HeroImage
-                src={article.hero_image_url}
-                alt={article.title}
-                loading="eager"
-                category={article.category}
-                className="block w-full h-full object-cover object-center"
-              />
-            </div>
+          <div className="w-full max-w-full max-h-[320px] md:max-h-[520px] overflow-hidden relative bg-[#f5f3f0]">
+            <HeroImage
+              src={article.hero_image_url}
+              alt={article.title}
+              loading="eager"
+              category={article.category}
+              className="block w-full h-full object-contain"
+            />
+          </div>
             <div className="text-center">
               <ImageCaption
                 caption={article.image_caption}
