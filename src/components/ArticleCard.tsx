@@ -107,7 +107,7 @@ export default function ArticleCard({
         className="group grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-secondary/60 p-6 md:p-10 border hairline"
       >
         <figure>
-          <div className="w-full aspect-[4/3] bg-stone-100 overflow-hidden">
+          <div className="w-full h-48 bg-stone-100 overflow-hidden">
             <HeroImage
               src={article.hero_image_url}
               alt={article.title}
@@ -200,7 +200,7 @@ export default function ArticleCard({
   return (
     <Link to={href} onClick={saveScroll} className="group block">
       <figure className="w-full">
-        <div className="w-full aspect-[4/3] bg-stone-100 overflow-hidden">
+        <div className="w-full h-48 bg-stone-100 overflow-hidden">
           <HeroImage
             src={article.hero_image_url}
             alt={article.title}
