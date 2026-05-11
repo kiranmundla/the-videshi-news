@@ -293,7 +293,7 @@ Maximum 12 ranked_topics.
           generationConfig: {
             temperature: 0.1,
             thinkingConfig: { thinkingBudget: 0 },
-            maxOutputTokens: 8192
+            maxOutputTokens: 32768
           }
         })
       }
@@ -305,8 +305,40 @@ Maximum 12 ranked_topics.
       .map((p: any) => p?.text ?? "")
       .join("")
       .trim();
-    const cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
-    const data = JSON.parse(cleaned);
+    let cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
+    // Strip unescaped control chars (Gemini sometimes emits raw \n inside strings)
+    cleaned = cleaned.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "");
+    let data: any;
+    try {
+      data = JSON.parse(cleaned);
+    } catch (parseErr) {
+      // Attempt repair: truncate at last complete object/array boundary
+      const lastBrace = Math.max(cleaned.lastIndexOf("}"), cleaned.lastIndexOf("]"));
+      if (lastBrace > 0) {
+        let repaired = cleaned.slice(0, lastBrace + 1);
+        // Close any open arrays/objects
+        const opens = (repaired.match(/[{\[]/g) ?? []).length;
+        const closes = (repaired.match(/[}\]]/g) ?? []).length;
+        // Try increasingly aggressive repairs
+        for (let attempt = 0; attempt < 5; attempt++) {
+          try {
+            data = JSON.parse(repaired);
+            break;
+          } catch {
+            // Drop trailing comma/partial entry, try closing
+            repaired = repaired.replace(/,\s*$/, "");
+            repaired += attempt % 2 === 0 ? "]" : "}";
+          }
+        }
+      }
+      if (!data) throw parseErr;
+      await supabase.from("pipeline_alerts").insert({
+        agent: "p2-rank",
+        severity: "warning",
+        error_type: "json_repair",
+        message: `Repaired truncated Gemini JSON (raw length ${raw.length})`,
+      });
+    }
     await supabase.from('pipeline_alerts').insert({
       agent: 'p2-rank',
       severity: 'info',
