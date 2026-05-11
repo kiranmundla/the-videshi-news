@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { formatLongDate } from "@/lib/articles";
 
+export default function Masthead() {
+  const today = formatLongDate(new Date().toISOString());
+
   return (
     <header className="bg-background">
       <div className="container">
@@ -21,21 +24,6 @@ import { formatLongDate } from "@/lib/articles";
           <p className="smallcaps text-muted-foreground">{today}</p>
         </div>
         <div style={{ height: "0.5px" }} className="bg-rule w-full" />
-        <nav className="hidden md:block">
-          <ul className="flex flex-wrap gap-x-7 gap-y-2 py-3.5 text-[0.82rem] font-medium tracking-wide">
-            {NAV.map((n) => (
-              <li key={n.label}>
-                <Link
-                  to={n.to}
-                  className="text-foreground/85 hover:text-primary transition-colors"
-                >
-                  {n.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <div style={{ height: "0.5px" }} className="hidden md:block bg-rule w-full" />
       </div>
     </header>
   );
