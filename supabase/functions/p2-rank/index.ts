@@ -207,207 +207,28 @@ Return ONLY raw JSON, no markdown:
 }
 Use only copyright-free sources. NEVER Getty/AP/Reuters.
 `;
-You are the chief editor of The Videshi, a premium news platform for the Indian diaspora globally (US, UK, Australia, UAE, Canada, Singapore).
-
-═══════════════════════════════════════
-PART A: EXISTING PUBLISHED ARTICLES (RE-RANK THESE)
-═══════════════════════════════════════
-${publishedHeadlines}
-
-═══════════════════════════════════════
-PART B: RSS SIGNALS TO RANK
-═══════════════════════════════════════
-${headlineList}
-
-═══════════════════════════════════════
-YOUR JOB: THREE TASKS
-═══════════════════════════════════════
-
-──────────────────────────────────────
-TASK 1: RE-RANK EXISTING ARTICLES
-──────────────────────────────────────
-Today's date and time: ${new Date().toISOString()}
-
-For each article in PART A, return a single
-final score that accounts for ALL factors:
-- Diaspora relevance to Indian diaspora globally
-- Story significance and importance
-- Age of the article relative to TODAY
-- Whether story is still developing or resolved
-- Whether topic is evergreen or time-sensitive
-
-Scoring guidance with age:
-  Breaking (< 6h):    score at full value
-  Fresh (6-24h):      slight decay if resolved
-  Yesterday (24-48h): significant decay unless developing
-  Old (48-72h):       heavy decay unless evergreen
-  Archive (72h+):     minimal score unless truly evergreen
-
-Examples:
-  'Vijay Deverakonda Birthday' at 36h → score 20
-    (stale celebrity news, fully resolved)
-  'H-1B Wage Floor Bill' at 36h → score 78
-    (developing policy story, still relevant to diaspora)
-  'IPL 2026 Final Result' at 48h → score 45
-    (resolved sports result, fading relevance)
-  'Indian Passport Ranked 82nd' at 72h → score 65
-    (evergreen diaspora content, stays relevant)
-
-Return as 're_ranked' array:
-{
-  id: article UUID,
-  score_final: 0-100 single final score,
-  freshness_note: 'breaking'|'developing'|'resolved'|'evergreen'|'stale'
-}
-
-CRITICAL: If a new signal in PART B covers the SAME EVENT as an article in PART A — even from a different angle or source — do NOT create a new topic for it. The event is already covered.
-Same event examples:
-- 'Vijay sworn in' + 'Vijay takes oath' = SAME EVENT
-- 'Vijay cabinet announced' = DIFFERENT EVENT ✅
-- 'Trisha attends Vijay ceremony' = SAME EVENT ❌
-Only create new topics for genuinely new events.
-
-──────────────────────────────────────
-TASK 2: RANK AND CLUSTER RSS SIGNALS
-──────────────────────────────────────
-Group signals into unique story topics.
-Skip stories already in PART A.
-
-For each topic return:
-- canonical_title: clear headline, full names always
-- vertical: politics|economy|tech|immigration|diaspora|science|culture|sports|entertainment|education
-- category: news|entertainment|sports|markets-finance|technology|nri-world|lifestyle-health|travel|food
-
-  CATEGORY ASSIGNMENT — critical distinction:
-  Use 'news' ONLY for India-domestic stories:
-    → Indian politics, Indian elections, events happening INSIDE India
-  Use 'nri-world' for Indian diaspora stories:
-    → Indian-origin people OUTSIDE India
-    → Indian-Americans, British Indians, Canadian Indians, etc.
-    → Pramila Jayapal (US Congresswoman) = nri-world
-    → Dr. Karan Rajan (UK doctor) = nri-world
-    → Sundar Pichai, Satya Nadella = nri-world
-    → ANY story where main actor lives/works OUTSIDE India = nri-world
-  Rule: If the story's primary subject is an Indian-origin person living outside India,
-  ALWAYS use nri-world, never news.
-
-- event_type: election-result|swearing-in|policy-announcement|policy-update|match-result|match-preview|birthday|film-release|arrest-raid|court-ruling|market-move|diplomatic-meeting|natural-disaster|obituary|protest|accident|appointment|resignation|award|statement|report-release|other
-- event_date: YYYY-MM-DD
-- score_diaspora: 0-100
-    90-100: H-1B/visa/immigration, Indian-Americans in news, India-US policy
-    75-89: National elections, India-Pakistan/China, Bollywood A-list, cricket World Cup/IPL finals
-    65-74: Tamil Nadu, Kerala, Punjab, Andhra/Telangana, Karnataka, Gujarat, Maharashtra, West Bengal
-    50-64: National India politics, economy, IPL
-    30-49: India-domestic, minimal diaspora relevance
-    5-25:  Non-Indian celebrities, unrelated global news
-    RULES:
-    - Indian state board exams (HPBOSE, CBSE) = max 35
-    - Non-Indian celebrities = max 20
-    - Celebrity birthdays = max 55
-    - Local India crime = max 30
-- score_significance: 0-100
-- urgency: breaking|daily|evergreen
-- keywords: 3-5 search terms
-- signal_indices: [N] indices from PART B
-- key_entities: typed entity objects:
-  {
-    name: "full canonical name",
-    type: "politician|actor|athlete|businessman|organization|place|event|policy",
-    entity_id: "disambiguated-slug"
-  }
-  DISAMBIGUATION:
-  - Vijay (TVK/Tamil Nadu/CM) = vijay-politician-tamil-nadu
-  - Vijay Deverakonda (actor) = vijay-deverakonda-actor-telugu
-  - Rahul Gandhi = rahul-gandhi-politician-congress
-  - Congress India = inc-organization-india
-  - Congress USA = us-congress-organization-usa
-  - Supreme Court India = supreme-court-india
-  - Supreme Court USA = supreme-court-usa
-  - Delhi Capitals (IPL) = delhi-capitals-ipl-team
-  - Delhi (city) = delhi-place-capital
-- free_sources: 2-3 copyright-free URLs:
-    PIB (pib.gov.in) → Wikipedia → official govt sites
-    NEVER link to NDTV, TOI, Hindu, IE, BBC
-- synthesis_angle: one sentence diaspora angle
-- image: Find the best available image for this story. Return ONE image object:
-  {
-    url: direct accessible image URL — use this format for Wikimedia:
-      https://commons.wikimedia.org/wiki/Special:FilePath/FILENAME.jpg
-      This format works for download (NOT the /thumb/ hotlink format).
-      Leave null for Unsplash/Pexels — provide search_query instead,
-    search_query: 4-6 word specific image search query always required
-      e.g. 'Kerala Congress Chief Minister assembly 2026'
-      NOT generic like 'India politics news',
-    source: "wikimedia-commons|pib|unsplash|pexels|pixabay",
-    attribution: exact credit line e.g.
-      Photo: Wikimedia Commons / CC BY-SA 4.0
-      Image: Press Information Bureau, Govt of India
-      Photo: Unsplash,
-    alt_text: describe what ideal image shows,
-    license: "cc-by-sa|cc-by|public-domain|free-to-use"
-  }
-  RULES:
-  - Wikimedia Special:FilePath format only — never /thumb/ URLs
-  - For politicians: search their Wikipedia/Commons page name
-  - For cricket/IPL: Commons has extensive cricket images
-  - For Bollywood actors: Commons has actor pages
-  - For places: Commons or Unsplash landmark photos
-  - For PIB: use pib.gov.in for Indian government stories
-  - NEVER suggest Getty/AP/Reuters/news site images
-
-──────────────────────────────────────
-TASK 3: CAROUSEL PHOTOS
-──────────────────────────────────────
-Suggest 5 high-quality images for our homepage photo carousel — major events, cultural moments, sports from the last 48 hours relevant to diaspora.
-
-Return as "carousel_photos" array:
-{
-  title: short carousel caption,
-  description: 2-3 sentence context,
-  image: {
-    url: direct image URL,
-    source: "Wikimedia Commons|PIB|Unsplash|Pexels",
-    attribution: credit text,
-    license: "public-domain|cc-by|cc-by-sa|free-to-use"
-  },
-  related_topic: topic this relates to if any
-}
-
-═══════════════════════════════════════
-OUTPUT FORMAT
-═══════════════════════════════════════
-Return a single valid JSON object:
-{
-  "re_ranked": [...],
-  "ranked_topics": [...],
-  "carousel_photos": [...]
-}
-No markdown. Raw JSON only.
-Exclude topics with score_diaspora < 40.
-Maximum 12 ranked_topics.
-`;
-
   let topics: any[] = [];
   let discoveredTopics: any[] = [];
   let carouselPhotos: any[] = [];
   let reRanked: any[] = [];
-  try {
-    // Try gemini-2.5-flash with retry; fall back to gemini-2.0-flash on persistent overload.
-    const callGemini = async (model: string) => fetch(
+
+  // Helper: call Gemini once with retry + 2.0-flash fallback on overload
+  const runGemini = async (prompt: string, useGrounding: boolean, label: string): Promise<any> => {
+    const callOnce = (model: string) => fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_KEY}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: userPrompt }] }],
-          tools: [{ googleSearch: {} }],
+          contents: [{ parts: [{ text: prompt }] }],
+          ...(useGrounding ? { tools: [{ googleSearch: {} }] } : {}),
           generationConfig: {
             temperature: 0.1,
             thinkingConfig: { thinkingBudget: 0 },
-            maxOutputTokens: 32768
-          }
-        })
-      }
+            maxOutputTokens: 16384,
+          },
+        }),
+      },
     );
 
     const models = ["gemini-2.5-flash", "gemini-2.5-flash", "gemini-2.0-flash"];
@@ -415,88 +236,101 @@ Maximum 12 ranked_topics.
     let lastStatus = 0;
     for (let i = 0; i < models.length; i++) {
       if (i > 0) await new Promise((r) => setTimeout(r, 2000 * i));
-      const response = await callGemini(models[i]);
+      const response = await callOnce(models[i]);
       lastStatus = response.status;
       geminiData = await response.json().catch(() => null);
       const overloaded = response.status === 503 || geminiData?.error?.code === 503;
       const hasText = geminiData?.candidates?.[0]?.content?.parts?.some?.((p: any) => p?.text);
       if (response.ok && hasText) break;
-      if (!overloaded && i === 0) break; // non-overload error: don't waste retries
-      console.warn(`[p2-rank] model=${models[i]} status=${response.status} overloaded=${overloaded} retrying…`);
+      if (!overloaded && i === 0) break;
+      console.warn(`[p2-rank:${label}] model=${models[i]} status=${response.status} overloaded=${overloaded} retry…`);
     }
-    if (!geminiData) throw new Error(`Gemini fetch failed (status=${lastStatus})`);
+    if (!geminiData) throw new Error(`[${label}] Gemini fetch failed (status=${lastStatus})`);
+
     const candidate = geminiData?.candidates?.[0];
     const finishReason = candidate?.finishReason;
     const parts = candidate?.content?.parts ?? [];
-    const raw = parts
-      .map((p: any) => p?.text ?? "")
-      .join("")
-      .trim();
+    const raw = parts.map((p: any) => p?.text ?? "").join("").trim();
     if (!raw) {
       await supabase.from("pipeline_alerts").insert({
         agent: "p2-rank",
         severity: "error",
         error_type: "empty_response",
-        message: `Gemini returned no text. finishReason=${finishReason} parts=${parts.length} keys=${Object.keys(geminiData ?? {}).join(',')} err=${JSON.stringify(geminiData?.error ?? geminiData?.promptFeedback ?? {}).slice(0,500)}`,
+        message: `[${label}] empty. finishReason=${finishReason} err=${JSON.stringify(geminiData?.error ?? geminiData?.promptFeedback ?? {}).slice(0, 400)}`,
       });
-      throw new Error(`Gemini empty response (finishReason=${finishReason})`);
+      throw new Error(`[${label}] Gemini empty (finishReason=${finishReason})`);
     }
+
     let cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
-    // Strip unescaped control chars (Gemini sometimes emits raw \n inside strings)
     cleaned = cleaned.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "");
-    let data: any;
     try {
-      data = JSON.parse(cleaned);
+      return JSON.parse(cleaned);
     } catch (parseErr) {
-      // Attempt repair: truncate at last complete object/array boundary
       const lastBrace = Math.max(cleaned.lastIndexOf("}"), cleaned.lastIndexOf("]"));
       if (lastBrace > 0) {
         let repaired = cleaned.slice(0, lastBrace + 1);
-        // Close any open arrays/objects
-        const opens = (repaired.match(/[{\[]/g) ?? []).length;
-        const closes = (repaired.match(/[}\]]/g) ?? []).length;
-        // Try increasingly aggressive repairs
         for (let attempt = 0; attempt < 5; attempt++) {
           try {
-            data = JSON.parse(repaired);
-            break;
+            const data = JSON.parse(repaired);
+            await supabase.from("pipeline_alerts").insert({
+              agent: "p2-rank",
+              severity: "warning",
+              error_type: "json_repair",
+              message: `[${label}] repaired truncated JSON (len ${raw.length})`,
+            });
+            return data;
           } catch {
-            // Drop trailing comma/partial entry, try closing
             repaired = repaired.replace(/,\s*$/, "");
             repaired += attempt % 2 === 0 ? "]" : "}";
           }
         }
       }
-      if (!data) throw parseErr;
-      await supabase.from("pipeline_alerts").insert({
-        agent: "p2-rank",
-        severity: "warning",
-        error_type: "json_repair",
-        message: `Repaired truncated Gemini JSON (raw length ${raw.length})`,
-      });
+      throw parseErr;
     }
-    await supabase.from('pipeline_alerts').insert({
-      agent: 'p2-rank',
-      severity: 'info',
-      error_type: 'debug',
-      message: `DEBUG: response keys=${Object.keys(data ?? {}).join(', ')}, re_ranked=${JSON.stringify(data?.re_ranked ?? data?.reRanked ?? []).slice(0, 200)}, ranked_topics_count=${(data?.ranked_topics ?? []).length}`
-    });
-    topics = Array.isArray(data) ? data : (data?.ranked_topics ?? []);
-    carouselPhotos = data?.carousel_photos ?? [];
-    reRanked = data?.re_ranked ?? [];
-  } catch (err: any) {
-    const safeErr = (err?.message ?? String(err)).replace(/https?:\/\/\S+/g, '[URL]');
+  };
+
+  // Run all three calls in parallel — independent, can fail individually
+  const [rerankRes, clusterRes, carouselRes] = await Promise.allSettled([
+    runGemini(promptRerank, false, "rerank"),
+    runGemini(promptCluster, true, "cluster"),
+    runGemini(promptCarousel, true, "carousel"),
+  ]);
+
+  if (rerankRes.status === "fulfilled") {
+    reRanked = rerankRes.value?.re_ranked ?? [];
+  } else {
     await supabase.from("pipeline_alerts").insert({
-      agent: "p2-rank",
-      severity: "error",
-      error_type: "claude_error",
-      message: `Claude ranking failed: ${safeErr}`,
-    });
-    return new Response(JSON.stringify({ ok: false, error: err?.message ?? String(err) }), {
-      status: 500,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
+      agent: "p2-rank", severity: "warning", error_type: "rerank_failed",
+      message: `rerank: ${(rerankRes.reason?.message ?? String(rerankRes.reason)).slice(0, 500)}`,
     });
   }
+
+  if (clusterRes.status === "fulfilled") {
+    const data = clusterRes.value;
+    topics = Array.isArray(data) ? data : (data?.ranked_topics ?? []);
+  } else {
+    await supabase.from("pipeline_alerts").insert({
+      agent: "p2-rank", severity: "error", error_type: "cluster_failed",
+      message: `cluster: ${(clusterRes.reason?.message ?? String(clusterRes.reason)).slice(0, 500)}`,
+    });
+  }
+
+  if (carouselRes.status === "fulfilled") {
+    carouselPhotos = carouselRes.value?.carousel_photos ?? [];
+  } else {
+    await supabase.from("pipeline_alerts").insert({
+      agent: "p2-rank", severity: "warning", error_type: "carousel_failed",
+      message: `carousel: ${(carouselRes.reason?.message ?? String(carouselRes.reason)).slice(0, 500)}`,
+    });
+  }
+
+  await supabase.from("pipeline_alerts").insert({
+    agent: "p2-rank",
+    severity: "info",
+    error_type: "debug",
+    message: `split-call done: rerank=${reRanked.length} topics=${topics.length} carousel=${carouselPhotos.length}`,
+  });
+
 
   // Apply re-ranking to existing articles
   for (const item of reRanked) {
