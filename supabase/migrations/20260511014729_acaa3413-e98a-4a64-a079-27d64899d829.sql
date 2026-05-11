@@ -1,0 +1,1 @@
+DELETE FROM public.p2_articles WHERE headline ILIKE '[GEMINI TEST]%';
