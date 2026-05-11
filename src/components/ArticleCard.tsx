@@ -205,7 +205,7 @@ export default function ArticleCard({
             src={article.hero_image_url}
             alt={article.title}
             loading={variant === "hero" ? "eager" : "lazy"}
-            className="w-full h-full object-cover object-[center_25%] group-hover:scale-[1.01] transition-transform duration-500"
+            className="w-full h-full object-cover object-[center_20%] group-hover:scale-[1.01] transition-transform duration-500"
           />
         </div>
       </figure>
