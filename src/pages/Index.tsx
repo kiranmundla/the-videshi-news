@@ -4,7 +4,7 @@ import Masthead from "@/components/Masthead";
 
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
-import ArticleCarousel from "@/components/ArticleCarousel";
+import DiasporaPhotoStrip from "@/components/DiasporaPhotoStrip";
 import FeaturedHero from "@/components/FeaturedHero";
 import EventCluster from "@/components/EventCluster";
 import {
@@ -298,7 +298,7 @@ export default function Index() {
             />
           ))}
 
-        <ArticleCarousel />
+        <DiasporaPhotoStrip />
       </main>
 
       <SiteFooter lastUpdated={lastUpdated} />
