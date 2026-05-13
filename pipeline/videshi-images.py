@@ -451,19 +451,17 @@ def fetch_articles_needing_images(env, refresh=False, article_id=None):
         articles = resp.json()
 
         if refresh:
-            # Also get articles with potentially bad images
+            # In refresh mode, get ALL published articles and re-source images
             api_url2 = (
                 f"{url}/rest/v1/p2_articles?select={cols}"
                 f"&status=eq.published"
-                f"&image_url=not.is.null"
-                f"&image_url=neq."
                 f"&order=created_at.desc&limit=50"
             )
             resp2 = requests.get(api_url2, headers=headers, timeout=15)
             resp2.raise_for_status()
             existing_ids = {a["id"] for a in articles}
             for a in resp2.json():
-                if a["id"] not in existing_ids and is_bad_url(a.get("image_url")):
+                if a["id"] not in existing_ids:
                     articles.append(a)
 
     return articles
