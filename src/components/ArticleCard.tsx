@@ -52,7 +52,7 @@ export default function ArticleCard({
             src={article.hero_image_url}
             alt={article.title}
             loading="lazy"
-            className="w-20 h-20 object-contain bg-stone-100 flex-shrink-0"
+            className="w-20 h-20 object-cover flex-shrink-0"
           />
         )}
         <div
@@ -107,12 +107,13 @@ export default function ArticleCard({
         className="group grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-secondary/60 p-6 md:p-10 border hairline"
       >
         <figure>
-          <div className="w-full h-48 bg-stone-100 overflow-hidden">
+          <div className="w-full aspect-[16/9] bg-stone-100 overflow-hidden">
             <HeroImage
               src={article.hero_image_url}
               alt={article.title}
               loading="lazy"
-              className="w-full h-full object-contain bg-stone-100"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: "center 25%" }}
             />
           </div>
         </figure>
@@ -200,12 +201,13 @@ export default function ArticleCard({
   return (
     <Link to={href} onClick={saveScroll} className="group block">
       <figure className="w-full">
-        <div className="w-full h-48 bg-stone-100 overflow-hidden">
+        <div className="w-full aspect-[16/9] bg-stone-100 overflow-hidden">
           <HeroImage
             src={article.hero_image_url}
             alt={article.title}
             loading={variant === "hero" ? "eager" : "lazy"}
-            className="w-full h-full object-contain bg-stone-100 group-hover:scale-[1.01] transition-transform duration-500"
+            className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
+            style={{ objectPosition: "center 25%" }}
           />
         </div>
       </figure>

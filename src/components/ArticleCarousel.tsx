@@ -77,7 +77,7 @@ export default function ArticleCarousel() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-muted h-[100px] md:h-[140px] my-6 select-none"
+      className="relative w-full overflow-hidden bg-muted h-[200px] md:h-[280px] my-6 select-none"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carousel"
@@ -96,7 +96,7 @@ export default function ArticleCarousel() {
         {slides.map((s, i) => (
           <Link
             key={s.slug}
-            to={`/article/${s.slug}`}
+            to={`/articles/${s.slug}`}
             className="relative h-full block"
             style={{ width: `${100 / total}%` }}
           >
@@ -119,7 +119,7 @@ export default function ArticleCarousel() {
             "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 55%, transparent 100%)",
         }}
       >
-        <Link to={`/article/${current.slug}`} className="pointer-events-auto">
+        <Link to={`/articles/${current.slug}`} className="pointer-events-auto">
           <h3 className="text-white font-bold text-lg md:text-3xl leading-snug max-w-3xl drop-shadow hover:underline">
             {current.headline}
           </h3>

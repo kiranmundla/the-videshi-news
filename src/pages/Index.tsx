@@ -287,7 +287,7 @@ export default function Index() {
         />
 
         {layout.sections
-          .filter((s) => s.pool.length >= 2)
+          .filter((s) => s.pool.length >= 3)
           .map((s) => (
             <HomeCategorySection
               key={s.slug}

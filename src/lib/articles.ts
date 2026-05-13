@@ -134,7 +134,17 @@ export async function getFeaturedArticle(): Promise<Article | null> {
 }
 
 export function readingTime(markdown: string) {
-  const words = (markdown ?? "").trim().split(/\s+/).filter(Boolean).length;
+  let text = (markdown ?? "").trim();
+  // If body is JSON blocks, extract text content
+  if (text.startsWith("[")) {
+    try {
+      const blocks = JSON.parse(text);
+      if (Array.isArray(blocks)) {
+        text = blocks.map((b: any) => b.text || b.content || "").join(" ");
+      }
+    } catch {}
+  }
+  const words = text.replace(/[#*_>`~\-\[\]{}]+/g, "").trim().split(/\s+/).filter(Boolean).length;
   return Math.max(1, Math.round(words / 225));
 }
 

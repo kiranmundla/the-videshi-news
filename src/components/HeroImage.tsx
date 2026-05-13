@@ -6,6 +6,7 @@ type Props = {
   className?: string;
   loading?: "eager" | "lazy";
   category?: string;
+  style?: React.CSSProperties;
 };
 
 export function isValidImage(src?: string | null): boolean {
@@ -15,10 +16,16 @@ export function isValidImage(src?: string | null): boolean {
   if (src.toLowerCase().endsWith(".svg")) return false;
   if (/Flag_of_|flag_of_|_flag\.|national.flag/i.test(src)) return false;
   if (src.includes("Flag_of_Canada")) return false;
+  // Reject common low-quality image patterns
+  if (/logo|icon|avatar|placeholder|default|thumbnail.*small/i.test(src)) return false;
+  // Reject Wikipedia map/globe images
+  if (/upload\.wikimedia.*(?:map|globe|location|locator)/i.test(src)) return false;
+  // Reject very short URLs (likely broken)
+  if (src.length < 20) return false;
   return true;
 }
 
-export default function HeroImage({ src, alt, className = "", loading = "lazy" }: Props) {
+export default function HeroImage({ src, alt, className = "", loading = "lazy", style }: Props) {
   const [failed, setFailed] = useState(false);
   if (!isValidImage(src) || failed) return null;
   return (
@@ -29,6 +36,7 @@ export default function HeroImage({ src, alt, className = "", loading = "lazy" }
       referrerPolicy="no-referrer"
       onError={() => setFailed(true)}
       className={className}
+      style={style}
     />
   );
 }
