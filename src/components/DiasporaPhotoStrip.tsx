@@ -1,44 +1,71 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const SUPABASE_BASE =
   "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events";
 
 const PHOTOS: { src: string; label: string }[] = [
-  { src: `${SUPABASE_BASE}/diwali-celebration.jpg`, label: "Diwali Celebrations" },
-  { src: `${SUPABASE_BASE}/holi-festival.jpg`, label: "Holi Festival" },
-  { src: `${SUPABASE_BASE}/cricket-match.jpg`, label: "Cricket Finals" },
-  { src: `${SUPABASE_BASE}/indian-wedding.jpg`, label: "Indian Wedding" },
-  { src: `${SUPABASE_BASE}/temple-ceremony.jpg`, label: "Temple Ceremony" },
-  { src: `${SUPABASE_BASE}/yoga-meditation.jpg`, label: "Yoga & Meditation" },
-  { src: `${SUPABASE_BASE}/classical-dance.jpg`, label: "Classical Dance" },
-  { src: `${SUPABASE_BASE}/mumbai-lights.jpg`, label: "Mumbai Nights" },
-  { src: `${SUPABASE_BASE}/street-food.jpg`, label: "Street Food" },
-  { src: `${SUPABASE_BASE}/taj-mahal.jpg`, label: "Taj Mahal" },
-  { src: `${SUPABASE_BASE}/harvest-season.jpg`, label: "Harvest Season" },
-  { src: `${SUPABASE_BASE}/ganesh-chaturthi.jpg`, label: "Ganesh Chaturthi" },
-  { src: `${SUPABASE_BASE}/varanasi-ghats.jpg`, label: "Varanasi Ghats" },
-  { src: `${SUPABASE_BASE}/spice-market.jpg`, label: "Spice Market" },
-  { src: `${SUPABASE_BASE}/rangoli-art.jpg`, label: "Rangoli Art" },
-  { src: `${SUPABASE_BASE}/coastal-sunset.jpg`, label: "Coastal Sunset" },
-  { src: `${SUPABASE_BASE}/kerala-backwaters.jpg`, label: "Kerala Backwaters" },
-  { src: `${SUPABASE_BASE}/durga-puja.jpg`, label: "Durga Puja" },
-  { src: `${SUPABASE_BASE}/republic-day.jpg`, label: "Republic Day" },
-  { src: `${SUPABASE_BASE}/kumbh-mela.jpg`, label: "Kumbh Mela" },
+  { src: `${SUPABASE_BASE}/holi-mathura.jpg`, label: "Holi celebrations, Mathura, March 2026" },
+  { src: `${SUPABASE_BASE}/republic-day-parade.jpg`, label: "Republic Day Parade, New Delhi, Jan 2026" },
+  { src: `${SUPABASE_BASE}/diwali-diyas.jpg`, label: "Diwali lights at Jama Masjid, Delhi, Oct 2025" },
+  { src: `${SUPABASE_BASE}/ipl-cricket.jpg`, label: "IPL 2026 season opener, Lucknow" },
+  { src: `${SUPABASE_BASE}/kumbh-mela.jpg`, label: "Kumbh Mela 2025, Prayagraj" },
+  { src: `${SUPABASE_BASE}/ganesh-chaturthi-mumbai.jpg`, label: "Ganesh Chaturthi immersion, Mumbai, Sep 2025" },
+  { src: `${SUPABASE_BASE}/durga-puja-kolkata.jpg`, label: "Durga Puja pandals, Kolkata, Oct 2025" },
+  { src: `${SUPABASE_BASE}/ram-mandir-temple.jpg`, label: "Ram Mandir first anniversary, Ayodhya, Jan 2026" },
+  { src: `${SUPABASE_BASE}/taj-mahal-agra.jpg`, label: "Taj Mahal reopens after restoration, Agra" },
+  { src: `${SUPABASE_BASE}/varanasi-ghats.jpg`, label: "Dev Deepawali, Varanasi, Nov 2025" },
+  { src: `${SUPABASE_BASE}/mumbai-skyline.jpg`, label: "Mumbai skyline from Marine Drive" },
+  { src: `${SUPABASE_BASE}/india-gate-delhi.jpg`, label: "India Gate at sunset, New Delhi" },
+  { src: `${SUPABASE_BASE}/kerala-backwaters.jpg`, label: "Kerala backwaters, Alleppey" },
+  { src: `${SUPABASE_BASE}/jaipur-hawa-mahal.jpg`, label: "Hawa Mahal, Jaipur, Rajasthan" },
+  { src: `${SUPABASE_BASE}/indian-spice-market.jpg`, label: "Spice market, Old Delhi" },
+  { src: `${SUPABASE_BASE}/indian-wedding.jpg`, label: "Wedding season in full swing, Delhi, Dec 2025" },
+  { src: `${SUPABASE_BASE}/delhi-street-food.jpg`, label: "Chandni Chowk street food, Delhi" },
+  { src: `${SUPABASE_BASE}/pushkar-camel-fair.jpg`, label: "Pushkar Camel Fair, Rajasthan, Nov 2025" },
+  { src: `${SUPABASE_BASE}/onam-boat-race.jpg`, label: "Onam boat race, Alleppey, Kerala, Aug 2025" },
+  { src: `${SUPABASE_BASE}/indian-railway.jpg`, label: "Indian Railways, en route to Varanasi" },
 ];
 
 export default function DiasporaPhotoStrip() {
-  const [selected, setSelected] = useState<{ src: string; label: string } | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
-  const closeOverlay = useCallback(() => setSelected(null), []);
+  const closeOverlay = useCallback(() => setSelectedIndex(null), []);
+
+  const goNext = useCallback(() => {
+    setSelectedIndex((prev) => (prev !== null ? (prev + 1) % PHOTOS.length : null));
+  }, []);
+
+  const goPrev = useCallback(() => {
+    setSelectedIndex((prev) => (prev !== null ? (prev - 1 + PHOTOS.length) % PHOTOS.length : null));
+  }, []);
 
   useEffect(() => {
-    if (!selected) return;
+    if (selectedIndex === null) return;
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeOverlay();
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [selected, closeOverlay]);
+  }, [selectedIndex, closeOverlay, goNext, goPrev]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX < 0) goNext();
+      else goPrev();
+    }
+    touchStartX.current = null;
+  };
+
+  const selected = selectedIndex !== null ? PHOTOS[selectedIndex] : null;
 
   return (
     <>
@@ -80,7 +107,7 @@ export default function DiasporaPhotoStrip() {
           {PHOTOS.map((photo, i) => (
             <div
               key={i}
-              onClick={() => setSelected(photo)}
+              onClick={() => setSelectedIndex(i)}
               style={{
                 position: "relative",
                 minWidth: "260px",
@@ -115,8 +142,8 @@ export default function DiasporaPhotoStrip() {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  height: "60px",
-                  background: "linear-gradient(transparent, rgba(0,0,0,0.65))",
+                  height: "70px",
+                  background: "linear-gradient(transparent, rgba(0,0,0,0.75))",
                   pointerEvents: "none",
                 }}
               />
@@ -126,11 +153,13 @@ export default function DiasporaPhotoStrip() {
                   position: "absolute",
                   bottom: "10px",
                   left: "12px",
+                  right: "12px",
                   color: "#fff",
-                  fontSize: "13px",
+                  fontSize: "12px",
                   fontWeight: 600,
-                  letterSpacing: "0.03em",
-                  textShadow: "0 1px 4px rgba(0,0,0,0.8)",
+                  lineHeight: "1.3",
+                  letterSpacing: "0.02em",
+                  textShadow: "0 1px 4px rgba(0,0,0,0.9)",
                   fontFamily: "var(--font-sans, sans-serif)",
                 }}
               >
@@ -154,10 +183,12 @@ export default function DiasporaPhotoStrip() {
         </p>
       </section>
 
-      {/* Fullscreen overlay */}
-      {selected && (
+      {/* Fullscreen overlay with navigation */}
+      {selected && selectedIndex !== null && (
         <div
           onClick={closeOverlay}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
           style={{
             position: "fixed",
             top: 0,
@@ -174,37 +205,120 @@ export default function DiasporaPhotoStrip() {
             padding: "20px",
           }}
         >
-          <img
-            src={selected.src}
-            alt={selected.label}
-            style={{
-              maxWidth: "95vw",
-              maxHeight: "80vh",
-              objectFit: "contain",
-              borderRadius: "8px",
-            }}
-          />
+          {/* Counter */}
           <p
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              color: "rgba(255,255,255,0.5)",
+              fontSize: "13px",
+              fontFamily: "var(--font-sans, sans-serif)",
+              marginBottom: "12px",
+              userSelect: "none",
+            }}
+          >
+            {selectedIndex + 1} / {PHOTOS.length}
+          </p>
+
+          {/* Image + arrows row */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              maxWidth: "95vw",
+              maxHeight: "75vh",
+            }}
+          >
+            {/* Left arrow */}
+            <button
+              onClick={(e) => { e.stopPropagation(); goPrev(); }}
+              style={{
+                background: "rgba(255,255,255,0.1)",
+                border: "none",
+                color: "#fff",
+                fontSize: "28px",
+                width: "44px",
+                height: "44px",
+                borderRadius: "50%",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+                transition: "background 0.2s",
+              }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.25)"; }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.1)"; }}
+              aria-label="Previous photo"
+            >
+              ◀
+            </button>
+
+            {/* Image */}
+            <img
+              src={selected.src}
+              alt={selected.label}
+              style={{
+                maxWidth: "calc(95vw - 120px)",
+                maxHeight: "75vh",
+                objectFit: "contain",
+                borderRadius: "8px",
+                flexShrink: 1,
+              }}
+            />
+
+            {/* Right arrow */}
+            <button
+              onClick={(e) => { e.stopPropagation(); goNext(); }}
+              style={{
+                background: "rgba(255,255,255,0.1)",
+                border: "none",
+                color: "#fff",
+                fontSize: "28px",
+                width: "44px",
+                height: "44px",
+                borderRadius: "50%",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+                transition: "background 0.2s",
+              }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.25)"; }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.1)"; }}
+              aria-label="Next photo"
+            >
+              ▶
+            </button>
+          </div>
+
+          {/* Caption */}
+          <p
+            onClick={(e) => e.stopPropagation()}
             style={{
               color: "#fff",
               marginTop: "16px",
-              fontSize: "16px",
+              fontSize: "15px",
               fontWeight: 600,
               fontFamily: "var(--font-sans, sans-serif)",
               letterSpacing: "0.02em",
+              textAlign: "center",
+              maxWidth: "600px",
             }}
           >
             {selected.label}
           </p>
           <p
             style={{
-              color: "rgba(255,255,255,0.5)",
-              marginTop: "8px",
-              fontSize: "12px",
+              color: "rgba(255,255,255,0.4)",
+              marginTop: "10px",
+              fontSize: "11px",
               fontFamily: "var(--font-sans, sans-serif)",
             }}
           >
-            Tap anywhere to close
+            Tap background to close · Swipe or use arrows to navigate
           </p>
         </div>
       )}
