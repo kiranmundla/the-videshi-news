@@ -40,7 +40,7 @@ export default function EventCluster({
                 loading="lazy"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
-                style={{ objectPosition: "center 30%" }}
+                style={{ objectPosition: "center" }}
               />
             </div>
           )}

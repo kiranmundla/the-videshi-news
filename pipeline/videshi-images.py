@@ -3,15 +3,17 @@
 videshi-images.py — Image sourcing for The Videshi news pipeline.
 
 Searches Wikipedia page images (primary) and Wikimedia Commons (fallback)
-for relevant, high-quality images and updates article image_url and
-image_attribution fields in Supabase.
+for relevant, high-quality images. Downloads, crops to 16:9, resizes to
+1200x675, applies subtle enhancement, and uploads to Supabase Storage.
 
 Usage:
     python3 videshi-images.py fetch              # Articles missing images
     python3 videshi-images.py fetch --refresh     # Also replace bad images
     python3 videshi-images.py fetch --id <UUID>   # Specific article
+    python3 videshi-images.py fetch --no-process  # Just store URLs (skip processing)
 """
 
+import io
 import json
 import os
 import re
@@ -19,6 +21,7 @@ import sys
 import time
 import urllib.parse
 import requests
+from PIL import Image, ImageEnhance
 
 # ---------------------------------------------------------------------------
 # Config
@@ -29,18 +32,32 @@ WIKIPEDIA_API = "https://en.wikipedia.org/w/api.php"
 WIKIMEDIA_API = "https://commons.wikimedia.org/w/api.php"
 USER_AGENT = "TheVideshiBot/1.0 (https://thevideshi.com; contact@thevideshi.com)"
 POLITE_DELAY = 1.0          # seconds between API calls
+UPLOAD_DELAY = 0.5          # seconds between Supabase uploads
 THUMB_WIDTH = 800            # target width for thumbnails
 MIN_SOURCE_WIDTH = 400       # reject originals narrower than this
 MAX_RESULTS = 10             # results per Wikimedia search
+TARGET_WIDTH = 1200          # final image width (retina-quality)
+TARGET_HEIGHT = 675          # final image height (16:9 at 1200px)
+JPEG_QUALITY = 88            # high-quality JPEG output
 
 # Patterns that indicate a bad / unusable image file name
 BAD_FILENAME_RE = re.compile(
     r"Flag_of|flag_of|Map_of|map_of|Logo|logo|Icon|icon|"
     r"Coat_of_arms|coat_of_arms|seal_of|Seal_of|emblem|Emblem|"
     r"globe|Globe|locator|Locator|location_map|Location_map|"
-    r"pictogram|Pictogram|symbol|Symbol|no_image|placeholder",
+    r"pictogram|Pictogram|symbol|Symbol|no_image|placeholder|"
+    r"screenshot|Screenshot|UI_|_UI\.|interface|webpage|text_message|"
+    r"book_cover|\.djvu|\.tiff?$",
     re.IGNORECASE,
 )
+
+# Ambiguous short entities that match wrong things on Commons
+AMBIGUOUS_ENTITIES = {
+    "ICE", "NHS", "FBI", "CIA", "UN", "WHO", "PM", "CM", "MP", "ED",
+    "IT", "AI", "US", "UK", "UAE", "GST", "RBI", "BJP", "AAP", "IIT",
+    "NRI", "DHS", "OPT", "DOL", "DOJ", "SEC", "FTC", "IMF", "WTO",
+    "IPL", "CSK", "LSG", "MI", "RCB", "SRH", "GT", "KKR", "DC", "PBKS",
+}
 
 # Patterns for existing URLs we consider "bad" and want to replace
 BAD_URL_RE = re.compile(
@@ -93,6 +110,54 @@ def strip_html(text):
 def is_bad_filename(name):
     """Check if an image filename matches bad patterns."""
     return bool(BAD_FILENAME_RE.search(name))
+
+
+def is_relevant_filename(filename, search_terms):
+    """
+    Check if a Commons filename is relevant to the search terms.
+    Requires at least one significant word (4+ chars) from search terms
+    to appear in the filename. This prevents random matches like
+    'Ice Speedway' for 'ICE enforcement' or 'Milky Way' for 'Eileen Wang'.
+    
+    For person names (multi-word entities), requires the first name or
+    a distinctive part — not just a common surname like 'Singh' or 'Kumar'.
+    """
+    if not search_terms:
+        return True  # can't validate, assume ok
+    fn_lower = filename.lower().replace("_", " ").replace("-", " ")
+    
+    # Common Indian/generic surnames that are too ambiguous alone
+    COMMON_SURNAMES = {
+        "singh", "kumar", "sharma", "gupta", "patel", "khan", "wang",
+        "shah", "verma", "joshi", "reddy", "nair", "yadav", "mishra",
+        "das", "paul", "brown", "smith", "jones", "wilson", "moore",
+    }
+    
+    for term in search_terms:
+        if not isinstance(term, str):
+            continue
+        words = [w.lower() for w in term.split() if len(w) >= 4]
+        for word in words:
+            if word in COMMON_SURNAMES:
+                continue  # skip ambiguous surnames
+            if word in fn_lower:
+                return True
+    return False
+
+
+def collect_search_terms(article):
+    """Collect all meaningful search terms from an article for relevance checking."""
+    terms = []
+    isq = article.get("image_search_query")
+    if isq and isinstance(isq, str):
+        terms.append(isq)
+    entities = article.get("image_entities")
+    if entities and isinstance(entities, list):
+        terms.extend([e for e in entities if isinstance(e, str) and len(e) >= 4])
+    headline = article.get("headline", "")
+    if headline:
+        terms.append(headline)
+    return terms
 
 # ---------------------------------------------------------------------------
 # Wikipedia page image lookup (PRIMARY SOURCE)
@@ -261,12 +326,17 @@ def search_wikimedia(query, limit=MAX_RESULTS):
             continue
         if "pdf" in mime.lower():
             continue
+        if "djvu" in mime.lower():
+            continue
+        # Reject TIFF files (uncommon, usually scans)
+        if "tiff" in mime.lower():
+            continue
         if width < MIN_SOURCE_WIDTH:
             continue
         if is_bad_filename(title):
             continue
-        # Reject PDFs disguised as images (filename check)
-        if title.lower().endswith(".pdf"):
+        # Reject PDFs/DjVu disguised as images (filename check)
+        if title.lower().endswith((".pdf", ".djvu", ".tif", ".tiff")):
             continue
         if height > 0 and width > 0:
             ratio = width / height
@@ -321,8 +391,25 @@ def search_wikimedia_for_article(article):
     """
     Try Wikimedia Commons searches using various article fields.
     Returns (thumb_url, attribution) or (None, None).
+    
+    STRICT MODE: validates that results are actually relevant to the article.
+    No image > wrong image.
     """
     headline = article.get("headline", "")
+    search_terms = collect_search_terms(article)
+
+    def validate_and_return(candidates, source_label):
+        """Check candidates for relevance before accepting."""
+        for cand in candidates[:3]:  # check top 3 by score
+            title = cand.get("title", "")
+            if is_relevant_filename(title, search_terms):
+                url = cand["thumb_url"] or cand["full_url"]
+                attr = format_commons_attribution(cand)
+                print(f"  ✅ Found via {source_label}: {title[:60]}")
+                return url, attr
+            else:
+                print(f"  ⏭ Skipped irrelevant: {title[:60]}")
+        return None, None
 
     # Try 1: image_search_query
     isq = article.get("image_search_query")
@@ -330,44 +417,44 @@ def search_wikimedia_for_article(article):
         print(f"  🔍 Commons search: \"{isq}\"")
         candidates = search_wikimedia(isq)
         if candidates:
-            best = candidates[0]
-            url = best["thumb_url"] or best["full_url"]
-            attr = format_commons_attribution(best)
-            print(f"  ✅ Found via Commons search query: {best['title'][:60]}")
-            return url, attr
+            result = validate_and_return(candidates, f"Commons search query")
+            if result[0]:
+                return result
         time.sleep(POLITE_DELAY)
 
-    # Try 2: image_entities one by one
+    # Try 2: image_entities one by one (skip ambiguous short ones)
     entities = article.get("image_entities")
     if entities and isinstance(entities, list):
         for entity in entities[:3]:
             if not entity or not isinstance(entity, str):
                 continue
+            # Skip ambiguous single-word/acronym entities
+            if entity.upper().strip() in AMBIGUOUS_ENTITIES:
+                print(f"  ⏭ Skipping ambiguous entity: \"{entity}\"")
+                continue
+            if len(entity.strip()) < 4:
+                continue
             print(f"  🔍 Commons entity: \"{entity}\"")
             candidates = search_wikimedia(entity)
             if candidates:
-                best = candidates[0]
-                url = best["thumb_url"] or best["full_url"]
-                attr = format_commons_attribution(best)
-                print(f"  ✅ Found via Commons entity: {best['title'][:60]}")
-                return url, attr
+                result = validate_and_return(candidates, f"Commons entity")
+                if result[0]:
+                    return result
             time.sleep(POLITE_DELAY)
 
-    # Try 3: first few tags
+    # Try 3: first few tags (with relevance check)
     tags = article.get("tags")
     if tags and isinstance(tags, list):
         tag_query = " ".join(tags[:3])
         print(f"  🔍 Commons tags: \"{tag_query}\"")
         candidates = search_wikimedia(tag_query)
         if candidates:
-            best = candidates[0]
-            url = best["thumb_url"] or best["full_url"]
-            attr = format_commons_attribution(best)
-            print(f"  ✅ Found via Commons tags: {best['title'][:60]}")
-            return url, attr
+            result = validate_and_return(candidates, f"Commons tags")
+            if result[0]:
+                return result
         time.sleep(POLITE_DELAY)
 
-    # Try 4: headline keywords
+    # Try 4: headline keywords (with relevance check)
     if headline:
         words = [w for w in headline.split() if len(w) > 3][:5]
         if words:
@@ -375,11 +462,9 @@ def search_wikimedia_for_article(article):
             print(f"  🔍 Commons headline: \"{kw_query}\"")
             candidates = search_wikimedia(kw_query)
             if candidates:
-                best = candidates[0]
-                url = best["thumb_url"] or best["full_url"]
-                attr = format_commons_attribution(best)
-                print(f"  ✅ Found via Commons headline: {best['title'][:60]}")
-                return url, attr
+                result = validate_and_return(candidates, f"Commons headline")
+                if result[0]:
+                    return result
             time.sleep(POLITE_DELAY)
 
     return None, None
@@ -418,6 +503,154 @@ def find_image_for_article(article):
 
     print(f"  ❌ No suitable image found")
     return None, None
+
+# ---------------------------------------------------------------------------
+# Image processing — download, crop, enhance, upload
+# ---------------------------------------------------------------------------
+
+def download_image(image_url):
+    """Download an image and return PIL Image object, or None on failure."""
+    try:
+        headers = {"User-Agent": USER_AGENT}
+        resp = requests.get(image_url, headers=headers, timeout=30, stream=True)
+        resp.raise_for_status()
+        # Limit download to 20MB
+        content = b""
+        for chunk in resp.iter_content(chunk_size=65536):
+            content += chunk
+            if len(content) > 20 * 1024 * 1024:
+                print("    ⚠ Image too large (>20MB), skipping processing")
+                return None
+        img = Image.open(io.BytesIO(content))
+        return img
+    except Exception as e:
+        print(f"    ⚠ Download failed: {e}")
+        return None
+
+
+def smart_crop_16_9(img):
+    """
+    Smart-crop an image to 16:9 aspect ratio.
+    - If wider than 16:9: crop sides (center)
+    - If taller than 16:9: crop biased toward top 30% (faces are usually upper)
+    """
+    target_ratio = 16.0 / 9.0
+    current_ratio = img.width / img.height
+
+    if abs(current_ratio - target_ratio) < 0.05:
+        # Already close to 16:9, no crop needed
+        return img
+
+    if current_ratio > target_ratio:
+        # Image is wider — crop sides (center)
+        new_width = int(img.height * target_ratio)
+        left = (img.width - new_width) // 2
+        img = img.crop((left, 0, left + new_width, img.height))
+    else:
+        # Image is taller — crop biased toward top (keep faces)
+        new_height = int(img.width / target_ratio)
+        # Bias toward top 30% of the image
+        top = int((img.height - new_height) * 0.3)
+        top = max(0, min(top, img.height - new_height))
+        img = img.crop((0, top, img.width, top + new_height))
+
+    return img
+
+
+def enhance_image(img):
+    """Apply subtle enhancements: sharpness, contrast, color saturation."""
+    img = ImageEnhance.Sharpness(img).enhance(1.15)
+    img = ImageEnhance.Contrast(img).enhance(1.05)
+    img = ImageEnhance.Color(img).enhance(1.05)
+    return img
+
+
+def process_image(image_url):
+    """
+    Download image, crop to 16:9, resize to 1200x675, enhance, return JPEG bytes.
+    Returns (jpeg_bytes, file_size_kb) or (None, 0) on failure.
+    """
+    img = download_image(image_url)
+    if img is None:
+        return None, 0
+
+    try:
+        # Convert to RGB (handles PNG alpha, CMYK, palette mode, etc.)
+        if img.mode not in ("RGB",):
+            img = img.convert("RGB")
+
+        # Skip if source image is too small to produce quality output
+        if img.width < 200 or img.height < 100:
+            print(f"    ⚠ Source image too small ({img.width}x{img.height}), skipping processing")
+            return None, 0
+
+        # Smart crop to 16:9
+        img = smart_crop_16_9(img)
+
+        # Resize to target dimensions using high-quality LANCZOS resampling
+        img = img.resize((TARGET_WIDTH, TARGET_HEIGHT), Image.LANCZOS)
+
+        # Subtle enhancement
+        img = enhance_image(img)
+
+        # Save as high-quality JPEG
+        buffer = io.BytesIO()
+        img.save(buffer, format="JPEG", quality=JPEG_QUALITY, optimize=True)
+        jpeg_bytes = buffer.getvalue()
+        size_kb = len(jpeg_bytes) / 1024
+
+        return jpeg_bytes, size_kb
+    except Exception as e:
+        print(f"    ⚠ Image processing failed: {e}")
+        return None, 0
+
+
+def upload_to_supabase_storage(env, article_id, jpeg_bytes):
+    """
+    Upload processed JPEG to Supabase Storage bucket 'article-images'.
+    Returns the public URL, or None on failure.
+    """
+    url = env["SUPABASE_URL"]
+    key = env["SUPABASE_SERVICE_ROLE_KEY"]
+    filename = f"{article_id}.jpg"
+
+    try:
+        resp = requests.post(
+            f"{url}/storage/v1/object/article-images/{filename}",
+            headers={
+                "apikey": key,
+                "Authorization": f"Bearer {key}",
+                "Content-Type": "image/jpeg",
+                "x-upsert": "true",
+            },
+            data=jpeg_bytes,
+            timeout=30,
+        )
+        resp.raise_for_status()
+        public_url = f"{url}/storage/v1/object/public/article-images/{filename}"
+        return public_url
+    except Exception as e:
+        print(f"    ⚠ Supabase Storage upload failed: {e}")
+        return None
+
+
+def process_and_upload(env, article_id, source_image_url):
+    """
+    Full pipeline: download → crop 16:9 → resize 1200x675 → enhance → upload.
+    Returns (supabase_public_url, size_kb) or (None, 0) on failure.
+    Falls back to raw source URL if processing fails.
+    """
+    jpeg_bytes, size_kb = process_image(source_image_url)
+    if jpeg_bytes is None:
+        return None, 0
+
+    public_url = upload_to_supabase_storage(env, article_id, jpeg_bytes)
+    if public_url is None:
+        return None, 0
+
+    time.sleep(UPLOAD_DELAY)
+    return public_url, size_kb
+
 
 # ---------------------------------------------------------------------------
 # Supabase operations
@@ -490,6 +723,7 @@ def cmd_fetch(args):
     env = load_env()
 
     refresh = "--refresh" in args
+    no_process = "--no-process" in args  # skip download/crop/upload, just store URLs
     article_id = None
     if "--id" in args:
         idx = args.index("--id")
@@ -499,10 +733,14 @@ def cmd_fetch(args):
             print("ERROR: --id requires an article UUID")
             sys.exit(1)
 
+    supabase_url = env.get("SUPABASE_URL", "")
+
     print("=" * 60)
     print("📷 Videshi Image Sourcing")
     print("   Tier 1: Wikipedia page images")
     print("   Tier 2: Wikimedia Commons search")
+    if not no_process:
+        print(f"   🖼 Processing: crop 16:9 → {TARGET_WIDTH}×{TARGET_HEIGHT} → enhance → upload")
     print("=" * 60)
 
     articles = fetch_articles_needing_images(env, refresh=refresh, article_id=article_id)
@@ -514,33 +752,69 @@ def cmd_fetch(args):
     print(f"\n📰 Found {len(articles)} article(s) needing images\n")
 
     sourced = 0
+    processed = 0
     skipped = 0
     failed = 0
 
     for i, article in enumerate(articles):
         headline = article.get("headline", "Unknown")
         aid = article["id"]
-        current_url = article.get("image_url")
+        current_url = article.get("image_url") or ""
+
+        # Skip articles that already have a processed Supabase Storage image
+        if (not refresh and not article_id
+                and current_url.startswith(supabase_url)
+                and "/article-images/" in current_url
+                and current_url.endswith(".jpg")):
+            continue
 
         print(f"\n[{i+1}/{len(articles)}] {headline[:70]}")
         if current_url:
-            print(f"  Current image (bad): {current_url[:80]}...")
+            print(f"  Current image: {current_url[:80]}...")
 
-        img_url, attribution = find_image_for_article(article)
+        # Find a source image
+        source_url, attribution = find_image_for_article(article)
 
-        if img_url:
+        if not source_url:
+            skipped += 1
+            continue
+
+        # Process and upload to Supabase Storage
+        if not no_process:
+            print(f"  🖼 Processing: download → crop 16:9 → {TARGET_WIDTH}×{TARGET_HEIGHT} → enhance")
+            final_url, size_kb = process_and_upload(env, aid, source_url)
+            if final_url:
+                try:
+                    update_article_image(env, aid, final_url, attribution)
+                    print(f"  💾 Processed: {size_kb:.0f}KB → uploaded to Supabase Storage")
+                    print(f"  📝 Attribution: {attribution}")
+                    sourced += 1
+                    processed += 1
+                except Exception as e:
+                    print(f"  ⚠ Failed to update Supabase: {e}")
+                    failed += 1
+            else:
+                # Fallback: store raw Wikipedia URL if processing fails
+                print(f"  ⚠ Processing failed, falling back to source URL")
+                try:
+                    update_article_image(env, aid, source_url, attribution)
+                    print(f"  💾 Updated (raw URL) — {attribution}")
+                    sourced += 1
+                except Exception as e:
+                    print(f"  ⚠ Failed to update Supabase: {e}")
+                    failed += 1
+        else:
+            # --no-process: just store the raw URL
             try:
-                update_article_image(env, aid, img_url, attribution)
+                update_article_image(env, aid, source_url, attribution)
                 print(f"  💾 Updated — {attribution}")
                 sourced += 1
             except Exception as e:
                 print(f"  ⚠ Failed to update Supabase: {e}")
                 failed += 1
-        else:
-            skipped += 1
 
     print(f"\n{'=' * 60}")
-    print(f"📊 Results: {sourced} sourced, {skipped} no match, {failed} errors")
+    print(f"📊 Results: {sourced} sourced, {processed} processed+uploaded, {skipped} no match, {failed} errors")
     print(f"{'=' * 60}")
 
 
