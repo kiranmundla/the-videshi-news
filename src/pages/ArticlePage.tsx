@@ -105,14 +105,14 @@ export default function ArticlePage() {
 
         {article.hero_image_url && article.hero_image_url.trim().length > 0 && (
           <figure className="mt-10 w-full max-w-full md:max-w-[780px] md:mx-auto">
-          <div className="w-full max-w-full aspect-[16/9] overflow-hidden relative bg-stone-100">
+          <div className="w-full max-w-full overflow-hidden relative bg-stone-100">
             <HeroImage
               src={article.hero_image_url}
               alt={article.title}
               loading="eager"
               category={article.category}
-              className="block w-full h-full object-cover"
-              style={{ objectPosition: "center" }}
+              className="block w-full h-auto"
+              style={{}}
             />
           </div>
             <div className="text-center">
