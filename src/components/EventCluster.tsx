@@ -33,13 +33,13 @@ export default function EventCluster({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-7">
         <Link to={`/articles/${lead.slug}`} className="group block">
           {leadHasImg && (
-            <div className="w-full aspect-[16/9] overflow-hidden mb-3 bg-muted">
+            <div className={`w-full overflow-hidden mb-3 bg-muted ${getImageOrientation(lead.hero_image_url) === 'portrait' ? 'max-w-[200px]' : 'aspect-[16/9]'}`}>
               <img
                 src={lead.hero_image_url}
                 alt={lead.title}
                 loading="lazy"
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
+                className={`w-full object-cover ${getImageOrientation(lead.hero_image_url) === 'portrait' ? 'h-auto' : 'h-full'}`}
                 style={{ objectPosition: "center" }}
               />
             </div>

@@ -4,6 +4,25 @@ import HeroImage, { isValidImage } from "@/components/HeroImage";
 
 type Variant = "hero" | "featured" | "card" | "long" | "compact";
 
+function parseImageDimensions(url: string | null | undefined): { w: number; h: number } | null {
+  if (!url) return null;
+  try {
+    const params = new URL(url).searchParams;
+    const w = parseInt(params.get('w') || '');
+    const h = parseInt(params.get('h') || '');
+    if (w > 0 && h > 0) return { w, h };
+  } catch {}
+  return null;
+}
+
+function getImageOrientation(url: string | null | undefined): 'landscape' | 'portrait' | null {
+  const dims = parseImageDimensions(url);
+  if (!dims) return null;
+  const ratio = dims.w / dims.h;
+  if (ratio > 1.2) return 'landscape';
+  return 'portrait'; // portrait and square both get side-by-side treatment
+}
+
 const ACCENT: Record<string, string> = {
   news: "hsl(var(--primary))",
   politics: "hsl(var(--primary))",
@@ -198,6 +217,46 @@ export default function ArticleCard({
     );
   }
 
+  const orientation = getImageOrientation(article.hero_image_url);
+
+  // Portrait/square images → side-by-side layout (only for "card" variant)
+  if (orientation === 'portrait' && variant === 'card') {
+    return (
+      <Link to={href} onClick={saveScroll} className="group flex gap-4">
+        <div className="w-[120px] md:w-[160px] flex-shrink-0">
+          <HeroImage
+            src={article.hero_image_url}
+            alt={article.title}
+            loading="lazy"
+            className="w-full h-auto rounded object-cover"
+          />
+        </div>
+        <div className="flex-1 min-w-0">
+          {!hideCategory && (
+            <p className="smallcaps text-primary mb-1">
+              {featureLabel && (
+                <span className="bg-primary text-primary-foreground px-1.5 py-0.5 mr-2 tracking-wider">
+                  {featureLabel}
+                </span>
+              )}
+              {article.category}
+            </p>
+          )}
+          <h2
+            className={`font-serif font-bold text-foreground group-hover:text-primary transition-colors ${headlineSizeWithImage}`}
+          >
+            {article.title}
+          </h2>
+          <p className="mt-2 text-xs text-muted-foreground">
+            {article.author ? `By ${article.author} · ` : ""}
+            {formatShortDate(article.published_at)} · {time} min read
+          </p>
+        </div>
+      </Link>
+    );
+  }
+
+  // Landscape or unknown orientation → image on top (default)
   return (
     <Link to={href} onClick={saveScroll} className="group block">
       <figure className="w-full">

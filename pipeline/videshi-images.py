@@ -160,6 +160,95 @@ def collect_search_terms(article):
     return terms
 
 # ---------------------------------------------------------------------------
+# Confidence scoring & category skip logic
+# ---------------------------------------------------------------------------
+
+# Categories/keywords where images are usually irrelevant
+SKIP_IMAGE_KEYWORDS = re.compile(
+    r"\b(bill|policy|court|ruling|law|amendment|regulation|polls|election date|"
+    r"ballot|civic|GDP|inflation|fiscal|deficit|surplus|monetary|tariff|"
+    r"sanctions|quota|tribunal|verdict|legislation|ordinance)\b",
+    re.IGNORECASE,
+)
+
+def should_skip_image(article):
+    """
+    Return True if this article is unlikely to benefit from an image.
+    Policy, legal, financial analysis, civic process articles rarely
+    have good free images — skip unless headline has a clear named person/place.
+    """
+    headline = article.get("headline", "")
+    # Check for skip keywords
+    if not SKIP_IMAGE_KEYWORDS.search(headline):
+        return False  # doesn't match skip patterns, proceed normally
+
+    # Even if it matches skip keywords, allow if headline has a clear person name
+    # (2+ consecutive capitalized words that aren't common words)
+    common = {"the","for","and","from","with","that","would","will","has","its",
+              "how","why","what","new","may","can","all","over","after","into",
+              "amid","under","near","says","gets","hits","out","off","up","on",
+              "now","set","top","big","cut","ban","bid","row","war","tax"}
+    words = headline.split()
+    caps_run = 0
+    for w in words:
+        if w[0:1].isupper() and w.lower() not in common and len(w) > 1:
+            caps_run += 1
+            if caps_run >= 2:
+                return False  # looks like a person/place name, allow images
+        else:
+            caps_run = 0
+
+    return True  # skip image sourcing
+
+
+def score_image_confidence(source_type, entity_query, wikipedia_page_title, article):
+    """
+    Score confidence 1-5 for a found image.
+    
+    5: Exact person match — Wikipedia page title matches a person in the headline
+    4: Exact place/org — Wikipedia page for a specific building, institution
+    3: Related topic — general image somewhat related
+    2: Loosely related
+    1: Generic/unrelated
+    
+    Only images scoring 4+ should be kept.
+    """
+    headline = (article.get("headline") or "").lower()
+    page_lower = (wikipedia_page_title or "").lower()
+    
+    if source_type == "wikipedia":
+        # Check if the Wikipedia page title words appear in the headline
+        page_words = [w for w in page_lower.replace("_", " ").split() if len(w) > 2]
+        headline_words = set(headline.split())
+        
+        if not page_words:
+            return 2
+        
+        # Count how many significant page title words appear in headline
+        matches = sum(1 for w in page_words if w in headline)
+        match_ratio = matches / len(page_words) if page_words else 0
+        
+        if match_ratio >= 0.6:
+            return 5  # strong match — likely the exact person/place
+        elif match_ratio >= 0.3:
+            return 4  # good match
+        else:
+            return 2  # page found but doesn't match headline well
+    
+    elif source_type == "commons":
+        # Commons results are inherently less reliable
+        # Only score 4 if the search entity appears prominently in headline
+        entity_lower = (entity_query or "").lower()
+        entity_words = [w for w in entity_lower.split() if len(w) > 2]
+        if entity_words:
+            matches = sum(1 for w in entity_words if w in headline)
+            if matches >= len(entity_words) * 0.5:
+                return 3  # decent match but Commons, cap at 3
+        return 2  # generic Commons result
+    
+    return 1
+
+# ---------------------------------------------------------------------------
 # Wikipedia page image lookup (PRIMARY SOURCE)
 # ---------------------------------------------------------------------------
 
@@ -251,8 +340,13 @@ def search_wikipedia_for_article(article):
         print(f"  🌐 Wikipedia lookup: \"{entity}\"")
         url, attr = search_wikipedia_image(entity)
         if url:
-            print(f"  ✅ Found via Wikipedia: {entity}")
-            return url, attr
+            # Score confidence
+            confidence = score_image_confidence("wikipedia", entity, entity, article)
+            if confidence >= 4:
+                print(f"  ✅ Found via Wikipedia: {entity} (confidence: {confidence}/5)")
+                return url, attr
+            else:
+                print(f"  ⏭ Wikipedia match too weak: {entity} (confidence: {confidence}/5)")
         time.sleep(POLITE_DELAY)
 
     # Also try the headline's key nouns as Wikipedia titles
@@ -274,8 +368,12 @@ def search_wikipedia_for_article(article):
             print(f"  🌐 Wikipedia lookup (headline): \"{bigram}\"")
             url, attr = search_wikipedia_image(bigram)
             if url:
-                print(f"  ✅ Found via Wikipedia headline: {bigram}")
-                return url, attr
+                confidence = score_image_confidence("wikipedia", bigram, bigram, article)
+                if confidence >= 4:
+                    print(f"  ✅ Found via Wikipedia headline: {bigram} (confidence: {confidence}/5)")
+                    return url, attr
+                else:
+                    print(f"  ⏭ Wikipedia headline match too weak: {bigram} (confidence: {confidence}/5)")
             time.sleep(POLITE_DELAY)
 
     return None, None
@@ -489,17 +587,21 @@ def find_image_for_article(article):
       2. Wikimedia Commons search (broader, editorial images)
     Returns (thumb_url, attribution) or (None, None).
     """
+    # Check if this article category should skip images
+    if should_skip_image(article):
+        print(f"  ⏭ Skipping image search (policy/legal/financial topic)")
+        return None, None
+
     # --- Tier 1: Wikipedia page images ---
     print("  📖 Tier 1: Wikipedia page images")
     url, attr = search_wikipedia_for_article(article)
     if url:
         return url, attr
 
-    # --- Tier 2: Wikimedia Commons search ---
-    print("  📚 Tier 2: Wikimedia Commons search")
-    url, attr = search_wikimedia_for_article(article)
-    if url:
-        return url, attr
+    # --- Tier 2: Wikimedia Commons disabled ---
+    # Commons results are too unreliable for our quality standards.
+    # Only Wikipedia page images (Tier 1) are used.
+    print("  📚 Tier 2: Skipped (Commons disabled — quality threshold)")
 
     print(f"  ❌ No suitable image found")
     return None, None
@@ -649,17 +751,24 @@ def upload_to_supabase_storage(env, article_id, jpeg_bytes):
 
 def process_and_upload(env, article_id, source_image_url):
     """
-    Full pipeline: download → resize 1200x675 → enhance → upload.
-    Returns (supabase_public_url, size_kb) or (None, 0) on failure.
-    Falls back to raw source URL if processing fails.
+    Full pipeline: download → resize → enhance → upload.
+    Returns (supabase_public_url_with_dims, size_kb) or (None, 0) on failure.
+    URL includes ?w=WIDTH&h=HEIGHT query params for frontend layout hints.
     """
     jpeg_bytes, size_kb = process_image(source_image_url)
     if jpeg_bytes is None:
         return None, 0
 
+    # Get dimensions from the processed image
+    img = Image.open(io.BytesIO(jpeg_bytes))
+    img_w, img_h = img.width, img.height
+
     public_url = upload_to_supabase_storage(env, article_id, jpeg_bytes)
     if public_url is None:
         return None, 0
+
+    # Append dimensions as query params (Supabase Storage ignores them when serving)
+    public_url = f"{public_url}?w={img_w}&h={img_h}"
 
     time.sleep(UPLOAD_DELAY)
     return public_url, size_kb
@@ -720,9 +829,7 @@ def update_article_image(env, article_id, image_url, attribution):
     headers = supabase_headers(key)
 
     api_url = f"{url}/rest/v1/p2_articles?id=eq.{article_id}"
-    payload = {"image_url": image_url}
-    if attribution:
-        payload["image_attribution"] = attribution
+    payload = {"image_url": image_url, "image_attribution": attribution}
 
     resp = requests.patch(api_url, headers=headers, json=payload, timeout=15)
     resp.raise_for_status()
@@ -789,6 +896,13 @@ def cmd_fetch(args):
         source_url, attribution = find_image_for_article(article)
 
         if not source_url:
+            # If article had an image before, clear it (quality standards tightened)
+            if current_url and refresh:
+                try:
+                    update_article_image(env, aid, None, None)
+                    print(f"  🗑 Cleared old image (didn't meet new quality threshold)")
+                except Exception:
+                    pass
             skipped += 1
             continue
 
