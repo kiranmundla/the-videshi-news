@@ -550,7 +550,14 @@ def smart_crop_16_9(img):
         # Image is taller — crop biased toward top (keep faces)
         new_height = int(img.width / target_ratio)
         # Bias toward top 30% of the image
-        top = int((img.height - new_height) * 0.3)
+        portrait_ratio = img.height / img.width
+        if portrait_ratio > 1.3:
+            top_bias = 0.15
+        elif portrait_ratio > 1.0:
+            top_bias = 0.25
+        else:
+            top_bias = 0.3
+        top = int((img.height - new_height) * top_bias)
         top = max(0, min(top, img.height - new_height))
         img = img.crop((0, top, img.width, top + new_height))
 
