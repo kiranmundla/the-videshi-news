@@ -574,7 +574,8 @@ def enhance_image(img):
 
 def process_image(image_url):
     """
-    Download image, crop to 16:9, resize to 1200x675, enhance, return JPEG bytes.
+    Download image, resize to max 1200px wide (preserve aspect ratio), enhance, return JPEG bytes.
+    No cropping — CSS handles aspect ratio per context (16:9 on cards, full on article pages).
     Returns (jpeg_bytes, file_size_kb) or (None, 0) on failure.
     """
     img = download_image(image_url)
@@ -591,11 +592,16 @@ def process_image(image_url):
             print(f"    ⚠ Source image too small ({img.width}x{img.height}), skipping processing")
             return None, 0
 
-        # Smart crop to 16:9
-        img = smart_crop_16_9(img)
-
-        # Resize to target dimensions using high-quality LANCZOS resampling
-        img = img.resize((TARGET_WIDTH, TARGET_HEIGHT), Image.LANCZOS)
+        # Resize to max width 1200, preserving aspect ratio
+        if img.width > TARGET_WIDTH:
+            ratio = TARGET_WIDTH / img.width
+            new_height = int(img.height * ratio)
+            img = img.resize((TARGET_WIDTH, new_height), Image.LANCZOS)
+        elif img.width < 800:
+            # Upscale small images to at least 800px wide
+            ratio = 800 / img.width
+            new_height = int(img.height * ratio)
+            img = img.resize((800, new_height), Image.LANCZOS)
 
         # Subtle enhancement
         img = enhance_image(img)
@@ -643,7 +649,7 @@ def upload_to_supabase_storage(env, article_id, jpeg_bytes):
 
 def process_and_upload(env, article_id, source_image_url):
     """
-    Full pipeline: download → crop 16:9 → resize 1200x675 → enhance → upload.
+    Full pipeline: download → resize 1200x675 → enhance → upload.
     Returns (supabase_public_url, size_kb) or (None, 0) on failure.
     Falls back to raw source URL if processing fails.
     """
@@ -695,7 +701,7 @@ def fetch_articles_needing_images(env, refresh=False, article_id=None):
             api_url2 = (
                 f"{url}/rest/v1/p2_articles?select={cols}"
                 f"&status=eq.published"
-                f"&order=created_at.desc&limit=50"
+                f"&order=created_at.desc&limit=300"
             )
             resp2 = requests.get(api_url2, headers=headers, timeout=15)
             resp2.raise_for_status()
@@ -747,7 +753,7 @@ def cmd_fetch(args):
     print("   Tier 1: Wikipedia page images")
     print("   Tier 2: Wikimedia Commons search")
     if not no_process:
-        print(f"   🖼 Processing: crop 16:9 → {TARGET_WIDTH}×{TARGET_HEIGHT} → enhance → upload")
+        print(f"   🖼 Processing: {TARGET_WIDTH}×{TARGET_HEIGHT} → enhance → upload")
     print("=" * 60)
 
     articles = fetch_articles_needing_images(env, refresh=refresh, article_id=article_id)
@@ -788,7 +794,7 @@ def cmd_fetch(args):
 
         # Process and upload to Supabase Storage
         if not no_process:
-            print(f"  🖼 Processing: download → crop 16:9 → {TARGET_WIDTH}×{TARGET_HEIGHT} → enhance")
+            print(f"  🖼 Processing: download → {TARGET_WIDTH}×{TARGET_HEIGHT} → enhance")
             final_url, size_kb = process_and_upload(env, aid, source_url)
             if final_url:
                 try:
