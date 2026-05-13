@@ -154,6 +154,8 @@ def search_wikipedia_image(entity):
             continue
         if chosen_url.lower().endswith(".svg"):
             continue
+        if chosen_url.lower().endswith(".pdf"):
+            continue
         if chosen_w > 0 and chosen_w < MIN_SOURCE_WIDTH:
             continue
 
@@ -257,9 +259,14 @@ def search_wikimedia(query, limit=MAX_RESULTS):
 
         if "svg" in mime.lower():
             continue
+        if "pdf" in mime.lower():
+            continue
         if width < MIN_SOURCE_WIDTH:
             continue
         if is_bad_filename(title):
+            continue
+        # Reject PDFs disguised as images (filename check)
+        if title.lower().endswith(".pdf"):
             continue
         if height > 0 and width > 0:
             ratio = width / height
