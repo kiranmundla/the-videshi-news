@@ -135,7 +135,7 @@ function HomeCategorySection({
   pool: Article[];
   hideCategory?: boolean;
 }) {
-  const [visibleCount, setVisibleCount] = useState(3);
+  const [visibleCount, setVisibleCount] = useState(6);
 
   const hasContent = clusters.length > 0 || pool.length > 0;
   if (!hasContent) return null;
@@ -153,7 +153,7 @@ function HomeCategorySection({
       {hasMore && (
         <div className="flex justify-center mt-8">
           <button
-            onClick={() => setVisibleCount((v) => v + 3)}
+            onClick={() => setVisibleCount((v) => v + 9)}
             className="smallcaps tracking-[0.12em] text-[11px] text-foreground/60 border border-rule px-8 py-2.5 hover:border-foreground/40 hover:text-foreground/80 bg-transparent transition-colors"
           >
             MORE STORIES
