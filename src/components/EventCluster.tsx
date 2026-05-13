@@ -2,6 +2,19 @@ import { Link } from "react-router-dom";
 import { Article } from "@/lib/articles";
 import { isValidImage } from "@/components/HeroImage";
 
+function getImageOrientation(url: string | null | undefined): 'landscape' | 'portrait' | null {
+  if (!url) return null;
+  try {
+    const params = new URL(url).searchParams;
+    const w = parseInt(params.get('w') || '');
+    const h = parseInt(params.get('h') || '');
+    if (w > 0 && h > 0) {
+      return (w / h) > 1.2 ? 'landscape' : 'portrait';
+    }
+  } catch {}
+  return null;
+}
+
 export default function EventCluster({
   label,
   items,
