@@ -113,7 +113,7 @@ export default function ArticleCard({
               alt={article.title}
               loading="lazy"
               className="w-full h-full object-cover"
-              style={{ objectPosition: "center 25%" }}
+              style={{ objectPosition: "center 30%" }}
             />
           </div>
         </figure>
@@ -207,7 +207,7 @@ export default function ArticleCard({
             alt={article.title}
             loading={variant === "hero" ? "eager" : "lazy"}
             className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-            style={{ objectPosition: "center 25%" }}
+            style={{ objectPosition: "center 30%" }}
           />
         </div>
       </figure>

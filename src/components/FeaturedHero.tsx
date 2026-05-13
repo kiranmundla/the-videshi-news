@@ -17,7 +17,7 @@ export default function FeaturedHero({ article }: { article: Article }) {
           loading="eager"
           referrerPolicy="no-referrer"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: "center 25%" }}
+          style={{ objectPosition: "center 30%" }}
         />
         <div
           className="absolute inset-0"
