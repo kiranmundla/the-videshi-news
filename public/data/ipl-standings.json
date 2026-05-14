@@ -1,7 +1,7 @@
 {
   "season": "IPL 2026",
   "last_updated": "2026-05-14T13:41:28Z",
-  "stage": "League Stage — Matches 56 of 70",
+  "stage": "League Stage \u2014 Matches 56 of 70",
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
@@ -116,6 +116,17 @@
   ],
   "recent_results": [
     {
+      "match": 57,
+      "team1": "RCB",
+      "team2": "KKR",
+      "score1": "194/4",
+      "score2": "192/4",
+      "winner": "RCB",
+      "margin": "6 wickets",
+      "date": "2026-05-13",
+      "venue": "Bengaluru"
+    },
+    {
       "match": 56,
       "team1": "GT",
       "team2": "SRH",
@@ -158,25 +169,14 @@
       "margin": "13 runs",
       "date": "2026-05-09",
       "venue": "Chennai"
-    },
-    {
-      "match": 52,
-      "team1": "GT",
-      "team2": "LSG",
-      "score1": "196/3",
-      "score2": "144",
-      "winner": "GT",
-      "margin": "52 runs",
-      "date": "2026-05-08",
-      "venue": "Ahmedabad"
     }
   ],
   "next_match": {
-    "team1": "RCB",
-    "team2": "KKR",
-    "date": "2026-05-13",
+    "team1": "PBKS",
+    "team2": "MI",
+    "date": "2026-05-14",
     "time": "19:30 IST",
-    "venue": "Shaheed Veer Narayan Singh Stadium, Raipur"
+    "venue": "Punjab Cricket Association Stadium, Mohali"
   },
   "playoffs": {
     "qualifier1": {
