@@ -175,16 +175,18 @@ export default function Index() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 8000);
     Promise.all([
-      getFeaturedArticle(),
-      getArticlesByCategory(INDIA_NEWS.slug, INDIA_NEWS.limit),
-      getArticlesByCategory(WORLD_NEWS.slug, WORLD_NEWS.limit),
+      getFeaturedArticle().catch(() => null),
+      getArticlesByCategory(INDIA_NEWS.slug, INDIA_NEWS.limit).catch(() => []),
+      getArticlesByCategory(WORLD_NEWS.slug, WORLD_NEWS.limit).catch(() => []),
       ...CATEGORY_SECTIONS.map((s) =>
-        getArticlesByCategory(s.slug, s.limit).then(
-          (items) => [s.slug, items] as const,
-        ),
+        getArticlesByCategory(s.slug, s.limit)
+          .then((items) => [s.slug, items] as const)
+          .catch(() => [s.slug, []] as const),
       ),
     ]).then(([featured, indiaNews, worldNews, ...catResults]) => {
+      clearTimeout(timeout);
       setFeaturedArticle(featured as Article | null);
       setNewsPool(indiaNews as Article[]);
       setNriPool(worldNews as Article[]);
