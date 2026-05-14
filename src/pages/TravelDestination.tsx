@@ -34,7 +34,7 @@ const DEST_KEYS = Object.keys(DESTINATIONS);
 
 /* ─── gallery types ─── */
 interface GalleryPhoto { src: string; caption: string; }
-interface GalleryData { [key: string]: { photos: GalleryPhoto[] } }
+interface GalleryData { [key: string]: { photos: GalleryPhoto[]; experiences?: Record<string, GalleryPhoto[]> } }
 
 /* ─── helpers ─── */
 function extractSections(body: string): { id: string; label: string }[] {
@@ -59,7 +59,9 @@ export default function TravelDestination() {
   const [allTravel, setAllTravel] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [galleryPhotos, setGalleryPhotos] = useState<GalleryPhoto[]>([]);
+  const [experiencePhotos, setExperiencePhotos] = useState<Record<string, GalleryPhoto[]>>({});
   const [fullscreenIdx, setFullscreenIdx] = useState<number | null>(null);
+  const [fullscreenPhotos, setFullscreenPhotos] = useState<GalleryPhoto[]>([]);
 
   /* fetch article + related */
   useEffect(() => {
@@ -110,18 +112,24 @@ export default function TravelDestination() {
         const d = data[destination];
         if (d && d.photos) setGalleryPhotos(d.photos);
         else setGalleryPhotos([]);
+        if (d && d.experiences) setExperiencePhotos(d.experiences);
+        else setExperiencePhotos({});
       })
-      .catch(() => setGalleryPhotos([]));
+      .catch(() => { setGalleryPhotos([]); setExperiencePhotos({}); });
   }, [destination]);
 
   /* fullscreen gallery nav */
+  const openFullscreen = useCallback((photos: GalleryPhoto[], idx: number) => {
+    setFullscreenPhotos(photos);
+    setFullscreenIdx(idx);
+  }, []);
   const fsNext = useCallback(() => {
-    setFullscreenIdx((i) => i !== null ? (i + 1) % galleryPhotos.length : null);
-  }, [galleryPhotos.length]);
+    setFullscreenIdx((i) => i !== null ? (i + 1) % fullscreenPhotos.length : null);
+  }, [fullscreenPhotos.length]);
   const fsPrev = useCallback(() => {
-    setFullscreenIdx((i) => i !== null ? (i - 1 + galleryPhotos.length) % galleryPhotos.length : null);
-  }, [galleryPhotos.length]);
-  const fsClose = useCallback(() => setFullscreenIdx(null), []);
+    setFullscreenIdx((i) => i !== null ? (i - 1 + fullscreenPhotos.length) % fullscreenPhotos.length : null);
+  }, [fullscreenPhotos.length]);
+  const fsClose = useCallback(() => { setFullscreenIdx(null); setFullscreenPhotos([]); }, []);
 
   useEffect(() => {
     if (fullscreenIdx === null) return;
@@ -287,7 +295,7 @@ export default function TravelDestination() {
             scrollbarWidth: "none" as const, msOverflowStyle: "none" as any,
           }}>
             {galleryPhotos.map((photo, i) => (
-              <div key={i} onClick={() => setFullscreenIdx(i)} style={{
+              <div key={i} onClick={() => openFullscreen(galleryPhotos, i)} style={{
                 flexShrink: 0, width: 280, height: 180, borderRadius: 8,
                 overflow: "hidden", position: "relative", cursor: "pointer",
                 boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
@@ -315,7 +323,7 @@ export default function TravelDestination() {
       )}
 
       {/* ─── Fullscreen Gallery Viewer ─── */}
-      {fullscreenIdx !== null && galleryPhotos[fullscreenIdx] && (() => {
+      {fullscreenIdx !== null && fullscreenPhotos[fullscreenIdx] && (() => {
         let touchStartX = 0;
         return (
           <div
@@ -337,7 +345,7 @@ export default function TravelDestination() {
               position: "absolute", top: 20, left: "50%", transform: "translateX(-50%)",
               color: "rgba(255,255,255,0.7)", fontSize: 14, fontWeight: 500,
             }}>
-              {fullscreenIdx + 1} / {galleryPhotos.length}
+              {fullscreenIdx + 1} / {fullscreenPhotos.length}
             </div>
 
             {/* Left arrow */}
@@ -357,8 +365,8 @@ export default function TravelDestination() {
               style={{ maxWidth: "90vw", maxHeight: "75vh" }}
             >
               <img
-                src={galleryPhotos[fullscreenIdx].src}
-                alt={galleryPhotos[fullscreenIdx].caption}
+                src={fullscreenPhotos[fullscreenIdx].src}
+                alt={fullscreenPhotos[fullscreenIdx].caption}
                 style={{ maxWidth: "90vw", maxHeight: "75vh", objectFit: "contain", borderRadius: 4 }}
               />
             </div>
@@ -375,7 +383,7 @@ export default function TravelDestination() {
               marginTop: 16, color: "rgba(255,255,255,0.85)", fontSize: 15,
               fontWeight: 500, textAlign: "center" as const,
             }}>
-              {galleryPhotos[fullscreenIdx].caption}
+              {fullscreenPhotos[fullscreenIdx].caption}
             </div>
           </div>
         );
@@ -397,12 +405,55 @@ export default function TravelDestination() {
                     return <h2 id={id} style={{ fontFamily: "serif", fontSize: 26, fontWeight: 700, margin: "36px 0 14px", color: "#111", lineHeight: 1.25, borderBottom: "1px solid #e5e5e0", paddingBottom: 8 }}>{children}</h2>;
                   },
                   h3: ({ children }) => <h3 style={{ fontFamily: "serif", fontSize: 20, fontWeight: 600, margin: "28px 0 10px", color: "#222" }}>{children}</h3>,
-                  p: ({ children }) => <p style={{ margin: "0 0 18px", lineHeight: 1.8 }}>{children}</p>,
+                  p: ({ children }) => {
+                    const text = String(children);
+                    // Detect numbered experience like "**1. Amber Fort, Jaipur** — ..."
+                    const expMatch = text.match(/^\*?\*?\d+\.\s*([^*—–]+)/);
+                    let matchedKey = "";
+                    if (expMatch && Object.keys(experiencePhotos).length > 0) {
+                      const expName = expMatch[1].trim().replace(/,$/, "");
+                      // Find matching key in experiencePhotos (fuzzy: check if key is contained in name or vice versa)
+                      matchedKey = Object.keys(experiencePhotos).find((k) =>
+                        expName.toLowerCase().includes(k.toLowerCase()) || k.toLowerCase().includes(expName.toLowerCase().split(",")[0].trim())
+                      ) || "";
+                    }
+                    const expPhotos = matchedKey ? experiencePhotos[matchedKey] : null;
+                    return (
+                      <>
+                        <p style={{ margin: "0 0 18px", lineHeight: 1.8 }}>{children}</p>
+                        {expPhotos && expPhotos.length > 0 && (
+                          <div style={{
+                            display: "flex", gap: 8, overflowX: "auto", margin: "4px 0 20px",
+                            scrollbarWidth: "none" as const,
+                          }}>
+                            {expPhotos.map((p, i) => (
+                              <div key={i} onClick={() => openFullscreen(expPhotos, i)} style={{
+                                flexShrink: 0, width: 220, height: 140, borderRadius: 6,
+                                overflow: "hidden", position: "relative", cursor: "pointer",
+                                boxShadow: "0 1px 4px rgba(0,0,0,0.1)",
+                              }}>
+                                <img src={p.src} alt={p.caption} loading="lazy" style={{
+                                  width: "100%", height: "100%", objectFit: "cover", display: "block",
+                                }} />
+                                <div style={{
+                                  position: "absolute", bottom: 0, left: 0, right: 0,
+                                  padding: "16px 8px 6px",
+                                  background: "linear-gradient(transparent, rgba(0,0,0,0.6))",
+                                  color: "white", fontSize: "0.7rem",
+                                }}>{p.caption}</div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    );
+                  },
                   ul: ({ children }) => <ul style={{ margin: "0 0 18px", paddingLeft: 24 }}>{children}</ul>,
                   ol: ({ children }) => <ol style={{ margin: "0 0 18px", paddingLeft: 24 }}>{children}</ol>,
                   li: ({ children }) => <li style={{ marginBottom: 8, lineHeight: 1.7 }}>{children}</li>,
                   strong: ({ children }) => <strong style={{ fontWeight: 700, color: "#111" }}>{children}</strong>,
                   blockquote: ({ children }) => <blockquote style={{ borderLeft: "3px solid #b91c1c", paddingLeft: 16, margin: "20px 0", color: "#555", fontStyle: "italic" }}>{children}</blockquote>,
+                  a: ({ href, children }) => <a href={href || "#"} target="_blank" rel="noopener noreferrer" style={{ color: "#b91c1c", textDecoration: "underline" }}>{children}</a>,
                 }}
               >
                 {article.body}
