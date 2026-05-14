@@ -7,6 +7,7 @@ import ArticleCard from "@/components/ArticleCard";
 import DiasporaPhotoStrip from "@/components/DiasporaPhotoStrip";
 import FeaturedHero from "@/components/FeaturedHero";
 import IPLTracker from "@/components/IPLTracker";
+import MarketTicker from "@/components/MarketTicker";
 import EventCluster from "@/components/EventCluster";
 import {
   Article,
@@ -292,13 +293,15 @@ export default function Index() {
         {layout.sections
           .filter((s) => s.pool.length >= 3)
           .map((s) => (
-            <HomeCategorySection
-              key={s.slug}
-              slug={s.slug}
-              label={s.label}
-              clusters={[]}
-              pool={s.pool}
-            />
+            <section key={s.slug}>
+              {s.slug === "markets-finance" && <MarketTicker />}
+              <HomeCategorySection
+                slug={s.slug}
+                label={s.label}
+                clusters={[]}
+                pool={s.pool}
+              />
+            </section>
           ))}
 
         <DiasporaPhotoStrip />
