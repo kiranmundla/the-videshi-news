@@ -81,7 +81,8 @@ TOTAL_FETCHED=0
 TOTAL_INSERTED=0
 ERRORS=0
 
-# Process each source
+# Process each source (with 180s global timeout for all feeds)
+INGEST_START=$SECONDS
 echo "$SOURCES" | python3 -c "
 import json, sys
 sources = json.load(sys.stdin)
@@ -95,6 +96,12 @@ for s in sources:
   if [ -z "$SRC_URL" ]; then
     continue
   fi
+
+  # Abort if ingest has run longer than 180s
+  if [ $((SECONDS - INGEST_START)) -ge 180 ]; then
+    log "  ⏱ Ingest time limit reached, skipping remaining feeds"
+    break
+  fi
   
   # Unwrap rss2json proxy URLs
   FETCH_URL="$SRC_URL"
@@ -106,7 +113,12 @@ for s in sources:
   fi
 
   # Fetch the feed
-  FEED_XML=$(curl -s -L --max-time 20 \
+  # Skip sources with 5+ consecutive errors
+  if [ "$SRC_ERRORS" -ge 5 ]; then
+    continue
+  fi
+
+  FEED_XML=$(curl -s -L --max-time 8 \
     -H "User-Agent: Mozilla/5.0 (compatible; Videshi/1.0; +https://thevideshi.com)" \
     -H "Accept: application/rss+xml, application/xml, text/xml, */*" \
     "$FETCH_URL" 2>/dev/null || echo "FETCH_ERROR")
