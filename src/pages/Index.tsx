@@ -265,6 +265,7 @@ export default function Index() {
       </Helmet>
 
       <Masthead />
+      <MarketTicker />
 
       <main className="container flex-1 pt-6 md:pt-8">
         {featuredArticle && (
@@ -294,7 +295,7 @@ export default function Index() {
           .filter((s) => s.pool.length >= 3)
           .map((s) => (
             <section key={s.slug}>
-              {s.slug === "markets-finance" && <MarketTicker />}
+              {s.slug === "markets-finance" && null}
               <HomeCategorySection
                 slug={s.slug}
                 label={s.label}
