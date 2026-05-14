@@ -6,6 +6,7 @@ import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
 import DiasporaPhotoStrip from "@/components/DiasporaPhotoStrip";
 import FeaturedHero from "@/components/FeaturedHero";
+import IPLTracker from "@/components/IPLTracker";
 import EventCluster from "@/components/EventCluster";
 import {
   Article,
@@ -270,6 +271,8 @@ export default function Index() {
             <FeaturedHero article={featuredArticle} />
           </div>
         )}
+
+        <IPLTracker />
 
         <HomeCategorySection
           slug={INDIA_NEWS.slug}

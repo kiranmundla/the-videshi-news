@@ -1,0 +1,37 @@
+{
+  "season": "IPL 2026",
+  "last_updated": "2026-05-13T12:00:00Z",
+  "stage": "League Stage — Matches 56 of 70",
+  "standings": [
+    { "team": "Gujarat Titans", "short": "GT", "played": 12, "won": 8, "lost": 4, "nr": 0, "nrr": "+0.551", "points": 16, "position": 1 },
+    { "team": "Royal Challengers Bengaluru", "short": "RCB", "played": 11, "won": 7, "lost": 4, "nr": 0, "nrr": "+1.103", "points": 14, "position": 2 },
+    { "team": "Sunrisers Hyderabad", "short": "SRH", "played": 12, "won": 7, "lost": 5, "nr": 0, "nrr": "+0.331", "points": 14, "position": 3 },
+    { "team": "Punjab Kings", "short": "PBKS", "played": 11, "won": 6, "lost": 4, "nr": 1, "nrr": "+0.428", "points": 13, "position": 4 },
+    { "team": "Chennai Super Kings", "short": "CSK", "played": 11, "won": 6, "lost": 5, "nr": 0, "nrr": "+0.185", "points": 12, "position": 5 },
+    { "team": "Rajasthan Royals", "short": "RR", "played": 11, "won": 6, "lost": 5, "nr": 0, "nrr": "+0.082", "points": 12, "position": 6 },
+    { "team": "Delhi Capitals", "short": "DC", "played": 12, "won": 5, "lost": 7, "nr": 0, "nrr": "-0.993", "points": 10, "position": 7 },
+    { "team": "Kolkata Knight Riders", "short": "KKR", "played": 10, "won": 4, "lost": 5, "nr": 1, "nrr": "-0.169", "points": 9, "position": 8 },
+    { "team": "Mumbai Indians", "short": "MI", "played": 11, "won": 3, "lost": 8, "nr": 0, "nrr": "-0.585", "points": 6, "position": 9 },
+    { "team": "Lucknow Super Giants", "short": "LSG", "played": 11, "won": 3, "lost": 8, "nr": 0, "nrr": "-0.907", "points": 6, "position": 10 }
+  ],
+  "recent_results": [
+    { "match": 56, "team1": "GT", "team2": "SRH", "score1": "212/4", "score2": "130", "winner": "GT", "margin": "82 runs", "date": "2026-05-12", "venue": "Ahmedabad" },
+    { "match": 55, "team1": "PBKS", "team2": "DC", "score1": "157/8", "score2": "158/7", "winner": "DC", "margin": "3 wickets", "date": "2026-05-11", "venue": "Mohali" },
+    { "match": 54, "team1": "RCB", "team2": "MI", "score1": "191/5", "score2": "167/9", "winner": "RCB", "margin": "24 runs", "date": "2026-05-10", "venue": "Bengaluru" },
+    { "match": 53, "team1": "CSK", "team2": "RR", "score1": "178/6", "score2": "165/8", "winner": "CSK", "margin": "13 runs", "date": "2026-05-09", "venue": "Chennai" },
+    { "match": 52, "team1": "GT", "team2": "LSG", "score1": "196/3", "score2": "144", "winner": "GT", "margin": "52 runs", "date": "2026-05-08", "venue": "Ahmedabad" }
+  ],
+  "next_match": {
+    "team1": "RCB",
+    "team2": "KKR",
+    "date": "2026-05-13",
+    "time": "19:30 IST",
+    "venue": "Shaheed Veer Narayan Singh Stadium, Raipur"
+  },
+  "playoffs": {
+    "qualifier1": { "date": "2026-05-26", "venue": "Dharamshala" },
+    "eliminator": { "date": "2026-05-27", "venue": "Chandigarh" },
+    "qualifier2": { "date": "2026-05-29", "venue": "Chandigarh" },
+    "final": { "date": "2026-05-31", "venue": "Ahmedabad" }
+  }
+}
