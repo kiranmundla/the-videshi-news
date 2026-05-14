@@ -193,10 +193,10 @@ export default function MarketTicker() {
   const timeframes: Timeframe[] = ["1D", "1W", "1M", "1Y"];
 
   return (
+    <div className="container" style={{ marginBottom: 24 }}>
     <div style={{
       background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)",
       borderRadius: 8,
-      marginBottom: 24,
       overflow: "hidden",
     }}>
       {/* Ticker row */}
@@ -398,6 +398,7 @@ export default function MarketTicker() {
       <style>{`
         .market-ticker-scroll::-webkit-scrollbar { display: none; }
       `}</style>
+    </div>
     </div>
   );
 }
