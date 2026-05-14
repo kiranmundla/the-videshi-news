@@ -24,7 +24,6 @@ const CATEGORY_SECTIONS = [
   { slug: "technology", label: "TECHNOLOGY", limit: 12 },
   { slug: "entertainment", label: "ENTERTAINMENT", limit: 12 },
   { slug: "lifestyle-health", label: "LIFESTYLE & HEALTH", limit: 12 },
-  { slug: "travel", label: "TRAVEL", limit: 12 },
   { slug: "food", label: "FOOD", limit: 12 },
 ];
 
