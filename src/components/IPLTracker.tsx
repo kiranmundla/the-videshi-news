@@ -89,10 +89,13 @@ function timeAgo(isoStr: string): string {
   }
 }
 
+const VISIBLE_TEAMS = 5;
+
 /* ── Component ─────────────────────────────────────────── */
 export default function IPLTracker() {
   const [data, setData] = useState<IPLData | null>(null);
   const [tab, setTab] = useState<"table" | "results">("table");
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     fetch("/data/ipl-standings.json")
@@ -110,7 +113,11 @@ export default function IPLTracker() {
 
   if (!data) return null;
 
-  const playoffLine = 4; // top 4 qualify
+  const playoffLine = 4;
+  const visibleStandings = expanded
+    ? data.standings
+    : data.standings.slice(0, VISIBLE_TEAMS);
+  const hasMore = data.standings.length > VISIBLE_TEAMS;
 
   return (
     <section
@@ -126,7 +133,7 @@ export default function IPLTracker() {
       <div
         style={{
           background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)",
-          padding: "14px 20px",
+          padding: "12px 20px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -135,13 +142,13 @@ export default function IPLTracker() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ fontSize: 22 }}>🏏</span>
+          <span style={{ fontSize: 20 }}>🏏</span>
           <div>
             <div
               style={{
                 color: "#fff",
                 fontFamily: "'Playfair Display', Georgia, serif",
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: 700,
                 letterSpacing: "0.02em",
               }}
@@ -149,7 +156,7 @@ export default function IPLTracker() {
               {data.season}
             </div>
             {data.stage && (
-              <div style={{ color: "rgba(255,255,255,0.6)", fontSize: 11, marginTop: 2 }}>
+              <div style={{ color: "rgba(255,255,255,0.6)", fontSize: 10, marginTop: 1 }}>
                 {data.stage}
               </div>
             )}
@@ -165,7 +172,7 @@ export default function IPLTracker() {
         <div
           style={{
             background: "#f8f5f0",
-            padding: "10px 20px",
+            padding: "8px 20px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -238,8 +245,8 @@ export default function IPLTracker() {
             onClick={() => setTab(t)}
             style={{
               flex: 1,
-              padding: "10px 0",
-              fontSize: 11,
+              padding: "8px 0",
+              fontSize: 10,
               fontWeight: 600,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
@@ -258,7 +265,7 @@ export default function IPLTracker() {
 
       {/* Points Table */}
       {tab === "table" && (
-        <div style={{ overflowX: "auto" }}>
+        <div>
           <table
             style={{
               width: "100%",
@@ -278,17 +285,17 @@ export default function IPLTracker() {
                   textTransform: "uppercase",
                 }}
               >
-                <th style={{ padding: "8px 12px", textAlign: "left" }}>#</th>
-                <th style={{ padding: "8px 6px", textAlign: "left" }}>Team</th>
-                <th style={{ padding: "8px 6px", textAlign: "center" }}>P</th>
-                <th style={{ padding: "8px 6px", textAlign: "center" }}>W</th>
-                <th style={{ padding: "8px 6px", textAlign: "center" }}>L</th>
-                <th style={{ padding: "8px 6px", textAlign: "center" }}>Pts</th>
-                <th style={{ padding: "8px 12px", textAlign: "right" }}>NRR</th>
+                <th style={{ padding: "7px 12px", textAlign: "left" }}>#</th>
+                <th style={{ padding: "7px 6px", textAlign: "left" }}>Team</th>
+                <th style={{ padding: "7px 6px", textAlign: "center" }}>P</th>
+                <th style={{ padding: "7px 6px", textAlign: "center" }}>W</th>
+                <th style={{ padding: "7px 6px", textAlign: "center" }}>L</th>
+                <th style={{ padding: "7px 6px", textAlign: "center" }}>Pts</th>
+                <th style={{ padding: "7px 12px", textAlign: "right" }}>NRR</th>
               </tr>
             </thead>
             <tbody>
-              {data.standings.map((s, i) => {
+              {visibleStandings.map((s, i) => {
                 const inPlayoff = i < playoffLine;
                 return (
                   <tr
@@ -299,12 +306,11 @@ export default function IPLTracker() {
                           ? "2px dashed #c0392b"
                           : "1px solid #f0f0f0",
                       background: inPlayoff ? "rgba(39, 174, 96, 0.04)" : "transparent",
-                      transition: "background 0.15s",
                     }}
                   >
                     <td
                       style={{
-                        padding: "9px 12px",
+                        padding: "7px 12px",
                         color: "#bbb",
                         fontSize: 11,
                         fontWeight: 500,
@@ -312,7 +318,7 @@ export default function IPLTracker() {
                     >
                       {i + 1}
                     </td>
-                    <td style={{ padding: "9px 6px" }}>
+                    <td style={{ padding: "7px 6px" }}>
                       <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
                         <span
                           style={{
@@ -325,24 +331,14 @@ export default function IPLTracker() {
                           }}
                         />
                         <span style={{ fontWeight: 600, fontSize: 13 }}>{s.short}</span>
-                        <span
-                          style={{
-                            color: "#999",
-                            fontSize: 11,
-                            display: "none",
-                          }}
-                          className="ipl-team-full"
-                        >
-                          {s.team}
-                        </span>
                       </span>
                     </td>
-                    <td style={{ padding: "9px 6px", textAlign: "center", color: "#666" }}>
+                    <td style={{ padding: "7px 6px", textAlign: "center", color: "#666" }}>
                       {s.played}
                     </td>
                     <td
                       style={{
-                        padding: "9px 6px",
+                        padding: "7px 6px",
                         textAlign: "center",
                         fontWeight: 600,
                         color: "#2d3436",
@@ -350,12 +346,12 @@ export default function IPLTracker() {
                     >
                       {s.won}
                     </td>
-                    <td style={{ padding: "9px 6px", textAlign: "center", color: "#999" }}>
+                    <td style={{ padding: "7px 6px", textAlign: "center", color: "#999" }}>
                       {s.lost}
                     </td>
                     <td
                       style={{
-                        padding: "9px 6px",
+                        padding: "7px 6px",
                         textAlign: "center",
                         fontWeight: 700,
                         fontSize: 14,
@@ -366,7 +362,7 @@ export default function IPLTracker() {
                     </td>
                     <td
                       style={{
-                        padding: "9px 12px",
+                        padding: "7px 12px",
                         textAlign: "right",
                         fontSize: 12,
                         fontFamily: "'SF Mono', 'Fira Code', monospace",
@@ -380,52 +376,48 @@ export default function IPLTracker() {
               })}
             </tbody>
           </table>
-          {/* Legend */}
-          <div
-            style={{
-              padding: "8px 12px",
-              fontSize: 10,
-              color: "#bbb",
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              borderTop: "1px solid #f0f0f0",
-            }}
-          >
-            <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-              <span
-                style={{
-                  width: 8,
-                  height: 3,
-                  background: "#c0392b",
-                  display: "inline-block",
-                  borderRadius: 1,
-                }}
-              />
-              Playoff qualification line
-            </span>
-          </div>
+
+          {/* Show more / less toggle */}
+          {hasMore && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              style={{
+                width: "100%",
+                padding: "8px 0",
+                fontSize: 11,
+                fontWeight: 600,
+                color: "#666",
+                background: "#fafafa",
+                border: "none",
+                borderTop: "1px solid #f0f0f0",
+                cursor: "pointer",
+                letterSpacing: "0.03em",
+              }}
+            >
+              {expanded ? "Show less ▲" : `Show all ${data.standings.length} teams ▼`}
+            </button>
+          )}
         </div>
       )}
 
       {/* Recent Results */}
       {tab === "results" && data.recent_results && (
         <div style={{ padding: "4px 0" }}>
-          {data.recent_results.map((r, i) => {
+          {data.recent_results.slice(0, 3).map((r, i) => {
             const isWinner1 = r.winner === r.team1;
             const isWinner2 = r.winner === r.team2;
             return (
               <div
                 key={i}
                 style={{
-                  padding: "12px 20px",
+                  padding: "10px 20px",
                   borderBottom:
-                    i < (data.recent_results?.length ?? 0) - 1
+                    i < Math.min((data.recent_results?.length ?? 0), 3) - 1
                       ? "1px solid #f0f0f0"
                       : "none",
                   display: "flex",
                   flexDirection: "column",
-                  gap: 4,
+                  gap: 3,
                 }}
               >
                 <div
@@ -436,8 +428,7 @@ export default function IPLTracker() {
                     gap: 8,
                   }}
                 >
-                  {/* Teams & Scores */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 3, flex: 1 }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 2, flex: 1 }}>
                     <div
                       style={{
                         display: "flex",
@@ -502,7 +493,6 @@ export default function IPLTracker() {
                     </div>
                   </div>
 
-                  {/* Result badge */}
                   <div style={{ textAlign: "right", flexShrink: 0 }}>
                     <div style={{ fontSize: 11, fontWeight: 600, color: "#2d3436" }}>
                       {r.winner} won
@@ -511,7 +501,6 @@ export default function IPLTracker() {
                   </div>
                 </div>
 
-                {/* Date & Venue */}
                 <div style={{ fontSize: 10, color: "#bbb", marginLeft: 16 }}>
                   {formatDate(r.date)}
                   {r.venue && <span> · {r.venue}</span>}
@@ -526,7 +515,7 @@ export default function IPLTracker() {
       {data.playoffs?.final && (
         <div
           style={{
-            padding: "10px 20px",
+            padding: "8px 20px",
             background: "#f8f5f0",
             borderTop: "1px solid #e5e5e5",
             fontSize: 11,
