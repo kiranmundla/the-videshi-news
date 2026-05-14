@@ -111,11 +111,6 @@ export default function IPLTracker() {
   if (!data) return null;
 
   const playoffLine = 4;
-  const visibleStandings = expanded
-    ? data.standings
-    : data.standings.slice(0, VISIBLE_TEAMS);
-  const hasMore = data.standings.length > VISIBLE_TEAMS;
-
   return (
     <section
       style={{
