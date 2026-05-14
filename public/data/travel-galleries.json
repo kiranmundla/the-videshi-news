@@ -1,0 +1,242 @@
+{
+  "rajasthan": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/rajasthan-1.jpg",
+        "caption": "Hawa Mahal, Jaipur"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/rajasthan-2.jpg",
+        "caption": "Lake Palace, Udaipur"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/rajasthan-3.jpg",
+        "caption": "Jaisalmer Fort"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/rajasthan-4.jpg",
+        "caption": "Blue City, Jodhpur"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/rajasthan-5.jpg",
+        "caption": "Thar Desert Safari"
+      }
+    ]
+  },
+  "kerala": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-1.jpg",
+        "caption": "Backwater Houseboat"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-2.jpg",
+        "caption": "Tea Plantations, Munnar"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-3.jpg",
+        "caption": "Kathakali Performance"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-4.jpg",
+        "caption": "Kerala Coastline"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-5.jpg",
+        "caption": "Kerala Sadhya Feast"
+      }
+    ]
+  },
+  "goa": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-1.jpg",
+        "caption": "Basilica of Bom Jesus"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-2.jpg",
+        "caption": "Goa Beach Sunset"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-3.jpg",
+        "caption": "Spice Plantation Tour"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-4.jpg",
+        "caption": "Goan Fish Curry"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-5.jpg",
+        "caption": "Palolem Beach"
+      }
+    ]
+  },
+  "maldives": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-1.jpg",
+        "caption": "Overwater Villa"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-2.jpg",
+        "caption": "Snorkeling Paradise"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-3.jpg",
+        "caption": "White Sand Beach"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-4.jpg",
+        "caption": "Aerial Island View"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-5.jpg",
+        "caption": "Indian Ocean Sunset"
+      }
+    ]
+  },
+  "sri-lanka": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-1.jpg",
+        "caption": "Sigiriya Rock Fortress"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-2.jpg",
+        "caption": "Scenic Train Journey"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-3.jpg",
+        "caption": "Galle Fort"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-4.jpg",
+        "caption": "Temple of the Tooth, Kandy"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-5.jpg",
+        "caption": "Elephant Gathering"
+      }
+    ]
+  },
+  "bali": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-1.jpg",
+        "caption": "Tegallalang Rice Terraces"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-2.jpg",
+        "caption": "Uluwatu Temple"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-3.jpg",
+        "caption": "Sacred Monkey Forest, Ubud"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-4.jpg",
+        "caption": "Bali Beach"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-5.jpg",
+        "caption": "Balinese Temple Ceremony"
+      }
+    ]
+  },
+  "london": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-1.jpg",
+        "caption": "Big Ben & Parliament"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-2.jpg",
+        "caption": "Tower Bridge"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-3.jpg",
+        "caption": "Borough Market"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-4.jpg",
+        "caption": "British Museum"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-5.jpg",
+        "caption": "London Eye & Thames"
+      }
+    ]
+  },
+  "switzerland": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-1.jpg",
+        "caption": "Swiss Alps"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-2.jpg",
+        "caption": "Lake Lucerne"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-3.jpg",
+        "caption": "Glacier Express"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-4.jpg",
+        "caption": "Interlaken"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-5.jpg",
+        "caption": "Matterhorn, Zermatt"
+      }
+    ]
+  },
+  "new-zealand": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-1.jpg",
+        "caption": "Milford Sound"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-2.jpg",
+        "caption": "Hobbiton Movie Set"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-3.jpg",
+        "caption": "Queenstown"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-4.jpg",
+        "caption": "Mount Cook / Aoraki"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-5.jpg",
+        "caption": "Southern Alps"
+      }
+    ]
+  },
+  "mexico": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-1.jpg",
+        "caption": "Tulum Ruins"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-2.jpg",
+        "caption": "Sacred Cenote"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-3.jpg",
+        "caption": "Mexico City Cathedral"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-4.jpg",
+        "caption": "Street Tacos"
+      },
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-5.jpg",
+        "caption": "Chich\u00e9n Itz\u00e1"
+      }
+    ]
+  }
+}

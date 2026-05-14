@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
@@ -32,6 +32,10 @@ const DESTINATIONS: Record<string, DestMeta> = {
 
 const DEST_KEYS = Object.keys(DESTINATIONS);
 
+/* ─── gallery types ─── */
+interface GalleryPhoto { src: string; caption: string; }
+interface GalleryData { [key: string]: { photos: GalleryPhoto[] } }
+
 /* ─── helpers ─── */
 function extractSections(body: string): { id: string; label: string }[] {
   const re = /^## (.+)$/gm;
@@ -54,6 +58,8 @@ export default function TravelDestination() {
   const [article, setArticle] = useState<Article | null>(null);
   const [allTravel, setAllTravel] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
+  const [galleryPhotos, setGalleryPhotos] = useState<GalleryPhoto[]>([]);
+  const [fullscreenIdx, setFullscreenIdx] = useState<number | null>(null);
 
   /* fetch article + related */
   useEffect(() => {
@@ -94,6 +100,39 @@ export default function TravelDestination() {
 
     Promise.all([fetchArticle, fetchAll]).finally(() => setLoading(false));
   }, [meta, destination]);
+
+  /* fetch gallery photos */
+  useEffect(() => {
+    if (!destination) return;
+    fetch("/data/travel-galleries.json")
+      .then((r) => r.ok ? r.json() : {})
+      .then((data: GalleryData) => {
+        const d = data[destination];
+        if (d && d.photos) setGalleryPhotos(d.photos);
+        else setGalleryPhotos([]);
+      })
+      .catch(() => setGalleryPhotos([]));
+  }, [destination]);
+
+  /* fullscreen gallery nav */
+  const fsNext = useCallback(() => {
+    setFullscreenIdx((i) => i !== null ? (i + 1) % galleryPhotos.length : null);
+  }, [galleryPhotos.length]);
+  const fsPrev = useCallback(() => {
+    setFullscreenIdx((i) => i !== null ? (i - 1 + galleryPhotos.length) % galleryPhotos.length : null);
+  }, [galleryPhotos.length]);
+  const fsClose = useCallback(() => setFullscreenIdx(null), []);
+
+  useEffect(() => {
+    if (fullscreenIdx === null) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") fsClose();
+      else if (e.key === "ArrowRight") fsNext();
+      else if (e.key === "ArrowLeft") fsPrev();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [fullscreenIdx, fsClose, fsNext, fsPrev]);
 
   const sections = useMemo(() => (article ? extractSections(article.body) : []), [article]);
 
@@ -239,6 +278,108 @@ export default function TravelDestination() {
           ))}
         </div>
       </div>
+
+      {/* ─── Photo Gallery Strip ─── */}
+      {galleryPhotos.length > 0 && (
+        <div style={{ maxWidth: 1200, margin: "20px auto 0", padding: "0 20px" }}>
+          <div style={{
+            display: "flex", gap: 12, overflowX: "auto", padding: "0 0 16px 0",
+            scrollbarWidth: "none" as const, msOverflowStyle: "none" as any,
+          }}>
+            {galleryPhotos.map((photo, i) => (
+              <div key={i} onClick={() => setFullscreenIdx(i)} style={{
+                flexShrink: 0, width: 280, height: 180, borderRadius: 8,
+                overflow: "hidden", position: "relative", cursor: "pointer",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+              }}>
+                <img src={photo.src} alt={photo.caption} loading="lazy" style={{
+                  width: "100%", height: "100%", objectFit: "cover", display: "block",
+                  transition: "transform 0.3s",
+                }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                />
+                <div style={{
+                  position: "absolute", bottom: 0, left: 0, right: 0,
+                  padding: "20px 10px 8px",
+                  background: "linear-gradient(transparent, rgba(0,0,0,0.7))",
+                  color: "white", fontSize: "0.75rem", fontWeight: 500,
+                }}>
+                  {photo.caption}
+                </div>
+              </div>
+            ))}
+          </div>
+          <style>{`div::-webkit-scrollbar { display: none; }`}</style>
+        </div>
+      )}
+
+      {/* ─── Fullscreen Gallery Viewer ─── */}
+      {fullscreenIdx !== null && galleryPhotos[fullscreenIdx] && (() => {
+        let touchStartX = 0;
+        return (
+          <div
+            onClick={(e) => { if (e.target === e.currentTarget) fsClose(); }}
+            style={{
+              position: "fixed", inset: 0, zIndex: 9999,
+              background: "rgba(0,0,0,0.92)", display: "flex",
+              flexDirection: "column", alignItems: "center", justifyContent: "center",
+            }}
+          >
+            {/* Close button */}
+            <button onClick={fsClose} style={{
+              position: "absolute", top: 16, right: 20, background: "none",
+              border: "none", color: "white", fontSize: 32, cursor: "pointer", zIndex: 10,
+            }}>✕</button>
+
+            {/* Counter */}
+            <div style={{
+              position: "absolute", top: 20, left: "50%", transform: "translateX(-50%)",
+              color: "rgba(255,255,255,0.7)", fontSize: 14, fontWeight: 500,
+            }}>
+              {fullscreenIdx + 1} / {galleryPhotos.length}
+            </div>
+
+            {/* Left arrow */}
+            <button onClick={(e) => { e.stopPropagation(); fsPrev(); }} style={{
+              position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)",
+              background: "rgba(255,255,255,0.15)", border: "none", color: "white",
+              fontSize: 28, width: 48, height: 48, borderRadius: "50%", cursor: "pointer",
+            }}>‹</button>
+
+            {/* Image */}
+            <div
+              onTouchStart={(e) => { touchStartX = e.touches[0].clientX; }}
+              onTouchEnd={(e) => {
+                const diff = e.changedTouches[0].clientX - touchStartX;
+                if (Math.abs(diff) > 50) { diff < 0 ? fsNext() : fsPrev(); }
+              }}
+              style={{ maxWidth: "90vw", maxHeight: "75vh" }}
+            >
+              <img
+                src={galleryPhotos[fullscreenIdx].src}
+                alt={galleryPhotos[fullscreenIdx].caption}
+                style={{ maxWidth: "90vw", maxHeight: "75vh", objectFit: "contain", borderRadius: 4 }}
+              />
+            </div>
+
+            {/* Right arrow */}
+            <button onClick={(e) => { e.stopPropagation(); fsNext(); }} style={{
+              position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)",
+              background: "rgba(255,255,255,0.15)", border: "none", color: "white",
+              fontSize: 28, width: 48, height: 48, borderRadius: "50%", cursor: "pointer",
+            }}>›</button>
+
+            {/* Caption */}
+            <div style={{
+              marginTop: 16, color: "rgba(255,255,255,0.85)", fontSize: 15,
+              fontWeight: 500, textAlign: "center" as const,
+            }}>
+              {galleryPhotos[fullscreenIdx].caption}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ─── Main content + sidebar ─── */}
       <div style={{ maxWidth: 1200, margin: "32px auto 0", padding: "0 20px", display: "flex", gap: 40, alignItems: "flex-start" }}>
