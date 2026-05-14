@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
@@ -61,6 +61,32 @@ export default function CategoryPage() {
       <CategoryPills />
       <main className="container flex-1 pt-8 md:pt-10">
         <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-8">{def.label}</h1>
+
+        {def.slug === "travel" && (
+          <div style={{ display: "flex", gap: 8, overflowX: "auto", paddingBottom: 20, marginBottom: 8, WebkitOverflowScrolling: "touch" as any }}>
+            {[
+              { key: "rajasthan", label: "Rajasthan" },
+              { key: "kerala", label: "Kerala" },
+              { key: "goa", label: "Goa" },
+              { key: "maldives", label: "Maldives" },
+              { key: "sri-lanka", label: "Sri Lanka" },
+              { key: "bali", label: "Bali" },
+              { key: "london", label: "London & UK" },
+              { key: "switzerland", label: "Switzerland" },
+              { key: "new-zealand", label: "New Zealand" },
+              { key: "mexico", label: "Mexico" },
+            ].map((d) => (
+              <Link key={d.key} to={`/travel/${d.key}`} style={{
+                padding: "7px 16px", borderRadius: 20, fontSize: 13, fontWeight: 600,
+                textDecoration: "none", letterSpacing: "0.05em", textTransform: "uppercase" as any,
+                background: "#1a1a1a", color: "#fff", border: "1px solid #1a1a1a",
+                whiteSpace: "nowrap" as any, flexShrink: 0,
+              }}>
+                {d.label}
+              </Link>
+            ))}
+          </div>
+        )}
 
         {!def.hasPipeline ? (
           <p className="py-20 text-center text-muted-foreground">
