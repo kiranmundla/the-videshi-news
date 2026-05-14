@@ -89,13 +89,10 @@ function timeAgo(isoStr: string): string {
   }
 }
 
-const VISIBLE_TEAMS = 5;
-
 /* ── Component ─────────────────────────────────────────── */
 export default function IPLTracker() {
   const [data, setData] = useState<IPLData | null>(null);
   const [tab, setTab] = useState<"table" | "results">("table");
-  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     fetch("/data/ipl-standings.json")
@@ -265,7 +262,7 @@ export default function IPLTracker() {
 
       {/* Points Table */}
       {tab === "table" && (
-        <div>
+        <div style={{ maxHeight: 220, overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
           <table
             style={{
               width: "100%",
@@ -295,7 +292,7 @@ export default function IPLTracker() {
               </tr>
             </thead>
             <tbody>
-              {visibleStandings.map((s, i) => {
+              {data.standings.map((s, i) => {
                 const inPlayoff = i < playoffLine;
                 return (
                   <tr
@@ -376,27 +373,6 @@ export default function IPLTracker() {
               })}
             </tbody>
           </table>
-
-          {/* Show more / less toggle */}
-          {hasMore && (
-            <button
-              onClick={() => setExpanded(!expanded)}
-              style={{
-                width: "100%",
-                padding: "8px 0",
-                fontSize: 11,
-                fontWeight: 600,
-                color: "#666",
-                background: "#fafafa",
-                border: "none",
-                borderTop: "1px solid #f0f0f0",
-                cursor: "pointer",
-                letterSpacing: "0.03em",
-              }}
-            >
-              {expanded ? "Show less ▲" : `Show all ${data.standings.length} teams ▼`}
-            </button>
-          )}
         </div>
       )}
 
