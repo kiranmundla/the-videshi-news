@@ -8,6 +8,7 @@ import DiasporaPhotoStrip from "@/components/DiasporaPhotoStrip";
 import FeaturedHero from "@/components/FeaturedHero";
 import IPLTracker from "@/components/IPLTracker";
 import MarketTicker from "@/components/MarketTicker";
+import CategoryPills from "@/components/CategoryPills";
 import EventCluster from "@/components/EventCluster";
 import {
   Article,
@@ -264,6 +265,7 @@ export default function Index() {
       </Helmet>
 
       <Masthead />
+      <CategoryPills />
       <MarketTicker />
 
       <main className="container flex-1 pt-6 md:pt-8">

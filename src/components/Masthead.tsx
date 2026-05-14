@@ -24,37 +24,6 @@ export default function Masthead() {
           <p className="smallcaps text-muted-foreground">{today}</p>
         </div>
         <div style={{ height: "0.5px" }} className="bg-rule w-full" />
-        <nav style={{ display: "flex", gap: "24px", paddingTop: "10px", paddingBottom: "10px", overflowX: "auto" }}>
-          {[
-            { label: "Home", path: "/" },
-            { label: "Travel", path: "/travel" },
-            { label: "Sports", path: "/sports" },
-            { label: "Markets", path: "/markets-finance" },
-            { label: "Technology", path: "/technology" },
-            { label: "Entertainment", path: "/entertainment" },
-          ].map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              style={{
-                fontFamily: "inherit",
-                fontSize: "0.8rem",
-                fontWeight: 600,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "var(--foreground, #1a1a1a)",
-                textDecoration: "none",
-                whiteSpace: "nowrap",
-                opacity: 0.7,
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.7")}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <div style={{ height: "0.5px" }} className="bg-rule w-full" />
       </div>
     </header>
   );

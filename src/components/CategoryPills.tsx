@@ -64,7 +64,7 @@ export default function CategoryPills() {
   };
 
   return (
-    <div className="bg-background border-b hairline md:hidden">
+    <div className="bg-background border-b hairline">
       <div className="container">
         {!isHome && currentCategory && (
           <div className="flex items-center justify-between pt-2.5 pb-1">
