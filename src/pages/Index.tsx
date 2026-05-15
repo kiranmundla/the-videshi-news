@@ -210,10 +210,20 @@ export default function Index() {
     if (loading) return;
     const savedY = sessionStorage.getItem("homeScrollY");
     if (!savedY) return;
-    const t = setTimeout(() => {
-      window.scrollTo(0, parseInt(savedY, 10));
-      sessionStorage.removeItem("homeScrollY");
-    }, 150);
+    const targetY = parseInt(savedY, 10);
+    sessionStorage.removeItem("homeScrollY");
+
+    // Try restoring scroll multiple times as images/content load
+    let attempts = 0;
+    const tryRestore = () => {
+      window.scrollTo(0, targetY);
+      attempts++;
+      if (attempts < 10 && Math.abs(window.scrollY - targetY) > 50) {
+        requestAnimationFrame(tryRestore);
+      }
+    };
+    // Initial delay for layout, then retry with rAF
+    const t = setTimeout(tryRestore, 100);
     return () => clearTimeout(t);
   }, [loading]);
 
