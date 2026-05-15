@@ -1,6 +1,6 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-15T02:43:02Z",
+  "last_updated": "2026-05-15T16:00:55Z",
   "stage": "League Stage — Matches 56 of 70",
   "standings": [
     {
@@ -39,11 +39,11 @@
     {
       "team": "Punjab Kings",
       "short": "PBKS",
-      "played": 11,
+      "played": 12,
       "won": 6,
-      "lost": 4,
+      "lost": 5,
       "nr": 1,
-      "nrr": "+0.428",
+      "nrr": "+0.355",
       "points": 13,
       "position": 4
     },
@@ -94,12 +94,12 @@
     {
       "team": "Mumbai Indians",
       "short": "MI",
-      "played": 11,
-      "won": 3,
+      "played": 12,
+      "won": 4,
       "lost": 8,
       "nr": 0,
-      "nrr": "-0.585",
-      "points": 6,
+      "nrr": "-0.504",
+      "points": 8,
       "position": 9
     },
     {
