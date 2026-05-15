@@ -26,6 +26,9 @@ const PHOTOS: { src: string; label: string }[] = [
 export default function DiasporaPhotoStrip() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const touchStartX = useRef<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
   const closeOverlay = useCallback(() => setSelectedIndex(null), []);
 
@@ -36,6 +39,32 @@ export default function DiasporaPhotoStrip() {
   const goPrev = useCallback(() => {
     setSelectedIndex((prev) => (prev !== null ? (prev - 1 + PHOTOS.length) % PHOTOS.length : null));
   }, []);
+
+  const updateScrollButtons = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 10);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+  }, []);
+
+  const scrollStrip = useCallback((direction: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.75;
+    el.scrollBy({ left: direction === "right" ? amount : -amount, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    updateScrollButtons();
+    el.addEventListener("scroll", updateScrollButtons, { passive: true });
+    window.addEventListener("resize", updateScrollButtons);
+    return () => {
+      el.removeEventListener("scroll", updateScrollButtons);
+      window.removeEventListener("resize", updateScrollButtons);
+    };
+  }, [updateScrollButtons]);
 
   useEffect(() => {
     if (selectedIndex === null) return;
@@ -87,9 +116,78 @@ export default function DiasporaPhotoStrip() {
           .diaspora-scroll-strip::-webkit-scrollbar { display: none; }
         `}</style>
 
-        {/* Horizontal scroll container */}
-        <div
-          className="diaspora-scroll-strip"
+        {/* Container with nav arrows */}
+        <div style={{ position: "relative" }}>
+          {/* Left arrow */}
+          {canScrollLeft && (
+            <button
+              onClick={() => scrollStrip("left")}
+              aria-label="Scroll left"
+              style={{
+                position: "absolute",
+                left: "4px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                zIndex: 10,
+                background: "rgba(0,0,0,0.6)",
+                backdropFilter: "blur(4px)",
+                border: "none",
+                color: "#fff",
+                fontSize: "18px",
+                width: "36px",
+                height: "36px",
+                borderRadius: "50%",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "background 0.2s, opacity 0.2s",
+                opacity: 0.9,
+              }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.background = "rgba(0,0,0,0.85)"; }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.background = "rgba(0,0,0,0.6)"; }}
+            >
+              ‹
+            </button>
+          )}
+
+          {/* Right arrow */}
+          {canScrollRight && (
+            <button
+              onClick={() => scrollStrip("right")}
+              aria-label="Scroll right"
+              style={{
+                position: "absolute",
+                right: "4px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                zIndex: 10,
+                background: "rgba(0,0,0,0.6)",
+                backdropFilter: "blur(4px)",
+                border: "none",
+                color: "#fff",
+                fontSize: "18px",
+                width: "36px",
+                height: "36px",
+                borderRadius: "50%",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "background 0.2s, opacity 0.2s",
+                opacity: 0.9,
+              }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.background = "rgba(0,0,0,0.85)"; }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.background = "rgba(0,0,0,0.6)"; }}
+            >
+              ›
+            </button>
+          )}
+
+          {/* Horizontal scroll container */}
+          <div
+            ref={scrollRef}
+            className="diaspora-scroll-strip"
           style={{
             display: "flex",
             gap: "12px",
@@ -164,6 +262,7 @@ export default function DiasporaPhotoStrip() {
               </span>
             </div>
           ))}
+        </div>
         </div>
 
         {/* Pexels attribution */}
