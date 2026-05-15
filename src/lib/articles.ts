@@ -190,8 +190,8 @@ export async function getTopStories(limit = 12, offset = 0): Promise<Article[]> 
     .from("p2_articles")
     .select(P2_COLS)
     .eq("status", "published")
-    .order("score_total", { ascending: false })
     .order("published_at", { ascending: false })
+    .order("score_total", { ascending: false })
     .range(offset, offset + limit - 1);
   if (error) {
     console.error("[articles] getTopStories", error);
@@ -252,8 +252,8 @@ export async function getArticlesByCategory(
     .select(P2_COLS)
     .eq("status", "published")
     .eq("category", category)
-    .order("score_total", { ascending: false })
     .order("published_at", { ascending: false })
+    .order("score_total", { ascending: false })
     .order("id", { ascending: true })
     .range(offset, offset + limit - 1);
   if (error) {

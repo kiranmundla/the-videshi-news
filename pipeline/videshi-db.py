@@ -156,7 +156,10 @@ def cmd_insert_article(data):
     else:
         auto_publish = confidence >= 65 and score_diaspora >= 60
         status = "published" if auto_publish else "review"
-    published_at = article.get("published_at") or (datetime.now(timezone.utc).isoformat() if status == "published" else None)
+    # Always set published_at for published articles
+    published_at = article.get("published_at") or None
+    if status == "published" and not published_at:
+        published_at = datetime.now(timezone.utc).isoformat()
 
     score_total = article.get("score_total", 50)
 
