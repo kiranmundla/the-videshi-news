@@ -186,10 +186,13 @@ export async function getPublishedArticles(): Promise<Article[]> {
 }
 
 export async function getTopStories(limit = 12, offset = 0): Promise<Article[]> {
+  const since72h = new Date(Date.now() - 72 * 60 * 60 * 1000).toISOString();
+
   const { data, error } = await supabase
     .from("p2_articles")
     .select(P2_COLS)
     .eq("status", "published")
+    .gte("published_at", since72h)
     .order("published_at", { ascending: false })
     .order("score_total", { ascending: false })
     .range(offset, offset + limit - 1);
@@ -197,6 +200,23 @@ export async function getTopStories(limit = 12, offset = 0): Promise<Article[]> 
     console.error("[articles] getTopStories", error);
     return [];
   }
+
+  // Fallback: if fewer than 3 articles in 72h, widen to 7 days
+  if ((data as P2Row[]).length < 3) {
+    const since7d = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+    const { data: wider, error: widerErr } = await supabase
+      .from("p2_articles")
+      .select(P2_COLS)
+      .eq("status", "published")
+      .gte("published_at", since7d)
+      .order("published_at", { ascending: false })
+      .order("score_total", { ascending: false })
+      .range(offset, offset + limit - 1);
+    if (!widerErr && (wider as P2Row[]).length > (data as P2Row[]).length) {
+      return (wider as P2Row[]).map(mapRow);
+    }
+  }
+
   return (data as P2Row[]).map(mapRow);
 }
 
@@ -247,11 +267,14 @@ export async function getArticlesByCategory(
   limit = 12,
   offset = 0
 ): Promise<Article[]> {
+  const since72h = new Date(Date.now() - 72 * 60 * 60 * 1000).toISOString();
+
   const { data, error } = await supabase
     .from("p2_articles")
     .select(P2_COLS)
     .eq("status", "published")
     .eq("category", category)
+    .gte("published_at", since72h)
     .order("published_at", { ascending: false })
     .order("score_total", { ascending: false })
     .order("id", { ascending: true })
@@ -260,5 +283,24 @@ export async function getArticlesByCategory(
     console.error("[articles] getArticlesByCategory", error);
     return [];
   }
+
+  // Fallback: if fewer than 3 articles in 72h, widen to 7 days
+  if ((data as P2Row[]).length < 3) {
+    const since7d = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+    const { data: wider, error: widerErr } = await supabase
+      .from("p2_articles")
+      .select(P2_COLS)
+      .eq("status", "published")
+      .eq("category", category)
+      .gte("published_at", since7d)
+      .order("published_at", { ascending: false })
+      .order("score_total", { ascending: false })
+      .order("id", { ascending: true })
+      .range(offset, offset + limit - 1);
+    if (!widerErr && (wider as P2Row[]).length > (data as P2Row[]).length) {
+      return (wider as P2Row[]).map(mapRow);
+    }
+  }
+
   return (data as P2Row[]).map(mapRow);
 }

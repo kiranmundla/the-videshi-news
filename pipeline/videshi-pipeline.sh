@@ -20,11 +20,17 @@ CUTOFF_96H=$(date -u -d '96 hours ago' +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -
 
 log() { echo "[$(date -u +%H:%M:%S)] $*"; }
 
+# Helper: build auth headers from scalars (works in exported subshells)
+_auth_headers() {
+  echo -H "apikey: $SB_KEY" -H "Authorization: Bearer $SB_KEY" -H "Content-Type: application/json"
+}
+
 # Helper: POST to Supabase REST
 sb_insert() {
   local table="$1"
   local data="$2"
-  curl -s -X POST "$REST/$table" "${AUTH_HEADERS[@]}" \
+  curl -s -X POST "$REST/$table" \
+    -H "apikey: $SB_KEY" -H "Authorization: Bearer $SB_KEY" -H "Content-Type: application/json" \
     -H "Prefer: return=representation" \
     -d "$data"
 }
@@ -33,7 +39,8 @@ sb_upsert() {
   local table="$1"
   local data="$2"
   local conflict="$3"
-  curl -s -X POST "$REST/$table" "${AUTH_HEADERS[@]}" \
+  curl -s -X POST "$REST/$table" \
+    -H "apikey: $SB_KEY" -H "Authorization: Bearer $SB_KEY" -H "Content-Type: application/json" \
     -H "Prefer: resolution=ignore-duplicates,return=representation" \
     -H "On-Conflict: $conflict" \
     -d "$data"
@@ -43,7 +50,8 @@ sb_patch() {
   local table="$1"
   local filter="$2"
   local data="$3"
-  curl -s -X PATCH "$REST/${table}?${filter}" "${AUTH_HEADERS[@]}" \
+  curl -s -X PATCH "$REST/${table}?${filter}" \
+    -H "apikey: $SB_KEY" -H "Authorization: Bearer $SB_KEY" -H "Content-Type: application/json" \
     -H "Prefer: return=minimal" \
     -d "$data"
 }
@@ -51,7 +59,8 @@ sb_patch() {
 sb_get() {
   local table="$1"
   local params="$2"
-  curl -s "$REST/${table}?${params}" "${AUTH_HEADERS[@]}"
+  curl -s "$REST/${table}?${params}" \
+    -H "apikey: $SB_KEY" -H "Authorization: Bearer $SB_KEY" -H "Content-Type: application/json"
 }
 
 alert() {
@@ -81,28 +90,30 @@ TOTAL_FETCHED=0
 TOTAL_INSERTED=0
 ERRORS=0
 
-# Process each source (with 180s global timeout for all feeds)
-INGEST_START=$SECONDS
+# Create temp dir for parallel feed results
+FEED_TMPDIR=$(mktemp -d /tmp/videshi-ingest.XXXXXX)
+trap "rm -rf $FEED_TMPDIR" EXIT
+
+# Write source list to file for parallel processing
 echo "$SOURCES" | python3 -c "
 import json, sys
 sources = json.load(sys.stdin)
 for s in sources:
-    # Output tab-separated: id, name, url, pipeline_stage, max_items, priority, consecutive_errors, total_fetches, total_items, avg_items_per_day
     url = s.get('endpoint_url', '')
     print(f\"{s['id']}\t{s['name']}\t{url}\t{s.get('pipeline_stage','discovery')}\t{s.get('max_items',20)}\t{s.get('priority',50)}\t{s.get('consecutive_errors',0)}\t{s.get('total_fetches',0)}\t{s.get('total_items',0)}\t{s.get('avg_items_per_day',0)}\")
-" | while IFS=$'\t' read -r SRC_ID SRC_NAME SRC_URL SRC_STAGE SRC_MAX SRC_PRIORITY SRC_ERRORS SRC_FETCHES SRC_ITEMS SRC_AVG; do
-  
-  # Skip sources with no URL
-  if [ -z "$SRC_URL" ]; then
-    continue
+" > "$FEED_TMPDIR/sources.tsv"
+
+# Process a single feed — called in parallel
+process_feed() {
+  local line="$1"
+  local tmpdir="$2"
+  IFS=$'\t' read -r SRC_ID SRC_NAME SRC_URL SRC_STAGE SRC_MAX SRC_PRIORITY SRC_ERRORS SRC_FETCHES SRC_ITEMS SRC_AVG <<< "$line"
+
+  # Skip sources with no URL or 5+ consecutive errors
+  if [ -z "$SRC_URL" ] || [ "$SRC_ERRORS" -ge 5 ]; then
+    return
   fi
 
-  # Abort if ingest has run longer than 180s
-  if [ $((SECONDS - INGEST_START)) -ge 180 ]; then
-    log "  ⏱ Ingest time limit reached, skipping remaining feeds"
-    break
-  fi
-  
   # Unwrap rss2json proxy URLs
   FETCH_URL="$SRC_URL"
   if echo "$FETCH_URL" | grep -q "rss2json.com"; then
@@ -112,27 +123,20 @@ for s in sources:
     fi
   fi
 
-  # Fetch the feed
-  # Skip sources with 5+ consecutive errors
-  if [ "$SRC_ERRORS" -ge 5 ]; then
-    continue
-  fi
-
-  FEED_XML=$(curl -s -L --max-time 8 \
+  # Fetch with 5s timeout
+  FEED_XML=$(curl -s -L --max-time 5 \
     -H "User-Agent: Mozilla/5.0 (compatible; Videshi/1.0; +https://thevideshi.com)" \
     -H "Accept: application/rss+xml, application/xml, text/xml, */*" \
     "$FETCH_URL" 2>/dev/null || echo "FETCH_ERROR")
-  
+
   if [ "$FEED_XML" = "FETCH_ERROR" ] || [ -z "$FEED_XML" ]; then
-    log "  ✗ $SRC_NAME — fetch failed"
-    ERRORS=$((ERRORS + 1))
     NEW_ERRORS=$((SRC_ERRORS + 1))
     sb_patch "videshi_sources" "id=eq.$SRC_ID" "{\"consecutive_errors\":$NEW_ERRORS,\"last_error\":\"fetch failed\",\"last_error_at\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" >/dev/null 2>&1
-    sb_insert "videshi_source_logs" "{\"source_id\":\"$SRC_ID\",\"agent\":\"$AGENT\",\"status\":\"error\",\"error_message\":\"fetch failed\"}" >/dev/null 2>&1
-    continue
+    echo "ERR" > "$tmpdir/result_$SRC_ID"
+    return
   fi
-  
-  # Parse RSS/Atom XML into JSON signals using Python
+
+  # Parse RSS/Atom XML into JSON signals
   SIGNALS_JSON=$(echo "$FEED_XML" | python3 -c "
 import sys, re, json, hashlib
 from datetime import datetime, timezone, timedelta
@@ -141,38 +145,31 @@ xml = sys.stdin.read()
 cutoff = datetime.now(timezone.utc) - timedelta(hours=48)
 
 items = []
-
-# Try RSS <item> first, then Atom <entry>
 blocks = re.findall(r'<item[\s>][\s\S]*?</item>', xml) or re.findall(r'<entry[\s>][\s\S]*?</entry>', xml)
 
 for block in blocks:
-    # Title
     m = re.search(r'<title[^>]*><!\[CDATA\[([\s\S]*?)\]\]></title>', block) or \
         re.search(r'<title[^>]*>([\s\S]*?)</title>', block)
     title = (m.group(1).strip() if m else '').replace('\"', \"'\")
-    
-    # Link
+
     m = re.search(r'<link[^>]*>([^<]+)</link>', block) or \
         re.search(r'<link[^>]*href=\"([^\"]+)\"', block) or \
         re.search(r'<guid[^>]*>([\s\S]*?)</guid>', block)
     url = m.group(1).strip() if m else ''
-    
-    # Published date
+
     m = re.search(r'<pubDate>([\s\S]*?)</pubDate>', block) or \
         re.search(r'<published>([\s\S]*?)</published>', block) or \
         re.search(r'<dc:date>([\s\S]*?)</dc:date>', block)
     pub_str = m.group(1).strip() if m else None
-    
-    # Content
+
     m = re.search(r'<content:encoded><!\[CDATA\[([\s\S]*?)\]\]></content:encoded>', block) or \
         re.search(r'<description><!\[CDATA\[([\s\S]*?)\]\]></description>', block) or \
         re.search(r'<description>([\s\S]*?)</description>', block)
     content = (m.group(1).strip()[:10000] if m else None)
-    
+
     if not title or not url:
         continue
-    
-    # Parse date and filter
+
     pub_iso = None
     if pub_str:
         for fmt in ['%a, %d %b %Y %H:%M:%S %z', '%a, %d %b %Y %H:%M:%S %Z',
@@ -189,7 +186,7 @@ for block in blocks:
                 continue
         if pub_iso == 'OLD':
             continue
-    
+
     url_hash = hashlib.sha256(url.lower().strip().encode()).hexdigest()[:32]
     items.append({
         'title': title[:500],
@@ -203,13 +200,12 @@ print(json.dumps(items[:50]))
 " 2>/dev/null || echo "[]")
 
   ITEM_COUNT=$(echo "$SIGNALS_JSON" | python3 -c "import json,sys; print(len(json.load(sys.stdin)))" 2>/dev/null || echo "0")
-  
+
   if [ "$ITEM_COUNT" -eq 0 ]; then
-    log "  ○ $SRC_NAME — 0 items"
-    sb_insert "videshi_source_logs" "{\"source_id\":\"$SRC_ID\",\"agent\":\"$AGENT\",\"status\":\"empty\",\"items_fetched\":0,\"items_new\":0}" >/dev/null 2>&1
-    continue
+    echo "0 0" > "$tmpdir/result_$SRC_ID"
+    return
   fi
-  
+
   # Build signal rows for upsert
   SIGNAL_ROWS=$(echo "$SIGNALS_JSON" | python3 -c "
 import json, sys
@@ -228,11 +224,10 @@ for item in items:
     rows.append(row)
 print(json.dumps(rows))
 ")
-  
-  # Upsert signals (dedup on url_hash)
+
   INSERTED=$(sb_upsert "p2_signals" "$SIGNAL_ROWS" "url_hash")
   INSERT_COUNT=$(echo "$INSERTED" | python3 -c "import json,sys; d=json.load(sys.stdin); print(len(d) if isinstance(d,list) else 0)" 2>/dev/null || echo "0")
-  
+
   # Primary sources also seed p2_source_hunts
   if [ "$SRC_STAGE" = "primary" ]; then
     HUNT_ROWS=$(echo "$SIGNALS_JSON" | python3 -c "
@@ -261,23 +256,47 @@ else:
       sb_upsert "p2_source_hunts" "$HUNT_ROWS" "url" >/dev/null 2>&1 || true
     fi
   fi
-  
+
   # Update source metadata
   NEW_AVG=$(python3 -c "avg=$SRC_AVG; items=$ITEM_COUNT; print(round((avg*6 + items*48)/7))" 2>/dev/null || echo "$ITEM_COUNT")
   NEW_FETCHES=$((SRC_FETCHES + 1))
   NEW_ITEMS=$((SRC_ITEMS + ITEM_COUNT))
   sb_patch "videshi_sources" "id=eq.$SRC_ID" "{\"last_fetched_at\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\"avg_items_per_day\":$NEW_AVG,\"consecutive_errors\":0,\"total_fetches\":$NEW_FETCHES,\"total_items\":$NEW_ITEMS}" >/dev/null 2>&1
-  
-  # Log
-  sb_insert "videshi_source_logs" "{\"source_id\":\"$SRC_ID\",\"agent\":\"$AGENT\",\"status\":\"ok\",\"items_fetched\":$ITEM_COUNT,\"items_new\":$INSERT_COUNT,\"items_accepted\":$INSERT_COUNT}" >/dev/null 2>&1
-  
-  TOTAL_FETCHED=$((TOTAL_FETCHED + ITEM_COUNT))
-  TOTAL_INSERTED=$((TOTAL_INSERTED + INSERT_COUNT))
-  
-  if [ "$INSERT_COUNT" -gt 0 ]; then
-    log "  ✓ $SRC_NAME — $ITEM_COUNT items, $INSERT_COUNT new"
+
+  echo "$ITEM_COUNT $INSERT_COUNT" > "$tmpdir/result_$SRC_ID"
+}
+
+export -f process_feed sb_upsert sb_patch sb_insert log
+export REST SB_KEY SB_URL AGENT FEED_TMPDIR
+
+# Run feeds in parallel batches of 5, with 280s global timeout
+log "Processing feeds in parallel (5 concurrent, 280s cap)..."
+INGEST_START=$SECONDS
+while IFS= read -r line; do
+  # Abort if ingest has run longer than 280s
+  if [ $((SECONDS - INGEST_START)) -ge 280 ]; then
+    log "  ⏱ Ingest time limit (280s) reached, stopping"
+    wait
+    break
   fi
-  
+  process_feed "$line" "$FEED_TMPDIR" &
+  # Limit concurrency to 5
+  while [ "$(jobs -r | wc -l)" -ge 5 ]; do
+    sleep 0.2
+  done
+done < "$FEED_TMPDIR/sources.tsv"
+wait
+
+# Tally results from temp files
+for f in "$FEED_TMPDIR"/result_*; do
+  [ -f "$f" ] || continue
+  read -r fetched inserted < "$f" 2>/dev/null || continue
+  if [ "$fetched" = "ERR" ]; then
+    ERRORS=$((ERRORS + 1))
+  else
+    TOTAL_FETCHED=$((TOTAL_FETCHED + ${fetched:-0}))
+    TOTAL_INSERTED=$((TOTAL_INSERTED + ${inserted:-0}))
+  fi
 done
 
 log "Ingest complete: $TOTAL_FETCHED fetched, $TOTAL_INSERTED new signals"

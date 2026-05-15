@@ -148,14 +148,10 @@ def cmd_insert_article(data):
     body = str(article.get("body", ""))
     word_count = len(body.split())
 
-    # Auto-publish logic: honor explicit status if passed, otherwise use confidence threshold
-    confidence = article.get("confidence", 0)
-    score_diaspora = article.get("score_diaspora", 0)
-    if "status" in article and article["status"] in ("published", "review", "draft"):
-        status = article["status"]
-    else:
-        auto_publish = confidence >= 65 and score_diaspora >= 60
-        status = "published" if auto_publish else "review"
+    # Simple publish logic: honor explicit status, default to published
+    status = article.get("status", "published")
+    if status not in ("published", "review", "draft"):
+        status = "published"
     # Always set published_at for published articles
     published_at = article.get("published_at") or None
     if status == "published" and not published_at:
@@ -188,7 +184,7 @@ def cmd_insert_article(data):
     result = sb_post("p2_articles", row)
     if isinstance(result, list) and len(result) > 0:
         aid = result[0].get("id", "?")
-        print(json.dumps({"ok": True, "id": aid, "status": status, "auto_publish": auto_publish, "headline": row["headline"]}))
+        print(json.dumps({"ok": True, "id": aid, "status": status, "headline": row["headline"]}))
     else:
         print(json.dumps({"ok": False, "error": str(result)[:500]}))
 
