@@ -148,12 +148,15 @@ def cmd_insert_article(data):
     body = str(article.get("body", ""))
     word_count = len(body.split())
 
-    # Auto-publish logic matching p2-synthesize
+    # Auto-publish logic: honor explicit status if passed, otherwise use confidence threshold
     confidence = article.get("confidence", 0)
     score_diaspora = article.get("score_diaspora", 0)
-    auto_publish = confidence >= 65 and score_diaspora >= 60
-    status = "published" if auto_publish else "review"
-    published_at = datetime.now(timezone.utc).isoformat() if auto_publish else None
+    if "status" in article and article["status"] in ("published", "review", "draft"):
+        status = article["status"]
+    else:
+        auto_publish = confidence >= 65 and score_diaspora >= 60
+        status = "published" if auto_publish else "review"
+    published_at = article.get("published_at") or (datetime.now(timezone.utc).isoformat() if status == "published" else None)
 
     score_total = article.get("score_total", 50)
 
