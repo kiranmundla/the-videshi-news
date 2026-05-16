@@ -272,17 +272,41 @@ export default function ArticlePage() {
 
         {article.gallery_images && article.gallery_images.length > 0 ? (
           <div className="max-w-3xl mx-auto">
-            <PhotoScrollStrip
-              photos={[
+            <div
+              className="flex gap-3 overflow-x-auto pb-2"
+              style={{ 
+                scrollbarWidth: "none", 
+                msOverflowStyle: "none",
+                scrollSnapType: "x mandatory",
+                WebkitOverflowScrolling: "touch",
+                paddingLeft: "4%",
+                paddingRight: "4%",
+              } as React.CSSProperties}
+            >
+              <style>{`.article-gallery::-webkit-scrollbar { display: none; }`}</style>
+              {[
                 ...(article.hero_image_url ? [{ src: article.hero_image_url, caption: article.image_caption || article.title }] : []),
                 ...article.gallery_images
                   .filter((img) => img.url !== article.hero_image_url)
                   .map((img) => ({ src: img.url, caption: img.caption })),
-              ]}
-              itemWidth={300}
-              itemHeight={200}
-              objectFit="contain"
-            />
+              ].map((photo, i) => (
+                <div
+                  key={i}
+                  className="flex-shrink-0 rounded-lg overflow-hidden bg-stone-100"
+                  style={{ scrollSnapAlign: "center", maxWidth: "85%", maxHeight: 400 }}
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.caption || article.title}
+                    loading={i === 0 ? "eager" : "lazy"}
+                    className="block max-h-[400px] w-auto h-auto rounded-lg"
+                  />
+                  {photo.caption && (
+                    <p className="text-xs text-muted-foreground mt-1 px-1 pb-1">{photo.caption}</p>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         ) : article.hero_image_url && article.hero_image_url.trim().length > 0 ? (
           <HeroMedia
