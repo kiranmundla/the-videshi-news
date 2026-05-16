@@ -90,7 +90,16 @@
     border-top: 1px solid hsl(var(--rule, var(--border)));
   }
   .article-prose a { @apply text-primary underline underline-offset-2; }
-  .article-prose blockquote { @apply border-l-2 border-primary pl-5 italic text-foreground/80 my-6; }
+  .article-prose blockquote {
+    border-left: 3px solid hsl(var(--primary));
+    padding: 16px 0 16px 24px;
+    margin: 28px 0;
+    font-style: italic;
+    font-size: 1.18rem;
+    line-height: 1.6;
+    color: hsl(var(--foreground) / 0.75);
+  }
+  .article-prose blockquote p { margin-bottom: 0; font-size: inherit; }
   .article-prose ul { @apply list-disc pl-6 mb-6 space-y-2; }
   .article-prose ol { @apply list-decimal pl-6 mb-6 space-y-2; }
   .article-prose li { @apply text-[1.05rem] md:text-[1.1rem] leading-[1.6] text-foreground/85; }
@@ -123,7 +132,16 @@
     border-top: 1px solid hsl(var(--rule, var(--border)));
   }
   .article-html strong { font-weight: 700; }
-  .article-html blockquote { @apply border-l-2 border-primary pl-5 italic text-foreground/80 my-6; }
+  .article-html blockquote {
+    border-left: 3px solid hsl(var(--primary));
+    padding: 16px 0 16px 24px;
+    margin: 28px 0;
+    font-style: italic;
+    font-size: 1.18rem;
+    line-height: 1.6;
+    color: hsl(var(--foreground) / 0.75);
+  }
+  .article-html blockquote p { margin-bottom: 0; font-size: inherit; }
   .article-html table { @apply w-full my-8 text-sm md:text-base; border-collapse: collapse; }
   .article-html thead { border-bottom: 2px solid hsl(var(--primary)); }
   .article-html th {
