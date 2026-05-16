@@ -96,14 +96,14 @@
     padding: 16px 0 16px 24px;
     margin: 28px 0;
     font-style: italic;
-    font-size: 1.18rem;
+    font-size: inherit;
     line-height: 1.6;
     color: hsl(var(--foreground) / 0.75);
   }
   .article-prose blockquote p { margin-bottom: 0; font-size: inherit; }
   .article-prose ul { @apply list-disc pl-6 mb-6 space-y-2; }
   .article-prose ol { @apply list-decimal pl-6 mb-6 space-y-2; }
-  .article-prose li { @apply text-[1.05rem] md:text-[1.1rem] leading-[1.6] text-foreground/85; }
+  .article-prose li { @apply text-[1.05rem] md:text-[1.08rem] leading-[1.6] text-foreground/85; }
 
   /* ── Markdown tables ── */
   .article-prose table { @apply w-full my-8 text-sm md:text-base; border-collapse: collapse; }
@@ -139,7 +139,7 @@
     padding: 16px 0 16px 24px;
     margin: 28px 0;
     font-style: italic;
-    font-size: 1.18rem;
+    font-size: inherit;
     line-height: 1.6;
     color: hsl(var(--foreground) / 0.75);
   }
