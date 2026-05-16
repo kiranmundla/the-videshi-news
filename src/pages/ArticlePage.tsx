@@ -17,6 +17,151 @@ import HeroImage from "@/components/HeroImage";
 import ImageCaption from "@/components/ImageCaption";
 import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
 
+/* ------------------------------------------------------------------ */
+/* Gemini-style compact sources pill                                  */
+/* ------------------------------------------------------------------ */
+function SourcesPill({
+  sources,
+  domains,
+}: {
+  sources: { label: string; url?: string }[];
+  domains: string[];
+}) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="max-w-2xl mx-auto mt-8">
+      {/* Pill trigger */}
+      <button
+        onClick={() => setOpen((o) => !o)}
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "6px",
+          padding: "6px 14px 6px 10px",
+          borderRadius: "999px",
+          border: "1px solid hsl(var(--border))",
+          background: "hsl(var(--card))",
+          cursor: "pointer",
+          transition: "background 0.15s, border-color 0.15s",
+          fontSize: "13px",
+          color: "hsl(var(--muted-foreground))",
+          fontFamily: "var(--font-sans, sans-serif)",
+          fontWeight: 500,
+        }}
+      >
+        {/* Stacked favicons */}
+        <span style={{ display: "flex", alignItems: "center", marginRight: "2px" }}>
+          {domains.map((d, i) => (
+            <img
+              key={d}
+              src={`https://www.google.com/s2/favicons?domain=${d}&sz=16`}
+              alt=""
+              width={16}
+              height={16}
+              style={{
+                borderRadius: "50%",
+                border: "1.5px solid hsl(var(--card))",
+                marginLeft: i === 0 ? 0 : "-6px",
+                position: "relative",
+                zIndex: domains.length - i,
+                background: "hsl(var(--card))",
+              }}
+            />
+          ))}
+        </span>
+        <span>
+          {sources.length > domains.length && `+${sources.length - domains.length} `}
+          {sources.length === 1 ? "Source" : `${sources.length} Sources`}
+        </span>
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
+          fill="none"
+          style={{
+            transition: "transform 0.2s",
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        >
+          <path
+            d="M3 4.5L6 7.5L9 4.5"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+
+      {/* Expanded sources list */}
+      {open && (
+        <div
+          style={{
+            marginTop: "8px",
+            padding: "12px 16px",
+            borderRadius: "12px",
+            border: "1px solid hsl(var(--border))",
+            background: "hsl(var(--card))",
+            fontSize: "13px",
+            lineHeight: "1.6",
+          }}
+        >
+          <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+            {sources.map((s, i) => {
+              const domain = s.url
+                ? (() => {
+                    try { return new URL(s.url).hostname.replace("www.", ""); } catch { return ""; }
+                  })()
+                : "";
+              return (
+                <li
+                  key={i}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    padding: "4px 0",
+                    color: "hsl(var(--muted-foreground))",
+                  }}
+                >
+                  {domain ? (
+                    <img
+                      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=16`}
+                      alt=""
+                      width={14}
+                      height={14}
+                      style={{ borderRadius: "50%", flexShrink: 0 }}
+                    />
+                  ) : (
+                    <span style={{ width: 14, height: 14, flexShrink: 0 }} />
+                  )}
+                  {s.url ? (
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: "hsl(var(--muted-foreground))",
+                        textDecoration: "underline",
+                        textUnderlineOffset: "2px",
+                      }}
+                    >
+                      {s.label}
+                    </a>
+                  ) : (
+                    <span>{s.label}</span>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function ArticlePage() {
   const { slug = "" } = useParams();
   const [article, setArticle] = useState<Article | null | undefined>(undefined);
@@ -185,24 +330,18 @@ export default function ArticlePage() {
           })()}
         </div>
 
-        {article.sources && article.sources.length > 0 && (
-          <aside className="max-w-2xl mx-auto mt-10 pt-6 border-t hairline">
-            <p className="smallcaps text-muted-foreground mb-3">Sources & attribution</p>
-            <ul className="text-sm text-muted-foreground space-y-1.5">
-              {article.sources.map((s, i) => (
-                <li key={i}>
-                  {s.url ? (
-                    <a href={s.url} className="underline underline-offset-2 hover:text-primary">
-                      {s.label}
-                    </a>
-                  ) : (
-                    s.label
-                  )}
-                </li>
-              ))}
-            </ul>
-          </aside>
-        )}
+        {article.sources && article.sources.length > 0 && (() => {
+          const getDomain = (url: string) => {
+            try { return new URL(url).hostname.replace("www.", ""); } catch { return ""; }
+          };
+          const uniqueDomains = [...new Set(article.sources.filter(s => s.url).map(s => getDomain(s.url!)))].slice(0, 3);
+          return (
+            <SourcesPill
+              sources={article.sources}
+              domains={uniqueDomains}
+            />
+          );
+        })()}
 
         {related.length > 0 && (
           <section className="mt-8">

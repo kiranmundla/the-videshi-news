@@ -57,6 +57,8 @@ AMBIGUOUS_ENTITIES = {
     "IT", "AI", "US", "UK", "UAE", "GST", "RBI", "BJP", "AAP", "IIT",
     "NRI", "DHS", "OPT", "DOL", "DOJ", "SEC", "FTC", "IMF", "WTO",
     "IPL", "CSK", "LSG", "MI", "RCB", "SRH", "GT", "KKR", "DC", "PBKS",
+    "NEET", "FIRE", "CAA", "NRC", "RAM", "CBI", "NIA", "SEBI", "TMC",
+    "JEE", "UGC", "NTA", "IAS", "IPS", "UPSC", "SSC", "ISRO", "DRDO",
 }
 
 # Patterns for existing URLs we consider "bad" and want to replace
@@ -205,44 +207,49 @@ def score_image_confidence(source_type, entity_query, wikipedia_page_title, arti
     """
     Score confidence 1-5 for a found image.
     
-    5: Exact person match — Wikipedia page title matches a person in the headline
-    4: Exact place/org — Wikipedia page for a specific building, institution
-    3: Related topic — general image somewhat related
+    5: Exact match — Wikipedia page title is a clear substring of the headline
+    4: Strong match — high word overlap between page title and headline
+    3: Moderate match — partial word overlap
     2: Loosely related
     1: Generic/unrelated
     
-    Only images scoring 4+ should be kept.
+    Only images scoring 5 should be kept (strict policy: no image > wrong image).
     """
     headline = (article.get("headline") or "").lower()
-    page_lower = (wikipedia_page_title or "").lower()
+    page_lower = (wikipedia_page_title or "").lower().replace("_", " ")
     
     if source_type == "wikipedia":
-        # Check if the Wikipedia page title words appear in the headline
-        page_words = [w for w in page_lower.replace("_", " ").split() if len(w) > 2]
+        # Strict check: is the full page title (cleaned) a substring of the headline?
+        page_clean = page_lower.strip()
+        if page_clean and page_clean in headline:
+            return 5  # exact substring match — high confidence
+        
+        # Check word overlap
+        page_words = [w for w in page_clean.split() if len(w) > 2]
         headline_words = set(headline.split())
         
         if not page_words:
             return 2
         
         # Count how many significant page title words appear in headline
-        matches = sum(1 for w in page_words if w in headline)
+        matches = sum(1 for w in page_words if w in headline_words)
         match_ratio = matches / len(page_words) if page_words else 0
         
-        if match_ratio >= 0.6:
-            return 5  # strong match — likely the exact person/place
-        elif match_ratio >= 0.3:
-            return 4  # good match
+        if match_ratio >= 0.8:
+            return 4  # strong word overlap
+        elif match_ratio >= 0.5:
+            return 3  # moderate overlap
         else:
             return 2  # page found but doesn't match headline well
     
     elif source_type == "commons":
         # Commons results are inherently less reliable
-        # Only score 4 if the search entity appears prominently in headline
+        # Only score 3 if the search entity appears prominently in headline
         entity_lower = (entity_query or "").lower()
         entity_words = [w for w in entity_lower.split() if len(w) > 2]
         if entity_words:
             matches = sum(1 for w in entity_words if w in headline)
-            if matches >= len(entity_words) * 0.5:
+            if matches >= len(entity_words) * 0.8:
                 return 3  # decent match but Commons, cap at 3
         return 2  # generic Commons result
     
@@ -337,12 +344,20 @@ def search_wikipedia_for_article(article):
     for entity in entities:
         if not entity or not isinstance(entity, str) or len(entity.strip()) < 2:
             continue
+        # Skip short all-uppercase entities (likely acronyms that match wrong Wikipedia pages)
+        stripped = entity.strip()
+        if len(stripped) <= 4 and stripped == stripped.upper():
+            print(f"  ⏭ Skipping acronym entity: \"{entity}\"")
+            continue
+        if stripped.upper() in AMBIGUOUS_ENTITIES:
+            print(f"  ⏭ Skipping ambiguous entity: \"{entity}\"")
+            continue
         print(f"  🌐 Wikipedia lookup: \"{entity}\"")
         url, attr = search_wikipedia_image(entity)
         if url:
             # Score confidence
             confidence = score_image_confidence("wikipedia", entity, entity, article)
-            if confidence >= 4:
+            if confidence >= 5:
                 print(f"  ✅ Found via Wikipedia: {entity} (confidence: {confidence}/5)")
                 return url, attr
             else:
@@ -369,7 +384,7 @@ def search_wikipedia_for_article(article):
             url, attr = search_wikipedia_image(bigram)
             if url:
                 confidence = score_image_confidence("wikipedia", bigram, bigram, article)
-                if confidence >= 4:
+                if confidence >= 5:
                     print(f"  ✅ Found via Wikipedia headline: {bigram} (confidence: {confidence}/5)")
                     return url, attr
                 else:
