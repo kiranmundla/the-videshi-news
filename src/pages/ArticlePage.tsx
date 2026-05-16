@@ -308,64 +308,23 @@ export default function ArticlePage() {
         </article>
 
         {article.gallery_images && article.gallery_images.length > 0 ? (
-          <div className="max-w-3xl mx-auto relative group">
-            <button
-              className="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 z-20 items-center justify-center w-10 h-10 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors text-xl shadow-lg"
-              aria-label="Scroll left"
-              onClick={() => {
-                const el = document.getElementById("article-gallery");
-                if (el) el.scrollBy({ left: -el.clientWidth * 0.8, behavior: "smooth" });
-              }}
-            >‹</button>
-            <button
-              className="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 z-20 items-center justify-center w-10 h-10 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors text-xl shadow-lg"
-              aria-label="Scroll right"
-              onClick={() => {
-                const el = document.getElementById("article-gallery");
-                if (el) el.scrollBy({ left: el.clientWidth * 0.8, behavior: "smooth" });
-              }}
-            >›</button>
-            <div
-              id="article-gallery"
-              className="flex gap-3 overflow-x-auto pb-2"
-              style={{ 
-                scrollbarWidth: "none", 
-                msOverflowStyle: "none",
-                scrollSnapType: "x mandatory",
-                WebkitOverflowScrolling: "touch",
-                paddingLeft: "4%",
-                paddingRight: "4%",
-              } as React.CSSProperties}
-            >
-              <style>{`.article-gallery::-webkit-scrollbar { display: none; }
-.article-prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+          <div className="max-w-3xl mx-auto">
+            <style>{`.article-prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
 .article-prose th, .article-prose td { border: 1px solid #e5e5e5; padding: 0.5rem 0.75rem; text-align: left; }
 .article-prose th { background: #f5f5f4; font-weight: 600; }
 .article-prose tr:nth-child(even) { background: #fafaf9; }
 .article-prose table { overflow-x: auto; display: block; }`}</style>
-              {[
+            <PhotoScrollStrip
+              photos={[
                 ...(article.hero_image_url ? [{ src: article.hero_image_url, caption: article.image_caption || article.title }] : []),
                 ...article.gallery_images
-                  .filter((img) => img.url !== article.hero_image_url)
-                  .map((img) => ({ src: img.url, caption: img.caption })),
-              ].map((photo, i) => (
-                <div
-                  key={i}
-                  className="flex-shrink-0 rounded-lg overflow-hidden"
-                  style={{ scrollSnapAlign: "center", width: "90%" }}
-                >
-                  <img
-                    src={photo.src}
-                    alt={photo.caption || article.title}
-                    loading={i === 0 ? "eager" : "lazy"}
-                    style={{ display: "block", width: "100%", height: "auto", borderRadius: 8 }}
-                  />
-                  {photo.caption && (
-                    <p className="text-xs text-muted-foreground mt-1 px-1 pb-1">{photo.caption}</p>
-                  )}
-                </div>
-              ))}
-            </div>
+                  .filter((img: { url: string }) => img.url !== article.hero_image_url)
+                  .map((img: { url: string; caption: string }) => ({ src: img.url, caption: img.caption })),
+              ]}
+              itemWidth={500}
+              itemHeight={320}
+              objectFit="contain"
+            />
           </div>
         ) : article.hero_image_url && article.hero_image_url.trim().length > 0 ? (
           <HeroMedia
