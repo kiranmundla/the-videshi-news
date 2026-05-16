@@ -1,6 +1,6 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-16T08:55:38Z",
+  "last_updated": "2026-05-16T09:55:41Z",
   "stage": "League Stage — Matches 59 of 70",
   "standings": [
     {
@@ -48,17 +48,6 @@
       "position": 4
     },
     {
-      "team": "Chennai Super Kings",
-      "short": "CSK",
-      "played": 11,
-      "won": 6,
-      "lost": 5,
-      "nr": 0,
-      "nrr": "+0.185",
-      "points": 12,
-      "position": 5
-    },
-    {
       "team": "Rajasthan Royals",
       "short": "RR",
       "played": 11,
@@ -66,6 +55,17 @@
       "lost": 5,
       "nr": 0,
       "nrr": "+0.082",
+      "points": 12,
+      "position": 5
+    },
+    {
+      "team": "Chennai Super Kings",
+      "short": "CSK",
+      "played": 12,
+      "won": 6,
+      "lost": 6,
+      "nr": 0,
+      "nrr": "+0.027",
       "points": 12,
       "position": 6
     },
@@ -105,12 +105,12 @@
     {
       "team": "Lucknow Super Giants",
       "short": "LSG",
-      "played": 11,
-      "won": 3,
+      "played": 12,
+      "won": 4,
       "lost": 8,
       "nr": 0,
-      "nrr": "-0.907",
-      "points": 6,
+      "nrr": "-0.701",
+      "points": 8,
       "position": 10
     }
   ],
