@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
 
@@ -166,15 +166,48 @@ function HomeCategorySection({
   );
 }
 
+const CACHE_KEY = "videshi_home_cache";
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+type HomeCache = {
+  ts: number;
+  featured: Article | null;
+  newsPool: Article[];
+  nriPool: Article[];
+  sectionPools: Record<string, Article[]>;
+};
+
+function loadCache(): HomeCache | null {
+  try {
+    const raw = sessionStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const cached = JSON.parse(raw) as HomeCache;
+    if (Date.now() - cached.ts > CACHE_TTL) return null;
+    return cached;
+  } catch {
+    return null;
+  }
+}
+
+function saveCache(data: HomeCache) {
+  try {
+    sessionStorage.setItem(CACHE_KEY, JSON.stringify(data));
+  } catch {}
+}
+
 export default function Index() {
-  const [featuredArticle, setFeaturedArticle] = useState<Article | null>(null);
-  const [newsPool, setNewsPool] = useState<Article[]>([]);
-  const [nriPool, setNriPool] = useState<Article[]>([]);
-  const [sectionPools, setSectionPools] = useState<Record<string, Article[]>>({});
-  const [loading, setLoading] = useState(true);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const initialCache = useRef(loadCache()).current;
+  const [featuredArticle, setFeaturedArticle] = useState<Article | null>(initialCache?.featured ?? null);
+  const [newsPool, setNewsPool] = useState<Article[]>(initialCache?.newsPool ?? []);
+  const [nriPool, setNriPool] = useState<Article[]>(initialCache?.nriPool ?? []);
+  const [sectionPools, setSectionPools] = useState<Record<string, Article[]>>(initialCache?.sectionPools ?? {});
+  const [loading, setLoading] = useState(!initialCache);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(initialCache ? new Date(initialCache.ts) : null);
 
   useEffect(() => {
+    // If we have cached data, skip the fetch on mount (back-button case)
+    if (initialCache) return;
+
     const timeout = setTimeout(() => setLoading(false), 8000);
     Promise.all([
       getFeaturedArticle().catch(() => null),
@@ -187,14 +220,20 @@ export default function Index() {
       ),
     ]).then(([featured, indiaNews, worldNews, ...catResults]) => {
       clearTimeout(timeout);
-      setFeaturedArticle(featured as Article | null);
-      setNewsPool(indiaNews as Article[]);
-      setNriPool(worldNews as Article[]);
-      setSectionPools(
-        Object.fromEntries(catResults as Array<readonly [string, Article[]]>),
-      );
+      const f = featured as Article | null;
+      const n = indiaNews as Article[];
+      const nri = worldNews as Article[];
+      const sp = Object.fromEntries(catResults as Array<readonly [string, Article[]]>);
+
+      setFeaturedArticle(f);
+      setNewsPool(n);
+      setNriPool(nri);
+      setSectionPools(sp);
       setLastUpdated(new Date());
       setLoading(false);
+
+      // Save to cache for back-button restore
+      saveCache({ ts: Date.now(), featured: f, newsPool: n, nriPool: nri, sectionPools: sp });
     });
   }, []);
 
@@ -211,21 +250,23 @@ export default function Index() {
     const savedY = sessionStorage.getItem("homeScrollY");
     if (!savedY) return;
     const targetY = parseInt(savedY, 10);
+    if (targetY <= 0) return;
     sessionStorage.removeItem("homeScrollY");
 
-    // Keep retrying scroll restore for up to 2s as images/content load
-    let attempts = 0;
-    const maxAttempts = 40;
-    const tryRestore = () => {
+    // With cached data, content renders instantly — use rAF for one-pass restore
+    requestAnimationFrame(() => {
       window.scrollTo(0, targetY);
-      attempts++;
-      if (attempts < maxAttempts && Math.abs(window.scrollY - targetY) > 50) {
-        setTimeout(tryRestore, 50);
-      }
-    };
-    // Initial delay for layout, then retry
-    const t = setTimeout(tryRestore, 50);
-    return () => clearTimeout(t);
+      // Fallback: retry a few times for lazy-loaded images that change layout
+      let attempts = 0;
+      const retry = () => {
+        if (Math.abs(window.scrollY - targetY) > 50 && attempts < 10) {
+          window.scrollTo(0, targetY);
+          attempts++;
+          requestAnimationFrame(retry);
+        }
+      };
+      requestAnimationFrame(retry);
+    });
   }, [loading]);
 
   const layout = useMemo(() => {
