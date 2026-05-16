@@ -70,7 +70,7 @@ export default function FeaturedHero({ article }: { article: Article }) {
       );
     }
 
-    // Landscape: full-bleed background (existing)
+    // Landscape: full-bleed background
     return (
       <section className="relative w-full overflow-hidden rounded-lg">
         <img
@@ -78,8 +78,8 @@ export default function FeaturedHero({ article }: { article: Article }) {
           alt={article.title}
           loading="eager"
           referrerPolicy="no-referrer"
-          className="w-full h-auto object-contain"
-          style={{ maxHeight: "450px" }}
+          className="w-full h-auto block"
+          style={{ minHeight: "200px", maxHeight: "500px", objectFit: "cover", objectPosition: "center 20%" }}
         />
         <div
           className="absolute inset-0"
