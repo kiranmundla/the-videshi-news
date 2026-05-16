@@ -102,6 +102,9 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
           WebkitOverflowScrolling: "touch",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
+          scrollSnapType: "x mandatory",
+          paddingLeft: "4%",
+          paddingRight: "4%",
         } as React.CSSProperties}
       >
         {photos.map((photo, i) => (
@@ -118,6 +121,7 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
               background: "#1a1a1a",
               cursor: onPhotoClick ? "pointer" : "default",
               boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+              scrollSnapAlign: "center",
             }}
           >
             <img
