@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Article, formatShortDate, readingTime } from "@/lib/articles";
 import HeroImage, { isValidImage } from "@/components/HeroImage";
@@ -61,6 +62,11 @@ export default function ArticleCard({
   const saveScroll = () => {
     sessionStorage.setItem("homeScrollY", window.scrollY.toString());
   };
+
+  // Runtime orientation detection for images without w/h URL params
+  const urlOrientation = getImageOrientation(article.hero_image_url);
+  const [runtimeOrientation, setRuntimeOrientation] = useState<"landscape" | "portrait" | null>(null);
+  const effectiveOrientation = urlOrientation ?? runtimeOrientation;
 
   // ===================== COMPACT =====================
   if (variant === "compact") {
@@ -132,7 +138,7 @@ export default function ArticleCard({
               alt={article.title}
               loading="lazy"
               className="w-full h-full object-cover"
-              style={{ objectPosition: "center" }}
+              style={{ objectPosition: "center 20%" }}
             />
           </div>
         </figure>
@@ -217,10 +223,8 @@ export default function ArticleCard({
     );
   }
 
-  const orientation = getImageOrientation(article.hero_image_url);
-
   // Portrait/square images → side-by-side layout (only for "card" variant)
-  if (orientation === 'portrait' && variant === 'card') {
+  if (effectiveOrientation === 'portrait' && variant === 'card') {
     return (
       <Link to={href} onClick={saveScroll} className="group flex gap-4">
         <div className="w-[120px] md:w-[160px] flex-shrink-0">
@@ -229,6 +233,7 @@ export default function ArticleCard({
             alt={article.title}
             loading="lazy"
             className="w-full h-auto rounded object-cover"
+            onOrientationDetected={setRuntimeOrientation}
           />
         </div>
         <div className="flex-1 min-w-0">
@@ -266,7 +271,9 @@ export default function ArticleCard({
             alt={article.title}
             loading={variant === "hero" ? "eager" : "lazy"}
             className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-            style={{ objectPosition: "center" }}
+            style={{ objectPosition: "center 20%" }}
+            onOrientationDetected={setRuntimeOrientation}
+          />
           />
         </div>
       </figure>

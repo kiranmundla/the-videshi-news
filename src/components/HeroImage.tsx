@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 type Props = {
   src?: string | null;
@@ -7,6 +7,7 @@ type Props = {
   loading?: "eager" | "lazy";
   category?: string;
   style?: React.CSSProperties;
+  onOrientationDetected?: (orientation: "landscape" | "portrait") => void;
 };
 
 export function isValidImage(src?: string | null): boolean {
@@ -25,8 +26,16 @@ export function isValidImage(src?: string | null): boolean {
   return true;
 }
 
-export default function HeroImage({ src, alt, className = "", loading = "lazy", style }: Props) {
+export default function HeroImage({ src, alt, className = "", loading = "lazy", style, onOrientationDetected }: Props) {
   const [failed, setFailed] = useState(false);
+
+  const handleLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
+    if (!onOrientationDetected) return;
+    const img = e.currentTarget;
+    const ratio = img.naturalWidth / img.naturalHeight;
+    onOrientationDetected(ratio > 1.2 ? "landscape" : "portrait");
+  }, [onOrientationDetected]);
+
   if (!isValidImage(src) || failed) return null;
   return (
     <img
@@ -35,6 +44,7 @@ export default function HeroImage({ src, alt, className = "", loading = "lazy", 
       loading={loading}
       referrerPolicy="no-referrer"
       onError={() => setFailed(true)}
+      onLoad={handleLoad}
       className={className}
       style={style}
     />

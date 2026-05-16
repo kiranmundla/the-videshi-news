@@ -51,9 +51,34 @@ BAD_FILENAME_RE = re.compile(
     r"globe|Globe|locator|Locator|location_map|Location_map|"
     r"pictogram|Pictogram|symbol|Symbol|no_image|placeholder|"
     r"screenshot|Screenshot|UI_|_UI\.|interface|webpage|text_message|"
-    r"book_cover|\.djvu|\.tiff?$",
+    r"book_cover|\.djvu|\.tiff?$|"
+    r"Taj_Mahal|taj_mahal|India_Gate|Gateway_of_India|"
+    r"Charminar|Hawa_Mahal|Golden_Temple|Lotus_Temple|"
+    r"Qutub_Minar|Victoria_Memorial|Red_Fort",
     re.IGNORECASE,
 )
+
+# Geographic entities whose Wikipedia lead images are tourist landmarks,
+# not useful for news articles (storms, politics, crime, etc.)
+GEOGRAPHIC_ENTITIES = {
+    # Indian states & UTs
+    "andhra pradesh", "arunachal pradesh", "assam", "bihar", "chhattisgarh",
+    "goa", "gujarat", "haryana", "himachal pradesh", "jharkhand", "karnataka",
+    "kerala", "madhya pradesh", "maharashtra", "manipur", "meghalaya", "mizoram",
+    "nagaland", "odisha", "punjab", "rajasthan", "sikkim", "tamil nadu",
+    "telangana", "tripura", "uttar pradesh", "uttarakhand", "west bengal",
+    "delhi", "jammu and kashmir", "ladakh", "chandigarh", "puducherry",
+    # Countries
+    "india", "pakistan", "bangladesh", "sri lanka", "nepal", "china",
+    "united states", "united kingdom", "canada", "australia", "germany",
+    "france", "japan", "south korea", "russia", "brazil", "mexico",
+    "saudi arabia", "united arab emirates", "israel", "iran", "iraq",
+    "afghanistan", "myanmar", "thailand", "singapore", "malaysia", "indonesia",
+    # Major cities that resolve to landmark images
+    "mumbai", "new delhi", "bengaluru", "hyderabad", "chennai", "kolkata",
+    "pune", "ahmedabad", "jaipur", "lucknow", "agra", "varanasi",
+    "new york", "london", "toronto", "sydney", "dubai", "washington",
+}
 
 # Ambiguous short entities that match wrong things on Commons
 AMBIGUOUS_ENTITIES = {
@@ -212,6 +237,7 @@ def score_image_confidence(source_type, entity_query, wikipedia_page_title, arti
     Score confidence 1-5 for a found image.
     
     5: Exact match — Wikipedia page title is a clear substring of the headline
+       AND passes geographic + filename relevance checks
     4: Strong match — high word overlap between page title and headline
     3: Moderate match — partial word overlap
     2: Loosely related
@@ -221,8 +247,16 @@ def score_image_confidence(source_type, entity_query, wikipedia_page_title, arti
     """
     headline = (article.get("headline") or "").lower()
     page_lower = (wikipedia_page_title or "").lower().replace("_", " ")
+    category = (article.get("category") or "").lower()
     
     if source_type == "wikipedia":
+        # BLOCK: geographic entities for non-travel articles
+        # Their Wikipedia lead images are tourist landmarks, not relevant to news
+        entity_lower = (entity_query or "").lower().strip()
+        if entity_lower in GEOGRAPHIC_ENTITIES and category != "travel":
+            print(f"    🚫 Geographic entity '{entity_query}' blocked for non-travel article")
+            return 1
+        
         # Strict check: is the full page title (cleaned) a substring of the headline?
         page_clean = page_lower.strip()
         if page_clean and page_clean in headline:
@@ -336,6 +370,73 @@ def search_wikipedia_image(entity):
     return None, None
 
 
+def _image_filename_relevant(image_url, article):
+    """
+    Cross-validate that the image filename is plausibly related to the article.
+    
+    Catches cases like:
+    - "Rare Bear" (the racing aircraft) for a bear attack article
+    - "Taj Mahal" for a storm/disaster article about Uttar Pradesh
+    - Random trophy images for broadcast rights articles
+    
+    Returns True if the image seems relevant, False if suspicious.
+    """
+    headline = (article.get("headline") or "").lower()
+    category = (article.get("category") or "").lower()
+    
+    # Extract filename from URL
+    filename = image_url.split("/")[-1].split("?")[0].lower()
+    filename_clean = filename.replace("_", " ").replace("-", " ").replace("%20", " ")
+    
+    # Known irrelevant image patterns for specific contexts
+    LANDMARK_FILENAMES = {
+        "taj mahal", "india gate", "gateway of india", "charminar",
+        "hawa mahal", "golden temple", "lotus temple", "qutub minar",
+        "victoria memorial", "red fort", "mysore palace", "meenakshi",
+    }
+    
+    # If filename contains a famous landmark but headline is about disaster/crime/politics, block
+    non_travel_keywords = {"storm", "death", "kill", "attack", "flood", "fire", "crash",
+                           "fraud", "arrest", "scam", "riot", "protest", "war", "bomb",
+                           "earthquake", "cyclone", "drought", "famine", "shooting",
+                           "murder", "rape", "assault", "robbery", "kidnap", "missing"}
+    
+    headline_is_negative = any(kw in headline for kw in non_travel_keywords)
+    filename_is_landmark = any(lm in filename_clean for lm in LANDMARK_FILENAMES)
+    
+    if headline_is_negative and filename_is_landmark:
+        return False
+    
+    # If the entity matched but the image is of something completely different,
+    # check that at least ONE significant word from the headline appears in the filename
+    # (only for entities that are common words / have multiple meanings)
+    entity_query = (article.get("image_search_query") or "").lower()
+    entities = article.get("image_entities") or []
+    
+    # Multi-meaning entity detection: short entities (1-2 words) that could mean different things
+    # For these, require filename to share at least one headline keyword
+    MULTI_MEANING_CHECK_WORDS = {"bear", "fire", "ice", "ram", "bat", "rock", "apple",
+                                  "jaguar", "mercury", "phoenix", "titan", "giant",
+                                  "warrior", "king", "queen", "prince", "crown"}
+    
+    entity_words = set()
+    for e in entities:
+        if isinstance(e, str):
+            entity_words.update(w.lower() for w in e.split())
+    
+    if entity_words & MULTI_MEANING_CHECK_WORDS:
+        # This entity has a common word that could mean something else
+        # Check that the filename relates to the article context, not just the entity
+        headline_words = {w for w in headline.split() if len(w) > 3}
+        filename_words = set(filename_clean.split())
+        # Need at least one headline word (beyond the entity itself) in the filename
+        overlap = (headline_words & filename_words) - entity_words
+        if not overlap:
+            return False
+    
+    return True
+
+
 def search_wikipedia_for_article(article):
     """
     Try Wikipedia page image lookups for each entity in the article.
@@ -362,6 +463,11 @@ def search_wikipedia_for_article(article):
             # Score confidence
             confidence = score_image_confidence("wikipedia", entity, entity, article)
             if confidence >= 5:
+                # Extra check: validate image filename against headline keywords
+                if not _image_filename_relevant(url, article):
+                    print(f"  ⏭ Image filename irrelevant to headline: {url.split('/')[-1][:60]}")
+                    time.sleep(POLITE_DELAY)
+                    continue
                 print(f"  ✅ Found via Wikipedia: {entity} (confidence: {confidence}/5)")
                 return url, attr
             else:
