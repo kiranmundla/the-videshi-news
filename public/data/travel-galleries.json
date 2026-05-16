@@ -20,6 +20,34 @@
       {
         "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/rajasthan-5.jpg",
         "caption": "Thar Desert Safari"
+      },
+      {
+        "src": "https://images.pexels.com/photos/34548994/pexels-photo-34548994.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Explore the historical beauty of Alwar City Palace through an archway view."
+      },
+      {
+        "src": "https://images.pexels.com/photos/33672501/pexels-photo-33672501.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Stunning sandstone palace entrance in Jaisalmer, Rajasthan, India, with ornate steps and potted plants."
+      },
+      {
+        "src": "https://images.pexels.com/photos/33797768/pexels-photo-33797768.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Scenic view of Neemrana Fort Palace against a dramatic sky, highlighting Rajasthan's architectural beauty."
+      },
+      {
+        "src": "https://images.pexels.com/photos/33672503/pexels-photo-33672503.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "A stunning view of Suryagarh Hotel's courtyard in Jaisalmer, showcasing traditional Rajasthan architecture."
+      },
+      {
+        "src": "https://images.pexels.com/photos/570031/pexels-photo-570031.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Stunning view of Udaipur City Palace's architectural facade in Rajasthan."
+      },
+      {
+        "src": "https://images.pexels.com/photos/33689320/pexels-photo-33689320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Elegant sandstone architecture of a heritage palace in Jaisalmer, Rajasthan, India."
+      },
+      {
+        "src": "https://images.pexels.com/photos/33230289/pexels-photo-33230289.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Explore the grandeur of Udaipur City Palace in Rajasthan, India, with its intricate architecture and royal heritage."
       }
     ],
     "experiences": {
@@ -31,6 +59,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/rajasthan-exp-amber-fort-2.jpg",
           "caption": "Amber Fort interior"
+        },
+        {
+          "src": "https://images.pexels.com/photos/10390193/pexels-photo-10390193.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A breathtaking aerial view of Amber Fort, Jaipur with Maota Lake and scenic surroundings."
+        },
+        {
+          "src": "https://images.pexels.com/photos/18881274/pexels-photo-18881274.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Historic Jaigarh Fort with rugged hills and impressive walls in Jaipur, India."
+        },
+        {
+          "src": "https://images.pexels.com/photos/31446118/pexels-photo-31446118.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning architectural detail of Amber Fort in Jaipur, showcasing intricate design."
         }
       ],
       "Mehrangarh Fort": [
@@ -41,6 +81,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/rajasthan-exp-mehrangarh-fort-2.jpg",
           "caption": "View from Mehrangarh"
+        },
+        {
+          "src": "https://images.pexels.com/photos/797824/pexels-photo-797824.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning view of Mehrangarh Fort and the Blue City of Jodhpur, Rajasthan."
+        },
+        {
+          "src": "https://images.pexels.com/photos/19160107/pexels-photo-19160107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Impressive view of Mehrangarh Fort's detailed facade against clear blue sky, Jodhpur, India."
+        },
+        {
+          "src": "https://images.pexels.com/photos/2491827/pexels-photo-2491827.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Low angle view of the historic Mehrangarh Fort with sunlit stone architecture."
         }
       ],
       "Lake Pichola": [
@@ -51,6 +103,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/rajasthan-exp-lake-pichola-2.jpg",
           "caption": "City Palace, Udaipur"
+        },
+        {
+          "src": "https://images.pexels.com/photos/35266297/pexels-photo-35266297.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A serene view of a Lake Palace in India with a vibrant sunset sky and birds in flight."
+        },
+        {
+          "src": "https://images.pexels.com/photos/7195782/pexels-photo-7195782.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning twilight view of Udaipur's Lake Palace illuminated, reflecting serene lake vibes."
+        },
+        {
+          "src": "https://images.pexels.com/photos/35455626/pexels-photo-35455626.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Serene view of Lake Palace hotel reflecting on Pichola Lake in Udaipur, India."
         }
       ],
       "Jaisalmer Desert": [
@@ -61,6 +125,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/rajasthan-exp-jaisalmer-desert-2.jpg",
           "caption": "Desert dunes, Rajasthan"
+        },
+        {
+          "src": "https://images.pexels.com/photos/36353482/pexels-photo-36353482.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Camels adorned in vibrant blankets resting in the Jaisalmer desert."
+        },
+        {
+          "src": "https://images.pexels.com/photos/30573733/pexels-photo-30573733.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A camel rider in vibrant traditional attire traverses the sandy dunes of Jaisalmer, Rajasthan."
+        },
+        {
+          "src": "https://images.pexels.com/photos/36020918/pexels-photo-36020918.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A scenic camel ride at sunset in the deserts of Jaisalmer, Rajasthan, offering a beautiful silhouette."
         }
       ],
       "Pushkar": [
@@ -71,6 +147,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/rajasthan-exp-pushkar-2.jpg",
           "caption": "Pushkar Lake temple"
+        },
+        {
+          "src": "https://images.pexels.com/photos/19160128/pexels-photo-19160128.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Tranquil view of Pushkar Lake with people and ghats in Rajasthan, India."
+        },
+        {
+          "src": "https://images.pexels.com/photos/19160125/pexels-photo-19160125.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Aerial view of Pushkar Lake with bustling townscape and hills in Rajasthan, India."
+        },
+        {
+          "src": "https://images.pexels.com/photos/36795132/pexels-photo-36795132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Beautiful architecture and reflection at Pushkar Lake, Rajasthan, India."
         }
       ]
     }
@@ -96,6 +184,34 @@
       {
         "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-5.jpg",
         "caption": "Kerala Sadhya Feast"
+      },
+      {
+        "src": "https://images.pexels.com/photos/19743480/pexels-photo-19743480.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Discover the lush greenery and tranquil waters of the Alappuzha backwaters in Kerala, India."
+      },
+      {
+        "src": "https://images.pexels.com/photos/20830783/pexels-photo-20830783.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "A man paddling a canoe on the serene Alappuzha backwaters at dawn, India."
+      },
+      {
+        "src": "https://images.pexels.com/photos/13044389/pexels-photo-13044389.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Scenic view of the Alappuzha backwaters at sunset with lush greenery and tranquil water reflections."
+      },
+      {
+        "src": "https://images.pexels.com/photos/30778230/pexels-photo-30778230.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "View of traditional houses along Kerala's serene backwaters surrounded by palm trees."
+      },
+      {
+        "src": "https://images.pexels.com/photos/36718000/pexels-photo-36718000.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Traditional houseboat cruising on serene Kerala backwaters lined with palm trees."
+      },
+      {
+        "src": "https://images.pexels.com/photos/28700142/pexels-photo-28700142.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Scenic houseboat amidst vibrant pink lotus flowers on Kerala's tranquil backwaters, framed by lush palm trees."
+      },
+      {
+        "src": "https://images.pexels.com/photos/35347836/pexels-photo-35347836.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Scenic view of Kerala's tranquil backwaters with lush palm trees and traditional houseboats."
       }
     ],
     "experiences": {
@@ -107,6 +223,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-exp-alleppey-houseboat-2.jpg",
           "caption": "Kerala backwaters"
+        },
+        {
+          "src": "https://images.pexels.com/photos/15308719/pexels-photo-15308719.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Peaceful view of Kerala backwaters with houseboats, palm trees under clear skies."
+        },
+        {
+          "src": "https://images.pexels.com/photos/28890056/pexels-photo-28890056.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Serene view of houseboats on Kerala's lush backwaters under a bright sky."
+        },
+        {
+          "src": "https://images.pexels.com/photos/17928231/pexels-photo-17928231.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Scenic view of a traditional Kerala houseboat cruising through lush backwaters."
         }
       ],
       "Munnar Tea": [
@@ -117,6 +245,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-exp-munnar-tea-2.jpg",
           "caption": "Tea fields, Munnar"
+        },
+        {
+          "src": "https://images.pexels.com/photos/35491392/pexels-photo-35491392.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Explore the stunning green tea plantations on rolling hills, capturing nature's beauty."
+        },
+        {
+          "src": "https://images.pexels.com/photos/13045091/pexels-photo-13045091.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Explore the lush, rolling tea plantation hills of Munnar, Kerala, India in this stunning aerial view."
+        },
+        {
+          "src": "https://images.pexels.com/photos/29280008/pexels-photo-29280008.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Scenic view of lush green tea plantations in Munnar, Kerala, India, showing rolling hills and vibrant greenery."
         }
       ],
       "Fort Kochi": [
@@ -127,6 +267,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-exp-fort-kochi-2.jpg",
           "caption": "Fort Kochi heritage"
+        },
+        {
+          "src": "https://images.pexels.com/photos/36778897/pexels-photo-36778897.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Scenic view of traditional Chinese fishing nets at Fort Kochi, Kerala, India."
+        },
+        {
+          "src": "https://images.pexels.com/photos/35347834/pexels-photo-35347834.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Scenic view of Chinese fishing nets in Kochi, Kerala with fishermen working on the shore."
+        },
+        {
+          "src": "https://images.pexels.com/photos/28002932/pexels-photo-28002932.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Traditional Chinese fishing nets silhouetted against a clear blue sky in Kerala."
         }
       ],
       "Periyar Wildlife": [
@@ -137,6 +289,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-exp-periyar-wildlife-2.jpg",
           "caption": "Periyar lake boats"
+        },
+        {
+          "src": "https://images.pexels.com/photos/14730414/pexels-photo-14730414.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A great cormorant perched on a signpost at Periyar Lake in Kerala, India, amidst lush forest."
+        },
+        {
+          "src": "https://images.pexels.com/photos/26969129/pexels-photo-26969129.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Tranquil view of Periyar Lake with lush forest reflections in Kerala, India."
+        },
+        {
+          "src": "https://images.pexels.com/photos/20696240/pexels-photo-20696240.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Tranquil scene of wooden rafts reflecting on serene waters surrounded by lush greenery in Periyar, India."
         }
       ],
       "Kathakali": [
@@ -147,6 +311,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-exp-kathakali-2.jpg",
           "caption": "Traditional Kathakali makeup"
+        },
+        {
+          "src": "https://images.pexels.com/photos/8610533/pexels-photo-8610533.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Vibrant display of Kathakali dancers in traditional costumes on stage in Thiruvananthapuram."
+        },
+        {
+          "src": "https://images.pexels.com/photos/31843397/pexels-photo-31843397.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Kathakali \u2014 Photo by Abhishek C"
+        },
+        {
+          "src": "https://images.pexels.com/photos/36998147/pexels-photo-36998147.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Colorful Kathakali dancer in traditional attire performing in Kumily, Kerala, India."
         }
       ]
     }
@@ -172,6 +348,34 @@
       {
         "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-5.jpg",
         "caption": "Palolem Beach"
+      },
+      {
+        "src": "https://images.pexels.com/photos/28520254/pexels-photo-28520254.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Beautiful sunset over the Arabian Sea at Chapora Beach, India, with a serene ocean view."
+      },
+      {
+        "src": "https://images.pexels.com/photos/4429334/pexels-photo-4429334.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "A motorcycle is parked on a tranquil Goa beach as the sun sets over the ocean. Perfect for travel inspiration."
+      },
+      {
+        "src": "https://images.pexels.com/photos/8037061/pexels-photo-8037061.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Breathtaking sunset view over a tropical beach with silhouetted palm trees in India."
+      },
+      {
+        "src": "https://images.pexels.com/photos/1604287/pexels-photo-1604287.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "People silhouetted against a vibrant ocean sunset in Candolim, India."
+      },
+      {
+        "src": "https://images.pexels.com/photos/27869489/pexels-photo-27869489.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Peaceful beach view with rocks and gentle waves under a warm sunset sky."
+      },
+      {
+        "src": "https://images.pexels.com/photos/28518933/pexels-photo-28518933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "A tranquil view of Chapora Beach in Goa, India captured during sunset with gentle waves and a serene sky."
+      },
+      {
+        "src": "https://images.pexels.com/photos/14581330/pexels-photo-14581330.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Dramatic coastline of Goa with swaying palm trees and rocky shore at sunset."
       }
     ],
     "experiences": {
@@ -183,6 +387,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-exp-old-goa-churches-2.jpg",
           "caption": "Se Cathedral, Goa"
+        },
+        {
+          "src": "https://images.pexels.com/photos/32979177/pexels-photo-32979177.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Detailed view of a crucifixion statue in a historic church in \u00c1vila, Spain."
+        },
+        {
+          "src": "https://images.pexels.com/photos/26795671/pexels-photo-26795671.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Low angle view of an old brick building in Goa showcasing historical architecture."
+        },
+        {
+          "src": "https://images.pexels.com/photos/30605639/pexels-photo-30605639.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A detailed statue depicting Jesus carrying the cross, symbolizing a key biblical moment."
         }
       ],
       "Palolem Beach": [
@@ -193,12 +409,40 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-exp-palolem-beach-2.jpg",
           "caption": "Beach shacks, Goa"
+        },
+        {
+          "src": "https://images.pexels.com/photos/32262463/pexels-photo-32262463.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Scenic aerial view of Palolem Beach, Goa during sunset, showcasing sandy shores and lush green surroundings."
+        },
+        {
+          "src": "https://images.pexels.com/photos/6274178/pexels-photo-6274178.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Panoramic view of a tropical beach with palm trees and vibrant beach huts under a clear blue sky."
+        },
+        {
+          "src": "https://images.pexels.com/photos/32262464/pexels-photo-32262464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A stunning aerial view of Palolem Beach in Goa, India at sunset, lined with lush palm trees."
         }
       ],
       "Spice Plantation": [
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-exp-spice-plantation-1.jpg",
           "caption": "Goa spice garden"
+        },
+        {
+          "src": "https://images.pexels.com/photos/8289875/pexels-photo-8289875.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Close-up of ripe red chili peppers hanging on a plant with lush green leaves in Indonesia."
+        },
+        {
+          "src": "https://images.pexels.com/photos/13808031/pexels-photo-13808031.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A close-up shot of nutmeg held in a hand in Munnar, Kerala. Vibrant and detailed."
+        },
+        {
+          "src": "https://images.pexels.com/photos/19115418/pexels-photo-19115418.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Aerial view of a river, palm trees, and a rural road in Chorao, Goa, India during daytime."
+        },
+        {
+          "src": "https://images.pexels.com/photos/18861235/pexels-photo-18861235.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Lush green leaves of black pepper plants in an outdoor setting showcasing natural growth."
         }
       ],
       "Dudhsagar Falls": [
@@ -209,6 +453,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-exp-dudhsagar-falls-2.jpg",
           "caption": "Dudhsagar railway bridge"
+        },
+        {
+          "src": "https://images.pexels.com/photos/29067614/pexels-photo-29067614.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A beautiful waterfall cascading through a dense forest, creating a serene nature scene."
+        },
+        {
+          "src": "https://images.pexels.com/photos/33889675/pexels-photo-33889675.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Breathtaking view of cascading waterfalls amidst dense greenery in Chamarajnagar, India."
+        },
+        {
+          "src": "https://images.pexels.com/photos/28824190/pexels-photo-28824190.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Powerful waterfall cascading amidst dense greenery and rocky terrain."
         }
       ],
       "Fontainhas": [
@@ -219,6 +475,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-exp-fontainhas-2.jpg",
           "caption": "Portuguese heritage, Goa"
+        },
+        {
+          "src": "https://images.pexels.com/photos/5909775/pexels-photo-5909775.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Cityscape of aged shabby buildings with cracks on walls and transport in tropical country"
+        },
+        {
+          "src": "https://images.pexels.com/photos/11438873/pexels-photo-11438873.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A woman in an orange dress joyfully runs down a colorful street in Panaji, India."
+        },
+        {
+          "src": "https://images.pexels.com/photos/35333488/pexels-photo-35333488.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Beautiful view of Se Cathedral, a historic landmark in Old Goa, under a bright blue sky."
         }
       ]
     }
@@ -244,6 +512,34 @@
       {
         "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-5.jpg",
         "caption": "Indian Ocean Sunset"
+      },
+      {
+        "src": "https://images.pexels.com/photos/28844362/pexels-photo-28844362.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Beautiful tropical island with palm trees and turquoise ocean under a clear sky."
+      },
+      {
+        "src": "https://images.pexels.com/photos/30037391/pexels-photo-30037391.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Breathtaking aerial view showcasing the vibrant turquoise waters surrounding a Maldives island."
+      },
+      {
+        "src": "https://images.pexels.com/photos/29289151/pexels-photo-29289151.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Experience the serene beauty of Maldives with turquoise waters and white sandy beach under a clear blue sky."
+      },
+      {
+        "src": "https://images.pexels.com/photos/1268860/pexels-photo-1268860.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "A stunning aerial view captures a lush island surrounded by turquoise waters in the Maldives."
+      },
+      {
+        "src": "https://images.pexels.com/photos/7732931/pexels-photo-7732931.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Discover the serene beauty of a tropical beach with coconut trees and turquoise waters in the Maldives."
+      },
+      {
+        "src": "https://images.pexels.com/photos/457884/pexels-photo-457884.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Discover a tranquil tropical island surrounded by crystal-clear waters in Laamu Atoll, Maldives."
+      },
+      {
+        "src": "https://images.pexels.com/photos/32734648/pexels-photo-32734648.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Captivating aerial view of a luxurious island resort in the Maldives showcasing turquoise waters and palm trees."
       }
     ],
     "experiences": {
@@ -255,6 +551,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-snorkeling-2.jpg",
           "caption": "Tropical fish, Maldives"
+        },
+        {
+          "src": "https://images.pexels.com/photos/5805482/pexels-photo-5805482.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Vibrant tropical fish swimming through a beautiful coral reef in crystal-clear blue waters."
+        },
+        {
+          "src": "https://images.pexels.com/photos/7916175/pexels-photo-7916175.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Vibrant coral and fish life beneath the Maldivian waters, showcasing marine biodiversity."
+        },
+        {
+          "src": "https://images.pexels.com/photos/7916170/pexels-photo-7916170.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Two vivid raccoon butterflyfish swimming in the coral reefs of the Maldives."
         }
       ],
       "Overwater Villa": [
@@ -265,6 +573,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-overwater-villa-2.jpg",
           "caption": "Maldives luxury resort"
+        },
+        {
+          "src": "https://images.pexels.com/photos/30037392/pexels-photo-30037392.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Aerial view of stunning overwater villas with a vibrant sunset over a tropical ocean."
+        },
+        {
+          "src": "https://images.pexels.com/photos/9394311/pexels-photo-9394311.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Scenic view of overwater bungalows with a clear blue ocean and sky, perfect for tropical resort escape."
+        },
+        {
+          "src": "https://images.pexels.com/photos/3293192/pexels-photo-3293192.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Splendid overwater villas in Maldives offering a serene and luxurious vacation experience."
         }
       ],
       "Sandbank": [
@@ -275,6 +595,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-sandbank-2.jpg",
           "caption": "Crystal clear waters"
+        },
+        {
+          "src": "https://images.pexels.com/photos/30037452/pexels-photo-30037452.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning aerial shot of a sandy island surrounded by turquoise waters in the ocean."
+        },
+        {
+          "src": "https://images.pexels.com/photos/15883413/pexels-photo-15883413.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A stunning aerial shot of a tropical beach and turquoise sea in Dhigurah, Maldives."
+        },
+        {
+          "src": "https://images.pexels.com/photos/15923578/pexels-photo-15923578.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Aerial view of a sandbank in the Maldives with turquoise water and clear skies, ideal for vacation imagery."
         }
       ],
       "Bioluminescent Beach": [
@@ -285,6 +617,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-bioluminescent-beach-2.jpg",
           "caption": "Bioluminescent shore"
+        },
+        {
+          "src": "https://images.pexels.com/photos/26794599/pexels-photo-26794599.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Captivating image of glowing bioluminescent waves against a rugged rocky shore at night."
+        },
+        {
+          "src": "https://images.pexels.com/photos/26794597/pexels-photo-26794597.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning night view of bioluminescent waters along a rocky coast, glowing bright blue."
+        },
+        {
+          "src": "https://images.pexels.com/photos/33697123/pexels-photo-33697123.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A mesmerizing view of glowing jellyfish in an aquarium exhibit, showcasing their ethereal beauty underwater."
         }
       ],
       "Whale Shark": [
@@ -295,6 +639,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-whale-shark-2.jpg",
           "caption": "Swimming with whale sharks"
+        },
+        {
+          "src": "https://images.pexels.com/photos/6530412/pexels-photo-6530412.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning underwater view of a whale shark with scuba divers in the background, showcasing marine life."
+        },
+        {
+          "src": "https://images.pexels.com/photos/7905793/pexels-photo-7905793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A woman gracefully swimming atop a whale shark in the deep blue ocean, Indonesia."
+        },
+        {
+          "src": "https://images.pexels.com/photos/4552982/pexels-photo-4552982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Back view of full body of unrecognizable male swimmer in oxygen mask swimming undersea near big fish"
         }
       ]
     }
@@ -320,6 +676,34 @@
       {
         "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-5.jpg",
         "caption": "Elephant Gathering"
+      },
+      {
+        "src": "https://images.pexels.com/photos/36847028/pexels-photo-36847028.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Breathtaking view of misty mountains and forests in Sri Lanka, under a clear blue sky."
+      },
+      {
+        "src": "https://images.pexels.com/photos/37411696/pexels-photo-37411696.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "A beautiful landscape of Batticaloa Lagoon with a lighthouse and lush greenery under a clear sky."
+      },
+      {
+        "src": "https://images.pexels.com/photos/36847041/pexels-photo-36847041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Stunning panoramic view of misty mountains in Sri Lanka under a clear blue sky."
+      },
+      {
+        "src": "https://images.pexels.com/photos/31001487/pexels-photo-31001487.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Beautiful landscape with river, hills, and a dramatic sky at dusk in Sri Lanka."
+      },
+      {
+        "src": "https://images.pexels.com/photos/36872965/pexels-photo-36872965.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Beautiful view of water hyacinths and wetlands under a clear blue sky in Vavuniya, Sri Lanka."
+      },
+      {
+        "src": "https://images.pexels.com/photos/31001484/pexels-photo-31001484.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Aerial view of lush green Sri Lankan hills with a calm river and distant mountains under a cloudy sky."
+      },
+      {
+        "src": "https://images.pexels.com/photos/37278390/pexels-photo-37278390.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Tranquil lake scene with distant mountains under a calm sky in Sri Lanka's North Western Province."
       }
     ],
     "experiences": {
@@ -331,6 +715,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-exp-kandy-ella-train-2.jpg",
           "caption": "Nine Arches Bridge view"
+        },
+        {
+          "src": "https://images.pexels.com/photos/321569/pexels-photo-321569.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Train passing through lush green landscapes of Ella, Sri Lanka, on a sunny day."
+        },
+        {
+          "src": "https://images.pexels.com/photos/2403209/pexels-photo-2403209.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Scenic view of Nine Arches Bridge with train passing through lush greenery in Sri Lanka."
+        },
+        {
+          "src": "https://images.pexels.com/photos/34218647/pexels-photo-34218647.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Drone view of the stunning Nine Arches Bridge surrounded by lush greenery in Ella, Sri Lanka."
         }
       ],
       "Sigiriya Rock": [
@@ -341,6 +737,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-exp-sigiriya-rock-2.jpg",
           "caption": "Climbing Sigiriya"
+        },
+        {
+          "src": "https://images.pexels.com/photos/11138725/pexels-photo-11138725.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Sigiriya Rock \u2014 Photo by Maciej Cisowski"
+        },
+        {
+          "src": "https://images.pexels.com/photos/32547979/pexels-photo-32547979.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Explore the intricate design of ancient steps at Sigiriya Rock Fortress in Sri Lanka."
+        },
+        {
+          "src": "https://images.pexels.com/photos/32547982/pexels-photo-32547982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A scenic view of Sigiriya Rock Fortress surrounded by lush greenery and visitors."
         }
       ],
       "Galle Fort": [
@@ -351,6 +759,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-exp-galle-fort-2.jpg",
           "caption": "Galle Fort ramparts"
+        },
+        {
+          "src": "https://images.pexels.com/photos/33052041/pexels-photo-33052041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Galle Lighthouse on a scenic day with palm trees and coastal views in Sri Lanka."
+        },
+        {
+          "src": "https://images.pexels.com/photos/32574367/pexels-photo-32574367.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A picturesque view of Galle Lighthouse surrounded by palm trees in Sri Lanka's Galle Fort."
+        },
+        {
+          "src": "https://images.pexels.com/photos/1072531/pexels-photo-1072531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Scenic view of Galle Lighthouse amidst palm trees in Sri Lanka under a clear sky."
         }
       ],
       "Yala Safari": [
@@ -361,6 +781,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-exp-yala-safari-2.jpg",
           "caption": "Yala wildlife"
+        },
+        {
+          "src": "https://images.pexels.com/photos/17281950/pexels-photo-17281950.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A serene view of elephants roaming in Yala National Park's lush greenery."
+        },
+        {
+          "src": "https://images.pexels.com/photos/33130315/pexels-photo-33130315.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "The magnificent Sri Lankan leopard prowls on a tree branch in its natural habitat."
+        },
+        {
+          "src": "https://images.pexels.com/photos/10607669/pexels-photo-10607669.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A majestic Sri Lankan Leopard drinking water at a pond in its natural habitat."
         }
       ],
       "Nine Arches Bridge": [
@@ -371,6 +803,10 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-exp-nine-arches-bridge-2.jpg",
           "caption": "Train on Nine Arches"
+        },
+        {
+          "src": "https://images.pexels.com/photos/34218651/pexels-photo-34218651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Aerial shot of a dense tropical forest surrounding a bridge, showcasing natural beauty and engineering."
         }
       ]
     }
@@ -396,6 +832,34 @@
       {
         "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-5.jpg",
         "caption": "Balinese Temple Ceremony"
+      },
+      {
+        "src": "https://images.pexels.com/photos/34771555/pexels-photo-34771555.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Breathtaking view of sunset over Tanah Lot Temple in Bali, Indonesia."
+      },
+      {
+        "src": "https://images.pexels.com/photos/3840188/pexels-photo-3840188.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Ulun Danu Bratan Temple in Bali, Indonesia, beautifully reflected on the lake at twilight."
+      },
+      {
+        "src": "https://images.pexels.com/photos/6965013/pexels-photo-6965013.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "A scenic aerial view of verdant rice terraces lined with palm trees in misty countryside."
+      },
+      {
+        "src": "https://images.pexels.com/photos/6965301/pexels-photo-6965301.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Drone shot capturing the stunning green rice terraces in Bali, Indonesia, showcasing tropical landscape beauty."
+      },
+      {
+        "src": "https://images.pexels.com/photos/35008817/pexels-photo-35008817.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Stunning aerial view of Bali's coastline, vibrant ocean and lush greenery."
+      },
+      {
+        "src": "https://images.pexels.com/photos/35043040/pexels-photo-35043040.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Stunning aerial shot of a lush green coastline meeting the blue ocean in Bali."
+      },
+      {
+        "src": "https://images.pexels.com/photos/33628177/pexels-photo-33628177.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Explore the serene beauty of Padang Padang Beach in Bali featuring clear waters and lush greenery."
       }
     ],
     "experiences": {
@@ -407,6 +871,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-exp-tegallalang-rice-terraces-2.jpg",
           "caption": "Rice paddies, Bali"
+        },
+        {
+          "src": "https://images.pexels.com/photos/36965361/pexels-photo-36965361.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Aerial shot capturing the lush green Tegallalang Rice Terraces in Bali, Indonesia."
+        },
+        {
+          "src": "https://images.pexels.com/photos/36828569/pexels-photo-36828569.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Lush green rice terraces of Ubud, Bali, showcasing stunning terraced fields."
+        },
+        {
+          "src": "https://images.pexels.com/photos/36856727/pexels-photo-36856727.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A breathtaking aerial view of lush green rice terraces in Bali, Indonesia."
         }
       ],
       "Uluwatu Temple": [
@@ -417,6 +893,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-exp-uluwatu-temple-2.jpg",
           "caption": "Sunset at Uluwatu"
+        },
+        {
+          "src": "https://images.pexels.com/photos/34771557/pexels-photo-34771557.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Breathtaking view of Uluwatu Cliffs meeting the Indian Ocean in Bali, Indonesia."
+        },
+        {
+          "src": "https://images.pexels.com/photos/12739115/pexels-photo-12739115.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning view of Uluwatu cliffs meeting the blue ocean in Bali, Indonesia, under a bright summer sky."
+        },
+        {
+          "src": "https://images.pexels.com/photos/30286799/pexels-photo-30286799.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Breathtaking aerial view of Uluwatu cliffs in Bali with vibrant ocean waves during sunset."
         }
       ],
       "Monkey Forest": [
@@ -427,6 +915,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-exp-monkey-forest-2.jpg",
           "caption": "Monkeys of Ubud"
+        },
+        {
+          "src": "https://images.pexels.com/photos/28407134/pexels-photo-28407134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A long-tailed macaque perched on a branch in the lush forests of Ubud, Bali."
+        },
+        {
+          "src": "https://images.pexels.com/photos/2712005/pexels-photo-2712005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A monkey sitting on an ornate sculpture in Ubud's lush monkey forest."
+        },
+        {
+          "src": "https://images.pexels.com/photos/28468659/pexels-photo-28468659.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Close-up of a Balinese monkey in Ubud's lush forest, showing wildlife in its natural habitat."
         }
       ],
       "Mount Batur": [
@@ -437,6 +937,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-exp-mount-batur-2.jpg",
           "caption": "Batur volcano trek"
+        },
+        {
+          "src": "https://images.pexels.com/photos/5985994/pexels-photo-5985994.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning sunrise view of Mount Batur in Kintamani, Bali, with lush landscapes and a serene lake."
+        },
+        {
+          "src": "https://images.pexels.com/photos/35902963/pexels-photo-35902963.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning aerial view of Mount Batur and its caldera in Bali, Indonesia."
+        },
+        {
+          "src": "https://images.pexels.com/photos/2499744/pexels-photo-2499744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Mount Batur \u2014 Photo by Stijn Dijkstra"
         }
       ],
       "Tanah Lot": [
@@ -447,6 +959,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-exp-tanah-lot-2.jpg",
           "caption": "Tanah Lot temple"
+        },
+        {
+          "src": "https://images.pexels.com/photos/14795013/pexels-photo-14795013.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Dramatic waves crash against the cliffs of Tanah Lot Temple, a serene oceanfront view in Bali."
+        },
+        {
+          "src": "https://images.pexels.com/photos/34908201/pexels-photo-34908201.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Beautiful sunset view of Tanah Lot Temple, Bali, Indonesia, with ocean waves."
+        },
+        {
+          "src": "https://images.pexels.com/photos/34819159/pexels-photo-34819159.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning sunset view over Tanah Lot Temple in Bali with ocean and vibrant sky."
         }
       ]
     }
@@ -472,6 +996,34 @@
       {
         "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-5.jpg",
         "caption": "London Eye & Thames"
+      },
+      {
+        "src": "https://images.pexels.com/photos/5364943/pexels-photo-5364943.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Stunning view of Big Ben and the Palace of Westminster in London under a clear sky."
+      },
+      {
+        "src": "https://images.pexels.com/photos/17379169/pexels-photo-17379169.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Monochrome aerial view of Big Ben and the Houses of Parliament over the River Thames in London."
+      },
+      {
+        "src": "https://images.pexels.com/photos/15257859/pexels-photo-15257859.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Captivating view of Big Ben with Westminster and Underground sign in London."
+      },
+      {
+        "src": "https://images.pexels.com/photos/16771428/pexels-photo-16771428.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Captivating aerial view of Westminster Palace, Big Ben, and River Thames in London, UK."
+      },
+      {
+        "src": "https://images.pexels.com/photos/575410/pexels-photo-575410.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Stunning view of London's Tower Bridge with its bascules raised over the River Thames."
+      },
+      {
+        "src": "https://images.pexels.com/photos/14875358/pexels-photo-14875358.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "A stunning view of London's Tower Bridge over the River Thames, showcasing city architecture."
+      },
+      {
+        "src": "https://images.pexels.com/photos/37544947/pexels-photo-37544947.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Moody view of London's Tower Bridge under cloudy skies, showcasing the city's historic architecture and urban skyline."
       }
     ],
     "experiences": {
@@ -483,6 +1035,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-tower-of-london-2.jpg",
           "caption": "Crown Jewels fortress"
+        },
+        {
+          "src": "https://images.pexels.com/photos/8909147/pexels-photo-8909147.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning view of the historical Tower of London, a masterpiece of medieval architecture."
+        },
+        {
+          "src": "https://images.pexels.com/photos/33737665/pexels-photo-33737665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Black and white image showcasing the historic Tower of London."
+        },
+        {
+          "src": "https://images.pexels.com/photos/37072814/pexels-photo-37072814.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Aerial photo of Tower of London, historic architecture in central London, England."
         }
       ],
       "Borough Market": [
@@ -493,6 +1057,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-borough-market-2.jpg",
           "caption": "London food market"
+        },
+        {
+          "src": "https://images.pexels.com/photos/8002133/pexels-photo-8002133.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Bustling market scene at London's Borough Market with crowds buying artisan bread under colorful umbrellas."
+        },
+        {
+          "src": "https://images.pexels.com/photos/439818/pexels-photo-439818.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Lively scene at Borough Market in London, filled with people shopping and enjoying the atmosphere."
+        },
+        {
+          "src": "https://images.pexels.com/photos/31270596/pexels-photo-31270596.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Black and white image of Borough Market's vibrant atmosphere with shoppers and stalls."
         }
       ],
       "British Museum": [
@@ -503,6 +1079,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-british-museum-2.jpg",
           "caption": "Great Court, British Museum"
+        },
+        {
+          "src": "https://images.pexels.com/photos/31376442/pexels-photo-31376442.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Panoramic view of Manchester Central Library's stunning reading room with grand dome and vintage architecture."
+        },
+        {
+          "src": "https://images.pexels.com/photos/11793538/pexels-photo-11793538.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "British Museum \u2014 Photo by Jakob Schlothane"
+        },
+        {
+          "src": "https://images.pexels.com/photos/35551877/pexels-photo-35551877.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Intricate classical columns displayed in a museum's grand interior."
         }
       ],
       "Brick Lane": [
@@ -513,12 +1101,40 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-brick-lane-2.jpg",
           "caption": "Brick Lane curry houses"
+        },
+        {
+          "src": "https://images.pexels.com/photos/31656795/pexels-photo-31656795.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Vibrant street art on Brick Lane, London captures urban creativity and culture."
+        },
+        {
+          "src": "https://images.pexels.com/photos/15112830/pexels-photo-15112830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Capturing London's urban vibe with graffiti and umbrellas on a rainy street."
+        },
+        {
+          "src": "https://images.pexels.com/photos/1022929/pexels-photo-1022929.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Colorful graffiti art on a brick wall in London, Ontario, featuring abstract designs and bold colors."
         }
       ],
       "Neasden Temple": [
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-neasden-temple-1.jpg",
           "caption": "BAPS Shri Swaminarayan Mandir"
+        },
+        {
+          "src": "https://images.pexels.com/photos/36885025/pexels-photo-36885025.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Beautiful architectural detail of Shree Swaminarayan Mandir in Bartlett, Illinois."
+        },
+        {
+          "src": "https://images.pexels.com/photos/35960312/pexels-photo-35960312.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Explore the intricate architectural beauty of Prem Mandir in Vrindavan at twilight."
+        },
+        {
+          "src": "https://images.pexels.com/photos/37431602/pexels-photo-37431602.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Explore the detailed architecture of BAPS Shri Swaminarayan Mandir, Robbinsville, NJ."
+        },
+        {
+          "src": "https://images.pexels.com/photos/36885034/pexels-photo-36885034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Neasden Temple \u2014 Photo by Roy Serafin"
         }
       ]
     }
@@ -544,6 +1160,34 @@
       {
         "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-5.jpg",
         "caption": "Matterhorn, Zermatt"
+      },
+      {
+        "src": "https://images.pexels.com/photos/32474204/pexels-photo-32474204.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Explore the breathtaking landscape of Lauterbrunnen in the Swiss Alps, showcasing lush greenery and mountain views."
+      },
+      {
+        "src": "https://images.pexels.com/photos/10820296/pexels-photo-10820296.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Scenic aerial panorama of Hasliberg village with snow-capped Alps."
+      },
+      {
+        "src": "https://images.pexels.com/photos/35492767/pexels-photo-35492767.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Picturesque Swiss village nestled in snow-capped Alps with stunning winter scenery."
+      },
+      {
+        "src": "https://images.pexels.com/photos/32645164/pexels-photo-32645164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Breathtaking landscape of the Swiss Alps with charming alpine village in summer."
+      },
+      {
+        "src": "https://images.pexels.com/photos/24604770/pexels-photo-24604770.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Charming village nestled among the Swiss Alps with stunning waterfall views in autumn."
+      },
+      {
+        "src": "https://images.pexels.com/photos/32514307/pexels-photo-32514307.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Picturesque village nestled in the Swiss Alps with beautiful mountain backdrop."
+      },
+      {
+        "src": "https://images.pexels.com/photos/28305332/pexels-photo-28305332.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "A picturesque Swiss village with traditional houses and snowy Alps in the background."
       }
     ],
     "experiences": {
@@ -555,6 +1199,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-exp-jungfraujoch-2.jpg",
           "caption": "Swiss Alps panorama"
+        },
+        {
+          "src": "https://images.pexels.com/photos/32261843/pexels-photo-32261843.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Explore the snow-covered Jungfraujoch with stunning Alpine peaks under clear skies."
+        },
+        {
+          "src": "https://images.pexels.com/photos/5210434/pexels-photo-5210434.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Aged house in snowy mounts under blue cloudless sky in winter in daylight"
+        },
+        {
+          "src": "https://images.pexels.com/photos/5210437/pexels-photo-5210437.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Old building and observation tower on snowy mount under blue cloudless sky in wintertime"
         }
       ],
       "Lake Lucerne": [
@@ -565,6 +1221,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-exp-lake-lucerne-2.jpg",
           "caption": "Chapel Bridge, Lucerne"
+        },
+        {
+          "src": "https://images.pexels.com/photos/33286548/pexels-photo-33286548.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Tranquil view of Lake Lucerne and surrounding mountains in Switzerland."
+        },
+        {
+          "src": "https://images.pexels.com/photos/33779391/pexels-photo-33779391.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A passenger ferry on Lake Lucerne with mountains in the background on a sunny day."
+        },
+        {
+          "src": "https://images.pexels.com/photos/33286551/pexels-photo-33286551.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Beautiful landscape of Lucerne with hills, residential areas, and Lake Lucerne under cloudy skies."
         }
       ],
       "Matterhorn": [
@@ -575,6 +1243,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-exp-matterhorn-2.jpg",
           "caption": "Zermatt village"
+        },
+        {
+          "src": "https://images.pexels.com/photos/15910109/pexels-photo-15910109.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Captivating view of the Matterhorn in Zermatt, Switzerland, cloaked by swirling clouds."
+        },
+        {
+          "src": "https://images.pexels.com/photos/31399676/pexels-photo-31399676.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Scenic view of Matterhorn from Zermatt with clear blue sky and snowy landscape."
+        },
+        {
+          "src": "https://images.pexels.com/photos/10629601/pexels-photo-10629601.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning view of the Matterhorn mountain surrounded by lush greenery in Zermatt, Switzerland."
         }
       ],
       "Bernina Express": [
@@ -585,6 +1265,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-exp-bernina-express-2.jpg",
           "caption": "Swiss mountain railway"
+        },
+        {
+          "src": "https://images.pexels.com/photos/32801796/pexels-photo-32801796.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Red train curving through the beautiful Swiss Alps landscape near Bernina Pass."
+        },
+        {
+          "src": "https://images.pexels.com/photos/16418182/pexels-photo-16418182.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Red Bernina Express train traversing snowy mountains in the Swiss Alps during winter."
+        },
+        {
+          "src": "https://images.pexels.com/photos/36206782/pexels-photo-36206782.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Scenic view of a red train on a snow-covered bridge in the Swiss Alps, showcasing winter beauty."
         }
       ],
       "Interlaken": [
@@ -595,6 +1287,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-exp-interlaken-2.jpg",
           "caption": "Paragliding Interlaken"
+        },
+        {
+          "src": "https://images.pexels.com/photos/5742880/pexels-photo-5742880.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Experience thrilling paragliding over the stunning Swiss Alps with breathtaking mountain views."
+        },
+        {
+          "src": "https://images.pexels.com/photos/34119861/pexels-photo-34119861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A vibrant paraglider soars above a mist-covered forest in Interlaken, Switzerland."
+        },
+        {
+          "src": "https://images.pexels.com/photos/34119859/pexels-photo-34119859.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Paragliders soar above the picturesque mountains of Interlaken, Switzerland, beneath dramatic clouds."
         }
       ]
     }
@@ -620,6 +1324,34 @@
       {
         "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-5.jpg",
         "caption": "Southern Alps"
+      },
+      {
+        "src": "https://images.pexels.com/photos/35364665/pexels-photo-35364665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Majestic view of New Zealand's rolling hills and travelers amidst a natural backdrop under cloudy skies."
+      },
+      {
+        "src": "https://images.pexels.com/photos/28445852/pexels-photo-28445852.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Stunning view of hills and clouds in Omarama, New Zealand countryside."
+      },
+      {
+        "src": "https://images.pexels.com/photos/35364662/pexels-photo-35364662.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Explore the serene mountain landscapes of Otago, New Zealand, showcasing natural beauty and dramatic vistas."
+      },
+      {
+        "src": "https://images.pexels.com/photos/4863998/pexels-photo-4863998.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Breathtaking view of snow-capped mountains with mist in Queenstown, New Zealand."
+      },
+      {
+        "src": "https://images.pexels.com/photos/35364661/pexels-photo-35364661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Explore the rolling hills and rugged terrain of Otago, New Zealand's captivating landscape."
+      },
+      {
+        "src": "https://images.pexels.com/photos/35364666/pexels-photo-35364666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Panoramic view of the rolling hills and valleys in Otago, New Zealand, under a cloudy sky."
+      },
+      {
+        "src": "https://images.pexels.com/photos/13139180/pexels-photo-13139180.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Picturesque view of Aoraki/Mount Cook with grassy plains under clouded sky in New Zealand's Canterbury."
       }
     ],
     "experiences": {
@@ -631,6 +1363,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-exp-milford-sound-2.jpg",
           "caption": "Fiordland mountains"
+        },
+        {
+          "src": "https://images.pexels.com/photos/13327947/pexels-photo-13327947.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Dramatic sunset over Milford Sound, New Zealand, highlighting the majestic mountains and serene sea."
+        },
+        {
+          "src": "https://images.pexels.com/photos/36620444/pexels-photo-36620444.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A sailboat navigating the dramatic and cloudy landscape of Milford Sound."
+        },
+        {
+          "src": "https://images.pexels.com/photos/31731454/pexels-photo-31731454.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Picturesque view of Milford Sound with boats navigating through stunning fjord landscape in New Zealand."
         }
       ],
       "Hobbiton": [
@@ -641,6 +1385,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-exp-hobbiton-2.jpg",
           "caption": "The Shire, Matamata"
+        },
+        {
+          "src": "https://images.pexels.com/photos/1308185/pexels-photo-1308185.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Charming Hobbiton-style houses built into lush green hills in rural New Zealand."
+        },
+        {
+          "src": "https://images.pexels.com/photos/2259917/pexels-photo-2259917.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Explore a cozy hobbit house nestled in New Zealand's lush countryside, perfect for a rustic getaway."
+        },
+        {
+          "src": "https://images.pexels.com/photos/24414780/pexels-photo-24414780.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A charming hobbit-inspired house nestled in lush greenery, capturing the essence of rustic countryside living."
         }
       ],
       "Queenstown": [
@@ -651,6 +1407,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-exp-queenstown-2.jpg",
           "caption": "Adventure capital"
+        },
+        {
+          "src": "https://images.pexels.com/photos/724963/pexels-photo-724963.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Breathtaking aerial view of Queenstown by Lake Wakatipu, surrounded by majestic mountains under clear skies."
+        },
+        {
+          "src": "https://images.pexels.com/photos/28970669/pexels-photo-28970669.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Experience the breathtaking scenery of Lake Wakatipu with the Remarkables mountain range in Queenstown, New Zealand."
+        },
+        {
+          "src": "https://images.pexels.com/photos/27623568/pexels-photo-27623568.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Breathtaking aerial view of Queenstown, New Zealand showcasing lush mountains and vibrant townscape."
         }
       ],
       "Tongariro": [
@@ -661,6 +1429,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-exp-tongariro-2.jpg",
           "caption": "Emerald Lakes, Tongariro"
+        },
+        {
+          "src": "https://images.pexels.com/photos/37583928/pexels-photo-37583928.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Explore the stunning volcanic landscape of Tongariro Alpine Crossing in New Zealand."
+        },
+        {
+          "src": "https://images.pexels.com/photos/4036989/pexels-photo-4036989.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A breathtaking view of the Emerald Lakes in Tongariro National Park, New Zealand."
+        },
+        {
+          "src": "https://images.pexels.com/photos/108996/pexels-photo-108996.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A stunning view of the Emerald Lakes along the Tongariro Alpine Crossing in New Zealand."
         }
       ],
       "Rotorua": [
@@ -671,6 +1451,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-exp-rotorua-2.jpg",
           "caption": "Geothermal wonderland"
+        },
+        {
+          "src": "https://images.pexels.com/photos/12774064/pexels-photo-12774064.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Dramatic view of a steaming geothermal spring with vibrant colors in Rotorua, New Zealand."
+        },
+        {
+          "src": "https://images.pexels.com/photos/6379620/pexels-photo-6379620.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Explore the striking geothermal landscape and azure lake in Rotorua's unique natural setting."
+        },
+        {
+          "src": "https://images.pexels.com/photos/5926331/pexels-photo-5926331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Vibrant geothermal pool with steam in lush green forest under blue skies."
         }
       ]
     }
@@ -696,6 +1488,34 @@
       {
         "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-5.jpg",
         "caption": "Chich\u00e9n Itz\u00e1"
+      },
+      {
+        "src": "https://images.pexels.com/photos/22915847/pexels-photo-22915847.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Historic architectural facade in CDMX featuring a clock tower and decorative elements."
+      },
+      {
+        "src": "https://images.pexels.com/photos/28921096/pexels-photo-28921096.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Vibrant buildings in Guanajuato showcase classic Mexican architecture."
+      },
+      {
+        "src": "https://images.pexels.com/photos/37203455/pexels-photo-37203455.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Modern apartment building with yellow windows in Ciudad de M\u00e9xico, featuring dramatic clouds."
+      },
+      {
+        "src": "https://images.pexels.com/photos/12433849/pexels-photo-12433849.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Colorful houses and architecture of Guanajuato City, Mexico, create a vivid cityscape."
+      },
+      {
+        "src": "https://images.pexels.com/photos/26920674/pexels-photo-26920674.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Bus stop scene with colorful buildings in Ciudad de M\u00e9xico, showcasing local urban life."
+      },
+      {
+        "src": "https://images.pexels.com/photos/11483054/pexels-photo-11483054.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "The majestic dome of Palacio de Bellas Artes in Mexico City at sunset with vibrant sky."
+      },
+      {
+        "src": "https://images.pexels.com/photos/16152997/pexels-photo-16152997.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "caption": "Stunning cityscape of Mexico City with the Mexican flag and mountains at sunset."
       }
     ],
     "experiences": {
@@ -707,6 +1527,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-chichen-itza-2.jpg",
           "caption": "Chich\u00e9n Itz\u00e1 ruins"
+        },
+        {
+          "src": "https://images.pexels.com/photos/5464323/pexels-photo-5464323.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "El Castillo pyramid at Chichen Itza in Mexico, showcasing ancient Maya architecture under a bright blue sky."
+        },
+        {
+          "src": "https://images.pexels.com/photos/11738205/pexels-photo-11738205.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Explore the majestic Temple of Kukulc\u00e1n in sunny Chich\u00e9n Itz\u00e1, Mexico."
+        },
+        {
+          "src": "https://images.pexels.com/photos/11212909/pexels-photo-11212909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Explore the grandeur of the Pyramid of Kukulkan, a striking Mayan architectural wonder in Chichen Itza."
         }
       ],
       "Tulum Ruins": [
@@ -717,6 +1549,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-tulum-ruins-2.jpg",
           "caption": "Tulum beach temple"
+        },
+        {
+          "src": "https://images.pexels.com/photos/12174627/pexels-photo-12174627.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Scenic view of Tulum's tropical beach with palm trees and ruins, perfect vacation spot."
+        },
+        {
+          "src": "https://images.pexels.com/photos/32865198/pexels-photo-32865198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning coastal view of Tulum Ruins with turquoise ocean and lush greenery."
+        },
+        {
+          "src": "https://images.pexels.com/photos/27638882/pexels-photo-27638882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning beach view at Tulum, Mexico featuring turquoise waters and ancient ruins."
         }
       ],
       "Cenotes": [
@@ -727,6 +1571,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-cenotes-2.jpg",
           "caption": "Underground cenote"
+        },
+        {
+          "src": "https://images.pexels.com/photos/3822185/pexels-photo-3822185.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Adult woman enjoying serene moments at a cenote in Mexico. Perfect for relaxation themes."
+        },
+        {
+          "src": "https://images.pexels.com/photos/33667439/pexels-photo-33667439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Tranquil natural pool surrounded by lush greenery in Tulum, Mexico, perfect for relaxation."
+        },
+        {
+          "src": "https://images.pexels.com/photos/33667438/pexels-photo-33667438.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Swimmers enjoying a clear water cenote amidst lush greenery in Playa del Carmen, Mexico."
         }
       ],
       "Mexico City": [
@@ -737,6 +1593,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-mexico-city-2.jpg",
           "caption": "Palacio de Bellas Artes"
+        },
+        {
+          "src": "https://images.pexels.com/photos/20848569/pexels-photo-20848569.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning view of the Metropolitan Cathedral in Mexico City with clear blue skies and bustling activity."
+        },
+        {
+          "src": "https://images.pexels.com/photos/13070748/pexels-photo-13070748.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "View of the Metropolitan Cathedral in Mexico City's historic center with a lively public square."
+        },
+        {
+          "src": "https://images.pexels.com/photos/20848559/pexels-photo-20848559.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Vibrant view of Mexico City's Metropolitan Cathedral and Plaza de la Constituci\u00f3n under a clear blue sky."
         }
       ],
       "Oaxaca": [
@@ -747,6 +1615,18 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-oaxaca-2.jpg",
           "caption": "Oaxaca market colors"
+        },
+        {
+          "src": "https://images.pexels.com/photos/18981483/pexels-photo-18981483.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Colorful colonial building facade with wrought iron windows in Oaxaca, Mexico."
+        },
+        {
+          "src": "https://images.pexels.com/photos/12494842/pexels-photo-12494842.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Colorful traditional building on a quiet street in Oaxaca, Mexico."
+        },
+        {
+          "src": "https://images.pexels.com/photos/12789413/pexels-photo-12789413.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "A vibrant street scene in Oaxaca, Mexico featuring a vintage Volkswagen van and colorful facades."
         }
       ]
     }
