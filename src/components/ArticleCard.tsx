@@ -274,7 +274,6 @@ export default function ArticleCard({
             style={{ objectPosition: "center 20%" }}
             onOrientationDetected={setRuntimeOrientation}
           />
-          />
         </div>
       </figure>
       {!hideCategory && (
