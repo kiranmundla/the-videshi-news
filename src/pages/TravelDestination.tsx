@@ -263,9 +263,9 @@ export default function TravelDestination() {
 
       {/* ─── Photo Gallery Strip ─── */}
       {galleryPhotos.length > 0 && (
-        <div style={{ maxWidth: 1200, margin: "20px auto 0", padding: "0 20px" }}>
+        <div style={{ maxWidth: 1200, margin: "20px auto 0", padding: "0 20px", overflow: "hidden" }}>
           <div style={{
-            display: "flex", gap: 12, overflowX: "auto", padding: "0 0 16px 0",
+            display: "flex", gap: 12, overflowX: "scroll", padding: "0 0 16px 0",
             scrollbarWidth: "none" as const, msOverflowStyle: "none" as any,
             WebkitOverflowScrolling: "touch" as any,
           }}>
@@ -398,8 +398,9 @@ export default function TravelDestination() {
                         <p style={{ margin: "0 0 18px", lineHeight: 1.8 }}>{children}</p>
                         {expPhotos && expPhotos.length > 0 && (
                           <div style={{
-                            display: "flex", gap: 8, overflowX: "auto", margin: "4px 0 20px",
+                            display: "flex", gap: 8, overflowX: "scroll", margin: "4px 0 20px",
                             scrollbarWidth: "none" as const,
+                            WebkitOverflowScrolling: "touch" as any,
                           }}>
                             {expPhotos.map((p, i) => (
                               <div key={i} onClick={() => openFullscreen(expPhotos, i)} style={{
