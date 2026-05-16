@@ -1,12 +1,10 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
 import type { ReactNode } from "react";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
-import { Article, getArticlesByCategory, readingTime } from "@/lib/articles";
-import { supabase } from "@/integrations/supabase/client";
 
 /* ─── destination metadata ─── */
 interface DestMeta {
@@ -15,7 +13,6 @@ interface DestMeta {
   budget: string;
   flights: string;
   visa: string;
-  articleSlug: string;
 }
 
 /** Recursively extract plain text from React children (handles <strong>, <em>, etc.) */
@@ -30,16 +27,16 @@ function childrenToText(node: ReactNode): string {
 }
 
 const DESTINATIONS: Record<string, DestMeta> = {
-  rajasthan:    { title: "Rajasthan",       bestMonths: "Oct – Mar",          budget: "$30–150/day", flights: "Delhi, Jaipur direct",       visa: "Indian passport: no visa",   articleSlug: "rajasthan-travel-guide-diaspora" },
-  kerala:       { title: "Kerala",          bestMonths: "Sep – Mar",          budget: "$25–120/day", flights: "Kochi, Trivandrum direct",   visa: "Indian passport: no visa",   articleSlug: "kerala-travel-guide-diaspora" },
-  goa:          { title: "Goa",             bestMonths: "Nov – Feb",          budget: "$20–100/day", flights: "Goa/Dabolim direct",         visa: "Indian passport: no visa",   articleSlug: "goa-travel-guide-diaspora" },
-  maldives:     { title: "Maldives",        bestMonths: "Nov – Apr",          budget: "$80–500/day", flights: "Malé from Delhi, Mumbai",    visa: "Free 30-day on arrival",     articleSlug: "maldives-travel-guide-diaspora" },
-  "sri-lanka":  { title: "Sri Lanka",       bestMonths: "Dec – Mar",          budget: "$30–100/day", flights: "Colombo from Chennai, Delhi",visa: "ETA online",                 articleSlug: "sri-lanka-travel-guide-diaspora" },
-  bali:         { title: "Bali",            bestMonths: "Apr – Oct",          budget: "$30–150/day", flights: "Denpasar via Singapore/KL",  visa: "Free 30-day on arrival",     articleSlug: "bali-travel-guide-diaspora" },
-  london:       { title: "London & UK",     bestMonths: "May – Sep",          budget: "$80–250/day", flights: "Direct from Delhi, Mumbai",  visa: "UK visa required",           articleSlug: "london-uk-travel-guide-diaspora" },
-  switzerland:  { title: "Switzerland",     bestMonths: "Jun – Sep, Dec – Feb",budget: "$100–350/day",flights: "Zürich via Europe",          visa: "Schengen visa required",     articleSlug: "switzerland-travel-guide-diaspora" },
-  "new-zealand":{ title: "New Zealand",     bestMonths: "Dec – Feb",          budget: "$80–200/day", flights: "Auckland via Singapore",     visa: "eVisa or NZeTA",             articleSlug: "new-zealand-travel-guide-diaspora" },
-  mexico:       { title: "Mexico",          bestMonths: "Nov – Apr",          budget: "$40–150/day", flights: "Mexico City direct from US", visa: "Visa-free with US visa",     articleSlug: "mexico-travel-guide-diaspora" },
+  rajasthan:    { title: "Rajasthan",       bestMonths: "Oct – Mar",          budget: "$30–150/day", flights: "Delhi, Jaipur direct",       visa: "Indian passport: no visa" },
+  kerala:       { title: "Kerala",          bestMonths: "Sep – Mar",          budget: "$25–120/day", flights: "Kochi, Trivandrum direct",   visa: "Indian passport: no visa" },
+  goa:          { title: "Goa",             bestMonths: "Nov – Feb",          budget: "$20–100/day", flights: "Goa/Dabolim direct",         visa: "Indian passport: no visa" },
+  maldives:     { title: "Maldives",        bestMonths: "Nov – Apr",          budget: "$80–500/day", flights: "Malé from Delhi, Mumbai",    visa: "Free 30-day on arrival" },
+  "sri-lanka":  { title: "Sri Lanka",       bestMonths: "Dec – Mar",          budget: "$30–100/day", flights: "Colombo from Chennai, Delhi",visa: "ETA online" },
+  bali:         { title: "Bali",            bestMonths: "Apr – Oct",          budget: "$30–150/day", flights: "Denpasar via Singapore/KL",  visa: "Free 30-day on arrival" },
+  london:       { title: "London & UK",     bestMonths: "May – Sep",          budget: "$80–250/day", flights: "Direct from Delhi, Mumbai",  visa: "UK visa required" },
+  switzerland:  { title: "Switzerland",     bestMonths: "Jun – Sep, Dec – Feb",budget: "$100–350/day",flights: "Zürich via Europe",          visa: "Schengen visa required" },
+  "new-zealand":{ title: "New Zealand",     bestMonths: "Dec – Feb",          budget: "$80–200/day", flights: "Auckland via Singapore",     visa: "eVisa or NZeTA" },
+  mexico:       { title: "Mexico",          bestMonths: "Nov – Apr",          budget: "$40–150/day", flights: "Mexico City direct from US", visa: "Visa-free with US visa" },
 };
 
 const DEST_KEYS = Object.keys(DESTINATIONS);
@@ -64,55 +61,24 @@ function extractSections(body: string): { id: string; label: string }[] {
 /* ─── component ─── */
 export default function TravelDestination() {
   const { destination = "" } = useParams();
-  const navigate = useNavigate();
   const meta = DESTINATIONS[destination];
 
-  const [article, setArticle] = useState<Article | null>(null);
-  const [allTravel, setAllTravel] = useState<Article[]>([]);
+  const [body, setBody] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [galleryPhotos, setGalleryPhotos] = useState<GalleryPhoto[]>([]);
   const [experiencePhotos, setExperiencePhotos] = useState<Record<string, GalleryPhoto[]>>({});
   const [fullscreenIdx, setFullscreenIdx] = useState<number | null>(null);
   const [fullscreenPhotos, setFullscreenPhotos] = useState<GalleryPhoto[]>([]);
 
-  /* fetch article + related */
+  /* fetch guide markdown */
   useEffect(() => {
     if (!meta) { setLoading(false); return; }
     setLoading(true);
-
-    const sb = supabase as any;
-
-    const fetchArticle = sb
-      .from("p2_articles")
-      .select("id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url, image_attribution")
-      .eq("slug", meta.articleSlug)
-      .eq("status", "published")
-      .limit(1)
-      .single()
-      .then(({ data }: any) => {
-        if (data) {
-          setArticle({
-            id: data.id,
-            slug: data.slug ?? data.id,
-            title: data.headline,
-            excerpt: data.subheadline ?? "",
-            body: data.body ?? "",
-            category: data.category ?? data.vertical ?? "",
-            hero_image_url: data.image_url ?? "",
-            image_caption: null,
-            image_credit: data.image_attribution ?? null,
-            published_at: data.published_at ?? data.created_at,
-            created_at: data.created_at,
-            status: "published" as const,
-            sources: [],
-            article_type: "news" as const,
-          });
-        }
-      });
-
-    const fetchAll = getArticlesByCategory("travel", 20).then(setAllTravel);
-
-    Promise.all([fetchArticle, fetchAll]).finally(() => setLoading(false));
+    fetch(`/data/travel-guides/${destination}.md`)
+      .then((r) => r.ok ? r.text() : null)
+      .then((text) => setBody(text))
+      .catch(() => setBody(null))
+      .finally(() => setLoading(false));
   }, [meta, destination]);
 
   /* fetch gallery photos */
@@ -154,14 +120,15 @@ export default function TravelDestination() {
     return () => window.removeEventListener("keydown", handler);
   }, [fullscreenIdx, fsClose, fsNext, fsPrev]);
 
-  const sections = useMemo(() => (article ? extractSections(article.body) : []), [article]);
+  const sections = useMemo(() => (body ? extractSections(body) : []), [body]);
 
-  const related = useMemo(() => {
-    return allTravel
-      .filter((a) => a.slug !== article?.slug)
+  /* pick 3 random other destinations for "More Destinations" */
+  const otherDestinations = useMemo(() => {
+    return DEST_KEYS
+      .filter((k) => k !== destination)
       .sort(() => Math.random() - 0.5)
       .slice(0, 3);
-  }, [allTravel, article]);
+  }, [destination]);
 
   /* ─── 404 ─── */
   if (!meta && !loading) {
@@ -189,7 +156,7 @@ export default function TravelDestination() {
     );
   }
 
-  const heroUrl = article?.hero_image_url || "";
+  const heroUrl = galleryPhotos.length > 0 ? galleryPhotos[0].src : "";
 
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
@@ -262,12 +229,7 @@ export default function TravelDestination() {
           <h1 style={{ fontFamily: "serif", fontSize: 48, fontWeight: 900, color: "#fff", lineHeight: 1.1, margin: 0 }}>
             {meta.title}
           </h1>
-          {article && (
-            <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 15, marginTop: 12, maxWidth: 600, lineHeight: 1.5 }}>
-              {article.excerpt || article.title}
-            </p>
-          )}
-        </div>
+                  </div>
       </div>
 
       {/* ─── Quick Facts Bar ─── */}
@@ -406,8 +368,8 @@ export default function TravelDestination() {
       <div style={{ maxWidth: 1200, margin: "32px auto 0", padding: "0 20px", display: "flex", gap: 40, alignItems: "flex-start" }}>
 
         {/* Article content */}
-        <article style={{ flex: "1 1 0%", minWidth: 0, maxWidth: 780 }}>
-          {article ? (
+        <article style={{ flex: "1 1 0%", minWidth: 0, maxWidth: 780, overflowX: "hidden" }}>
+          {body ? (
             <div className="prose-article" style={{ fontFamily: "Georgia, serif", fontSize: 17, lineHeight: 1.8, color: "#222" }}>
               <ReactMarkdown
                 components={{
@@ -469,7 +431,7 @@ export default function TravelDestination() {
                   a: ({ href, children }) => <a href={href || "#"} target="_blank" rel="noopener noreferrer" style={{ color: "#b91c1c", textDecoration: "underline" }}>{children}</a>,
                 }}
               >
-                {article.body}
+                {body}
               </ReactMarkdown>
             </div>
           ) : (
@@ -529,67 +491,51 @@ export default function TravelDestination() {
           </div>
 
           {/* Other Destinations */}
-          {related.length > 0 && (
+          {otherDestinations.length > 0 && (
             <div style={{ marginBottom: 28 }}>
               <h3 style={{ fontFamily: "serif", fontSize: 16, fontWeight: 700, margin: "0 0 14px", color: "#333", textTransform: "uppercase" as const, letterSpacing: "0.06em" }}>
                 More Destinations
               </h3>
-              {related.map((r) => {
-                const destKey = DEST_KEYS.find((k) => r.slug.includes(k)) || "";
-                return (
-                  <Link key={r.slug} to={destKey ? `/travel/${destKey}` : `/articles/${r.slug}`}
-                    style={{ display: "flex", gap: 12, marginBottom: 14, textDecoration: "none", alignItems: "center" }}>
-                    {r.hero_image_url && (
-                      <img src={r.hero_image_url} alt={r.title}
-                        style={{ width: 70, height: 50, objectFit: "cover", borderRadius: 6, flexShrink: 0 }} />
-                    )}
-                    <span style={{ fontFamily: "serif", fontSize: 14, fontWeight: 600, color: "#333", lineHeight: 1.3 }}>
-                      {r.title}
-                    </span>
-                  </Link>
-                );
-              })}
+              {otherDestinations.map((k) => (
+                <Link key={k} to={`/travel/${k}`}
+                  style={{ display: "flex", gap: 12, marginBottom: 14, textDecoration: "none", alignItems: "center" }}>
+                  <span style={{ fontFamily: "serif", fontSize: 14, fontWeight: 600, color: "#333", lineHeight: 1.3 }}>
+                    {DESTINATIONS[k].title}
+                  </span>
+                </Link>
+              ))}
             </div>
           )}
         </aside>
       </div>
 
       {/* ─── Related Destinations (full-width bottom section) ─── */}
-      {related.length > 0 && (
+      {otherDestinations.length > 0 && (
         <div style={{ maxWidth: 1200, margin: "48px auto 0", padding: "0 20px 40px" }}>
           <div style={{ borderTop: "1px solid #e5e5e0", paddingTop: 28 }}>
             <h2 style={{ fontFamily: "serif", fontSize: 22, fontWeight: 700, marginBottom: 20, color: "#222" }}>
               Explore More Destinations
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 24 }}>
-              {related.map((r) => {
-                const destKey = DEST_KEYS.find((k) => r.slug.includes(k)) || "";
-                const destMeta = destKey ? DESTINATIONS[destKey] : null;
+              {otherDestinations.map((k) => {
+                const destMeta = DESTINATIONS[k];
                 return (
-                  <Link key={r.slug} to={destKey ? `/travel/${destKey}` : `/articles/${r.slug}`}
+                  <Link key={k} to={`/travel/${k}`}
                     style={{ textDecoration: "none", borderRadius: 8, overflow: "hidden", border: "1px solid #e5e5e0", transition: "box-shadow 0.2s" }}
                     onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.1)")}
                     onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
                   >
-                    <div style={{ position: "relative", height: 180, overflow: "hidden" }}>
-                      {r.hero_image_url && (
-                        <img src={r.hero_image_url} alt={r.title}
-                          style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                      )}
-                      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.5), transparent)" }} />
-                      <div style={{ position: "absolute", bottom: 12, left: 14 }}>
-                        <span style={{ fontFamily: "serif", fontSize: 20, fontWeight: 800, color: "#fff" }}>
-                          {destMeta?.title || r.title}
+                    <div style={{ position: "relative", height: 100, overflow: "hidden", background: "#1a1a1a" }}>
+                      <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <span style={{ fontFamily: "serif", fontSize: 24, fontWeight: 800, color: "#fff" }}>
+                          {destMeta.title}
                         </span>
                       </div>
                     </div>
                     <div style={{ padding: "12px 14px" }}>
-                      <p style={{ fontSize: 13, color: "#666", margin: 0, lineHeight: 1.4 }}>{r.title}</p>
-                      {destMeta && (
-                        <p style={{ fontSize: 12, color: "#999", margin: "6px 0 0", letterSpacing: "0.03em" }}>
-                          🗓 {destMeta.bestMonths} · 💰 {destMeta.budget}
-                        </p>
-                      )}
+                      <p style={{ fontSize: 12, color: "#999", margin: 0, letterSpacing: "0.03em" }}>
+                        🗓 {destMeta.bestMonths} · 💰 {destMeta.budget}
+                      </p>
                     </div>
                   </Link>
                 );

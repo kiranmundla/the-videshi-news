@@ -96,7 +96,7 @@ export default function CategoryPage() {
           <p className="py-20 text-center text-muted-foreground">Loading…</p>
         ) : articles.length === 0 ? (
           <p className="py-20 text-center text-muted-foreground">
-            We're publishing fresh stories — check back in a few hours.
+            {def.slug === "travel" ? "Explore our destination guides above." : "We're publishing fresh stories — check back in a few hours."}
           </p>
         ) : (
           <>
