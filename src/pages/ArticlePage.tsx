@@ -13,8 +13,7 @@ import {
   getRelatedArticles,
   readingTime,
 } from "@/lib/articles";
-import HeroImage from "@/components/HeroImage";
-import ImageCaption from "@/components/ImageCaption";
+import HeroMedia from "@/components/HeroMedia";
 import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
 
 /* ------------------------------------------------------------------ */
@@ -271,34 +270,13 @@ export default function ArticlePage() {
         </article>
 
         {article.hero_image_url && article.hero_image_url.trim().length > 0 && (
-          <figure className="mt-10 w-full max-w-full md:max-w-[780px] md:mx-auto">
-          <div className="w-full max-w-full overflow-hidden relative bg-stone-100">
-            <HeroImage
-              src={article.hero_image_url}
-              alt={article.title}
-              loading="eager"
-              category={article.category}
-              className="block w-full h-auto"
-              style={{}}
-            />
-          </div>
-            <div className="text-center">
-              <ImageCaption
-                caption={article.image_caption}
-                credit={null}
-                size="md"
-                align="center"
-              />
-            </div>
-            {article.image_credit && (
-              <p
-                className="mt-2 text-right italic"
-                style={{ fontSize: "11px", color: "#888" }}
-              >
-                Photo: {article.image_credit}
-              </p>
-            )}
-          </figure>
+          <HeroMedia
+            url={article.hero_image_url}
+            alt={article.title}
+            credit={article.image_credit ?? null}
+            caption={article.image_caption ?? null}
+            category={article.category}
+          />
         )}
 
         <div className="article-prose max-w-2xl mx-auto mt-12">
