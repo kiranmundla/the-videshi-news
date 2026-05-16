@@ -305,6 +305,7 @@ export default function TravelDestination() {
           <div style={{
             display: "flex", gap: 12, overflowX: "auto", padding: "0 0 16px 0",
             scrollbarWidth: "none" as const, msOverflowStyle: "none" as any,
+            WebkitOverflowScrolling: "touch" as any,
           }}>
             {galleryPhotos.map((photo, i) => (
               <div key={i} onClick={() => openFullscreen(galleryPhotos, i)} style={{
