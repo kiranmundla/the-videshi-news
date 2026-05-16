@@ -308,8 +308,25 @@ export default function ArticlePage() {
         </article>
 
         {article.gallery_images && article.gallery_images.length > 0 ? (
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-3xl mx-auto relative">
+            <button
+              className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-9 h-9 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors"
+              aria-label="Scroll left"
+              onClick={() => {
+                const el = document.getElementById("article-gallery");
+                if (el) el.scrollBy({ left: -el.clientWidth * 0.8, behavior: "smooth" });
+              }}
+            >‹</button>
+            <button
+              className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 items-center justify-center w-9 h-9 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors"
+              aria-label="Scroll right"
+              onClick={() => {
+                const el = document.getElementById("article-gallery");
+                if (el) el.scrollBy({ left: el.clientWidth * 0.8, behavior: "smooth" });
+              }}
+            >›</button>
             <div
+              id="article-gallery"
               className="flex gap-3 overflow-x-auto pb-2"
               style={{ 
                 scrollbarWidth: "none", 

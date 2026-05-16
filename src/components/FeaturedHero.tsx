@@ -72,14 +72,14 @@ export default function FeaturedHero({ article }: { article: Article }) {
 
     // Landscape: full-bleed background (existing)
     return (
-      <section className="relative w-full h-[260px] md:h-[300px] overflow-hidden rounded-lg">
+      <section className="relative w-full overflow-hidden rounded-lg">
         <img
           src={article.hero_image_url}
           alt={article.title}
           loading="eager"
           referrerPolicy="no-referrer"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: "center" }}
+          className="w-full h-auto object-contain"
+          style={{ maxHeight: "450px" }}
         />
         <div
           className="absolute inset-0"
