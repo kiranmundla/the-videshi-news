@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import ArticleCard from "@/components/ArticleCard";
 import SectionRule from "@/components/SectionRule";
 import {
@@ -423,6 +424,8 @@ export default function ArticlePage() {
             </div>
           </section>
         )}
+
+        <NewsletterSignup variant="inline" />
       </main>
 
       <SiteFooter />
