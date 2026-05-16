@@ -292,14 +292,14 @@ export default function ArticlePage() {
               ].map((photo, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 rounded-lg overflow-hidden bg-stone-100"
-                  style={{ scrollSnapAlign: "center", maxWidth: "85%", maxHeight: 400 }}
+                  className="flex-shrink-0 rounded-lg overflow-hidden"
+                  style={{ scrollSnapAlign: "center", maxWidth: "85%" }}
                 >
                   <img
                     src={photo.src}
                     alt={photo.caption || article.title}
                     loading={i === 0 ? "eager" : "lazy"}
-                    className="block max-h-[400px] w-auto h-auto rounded-lg"
+                    style={{ display: "block", maxHeight: 350, width: "auto", height: "auto", borderRadius: 8 }}
                   />
                   {photo.caption && (
                     <p className="text-xs text-muted-foreground mt-1 px-1 pb-1">{photo.caption}</p>
