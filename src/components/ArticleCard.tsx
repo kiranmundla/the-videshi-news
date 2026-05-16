@@ -313,15 +313,14 @@ export default function ArticleCard({
           {allImages.map((img, i) => (
             <div
               key={i}
-              className="flex-shrink-0 w-[70%] md:w-[60%] aspect-[4/3] rounded-lg overflow-hidden bg-stone-100"
+              className="flex-shrink-0 w-[70%] md:w-[60%] aspect-[4/3] rounded-lg overflow-hidden bg-stone-200"
               style={{ scrollSnapAlign: "center" }}
             >
               <img
                 src={img.url}
                 alt={img.caption || article.title}
                 loading={variant === "hero" && i === 0 ? "eager" : "lazy"}
-                className="w-full h-full object-cover"
-                style={{ objectPosition: "center 20%" }}
+                className="w-full h-full object-contain"
               />
             </div>
           ))}
