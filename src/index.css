@@ -96,7 +96,7 @@
     padding: 16px 0 16px 24px;
     margin: 28px 0;
     font-style: italic;
-    font-size: inherit;
+    font-size: 1.12rem;
     line-height: 1.6;
     color: hsl(var(--foreground) / 0.75);
   }
@@ -139,7 +139,7 @@
     padding: 16px 0 16px 24px;
     margin: 28px 0;
     font-style: italic;
-    font-size: inherit;
+    font-size: 1.12rem;
     line-height: 1.6;
     color: hsl(var(--foreground) / 0.75);
   }
