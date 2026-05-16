@@ -1,10 +1,11 @@
-import { useEffect, useState, useMemo, useCallback, useRef } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
 import type { ReactNode } from "react";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
+import PhotoScrollStrip from "@/components/PhotoScrollStrip";
 
 /* ─── destination metadata ─── */
 interface DestMeta {
@@ -15,7 +16,6 @@ interface DestMeta {
   visa: string;
 }
 
-/** Recursively extract plain text from React children (handles <strong>, <em>, etc.) */
 function childrenToText(node: ReactNode): string {
   if (typeof node === "string") return node;
   if (typeof node === "number") return String(node);
@@ -41,11 +41,9 @@ const DESTINATIONS: Record<string, DestMeta> = {
 
 const DEST_KEYS = Object.keys(DESTINATIONS);
 
-/* ─── gallery types ─── */
 interface GalleryPhoto { src: string; caption: string; }
 interface GalleryData { [key: string]: { photos: GalleryPhoto[]; experiences?: Record<string, GalleryPhoto[]> } }
 
-/* ─── helpers ─── */
 function extractSections(body: string): { id: string; label: string }[] {
   const re = /^## (.+)$/gm;
   const out: { id: string; label: string }[] = [];
@@ -58,7 +56,6 @@ function extractSections(body: string): { id: string; label: string }[] {
   return out;
 }
 
-/* ─── component ─── */
 export default function TravelDestination() {
   const { destination = "" } = useParams();
   const meta = DESTINATIONS[destination];
@@ -70,34 +67,6 @@ export default function TravelDestination() {
   const [fullscreenIdx, setFullscreenIdx] = useState<number | null>(null);
   const [fullscreenPhotos, setFullscreenPhotos] = useState<GalleryPhoto[]>([]);
 
-  /* gallery scroll arrows */
-  const galleryRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
-
-  const updateGalleryScroll = useCallback(() => {
-    const el = galleryRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 10);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
-  }, []);
-
-  const scrollGallery = useCallback((dir: "left" | "right") => {
-    const el = galleryRef.current;
-    if (!el) return;
-    const amount = 300;
-    el.scrollBy({ left: dir === "right" ? amount : -amount, behavior: "smooth" });
-  }, []);
-
-  useEffect(() => {
-    const el = galleryRef.current;
-    if (!el) return;
-    updateGalleryScroll();
-    el.addEventListener("scroll", updateGalleryScroll, { passive: true });
-    return () => el.removeEventListener("scroll", updateGalleryScroll);
-  }, [galleryPhotos, updateGalleryScroll]);
-
-  /* fetch guide markdown */
   useEffect(() => {
     if (!meta) { setLoading(false); return; }
     setLoading(true);
@@ -108,22 +77,18 @@ export default function TravelDestination() {
       .finally(() => setLoading(false));
   }, [meta, destination]);
 
-  /* fetch gallery photos */
   useEffect(() => {
     if (!destination) return;
     fetch("/data/travel-galleries.json")
       .then((r) => r.ok ? r.json() : {})
       .then((data: GalleryData) => {
         const d = data[destination];
-        if (d && d.photos) setGalleryPhotos(d.photos);
-        else setGalleryPhotos([]);
-        if (d && d.experiences) setExperiencePhotos(d.experiences);
-        else setExperiencePhotos({});
+        setGalleryPhotos(d?.photos ?? []);
+        setExperiencePhotos(d?.experiences ?? {});
       })
       .catch(() => { setGalleryPhotos([]); setExperiencePhotos({}); });
   }, [destination]);
 
-  /* fullscreen gallery nav */
   const openFullscreen = useCallback((photos: GalleryPhoto[], idx: number) => {
     setFullscreenPhotos(photos);
     setFullscreenIdx(idx);
@@ -149,23 +114,21 @@ export default function TravelDestination() {
 
   const sections = useMemo(() => (body ? extractSections(body) : []), [body]);
 
-  /* pick 3 random other destinations for "More Destinations" */
   const otherDestinations = useMemo(() => {
-    return DEST_KEYS
-      .filter((k) => k !== destination)
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 3);
+    return DEST_KEYS.filter((k) => k !== destination).sort(() => Math.random() - 0.5).slice(0, 3);
   }, [destination]);
 
   /* ─── 404 ─── */
   if (!meta && !loading) {
     return (
-      <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", overflowX: "hidden" }}>
+      <div className="min-h-screen flex flex-col">
         <Masthead />
-        <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", padding: 40 }}>
-          <h2 style={{ fontFamily: "serif", fontSize: 32, marginBottom: 16 }}>Destination not found</h2>
-          <Link to="/travel" style={{ color: "#b91c1c", textDecoration: "underline" }}>← Back to Travel</Link>
-        </div>
+        <main className="container flex-1 flex items-center justify-center py-20">
+          <div className="text-center">
+            <h2 className="font-serif text-3xl mb-4">Destination not found</h2>
+            <Link to="/travel" className="text-red-700 underline">← Back to Travel</Link>
+          </div>
+        </main>
         <SiteFooter />
       </div>
     );
@@ -173,11 +136,11 @@ export default function TravelDestination() {
 
   if (loading || !meta) {
     return (
-      <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <div className="min-h-screen flex flex-col">
         <Masthead />
-        <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: 40 }}>
-          <p style={{ color: "#888", fontFamily: "serif", fontSize: 18 }}>Loading…</p>
-        </div>
+        <main className="container flex-1 flex items-center justify-center py-20 text-muted-foreground">
+          Loading…
+        </main>
         <SiteFooter />
       </div>
     );
@@ -186,7 +149,7 @@ export default function TravelDestination() {
   const heroUrl = galleryPhotos.length > 0 ? galleryPhotos[0].src : "";
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>{meta.title} Travel Guide — The Videshi</title>
         <meta name="description" content={`Complete diaspora travel guide to ${meta.title}. Best months, budget tips, visa info, and more.`} />
@@ -195,25 +158,22 @@ export default function TravelDestination() {
       <Masthead />
 
       {/* ─── Destination pills nav ─── */}
-      <div style={{ background: "#fafaf8", borderBottom: "1px solid #e5e5e0" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
-          <div style={{ display: "flex", gap: 8, padding: "12px 0", whiteSpace: "nowrap" as const }}>
-            <Link to="/travel" style={{
-              padding: "6px 14px", borderRadius: 20, fontSize: 13, fontWeight: 600,
-              textDecoration: "none", letterSpacing: "0.05em", textTransform: "uppercase" as const,
-              background: "transparent", color: "#666", border: "1px solid #ccc",
-            }}>All</Link>
+      <div className="bg-stone-50 border-b border-stone-200">
+        <div className="container overflow-x-auto" style={{ WebkitOverflowScrolling: "touch" }}>
+          <div className="flex gap-2 py-3 whitespace-nowrap">
+            <Link to="/travel" className="px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border border-stone-300 text-stone-500 no-underline hover:bg-stone-100 transition-colors">
+              All
+            </Link>
             {DEST_KEYS.map((key) => {
               const active = key === destination;
               return (
-                <Link key={key} to={`/travel/${key}`} style={{
-                  padding: "6px 14px", borderRadius: 20, fontSize: 13, fontWeight: 600,
-                  textDecoration: "none", letterSpacing: "0.05em", textTransform: "uppercase" as const,
-                  background: active ? "#1a1a1a" : "transparent",
-                  color: active ? "#fff" : "#666",
-                  border: active ? "1px solid #1a1a1a" : "1px solid #ccc",
-                  transition: "all 0.2s",
-                }}>
+                <Link key={key} to={`/travel/${key}`}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider no-underline transition-all border ${
+                    active
+                      ? "bg-stone-900 text-white border-stone-900"
+                      : "text-stone-500 border-stone-300 hover:bg-stone-100"
+                  }`}
+                >
                   {DESTINATIONS[key].title}
                 </Link>
               );
@@ -223,66 +183,42 @@ export default function TravelDestination() {
       </div>
 
       {/* ─── Breadcrumb ─── */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "14px 20px 0" }}>
-        <nav style={{ fontSize: 13, color: "#888", letterSpacing: "0.03em", textTransform: "uppercase" as const }}>
-          <Link to="/" style={{ color: "#888", textDecoration: "none" }}>Home</Link>
-          <span style={{ margin: "0 6px" }}>›</span>
-          <Link to="/travel" style={{ color: "#888", textDecoration: "none" }}>Travel</Link>
-          <span style={{ margin: "0 6px" }}>›</span>
-          <span style={{ color: "#333" }}>{meta.title}</span>
+      <div className="container pt-3.5">
+        <nav className="text-xs text-stone-400 uppercase tracking-wide">
+          <Link to="/" className="text-stone-400 no-underline hover:text-stone-600">Home</Link>
+          <span className="mx-1.5">›</span>
+          <Link to="/travel" className="text-stone-400 no-underline hover:text-stone-600">Travel</Link>
+          <span className="mx-1.5">›</span>
+          <span className="text-stone-700">{meta.title}</span>
         </nav>
       </div>
 
       {/* ─── Hero ─── */}
-      <div style={{
-        position: "relative", width: "100%", maxWidth: 1200, margin: "16px auto 0",
-        height: 420, overflow: "hidden", borderRadius: 8,
-        background: "#1a1a1a",
-      }}>
-        {heroUrl && (
-          <img src={heroUrl} alt={meta.title}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", opacity: 0.85 }} />
-        )}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%)",
-        }} />
-        <div style={{
-          position: "absolute", bottom: 0, left: 0, right: 0, padding: "40px 36px",
-        }}>
-          <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, letterSpacing: "0.12em", textTransform: "uppercase" as const, marginBottom: 8, fontWeight: 600 }}>
-            Diaspora Travel Guide
-          </p>
-          <h1 style={{ fontFamily: "serif", fontSize: 48, fontWeight: 900, color: "#fff", lineHeight: 1.1, margin: 0 }}>
-            {meta.title}
-          </h1>
-                  </div>
+      <div className="container mt-4">
+        <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden rounded-lg bg-stone-900">
+          {heroUrl && (
+            <img src={heroUrl} alt={meta.title} className="w-full h-full object-cover block opacity-85" />
+          )}
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%)" }} />
+          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+            <p className="text-white/70 text-xs tracking-widest uppercase mb-2 font-semibold">Diaspora Travel Guide</p>
+            <h1 className="font-serif text-3xl md:text-5xl font-black text-white leading-tight m-0">{meta.title}</h1>
+          </div>
+        </div>
       </div>
 
       {/* ─── Quick Facts Bar ─── */}
-      <div style={{
-        maxWidth: 1200, margin: "0 auto", padding: "0 20px",
-      }}>
-        <div style={{
-          display: "flex", flexWrap: "wrap" as const, gap: 0,
-          background: "#f5f5f0", borderRadius: "0 0 8px 8px",
-          overflow: "hidden",
-        }}>
+      <div className="container">
+        <div className="flex flex-wrap bg-stone-100 rounded-b-lg overflow-hidden">
           {[
             { icon: "🗓", label: "Best Months", value: meta.bestMonths },
             { icon: "💰", label: "Budget", value: meta.budget },
             { icon: "✈️", label: "Flights", value: meta.flights },
             { icon: "🛂", label: "Visa", value: meta.visa },
           ].map((fact, i) => (
-            <div key={i} style={{
-              flex: "1 1 140px", padding: "16px 20px",
-              borderRight: i < 3 ? "1px solid #e5e5e0" : "none",
-              minWidth: 140,
-            }}>
-              <div style={{ fontSize: 11, color: "#888", textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: 4, fontWeight: 600 }}>
-                {fact.icon} {fact.label}
-              </div>
-              <div style={{ fontSize: 14, color: "#333", fontWeight: 500 }}>{fact.value}</div>
+            <div key={i} className="flex-1 min-w-[140px] px-5 py-4" style={{ borderRight: i < 3 ? "1px solid #e5e5e0" : "none" }}>
+              <div className="text-[11px] text-stone-400 uppercase tracking-wider font-semibold mb-1">{fact.icon} {fact.label}</div>
+              <div className="text-sm text-stone-700 font-medium">{fact.value}</div>
             </div>
           ))}
         </div>
@@ -290,55 +226,8 @@ export default function TravelDestination() {
 
       {/* ─── Photo Gallery Strip ─── */}
       {galleryPhotos.length > 0 && (
-        <div style={{ maxWidth: 1200, margin: "20px auto 0", padding: "0 20px", position: "relative" }}>
-          {/* Left arrow */}
-          {canScrollLeft && (
-            <button onClick={() => scrollGallery("left")} aria-label="Scroll left" style={{
-              position: "absolute", left: 8, top: "50%", transform: "translateY(-50%)", zIndex: 10,
-              background: "rgba(0,0,0,0.6)", border: "none", color: "#fff", fontSize: 18,
-              width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
-              display: "flex", alignItems: "center", justifyContent: "center",
-            }}>‹</button>
-          )}
-          {/* Right arrow */}
-          {canScrollRight && (
-            <button onClick={() => scrollGallery("right")} aria-label="Scroll right" style={{
-              position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", zIndex: 10,
-              background: "rgba(0,0,0,0.6)", border: "none", color: "#fff", fontSize: 18,
-              width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
-              display: "flex", alignItems: "center", justifyContent: "center",
-            }}>›</button>
-          )}
-          <div ref={galleryRef} style={{
-            display: "flex", gap: 12, overflowX: "auto", padding: "0 0 16px 0",
-            scrollbarWidth: "none" as const, msOverflowStyle: "none" as any,
-            WebkitOverflowScrolling: "touch" as any,
-          }}>
-            {galleryPhotos.map((photo, i) => (
-              <div key={i} onClick={() => openFullscreen(galleryPhotos, i)} style={{
-                flexShrink: 0, width: 280, height: 180, borderRadius: 8,
-                overflow: "hidden", position: "relative", cursor: "pointer",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-              }}>
-                <img src={photo.src} alt={photo.caption} loading="lazy" style={{
-                  width: "100%", height: "100%", objectFit: "cover", display: "block",
-                  transition: "transform 0.3s",
-                }}
-                  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-                />
-                <div style={{
-                  position: "absolute", bottom: 0, left: 0, right: 0,
-                  padding: "20px 10px 8px",
-                  background: "linear-gradient(transparent, rgba(0,0,0,0.7))",
-                  color: "white", fontSize: "0.75rem", fontWeight: 500,
-                }}>
-                  {photo.caption}
-                </div>
-              </div>
-            ))}
-          </div>
-          <style>{`div::-webkit-scrollbar { display: none; }`}</style>
+        <div className="container mt-5">
+          <PhotoScrollStrip photos={galleryPhotos} onPhotoClick={openFullscreen} />
         </div>
       )}
 
@@ -346,93 +235,51 @@ export default function TravelDestination() {
       {fullscreenIdx !== null && fullscreenPhotos[fullscreenIdx] && (() => {
         let touchStartX = 0;
         return (
-          <div
-            onClick={(e) => { if (e.target === e.currentTarget) fsClose(); }}
-            style={{
-              position: "fixed", inset: 0, zIndex: 9999,
-              background: "rgba(0,0,0,0.92)", display: "flex",
-              flexDirection: "column", alignItems: "center", justifyContent: "center",
-            }}
-          >
-            {/* Close button */}
-            <button onClick={fsClose} style={{
-              position: "absolute", top: 16, right: 20, background: "none",
-              border: "none", color: "white", fontSize: 32, cursor: "pointer", zIndex: 10,
-            }}>✕</button>
-
-            {/* Counter */}
-            <div style={{
-              position: "absolute", top: 20, left: "50%", transform: "translateX(-50%)",
-              color: "rgba(255,255,255,0.7)", fontSize: 14, fontWeight: 500,
-            }}>
+          <div onClick={(e) => { if (e.target === e.currentTarget) fsClose(); }}
+            className="fixed inset-0 z-[9999] bg-black/90 flex flex-col items-center justify-center">
+            <button onClick={fsClose} className="absolute top-4 right-5 bg-transparent border-none text-white text-3xl cursor-pointer z-10">✕</button>
+            <div className="absolute top-5 left-1/2 -translate-x-1/2 text-white/70 text-sm font-medium">
               {fullscreenIdx + 1} / {fullscreenPhotos.length}
             </div>
-
-            {/* Left arrow */}
-            <button onClick={(e) => { e.stopPropagation(); fsPrev(); }} style={{
-              position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)",
-              background: "rgba(255,255,255,0.15)", border: "none", color: "white",
-              fontSize: 28, width: 48, height: 48, borderRadius: "50%", cursor: "pointer",
-            }}>‹</button>
-
-            {/* Image */}
+            <button onClick={(e) => { e.stopPropagation(); fsPrev(); }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/15 border-none text-white text-[28px] w-12 h-12 rounded-full cursor-pointer">‹</button>
             <div
               onTouchStart={(e) => { touchStartX = e.touches[0].clientX; }}
-              onTouchEnd={(e) => {
-                const diff = e.changedTouches[0].clientX - touchStartX;
-                if (Math.abs(diff) > 50) { diff < 0 ? fsNext() : fsPrev(); }
-              }}
-              style={{ maxWidth: "90vw", maxHeight: "75vh" }}
+              onTouchEnd={(e) => { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff < 0 ? fsNext() : fsPrev(); } }}
+              className="max-w-[90vw] max-h-[75vh]"
             >
-              <img
-                src={fullscreenPhotos[fullscreenIdx].src}
-                alt={fullscreenPhotos[fullscreenIdx].caption}
-                style={{ maxWidth: "90vw", maxHeight: "75vh", objectFit: "contain", borderRadius: 4 }}
-              />
+              <img src={fullscreenPhotos[fullscreenIdx].src} alt={fullscreenPhotos[fullscreenIdx].caption}
+                className="max-w-[90vw] max-h-[75vh] object-contain rounded" />
             </div>
-
-            {/* Right arrow */}
-            <button onClick={(e) => { e.stopPropagation(); fsNext(); }} style={{
-              position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)",
-              background: "rgba(255,255,255,0.15)", border: "none", color: "white",
-              fontSize: 28, width: 48, height: 48, borderRadius: "50%", cursor: "pointer",
-            }}>›</button>
-
-            {/* Caption */}
-            <div style={{
-              marginTop: 16, color: "rgba(255,255,255,0.85)", fontSize: 15,
-              fontWeight: 500, textAlign: "center" as const,
-            }}>
-              {fullscreenPhotos[fullscreenIdx].caption}
-            </div>
+            <button onClick={(e) => { e.stopPropagation(); fsNext(); }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/15 border-none text-white text-[28px] w-12 h-12 rounded-full cursor-pointer">›</button>
+            <div className="mt-4 text-white/85 text-[15px] font-medium text-center">{fullscreenPhotos[fullscreenIdx].caption}</div>
           </div>
         );
       })()}
 
       {/* ─── Main content + sidebar ─── */}
-      <div style={{ maxWidth: 1200, margin: "32px auto 0", padding: "0 20px", display: "flex", gap: 40, alignItems: "flex-start" }}>
+      <div className="container mt-8 flex gap-10 items-start">
 
         {/* Article content */}
-        <article style={{ flex: "1 1 0%", minWidth: 0, maxWidth: 780, overflowX: "hidden" }}>
+        <article className="flex-1 min-w-0 max-w-[780px] overflow-x-hidden">
           {body ? (
             <div className="prose-article" style={{ fontFamily: "Georgia, serif", fontSize: 17, lineHeight: 1.8, color: "#222" }}>
               <ReactMarkdown
                 components={{
-                  h1: ({ children }) => <h1 style={{ fontFamily: "serif", fontSize: 32, fontWeight: 800, margin: "32px 0 16px", color: "#111", lineHeight: 1.2 }}>{children}</h1>,
+                  h1: ({ children }) => <h1 className="font-serif text-[32px] font-extrabold mt-8 mb-4 text-stone-900 leading-tight">{children}</h1>,
                   h2: ({ children }) => {
                     const text = childrenToText(children);
                     const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-                    return <h2 id={id} style={{ fontFamily: "serif", fontSize: 26, fontWeight: 700, margin: "36px 0 14px", color: "#111", lineHeight: 1.25, borderBottom: "1px solid #e5e5e0", paddingBottom: 8 }}>{children}</h2>;
+                    return <h2 id={id} className="font-serif text-[26px] font-bold mt-9 mb-3.5 text-stone-900 leading-snug border-b border-stone-200 pb-2">{children}</h2>;
                   },
-                  h3: ({ children }) => <h3 style={{ fontFamily: "serif", fontSize: 20, fontWeight: 600, margin: "28px 0 10px", color: "#222" }}>{children}</h3>,
+                  h3: ({ children }) => <h3 className="font-serif text-xl font-semibold mt-7 mb-2.5 text-stone-800">{children}</h3>,
                   p: ({ children }) => {
                     const text = childrenToText(children);
-                    // Detect numbered experience like "**1. Amber Fort, Jaipur** — ..."
                     const expMatch = text.match(/^\*?\*?\d+\.\s*([^*—–]+)/);
                     let matchedKey = "";
                     if (expMatch && Object.keys(experiencePhotos).length > 0) {
                       const expName = expMatch[1].trim().replace(/,$/, "");
-                      // Find matching key in experiencePhotos (fuzzy: check if key is contained in name or vice versa)
                       matchedKey = Object.keys(experiencePhotos).find((k) =>
                         expName.toLowerCase().includes(k.toLowerCase()) || k.toLowerCase().includes(expName.toLowerCase().split(",")[0].trim())
                       ) || "";
@@ -440,114 +287,70 @@ export default function TravelDestination() {
                     const expPhotos = matchedKey ? experiencePhotos[matchedKey] : null;
                     return (
                       <>
-                        <p style={{ margin: "0 0 18px", lineHeight: 1.8 }}>{children}</p>
+                        <p className="mb-4" style={{ lineHeight: 1.8 }}>{children}</p>
                         {expPhotos && expPhotos.length > 0 && (
-                          <div style={{
-                            display: "flex", gap: 8, overflowX: "scroll", margin: "4px 0 20px",
-                            scrollbarWidth: "none" as const,
-                            WebkitOverflowScrolling: "touch" as any,
-                          }}>
-                            {expPhotos.map((p, i) => (
-                              <div key={i} onClick={() => openFullscreen(expPhotos, i)} style={{
-                                flexShrink: 0, width: 220, height: 140, borderRadius: 6,
-                                overflow: "hidden", position: "relative", cursor: "pointer",
-                                boxShadow: "0 1px 4px rgba(0,0,0,0.1)",
-                              }}>
-                                <img src={p.src} alt={p.caption} loading="lazy" style={{
-                                  width: "100%", height: "100%", objectFit: "cover", display: "block",
-                                }} />
-                                <div style={{
-                                  position: "absolute", bottom: 0, left: 0, right: 0,
-                                  padding: "16px 8px 6px",
-                                  background: "linear-gradient(transparent, rgba(0,0,0,0.6))",
-                                  color: "white", fontSize: "0.7rem",
-                                }}>{p.caption}</div>
-                              </div>
-                            ))}
+                          <div className="mb-5">
+                            <PhotoScrollStrip photos={expPhotos} itemWidth={220} itemHeight={140} onPhotoClick={openFullscreen} />
                           </div>
                         )}
                       </>
                     );
                   },
-                  ul: ({ children }) => <ul style={{ margin: "0 0 18px", paddingLeft: 24 }}>{children}</ul>,
-                  ol: ({ children }) => <ol style={{ margin: "0 0 18px", paddingLeft: 24 }}>{children}</ol>,
-                  li: ({ children }) => <li style={{ marginBottom: 8, lineHeight: 1.7 }}>{children}</li>,
-                  strong: ({ children }) => <strong style={{ fontWeight: 700, color: "#111" }}>{children}</strong>,
-                  blockquote: ({ children }) => <blockquote style={{ borderLeft: "3px solid #b91c1c", paddingLeft: 16, margin: "20px 0", color: "#555", fontStyle: "italic" }}>{children}</blockquote>,
-                  a: ({ href, children }) => <a href={href || "#"} target="_blank" rel="noopener noreferrer" style={{ color: "#b91c1c", textDecoration: "underline" }}>{children}</a>,
+                  ul: ({ children }) => <ul className="mb-4 pl-6">{children}</ul>,
+                  ol: ({ children }) => <ol className="mb-4 pl-6">{children}</ol>,
+                  li: ({ children }) => <li className="mb-2" style={{ lineHeight: 1.7 }}>{children}</li>,
+                  strong: ({ children }) => <strong className="font-bold text-stone-900">{children}</strong>,
+                  blockquote: ({ children }) => <blockquote className="border-l-[3px] border-red-700 pl-4 my-5 text-stone-500 italic">{children}</blockquote>,
+                  a: ({ href, children }) => <a href={href || "#"} target="_blank" rel="noopener noreferrer" className="text-red-700 underline">{children}</a>,
                 }}
               >
                 {body}
               </ReactMarkdown>
             </div>
           ) : (
-            <p style={{ color: "#888", fontStyle: "italic" }}>Guide content is being prepared…</p>
+            <p className="text-stone-400 italic">Guide content is being prepared…</p>
           )}
         </article>
 
-        {/* Sidebar */}
-        <aside style={{ width: 300, flexShrink: 0, position: "sticky" as const, top: 24 }}
-          className="travel-sidebar"
-        >
-          {/* Quick Links */}
+        {/* Sidebar — hidden on mobile */}
+        <aside className="hidden lg:block w-[300px] flex-shrink-0 sticky top-6">
           {sections.length > 0 && (
-            <div style={{ marginBottom: 28, background: "#fafaf8", borderRadius: 8, padding: "20px 20px 12px", border: "1px solid #e5e5e0" }}>
-              <h3 style={{ fontFamily: "serif", fontSize: 16, fontWeight: 700, margin: "0 0 12px", color: "#333", textTransform: "uppercase" as const, letterSpacing: "0.06em" }}>
-                In This Guide
-              </h3>
+            <div className="mb-7 bg-stone-50 rounded-lg p-5 border border-stone-200">
+              <h3 className="font-serif text-sm font-bold mb-3 text-stone-700 uppercase tracking-wider">In This Guide</h3>
               {sections.map((s) => (
-                <a key={s.id} href={`#${s.id}`} style={{
-                  display: "block", padding: "7px 0", fontSize: 14, color: "#555",
-                  textDecoration: "none", borderBottom: "1px solid #eee",
-                  transition: "color 0.2s",
-                }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#b91c1c")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#555")}
-                >
+                <a key={s.id} href={`#${s.id}`}
+                  className="block py-1.5 text-sm text-stone-500 no-underline border-b border-stone-100 hover:text-red-700 transition-colors">
                   {s.label}
                 </a>
               ))}
             </div>
           )}
 
-          {/* At a Glance */}
-          <div style={{ marginBottom: 28, background: "#fafaf8", borderRadius: 8, padding: 20, border: "1px solid #e5e5e0" }}>
-            <h3 style={{ fontFamily: "serif", fontSize: 16, fontWeight: 700, margin: "0 0 14px", color: "#333", textTransform: "uppercase" as const, letterSpacing: "0.06em" }}>
-              At a Glance
-            </h3>
+          <div className="mb-7 bg-stone-50 rounded-lg p-5 border border-stone-200">
+            <h3 className="font-serif text-sm font-bold mb-3.5 text-stone-700 uppercase tracking-wider">At a Glance</h3>
             {[
               { label: "Best Months", value: meta.bestMonths },
               { label: "Daily Budget", value: meta.budget },
               { label: "Flights", value: meta.flights },
               { label: "Visa", value: meta.visa },
             ].map((row, i) => (
-              <div key={i} style={{ marginBottom: 12 }}>
-                <div style={{ fontSize: 11, color: "#888", textTransform: "uppercase" as const, letterSpacing: "0.08em", fontWeight: 600 }}>{row.label}</div>
-                <div style={{ fontSize: 14, color: "#333", marginTop: 2 }}>{row.value}</div>
+              <div key={i} className="mb-3">
+                <div className="text-[11px] text-stone-400 uppercase tracking-wider font-semibold">{row.label}</div>
+                <div className="text-sm text-stone-700 mt-0.5">{row.value}</div>
               </div>
             ))}
           </div>
 
-          {/* Ad Space placeholder */}
-          <div style={{
-            marginBottom: 28, borderRadius: 8, padding: 40,
-            border: "2px dashed #ddd", textAlign: "center" as const,
-          }}>
-            <p style={{ color: "#bbb", fontSize: 12, textTransform: "uppercase" as const, letterSpacing: "0.1em", margin: 0 }}>Advertisement</p>
+          <div className="mb-7 rounded-lg p-10 border-2 border-dashed border-stone-200 text-center">
+            <p className="text-stone-300 text-xs uppercase tracking-widest m-0">Advertisement</p>
           </div>
 
-          {/* Other Destinations */}
           {otherDestinations.length > 0 && (
-            <div style={{ marginBottom: 28 }}>
-              <h3 style={{ fontFamily: "serif", fontSize: 16, fontWeight: 700, margin: "0 0 14px", color: "#333", textTransform: "uppercase" as const, letterSpacing: "0.06em" }}>
-                More Destinations
-              </h3>
+            <div className="mb-7">
+              <h3 className="font-serif text-sm font-bold mb-3.5 text-stone-700 uppercase tracking-wider">More Destinations</h3>
               {otherDestinations.map((k) => (
-                <Link key={k} to={`/travel/${k}`}
-                  style={{ display: "flex", gap: 12, marginBottom: 14, textDecoration: "none", alignItems: "center" }}>
-                  <span style={{ fontFamily: "serif", fontSize: 14, fontWeight: 600, color: "#333", lineHeight: 1.3 }}>
-                    {DESTINATIONS[k].title}
-                  </span>
+                <Link key={k} to={`/travel/${k}`} className="block mb-3.5 no-underline">
+                  <span className="font-serif text-sm font-semibold text-stone-700 hover:text-red-700 transition-colors">{DESTINATIONS[k].title}</span>
                 </Link>
               ))}
             </div>
@@ -555,33 +358,22 @@ export default function TravelDestination() {
         </aside>
       </div>
 
-      {/* ─── Related Destinations (full-width bottom section) ─── */}
+      {/* ─── Related Destinations ─── */}
       {otherDestinations.length > 0 && (
-        <div style={{ maxWidth: 1200, margin: "48px auto 0", padding: "0 20px 40px" }}>
-          <div style={{ borderTop: "1px solid #e5e5e0", paddingTop: 28 }}>
-            <h2 style={{ fontFamily: "serif", fontSize: 22, fontWeight: 700, marginBottom: 20, color: "#222" }}>
-              Explore More Destinations
-            </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 24 }}>
+        <div className="container mt-12 pb-10">
+          <div className="border-t border-stone-200 pt-7">
+            <h2 className="font-serif text-[22px] font-bold mb-5 text-stone-800">Explore More Destinations</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherDestinations.map((k) => {
                 const destMeta = DESTINATIONS[k];
                 return (
                   <Link key={k} to={`/travel/${k}`}
-                    style={{ textDecoration: "none", borderRadius: 8, overflow: "hidden", border: "1px solid #e5e5e0", transition: "box-shadow 0.2s" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.1)")}
-                    onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
-                  >
-                    <div style={{ position: "relative", height: 100, overflow: "hidden", background: "#1a1a1a" }}>
-                      <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <span style={{ fontFamily: "serif", fontSize: 24, fontWeight: 800, color: "#fff" }}>
-                          {destMeta.title}
-                        </span>
-                      </div>
+                    className="no-underline rounded-lg overflow-hidden border border-stone-200 hover:shadow-lg transition-shadow">
+                    <div className="relative h-[100px] overflow-hidden bg-stone-900 flex items-center justify-center">
+                      <span className="font-serif text-2xl font-extrabold text-white">{destMeta.title}</span>
                     </div>
-                    <div style={{ padding: "12px 14px" }}>
-                      <p style={{ fontSize: 12, color: "#999", margin: 0, letterSpacing: "0.03em" }}>
-                        🗓 {destMeta.bestMonths} · 💰 {destMeta.budget}
-                      </p>
+                    <div className="px-3.5 py-3">
+                      <p className="text-xs text-stone-400 m-0 tracking-wide">🗓 {destMeta.bestMonths} · 💰 {destMeta.budget}</p>
                     </div>
                   </Link>
                 );
@@ -591,15 +383,8 @@ export default function TravelDestination() {
         </div>
       )}
 
-      <div style={{ flex: 1 }} />
+      <div className="flex-1" />
       <SiteFooter />
-
-      {/* ─── Responsive: hide sidebar on mobile ─── */}
-      <style>{`
-        @media (max-width: 840px) {
-          .travel-sidebar { display: none !important; }
-        }
-      `}</style>
     </div>
   );
 }

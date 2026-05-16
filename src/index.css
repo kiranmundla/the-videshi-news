@@ -159,3 +159,6 @@
 }
 
 .container { max-width: 1200px !important; }
+
+/* Prevent horizontal page overflow on mobile */
+html, body { overflow-x: hidden; }
