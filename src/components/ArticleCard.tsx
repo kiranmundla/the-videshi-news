@@ -297,7 +297,7 @@ export default function ArticleCard({
   // Combine hero + gallery into one scroll strip when gallery exists
   const allImages = gallery && gallery.length > 0
     ? [
-        { url: article.hero_image_url!, caption: "" },
+        { url: article.hero_image_url!, caption: article.title },
         ...gallery.filter(g => g.url !== article.hero_image_url),
       ]
     : null;
