@@ -4,12 +4,10 @@ const SUPABASE_URL =
   process.env.VITE_SUPABASE_URL ??
   process.env.SUPABASE_URL ??
   "https://lboecaekpynbpyijrbfz.supabase.co";
-const SUPABASE_SERVICE_KEY =
-  process.env.SUPABASE_SERVICE_ROLE_KEY ?? "";
 const SUPABASE_ANON_KEY =
   process.env.VITE_SUPABASE_PUBLISHABLE_KEY ??
   process.env.SUPABASE_ANON_KEY ??
-  "";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxib2VjYWVrcHluYnB5aWpyYmZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5NDc2NzQsImV4cCI6MjA5MzUyMzY3NH0.i2_CzXJEnIT2SZ9mx0j5OHh4rqewPwiLUogSrdM4HXY";
 
 async function ensureTable() {
   // Try inserting — if table doesn't exist, create it via SQL
@@ -44,7 +42,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.log(`[newsletter] Subscriber: ${email}`);
   }
 
-  const key = SUPABASE_SERVICE_KEY || SUPABASE_ANON_KEY;
+  const key = SUPABASE_ANON_KEY;
 
   try {
     const resp = await fetch(`${SUPABASE_URL}/rest/v1/newsletter_subscribers`, {
