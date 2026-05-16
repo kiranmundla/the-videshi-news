@@ -270,7 +270,19 @@ export default function ArticlePage() {
           </div>
         </article>
 
-        {article.hero_image_url && article.hero_image_url.trim().length > 0 && (
+        {article.gallery_images && article.gallery_images.length > 0 ? (
+          <div className="max-w-3xl mx-auto">
+            <PhotoScrollStrip
+              photos={article.gallery_images.map((img) => ({
+                src: img.url,
+                caption: img.caption,
+              }))}
+              itemWidth={300}
+              itemHeight={200}
+              objectFit="contain"
+            />
+          </div>
+        ) : article.hero_image_url && article.hero_image_url.trim().length > 0 ? (
           <HeroMedia
             url={article.hero_image_url}
             alt={article.title}
@@ -278,20 +290,7 @@ export default function ArticlePage() {
             caption={article.image_caption ?? null}
             category={article.category}
           />
-        )}
-
-        {article.gallery_images && article.gallery_images.length > 0 && (
-          <div className="max-w-3xl mx-auto mt-6">
-            <PhotoScrollStrip
-              photos={article.gallery_images.map((img) => ({
-                src: img.url,
-                caption: img.caption,
-              }))}
-              itemWidth={260}
-              itemHeight={170}
-            />
-          </div>
-        )}
+        ) : null}
 
         <div className="article-prose max-w-2xl mx-auto mt-12">
           {(() => {

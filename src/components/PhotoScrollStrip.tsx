@@ -9,10 +9,11 @@ interface Props {
   photos: Photo[];
   itemWidth?: number;
   itemHeight?: number;
+  objectFit?: "cover" | "contain";
   onPhotoClick?: (photos: Photo[], index: number) => void;
 }
 
-export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight = 180, onPhotoClick }: Props) {
+export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight = 180, objectFit = "cover", onPhotoClick }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
