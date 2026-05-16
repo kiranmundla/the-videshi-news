@@ -293,13 +293,13 @@ export default function ArticlePage() {
                 <div
                   key={i}
                   className="flex-shrink-0 rounded-lg overflow-hidden"
-                  style={{ scrollSnapAlign: "center", maxWidth: "85%" }}
+                  style={{ scrollSnapAlign: "center", width: "90%" }}
                 >
                   <img
                     src={photo.src}
                     alt={photo.caption || article.title}
                     loading={i === 0 ? "eager" : "lazy"}
-                    style={{ display: "block", maxHeight: 350, width: "auto", height: "auto", borderRadius: 8 }}
+                    style={{ display: "block", width: "100%", height: "auto", borderRadius: 8 }}
                   />
                   {photo.caption && (
                     <p className="text-xs text-muted-foreground mt-1 px-1 pb-1">{photo.caption}</p>
