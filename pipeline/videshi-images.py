@@ -463,11 +463,6 @@ def search_wikipedia_for_article(article):
             # Score confidence
             confidence = score_image_confidence("wikipedia", entity, entity, article)
             if confidence >= 5:
-                # Extra check: validate image filename against headline keywords
-                if not _image_filename_relevant(url, article):
-                    print(f"  ⏭ Image filename irrelevant to headline: {url.split('/')[-1][:60]}")
-                    time.sleep(POLITE_DELAY)
-                    continue
                 print(f"  ✅ Found via Wikipedia: {entity} (confidence: {confidence}/5)")
                 return url, attr
             else:
