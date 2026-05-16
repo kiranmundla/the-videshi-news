@@ -19,6 +19,8 @@ import RunLogPage from "./pages/pipeline/RunLogPage.tsx";
 import SourcesPage from "./pages/admin/SourcesPage.tsx";
 import TravelDestination from "./pages/TravelDestination.tsx";
 import SearchPage from "./pages/SearchPage.tsx";
+import Privacy from "./pages/Privacy.tsx";
+import Terms from "./pages/Terms.tsx";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +36,8 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
             <Route path="/articles/:slug" element={<ArticlePage />} />
             <Route path="/travel/:destination" element={<TravelDestination />} />
             <Route path="/admin" element={<Admin />} />
