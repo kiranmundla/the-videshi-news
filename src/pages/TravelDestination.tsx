@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
+import type { ReactNode } from "react";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import { Article, getArticlesByCategory, readingTime } from "@/lib/articles";
