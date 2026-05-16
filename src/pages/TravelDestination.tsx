@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
@@ -69,6 +69,33 @@ export default function TravelDestination() {
   const [experiencePhotos, setExperiencePhotos] = useState<Record<string, GalleryPhoto[]>>({});
   const [fullscreenIdx, setFullscreenIdx] = useState<number | null>(null);
   const [fullscreenPhotos, setFullscreenPhotos] = useState<GalleryPhoto[]>([]);
+
+  /* gallery scroll arrows */
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const updateGalleryScroll = useCallback(() => {
+    const el = galleryRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 10);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+  }, []);
+
+  const scrollGallery = useCallback((dir: "left" | "right") => {
+    const el = galleryRef.current;
+    if (!el) return;
+    const amount = 300;
+    el.scrollBy({ left: dir === "right" ? amount : -amount, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
+    const el = galleryRef.current;
+    if (!el) return;
+    updateGalleryScroll();
+    el.addEventListener("scroll", updateGalleryScroll, { passive: true });
+    return () => el.removeEventListener("scroll", updateGalleryScroll);
+  }, [galleryPhotos, updateGalleryScroll]);
 
   /* fetch guide markdown */
   useEffect(() => {
@@ -263,9 +290,27 @@ export default function TravelDestination() {
 
       {/* ─── Photo Gallery Strip ─── */}
       {galleryPhotos.length > 0 && (
-        <div style={{ maxWidth: 1200, margin: "20px auto 0", padding: "0 20px" }}>
-          <div style={{
-            display: "flex", gap: 12, overflowX: "scroll", padding: "0 0 16px 0",
+        <div style={{ maxWidth: 1200, margin: "20px auto 0", padding: "0 20px", position: "relative" }}>
+          {/* Left arrow */}
+          {canScrollLeft && (
+            <button onClick={() => scrollGallery("left")} aria-label="Scroll left" style={{
+              position: "absolute", left: 8, top: "50%", transform: "translateY(-50%)", zIndex: 10,
+              background: "rgba(0,0,0,0.6)", border: "none", color: "#fff", fontSize: 18,
+              width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>‹</button>
+          )}
+          {/* Right arrow */}
+          {canScrollRight && (
+            <button onClick={() => scrollGallery("right")} aria-label="Scroll right" style={{
+              position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", zIndex: 10,
+              background: "rgba(0,0,0,0.6)", border: "none", color: "#fff", fontSize: 18,
+              width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>›</button>
+          )}
+          <div ref={galleryRef} style={{
+            display: "flex", gap: 12, overflowX: "auto", padding: "0 0 16px 0",
             scrollbarWidth: "none" as const, msOverflowStyle: "none" as any,
             WebkitOverflowScrolling: "touch" as any,
           }}>
