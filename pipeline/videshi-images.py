@@ -5,7 +5,8 @@ videshi-images.py — Image sourcing for The Videshi news pipeline.
 Searches for article images using a tiered strategy:
   1. Wikipedia page images (best for specific entities)
   2. Pexels API (general fallback — culture, travel, lifestyle)
-  3. No image (preferred over wrong image)
+  3. Unsplash API (secondary free source — editorial quality)
+  4. No image (preferred over wrong image)
 
 PIB Photo RSS provides attribution links for government/political articles.
 
@@ -32,6 +33,7 @@ from PIL import Image, ImageEnhance
 
 ENV_FILE = os.path.expanduser("~/workspace/.env.supabase")
 PEXELS_ENV_FILE = os.path.expanduser("~/workspace/.env.pexels")
+UNSPLASH_ENV_FILE = os.path.expanduser("~/workspace/.env.unsplash")
 WIKIPEDIA_API = "https://en.wikipedia.org/w/api.php"
 WIKIMEDIA_API = "https://commons.wikimedia.org/w/api.php"
 USER_AGENT = "TheVideshiBot/1.0 (https://thevideshi.com; contact@thevideshi.com)"
@@ -866,6 +868,126 @@ def try_pexels_search(article):
 
 
 # ---------------------------------------------------------------------------
+# Unsplash API integration
+# ---------------------------------------------------------------------------
+
+UNSPLASH_API_URL = "https://api.unsplash.com/search/photos"
+
+
+def _load_unsplash_key():
+    """Load Unsplash API key from env var or .env.unsplash file."""
+    key = os.environ.get("UNSPLASH_ACCESS_KEY")
+    if key:
+        return key
+    if os.path.exists(UNSPLASH_ENV_FILE):
+        with open(UNSPLASH_ENV_FILE) as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith("#") or "=" not in line:
+                    continue
+                k, v = line.split("=", 1)
+                if k.strip() == "UNSPLASH_ACCESS_KEY":
+                    val = v.strip()
+                    if val and not val.startswith("your_"):
+                        return val
+    return None
+
+
+def try_unsplash_search(article):
+    """
+    Try to find an image via Unsplash API for the given article.
+    Returns (image_url, attribution) or (None, None).
+
+    Uses the same keyword extraction as Pexels. Downloads the regular-size
+    image (~1080px), crops to 16:9, resizes to 1200x675, and returns the
+    download URL with photographer attribution.
+
+    Unsplash requires: "Photo by [Name] on Unsplash"
+    Free tier: 50 requests/hour — be conservative.
+    """
+    api_key = _load_unsplash_key()
+    if not api_key:
+        return None, None
+
+    headline = article.get("headline", "")
+    tags = article.get("tags")
+    category = None
+    if isinstance(tags, list) and tags:
+        category = tags[0] if isinstance(tags[0], str) else None
+    elif isinstance(tags, str):
+        category = tags
+
+    # Reuse the same keyword extraction logic as Pexels
+    search_query = _pexels_extract_terms(headline, category)
+    print(f"  🔍 Unsplash: searching \"{search_query}\"")
+
+    try:
+        resp = requests.get(
+            UNSPLASH_API_URL,
+            headers={"Authorization": f"Client-ID {api_key}"},
+            params={"query": search_query, "per_page": 5, "orientation": "landscape"},
+            timeout=15,
+        )
+        if resp.status_code == 401:
+            print("    ⚠ Unsplash: Invalid API key")
+            return None, None
+        if resp.status_code == 403:
+            print("    ⚠ Unsplash: Rate limit exceeded")
+            return None, None
+        resp.raise_for_status()
+        results = resp.json().get("results", [])
+    except requests.RequestException as e:
+        print(f"    ⚠ Unsplash API error: {e}")
+        return None, None
+
+    if not results:
+        print("    ⚠ Unsplash: no results")
+        return None, None
+
+    # Pick best photo — score by alt text relevance and dimensions
+    best = None
+    best_score = -1
+    headline_lower = headline.lower()
+    headline_words = set(headline_lower.split())
+
+    for photo in results:
+        score = 0
+        alt = (photo.get("alt_description") or "").lower()
+        desc = (photo.get("description") or "").lower()
+        combined = set(alt.split()) | set(desc.split())
+        score += len(headline_words & combined) * 2
+        width = photo.get("width", 0)
+        height = photo.get("height", 1)
+        if width >= 1200:
+            score += 2
+        elif width >= 800:
+            score += 1
+        if width / height >= 1.3:
+            score += 1
+        if score > best_score:
+            best_score = score
+            best = photo
+
+    if not best:
+        return None, None
+
+    user = best.get("user", {})
+    photographer = user.get("name", "Unknown")
+    urls = best.get("urls", {})
+    # Prefer 'regular' (1080px wide) — good balance of quality and download size
+    image_url = urls.get("regular") or urls.get("small") or urls.get("raw", "")
+
+    if not image_url:
+        return None, None
+
+    alt_text = best.get("alt_description", "")[:50]
+    print(f"    📸 Found: \"{alt_text}\" by {photographer}")
+    attribution = f"Photo by {photographer} on Unsplash"
+
+    return image_url, attribution
+
+
+# ---------------------------------------------------------------------------
 # PIB Photo matching (attribution only — no image download yet)
 # ---------------------------------------------------------------------------
 
@@ -973,6 +1095,12 @@ def find_image_for_article(article):
     # --- Tier 2: Pexels API ---
     print("  📷 Tier 2: Pexels API search")
     url, attr = try_pexels_search(article)
+    if url:
+        return url, attr
+
+    # --- Tier 3: Unsplash API ---
+    print("  📷 Tier 3: Unsplash API search")
+    url, attr = try_unsplash_search(article)
     if url:
         return url, attr
 
@@ -1232,6 +1360,7 @@ def cmd_fetch(args):
     print("📷 Videshi Image Sourcing")
     print("   Tier 1: Wikipedia page images (strict, confidence=5)")
     print("   Tier 2: Pexels API search (general fallback)")
+    print("   Tier 3: Unsplash API search (secondary free source)")
     print("   PIB Photo RSS: attribution links for govt/political")
     if not no_process:
         print(f"   🖼 Processing: {TARGET_WIDTH}×{TARGET_HEIGHT} → enhance → upload")
