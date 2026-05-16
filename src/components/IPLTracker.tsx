@@ -68,12 +68,21 @@ function teamColor(short: string): string {
 
 /* ── Helpers ───────────────────────────────────────────── */
 function formatDate(dateStr: string): string {
+  if (!dateStr) return "";
+  // Handle "DD Mon" or "DD Mon YYYY" format from the pipeline (e.g. "16 May", "31 May 2026")
+  const ddMon = dateStr.match(/^(\d{1,2})\s+([A-Za-z]+)(?:\s+(\d{4}))?$/);
+  if (ddMon) {
+    const [, day, mon] = ddMon;
+    return `${mon.slice(0, 3)} ${parseInt(day, 10)}`;
+  }
+  // Handle ISO "YYYY-MM-DD" format
   try {
     const d = new Date(dateStr + "T00:00:00");
-    return d.toLocaleDateString("en-IN", { month: "short", day: "numeric" });
-  } catch {
-    return dateStr;
-  }
+    if (!isNaN(d.getTime())) {
+      return d.toLocaleDateString("en-IN", { month: "short", day: "numeric" });
+    }
+  } catch { /* fall through */ }
+  return dateStr;
 }
 
 function timeAgo(isoStr: string): string {
