@@ -1,0 +1,11 @@
+{
+  "_comment": "Articles whose images were manually removed. The image sourcer skips these.",
+  "skip_ids": [
+    "6b55331e-4213-4af3-bc0d-14a4e2954199",
+    "ff0b5b26-d867-4e3e-b865-af85a922854d",
+    "95549078-fd98-4906-a027-679e5009cede",
+    "fa1ede2a-8969-4a9d-916d-8c8aa7148174",
+    "2f76837d-c5e2-470a-87e2-d10d4f697318",
+    "b59cf284-4a58-4534-be69-0f4ecb70017c"
+  ]
+}

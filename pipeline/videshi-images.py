@@ -45,6 +45,18 @@ MAX_RESULTS = 10             # results per Wikimedia search
 TARGET_WIDTH = 1200          # final image width (retina-quality)
 TARGET_HEIGHT = 675          # final image height (16:9 at 1200px)
 JPEG_QUALITY = 88            # high-quality JPEG output
+IMAGE_SKIP_LIST = os.path.join(os.path.dirname(os.path.abspath(__file__)), "image-skip-list.json")
+
+def _load_skip_ids():
+    """Load article IDs that should never be re-sourced for images."""
+    if not os.path.exists(IMAGE_SKIP_LIST):
+        return set()
+    try:
+        with open(IMAGE_SKIP_LIST) as f:
+            data = json.load(f)
+        return set(data.get("skip_ids", []))
+    except (json.JSONDecodeError, IOError):
+        return set()
 
 # Patterns that indicate a bad / unusable image file name
 BAD_FILENAME_RE = re.compile(
@@ -828,6 +840,14 @@ def try_pexels_search(article):
         print("    ⚠ Pexels: no results")
         return None, None
 
+    # Reject generic geographic/satellite imagery for non-travel articles
+    BAD_ALT_RE = re.compile(
+        r"\b(satellite|aerial|map|terrain|topograph|bird.?s?.?eye|overhead|"
+        r"atlas|cartograph|globe|continent|region|province|state.?of|"
+        r"district|geography|landscape.?view|drone.?shot)\b",
+        re.IGNORECASE,
+    )
+
     # Pick best photo (prefer larger, landscape images)
     best = None
     best_score = -1
@@ -835,8 +855,14 @@ def try_pexels_search(article):
     headline_words = set(headline_lower.split())
 
     for photo in photos:
-        score = 0
         alt = (photo.get("alt") or "").lower()
+
+        # Skip satellite/aerial/map images for news articles
+        if BAD_ALT_RE.search(alt):
+            print(f"    ⏭ Pexels: skipped geographic/satellite image: \"{alt[:50]}\"")
+            continue
+
+        score = 0
         alt_words = set(alt.split())
         score += len(headline_words & alt_words) * 2
         width = photo.get("width", 0)
@@ -852,6 +878,11 @@ def try_pexels_search(article):
             best = photo
 
     if not best:
+        return None, None
+
+    # Require minimum relevance — at least 1 headline word in the alt text
+    if best_score < 2:
+        print(f"    ⏭ Pexels: best match too weak (score={best_score}), skipping")
         return None, None
 
     photographer = best.get("photographer", "Unknown")
@@ -944,6 +975,14 @@ def try_unsplash_search(article):
         print("    ⚠ Unsplash: no results")
         return None, None
 
+    # Reject generic geographic/satellite imagery
+    BAD_ALT_RE = re.compile(
+        r"\b(satellite|aerial|map|terrain|topograph|bird.?s?.?eye|overhead|"
+        r"atlas|cartograph|globe|continent|region|province|state.?of|"
+        r"district|geography|landscape.?view|drone.?shot)\b",
+        re.IGNORECASE,
+    )
+
     # Pick best photo — score by alt text relevance and dimensions
     best = None
     best_score = -1
@@ -951,9 +990,16 @@ def try_unsplash_search(article):
     headline_words = set(headline_lower.split())
 
     for photo in results:
-        score = 0
         alt = (photo.get("alt_description") or "").lower()
         desc = (photo.get("description") or "").lower()
+        combined_text = alt + " " + desc
+
+        # Skip satellite/aerial/map images
+        if BAD_ALT_RE.search(combined_text):
+            print(f"    ⏭ Unsplash: skipped geographic/satellite image: \"{alt[:50]}\"")
+            continue
+
+        score = 0
         combined = set(alt.split()) | set(desc.split())
         score += len(headline_words & combined) * 2
         width = photo.get("width", 0)
@@ -969,6 +1015,11 @@ def try_unsplash_search(article):
             best = photo
 
     if not best:
+        return None, None
+
+    # Require minimum relevance
+    if best_score < 2:
+        print(f"    ⏭ Unsplash: best match too weak (score={best_score}), skipping")
         return None, None
 
     user = best.get("user", {})
@@ -1374,6 +1425,7 @@ def cmd_fetch(args):
 
     print(f"\n📰 Found {len(articles)} article(s) needing images\n")
 
+    skip_ids = _load_skip_ids()
     sourced = 0
     processed = 0
     skipped = 0
@@ -1383,6 +1435,13 @@ def cmd_fetch(args):
         headline = article.get("headline", "Unknown")
         aid = article["id"]
         current_url = article.get("image_url") or ""
+
+        # Skip articles on the manual skip list (bad images were manually removed)
+        if aid in skip_ids:
+            print(f"\n[{i+1}/{len(articles)}] {headline[:70]}")
+            print(f"  🔒 Skipped (image manually removed, on skip list)")
+            skipped += 1
+            continue
 
         # Skip articles that already have a processed Supabase Storage image
         if (not refresh and not article_id
