@@ -269,6 +269,23 @@ export async function getRelatedArticles(
   return (data as P2Row[]).map(mapRow);
 }
 
+export async function searchArticles(query: string, limit = 30): Promise<Article[]> {
+  const q = `%${query}%`;
+  const { data, error } = await supabase
+    .from("p2_articles")
+    .select(P2_COLS)
+    .eq("status", "published")
+    .or(`headline.ilike.${q},subheadline.ilike.${q}`)
+    .order("published_at", { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    console.error("[articles] searchArticles", error);
+    return [];
+  }
+  return (data as P2Row[]).map(mapRow);
+}
+
 // Backwards-compatible aliases
 export const getArticles = getPublishedArticles;
 export const getRelated = (category: string, excludeSlug: string, limit = 3) =>
