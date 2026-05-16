@@ -79,11 +79,63 @@
   .article-prose p { @apply text-[1.18rem] md:text-[1.22rem] leading-[1.7] text-foreground/90 mb-6; font-weight: 400; }
   .article-prose img { @apply w-full h-auto my-6 rounded; max-width: 100%; }
   .article-prose h2 { @apply font-serif text-2xl md:text-3xl mt-10 mb-4; }
-  .article-prose h3 { @apply font-serif text-xl md:text-2xl mt-8 mb-3; }
+  .article-prose h3 {
+    @apply text-lg md:text-xl mt-10 mb-4 font-bold tracking-tight;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.82rem;
+    color: hsl(var(--primary));
+    padding-top: 1.5rem;
+    border-top: 1px solid hsl(var(--rule, var(--border)));
+  }
   .article-prose a { @apply text-primary underline underline-offset-2; }
   .article-prose blockquote { @apply border-l-2 border-primary pl-5 italic text-foreground/80 my-6; }
   .article-prose ul { @apply list-disc pl-6 mb-6 space-y-2; }
   .article-prose ol { @apply list-decimal pl-6 mb-6 space-y-2; }
+  .article-prose li { @apply text-[1.05rem] md:text-[1.1rem] leading-[1.6] text-foreground/85; }
+
+  /* ── Markdown tables ── */
+  .article-prose table { @apply w-full my-8 text-sm md:text-base; border-collapse: collapse; }
+  .article-prose thead { border-bottom: 2px solid hsl(var(--primary)); }
+  .article-prose th {
+    @apply text-left py-3 px-4 font-semibold text-foreground/90;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .article-prose td { @apply py-3 px-4 text-foreground/80; border-bottom: 1px solid hsl(var(--border)); }
+  .article-prose tbody tr:last-child td { border-bottom: 2px solid hsl(var(--border)); }
+  .article-prose tbody tr:hover { background: hsl(var(--muted) / 0.3); }
+
+  /* ── HTML article body (same base prose) ── */
+  .article-html { font-family: 'Newsreader', 'Source Serif Pro', Georgia, serif; font-feature-settings: "liga","kern","onum"; }
+  .article-html p { @apply text-[1.18rem] md:text-[1.22rem] leading-[1.7] text-foreground/90 mb-6; font-weight: 400; }
+  .article-html h3 {
+    @apply text-lg md:text-xl mt-10 mb-4 font-bold tracking-tight;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.82rem;
+    color: hsl(var(--primary));
+    padding-top: 1.5rem;
+    border-top: 1px solid hsl(var(--rule, var(--border)));
+  }
+  .article-html strong { font-weight: 700; }
+  .article-html blockquote { @apply border-l-2 border-primary pl-5 italic text-foreground/80 my-6; }
+  .article-html table { @apply w-full my-8 text-sm md:text-base; border-collapse: collapse; }
+  .article-html thead { border-bottom: 2px solid hsl(var(--primary)); }
+  .article-html th {
+    @apply text-left py-3 px-4 font-semibold text-foreground/90;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .article-html td { @apply py-3 px-4 text-foreground/80; border-bottom: 1px solid hsl(var(--border)); }
+  .article-html tbody tr:last-child td { border-bottom: 2px solid hsl(var(--border)); }
+  .article-html tbody tr:hover { background: hsl(var(--muted) / 0.3); }
 }
 
 .container { max-width: 1200px !important; }
