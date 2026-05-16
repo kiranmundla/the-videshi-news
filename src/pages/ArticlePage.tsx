@@ -273,10 +273,12 @@ export default function ArticlePage() {
         {article.gallery_images && article.gallery_images.length > 0 ? (
           <div className="max-w-3xl mx-auto">
             <PhotoScrollStrip
-              photos={article.gallery_images.map((img) => ({
-                src: img.url,
-                caption: img.caption,
-              }))}
+              photos={[
+                ...(article.hero_image_url ? [{ src: article.hero_image_url, caption: "" }] : []),
+                ...article.gallery_images
+                  .filter((img) => img.url !== article.hero_image_url)
+                  .map((img) => ({ src: img.url, caption: img.caption })),
+              ]}
               itemWidth={300}
               itemHeight={200}
               objectFit="contain"

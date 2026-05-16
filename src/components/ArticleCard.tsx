@@ -294,21 +294,50 @@ export default function ArticleCard({
 
   // Landscape or unknown orientation → image on top (default)
   const gallery = article.gallery_images;
+  // Combine hero + gallery into one scroll strip when gallery exists
+  const allImages = gallery && gallery.length > 0
+    ? [
+        { url: article.hero_image_url!, caption: "" },
+        ...gallery.filter(g => g.url !== article.hero_image_url),
+      ]
+    : null;
+
   return (
     <Link to={href} onClick={saveScroll} className="group block">
-      <figure className="w-full">
-        <div className="w-full aspect-[16/9] bg-stone-100 overflow-hidden">
-          <HeroImage
-            src={article.hero_image_url}
-            alt={article.title}
-            loading={variant === "hero" ? "eager" : "lazy"}
-            className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-            style={{ objectPosition: "center 20%" }}
-            onOrientationDetected={setRuntimeOrientation}
-          />
+      {allImages && allImages.length > 1 ? (
+        <div
+          className="flex gap-2 overflow-x-auto pb-1"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {allImages.map((img, i) => (
+            <div
+              key={i}
+              className="flex-shrink-0 w-[70%] md:w-[60%] aspect-[16/9] rounded-lg overflow-hidden bg-stone-100"
+            >
+              <img
+                src={img.url}
+                alt={img.caption || article.title}
+                loading={variant === "hero" && i === 0 ? "eager" : "lazy"}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
         </div>
-      </figure>
-      {gallery && gallery.length > 0 && <MiniGallery images={gallery} />}
+      ) : (
+        <figure className="w-full">
+          <div className="w-full aspect-[16/9] bg-stone-100 overflow-hidden">
+            <HeroImage
+              src={article.hero_image_url}
+              alt={article.title}
+              loading={variant === "hero" ? "eager" : "lazy"}
+              className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
+              style={{ objectPosition: "center 20%" }}
+              onOrientationDetected={setRuntimeOrientation}
+            />
+          </div>
+        </figure>
+      )}
       {!hideCategory && (
         <p className="smallcaps text-primary mt-4 mb-2">
           {featureLabel && (
