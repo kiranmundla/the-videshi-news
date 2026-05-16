@@ -18,6 +18,17 @@ interface DestMeta {
   articleSlug: string;
 }
 
+/** Recursively extract plain text from React children (handles <strong>, <em>, etc.) */
+function childrenToText(node: ReactNode): string {
+  if (typeof node === "string") return node;
+  if (typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(childrenToText).join("");
+  if (node && typeof node === "object" && "props" in node) {
+    return childrenToText((node as any).props.children);
+  }
+  return "";
+}
+
 const DESTINATIONS: Record<string, DestMeta> = {
   rajasthan:    { title: "Rajasthan",       bestMonths: "Oct – Mar",          budget: "$30–150/day", flights: "Delhi, Jaipur direct",       visa: "Indian passport: no visa",   articleSlug: "rajasthan-travel-guide-diaspora" },
   kerala:       { title: "Kerala",          bestMonths: "Sep – Mar",          budget: "$25–120/day", flights: "Kochi, Trivandrum direct",   visa: "Indian passport: no visa",   articleSlug: "kerala-travel-guide-diaspora" },
@@ -401,13 +412,13 @@ export default function TravelDestination() {
                 components={{
                   h1: ({ children }) => <h1 style={{ fontFamily: "serif", fontSize: 32, fontWeight: 800, margin: "32px 0 16px", color: "#111", lineHeight: 1.2 }}>{children}</h1>,
                   h2: ({ children }) => {
-                    const text = String(children);
+                    const text = childrenToText(children);
                     const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
                     return <h2 id={id} style={{ fontFamily: "serif", fontSize: 26, fontWeight: 700, margin: "36px 0 14px", color: "#111", lineHeight: 1.25, borderBottom: "1px solid #e5e5e0", paddingBottom: 8 }}>{children}</h2>;
                   },
                   h3: ({ children }) => <h3 style={{ fontFamily: "serif", fontSize: 20, fontWeight: 600, margin: "28px 0 10px", color: "#222" }}>{children}</h3>,
                   p: ({ children }) => {
-                    const text = String(children);
+                    const text = childrenToText(children);
                     // Detect numbered experience like "**1. Amber Fort, Jaipur** — ..."
                     const expMatch = text.match(/^\*?\*?\d+\.\s*([^*—–]+)/);
                     let matchedKey = "";
