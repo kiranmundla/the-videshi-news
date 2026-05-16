@@ -263,7 +263,7 @@ export default function TravelDestination() {
 
       {/* ─── Photo Gallery Strip ─── */}
       {galleryPhotos.length > 0 && (
-        <div style={{ maxWidth: 1200, margin: "20px auto 0", padding: "0 20px", overflow: "hidden" }}>
+        <div style={{ maxWidth: 1200, margin: "20px auto 0", padding: "0 20px" }}>
           <div style={{
             display: "flex", gap: 12, overflowX: "scroll", padding: "0 0 16px 0",
             scrollbarWidth: "none" as const, msOverflowStyle: "none" as any,

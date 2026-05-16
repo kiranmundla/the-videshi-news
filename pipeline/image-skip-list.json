@@ -1,11 +1,20 @@
 {
   "_comment": "Articles whose images were manually removed. The image sourcer skips these.",
   "skip_ids": [
-    "6b55331e-4213-4af3-bc0d-14a4e2954199",
-    "ff0b5b26-d867-4e3e-b865-af85a922854d",
-    "95549078-fd98-4906-a027-679e5009cede",
-    "fa1ede2a-8969-4a9d-916d-8c8aa7148174",
+    "17f1fb05-d7cf-4f8e-91b1-68d98f29e9a9",
+    "203a3775-82f2-4774-812f-89c1fff62c2d",
     "2f76837d-c5e2-470a-87e2-d10d4f697318",
-    "b59cf284-4a58-4534-be69-0f4ecb70017c"
+    "37ed1198-be46-4dee-9fba-068457266227",
+    "3be568a9-c835-40ed-9cbf-612a2b7212dd",
+    "576de95c-c06b-472f-ae2c-de10f2ff1926",
+    "68c62bac-23df-4ef3-9401-61d02595dd12",
+    "6b55331e-4213-4af3-bc0d-14a4e2954199",
+    "95549078-fd98-4906-a027-679e5009cede",
+    "b59cf284-4a58-4534-be69-0f4ecb70017c",
+    "ce2b40da-5c83-4147-8e47-51afdf07a1c7",
+    "d1000eff-d5ca-4314-92c7-17cd80862406",
+    "dfffe37f-9042-4f58-93cc-2097bb061143",
+    "fa1ede2a-8969-4a9d-916d-8c8aa7148174",
+    "ff0b5b26-d867-4e3e-b865-af85a922854d"
   ]
 }
