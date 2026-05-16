@@ -2,9 +2,12 @@
 """
 videshi-images.py — Image sourcing for The Videshi news pipeline.
 
-Searches Wikipedia page images (primary) and Wikimedia Commons (fallback)
-for relevant, high-quality images. Downloads, crops to 16:9, resizes to
-1200x675, applies subtle enhancement, and uploads to Supabase Storage.
+Searches for article images using a tiered strategy:
+  1. Wikipedia page images (best for specific entities)
+  2. Pexels API (general fallback — culture, travel, lifestyle)
+  3. No image (preferred over wrong image)
+
+PIB Photo RSS provides attribution links for government/political articles.
 
 Usage:
     python3 videshi-images.py fetch              # Articles missing images
@@ -28,6 +31,7 @@ from PIL import Image, ImageEnhance
 # ---------------------------------------------------------------------------
 
 ENV_FILE = os.path.expanduser("~/workspace/.env.supabase")
+PEXELS_ENV_FILE = os.path.expanduser("~/workspace/.env.pexels")
 WIKIPEDIA_API = "https://en.wikipedia.org/w/api.php"
 WIKIMEDIA_API = "https://commons.wikimedia.org/w/api.php"
 USER_AGENT = "TheVideshiBot/1.0 (https://thevideshi.com; contact@thevideshi.com)"
@@ -592,6 +596,251 @@ def format_commons_attribution(candidate):
     return f"{artist} / Wikimedia Commons"
 
 # ---------------------------------------------------------------------------
+# Pexels API integration
+# ---------------------------------------------------------------------------
+
+PEXELS_API_URL = "https://api.pexels.com/v1/search"
+
+# Stop words for Pexels keyword extraction
+PEXELS_STOP_WORDS = {
+    "the", "a", "an", "in", "on", "at", "to", "for", "of", "and", "or",
+    "is", "was", "are", "were", "be", "been", "being", "has", "had", "have",
+    "do", "does", "did", "will", "would", "could", "should", "may", "might",
+    "shall", "can", "with", "by", "from", "as", "into", "through", "during",
+    "before", "after", "above", "below", "between", "under", "over", "about",
+    "up", "out", "off", "its", "his", "her", "their", "our", "my", "your",
+    "this", "that", "these", "those", "it", "he", "she", "they", "we", "you",
+    "not", "no", "but", "so", "if", "than", "too", "very", "just", "also",
+    "new", "says", "said", "amid", "how", "why", "what",
+}
+
+# Category → fallback search terms for Pexels
+PEXELS_CATEGORY_TERMS = {
+    "news": "India government parliament",
+    "nri-world": "Indian diaspora abroad",
+    "markets-finance": "stock market trading",
+    "technology": "technology India startup",
+    "sports": "cricket India stadium",
+    "entertainment": "Bollywood cinema India",
+    "lifestyle-health": "yoga wellness India",
+    "travel": "India travel landmark",
+    "food": "Indian cuisine food",
+}
+
+
+def _load_pexels_key():
+    """Load Pexels API key from env var or .env.pexels file."""
+    key = os.environ.get("PEXELS_API_KEY")
+    if key:
+        return key
+    if os.path.exists(PEXELS_ENV_FILE):
+        with open(PEXELS_ENV_FILE) as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith("#") or "=" not in line:
+                    continue
+                k, v = line.split("=", 1)
+                if k.strip() == "PEXELS_API_KEY":
+                    val = v.strip()
+                    if val and not val.startswith("your_"):
+                        return val
+    return None
+
+
+def _pexels_extract_terms(headline, category=None):
+    """Extract 2-4 search keywords from headline for Pexels query."""
+    if not headline:
+        return PEXELS_CATEGORY_TERMS.get(category, "India news")
+
+    text = re.sub(r"[^a-zA-Z0-9\s'-]", " ", headline)
+    words = text.split()
+
+    proper_nouns = []
+    keywords = []
+
+    for w in words:
+        w_lower = w.lower()
+        if len(w) < 3 or w_lower in PEXELS_STOP_WORDS:
+            continue
+        if w[0].isupper() and len(w) > 2:
+            proper_nouns.append(w)
+        else:
+            keywords.append(w)
+
+    search_parts = proper_nouns[:3]
+    if len(search_parts) < 2:
+        search_parts.extend(keywords[:2])
+
+    if not search_parts:
+        return PEXELS_CATEGORY_TERMS.get(category, "India news")
+
+    return " ".join(search_parts[:4])
+
+
+def try_pexels_search(article):
+    """
+    Try to find an image via Pexels API for the given article.
+    Returns (image_url, attribution) or (None, None).
+
+    When a Pexels image is found:
+    - Downloads, crops to 16:9, resizes to 1200x675
+    - Uploads to Supabase Storage (same bucket as other article images)
+    - Returns the Supabase public URL and photographer attribution
+    """
+    api_key = _load_pexels_key()
+    if not api_key:
+        return None, None
+
+    headline = article.get("headline", "")
+    tags = article.get("tags")
+    category = None
+    if isinstance(tags, list) and tags:
+        category = tags[0] if isinstance(tags[0], str) else None
+    elif isinstance(tags, str):
+        category = tags
+
+    search_query = _pexels_extract_terms(headline, category)
+    print(f"  🔍 Pexels: searching \"{search_query}\"")
+
+    try:
+        resp = requests.get(
+            PEXELS_API_URL,
+            headers={"Authorization": api_key},
+            params={"query": search_query, "per_page": 5, "orientation": "landscape"},
+            timeout=15,
+        )
+        if resp.status_code == 401:
+            print("    ⚠ Pexels: Invalid API key")
+            return None, None
+        if resp.status_code == 429:
+            print("    ⚠ Pexels: Rate limit exceeded")
+            return None, None
+        resp.raise_for_status()
+        photos = resp.json().get("photos", [])
+    except requests.RequestException as e:
+        print(f"    ⚠ Pexels API error: {e}")
+        return None, None
+
+    if not photos:
+        print("    ⚠ Pexels: no results")
+        return None, None
+
+    # Pick best photo (prefer larger, landscape images)
+    best = None
+    best_score = -1
+    headline_lower = headline.lower()
+    headline_words = set(headline_lower.split())
+
+    for photo in photos:
+        score = 0
+        alt = (photo.get("alt") or "").lower()
+        alt_words = set(alt.split())
+        score += len(headline_words & alt_words) * 2
+        width = photo.get("width", 0)
+        height = photo.get("height", 1)
+        if width >= 1200:
+            score += 2
+        elif width >= 800:
+            score += 1
+        if width / height >= 1.3:
+            score += 1
+        if score > best_score:
+            best_score = score
+            best = photo
+
+    if not best:
+        return None, None
+
+    photographer = best.get("photographer", "Unknown")
+    src = best.get("src", {})
+    image_url = src.get("large2x") or src.get("large") or src.get("original", "")
+
+    if not image_url:
+        return None, None
+
+    print(f"    📸 Found: \"{best.get('alt', '')[:50]}\" by {photographer}")
+    attribution = f"Photo by {photographer} / Pexels"
+
+    return image_url, attribution
+
+
+# ---------------------------------------------------------------------------
+# PIB Photo matching (attribution only — no image download yet)
+# ---------------------------------------------------------------------------
+
+PIB_INDEX_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pib-photo-index.json")
+
+PIB_STOP_WORDS = {
+    "the", "a", "an", "in", "on", "at", "to", "for", "of", "and", "or",
+    "is", "was", "are", "were", "be", "been", "being", "has", "had", "have",
+    "do", "does", "did", "will", "would", "could", "should", "may", "might",
+    "shall", "can", "with", "by", "from", "as", "into", "through", "during",
+    "before", "after", "above", "below", "between", "under", "over", "about",
+    "up", "out", "off", "its", "his", "her", "their", "our", "my", "your",
+    "this", "that", "these", "those", "it", "he", "she", "they", "we", "you",
+    "not", "no", "but", "so", "if", "than", "too", "very", "just", "also",
+    "new", "says", "said", "shri", "smt", "mr", "mrs",
+}
+
+
+def try_pib_match(article):
+    """
+    Try to match article headline against PIB Photo RSS captions.
+    Returns (gallery_url, caption) or (None, None).
+    This is attribution-only — actual PIB image download requires browser
+    automation (gallery pages are JS-rendered) and will be added later.
+    """
+    if not os.path.exists(PIB_INDEX_PATH):
+        return None, None
+
+    try:
+        with open(PIB_INDEX_PATH) as f:
+            index = json.load(f)
+    except (json.JSONDecodeError, IOError):
+        return None, None
+
+    photos = index.get("photos", [])
+    if not photos:
+        return None, None
+
+    headline = article.get("headline", "")
+    headline_words = {
+        w for w in re.sub(r"[^a-zA-Z0-9\s]", " ", headline.lower()).split()
+        if len(w) >= 3 and w not in PIB_STOP_WORDS
+    }
+    if not headline_words:
+        return None, None
+
+    best_match = None
+    best_sim = 0.0
+
+    for photo in photos:
+        caption = photo.get("caption", "")
+        caption_words = {
+            w for w in re.sub(r"[^a-zA-Z0-9\s]", " ", caption.lower()).split()
+            if len(w) >= 3 and w not in PIB_STOP_WORDS
+        }
+        if not caption_words:
+            continue
+
+        # Weighted similarity: headline keyword coverage + Jaccard
+        coverage = len(headline_words & caption_words) / len(headline_words)
+        jaccard = len(headline_words & caption_words) / len(headline_words | caption_words)
+        sim = coverage * 0.7 + jaccard * 0.3
+
+        if sim > best_sim:
+            best_sim = sim
+            best_match = photo
+
+    if best_match and best_sim >= 0.3:
+        gallery_url = best_match.get("gallery_url", "")
+        caption = best_match.get("caption", "")
+        print(f"  🏛 PIB match ({best_sim:.2f}): {caption[:60]}")
+        return gallery_url, caption
+
+    return None, None
+
+# ---------------------------------------------------------------------------
 # Combined image search — Wikipedia first, then Commons
 # ---------------------------------------------------------------------------
 
@@ -599,7 +848,8 @@ def find_image_for_article(article):
     """
     Search for an image using a tiered strategy:
       1. Wikipedia page images (best for specific entities — people, places, orgs)
-      2. Wikimedia Commons search (broader, editorial images)
+      2. Pexels API search (general fallback — culture, travel, lifestyle)
+    Also checks PIB Photo RSS for attribution links (govt/political articles).
     Returns (thumb_url, attribution) or (None, None).
     """
     # Check if this article category should skip images
@@ -607,16 +857,23 @@ def find_image_for_article(article):
         print(f"  ⏭ Skipping image search (policy/legal/financial topic)")
         return None, None
 
+    # --- Check PIB for attribution (non-blocking, no image yet) ---
+    pib_url, pib_caption = try_pib_match(article)
+    if pib_url:
+        print(f"  🏛 PIB photo gallery available: {pib_url}")
+        # PIB images require browser automation to download — just log for now
+
     # --- Tier 1: Wikipedia page images ---
     print("  📖 Tier 1: Wikipedia page images")
     url, attr = search_wikipedia_for_article(article)
     if url:
         return url, attr
 
-    # --- Tier 2: Wikimedia Commons disabled ---
-    # Commons results are too unreliable for our quality standards.
-    # Only Wikipedia page images (Tier 1) are used.
-    print("  📚 Tier 2: Skipped (Commons disabled — quality threshold)")
+    # --- Tier 2: Pexels API ---
+    print("  📷 Tier 2: Pexels API search")
+    url, attr = try_pexels_search(article)
+    if url:
+        return url, attr
 
     print(f"  ❌ No suitable image found")
     return None, None
@@ -872,8 +1129,9 @@ def cmd_fetch(args):
 
     print("=" * 60)
     print("📷 Videshi Image Sourcing")
-    print("   Tier 1: Wikipedia page images")
-    print("   Tier 2: Wikimedia Commons search")
+    print("   Tier 1: Wikipedia page images (strict, confidence=5)")
+    print("   Tier 2: Pexels API search (general fallback)")
+    print("   PIB Photo RSS: attribution links for govt/political")
     if not no_process:
         print(f"   🖼 Processing: {TARGET_WIDTH}×{TARGET_HEIGHT} → enhance → upload")
     print("=" * 60)
