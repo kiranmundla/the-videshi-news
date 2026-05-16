@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
 import Masthead from "@/components/Masthead";
@@ -162,12 +162,28 @@ function SourcesPill({
   );
 }
 
+const TRAVEL_GUIDE_REDIRECTS: Record<string, string> = {
+  "rajasthan-travel-guide-diaspora": "rajasthan",
+  "kerala-travel-guide-diaspora": "kerala",
+  "goa-travel-guide-diaspora": "goa",
+  "maldives-travel-guide-diaspora": "maldives",
+  "sri-lanka-travel-guide-diaspora": "sri-lanka",
+  "bali-travel-guide-diaspora": "bali",
+  "london-travel-guide-diaspora": "london",
+  "london-uk-travel-guide-diaspora": "london",
+  "switzerland-travel-guide-diaspora": "switzerland",
+  "new-zealand-travel-guide-diaspora": "new-zealand",
+  "mexico-travel-guide-diaspora": "mexico",
+};
+
 export default function ArticlePage() {
   const { slug = "" } = useParams();
   const [article, setArticle] = useState<Article | null | undefined>(undefined);
   const [related, setRelated] = useState<Article[]>([]);
 
   useEffect(() => {
+    // Redirect is handled in render, skip fetch for travel guides
+    if (TRAVEL_GUIDE_REDIRECTS[slug]) return;
     let cancelled = false;
     (async () => {
       const a = await getArticleBySlug(slug);
@@ -180,6 +196,12 @@ export default function ArticlePage() {
       cancelled = true;
     };
   }, [slug]);
+
+  // Redirect travel guide articles to destination pages
+  const travelDest = TRAVEL_GUIDE_REDIRECTS[slug];
+  if (travelDest) {
+    return <Navigate to={`/travel/${travelDest}`} replace />;
+  }
 
   if (article === undefined) {
     return (

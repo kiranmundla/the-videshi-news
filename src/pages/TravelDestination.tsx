@@ -166,7 +166,7 @@ export default function TravelDestination() {
   /* ─── 404 ─── */
   if (!meta && !loading) {
     return (
-      <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", overflowX: "hidden" }}>
         <Masthead />
         <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", padding: 40 }}>
           <h2 style={{ fontFamily: "serif", fontSize: 32, marginBottom: 16 }}>Destination not found</h2>
