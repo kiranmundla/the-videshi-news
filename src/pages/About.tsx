@@ -27,7 +27,7 @@ export default function About() {
 
           <h2 className="font-serif text-2xl font-bold text-foreground pt-4">What We Do</h2>
           <p>
-            We aggregate news from dozens of sources, synthesize it with original context, and publish stories written with the diaspora reader in mind. Every article carries an NRI angle — not as an afterthought, but as the lens through which the story is told. Our coverage spans India, NRI affairs, global politics, markets &amp; finance, technology, sports, entertainment, travel, and food.
+            We curate and synthesize reporting from dozens of established news sources worldwide, adding original context and analysis tailored for diaspora readers. Every article carries an NRI angle — not as an afterthought, but as the lens through which the story is told. Our coverage spans India, NRI affairs, global politics, markets &amp; finance, technology, sports, entertainment, travel, and food.
           </p>
 
           <h2 className="font-serif text-2xl font-bold text-foreground pt-4">Editorial Standards</h2>
@@ -35,9 +35,10 @@ export default function About() {
             We are committed to accuracy, fairness, and independence. Our reporting draws from verified sources and established news agencies. We do not publish opinion as news. When we get something wrong, we correct it promptly and transparently.
           </p>
 
-          <h2 className="font-serif text-2xl font-bold text-foreground pt-4">Technology</h2>
+          <h2 className="font-serif text-2xl font-bold text-foreground pt-4">Copyright &amp; Attribution</h2>
           <p>
-            The Videshi is built with modern technology at its core. We use AI-assisted tools to monitor global news sources, identify stories relevant to the diaspora, and accelerate our editorial workflow. Every article is reviewed for quality, accuracy, and editorial judgment. Technology helps us move faster — it does not replace the editorial voice.
+            The Videshi does not republish or reproduce copyrighted material. All articles are original works of synthesis and analysis. We source facts and data from publicly available reporting and attribute information to its origin. Photographs are sourced exclusively from copyright-free and Creative Commons–licensed collections. If you believe any content on this site infringes on your intellectual property, please contact us immediately at{" "}
+            <a href="mailto:editor@thevideshi.com" className="text-primary hover:underline">editor@thevideshi.com</a> and we will address it promptly.
           </p>
 
           <h2 className="font-serif text-2xl font-bold text-foreground pt-4">Contact</h2>
