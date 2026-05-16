@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
@@ -283,7 +284,12 @@ export default function ArticlePage() {
                 paddingRight: "4%",
               } as React.CSSProperties}
             >
-              <style>{`.article-gallery::-webkit-scrollbar { display: none; }`}</style>
+              <style>{`.article-gallery::-webkit-scrollbar { display: none; }
+.article-prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+.article-prose th, .article-prose td { border: 1px solid #e5e5e5; padding: 0.5rem 0.75rem; text-align: left; }
+.article-prose th { background: #f5f5f4; font-weight: 600; }
+.article-prose tr:nth-child(even) { background: #fafaf9; }
+.article-prose table { overflow-x: auto; display: block; }`}</style>
               {[
                 ...(article.hero_image_url ? [{ src: article.hero_image_url, caption: article.image_caption || article.title }] : []),
                 ...article.gallery_images
@@ -336,6 +342,7 @@ export default function ArticlePage() {
 
             return (
               <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
                 components={{
                   h1: () => null,
                   a: ({ href, children, ...props }) => {
