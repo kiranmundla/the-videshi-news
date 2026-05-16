@@ -59,6 +59,22 @@ function injectMeta(html: string, article: Article, canonical: string, origin: s
     : `${origin}/og-default.jpg`;
   const image = escapeAttr(rawImage);
 
+  // JSON-LD structured data for Google News / Search
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": article.title,
+    "description": (article.summary ?? "").slice(0, 300),
+    "image": rawImage,
+    "url": canonical,
+    "publisher": {
+      "@type": "Organization",
+      "name": "The Videshi",
+      "url": origin,
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": canonical },
+  });
+
   // Replace <title>
   let out = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
 
@@ -75,10 +91,13 @@ function injectMeta(html: string, article: Article, canonical: string, origin: s
     `<meta property="og:type" content="article" />`,
     `<meta property="og:url" content="${escapeAttr(canonical)}" />`,
     `<meta property="og:image" content="${image}" />`,
+    `<meta property="og:site_name" content="The Videshi" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${escapeAttr(article.title)}" />`,
     `<meta name="twitter:description" content="${desc}" />`,
     `<meta name="twitter:image" content="${image}" />`,
+    `<link rel="canonical" href="${escapeAttr(canonical)}" />`,
+    `<script type="application/ld+json">${jsonLd}</script>`,
   ]
     .filter(Boolean)
     .join("\n    ");
