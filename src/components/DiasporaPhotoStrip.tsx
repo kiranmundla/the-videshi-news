@@ -315,80 +315,86 @@ export default function DiasporaPhotoStrip() {
             {selectedIndex + 1} / {PHOTOS.length}
           </p>
 
-          {/* Image + arrows row */}
+          {/* Image container */}
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
+              maxWidth: "85vw",
+              maxHeight: "75vh",
               display: "flex",
               alignItems: "center",
-              gap: "12px",
-              maxWidth: "95vw",
-              maxHeight: "75vh",
+              justifyContent: "center",
             }}
           >
-            {/* Left arrow */}
-            <button
-              onClick={(e) => { e.stopPropagation(); goPrev(); }}
-              style={{
-                background: "rgba(255,255,255,0.1)",
-                border: "none",
-                color: "#fff",
-                fontSize: "28px",
-                width: "44px",
-                height: "44px",
-                borderRadius: "50%",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-                transition: "background 0.2s",
-              }}
-              onMouseEnter={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.25)"; }}
-              onMouseLeave={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.1)"; }}
-              aria-label="Previous photo"
-            >
-              ◀
-            </button>
-
-            {/* Image */}
             <img
               src={selected.src}
               alt={selected.label}
               style={{
-                maxWidth: "calc(95vw - 120px)",
+                maxWidth: "85vw",
                 maxHeight: "75vh",
                 objectFit: "contain",
                 borderRadius: "8px",
-                flexShrink: 1,
               }}
             />
-
-            {/* Right arrow */}
-            <button
-              onClick={(e) => { e.stopPropagation(); goNext(); }}
-              style={{
-                background: "rgba(255,255,255,0.1)",
-                border: "none",
-                color: "#fff",
-                fontSize: "28px",
-                width: "44px",
-                height: "44px",
-                borderRadius: "50%",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-                transition: "background 0.2s",
-              }}
-              onMouseEnter={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.25)"; }}
-              onMouseLeave={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.1)"; }}
-              aria-label="Next photo"
-            >
-              ▶
-            </button>
           </div>
+
+          {/* Left arrow — fixed position on viewport */}
+          <button
+            onClick={(e) => { e.stopPropagation(); goPrev(); }}
+            style={{
+              position: "fixed",
+              left: "16px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "rgba(255,255,255,0.1)",
+              border: "none",
+              color: "#fff",
+              fontSize: "28px",
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "background 0.2s",
+              zIndex: 10000,
+            }}
+            onMouseEnter={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.25)"; }}
+            onMouseLeave={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.1)"; }}
+            aria-label="Previous photo"
+          >
+            ◀
+          </button>
+
+          {/* Right arrow — fixed position on viewport */}
+          <button
+            onClick={(e) => { e.stopPropagation(); goNext(); }}
+            style={{
+              position: "fixed",
+              right: "16px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "rgba(255,255,255,0.1)",
+              border: "none",
+              color: "#fff",
+              fontSize: "28px",
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "background 0.2s",
+              zIndex: 10000,
+            }}
+            onMouseEnter={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.25)"; }}
+            onMouseLeave={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.1)"; }}
+            aria-label="Next photo"
+          >
+            ▶
+          </button>
 
           {/* Caption */}
           <p
