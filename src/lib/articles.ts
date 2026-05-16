@@ -5,6 +5,8 @@ const supabase = supabaseTyped as unknown as {
   from: (table: string) => any;
 };
 
+export type GalleryImage = { url: string; caption: string };
+
 export type Article = {
   id: string;
   slug: string;
@@ -15,6 +17,7 @@ export type Article = {
   hero_image_url: string;
   image_caption?: string | null;
   image_credit?: string | null;
+  gallery_images?: GalleryImage[] | null;
   author?: string;
   published_at: string;
   created_at: string;
@@ -46,10 +49,11 @@ type P2Row = {
   tags: string[] | null;
   image_url: string | null;
   image_attribution: string | null;
+  gallery_images: unknown;
 };
 
 const P2_COLS =
-  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url, image_attribution";
+  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url, image_attribution, gallery_images";
 
 function parseSources(raw: unknown): Article["sources"] {
   if (!raw || !Array.isArray(raw)) return undefined;
@@ -72,6 +76,13 @@ function parseSources(raw: unknown): Article["sources"] {
     .filter(Boolean) as Article["sources"];
 }
 
+function parseGalleryImages(raw: unknown): GalleryImage[] | null {
+  if (!raw || !Array.isArray(raw) || raw.length === 0) return null;
+  return raw
+    .filter((item: any) => item && typeof item === "object" && typeof item.url === "string")
+    .map((item: any) => ({ url: item.url, caption: item.caption || "" }));
+}
+
 function deriveExcerpt(subheadline: string | null, body: string): string {
   if (subheadline && subheadline.trim()) return subheadline.trim();
   const plain = (body ?? "").replace(/[#*_>`~\-]+/g, "").trim();
@@ -90,6 +101,7 @@ function mapRow(row: P2Row): Article {
     hero_image_url: row.image_url ?? "",
     image_caption: null,
     image_credit: row.image_attribution ?? null,
+    gallery_images: parseGalleryImages(row.gallery_images),
     // expose raw attribution for callers that want it separately
     // (kept on image_credit too for backwards compat)
     published_at: row.published_at ?? row.created_at,

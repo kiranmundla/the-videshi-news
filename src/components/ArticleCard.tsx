@@ -5,6 +5,37 @@ import HeroImage, { isValidImage } from "@/components/HeroImage";
 
 type Variant = "hero" | "featured" | "card" | "long" | "compact";
 
+/* Mini gallery thumbnails for article cards with multiple images */
+function MiniGallery({ images }: { images: { url: string; caption: string }[] }) {
+  if (!images || images.length === 0) return null;
+  return (
+    <div
+      className="flex gap-1.5 mt-2 overflow-x-auto"
+      style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+    >
+      <style>{`.mini-gallery::-webkit-scrollbar { display: none; }`}</style>
+      {images.slice(0, 5).map((img, i) => (
+        <div
+          key={i}
+          className="flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded overflow-hidden bg-stone-100"
+        >
+          <img
+            src={img.url}
+            alt={img.caption || ""}
+            loading="lazy"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ))}
+      {images.length > 5 && (
+        <div className="flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded bg-stone-200 flex items-center justify-center">
+          <span className="text-xs text-stone-500 font-medium">+{images.length - 5}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function parseImageDimensions(url: string | null | undefined): { w: number; h: number } | null {
   if (!url) return null;
   try {
@@ -262,6 +293,7 @@ export default function ArticleCard({
   }
 
   // Landscape or unknown orientation → image on top (default)
+  const gallery = article.gallery_images;
   return (
     <Link to={href} onClick={saveScroll} className="group block">
       <figure className="w-full">
@@ -276,6 +308,7 @@ export default function ArticleCard({
           />
         </div>
       </figure>
+      {gallery && gallery.length > 0 && <MiniGallery images={gallery} />}
       {!hideCategory && (
         <p className="smallcaps text-primary mt-4 mb-2">
           {featureLabel && (

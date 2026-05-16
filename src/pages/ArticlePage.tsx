@@ -14,6 +14,7 @@ import {
   readingTime,
 } from "@/lib/articles";
 import HeroMedia from "@/components/HeroMedia";
+import PhotoScrollStrip from "@/components/PhotoScrollStrip";
 import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
 
 /* ------------------------------------------------------------------ */
@@ -277,6 +278,19 @@ export default function ArticlePage() {
             caption={article.image_caption ?? null}
             category={article.category}
           />
+        )}
+
+        {article.gallery_images && article.gallery_images.length > 0 && (
+          <div className="max-w-3xl mx-auto mt-6">
+            <PhotoScrollStrip
+              photos={article.gallery_images.map((img) => ({
+                src: img.url,
+                caption: img.caption,
+              }))}
+              itemWidth={260}
+              itemHeight={170}
+            />
+          </div>
         )}
 
         <div className="article-prose max-w-2xl mx-auto mt-12">
