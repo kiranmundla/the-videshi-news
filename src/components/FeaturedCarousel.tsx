@@ -57,16 +57,15 @@ function Slide({ article }: { article: Article }) {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.05) 100%)",
+              "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.15) 100%)",
           }}
         />
         <div className="absolute inset-x-0 bottom-0 px-5 md:px-12 pb-6 md:pb-8">
           <Link to={href} className="block max-w-4xl">
             <p className="smallcaps text-white/90 mb-2">{pill}</p>
             <h1
-              className="font-display text-white leading-[1.1] hover:underline"
-              style={{ fontWeight: 800, fontSize: "clamp(16px, 3vw, 28px)" }}
-              className="line-clamp-3"
+              className="font-display text-white leading-[1.1] hover:underline line-clamp-3"
+              style={{ fontWeight: 800, fontSize: "clamp(16px, 3vw, 28px)", textShadow: "0 2px 8px rgba(0,0,0,0.7)" }}
             >
               {article.title}
             </h1>
@@ -85,9 +84,8 @@ function Slide({ article }: { article: Article }) {
       <Link to={href} className="block max-w-4xl">
         <p className="smallcaps mb-3">{pill}</p>
         <h1
-          className="font-display text-white leading-[1.1] hover:opacity-90"
-          style={{ fontWeight: 800, fontSize: "clamp(16px, 3vw, 28px)" }}
-          className="line-clamp-3"
+          className="font-display text-white leading-[1.1] hover:opacity-90 line-clamp-3"
+          style={{ fontWeight: 800, fontSize: "clamp(16px, 3vw, 28px)", textShadow: "0 2px 8px rgba(0,0,0,0.7)" }}
         >
           {article.title}
         </h1>
