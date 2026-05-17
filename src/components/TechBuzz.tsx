@@ -121,8 +121,8 @@ export default function TechBuzz() {
     <section className="mt-8 mb-4">
       <div className="flex items-center gap-2 mb-3 px-4 md:px-0">
         <span style={{ fontSize: 18 }}>⚡</span>
-        <h2 className="font-serif text-lg font-bold tracking-tight">Tech Pulse</h2>
-        <span className="text-xs text-muted-foreground ml-1">What tech leaders are saying</span>
+        <h2 className="font-serif text-lg font-bold tracking-tight">Power Pulse</h2>
+        <span className="text-xs text-muted-foreground ml-1">What world leaders are saying</span>
       </div>
 
       <style>{`.tech-buzz-scroll::-webkit-scrollbar { display: none; }`}</style>
