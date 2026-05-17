@@ -361,7 +361,7 @@ export default function CelebrityBuzz() {
       {selectedIndex !== null && (
         <BuzzLightbox
           post={posts[selectedIndex]}
-          onClose={() => setSelectedIndex(null)}
+          onClose={() => { setSelectedIndex(null); document.body.style.overflow = ""; }}
         />
       )}
     </section>
