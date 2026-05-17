@@ -65,7 +65,8 @@ function Slide({ article }: { article: Article }) {
             <p className="smallcaps text-white/90 mb-2">{pill}</p>
             <h1
               className="font-display text-white leading-[1.1] hover:underline"
-              style={{ fontWeight: 800, fontSize: "clamp(22px, 3.6vw, 32px)" }}
+              style={{ fontWeight: 800, fontSize: "clamp(16px, 3vw, 28px)" }}
+              className="line-clamp-3"
             >
               {article.title}
             </h1>
@@ -85,7 +86,8 @@ function Slide({ article }: { article: Article }) {
         <p className="smallcaps mb-3">{pill}</p>
         <h1
           className="font-display text-white leading-[1.1] hover:opacity-90"
-          style={{ fontWeight: 800, fontSize: "clamp(22px, 3.6vw, 32px)" }}
+          style={{ fontWeight: 800, fontSize: "clamp(16px, 3vw, 28px)" }}
+          className="line-clamp-3"
         >
           {article.title}
         </h1>
