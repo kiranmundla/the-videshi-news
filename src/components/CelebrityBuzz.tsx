@@ -363,9 +363,10 @@ export default function CelebrityBuzz() {
           ref={scrollRef}
           className="celeb-buzz-scroll"
           style={{
-            display: "flex", gap: 2, overflowX: "auto", overflowY: "hidden",
+            display: "flex", gap: 12, overflowX: "auto", overflowY: "hidden",
             WebkitOverflowScrolling: "touch", scrollbarWidth: "none",
             msOverflowStyle: "none", scrollSnapType: "x mandatory",
+            paddingLeft: "4%", paddingRight: "4%",
           } as React.CSSProperties}
         >
           {posts.map((post, i) => (
