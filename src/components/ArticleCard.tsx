@@ -332,7 +332,6 @@ export default function ArticleCard({
           </span>
         )}
       </figure>
-      )}
       {!hideCategory && (
         <p className="smallcaps text-primary mt-4 mb-2">
           {featureLabel && (
