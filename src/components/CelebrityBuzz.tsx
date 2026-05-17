@@ -120,12 +120,10 @@ function LightboxSlide({ post }: { post: BuzzPost }) {
 
   return (
     <div style={{
-      minWidth: "100%", width: "100%", height: "100%",
-      flexShrink: 0, scrollSnapAlign: "center",
       display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
     }}>
       <div style={{
-        width: "100%", maxWidth: 480, maxHeight: "85vh",
+        width: "min(90vw, 480px)", maxHeight: "85vh",
         borderRadius: 12, overflow: "hidden", background: "#000",
       }}>
         {post.platform === "instagram" && shortcode ? (
@@ -166,44 +164,18 @@ function LightboxSlide({ post }: { post: BuzzPost }) {
 }
 
 function BuzzLightbox({ posts, startIndex, onClose }: { posts: BuzzPost[]; startIndex: number; onClose: () => void }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
   const [current, setCurrent] = useState(startIndex);
+  const count = posts.length;
 
-  // Scroll to initial post
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollTo({ left: el.clientWidth * startIndex, behavior: "auto" });
-  }, [startIndex]);
-
-  // Track current from scroll
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    let ticking = false;
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        const w = el.clientWidth;
-        if (w > 0) setCurrent(Math.round(el.scrollLeft / w));
-        ticking = false;
-      });
-    };
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
-  }, []);
+  const goNext = useCallback(() => setCurrent((i) => Math.min(i + 1, count - 1)), [count]);
+  const goPrev = useCallback(() => setCurrent((i) => Math.max(i - 1, 0)), []);
 
   // Escape to close, arrow keys to navigate
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight" && scrollRef.current) {
-        scrollRef.current.scrollBy({ left: scrollRef.current.clientWidth, behavior: "smooth" });
-      }
-      if (e.key === "ArrowLeft" && scrollRef.current) {
-        scrollRef.current.scrollBy({ left: -scrollRef.current.clientWidth, behavior: "smooth" });
-      }
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
     };
     window.addEventListener("keydown", handler);
     document.body.style.overflow = "hidden";
@@ -211,67 +183,88 @@ function BuzzLightbox({ posts, startIndex, onClose }: { posts: BuzzPost[]; start
       window.removeEventListener("keydown", handler);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [onClose, goNext, goPrev]);
+
+  const post = posts[current];
+
+  const arrowStyle: React.CSSProperties = {
+    position: "absolute", top: "50%", transform: "translateY(-50%)", zIndex: 20,
+    background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)", border: "none",
+    color: "#fff", fontSize: 24, width: 44, height: 44, borderRadius: "50%",
+    cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+    transition: "background 0.2s",
+  };
 
   return (
     <div
+      onClick={onClose}
       style={{
         position: "fixed", inset: 0, zIndex: 9999,
         background: "rgba(0,0,0,0.9)", backdropFilter: "blur(8px)",
+        display: "flex", alignItems: "center", justifyContent: "center",
       }}
     >
       {/* Close button */}
       <button
         onClick={onClose}
         style={{
-          position: "absolute", top: 12, right: 12, zIndex: 10,
+          position: "absolute", top: 12, right: 12, zIndex: 20,
           background: "rgba(255,255,255,0.15)", border: "none", color: "#fff",
           width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
           fontSize: 20, display: "flex", alignItems: "center", justifyContent: "center",
         }}
       >×</button>
 
+      {/* Celebrity name */}
+      <div style={{
+        position: "absolute", top: 16, left: "50%", transform: "translateX(-50%)",
+        zIndex: 20, color: "#fff", fontSize: 14, fontWeight: 600,
+        textAlign: "center", opacity: 0.9,
+      }}>
+        {post.celebrity}
+      </div>
+
+      {/* Prev arrow */}
+      {current > 0 && (
+        <button
+          onClick={(e) => { e.stopPropagation(); goPrev(); }}
+          style={{ ...arrowStyle, left: 8 }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.35)"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.2)"; }}
+        >‹</button>
+      )}
+
+      {/* Next arrow */}
+      {current < count - 1 && (
+        <button
+          onClick={(e) => { e.stopPropagation(); goNext(); }}
+          style={{ ...arrowStyle, right: 8 }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.35)"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.2)"; }}
+        >›</button>
+      )}
+
       {/* Dot indicators */}
       <div style={{
         position: "absolute", bottom: 16, left: "50%", transform: "translateX(-50%)",
-        zIndex: 10, display: "flex", gap: 6,
+        zIndex: 20, display: "flex", gap: 6,
       }}>
         {posts.map((_, i) => (
-          <div
+          <button
             key={i}
+            onClick={(e) => { e.stopPropagation(); setCurrent(i); }}
             style={{
-              width: 6, height: 6, borderRadius: "50%",
+              width: 7, height: 7, borderRadius: "50%", border: "none", padding: 0,
               background: i === current ? "#fff" : "rgba(255,255,255,0.3)",
-              transition: "background 0.2s",
+              transition: "background 0.2s", cursor: "pointer",
             }}
           />
         ))}
       </div>
 
-      {/* Celebrity name */}
-      <div style={{
-        position: "absolute", top: 16, left: "50%", transform: "translateX(-50%)",
-        zIndex: 10, color: "#fff", fontSize: 14, fontWeight: 600,
-        textAlign: "center", opacity: 0.9,
-      }}>
-        {posts[current]?.celebrity}
-      </div>
-
-      {/* Scrollable slides */}
-      <div
-        ref={scrollRef}
-        onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-        style={{
-          display: "flex", width: "100%", height: "100%",
-          overflowX: "auto", overflowY: "hidden",
-          WebkitOverflowScrolling: "touch", scrollbarWidth: "none",
-          msOverflowStyle: "none", scrollSnapType: "x mandatory",
-        } as React.CSSProperties}
-      >
-        <style>{`.buzz-lightbox-scroll::-webkit-scrollbar { display: none; }`}</style>
-        {posts.map((post, i) => (
-          <LightboxSlide key={i} post={post} />
-        ))}
+      {/* Current post */}
+      <div onClick={(e) => e.stopPropagation()}>
+        <LightboxSlide post={post} />
       </div>
     </div>
   );
