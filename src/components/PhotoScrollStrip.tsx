@@ -75,6 +75,7 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
         <button
           onClick={() => scrollStrip("left")}
           aria-label="Scroll left"
+          className="hidden md:flex"
           style={{ ...arrowStyle, left: 4 }}
           onMouseEnter={(e) => { (e.currentTarget.style.background) = "rgba(0,0,0,0.85)"; }}
           onMouseLeave={(e) => { (e.currentTarget.style.background) = "rgba(0,0,0,0.6)"; }}
@@ -85,6 +86,7 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
         <button
           onClick={() => scrollStrip("right")}
           aria-label="Scroll right"
+          className="hidden md:flex"
           style={{ ...arrowStyle, right: 4 }}
           onMouseEnter={(e) => { (e.currentTarget.style.background) = "rgba(0,0,0,0.85)"; }}
           onMouseLeave={(e) => { (e.currentTarget.style.background) = "rgba(0,0,0,0.6)"; }}
@@ -136,7 +138,6 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
               background: "linear-gradient(transparent, rgba(0,0,0,0.7))",
               color: "white", fontSize: "0.75rem", fontWeight: 500,
               whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-              maxWidth: "calc(100vw - 40px)",
             }}>
               {photo.caption}
             </div>
