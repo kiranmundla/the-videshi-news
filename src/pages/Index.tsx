@@ -391,10 +391,9 @@ export default function Index() {
                 pool={s.pool}
               />
               {s.slug === "technology" && <TechBuzz category="tech" />}
+              {s.slug === "entertainment" && <CelebrityBuzz />}
             </section>
           ))}
-
-        <CelebrityBuzz />
 
         <DiasporaPhotoStrip />
       </main>
