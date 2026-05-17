@@ -1,138 +1,75 @@
 {
-  "_description": "Top Bollywood & Indian celebrity social handles for entertainment article embeds. Pipeline uses these to find relevant Instagram/X posts when writing entertainment articles.",
+  "_description": "Celebrity/personality social handles across all Videshi verticals. Writers use this as a lookup when articles mention these people — embed their recent Instagram/X posts for rich, copyright-safe media.",
   "_updated": "2026-05-16",
-  "celebrities": [
-    {
-      "name": "Deepika Padukone",
-      "instagram": "deepikapadukone",
-      "twitter": "deepikapadukone",
-      "tags": ["actress", "fashion", "A-list"]
-    },
-    {
-      "name": "Alia Bhatt",
-      "instagram": "aliaabhatt",
-      "twitter": "aliaa08",
-      "tags": ["actress", "producer", "A-list"]
-    },
-    {
-      "name": "Priyanka Chopra",
-      "instagram": "priyankachopra",
-      "twitter": "priyankachopra",
-      "tags": ["actress", "global", "NRI", "A-list"]
-    },
-    {
-      "name": "Katrina Kaif",
-      "instagram": "katrinakaif",
-      "twitter": null,
-      "tags": ["actress", "fashion", "A-list"]
-    },
-    {
-      "name": "Kareena Kapoor Khan",
-      "instagram": "kareenakapoorkhan",
-      "twitter": null,
-      "tags": ["actress", "A-list"]
-    },
-    {
-      "name": "Anushka Sharma",
-      "instagram": "anushkasharma",
-      "twitter": "AnushkaSharma",
-      "tags": ["actress", "producer", "A-list"]
-    },
-    {
-      "name": "Janhvi Kapoor",
-      "instagram": "janhvikapoor",
-      "twitter": null,
-      "tags": ["actress", "gen-z"]
-    },
-    {
-      "name": "Kiara Advani",
-      "instagram": "kiaraaliadvani",
-      "twitter": null,
-      "tags": ["actress", "A-list"]
-    },
-    {
-      "name": "Rashmika Mandanna",
-      "instagram": "rashmika_mandanna",
-      "twitter": "iamRashmika",
-      "tags": ["actress", "pan-india"]
-    },
-    {
-      "name": "Samantha Ruth Prabhu",
-      "instagram": "samantharuthprabhuoffl",
-      "twitter": "Samanthaprabhu2",
-      "tags": ["actress", "south", "pan-india"]
-    },
-    {
-      "name": "Shraddha Kapoor",
-      "instagram": "shraddhakapoor",
-      "twitter": "ShraddhaKapoor",
-      "tags": ["actress", "A-list"]
-    },
-    {
-      "name": "Kriti Sanon",
-      "instagram": "kritisanon",
-      "twitter": "kritisanon",
-      "tags": ["actress", "A-list"]
-    },
-    {
-      "name": "Shah Rukh Khan",
-      "instagram": "iamsrk",
-      "twitter": "iamsrk",
-      "tags": ["actor", "icon", "A-list"]
-    },
-    {
-      "name": "Ranveer Singh",
-      "instagram": "ranveersingh",
-      "twitter": "RanveerOfficial",
-      "tags": ["actor", "fashion", "A-list"]
-    },
-    {
-      "name": "Ranbir Kapoor",
-      "instagram": null,
-      "twitter": null,
-      "tags": ["actor", "A-list"]
-    },
-    {
-      "name": "Virat Kohli",
-      "instagram": "virat.kohli",
-      "twitter": "imVkohli",
-      "tags": ["cricket", "sports-celebrity"]
-    },
-    {
-      "name": "Diljit Dosanjh",
-      "instagram": "diljitdosanjh",
-      "twitter": "diljitdosanjh",
-      "tags": ["actor", "singer", "global", "NRI-appeal"]
-    },
-    {
-      "name": "Arijit Singh",
-      "instagram": "arijitsingh",
-      "twitter": "arijitsingh",
-      "tags": ["singer", "music"]
-    },
-    {
-      "name": "Radhika Apte",
-      "instagram": "radhikaofficial",
-      "twitter": "RadhikaApte",
-      "tags": ["actress", "OTT", "indie"]
-    },
-    {
-      "name": "Sobhita Dhulipala",
-      "instagram": "sobhitad",
-      "twitter": null,
-      "tags": ["actress", "OTT", "fashion"]
-    },
-    {
-      "name": "Nayanthara",
-      "instagram": "nayanthara",
-      "twitter": null,
-      "tags": ["actress", "south", "pan-india"]
-    },
-    {
-      "name": "Triptii Dimri",
-      "instagram": "tripti_dimri",
-      "twitter": null,
-      "tags": ["actress", "rising", "gen-z"]
-    }
+  "_usage": "Each category writer checks this file when writing about a person. If a match exists, search their recent posts for something relevant to the article and include the post URL on its own line in the article body. The frontend auto-renders embeds.",
+
+  "entertainment": [
+    {"name": "Deepika Padukone", "instagram": "deepikapadukone", "twitter": "deepikapadukone"},
+    {"name": "Alia Bhatt", "instagram": "aliaabhatt", "twitter": "aliaa08"},
+    {"name": "Priyanka Chopra", "instagram": "priyankachopra", "twitter": "priyankachopra"},
+    {"name": "Katrina Kaif", "instagram": "katrinakaif", "twitter": null},
+    {"name": "Kareena Kapoor Khan", "instagram": "kareenakapoorkhan", "twitter": null},
+    {"name": "Anushka Sharma", "instagram": "anushkasharma", "twitter": "AnushkaSharma"},
+    {"name": "Janhvi Kapoor", "instagram": "janhvikapoor", "twitter": null},
+    {"name": "Kiara Advani", "instagram": "kiaraaliadvani", "twitter": null},
+    {"name": "Rashmika Mandanna", "instagram": "rashmika_mandanna", "twitter": "iamRashmika"},
+    {"name": "Samantha Ruth Prabhu", "instagram": "samantharuthprabhuoffl", "twitter": "Samanthaprabhu2"},
+    {"name": "Shraddha Kapoor", "instagram": "shraddhakapoor", "twitter": "ShraddhaKapoor"},
+    {"name": "Kriti Sanon", "instagram": "kritisanon", "twitter": "kritisanon"},
+    {"name": "Triptii Dimri", "instagram": "tripti_dimri", "twitter": null},
+    {"name": "Nayanthara", "instagram": "nayanthara", "twitter": null},
+    {"name": "Shah Rukh Khan", "instagram": "iamsrk", "twitter": "iamsrk"},
+    {"name": "Ranveer Singh", "instagram": "ranveersingh", "twitter": "RanveerOfficial"},
+    {"name": "Diljit Dosanjh", "instagram": "diljitdosanjh", "twitter": "daborislowgh"},
+    {"name": "Arijit Singh", "instagram": "arijitsingh", "twitter": "arijitsingh"},
+    {"name": "Sobhita Dhulipala", "instagram": "sobhitad", "twitter": null},
+    {"name": "Radhika Apte", "instagram": "radhikaofficial", "twitter": "RadhikaApte"}
+  ],
+
+  "diaspora": [
+    {"name": "Dev Patel", "instagram": "devpatel", "twitter": null},
+    {"name": "Mindy Kaling", "instagram": "mindykaling", "twitter": "mindykaling"},
+    {"name": "Hasan Minhaj", "instagram": "hasanminhaj", "twitter": "hasanminhaj"},
+    {"name": "Kumail Nanjiani", "instagram": "kumailn", "twitter": "kumailn"},
+    {"name": "Riz Ahmed", "instagram": "rizahmed", "twitter": "rizahmed"},
+    {"name": "Lilly Singh", "instagram": "lilly", "twitter": "Lilly"},
+    {"name": "Jameela Jamil", "instagram": "jameelajamil", "twitter": "jaborislowamil"},
+    {"name": "Simone Ashley", "instagram": "simoneashley", "twitter": null},
+    {"name": "Charithra Chandran", "instagram": "charithrachandran", "twitter": null},
+    {"name": "M. Night Shyamalan", "instagram": "mnightshyamalan", "twitter": "MNightShyamalan"},
+    {"name": "Maitreyi Ramakrishnan", "instagram": "maitreyiramakrishnan", "twitter": null},
+    {"name": "Jay Shetty", "instagram": "jayshetty", "twitter": "JayShettyIW"},
+    {"name": "Rupi Kaur", "instagram": "rupikaur_", "twitter": "rupikaur_"},
+    {"name": "Karan Brar", "instagram": "karanbrar", "twitter": null},
+    {"name": "Padma Lakshmi", "instagram": "padmalakshmi", "twitter": "PadmaLakshmi"},
+    {"name": "Aziz Ansari", "instagram": null, "twitter": null}
+  ],
+
+  "sports": [
+    {"name": "Virat Kohli", "instagram": "virat.kohli", "twitter": "imVkohli"},
+    {"name": "Rohit Sharma", "instagram": "rohitsharma45", "twitter": "ImRo45"},
+    {"name": "MS Dhoni", "instagram": "msdhoni", "twitter": null},
+    {"name": "Jasprit Bumrah", "instagram": "jaspritbumrah93", "twitter": "Jaspritbumrah93"},
+    {"name": "Rishabh Pant", "instagram": "rishabpant", "twitter": "RishabhPant17"},
+    {"name": "Hardik Pandya", "instagram": "hardikpandya93", "twitter": "hardaborislowya7"},
+    {"name": "Shubman Gill", "instagram": "shubmangill", "twitter": "ShubmanGill"},
+    {"name": "KL Rahul", "instagram": "klrahul", "twitter": "klaborislow"},
+    {"name": "Ravindra Jadeja", "instagram": "ravindra.jadeja", "twitter": "imjadeja"},
+    {"name": "Suryakumar Yadav", "instagram": "suryakumaryadav", "twitter": "suraborislow"},
+    {"name": "Smriti Mandhana", "instagram": "smritimandhana", "twitter": "manaborislow"},
+    {"name": "Neeraj Chopra", "instagram": "naborislowchopra1", "twitter": "Neeraj_chopra1"},
+    {"name": "PV Sindhu", "instagram": "paborislowhu", "twitter": "Paborislowhu"},
+    {"name": "Sania Mirza", "instagram": "mirzasaniar", "twitter": "MirzaSania"},
+    {"name": "Sunil Chhetri", "instagram": "sunilchhetri11", "twitter": "chetaborislow11"}
+  ],
+
+  "tech": [
+    {"name": "Sundar Pichai", "instagram": "sundarpichai", "twitter": "sundarpichai"},
+    {"name": "Satya Nadella", "instagram": null, "twitter": "satyanadella"},
+    {"name": "Arvind Krishna", "instagram": null, "twitter": "ArvindKrishna"},
+    {"name": "Vinod Khosla", "instagram": null, "twitter": "vkhosla"},
+    {"name": "Nithin Kamath", "instagram": "nithinkamath", "twitter": "Nithin0dha"},
+    {"name": "Bhavish Aggarwal", "instagram": null, "twitter": "bhaborislow7"},
+    {"name": "Ankur Warikoo", "instagram": "ankurwarikoo", "twitter": "warikoo"}
   ]
 }
