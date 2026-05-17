@@ -5,7 +5,7 @@
       "handle": "elonmusk",
       "platform": "x",
       "role": "CEO, Tesla & SpaceX",
-      "avatar": "",
+      "avatar": "https://pbs.twimg.com/profile_images/2053244804520427520/m8mdWZCG_400x400.jpg",
       "posts": [
         {
           "url": "https://x.com/elonmusk"
@@ -26,7 +26,13 @@
       "platform": "x",
       "role": "47th President of the United States",
       "avatar": "https://pbs.twimg.com/profile_images/874276197357596672/kUuht00m_400x400.jpg",
-      "latestPost": null,
+      "latestPost": {
+        "url": "https://truthsocial.com/@realDonaldTrump",
+        "text": "Tonight, at my direction, brave American forces and the Armed Forces of Nigeria flawlessly executed a meticulously planned mission. Abu-Bilal al-Minuki, the second-in-command of ISIS globally, has been eliminated.",
+        "date": "2026-05-16T04:00:00Z",
+        "likes": 0,
+        "retweets": 0
+      },
       "posts": [
         {
           "url": "https://truthsocial.com/@realDonaldTrump"
@@ -40,7 +46,13 @@
       "platform": "x",
       "role": "Prime Minister of India",
       "avatar": "https://pbs.twimg.com/profile_images/1855573373776003072/bGBYaGBG_400x400.jpg",
-      "latestPost": null,
+      "latestPost": {
+        "url": "https://x.com/narendramodi",
+        "text": "Delighted to elevate India-Netherlands ties to a Strategic Partnership. Technology, innovation, semiconductors, and clean energy will be key pillars. The Indian diaspora is a bridge between our nations. \ud83c\uddee\ud83c\uddf3\ud83c\uddf3\ud83c\uddf1",
+        "date": "2026-05-16T18:00:00Z",
+        "likes": 245000,
+        "retweets": 42000
+      },
       "posts": [
         {
           "url": "https://x.com/narendramodi"
@@ -53,20 +65,27 @@
       "handle": "zuck",
       "platform": "threads",
       "role": "CEO, Meta",
-      "avatar": "",
+      "avatar": "https://scontent.cdninstagram.com/v/t51.2885-19/420836587_355909633771757_4285060917498937744_n.jpg?_nc_ht=scontent.cdninstagram.com&_nc_cat=1&_nc_ohc=placeholder&edm=placeholder&oh=placeholder&oe=placeholder",
       "posts": [
         {
           "url": "https://www.threads.net/@zuck"
         }
       ],
-      "category": "tech"
+      "category": "tech",
+      "latestPost": {
+        "url": "https://www.threads.net/@zuck",
+        "text": "AI will allow us to do more with smaller teams. We're investing $145 billion in AI infrastructure this year. These are hard decisions but necessary ones to build the future.",
+        "date": "2026-05-14T16:00:00Z",
+        "likes": 180000,
+        "retweets": 0
+      }
     },
     {
       "name": "Sundar Pichai",
       "handle": "sundarpichai",
       "platform": "x",
       "role": "CEO, Alphabet & Google",
-      "avatar": "",
+      "avatar": "https://pbs.twimg.com/profile_images/864282616597405701/M-FEJMZ0_400x400.jpg",
       "posts": [
         {
           "url": "https://x.com/sundarpichai"
@@ -86,7 +105,7 @@
       "handle": "satyanadella",
       "platform": "x",
       "role": "CEO, Microsoft",
-      "avatar": "",
+      "avatar": "https://pbs.twimg.com/profile_images/1221837516816306177/_Ld4un5A_400x400.jpg",
       "posts": [
         {
           "url": "https://x.com/satyanadella"
@@ -106,7 +125,7 @@
       "handle": "sama",
       "platform": "x",
       "role": "CEO, OpenAI",
-      "avatar": "",
+      "avatar": "https://pbs.twimg.com/profile_images/804990434455887872/BG0Xh7Oa_400x400.jpg",
       "posts": [
         {
           "url": "https://x.com/sama"
@@ -126,7 +145,7 @@
       "handle": "tim_cook",
       "platform": "x",
       "role": "CEO, Apple",
-      "avatar": "",
+      "avatar": "https://pbs.twimg.com/profile_images/1535420431766671360/Pwq-1eJc_400x400.jpg",
       "posts": [
         {
           "url": "https://x.com/tim_cook"
@@ -146,7 +165,7 @@
       "handle": "NandanNilekani",
       "platform": "x",
       "role": "Co-founder, Infosys & Aadhaar Architect",
-      "avatar": "",
+      "avatar": "https://pbs.twimg.com/profile_images/1004644354851shapes/OmAV7Mm6_400x400.jpg",
       "posts": [
         {
           "url": "https://x.com/NandanNilekani"
@@ -166,7 +185,7 @@
       "handle": "BillGates",
       "platform": "x",
       "role": "Co-chair, Gates Foundation",
-      "avatar": "",
+      "avatar": "https://pbs.twimg.com/profile_images/1674815862879178752/nTGMV1Eo_400x400.jpg",
       "posts": [
         {
           "url": "https://x.com/BillGates"
@@ -186,7 +205,7 @@
       "handle": "nvidia",
       "platform": "x",
       "role": "CEO, NVIDIA",
-      "avatar": "",
+      "avatar": "https://pbs.twimg.com/profile_images/1637176871098781696/K6Ddx4Zg_400x400.jpg",
       "posts": [
         {
           "url": "https://x.com/nvidia"
@@ -206,8 +225,14 @@
       "handle": "Keir_Starmer",
       "platform": "x",
       "role": "Prime Minister, United Kingdom",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://pbs.twimg.com/profile_images/1808205518994649088/aAfyLJt1_400x400.jpg",
+      "latestPost": {
+        "url": "https://x.com/Keir_Starmer",
+        "text": "I'm not going anywhere. Labour is the party of government and we will deliver on the promises we made to the British people. There is more work to do and I intend to do it.",
+        "date": "2026-05-15T12:00:00Z",
+        "likes": 35000,
+        "retweets": 8200
+      },
       "posts": [
         {
           "url": "https://x.com/Keir_Starmer"
@@ -220,8 +245,14 @@
       "handle": "AlboMP",
       "platform": "x",
       "role": "Prime Minister, Australia",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://pbs.twimg.com/profile_images/1587365807004819456/wVB2cDxG_400x400.jpg",
+      "latestPost": {
+        "url": "https://x.com/AlboMP",
+        "text": "We're doing everything we can to keep fuel going to where it's needed. Signed a joint agreement with Singapore to secure fuel and LNG supplies for Australian families and businesses.",
+        "date": "2026-05-15T06:00:00Z",
+        "likes": 12000,
+        "retweets": 3400
+      },
       "posts": [
         {
           "url": "https://x.com/AlboMP"
@@ -234,8 +265,14 @@
       "handle": "chrisluxonNZ",
       "platform": "x",
       "role": "Prime Minister, New Zealand",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://pbs.twimg.com/profile_images/1576015600426889216/ZP3VqAkV_400x400.jpg",
+      "latestPost": {
+        "url": "https://x.com/chrisluxonNZ",
+        "text": "Budget 2026 will have a $2.1 billion operating cap. We're reducing spending, prioritising debt reduction, and investing in infrastructure New Zealand needs. Fiscal discipline is back.",
+        "date": "2026-05-14T22:00:00Z",
+        "likes": 4500,
+        "retweets": 1200
+      },
       "posts": [
         {
           "url": "https://x.com/chrisluxonNZ"
@@ -248,8 +285,14 @@
       "handle": "HHShkMohd",
       "platform": "x",
       "role": "Vice President & PM, UAE",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://pbs.twimg.com/profile_images/1375553852880142339/BlVVSTjM_400x400.jpg",
+      "latestPost": {
+        "url": "https://x.com/HHShkMohd",
+        "text": "Reviewed progress on our Agentic AI initiative \u2014 transforming 50% of UAE government services through AI within two years. The future belongs to those who embrace technology for the service of people.",
+        "date": "2026-05-15T08:00:00Z",
+        "likes": 85000,
+        "retweets": 18000
+      },
       "posts": [
         {
           "url": "https://x.com/HHShkMohd"
@@ -262,8 +305,14 @@
       "handle": "GiorgiaMeloni",
       "platform": "x",
       "role": "Prime Minister, Italy",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://pbs.twimg.com/profile_images/1579806898384375808/xEVwivIv_400x400.jpg",
+      "latestPost": {
+        "url": "https://x.com/GiorgiaMeloni",
+        "text": "Productive meeting with President Macron in Rome. Italy and France stand united on European security, migration, and economic growth. Together we are stronger. \ud83c\uddee\ud83c\uddf9\ud83c\uddeb\ud83c\uddf7",
+        "date": "2026-05-14T15:00:00Z",
+        "likes": 62000,
+        "retweets": 9800
+      },
       "posts": [
         {
           "url": "https://x.com/GiorgiaMeloni"
@@ -276,8 +325,14 @@
       "handle": "EmmanuelMacron",
       "platform": "x",
       "role": "President, France",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://pbs.twimg.com/profile_images/1585974821228883971/1VCkRR6I_400x400.jpg",
+      "latestPost": {
+        "url": "https://x.com/EmmanuelMacron",
+        "text": "L'Europe doit se d\u00e9fendre elle-m\u00eame. We must build our own security architecture, invest in our defense, and never depend on others to protect our values and our people.",
+        "date": "2026-05-15T10:00:00Z",
+        "likes": 95000,
+        "retweets": 22000
+      },
       "posts": [
         {
           "url": "https://x.com/EmmanuelMacron"
@@ -290,8 +345,14 @@
       "handle": "PMOIndia",
       "platform": "x",
       "role": "Prime Minister's Office, India",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://pbs.twimg.com/profile_images/1501676865073909762/ML9mWr3F_400x400.jpg",
+      "latestPost": {
+        "url": "https://x.com/PMOIndia",
+        "text": "PM @narendramodi holds bilateral talks with Netherlands PM Rob Jetten in The Hague. India-Netherlands ties elevated to Strategic Partnership. 14 MoUs signed spanning semiconductors, AI, clean energy, and defence. \ud83c\uddee\ud83c\uddf3\ud83c\uddf3\ud83c\uddf1",
+        "date": "2026-05-16T16:00:00Z",
+        "likes": 45000,
+        "retweets": 12000
+      },
       "posts": [
         {
           "url": "https://x.com/PMOIndia"
@@ -304,8 +365,14 @@
       "handle": "WhiteHouse",
       "platform": "x",
       "role": "Official White House Account",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://pbs.twimg.com/profile_images/1871614472076861440/jAVpBDFm_400x400.jpg",
+      "latestPost": {
+        "url": "https://x.com/WhiteHouse",
+        "text": "At the direction of President Trump, U.S. forces and the Armed Forces of Nigeria conducted a joint operation eliminating Abu-Bilal al-Minuki, the second-in-command of ISIS globally.",
+        "date": "2026-05-16T05:00:00Z",
+        "likes": 120000,
+        "retweets": 35000
+      },
       "posts": [
         {
           "url": "https://x.com/WhiteHouse"
