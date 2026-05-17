@@ -85,7 +85,7 @@ function EventCard({ event }: { event: EventItem }) {
     <article className="group flex flex-col sm:flex-row gap-4 bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors">
       {/* Image */}
       {event.image_url ? (
-        <div className="sm:w-48 sm:min-w-[12rem] h-40 sm:h-auto overflow-hidden flex-shrink-0">
+        <div className="w-full sm:w-48 sm:min-w-[12rem] h-48 sm:h-auto overflow-hidden flex-shrink-0">
           <img
             src={event.image_url}
             alt={event.title}
@@ -94,7 +94,7 @@ function EventCard({ event }: { event: EventItem }) {
           />
         </div>
       ) : (
-        <div className="sm:w-48 sm:min-w-[12rem] h-40 sm:h-auto bg-muted/30 flex items-center justify-center flex-shrink-0">
+        <div className="w-full sm:w-48 sm:min-w-[12rem] h-32 sm:h-auto bg-muted/30 flex items-center justify-center flex-shrink-0">
           <span className="text-4xl opacity-60">{categoryEmoji(event.category)}</span>
         </div>
       )}
@@ -231,7 +231,7 @@ export default function EventsPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
       <Helmet>
         <title>Events — The Videshi</title>
         <meta
