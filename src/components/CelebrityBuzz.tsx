@@ -43,21 +43,15 @@ function ensureTwitterWidgets(cb: () => void) {
 
 /* ── Lightbox ── */
 
-function BuzzLightbox({ posts, index, onClose, onNav }: {
-  posts: BuzzPost[];
-  index: number;
+function BuzzLightbox({ post, onClose }: {
+  post: BuzzPost;
   onClose: () => void;
-  onNav: (i: number) => void;
 }) {
-  const touchStartX = useRef<number | null>(null);
-  const post = posts[index];
   const shortcode = extractInstaShortcode(post.url);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight") onNav((index + 1) % posts.length);
-      if (e.key === "ArrowLeft") onNav((index - 1 + posts.length) % posts.length);
     };
     window.addEventListener("keydown", handler);
     document.body.style.overflow = "hidden";
@@ -65,20 +59,11 @@ function BuzzLightbox({ posts, index, onClose, onNav }: {
       window.removeEventListener("keydown", handler);
       document.body.style.overflow = "";
     };
-  }, [onClose, onNav, index, posts.length]);
+  }, [onClose]);
 
   return (
     <div
       onClick={onClose}
-      onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
-      onTouchEnd={(e) => {
-        if (touchStartX.current === null) return;
-        const diff = e.changedTouches[0].clientX - touchStartX.current;
-        if (Math.abs(diff) > 50) {
-          diff < 0 ? onNav((index + 1) % posts.length) : onNav((index - 1 + posts.length) % posts.length);
-        }
-        touchStartX.current = null;
-      }}
       style={{
         position: "fixed", inset: 0, zIndex: 9999,
         background: "rgba(0,0,0,0.95)",
@@ -99,10 +84,9 @@ function BuzzLightbox({ posts, index, onClose, onNav }: {
         }}
       >×</button>
 
-      {/* Celebrity name + counter */}
+      {/* Celebrity name */}
       <div style={{ position: "absolute", top: 16, left: "50%", transform: "translateX(-50%)", textAlign: "center", zIndex: 20 }}>
         <div style={{ color: "#fff", fontSize: 14, fontWeight: 600 }}>{post.celebrity}</div>
-        <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 12, marginTop: 2 }}>{index + 1} / {posts.length}</div>
       </div>
 
       <div
@@ -114,19 +98,16 @@ function BuzzLightbox({ posts, index, onClose, onNav }: {
         }}
       >
         {shortcode ? (
-          <div style={{ position: "relative", overflow: "hidden", maxHeight: "calc(80vh - 50px)" }}>
+          <div style={{ overflow: "hidden", maxHeight: "calc(80vh - 50px)" }}>
             <iframe
-              key={index}
               src={`https://www.instagram.com/p/${shortcode}/embed/`}
               width="100%"
               height="800"
               frameBorder="0"
               scrolling="no"
-              allowTransparency
               title={`${post.celebrity} Instagram post`}
               style={{ display: "block", border: "none", background: "#000", marginBottom: -80 }}
             />
-            <div style={{ position: "absolute", inset: 0, zIndex: 5, cursor: "default" }} />
           </div>
         ) : (
           <div style={{ padding: 40, textAlign: "center", color: "#888" }}>Post unavailable</div>
@@ -413,10 +394,8 @@ export default function CelebrityBuzz() {
 
       {selectedIndex !== null && (
           <BuzzLightbox
-            posts={posts}
-            index={selectedIndex}
+            post={posts[selectedIndex]}
             onClose={() => { setSelectedIndex(null); document.body.style.overflow = ""; }}
-            onNav={(i) => setSelectedIndex(i)}
           />
       )}
     </section>
