@@ -55,15 +55,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const images = Array.from(byImageId.values());
 
-    if (!images.length) {
-      // Fallback: try video thumbnails
-      const vidUrls = html.match(/https:\/\/scontent[^"'\s,>\\]+t51\.71878[^"'\s,>\\]*/g) || [];
-      for (const url of vidUrls) {
-        if (!url.includes("s150x150") && !url.includes("s240x240")) {
-          images.push(url);
-          break;
-        }
-      }
+    // Also include video cover frames (t51.71878) as images
+    const vidUrls = html.match(/https:\/\/scontent[^"'\s,>\\]+t51\.71878[^"'\s,>\\]*/g) || [];
+    const vidSeen = new Set<string>();
+    for (const url of vidUrls) {
+      if (url.includes("s150x150") || url.includes("s240x240")) continue;
+      const idMatch = url.match(/\/([0-9]+_[0-9]+_[0-9]+_n\.jpg)/);
+      const vid = idMatch ? idMatch[1] : url.split("?")[0];
+      if (vidSeen.has(vid)) continue;
+      vidSeen.add(vid);
+      images.push(url);
     }
 
     if (!images.length) {

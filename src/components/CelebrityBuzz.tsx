@@ -50,6 +50,7 @@ function BuzzLightbox({ post, images, onClose }: {
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [current, setCurrent] = useState(0);
+  const touchStartY = useRef<number | null>(null);
   const total = images.length;
 
   useEffect(() => {
@@ -83,6 +84,13 @@ function BuzzLightbox({ post, images, onClose }: {
   return (
     <div
       onClick={onClose}
+      onTouchStart={(e) => { touchStartY.current = e.touches[0].clientY; }}
+      onTouchEnd={(e) => {
+        if (touchStartY.current === null) return;
+        const diff = e.changedTouches[0].clientY - touchStartY.current;
+        if (diff > 80) onClose();
+        touchStartY.current = null;
+      }}
       style={{
         position: "fixed", inset: 0, zIndex: 9999,
         background: "rgba(0,0,0,0.95)",
@@ -168,6 +176,21 @@ function BuzzLightbox({ post, images, onClose }: {
             />
           ))}
         </div>
+      )}
+
+      {/* Handle credit */}
+      <a
+        href={post.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          marginTop: 10, color: "rgba(255,255,255,0.5)", fontSize: 13,
+          textDecoration: "none",
+        }}
+      >
+        📷 @{post.handle} on Instagram
+      </a>
       )}
     </div>
   );
