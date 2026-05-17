@@ -244,7 +244,7 @@ export default function EventsPage() {
       <Masthead />
       <CategoryPills />
 
-      <main className="container flex-1 pt-8 md:pt-10 pb-16">
+      <main className="container flex-1 pt-8 md:pt-10 pb-16 overflow-x-hidden">
         {/* Header */}
         <div className="mb-8">
           <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-3">
