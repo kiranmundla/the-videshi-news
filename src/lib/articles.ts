@@ -233,6 +233,7 @@ export async function getTopStories(limit = 12, offset = 0): Promise<Article[]> 
 }
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  // Try by slug first
   const { data, error } = await supabase
     .from("p2_articles")
     .select(P2_COLS)
@@ -244,7 +245,25 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     console.error("[articles] getArticleBySlug", error);
     return null;
   }
-  return data ? mapRow(data as P2Row) : null;
+  if (data) return mapRow(data as P2Row);
+
+  // Fallback: try by ID (handles articles with null slugs linked by UUID)
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  if (uuidRegex.test(slug)) {
+    const { data: idData, error: idError } = await supabase
+      .from("p2_articles")
+      .select(P2_COLS)
+      .eq("status", "published")
+      .eq("id", slug)
+      .maybeSingle();
+    if (idError) {
+      console.error("[articles] getArticleBySlug (id fallback)", idError);
+      return null;
+    }
+    return idData ? mapRow(idData as P2Row) : null;
+  }
+
+  return null;
 }
 
 export async function getRelatedArticles(
