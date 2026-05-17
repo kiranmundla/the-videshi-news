@@ -304,40 +304,34 @@ export default function ArticleCard({
 
   return (
     <Link to={href} onClick={saveScroll} className="group block">
-      {allImages && allImages.length > 1 ? (
-        <div
-          className="flex gap-2 overflow-x-auto pb-1"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {allImages.map((img, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 w-[70%] md:w-[60%] aspect-[4/3] rounded-lg overflow-hidden bg-stone-200"
-              style={{ scrollSnapAlign: "center" }}
-            >
-              <img
-                src={img.url}
-                alt={img.caption || article.title}
-                loading={variant === "hero" && i === 0 ? "eager" : "lazy"}
-                className="w-full h-full object-contain"
-              />
-            </div>
-          ))}
+      <figure className="w-full relative">
+        <div className="w-full aspect-[16/9] bg-stone-100 overflow-hidden rounded-lg">
+          <HeroImage
+            src={article.hero_image_url}
+            alt={article.title}
+            loading={variant === "hero" ? "eager" : "lazy"}
+            className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
+            style={{ objectPosition: "center 20%" }}
+            onOrientationDetected={setRuntimeOrientation}
+          />
         </div>
-      ) : (
-        <figure className="w-full">
-          <div className="w-full aspect-[16/9] bg-stone-100 overflow-hidden">
-            <HeroImage
-              src={article.hero_image_url}
-              alt={article.title}
-              loading={variant === "hero" ? "eager" : "lazy"}
-              className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-              style={{ objectPosition: "center 20%" }}
-              onOrientationDetected={setRuntimeOrientation}
-            />
-          </div>
-        </figure>
+        {allImages && allImages.length > 1 && (
+          <span style={{
+            position: "absolute", bottom: 8, right: 8,
+            background: "rgba(0,0,0,0.6)", color: "#fff",
+            fontSize: 11, fontWeight: 600, padding: "3px 8px",
+            borderRadius: 12, backdropFilter: "blur(4px)",
+            display: "flex", alignItems: "center", gap: 4,
+          }}>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
+            </svg>
+            1/{allImages.length}
+          </span>
+        )}
+      </figure>
       )}
       {!hideCategory && (
         <p className="smallcaps text-primary mt-4 mb-2">
