@@ -440,7 +440,7 @@ export default function ArticlePage() {
 .article-prose table { overflow-x: auto; display: block; }`}</style>
             <PhotoScrollStrip
               photos={[
-                ...(article.hero_image_url ? [{ src: article.hero_image_url, caption: article.image_caption || "" }] : []),
+                ...(article.hero_image_url ? [{ src: article.hero_image_url, caption: article.image_caption || article.image_credit || "" }] : []),
                 ...article.gallery_images
                   .filter((img: { url: string }) => img.url !== article.hero_image_url)
                   .map((img: { url: string; caption: string }) => ({ src: img.url, caption: img.caption })),
