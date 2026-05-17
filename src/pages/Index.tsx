@@ -7,6 +7,7 @@ import ArticleCard from "@/components/ArticleCard";
 import DiasporaPhotoStrip from "@/components/DiasporaPhotoStrip";
 import CelebrityBuzz from "@/components/CelebrityBuzz";
 import FeaturedHero from "@/components/FeaturedHero";
+import FeaturedCarousel from "@/components/FeaturedCarousel";
 import IPLTracker from "@/components/IPLTracker";
 import MarketTicker from "@/components/MarketTicker";
 import CategoryPills from "@/components/CategoryPills";
@@ -28,6 +29,8 @@ const CATEGORY_SECTIONS = [
   { slug: "lifestyle-health", label: "LIFESTYLE & HEALTH", limit: 12 },
   { slug: "food", label: "FOOD", limit: 12 },
 ];
+
+const CAROUSEL_CATEGORIES = ["news", "entertainment", "sports", "technology", "markets-finance"];
 
 const CLUSTERS: { label: string; require: string[]; also: string[] }[] = [
   {
@@ -173,6 +176,7 @@ const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 type HomeCache = {
   ts: number;
   featured: Article | null;
+  carouselArticles: Article[];
   newsPool: Article[];
   nriPool: Article[];
   sectionPools: Record<string, Article[]>;
@@ -199,6 +203,7 @@ function saveCache(data: HomeCache) {
 export default function Index() {
   const initialCache = useRef(loadCache()).current;
   const [featuredArticle, setFeaturedArticle] = useState<Article | null>(initialCache?.featured ?? null);
+  const [carouselArticles, setCarouselArticles] = useState<Article[]>(initialCache?.carouselArticles ?? []);
   const [newsPool, setNewsPool] = useState<Article[]>(initialCache?.newsPool ?? []);
   const [nriPool, setNriPool] = useState<Article[]>(initialCache?.nriPool ?? []);
   const [sectionPools, setSectionPools] = useState<Record<string, Article[]>>(initialCache?.sectionPools ?? {});
@@ -219,14 +224,34 @@ export default function Index() {
           .then((items) => [s.slug, items] as const)
           .catch(() => [s.slug, []] as const),
       ),
-    ]).then(([featured, indiaNews, worldNews, ...catResults]) => {
+      // Fetch top article from each carousel category
+      ...CAROUSEL_CATEGORIES.map((cat) =>
+        getArticlesByCategory(cat, 1)
+          .then((items) => items[0] || null)
+          .catch(() => null),
+      ),
+    ]).then((results) => {
       clearTimeout(timeout);
-      const f = featured as Article | null;
-      const n = indiaNews as Article[];
-      const nri = worldNews as Article[];
-      const sp = Object.fromEntries(catResults as Array<readonly [string, Article[]]>);
+      const catSectionCount = CATEGORY_SECTIONS.length;
+      const carouselCount = CAROUSEL_CATEGORIES.length;
+      const f = results[0] as Article | null;
+      const n = results[1] as Article[];
+      const nri = results[2] as Article[];
+      const catResults = results.slice(3, 3 + catSectionCount) as Array<readonly [string, Article[]]>;
+      const carouselRaw = results.slice(3 + catSectionCount, 3 + catSectionCount + carouselCount) as Array<Article | null>;
+      const sp = Object.fromEntries(catResults);
+
+      // Build carousel: filter to articles that have images, dedupe
+      const seenIds = new Set<string>();
+      const carousel = carouselRaw.filter((a): a is Article => {
+        if (!a) return false;
+        if (seenIds.has(a.id)) return false;
+        seenIds.add(a.id);
+        return true;
+      });
 
       setFeaturedArticle(f);
+      setCarouselArticles(carousel);
       setNewsPool(n);
       setNriPool(nri);
       setSectionPools(sp);
@@ -234,7 +259,7 @@ export default function Index() {
       setLoading(false);
 
       // Save to cache for back-button restore
-      saveCache({ ts: Date.now(), featured: f, newsPool: n, nriPool: nri, sectionPools: sp });
+      saveCache({ ts: Date.now(), featured: f, carouselArticles: carousel, newsPool: n, nriPool: nri, sectionPools: sp });
     });
   }, []);
 
@@ -273,7 +298,7 @@ export default function Index() {
   const layout = useMemo(() => {
     const featuredId = featuredArticle?.id;
     const shownIds = new Set<string>(
-      [featuredId].filter(Boolean) as string[],
+      [featuredId, ...carouselArticles.map((a) => a.id)].filter(Boolean) as string[],
     );
 
     // INDIA NEWS
@@ -294,7 +319,7 @@ export default function Index() {
     sections.forEach((s) => s.pool.forEach((a) => shownIds.add(a.id)));
 
     return { india, world, sections };
-  }, [newsPool, nriPool, sectionPools, featuredArticle]);
+  }, [newsPool, nriPool, sectionPools, featuredArticle, carouselArticles]);
 
   if (loading) {
     return (
@@ -324,11 +349,15 @@ export default function Index() {
       <MarketTicker />
 
       <main className="container flex-1 pt-6 md:pt-8">
-        {featuredArticle && (
+        {carouselArticles.length > 1 ? (
+          <div className="mb-10">
+            <FeaturedCarousel articles={carouselArticles} />
+          </div>
+        ) : featuredArticle ? (
           <div className="mb-10">
             <FeaturedHero article={featuredArticle} />
           </div>
-        )}
+        ) : null}
 
         <IPLTracker />
 
