@@ -57,7 +57,7 @@ function Slide({ article }: { article: Article }) {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.15) 100%)",
+              "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.05) 100%)",
           }}
         />
         <div className="absolute inset-x-0 bottom-0 px-5 md:px-12 pb-6 md:pb-8">
