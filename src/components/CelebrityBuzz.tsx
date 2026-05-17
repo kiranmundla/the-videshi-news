@@ -92,17 +92,17 @@ function BuzzLightbox({ post, onClose }: {
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          width: "min(90vw, 480px)", maxHeight: "80vh",
+          width: "min(95vw, 540px)", maxHeight: "90vh",
           borderRadius: 12, overflow: "hidden", background: "#000",
           position: "relative",
         }}
       >
         {shortcode ? (
-          <div style={{ overflow: "hidden", maxHeight: "calc(80vh - 50px)" }}>
+          <div style={{ overflow: "hidden", maxHeight: "calc(90vh - 50px)" }}>
             <iframe
               src={`https://www.instagram.com/p/${shortcode}/embed/`}
               width="100%"
-              height="800"
+              height="900"
               frameBorder="0"
               scrolling="no"
               title={`${post.celebrity} Instagram post`}
