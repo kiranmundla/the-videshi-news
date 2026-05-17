@@ -20,6 +20,7 @@ import RunLogPage from "./pages/pipeline/RunLogPage.tsx";
 import SourcesPage from "./pages/admin/SourcesPage.tsx";
 import TravelDestination from "./pages/TravelDestination.tsx";
 import SearchPage from "./pages/SearchPage.tsx";
+import EventsPage from "./pages/EventsPage.tsx";
 import Privacy from "./pages/Privacy.tsx";
 import Terms from "./pages/Terms.tsx";
 
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="/articles/:slug" element={<ArticlePage />} />
             <Route path="/travel/:destination" element={<TravelDestination />} />
+            <Route path="/events" element={<EventsPage />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/sources" element={<SourcesPage />} />
             <Route path="/admin/p2" element={<PipelineLayout />}>
