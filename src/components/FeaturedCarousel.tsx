@@ -69,11 +69,6 @@ function Slide({ article }: { article: Article }) {
             >
               {article.title}
             </h1>
-            {article.excerpt && (
-              <p className="font-body-serif text-white/85 mt-2 text-sm md:text-base max-w-3xl line-clamp-2">
-                {article.excerpt}
-              </p>
-            )}
           </Link>
         </div>
       </div>
@@ -94,11 +89,6 @@ function Slide({ article }: { article: Article }) {
         >
           {article.title}
         </h1>
-        {article.excerpt && (
-          <p className="font-body-serif text-white/80 mt-3 text-sm md:text-base max-w-3xl line-clamp-2">
-            {article.excerpt}
-          </p>
-        )}
       </Link>
     </div>
   );
