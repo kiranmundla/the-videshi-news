@@ -60,7 +60,6 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
     height: "36px",
     borderRadius: "50%",
     cursor: "pointer",
-    display: "flex",
     alignItems: "center",
     justifyContent: "center",
     transition: "background 0.2s, opacity 0.2s",
@@ -116,6 +115,7 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
             style={{
               position: "relative",
               width: itemWidth,
+              maxWidth: "calc(100vw - 32px)",
               height: itemHeight,
               borderRadius: 8,
               overflow: "hidden",
