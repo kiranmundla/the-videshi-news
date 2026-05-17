@@ -82,7 +82,7 @@ function EventCard({ event }: { event: EventItem }) {
     .join(", ");
 
   const card = (
-    <article className="group flex flex-col sm:flex-row gap-4 bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors max-w-full">
+    <article className="group flex flex-col sm:flex-row bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full box-border" style={{ wordBreak: "break-word" }}>
       {/* Image */}
       {event.image_url ? (
         <div className="w-full sm:w-48 sm:min-w-[12rem] h-48 sm:h-auto overflow-hidden flex-shrink-0">
@@ -310,7 +310,7 @@ export default function EventsPage() {
               {cityFilter ? ` in ${cityFilter}` : ""}
               {categoryFilter ? ` · ${categoryFilter}` : ""}
             </p>
-            <div className="grid gap-4">
+            <div className="grid grid-cols-1 gap-4 w-full min-w-0">
               {events.map((event) => (
                 <EventCard key={event.id} event={event} />
               ))}
