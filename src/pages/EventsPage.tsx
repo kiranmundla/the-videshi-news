@@ -15,24 +15,42 @@ import {
 /* Category badge color helper                                        */
 /* ------------------------------------------------------------------ */
 const CAT_COLORS: Record<string, string> = {
-  Cultural:  "bg-purple-600/20 text-purple-300",
-  Music:     "bg-pink-600/20 text-pink-300",
-  Food:      "bg-amber-600/20 text-amber-300",
-  Sports:    "bg-green-600/20 text-green-300",
-  Community: "bg-blue-600/20 text-blue-300",
-  Festival:  "bg-orange-600/20 text-orange-300",
-  Comedy:    "bg-yellow-600/20 text-yellow-300",
-  Dance:     "bg-rose-600/20 text-rose-300",
-  Religious: "bg-indigo-600/20 text-indigo-300",
-  Other:     "bg-gray-600/20 text-gray-300",
+  Cultural:    "bg-purple-600/20 text-purple-300",
+  Music:       "bg-pink-600/20 text-pink-300",
+  Food:        "bg-amber-600/20 text-amber-300",
+  Sports:      "bg-green-600/20 text-green-300",
+  Community:   "bg-blue-600/20 text-blue-300",
+  Festival:    "bg-orange-600/20 text-orange-300",
+  Comedy:      "bg-yellow-600/20 text-yellow-300",
+  Dance:       "bg-rose-600/20 text-rose-300",
+  Religious:   "bg-indigo-600/20 text-indigo-300",
+  Education:   "bg-teal-600/20 text-teal-300",
+  Competition: "bg-cyan-600/20 text-cyan-300",
+  Other:       "bg-gray-600/20 text-gray-300",
+};
+
+const CAT_EMOJI: Record<string, string> = {
+  Cultural: "🎭",
+  Music: "🎵",
+  Food: "🍛",
+  Sports: "🏏",
+  Community: "🤝",
+  Festival: "🪔",
+  Comedy: "😂",
+  Dance: "💃",
+  Religious: "🙏",
+  Education: "🎓",
+  Competition: "🏆",
+  Other: "📌",
 };
 
 function CategoryBadge({ category }: { category: string | null }) {
   if (!category) return null;
   const color = CAT_COLORS[category] || CAT_COLORS.Other;
+  const emoji = CAT_EMOJI[category] || "";
   return (
     <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${color}`}>
-      {category}
+      {emoji && <span className="mr-1">{emoji}</span>}{category}
     </span>
   );
 }
@@ -69,6 +87,11 @@ function EventCard({ event }: { event: EventItem }) {
         <div>
           <div className="flex items-center gap-2 mb-2 flex-wrap">
             <CategoryBadge category={event.category} />
+            {event.audience && (
+              <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-emerald-600/20 text-emerald-300">
+                👤 {event.audience}
+              </span>
+            )}
             {event.price_range && (
               <span className="text-xs text-muted-foreground font-medium">
                 {event.price_range}

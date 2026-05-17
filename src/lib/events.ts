@@ -20,9 +20,10 @@ export type EventItem = {
   source: string | null;
   price_range: string | null;
   organizer: string | null;
+  audience: string | null;
 };
 
-const EVENT_COLS = "id,title,date,time,end_date,venue_name,city,state,category,description,image_url,ticket_url,source,price_range,organizer";
+const EVENT_COLS = "id,title,date,time,end_date,venue_name,city,state,category,description,image_url,ticket_url,source,price_range,organizer,audience";
 
 /**
  * City groups for the city picker. Each group maps a display label
@@ -80,7 +81,8 @@ export async function getEvents(
 
 export const EVENT_CATEGORIES = [
   "Cultural", "Music", "Food", "Sports", "Community",
-  "Festival", "Comedy", "Dance", "Religious", "Other",
+  "Festival", "Comedy", "Dance", "Religious", "Education",
+  "Competition", "Other",
 ];
 
 export function formatEventDate(dateStr: string, endDateStr?: string | null): string {

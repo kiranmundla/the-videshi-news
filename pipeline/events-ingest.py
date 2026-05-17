@@ -8,6 +8,7 @@ Usage:
     python3 events-ingest.py --source eb    # Eventbrite only
     python3 events-ingest.py --source tm    # Ticketmaster only
     python3 events-ingest.py --city "ca--san-jose"  # Single city (Eventbrite format)
+    python3 events-ingest.py --dry-run      # Print events without upserting
 """
 
 import json
@@ -32,10 +33,24 @@ except ImportError:
 # ---------------------------------------------------------------------------
 
 EVENTBRITE_KEYWORDS = [
+    # Indian / South Asian culture
     "indian", "bollywood", "telugu", "tamil", "garba", "diwali", "desi",
     "hindi", "punjabi", "bhangra", "cricket", "biryani", "carnatic",
     "bharatanatyam", "kathak", "holi", "navratri", "pongal", "onam",
     "sikh", "gurdwara", "eid", "iftar", "mehndi", "sangeet",
+    # Education / youth
+    "indian school", "hindi class", "sanskrit", "vedic math", "kumon",
+    "STEM kids", "youth chess",
+    # Academic competitions — popular with NRI families
+    "spelling bee", "math olympiad", "math competition", "science olympiad",
+    "chess tournament", "robotics competition", "coding competition",
+    "debate tournament", "MATHCOUNTS", "AMC math", "Science Bowl",
+    "Quiz Bowl", "Geography Bee", "math kangaroo",
+    # Major US academic orgs & competitions
+    "DECA", "HOSA", "FBLA", "Model UN", "mock trial", "BPA business",
+    "TSA technology", "FIRST robotics", "VEX robotics", "FRC robotics",
+    "National Honor Society", "Key Club", "Scripps Spelling Bee",
+    "National Science Bowl", "USACO", "USABO", "USAMO",
 ]
 
 TICKETMASTER_KEYWORDS = [
@@ -61,27 +76,66 @@ CITIES = [
     {"eb": "pa--philadelphia",   "tm_state": "PA", "display": "Philadelphia",   "state": "PA"},
 ]
 
-# Category auto-detection keywords
+# Category auto-detection keywords (order matters — first match wins)
 CATEGORY_RULES = [
-    ("Music",     ["concert", "music", "live band", "singer", "dj ", "dj night", "bollywood night", "bhangra night", "carnatic", "classical music", "ghazal", "qawwali"]),
-    ("Dance",     ["dance", "bharatanatyam", "kathak", "garba", "dandiya", "bhangra class", "salsa"]),
-    ("Food",      ["food", "cook", "biryani", "culinary", "taste", "dinner", "brunch", "lunch", "feast", "iftar", "potluck"]),
-    ("Comedy",    ["comedy", "standup", "stand-up", "comedian", "laugh", "open mic"]),
-    ("Sports",    ["cricket", "kabaddi", "badminton", "sport", "tournament", "marathon", "run ", "5k ", "10k "]),
-    ("Religious", ["temple", "gurdwara", "mosque", "church", "puja", "pooja", "havan", "kirtan", "bhajan", "aarti", "satsang", "prayer", "kalyanam", "ram navami"]),
-    ("Festival",  ["diwali", "holi", "navratri", "pongal", "onam", "eid", "vaisakhi", "baisakhi", "ugadi", "makar sankranti", "lohri", "festival", "mela", "dussehra", "ganesh"]),
-    ("Community", ["convention", "conference", "meetup", "networking", "association", "tana", "ata ", "tta ", "nata", "mata", "diaspora", "community", "gala", "fundraiser", "charity"]),
-    ("Cultural",  ["cultural", "art", "exhibit", "gallery", "heritage", "history", "lecture", "seminar", "workshop", "yoga", "meditation", "ayurveda"]),
+    ("Competition", ["spelling bee", "math olympiad", "science olympiad", "chess tournament",
+                     "robotics competition", "coding competition", "debate tournament",
+                     "mathcounts", "amc math", "science bowl", "quiz bowl", "geography bee",
+                     "math kangaroo", "deca ", "hosa ", "fbla ", "model un", "mock trial",
+                     "bpa ", "tsa technology", "first robotics", "vex robotics", "frc ",
+                     "national science bowl", "usaco", "usabo", "usamo", "scripps",
+                     "competition", "olympiad", "tournament", "contest", "hackathon"]),
+    ("Education",   ["school", "class", "course", "workshop", "training", "tutoring", "tutor",
+                     "hindi class", "sanskrit", "vedic math", "kumon", "stem kids", "youth chess",
+                     "national honor society", "key club", "education", "learning", "lecture",
+                     "seminar", "webinar", "certification", "study group"]),
+    ("Dance",       ["dance", "bharatanatyam", "kathak", "garba", "dandiya",
+                     "bhangra class", "salsa", "nritya"]),
+    ("Music",       ["concert", "music", "live band", "singer", "dj ", "dj night",
+                     "bollywood night", "bhangra night", "carnatic", "classical music",
+                     "ghazal", "qawwali", "melody"]),
+    ("Food",        ["food", "cook", "biryani", "culinary", "taste", "dinner", "brunch",
+                     "lunch", "feast", "iftar", "potluck", "tasting"]),
+    ("Comedy",      ["comedy", "standup", "stand-up", "comedian", "laugh", "open mic"]),
+    ("Sports",      ["cricket", "kabaddi", "badminton", "sport", "marathon", "run ",
+                     "5k ", "10k ", "carrom"]),
+    ("Religious",   ["temple", "gurdwara", "mosque", "church", "puja", "pooja", "havan",
+                     "kirtan", "bhajan", "aarti", "satsang", "prayer", "kalyanam",
+                     "ram navami", "satyanarayan"]),
+    ("Festival",    ["diwali", "holi", "navratri", "pongal", "onam", "eid", "vaisakhi",
+                     "baisakhi", "ugadi", "makar sankranti", "lohri", "festival", "mela",
+                     "dussehra", "ganesh"]),
+    ("Community",   ["convention", "conference", "meetup", "networking", "association",
+                     "tana", "ata ", "tta ", "nata", "mata", "diaspora", "community",
+                     "gala", "fundraiser", "charity"]),
+    ("Cultural",    ["cultural", "art", "exhibit", "gallery", "heritage", "history",
+                     "yoga", "meditation", "ayurveda"]),
 ]
 
-# False-positive filters: event titles matching these regexes are likely NOT Indian events
+# Audience detection patterns
+AUDIENCE_PATTERNS = [
+    # K-5 / Elementary
+    (r"(?i)\b(?:grades?\s*[kK1-5]|ages?\s*[4-9](?:\s*[-–]\s*1[012])?|elementary|pre-?k|kindergarten|k\s*[-–]\s*5|k\s*[-–]\s*2|1st[-–]5th)\b", "K-5"),
+    # Middle School
+    (r"(?i)\b(?:grades?\s*[6-8]|middle\s*school|ages?\s*1[0-3](?:\s*[-–]\s*1[3-5])?|6th[-–]8th)\b", "Middle School"),
+    # High School
+    (r"(?i)\b(?:grades?\s*(?:9|1[0-2])|high\s*school|ages?\s*1[4-8](?:\s*[-–]\s*1[7-9])?|9th[-–]12th|teen)\b", "High School"),
+    # Kids general (if none of the above matched)
+    (r"(?i)\b(?:kids?|children|youth|young|junior|jr\.?\s)\b", "K-12"),
+    # Adults
+    (r"(?i)\b(?:21\+|adults?\s*only|over\s*21|18\+|professionals?|networking)\b", "Adults"),
+    # All ages
+    (r"(?i)\b(?:all\s*ages?|family|families|everyone)\b", "All Ages"),
+]
+
+# False-positive filters: event titles matching these are likely NOT Indian events
 FALSE_POSITIVE_PATTERNS = [
-    r"(?i)indian wells",           # Tennis tournament
+    r"(?i)indian wells",
     r"(?i)cleveland indians?(?:\s|$)",
     r"(?i)indian motorcycle",
     r"(?i)native\s+(american\s+)?indian",
-    r"(?i)candy crafting at cricket",  # Saw this in Ticketmaster results
-    r"(?i)west indian day parade",     # Caribbean, not South Asian
+    r"(?i)candy crafting at cricket",
+    r"(?i)west indian day parade",
 ]
 
 # ---------------------------------------------------------------------------
@@ -120,6 +174,15 @@ def categorize(title: str, description: str = "") -> str:
             if kw in text:
                 return cat
     return "Other"
+
+
+def detect_audience(title: str, description: str = "") -> str | None:
+    """Try to detect target audience from title/description."""
+    text = f"{title} {description}"
+    for pattern, audience in AUDIENCE_PATTERNS:
+        if re.search(pattern, text):
+            return audience
+    return None
 
 
 def is_false_positive(title: str) -> bool:
@@ -176,7 +239,6 @@ def scrape_eventbrite(city_config: dict, keyword: str) -> list:
         address = venue.get("address", {}) or {}
         city = address.get("city", city_config["display"])
         state = address.get("region", city_config["state"])
-        # Normalize state to 2-letter code
         if state and len(state) > 2:
             state = city_config["state"]
 
@@ -221,6 +283,10 @@ def scrape_eventbrite(city_config: dict, keyword: str) -> list:
         # Summary/description
         description = evt.get("summary", "") or ""
 
+        # Category + audience detection
+        category = categorize(title, description)
+        audience = detect_audience(title, description)
+
         # Event ID from Eventbrite
         eb_id = str(evt.get("id", ""))
         if not eb_id:
@@ -234,7 +300,7 @@ def scrape_eventbrite(city_config: dict, keyword: str) -> list:
             "venue_name": venue_name,
             "city": city,
             "state": state[:2] if state else None,
-            "category": categorize(title, description),
+            "category": category,
             "description": description[:500] if description else None,
             "image_url": image_url or None,
             "ticket_url": ticket_url or None,
@@ -242,6 +308,7 @@ def scrape_eventbrite(city_config: dict, keyword: str) -> list:
             "source_id": f"eb_{eb_id}",
             "price_range": price or None,
             "organizer": organizer or None,
+            "audience": audience,
         })
 
     return events
@@ -296,6 +363,9 @@ def fetch_ticketmaster(keyword: str, state_code: str) -> list:
             except:
                 time_display = tm_time
 
+        category = categorize(title)
+        audience = detect_audience(title)
+
         events.append({
             "title": title,
             "date": date,
@@ -304,7 +374,7 @@ def fetch_ticketmaster(keyword: str, state_code: str) -> list:
             "venue_name": venue,
             "city": city,
             "state": state[:2] if state else None,
-            "category": categorize(title),
+            "category": category,
             "description": None,
             "image_url": None,
             "ticket_url": ticket_url or None,
@@ -312,6 +382,7 @@ def fetch_ticketmaster(keyword: str, state_code: str) -> list:
             "source_id": f"tm_{tm_id}",
             "price_range": price or None,
             "organizer": None,
+            "audience": audience,
         })
 
     return events
@@ -437,10 +508,11 @@ def main():
     print(f"\n📊 Total unique events: {len(deduped)}")
 
     if args.dry_run:
-        for e in deduped[:20]:
-            print(f"  {e['date']} | {e['title'][:55]} | {e['city']}, {e['state']} | {e['category']} | {e['source']}")
-        if len(deduped) > 20:
-            print(f"  ... and {len(deduped) - 20} more")
+        for e in deduped[:30]:
+            aud = f" [{e['audience']}]" if e.get('audience') else ""
+            print(f"  {e['date']} | {e['title'][:50]} | {e['city']}, {e['state']} | {e['category']}{aud} | {e['source']}")
+        if len(deduped) > 30:
+            print(f"  ... and {len(deduped) - 30} more")
         return
 
     # Upsert to Supabase
