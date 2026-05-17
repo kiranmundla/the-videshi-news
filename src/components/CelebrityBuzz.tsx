@@ -172,9 +172,12 @@ function ThumbCard({
   onClick,
 }: {
   post: BuzzPost;
+  dynamicSrc: string | null;
+  loading: boolean;
   onClick: () => void;
 }) {
   const fallbackSrc = post.thumbnail || `/images/celebrity-thumbs/${post.handle}.jpg`;
+  const src = dynamicSrc || fallbackSrc;
 
   return (
     <div
@@ -195,13 +198,30 @@ function ThumbCard({
         background: "#1a1a1a",
         boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
       }}>
+        {loading && (
+          <div style={{
+            position: "absolute", inset: 0, zIndex: 2,
+            background: "linear-gradient(110deg, #1a1a1a 30%, #2a2a2a 50%, #1a1a1a 70%)",
+            backgroundSize: "200% 100%",
+            animation: "shimmer 1.5s ease-in-out infinite",
+          }} />
+        )}
         <img
-          src={fallbackSrc}
+          src={src}
           alt={post.celebrity}
           loading="lazy"
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            const img = e.currentTarget;
+            if (img.src !== window.location.origin + fallbackSrc && img.src !== fallbackSrc) {
+              img.src = fallbackSrc;
+            }
+          }}
           style={{
             width: "100%", height: "100%",
             objectFit: "cover", display: "block",
+            opacity: loading ? 0 : 1,
+            transition: "opacity 0.3s ease",
           }}
         />
 
