@@ -1,17 +1,17 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-17T15:08:38Z",
-  "stage": "League Stage \u2014 Match 61 of 70",
+  "last_updated": "2026-05-17T15:55:42Z",
+  "stage": "League Stage — Match 61 of 70",
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
       "short": "RCB",
-      "played": 13,
-      "won": 9,
+      "played": 12,
+      "won": 8,
       "lost": 4,
       "nr": 0,
-      "nrr": "+1.105",
-      "points": 18,
+      "nrr": "+1.053",
+      "points": 16,
       "position": 1
     },
     {
@@ -39,11 +39,11 @@
     {
       "team": "Punjab Kings",
       "short": "PBKS",
-      "played": 13,
+      "played": 12,
       "won": 6,
-      "lost": 6,
+      "lost": 5,
       "nr": 1,
-      "nrr": "+0.285",
+      "nrr": "+0.355",
       "points": 13,
       "position": 4
     },
