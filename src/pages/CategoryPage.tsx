@@ -65,6 +65,7 @@ export default function CategoryPage() {
         <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-8">{def.label}</h1>
 
         {def.slug === "news" && <TechBuzz category="world" />}
+        {def.slug === "news" && <TechBuzz category="india" />}
         {def.slug === "technology" && <TechBuzz category="tech" />}
         {def.slug === "entertainment" && <CelebrityBuzz />}
         {def.slug === "sports" && <TechBuzz category="sports" />}

@@ -58,7 +58,7 @@
           "url": "https://x.com/narendramodi"
         }
       ],
-      "category": "world"
+      "category": "india"
     },
     {
       "name": "Mark Zuckerberg",
@@ -358,7 +358,7 @@
           "url": "https://x.com/PMOIndia"
         }
       ],
-      "category": "world"
+      "category": "india"
     },
     {
       "name": "The White House",
@@ -755,6 +755,146 @@
       "posts": [
         {
           "url": "https://x.com/SGanguly99"
+        }
+      ]
+    },
+    {
+      "name": "Amit Shah",
+      "handle": "AmitShah",
+      "role": "Home Minister, India",
+      "platform": "x",
+      "avatar": "",
+      "category": "india",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/AmitShah"
+        }
+      ]
+    },
+    {
+      "name": "Rahul Gandhi",
+      "handle": "RahulGandhi",
+      "role": "Leader of Opposition, India",
+      "platform": "x",
+      "avatar": "",
+      "category": "india",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/RahulGandhi"
+        }
+      ]
+    },
+    {
+      "name": "Yogi Adityanath",
+      "handle": "myogiadityanath",
+      "role": "Chief Minister, Uttar Pradesh",
+      "platform": "x",
+      "avatar": "",
+      "category": "india",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/myaborogiadityanath"
+        }
+      ]
+    },
+    {
+      "name": "Arvind Kejriwal",
+      "handle": "ArvindKejriwal",
+      "role": "AAP Leader, Former Delhi CM",
+      "platform": "x",
+      "avatar": "",
+      "category": "india",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/ArvindKejriwal"
+        }
+      ]
+    },
+    {
+      "name": "S Jaishankar",
+      "handle": "DrSJaishankar",
+      "role": "External Affairs Minister, India",
+      "platform": "x",
+      "avatar": "",
+      "category": "india",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/DrSJaishankar"
+        }
+      ]
+    },
+    {
+      "name": "Nirmala Sitharaman",
+      "handle": "nsitharaman",
+      "role": "Finance Minister, India",
+      "platform": "x",
+      "avatar": "",
+      "category": "india",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/nsitharaman"
+        }
+      ]
+    },
+    {
+      "name": "President of India",
+      "handle": "rashtrapatibhvn",
+      "role": "Rashtrapati Bhavan",
+      "platform": "x",
+      "avatar": "",
+      "category": "india",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/rashtrapatibhvn"
+        }
+      ]
+    },
+    {
+      "name": "Gautam Adani",
+      "handle": "gautam_adani",
+      "role": "Chairman, Adani Group",
+      "platform": "x",
+      "avatar": "",
+      "category": "india",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/gautam_adani"
+        }
+      ]
+    },
+    {
+      "name": "Mukesh Ambani",
+      "handle": "RelianceJio",
+      "role": "Chairman, Reliance Industries",
+      "platform": "x",
+      "avatar": "",
+      "category": "india",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/RelianceJio"
+        }
+      ]
+    },
+    {
+      "name": "Ratan Tata Foundation",
+      "handle": "RNTata2000",
+      "role": "Tata Group",
+      "platform": "x",
+      "avatar": "",
+      "category": "india",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/RNTata2000"
         }
       ]
     }

@@ -371,6 +371,7 @@ export default function Index() {
           clusters={layout.india.clusters}
           pool={layout.india.ungrouped}
           hideCategory={true}
+          afterHeader={<TechBuzz category="india" />}
         />
 
         <HomeCategorySection
