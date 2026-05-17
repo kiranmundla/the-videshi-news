@@ -48,15 +48,17 @@ function BuzzLightbox({ post, images, onClose }: {
   images: string[];
   onClose: () => void;
 }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [current, setCurrent] = useState(0);
-  const touchStartX = useRef<number | null>(null);
   const total = images.length;
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight" && current < total - 1) setCurrent(current + 1);
-      if (e.key === "ArrowLeft" && current > 0) setCurrent(current - 1);
+      const el = scrollRef.current;
+      if (!el) return;
+      if (e.key === "ArrowRight") el.scrollBy({ left: el.clientWidth, behavior: "smooth" });
+      if (e.key === "ArrowLeft") el.scrollBy({ left: -el.clientWidth, behavior: "smooth" });
     };
     window.addEventListener("keydown", handler);
     document.body.style.overflow = "hidden";
@@ -64,7 +66,19 @@ function BuzzLightbox({ post, images, onClose }: {
       window.removeEventListener("keydown", handler);
       document.body.style.overflow = "";
     };
-  }, [onClose, current, total]);
+  }, [onClose]);
+
+  // Track scroll position for dots
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const idx = Math.round(el.scrollLeft / el.clientWidth);
+      setCurrent(Math.min(idx, total - 1));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [total]);
 
   return (
     <div
@@ -77,7 +91,8 @@ function BuzzLightbox({ post, images, onClose }: {
         animation: "buzzFadeIn 0.15s ease-out",
       }}
     >
-      <style>{`@keyframes buzzFadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
+      <style>{`@keyframes buzzFadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .buzz-lb-scroll::-webkit-scrollbar { display: none; }`}</style>
 
       <button
         onClick={onClose}
@@ -92,78 +107,63 @@ function BuzzLightbox({ post, images, onClose }: {
       {/* Celebrity name */}
       <div style={{ position: "absolute", top: 16, left: "50%", transform: "translateX(-50%)", textAlign: "center", zIndex: 20 }}>
         <div style={{ color: "#fff", fontSize: 16, fontWeight: 600 }}>{post.celebrity}</div>
-        <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, marginTop: 2 }}>@{post.handle}</div>
+        {total > 1 && <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, marginTop: 2 }}>{current + 1} / {total}</div>}
       </div>
 
-      {/* Image area */}
+      {/* Scroll-snap carousel */}
       <div
+        ref={scrollRef}
+        className="buzz-lb-scroll"
         onClick={(e) => e.stopPropagation()}
-        onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
-        onTouchEnd={(e) => {
-          if (touchStartX.current === null) return;
-          const diff = e.changedTouches[0].clientX - touchStartX.current;
-          if (diff < -50 && current < total - 1) setCurrent(current + 1);
-          if (diff > 50 && current > 0) setCurrent(current - 1);
-          touchStartX.current = null;
-        }}
         style={{
-          position: "relative",
-          maxWidth: "95vw", maxHeight: "75vh",
-          display: "flex", alignItems: "center", justifyContent: "center",
-        }}
+          display: "flex",
+          overflowX: "auto",
+          scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch",
+          scrollbarWidth: "none",
+          width: "95vw",
+          maxWidth: 600,
+          borderRadius: 8,
+        } as React.CSSProperties}
       >
-        <img
-          key={current}
-          src={`/api/instagram-image?url=${encodeURIComponent(images[current])}`}
-          alt={`${post.celebrity} photo ${current + 1}`}
-          style={{
-            maxWidth: "95vw", maxHeight: "75vh",
-            borderRadius: 8, objectFit: "contain", display: "block",
-            animation: "buzzFadeIn 0.15s ease-out",
-          }}
-        />
-
-        {/* Desktop arrows */}
-        {total > 1 && current > 0 && (
-          <button
-            onClick={() => setCurrent(current - 1)}
-            className="hidden md:flex"
+        {images.map((img, i) => (
+          <div
+            key={i}
             style={{
-              position: "absolute", left: -48, top: "50%", transform: "translateY(-50%)",
-              background: "rgba(255,255,255,0.15)", border: "none", color: "#fff",
-              width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
-              fontSize: 18, alignItems: "center", justifyContent: "center",
+              flex: "0 0 100%",
+              scrollSnapAlign: "center",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              maxHeight: "75vh",
             }}
-          >‹</button>
-        )}
-        {total > 1 && current < total - 1 && (
-          <button
-            onClick={() => setCurrent(current + 1)}
-            className="hidden md:flex"
-            style={{
-              position: "absolute", right: -48, top: "50%", transform: "translateY(-50%)",
-              background: "rgba(255,255,255,0.15)", border: "none", color: "#fff",
-              width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
-              fontSize: 18, alignItems: "center", justifyContent: "center",
-            }}
-          >›</button>
-        )}
+          >
+            <img
+              src={img}
+              alt={`${post.celebrity} photo ${i + 1}`}
+              referrerPolicy="no-referrer"
+              loading={i < 2 ? "eager" : "lazy"}
+              style={{
+                maxWidth: "100%", maxHeight: "75vh",
+                objectFit: "contain", display: "block",
+              }}
+            />
+          </div>
+        ))}
       </div>
 
-      {/* Dots + counter */}
+      {/* Dots */}
       {total > 1 && (
         <div style={{ marginTop: 12, display: "flex", gap: 6, alignItems: "center" }}>
           {images.map((_, i) => (
             <div
               key={i}
-              onClick={(e) => { e.stopPropagation(); setCurrent(i); }}
               style={{
                 width: i === current ? 8 : 6,
                 height: i === current ? 8 : 6,
                 borderRadius: "50%",
                 background: i === current ? "#fff" : "rgba(255,255,255,0.3)",
-                cursor: "pointer",
-                transition: "all 0.2s",
+                transition: "all 0.15s",
               }}
             />
           ))}
@@ -193,16 +193,17 @@ function ThumbCard({
     <div
       onClick={onClick}
       style={{
-        width: 160,
+        width: "44vw",
+        maxWidth: 220,
         flexShrink: 0,
         cursor: "pointer",
-        scrollSnapAlign: "center",
+        scrollSnapAlign: "start",
       }}
     >
       <div style={{
         position: "relative",
-        width: 160,
-        height: 160,
+        width: "100%",
+        aspectRatio: "4/5",
         borderRadius: 12,
         overflow: "hidden",
         background: "#1a1a1a",
