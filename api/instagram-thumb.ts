@@ -28,13 +28,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Dedupe by image ID (filename), keep largest version of each
     const byImageId = new Map<string, string>();
-    for (const url of allUrls) {
+    for (let url of allUrls) {
       const idMatch = url.match(/\/([0-9]+_[0-9]+_[0-9]+_n\.jpg)/);
       if (!idMatch) continue;
       const imageId = idMatch[1];
 
       // Skip tiny thumbnails
       if (url.includes("s150x150") || url.includes("s240x240")) continue;
+
+      // Strip crop parameters from stp (e.g. c614.0.1843.1843a_)
+      url = url.replace(/(stp=)c[0-9.]+a_/, "$1");
+      // Also upgrade small fixed sizes to uncropped
+      url = url.replace(/s640x640/g, "p1080x1080");
 
       const existing = byImageId.get(imageId);
       if (!existing) {
