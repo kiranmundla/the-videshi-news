@@ -6,7 +6,6 @@ import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
 import DiasporaPhotoStrip from "@/components/DiasporaPhotoStrip";
 import CelebrityBuzz from "@/components/CelebrityBuzz";
-import TechBuzz from "@/components/TechBuzz";
 import FeaturedHero from "@/components/FeaturedHero";
 import FeaturedCarousel from "@/components/FeaturedCarousel";
 import IPLTracker from "@/components/IPLTracker";
@@ -392,8 +391,6 @@ export default function Index() {
           ))}
 
         <CelebrityBuzz />
-
-        <TechBuzz />
 
         <DiasporaPhotoStrip />
       </main>

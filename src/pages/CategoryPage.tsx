@@ -5,6 +5,7 @@ import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
+import TechBuzz from "@/components/TechBuzz";
 import LoadMoreButton from "@/components/LoadMoreButton";
 import { Article, getArticlesByCategory } from "@/lib/articles";
 import { getCategoryBySlug } from "@/lib/categories";
@@ -61,6 +62,8 @@ export default function CategoryPage() {
       <CategoryPills />
       <main className="container flex-1 pt-8 md:pt-10">
         <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-8">{def.label}</h1>
+
+        {def.slug === "technology" && <TechBuzz />}
 
         {def.slug === "travel" && (
           <div style={{ display: "flex", gap: 8, overflowX: "auto", paddingBottom: 20, marginBottom: 8, WebkitOverflowScrolling: "touch" as any }}>

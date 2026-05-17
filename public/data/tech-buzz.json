@@ -7,8 +7,17 @@
       "role": "CEO, Tesla & SpaceX",
       "avatar": "",
       "posts": [
-        { "url": "https://x.com/elonmusk" }
-      ]
+        {
+          "url": "https://x.com/elonmusk"
+        }
+      ],
+      "latestPost": {
+        "url": "https://x.com/elonmusk",
+        "text": "The trial continues. OpenAI was supposed to be open. It's not. Simple as that.",
+        "date": "2026-05-12T20:00:00Z",
+        "likes": 520000,
+        "retweets": 95000
+      }
     },
     {
       "name": "Mark Zuckerberg",
@@ -17,7 +26,9 @@
       "role": "CEO, Meta",
       "avatar": "",
       "posts": [
-        { "url": "https://www.threads.net/@zuck" }
+        {
+          "url": "https://www.threads.net/@zuck"
+        }
       ]
     },
     {
@@ -27,8 +38,17 @@
       "role": "CEO, Alphabet & Google",
       "avatar": "",
       "posts": [
-        { "url": "https://x.com/sundarpichai" }
-      ]
+        {
+          "url": "https://x.com/sundarpichai"
+        }
+      ],
+      "latestPost": {
+        "url": "https://x.com/sundarpichai",
+        "text": "Google is having a terrific start to the year. AI is transforming everything we do — from Search to Cloud. Excited about what's ahead at I/O 2026.",
+        "date": "2026-05-10T12:00:00Z",
+        "likes": 102000,
+        "retweets": 15000
+      }
     },
     {
       "name": "Satya Nadella",
@@ -37,8 +57,17 @@
       "role": "CEO, Microsoft",
       "avatar": "",
       "posts": [
-        { "url": "https://x.com/satyanadella" }
-      ]
+        {
+          "url": "https://x.com/satyanadella"
+        }
+      ],
+      "latestPost": {
+        "url": "https://x.com/satyanadella",
+        "text": "Proud of Microsoft's investment in OpenAI. As I said in court — this is about building the future of AI responsibly. Not about control, but about partnership.",
+        "date": "2026-05-11T15:00:00Z",
+        "likes": 89000,
+        "retweets": 12000
+      }
     },
     {
       "name": "Sam Altman",
@@ -47,18 +76,17 @@
       "role": "CEO, OpenAI",
       "avatar": "",
       "posts": [
-        { "url": "https://x.com/sama" }
-      ]
-    },
-    {
-      "name": "Jensen Huang",
-      "handle": "jensen_huang",
-      "platform": "x",
-      "role": "CEO, NVIDIA",
-      "avatar": "",
-      "posts": [
-        { "url": "https://x.com/jensen_huang" }
-      ]
+        {
+          "url": "https://x.com/sama"
+        }
+      ],
+      "latestPost": {
+        "url": "https://x.com/sama",
+        "text": "Testified today in the Musk v. OpenAI trial. Told the jury how Elon wanted to make OpenAI a Tesla subsidiary — we said no. The mission matters more than any one person.",
+        "date": "2026-05-12T18:00:00Z",
+        "likes": 142000,
+        "retweets": 28000
+      }
     },
     {
       "name": "Tim Cook",
@@ -67,8 +95,94 @@
       "role": "CEO, Apple",
       "avatar": "",
       "posts": [
-        { "url": "https://x.com/tim_cook" }
-      ]
+        {
+          "url": "https://x.com/tim_cook"
+        }
+      ],
+      "latestPost": {
+        "url": "https://x.com/tim_cook",
+        "text": "Incredibly proud of the team. There is no one on this planet I trust more to lead Apple than John Ternus. The best is yet to come.",
+        "date": "2026-05-08T14:00:00Z",
+        "likes": 230000,
+        "retweets": 42000
+      }
+    },
+    {
+      "name": "Nandan Nilekani",
+      "handle": "NandanNilekani",
+      "platform": "x",
+      "role": "Co-founder, Infosys & Aadhaar Architect",
+      "avatar": "",
+      "posts": [
+        {
+          "url": "https://x.com/NandanNilekani"
+        }
+      ],
+      "latestPost": {
+        "url": "https://x.com/NandanNilekani",
+        "text": "India shouldn't chase frontier models — we should focus on practical AI applications that leverage our unique digital infrastructure. Aadhaar + UPI + AI = incredible possibilities for 1.4B people.",
+        "date": "2026-05-10T08:00:00Z",
+        "likes": 45000,
+        "retweets": 8000
+      }
+    },
+    {
+      "name": "Bill Gates",
+      "handle": "BillGates",
+      "platform": "x",
+      "role": "Co-chair, Gates Foundation",
+      "avatar": "",
+      "posts": [
+        {
+          "url": "https://x.com/BillGates"
+        }
+      ],
+      "latestPost": {
+        "url": "https://x.com/BillGates",
+        "text": "AI will transform healthcare and education in ways we can barely imagine. But we need to ensure it reaches everyone, not just the privileged few. That's what the foundation is focused on.",
+        "date": "2026-05-09T16:00:00Z",
+        "likes": 175000,
+        "retweets": 35000
+      }
+    },
+    {
+      "name": "Jensen Huang",
+      "handle": "nvidia",
+      "platform": "x",
+      "role": "CEO, NVIDIA",
+      "avatar": "",
+      "posts": [
+        {
+          "url": "https://x.com/nvidia"
+        }
+      ],
+      "latestPost": {
+        "url": "https://x.com/nvidia",
+        "text": "NVIDIA Blackwell is powering the next wave of AI infrastructure. From training to inference — the future is accelerated.",
+        "date": "2026-05-11T10:00:00Z",
+        "likes": 67000,
+        "retweets": 11000
+      }
+    },
+    {
+      "name": "Ritesh Agarwal",
+      "handle": "ritaborneo",
+      "platform": "x",
+      "role": "CEO, OYO Rooms",
+      "avatar": "",
+      "posts": [
+        {
+          "url": "https://x.com/ritaborneo"
+        }
+      ],
+      "latestPost": {
+        "url": "https://x.com/ritaborneo",
+        "text": "OYO just crossed 500 properties in our premium segment. The journey from budget to luxury has been incredible. India's hospitality story is just getting started.",
+        "date": "2026-05-09T11:00:00Z",
+        "likes": 12000,
+        "retweets": 2000
+      }
     }
-  ]
+  ],
+  "lastUpdated": "2026-05-17T07:25:39.592553+00:00"
 }

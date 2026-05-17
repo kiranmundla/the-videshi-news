@@ -1,20 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 
 /* ── Types ── */
+interface LatestPost {
+  url: string;
+  text: string;
+  date: string;
+  likes: number;
+  retweets: number;
+}
+
 interface Leader {
   name: string;
   handle: string;
   platform: "x" | "threads";
   role: string;
   avatar: string;
+  latestPost?: LatestPost;
   posts: { url: string; text?: string }[];
-}
-
-interface PostData {
-  text: string;
-  author_name: string;
-  url: string;
-  platform: string;
 }
 
 /* ── Platform icons ── */
@@ -50,12 +52,59 @@ function InitialsAvatar({ name, bg }: { name: string; bg: string }) {
   );
 }
 
+/* ── Avatar image with fallback ── */
+function AvatarImg({ leader, bg }: { leader: Leader; bg: string }) {
+  const [failed, setFailed] = useState(false);
+
+  if (!leader.avatar || failed) {
+    return <InitialsAvatar name={leader.name} bg={bg} />;
+  }
+
+  return (
+    <img
+      src={leader.avatar}
+      alt={leader.name}
+      onError={() => setFailed(true)}
+      style={{
+        width: 44, height: 44, borderRadius: "50%",
+        objectFit: "cover", flexShrink: 0,
+        border: "2px solid rgba(255,255,255,0.1)",
+      }}
+    />
+  );
+}
+
+/* ── Format engagement numbers ── */
+function formatCount(n: number): string {
+  if (!n) return "";
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
+  return String(n);
+}
+
+/* ── Format relative date ── */
+function timeAgo(dateStr: string): string {
+  if (!dateStr) return "";
+  try {
+    const d = new Date(dateStr);
+    const now = new Date();
+    const diffMs = now.getTime() - d.getTime();
+    const diffHrs = Math.floor(diffMs / (1000 * 60 * 60));
+    if (diffHrs < 1) return "just now";
+    if (diffHrs < 24) return `${diffHrs}h`;
+    const diffDays = Math.floor(diffHrs / 24);
+    if (diffDays < 7) return `${diffDays}d`;
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  } catch {
+    return "";
+  }
+}
+
 const COLORS = ["#1DA1F2", "#6366f1", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899"];
 
 /* ── Main component ── */
 export default function TechBuzz() {
   const [leaders, setLeaders] = useState<Leader[]>([]);
-  const [postTexts, setPostTexts] = useState<Record<string, PostData>>({});
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Load leader data
@@ -65,23 +114,6 @@ export default function TechBuzz() {
       .then((d) => setLeaders(d.leaders || []))
       .catch(() => {});
   }, []);
-
-  // Fetch post text for each leader via API
-  useEffect(() => {
-    if (!leaders.length) return;
-    leaders.forEach((leader) => {
-      const url = leader.posts[0]?.url;
-      if (!url || postTexts[leader.handle]) return;
-      fetch(`/api/social-post?url=${encodeURIComponent(url)}`)
-        .then((r) => r.json())
-        .then((d) => {
-          if (d.text) {
-            setPostTexts((prev) => ({ ...prev, [leader.handle]: d }));
-          }
-        })
-        .catch(() => {});
-    });
-  }, [leaders]);
 
   if (!leaders.length) return null;
 
@@ -106,11 +138,12 @@ export default function TechBuzz() {
         }}
       >
         {leaders.map((leader, i) => {
-          const post = postTexts[leader.handle];
           const profileUrl = leader.platform === "x"
             ? `https://x.com/${leader.handle}`
             : `https://www.threads.net/@${leader.handle}`;
-          const postUrl = post?.url || leader.posts[0]?.url || profileUrl;
+          const postUrl = leader.latestPost?.url || leader.posts[0]?.url || profileUrl;
+          const postText = leader.latestPost?.text || leader.posts[0]?.text || "";
+          const hasPost = !!postText;
 
           return (
             <a
@@ -140,7 +173,7 @@ export default function TechBuzz() {
               >
                 {/* Header: avatar + name + platform */}
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <InitialsAvatar name={leader.name} bg={COLORS[i % COLORS.length]} />
+                  <AvatarImg leader={leader} bg={COLORS[i % COLORS.length]} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ color: "#fff", fontWeight: 700, fontSize: 14, lineHeight: 1.2 }}>
                       {leader.name}
@@ -150,13 +183,18 @@ export default function TechBuzz() {
                       <span style={{ opacity: 0.6 }}>
                         {leader.platform === "x" ? <XIcon /> : <ThreadsIcon />}
                       </span>
+                      {leader.latestPost?.date && (
+                        <span style={{ marginLeft: 2, opacity: 0.6 }}>
+                          · {timeAgo(leader.latestPost.date)}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
 
                 {/* Post text or role */}
                 <div style={{
-                  color: post?.text ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.4)",
+                  color: hasPost ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.4)",
                   fontSize: 13,
                   lineHeight: 1.5,
                   flex: 1,
@@ -165,19 +203,36 @@ export default function TechBuzz() {
                   WebkitLineClamp: 4,
                   WebkitBoxOrient: "vertical",
                 }}>
-                  {post?.text || leader.role}
+                  {hasPost ? postText : leader.role}
                 </div>
 
-                {/* Footer */}
+                {/* Footer: engagement + link */}
                 <div style={{
-                  color: leader.platform === "x" ? "#1DA1F2" : "#000",
-                  fontSize: 12, fontWeight: 600,
-                  display: "flex", alignItems: "center", gap: 4,
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  fontSize: 12,
                 }}>
-                  {leader.platform === "x" ? <XIcon /> : <ThreadsIcon />}
-                  <span style={{ color: "rgba(255,255,255,0.35)" }}>
-                    View on {leader.platform === "x" ? "X" : "Threads"}
-                  </span>
+                  {/* Engagement counts */}
+                  {leader.latestPost && (leader.latestPost.likes > 0 || leader.latestPost.retweets > 0) ? (
+                    <div style={{ display: "flex", gap: 10, color: "rgba(255,255,255,0.35)" }}>
+                      {leader.latestPost.retweets > 0 && (
+                        <span>🔁 {formatCount(leader.latestPost.retweets)}</span>
+                      )}
+                      {leader.latestPost.likes > 0 && (
+                        <span>❤️ {formatCount(leader.latestPost.likes)}</span>
+                      )}
+                    </div>
+                  ) : <div />}
+
+                  <div style={{
+                    color: leader.platform === "x" ? "#1DA1F2" : "#000",
+                    fontWeight: 600,
+                    display: "flex", alignItems: "center", gap: 4,
+                  }}>
+                    {leader.platform === "x" ? <XIcon /> : <ThreadsIcon />}
+                    <span style={{ color: "rgba(255,255,255,0.35)" }}>
+                      View on {leader.platform === "x" ? "X" : "Threads"}
+                    </span>
+                  </div>
                 </div>
               </div>
             </a>
