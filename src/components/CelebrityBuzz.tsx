@@ -112,20 +112,6 @@ function BuzzLightbox({ post, onClose }: {
         ) : (
           <div style={{ padding: 40, textAlign: "center", color: "#888" }}>Post unavailable</div>
         )}
-
-        <a
-          href={post.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "block", textAlign: "center", padding: "12px 16px",
-            color: "#3897f0", fontSize: 14, fontWeight: 600,
-            textDecoration: "none", borderTop: "1px solid #222",
-            position: "relative", zIndex: 10,
-          }}
-        >
-          View on Instagram →
-        </a>
       </div>
     </div>
   );
