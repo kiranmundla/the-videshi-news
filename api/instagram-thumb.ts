@@ -7,8 +7,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    // Fetch the actual post page (not embed) — returns all carousel images
     const response = await fetch(
-      `https://www.instagram.com/p/${shortcode}/embed/`,
+      `https://www.instagram.com/p/${shortcode}/`,
       {
         headers: {
           "User-Agent":
@@ -20,49 +21,43 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(502).json({ error: `instagram returned ${response.status}` });
     }
     const raw = await response.text();
-    const html = raw.replace(/&amp;/g, "&");
+    const html = raw.replace(/&amp;/g, "&").replace(/\\u0026/g, "&");
 
     // Extract all post images (t51.82787 = photo posts)
-    const allUrls = html.match(/https:\/\/scontent[^"'\s,>]+t51\.82787[^"'\s,>]*/g) || [];
+    const allUrls = html.match(/https:\/\/scontent[^"'\s,>\\]+t51\.82787[^"'\s,>\\]*/g) || [];
 
-    // Dedupe by base filename (before query params), prefer largest size
-    const byBase = new Map<string, string>();
+    // Dedupe by image ID (filename), keep largest version of each
+    const byImageId = new Map<string, string>();
     for (const url of allUrls) {
-      const base = url.split("?")[0];
-      const existing = byBase.get(base);
+      const idMatch = url.match(/\/([0-9]+_[0-9]+_[0-9]+_n\.jpg)/);
+      if (!idMatch) continue;
+      const imageId = idMatch[1];
+
+      // Skip tiny thumbnails
+      if (url.includes("s150x150") || url.includes("s240x240")) continue;
+
+      const existing = byImageId.get(imageId);
       if (!existing) {
-        byBase.set(base, url);
+        byImageId.set(imageId, url);
       } else {
-        // Prefer p1080 > p750 > p640 > others
+        // Prefer larger sizes
         const sizeScore = (u: string) => {
           if (u.includes("p1080x1080")) return 3;
           if (u.includes("p750x750")) return 2;
           if (u.includes("p640x640")) return 1;
-          if (u.includes("s150x150") || u.includes("s240x240")) return -1;
-          return 0;
+          return 4; // original/unlabeled = likely full size
         };
         if (sizeScore(url) > sizeScore(existing)) {
-          byBase.set(base, url);
+          byImageId.set(imageId, url);
         }
       }
     }
 
-    // Filter out tiny thumbnails, dedupe by image ID (the numeric part of filename)
-    const imageIdSeen = new Set<string>();
-    const images: string[] = [];
-    for (const url of byBase.values()) {
-      if (url.includes("s150x150") || url.includes("s240x240")) continue;
-      // Extract image ID from filename like 696527953_18461734879118856_...
-      const idMatch = url.match(/\/([0-9]+_[0-9]+_[0-9]+_n\.jpg)/);
-      const imageId = idMatch ? idMatch[1] : url.split("?")[0];
-      if (imageIdSeen.has(imageId)) continue;
-      imageIdSeen.add(imageId);
-      images.push(url);
-    }
+    const images = Array.from(byImageId.values());
 
     if (!images.length) {
-      // Fallback: try video thumbnails (t51.71878)
-      const vidUrls = html.match(/https:\/\/scontent[^"'\s,>]+t51\.71878[^"'\s,>]*/g) || [];
+      // Fallback: try video thumbnails
+      const vidUrls = html.match(/https:\/\/scontent[^"'\s,>\\]+t51\.71878[^"'\s,>\\]*/g) || [];
       for (const url of vidUrls) {
         if (!url.includes("s150x150") && !url.includes("s240x240")) {
           images.push(url);
