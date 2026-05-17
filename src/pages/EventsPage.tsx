@@ -89,7 +89,7 @@ function EventCard({ event }: { event: EventItem }) {
           <img
             src={event.image_url}
             alt={event.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-contain bg-muted/10 group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
           />
         </div>
@@ -244,7 +244,11 @@ export default function EventsPage() {
       <Masthead />
       <CategoryPills />
 
-      <main className="container flex-1 pt-8 md:pt-10 pb-16 overflow-x-hidden">
+      <style>{`
+        .events-main { max-width: 100vw; overflow-x: hidden; }
+        .events-main article { max-width: calc(100vw - 2.5rem); }
+      `}</style>
+      <main className="events-main container flex-1 pt-8 md:pt-10 pb-16">
         {/* Header */}
         <div className="mb-8">
           <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-3">
