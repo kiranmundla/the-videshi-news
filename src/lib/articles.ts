@@ -49,11 +49,12 @@ type P2Row = {
   tags: string[] | null;
   image_url: string | null;
   image_attribution: string | null;
+  image_caption: string | null;
   gallery_images: unknown;
 };
 
 const P2_COLS =
-  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url, image_attribution, gallery_images";
+  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images";
 
 function parseSources(raw: unknown): Article["sources"] {
   if (!raw || !Array.isArray(raw)) return undefined;
@@ -99,7 +100,7 @@ function mapRow(row: P2Row): Article {
     body: row.body ?? "",
     category: row.category ?? row.vertical ?? "",
     hero_image_url: row.image_url ?? "",
-    image_caption: null,
+    image_caption: row.image_caption ?? null,
     image_credit: row.image_attribution ?? null,
     gallery_images: parseGalleryImages(row.gallery_images),
     // expose raw attribution for callers that want it separately
