@@ -299,8 +299,25 @@ export default function DiasporaPhotoStrip() {
             flexDirection: "column",
             cursor: "pointer",
             padding: "20px",
+            animation: "snapFadeIn 0.15s ease-out",
           }}
         >
+          <style>{`
+            @keyframes snapFadeIn { from { opacity: 0; } to { opacity: 1; } }
+            .snap-photo-transition { transition: opacity 0.2s ease; }
+          `}</style>
+
+          {/* Close button */}
+          <button
+            onClick={closeOverlay}
+            style={{
+              position: "absolute", top: 12, right: 16, zIndex: 10000,
+              background: "rgba(255,255,255,0.15)", border: "none", color: "#fff",
+              width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
+              fontSize: 20, display: "flex", alignItems: "center", justifyContent: "center",
+            }}
+          >×</button>
+
           {/* Counter */}
           <p
             onClick={(e) => e.stopPropagation()}
@@ -315,11 +332,11 @@ export default function DiasporaPhotoStrip() {
             {selectedIndex + 1} / {PHOTOS.length}
           </p>
 
-          {/* Image container */}
+          {/* Image */}
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              maxWidth: "85vw",
+              maxWidth: "90vw",
               maxHeight: "75vh",
               display: "flex",
               alignItems: "center",
@@ -327,74 +344,18 @@ export default function DiasporaPhotoStrip() {
             }}
           >
             <img
+              key={selectedIndex}
+              className="snap-photo-transition"
               src={selected.src}
               alt={selected.label}
               style={{
-                maxWidth: "85vw",
+                maxWidth: "90vw",
                 maxHeight: "75vh",
                 objectFit: "contain",
                 borderRadius: "8px",
               }}
             />
           </div>
-
-          {/* Left arrow — fixed position on viewport */}
-          <button
-            onClick={(e) => { e.stopPropagation(); goPrev(); }}
-            style={{
-              position: "fixed",
-              left: "16px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              background: "rgba(255,255,255,0.1)",
-              border: "none",
-              color: "#fff",
-              fontSize: "28px",
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              transition: "background 0.2s",
-              zIndex: 10000,
-            }}
-            onMouseEnter={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.25)"; }}
-            onMouseLeave={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.1)"; }}
-            aria-label="Previous photo"
-          >
-            ◀
-          </button>
-
-          {/* Right arrow — fixed position on viewport */}
-          <button
-            onClick={(e) => { e.stopPropagation(); goNext(); }}
-            style={{
-              position: "fixed",
-              right: "16px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              background: "rgba(255,255,255,0.1)",
-              border: "none",
-              color: "#fff",
-              fontSize: "28px",
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              transition: "background 0.2s",
-              zIndex: 10000,
-            }}
-            onMouseEnter={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.25)"; }}
-            onMouseLeave={(e) => { (e.target as HTMLElement).style.background = "rgba(255,255,255,0.1)"; }}
-            aria-label="Next photo"
-          >
-            ▶
-          </button>
 
           {/* Caption */}
           <p
@@ -411,16 +372,6 @@ export default function DiasporaPhotoStrip() {
             }}
           >
             {selected.label}
-          </p>
-          <p
-            style={{
-              color: "rgba(255,255,255,0.4)",
-              marginTop: "10px",
-              fontSize: "11px",
-              fontFamily: "var(--font-sans, sans-serif)",
-            }}
-          >
-            Tap background to close · Swipe or use arrows to navigate
           </p>
         </div>
       )}

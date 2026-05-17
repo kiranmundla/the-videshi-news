@@ -512,14 +512,17 @@ export default function ArticlePage() {
       {fsIdx !== null && fsPhotos[fsIdx] && (() => {
         let touchStartX = 0;
         return (
+          <>
+          <style>{`@keyframes lbFadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
           <div onClick={(e) => { if (e.target === e.currentTarget) fsClose(); }}
-            className="fixed inset-0 z-[9999] bg-black/90 flex flex-col items-center justify-center">
+            className="fixed inset-0 z-[9999] bg-black/95 flex flex-col items-center justify-center"
+            style={{ animation: "lbFadeIn 0.15s ease-out" }}>
             <button onClick={fsClose} className="absolute top-4 right-5 bg-transparent border-none text-white text-3xl cursor-pointer z-10">✕</button>
             <div className="absolute top-5 left-1/2 -translate-x-1/2 text-white/70 text-sm font-medium">
               {fsIdx + 1} / {fsPhotos.length}
             </div>
             <button onClick={(e) => { e.stopPropagation(); fsPrev(); }}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/15 border-none text-white text-[28px] w-12 h-12 rounded-full cursor-pointer hover:bg-white/25 transition-colors">‹</button>
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/15 border-none text-white text-[28px] w-12 h-12 rounded-full cursor-pointer hover:bg-white/25 transition-colors hidden md:flex items-center justify-center">‹</button>
             <div
               onTouchStart={(e) => { touchStartX = e.touches[0].clientX; }}
               onTouchEnd={(e) => { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff < 0 ? fsNext() : fsPrev(); } }}
@@ -529,10 +532,10 @@ export default function ArticlePage() {
                 className="max-w-[90vw] max-h-[75vh] object-contain rounded" />
             </div>
             <button onClick={(e) => { e.stopPropagation(); fsNext(); }}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/15 border-none text-white text-[28px] w-12 h-12 rounded-full cursor-pointer hover:bg-white/25 transition-colors">›</button>
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/15 border-none text-white text-[28px] w-12 h-12 rounded-full cursor-pointer hover:bg-white/25 transition-colors hidden md:flex items-center justify-center">›</button>
             <div className="mt-4 text-white/85 text-[15px] font-medium text-center max-w-[80vw]">{fsPhotos[fsIdx].caption}</div>
-            <div className="mt-2 text-white/50 text-xs">Tap background to close · Swipe or use arrows to navigate</div>
           </div>
+          </>
         );
       })()}
     </div>

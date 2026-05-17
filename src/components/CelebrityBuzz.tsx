@@ -43,12 +43,11 @@ function ensureTwitterWidgets(cb: () => void) {
 
 /* ── Lightbox ── */
 
-function BuzzLightbox({ post, onClose }: {
+function BuzzLightbox({ post, imageSrc, onClose }: {
   post: BuzzPost;
+  imageSrc: string;
   onClose: () => void;
 }) {
-  const tweetRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", handler);
@@ -59,28 +58,19 @@ function BuzzLightbox({ post, onClose }: {
     };
   }, [onClose]);
 
-  useEffect(() => {
-    if (post.platform === "twitter") {
-      ensureTwitterWidgets(() => {
-        if (tweetRef.current) window.twttr?.widgets.load(tweetRef.current);
-      });
-    }
-  }, [post]);
-
-  const shortcode = post.platform === "instagram" ? extractInstaShortcode(post.url) : null;
-  const tweetUrl = post.url
-    .replace(/^https?:\/\/(mobile\.)?twitter\.com/, "https://x.com")
-    .split("?")[0];
-
   return (
     <div
       onClick={onClose}
       style={{
         position: "fixed", inset: 0, zIndex: 9999,
-        background: "rgba(0,0,0,0.92)", backdropFilter: "blur(8px)",
-        display: "flex", alignItems: "center", justifyContent: "center",
+        background: "rgba(0,0,0,0.95)",
+        display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center",
+        animation: "buzzFadeIn 0.15s ease-out",
       }}
     >
+      <style>{`@keyframes buzzFadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
+
       <button
         onClick={onClose}
         style={{
@@ -91,58 +81,45 @@ function BuzzLightbox({ post, onClose }: {
         }}
       >×</button>
 
-      <div style={{
-        position: "absolute", top: 16, left: "50%", transform: "translateX(-50%)",
-        zIndex: 20, color: "#fff", fontSize: 14, fontWeight: 600, opacity: 0.9,
-      }}>
-        {post.celebrity}
-      </div>
-
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          width: "min(90vw, 480px)", maxHeight: "80vh",
-          borderRadius: 12, overflow: "hidden", background: "#000",
-          position: "relative",
+          display: "flex", flexDirection: "column", alignItems: "center",
+          maxWidth: "90vw", maxHeight: "85vh",
         }}
       >
-        {post.platform === "instagram" && shortcode ? (
-          <div style={{ position: "relative", overflow: "hidden", maxHeight: "calc(80vh - 50px)" }}>
-            <iframe
-              src={`https://www.instagram.com/p/${shortcode}/embed/`}
-              width="100%"
-              height="800"
-              frameBorder="0"
-              scrolling="no"
-              allowTransparency
-              title={`${post.celebrity} Instagram post`}
-              style={{ display: "block", border: "none", background: "#000", marginBottom: -80 }}
-            />
-            <div style={{ position: "absolute", inset: 0, zIndex: 5, cursor: "default" }} />
+        <img
+          src={imageSrc}
+          alt={post.celebrity}
+          referrerPolicy="no-referrer"
+          style={{
+            maxWidth: "90vw", maxHeight: "70vh",
+            borderRadius: 10, objectFit: "contain", display: "block",
+          }}
+        />
+
+        <div style={{ marginTop: 12, textAlign: "center" }}>
+          <div style={{ color: "#fff", fontSize: 16, fontWeight: 600 }}>
+            {post.celebrity}
           </div>
-        ) : (
-          <div style={{ position: "relative" }}>
-            <div ref={tweetRef} style={{ padding: 16, maxHeight: "70vh", overflow: "auto" }}>
-              <blockquote className="twitter-tweet" data-dnt="true" data-theme="dark">
-                <a href={tweetUrl}>{tweetUrl}</a>
-              </blockquote>
-            </div>
-            <div style={{ position: "absolute", inset: 0, zIndex: 5, cursor: "default" }} />
+          <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, marginTop: 2 }}>
+            @{post.handle}
           </div>
-        )}
+        </div>
 
         <a
           href={post.url}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
           style={{
-            display: "block", textAlign: "center", padding: "12px 16px",
-            color: "#3897f0", fontSize: 14, fontWeight: 600,
-            textDecoration: "none", borderTop: "1px solid #222",
-            position: "relative", zIndex: 10,
+            marginTop: 12, padding: "10px 24px", borderRadius: 20,
+            background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
+            color: "#fff", fontSize: 14, fontWeight: 600,
+            textDecoration: "none",
           }}
         >
-          View on {post.platform === "instagram" ? "Instagram" : "X"} →
+          View on Instagram →
         </a>
       </div>
     </div>
@@ -169,79 +146,80 @@ function ThumbCard({
     <div
       onClick={onClick}
       style={{
-        position: "relative",
-        width: 220,
-        height: 280,
-        borderRadius: 10,
-        overflow: "hidden",
+        width: 160,
         flexShrink: 0,
-        background: "#1a1a1a",
         cursor: "pointer",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
         scrollSnapAlign: "center",
       }}
     >
-      {/* Shimmer placeholder while loading */}
-      {loading && (
-        <div style={{
-          position: "absolute", inset: 0, zIndex: 2,
-          background: "linear-gradient(110deg, #1a1a1a 30%, #2a2a2a 50%, #1a1a1a 70%)",
-          backgroundSize: "200% 100%",
-          animation: "shimmer 1.5s ease-in-out infinite",
-        }} />
-      )}
-
-      <img
-        src={src}
-        alt={post.celebrity}
-        loading="lazy"
-        referrerPolicy="no-referrer"
-        onError={(e) => {
-          const img = e.currentTarget;
-          if (img.src !== window.location.origin + fallbackSrc && img.src !== fallbackSrc) {
-            img.src = fallbackSrc;
-          }
-        }}
-        style={{
-          width: "100%", height: "100%",
-          objectFit: "cover", display: "block",
-          opacity: loading ? 0 : 1,
-          transition: "opacity 0.3s ease",
-        }}
-      />
-
-      {/* Name overlay */}
+      {/* Image container */}
       <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0,
-        padding: "28px 12px 10px",
-        background: "linear-gradient(transparent, rgba(0,0,0,0.75))",
+        position: "relative",
+        width: 160,
+        height: 160,
+        borderRadius: 12,
+        overflow: "hidden",
+        background: "#1a1a1a",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
       }}>
+        {/* Shimmer placeholder while loading */}
+        {loading && (
+          <div style={{
+            position: "absolute", inset: 0, zIndex: 2,
+            background: "linear-gradient(110deg, #1a1a1a 30%, #2a2a2a 50%, #1a1a1a 70%)",
+            backgroundSize: "200% 100%",
+            animation: "shimmer 1.5s ease-in-out infinite",
+          }} />
+        )}
+
+        <img
+          src={src}
+          alt={post.celebrity}
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            const img = e.currentTarget;
+            if (img.src !== window.location.origin + fallbackSrc && img.src !== fallbackSrc) {
+              img.src = fallbackSrc;
+            }
+          }}
+          style={{
+            width: "100%", height: "100%",
+            objectFit: "cover", display: "block",
+            opacity: loading ? 0 : 1,
+            transition: "opacity 0.3s ease",
+          }}
+        />
+
+        {/* Instagram badge */}
         <div style={{
-          color: "#fff", fontSize: 13, fontWeight: 600,
-          textShadow: "0 1px 3px rgba(0,0,0,0.5)",
+          position: "absolute", top: 6, right: 6,
+          width: 22, height: 22, borderRadius: 6,
+          background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          boxShadow: "0 1px 4px rgba(0,0,0,0.3)",
+        }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" />
+            <circle cx="12" cy="12" r="5" />
+            <circle cx="17.5" cy="6.5" r="1.5" fill="white" stroke="none" />
+          </svg>
+        </div>
+      </div>
+
+      {/* Name below image */}
+      <div style={{ padding: "6px 2px 0" }}>
+        <div style={{
+          color: "#1a1a1a", fontSize: 13, fontWeight: 600,
+          whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
         }}>
           {post.celebrity}
         </div>
         <div style={{
-          color: "rgba(255,255,255,0.7)", fontSize: 11, marginTop: 2,
+          color: "#888", fontSize: 11, marginTop: 1,
         }}>
           @{post.handle}
         </div>
-      </div>
-
-      {/* Instagram badge */}
-      <div style={{
-        position: "absolute", top: 8, right: 8,
-        width: 24, height: 24, borderRadius: 6,
-        background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        boxShadow: "0 1px 4px rgba(0,0,0,0.3)",
-      }}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="2" y="2" width="20" height="20" rx="5" />
-          <circle cx="12" cy="12" r="5" />
-          <circle cx="17.5" cy="6.5" r="1.5" fill="white" stroke="none" />
-        </svg>
       </div>
     </div>
   );
@@ -412,12 +390,18 @@ export default function CelebrityBuzz() {
         </div>
       </div>
 
-      {selectedIndex !== null && (
-        <BuzzLightbox
-          post={posts[selectedIndex]}
-          onClose={() => setSelectedIndex(null)}
-        />
-      )}
+      {selectedIndex !== null && (() => {
+        const post = posts[selectedIndex];
+        const sc = extractInstaShortcode(post.url);
+        const imgSrc = (sc ? thumbUrls[sc] : null) || post.thumbnail || `/images/celebrity-thumbs/${post.handle}.jpg`;
+        return (
+          <BuzzLightbox
+            post={post}
+            imageSrc={imgSrc}
+            onClose={() => { setSelectedIndex(null); document.body.style.overflow = ""; }}
+          />
+        );
+      })()}
     </section>
   );
 }
