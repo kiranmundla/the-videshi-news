@@ -132,16 +132,16 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
               loading="lazy"
               style={{ width: "100%", height: "100%", objectFit: objectFit, display: "block", background: objectFit === "contain" ? "#111" : undefined }}
             />
+          </div>
+          {photo.caption && (
             <div style={{
-              position: "absolute", bottom: 0, left: 0, right: 0,
-              padding: "20px 10px 8px",
-              background: "linear-gradient(transparent, rgba(0,0,0,0.7))",
-              color: "white", fontSize: "0.75rem", fontWeight: 500,
-              overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
+              padding: "6px 10px",
+              color: "#666", fontSize: "0.75rem", fontStyle: "italic",
+              lineHeight: 1.4,
             }}>
               {photo.caption}
             </div>
-          </div>
+          )}
         ))}
       </div>
     </div>
