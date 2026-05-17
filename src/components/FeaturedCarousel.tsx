@@ -202,7 +202,6 @@ export default function FeaturedCarousel({ articles }: { articles: Article[] }) 
     height: "40px",
     borderRadius: "50%",
     cursor: "pointer",
-    display: "flex",
     alignItems: "center",
     justifyContent: "center",
     transition: "background 0.2s",
