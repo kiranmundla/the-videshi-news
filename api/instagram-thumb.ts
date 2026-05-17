@@ -20,47 +20,64 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(502).json({ error: `instagram returned ${response.status}` });
     }
     const raw = await response.text();
-    // Decode HTML entities first so URLs are clean
     const html = raw.replace(/&amp;/g, "&");
 
-    let imageUrl = "";
+    // Extract all post images (t51.82787 = photo posts)
+    const allUrls = html.match(/https:\/\/scontent[^"'\s,>]+t51\.82787[^"'\s,>]*/g) || [];
 
-    // 1. Best: post image at 1080px (t51.82787 = photo, p1080x1080 = full size)
-    const hd = html.match(/https:\/\/scontent[^"'\s,]+t51\.82787[^"'\s,]*p1080x1080[^"'\s,]*/);
-    if (hd) imageUrl = hd[0];
-
-    // 2. Fallback: post image at 640px or 750px
-    if (!imageUrl) {
-      const mid = html.match(/https:\/\/scontent[^"'\s,]+t51\.82787[^"'\s,]*p(?:640x640|750x750)[^"'\s,]*/);
-      if (mid) imageUrl = mid[0];
-    }
-
-    // 3. Fallback: any post image (t51.82787) that's NOT tiny (s150/s240)
-    if (!imageUrl) {
-      const any = html.match(/https:\/\/scontent[^"'\s,]+t51\.82787[^"'\s,]*/g);
-      if (any) {
-        const big = any.find(u => !u.includes("s150x150") && !u.includes("s240x240"));
-        if (big) imageUrl = big;
+    // Dedupe by base filename (before query params), prefer largest size
+    const byBase = new Map<string, string>();
+    for (const url of allUrls) {
+      const base = url.split("?")[0];
+      const existing = byBase.get(base);
+      if (!existing) {
+        byBase.set(base, url);
+      } else {
+        // Prefer p1080 > p750 > p640 > others
+        const sizeScore = (u: string) => {
+          if (u.includes("p1080x1080")) return 3;
+          if (u.includes("p750x750")) return 2;
+          if (u.includes("p640x640")) return 1;
+          if (u.includes("s150x150") || u.includes("s240x240")) return -1;
+          return 0;
+        };
+        if (sizeScore(url) > sizeScore(existing)) {
+          byBase.set(base, url);
+        }
       }
     }
 
-    // 4. Last resort: video thumbnail (t51.71878) - not tiny
-    if (!imageUrl) {
-      const vid = html.match(/https:\/\/scontent[^"'\s,]+t51\.71878[^"'\s,]*/g);
-      if (vid) {
-        const big = vid.find(u => !u.includes("s150x150") && !u.includes("s240x240"));
-        if (big) imageUrl = big;
+    // Filter out tiny thumbnails, dedupe by image ID (the numeric part of filename)
+    const imageIdSeen = new Set<string>();
+    const images: string[] = [];
+    for (const url of byBase.values()) {
+      if (url.includes("s150x150") || url.includes("s240x240")) continue;
+      // Extract image ID from filename like 696527953_18461734879118856_...
+      const idMatch = url.match(/\/([0-9]+_[0-9]+_[0-9]+_n\.jpg)/);
+      const imageId = idMatch ? idMatch[1] : url.split("?")[0];
+      if (imageIdSeen.has(imageId)) continue;
+      imageIdSeen.add(imageId);
+      images.push(url);
+    }
+
+    if (!images.length) {
+      // Fallback: try video thumbnails (t51.71878)
+      const vidUrls = html.match(/https:\/\/scontent[^"'\s,>]+t51\.71878[^"'\s,>]*/g) || [];
+      for (const url of vidUrls) {
+        if (!url.includes("s150x150") && !url.includes("s240x240")) {
+          images.push(url);
+          break;
+        }
       }
     }
 
-    if (!imageUrl) {
-      return res.status(404).json({ error: "image not found" });
+    if (!images.length) {
+      return res.status(404).json({ error: "no images found" });
     }
 
-    // Cache 4h, stale-while-revalidate 1h
     res.setHeader("Cache-Control", "s-maxage=14400, stale-while-revalidate=3600");
     res.setHeader("Access-Control-Allow-Origin", "*");
-    return res.json({ url: imageUrl });
+    return res.json({ url: images[0], images });
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : "unknown error";
     return res.status(500).json({ error: message });

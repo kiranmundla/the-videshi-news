@@ -43,15 +43,20 @@ function ensureTwitterWidgets(cb: () => void) {
 
 /* ── Lightbox ── */
 
-function BuzzLightbox({ post, onClose }: {
+function BuzzLightbox({ post, images, onClose }: {
   post: BuzzPost;
+  images: string[];
   onClose: () => void;
 }) {
-  const shortcode = extractInstaShortcode(post.url);
+  const [current, setCurrent] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const total = images.length;
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight" && current < total - 1) setCurrent(current + 1);
+      if (e.key === "ArrowLeft" && current > 0) setCurrent(current - 1);
     };
     window.addEventListener("keydown", handler);
     document.body.style.overflow = "hidden";
@@ -59,7 +64,7 @@ function BuzzLightbox({ post, onClose }: {
       window.removeEventListener("keydown", handler);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [onClose, current, total]);
 
   return (
     <div
@@ -86,33 +91,85 @@ function BuzzLightbox({ post, onClose }: {
 
       {/* Celebrity name */}
       <div style={{ position: "absolute", top: 16, left: "50%", transform: "translateX(-50%)", textAlign: "center", zIndex: 20 }}>
-        <div style={{ color: "#fff", fontSize: 14, fontWeight: 600 }}>{post.celebrity}</div>
+        <div style={{ color: "#fff", fontSize: 16, fontWeight: 600 }}>{post.celebrity}</div>
+        <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, marginTop: 2 }}>@{post.handle}</div>
       </div>
 
+      {/* Image area */}
       <div
         onClick={(e) => e.stopPropagation()}
+        onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+        onTouchEnd={(e) => {
+          if (touchStartX.current === null) return;
+          const diff = e.changedTouches[0].clientX - touchStartX.current;
+          if (diff < -50 && current < total - 1) setCurrent(current + 1);
+          if (diff > 50 && current > 0) setCurrent(current - 1);
+          touchStartX.current = null;
+        }}
         style={{
-          width: "min(95vw, 540px)", maxHeight: "90vh",
-          borderRadius: 12, overflow: "hidden", background: "#000",
           position: "relative",
+          maxWidth: "95vw", maxHeight: "75vh",
+          display: "flex", alignItems: "center", justifyContent: "center",
         }}
       >
-        {shortcode ? (
-          <div style={{ overflow: "hidden", maxHeight: "calc(90vh - 50px)" }}>
-            <iframe
-              src={`https://www.instagram.com/p/${shortcode}/embed/`}
-              width="100%"
-              height="900"
-              frameBorder="0"
-              scrolling="no"
-              title={`${post.celebrity} Instagram post`}
-              style={{ display: "block", border: "none", background: "#000", marginBottom: -80 }}
-            />
-          </div>
-        ) : (
-          <div style={{ padding: 40, textAlign: "center", color: "#888" }}>Post unavailable</div>
+        <img
+          key={current}
+          src={images[current]}
+          alt={`${post.celebrity} photo ${current + 1}`}
+          referrerPolicy="no-referrer"
+          style={{
+            maxWidth: "95vw", maxHeight: "75vh",
+            borderRadius: 8, objectFit: "contain", display: "block",
+            animation: "buzzFadeIn 0.15s ease-out",
+          }}
+        />
+
+        {/* Desktop arrows */}
+        {total > 1 && current > 0 && (
+          <button
+            onClick={() => setCurrent(current - 1)}
+            className="hidden md:flex"
+            style={{
+              position: "absolute", left: -48, top: "50%", transform: "translateY(-50%)",
+              background: "rgba(255,255,255,0.15)", border: "none", color: "#fff",
+              width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
+              fontSize: 18, alignItems: "center", justifyContent: "center",
+            }}
+          >‹</button>
+        )}
+        {total > 1 && current < total - 1 && (
+          <button
+            onClick={() => setCurrent(current + 1)}
+            className="hidden md:flex"
+            style={{
+              position: "absolute", right: -48, top: "50%", transform: "translateY(-50%)",
+              background: "rgba(255,255,255,0.15)", border: "none", color: "#fff",
+              width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
+              fontSize: 18, alignItems: "center", justifyContent: "center",
+            }}
+          >›</button>
         )}
       </div>
+
+      {/* Dots + counter */}
+      {total > 1 && (
+        <div style={{ marginTop: 12, display: "flex", gap: 6, alignItems: "center" }}>
+          {images.map((_, i) => (
+            <div
+              key={i}
+              onClick={(e) => { e.stopPropagation(); setCurrent(i); }}
+              style={{
+                width: i === current ? 8 : 6,
+                height: i === current ? 8 : 6,
+                borderRadius: "50%",
+                background: i === current ? "#fff" : "rgba(255,255,255,0.3)",
+                cursor: "pointer",
+                transition: "all 0.2s",
+              }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -218,6 +275,7 @@ function ThumbCard({
 export default function CelebrityBuzz() {
   const [posts, setPosts] = useState<BuzzPost[]>([]);
   const [thumbUrls, setThumbUrls] = useState<Record<string, string | null>>({});
+  const [allImages, setAllImages] = useState<Record<string, string[]>>({});
   const [loadingThumbs, setLoadingThumbs] = useState<Set<string>>(new Set());
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -256,6 +314,9 @@ export default function CelebrityBuzz() {
         .then((r) => r.ok ? r.json() : null)
         .then((data) => {
           setThumbUrls((prev) => ({ ...prev, [shortcode]: data?.url || null }));
+          if (data?.images?.length) {
+            setAllImages((prev) => ({ ...prev, [shortcode]: data.images }));
+          }
         })
         .catch(() => {
           setThumbUrls((prev) => ({ ...prev, [shortcode]: null }));
@@ -378,12 +439,21 @@ export default function CelebrityBuzz() {
         </div>
       </div>
 
-      {selectedIndex !== null && (
+      {selectedIndex !== null && (() => {
+        const post = posts[selectedIndex];
+        const sc = extractInstaShortcode(post.url);
+        const imgs = sc ? (allImages[sc] || []) : [];
+        // Fallback to thumbnail if API hasn't returned images yet
+        const fallback = sc ? (thumbUrls[sc] || null) : null;
+        const displayImages = imgs.length ? imgs : (fallback ? [fallback] : [post.thumbnail || `/images/celebrity-thumbs/${post.handle}.jpg`]);
+        return (
           <BuzzLightbox
-            post={posts[selectedIndex]}
+            post={post}
+            images={displayImages}
             onClose={() => { setSelectedIndex(null); document.body.style.overflow = ""; }}
           />
-      )}
+        );
+      })()}
     </section>
   );
 }
