@@ -5,6 +5,7 @@ import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
 import DiasporaPhotoStrip from "@/components/DiasporaPhotoStrip";
+import CelebrityBuzz from "@/components/CelebrityBuzz";
 import FeaturedHero from "@/components/FeaturedHero";
 import IPLTracker from "@/components/IPLTracker";
 import MarketTicker from "@/components/MarketTicker";
@@ -359,6 +360,8 @@ export default function Index() {
               />
             </section>
           ))}
+
+        <CelebrityBuzz />
 
         <DiasporaPhotoStrip />
       </main>
