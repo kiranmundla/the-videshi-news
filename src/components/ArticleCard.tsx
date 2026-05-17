@@ -304,18 +304,34 @@ export default function ArticleCard({
 
   return (
     <Link to={href} onClick={saveScroll} className="group block">
-      <figure className="w-full relative">
-        <div className="w-full aspect-[16/9] bg-stone-100 overflow-hidden rounded-lg">
-          <HeroImage
-            src={article.hero_image_url}
-            alt={article.title}
-            loading={variant === "hero" ? "eager" : "lazy"}
-            className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-            style={{ objectPosition: "center 20%" }}
-            onOrientationDetected={setRuntimeOrientation}
-          />
-        </div>
-        {allImages && allImages.length > 1 && (
+      {allImages && allImages.length > 1 ? (
+        <div className="relative rounded-lg overflow-hidden">
+          <style>{`.card-gallery::-webkit-scrollbar { display: none; }`}</style>
+          <div
+            className="card-gallery flex overflow-x-auto"
+            style={{
+              scrollSnapType: "x mandatory",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch",
+            } as React.CSSProperties}
+            onClick={(e) => e.preventDefault()}
+          >
+            {allImages.map((img, i) => (
+              <div
+                key={i}
+                className="w-full flex-shrink-0 aspect-[16/9] bg-stone-100"
+                style={{ scrollSnapAlign: "start" }}
+              >
+                <img
+                  src={img.url}
+                  alt={img.caption || article.title}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
           <span style={{
             position: "absolute", bottom: 8, right: 8,
             background: "rgba(0,0,0,0.6)", color: "#fff",
@@ -330,8 +346,21 @@ export default function ArticleCard({
             </svg>
             1/{allImages.length}
           </span>
-        )}
-      </figure>
+        </div>
+      ) : (
+        <figure className="w-full">
+          <div className="w-full aspect-[16/9] bg-stone-100 overflow-hidden rounded-lg">
+            <HeroImage
+              src={article.hero_image_url}
+              alt={article.title}
+              loading={variant === "hero" ? "eager" : "lazy"}
+              className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
+              style={{ objectPosition: "center 20%" }}
+              onOrientationDetected={setRuntimeOrientation}
+            />
+          </div>
+        </figure>
+      )}
       {!hideCategory && (
         <p className="smallcaps text-primary mt-4 mb-2">
           {featureLabel && (
