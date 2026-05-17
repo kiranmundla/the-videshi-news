@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Article, formatShortDate, readingTime } from "@/lib/articles";
 import HeroImage, { isValidImage } from "@/components/HeroImage";
@@ -6,6 +6,75 @@ import HeroImage, { isValidImage } from "@/components/HeroImage";
 type Variant = "hero" | "featured" | "card" | "long" | "compact";
 
 /* Mini gallery thumbnails for article cards with multiple images */
+function ArticleGallery({ images, title }: { images: { url: string; caption?: string }[]; title: string }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    // Always reset to first image
+    el.scrollLeft = 0;
+    const onScroll = () => {
+      const idx = Math.round(el.scrollLeft / el.clientWidth);
+      setCurrent(Math.min(idx, images.length - 1));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [images.length]);
+
+  return (
+    <div className="relative rounded-lg overflow-hidden">
+      <style>{`.card-gallery::-webkit-scrollbar { display: none; }`}</style>
+      <div
+        ref={scrollRef}
+        className="card-gallery flex overflow-x-auto"
+        style={{
+          scrollSnapType: "x mandatory",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          WebkitOverflowScrolling: "touch",
+        } as React.CSSProperties}
+        onClick={(e) => e.preventDefault()}
+      >
+        {images.map((img, i) => (
+          <div
+            key={i}
+            className="w-full flex-shrink-0 bg-stone-100"
+            style={{ scrollSnapAlign: "start" }}
+          >
+            <img
+              src={img.url}
+              alt={img.caption || title}
+              loading={i === 0 ? "eager" : "lazy"}
+              className="w-full object-cover rounded-lg"
+              style={{ aspectRatio: "16/9" }}
+            />
+          </div>
+        ))}
+      </div>
+      {/* Dots */}
+      <div style={{
+        position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)",
+        display: "flex", gap: 5,
+      }}>
+        {images.map((_, i) => (
+          <div
+            key={i}
+            style={{
+              width: i === current ? 7 : 5,
+              height: i === current ? 7 : 5,
+              borderRadius: "50%",
+              background: i === current ? "#fff" : "rgba(255,255,255,0.5)",
+              transition: "all 0.15s",
+              boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 function MiniGallery({ images }: { images: { url: string; caption: string }[] }) {
   if (!images || images.length === 0) return null;
   return (
@@ -305,49 +374,7 @@ export default function ArticleCard({
   return (
     <Link to={href} onClick={saveScroll} className="group block">
       {allImages && allImages.length > 1 ? (
-        <div className="relative rounded-lg overflow-hidden">
-          <style>{`.card-gallery::-webkit-scrollbar { display: none; }`}</style>
-          <div
-            className="card-gallery flex overflow-x-auto"
-            style={{
-              scrollSnapType: "x mandatory",
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-              WebkitOverflowScrolling: "touch",
-            } as React.CSSProperties}
-            onClick={(e) => e.preventDefault()}
-          >
-            {allImages.map((img, i) => (
-              <div
-                key={i}
-                className="w-full flex-shrink-0 bg-stone-100"
-                style={{ scrollSnapAlign: "start" }}
-              >
-                <img
-                  src={img.url}
-                  alt={img.caption || article.title}
-                  loading={i === 0 ? "eager" : "lazy"}
-                  className="w-full object-contain"
-                  style={{ maxHeight: "60vh" }}
-                />
-              </div>
-            ))}
-          </div>
-          <span style={{
-            position: "absolute", bottom: 8, right: 8,
-            background: "rgba(0,0,0,0.6)", color: "#fff",
-            fontSize: 11, fontWeight: 600, padding: "3px 8px",
-            borderRadius: 12, backdropFilter: "blur(4px)",
-            display: "flex", alignItems: "center", gap: 4,
-          }}>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <path d="M21 15l-5-5L5 21" />
-            </svg>
-            1/{allImages.length}
-          </span>
-        </div>
+        <ArticleGallery images={allImages} title={article.title} />
       ) : (
         <figure className="w-full">
           <div className="w-full aspect-[16/9] bg-stone-100 overflow-hidden rounded-lg">
