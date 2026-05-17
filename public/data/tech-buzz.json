@@ -1,0 +1,74 @@
+{
+  "leaders": [
+    {
+      "name": "Elon Musk",
+      "handle": "elonmusk",
+      "platform": "x",
+      "role": "CEO, Tesla & SpaceX",
+      "avatar": "",
+      "posts": [
+        { "url": "https://x.com/elonmusk" }
+      ]
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "handle": "zuck",
+      "platform": "threads",
+      "role": "CEO, Meta",
+      "avatar": "",
+      "posts": [
+        { "url": "https://www.threads.net/@zuck" }
+      ]
+    },
+    {
+      "name": "Sundar Pichai",
+      "handle": "sundarpichai",
+      "platform": "x",
+      "role": "CEO, Alphabet & Google",
+      "avatar": "",
+      "posts": [
+        { "url": "https://x.com/sundarpichai" }
+      ]
+    },
+    {
+      "name": "Satya Nadella",
+      "handle": "satyanadella",
+      "platform": "x",
+      "role": "CEO, Microsoft",
+      "avatar": "",
+      "posts": [
+        { "url": "https://x.com/satyanadella" }
+      ]
+    },
+    {
+      "name": "Sam Altman",
+      "handle": "sama",
+      "platform": "x",
+      "role": "CEO, OpenAI",
+      "avatar": "",
+      "posts": [
+        { "url": "https://x.com/sama" }
+      ]
+    },
+    {
+      "name": "Jensen Huang",
+      "handle": "jensen_huang",
+      "platform": "x",
+      "role": "CEO, NVIDIA",
+      "avatar": "",
+      "posts": [
+        { "url": "https://x.com/jensen_huang" }
+      ]
+    },
+    {
+      "name": "Tim Cook",
+      "handle": "tim_cook",
+      "platform": "x",
+      "role": "CEO, Apple",
+      "avatar": "",
+      "posts": [
+        { "url": "https://x.com/tim_cook" }
+      ]
+    }
+  ]
+}
