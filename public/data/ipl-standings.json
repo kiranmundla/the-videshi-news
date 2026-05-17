@@ -1,17 +1,17 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-17T17:55:42Z",
-  "stage": "League Stage — Match 61 of 70",
+  "last_updated": "2026-05-17T18:12:15Z",
+  "stage": "League Stage \u2014 Match 62 of 70",
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
       "short": "RCB",
-      "played": 12,
-      "won": 8,
+      "played": 13,
+      "won": 9,
       "lost": 4,
       "nr": 0,
-      "nrr": "+1.053",
-      "points": 16,
+      "nrr": "+1.120",
+      "points": 18,
       "position": 1
     },
     {
@@ -39,24 +39,13 @@
     {
       "team": "Punjab Kings",
       "short": "PBKS",
-      "played": 12,
+      "played": 13,
       "won": 6,
-      "lost": 5,
+      "lost": 6,
       "nr": 1,
-      "nrr": "+0.355",
+      "nrr": "+0.280",
       "points": 13,
       "position": 4
-    },
-    {
-      "team": "Rajasthan Royals",
-      "short": "RR",
-      "played": 11,
-      "won": 6,
-      "lost": 5,
-      "nr": 0,
-      "nrr": "+0.082",
-      "points": 12,
-      "position": 5
     },
     {
       "team": "Chennai Super Kings",
@@ -67,17 +56,28 @@
       "nr": 0,
       "nrr": "+0.027",
       "points": 12,
+      "position": 5
+    },
+    {
+      "team": "Rajasthan Royals",
+      "short": "RR",
+      "played": 12,
+      "won": 6,
+      "lost": 6,
+      "nr": 0,
+      "nrr": "+0.020",
+      "points": 12,
       "position": 6
     },
     {
       "team": "Delhi Capitals",
       "short": "DC",
-      "played": 12,
-      "won": 5,
+      "played": 13,
+      "won": 6,
       "lost": 7,
       "nr": 0,
-      "nrr": "-0.993",
-      "points": 10,
+      "nrr": "-0.940",
+      "points": 12,
       "position": 7
     },
     {
@@ -116,6 +116,15 @@
   ],
   "recent_results": [
     {
+      "team1": "RR",
+      "score1": "193/8",
+      "team2": "DC",
+      "score2": "197/5",
+      "result": "DC won by 5 wickets",
+      "date": "17 May",
+      "venue": "Delhi"
+    },
+    {
       "team1": "PBKS",
       "score1": "199/8",
       "team2": "RCB",
@@ -153,11 +162,11 @@
     }
   ],
   "next_match": {
-    "team1": "DC",
-    "team2": "RR",
-    "date": "17 May",
-    "time": "19:30 IST",
-    "venue": "Arun Jaitley Stadium, Delhi"
+    "team1": "CSK",
+    "team2": "SRH",
+    "date": "18 May",
+    "time": "15:30 IST",
+    "venue": "MA Chidambaram Stadium, Chennai"
   },
   "playoffs": {
     "qualifier1": {
