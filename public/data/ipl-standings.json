@@ -1,7 +1,7 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-17T07:23:47Z",
-  "stage": "League Stage \u2014 Matches 60 of 70",
+  "last_updated": "2026-05-17T07:55:39Z",
+  "stage": "League Stage — Matches 60 of 70",
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
@@ -70,17 +70,6 @@
       "position": 6
     },
     {
-      "team": "Kolkata Knight Riders",
-      "short": "KKR",
-      "played": 12,
-      "won": 5,
-      "lost": 6,
-      "nr": 1,
-      "nrr": "-0.060",
-      "points": 11,
-      "position": 7
-    },
-    {
       "team": "Delhi Capitals",
       "short": "DC",
       "played": 12,
@@ -89,6 +78,17 @@
       "nr": 0,
       "nrr": "-0.993",
       "points": 10,
+      "position": 7
+    },
+    {
+      "team": "Kolkata Knight Riders",
+      "short": "KKR",
+      "played": 11,
+      "won": 4,
+      "lost": 6,
+      "nr": 1,
+      "nrr": "-0.198",
+      "points": 9,
       "position": 8
     },
     {
