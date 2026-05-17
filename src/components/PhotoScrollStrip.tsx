@@ -116,33 +116,36 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
               position: "relative",
               width: itemWidth,
               maxWidth: "calc(100vw - 32px)",
-              height: itemHeight,
-              borderRadius: 8,
-              overflow: "hidden",
               flexShrink: 0,
-              background: "#1a1a1a",
               cursor: onPhotoClick ? "pointer" : "default",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
               scrollSnapAlign: "center",
             }}
           >
-            <img
-              src={photo.src}
-              alt={photo.caption}
-              loading="lazy"
-              style={{ width: "100%", height: "100%", objectFit: objectFit, display: "block", background: objectFit === "contain" ? "#111" : undefined }}
-            />
-          </div>
-          {photo.caption && (
             <div style={{
-              padding: "6px 10px",
-              color: "#666", fontSize: "0.75rem", fontStyle: "italic",
-              lineHeight: 1.4,
+              width: "100%",
+              height: itemHeight,
+              borderRadius: 8,
+              overflow: "hidden",
+              background: "#1a1a1a",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
             }}>
-              {photo.caption}
+              <img
+                src={photo.src}
+                alt={photo.caption}
+                loading="lazy"
+                style={{ width: "100%", height: "100%", objectFit: objectFit, display: "block", background: objectFit === "contain" ? "#111" : undefined }}
+              />
             </div>
-          )}
-        ))}
+            {photo.caption && (
+              <div style={{
+                padding: "6px 4px",
+                color: "#666", fontSize: "0.75rem", fontStyle: "italic",
+                lineHeight: 1.4,
+              }}>
+                {photo.caption}
+              </div>
+            )}
+          </div>))}
       </div>
     </div>
   );
