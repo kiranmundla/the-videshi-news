@@ -50,7 +50,7 @@ function InstaThumb({ post, onClick }: { post: BuzzPost; onClick: () => void }) 
       onClick={onClick}
       style={{
         width: 280, flexShrink: 0, overflow: "hidden",
-        background: "#000", scrollSnapAlign: "start",
+        background: "#000", scrollSnapAlign: "center",
         cursor: "pointer",
       }}
     >
@@ -87,7 +87,7 @@ function TweetThumb({ post, onClick }: { post: BuzzPost; onClick: () => void }) 
       onClick={onClick}
       style={{
         width: 280, flexShrink: 0, overflow: "hidden",
-        background: "#000", scrollSnapAlign: "start",
+        background: "#000", scrollSnapAlign: "center",
         cursor: "pointer",
       }}
     >
@@ -290,7 +290,7 @@ export default function CelebrityBuzz() {
           style={{
             display: "flex", gap: 2, overflowX: "auto", overflowY: "hidden",
             WebkitOverflowScrolling: "touch", scrollbarWidth: "none",
-            msOverflowStyle: "none", scrollSnapType: "x proximity",
+            msOverflowStyle: "none", scrollSnapType: "x mandatory",
           } as React.CSSProperties}
         >
           {posts.map((post, i) => (
