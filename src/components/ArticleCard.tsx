@@ -47,8 +47,8 @@ function ArticleGallery({ images, title }: { images: { url: string; caption?: st
               src={img.url}
               alt={img.caption || title}
               loading={i === 0 ? "eager" : "lazy"}
-              className="w-full object-cover rounded-lg"
-              style={{ aspectRatio: "16/9" }}
+              className="w-full rounded-lg"
+              style={{ maxHeight: "50vh", objectFit: "contain", background: "#f5f5f0" }}
             />
           </div>
         ))}
