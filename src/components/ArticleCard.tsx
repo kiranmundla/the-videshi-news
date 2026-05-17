@@ -13,8 +13,9 @@ function ArticleGallery({ images, title }: { images: { url: string; caption?: st
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    // Always reset to first image
+    // Force reset to first image (override browser scroll restoration)
     el.scrollLeft = 0;
+    requestAnimationFrame(() => { if (scrollRef.current) scrollRef.current.scrollLeft = 0; });
     const onScroll = () => {
       const idx = Math.round(el.scrollLeft / el.clientWidth);
       setCurrent(Math.min(idx, images.length - 1));
