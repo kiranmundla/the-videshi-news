@@ -7,13 +7,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    // Fetch the regular post page (not /embed/) — og:image has the real CDN URL
+    // Googlebot UA on embed page returns actual post image CDN URLs
     const response = await fetch(
-      `https://www.instagram.com/p/${shortcode}/`,
+      `https://www.instagram.com/p/${shortcode}/embed/`,
       {
         headers: {
           "User-Agent":
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
         },
       }
     );
@@ -24,21 +24,34 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     let imageUrl = "";
 
-    // og:image from the post page — this is the actual CDN image
-    const ogMatch = html.match(
-      /property="og:image"\s*content="([^"]+)"/
+    // Look for post images (t51.82787) not profile pics (t51.2885-19)
+    // Match the largest srcset image (1080w)
+    const srcsetMatch = html.match(
+      /(https:\/\/scontent[^"'\s]+t51\.82787[^"'\s]+1080w)/
     );
-    if (ogMatch) {
-      imageUrl = ogMatch[1].replace(/&amp;/g, "&");
+    if (srcsetMatch) {
+      imageUrl = srcsetMatch[1]
+        .replace(/\s+\d+w$/, "")
+        .replace(/&amp;/g, "&");
     }
 
-    // Fallback: any scontent CDN URL
+    // Fallback: any post image CDN URL (not profile pic)
     if (!imageUrl) {
       const cdnMatch = html.match(
-        /src="(https:\/\/scontent[^"]+cdninstagram\.com[^"]+)"/
+        /src="(https:\/\/scontent[^"]+t51\.82787[^"]+)"/
       );
       if (cdnMatch) {
         imageUrl = cdnMatch[1].replace(/&amp;/g, "&");
+      }
+    }
+
+    // Fallback: any scontent CDN URL that's not a profile pic (s150x150)
+    if (!imageUrl) {
+      const anyMatch = html.match(
+        /(?:src|content)="(https:\/\/scontent[^"]+cdninstagram\.com[^"]+)"/
+      );
+      if (anyMatch && !anyMatch[1].includes("s150x150")) {
+        imageUrl = anyMatch[1].replace(/&amp;/g, "&");
       }
     }
 
