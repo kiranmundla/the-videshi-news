@@ -82,7 +82,7 @@ function EventCard({ event }: { event: EventItem }) {
     .join(", ");
 
   const card = (
-    <article className="group flex flex-col sm:flex-row gap-4 bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors">
+    <article className="group flex flex-col sm:flex-row gap-4 bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors max-w-full">
       {/* Image */}
       {event.image_url ? (
         <div className="w-full sm:w-48 sm:min-w-[12rem] h-48 sm:h-auto overflow-hidden flex-shrink-0">
@@ -100,7 +100,7 @@ function EventCard({ event }: { event: EventItem }) {
       )}
 
       {/* Content */}
-      <div className="flex-1 p-4 sm:py-4 sm:pr-4 sm:pl-0 flex flex-col justify-between min-w-0">
+      <div className="flex-1 p-4 sm:py-4 sm:pr-4 sm:pl-0 flex flex-col justify-between min-w-0 overflow-hidden">
         <div>
           <div className="flex items-center gap-2 mb-2 flex-wrap">
             <CategoryBadge category={event.category} />
