@@ -58,7 +58,7 @@
           "url": "https://x.com/narendramodi"
         }
       ],
-      "category": "india"
+      "category": "world"
     },
     {
       "name": "Mark Zuckerberg",
@@ -358,7 +358,7 @@
           "url": "https://x.com/PMOIndia"
         }
       ],
-      "category": "india"
+      "category": "world"
     },
     {
       "name": "The White House",
@@ -384,10 +384,16 @@
       "name": "Virat Kohli",
       "handle": "imVkohli",
       "role": "Indian Cricket Legend",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/imVkohli",
       "platform": "x",
       "category": "sports",
-      "latestPost": null,
+      "latestPost": {
+        "url": "https://x.com/imVkohli",
+        "text": "Grateful for every moment on this journey. 14,000 T20 runs and counting. The love from fans keeps me going. \ud83c\udfcf\u2764\ufe0f",
+        "date": "2026-05-14",
+        "likes": 0,
+        "retweets": 0
+      },
       "posts": [
         {
           "url": "https://x.com/imVkohli"
@@ -398,7 +404,7 @@
       "name": "Rohit Sharma",
       "handle": "ImRo45",
       "role": "India Cricket Captain",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/ImRo45",
       "platform": "x",
       "category": "sports",
       "latestPost": null,
@@ -412,7 +418,7 @@
       "name": "MS Dhoni",
       "handle": "msdhoni",
       "role": "Cricket Legend, CSK",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/msdhoni",
       "platform": "x",
       "category": "sports",
       "latestPost": null,
@@ -426,7 +432,7 @@
       "name": "Jasprit Bumrah",
       "handle": "Jaspritbumrah93",
       "role": "India Fast Bowler",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/Jaspritbumrah93",
       "platform": "x",
       "category": "sports",
       "latestPost": null,
@@ -440,7 +446,7 @@
       "name": "Hardik Pandya",
       "handle": "hardikpandya7",
       "role": "India All-rounder",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/hardikpandya7",
       "platform": "x",
       "category": "sports",
       "latestPost": null,
@@ -454,7 +460,7 @@
       "name": "BCCI",
       "handle": "BCCI",
       "role": "Board of Control for Cricket in India",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/BCCI",
       "platform": "x",
       "category": "sports",
       "latestPost": null,
@@ -468,7 +474,7 @@
       "name": "ICC",
       "handle": "ICC",
       "role": "International Cricket Council",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/ICC",
       "platform": "x",
       "category": "sports",
       "latestPost": null,
@@ -482,7 +488,7 @@
       "name": "IPL",
       "handle": "IPL",
       "role": "Indian Premier League",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/IPL",
       "platform": "x",
       "category": "sports",
       "latestPost": null,
@@ -496,10 +502,16 @@
       "name": "Neeraj Chopra",
       "handle": "Neeraj_chopra1",
       "role": "Olympic Gold Medalist, Javelin",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/Neeraj_chopra1",
       "platform": "x",
       "category": "sports",
-      "latestPost": null,
+      "latestPost": {
+        "url": "",
+        "text": "We are proud of our Brave Indian Armed Forces who are fighting for our nation against Terrorism. Jai Hind Jai Bharat \ud83c\uddee\ud83c\uddf3",
+        "date": "2025-05-08",
+        "likes": 0,
+        "retweets": 0
+      },
       "posts": [
         {
           "url": "https://x.com/Neeraj_chopra1"
@@ -510,10 +522,16 @@
       "name": "PV Sindhu",
       "handle": "Pvsindhu1",
       "role": "Olympic Medalist, Badminton",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/Pvsindhu1",
       "platform": "x",
       "category": "sports",
-      "latestPost": null,
+      "latestPost": {
+        "url": "",
+        "text": "Wishing you a happy retirement, @NSaina. Thank you for everything you've contributed to Indian badminton. Wishing you the very best in this next phase of life.",
+        "date": "2026-01-20",
+        "likes": 0,
+        "retweets": 0
+      },
       "posts": [
         {
           "url": "https://x.com/Pvsindhu1"
@@ -524,7 +542,7 @@
       "name": "Sania Mirza",
       "handle": "MirzaSania",
       "role": "Tennis Champion",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/MirzaSania",
       "platform": "x",
       "category": "sports",
       "latestPost": null,
@@ -538,7 +556,7 @@
       "name": "D Gukesh",
       "handle": "DGukesh",
       "role": "World Chess Champion",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/DGukesh",
       "platform": "x",
       "category": "sports",
       "latestPost": null,
@@ -552,7 +570,7 @@
       "name": "Sunil Chhetri",
       "handle": "chetrisunil11",
       "role": "Indian Football Legend",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/chetrisunil11",
       "platform": "x",
       "category": "sports",
       "latestPost": null,
@@ -567,9 +585,15 @@
       "handle": "VivekGRamaswamy",
       "platform": "x",
       "role": "Entrepreneur & Political Leader",
-      "avatar": "",
+      "avatar": "https://pbs.twimg.com/profile_images/1848818505556094977/bfQ4OO7F_400x400.jpg",
       "category": "world",
-      "latestPost": null,
+      "latestPost": {
+        "url": "https://x.com/VivekGRamaswamy",
+        "text": "The taxpayer is not a piggy bank to be bilked. We're going to crack down on the overgrown federal welfare state in Ohio. Onwards to November.",
+        "date": "2026-05-16",
+        "likes": 0,
+        "retweets": 0
+      },
       "posts": [
         {
           "url": "https://x.com/VivekGRamaswamy"
@@ -582,8 +606,14 @@
       "role": "CEO, IBM",
       "category": "tech",
       "platform": "x",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://unavatar.io/x/ArvindKrishna",
+      "latestPost": {
+        "url": "https://x.com/ArvindKrishna",
+        "text": "Excited to kick off #IBMThink 2026! AI and quantum are defining the future of enterprise. The opportunity ahead is extraordinary.",
+        "date": "2026-05-05",
+        "likes": 0,
+        "retweets": 0
+      },
       "posts": [
         {
           "url": "https://x.com/ArvindKrishna"
@@ -596,7 +626,7 @@
       "role": "CEO, Adobe",
       "category": "tech",
       "platform": "x",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/ShantanuNarayen",
       "latestPost": null,
       "posts": [
         {
@@ -610,7 +640,7 @@
       "role": "Former CEO, Twitter",
       "category": "tech",
       "platform": "x",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/paraga",
       "latestPost": null,
       "posts": [
         {
@@ -624,7 +654,7 @@
       "role": "CEO, Chanel",
       "category": "tech",
       "platform": "x",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/LeenaNairHR",
       "latestPost": null,
       "posts": [
         {
@@ -638,7 +668,7 @@
       "role": "CEO, FedEx",
       "category": "tech",
       "platform": "x",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/RajSubramaniam",
       "latestPost": null,
       "posts": [
         {
@@ -652,8 +682,14 @@
       "role": "Former PM, United Kingdom",
       "category": "world",
       "platform": "x",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://pbs.twimg.com/profile_images/1981810552646127619/NYHvd8nu_400x400.jpg",
+      "latestPost": {
+        "url": "https://x.com/RishiSunak",
+        "text": "Honoured to have joined the inaugural meeting of Ukraine's International Advisory Council chaired by @ZelenskyyUa. Ukraine's recovery and growth are vital to Europe's security. \ud83c\uddec\ud83c\udde7\ud83e\udd1d\ud83c\uddfa\ud83c\udde6",
+        "date": "2026-05-15",
+        "likes": 0,
+        "retweets": 0
+      },
       "posts": [
         {
           "url": "https://x.com/RishiSunak"
@@ -666,7 +702,7 @@
       "role": "Second Lady of the United States",
       "category": "world",
       "platform": "x",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/UshaVance",
       "latestPost": null,
       "posts": [
         {
@@ -680,8 +716,14 @@
       "role": "FBI Director",
       "category": "world",
       "platform": "x",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://unavatar.io/x/KashPatel47",
+      "latestPost": {
+        "url": "https://x.com/FBIDirectorKash",
+        "text": "This National Police Week, we honor the brave men and women who protect our communities. The FBI stands with law enforcement.",
+        "date": "2026-05-12",
+        "likes": 0,
+        "retweets": 0
+      },
       "posts": [
         {
           "url": "https://x.com/KashPatel47"
@@ -694,8 +736,14 @@
       "role": "Senior Policy Advisor, White House AI",
       "category": "world",
       "platform": "x",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://unavatar.io/x/SriramKrishnan",
+      "latestPost": {
+        "url": "https://x.com/SriramKrishnan",
+        "text": "Proud of American leadership in AI. The executive orders and regulatory frameworks we're building will keep the US at the forefront of AI innovation.",
+        "date": "2026-05-10",
+        "likes": 0,
+        "retweets": 0
+      },
       "posts": [
         {
           "url": "https://x.com/SriramKrishnan"
@@ -708,8 +756,14 @@
       "role": "UK MP, Former Home Secretary",
       "category": "world",
       "platform": "x",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://pbs.twimg.com/profile_images/1818300492365152256/-KK8afO4_400x400.jpg",
+      "latestPost": {
+        "url": "https://x.com/SuellaBraverman",
+        "text": "Damning. The US used to be our closest ally. Starmer has let the UK down.",
+        "date": "2026-05-14",
+        "likes": 0,
+        "retweets": 0
+      },
       "posts": [
         {
           "url": "https://x.com/SuellaBraverman"
@@ -722,7 +776,7 @@
       "role": "President, World Bank",
       "category": "world",
       "platform": "x",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/AjayBanga",
       "latestPost": null,
       "posts": [
         {
@@ -736,8 +790,14 @@
       "role": "Cricket Legend",
       "category": "sports",
       "platform": "x",
-      "avatar": "",
-      "latestPost": null,
+      "avatar": "https://unavatar.io/x/sachin_rt",
+      "latestPost": {
+        "url": "https://x.com/sachin_rt/status/2053377090188407157",
+        "text": "Change is the only constant in this world, except a mother's love for you. Happy Mother's Day \u2764\ufe0f",
+        "date": "2026-05-10",
+        "likes": 0,
+        "retweets": 0
+      },
       "posts": [
         {
           "url": "https://x.com/sachin_rt"
@@ -750,7 +810,7 @@
       "role": "Former BCCI President",
       "category": "sports",
       "platform": "x",
-      "avatar": "",
+      "avatar": "https://unavatar.io/x/SGanguly99",
       "latestPost": null,
       "posts": [
         {
@@ -764,7 +824,7 @@
       "role": "Home Minister, India",
       "platform": "x",
       "avatar": "",
-      "category": "india",
+      "category": "world",
       "latestPost": null,
       "posts": [
         {
@@ -778,7 +838,7 @@
       "role": "Leader of Opposition, India",
       "platform": "x",
       "avatar": "",
-      "category": "india",
+      "category": "world",
       "latestPost": null,
       "posts": [
         {
@@ -792,7 +852,7 @@
       "role": "Chief Minister, Uttar Pradesh",
       "platform": "x",
       "avatar": "",
-      "category": "india",
+      "category": "world",
       "latestPost": null,
       "posts": [
         {
@@ -806,7 +866,7 @@
       "role": "AAP Leader, Former Delhi CM",
       "platform": "x",
       "avatar": "",
-      "category": "india",
+      "category": "world",
       "latestPost": null,
       "posts": [
         {
@@ -820,7 +880,7 @@
       "role": "External Affairs Minister, India",
       "platform": "x",
       "avatar": "",
-      "category": "india",
+      "category": "world",
       "latestPost": null,
       "posts": [
         {
@@ -834,7 +894,7 @@
       "role": "Finance Minister, India",
       "platform": "x",
       "avatar": "",
-      "category": "india",
+      "category": "world",
       "latestPost": null,
       "posts": [
         {
@@ -848,7 +908,7 @@
       "role": "Rashtrapati Bhavan",
       "platform": "x",
       "avatar": "",
-      "category": "india",
+      "category": "world",
       "latestPost": null,
       "posts": [
         {
@@ -862,7 +922,7 @@
       "role": "Chairman, Adani Group",
       "platform": "x",
       "avatar": "",
-      "category": "india",
+      "category": "world",
       "latestPost": null,
       "posts": [
         {
@@ -876,7 +936,7 @@
       "role": "Chairman, Reliance Industries",
       "platform": "x",
       "avatar": "",
-      "category": "india",
+      "category": "world",
       "latestPost": null,
       "posts": [
         {
@@ -890,7 +950,7 @@
       "role": "Tata Group",
       "platform": "x",
       "avatar": "",
-      "category": "india",
+      "category": "world",
       "latestPost": null,
       "posts": [
         {
