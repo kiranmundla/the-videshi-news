@@ -43,16 +43,15 @@ function ensureTwitterWidgets(cb: () => void) {
 
 /* ── Lightbox ── */
 
-function BuzzLightbox({ posts, index, getImageSrc, onClose, onNav }: {
+function BuzzLightbox({ posts, index, onClose, onNav }: {
   posts: BuzzPost[];
   index: number;
-  getImageSrc: (i: number) => string;
   onClose: () => void;
   onNav: (i: number) => void;
 }) {
   const touchStartX = useRef<number | null>(null);
   const post = posts[index];
-  const imageSrc = getImageSrc(index);
+  const shortcode = extractInstaShortcode(post.url);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -100,43 +99,56 @@ function BuzzLightbox({ posts, index, getImageSrc, onClose, onNav }: {
         }}
       >×</button>
 
-      {/* Counter */}
-      <div style={{ position: "absolute", top: 16, left: "50%", transform: "translateX(-50%)", color: "rgba(255,255,255,0.5)", fontSize: 13, fontWeight: 500 }}>
-        {index + 1} / {posts.length}
+      {/* Celebrity name + counter */}
+      <div style={{ position: "absolute", top: 16, left: "50%", transform: "translateX(-50%)", textAlign: "center", zIndex: 20 }}>
+        <div style={{ color: "#fff", fontSize: 14, fontWeight: 600 }}>{post.celebrity}</div>
+        <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 12, marginTop: 2 }}>{index + 1} / {posts.length}</div>
       </div>
 
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          display: "flex", flexDirection: "column", alignItems: "center",
-          maxWidth: "90vw", maxHeight: "85vh",
+          width: "min(90vw, 480px)", maxHeight: "80vh",
+          borderRadius: 12, overflow: "hidden", background: "#000",
+          position: "relative",
         }}
       >
-        <img
-          key={index}
-          src={imageSrc}
-          alt={post.celebrity}
-          referrerPolicy="no-referrer"
-          style={{
-            maxWidth: "90vw", maxHeight: "70vh",
-            borderRadius: 10, objectFit: "contain", display: "block",
-          }}
-        />
-
-        <div style={{ marginTop: 12, textAlign: "center" }}>
-          <div style={{ color: "#fff", fontSize: 16, fontWeight: 600 }}>
-            {post.celebrity}
+        {shortcode ? (
+          <div style={{ position: "relative", overflow: "hidden", maxHeight: "calc(80vh - 50px)" }}>
+            <iframe
+              key={index}
+              src={`https://www.instagram.com/p/${shortcode}/embed/`}
+              width="100%"
+              height="800"
+              frameBorder="0"
+              scrolling="no"
+              allowTransparency
+              title={`${post.celebrity} Instagram post`}
+              style={{ display: "block", border: "none", background: "#000", marginBottom: -80 }}
+            />
+            <div style={{ position: "absolute", inset: 0, zIndex: 5, cursor: "default" }} />
           </div>
-          <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, marginTop: 2 }}>
-            @{post.handle}
-          </div>
-        </div>
+        ) : (
+          <div style={{ padding: 40, textAlign: "center", color: "#888" }}>Post unavailable</div>
+        )}
 
         <a
           href={post.url}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
+          style={{
+            display: "block", textAlign: "center", padding: "12px 16px",
+            color: "#3897f0", fontSize: 14, fontWeight: 600,
+            textDecoration: "none", borderTop: "1px solid #222",
+            position: "relative", zIndex: 10,
+          }}
+        >
+          View on Instagram →
+        </a>
+      </div>
+    </div>
+  );
+}
           style={{
             marginTop: 12, padding: "10px 24px", borderRadius: 20,
             background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
@@ -160,12 +172,9 @@ function ThumbCard({
   onClick,
 }: {
   post: BuzzPost;
-  dynamicSrc: string | null;
-  loading: boolean;
   onClick: () => void;
 }) {
   const fallbackSrc = post.thumbnail || `/images/celebrity-thumbs/${post.handle}.jpg`;
-  const src = dynamicSrc || fallbackSrc;
 
   return (
     <div
@@ -177,7 +186,6 @@ function ThumbCard({
         scrollSnapAlign: "center",
       }}
     >
-      {/* Image container */}
       <div style={{
         position: "relative",
         width: 160,
@@ -187,32 +195,13 @@ function ThumbCard({
         background: "#1a1a1a",
         boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
       }}>
-        {/* Shimmer placeholder while loading */}
-        {loading && (
-          <div style={{
-            position: "absolute", inset: 0, zIndex: 2,
-            background: "linear-gradient(110deg, #1a1a1a 30%, #2a2a2a 50%, #1a1a1a 70%)",
-            backgroundSize: "200% 100%",
-            animation: "shimmer 1.5s ease-in-out infinite",
-          }} />
-        )}
-
         <img
-          src={src}
+          src={fallbackSrc}
           alt={post.celebrity}
           loading="lazy"
-          referrerPolicy="no-referrer"
-          onError={(e) => {
-            const img = e.currentTarget;
-            if (img.src !== window.location.origin + fallbackSrc && img.src !== fallbackSrc) {
-              img.src = fallbackSrc;
-            }
-          }}
           style={{
             width: "100%", height: "100%",
             objectFit: "cover", display: "block",
-            opacity: loading ? 0 : 1,
-            transition: "opacity 0.3s ease",
           }}
         />
 
@@ -415,22 +404,14 @@ export default function CelebrityBuzz() {
         </div>
       </div>
 
-      {selectedIndex !== null && (() => {
-        const getImgSrc = (i: number) => {
-          const p = posts[i];
-          const sc = extractInstaShortcode(p.url);
-          return (sc ? thumbUrls[sc] : null) || p.thumbnail || `/images/celebrity-thumbs/${p.handle}.jpg`;
-        };
-        return (
+      {selectedIndex !== null && (
           <BuzzLightbox
             posts={posts}
             index={selectedIndex}
-            getImageSrc={getImgSrc}
             onClose={() => { setSelectedIndex(null); document.body.style.overflow = ""; }}
             onNav={(i) => setSelectedIndex(i)}
           />
-        );
-      })()}
+      )}
     </section>
   );
 }
