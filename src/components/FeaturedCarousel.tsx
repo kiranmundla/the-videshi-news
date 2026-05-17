@@ -5,23 +5,6 @@ import { isValidImage } from "@/components/HeroImage";
 
 /* ── helpers ────────────────────────────────────────── */
 
-function parseImageDimensions(url: string | null | undefined): { w: number; h: number } | null {
-  if (!url) return null;
-  try {
-    const params = new URL(url).searchParams;
-    const w = parseInt(params.get("w") || "");
-    const h = parseInt(params.get("h") || "");
-    if (w > 0 && h > 0) return { w, h };
-  } catch {}
-  return null;
-}
-
-function getImageOrientation(url: string | null | undefined): "landscape" | "portrait" | null {
-  const dims = parseImageDimensions(url);
-  if (!dims) return null;
-  return dims.w / dims.h > 1.2 ? "landscape" : "portrait";
-}
-
 const CATEGORY_COLORS: Record<string, string> = {
   news: "#C62828",
   "nri-world": "#1565C0",
@@ -41,14 +24,13 @@ function categoryLabel(cat: string): string {
   return (cat || "news").replace(/-/g, " ").toUpperCase();
 }
 
-/* ── Slide (single article) ─────────────────────────── */
+/* ── Slide (single article card) ────────────────────── */
 
-function Slide({ article, active }: { article: Article; active: boolean }) {
+function Slide({ article }: { article: Article }) {
   const href = `/articles/${article.slug}`;
   const url = article.hero_image_url || "";
   const isFlag = /flag/i.test(url);
   const hasImage = isValidImage(url) && !isFlag;
-  const orient = hasImage ? getImageOrientation(article.hero_image_url) : null;
 
   const pill = (
     <span
@@ -59,49 +41,10 @@ function Slide({ article, active }: { article: Article; active: boolean }) {
     </span>
   );
 
-  // Portrait layout
-  if (hasImage && orient === "portrait") {
-    return (
-      <div
-        className="absolute inset-0 flex items-center gap-6 px-5 md:px-12 py-6 md:py-8 transition-opacity duration-500 ease-in-out"
-        style={{ opacity: active ? 1 : 0, pointerEvents: active ? "auto" : "none", background: "#1C1C1E" }}
-      >
-        <div className="flex-1">
-          <Link to={href} className="block max-w-2xl">
-            <p className="smallcaps text-white/90 mb-2">{pill}</p>
-            <h1
-              className="font-display text-white leading-[1.1] hover:underline"
-              style={{ fontWeight: 800, fontSize: "clamp(22px, 3.6vw, 32px)" }}
-            >
-              {article.title}
-            </h1>
-            {article.excerpt && (
-              <p className="font-body-serif text-white/85 mt-2 text-sm md:text-base max-w-xl line-clamp-2">
-                {article.excerpt}
-              </p>
-            )}
-          </Link>
-        </div>
-        <div className="hidden md:block w-[180px] lg:w-[220px] flex-shrink-0">
-          <img
-            src={article.hero_image_url}
-            alt={article.title}
-            loading="eager"
-            referrerPolicy="no-referrer"
-            className="w-full h-auto rounded object-cover"
-          />
-        </div>
-      </div>
-    );
-  }
-
-  // Landscape layout — full bleed image
+  // Landscape / has image — full bleed
   if (hasImage) {
     return (
-      <div
-        className="absolute inset-0 transition-opacity duration-500 ease-in-out"
-        style={{ opacity: active ? 1 : 0, pointerEvents: active ? "auto" : "none" }}
-      >
+      <div className="relative w-full h-full">
         <img
           src={article.hero_image_url}
           alt={article.title}
@@ -137,11 +80,11 @@ function Slide({ article, active }: { article: Article; active: boolean }) {
     );
   }
 
-  // No-image layout
+  // No-image layout — dark background
   return (
     <div
-      className="absolute inset-0 flex items-center px-6 md:px-10 transition-opacity duration-500 ease-in-out"
-      style={{ opacity: active ? 1 : 0, pointerEvents: active ? "auto" : "none", background: "#1C1C1E" }}
+      className="relative w-full h-full flex items-center px-6 md:px-10"
+      style={{ background: "#1C1C1E" }}
     >
       <Link to={href} className="block max-w-4xl">
         <p className="smallcaps mb-3">{pill}</p>
@@ -163,50 +106,152 @@ function Slide({ article, active }: { article: Article; active: boolean }) {
 
 /* ── Carousel ───────────────────────────────────────── */
 
-const AUTO_INTERVAL = 5000; // ms
+const AUTO_INTERVAL = 5000;
 
 export default function FeaturedCarousel({ articles }: { articles: Article[] }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
-  const touchStartX = useRef(0);
+  const userInteracted = useRef(false);
   const count = articles.length;
 
-  const next = useCallback(() => setCurrent((i) => (i + 1) % count), [count]);
-  const prev = useCallback(() => setCurrent((i) => (i - 1 + count) % count), [count]);
-  const goTo = useCallback((i: number) => setCurrent(i), []);
+  /* ── scroll helpers ─── */
+  const scrollTo = useCallback((index: number, smooth = true) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const slideW = el.clientWidth;
+    el.scrollTo({ left: slideW * index, behavior: smooth ? "smooth" : "auto" });
+  }, []);
 
-  // Auto-advance
+  const next = useCallback(() => {
+    setCurrent((i) => {
+      const n = (i + 1) % count;
+      scrollTo(n);
+      return n;
+    });
+  }, [count, scrollTo]);
+
+  const prev = useCallback(() => {
+    setCurrent((i) => {
+      const n = (i - 1 + count) % count;
+      scrollTo(n);
+      return n;
+    });
+  }, [count, scrollTo]);
+
+  /* ── track current slide from scroll position ─── */
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const slideW = el.clientWidth;
+        if (slideW > 0) {
+          const idx = Math.round(el.scrollLeft / slideW);
+          setCurrent(Math.max(0, Math.min(idx, count - 1)));
+        }
+        ticking = false;
+      });
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [count]);
+
+  /* ── auto-advance ─── */
   useEffect(() => {
     if (paused || count <= 1) return;
-    const id = setInterval(next, AUTO_INTERVAL);
+    const id = setInterval(() => {
+      setCurrent((i) => {
+        const n = (i + 1) % count;
+        scrollTo(n);
+        return n;
+      });
+    }, AUTO_INTERVAL);
     return () => clearInterval(id);
-  }, [paused, count, next]);
+  }, [paused, count, scrollTo]);
+
+  /* ── pause on user drag/swipe, resume after delay ─── */
+  const pauseForInteraction = useCallback(() => {
+    userInteracted.current = true;
+    setPaused(true);
+  }, []);
+
+  const resumeAfterDelay = useCallback(() => {
+    setTimeout(() => {
+      userInteracted.current = false;
+      setPaused(false);
+    }, AUTO_INTERVAL * 2);
+  }, []);
 
   if (count === 0) return null;
+
+  const arrowStyle: React.CSSProperties = {
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+    zIndex: 10,
+    background: "rgba(0,0,0,0.45)",
+    backdropFilter: "blur(4px)",
+    border: "none",
+    color: "#fff",
+    fontSize: "20px",
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    transition: "background 0.2s",
+  };
 
   return (
     <section
       className="relative w-full overflow-hidden rounded-lg select-none"
       style={{ minHeight: "260px", maxHeight: "500px", height: "clamp(260px, 40vw, 500px)" }}
       onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onTouchStart={(e) => {
-        setPaused(true);
-        touchStartX.current = e.touches[0].clientX;
-      }}
-      onTouchEnd={(e) => {
-        const diff = e.changedTouches[0].clientX - touchStartX.current;
-        if (Math.abs(diff) > 50) {
-          diff < 0 ? next() : prev();
-        }
-        // Resume after a brief pause so the new slide is visible
-        setTimeout(() => setPaused(false), AUTO_INTERVAL);
-      }}
+      onMouseLeave={() => { if (!userInteracted.current) setPaused(false); }}
     >
-      {/* Slides */}
-      {articles.map((article, i) => (
-        <Slide key={article.id} article={article} active={i === current} />
-      ))}
+      <style>{`.featured-scroll::-webkit-scrollbar { display: none; }`}</style>
+
+      {/* Scrollable slide track */}
+      <div
+        ref={scrollRef}
+        className="featured-scroll"
+        style={{
+          display: "flex",
+          width: "100%",
+          height: "100%",
+          overflowX: "auto",
+          overflowY: "hidden",
+          WebkitOverflowScrolling: "touch",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          scrollSnapType: "x mandatory",
+        } as React.CSSProperties}
+        onTouchStart={pauseForInteraction}
+        onTouchEnd={resumeAfterDelay}
+        onMouseDown={pauseForInteraction}
+        onMouseUp={resumeAfterDelay}
+      >
+        {articles.map((article) => (
+          <div
+            key={article.id}
+            style={{
+              minWidth: "100%",
+              width: "100%",
+              height: "100%",
+              flexShrink: 0,
+              scrollSnapAlign: "start",
+            }}
+          >
+            <Slide article={article} />
+          </div>
+        ))}
+      </div>
 
       {/* Dot indicators */}
       {count > 1 && (
@@ -214,7 +259,7 @@ export default function FeaturedCarousel({ articles }: { articles: Article[] }) 
           {articles.map((_, i) => (
             <button
               key={i}
-              onClick={() => goTo(i)}
+              onClick={() => { scrollTo(i); setCurrent(i); }}
               aria-label={`Go to slide ${i + 1}`}
               className="w-2 h-2 rounded-full border-none cursor-pointer transition-all duration-300"
               style={{
@@ -231,15 +276,21 @@ export default function FeaturedCarousel({ articles }: { articles: Article[] }) 
         <>
           <button
             onClick={(e) => { e.stopPropagation(); prev(); }}
-            className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 border-none text-white text-xl w-9 h-9 rounded-full cursor-pointer z-10 hidden md:flex items-center justify-center transition-colors"
             aria-label="Previous slide"
+            className="hidden md:flex"
+            style={{ ...arrowStyle, left: 8 }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.7)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.45)"; }}
           >
             ‹
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); next(); }}
-            className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 border-none text-white text-xl w-9 h-9 rounded-full cursor-pointer z-10 hidden md:flex items-center justify-center transition-colors"
             aria-label="Next slide"
+            className="hidden md:flex"
+            style={{ ...arrowStyle, right: 8 }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.7)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.45)"; }}
           >
             ›
           </button>
