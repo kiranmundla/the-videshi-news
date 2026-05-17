@@ -138,6 +138,45 @@ FALSE_POSITIVE_PATTERNS = [
     r"(?i)west indian day parade",
 ]
 
+# Relevance keywords — event title or description must contain at least one
+# to be considered relevant. Academic competition keywords are always relevant.
+RELEVANCE_KEYWORDS = [
+    "indian", "india", "bollywood", "telugu", "tamil", "hindi", "punjabi",
+    "bengali", "gujarati", "marathi", "malayalam", "kannada", "desi",
+    "south asian", "garba", "dandiya", "bhangra", "diwali", "holi",
+    "navratri", "pongal", "onam", "eid", "iftar", "sikh", "gurdwara",
+    "temple", "carnatic", "hindustani", "bharatanatyam", "kathak",
+    "kuchipudi", "odissi", "biryani", "curry", "naan", "samosa",
+    "masala", "yoga", "ayurveda", "vedic", "sanskrit", "mehndi",
+    "sangeet", "tana ", "ata ", "tta ", "nata", "mata convention",
+    "diaspora", "nri", "cricket", "kabaddi", "ipl",
+    "ramayana", "mahabharata", "kirtan", "bhajan", "puja", "pooja",
+]
+
+# Academic competition keywords are inherently relevant (don't need Indian filter)
+ALWAYS_RELEVANT_KEYWORDS = [
+    "spelling bee", "math olympiad", "science olympiad", "chess tournament",
+    "robotics", "coding competition", "debate tournament", "mathcounts",
+    "amc math", "science bowl", "quiz bowl", "geography bee", "math kangaroo",
+    "deca", "hosa", "fbla", "model un", "mock trial", "bpa",
+    "tsa technology", "first robotics", "vex", "frc",
+    "usaco", "usabo", "usamo", "scripps", "hackathon",
+]
+
+
+def is_relevant(title: str, description: str = "") -> bool:
+    """Check if event is relevant to Indian diaspora or academic competitions."""
+    text = f"{title} {description}".lower()
+    # Academic competitions are always relevant
+    for kw in ALWAYS_RELEVANT_KEYWORDS:
+        if kw in text:
+            return True
+    # Otherwise must match an Indian/South Asian relevance keyword
+    for kw in RELEVANCE_KEYWORDS:
+        if kw in text:
+            return True
+    return False
+
 # ---------------------------------------------------------------------------
 # Supabase
 # ---------------------------------------------------------------------------
@@ -233,7 +272,10 @@ def scrape_eventbrite(city_config: dict, keyword: str) -> list:
         if not title or is_false_positive(title):
             continue
 
-        # Extract venue info
+        # Check relevance
+        summary = evt.get("summary", "")
+        if not is_relevant(title, summary):
+            continue
         venue = evt.get("primary_venue", {}) or {}
         venue_name = venue.get("name", "")
         address = venue.get("address", {}) or {}
@@ -474,7 +516,7 @@ def main():
                     print(f"  ✓ {city['eb']}/{kw}: {len(events)} events")
                     all_events.extend(events)
                     eb_count += len(events)
-                time.sleep(2)  # Rate limit
+                time.sleep(1)  # Rate limit
         print(f"  Eventbrite total (raw): {eb_count}")
 
     # === Ticketmaster ===
