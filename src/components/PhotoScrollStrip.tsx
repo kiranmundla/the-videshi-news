@@ -137,7 +137,7 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
               padding: "20px 10px 8px",
               background: "linear-gradient(transparent, rgba(0,0,0,0.7))",
               color: "white", fontSize: "0.75rem", fontWeight: 500,
-              whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+              overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
             }}>
               {photo.caption}
             </div>
