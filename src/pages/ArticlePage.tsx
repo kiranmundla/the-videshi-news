@@ -288,6 +288,14 @@ export default function ArticlePage() {
   }, [fsPhotos.length]);
   const fsClose = useCallback(() => { setFsIdx(null); setFsPhotos([]); }, []);
 
+  // Lock body scroll when fullscreen lightbox is open
+  useEffect(() => {
+    if (fsIdx !== null) {
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = ""; };
+    }
+  }, [fsIdx !== null]);
+
   useEffect(() => {
     if (fsIdx === null) return;
     const handler = (e: KeyboardEvent) => {
@@ -509,31 +517,49 @@ export default function ArticlePage() {
 
       <SiteFooter />
 
-      {fsIdx !== null && fsPhotos[fsIdx] && (() => {
-        let touchStartX = 0;
+      {fsIdx !== null && fsPhotos.length > 0 && (() => {
         return (
           <>
-          <style>{`@keyframes lbFadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
-          <div onClick={(e) => { if (e.target === e.currentTarget) fsClose(); }}
-            className="fixed inset-0 z-[9999] bg-black/95 flex flex-col items-center justify-center"
+          <style>{`@keyframes lbFadeIn { from { opacity: 0; } to { opacity: 1; } }
+.fs-scroll::-webkit-scrollbar { display: none; }`}</style>
+          <div
+            className="fixed inset-0 z-[9999] bg-black flex flex-col"
             style={{ animation: "lbFadeIn 0.15s ease-out" }}>
             <button onClick={fsClose} className="absolute top-4 right-5 bg-transparent border-none text-white text-3xl cursor-pointer z-10">✕</button>
-            <div className="absolute top-5 left-1/2 -translate-x-1/2 text-white/70 text-sm font-medium">
+            <div className="absolute top-5 left-1/2 -translate-x-1/2 text-white/70 text-sm font-medium z-10">
               {fsIdx + 1} / {fsPhotos.length}
             </div>
-            <button onClick={(e) => { e.stopPropagation(); fsPrev(); }}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/15 border-none text-white text-[28px] w-12 h-12 rounded-full cursor-pointer hover:bg-white/25 transition-colors hidden md:flex items-center justify-center">‹</button>
             <div
-              onTouchStart={(e) => { touchStartX = e.touches[0].clientX; }}
-              onTouchEnd={(e) => { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff < 0 ? fsNext() : fsPrev(); } }}
-              className="max-w-[90vw] max-h-[75vh]"
+              ref={(el) => {
+                if (el) {
+                  // Scroll to initial index
+                  el.scrollLeft = fsIdx * el.clientWidth;
+                  // Track scroll position to update counter
+                  const onScroll = () => {
+                    const idx = Math.round(el.scrollLeft / el.clientWidth);
+                    setFsIdx(Math.min(idx, fsPhotos.length - 1));
+                  };
+                  el.onscroll = onScroll;
+                }
+              }}
+              className="fs-scroll flex-1 flex overflow-x-auto overflow-y-hidden"
+              style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth" }}
             >
-              <img src={fsPhotos[fsIdx].src} alt={fsPhotos[fsIdx].caption}
-                className="max-w-[90vw] max-h-[75vh] object-contain rounded" />
+              {fsPhotos.map((photo, i) => (
+                <div
+                  key={i}
+                  className="flex-shrink-0 w-screen h-full flex flex-col items-center justify-center"
+                  style={{ scrollSnapAlign: "start" }}
+                  onClick={(e) => { if (e.target === e.currentTarget) fsClose(); }}
+                >
+                  <img src={photo.src} alt={photo.caption}
+                    className="max-w-[90vw] max-h-[75vh] object-contain rounded" />
+                  {photo.caption && (
+                    <div className="mt-4 text-white/85 text-[15px] font-medium text-center max-w-[80vw]">{photo.caption}</div>
+                  )}
+                </div>
+              ))}
             </div>
-            <button onClick={(e) => { e.stopPropagation(); fsNext(); }}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/15 border-none text-white text-[28px] w-12 h-12 rounded-full cursor-pointer hover:bg-white/25 transition-colors hidden md:flex items-center justify-center">›</button>
-            <div className="mt-4 text-white/85 text-[15px] font-medium text-center max-w-[80vw]">{fsPhotos[fsIdx].caption}</div>
           </div>
           </>
         );
