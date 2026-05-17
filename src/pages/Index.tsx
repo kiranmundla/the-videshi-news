@@ -384,14 +384,14 @@ export default function Index() {
           .map((s) => (
             <section key={s.slug}>
               {s.slug === "markets-finance" && null}
+              {s.slug === "technology" && <TechBuzz category="tech" />}
+              {s.slug === "entertainment" && <CelebrityBuzz />}
               <HomeCategorySection
                 slug={s.slug}
                 label={s.label}
                 clusters={[]}
                 pool={s.pool}
               />
-              {s.slug === "technology" && <TechBuzz category="tech" />}
-              {s.slug === "entertainment" && <CelebrityBuzz />}
             </section>
           ))}
 
