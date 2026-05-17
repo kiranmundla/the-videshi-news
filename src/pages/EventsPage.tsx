@@ -44,6 +44,23 @@ const CAT_EMOJI: Record<string, string> = {
   Other: "📌",
 };
 
+function categoryEmoji(category: string | null): string {
+  switch (category) {
+    case "Music": return "🎵";
+    case "Dance": return "💃";
+    case "Food": return "🍛";
+    case "Sports": return "🏏";
+    case "Comedy": return "😂";
+    case "Festival": return "🪔";
+    case "Religious": return "🛕";
+    case "Education": return "🎓";
+    case "Competition": return "🏆";
+    case "Community": return "🤝";
+    case "Cultural": return "🎭";
+    default: return "🎪";
+  }
+}
+
 function CategoryBadge({ category }: { category: string | null }) {
   if (!category) return null;
   const color = CAT_COLORS[category] || CAT_COLORS.Other;
@@ -78,7 +95,7 @@ function EventCard({ event }: { event: EventItem }) {
         </div>
       ) : (
         <div className="sm:w-48 sm:min-w-[12rem] h-40 sm:h-auto bg-muted/30 flex items-center justify-center flex-shrink-0">
-          <span className="text-4xl opacity-40">🎪</span>
+          <span className="text-4xl opacity-60">{categoryEmoji(event.category)}</span>
         </div>
       )}
 
