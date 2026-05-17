@@ -189,7 +189,7 @@ function BuzzLightbox({ post, images, onClose }: {
           textDecoration: "none",
         }}
       >
-        📷 @{post.handle} on Instagram
+        {"📷 @"}{post.handle}{" on Instagram"}
       </a>
       )}
     </div>
