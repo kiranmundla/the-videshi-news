@@ -1,0 +1,138 @@
+{
+  "_description": "Top Bollywood & Indian celebrity social handles for entertainment article embeds. Pipeline uses these to find relevant Instagram/X posts when writing entertainment articles.",
+  "_updated": "2026-05-16",
+  "celebrities": [
+    {
+      "name": "Deepika Padukone",
+      "instagram": "deepikapadukone",
+      "twitter": "deepikapadukone",
+      "tags": ["actress", "fashion", "A-list"]
+    },
+    {
+      "name": "Alia Bhatt",
+      "instagram": "aliaabhatt",
+      "twitter": "aliaa08",
+      "tags": ["actress", "producer", "A-list"]
+    },
+    {
+      "name": "Priyanka Chopra",
+      "instagram": "priyankachopra",
+      "twitter": "priyankachopra",
+      "tags": ["actress", "global", "NRI", "A-list"]
+    },
+    {
+      "name": "Katrina Kaif",
+      "instagram": "katrinakaif",
+      "twitter": null,
+      "tags": ["actress", "fashion", "A-list"]
+    },
+    {
+      "name": "Kareena Kapoor Khan",
+      "instagram": "kareenakapoorkhan",
+      "twitter": null,
+      "tags": ["actress", "A-list"]
+    },
+    {
+      "name": "Anushka Sharma",
+      "instagram": "anushkasharma",
+      "twitter": "AnushkaSharma",
+      "tags": ["actress", "producer", "A-list"]
+    },
+    {
+      "name": "Janhvi Kapoor",
+      "instagram": "janhvikapoor",
+      "twitter": null,
+      "tags": ["actress", "gen-z"]
+    },
+    {
+      "name": "Kiara Advani",
+      "instagram": "kiaraaliadvani",
+      "twitter": null,
+      "tags": ["actress", "A-list"]
+    },
+    {
+      "name": "Rashmika Mandanna",
+      "instagram": "rashmika_mandanna",
+      "twitter": "iamRashmika",
+      "tags": ["actress", "pan-india"]
+    },
+    {
+      "name": "Samantha Ruth Prabhu",
+      "instagram": "samantharuthprabhuoffl",
+      "twitter": "Samanthaprabhu2",
+      "tags": ["actress", "south", "pan-india"]
+    },
+    {
+      "name": "Shraddha Kapoor",
+      "instagram": "shraddhakapoor",
+      "twitter": "ShraddhaKapoor",
+      "tags": ["actress", "A-list"]
+    },
+    {
+      "name": "Kriti Sanon",
+      "instagram": "kritisanon",
+      "twitter": "kritisanon",
+      "tags": ["actress", "A-list"]
+    },
+    {
+      "name": "Shah Rukh Khan",
+      "instagram": "iamsrk",
+      "twitter": "iamsrk",
+      "tags": ["actor", "icon", "A-list"]
+    },
+    {
+      "name": "Ranveer Singh",
+      "instagram": "ranveersingh",
+      "twitter": "RanveerOfficial",
+      "tags": ["actor", "fashion", "A-list"]
+    },
+    {
+      "name": "Ranbir Kapoor",
+      "instagram": null,
+      "twitter": null,
+      "tags": ["actor", "A-list"]
+    },
+    {
+      "name": "Virat Kohli",
+      "instagram": "virat.kohli",
+      "twitter": "imVkohli",
+      "tags": ["cricket", "sports-celebrity"]
+    },
+    {
+      "name": "Diljit Dosanjh",
+      "instagram": "diljitdosanjh",
+      "twitter": "diljitdosanjh",
+      "tags": ["actor", "singer", "global", "NRI-appeal"]
+    },
+    {
+      "name": "Arijit Singh",
+      "instagram": "arijitsingh",
+      "twitter": "arijitsingh",
+      "tags": ["singer", "music"]
+    },
+    {
+      "name": "Radhika Apte",
+      "instagram": "radhikaofficial",
+      "twitter": "RadhikaApte",
+      "tags": ["actress", "OTT", "indie"]
+    },
+    {
+      "name": "Sobhita Dhulipala",
+      "instagram": "sobhitad",
+      "twitter": null,
+      "tags": ["actress", "OTT", "fashion"]
+    },
+    {
+      "name": "Nayanthara",
+      "instagram": "nayanthara",
+      "twitter": null,
+      "tags": ["actress", "south", "pan-india"]
+    },
+    {
+      "name": "Triptii Dimri",
+      "instagram": "tripti_dimri",
+      "twitter": null,
+      "tags": ["actress", "rising", "gen-z"]
+    }
+  ]
+}
