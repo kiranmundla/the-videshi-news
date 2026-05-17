@@ -102,7 +102,7 @@ function TweetThumb({ post, onClick }: { post: BuzzPost; onClick: () => void }) 
 
 /* ── Lightbox modal ── */
 
-function BuzzLightbox({ post, onClose }: { post: BuzzPost; onClose: () => void }) {
+function LightboxSlide({ post }: { post: BuzzPost }) {
   const shortcode = post.platform === "instagram" ? extractInstaShortcode(post.url) : null;
   const tweetRef = useRef<HTMLDivElement>(null);
 
@@ -114,50 +114,20 @@ function BuzzLightbox({ post, onClose }: { post: BuzzPost; onClose: () => void }
     }
   }, [post]);
 
-  // Close on escape
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
-    window.addEventListener("keydown", handler);
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", handler);
-      document.body.style.overflow = "";
-    };
-  }, [onClose]);
-
   const tweetUrl = post.url
     .replace(/^https?:\/\/(mobile\.)?twitter\.com/, "https://x.com")
     .split("?")[0];
 
   return (
-    <div
-      onClick={onClose}
-      style={{
-        position: "fixed", inset: 0, zIndex: 9999,
-        background: "rgba(0,0,0,0.85)", backdropFilter: "blur(8px)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        padding: 16,
-      }}
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          width: "100%", maxWidth: 480, maxHeight: "90vh",
-          borderRadius: 12, overflow: "hidden", background: "#000",
-          position: "relative",
-        }}
-      >
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          style={{
-            position: "absolute", top: 8, right: 8, zIndex: 10,
-            background: "rgba(0,0,0,0.6)", border: "none", color: "#fff",
-            width: 32, height: 32, borderRadius: "50%", cursor: "pointer",
-            fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center",
-          }}
-        >×</button>
-
+    <div style={{
+      minWidth: "100%", width: "100%", height: "100%",
+      flexShrink: 0, scrollSnapAlign: "center",
+      display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+    }}>
+      <div style={{
+        width: "100%", maxWidth: 480, maxHeight: "80vh",
+        borderRadius: 12, overflow: "hidden", background: "#000",
+      }}>
         {post.platform === "instagram" && shortcode ? (
           <iframe
             src={`https://www.instagram.com/p/${shortcode}/embed/`}
@@ -170,14 +140,12 @@ function BuzzLightbox({ post, onClose }: { post: BuzzPost; onClose: () => void }
             style={{ display: "block", border: "none", background: "#000" }}
           />
         ) : (
-          <div ref={tweetRef} style={{ padding: 16, maxHeight: "80vh", overflow: "auto" }}>
+          <div ref={tweetRef} style={{ padding: 16, maxHeight: "70vh", overflow: "auto" }}>
             <blockquote className="twitter-tweet" data-dnt="true" data-theme="dark">
               <a href={tweetUrl}>{tweetUrl}</a>
             </blockquote>
           </div>
         )}
-
-        {/* View on Instagram/X link */}
         <a
           href={post.url}
           target="_blank"
@@ -195,6 +163,118 @@ function BuzzLightbox({ post, onClose }: { post: BuzzPost; onClose: () => void }
   );
 }
 
+function BuzzLightbox({ posts, startIndex, onClose }: { posts: BuzzPost[]; startIndex: number; onClose: () => void }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [current, setCurrent] = useState(startIndex);
+
+  // Scroll to initial post
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollTo({ left: el.clientWidth * startIndex, behavior: "auto" });
+  }, [startIndex]);
+
+  // Track current from scroll
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const w = el.clientWidth;
+        if (w > 0) setCurrent(Math.round(el.scrollLeft / w));
+        ticking = false;
+      });
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Escape to close, arrow keys to navigate
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight" && scrollRef.current) {
+        scrollRef.current.scrollBy({ left: scrollRef.current.clientWidth, behavior: "smooth" });
+      }
+      if (e.key === "ArrowLeft" && scrollRef.current) {
+        scrollRef.current.scrollBy({ left: -scrollRef.current.clientWidth, behavior: "smooth" });
+      }
+    };
+    window.addEventListener("keydown", handler);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handler);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      style={{
+        position: "fixed", inset: 0, zIndex: 9999,
+        background: "rgba(0,0,0,0.9)", backdropFilter: "blur(8px)",
+      }}
+    >
+      {/* Close button */}
+      <button
+        onClick={onClose}
+        style={{
+          position: "absolute", top: 12, right: 12, zIndex: 10,
+          background: "rgba(255,255,255,0.15)", border: "none", color: "#fff",
+          width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
+          fontSize: 20, display: "flex", alignItems: "center", justifyContent: "center",
+        }}
+      >×</button>
+
+      {/* Dot indicators */}
+      <div style={{
+        position: "absolute", bottom: 16, left: "50%", transform: "translateX(-50%)",
+        zIndex: 10, display: "flex", gap: 6,
+      }}>
+        {posts.map((_, i) => (
+          <div
+            key={i}
+            style={{
+              width: 6, height: 6, borderRadius: "50%",
+              background: i === current ? "#fff" : "rgba(255,255,255,0.3)",
+              transition: "background 0.2s",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Celebrity name */}
+      <div style={{
+        position: "absolute", top: 16, left: "50%", transform: "translateX(-50%)",
+        zIndex: 10, color: "#fff", fontSize: 14, fontWeight: 600,
+        textAlign: "center", opacity: 0.9,
+      }}>
+        {posts[current]?.celebrity}
+      </div>
+
+      {/* Scrollable slides */}
+      <div
+        ref={scrollRef}
+        onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+        style={{
+          display: "flex", width: "100%", height: "100%",
+          overflowX: "auto", overflowY: "hidden",
+          WebkitOverflowScrolling: "touch", scrollbarWidth: "none",
+          msOverflowStyle: "none", scrollSnapType: "x mandatory",
+        } as React.CSSProperties}
+      >
+        <style>{`.buzz-lightbox-scroll::-webkit-scrollbar { display: none; }`}</style>
+        {posts.map((post, i) => (
+          <LightboxSlide key={i} post={post} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ── Main strip ── */
 
 export default function CelebrityBuzz() {
@@ -202,7 +282,7 @@ export default function CelebrityBuzz() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-  const [selectedPost, setSelectedPost] = useState<BuzzPost | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     fetch("/data/celebrity-buzz.json")
@@ -295,15 +375,15 @@ export default function CelebrityBuzz() {
         >
           {posts.map((post, i) => (
             post.platform === "instagram"
-              ? <InstaThumb key={i} post={post} onClick={() => setSelectedPost(post)} />
-              : <TweetThumb key={i} post={post} onClick={() => setSelectedPost(post)} />
+              ? <InstaThumb key={i} post={post} onClick={() => setSelectedIndex(i)} />
+              : <TweetThumb key={i} post={post} onClick={() => setSelectedIndex(i)} />
           ))}
         </div>
       </div>
 
       {/* Lightbox */}
-      {selectedPost && (
-        <BuzzLightbox post={selectedPost} onClose={() => setSelectedPost(null)} />
+      {selectedIndex !== null && (
+        <BuzzLightbox posts={posts} startIndex={selectedIndex} onClose={() => setSelectedIndex(null)} />
       )}
     </section>
   );
