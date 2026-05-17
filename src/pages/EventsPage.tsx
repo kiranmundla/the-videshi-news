@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
@@ -7,6 +8,7 @@ import {
   EventItem,
   getEvents,
   formatEventDate,
+  generateSlug,
   CITY_GROUPS,
   EVENT_CATEGORIES,
 } from "@/lib/events";
@@ -85,11 +87,11 @@ function EventCard({ event }: { event: EventItem }) {
     <article className="group flex flex-col sm:flex-row bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full box-border" style={{ wordBreak: "break-word" }}>
       {/* Image */}
       {event.image_url ? (
-        <div className="w-full sm:w-48 sm:min-w-[12rem] h-48 sm:h-auto overflow-hidden flex-shrink-0">
+        <div className="w-full sm:w-56 sm:min-w-[14rem] h-48 sm:h-auto overflow-hidden flex-shrink-0">
           <img
             src={event.image_url}
             alt={event.title}
-            className="w-full h-full object-contain bg-muted/10 group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover bg-muted/10 group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
           />
         </div>
@@ -100,7 +102,7 @@ function EventCard({ event }: { event: EventItem }) {
       )}
 
       {/* Content */}
-      <div className="flex-1 p-4 sm:py-4 sm:pr-4 sm:pl-0 flex flex-col justify-between min-w-0 overflow-hidden">
+      <div className="flex-1 p-4 sm:py-4 sm:pr-4 sm:pl-4 flex flex-col justify-between min-w-0 overflow-hidden">
         <div>
           <div className="flex items-center gap-2 mb-2 flex-wrap">
             <CategoryBadge category={event.category} />
@@ -140,19 +142,16 @@ function EventCard({ event }: { event: EventItem }) {
     </article>
   );
 
-  if (event.ticket_url) {
-    return (
-      <a
-        href={event.ticket_url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block no-underline"
-      >
-        {card}
-      </a>
-    );
-  }
-  return card;
+  const eventSlug = event.slug || generateSlug(event.title, event.date);
+
+  return (
+    <Link
+      to={`/events/${eventSlug}`}
+      className="block no-underline"
+    >
+      {card}
+    </Link>
+  );
 }
 
 /* ------------------------------------------------------------------ */

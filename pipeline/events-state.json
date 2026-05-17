@@ -1,13 +1,13 @@
 {
-  "last_run": "2026-05-17T22:00:00Z",
+  "last_run": "2026-05-17T23:37:21Z",
   "cities_checked": {
-    "San Jose": "2026-05-17T21:19:00Z",
+    "San Jose": "2026-05-17T23:37:21Z",
     "San Francisco": "2026-05-17T22:00:00Z",
-    "New York": "2026-05-17T21:19:00Z",
+    "New York": "2026-05-17T23:37:21Z",
     "Edison": "2026-05-17T22:00:00Z",
-    "Dallas": "2026-05-17T21:19:00Z",
-    "Houston": "2026-05-17T21:19:00Z",
-    "Chicago": "2026-05-17T22:00:00Z",
+    "Dallas": "2026-05-17T23:37:21Z",
+    "Houston": "2026-05-17T23:37:21Z",
+    "Chicago": "2026-05-17T23:37:21Z",
     "Los Angeles": "2026-05-17T22:00:00Z",
     "Atlanta": "2026-05-17T21:19:00Z",
     "Washington": "2026-05-17T21:19:00Z",
@@ -15,20 +15,36 @@
     "Philadelphia": "2026-05-17T22:00:00Z",
     "Seattle": "2026-05-17T22:00:00Z",
     "Baltimore": "2026-05-17T21:19:00Z",
-    "Detroit": "2026-05-17T22:00:00Z"
+    "Detroit": "2026-05-17T22:00:00Z",
+    "Pleasanton": "2026-05-17T23:37:21Z",
+    "Plano": "2026-05-17T23:37:21Z",
+    "Frisco": "2026-05-17T23:37:21Z",
+    "Naperville": "2026-05-17T23:37:21Z",
+    "Arlington Heights": "2026-05-17T23:37:21Z",
+    "Willowbrook": "2026-05-17T23:37:21Z",
+    "Garwood": "2026-05-17T23:37:21Z",
+    "Mahwah": "2026-05-17T23:37:21Z",
+    "Atlantic City": "2026-05-17T23:37:21Z"
   },
   "stats": {
     "2026-05-17": {
-      "new_events": 31,
+      "new_events": 55,
       "updated_events": 0,
-      "sources": ["ticketmaster", "web"],
+      "sources": [
+        "ticketmaster",
+        "web",
+        "sulekha",
+        "eventbrite"
+      ],
       "categories": {
-        "Music": 18,
-        "Community": 6,
+        "Music": 32,
+        "Community": 8,
         "Religious": 1,
         "Competition": 1,
-        "Comedy": 4,
-        "Cultural": 1
+        "Comedy": 5,
+        "Cultural": 5,
+        "Dance": 1,
+        "Festival": 2
       },
       "runs": [
         {
@@ -42,9 +58,20 @@
           "new": 8,
           "updated": 0,
           "note": "Second pass focused on Detroit, Philadelphia, Seattle, Los Angeles. Added BMM 2026 convention (Seattle, Aug 6-9), Tasveer Film Festival (Seattle, Oct 13-18), IYNAUS yoga convention (Philadelphia, May 22-27), Seattle MM 5K walk/run, Desi Comedy Fest (Chicago, May 31), Varun Sharma comedy (Edison NJ), 2x HellaSecret Desi Comedy Night (SF, June 13 & 20)."
+        },
+        {
+          "time": "2026-05-17T23:37:21Z",
+          "new": 24,
+          "updated": 0,
+          "note": "Third pass: Eventbrite scraping + Sulekha JSON-LD + web search. Bay Area (Ali Zafar, Javed Ali, Sonu Nigam, Raagas fusion, Swades Aug 15, Nritya Sambhrama dance, Diwali Dhamaka Oct), Dallas (Javed Ali, Ram Miriyala, Yoga Day), Chicago (DESIPALOOZA, Bollywood Cruise, Haricharan, Arjun Rampal DJ, Sudesh Bhosle, Qawwali, Ram Miriyala, Nawazuddin comedy, Khwab-e-Rafu art), NYC/NJ (NYIFF film fest, Tamil Nite, AAANA convention), Houston (Javed Ali), Atlantic City (Sonu Nigam)."
         }
       ]
     }
   },
-  "next_cities": ["San Jose", "Dallas", "Houston", "Atlanta"]
+  "next_cities": [
+    "Los Angeles",
+    "Seattle",
+    "Washington",
+    "Charlotte"
+  ]
 }
