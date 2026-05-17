@@ -47,21 +47,20 @@ function InstaCard({ post }: { post: BuzzPost }) {
 
   return (
     <div style={{
-      width: 320, flexShrink: 0, borderRadius: 12, overflow: "hidden",
-      background: "#111", scrollSnapAlign: "center",
-      boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
+      width: 300, flexShrink: 0, borderRadius: 6, overflow: "hidden",
+      background: "#111", scrollSnapAlign: "start",
     }}>
       <div style={{
-        padding: "10px 14px", display: "flex", alignItems: "center", gap: 8,
+        padding: "8px 12px", display: "flex", alignItems: "center", gap: 6,
         borderBottom: "1px solid #222",
       }}>
-        <span style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>{post.celebrity}</span>
-        <span style={{ fontSize: 12, color: "#888" }}>@{post.handle}</span>
+        <span style={{ fontSize: 12, fontWeight: 600, color: "#fff" }}>{post.celebrity}</span>
+        <span style={{ fontSize: 11, color: "#888" }}>@{post.handle}</span>
       </div>
       <iframe
         src={`https://www.instagram.com/p/${shortcode}/embed/`}
-        width="320"
-        height="400"
+        width="300"
+        height="380"
         frameBorder="0"
         scrolling="no"
         loading="lazy"
@@ -88,18 +87,17 @@ function TweetCard({ post }: { post: BuzzPost }) {
 
   return (
     <div style={{
-      width: 320, flexShrink: 0, borderRadius: 12, overflow: "hidden",
-      background: "#111", scrollSnapAlign: "center",
-      boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
+      width: 300, flexShrink: 0, borderRadius: 6, overflow: "hidden",
+      background: "#111", scrollSnapAlign: "start",
     }}>
       <div style={{
-        padding: "10px 14px", display: "flex", alignItems: "center", gap: 8,
+        padding: "8px 12px", display: "flex", alignItems: "center", gap: 6,
         borderBottom: "1px solid #222",
       }}>
-        <span style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>{post.celebrity}</span>
-        <span style={{ fontSize: 12, color: "#888" }}>@{post.handle}</span>
+        <span style={{ fontSize: 12, fontWeight: 600, color: "#fff" }}>{post.celebrity}</span>
+        <span style={{ fontSize: 11, color: "#888" }}>@{post.handle}</span>
       </div>
-      <div ref={ref} style={{ padding: 8, maxHeight: 420, overflow: "hidden" }}>
+      <div ref={ref} style={{ padding: 8, maxHeight: 400, overflow: "hidden" }}>
         <blockquote className="twitter-tweet" data-dnt="true" data-theme="dark">
           <a href={tweetUrl}>{tweetUrl}</a>
         </blockquote>
@@ -135,7 +133,7 @@ export default function CelebrityBuzz() {
   const scrollStrip = useCallback((dir: "left" | "right") => {
     const el = scrollRef.current;
     if (!el) return;
-    el.scrollBy({ left: dir === "right" ? 340 : -340, behavior: "smooth" });
+    el.scrollBy({ left: dir === "right" ? 310 : -310, behavior: "smooth" });
   }, []);
 
   useEffect(() => {
@@ -200,7 +198,7 @@ export default function CelebrityBuzz() {
           ref={scrollRef}
           className="celeb-buzz-scroll"
           style={{
-            display: "flex", gap: 16, overflowX: "auto", overflowY: "hidden",
+            display: "flex", gap: 8, overflowX: "auto", overflowY: "hidden",
             WebkitOverflowScrolling: "touch", scrollbarWidth: "none",
             msOverflowStyle: "none", scrollSnapType: "x mandatory",
             paddingLeft: "4%", paddingRight: "4%", paddingBottom: 8,
