@@ -63,7 +63,7 @@ export default function CategoryPage() {
       <main className="container flex-1 pt-8 md:pt-10">
         <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-8">{def.label}</h1>
 
-        {def.slug === "technology" && <TechBuzz />}
+        {def.slug === "news" && <TechBuzz />}
 
         {def.slug === "travel" && (
           <div style={{ display: "flex", gap: 8, overflowX: "auto", paddingBottom: 20, marginBottom: 8, WebkitOverflowScrolling: "touch" as any }}>

@@ -46,32 +46,6 @@
       ]
     },
     {
-      "name": "Kamala Harris",
-      "handle": "KamalaHarris",
-      "platform": "x",
-      "role": "Former Vice President of the United States",
-      "avatar": "https://pbs.twimg.com/profile_images/1856033094085758976/JJ9vkP40_400x400.jpg",
-      "latestPost": null,
-      "posts": [
-        {
-          "url": "https://x.com/KamalaHarris"
-        }
-      ]
-    },
-    {
-      "name": "Mukesh Ambani",
-      "handle": "RelianceJio",
-      "platform": "x",
-      "role": "Chairman, Reliance Industries",
-      "avatar": "",
-      "latestPost": null,
-      "posts": [
-        {
-          "url": "https://x.com/RelianceJio"
-        }
-      ]
-    },
-    {
       "name": "Mark Zuckerberg",
       "handle": "zuck",
       "platform": "threads",
@@ -217,23 +191,108 @@
       }
     },
     {
-      "name": "Ritesh Agarwal",
-      "handle": "ritaborneo",
+      "name": "Keir Starmer",
+      "handle": "Keir_Starmer",
       "platform": "x",
-      "role": "CEO, OYO Rooms",
+      "role": "Prime Minister, United Kingdom",
       "avatar": "",
+      "latestPost": null,
       "posts": [
         {
-          "url": "https://x.com/ritaborneo"
+          "url": "https://x.com/Keir_Starmer"
         }
-      ],
-      "latestPost": {
-        "url": "https://x.com/ritaborneo",
-        "text": "OYO just crossed 500 properties in our premium segment. The journey from budget to luxury has been incredible. India's hospitality story is just getting started.",
-        "date": "2026-05-09T11:00:00Z",
-        "likes": 12000,
-        "retweets": 2000
-      }
+      ]
+    },
+    {
+      "name": "Anthony Albanese",
+      "handle": "AlboMP",
+      "platform": "x",
+      "role": "Prime Minister, Australia",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/AlboMP"
+        }
+      ]
+    },
+    {
+      "name": "Christopher Luxon",
+      "handle": "chrisluxonNZ",
+      "platform": "x",
+      "role": "Prime Minister, New Zealand",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/chrisluxonNZ"
+        }
+      ]
+    },
+    {
+      "name": "Mohammed bin Rashid",
+      "handle": "HHShkMohd",
+      "platform": "x",
+      "role": "Vice President & PM, UAE",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/HHShkMohd"
+        }
+      ]
+    },
+    {
+      "name": "Giorgia Meloni",
+      "handle": "GiorgiaMeloni",
+      "platform": "x",
+      "role": "Prime Minister, Italy",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/GiorgiaMeloni"
+        }
+      ]
+    },
+    {
+      "name": "Emmanuel Macron",
+      "handle": "EmmanuelMacron",
+      "platform": "x",
+      "role": "President, France",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/EmmanuelMacron"
+        }
+      ]
+    },
+    {
+      "name": "PMO India",
+      "handle": "PMOIndia",
+      "platform": "x",
+      "role": "Prime Minister's Office, India",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/PMOIndia"
+        }
+      ]
+    },
+    {
+      "name": "The White House",
+      "handle": "WhiteHouse",
+      "platform": "x",
+      "role": "Official White House Account",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/WhiteHouse"
+        }
+      ]
     }
   ],
   "lastUpdated": "2026-05-17T07:25:39.592553+00:00"
