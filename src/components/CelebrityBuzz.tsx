@@ -51,19 +51,19 @@ function InstaThumb({ post, onClick }: { post: BuzzPost; onClick: () => void }) 
       style={{
         width: 280, flexShrink: 0, overflow: "hidden",
         background: "#000", scrollSnapAlign: "center",
-        cursor: "pointer",
+        cursor: "pointer", maxHeight: 380,
       }}
     >
       <iframe
         src={`https://www.instagram.com/p/${shortcode}/embed/`}
         width="280"
-        height="360"
+        height="500"
         frameBorder="0"
         scrolling="no"
         loading="lazy"
         allowTransparency
         title={`${post.celebrity} Instagram post`}
-        style={{ display: "block", border: "none", background: "#000", pointerEvents: "none" }}
+        style={{ display: "block", border: "none", background: "#000", pointerEvents: "none", marginBottom: -60 }}
       />
     </div>
   );
@@ -125,20 +125,22 @@ function LightboxSlide({ post }: { post: BuzzPost }) {
       display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
     }}>
       <div style={{
-        width: "100%", maxWidth: 480, maxHeight: "80vh",
+        width: "100%", maxWidth: 480, maxHeight: "85vh",
         borderRadius: 12, overflow: "hidden", background: "#000",
       }}>
         {post.platform === "instagram" && shortcode ? (
-          <iframe
-            src={`https://www.instagram.com/p/${shortcode}/embed/`}
-            width="100%"
-            height="600"
-            frameBorder="0"
-            scrolling="no"
-            allowTransparency
-            title={`${post.celebrity} Instagram post`}
-            style={{ display: "block", border: "none", background: "#000" }}
-          />
+          <div style={{ overflow: "hidden", maxHeight: "calc(85vh - 50px)" }}>
+            <iframe
+              src={`https://www.instagram.com/p/${shortcode}/embed/captioned/`}
+              width="100%"
+              height="800"
+              frameBorder="0"
+              scrolling="no"
+              allowTransparency
+              title={`${post.celebrity} Instagram post`}
+              style={{ display: "block", border: "none", background: "#000", marginBottom: -80 }}
+            />
+          </div>
         ) : (
           <div ref={tweetRef} style={{ padding: 16, maxHeight: "70vh", overflow: "auto" }}>
             <blockquote className="twitter-tweet" data-dnt="true" data-theme="dark">
