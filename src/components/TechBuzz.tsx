@@ -17,6 +17,7 @@ interface Leader {
   avatar: string;
   latestPost?: LatestPost;
   posts: { url: string; text?: string }[];
+  category?: "tech" | "world";
 }
 
 /* ── Platform icons ── */
@@ -103,7 +104,7 @@ function timeAgo(dateStr: string): string {
 const COLORS = ["#1DA1F2", "#6366f1", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899"];
 
 /* ── Main component ── */
-export default function TechBuzz() {
+export default function TechBuzz({ category = "tech" }: { category?: "tech" | "world" }) {
   const [leaders, setLeaders] = useState<Leader[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -111,7 +112,7 @@ export default function TechBuzz() {
   useEffect(() => {
     fetch("/data/tech-buzz.json")
       .then((r) => r.json())
-      .then((d) => setLeaders(d.leaders || []))
+      .then((d) => setLeaders((d.leaders || []).filter((l: Leader) => !l.category || l.category === category)))
       .catch(() => {});
   }, []);
 
@@ -121,8 +122,17 @@ export default function TechBuzz() {
     <section className="mt-8 mb-4">
       <div className="flex items-center gap-2 mb-3 px-4 md:px-0">
         <span style={{ fontSize: 18 }}>⚡</span>
-        <h2 className="font-serif text-lg font-bold tracking-tight">Power Pulse</h2>
-        <span className="text-xs text-muted-foreground ml-1">What world leaders are saying</span>
+        {category === "tech" ? (
+          <>
+            <h2 className="font-serif text-lg font-bold tracking-tight">Tech Pulse</h2>
+            <span className="text-xs text-muted-foreground ml-1">What tech leaders are saying</span>
+          </>
+        ) : (
+          <>
+            <h2 className="font-serif text-lg font-bold tracking-tight">Power Pulse</h2>
+            <span className="text-xs text-muted-foreground ml-1">What world leaders are saying</span>
+          </>
+        )}
       </div>
 
       <style>{`.tech-buzz-scroll::-webkit-scrollbar { display: none; }`}</style>

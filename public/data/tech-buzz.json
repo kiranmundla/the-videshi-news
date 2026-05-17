@@ -17,7 +17,8 @@
         "date": "2026-05-12T20:00:00Z",
         "likes": 520000,
         "retweets": 95000
-      }
+      },
+      "category": "tech"
     },
     {
       "name": "Donald Trump",
@@ -30,7 +31,8 @@
         {
           "url": "https://truthsocial.com/@realDonaldTrump"
         }
-      ]
+      ],
+      "category": "world"
     },
     {
       "name": "Narendra Modi",
@@ -43,7 +45,8 @@
         {
           "url": "https://x.com/narendramodi"
         }
-      ]
+      ],
+      "category": "world"
     },
     {
       "name": "Mark Zuckerberg",
@@ -55,7 +58,8 @@
         {
           "url": "https://www.threads.net/@zuck"
         }
-      ]
+      ],
+      "category": "tech"
     },
     {
       "name": "Sundar Pichai",
@@ -74,7 +78,8 @@
         "date": "2026-05-10T12:00:00Z",
         "likes": 102000,
         "retweets": 15000
-      }
+      },
+      "category": "tech"
     },
     {
       "name": "Satya Nadella",
@@ -93,7 +98,8 @@
         "date": "2026-05-11T15:00:00Z",
         "likes": 89000,
         "retweets": 12000
-      }
+      },
+      "category": "tech"
     },
     {
       "name": "Sam Altman",
@@ -112,7 +118,8 @@
         "date": "2026-05-12T18:00:00Z",
         "likes": 142000,
         "retweets": 28000
-      }
+      },
+      "category": "tech"
     },
     {
       "name": "Tim Cook",
@@ -131,7 +138,8 @@
         "date": "2026-05-08T14:00:00Z",
         "likes": 230000,
         "retweets": 42000
-      }
+      },
+      "category": "tech"
     },
     {
       "name": "Nandan Nilekani",
@@ -150,7 +158,8 @@
         "date": "2026-05-10T08:00:00Z",
         "likes": 45000,
         "retweets": 8000
-      }
+      },
+      "category": "tech"
     },
     {
       "name": "Bill Gates",
@@ -169,7 +178,8 @@
         "date": "2026-05-09T16:00:00Z",
         "likes": 175000,
         "retweets": 35000
-      }
+      },
+      "category": "tech"
     },
     {
       "name": "Jensen Huang",
@@ -188,7 +198,8 @@
         "date": "2026-05-11T10:00:00Z",
         "likes": 67000,
         "retweets": 11000
-      }
+      },
+      "category": "tech"
     },
     {
       "name": "Keir Starmer",
@@ -201,7 +212,8 @@
         {
           "url": "https://x.com/Keir_Starmer"
         }
-      ]
+      ],
+      "category": "world"
     },
     {
       "name": "Anthony Albanese",
@@ -214,7 +226,8 @@
         {
           "url": "https://x.com/AlboMP"
         }
-      ]
+      ],
+      "category": "world"
     },
     {
       "name": "Christopher Luxon",
@@ -227,7 +240,8 @@
         {
           "url": "https://x.com/chrisluxonNZ"
         }
-      ]
+      ],
+      "category": "world"
     },
     {
       "name": "Mohammed bin Rashid",
@@ -240,7 +254,8 @@
         {
           "url": "https://x.com/HHShkMohd"
         }
-      ]
+      ],
+      "category": "world"
     },
     {
       "name": "Giorgia Meloni",
@@ -253,7 +268,8 @@
         {
           "url": "https://x.com/GiorgiaMeloni"
         }
-      ]
+      ],
+      "category": "world"
     },
     {
       "name": "Emmanuel Macron",
@@ -266,7 +282,8 @@
         {
           "url": "https://x.com/EmmanuelMacron"
         }
-      ]
+      ],
+      "category": "world"
     },
     {
       "name": "PMO India",
@@ -279,7 +296,8 @@
         {
           "url": "https://x.com/PMOIndia"
         }
-      ]
+      ],
+      "category": "world"
     },
     {
       "name": "The White House",
@@ -292,7 +310,8 @@
         {
           "url": "https://x.com/WhiteHouse"
         }
-      ]
+      ],
+      "category": "world"
     }
   ],
   "lastUpdated": "2026-05-17T07:25:39.592553+00:00"

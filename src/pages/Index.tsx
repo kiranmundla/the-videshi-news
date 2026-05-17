@@ -392,7 +392,8 @@ export default function Index() {
           ))}
 
         <CelebrityBuzz />
-        <TechBuzz />
+        <TechBuzz category="tech" />
+        <TechBuzz category="world" />
 
         <DiasporaPhotoStrip />
       </main>
