@@ -379,6 +379,202 @@
         }
       ],
       "category": "world"
+    },
+    {
+      "name": "Virat Kohli",
+      "handle": "imVkohli",
+      "role": "Indian Cricket Legend",
+      "avatar": "",
+      "platform": "x",
+      "category": "sports",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/imVkohli"
+        }
+      ]
+    },
+    {
+      "name": "Rohit Sharma",
+      "handle": "ImRo45",
+      "role": "India Cricket Captain",
+      "avatar": "",
+      "platform": "x",
+      "category": "sports",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/ImRo45"
+        }
+      ]
+    },
+    {
+      "name": "MS Dhoni",
+      "handle": "msdhoni",
+      "role": "Cricket Legend, CSK",
+      "avatar": "",
+      "platform": "x",
+      "category": "sports",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/msdhoni"
+        }
+      ]
+    },
+    {
+      "name": "Jasprit Bumrah",
+      "handle": "Jaspritbumrah93",
+      "role": "India Fast Bowler",
+      "avatar": "",
+      "platform": "x",
+      "category": "sports",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/Jaboraspritbumrah93"
+        }
+      ]
+    },
+    {
+      "name": "Hardik Pandya",
+      "handle": "hardikpandya7",
+      "role": "India All-rounder",
+      "avatar": "",
+      "platform": "x",
+      "category": "sports",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/hardikpandya7"
+        }
+      ]
+    },
+    {
+      "name": "BCCI",
+      "handle": "BCCI",
+      "role": "Board of Control for Cricket in India",
+      "avatar": "",
+      "platform": "x",
+      "category": "sports",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/BCCI"
+        }
+      ]
+    },
+    {
+      "name": "ICC",
+      "handle": "ICC",
+      "role": "International Cricket Council",
+      "avatar": "",
+      "platform": "x",
+      "category": "sports",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/ICC"
+        }
+      ]
+    },
+    {
+      "name": "IPL",
+      "handle": "IPL",
+      "role": "Indian Premier League",
+      "avatar": "",
+      "platform": "x",
+      "category": "sports",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/IPL"
+        }
+      ]
+    },
+    {
+      "name": "Neeraj Chopra",
+      "handle": "Neeraj_chopra1",
+      "role": "Olympic Gold Medalist, Javelin",
+      "avatar": "",
+      "platform": "x",
+      "category": "sports",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/Neeraj_chopra1"
+        }
+      ]
+    },
+    {
+      "name": "PV Sindhu",
+      "handle": "Pvsindhu1",
+      "role": "Olympic Medalist, Badminton",
+      "avatar": "",
+      "platform": "x",
+      "category": "sports",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/Pvsindhu1"
+        }
+      ]
+    },
+    {
+      "name": "Sania Mirza",
+      "handle": "MirzaSania",
+      "role": "Tennis Champion",
+      "avatar": "",
+      "platform": "x",
+      "category": "sports",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/MirzaSania"
+        }
+      ]
+    },
+    {
+      "name": "D Gukesh",
+      "handle": "DGukesh",
+      "role": "World Chess Champion",
+      "avatar": "",
+      "platform": "x",
+      "category": "sports",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/DGukesh"
+        }
+      ]
+    },
+    {
+      "name": "Sunil Chhetri",
+      "handle": "chetrisunil11",
+      "role": "Indian Football Legend",
+      "avatar": "",
+      "platform": "x",
+      "category": "sports",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/caborhetrisunil11"
+        }
+      ]
+    },
+    {
+      "name": "Vivek Ramaswamy",
+      "handle": "VivekGRamaswamy",
+      "platform": "x",
+      "role": "Entrepreneur & Political Leader",
+      "avatar": "",
+      "category": "world",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/VivekGRamaswamy"
+        }
+      ]
     }
   ],
   "lastUpdated": "2026-05-17T07:25:39.592553+00:00"

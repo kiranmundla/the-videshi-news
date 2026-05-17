@@ -17,7 +17,7 @@ interface Leader {
   avatar: string;
   latestPost?: LatestPost;
   posts: { url: string; text?: string }[];
-  category?: "tech" | "world";
+  category?: "tech" | "world" | "sports";
 }
 
 /* ── Platform icons ── */
@@ -104,7 +104,7 @@ function timeAgo(dateStr: string): string {
 const COLORS = ["#1DA1F2", "#6366f1", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899"];
 
 /* ── Main component ── */
-export default function TechBuzz({ category = "tech" }: { category?: "tech" | "world" }) {
+export default function TechBuzz({ category = "tech" }: { category?: "tech" | "world" | "sports" }) {
   const [leaders, setLeaders] = useState<Leader[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -126,6 +126,11 @@ export default function TechBuzz({ category = "tech" }: { category?: "tech" | "w
           <>
             <h2 className="font-serif text-lg font-bold tracking-tight">Tech Pulse</h2>
             <span className="text-xs text-muted-foreground ml-1">What tech leaders are saying</span>
+          </>
+        ) : category === "sports" ? (
+          <>
+            <h2 className="font-serif text-lg font-bold tracking-tight">Sports Pulse</h2>
+            <span className="text-xs text-muted-foreground ml-1">What sports stars are saying</span>
           </>
         ) : (
           <>

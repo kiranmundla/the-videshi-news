@@ -394,6 +394,7 @@ export default function Index() {
                 afterHeader={
                   s.slug === "technology" ? <TechBuzz category="tech" /> :
                   s.slug === "entertainment" ? <CelebrityBuzz /> :
+                  s.slug === "sports" ? <TechBuzz category="sports" /> :
                   undefined
                 }
               />

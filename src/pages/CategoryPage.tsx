@@ -67,6 +67,7 @@ export default function CategoryPage() {
         {def.slug === "news" && <TechBuzz category="world" />}
         {def.slug === "technology" && <TechBuzz category="tech" />}
         {def.slug === "entertainment" && <CelebrityBuzz />}
+        {def.slug === "sports" && <TechBuzz category="sports" />}
 
         {def.slug === "travel" && (
           <div style={{ display: "flex", gap: 8, overflowX: "auto", paddingBottom: 20, marginBottom: 8, WebkitOverflowScrolling: "touch" as any }}>
