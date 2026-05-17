@@ -7,6 +7,7 @@ interface BuzzPost {
   handle: string;
   timestamp: string;
   thumbnail?: string;
+  cdn_thumbnail?: string;
   thumbnail_url?: string;
 }
 
@@ -341,7 +342,7 @@ export default function CelebrityBuzz() {
           } as React.CSSProperties}
         >
           {posts.map((post, i) => {
-            const thumbSrc = post.thumbnail_url || post.thumbnail || `/images/celebrity-thumbs/${post.handle}.jpg`;
+            const fallbackSrc = post.thumbnail || `/images/celebrity-thumbs/${post.handle}.jpg`;
             return (
               <div
                 key={i}
@@ -360,9 +361,17 @@ export default function CelebrityBuzz() {
                 }}
               >
                 <img
-                  src={thumbSrc}
+                  src={post.cdn_thumbnail || fallbackSrc}
                   alt={post.celebrity}
                   loading="lazy"
+                  referrerPolicy="no-referrer"
+                  crossOrigin="anonymous"
+                  onError={(e) => {
+                    const img = e.currentTarget;
+                    if (img.src !== fallbackSrc) {
+                      img.src = fallbackSrc;
+                    }
+                  }}
                   style={{
                     width: "100%", height: "100%",
                     objectFit: "cover", display: "block",
