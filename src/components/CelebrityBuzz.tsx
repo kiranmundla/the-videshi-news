@@ -44,33 +44,22 @@ function ensureTwitterWidgets(cb: () => void) {
 
 /* ── Lightbox ── */
 
-function BuzzLightbox({ posts, startIndex, onClose }: {
-  posts: BuzzPost[];
-  startIndex: number;
+function BuzzLightbox({ post, onClose }: {
+  post: BuzzPost;
   onClose: () => void;
 }) {
-  const [current, setCurrent] = useState(startIndex);
   const tweetRef = useRef<HTMLDivElement>(null);
-  const count = posts.length;
-  const post = posts[current];
 
-  const goNext = useCallback(() => setCurrent((i) => Math.min(i + 1, count - 1)), [count]);
-  const goPrev = useCallback(() => setCurrent((i) => Math.max(i - 1, 0)), []);
-
-  // Keyboard navigation
+  // Escape to close
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight") goNext();
-      if (e.key === "ArrowLeft") goPrev();
-    };
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", handler);
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", handler);
       document.body.style.overflow = "";
     };
-  }, [onClose, goNext, goPrev]);
+  }, [onClose]);
 
   // Load Twitter widgets when showing a tweet
   useEffect(() => {
@@ -85,14 +74,6 @@ function BuzzLightbox({ posts, startIndex, onClose }: {
   const tweetUrl = post.url
     .replace(/^https?:\/\/(mobile\.)?twitter\.com/, "https://x.com")
     .split("?")[0];
-
-  const arrowStyle: React.CSSProperties = {
-    position: "absolute", top: "50%", transform: "translateY(-50%)", zIndex: 20,
-    background: "rgba(255,255,255,0.2)", backdropFilter: "blur(4px)", border: "none",
-    color: "#fff", fontSize: 24, width: 44, height: 44, borderRadius: "50%",
-    cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
-    transition: "background 0.2s",
-  };
 
   return (
     <div
@@ -120,44 +101,6 @@ function BuzzLightbox({ posts, startIndex, onClose }: {
         zIndex: 20, color: "#fff", fontSize: 14, fontWeight: 600, opacity: 0.9,
       }}>
         {post.celebrity}
-      </div>
-
-      {/* Prev arrow */}
-      {current > 0 && (
-        <button
-          onClick={(e) => { e.stopPropagation(); goPrev(); }}
-          style={{ ...arrowStyle, left: 8 }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.35)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.2)"; }}
-        >‹</button>
-      )}
-
-      {/* Next arrow */}
-      {current < count - 1 && (
-        <button
-          onClick={(e) => { e.stopPropagation(); goNext(); }}
-          style={{ ...arrowStyle, right: 8 }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.35)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.2)"; }}
-        >›</button>
-      )}
-
-      {/* Dot indicators */}
-      <div style={{
-        position: "absolute", bottom: 16, left: "50%", transform: "translateX(-50%)",
-        zIndex: 20, display: "flex", gap: 6,
-      }}>
-        {posts.map((_, i) => (
-          <button
-            key={i}
-            onClick={(e) => { e.stopPropagation(); setCurrent(i); }}
-            style={{
-              width: 7, height: 7, borderRadius: "50%", border: "none", padding: 0,
-              background: i === current ? "#fff" : "rgba(255,255,255,0.3)",
-              transition: "background 0.2s", cursor: "pointer",
-            }}
-          />
-        ))}
       </div>
 
       {/* Embed card */}
@@ -417,8 +360,7 @@ export default function CelebrityBuzz() {
       {/* Lightbox */}
       {selectedIndex !== null && (
         <BuzzLightbox
-          posts={posts}
-          startIndex={selectedIndex}
+          post={posts[selectedIndex]}
           onClose={() => setSelectedIndex(null)}
         />
       )}
