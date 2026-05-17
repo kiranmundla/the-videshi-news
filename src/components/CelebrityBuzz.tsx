@@ -13,7 +13,7 @@ function extractInstaShortcode(url: string): string | null {
   return m ? m[1] : null;
 }
 
-/* ── Twitter widgets loader (shared with SocialEmbed) ── */
+/* ── Twitter widgets loader ── */
 declare global {
   interface Window {
     twttr?: { widgets: { load: (el?: HTMLElement) => void } };
@@ -39,7 +39,7 @@ function ensureTwitterWidgets(cb: () => void) {
   }
 }
 
-/* ── Individual embed cards ── */
+/* ── Embed cards — no headers, seamless ── */
 
 function InstaCard({ post }: { post: BuzzPost }) {
   const shortcode = extractInstaShortcode(post.url);
@@ -47,20 +47,13 @@ function InstaCard({ post }: { post: BuzzPost }) {
 
   return (
     <div style={{
-      width: 300, flexShrink: 0, borderRadius: 6, overflow: "hidden",
-      background: "#111", scrollSnapAlign: "start",
+      width: 300, flexShrink: 0, overflow: "hidden",
+      background: "#000", scrollSnapAlign: "start",
     }}>
-      <div style={{
-        padding: "8px 12px", display: "flex", alignItems: "center", gap: 6,
-        borderBottom: "1px solid #222",
-      }}>
-        <span style={{ fontSize: 12, fontWeight: 600, color: "#fff" }}>{post.celebrity}</span>
-        <span style={{ fontSize: 11, color: "#888" }}>@{post.handle}</span>
-      </div>
       <iframe
         src={`https://www.instagram.com/p/${shortcode}/embed/`}
         width="300"
-        height="380"
+        height="420"
         frameBorder="0"
         scrolling="no"
         loading="lazy"
@@ -87,17 +80,10 @@ function TweetCard({ post }: { post: BuzzPost }) {
 
   return (
     <div style={{
-      width: 300, flexShrink: 0, borderRadius: 6, overflow: "hidden",
-      background: "#111", scrollSnapAlign: "start",
+      width: 300, flexShrink: 0, overflow: "hidden",
+      background: "#000", scrollSnapAlign: "start",
     }}>
-      <div style={{
-        padding: "8px 12px", display: "flex", alignItems: "center", gap: 6,
-        borderBottom: "1px solid #222",
-      }}>
-        <span style={{ fontSize: 12, fontWeight: 600, color: "#fff" }}>{post.celebrity}</span>
-        <span style={{ fontSize: 11, color: "#888" }}>@{post.handle}</span>
-      </div>
-      <div ref={ref} style={{ padding: 8, maxHeight: 400, overflow: "hidden" }}>
+      <div ref={ref} style={{ padding: 8, maxHeight: 420, overflow: "hidden" }}>
         <blockquote className="twitter-tweet" data-dnt="true" data-theme="dark">
           <a href={tweetUrl}>{tweetUrl}</a>
         </blockquote>
@@ -106,7 +92,7 @@ function TweetCard({ post }: { post: BuzzPost }) {
   );
 }
 
-/* ── Main strip component ── */
+/* ── Main strip ── */
 
 export default function CelebrityBuzz() {
   const [posts, setPosts] = useState<BuzzPost[]>([]);
@@ -133,7 +119,7 @@ export default function CelebrityBuzz() {
   const scrollStrip = useCallback((dir: "left" | "right") => {
     const el = scrollRef.current;
     if (!el) return;
-    el.scrollBy({ left: dir === "right" ? 310 : -310, behavior: "smooth" });
+    el.scrollBy({ left: dir === "right" ? el.clientWidth * 0.75 : -el.clientWidth * 0.75, behavior: "smooth" });
   }, []);
 
   useEffect(() => {
@@ -152,8 +138,8 @@ export default function CelebrityBuzz() {
 
   const arrowStyle: React.CSSProperties = {
     position: "absolute", top: "50%", transform: "translateY(-50%)", zIndex: 10,
-    background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)", border: "none",
-    color: "#fff", fontSize: 20, width: 40, height: 40, borderRadius: "50%",
+    background: "rgba(0,0,0,0.5)", backdropFilter: "blur(4px)", border: "none",
+    color: "#fff", fontSize: 20, width: 36, height: 36, borderRadius: "50%",
     cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
     transition: "background 0.2s",
   };
@@ -161,7 +147,7 @@ export default function CelebrityBuzz() {
   return (
     <section className="mt-14 mb-8">
       <div
-        className="flex items-center gap-4 mb-6 pb-3"
+        className="flex items-center gap-4 mb-4 pb-3"
         style={{ borderBottom: "1px solid hsl(var(--rule))" }}
       >
         <span
@@ -172,25 +158,25 @@ export default function CelebrityBuzz() {
         </span>
       </div>
 
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative", borderRadius: 8, overflow: "hidden" }}>
         <style>{`.celeb-buzz-scroll::-webkit-scrollbar { display: none; }`}</style>
 
         {canScrollLeft && (
           <button
             onClick={() => scrollStrip("left")}
             aria-label="Scroll left"
-            style={{ ...arrowStyle, left: 4 }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.3)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; }}
+            style={{ ...arrowStyle, left: 6 }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.75)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.5)"; }}
           >‹</button>
         )}
         {canScrollRight && (
           <button
             onClick={() => scrollStrip("right")}
             aria-label="Scroll right"
-            style={{ ...arrowStyle, right: 4 }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.3)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; }}
+            style={{ ...arrowStyle, right: 6 }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.75)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.5)"; }}
           >›</button>
         )}
 
@@ -198,10 +184,9 @@ export default function CelebrityBuzz() {
           ref={scrollRef}
           className="celeb-buzz-scroll"
           style={{
-            display: "flex", gap: 8, overflowX: "auto", overflowY: "hidden",
+            display: "flex", gap: 2, overflowX: "auto", overflowY: "hidden",
             WebkitOverflowScrolling: "touch", scrollbarWidth: "none",
-            msOverflowStyle: "none", scrollSnapType: "x mandatory",
-            paddingLeft: "4%", paddingRight: "4%", paddingBottom: 8,
+            msOverflowStyle: "none", scrollSnapType: "x proximity",
           } as React.CSSProperties}
         >
           {posts.map((post, i) => (
