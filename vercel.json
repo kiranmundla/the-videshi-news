@@ -4,6 +4,7 @@
     { "source": "/rss.xml", "destination": "/api/rss.xml" },
     { "source": "/api/og", "destination": "/api/og" },
     { "source": "/api/subscribe", "destination": "/api/subscribe" },
+    { "source": "/api/instagram-thumb", "destination": "/api/instagram-thumb" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
