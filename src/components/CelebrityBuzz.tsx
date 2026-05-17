@@ -149,10 +149,6 @@ function BuzzLightbox({ posts, index, onClose, onNav }: {
     </div>
   );
 }
-      </div>
-    </div>
-  );
-}
 
 /* ── Thumbnail card ── */
 
