@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import SocialEmbed, { detectSocialUrl } from "@/components/SocialEmbed";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
@@ -246,7 +245,7 @@ function MarkdownWithEmbeds({
         chunk.kind === "embed" ? (
           <SocialEmbed key={i} platform={chunk.platform} url={chunk.url} />
         ) : (
-          <ReactMarkdown key={i} remarkPlugins={[remarkGfm]} components={mdComponents}>
+          <ReactMarkdown key={i} components={mdComponents}>
             {chunk.text}
           </ReactMarkdown>
         )
