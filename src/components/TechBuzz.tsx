@@ -210,7 +210,7 @@ export default function TechBuzz({ category = "tech" }: { category?: "tech" | "w
                   flex: 1,
                   overflow: "hidden",
                   display: "-webkit-box",
-                  WebkitLineClamp: 4,
+                  WebkitLineClamp: 8,
                   WebkitBoxOrient: "vertical",
                 }}>
                   {hasPost ? postText : leader.role}
