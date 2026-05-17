@@ -8,7 +8,6 @@ interface BuzzPost {
   timestamp: string;
   thumbnail?: string;
   cdn_thumbnail?: string;
-  thumbnail_url?: string;
 }
 
 function extractInstaShortcode(url: string): string | null {
@@ -50,7 +49,6 @@ function BuzzLightbox({ post, onClose }: {
 }) {
   const tweetRef = useRef<HTMLDivElement>(null);
 
-  // Escape to close
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", handler);
@@ -61,7 +59,6 @@ function BuzzLightbox({ post, onClose }: {
     };
   }, [onClose]);
 
-  // Load Twitter widgets when showing a tweet
   useEffect(() => {
     if (post.platform === "twitter") {
       ensureTwitterWidgets(() => {
@@ -84,7 +81,6 @@ function BuzzLightbox({ post, onClose }: {
         display: "flex", alignItems: "center", justifyContent: "center",
       }}
     >
-      {/* Close button */}
       <button
         onClick={onClose}
         style={{
@@ -95,7 +91,6 @@ function BuzzLightbox({ post, onClose }: {
         }}
       >×</button>
 
-      {/* Celebrity name */}
       <div style={{
         position: "absolute", top: 16, left: "50%", transform: "translateX(-50%)",
         zIndex: 20, color: "#fff", fontSize: 14, fontWeight: 600, opacity: 0.9,
@@ -103,7 +98,6 @@ function BuzzLightbox({ post, onClose }: {
         {post.celebrity}
       </div>
 
-      {/* Embed card */}
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
@@ -124,11 +118,7 @@ function BuzzLightbox({ post, onClose }: {
               title={`${post.celebrity} Instagram post`}
               style={{ display: "block", border: "none", background: "#000", marginBottom: -80 }}
             />
-            {/* Interaction blocker — prevents all taps going to Instagram */}
-            <div style={{
-              position: "absolute", inset: 0, zIndex: 5,
-              cursor: "default",
-            }} />
+            <div style={{ position: "absolute", inset: 0, zIndex: 5, cursor: "default" }} />
           </div>
         ) : (
           <div style={{ position: "relative" }}>
@@ -137,15 +127,10 @@ function BuzzLightbox({ post, onClose }: {
                 <a href={tweetUrl}>{tweetUrl}</a>
               </blockquote>
             </div>
-            {/* Interaction blocker */}
-            <div style={{
-              position: "absolute", inset: 0, zIndex: 5,
-              cursor: "default",
-            }} />
+            <div style={{ position: "absolute", inset: 0, zIndex: 5, cursor: "default" }} />
           </div>
         )}
 
-        {/* Our controlled link — only way to reach Instagram */}
         <a
           href={post.url}
           target="_blank"
@@ -164,15 +149,116 @@ function BuzzLightbox({ post, onClose }: {
   );
 }
 
-/* ── Main component — Photo scroll strip ── */
+/* ── Thumbnail card ── */
+
+function ThumbCard({
+  post,
+  dynamicSrc,
+  loading,
+  onClick,
+}: {
+  post: BuzzPost;
+  dynamicSrc: string | null;
+  loading: boolean;
+  onClick: () => void;
+}) {
+  const fallbackSrc = post.thumbnail || `/images/celebrity-thumbs/${post.handle}.jpg`;
+  const src = dynamicSrc || fallbackSrc;
+
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        position: "relative",
+        width: 220,
+        height: 280,
+        borderRadius: 10,
+        overflow: "hidden",
+        flexShrink: 0,
+        background: "#1a1a1a",
+        cursor: "pointer",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+        scrollSnapAlign: "center",
+      }}
+    >
+      {/* Shimmer placeholder while loading */}
+      {loading && (
+        <div style={{
+          position: "absolute", inset: 0, zIndex: 2,
+          background: "linear-gradient(110deg, #1a1a1a 30%, #2a2a2a 50%, #1a1a1a 70%)",
+          backgroundSize: "200% 100%",
+          animation: "shimmer 1.5s ease-in-out infinite",
+        }} />
+      )}
+
+      <img
+        src={src}
+        alt={post.celebrity}
+        loading="lazy"
+        referrerPolicy="no-referrer"
+        onError={(e) => {
+          const img = e.currentTarget;
+          if (img.src !== window.location.origin + fallbackSrc && img.src !== fallbackSrc) {
+            img.src = fallbackSrc;
+          }
+        }}
+        style={{
+          width: "100%", height: "100%",
+          objectFit: "cover", display: "block",
+          opacity: loading ? 0 : 1,
+          transition: "opacity 0.3s ease",
+        }}
+      />
+
+      {/* Name overlay */}
+      <div style={{
+        position: "absolute", bottom: 0, left: 0, right: 0,
+        padding: "28px 12px 10px",
+        background: "linear-gradient(transparent, rgba(0,0,0,0.75))",
+      }}>
+        <div style={{
+          color: "#fff", fontSize: 13, fontWeight: 600,
+          textShadow: "0 1px 3px rgba(0,0,0,0.5)",
+        }}>
+          {post.celebrity}
+        </div>
+        <div style={{
+          color: "rgba(255,255,255,0.7)", fontSize: 11, marginTop: 2,
+        }}>
+          @{post.handle}
+        </div>
+      </div>
+
+      {/* Instagram badge */}
+      <div style={{
+        position: "absolute", top: 8, right: 8,
+        width: 24, height: 24, borderRadius: 6,
+        background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        boxShadow: "0 1px 4px rgba(0,0,0,0.3)",
+      }}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" />
+          <circle cx="12" cy="12" r="5" />
+          <circle cx="17.5" cy="6.5" r="1.5" fill="white" stroke="none" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+/* ── Main component ── */
 
 export default function CelebrityBuzz() {
   const [posts, setPosts] = useState<BuzzPost[]>([]);
+  const [thumbUrls, setThumbUrls] = useState<Record<string, string | null>>({});
+  const [loadingThumbs, setLoadingThumbs] = useState<Set<string>>(new Set());
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
+  // Load posts from JSON
   useEffect(() => {
     fetch("/data/celebrity-buzz.json")
       .then((r) => r.ok ? r.json() : null)
@@ -182,6 +268,43 @@ export default function CelebrityBuzz() {
       .catch(() => {});
   }, []);
 
+  // Dynamically fetch thumbnails via API route
+  useEffect(() => {
+    if (!posts.length) return;
+
+    const fetching = new Set<string>();
+    posts.forEach((post) => {
+      const shortcode = extractInstaShortcode(post.url);
+      if (!shortcode || post.platform !== "instagram") return;
+      if (thumbUrls[shortcode] !== undefined) return; // already fetched or fetching
+
+      fetching.add(shortcode);
+    });
+
+    if (!fetching.size) return;
+
+    setLoadingThumbs((prev) => new Set([...prev, ...fetching]));
+
+    fetching.forEach((shortcode) => {
+      fetch(`/api/instagram-thumb?shortcode=${shortcode}`)
+        .then((r) => r.ok ? r.json() : null)
+        .then((data) => {
+          setThumbUrls((prev) => ({ ...prev, [shortcode]: data?.url || null }));
+        })
+        .catch(() => {
+          setThumbUrls((prev) => ({ ...prev, [shortcode]: null }));
+        })
+        .finally(() => {
+          setLoadingThumbs((prev) => {
+            const next = new Set(prev);
+            next.delete(shortcode);
+            return next;
+          });
+        });
+    });
+  }, [posts]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Scroll buttons
   const updateScrollButtons = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
@@ -233,6 +356,15 @@ export default function CelebrityBuzz() {
 
   return (
     <section className="mt-14 mb-8">
+      {/* Shimmer keyframes */}
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        .celeb-buzz-strip::-webkit-scrollbar { display: none; }
+      `}</style>
+
       <div
         className="flex items-center gap-4 mb-4 pb-3"
         style={{ borderBottom: "1px solid hsl(var(--rule))" }}
@@ -246,28 +378,6 @@ export default function CelebrityBuzz() {
       </div>
 
       <div style={{ position: "relative" }}>
-        <style>{`.celeb-buzz-strip::-webkit-scrollbar { display: none; }`}</style>
-
-        {canScrollLeft && (
-          <button
-            onClick={() => scrollStrip("left")}
-            aria-label="Scroll left"
-            style={{ ...arrowStyle, left: 4 }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.85)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.6)"; }}
-          >‹</button>
-        )}
-
-        {canScrollRight && (
-          <button
-            onClick={() => scrollStrip("right")}
-            aria-label="Scroll right"
-            style={{ ...arrowStyle, right: 4 }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.85)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.6)"; }}
-          >›</button>
-        )}
-
         <div
           ref={scrollRef}
           className="celeb-buzz-strip"
@@ -285,83 +395,27 @@ export default function CelebrityBuzz() {
           } as React.CSSProperties}
         >
           {posts.map((post, i) => {
-            const fallbackSrc = post.thumbnail || `/images/celebrity-thumbs/${post.handle}.jpg`;
+            const shortcode = extractInstaShortcode(post.url);
+            const dynamicSrc = shortcode ? (thumbUrls[shortcode] ?? null) : null;
+            const isLoading = shortcode ? loadingThumbs.has(shortcode) : false;
+
             return (
-              <div
+              <ThumbCard
                 key={i}
+                post={post}
+                dynamicSrc={dynamicSrc}
+                loading={isLoading}
                 onClick={() => setSelectedIndex(i)}
-                style={{
-                  position: "relative",
-                  width: 220,
-                  height: 280,
-                  borderRadius: 10,
-                  overflow: "hidden",
-                  flexShrink: 0,
-                  background: "#1a1a1a",
-                  cursor: "pointer",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-                  scrollSnapAlign: "center",
-                }}
-              >
-                <img
-                  src={post.cdn_thumbnail || fallbackSrc}
-                  alt={post.celebrity}
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                  crossOrigin="anonymous"
-                  onError={(e) => {
-                    const img = e.currentTarget;
-                    if (img.src !== fallbackSrc) {
-                      img.src = fallbackSrc;
-                    }
-                  }}
-                  style={{
-                    width: "100%", height: "100%",
-                    objectFit: "cover", display: "block",
-                  }}
-                />
-                <div style={{
-                  position: "absolute", bottom: 0, left: 0, right: 0,
-                  padding: "28px 12px 10px",
-                  background: "linear-gradient(transparent, rgba(0,0,0,0.75))",
-                }}>
-                  <div style={{
-                    color: "#fff", fontSize: 13, fontWeight: 600,
-                    textShadow: "0 1px 3px rgba(0,0,0,0.5)",
-                  }}>
-                    {post.celebrity}
-                  </div>
-                  <div style={{
-                    color: "rgba(255,255,255,0.7)", fontSize: 11, marginTop: 2,
-                  }}>
-                    @{post.handle}
-                  </div>
-                </div>
-                {/* Instagram icon badge */}
-                <div style={{
-                  position: "absolute", top: 8, right: 8,
-                  width: 24, height: 24, borderRadius: 6,
-                  background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  boxShadow: "0 1px 4px rgba(0,0,0,0.3)",
-                }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" />
-                    <circle cx="12" cy="12" r="5" />
-                    <circle cx="17.5" cy="6.5" r="1.5" fill="white" stroke="none" />
-                  </svg>
-                </div>
-              </div>
+              />
             );
           })}
         </div>
       </div>
 
-      {/* Lightbox */}
       {selectedIndex !== null && (
         <BuzzLightbox
           post={posts[selectedIndex]}
-          onClose={() => { setSelectedIndex(null); document.body.style.overflow = ""; }}
+          onClose={() => setSelectedIndex(null)}
         />
       )}
     </section>
