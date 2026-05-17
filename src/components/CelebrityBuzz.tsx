@@ -43,24 +43,43 @@ function ensureTwitterWidgets(cb: () => void) {
 
 /* ── Lightbox ── */
 
-function BuzzLightbox({ post, imageSrc, onClose }: {
-  post: BuzzPost;
-  imageSrc: string;
+function BuzzLightbox({ posts, index, getImageSrc, onClose, onNav }: {
+  posts: BuzzPost[];
+  index: number;
+  getImageSrc: (i: number) => string;
   onClose: () => void;
+  onNav: (i: number) => void;
 }) {
+  const touchStartX = useRef<number | null>(null);
+  const post = posts[index];
+  const imageSrc = getImageSrc(index);
+
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") onNav((index + 1) % posts.length);
+      if (e.key === "ArrowLeft") onNav((index - 1 + posts.length) % posts.length);
+    };
     window.addEventListener("keydown", handler);
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", handler);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [onClose, onNav, index, posts.length]);
 
   return (
     <div
       onClick={onClose}
+      onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+      onTouchEnd={(e) => {
+        if (touchStartX.current === null) return;
+        const diff = e.changedTouches[0].clientX - touchStartX.current;
+        if (Math.abs(diff) > 50) {
+          diff < 0 ? onNav((index + 1) % posts.length) : onNav((index - 1 + posts.length) % posts.length);
+        }
+        touchStartX.current = null;
+      }}
       style={{
         position: "fixed", inset: 0, zIndex: 9999,
         background: "rgba(0,0,0,0.95)",
@@ -81,6 +100,11 @@ function BuzzLightbox({ post, imageSrc, onClose }: {
         }}
       >×</button>
 
+      {/* Counter */}
+      <div style={{ position: "absolute", top: 16, left: "50%", transform: "translateX(-50%)", color: "rgba(255,255,255,0.5)", fontSize: 13, fontWeight: 500 }}>
+        {index + 1} / {posts.length}
+      </div>
+
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
@@ -89,6 +113,7 @@ function BuzzLightbox({ post, imageSrc, onClose }: {
         }}
       >
         <img
+          key={index}
           src={imageSrc}
           alt={post.celebrity}
           referrerPolicy="no-referrer"
@@ -391,14 +416,18 @@ export default function CelebrityBuzz() {
       </div>
 
       {selectedIndex !== null && (() => {
-        const post = posts[selectedIndex];
-        const sc = extractInstaShortcode(post.url);
-        const imgSrc = (sc ? thumbUrls[sc] : null) || post.thumbnail || `/images/celebrity-thumbs/${post.handle}.jpg`;
+        const getImgSrc = (i: number) => {
+          const p = posts[i];
+          const sc = extractInstaShortcode(p.url);
+          return (sc ? thumbUrls[sc] : null) || p.thumbnail || `/images/celebrity-thumbs/${p.handle}.jpg`;
+        };
         return (
           <BuzzLightbox
-            post={post}
-            imageSrc={imgSrc}
+            posts={posts}
+            index={selectedIndex}
+            getImageSrc={getImgSrc}
             onClose={() => { setSelectedIndex(null); document.body.style.overflow = ""; }}
+            onNav={(i) => setSelectedIndex(i)}
           />
         );
       })()}
