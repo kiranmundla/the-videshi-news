@@ -377,6 +377,8 @@ export default function Index() {
           pool={layout.world.ungrouped}
         />
 
+        <TechBuzz category="world" />
+
         {layout.sections
           .filter((s) => s.pool.length >= 3)
           .map((s) => (
@@ -388,12 +390,11 @@ export default function Index() {
                 clusters={[]}
                 pool={s.pool}
               />
+              {s.slug === "technology" && <TechBuzz category="tech" />}
             </section>
           ))}
 
         <CelebrityBuzz />
-        <TechBuzz category="tech" />
-        <TechBuzz category="world" />
 
         <DiasporaPhotoStrip />
       </main>
