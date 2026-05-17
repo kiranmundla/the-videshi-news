@@ -135,12 +135,14 @@ function HomeCategorySection({
   clusters,
   pool,
   hideCategory = true,
+  afterHeader,
 }: {
   label: string;
   slug: string;
   clusters: { label: string; items: Article[] }[];
   pool: Article[];
   hideCategory?: boolean;
+  afterHeader?: React.ReactNode;
 }) {
   const [visibleCount, setVisibleCount] = useState(6);
 
@@ -153,6 +155,7 @@ function HomeCategorySection({
   return (
     <section>
       <SectionHeader label={label} id={`section-${slug}`} />
+      {afterHeader}
       {clusters.map((c) => (
         <EventCluster key={c.label} label={c.label} items={c.items} />
       ))}
@@ -375,22 +378,24 @@ export default function Index() {
           label={WORLD_NEWS.label}
           clusters={layout.world.clusters}
           pool={layout.world.ungrouped}
+          afterHeader={<TechBuzz category="world" />}
         />
-
-        <TechBuzz category="world" />
 
         {layout.sections
           .filter((s) => s.pool.length >= 3)
           .map((s) => (
             <section key={s.slug}>
               {s.slug === "markets-finance" && null}
-              {s.slug === "technology" && <TechBuzz category="tech" />}
-              {s.slug === "entertainment" && <CelebrityBuzz />}
               <HomeCategorySection
                 slug={s.slug}
                 label={s.label}
                 clusters={[]}
                 pool={s.pool}
+                afterHeader={
+                  s.slug === "technology" ? <TechBuzz category="tech" /> :
+                  s.slug === "entertainment" ? <CelebrityBuzz /> :
+                  undefined
+                }
               />
             </section>
           ))}
