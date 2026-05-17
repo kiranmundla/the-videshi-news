@@ -114,9 +114,8 @@ function BuzzLightbox({ post, images, onClose }: {
       >
         <img
           key={current}
-          src={images[current]}
+          src={`/api/instagram-image?url=${encodeURIComponent(images[current])}`}
           alt={`${post.celebrity} photo ${current + 1}`}
-          referrerPolicy="no-referrer"
           style={{
             maxWidth: "95vw", maxHeight: "75vh",
             borderRadius: 8, objectFit: "contain", display: "block",
