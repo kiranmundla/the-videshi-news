@@ -558,7 +558,7 @@
       "latestPost": null,
       "posts": [
         {
-          "url": "https://x.com/caborhetrisunil11"
+          "url": "https://x.com/chetrisunil11"
         }
       ]
     },
@@ -573,6 +573,188 @@
       "posts": [
         {
           "url": "https://x.com/VivekGRamaswamy"
+        }
+      ]
+    },
+    {
+      "name": "Arvind Krishna",
+      "handle": "ArvindKrishna",
+      "role": "CEO, IBM",
+      "category": "tech",
+      "platform": "x",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/ArvindKrishna"
+        }
+      ]
+    },
+    {
+      "name": "Shantanu Narayen",
+      "handle": "ShantanuNarayen",
+      "role": "CEO, Adobe",
+      "category": "tech",
+      "platform": "x",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/ShantanuNarayen"
+        }
+      ]
+    },
+    {
+      "name": "Parag Agrawal",
+      "handle": "paraga",
+      "role": "Former CEO, Twitter",
+      "category": "tech",
+      "platform": "x",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/paraga"
+        }
+      ]
+    },
+    {
+      "name": "Leena Nair",
+      "handle": "LeenaNairHR",
+      "role": "CEO, Chanel",
+      "category": "tech",
+      "platform": "x",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/LeenaNairHR"
+        }
+      ]
+    },
+    {
+      "name": "Raj Subramaniam",
+      "handle": "RajSubramaniam",
+      "role": "CEO, FedEx",
+      "category": "tech",
+      "platform": "x",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/RajSubramaniam"
+        }
+      ]
+    },
+    {
+      "name": "Rishi Sunak",
+      "handle": "RishiSunak",
+      "role": "Former PM, United Kingdom",
+      "category": "world",
+      "platform": "x",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/RishiSunak"
+        }
+      ]
+    },
+    {
+      "name": "Usha Vance",
+      "handle": "UshaVance",
+      "role": "Second Lady of the United States",
+      "category": "world",
+      "platform": "x",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/UshaVance"
+        }
+      ]
+    },
+    {
+      "name": "Kash Patel",
+      "handle": "KashPatel47",
+      "role": "FBI Director",
+      "category": "world",
+      "platform": "x",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/KashPatel47"
+        }
+      ]
+    },
+    {
+      "name": "Sriram Krishnan",
+      "handle": "SriramKrishnan",
+      "role": "Senior Policy Advisor, White House AI",
+      "category": "world",
+      "platform": "x",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/SriramKrishnan"
+        }
+      ]
+    },
+    {
+      "name": "Suella Braverman",
+      "handle": "SuellaBraverman",
+      "role": "UK MP, Former Home Secretary",
+      "category": "world",
+      "platform": "x",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/SuellaBraverman"
+        }
+      ]
+    },
+    {
+      "name": "Ajay Banga",
+      "handle": "AjayBanga",
+      "role": "President, World Bank",
+      "category": "world",
+      "platform": "x",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/AjayBanga"
+        }
+      ]
+    },
+    {
+      "name": "Sachin Tendulkar",
+      "handle": "sachin_rt",
+      "role": "Cricket Legend",
+      "category": "sports",
+      "platform": "x",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/sachin_rt"
+        }
+      ]
+    },
+    {
+      "name": "Saurav Ganguly",
+      "handle": "SGanguly99",
+      "role": "Former BCCI President",
+      "category": "sports",
+      "platform": "x",
+      "avatar": "",
+      "latestPost": null,
+      "posts": [
+        {
+          "url": "https://x.com/SGanguly99"
         }
       ]
     }
