@@ -3,6 +3,7 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import SocialEmbed, { detectSocialUrl } from "@/components/SocialEmbed";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import NewsletterSignup from "@/components/NewsletterSignup";
@@ -161,6 +162,96 @@ function SourcesPill({
         </div>
       )}
     </div>
+  );
+}
+
+/* ── Markdown renderer that auto-detects social embed URLs ── */
+
+function MarkdownWithEmbeds({
+  body,
+  heroImageUrl,
+  title,
+}: {
+  body: string;
+  heroImageUrl?: string;
+  title: string;
+}) {
+  // Split body into chunks: lines that are bare social URLs become embed
+  // blocks; everything else gets passed to ReactMarkdown as one chunk.
+  const lines = body.split("\n");
+  const chunks: { kind: "md"; text: string }[] | { kind: "embed"; platform: "instagram" | "twitter"; url: string }[] = [];
+  let mdBuf: string[] = [];
+
+  const flush = () => {
+    if (mdBuf.length) {
+      (chunks as any[]).push({ kind: "md", text: mdBuf.join("\n") });
+      mdBuf = [];
+    }
+  };
+
+  for (const line of lines) {
+    const embed = detectSocialUrl(line);
+    if (embed) {
+      flush();
+      (chunks as any[]).push({ kind: "embed", ...embed });
+    } else {
+      mdBuf.push(line);
+    }
+  }
+  flush();
+
+  const norm = (u?: string) => (u ?? "").replace(/&amp;/g, "&").split("?")[0];
+
+  const mdComponents = {
+    h1: () => null as any,
+    a: ({ href, children, ...props }: any) => {
+      const arr = Array.isArray(children) ? children : [children];
+      const onlyImage =
+        arr.filter((c: any) => typeof c !== "string" || c.trim() !== "").length === 1 &&
+        arr.some(
+          (c: any) => c && typeof c === "object" && (c.type === "img" || c.props?.node?.tagName === "img")
+        );
+      if (onlyImage) return <>{children}</>;
+      return (
+        <a href={href} {...props}>
+          {children}
+        </a>
+      );
+    },
+    img: ({ src, alt }: any) => {
+      if (!src) return null;
+      if (/counter\.theconversation\.com|\/count\.gif|pixel|tracker/i.test(src)) {
+        return (
+          <img
+            src={src}
+            alt=""
+            width={1}
+            height={1}
+            aria-hidden="true"
+            referrerPolicy="no-referrer"
+            style={{ position: "absolute", width: 1, height: 1, opacity: 0, pointerEvents: "none", margin: 0 }}
+          />
+        );
+      }
+      if (heroImageUrl && norm(src) === norm(heroImageUrl)) {
+        return null;
+      }
+      return <img src={src} alt={alt || title} loading="lazy" referrerPolicy="no-referrer" />;
+    },
+  };
+
+  return (
+    <>
+      {(chunks as any[]).map((chunk, i) =>
+        chunk.kind === "embed" ? (
+          <SocialEmbed key={i} platform={chunk.platform} url={chunk.url} />
+        ) : (
+          <ReactMarkdown key={i} remarkPlugins={[remarkGfm]} components={mdComponents}>
+            {chunk.text}
+          </ReactMarkdown>
+        )
+      )}
+    </>
   );
 }
 
@@ -380,49 +471,11 @@ export default function ArticlePage() {
             }
 
             return (
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                components={{
-                  h1: () => null,
-                  a: ({ href, children, ...props }) => {
-                    const arr = Array.isArray(children) ? children : [children];
-                    const onlyImage =
-                      arr.filter((c) => typeof c !== "string" || c.trim() !== "").length === 1 &&
-                      arr.some(
-                        (c: any) => c && typeof c === "object" && (c.type === "img" || c.props?.node?.tagName === "img")
-                      );
-                    if (onlyImage) return <>{children}</>;
-                    return (
-                      <a href={href} {...props}>
-                        {children}
-                      </a>
-                    );
-                  },
-                  img: ({ src, alt }) => {
-                    const norm = (u?: string) => (u ?? "").replace(/&amp;/g, "&").split("?")[0];
-                    if (!src) return null;
-                    if (/counter\.theconversation\.com|\/count\.gif|pixel|tracker/i.test(src)) {
-                      return (
-                        <img
-                          src={src}
-                          alt=""
-                          width={1}
-                          height={1}
-                          aria-hidden="true"
-                          referrerPolicy="no-referrer"
-                          style={{ position: "absolute", width: 1, height: 1, opacity: 0, pointerEvents: "none", margin: 0 }}
-                        />
-                      );
-                    }
-                    if (article.hero_image_url && norm(src) === norm(article.hero_image_url)) {
-                      return null;
-                    }
-                    return <img src={src} alt={alt || article.title} loading="lazy" referrerPolicy="no-referrer" />;
-                  },
-                }}
-              >
-                {article.body}
-              </ReactMarkdown>
+              <MarkdownWithEmbeds
+                body={article.body}
+                heroImageUrl={article.hero_image_url}
+                title={article.title}
+              />
             );
           })()}
         </div>

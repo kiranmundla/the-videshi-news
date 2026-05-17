@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown";
+import SocialEmbed from "./SocialEmbed";
 
 type Block =
   | { type: "paragraph"; text?: string; content?: string }
@@ -6,6 +7,7 @@ type Block =
   | { type: "context_box"; title?: string; text?: string; content?: string; items?: string[] }
   | { type: "nri_angle"; text?: string; content?: string; title?: string }
   | { type: "key_facts"; title?: string; items?: string[]; facts?: string[] }
+  | { type: "social_embed"; platform: "instagram" | "twitter"; url: string; caption?: string }
   | { type: string; [k: string]: unknown };
 
 // Convert "• **Label:** text" or "• text" runs into a real markdown list so
@@ -122,6 +124,16 @@ export default function ArticleBlocks({ blocks }: { blocks: Block[] }) {
               </aside>
             );
           }
+
+          case "social_embed":
+            return (
+              <SocialEmbed
+                key={i}
+                platform={b.platform}
+                url={b.url}
+                caption={b.caption}
+              />
+            );
 
           default:
             if (getText(b)) return <p key={i}>{getText(b)}</p>;
