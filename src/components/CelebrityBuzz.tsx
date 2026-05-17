@@ -149,15 +149,6 @@ function BuzzLightbox({ posts, index, onClose, onNav }: {
     </div>
   );
 }
-          style={{
-            marginTop: 12, padding: "10px 24px", borderRadius: 20,
-            background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
-            color: "#fff", fontSize: 14, fontWeight: 600,
-            textDecoration: "none",
-          }}
-        >
-          View on Instagram →
-        </a>
       </div>
     </div>
   );
