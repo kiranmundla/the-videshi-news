@@ -5,74 +5,75 @@ import { Link } from "react-router-dom";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
+import { supabase as supabaseTyped } from "@/integrations/supabase/client";
 import {
   EventItem,
-  getEvents,
   formatEventDate,
   generateSlug,
   CITY_GROUPS,
-  EVENT_CATEGORIES,
 } from "@/lib/events";
 
-/* ------------------------------------------------------------------ */
-/* Category badge color helper                                        */
-/* ------------------------------------------------------------------ */
-const CAT_COLORS: Record<string, string> = {
-  Cultural:    "bg-purple-600/20 text-purple-300",
-  Music:       "bg-pink-600/20 text-pink-300",
-  Food:        "bg-amber-600/20 text-amber-300",
-  Sports:      "bg-green-600/20 text-green-300",
-  Community:   "bg-blue-600/20 text-blue-300",
-  Festival:    "bg-orange-600/20 text-orange-300",
-  Comedy:      "bg-yellow-600/20 text-yellow-300",
-  Dance:       "bg-rose-600/20 text-rose-300",
-  Religious:   "bg-indigo-600/20 text-indigo-300",
-  Education:   "bg-teal-600/20 text-teal-300",
-  Competition: "bg-cyan-600/20 text-cyan-300",
-  Other:       "bg-gray-600/20 text-gray-300",
-};
+const supabaseRaw = supabaseTyped as unknown as { from: (table: string) => any };
 
-const CAT_EMOJI: Record<string, string> = {
-  Cultural: "🎭",
-  Music: "🎵",
-  Food: "🍛",
-  Sports: "🏏",
-  Community: "🤝",
-  Festival: "🪔",
-  Comedy: "😂",
-  Dance: "💃",
-  Religious: "🙏",
-  Education: "🎓",
-  Competition: "🏆",
-  Other: "📌",
-};
+/* ------------------------------------------------------------------ */
+/* Tab groups — map high-level tabs to DB category values              */
+/* ------------------------------------------------------------------ */
+const TAB_GROUPS: { label: string; emoji: string; categories: string[] }[] = [
+  { label: "Entertainment", emoji: "🎶", categories: ["Music", "Comedy", "Dance", "Cultural", "Festival", "Food"] },
+  { label: "Community",     emoji: "🤝", categories: ["Community", "Other"] },
+  { label: "Sports & Fitness", emoji: "🏃", categories: ["Sports"] },
+  { label: "Education",     emoji: "🎓", categories: ["Education", "Competition"] },
+  { label: "Spiritual",     emoji: "🙏", categories: ["Religious"] },
+];
 
-function categoryEmoji(category: string | null): string {
-  switch (category) {
-    case "Music": return "🎵";
-    case "Dance": return "💃";
-    case "Food": return "🍛";
-    case "Sports": return "🏏";
-    case "Comedy": return "😂";
-    case "Festival": return "🪔";
-    case "Religious": return "🛕";
-    case "Education": return "🎓";
-    case "Competition": return "🏆";
-    case "Community": return "🤝";
-    case "Cultural": return "🎭";
-    default: return "🎪";
+/** Map a raw DB category to its tab group label */
+function getTabLabel(category: string | null): string {
+  if (!category) return "Community";
+  for (const tab of TAB_GROUPS) {
+    if (tab.categories.includes(category)) return tab.label;
   }
+  return "Community";
 }
 
-function CategoryBadge({ category }: { category: string | null }) {
-  if (!category) return null;
-  const color = CAT_COLORS[category] || CAT_COLORS.Other;
-  const emoji = CAT_EMOJI[category] || "";
+/** Get categories for a tab (for DB filtering) */
+function getTabCategories(tabLabel: string): string[] {
+  const tab = TAB_GROUPS.find((t) => t.label === tabLabel);
+  return tab ? tab.categories : [];
+}
+
+/* ------------------------------------------------------------------ */
+/* Badge colors (by tab group)                                        */
+/* ------------------------------------------------------------------ */
+const TAB_COLORS: Record<string, string> = {
+  Entertainment:      "bg-pink-600/20 text-pink-300",
+  Community:          "bg-blue-600/20 text-blue-300",
+  "Sports & Fitness": "bg-green-600/20 text-green-300",
+  Education:          "bg-teal-600/20 text-teal-300",
+  Spiritual:          "bg-indigo-600/20 text-indigo-300",
+};
+
+const TAB_EMOJI: Record<string, string> = {
+  Entertainment: "🎶",
+  Community: "🤝",
+  "Sports & Fitness": "🏃",
+  Education: "🎓",
+  Spiritual: "🙏",
+};
+
+function GroupBadge({ category }: { category: string | null }) {
+  const group = getTabLabel(category);
+  const color = TAB_COLORS[group] || TAB_COLORS.Community;
+  const emoji = TAB_EMOJI[group] || "📌";
   return (
     <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${color}`}>
-      {emoji && <span className="mr-1">{emoji}</span>}{category}
+      {emoji} {group}
     </span>
   );
+}
+
+function categoryEmoji(category: string | null): string {
+  const group = getTabLabel(category);
+  return TAB_EMOJI[group] || "🎪";
 }
 
 /* ------------------------------------------------------------------ */
@@ -106,7 +107,7 @@ function EventCard({ event }: { event: EventItem }) {
       <div className="flex-1 p-4 sm:py-4 sm:pr-4 sm:pl-4 flex flex-col justify-between min-w-0 overflow-hidden">
         <div>
           <div className="flex items-center gap-2 mb-2 flex-wrap">
-            <CategoryBadge category={event.category} />
+            <GroupBadge category={event.category} />
             {event.audience && (
               <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-emerald-600/20 text-emerald-300">
                 👤 {event.audience}
@@ -156,7 +157,7 @@ function EventCard({ event }: { event: EventItem }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Filter Pills                                                       */
+/* City Filter Pills                                                  */
 /* ------------------------------------------------------------------ */
 function FilterPills({
   options,
@@ -199,6 +200,52 @@ function FilterPills({
 }
 
 /* ------------------------------------------------------------------ */
+/* Tab Bar                                                            */
+/* ------------------------------------------------------------------ */
+function TabBar({
+  selected,
+  onSelect,
+}: {
+  selected: string | null;
+  onSelect: (v: string | null) => void;
+}) {
+  return (
+    <div className="flex items-center gap-1 overflow-x-auto pb-1 scrollbar-none -mx-1 px-1">
+      <button
+        onClick={() => onSelect(null)}
+        className={`relative whitespace-nowrap px-4 py-2.5 text-sm font-medium transition-colors rounded-t-md ${
+          selected === null
+            ? "text-foreground"
+            : "text-muted-foreground hover:text-foreground/70"
+        }`}
+      >
+        All
+        {selected === null && (
+          <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-primary rounded-full" />
+        )}
+      </button>
+      {TAB_GROUPS.map((tab) => (
+        <button
+          key={tab.label}
+          onClick={() => onSelect(tab.label)}
+          className={`relative whitespace-nowrap px-4 py-2.5 text-sm font-medium transition-colors rounded-t-md ${
+            selected === tab.label
+              ? "text-foreground"
+              : "text-muted-foreground hover:text-foreground/70"
+          }`}
+        >
+          <span className="mr-1.5">{tab.emoji}</span>
+          {tab.label}
+          {selected === tab.label && (
+            <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-primary rounded-full" />
+          )}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Events Page                                                        */
 /* ------------------------------------------------------------------ */
 export default function EventsPage() {
@@ -210,41 +257,44 @@ export default function EventsPage() {
 
   // Sync filters with URL params
   const cityFilter = searchParams.get("city") || null;
-  const categoryFilter = searchParams.get("category") || null;
+  const tabFilter = searchParams.get("tab") || null;
 
   const setCityFilter = (city: string | null) => {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       if (city) next.set("city", city); else next.delete("city");
-      next.delete("category"); // reset category when city changes
       return next;
     }, { replace: true });
   };
 
-  const setCategoryFilter = (cat: string | null) => {
+  const setTabFilter = (tab: string | null) => {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
-      if (cat) next.set("category", cat); else next.delete("category");
+      if (tab) next.set("tab", tab); else next.delete("tab");
       return next;
     }, { replace: true });
   };
 
   const PAGE_SIZE = 30;
 
+  // Convert tab to category filter for the data layer
+  const categoryFilters = tabFilter ? getTabCategories(tabFilter) : null;
+
   useEffect(() => {
     setLoading(true);
     setHasMore(true);
-    getEvents(cityFilter, categoryFilter, PAGE_SIZE, 0).then((data) => {
+
+    getEventsMultiCategory(cityFilter, categoryFilters, PAGE_SIZE, 0).then((data) => {
       setEvents(data);
       setHasMore(data.length === PAGE_SIZE);
       setLoading(false);
     });
-  }, [cityFilter, categoryFilter]);
+  }, [cityFilter, tabFilter]);
 
   const loadMore = async () => {
     if (loadingMore || !hasMore) return;
     setLoadingMore(true);
-    const next = await getEvents(cityFilter, categoryFilter, PAGE_SIZE, events.length);
+    const next = await getEventsMultiCategory(cityFilter, categoryFilters, PAGE_SIZE, events.length);
     setEvents((prev) => [...prev, ...next]);
     setHasMore(next.length === PAGE_SIZE);
     setLoadingMore(false);
@@ -270,7 +320,7 @@ export default function EventsPage() {
       `}</style>
       <main className="events-main container flex-1 pt-8 md:pt-10 pb-16">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6">
           <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-3">
             Events
           </h1>
@@ -279,29 +329,19 @@ export default function EventsPage() {
           </p>
         </div>
 
-        {/* Filters */}
-        <div className="space-y-4 mb-8">
-          <div>
-            <h3 className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-medium">
-              City
-            </h3>
-            <FilterPills
-              options={CITY_GROUPS.map((g) => g.label)}
-              selected={cityFilter}
-              onSelect={setCityFilter}
-              allLabel="All Cities"
-            />
-          </div>
-          <div>
-            <h3 className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-medium">
-              Category
-            </h3>
-            <FilterPills
-              options={EVENT_CATEGORIES}
-              selected={categoryFilter}
-              onSelect={setCategoryFilter}
-            />
-          </div>
+        {/* Tab bar */}
+        <div className="border-b border-border mb-6">
+          <TabBar selected={tabFilter} onSelect={setTabFilter} />
+        </div>
+
+        {/* City filter */}
+        <div className="mb-8">
+          <FilterPills
+            options={CITY_GROUPS.map((g) => g.label)}
+            selected={cityFilter}
+            onSelect={setCityFilter}
+            allLabel="All Cities"
+          />
         </div>
 
         {/* Events list */}
@@ -320,7 +360,7 @@ export default function EventsPage() {
             <p className="text-muted-foreground text-lg">
               No upcoming events found
               {cityFilter ? ` in ${cityFilter}` : ""}
-              {categoryFilter ? ` for ${categoryFilter}` : ""}
+              {tabFilter ? ` for ${tabFilter}` : ""}
               .
             </p>
             <p className="text-muted-foreground text-sm mt-2">
@@ -332,7 +372,7 @@ export default function EventsPage() {
             <p className="text-sm text-muted-foreground mb-4">
               {events.length}{hasMore ? "+" : ""} upcoming events
               {cityFilter ? ` in ${cityFilter}` : ""}
-              {categoryFilter ? ` · ${categoryFilter}` : ""}
+              {tabFilter ? ` · ${tabFilter}` : ""}
             </p>
             <div className="grid grid-cols-1 gap-4 w-full min-w-0">
               {events.map((event) => (
@@ -359,4 +399,44 @@ export default function EventsPage() {
       <SiteFooter />
     </div>
   );
+}
+
+/* ------------------------------------------------------------------ */
+/* Multi-category fetcher (for tab groups)                            */
+/* ------------------------------------------------------------------ */
+
+async function getEventsMultiCategory(
+  cityFilter: string | null,
+  categories: string[] | null,
+  limit: number,
+  offset: number,
+): Promise<EventItem[]> {
+  const today = new Date().toISOString().slice(0, 10);
+
+  let query = supabaseRaw
+    .from("events")
+    .select("id,title,date,time,end_date,venue_name,city,state,category,description,image_url,ticket_url,source,price_range,organizer,audience,long_description,artist_info,venue_info,slug")
+    .gte("date", today)
+    .order("date", { ascending: true })
+    .range(offset, offset + limit - 1);
+
+  if (cityFilter) {
+    const group = CITY_GROUPS.find((g) => g.label === cityFilter);
+    if (group) {
+      query = query.in("city", group.cities);
+    }
+  }
+
+  if (categories && categories.length > 0) {
+    query = query.in("category", categories);
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error("Failed to fetch events:", error);
+    return [];
+  }
+
+  return (data || []) as EventItem[];
 }

@@ -82,18 +82,24 @@ export function generateSlug(title: string, date: string): string {
  * to one or more city values that match the DB `city` column.
  */
 export const CITY_GROUPS: { label: string; cities: string[] }[] = [
-  { label: "Bay Area",      cities: ["San Francisco", "San Jose", "Oakland", "Fremont", "Sunnyvale", "Santa Clara", "Milpitas", "Pleasanton", "Union City", "Dublin", "Livermore", "Cupertino", "Mountain View", "Palo Alto", "Redwood City", "Berkeley", "Hayward", "San Mateo", "Daly City", "South San Francisco"] },
-  { label: "NYC / NJ",      cities: ["New York", "Brooklyn", "Queens", "Edison", "Jersey City", "Newark", "Hoboken", "Parsippany", "Iselin", "Hicksville"] },
-  { label: "Dallas",        cities: ["Dallas", "Plano", "Irving", "Frisco", "Richardson", "Garland", "Arlington"] },
+  { label: "Bay Area",      cities: ["San Francisco", "San Jose", "Oakland", "Fremont", "Sunnyvale", "Santa Clara", "Milpitas", "Pleasanton", "Union City", "Dublin", "Livermore", "Cupertino", "Mountain View", "Palo Alto", "Redwood City", "Berkeley", "Hayward", "San Mateo", "Daly City", "South San Francisco", "Los Gatos"] },
+  { label: "NYC / NJ",      cities: ["New York", "Brooklyn", "Queens", "Edison", "Jersey City", "Newark", "Hoboken", "Parsippany", "Iselin", "Hicksville", "Garwood", "Mahwah", "New Brunswick", "South Brunswick Township", "Woodbridge Township", "Uniondale", "Atlantic City"] },
+  { label: "Dallas",        cities: ["Dallas", "Plano", "Irving", "Frisco", "Richardson", "Garland", "Arlington", "Allen", "Carrollton", "Grand Prairie", "Cedar Park"] },
   { label: "Houston",       cities: ["Houston", "Sugar Land", "Katy", "Stafford", "Pearland"] },
-  { label: "Chicago",       cities: ["Chicago", "Schaumburg", "Naperville", "Aurora", "Skokie", "Hoffman Estates"] },
-  { label: "Los Angeles",   cities: ["Los Angeles", "Culver City", "Santa Monica", "Anaheim", "Irvine", "Pasadena", "Hermosa Beach", "Cerritos"] },
-  { label: "Seattle",       cities: ["Seattle", "Bellevue", "Redmond", "Kirkland", "Bothell", "Everett"] },
+  { label: "Chicago",       cities: ["Chicago", "Schaumburg", "Naperville", "Aurora", "Skokie", "Hoffman Estates", "Arlington Heights", "Willowbrook", "Oak Park"] },
+  { label: "Los Angeles",   cities: ["Los Angeles", "Culver City", "Santa Monica", "Anaheim", "Irvine", "Pasadena", "Hermosa Beach", "Cerritos", "Torrance", "Playa del Rey", "Marina del Rey", "Downey", "Long Beach", "Glendale", "El Segundo"] },
+  { label: "Seattle",       cities: ["Seattle", "Bellevue", "Redmond", "Kirkland", "Bothell", "Everett", "Renton", "Federal Way", "SeaTac"] },
   { label: "Atlanta",       cities: ["Atlanta", "Alpharetta", "Duluth", "Norcross", "Decatur", "Johns Creek"] },
-  { label: "DC",            cities: ["Washington", "Arlington", "Fairfax", "Rockville", "Bethesda", "Tysons", "Herndon", "Vienna"] },
+  { label: "DC",            cities: ["Washington", "Fairfax", "Rockville", "Bethesda", "Tysons", "Herndon", "Vienna"] },
   { label: "Detroit",       cities: ["Detroit", "Troy", "Novi", "Farmington Hills", "Canton", "Ann Arbor"] },
   { label: "Charlotte",     cities: ["Charlotte", "Greensboro", "Raleigh", "Durham"] },
-  { label: "Philadelphia",  cities: ["Philadelphia", "King of Prussia", "Cherry Hill", "Oaks"] },
+  { label: "Philadelphia",  cities: ["Philadelphia", "King of Prussia", "Cherry Hill", "Oaks", "Bethlehem"] },
+  { label: "Nashville",     cities: ["Nashville"] },
+  { label: "Boston",        cities: ["Boston", "Cambridge"] },
+  { label: "Denver",        cities: ["Denver"] },
+  { label: "Columbus",      cities: ["Columbus"] },
+  { label: "Baltimore",     cities: ["Baltimore"] },
+  { label: "Florida",       cities: ["Hollywood", "Miami", "Tampa", "Orlando", "Jacksonville"] },
 ];
 
 /* ------------------------------------------------------------------ */
