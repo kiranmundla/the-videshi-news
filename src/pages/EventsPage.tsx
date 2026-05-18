@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Masthead from "@/components/Masthead";
@@ -201,12 +202,32 @@ function FilterPills({
 /* Events Page                                                        */
 /* ------------------------------------------------------------------ */
 export default function EventsPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [events, setEvents] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [cityFilter, setCityFilter] = useState<string | null>(null);
-  const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
+
+  // Sync filters with URL params
+  const cityFilter = searchParams.get("city") || null;
+  const categoryFilter = searchParams.get("category") || null;
+
+  const setCityFilter = (city: string | null) => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (city) next.set("city", city); else next.delete("city");
+      next.delete("category"); // reset category when city changes
+      return next;
+    }, { replace: true });
+  };
+
+  const setCategoryFilter = (cat: string | null) => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (cat) next.set("category", cat); else next.delete("category");
+      return next;
+    }, { replace: true });
+  };
 
   const PAGE_SIZE = 30;
 
