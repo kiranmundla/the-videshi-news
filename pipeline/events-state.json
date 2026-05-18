@@ -1,13 +1,13 @@
 {
-  "last_run": "2026-05-18T10:00:00Z",
+  "last_run": "2026-05-18T22:00:00Z",
   "cities_checked": {
     "San Jose": "2026-05-18T10:00:00Z",
     "San Francisco": "2026-05-17T22:00:00Z",
     "New York": "2026-05-17T23:37:21Z",
     "Edison": "2026-05-17T22:00:00Z",
-    "Dallas": "2026-05-17T23:37:21Z",
-    "Houston": "2026-05-17T23:37:21Z",
-    "Chicago": "2026-05-17T23:37:21Z",
+    "Dallas": "2026-05-18T22:00:00Z",
+    "Houston": "2026-05-18T22:00:00Z",
+    "Chicago": "2026-05-18T22:00:00Z",
     "Los Angeles": "2026-05-18T10:00:00Z",
     "Atlanta": "2026-05-17T21:19:00Z",
     "Washington": "2026-05-18T10:00:00Z",
@@ -15,10 +15,10 @@
     "Philadelphia": "2026-05-17T22:00:00Z",
     "Seattle": "2026-05-18T10:00:00Z",
     "Baltimore": "2026-05-17T21:19:00Z",
-    "Detroit": "2026-05-17T22:00:00Z",
+    "Detroit": "2026-05-18T22:00:00Z",
     "Pleasanton": "2026-05-17T23:37:21Z",
     "Plano": "2026-05-17T23:37:21Z",
-    "Frisco": "2026-05-17T23:37:21Z",
+    "Frisco": "2026-05-18T22:00:00Z",
     "Naperville": "2026-05-17T23:37:21Z",
     "Arlington Heights": "2026-05-17T23:37:21Z",
     "Willowbrook": "2026-05-17T23:37:21Z",
@@ -29,7 +29,9 @@
     "Redondo Beach": "2026-05-18T10:00:00Z",
     "Everett": "2026-05-18T10:00:00Z",
     "Bellevue": "2026-05-18T10:00:00Z",
-    "Sterling": "2026-05-18T10:00:00Z"
+    "Sterling": "2026-05-18T10:00:00Z",
+    "Lemont": "2026-05-18T22:00:00Z",
+    "Stafford": "2026-05-18T22:00:00Z"
   },
   "stats": {
     "2026-05-17": {
@@ -73,7 +75,7 @@
       ]
     },
     "2026-05-18": {
-      "new_events": 13,
+      "new_events": 28,
       "updated_events": 0,
       "sources": [
         "web",
@@ -82,10 +84,13 @@
       ],
       "categories": {
         "Music": 7,
-        "Comedy": 2,
-        "Festival": 1,
-        "Dance": 2,
-        "Cultural": 1
+        "Comedy": 4,
+        "Festival": 2,
+        "Dance": 3,
+        "Cultural": 5,
+        "Community": 2,
+        "Religious": 5,
+        "Sports": 1
       },
       "runs": [
         {
@@ -93,14 +98,20 @@
           "new": 13,
           "updated": 0,
           "note": "Focus: LA, Seattle, Washington DC, Charlotte. Added Ali Zafar (LA), Lakhwinder Wadali Rangrez tour (Redondo Beach), Harbhajan Mann (Everett/Seattle), Ram Miriyala (Bellevue), Rising Stars kids concert (Bellevue), Seedhe Maut SMX tour (Seattle), Anubhav Singh Bassi comedy (Seattle + San Jose), Arjun Rampal DJ set (DC), Heritage India Festival (Sterling VA), Bollywood Sharabi Nights (DC), Hasya Kavi Sammelan (Charlotte), Bollywood Reloaded ft. DJ Notorious (Charlotte). Images sourced from Wikipedia for 8 events."
+        },
+        {
+          "time": "2026-05-18T22:00:00Z",
+          "new": 15,
+          "updated": 0,
+          "note": "Focus: Houston, Dallas/Frisco, Chicago/Lemont, Detroit. Houston: Vibha Open Mic, Int'l Day of Yoga, Zahid Dewji comedy, Inner Engineering. Chicago: IPL Watch Party, CTU 50th Carnatic festival (9-day), Diljit vs Drake Pilates, Susila Gurusami book event, HTGC Aani Tirumanjanam. Dallas: Sanjay Patel (Pixar) book signing, IANT Anand Bazaar (Aug 15 Independence Day, 20K+ attendees). Detroit: Pritish Narula comedy, kirtan/satsang, Bhakti Marga yagna, Inner Engineering. Images sourced from Eventbrite CDN for 5 events."
         }
       ]
     }
   },
   "next_cities": [
-    "Houston",
-    "Dallas",
-    "Chicago",
-    "Detroit"
+    "Atlanta",
+    "Philadelphia",
+    "New York",
+    "Edison"
   ]
 }
