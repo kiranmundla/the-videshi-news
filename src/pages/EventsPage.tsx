@@ -423,40 +423,37 @@ export default function EventsPage() {
           </p>
         </div>
 
-        {/* Search bar */}
-        <div className="relative mb-5 max-w-md">
-          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-            <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-            </svg>
-          </div>
-          <input
-            type="text"
-            value={searchInput}
-            onChange={(e) => handleSearchChange(e.target.value)}
-            placeholder="Search events, artists, venues..."
-            className="w-full pl-10 pr-10 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-colors"
-          />
-          {searchInput && (
-            <button
-              onClick={clearSearch}
-              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Clear search"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+        {/* Search + Location controls — one row on desktop, stacked on mobile */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
+          {/* Search bar */}
+          <div className="relative flex-1 max-w-md">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+              <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
               </svg>
-            </button>
-          )}
-        </div>
+            </div>
+            <input
+              type="text"
+              value={searchInput}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              placeholder="Search events, artists, venues..."
+              className="w-full pl-10 pr-10 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-colors"
+            />
+            {searchInput && (
+              <button
+                onClick={clearSearch}
+                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Clear search"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
 
-        {/* Tab bar — all categories visible, wrapping on mobile */}
-        <div className="border-b border-border mb-4">
-          <TabBar selected={tabFilter} onSelect={setTabFilter} />
-        </div>
-
-        {/* Near Me button + City dropdown — side by side */}
-        <div className="flex items-center gap-3 mb-8">
+          {/* Near Me + City dropdown */}
+          <div className="flex items-center gap-3 flex-shrink-0">
           {/* Near Me pill */}
           <button
             onClick={handleNearMe}
@@ -504,6 +501,11 @@ export default function EventsPage() {
               ))}
             </select>
           </div>
+        </div>
+
+        {/* Tab bar — all categories visible, wrapping on mobile */}
+        <div className="border-b border-border mb-4">
+          <TabBar selected={tabFilter} onSelect={setTabFilter} />
         </div>
 
         {/* Events list */}
