@@ -502,6 +502,7 @@ export default function EventsPage() {
             </select>
           </div>
         </div>
+        </div>
 
         {/* Tab bar — all categories visible, wrapping on mobile */}
         <div className="border-b border-border mb-4">
