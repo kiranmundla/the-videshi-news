@@ -294,10 +294,33 @@ export default function EventsPage() {
     );
   }, [nearMeActive, setCityFilter, setSearchParams]);
 
-  /* --- Restore Near Me from URL on mount --- */
+  /* --- Auto-request geolocation on page load --- */
   useEffect(() => {
-    if (searchParams.get("nearme") === "1" && !nearMeActive && !userCoords) {
-      handleNearMe();
+    // If user navigated here with an explicit city param, respect it
+    if (rawCity) return;
+    // Otherwise, auto-request location
+    if (!nearMeActive && !userCoords && navigator.geolocation) {
+      setGeoLoading(true);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const coords = { lat: position.coords.latitude, lng: position.coords.longitude };
+          setUserCoords(coords);
+          setNearMeActive(true);
+          setGeoLoading(false);
+          setSearchParams((prev) => {
+            const next = new URLSearchParams(prev);
+            next.delete("city");
+            next.set("nearme", "1");
+            return next;
+          }, { replace: true });
+        },
+        () => {
+          // Denied or error → silently fall back to Bay Area
+          setGeoLoading(false);
+          setNearMeActive(false);
+        },
+        { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
