@@ -1,0 +1,801 @@
+[
+  {
+    "name": "Shiva Vishnu Temple (HCCC)",
+    "city": "Livermore",
+    "state": "CA",
+    "metro": "Bay Area",
+    "type": "hindu_temple",
+    "website": "https://www.livermoretemple.org",
+    "address": "1232 Arrowhead Ave, Livermore, CA 94551",
+    "search_terms": [
+      "Shiva Vishnu Temple Livermore events",
+      "HCCC Livermore temple events 2026",
+      "Hindu Community Cultural Center Livermore"
+    ]
+  },
+  {
+    "name": "Sunnyvale Hindu Temple",
+    "city": "Sunnyvale",
+    "state": "CA",
+    "metro": "Bay Area",
+    "type": "hindu_temple",
+    "website": "https://www.unnyvaletemple.org",
+    "address": "450 Persian Dr, Sunnyvale, CA 94089",
+    "search_terms": [
+      "Sunnyvale Hindu Temple events",
+      "Sunnyvale temple 2026 festivals"
+    ]
+  },
+  {
+    "name": "Fremont Hindu Temple",
+    "city": "Fremont",
+    "state": "CA",
+    "metro": "Bay Area",
+    "type": "hindu_temple",
+    "website": "https://www.remonthindutemple.org",
+    "address": "3676 Delaware Dr, Fremont, CA 94538",
+    "search_terms": [
+      "Fremont Hindu Temple events",
+      "Fremont Hindu temple 2026 festivals"
+    ]
+  },
+  {
+    "name": "BAPS Shri Swaminarayan Mandir",
+    "city": "Milpitas",
+    "state": "CA",
+    "metro": "Bay Area",
+    "type": "hindu_temple",
+    "website": "https://www.baps.org/Global-Network/North-America/SanJose.aspx",
+    "address": "1 BAPS Way, Milpitas, CA",
+    "search_terms": [
+      "BAPS Milpitas events",
+      "BAPS San Jose mandir 2026"
+    ]
+  },
+  {
+    "name": "ISKCON Silicon Valley",
+    "city": "Sunnyvale",
+    "state": "CA",
+    "metro": "Bay Area",
+    "type": "iskcon",
+    "website": "https://www.iskconsv.com",
+    "address": "965 N Pastoria Ave, Sunnyvale, CA 94085",
+    "search_terms": [
+      "ISKCON Silicon Valley events",
+      "ISKCON Sunnyvale 2026 Ratha Yatra Janmashtami"
+    ]
+  },
+  {
+    "name": "Vedanta Society of Northern California",
+    "city": "San Francisco",
+    "state": "CA",
+    "metro": "Bay Area",
+    "type": "vedanta",
+    "website": "https://www.sfvedanta.org",
+    "address": "2323 Vallejo St, San Francisco, CA 94123",
+    "search_terms": [
+      "Vedanta Society San Francisco events 2026"
+    ]
+  },
+  {
+    "name": "Gurdwara Sahib San Jose",
+    "city": "San Jose",
+    "state": "CA",
+    "metro": "Bay Area",
+    "type": "gurudwara",
+    "website": "https://www.sanjosegurdwara.org",
+    "address": "3636 Gurdwara Ave, San Jose, CA 95148",
+    "search_terms": [
+      "Gurdwara Sahib San Jose events 2026",
+      "San Jose Sikh temple events"
+    ]
+  },
+  {
+    "name": "Jain Center of Northern California",
+    "city": "Milpitas",
+    "state": "CA",
+    "metro": "Bay Area",
+    "type": "jain_temple",
+    "website": "https://www.jcnc.org",
+    "address": "722 S Main St, Milpitas, CA 95035",
+    "search_terms": [
+      "Jain Center Northern California events 2026",
+      "JCNC Milpitas events"
+    ]
+  },
+  {
+    "name": "Chinmaya Mission San Jose",
+    "city": "San Jose",
+    "state": "CA",
+    "metro": "Bay Area",
+    "type": "chinmaya",
+    "website": "https://www.chinmayamission.com/centers/san-jose",
+    "search_terms": [
+      "Chinmaya Mission San Jose events 2026"
+    ]
+  },
+  {
+    "name": "Sri Siva Vishnu Temple",
+    "city": "Lanham",
+    "state": "MD",
+    "metro": "Washington DC",
+    "type": "hindu_temple",
+    "website": "https://www.ssvt.org",
+    "address": "6905 Cipriano Rd, Lanham, MD 20706",
+    "search_terms": [
+      "Sri Siva Vishnu Temple Lanham events 2026",
+      "SSVT Lanham festivals"
+    ]
+  },
+  {
+    "name": "Durga Temple",
+    "city": "Fairfax",
+    "state": "VA",
+    "metro": "Washington DC",
+    "type": "hindu_temple",
+    "website": "https://www.durgatemple.org",
+    "address": "8400 Durga Pl, Fairfax Station, VA 22039",
+    "search_terms": [
+      "Durga Temple Fairfax events 2026",
+      "Durga Temple Virginia festivals"
+    ]
+  },
+  {
+    "name": "BAPS Shri Swaminarayan Mandir",
+    "city": "Chantilly",
+    "state": "VA",
+    "metro": "Washington DC",
+    "type": "hindu_temple",
+    "website": "https://www.baps.org/Global-Network/North-America/WashingtonDC.aspx",
+    "address": "15151 Riding Club Dr, Chantilly, VA 20151",
+    "search_terms": [
+      "BAPS Chantilly events 2026",
+      "BAPS DC mandir events"
+    ]
+  },
+  {
+    "name": "Rajdhani Mandir",
+    "city": "Chantilly",
+    "state": "VA",
+    "metro": "Washington DC",
+    "type": "hindu_temple",
+    "website": "https://www.rajdhanimandir.org",
+    "address": "4301 Pleasant Valley Rd, Chantilly, VA 20151",
+    "search_terms": [
+      "Rajdhani Mandir Chantilly events 2026"
+    ]
+  },
+  {
+    "name": "Chinmaya Mission Washington DC",
+    "city": "Silver Spring",
+    "state": "MD",
+    "metro": "Washington DC",
+    "type": "chinmaya",
+    "website": "https://cmwrc.chinmayadc.org",
+    "address": "13014 Fountainhead Rd, Silver Spring, MD 20906",
+    "search_terms": [
+      "Chinmaya Mission DC events 2026"
+    ]
+  },
+  {
+    "name": "BAPS Shri Swaminarayan Akshardham",
+    "city": "Robbinsville",
+    "state": "NJ",
+    "metro": "New York",
+    "type": "hindu_temple",
+    "website": "https://www.baps.org/Global-Network/North-America/Robbinsville.aspx",
+    "address": "112 N Main St, Robbinsville, NJ 08691",
+    "search_terms": [
+      "BAPS Robbinsville events 2026",
+      "BAPS Akshardham NJ events"
+    ]
+  },
+  {
+    "name": "Ganesh Temple (Hindu Temple Society of NA)",
+    "city": "Flushing",
+    "state": "NY",
+    "metro": "New York",
+    "type": "hindu_temple",
+    "website": "https://www.nyganeshtemple.org",
+    "address": "45-57 Bowne St, Flushing, NY 11355",
+    "search_terms": [
+      "Ganesh Temple Flushing events 2026",
+      "Hindu Temple Society North America Flushing"
+    ]
+  },
+  {
+    "name": "ISKCON New York (Radha Govinda Temple)",
+    "city": "Brooklyn",
+    "state": "NY",
+    "metro": "New York",
+    "type": "iskcon",
+    "website": "https://www.iskconnyc.com",
+    "address": "305 Schermerhorn St, Brooklyn, NY 11217",
+    "search_terms": [
+      "ISKCON New York events 2026",
+      "ISKCON Brooklyn Ratha Yatra"
+    ]
+  },
+  {
+    "name": "Gurdwara Baba Makhan Shah Lobana",
+    "city": "South Richmond Hill",
+    "state": "NY",
+    "metro": "New York",
+    "type": "gurudwara",
+    "website": "https://www.sikhcenter.org",
+    "search_terms": [
+      "Gurdwara Baba Makhan Shah Lobana events 2026",
+      "Sikh Center Richmond Hill NY"
+    ]
+  },
+  {
+    "name": "Chinmaya Mission Tri-State",
+    "city": "Cranbury",
+    "state": "NJ",
+    "metro": "New York",
+    "type": "chinmaya",
+    "website": "https://chinmayavrindavan.org",
+    "search_terms": [
+      "Chinmaya Mission NJ events 2026"
+    ]
+  },
+  {
+    "name": "Sri Meenakshi Temple",
+    "city": "Pearland",
+    "state": "TX",
+    "metro": "Houston",
+    "type": "hindu_temple",
+    "website": "https://www.meenakshi.org",
+    "address": "17130 McLean Rd, Pearland, TX 77584",
+    "search_terms": [
+      "Sri Meenakshi Temple Pearland events 2026",
+      "Meenakshi temple Houston festivals"
+    ]
+  },
+  {
+    "name": "BAPS Shri Swaminarayan Mandir Houston",
+    "city": "Stafford",
+    "state": "TX",
+    "metro": "Houston",
+    "type": "hindu_temple",
+    "website": "https://www.baps.org/Global-Network/North-America/Houston.aspx",
+    "address": "1150 Brand Ln, Stafford, TX 77477",
+    "search_terms": [
+      "BAPS Houston events 2026",
+      "BAPS Stafford TX mandir"
+    ]
+  },
+  {
+    "name": "ISKCON Houston",
+    "city": "Houston",
+    "state": "TX",
+    "metro": "Houston",
+    "type": "iskcon",
+    "website": "https://www.iskconhouston.org",
+    "address": "1320 W 34th St, Houston, TX 77018",
+    "search_terms": [
+      "ISKCON Houston events 2026"
+    ]
+  },
+  {
+    "name": "India Culture Center",
+    "city": "Houston",
+    "state": "TX",
+    "metro": "Houston",
+    "type": "cultural_center",
+    "website": "https://www.icchouston.org",
+    "search_terms": [
+      "India Culture Center Houston events 2026"
+    ]
+  },
+  {
+    "name": "Chinmaya Mission Houston",
+    "city": "Houston",
+    "state": "TX",
+    "metro": "Houston",
+    "type": "chinmaya",
+    "website": "https://www.chinmayahouston.org",
+    "search_terms": [
+      "Chinmaya Mission Houston events 2026"
+    ]
+  },
+  {
+    "name": "Hindu Temple of Greater Chicago (Lemont)",
+    "city": "Lemont",
+    "state": "IL",
+    "metro": "Chicago",
+    "type": "hindu_temple",
+    "website": "https://www.ramatemple.org",
+    "address": "10915 Lemont Rd, Lemont, IL 60439",
+    "search_terms": [
+      "Hindu Temple Greater Chicago events 2026",
+      "Rama Temple Lemont events"
+    ]
+  },
+  {
+    "name": "BAPS Shri Swaminarayan Mandir Chicago",
+    "city": "Bartlett",
+    "state": "IL",
+    "metro": "Chicago",
+    "type": "hindu_temple",
+    "website": "https://www.baps.org/Global-Network/North-America/Chicago.aspx",
+    "address": "1851 Jens Jensen Blvd, Bartlett, IL 60103",
+    "search_terms": [
+      "BAPS Chicago events 2026",
+      "BAPS Bartlett IL mandir"
+    ]
+  },
+  {
+    "name": "Chinmaya Mission Chicago",
+    "city": "Willowbrook",
+    "state": "IL",
+    "metro": "Chicago",
+    "type": "chinmaya",
+    "website": "https://www.chinmayamission.com/centers/chicago",
+    "search_terms": [
+      "Chinmaya Mission Chicago events 2026"
+    ]
+  },
+  {
+    "name": "DFW Hindu Temple",
+    "city": "Irving",
+    "state": "TX",
+    "metro": "Dallas",
+    "type": "hindu_temple",
+    "website": "https://www.dfwhindutemple.org",
+    "address": "1605 N Britain Rd, Irving, TX 75061",
+    "search_terms": [
+      "DFW Hindu Temple events 2026",
+      "DFW Hindu Temple Irving festivals"
+    ]
+  },
+  {
+    "name": "Radha Krishna Temple (Allen)",
+    "city": "Allen",
+    "state": "TX",
+    "metro": "Dallas",
+    "type": "hindu_temple",
+    "website": "https://www.radhakrishna.org",
+    "address": "1450 N Watters Rd, Allen, TX 75013",
+    "search_terms": [
+      "Radha Krishna Temple Allen TX events 2026"
+    ]
+  },
+  {
+    "name": "Ekta Mandir",
+    "city": "Irving",
+    "state": "TX",
+    "metro": "Dallas",
+    "type": "hindu_temple",
+    "website": "https://www.ektamandir.org",
+    "search_terms": [
+      "Ekta Mandir Irving TX events 2026"
+    ]
+  },
+  {
+    "name": "BAPS Shri Swaminarayan Mandir Atlanta",
+    "city": "Lilburn",
+    "state": "GA",
+    "metro": "Atlanta",
+    "type": "hindu_temple",
+    "website": "https://www.baps.org/Global-Network/North-America/Atlanta.aspx",
+    "address": "460 Harmony Grove Rd NW, Lilburn, GA 30047",
+    "search_terms": [
+      "BAPS Atlanta events 2026",
+      "BAPS Lilburn GA mandir"
+    ]
+  },
+  {
+    "name": "Hindu Temple of Atlanta",
+    "city": "Riverdale",
+    "state": "GA",
+    "metro": "Atlanta",
+    "type": "hindu_temple",
+    "website": "https://www.hindutempleofatlanta.org",
+    "address": "5851 GA-85, Riverdale, GA 30274",
+    "search_terms": [
+      "Hindu Temple Atlanta events 2026"
+    ]
+  },
+  {
+    "name": "Chinmaya Mission Atlanta",
+    "city": "Norcross",
+    "state": "GA",
+    "metro": "Atlanta",
+    "type": "chinmaya",
+    "website": "https://www.chinmayaatlanta.org",
+    "search_terms": [
+      "Chinmaya Mission Atlanta events 2026"
+    ]
+  },
+  {
+    "name": "BAPS Shri Swaminarayan Mandir Los Angeles",
+    "city": "Chino Hills",
+    "state": "CA",
+    "metro": "Los Angeles",
+    "type": "hindu_temple",
+    "website": "https://www.baps.org/Global-Network/North-America/LosAngeles.aspx",
+    "address": "15100 Fairfield Ranch Rd, Chino Hills, CA 91709",
+    "search_terms": [
+      "BAPS Los Angeles events 2026",
+      "BAPS Chino Hills events"
+    ]
+  },
+  {
+    "name": "Malibu Hindu Temple (Sri Venkateswara)",
+    "city": "Calabasas",
+    "state": "CA",
+    "metro": "Los Angeles",
+    "type": "hindu_temple",
+    "website": "https://www.malibutemple.org",
+    "address": "1600 Las Virgenes Canyon Rd, Calabasas, CA 91302",
+    "search_terms": [
+      "Malibu Hindu Temple events 2026",
+      "Hindu Temple Calabasas"
+    ]
+  },
+  {
+    "name": "ISKCON Los Angeles (New Dwaraka)",
+    "city": "Los Angeles",
+    "state": "CA",
+    "metro": "Los Angeles",
+    "type": "iskcon",
+    "website": "https://www.iskconla.com",
+    "address": "3764 Watseka Ave, Los Angeles, CA 90034",
+    "search_terms": [
+      "ISKCON Los Angeles events 2026",
+      "ISKCON LA Ratha Yatra Venice Beach"
+    ]
+  },
+  {
+    "name": "Hindu Temple of LA (Siva Kameswari)",
+    "city": "Calabasas",
+    "state": "CA",
+    "metro": "Los Angeles",
+    "type": "hindu_temple",
+    "website": "https://www.thehindutemple.org",
+    "search_terms": [
+      "Hindu Temple of LA events 2026"
+    ]
+  },
+  {
+    "name": "Hindu Temple & Cultural Center of Seattle",
+    "city": "Bothell",
+    "state": "WA",
+    "metro": "Seattle",
+    "type": "hindu_temple",
+    "website": "https://www.htccseattle.org",
+    "address": "3818 212th St SE, Bothell, WA 98021",
+    "search_terms": [
+      "Hindu Temple Seattle events 2026",
+      "HTCC Bothell WA events"
+    ]
+  },
+  {
+    "name": "BAPS Shri Swaminarayan Mandir Seattle",
+    "city": "Bothell",
+    "state": "WA",
+    "metro": "Seattle",
+    "type": "hindu_temple",
+    "website": "https://www.baps.org/Global-Network/North-America/Seattle.aspx",
+    "search_terms": [
+      "BAPS Seattle events 2026"
+    ]
+  },
+  {
+    "name": "Sri Lakshmi Temple",
+    "city": "Ashland",
+    "state": "MA",
+    "metro": "Boston",
+    "type": "hindu_temple",
+    "website": "https://www.srilakshmitemple.org",
+    "address": "117 Waverly St, Ashland, MA 01721",
+    "search_terms": [
+      "Sri Lakshmi Temple Ashland events 2026"
+    ]
+  },
+  {
+    "name": "BAPS Shri Swaminarayan Mandir Boston",
+    "city": "Westborough",
+    "state": "MA",
+    "metro": "Boston",
+    "type": "hindu_temple",
+    "website": "https://www.baps.org/Global-Network/North-America/Boston.aspx",
+    "search_terms": [
+      "BAPS Boston events 2026",
+      "BAPS Westborough events"
+    ]
+  },
+  {
+    "name": "New England Hindu Temple",
+    "city": "Ashland",
+    "state": "MA",
+    "metro": "Boston",
+    "type": "hindu_temple",
+    "website": "https://www.nehtma.org",
+    "search_terms": [
+      "New England Hindu Temple Ashland events 2026"
+    ]
+  },
+  {
+    "name": "Bharatiya Temple",
+    "city": "Troy",
+    "state": "MI",
+    "metro": "Detroit",
+    "type": "hindu_temple",
+    "website": "https://www.bharatiyatemple.org",
+    "address": "6850 Adams Rd, Troy, MI 48098",
+    "search_terms": [
+      "Bharatiya Temple Troy MI events 2026"
+    ]
+  },
+  {
+    "name": "Hindu Temple of Arizona",
+    "city": "Chandler",
+    "state": "AZ",
+    "metro": "Phoenix",
+    "type": "hindu_temple",
+    "website": "https://www.hindutempleaz.org",
+    "address": "3033 N Hayden Rd, Scottsdale, AZ 85251",
+    "search_terms": [
+      "Hindu Temple Arizona events 2026",
+      "Hindu Temple Scottsdale events"
+    ]
+  },
+  {
+    "name": "ISKCON Phoenix",
+    "city": "Chandler",
+    "state": "AZ",
+    "metro": "Phoenix",
+    "type": "iskcon",
+    "website": "https://www.iskconphoenix.com",
+    "search_terms": [
+      "ISKCON Phoenix events 2026",
+      "ISKCON Chandler AZ"
+    ]
+  },
+  {
+    "name": "BAPS Shri Swaminarayan Mandir Columbus",
+    "city": "Columbus",
+    "state": "OH",
+    "metro": "Columbus",
+    "type": "hindu_temple",
+    "website": "https://www.baps.org/Global-Network/North-America/Columbus.aspx",
+    "search_terms": [
+      "BAPS Columbus OH events 2026"
+    ]
+  },
+  {
+    "name": "Jain Center of Central Ohio",
+    "city": "Lewis Center",
+    "state": "OH",
+    "metro": "Columbus",
+    "type": "jain_temple",
+    "website": "https://www.jcco.org",
+    "search_terms": [
+      "Jain Center Central Ohio events 2026"
+    ]
+  },
+  {
+    "name": "Hindu Temple of Nashville",
+    "city": "Nashville",
+    "state": "TN",
+    "metro": "Nashville",
+    "type": "hindu_temple",
+    "website": "https://www.hindutempleofrockies.org",
+    "search_terms": [
+      "Hindu Temple Nashville events 2026"
+    ]
+  },
+  {
+    "name": "Hindu Temple of Central Texas",
+    "city": "Austin",
+    "state": "TX",
+    "metro": "Austin",
+    "type": "hindu_temple",
+    "website": "https://www.htct.org",
+    "search_terms": [
+      "Hindu Temple Central Texas events 2026",
+      "Hindu temple Austin TX events"
+    ]
+  },
+  {
+    "name": "Hindu Temple of Florida",
+    "city": "Tampa",
+    "state": "FL",
+    "metro": "Florida",
+    "type": "hindu_temple",
+    "website": "https://www.hindutampa.org",
+    "search_terms": [
+      "Hindu Temple Florida Tampa events 2026"
+    ]
+  },
+  {
+    "name": "BAPS Shri Swaminarayan Mandir Tampa",
+    "city": "Tampa",
+    "state": "FL",
+    "metro": "Florida",
+    "type": "hindu_temple",
+    "website": "https://www.baps.org/Global-Network/North-America/Tampa.aspx",
+    "search_terms": [
+      "BAPS Tampa events 2026"
+    ]
+  },
+  {
+    "name": "Hindu Temple of South Florida",
+    "city": "Fort Lauderdale",
+    "state": "FL",
+    "metro": "Florida",
+    "type": "hindu_temple",
+    "website": "https://www.hindutempleofsouthflorida.org",
+    "search_terms": [
+      "Hindu Temple South Florida events 2026"
+    ]
+  },
+  {
+    "name": "Sri Venkateswara Temple",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "metro": "Pittsburgh",
+    "type": "hindu_temple",
+    "website": "https://www.svtemple.org",
+    "address": "1230 S McCully Dr, Penn Hills, PA 15235",
+    "search_terms": [
+      "Sri Venkateswara Temple Pittsburgh events 2026",
+      "SV Temple Penn Hills"
+    ]
+  },
+  {
+    "name": "Hindu Temple of Minnesota",
+    "city": "Maple Grove",
+    "state": "MN",
+    "metro": "Minneapolis",
+    "type": "hindu_temple",
+    "website": "https://www.hindumandirmn.org",
+    "search_terms": [
+      "Hindu Temple Minnesota events 2026",
+      "Hindu Mandir Maple Grove MN"
+    ]
+  },
+  {
+    "name": "Art of Living Foundation (USA)",
+    "city": "Boone",
+    "state": "NC",
+    "metro": "National",
+    "type": "meditation_center",
+    "website": "https://www.artofliving.org",
+    "search_terms": [
+      "Art of Living USA events 2026",
+      "Art of Living retreat 2026",
+      "Art of Living SKY Breath Meditation"
+    ]
+  },
+  {
+    "name": "Isha Foundation (USA)",
+    "city": "McMinnville",
+    "state": "TN",
+    "metro": "National",
+    "type": "meditation_center",
+    "website": "https://www.innerengineering.com",
+    "search_terms": [
+      "Isha Foundation USA events 2026",
+      "Inner Engineering programs 2026",
+      "Isha yoga USA"
+    ]
+  },
+  {
+    "name": "Chinmaya Mission West (National)",
+    "city": "Piercy",
+    "state": "CA",
+    "metro": "National",
+    "type": "chinmaya",
+    "website": "https://www.chinmayamissionwest.com",
+    "search_terms": [
+      "Chinmaya Mission USA events 2026"
+    ]
+  },
+  {
+    "name": "Arsha Vidya Gurukulam",
+    "city": "Saylorsburg",
+    "state": "PA",
+    "metro": "National",
+    "type": "vedanta",
+    "website": "https://www.arshavidya.org",
+    "search_terms": [
+      "Arsha Vidya Gurukulam events 2026",
+      "Arsha Vidya retreat 2026"
+    ]
+  },
+  {
+    "name": "Mata Amritanandamayi (Amma) Center",
+    "city": "San Ramon",
+    "state": "CA",
+    "metro": "Bay Area",
+    "type": "ashram",
+    "website": "https://www.amma.org",
+    "search_terms": [
+      "Amma tour USA 2026",
+      "Amma Bay Area 2026",
+      "Mata Amritanandamayi 2026 USA"
+    ]
+  },
+  {
+    "name": "Arya Samaj Bay Area",
+    "city": "Fremont",
+    "state": "CA",
+    "metro": "Bay Area",
+    "type": "hindu_temple",
+    "website": "https://www.aryasamajbayarea.org",
+    "search_terms": [
+      "Arya Samaj Bay Area events 2026"
+    ]
+  },
+  {
+    "name": "Hindu Temple of Baltimore",
+    "city": "Baltimore",
+    "state": "MD",
+    "metro": "Baltimore",
+    "type": "hindu_temple",
+    "website": "https://www.hindutemplebaltimore.org",
+    "search_terms": [
+      "Hindu Temple Baltimore events 2026"
+    ]
+  },
+  {
+    "name": "Bochasanwasi Akshar Purushottam Sanstha (BAPS) Denver",
+    "city": "Denver",
+    "state": "CO",
+    "metro": "Denver",
+    "type": "hindu_temple",
+    "website": "https://www.baps.org/Global-Network/North-America/Denver.aspx",
+    "search_terms": [
+      "BAPS Denver events 2026"
+    ]
+  },
+  {
+    "name": "Hindu Temple of Colorado",
+    "city": "Littleton",
+    "state": "CO",
+    "metro": "Denver",
+    "type": "hindu_temple",
+    "website": "https://www.hindutempleofcolorado.org",
+    "search_terms": [
+      "Hindu Temple Colorado events 2026"
+    ]
+  },
+  {
+    "name": "Sri Sri Radha Krishna Temple (ISKCON Utah)",
+    "city": "Spanish Fork",
+    "state": "UT",
+    "metro": "National",
+    "type": "iskcon",
+    "website": "https://www.utahkrishnas.org",
+    "search_terms": [
+      "ISKCON Utah events 2026",
+      "Holi Festival of Colors Spanish Fork 2026"
+    ]
+  },
+  {
+    "name": "ISKCON Houston (Sri Sri Radha Nilamadhava)",
+    "city": "Houston",
+    "state": "TX",
+    "metro": "Houston",
+    "type": "iskcon",
+    "website": "https://www.iskconhouston.org",
+    "address": "1320 W 34th St, Houston, TX 77018",
+    "search_terms": [
+      "ISKCON Houston events 2026"
+    ]
+  },
+  {
+    "name": "Sri Venkateswara Temple of North Carolina",
+    "city": "Cary",
+    "state": "NC",
+    "metro": "Raleigh",
+    "type": "hindu_temple",
+    "website": "https://www.svtemple.us",
+    "search_terms": [
+      "Sri Venkateswara Temple Cary NC events 2026"
+    ]
+  }
+]
