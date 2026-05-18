@@ -1,61 +1,61 @@
 {
-  "last_updated": "2026-05-18T05:55:27.644070+00:00",
+  "last_updated": "2026-05-18T06:30:00.000000+00:00",
   "indices": [
     {
       "symbol": "SENSEX",
       "name": "Sensex",
-      "flag": "\ud83c\uddee\ud83c\uddf3",
-      "value": 74708.43,
-      "change": -529.56,
-      "change_pct": -0.7
+      "flag": "🇮🇳",
+      "value": 74388.15,
+      "change": -320.28,
+      "change_pct": -0.43
     },
     {
       "symbol": "NIFTY",
       "name": "Nifty 50",
-      "flag": "\ud83c\uddee\ud83c\uddf3",
-      "value": 23515.8,
-      "change": -142.1,
-      "change_pct": -0.6
+      "flag": "🇮🇳",
+      "value": 23382.45,
+      "change": -133.35,
+      "change_pct": -0.57
     },
     {
       "symbol": "SPX",
       "name": "S&P 500",
-      "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "value": 7408.5,
-      "change": -92.74,
-      "change_pct": -1.24
+      "flag": "🇺🇸",
+      "value": 7367.0,
+      "change": -37.8,
+      "change_pct": -0.51
     },
     {
       "symbol": "NASDAQ",
       "name": "Nasdaq",
-      "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "value": 26225.14,
-      "change": -410.08,
-      "change_pct": -1.54
+      "flag": "🇺🇸",
+      "value": 26072.38,
+      "change": -152.76,
+      "change_pct": -0.58
     },
     {
       "symbol": "USDINR",
       "name": "USD/INR",
-      "flag": "\ud83d\udcb1",
-      "value": 96.3,
-      "change": 0.35,
-      "change_pct": 0.36
+      "flag": "💱",
+      "value": 96.27,
+      "change": 0.32,
+      "change_pct": 0.33
     },
     {
       "symbol": "GOLD",
       "name": "Gold",
-      "flag": "\u2728",
-      "value": 4543.2,
-      "change": -3.6,
-      "change_pct": -0.08
+      "flag": "✨",
+      "value": 4541.02,
+      "change": 0.38,
+      "change_pct": 0.01
     },
     {
       "symbol": "SILVER",
       "name": "Silver",
-      "flag": "\ud83e\ude99",
-      "value": 75.65,
-      "change": 0.1,
-      "change_pct": 0.13
+      "flag": "🪙",
+      "value": 75.40,
+      "change": -0.25,
+      "change_pct": -0.33
     }
   ]
 }
