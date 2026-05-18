@@ -74,7 +74,8 @@ export default function Masthead() {
             </svg>
           </button>
 
-          <Link to="/" className="block">
+          <Link to="/" className="flex items-center gap-3">
+            <img src="/logo.jpg" alt="The Videshi" className="h-10 md:h-14 w-auto rounded-sm" />
             <h1 className="font-serif font-black tracking-tight text-foreground leading-none text-[2.25rem] md:text-[3.25rem] lg:text-[3.75rem]">
               The Videshi
             </h1>
