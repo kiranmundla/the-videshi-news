@@ -50,11 +50,11 @@ function getTabCategories(tabLabel: string): string[] {
 /* Badge colors                                                       */
 /* ------------------------------------------------------------------ */
 const TAB_COLORS: Record<string, string> = {
-  Entertainment:      "bg-pink-600/20 text-pink-300",
-  Community:          "bg-blue-600/20 text-blue-300",
-  "Sports & Fitness": "bg-green-600/20 text-green-300",
-  Education:          "bg-teal-600/20 text-teal-300",
-  Spiritual:          "bg-indigo-600/20 text-indigo-300",
+  Entertainment:      "bg-pink-100 text-pink-700",
+  Community:          "bg-blue-100 text-blue-700",
+  "Sports & Fitness": "bg-green-100 text-green-700",
+  Education:          "bg-teal-100 text-teal-700",
+  Spiritual:          "bg-indigo-100 text-indigo-700",
 };
 
 const TAB_EMOJI: Record<string, string> = {
@@ -119,7 +119,7 @@ function EventCard({ event, distance }: { event: EventItem; distance?: number })
               </span>
             )}
             {event.audience && (
-              <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-emerald-600/20 text-emerald-300">
+              <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-emerald-100 text-emerald-700">
                 👤 {event.audience}
               </span>
             )}
