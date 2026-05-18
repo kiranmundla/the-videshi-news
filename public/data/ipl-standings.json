@@ -1,7 +1,7 @@
 {
   "season": "IPL 2026",
   "last_updated": "2026-05-18T08:55:37Z",
-  "stage": "League Stage — Match 62 of 70",
+  "stage": "League Stage \u2014 Match 62 of 70",
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
@@ -165,7 +165,7 @@
     "team1": "CSK",
     "team2": "SRH",
     "date": "18 May",
-    "time": "15:30 IST",
+    "time": "19:30 IST",
     "venue": "MA Chidambaram Stadium, Chennai"
   },
   "playoffs": {
