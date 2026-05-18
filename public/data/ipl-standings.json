@@ -1,6 +1,6 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-18T18:10:00Z",
+  "last_updated": "2026-05-18T18:55:42Z",
   "stage": "League Stage — Match 63 of 70",
   "standings": [
     {
@@ -28,12 +28,12 @@
     {
       "team": "Sunrisers Hyderabad",
       "short": "SRH",
-      "played": 13,
-      "won": 8,
+      "played": 12,
+      "won": 7,
       "lost": 5,
       "nr": 0,
-      "nrr": "+0.362",
-      "points": 16,
+      "nrr": "+0.331",
+      "points": 14,
       "position": 3
     },
     {
@@ -61,11 +61,11 @@
     {
       "team": "Chennai Super Kings",
       "short": "CSK",
-      "played": 13,
+      "played": 12,
       "won": 6,
-      "lost": 7,
+      "lost": 6,
       "nr": 0,
-      "nrr": "-0.031",
+      "nrr": "+0.027",
       "points": 12,
       "position": 6
     },
