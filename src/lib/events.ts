@@ -192,7 +192,7 @@ export async function getEvents(
     if (cityFilter) {
       const group = CITY_GROUPS.find((g) => g.label === cityFilter);
       if (group) {
-        query = query.in("city", group.cities);
+        query = query.in("city", [...group.cities, group.label]);
       }
     }
 
