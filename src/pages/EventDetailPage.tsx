@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
@@ -10,6 +10,66 @@ import {
   formatEventDateLong,
   CITY_GROUPS,
 } from "@/lib/events";
+
+/* ------------------------------------------------------------------ */
+/* Venue Images                                                        */
+/* ------------------------------------------------------------------ */
+
+type VenueImageEntry = { city: string; images: string[]; attribution: string };
+type VenueImageMap = Record<string, VenueImageEntry>;
+
+const VENUE_IMAGES_URL =
+  "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/venues/venue-images.json";
+
+let cachedVenueImages: VenueImageMap | null = null;
+
+async function fetchVenueImages(): Promise<VenueImageMap> {
+  if (cachedVenueImages) return cachedVenueImages;
+  try {
+    const res = await fetch(VENUE_IMAGES_URL);
+    if (!res.ok) return {};
+    cachedVenueImages = await res.json();
+    return cachedVenueImages!;
+  } catch {
+    return {};
+  }
+}
+
+function VenuePhotoGallery({ images, venueName, attribution }: {
+  images: string[];
+  venueName: string;
+  attribution: string;
+}) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  if (!images.length) return null;
+
+  return (
+    <div className="mt-5">
+      <div
+        ref={scrollRef}
+        className="flex gap-3 overflow-x-auto pb-3 scrollbar-none snap-x snap-mandatory"
+      >
+        {images.map((url, i) => (
+          <div
+            key={i}
+            className="flex-shrink-0 snap-start w-[85%] sm:w-[45%] lg:w-[30%] rounded-lg overflow-hidden"
+          >
+            <img
+              src={url}
+              alt={`${venueName} — photo ${i + 1}`}
+              className="w-full h-44 sm:h-52 object-cover bg-white/5"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+      <p className="text-[10px] text-white/20 mt-2">
+        Photo of {venueName} · {attribution}
+      </p>
+    </div>
+  );
+}
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                            */
@@ -49,6 +109,8 @@ export default function EventDetailPage() {
   const [event, setEvent] = useState<EventItem | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [venueImages, setVenueImages] = useState<string[]>([]);
+  const [venueAttribution, setVenueAttribution] = useState("");
 
   useEffect(() => {
     if (!slug) {
@@ -60,6 +122,16 @@ export default function EventDetailPage() {
     getEventBySlug(slug).then((data) => {
       if (data) {
         setEvent(data);
+        // Fetch venue images
+        if (data.venue_name) {
+          fetchVenueImages().then((map) => {
+            const entry = map[data.venue_name!];
+            if (entry && entry.images.length) {
+              setVenueImages(entry.images);
+              setVenueAttribution(entry.attribution || "");
+            }
+          });
+        }
       } else {
         setNotFound(true);
       }
@@ -270,6 +342,13 @@ export default function EventDetailPage() {
                       <div className="text-white/60 text-sm leading-relaxed whitespace-pre-line mb-4">
                         {event.venue_info}
                       </div>
+                    )}
+                    {venueImages.length > 0 && (
+                      <VenuePhotoGallery
+                        images={venueImages}
+                        venueName={event.venue_name || "Venue"}
+                        attribution={venueAttribution}
+                      />
                     )}
                     <a
                       href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([event.venue_name, event.city, event.state].filter(Boolean).join(", "))}`}
