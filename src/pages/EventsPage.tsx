@@ -87,11 +87,11 @@ function EventCard({ event }: { event: EventItem }) {
     <article className="group flex flex-col sm:flex-row bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full box-border" style={{ wordBreak: "break-word" }}>
       {/* Image */}
       {event.image_url ? (
-        <div className="w-full sm:w-56 sm:min-w-[14rem] h-48 sm:h-auto overflow-hidden flex-shrink-0">
+        <div className="w-full sm:w-56 sm:min-w-[14rem] sm:h-auto overflow-hidden flex-shrink-0">
           <img
             src={event.image_url}
             alt={event.title}
-            className="w-full h-full object-cover bg-muted/10 group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-auto max-h-64 sm:max-h-none sm:h-full object-contain sm:object-cover bg-muted/10 group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
           />
         </div>
