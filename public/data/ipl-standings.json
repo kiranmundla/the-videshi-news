@@ -1,28 +1,27 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-18T03:10:00Z",
+  "last_updated": "2026-05-18T03:55:41Z",
   "stage": "League Stage — Match 62 of 70",
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
       "short": "RCB",
-      "played": 13,
-      "won": 9,
+      "played": 12,
+      "won": 8,
       "lost": 4,
       "nr": 0,
-      "nrr": "+1.065",
-      "points": 18,
-      "position": 1,
-      "qualified": true
+      "nrr": "+1.053",
+      "points": 16,
+      "position": 1
     },
     {
       "team": "Gujarat Titans",
       "short": "GT",
-      "played": 13,
+      "played": 12,
       "won": 8,
-      "lost": 5,
+      "lost": 4,
       "nr": 0,
-      "nrr": "+0.462",
+      "nrr": "+0.551",
       "points": 16,
       "position": 2
     },
@@ -40,22 +39,22 @@
     {
       "team": "Punjab Kings",
       "short": "PBKS",
-      "played": 13,
+      "played": 12,
       "won": 6,
-      "lost": 6,
+      "lost": 5,
       "nr": 1,
-      "nrr": "+0.283",
+      "nrr": "+0.355",
       "points": 13,
       "position": 4
     },
     {
       "team": "Rajasthan Royals",
       "short": "RR",
-      "played": 12,
+      "played": 11,
       "won": 6,
-      "lost": 6,
+      "lost": 5,
       "nr": 0,
-      "nrr": "+0.055",
+      "nrr": "+0.082",
       "points": 12,
       "position": 5
     },
@@ -73,23 +72,23 @@
     {
       "team": "Delhi Capitals",
       "short": "DC",
-      "played": 13,
-      "won": 6,
+      "played": 12,
+      "won": 5,
       "lost": 7,
       "nr": 0,
-      "nrr": "-0.845",
-      "points": 12,
+      "nrr": "-0.993",
+      "points": 10,
       "position": 7
     },
     {
       "team": "Kolkata Knight Riders",
       "short": "KKR",
-      "played": 12,
-      "won": 5,
+      "played": 11,
+      "won": 4,
       "lost": 6,
       "nr": 1,
-      "nrr": "-0.098",
-      "points": 11,
+      "nrr": "-0.198",
+      "points": 9,
       "position": 8
     },
     {
