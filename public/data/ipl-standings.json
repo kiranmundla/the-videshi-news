@@ -1,7 +1,7 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-18T17:55:43Z",
-  "stage": "League Stage — Match 62 of 70",
+  "last_updated": "2026-05-18T18:10:00Z",
+  "stage": "League Stage — Match 63 of 70",
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
@@ -28,12 +28,12 @@
     {
       "team": "Sunrisers Hyderabad",
       "short": "SRH",
-      "played": 12,
-      "won": 7,
+      "played": 13,
+      "won": 8,
       "lost": 5,
       "nr": 0,
-      "nrr": "+0.331",
-      "points": 14,
+      "nrr": "+0.362",
+      "points": 16,
       "position": 3
     },
     {
@@ -61,11 +61,11 @@
     {
       "team": "Chennai Super Kings",
       "short": "CSK",
-      "played": 12,
+      "played": 13,
       "won": 6,
-      "lost": 6,
+      "lost": 7,
       "nr": 0,
-      "nrr": "+0.027",
+      "nrr": "-0.031",
       "points": 12,
       "position": 6
     },
@@ -116,6 +116,15 @@
   ],
   "recent_results": [
     {
+      "team1": "CSK",
+      "score1": "180/7",
+      "team2": "SRH",
+      "score2": "181/5",
+      "result": "SRH won by 5 wickets",
+      "date": "18 May",
+      "venue": "Chennai"
+    },
+    {
       "team1": "RR",
       "score1": "193/8",
       "team2": "DC",
@@ -150,23 +159,14 @@
       "result": "LSG won by 7 wickets",
       "date": "15 May",
       "venue": "Lucknow"
-    },
-    {
-      "team1": "RCB",
-      "score1": "194/4",
-      "team2": "KKR",
-      "score2": "192/4",
-      "result": "RCB won by 6 wickets",
-      "date": "13 May",
-      "venue": "Bengaluru"
     }
   ],
   "next_match": {
-    "team1": "CSK",
-    "team2": "SRH",
-    "date": "18 May",
+    "team1": "RR",
+    "team2": "LSG",
+    "date": "19 May",
     "time": "19:30 IST",
-    "venue": "MA Chidambaram Stadium, Chennai"
+    "venue": "Sawai Mansingh Stadium, Jaipur"
   },
   "playoffs": {
     "qualifier1": {
