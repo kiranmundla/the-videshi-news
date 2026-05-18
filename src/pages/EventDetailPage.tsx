@@ -15,21 +15,6 @@ import {
 /* Helpers                                                            */
 /* ------------------------------------------------------------------ */
 
-const CAT_COLORS: Record<string, string> = {
-  Cultural:    "bg-purple-600/20 text-purple-300 border-purple-600/30",
-  Music:       "bg-pink-600/20 text-pink-300 border-pink-600/30",
-  Food:        "bg-amber-600/20 text-amber-300 border-amber-600/30",
-  Sports:      "bg-green-600/20 text-green-300 border-green-600/30",
-  Community:   "bg-blue-600/20 text-blue-300 border-blue-600/30",
-  Festival:    "bg-orange-600/20 text-orange-300 border-orange-600/30",
-  Comedy:      "bg-yellow-600/20 text-yellow-300 border-yellow-600/30",
-  Dance:       "bg-rose-600/20 text-rose-300 border-rose-600/30",
-  Religious:   "bg-indigo-600/20 text-indigo-300 border-indigo-600/30",
-  Education:   "bg-teal-600/20 text-teal-300 border-teal-600/30",
-  Competition: "bg-cyan-600/20 text-cyan-300 border-cyan-600/30",
-  Other:       "bg-gray-600/20 text-gray-300 border-gray-600/30",
-};
-
 const CAT_EMOJI: Record<string, string> = {
   Cultural: "🎭", Music: "🎵", Food: "🍛", Sports: "🏏",
   Community: "🤝", Festival: "🪔", Comedy: "😂", Dance: "💃",
@@ -44,11 +29,11 @@ function getCityGroup(city: string): string | null {
 }
 
 function getCtaText(priceRange: string | null): string {
-  if (!priceRange) return "Get Tickets →";
+  if (!priceRange) return "Get Tickets";
   const lower = priceRange.toLowerCase();
-  if (lower === "free" || lower.includes("free")) return "RSVP →";
-  if (lower.includes("register")) return "Register →";
-  return "Get Tickets →";
+  if (lower === "free" || lower.includes("free")) return "RSVP Now";
+  if (lower.includes("register")) return "Register Now";
+  return "Get Tickets";
 }
 
 function isPastEvent(dateStr: string): boolean {
@@ -82,17 +67,15 @@ export default function EventDetailPage() {
     });
   }, [slug]);
 
+  /* Loading */
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-[#0a0a0a]">
         <Masthead />
         <CategoryPills />
-        <main className="container flex-1 pt-8 pb-16">
-          <div className="max-w-3xl mx-auto space-y-6">
-            <div className="h-64 md:h-96 rounded-xl bg-muted/20 animate-pulse" />
-            <div className="h-8 w-2/3 bg-muted/20 animate-pulse rounded" />
-            <div className="h-4 w-1/2 bg-muted/20 animate-pulse rounded" />
-            <div className="h-32 bg-muted/20 animate-pulse rounded" />
+        <main className="flex-1 pt-8 pb-16 px-4">
+          <div className="max-w-4xl mx-auto space-y-6">
+            <div className="h-[70vh] rounded-2xl bg-white/5 animate-pulse" />
           </div>
         </main>
         <SiteFooter />
@@ -100,24 +83,18 @@ export default function EventDetailPage() {
     );
   }
 
+  /* Not found */
   if (notFound || !event) {
     return (
-      <div className="min-h-screen flex flex-col">
-        <Helmet>
-          <title>Event Not Found — The Videshi</title>
-        </Helmet>
+      <div className="min-h-screen flex flex-col bg-[#0a0a0a]">
+        <Helmet><title>Event Not Found — The Videshi</title></Helmet>
         <Masthead />
         <CategoryPills />
-        <main className="container flex-1 pt-16 pb-16 text-center">
+        <main className="flex-1 pt-16 pb-16 text-center px-4">
           <p className="text-6xl mb-6">🎪</p>
-          <h1 className="font-serif text-3xl text-foreground mb-4">Event Not Found</h1>
-          <p className="text-muted-foreground mb-8">
-            This event may have passed or the link might be incorrect.
-          </p>
-          <Link
-            to="/events"
-            className="inline-block px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
-          >
+          <h1 className="font-serif text-3xl text-white mb-4">Event Not Found</h1>
+          <p className="text-white/50 mb-8">This event may have passed or the link might be incorrect.</p>
+          <Link to="/events" className="inline-block px-6 py-3 rounded-full bg-white text-black font-semibold hover:bg-white/90 transition-colors">
             ← Browse All Events
           </Link>
         </main>
@@ -127,18 +104,15 @@ export default function EventDetailPage() {
   }
 
   const dateStr = formatEventDateLong(event.date, event.end_date);
-  const location = [event.venue_name, event.city, event.state].filter(Boolean).join(", ");
-  const cityGroup = getCityGroup(event.city);
   const past = isPastEvent(event.date);
-  const catColor = CAT_COLORS[event.category || "Other"] || CAT_COLORS.Other;
   const catEmoji = CAT_EMOJI[event.category || "Other"] || "📌";
   const description = event.long_description || event.description;
   const metaDescription = event.description
     ? `${event.description.slice(0, 155)}…`
-    : `${event.title} on ${dateStr} at ${location}`;
+    : `${event.title} on ${dateStr} at ${event.venue_name}, ${event.city}`;
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-[#0a0a0a]">
       <Helmet>
         <title>{event.title} — Events — The Videshi</title>
         <meta name="description" content={metaDescription} />
@@ -153,217 +127,264 @@ export default function EventDetailPage() {
       <CategoryPills />
 
       <main className="flex-1">
-        {/* Hero */}
-        <div className="relative w-full">
-          {event.image_url ? (
-            <div className="relative w-full h-64 sm:h-80 md:h-[28rem] overflow-hidden bg-muted/10">
+
+        {/* ========== HERO ========== */}
+        {event.image_url ? (
+          <div className="relative w-full">
+            {/* Full poster — no heavy gradient, just a subtle bottom fade */}
+            <div className="relative w-full max-h-[75vh] overflow-hidden">
               <img
                 src={event.image_url}
                 alt={event.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain bg-black"
+                style={{ maxHeight: "75vh" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-              {/* Title overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-                <div className="max-w-3xl mx-auto">
-                  {past && (
-                    <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-red-600/80 text-white mb-3">
-                      PAST EVENT
-                    </span>
-                  )}
-                  <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-bold leading-tight drop-shadow-lg">
-                    {event.title}
-                  </h1>
-                  <div className="flex flex-wrap items-center gap-3 mt-3 text-white/90">
-                    <span className="font-semibold">📅 {dateStr}</span>
-                    {event.time && <span>· {event.time}</span>}
-                  </div>
-                </div>
-              </div>
+              {/* Very subtle bottom edge fade only */}
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
             </div>
-          ) : (
-            <div className="relative w-full h-48 sm:h-56 bg-gradient-to-br from-muted/30 to-muted/10 flex items-end">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-8xl opacity-20">
-                {catEmoji}
-              </div>
-              <div className="p-6 md:p-10 w-full">
-                <div className="max-w-3xl mx-auto">
-                  {past && (
-                    <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-red-600/80 text-white mb-3">
-                      PAST EVENT
-                    </span>
-                  )}
-                  <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground font-bold leading-tight">
-                    {event.title}
-                  </h1>
-                  <div className="flex flex-wrap items-center gap-3 mt-3 text-muted-foreground">
-                    <span className="font-semibold text-primary">📅 {dateStr}</span>
-                    {event.time && <span>· {event.time}</span>}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          /* No-image hero — big emoji + color wash */
+          <div className="relative w-full h-48 sm:h-56 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
+            <span className="text-[8rem] opacity-15 select-none">{catEmoji}</span>
+          </div>
+        )}
 
-        {/* Content */}
-        <div className="container pb-16">
-          <div className="max-w-3xl mx-auto">
-            {/* Info pills */}
-            <div className="flex flex-wrap gap-2 mt-6 mb-8">
+        {/* ========== TITLE CARD ========== */}
+        <div className="px-4 -mt-6 relative z-10">
+          <div className="max-w-4xl mx-auto">
+
+            {past && (
+              <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/30 mb-4">
+                Past Event
+              </span>
+            )}
+
+            {/* Category + Date row */}
+            <div className="flex flex-wrap items-center gap-3 mb-4">
               {event.category && (
-                <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium border ${catColor}`}>
+                <span className="text-sm font-medium text-white/40 uppercase tracking-widest">
                   {catEmoji} {event.category}
                 </span>
               )}
-              {location && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-muted/30 text-muted-foreground border border-border">
-                  📍 {location}
-                </span>
-              )}
-              {cityGroup && (
-                <Link
-                  to={`/events?city=${encodeURIComponent(cityGroup)}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-muted/30 text-muted-foreground border border-border hover:border-primary/40 transition-colors"
-                >
-                  🏙️ {cityGroup} Events
-                </Link>
-              )}
-              {event.price_range && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-emerald-600/20 text-emerald-300 border border-emerald-600/30">
-                  💰 {event.price_range}
-                </span>
-              )}
-              {event.audience && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-sky-600/20 text-sky-300 border border-sky-600/30">
-                  👤 {event.audience}
-                </span>
+              <span className="text-sm text-white/30">•</span>
+              <span className="text-sm text-white/60">{dateStr}</span>
+              {event.time && (
+                <>
+                  <span className="text-sm text-white/30">•</span>
+                  <span className="text-sm text-white/60">{event.time}</span>
+                </>
               )}
             </div>
 
-            {/* CTA Button — primary position */}
+            {/* Title */}
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-bold leading-[1.1] mb-4">
+              {event.title}
+            </h1>
+
+            {/* Venue + City */}
+            <div className="flex flex-wrap items-center gap-2 text-white/50 text-base mb-8">
+              {event.venue_name && <span className="text-white/70 font-medium">{event.venue_name}</span>}
+              {event.venue_name && event.city && <span>·</span>}
+              <span>{[event.city, event.state].filter(Boolean).join(", ")}</span>
+              {event.price_range && (
+                <>
+                  <span>·</span>
+                  <span className="text-emerald-400 font-medium">{event.price_range}</span>
+                </>
+              )}
+            </div>
+
+            {/* CTA */}
             {event.ticket_url && !past && (
               <a
                 href={event.ticket_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full sm:w-auto sm:inline-block text-center px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 mb-10"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-bold text-base hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)]"
               >
                 {getCtaText(event.price_range)}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                </svg>
               </a>
             )}
             {past && (
-              <div className="mb-10 p-4 rounded-lg bg-red-900/20 border border-red-600/30 text-red-300 text-sm">
-                ⚠️ This event has already taken place. Check our <Link to="/events" className="underline hover:text-red-200">events page</Link> for upcoming events.
+              <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400/80 text-sm">
+                This event has already taken place. <Link to="/events" className="underline hover:text-red-300">Browse upcoming events →</Link>
               </div>
             )}
+          </div>
+        </div>
 
-            {/* About This Event */}
-            {description && (
-              <section className="mb-10">
-                <h2 className="font-serif text-xl md:text-2xl text-foreground mb-4 flex items-center gap-2">
-                  <span className="text-primary">◆</span> About This Event
-                </h2>
-                <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {description}
+        {/* ========== DIVIDER ========== */}
+        <div className="max-w-4xl mx-auto px-4 my-12">
+          <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        </div>
+
+        {/* ========== CONTENT SECTIONS ========== */}
+        <div className="px-4 pb-20">
+          <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10">
+
+            {/* LEFT: Main content */}
+            <div className="space-y-10">
+
+              {/* About This Event */}
+              {description && (
+                <section>
+                  <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30 mb-5">
+                    About This Event
+                  </h2>
+                  <div className="text-white/70 text-[15px] leading-[1.85] whitespace-pre-line">
+                    {description}
+                  </div>
+                </section>
+              )}
+
+              {/* About the Artist */}
+              {event.artist_info && (
+                <section>
+                  <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30 mb-5">
+                    About the Artist
+                  </h2>
+                  <div className="text-white/70 text-[15px] leading-[1.85] whitespace-pre-line">
+                    {event.artist_info}
+                  </div>
+                </section>
+              )}
+
+              {/* Venue */}
+              {(event.venue_name || event.venue_info) && (
+                <section>
+                  <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30 mb-5">
+                    Venue
+                  </h2>
+                  <div className="rounded-xl bg-white/[0.03] border border-white/[0.06] p-6">
+                    {event.venue_name && (
+                      <p className="text-white font-semibold text-lg mb-1">{event.venue_name}</p>
+                    )}
+                    <p className="text-white/40 text-sm mb-4">
+                      {[event.city, event.state].filter(Boolean).join(", ")}
+                    </p>
+                    {event.venue_info && (
+                      <div className="text-white/60 text-sm leading-relaxed whitespace-pre-line">
+                        {event.venue_info}
+                      </div>
+                    )}
+                  </div>
+                </section>
+              )}
+            </div>
+
+            {/* RIGHT: Sidebar */}
+            <div className="space-y-6 lg:pt-0">
+              {/* Quick info card */}
+              <div className="rounded-xl bg-white/[0.03] border border-white/[0.06] p-5 space-y-4">
+                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30">
+                  Event Details
+                </h3>
+
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="text-lg mt-0.5">📅</span>
+                    <div>
+                      <p className="text-white/80 text-sm font-medium">{dateStr}</p>
+                      {event.time && <p className="text-white/40 text-xs">{event.time}</p>}
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="text-lg mt-0.5">📍</span>
+                    <div>
+                      {event.venue_name && <p className="text-white/80 text-sm font-medium">{event.venue_name}</p>}
+                      <p className="text-white/40 text-xs">{[event.city, event.state].filter(Boolean).join(", ")}</p>
+                    </div>
+                  </div>
+
+                  {event.price_range && (
+                    <div className="flex items-start gap-3">
+                      <span className="text-lg mt-0.5">💰</span>
+                      <div>
+                        <p className="text-white/80 text-sm font-medium">{event.price_range}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {event.organizer && (
+                    <div className="flex items-start gap-3">
+                      <span className="text-lg mt-0.5">🎤</span>
+                      <div>
+                        <p className="text-white/80 text-sm font-medium">{event.organizer}</p>
+                        <p className="text-white/40 text-xs">Organizer</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {event.audience && (
+                    <div className="flex items-start gap-3">
+                      <span className="text-lg mt-0.5">👥</span>
+                      <div>
+                        <p className="text-white/80 text-sm font-medium">{event.audience}</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </section>
-            )}
 
-            {/* About the Artist */}
-            {event.artist_info && (
-              <section className="mb-10">
-                <h2 className="font-serif text-xl md:text-2xl text-foreground mb-4 flex items-center gap-2">
-                  <span className="text-primary">◆</span> About the Artist
-                </h2>
-                <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {event.artist_info}
-                </div>
-              </section>
-            )}
-
-            {/* Venue */}
-            <section className="mb-10">
-              <h2 className="font-serif text-xl md:text-2xl text-foreground mb-4 flex items-center gap-2">
-                <span className="text-primary">◆</span> Venue
-              </h2>
-              <div className="p-5 rounded-lg bg-muted/10 border border-border">
-                {event.venue_name && (
-                  <p className="text-foreground font-semibold text-lg mb-1">{event.venue_name}</p>
-                )}
-                <p className="text-muted-foreground">
-                  {[event.city, event.state].filter(Boolean).join(", ")}
-                </p>
-                {event.venue_info && (
-                  <p className="text-muted-foreground mt-3 text-sm leading-relaxed whitespace-pre-line">
-                    {event.venue_info}
-                  </p>
+                {/* Sidebar CTA */}
+                {event.ticket_url && !past && (
+                  <a
+                    href={event.ticket_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full mt-4 px-6 py-3 rounded-full bg-white text-black font-bold text-sm hover:bg-white/90 transition-colors"
+                  >
+                    {getCtaText(event.price_range)}
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                    </svg>
+                  </a>
                 )}
               </div>
-            </section>
 
-            {/* Event details summary */}
-            <section className="mb-10">
-              <h2 className="font-serif text-xl md:text-2xl text-foreground mb-4 flex items-center gap-2">
-                <span className="text-primary">◆</span> Event Details
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-4 rounded-lg bg-muted/10 border border-border">
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Date</p>
-                  <p className="text-foreground font-medium">{dateStr}</p>
-                </div>
-                {event.time && (
-                  <div className="p-4 rounded-lg bg-muted/10 border border-border">
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Time</p>
-                    <p className="text-foreground font-medium">{event.time}</p>
-                  </div>
-                )}
-                {event.price_range && (
-                  <div className="p-4 rounded-lg bg-muted/10 border border-border">
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Price</p>
-                    <p className="text-foreground font-medium">{event.price_range}</p>
-                  </div>
-                )}
-                {event.organizer && (
-                  <div className="p-4 rounded-lg bg-muted/10 border border-border">
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Organizer</p>
-                    <p className="text-foreground font-medium">{event.organizer}</p>
-                  </div>
-                )}
-              </div>
-            </section>
-
-            {/* Bottom CTA */}
-            {event.ticket_url && !past && (
-              <div className="text-center py-8 border-t border-border">
-                <p className="text-muted-foreground mb-4">Ready to go?</p>
-                <a
-                  href={event.ticket_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-10 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
+              {/* City group link */}
+              {getCityGroup(event.city) && (
+                <Link
+                  to={`/events?city=${encodeURIComponent(getCityGroup(event.city)!)}`}
+                  className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-white/10 transition-colors group"
                 >
-                  {getCtaText(event.price_range)}
-                </a>
-              </div>
-            )}
+                  <span className="text-lg">🏙️</span>
+                  <div>
+                    <p className="text-white/70 text-sm font-medium group-hover:text-white transition-colors">
+                      More events in {getCityGroup(event.city)}
+                    </p>
+                    <p className="text-white/30 text-xs">Browse all →</p>
+                  </div>
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* ========== FOOTER AREA ========== */}
+        <div className="px-4 pb-16">
+          <div className="max-w-4xl mx-auto">
+            <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8" />
 
             {/* Attribution */}
-            <div className="mt-10 pt-6 border-t border-border">
-              <p className="text-xs text-muted-foreground/60">
-                Event sourced from {event.source || "web search"}. All event details are subject to change — please verify with the organizer before attending.
-              </p>
-            </div>
+            <p className="text-[11px] text-white/20 mb-6">
+              Event sourced from {event.source || "web search"}. Details may change — verify with the organizer before attending.
+            </p>
 
-            {/* Back to events */}
-            <div className="mt-6">
-              <Link
-                to="/events"
-                className="text-sm text-primary hover:text-primary/80 transition-colors"
-              >
-                ← Back to all events
-              </Link>
-            </div>
+            {/* Back link */}
+            <Link
+              to="/events"
+              className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5m0 0l7 7m-7-7l7-7" />
+              </svg>
+              All Events
+            </Link>
           </div>
         </div>
       </main>
