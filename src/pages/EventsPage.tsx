@@ -329,19 +329,28 @@ export default function EventsPage() {
           </p>
         </div>
 
-        {/* Tab bar */}
-        <div className="border-b border-border mb-6">
-          <TabBar selected={tabFilter} onSelect={setTabFilter} />
+        {/* Tab bar — horizontal scroll so all categories visible */}
+        <div className="border-b border-border mb-4">
+          <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
+            <TabBar selected={tabFilter} onSelect={setTabFilter} />
+          </div>
         </div>
 
-        {/* City filter */}
+        {/* City dropdown */}
         <div className="mb-8">
-          <FilterPills
-            options={CITY_GROUPS.map((g) => g.label)}
-            selected={cityFilter}
-            onSelect={setCityFilter}
-            allLabel="All Cities"
-          />
+          <select
+            value={cityFilter || ""}
+            onChange={(e) => setCityFilter(e.target.value || null)}
+            className="w-full sm:w-auto px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm font-medium appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/40"
+            style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center", paddingRight: "36px" }}
+          >
+            <option value="">📍 All Cities</option>
+            {CITY_GROUPS.map((g) => (
+              <option key={g.label} value={g.label}>
+                {g.label}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Events list */}
