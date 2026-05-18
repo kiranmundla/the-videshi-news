@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -8,8 +8,14 @@ import SiteFooter from "@/components/SiteFooter";
 import { supabase as supabaseTyped } from "@/integrations/supabase/client";
 import {
   EventItem,
+  EventWithDistance,
   formatEventDate,
+  formatDistance,
   generateSlug,
+  getDistanceMiles,
+  getCityCoords,
+  sortEventsByDistance,
+  getAllUpcomingEvents,
   CITY_GROUPS,
 } from "@/lib/events";
 
