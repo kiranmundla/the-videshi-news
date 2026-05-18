@@ -267,10 +267,22 @@ export default function EventDetailPage() {
                       {[event.city, event.state].filter(Boolean).join(", ")}
                     </p>
                     {event.venue_info && (
-                      <div className="text-white/60 text-sm leading-relaxed whitespace-pre-line">
+                      <div className="text-white/60 text-sm leading-relaxed whitespace-pre-line mb-4">
                         {event.venue_info}
                       </div>
                     )}
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([event.venue_name, event.city, event.state].filter(Boolean).join(", "))}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                      </svg>
+                      Get Directions →
+                    </a>
                   </div>
                 </section>
               )}
@@ -290,14 +302,6 @@ export default function EventDetailPage() {
                     <div>
                       <p className="text-white/80 text-sm font-medium">{dateStr}</p>
                       {event.time && <p className="text-white/40 text-xs">{event.time}</p>}
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <span className="text-lg mt-0.5">📍</span>
-                    <div>
-                      {event.venue_name && <p className="text-white/80 text-sm font-medium">{event.venue_name}</p>}
-                      <p className="text-white/40 text-xs">{[event.city, event.state].filter(Boolean).join(", ")}</p>
                     </div>
                   </div>
 

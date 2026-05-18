@@ -485,6 +485,7 @@ export function sortEventsByDistance(
  */
 export async function getAllUpcomingEvents(
   categories: string[] | null = null,
+  search?: string,
 ): Promise<EventItem[]> {
   const today = new Date().toISOString().slice(0, 10);
 
@@ -498,6 +499,13 @@ export async function getAllUpcomingEvents(
 
     if (categories && categories.length > 0) {
       query = query.in("category", categories);
+    }
+
+    if (search) {
+      const q = `%${search}%`;
+      query = query.or(
+        `title.ilike.${q},description.ilike.${q},long_description.ilike.${q},artist_info.ilike.${q},venue_name.ilike.${q},city.ilike.${q},organizer.ilike.${q}`
+      );
     }
 
     return query;

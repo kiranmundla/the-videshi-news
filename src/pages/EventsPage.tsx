@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -219,6 +219,11 @@ export default function EventsPage() {
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
 
+  /* --- Search state --- */
+  const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
+  const searchQuery = searchParams.get("q") || "";
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   /* --- Geolocation state --- */
   const [nearMeActive, setNearMeActive] = useState(false);
   const [geoLoading, setGeoLoading] = useState(false);
@@ -249,6 +254,29 @@ export default function EventsPage() {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       if (tab) next.set("tab", tab); else next.delete("tab");
+      return next;
+    }, { replace: true });
+  }, [setSearchParams]);
+
+  /* --- Debounced search handler --- */
+  const handleSearchChange = useCallback((value: string) => {
+    setSearchInput(value);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      setSearchParams((prev) => {
+        const next = new URLSearchParams(prev);
+        if (value.trim()) next.set("q", value.trim()); else next.delete("q");
+        return next;
+      }, { replace: true });
+    }, 300);
+  }, [setSearchParams]);
+
+  const clearSearch = useCallback(() => {
+    setSearchInput("");
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.delete("q");
       return next;
     }, { replace: true });
   }, [setSearchParams]);
@@ -332,7 +360,7 @@ export default function EventsPage() {
 
     if (nearMeActive && userCoords) {
       // Near Me mode: fetch ALL events, sort by distance client-side
-      getAllUpcomingEvents(categoryFilters).then((data) => {
+      getAllUpcomingEvents(categoryFilters, searchQuery || undefined).then((data) => {
         const sorted = sortEventsByDistance(data, userCoords.lat, userCoords.lng);
         setEvents(sorted);
         setHasMore(false); // All loaded, no pagination needed
@@ -341,18 +369,18 @@ export default function EventsPage() {
     } else {
       // Normal mode: server-side city filter + pagination
       const filterCity = cityFilter;
-      getEventsMultiCategory(filterCity, categoryFilters, PAGE_SIZE, 0).then((data) => {
+      getEventsMultiCategory(filterCity, categoryFilters, PAGE_SIZE, 0, searchQuery || undefined).then((data) => {
         setEvents(data);
         setHasMore(data.length === PAGE_SIZE);
         setLoading(false);
       });
     }
-  }, [cityFilter, tabFilter, nearMeActive, userCoords]);
+  }, [cityFilter, tabFilter, nearMeActive, userCoords, searchQuery]);
 
   const loadMore = async () => {
     if (loadingMore || !hasMore || nearMeActive) return;
     setLoadingMore(true);
-    const next = await getEventsMultiCategory(cityFilter, categoryFilters, PAGE_SIZE, events.length);
+    const next = await getEventsMultiCategory(cityFilter, categoryFilters, PAGE_SIZE, events.length, searchQuery || undefined);
     setEvents((prev) => [...prev, ...next]);
     setHasMore(next.length === PAGE_SIZE);
     setLoadingMore(false);
@@ -360,6 +388,7 @@ export default function EventsPage() {
 
   /* --- Summary text --- */
   const summaryParts: string[] = [];
+  if (searchQuery) summaryParts.push(`matching "${searchQuery}"`);
   if (nearMeActive) summaryParts.push("near you");
   else if (cityFilter) summaryParts.push(`in ${cityFilter}`);
   if (tabFilter) summaryParts.push(`· ${tabFilter}`);
@@ -392,6 +421,33 @@ export default function EventsPage() {
           <p className="text-muted-foreground text-lg">
             Indian concerts, festivals, cultural events &amp; community gatherings across the US
           </p>
+        </div>
+
+        {/* Search bar */}
+        <div className="relative mb-5 max-w-md">
+          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+            <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </div>
+          <input
+            type="text"
+            value={searchInput}
+            onChange={(e) => handleSearchChange(e.target.value)}
+            placeholder="Search events, artists, venues..."
+            className="w-full pl-10 pr-10 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-colors"
+          />
+          {searchInput && (
+            <button
+              onClick={clearSearch}
+              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Clear search"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          )}
         </div>
 
         {/* Tab bar — all categories visible, wrapping on mobile */}
@@ -554,6 +610,7 @@ async function getEventsMultiCategory(
   categories: string[] | null,
   limit: number,
   offset: number,
+  search?: string,
 ): Promise<EventItem[]> {
   const today = new Date().toISOString().slice(0, 10);
 
@@ -573,6 +630,13 @@ async function getEventsMultiCategory(
 
   if (categories && categories.length > 0) {
     query = query.in("category", categories);
+  }
+
+  if (search) {
+    const q = `%${search}%`;
+    query = query.or(
+      `title.ilike.${q},description.ilike.${q},long_description.ilike.${q},artist_info.ilike.${q},venue_name.ilike.${q},city.ilike.${q},organizer.ilike.${q}`
+    );
   }
 
   const { data, error } = await query;
