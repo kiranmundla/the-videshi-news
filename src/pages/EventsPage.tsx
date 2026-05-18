@@ -12,8 +12,6 @@ import {
   formatEventDate,
   formatDistance,
   generateSlug,
-  getDistanceMiles,
-  getCityCoords,
   sortEventsByDistance,
   getAllUpcomingEvents,
   CITY_GROUPS,
@@ -21,8 +19,11 @@ import {
 
 const supabaseRaw = supabaseTyped as unknown as { from: (table: string) => any };
 
+const DEFAULT_CITY = "Bay Area";
+const NEAR_ME = "__near_me__";
+
 /* ------------------------------------------------------------------ */
-/* Tab groups — map high-level tabs to DB category values              */
+/* Tab groups                                                         */
 /* ------------------------------------------------------------------ */
 const TAB_GROUPS: { label: string; emoji: string; categories: string[] }[] = [
   { label: "Entertainment", emoji: "🎶", categories: ["Music", "Comedy", "Dance", "Cultural", "Festival", "Food"] },
@@ -32,7 +33,6 @@ const TAB_GROUPS: { label: string; emoji: string; categories: string[] }[] = [
   { label: "Spiritual",     emoji: "🙏", categories: ["Religious"] },
 ];
 
-/** Map a raw DB category to its tab group label */
 function getTabLabel(category: string | null): string {
   if (!category) return "Community";
   for (const tab of TAB_GROUPS) {
@@ -41,14 +41,13 @@ function getTabLabel(category: string | null): string {
   return "Community";
 }
 
-/** Get categories for a tab (for DB filtering) */
 function getTabCategories(tabLabel: string): string[] {
   const tab = TAB_GROUPS.find((t) => t.label === tabLabel);
   return tab ? tab.categories : [];
 }
 
 /* ------------------------------------------------------------------ */
-/* Badge colors (by tab group)                                        */
+/* Badge colors                                                       */
 /* ------------------------------------------------------------------ */
 const TAB_COLORS: Record<string, string> = {
   Entertainment:      "bg-pink-600/20 text-pink-300",
@@ -85,7 +84,7 @@ function categoryEmoji(category: string | null): string {
 /* ------------------------------------------------------------------ */
 /* Event Card                                                         */
 /* ------------------------------------------------------------------ */
-function EventCard({ event }: { event: EventItem }) {
+function EventCard({ event, distance }: { event: EventItem; distance?: number }) {
   const dateStr = formatEventDate(event.date, event.end_date);
   const location = [event.venue_name, event.city, event.state]
     .filter(Boolean)
@@ -114,6 +113,11 @@ function EventCard({ event }: { event: EventItem }) {
         <div>
           <div className="flex items-center gap-2 mb-2 flex-wrap">
             <GroupBadge category={event.category} />
+            {distance != null && distance < 9999 && (
+              <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-orange-600/20 text-orange-300">
+                📍 {formatDistance(distance)}
+              </span>
+            )}
             {event.audience && (
               <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-emerald-600/20 text-emerald-300">
                 👤 {event.audience}
@@ -153,55 +157,9 @@ function EventCard({ event }: { event: EventItem }) {
   const eventSlug = event.slug || generateSlug(event.title, event.date);
 
   return (
-    <Link
-      to={`/events/${eventSlug}`}
-      className="block no-underline"
-    >
+    <Link to={`/events/${eventSlug}`} className="block no-underline">
       {card}
     </Link>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* City Filter Pills                                                  */
-/* ------------------------------------------------------------------ */
-function FilterPills({
-  options,
-  selected,
-  onSelect,
-  allLabel = "All",
-}: {
-  options: string[];
-  selected: string | null;
-  onSelect: (v: string | null) => void;
-  allLabel?: string;
-}) {
-  return (
-    <div className="flex flex-wrap gap-2">
-      <button
-        onClick={() => onSelect(null)}
-        className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-          selected === null
-            ? "bg-foreground text-background"
-            : "bg-muted/40 text-muted-foreground hover:bg-muted/60"
-        }`}
-      >
-        {allLabel}
-      </button>
-      {options.map((opt) => (
-        <button
-          key={opt}
-          onClick={() => onSelect(opt)}
-          className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-            selected === opt
-              ? "bg-foreground text-background"
-              : "bg-muted/40 text-muted-foreground hover:bg-muted/60"
-          }`}
-        >
-          {opt}
-        </button>
-      ))}
-    </div>
   );
 }
 
@@ -216,7 +174,7 @@ function TabBar({
   onSelect: (v: string | null) => void;
 }) {
   return (
-    <div className="flex items-center gap-1 overflow-x-auto pb-1 scrollbar-none -mx-1 px-1">
+    <div className="flex flex-wrap items-center gap-1 pb-1">
       <button
         onClick={() => onSelect(null)}
         className={`relative whitespace-nowrap px-4 py-2.5 text-sm font-medium transition-colors rounded-t-md ${
@@ -256,55 +214,133 @@ function TabBar({
 /* ------------------------------------------------------------------ */
 export default function EventsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [events, setEvents] = useState<EventItem[]>([]);
+  const [events, setEvents] = useState<(EventWithDistance | EventItem)[]>([]);
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
 
-  // Sync filters with URL params
-  const cityFilter = searchParams.get("city") || null;
+  /* --- Geolocation state --- */
+  const [nearMeActive, setNearMeActive] = useState(false);
+  const [geoLoading, setGeoLoading] = useState(false);
+  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
+
+  /* --- Sync filters with URL --- */
+  // Default to Bay Area when no city param is present
+  const rawCity = searchParams.get("city");
+  const cityFilter = nearMeActive ? null : (rawCity ?? DEFAULT_CITY);
   const tabFilter = searchParams.get("tab") || null;
 
-  const setCityFilter = (city: string | null) => {
+  const setCityFilter = useCallback((city: string | null) => {
+    // Selecting a city deactivates Near Me
+    setNearMeActive(false);
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
-      if (city) next.set("city", city); else next.delete("city");
+      if (city && city !== DEFAULT_CITY) {
+        next.set("city", city);
+      } else {
+        next.delete("city"); // Bay Area is default, keep URL clean
+      }
+      next.delete("nearme");
       return next;
     }, { replace: true });
-  };
+  }, [setSearchParams]);
 
-  const setTabFilter = (tab: string | null) => {
+  const setTabFilter = useCallback((tab: string | null) => {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       if (tab) next.set("tab", tab); else next.delete("tab");
       return next;
     }, { replace: true });
-  };
+  }, [setSearchParams]);
 
   const PAGE_SIZE = 30;
-
-  // Convert tab to category filter for the data layer
   const categoryFilters = tabFilter ? getTabCategories(tabFilter) : null;
 
+  /* --- Near Me handler --- */
+  const handleNearMe = useCallback(() => {
+    if (nearMeActive) {
+      // Toggle off → go back to Bay Area
+      setNearMeActive(false);
+      setCityFilter(DEFAULT_CITY);
+      return;
+    }
+
+    if (!navigator.geolocation) {
+      // No geolocation support — stay on Bay Area
+      return;
+    }
+
+    setGeoLoading(true);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const coords = { lat: position.coords.latitude, lng: position.coords.longitude };
+        setUserCoords(coords);
+        setNearMeActive(true);
+        setGeoLoading(false);
+        // Clean URL
+        setSearchParams((prev) => {
+          const next = new URLSearchParams(prev);
+          next.delete("city");
+          next.set("nearme", "1");
+          return next;
+        }, { replace: true });
+      },
+      () => {
+        // Denied or error → silently stay on Bay Area
+        setGeoLoading(false);
+        setNearMeActive(false);
+      },
+      { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
+    );
+  }, [nearMeActive, setCityFilter, setSearchParams]);
+
+  /* --- Restore Near Me from URL on mount --- */
+  useEffect(() => {
+    if (searchParams.get("nearme") === "1" && !nearMeActive && !userCoords) {
+      handleNearMe();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  /* --- Fetch events --- */
   useEffect(() => {
     setLoading(true);
     setHasMore(true);
 
-    getEventsMultiCategory(cityFilter, categoryFilters, PAGE_SIZE, 0).then((data) => {
-      setEvents(data);
-      setHasMore(data.length === PAGE_SIZE);
-      setLoading(false);
-    });
-  }, [cityFilter, tabFilter]);
+    if (nearMeActive && userCoords) {
+      // Near Me mode: fetch ALL events, sort by distance client-side
+      getAllUpcomingEvents(categoryFilters).then((data) => {
+        const sorted = sortEventsByDistance(data, userCoords.lat, userCoords.lng);
+        setEvents(sorted);
+        setHasMore(false); // All loaded, no pagination needed
+        setLoading(false);
+      });
+    } else {
+      // Normal mode: server-side city filter + pagination
+      const filterCity = cityFilter;
+      getEventsMultiCategory(filterCity, categoryFilters, PAGE_SIZE, 0).then((data) => {
+        setEvents(data);
+        setHasMore(data.length === PAGE_SIZE);
+        setLoading(false);
+      });
+    }
+  }, [cityFilter, tabFilter, nearMeActive, userCoords]);
 
   const loadMore = async () => {
-    if (loadingMore || !hasMore) return;
+    if (loadingMore || !hasMore || nearMeActive) return;
     setLoadingMore(true);
     const next = await getEventsMultiCategory(cityFilter, categoryFilters, PAGE_SIZE, events.length);
     setEvents((prev) => [...prev, ...next]);
     setHasMore(next.length === PAGE_SIZE);
     setLoadingMore(false);
   };
+
+  /* --- Summary text --- */
+  const summaryParts: string[] = [];
+  if (nearMeActive) summaryParts.push("near you");
+  else if (cityFilter) summaryParts.push(`in ${cityFilter}`);
+  if (tabFilter) summaryParts.push(`· ${tabFilter}`);
+  const summaryText = summaryParts.length > 0 ? " " + summaryParts.join(" ") : "";
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
@@ -335,28 +371,60 @@ export default function EventsPage() {
           </p>
         </div>
 
-        {/* Tab bar — horizontal scroll so all categories visible */}
+        {/* Tab bar — all categories visible, wrapping on mobile */}
         <div className="border-b border-border mb-4">
-          <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
-            <TabBar selected={tabFilter} onSelect={setTabFilter} />
-          </div>
+          <TabBar selected={tabFilter} onSelect={setTabFilter} />
         </div>
 
-        {/* City dropdown */}
-        <div className="mb-8">
-          <select
-            value={cityFilter || ""}
-            onChange={(e) => setCityFilter(e.target.value || null)}
-            className="w-full sm:w-auto px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm font-medium appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/40"
-            style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center", paddingRight: "36px" }}
+        {/* Near Me button + City dropdown — side by side */}
+        <div className="flex items-center gap-3 mb-8">
+          {/* Near Me pill */}
+          <button
+            onClick={handleNearMe}
+            disabled={geoLoading}
+            className={`flex-shrink-0 px-4 py-2.5 rounded-lg text-sm font-medium transition-all border ${
+              nearMeActive
+                ? "bg-primary/15 border-primary/40 text-primary"
+                : "bg-muted/40 border-border text-muted-foreground hover:bg-muted/60 hover:border-border"
+            } ${geoLoading ? "opacity-60 cursor-wait" : "cursor-pointer"}`}
           >
-            <option value="">📍 All Cities</option>
-            {CITY_GROUPS.map((g) => (
-              <option key={g.label} value={g.label}>
-                {g.label}
-              </option>
-            ))}
-          </select>
+            {geoLoading ? (
+              <span className="flex items-center gap-1.5">
+                <span className="inline-block w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                Locating…
+              </span>
+            ) : nearMeActive ? (
+              "📍 Near You"
+            ) : (
+              "📍 Near Me"
+            )}
+          </button>
+
+          {/* City dropdown */}
+          <div className="relative flex-shrink-0">
+            <select
+              value={nearMeActive ? "" : (cityFilter || "")}
+              onChange={(e) => setCityFilter(e.target.value || null)}
+              disabled={geoLoading}
+              className={`px-4 py-2.5 pr-9 rounded-lg border text-sm font-medium appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors ${
+                nearMeActive
+                  ? "bg-muted/20 border-border/50 text-muted-foreground/50"
+                  : "bg-background border-border text-foreground"
+              }`}
+              style={{
+                backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\")",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "right 12px center",
+              }}
+            >
+              <option value="">All Cities</option>
+              {CITY_GROUPS.map((g) => (
+                <option key={g.label} value={g.label}>
+                  {g.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Events list */}
@@ -373,10 +441,7 @@ export default function EventsPage() {
           <div className="text-center py-20">
             <p className="text-4xl mb-4">🎪</p>
             <p className="text-muted-foreground text-lg">
-              No upcoming events found
-              {cityFilter ? ` in ${cityFilter}` : ""}
-              {tabFilter ? ` for ${tabFilter}` : ""}
-              .
+              No upcoming events found{summaryText}.
             </p>
             <p className="text-muted-foreground text-sm mt-2">
               Try a different city or category, or check back soon!
@@ -385,18 +450,22 @@ export default function EventsPage() {
         ) : (
           <>
             <p className="text-sm text-muted-foreground mb-4">
-              {events.length}{hasMore ? "+" : ""} upcoming events
-              {cityFilter ? ` in ${cityFilter}` : ""}
-              {tabFilter ? ` · ${tabFilter}` : ""}
+              {events.length}{hasMore ? "+" : ""} upcoming events{summaryText}
             </p>
-            <div className="grid grid-cols-1 gap-4 w-full min-w-0">
-              {events.map((event) => (
-                <EventCard key={event.id} event={event} />
-              ))}
-            </div>
 
-            {/* Load more */}
-            {hasMore && (
+            {/* Near-Me mode: split into "Nearby" and "More Events" */}
+            {nearMeActive ? (
+              <NearMeList events={events as EventWithDistance[]} />
+            ) : (
+              <div className="grid grid-cols-1 gap-4 w-full min-w-0">
+                {events.map((event) => (
+                  <EventCard key={event.id} event={event} />
+                ))}
+              </div>
+            )}
+
+            {/* Load more (normal mode only) */}
+            {hasMore && !nearMeActive && (
               <div className="flex justify-center mt-8">
                 <button
                   onClick={loadMore}
@@ -417,9 +486,46 @@ export default function EventsPage() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Multi-category fetcher (for tab groups)                            */
+/* Near-Me list with distance grouping                                */
 /* ------------------------------------------------------------------ */
+function NearMeList({ events }: { events: EventWithDistance[] }) {
+  const NEARBY_THRESHOLD = 100; // miles
+  const nearby = events.filter((e) => (e.distanceMiles ?? 9999) <= NEARBY_THRESHOLD);
+  const farther = events.filter((e) => (e.distanceMiles ?? 9999) > NEARBY_THRESHOLD);
 
+  return (
+    <>
+      {nearby.length > 0 && (
+        <div className="grid grid-cols-1 gap-4 w-full min-w-0">
+          {nearby.map((event) => (
+            <EventCard key={event.id} event={event} distance={event.distanceMiles} />
+          ))}
+        </div>
+      )}
+
+      {farther.length > 0 && (
+        <>
+          <div className="mt-10 mb-4 flex items-center gap-3">
+            <div className="h-px flex-1 bg-border" />
+            <span className="text-sm text-muted-foreground font-medium whitespace-nowrap">
+              More Events
+            </span>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <div className="grid grid-cols-1 gap-4 w-full min-w-0">
+            {farther.map((event) => (
+              <EventCard key={event.id} event={event} distance={event.distanceMiles} />
+            ))}
+          </div>
+        </>
+      )}
+    </>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Multi-category fetcher                                             */
+/* ------------------------------------------------------------------ */
 async function getEventsMultiCategory(
   cityFilter: string | null,
   categories: string[] | null,
