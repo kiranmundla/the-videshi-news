@@ -1,7 +1,7 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-18T06:25:21Z",
-  "stage": "League Stage \u2014 Match 62 of 70",
+  "last_updated": "2026-05-18T06:55:41Z",
+  "stage": "League Stage — Match 62 of 70",
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
@@ -37,17 +37,6 @@
       "position": 3
     },
     {
-      "team": "Delhi Capitals",
-      "short": "DC",
-      "played": 14,
-      "won": 7,
-      "lost": 7,
-      "nr": 0,
-      "nrr": "-0.788",
-      "points": 14,
-      "position": 4
-    },
-    {
       "team": "Punjab Kings",
       "short": "PBKS",
       "played": 13,
@@ -56,6 +45,17 @@
       "nr": 1,
       "nrr": "+0.227",
       "points": 13,
+      "position": 4
+    },
+    {
+      "team": "Rajasthan Royals",
+      "short": "RR",
+      "played": 12,
+      "won": 6,
+      "lost": 6,
+      "nr": 0,
+      "nrr": "+0.027",
+      "points": 12,
       "position": 5
     },
     {
@@ -70,13 +70,13 @@
       "position": 6
     },
     {
-      "team": "Rajasthan Royals",
-      "short": "RR",
+      "team": "Delhi Capitals",
+      "short": "DC",
       "played": 13,
       "won": 6,
       "lost": 7,
       "nr": 0,
-      "nrr": "-0.015",
+      "nrr": "-0.871",
       "points": 12,
       "position": 7
     },
