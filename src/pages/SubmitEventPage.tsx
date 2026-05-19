@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Masthead from "@/components/Masthead";
@@ -6,6 +6,10 @@ import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import { supabase } from "@/integrations/supabase/client";
 import { generateSlug } from "@/lib/events";
+
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+const MAX_ADDITIONAL = 5;
 
 const US_STATES = [
   "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA",
@@ -67,12 +71,41 @@ const INITIAL: FormData = {
   email: "",
 };
 
+/* ------------------------------------------------------------------ */
+/* Image preview type                                                 */
+/* ------------------------------------------------------------------ */
+type ImagePreview = {
+  id: string;
+  file: File;
+  url: string; // object URL for preview
+};
+
+function createPreview(file: File): ImagePreview {
+  return { id: crypto.randomUUID(), file, url: URL.createObjectURL(file) };
+}
+
+function validateImageFile(file: File): string | null {
+  if (!ACCEPTED_TYPES.includes(file.type)) return "Only JPG, PNG, or WebP images are accepted.";
+  if (file.size > MAX_FILE_SIZE) return `File "${file.name}" exceeds 5 MB.`;
+  return null;
+}
+
+/* ------------------------------------------------------------------ */
+/* Main component                                                     */
+/* ------------------------------------------------------------------ */
 export default function SubmitEventPage() {
   const [form, setForm] = useState<FormData>(INITIAL);
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  /* Image state */
+  const [coverImage, setCoverImage] = useState<ImagePreview | null>(null);
+  const [additionalImages, setAdditionalImages] = useState<ImagePreview[]>([]);
+  const [imageError, setImageError] = useState<string | null>(null);
+  const coverInputRef = useRef<HTMLInputElement>(null);
+  const additionalInputRef = useRef<HTMLInputElement>(null);
 
   const set = (field: keyof FormData) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -81,6 +114,88 @@ export default function SubmitEventPage() {
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
+  /* ---- Cover image handlers ---- */
+  const handleCoverSelect = useCallback((files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    setImageError(null);
+    const file = files[0];
+    const err = validateImageFile(file);
+    if (err) { setImageError(err); return; }
+    if (coverImage) URL.revokeObjectURL(coverImage.url);
+    setCoverImage(createPreview(file));
+  }, [coverImage]);
+
+  const removeCover = useCallback(() => {
+    if (coverImage) URL.revokeObjectURL(coverImage.url);
+    setCoverImage(null);
+    if (coverInputRef.current) coverInputRef.current.value = "";
+  }, [coverImage]);
+
+  /* ---- Additional images handlers ---- */
+  const handleAdditionalSelect = useCallback((files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    setImageError(null);
+    const remaining = MAX_ADDITIONAL - additionalImages.length;
+    if (remaining <= 0) {
+      setImageError(`Maximum ${MAX_ADDITIONAL} additional images allowed.`);
+      return;
+    }
+    const toAdd: ImagePreview[] = [];
+    for (let i = 0; i < Math.min(files.length, remaining); i++) {
+      const err = validateImageFile(files[i]);
+      if (err) { setImageError(err); return; }
+      toAdd.push(createPreview(files[i]));
+    }
+    if (files.length > remaining) {
+      setImageError(`Only ${remaining} more image${remaining === 1 ? "" : "s"} can be added.`);
+    }
+    setAdditionalImages((prev) => [...prev, ...toAdd]);
+    if (additionalInputRef.current) additionalInputRef.current.value = "";
+  }, [additionalImages.length]);
+
+  const removeAdditional = useCallback((id: string) => {
+    setAdditionalImages((prev) => {
+      const img = prev.find((p) => p.id === id);
+      if (img) URL.revokeObjectURL(img.url);
+      return prev.filter((p) => p.id !== id);
+    });
+  }, []);
+
+  /* ---- Drag-and-drop helpers ---- */
+  const [coverDragging, setCoverDragging] = useState(false);
+  const [additionalDragging, setAdditionalDragging] = useState(false);
+
+  const dragHandlers = (
+    setDrag: (v: boolean) => void,
+    onFiles: (files: FileList | null) => void,
+  ) => ({
+    onDragOver: (e: React.DragEvent) => { e.preventDefault(); setDrag(true); },
+    onDragEnter: (e: React.DragEvent) => { e.preventDefault(); setDrag(true); },
+    onDragLeave: () => setDrag(false),
+    onDrop: (e: React.DragEvent) => { e.preventDefault(); setDrag(false); onFiles(e.dataTransfer.files); },
+  });
+
+  /* ---- Upload helper ---- */
+  async function uploadImage(file: File, slug: string, prefix: string): Promise<string | null> {
+    const ext = file.name.split(".").pop() || "jpg";
+    const safeName = `${prefix}-${Date.now()}.${ext}`;
+    const path = `events/${slug}/${safeName}`;
+
+    const sb = supabase as any;
+    const { error } = await sb.storage.from("article-images").upload(path, file, {
+      contentType: file.type,
+      cacheControl: "31536000",
+      upsert: false,
+    });
+    if (error) {
+      console.error("Image upload error:", error);
+      return null;
+    }
+    const { data } = sb.storage.from("article-images").getPublicUrl(path);
+    return data?.publicUrl ?? null;
+  }
+
+  /* ---- Validation ---- */
   const validate = (): boolean => {
     const errs: Partial<Record<keyof FormData, string>> = {};
     if (!form.title.trim()) errs.title = "Event name is required";
@@ -104,6 +219,7 @@ export default function SubmitEventPage() {
     return Object.keys(errs).length === 0;
   };
 
+  /* ---- Submit ---- */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
@@ -113,7 +229,25 @@ export default function SubmitEventPage() {
 
     const slug = generateSlug(form.title.trim(), form.date);
 
-    const row = {
+    /* Upload images */
+    let imageUrl: string | null = null;
+    let venueImages: string[] = [];
+    let imageNote = "";
+
+    if (coverImage) {
+      imageUrl = await uploadImage(coverImage.file, slug, "cover");
+      if (!imageUrl) imageNote = "Cover image upload failed — we'll add it manually. ";
+    }
+    if (additionalImages.length > 0) {
+      const results = await Promise.all(
+        additionalImages.map((img, i) => uploadImage(img.file, slug, `photo-${i + 1}`))
+      );
+      venueImages = results.filter((u): u is string => u !== null);
+      const failed = results.length - venueImages.length;
+      if (failed > 0) imageNote += `${failed} additional image${failed > 1 ? "s" : ""} failed to upload.`;
+    }
+
+    const row: Record<string, unknown> = {
       title: form.title.trim(),
       date: form.date,
       end_date: form.end_date || null,
@@ -128,6 +262,8 @@ export default function SubmitEventPage() {
       organizer: form.email.trim(),
       slug,
     };
+    if (imageUrl) row.image_url = imageUrl;
+    if (venueImages.length > 0) row.venue_images = venueImages;
 
     const sbRaw = supabase as unknown as { from: (t: string) => any };
     const { error } = await sbRaw.from("events").insert([row]);
@@ -139,9 +275,11 @@ export default function SubmitEventPage() {
       setSubmitError("Something went wrong. Please try again.");
     } else {
       setSubmitted(true);
+      if (imageNote) setSubmitError(imageNote);
     }
   };
 
+  /* ---- Success view ---- */
   if (submitted) {
     return (
       <div className="min-h-screen flex flex-col">
@@ -156,6 +294,9 @@ export default function SubmitEventPage() {
             <p className="text-muted-foreground text-lg mb-8">
               Your event will appear on The Videshi shortly. We may reach out to your email for additional details.
             </p>
+            {submitError && (
+              <p className="text-sm text-amber-600 mb-6">{submitError}</p>
+            )}
             <div className="flex justify-center gap-4">
               <Link
                 to="/events"
@@ -164,7 +305,7 @@ export default function SubmitEventPage() {
                 ← Back to Events
               </Link>
               <button
-                onClick={() => { setSubmitted(false); setForm(INITIAL); }}
+                onClick={() => { setSubmitted(false); setForm(INITIAL); setCoverImage(null); setAdditionalImages([]); setSubmitError(null); }}
                 className="px-6 py-3 border border-border rounded-lg font-medium hover:bg-muted/40 transition-colors"
               >
                 Submit Another
@@ -177,6 +318,7 @@ export default function SubmitEventPage() {
     );
   }
 
+  /* ---- Form view ---- */
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -315,6 +457,115 @@ export default function SubmitEventPage() {
             </p>
           </Field>
 
+          {/* ---- Cover Image ---- */}
+          <Field label="Cover Image">
+            <input
+              ref={coverInputRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              onChange={(e) => handleCoverSelect(e.target.files)}
+              className="hidden"
+            />
+            {coverImage ? (
+              <div className="relative inline-block">
+                <img
+                  src={coverImage.url}
+                  alt="Cover preview"
+                  className="w-full max-w-xs h-40 object-cover rounded-lg border border-border"
+                />
+                <button
+                  type="button"
+                  onClick={removeCover}
+                  className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs font-bold shadow hover:bg-red-600 transition-colors"
+                  aria-label="Remove cover image"
+                >
+                  ✕
+                </button>
+              </div>
+            ) : (
+              <div
+                onClick={() => coverInputRef.current?.click()}
+                {...dragHandlers(setCoverDragging, handleCoverSelect)}
+                className={`flex flex-col items-center justify-center gap-2 py-8 px-4 rounded-lg border-2 border-dashed cursor-pointer transition-colors ${
+                  coverDragging
+                    ? "border-primary bg-primary/5"
+                    : "border-border hover:border-primary/50 hover:bg-muted/20"
+                }`}
+              >
+                <span className="text-3xl">📷</span>
+                <span className="text-sm text-muted-foreground text-center">
+                  Click or drag an image here
+                </span>
+                <span className="text-xs text-muted-foreground/60">JPG, PNG, or WebP · Max 5 MB</span>
+              </div>
+            )}
+            <p className="text-xs text-muted-foreground mt-1.5">
+              This will be the main image for your event.
+            </p>
+          </Field>
+
+          {/* ---- Additional Images ---- */}
+          <Field label={`Additional Images (${additionalImages.length}/${MAX_ADDITIONAL})`}>
+            <input
+              ref={additionalInputRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              multiple
+              onChange={(e) => handleAdditionalSelect(e.target.files)}
+              className="hidden"
+            />
+
+            {/* Thumbnails row */}
+            {additionalImages.length > 0 && (
+              <div className="flex gap-3 overflow-x-auto pb-2 mb-3">
+                {additionalImages.map((img) => (
+                  <div key={img.id} className="relative flex-shrink-0">
+                    <img
+                      src={img.url}
+                      alt="Preview"
+                      className="w-20 h-20 object-cover rounded-lg border border-border"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeAdditional(img.id)}
+                      className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center text-[10px] font-bold shadow hover:bg-red-600 transition-colors"
+                      aria-label="Remove image"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {additionalImages.length < MAX_ADDITIONAL && (
+              <div
+                onClick={() => additionalInputRef.current?.click()}
+                {...dragHandlers(setAdditionalDragging, handleAdditionalSelect)}
+                className={`flex items-center justify-center gap-2 py-4 px-4 rounded-lg border-2 border-dashed cursor-pointer transition-colors ${
+                  additionalDragging
+                    ? "border-primary bg-primary/5"
+                    : "border-border hover:border-primary/50 hover:bg-muted/20"
+                }`}
+              >
+                <span className="text-lg">+</span>
+                <span className="text-sm text-muted-foreground">
+                  Add photos
+                </span>
+              </div>
+            )}
+            <p className="text-xs text-muted-foreground mt-1.5">
+              Add photos of the venue, performers, or event details.
+            </p>
+          </Field>
+
+          {/* Image error */}
+          {imageError && (
+            <div className="rounded-lg bg-amber-50 border border-amber-200 text-amber-700 px-4 py-3 text-sm">
+              {imageError}
+            </div>
+          )}
+
           {/* Email */}
           <Field label="Your Email" required error={errors.email}>
             <input
@@ -329,7 +580,7 @@ export default function SubmitEventPage() {
             </p>
           </Field>
 
-          {submitError && (
+          {submitError && !submitted && (
             <div className="rounded-lg bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-sm">
               {submitError}
             </div>
@@ -343,7 +594,7 @@ export default function SubmitEventPage() {
             {submitting ? (
               <span className="flex items-center gap-2 justify-center">
                 <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                Submitting…
+                Uploading & Submitting…
               </span>
             ) : (
               "Submit Event"
