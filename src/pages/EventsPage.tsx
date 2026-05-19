@@ -594,7 +594,6 @@ export default function EventsPage() {
             </select>
           </div>
           </div>
-          </div>
 
           {/* Submit Event link */}
           <Link
