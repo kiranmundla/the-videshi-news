@@ -468,6 +468,16 @@ export default function EventDetailPage() {
               </svg>
               All Events
             </Link>
+
+            {/* Edit link — only for user-submitted events */}
+            {event.source === "user_submitted" && (
+              <Link
+                to={`/events/${event.slug || slug}/edit`}
+                className="inline-flex items-center gap-2 ml-6 text-sm text-white/40 hover:text-white/70 transition-colors"
+              >
+                ✏️ Edit This Event
+              </Link>
+            )}
           </div>
         </div>
       </main>
