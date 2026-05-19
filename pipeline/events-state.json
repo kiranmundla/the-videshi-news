@@ -1,23 +1,23 @@
 {
-  "last_run": "2026-05-19T10:06:07Z",
+  "last_run": "2026-05-19T22:06:14Z",
   "cities_checked": {
     "San Jose": "2026-05-18T10:00:00Z",
     "San Francisco": "2026-05-17T22:00:00Z",
     "New York": "2026-05-19T10:06:07Z",
     "Edison": "2026-05-19T10:06:07Z",
-    "Dallas": "2026-05-18T22:00:00Z",
-    "Houston": "2026-05-18T22:00:00Z",
+    "Dallas": "2026-05-19T22:06:14Z",
+    "Houston": "2026-05-19T22:06:14Z",
     "Chicago": "2026-05-18T22:00:00Z",
-    "Los Angeles": "2026-05-18T10:00:00Z",
+    "Los Angeles": "2026-05-19T22:06:14Z",
     "Atlanta": "2026-05-19T10:06:07Z",
     "Washington": "2026-05-18T10:00:00Z",
     "Charlotte": "2026-05-18T10:00:00Z",
     "Philadelphia": "2026-05-19T10:06:07Z",
-    "Seattle": "2026-05-18T10:00:00Z",
+    "Seattle": "2026-05-19T22:06:14Z",
     "Baltimore": "2026-05-17T21:19:00Z",
     "Detroit": "2026-05-18T22:00:00Z",
     "Pleasanton": "2026-05-17T23:37:21Z",
-    "Plano": "2026-05-17T23:37:21Z",
+    "Plano": "2026-05-19T22:06:14Z",
     "Frisco": "2026-05-18T22:00:00Z",
     "Naperville": "2026-05-17T23:37:21Z",
     "Arlington Heights": "2026-05-17T23:37:21Z",
@@ -28,13 +28,17 @@
     "Culver City": "2026-05-18T10:00:00Z",
     "Redondo Beach": "2026-05-18T10:00:00Z",
     "Everett": "2026-05-18T10:00:00Z",
-    "Bellevue": "2026-05-18T10:00:00Z",
+    "Bellevue": "2026-05-19T22:06:14Z",
     "Sterling": "2026-05-18T10:00:00Z",
     "Lemont": "2026-05-18T22:00:00Z",
     "Stafford": "2026-05-18T22:00:00Z",
     "Roswell": "2026-05-19T10:06:07Z",
     "Johns Creek": "2026-05-19T10:06:07Z",
-    "South Brunswick": "2026-05-19T10:06:07Z"
+    "South Brunswick": "2026-05-19T10:06:07Z",
+    "Bothell": "2026-05-19T22:06:14Z",
+    "Kirkland": "2026-05-19T22:06:14Z",
+    "Bellflower": "2026-05-19T22:06:14Z",
+    "Redwood City": "2026-05-19T22:06:14Z"
   },
   "stats": {
     "2026-05-17": {
@@ -111,22 +115,22 @@
       ]
     },
     "2026-05-19": {
-      "new_events": 20,
+      "new_events": 41,
       "updated_events": 0,
       "sources": [
-        "eventbrite",
         "sulekha",
+        "eventbrite",
         "web"
       ],
       "categories": {
-        "Cultural": 2,
-        "Community": 5,
-        "Religious": 1,
-        "Dance": 4,
-        "Food": 1,
+        "Cultural": 6,
+        "Community": 7,
+        "Religious": 2,
+        "Dance": 10,
+        "Food": 3,
         "Comedy": 3,
-        "Music": 3,
-        "Other": 1
+        "Music": 8,
+        "Other": 2
       },
       "runs": [
         {
@@ -134,14 +138,20 @@
           "new": 20,
           "updated": 0,
           "note": "Focus: Atlanta, NYC/NJ, Philadelphia. Atlanta: Raga Sandhya (sitar+tabla classical, Roswell), Mohan Matchmaking Mixer, Inner Engineering (Johns Creek), InvAsian X Atl Desi Bollywood night (Jul 5 at District). NYC: Indian cooking class (Moji Masala), Monsoon Wedding free screening, Drunk Bollywood Trivia (Caveat), Bahauddin Dagar rudra veena concert (DiMenna Center), Bollywood Sundowner yacht party, July 4th cruise party, Arjun Rampal DJ NYC, Desi-Queer Pride on the Pier, Bollywood Horizon cruise. NJ: Desi Single Mingle (Edison), Indian Speed Dating (Lake Chateau). Philadelphia: Brown Noise comedy show, Bollywood Rock & Dance (The Park), Chai & Bakbak social, Bollywood Apex rooftop party, Garam Masala desi dating show. Images uploaded for 12 events."
+        },
+        {
+          "time": "2026-05-19T22:06:14Z",
+          "new": 21,
+          "updated": 0,
+          "note": "Focus: Seattle, LA, Dallas, Houston. Seattle: Bollyfusion dance workshop, Gen-Zindagi desi pop night (DJ Prashant, Mirra), Tandoori Temptations DJ night, WE LOVE BOLLYWOOD (Bothell), Tollywood Night (Telugu party), Shake It Like Seattle 9, SA Women Entrepreneurs meetup (Kirkland). LA: Venice Beach sankirtan, SHAKTI Bharatanatyam recital (Kavya Ganesh), Dance Manch Summer Recital, Bend It Like Beckham screening (Ovation Hollywood), Diljit AURA afterparty (Exchange LA), SIMA-LA Carnatic concerts (Ramakrishnan Murthy + RTP Festival in Bellflower). Houston: Bollyfusion workshop, Cozymeal Indian cooking class. Dallas: Central Market Plano Indian cooking, IANT Community Connect. Multi-city: Project Samskriti classical arts tour (Isha Foundation) \u2014 LA Oct 12-16, SF Oct 23-25, Seattle Oct 31-Nov 8."
         }
       ]
     }
   },
   "next_cities": [
-    "Seattle",
-    "Los Angeles",
-    "Dallas",
-    "Houston"
+    "Chicago",
+    "Detroit",
+    "Charlotte",
+    "Washington"
   ]
 }
