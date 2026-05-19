@@ -1,215 +1,275 @@
 #!/usr/bin/env python3
-"""Videshi Writer — NEWS categories (news, nri-world, technology, markets-finance)
-Run: 2026-05-19 ~03:42 PDT
-"""
-import os, json, requests, sys
+"""Videshi Writer — News/NRI-World/Technology/Markets-Finance batch for 2026-05-19."""
+
+import json, os, sys, uuid, requests
 from datetime import datetime, timezone
 
-SUPA_URL = os.environ["SUPABASE_URL"]
-SUPA_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", os.environ["SUPABASE_ANON_KEY"])
+SB_URL = os.environ["SUPABASE_URL"]
+SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
-    "apikey": SUPA_KEY,
-    "Authorization": f"Bearer {SUPA_KEY}",
+    "apikey": SB_KEY,
+    "Authorization": f"Bearer {SB_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation",
 }
 
-def supa(method, path, data=None, params=None):
-    url = f"{SUPA_URL}/rest/v1/{path}"
-    r = requests.request(method, url, headers=HEADERS, json=data, params=params)
-    if r.status_code >= 400:
-        print(f"ERROR {r.status_code}: {r.text}")
-        sys.exit(1)
-    return r.json() if r.text else None
+def sb_post(table, data):
+    r = requests.post(f"{SB_URL}/rest/v1/{table}", headers=HEADERS, json=data)
+    r.raise_for_status()
+    return r.json()
 
-# ── Article 1: Telangana Student I-65 Crash ─────────────────────────────
-art1 = {
-    "topic_id": "80865e39-8e18-43ce-9ea1-1f1a68ee145b",
-    "headline": "She Was Riding Home From Her Part-Time Job on Boxes of Mangos. Navya Gadusu Never Made It.",
-    "subheadline": "A 25-year-old Telangana MS student was killed on Interstate 65 near Chicago after a minivan — with its rear seats removed and five passengers sitting unrestrained on fruit crates — was struck from behind at highway speed.",
-    "body": """Navya Gadusu left Cheruvugattu village in Telangana's Nalgonda district two years ago to chase a Master of Science degree in the United States. On Saturday night, she was riding home from a part-time job in a red minivan on northbound Interstate 65 near Crown Point, Indiana, when a Chevrolet Suburban slammed into the vehicle from behind. She was pronounced dead at 12:16 AM on Sunday at Franciscan Health Crown Point. She was 25.
+def sb_patch(table, filter_str, data):
+    h = dict(HEADERS)
+    h["Prefer"] = "return=minimal"
+    r = requests.patch(f"{SB_URL}/rest/v1/{table}?{filter_str}", headers=h, json=data)
+    r.raise_for_status()
 
-The details of the crash, as pieced together by Indiana State Police and local media, are as harrowing as they are preventable.
+now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-**A Minivan With No Rear Seats**
-
-The minivan was carrying seven adults. Only the two front seats were installed. The remaining five passengers — Navya among them — were sitting on boxes of mangos in the cargo area, without seat belts or any restraint. The van was travelling in the right lane at roughly 10 to 15 mph, following another vehicle that had broken down and was limping along the highway.
-
-The driver of a Chevrolet Suburban, approaching at normal interstate speed, did not realise how slowly the minivan was moving. He swerved left to avoid it but clipped the van's rear-left side, sending it careening off the road and into a ditch. The disabled vehicle ahead was not hit.
-
-Four people were rushed to local hospitals and later transferred to trauma centres in the Chicago area. Three sustained serious injuries. Navya died of blunt-force traumatic injuries.
-
-**A Village in Grief**
-
-In Cheruvugattu, the news arrived through Navya's friends in the US before any official channel could reach her family. Her relatives told ANI they had immediately contacted Telangana minister Komatireddy Venkat Reddy and were coordinating with the Indian Embassy.
-
-The Indian Consulate General in Chicago issued a statement expressing "heartfelt condolences" and confirming it was in contact with Gadusu's family and friends assisting the injured. Northbound I-65 was shut for two hours while investigators worked the scene.
-
-**A Pattern That Won't Stop**
-
-Navya's death is not an isolated tragedy. It lands in a grim and growing catalogue of Indian students killed in accidents, assaults, and unexplained circumstances across the United States. In the past two years alone, families in Telangana, Andhra Pradesh, Karnataka, and Gujarat have received the same devastating phone call — a child sent abroad for a better future, returned in a coffin.
-
-What makes this case particularly wrenching is its preventability. The minivan had been deliberately stripped of its rear seating. Five people were perched on fruit crates on a highway where traffic routinely moves at 70 mph. No seat belts. No crash protection. Indiana State Police are still investigating whether any traffic violations will be filed.
-
-The arrangement — passengers packed into cargo space, following a broken-down car at walking speed on an interstate — speaks to the economic realities many Indian students navigate in America. Part-time jobs with odd hours. Shared rides to save money. Improvised transport that would never pass scrutiny but becomes normalised through repetition.
-
-**What NRI Families Should Know**
-
-Road crashes remain the leading cause of non-natural death for young Indians in the United States. The National Highway Traffic Safety Administration recorded over 40,000 traffic fatalities in the US in 2024. Indian students, who often lack their own vehicles and rely on shared rides with acquaintances, are disproportionately exposed to unsafe arrangements — overcrowded cars, unfamiliar drivers, vehicles with mechanical issues.
-
-Consular officials have repeatedly urged Indian students to avoid unlicensed ride-shares, always wear seat belts, and report unsafe vehicles. But advice only travels so far when the alternative is a $60 Uber after a midnight shift.
-
-**What's Next**
-
-The Indiana State Police investigation is ongoing. The Lake County Coroner's Office has completed its report. Navya Gadusu's family is working with Indian consular officials to repatriate her remains to Nalgonda.
-
-She had gone to America to study. She was riding home from work. She was sitting on a box of mangos. And now she is gone.""",
-    "diaspora_angle": "Navya Gadusu's death on I-65 highlights the dangerous transit conditions many Indian students endure in the US — overcrowded vehicles, stripped seating, no restraints — driven by economic pressures that consular advisories alone cannot fix.",
-    "vertical": "diaspora",
-    "tags": ["Indian Students", "NRI Safety", "Road Accident", "Telangana", "Chicago", "US Safety", "Student Deaths Abroad"],
-    "urgency": None,
-    "sources": [
-        {"url": "https://www.nripage.com/articles/road-accidents/2026/05/18/indian-student-navya-gadusu-killed-in-i-65-crash-near-crown-point", "name": "NRI Page — Indian Student Navya Gadusu Killed in I-65 Crash"},
-        {"url": "https://www.dailyprabhat.com/24-year-old-telangana-student-killed-in-us-road-accident-near-chicago/", "name": "Daily Prabhat (ANI) — Telangana student killed in US road accident"},
-        {"url": "https://www.asiannews18.com/telangana-student-navya-dies-road-accident-chicago", "name": "Asian News 18 — Telangana student Navya dies in road accident"},
-    ],
-    "slug": "navya-gadusu-telangana-student-killed-i65-crash-chicago-20260519",
-    "word_count": 720,
-    "status": "published",
-    "is_featured": False,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "category": "nri-world",
-}
-
-# ── Article 2: Lenskart Smart Glasses ────────────────────────────────────
-art2 = {
-    "topic_id": "4114eac0-2697-4cdf-b1f0-c966d83ceaa7",
-    "headline": "Lenskart Just Launched India's Answer to Meta Ray-Bans — and It Speaks Hinglish",
-    "subheadline": "B by Lenskart ships with the same Qualcomm chip as Meta's smart glasses, a Gemini-powered AI assistant fluent in 40+ languages, and a price tag that undercuts every Western competitor.",
-    "body": """For the past two years, the smart glasses market has been a two-horse race between Meta's Ray-Ban partnership and whatever prototype a Chinese manufacturer happened to demo at CES. India — the world's largest eyewear market by volume — has been a spectator. That changed this month.
-
-Lenskart, the Faridabad-founded company that has fitted more Indian faces with glasses than any other brand, has launched B by Lenskart: a pair of AI-powered smart glasses engineered in India, priced for India, and built around an AI assistant that understands Hinglish out of the box.
-
-**The Hardware**
-
-The spec sheet is surprisingly competitive. B by Lenskart runs on Qualcomm's Snapdragon AR1 — the same chip inside Meta's Ray-Ban smart glasses — paired with a 12-megapixel Sony camera that shoots 4K stills and HD video. The frame weighs 40 grams, which Lenskart claims makes it the lightest smart glasses in its class. Three microphones and directional speakers handle calls and music with three sound modes: Discreet, Normal, and Boosted.
-
-The charging case delivers up to 48 hours of juice on the go. A temple-tip cable lets the glasses charge off a phone or power bank while still being worn — a small but clever concession to Indian commuters who may not have a desk to dock at. Japanese ultra-thin blue light lenses come standard. An LED indicator lights up whenever the camera is recording, the same privacy cue Meta adopted after early backlash.
-
-**Buddy: The AI That Gets Indian Context**
-
-The real differentiator is Buddy, B by Lenskart's AI assistant powered by Google's Gemini. Buddy understands more than 40 languages including natural Hinglish and several Indian regional languages — a feature no Western smart glasses offer. More importantly, Buddy uses the camera to see what the wearer sees and provide contextual responses in real time.
-
-Ask it to read a restaurant menu, translate a road sign, identify a plant, or summarise a document you are looking at, and it responds in whichever language feels natural. For a market where code-switching between English and Hindi (or Tamil, Telugu, Bengali) is the norm rather than the exception, this is not a gimmick. It is a baseline requirement that Meta's glasses still cannot meet.
-
-**Price and Demand**
-
-B by Lenskart will retail at ₹27,000 at commercial launch — roughly $320, which puts it in the same bracket as Meta Ray-Ban smart glasses in the US. But early-access customers who joined the waitlist (opened March 31, 2026) can grab a pair for ₹22,000, approximately $260. As of May 12, more than 35,000 people had registered — a signal that Indian consumers are ready for smart eyewear if the price and language support are right.
-
-The product first appeared at Lenskart's IPO event in November 2025, positioning it as the company's flagship hardware play as it transitions from a purely retail eyewear brand to a wearable technology platform.
-
-**Why This Matters for the Diaspora**
-
-For NRIs, the significance is less about buying a pair of Lenskart glasses in New York and more about what the product represents. An Indian company, with Indian engineering, building a device that competes head-to-head with Meta on specs and undercuts it on price — in a category that Silicon Valley has owned since Google Glass.
-
-Peyush Bansal, Lenskart's co-founder and CEO, was explicit about the ambition: "We wanted to create smart glasses that are eyewear first — comfortable, stylish, and practical enough to be worn all day. This is our first step into wearable technology, and we are excited to build this category alongside our customers in India before taking it to global markets."
-
-The "India first, global next" strategy mirrors what companies like Jio, Ola Electric, and Zoho have attempted in their respective categories. Whether Lenskart can actually crack Western markets remains to be seen, but the template — build for Indian complexity first, then export — is becoming a recognisable playbook.
-
-**What's Next**
-
-Early-access shipments are rolling out now through the Lenskart app and website. The companion app manages media storage, settings, and conversations with Buddy. Commercial launch at ₹27,000 is expected in the coming weeks. Lenskart has not yet announced plans for international availability.""",
-    "diaspora_angle": "An Indian company has built smart glasses that match Meta's hardware and speak Hinglish natively — a landmark for the 'build in India, compete globally' thesis that NRIs in tech have championed for years.",
-    "vertical": "technology",
-    "tags": ["Lenskart", "Smart Glasses", "Google Gemini", "AI", "Wearable Tech", "Made in India", "Peyush Bansal"],
-    "urgency": None,
-    "sources": [
-        {"url": "https://technuter.com/artificial-intelligence/lenskart-brings-ai-powered-smart-glasses-to-india-with-early-access-launch.html", "name": "Technuter — Lenskart brings AI-powered smart glasses to India"},
-        {"url": "https://www.newspointapp.com/english/tech/b-by-lenskart-smart-glasses-launched-for-early-access-price-features-and-all-the-details-toi/articleshow/145048208ad10aa07707de12271f4d4a6549c37a", "name": "NewsPoint — B by Lenskart smart glasses: Price, features, details"},
-        {"url": "https://cellit.in/lenskart-brings-ai-powered-smart-glasses-india", "name": "CellIT — Lenskart AI-powered smart glasses early access launch"},
-    ],
-    "slug": "lenskart-b-smart-glasses-gemini-india-meta-competitor-20260519",
-    "word_count": 730,
-    "status": "published",
-    "is_featured": False,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "category": "technology",
-}
-
-# ── Article 3: Bombay HC Bulldozer Culture ───────────────────────────────
-art3 = {
-    "topic_id": "2e648a58-e53c-4161-ace7-9816461cb16f",
-    "headline": "Bombay High Court Draws a Line: 'Don't Allow Bulldozer Culture to Enter Maharashtra. This Is Not UP.'",
-    "subheadline": "A division bench slammed the Chhatrapati Sambhajinagar municipal corporation for demolishing an AIMIM corporator's home without notice, calling the action 'arbitrary' and warning against the spread of extrajudicial demolitions.",
-    "body": """The Bombay High Court's Aurangabad bench delivered one of the sharpest judicial rebukes against demolition-as-governance in recent memory on Monday, condemning the Chhatrapati Sambhajinagar Municipal Corporation for razing properties linked to AIMIM corporator Mateen Patel and resident Hanif Khan without following basic legal procedure.
-
-"Don't allow bulldozer culture to enter Maharashtra," Justice Siddheshwar Thombre told the civic body's lawyers. "This is not UP or Bihar."
-
-The remark — pointed, political, and deliberately geographic — lands in a debate that has consumed Indian public life for the past four years: whether state governments can use demolition drives as a tool of punishment against those accused of crimes, particularly in communally charged contexts.
-
-**What Happened in Sambhajinagar**
-
-On May 13, the Chhatrapati Sambhajinagar Municipal Corporation (CSMC) carried out a demolition drive targeting Mateen Patel's residence and office. Patel is a sitting AIMIM corporator. In the same drive, a house allegedly linked to a TCS employee evading arrest in a criminal case was also razed.
-
-But the demolitions did not stop at the named targets. Adjacent properties — including a building material shop owned by Amjad Khan and a house registered in Patel's father's name — were also destroyed without prior intimation. Amjad Khan told the court his shop had valid permissions under the Gunthewari regularisation scheme and claimed losses exceeding ₹20 lakh.
-
-The division bench noted that mandatory safeguards prescribed by the Supreme Court — including a 15-day notice period — were not followed. "No compliance with the last notice was made. The action is arbitrary. The action has made the entire family homeless," the bench stated.
-
-The court also questioned whether the civic body had bothered to identify which specific portions of the structures were illegal before bringing in the bulldozers. "The authorities should have scrutinised which part or portion of the house was illegal," the bench observed.
-
-**The 'Bulldozer Model' and Its Spread**
-
-What makes the Bombay High Court's intervention significant is its explicit attempt to prevent a governance model from migrating across state lines.
-
-The so-called bulldozer model gained national prominence in Uttar Pradesh under Chief Minister Yogi Adityanath, where demolitions of properties belonging to accused persons — often conducted within hours of an alleged crime — became a signature law-and-order tactic. The approach was replicated in Madhya Pradesh and, to varying degrees, in other BJP-governed states.
-
-Critics, including the Supreme Court itself, have warned that demolitions carried out without due process amount to collective punishment and violate the right to shelter. In a landmark September 2024 ruling, the Supreme Court laid down detailed guidelines requiring advance notice, identification of specific illegal portions, and an opportunity for the owner to respond before any demolition.
-
-The Sambhajinagar demolitions appear to have disregarded every one of those safeguards.
-
-**Why NRIs Should Watch This**
-
-For Indians abroad who own property in India — or whose families do — the bulldozer debate is not abstract. Property rights, municipal discretion, and the rule of law directly affect the security of NRI investments in real estate, which the RBI estimates at tens of billions of dollars annually.
-
-The question the Bombay High Court is grappling with is fundamental: can a municipal corporation demolish your home because someone in it is accused of a crime, without giving you a chance to respond? If you are an NRI with ancestral property in a city where political tensions run high, the answer to that question matters enormously.
-
-More broadly, the judiciary's willingness to draw geographic and procedural lines — "This is not UP" — signals that at least some courts view the bulldozer approach not as efficient governance but as extrajudicial overreach that must be contained.
-
-**What's Next**
-
-The matter is listed for further hearing on June 15. The CSMC's assistant government pleader had argued that the petitions were "infructuous" since the buildings were already demolished — a position the bench appeared unimpressed by. Advocates for the petitioners said the demolition was carried out despite assurances that legal procedure would be followed.
-
-The homes are gone. The question now is whether the court will order compensation, hold officials accountable, or simply issue directions that arrive too late for the families already sleeping without a roof.""",
-    "diaspora_angle": "NRIs with property in India should pay close attention: the Bombay HC is drawing a line against demolitions carried out without notice, a practice that directly threatens the security of diaspora real estate investments.",
-    "vertical": "law",
-    "tags": ["Bombay High Court", "Bulldozer Culture", "Maharashtra", "Property Rights", "Supreme Court Guidelines", "AIMIM", "Demolitions"],
-    "urgency": None,
-    "sources": [
-        {"url": "https://bharathorizon.com/politics/law-order/bombay-hc-slams-sambhajinagar-demolition-warns-against-bulldozer-culture.html", "name": "Bharat Horizon — Bombay HC slams Sambhajinagar demolition, warns against bulldozer culture"},
-    ],
-    "slug": "bombay-hc-bulldozer-culture-maharashtra-sambhajinagar-20260519",
-    "word_count": 740,
-    "status": "published",
-    "is_featured": False,
-    "published_at": datetime.now(timezone.utc).isoformat(),
+# ── ARTICLE 1: Marco Rubio India Visit / Quad Talks ──────────────
+article1 = {
+    "id": str(uuid.uuid4()),
+    "headline": "Marco Rubio Heads to India This Week. For the Diaspora, the Quad Meeting in Delhi Could Reshape What Comes Next.",
+    "subheadline": "The US Secretary of State will visit Kolkata, Agra, Jaipur and New Delhi from May 23-26, capping the trip with a Quad foreign ministers' meeting as West Asia tensions and trade negotiations demand attention.",
+    "slug": "rubio-india-visit-quad-talks-20260519",
     "category": "news",
+    "vertical": "politics",
+    "urgency": "high",
+    "score_total": 92,
+    "status": "published",
+    "published_at": now,
+    "tags": ["Marco Rubio", "Quad", "US-India relations", "Jaishankar", "diplomacy", "Indo-Pacific"],
+    "diaspora_angle": "Rubio's four-day India trip and the Quad foreign ministers' meeting in New Delhi directly impact diaspora interests — from visa policy signals to trade terms that affect NRI remittances and business ties.",
+    "sources": json.dumps([
+        {"name": "Devdiscourse/PTI", "url": "https://www.devdiscourse.com/article/politics/3914485-us-secretary-of-state-marco-rubio-to-visit-india-from-may-23-26"},
+        {"name": "Media House Press", "url": "https://mediahousepress.co.in"},
+        {"name": "Currato", "url": "https://currato.com"}
+    ]),
+    "image_search_query": "Marco Rubio India visit Quad foreign ministers meeting",
+    "image_must_show": "Marco Rubio, S Jaishankar, Quad flags",
+    "body": """Marco Rubio is coming to India. And for the first time in Donald Trump's second term, his top diplomat is making the kind of multi-city, multi-day visit to India that signals something larger than a courtesy call.
+
+The US State Department confirmed on Monday that Secretary of State Rubio will travel to India from May 23-26, stopping in Kolkata, Agra, Jaipur and New Delhi. The trip follows his attendance at the NATO Foreign Ministers meeting in Sweden on May 22 — meaning India is, quite literally, where Rubio goes after conferring with America's closest military allies.
+
+## The Quad Convenes in Delhi
+
+The headline event lands on May 26: a Quad foreign ministers' meeting in New Delhi, bringing together Rubio, Australian Foreign Minister Penny Wong, Japanese Foreign Minister Motegi Toshimitsu and Indian External Affairs Minister S. Jaishankar.
+
+The Quad — shorthand for the Quadrilateral Security Dialogue between the US, India, Japan and Australia — has evolved from a loose strategic forum into something with real teeth. Last year's Quad summit in Wilmington produced concrete deliverables: a Critical and Emerging Technology Initiative, joint maritime patrols in the Indo-Pacific and an ambitious semiconductor supply-chain partnership that directly involves Indian facilities.
+
+The New Delhi session is expected to address what none of the four governments can avoid: the fallout from the West Asia crisis. With the Iran-Israel standoff still simmering and oil markets jittery — Brent briefly touched $87 last week — the Quad partners need to coordinate on energy security, shipping lane protection and the economic ripple effects hitting all four nations.
+
+## Why This Matters to NRIs
+
+For the Indian diaspora, the subtext of this visit runs deeper than communiqués.
+
+**Visa and immigration signals.** Rubio has been the public face of the Trump administration's tighter visa-vetting regime. His earlier remarks defending H-1B reforms and stricter student visa screening made headlines across Indian-American communities. Any softening — or hardening — of tone during this trip will be parsed carefully by the roughly 4.4 million Indian Americans whose professional networks depend on fluid cross-border mobility.
+
+**Trade terms that hit home.** The US recently imposed tariffs on Indian goods while simultaneously pressuring New Delhi over Russian oil imports. For NRIs who run import-export businesses, invest in Indian markets or send remittances that get squeezed by currency fluctuations (the rupee hit a record low of 96.70 against the dollar this week), the trade framework that emerges from these conversations has direct financial consequences.
+
+**Defence cooperation and the jobs it creates.** The $428 million Apache helicopter and M777 howitzer support deals approved earlier this month point to a deepening defence-industrial relationship. Indian-American engineers and defence contractors are increasingly embedded in this supply chain. The Quad's tech and defence agenda isn't abstract geopolitics — it's career infrastructure for a growing segment of the diaspora.
+
+## The Multi-City Choreography
+
+Rubio's itinerary is notable for what it includes beyond Delhi. Kolkata — rarely on the diplomatic circuit — suggests engagement with eastern India's economic corridors and possibly the Bay of Bengal security framework. Agra and Jaipur signal the cultural diplomacy that the State Department uses to underline the "people-to-people" dimension of the relationship, a theme that resonates directly with diaspora identity.
+
+State Department spokesman Tommy Pigott kept the official readout terse: energy, security, trade and defence cooperation would anchor the discussions. But diplomatic sources suggest the conversations will also touch on AI governance, critical minerals sourcing from India and the Quad's fellowship programmes that send hundreds of Indian students to American universities annually.
+
+## What's Next
+
+The Quad meeting comes just weeks before India is expected to host a full Quad Leaders' Summit later this year — potentially in August or September, with Prime Minister Modi aiming to use it as a centrepiece of India's diplomatic calendar.
+
+For NRIs watching from Houston, London or Sydney, the stakes are concrete. The visa regime, the trade balance, the defence contracts and the technology partnerships being discussed in New Delhi this week will shape the corridors through which the diaspora moves, works and invests for the next several years.
+
+Rubio's four-day trip may be billed as routine diplomacy. For the Indian diaspora, nothing about it is routine.""",
+    "word_count": 680,
 }
 
-articles = [art1, art2, art3]
+# ── ARTICLE 2: Google I/O 2026 ───────────────────────────────────
+article2 = {
+    "id": str(uuid.uuid4()),
+    "headline": "Google I/O 2026: Sundar Pichai Unveiled an AI Empire Processing 3.2 Quadrillion Tokens a Month. Here's What It Means for India.",
+    "subheadline": "From Gemini 3.5 Flash and a 24/7 personal AI agent called Spark to $180 billion in infrastructure spending, here are the announcements NRIs in tech should actually care about.",
+    "slug": "google-io-2026-sundar-pichai-gemini-india-20260519",
+    "category": "technology",
+    "vertical": "technology",
+    "urgency": "high",
+    "score_total": 91,
+    "status": "published",
+    "published_at": now,
+    "tags": ["Google I/O", "Sundar Pichai", "Gemini", "AI", "Android", "TPU", "Antigravity"],
+    "diaspora_angle": "Sundar Pichai — born in Madurai, raised in Chennai — is leading the world's most consequential AI company. The I/O announcements directly affect Indian developers, the 8.5 million building on Google's models, and the diaspora tech workforce.",
+    "sources": json.dumps([
+        {"name": "Google Blog", "url": "https://blog.google/innovation-and-ai/sundar-pichai-io-2026/"},
+        {"name": "Mint", "url": "https://livemint.com"},
+        {"name": "Shacknews", "url": "https://shacknews.com"}
+    ]),
+    "image_search_query": "Sundar Pichai Google I/O 2026 keynote stage",
+    "image_must_show": "Sundar Pichai on stage, Google I/O branding",
+    "body": """Sundar Pichai walked onto the stage at Shoreline Amphitheatre in Mountain View on Monday and did what he has done every May for a decade — except this time, the numbers he quoted sounded like they belonged to a different species of company.
 
-for i, art in enumerate(articles, 1):
-    print(f"\n{'='*60}")
-    print(f"INSERTING ARTICLE {i}: {art['headline'][:60]}...")
-    result = supa("POST", "p2_articles", art)
-    article_id = result[0]["id"] if result else "UNKNOWN"
-    print(f"  → Article ID: {article_id}")
-    print(f"  → Slug: {art['slug']}")
-    print(f"  → Category: {art['category']}")
+3.2 quadrillion tokens processed per month. Up from 480 trillion a year ago. Up from 9.7 trillion two years ago. That is a 330x increase in two years — a rate of growth that makes Moore's Law look quaint.
 
-    # Update topic status to published
-    topic_id = art["topic_id"]
-    print(f"  → Marking topic {topic_id} as published...")
-    supa("PATCH", f"p2_topics?id=eq.{topic_id}", {"status": "published"})
-    print(f"  ✓ Topic marked published")
+Google I/O 2026 was not a product launch event. It was a declaration that the company Pichai runs — the one he joined as a product manager in 2004, the one built by two Stanford PhD students in a Menlo Park garage — now operates the largest AI infrastructure on the planet.
 
-print("\n\n✅ All 3 articles inserted successfully.")
+## The Numbers That Matter
+
+Start with Gemini 3.5 Flash, the model Google released to everyone on Monday. It is, by Google's benchmarks, better than the previous Gemini 3.1 Pro across nearly every measure — and it runs four times faster than comparable frontier models from OpenAI or Anthropic. At less than half the price.
+
+Pichai made the cost argument explicit: companies processing a trillion tokens a day could save over $1 billion annually by shifting 80% of their workloads to Flash. That is a direct shot at OpenAI's pricing, and it is aimed squarely at the enterprises — many of them in India's IT corridor — that are currently blowing through their annual AI budgets by May.
+
+Then came the infrastructure reveal. Google will spend approximately $180 to $190 billion in capital expenditure this year. That is six times its 2022 capex. Most of it goes into data centres, TPU fabs and the networking backbone required to keep 3.2 quadrillion tokens moving every month.
+
+The new TPU 8t chip — optimised for training — delivers three times the raw computing power of its predecessor and can distribute training across more than one million TPUs globally. Its inference counterpart, TPU 8i, is built for speed: Pichai emphasised that "27 years of working on Search taught us that latency matters."
+
+## Gemini Spark: Your 24/7 AI Agent
+
+The consumer headline was Gemini Spark, a personal AI agent that lives in the Gemini app, runs on dedicated virtual machines in Google Cloud and operates around the clock — no laptop required. It handles long-horizon tasks in the background, integrates with third-party tools through MCP (Model Context Protocol), and will soon work directly inside Chrome as an agentic browser.
+
+Think of it as Google's answer to the agentic AI wave: instead of you going to the AI with a prompt, the AI goes out into the world on your behalf, checking your email, tracking prices, managing research tasks and reporting back. Beta access for Google AI Ultra subscribers starts next week in the US.
+
+For Indian developers — and there are hundreds of thousands of them building on Google's stack — the Antigravity 2.0 platform may be even more consequential. It is evolving from a coding environment into an agent management platform where anyone can orchestrate autonomous AI agents, powered by a version of Flash that runs 12 times faster than competing frontier models.
+
+## What This Means for Indian Tech
+
+The diaspora angle here is not subtle. Pichai is the most powerful Indian-born executive in technology. The infrastructure he is building employs tens of thousands of Indian engineers directly and creates the platform on which millions more build their livelihoods.
+
+Over 8.5 million developers worldwide now build applications on Google's models monthly. A significant share of them are in India, where Google's AI products have deeper penetration than in almost any other market. AI Overviews in Search alone has 2.5 billion monthly active users globally; India is its largest market outside the US.
+
+The broader signal for NRIs in tech is this: the AI race has entered its infrastructure phase. It is no longer about who has the cleverest model — it is about who can deploy at planetary scale while keeping costs low enough for the rest of the world to build on top.
+
+Google, under a Madurai-born CEO, is making the case that it is that company. Whether you work at a Bengaluru startup training models on Google Cloud, or you are a product manager at a Bay Area company evaluating which AI vendor to commit to, Monday's announcements change the calculus.
+
+The Gemini era is not coming. According to the numbers Pichai shared on Monday, it is already here — processing 3.2 quadrillion reasons per month to believe him.""",
+    "word_count": 730,
+}
+
+# ── ARTICLE 3: Adani $275M Settlement ────────────────────────────
+article3 = {
+    "id": str(uuid.uuid4()),
+    "headline": "Adani Enterprises Just Paid $275 Million to the US Treasury to Make Its Iran Problem Disappear. Here's What NRIs Need to Know.",
+    "subheadline": "The settlement over 32 alleged Iran sanctions violations is one of the largest ever involving an Indian company — and it closes one chapter while opening questions about what comes next for Gautam Adani's global ambitions.",
+    "slug": "adani-275-million-settlement-us-treasury-iran-20260519",
+    "category": "markets-finance",
+    "vertical": "business",
+    "urgency": "high",
+    "score_total": 90,
+    "status": "published",
+    "published_at": now,
+    "tags": ["Adani", "Gautam Adani", "OFAC", "Iran sanctions", "US Treasury", "settlement", "Indian conglomerates"],
+    "diaspora_angle": "NRI investors hold significant positions in Adani stocks; the settlement clears a major regulatory overhang but raises governance questions that diaspora investors, particularly those subject to US compliance regimes, need to track.",
+    "sources": json.dumps([
+        {"name": "Mint", "url": "https://livemint.com"},
+        {"name": "The S Bharat", "url": "https://thesbharat.com/adani-enterprises-reaches-275-million-settlement-with-us-over-alleged-iran-sanctions-violations/"},
+        {"name": "Devdiscourse", "url": "https://www.devdiscourse.com/"},
+        {"name": "Reuters", "url": "https://sahmcapital.com"}
+    ]),
+    "image_search_query": "Adani Group headquarters Gautam Adani",
+    "image_must_show": "Adani Group, Gautam Adani, corporate",
+    "body": """Adani Enterprises has agreed to pay $275 million — roughly ₹2,647 crore — to the US Treasury Department, settling allegations that the company violated American sanctions on Iran through 32 transactions involving liquefied petroleum gas shipped through intermediaries.
+
+The settlement, confirmed this week, is among the largest sanctions-related agreements ever reached between an Indian corporate entity and the US government's Office of Foreign Assets Control (OFAC). Adani neither admitted nor denied wrongdoing.
+
+For NRI investors who hold Adani stocks — and there are many, given the group's prominence in Indian portfolios — the deal is simultaneously a relief and a warning.
+
+## What the US Government Alleged
+
+According to OFAC, Adani Enterprises engaged in 32 LPG transactions over several years in which the cargoes originated from Iran but were routed through a Dubai-based trading firm in a way that obscured their source. The United States maintains comprehensive sanctions against Iran's oil, gas and petrochemical sectors, and companies anywhere in the world can face penalties if they participate in transactions involving sanctioned Iranian products — particularly when those transactions touch the US financial system or use dollar-denominated payments.
+
+The alleged transactions involved complex international supply-chain arrangements. US investigators claimed the shipments were "structured in a way that obscured the actual source of the fuel," with documentation that did not explicitly identify Iranian origin.
+
+Adani had previously dismissed the allegations as "baseless" when reports of the investigation surfaced in 2025.
+
+## The Broader Legal Clean-Up
+
+The $275 million OFAC settlement does not stand alone. It is part of a larger legal resolution that has unfolded over recent weeks:
+
+**The SEC settlement.** Adani also reached a civil settlement with the Securities and Exchange Commission over bribery allegations — Gautam Adani personally paid $6 million in penalties, while his nephew Sagar Adani paid $12 million. The SEC case had alleged a $250 million bribery scheme connected to Indian solar energy contracts between 2020 and 2024.
+
+**Criminal charges dropped.** Perhaps most significantly for markets, the US Department of Justice has moved to dismiss the criminal wire fraud charges that had been filed against Gautam and Sagar Adani. This removes the most severe legal threat — the prospect of a criminal conviction against the chairman of one of India's largest conglomerates.
+
+Together, the three resolutions effectively close the American legal chapter that has hung over the Adani Group since late 2024, when the original indictment sent shockwaves through Indian stock markets and triggered a sharp sell-off in Adani shares.
+
+## What It Means for NRI Investors
+
+For the diaspora investment community, the implications cut both ways.
+
+**The bullish read.** The settlement removes a massive regulatory overhang. Adani Enterprises' core operations — ports, airports, logistics, renewable energy, mining — remain intact. Analysts have noted that the company can absorb a $275 million payout without significant disruption to its balance sheet. Gautam Adani's net worth still sits around $82 billion. The stock is likely to respond positively to the removal of criminal liability.
+
+**The cautious read.** NRIs who invest through US-based brokerage accounts or hold dual tax obligations need to understand the compliance signal. OFAC settlements are not footnotes — they go into a company's permanent compliance record. Institutional investors, particularly those with ESG mandates or US fiduciary obligations, may continue to treat Adani stocks with heightened due diligence requirements.
+
+The case also underscores a broader reality: Indian conglomerates operating globally are increasingly subject to the extraterritorial reach of American sanctions law. If your supply chain touches sanctioned nations and your payments touch the US dollar system, OFAC can — and will — come knocking.
+
+## The Bigger Picture
+
+The Adani settlement arrives at a moment when India-US commercial ties are being reshaped by competing pressures. The Trump administration has imposed tariffs on Indian goods while simultaneously deepening defence cooperation. India continues to buy Russian crude oil despite US objections. The Adani case sits in this messy middle ground — a reminder that American regulatory power can reach deep into Indian boardrooms, even as the two governments publicly celebrate a strategic partnership.
+
+For NRIs managing portfolios that include Indian conglomerates, the lesson is straightforward: the era of Indian companies operating in global markets without facing global regulatory scrutiny is over. The $275 million cheque Adani just wrote to the US Treasury is the price of admission to that new reality.""",
+    "word_count": 720,
+}
+
+# ── INSERT ARTICLES ───────────────────────────────────────────────
+articles = [article1, article2, article3]
+
+for art in articles:
+    print(f"\nInserting: {art['headline'][:80]}...")
+    result = sb_post("p2_articles", art)
+    if isinstance(result, list) and len(result) > 0:
+        print(f"  ✓ ID: {result[0]['id']}, slug: {result[0]['slug']}")
+    else:
+        print(f"  Result: {result}")
+
+# ── MARK TOPICS AS PUBLISHED ─────────────────────────────────────
+topic_ids = [
+    "f65e9f28-5878-4d94-aca8-868dcccf6e6c",  # Marco Rubio
+    "c9376372-00d1-4b51-98ae-d1272c487638",  # Google I/O
+    "2d8acda5-11dc-4734-a11e-af2a562375eb",  # Adani settlement
+]
+
+for tid in topic_ids:
+    sb_patch("p2_topics", f"id=eq.{tid}", {"status": "published", "updated_at": now})
+    print(f"✓ Marked topic {tid[:12]}... as published")
+
+# ── REJECT LOW-VALUE TOPICS ──────────────────────────────────────
+# Reject topics that are too local, not diaspora-relevant, or already covered
+reject_ids = [
+    "1f9e3bc5-fee6-4010-a1f6-c0ae82106bae",  # Delhi CEO electoral roll - too local
+    "3a5029e2-633f-44ee-b8e6-cee59a5ddded",  # Nepal Romeo-Juliet clause - Nepal, not India
+    "8431685e-067c-4411-b888-514253cce80d",  # NYC manhole death - not India/diaspora
+    "877ef075-4ade-49ef-9112-ec32e5b0b811",  # Maharashtra bike-taxi policy - too local
+    "9dab2433-0dbd-416e-95f2-6872232e77b5",  # Punjab underground wiring - too local
+    "93b16300-c8d5-473e-8e69-48f9bb107241",  # Mango founder Spain - not India/diaspora
+    "75b1e6e1-1cbc-4c21-9346-787ecc425022",  # UK headteacher banned - not India/diaspora
+    "4551942d-781f-43d8-baf9-ddbf61455b4e",  # How to dispute e-challans - too local/explainer
+    "4bc594f6-c451-4b4d-88b3-43afdd837fad",  # TN SSLC results - too local
+    "ec8aadf3-44ee-446d-890e-3a96ead27ca3",  # Kejriwal wedding gossip - celebrity gossip
+    "39cdbe22-f19e-49ff-b938-a533206e1bb1",  # Doctor survives ECMO - individual medical story
+    "cc61a723-4734-4d11-bb6e-dc7f8ce6f90b",  # WHO Ebola - not India-focused
+    "1ec940be-3d4c-40c7-ac78-834ef352a983",  # Radioactive stardust - science, not India
+    "be4729d5-8978-4670-92fc-d440892480c1",  # Preeclampsia treatment - medical, not India
+    "168ed6ce-2640-4a40-8e01-105d38d7d5a7",  # SoCal wildfire - not India/diaspora
+    "a7d6f8b6-9575-4112-85e5-5ba435d58b7c",  # Telangana couple murders - too local crime
+    "993c7b18-bb79-4401-90e3-6e507c180d4c",  # Twisha Sharma dowry - local crime
+    "dd588e2c-d4f2-47a9-972c-58fb8abfff02",  # NCSC Punjab Census terms - too niche
+    "8c9f56aa-ab2c-4fa1-99bf-4cd4e7647838",  # London Tube strike - not India
+    "3c4d157a-af67-42d0-86d7-b9afff43ae30",  # Skoda Epiq eSUV - not India-focused enough
+    "c10104fe-b6df-4702-b8c4-89284ac7c529",  # Motorola phone launch - too product-specific
+    "d96dd847-2a99-4007-af88-d2441e2bcdc1",  # RBI govt securities auction - too technical
+    "917f4261-21f0-42fa-8e3c-f7827aa7792c",  # RBI VRR auction - too technical
+    "914a708c-a54b-4548-b1e0-75fc47d9bb45",  # RBI cancels bank license - too niche
+    "2e1d20c3-1a3f-40bc-8bbb-275c404a302a",  # UK petrol prices - not India
+    "f3232158-0f7b-43ef-aaaf-05bb8c57732d",  # Bank of England stablecoin - not India
+    "0bd8a6be-afb2-420b-9cfa-6b188be5535a",  # UK pension crisis - not India
+]
+
+for tid in reject_ids:
+    sb_patch("p2_topics", f"id=eq.{tid}", {"status": "rejected", "updated_at": now})
+
+print(f"\n✓ Rejected {len(reject_ids)} low-value topics")
+
+# ── STORE ARTICLE IDS FOR IMAGE SOURCING ──────────────────────────
+print(f"\n=== Article IDs for image sourcing ===")
+for art in articles:
+    print(f"{art['id']} | {art['category']} | {art['slug']}")
+
+print("\nDone!")
