@@ -1,18 +1,18 @@
 {
-  "last_run": "2026-05-18T22:00:00Z",
+  "last_run": "2026-05-19T10:06:07Z",
   "cities_checked": {
     "San Jose": "2026-05-18T10:00:00Z",
     "San Francisco": "2026-05-17T22:00:00Z",
-    "New York": "2026-05-17T23:37:21Z",
-    "Edison": "2026-05-17T22:00:00Z",
+    "New York": "2026-05-19T10:06:07Z",
+    "Edison": "2026-05-19T10:06:07Z",
     "Dallas": "2026-05-18T22:00:00Z",
     "Houston": "2026-05-18T22:00:00Z",
     "Chicago": "2026-05-18T22:00:00Z",
     "Los Angeles": "2026-05-18T10:00:00Z",
-    "Atlanta": "2026-05-17T21:19:00Z",
+    "Atlanta": "2026-05-19T10:06:07Z",
     "Washington": "2026-05-18T10:00:00Z",
     "Charlotte": "2026-05-18T10:00:00Z",
-    "Philadelphia": "2026-05-17T22:00:00Z",
+    "Philadelphia": "2026-05-19T10:06:07Z",
     "Seattle": "2026-05-18T10:00:00Z",
     "Baltimore": "2026-05-17T21:19:00Z",
     "Detroit": "2026-05-18T22:00:00Z",
@@ -31,7 +31,10 @@
     "Bellevue": "2026-05-18T10:00:00Z",
     "Sterling": "2026-05-18T10:00:00Z",
     "Lemont": "2026-05-18T22:00:00Z",
-    "Stafford": "2026-05-18T22:00:00Z"
+    "Stafford": "2026-05-18T22:00:00Z",
+    "Roswell": "2026-05-19T10:06:07Z",
+    "Johns Creek": "2026-05-19T10:06:07Z",
+    "South Brunswick": "2026-05-19T10:06:07Z"
   },
   "stats": {
     "2026-05-17": {
@@ -106,12 +109,39 @@
           "note": "Focus: Houston, Dallas/Frisco, Chicago/Lemont, Detroit. Houston: Vibha Open Mic, Int'l Day of Yoga, Zahid Dewji comedy, Inner Engineering. Chicago: IPL Watch Party, CTU 50th Carnatic festival (9-day), Diljit vs Drake Pilates, Susila Gurusami book event, HTGC Aani Tirumanjanam. Dallas: Sanjay Patel (Pixar) book signing, IANT Anand Bazaar (Aug 15 Independence Day, 20K+ attendees). Detroit: Pritish Narula comedy, kirtan/satsang, Bhakti Marga yagna, Inner Engineering. Images sourced from Eventbrite CDN for 5 events."
         }
       ]
+    },
+    "2026-05-19": {
+      "new_events": 20,
+      "updated_events": 0,
+      "sources": [
+        "eventbrite",
+        "sulekha",
+        "web"
+      ],
+      "categories": {
+        "Cultural": 2,
+        "Community": 5,
+        "Religious": 1,
+        "Dance": 4,
+        "Food": 1,
+        "Comedy": 3,
+        "Music": 3,
+        "Other": 1
+      },
+      "runs": [
+        {
+          "time": "2026-05-19T10:06:07Z",
+          "new": 20,
+          "updated": 0,
+          "note": "Focus: Atlanta, NYC/NJ, Philadelphia. Atlanta: Raga Sandhya (sitar+tabla classical, Roswell), Mohan Matchmaking Mixer, Inner Engineering (Johns Creek), InvAsian X Atl Desi Bollywood night (Jul 5 at District). NYC: Indian cooking class (Moji Masala), Monsoon Wedding free screening, Drunk Bollywood Trivia (Caveat), Bahauddin Dagar rudra veena concert (DiMenna Center), Bollywood Sundowner yacht party, July 4th cruise party, Arjun Rampal DJ NYC, Desi-Queer Pride on the Pier, Bollywood Horizon cruise. NJ: Desi Single Mingle (Edison), Indian Speed Dating (Lake Chateau). Philadelphia: Brown Noise comedy show, Bollywood Rock & Dance (The Park), Chai & Bakbak social, Bollywood Apex rooftop party, Garam Masala desi dating show. Images uploaded for 12 events."
+        }
+      ]
     }
   },
   "next_cities": [
-    "Atlanta",
-    "Philadelphia",
-    "New York",
-    "Edison"
+    "Seattle",
+    "Los Angeles",
+    "Dallas",
+    "Houston"
   ]
 }
