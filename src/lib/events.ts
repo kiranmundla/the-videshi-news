@@ -27,6 +27,7 @@ export type EventItem = {
   audience: string | null;
   latitude: number | null;
   longitude: number | null;
+  is_featured: boolean | null;
 };
 
 // Base columns that always exist
@@ -34,7 +35,7 @@ const BASE_COLS = "id,title,date,time,end_date,venue_name,city,state,category,de
 
 // Extended columns (added by migration-event-detail.sql)
 // If the migration hasn't been run yet, we fall back to BASE_COLS
-const EVENT_COLS = BASE_COLS + ",long_description,artist_info,venue_info,slug,latitude,longitude";
+const EVENT_COLS = BASE_COLS + ",long_description,artist_info,venue_info,slug,latitude,longitude,is_featured";
 
 /**
  * Run a query with EVENT_COLS; if it fails (columns don't exist yet),
@@ -57,6 +58,7 @@ async function queryWithFallback(buildQuery: (cols: string) => any): Promise<any
       slug: null,
       latitude: null,
       longitude: null,
+      is_featured: null,
     }));
   }
   if (error) {
@@ -163,6 +165,26 @@ export function getDateRange(timeRange: TimeRange): { from: string; to: string }
     case "next_month": return getNextMonthRange();
     default: return null;
   }
+}
+
+/* ------------------------------------------------------------------ */
+/* Featured events                                                    */
+/* ------------------------------------------------------------------ */
+
+export async function getFeaturedEvents(): Promise<EventItem[]> {
+  const today = new Date().toISOString().slice(0, 10);
+
+  const data = await queryWithFallback((cols: string) => {
+    return supabase
+      .from("events")
+      .select(cols)
+      .eq("is_featured", true)
+      .gte("date", today)
+      .order("date", { ascending: true })
+      .limit(8);
+  });
+
+  return data as EventItem[];
 }
 
 /* ------------------------------------------------------------------ */

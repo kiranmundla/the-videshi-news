@@ -14,6 +14,7 @@ import {
   generateSlug,
   sortEventsByDistance,
   getAllUpcomingEvents,
+  getFeaturedEvents,
   CITY_GROUPS,
 } from "@/lib/events";
 
@@ -206,6 +207,94 @@ function TabBar({
         </button>
       ))}
     </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Featured Events Carousel                                           */
+/* ------------------------------------------------------------------ */
+function FeaturedCarouselCard({ event }: { event: EventItem }) {
+  const dateStr = formatEventDate(event.date, event.end_date);
+  const slug = event.slug || generateSlug(event.title, event.date);
+
+  return (
+    <Link
+      to={`/events/${slug}`}
+      className="block flex-shrink-0 w-[85vw] sm:w-[320px] snap-start no-underline group"
+    >
+      <div className="relative rounded-xl overflow-hidden border-2 border-amber-200/60 bg-card hover:border-amber-300 transition-all shadow-sm hover:shadow-md h-full">
+        {/* Image or emoji fallback */}
+        {event.image_url ? (
+          <div className="h-40 sm:h-44 overflow-hidden">
+            <img
+              src={event.image_url}
+              alt={event.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+        ) : (
+          <div className="h-40 sm:h-44 bg-gradient-to-br from-amber-50 to-orange-50 flex items-center justify-center">
+            <span className="text-5xl opacity-70">{categoryEmoji(event.category)}</span>
+          </div>
+        )}
+
+        {/* Featured badge */}
+        <div className="absolute top-2.5 left-2.5">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/90 text-white text-xs font-semibold shadow-sm">
+            ✨ Featured
+          </span>
+        </div>
+
+        {/* Content */}
+        <div className="p-3.5">
+          <h3 className="font-serif text-base font-semibold text-foreground leading-snug line-clamp-2 group-hover:text-primary transition-colors mb-1.5">
+            {event.title}
+          </h3>
+          <p className="text-sm text-primary font-medium mb-1">
+            📅 {dateStr}
+            {event.time && ` · ${event.time}`}
+          </p>
+          <p className="text-sm text-muted-foreground truncate">
+            📍 {[event.venue_name, event.city].filter(Boolean).join(", ")}
+          </p>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+function FeaturedEventsSection() {
+  const [featured, setFeatured] = useState<EventItem[]>([]);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    getFeaturedEvents().then((data) => {
+      setFeatured(data);
+      setLoaded(true);
+    });
+  }, []);
+
+  if (!loaded || featured.length === 0) return null;
+
+  return (
+    <section className="mb-8">
+      <div className="flex items-center gap-3 mb-4">
+        <h2 className="font-serif text-xl md:text-2xl text-foreground whitespace-nowrap">
+          ✨ Featured Events
+        </h2>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+
+      <div
+        className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 -mx-1 px-1"
+        style={{ scrollbarWidth: "thin" }}
+      >
+        {featured.map((event) => (
+          <FeaturedCarouselCard key={event.id} event={event} />
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -423,6 +512,9 @@ export default function EventsPage() {
           </p>
         </div>
 
+        {/* Featured Events Carousel */}
+        <FeaturedEventsSection />
+
         {/* Search + Location controls — one row on desktop, stacked on mobile */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
           {/* Search bar */}
@@ -501,7 +593,16 @@ export default function EventsPage() {
               ))}
             </select>
           </div>
-        </div>
+          </div>
+          </div>
+
+          {/* Submit Event link */}
+          <Link
+            to="/events/submit"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium text-primary hover:text-primary/80 hover:bg-primary/5 rounded-lg transition-colors whitespace-nowrap"
+          >
+            📝 Submit Your Event
+          </Link>
         </div>
 
         {/* Tab bar — all categories visible, wrapping on mobile */}
