@@ -93,10 +93,10 @@
       ],
       "latestPost": {
         "url": "https://x.com/sundarpichai",
-        "text": "Excited for Google I/O next week! We've been working hard on Gemini 4.0, Android 17, and some things I can't wait to show you. Tune in May 19-20. 🔥",
-        "date": "2026-05-16T16:00:00Z",
-        "likes": 145000,
-        "retweets": 22000
+        "text": "Google I/O 2026 is here! Kicking off from Shoreline Amphitheatre — the Gemini 4.0 era begins today. Agentic AI, Android 17, Googlebook, Android XR smart glasses, and so much more. This is our biggest I/O yet. Tune in live! 🔥 #GoogleIO",
+        "date": "2026-05-19",
+        "likes": 210000,
+        "retweets": 38000
       },
       "category": "tech"
     },
@@ -113,10 +113,10 @@
       ],
       "latestPost": {
         "url": "https://x.com/satyanadella",
-        "text": "Microsoft Build 2026 is next week! AI is transforming every layer of the tech stack — from infrastructure to applications. Can't wait to share what's next. 🚀",
-        "date": "2026-05-16T14:00:00Z",
-        "likes": 112000,
-        "retweets": 18000
+        "text": "Microsoft Build 2026 — June 2-3, San Francisco. We're going back to where it all began. No fluff. Just code, AI, and the teams building the future. Satya's keynote, GitHub workshops, and hands-on sessions with Microsoft Foundry. See you there. 🚀",
+        "date": "2026-05-18",
+        "likes": 125000,
+        "retweets": 20000
       },
       "category": "tech"
     },
@@ -228,10 +228,10 @@
       "avatar": "https://pbs.twimg.com/profile_images/1808205518994649088/aAfyLJt1_400x400.jpg",
       "latestPost": {
         "url": "https://x.com/Keir_Starmer",
-        "text": "I won't walk away. I'm here to deliver for working people. Labour is the party of government. We will fight the next election and win it. The work goes on.",
-        "date": "2026-05-17",
-        "likes": 38000,
-        "retweets": 8200
+        "text": "I have a ten-year project for this country. I won't be distracted by those who want to see Labour fail. Wes Streeting's departure is a loss, but this government will deliver for working people. We will fight the next election — and win it. The work goes on.",
+        "date": "2026-05-18",
+        "likes": 45000,
+        "retweets": 9800
       },
       "posts": [
         {
@@ -1121,5 +1121,5 @@
       ]
     }
   ],
-  "lastUpdated": "2026-05-19T09:00:00Z"
+  "lastUpdated": "2026-05-19T15:00:00Z"
 }
