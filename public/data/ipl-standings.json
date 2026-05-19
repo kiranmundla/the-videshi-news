@@ -1,7 +1,7 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-19T08:55:41Z",
-  "stage": "League Stage — Match 63 of 70",
+  "last_updated": "2026-05-19T09:00:00Z",
+  "stage": "League Stage \u2014 Match 63 of 70",
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
@@ -10,7 +10,7 @@
       "won": 9,
       "lost": 4,
       "nr": 0,
-      "nrr": "+1.065",
+      "nrr": "+1.060",
       "points": 18,
       "position": 1
     },
@@ -65,7 +65,7 @@
       "won": 6,
       "lost": 7,
       "nr": 0,
-      "nrr": "-0.016",
+      "nrr": "-0.027",
       "points": 12,
       "position": 6
     },
