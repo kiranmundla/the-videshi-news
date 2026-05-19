@@ -11,7 +11,7 @@ for line in env_file.read_text().strip().splitlines():
         os.environ[k.strip()] = v.strip()
 
 SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_ANON_KEY"]
+SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", os.environ["SUPABASE_ANON_KEY"])
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -61,6 +61,7 @@ ARTICLE_1 = {
     "subheadline": "Prosecutors say Hisham Abugarbieh used AI to plan the killings of Nahida Bristy and Zamil Limon, both 27. The death penalty case has shaken South Asian student communities across America.",
     "slug": slug_from("roommate-chatgpt-search-bangladeshi-doctoral-students-tampa"),
     "category": "nri-world",
+    "vertical": "politics",
     "status": "published",
     "published_at": NOW_ISO,
     "score_total": 82,
@@ -103,6 +104,7 @@ ARTICLE_2 = {
     "subheadline": "Chief Minister Himanta Biswa Sarma's post-election UCC push covers marriage, divorce and succession but carves out protections for the Northeast's indigenous communities, setting up a constitutional tightrope walk that the diaspora is watching closely.",
     "slug": slug_from("assam-fourth-state-uniform-civil-code-tribal-exemption"),
     "category": "news",
+    "vertical": "politics",
     "status": "published",
     "published_at": NOW_ISO,
     "score_total": 78,
@@ -147,6 +149,7 @@ ARTICLE_3 = {
     "subheadline": "The partnership, anchored by a diaspora-founded philanthropic giant and the world's largest private health funder, aims to turn India's academic research into startups, products and jobs at a national scale.",
     "slug": slug_from("wadhwani-gates-foundations-250-innovation-hubs-india"),
     "category": "technology",
+    "vertical": "tech",
     "status": "published",
     "published_at": NOW_ISO,
     "score_total": 76,
@@ -191,6 +194,7 @@ ARTICLE_4 = {
     "subheadline": "Governor Newsom's proposed 8.25% levy on SaaS, AI APIs and digital downloads is designed to close a $42 billion deficit. It could also accelerate the exodus of H-1B talent to Texas.",
     "slug": slug_from("california-software-tax-indian-tech-workers-h1b"),
     "category": "markets-finance",
+    "vertical": "economy",
     "status": "published",
     "published_at": NOW_ISO,
     "score_total": 78,
