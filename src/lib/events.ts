@@ -459,7 +459,10 @@ export function sortEventsByDistance(
   userLng: number,
 ): EventWithDistance[] {
   const withDist: EventWithDistance[] = events.map((e) => {
-    const coords = getCityCoords(e.city);
+    // Use per-event lat/lng from DB if available, fall back to city-level coords
+    const coords = (e.latitude != null && e.longitude != null)
+      ? { lat: e.latitude, lng: e.longitude }
+      : getCityCoords(e.city);
     const distanceMiles = coords
       ? getDistanceMiles(userLat, userLng, coords.lat, coords.lng)
       : 9999;
