@@ -107,6 +107,8 @@ export default function EditEventPage() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   /* Image state */
   const [coverImage, setCoverImage] = useState<ImagePreview | null>(null);
@@ -371,6 +373,25 @@ export default function EditEventPage() {
     setStep("done");
   };
 
+  const handleDelete = async () => {
+    if (!event) return;
+    setDeleting(true);
+    try {
+      const { error } = await supabase
+        .from("events")
+        .delete()
+        .eq("id", event.id)
+        .eq("source", "user_submitted");
+      if (error) throw error;
+      setStep("deleted" as any);
+    } catch (err: any) {
+      setSaveError(err.message || "Failed to delete event");
+    } finally {
+      setDeleting(false);
+      setShowDeleteConfirm(false);
+    }
+  };
+
   /* ================================================================ */
   /* Render                                                           */
   /* ================================================================ */
@@ -411,6 +432,28 @@ export default function EditEventPage() {
   }
 
   /* Done */
+  if (step === ("deleted" as any)) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Helmet><title>Event Deleted — The Videshi</title></Helmet>
+        <Masthead />
+        <CategoryPills />
+        <main className="container flex-1 max-w-lg py-16 text-center">
+          <div className="text-5xl mb-4">🗑️</div>
+          <h1 className="font-serif text-2xl text-foreground mb-3">Event Deleted</h1>
+          <p className="text-muted-foreground mb-6">Your event has been removed.</p>
+          <Link
+            to="/events"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors"
+          >
+            Browse Events →
+          </Link>
+        </main>
+        <SiteFooter />
+      </div>
+    );
+  }
+
   if (step === "done") {
     return (
       <div className="min-h-screen flex flex-col">
@@ -747,6 +790,42 @@ export default function EditEventPage() {
                 </span>
               ) : "Save Changes"}
             </button>
+
+            {/* Delete section */}
+            <div className="pt-6 mt-6 border-t border-border">
+              {!showDeleteConfirm ? (
+                <button
+                  type="button"
+                  onClick={() => setShowDeleteConfirm(true)}
+                  className="w-full px-6 py-3 text-red-600 border border-red-200 font-medium rounded-lg hover:bg-red-50 transition-colors"
+                >
+                  🗑️ Delete This Event
+                </button>
+              ) : (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-sm text-red-800 font-medium mb-3">
+                    Are you sure? This cannot be undone.
+                  </p>
+                  <div className="flex gap-3">
+                    <button
+                      type="button"
+                      onClick={handleDelete}
+                      disabled={deleting}
+                      className="flex-1 px-4 py-2.5 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50"
+                    >
+                      {deleting ? "Deleting…" : "Yes, Delete"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowDeleteConfirm(false)}
+                      className="flex-1 px-4 py-2.5 border border-border font-medium rounded-lg hover:bg-muted/40 transition-colors"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </form>
         )}
       </main>
