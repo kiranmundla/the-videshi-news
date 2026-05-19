@@ -1,6 +1,6 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-19T03:05:00Z",
+  "last_updated": "2026-05-19T03:55:52Z",
   "stage": "League Stage — Match 63 of 70",
   "standings": [
     {
@@ -12,8 +12,7 @@
       "nr": 0,
       "nrr": "+1.065",
       "points": 18,
-      "position": 1,
-      "status": "Q"
+      "position": 1
     },
     {
       "team": "Gujarat Titans",
@@ -24,20 +23,18 @@
       "nr": 0,
       "nrr": "+0.400",
       "points": 16,
-      "position": 2,
-      "status": "Q"
+      "position": 2
     },
     {
       "team": "Sunrisers Hyderabad",
       "short": "SRH",
-      "played": 13,
-      "won": 8,
+      "played": 12,
+      "won": 7,
       "lost": 5,
       "nr": 0,
-      "nrr": "+0.350",
-      "points": 16,
-      "position": 3,
-      "status": "Q"
+      "nrr": "+0.331",
+      "points": 14,
+      "position": 3
     },
     {
       "team": "Punjab Kings",
@@ -64,11 +61,11 @@
     {
       "team": "Chennai Super Kings",
       "short": "CSK",
-      "played": 13,
+      "played": 12,
       "won": 6,
-      "lost": 7,
+      "lost": 6,
       "nr": 0,
-      "nrr": "-0.016",
+      "nrr": "+0.027",
       "points": 12,
       "position": 6
     },
@@ -103,8 +100,7 @@
       "nr": 0,
       "nrr": "-0.504",
       "points": 8,
-      "position": 9,
-      "status": "E"
+      "position": 9
     },
     {
       "team": "Lucknow Super Giants",
@@ -115,8 +111,7 @@
       "nr": 0,
       "nrr": "-0.701",
       "points": 8,
-      "position": 10,
-      "status": "E"
+      "position": 10
     }
   ],
   "recent_results": [

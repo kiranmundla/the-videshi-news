@@ -1,21 +1,21 @@
 {
-  "last_updated": "2026-05-19T02:55:25.135226+00:00",
+  "last_updated": "2026-05-19T03:55:28.055386+00:00",
   "indices": [
     {
       "symbol": "SENSEX",
       "name": "Sensex",
       "flag": "\ud83c\uddee\ud83c\uddf3",
-      "value": 75315.04,
-      "change": 77.05,
-      "change_pct": 0.1
+      "value": 75441.27,
+      "change": 203.28,
+      "change_pct": 0.27
     },
     {
       "symbol": "NIFTY",
       "name": "Nifty 50",
       "flag": "\ud83c\uddee\ud83c\uddf3",
-      "value": 23649.95,
-      "change": -7.95,
-      "change_pct": -0.03
+      "value": 23750.35,
+      "change": 105.9,
+      "change_pct": 0.45
     },
     {
       "symbol": "SPX",
@@ -37,25 +37,25 @@
       "symbol": "USDINR",
       "name": "USD/INR",
       "flag": "\ud83d\udcb1",
-      "value": 96.33,
-      "change": 0.0,
-      "change_pct": 0.0
+      "value": 96.36,
+      "change": 0.03,
+      "change_pct": 0.03
     },
     {
       "symbol": "GOLD",
       "name": "Gold",
       "flag": "\u2728",
-      "value": 4559.3,
-      "change": 12.5,
-      "change_pct": 0.27
+      "value": 4548.8,
+      "change": 2.0,
+      "change_pct": 0.04
     },
     {
       "symbol": "SILVER",
       "name": "Silver",
       "flag": "\ud83e\ude99",
-      "value": 76.89,
-      "change": 1.34,
-      "change_pct": 1.77
+      "value": 76.68,
+      "change": 1.13,
+      "change_pct": 1.5
     }
   ]
 }
