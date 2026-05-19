@@ -225,16 +225,16 @@ function FeaturedCarouselCard({ event }: { event: EventItem }) {
       <div className="relative rounded-xl overflow-hidden border-2 border-amber-200/60 bg-card hover:border-amber-300 transition-all shadow-sm hover:shadow-md h-full">
         {/* Image or emoji fallback */}
         {event.image_url ? (
-          <div className="h-40 sm:h-44 overflow-hidden">
+          <div className="aspect-[16/10] overflow-hidden">
             <img
               src={event.image_url}
               alt={event.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
             />
           </div>
         ) : (
-          <div className="h-40 sm:h-44 bg-gradient-to-br from-amber-50 to-orange-50 flex items-center justify-center">
+          <div className="aspect-[16/10] bg-gradient-to-br from-amber-50 to-orange-50 flex items-center justify-center">
             <span className="text-5xl opacity-70">{categoryEmoji(event.category)}</span>
           </div>
         )}
