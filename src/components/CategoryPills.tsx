@@ -3,13 +3,23 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { CATEGORIES, getCategoryBySlug } from "@/lib/categories";
 
+/* Article categories shown on the home page as scroll sections */
+const HOME_CATEGORIES = CATEGORIES.filter((c) => c.hasPipeline);
+
+/* Standalone sections NOT on the home page — shown as nav pills */
+const SECTION_LINKS = CATEGORIES.filter((c) => !c.hasPipeline);
+
 export default function CategoryPills() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isHome = pathname === "/";
+
+  /* On home page: ALL + article categories + section links
+     On sub-pages: just show breadcrumb + all pills */
   const items = [
-    { slug: "all", label: "All", path: "/" },
-    ...CATEGORIES.map((c) => ({ slug: c.slug, label: c.label, path: c.path })),
+    { slug: "all", label: "All", path: "/", isSection: false },
+    ...HOME_CATEGORIES.map((c) => ({ slug: c.slug, label: c.label, path: c.path, isSection: false })),
+    ...SECTION_LINKS.map((c) => ({ slug: c.slug, label: c.label, path: c.path, isSection: true })),
   ];
 
   // Active category from current route (e.g. "/sports" → "sports")
@@ -22,9 +32,7 @@ export default function CategoryPills() {
   useEffect(() => {
     if (!isHome) return;
     setSpySlug("all");
-    const sectionIds = items
-      .filter((i) => i.slug !== "all")
-      .map((i) => `section-${i.slug}`);
+    const sectionIds = HOME_CATEGORIES.map((c) => `section-${c.slug}`);
 
     const onScroll = () => {
       // If near top, ALL is active
@@ -48,7 +56,10 @@ export default function CategoryPills() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHome, pathname]);
 
-  const handleClick = (e: React.MouseEvent, slug: string, path: string) => {
+  const handleClick = (e: React.MouseEvent, slug: string, path: string, isSection: boolean) => {
+    /* Section links always navigate directly */
+    if (isSection) return;
+
     if (isHome && slug !== "all") {
       e.preventDefault();
       const el = document.getElementById(`section-${slug}`);
@@ -89,11 +100,13 @@ export default function CategoryPills() {
               <Link
                 key={it.slug}
                 to={it.path}
-                onClick={(e) => handleClick(e, it.slug, it.path)}
+                onClick={(e) => handleClick(e, it.slug, it.path, it.isSection)}
                 className={`smallcaps shrink-0 px-3 py-1.5 border rounded-full transition-colors ${
                   active
                     ? "bg-primary text-primary-foreground border-primary"
-                    : "border-rule text-foreground/80 hover:text-primary hover:border-primary"
+                    : it.isSection
+                      ? "border-primary/30 text-primary/80 hover:bg-primary/5 hover:border-primary"
+                      : "border-rule text-foreground/80 hover:text-primary hover:border-primary"
                 }`}
               >
                 {it.label}
