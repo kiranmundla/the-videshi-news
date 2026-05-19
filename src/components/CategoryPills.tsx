@@ -1,78 +1,17 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { CATEGORIES, getCategoryBySlug } from "@/lib/categories";
 
-/* Article categories shown on the home page as scroll sections */
-const HOME_CATEGORIES = CATEGORIES.filter((c) => c.hasPipeline);
-
-/* Standalone sections NOT on the home page — shown as nav pills */
+/* Standalone sections NOT on the home page — these are the only pills shown */
 const SECTION_LINKS = CATEGORIES.filter((c) => !c.hasPipeline);
 
 export default function CategoryPills() {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   const isHome = pathname === "/";
 
-  /* On home page: ALL + article categories + section links
-     On sub-pages: just show breadcrumb + all pills */
-  const items = [
-    { slug: "all", label: "All", path: "/", isSection: false },
-    ...HOME_CATEGORIES.map((c) => ({ slug: c.slug, label: c.label, path: c.path, isSection: false })),
-    ...SECTION_LINKS.map((c) => ({ slug: c.slug, label: c.label, path: c.path, isSection: true })),
-  ];
-
-  // Active category from current route (e.g. "/sports" → "sports")
-  const routeSlug = pathname === "/" ? "all" : pathname.replace(/^\//, "").split("/")[0];
+  const routeSlug = pathname === "/" ? "" : pathname.replace(/^\//, "").split("/")[0];
   const currentCategory = getCategoryBySlug(routeSlug);
-
-  // Scroll-spy: track active section on home
-  const [spySlug, setSpySlug] = useState<string>("all");
-
-  useEffect(() => {
-    if (!isHome) return;
-    setSpySlug("all");
-    const sectionIds = HOME_CATEGORIES.map((c) => `section-${c.slug}`);
-
-    const onScroll = () => {
-      // If near top, ALL is active
-      if (window.scrollY < 200) {
-        setSpySlug("all");
-        return;
-      }
-      const offset = 140; // sticky-bar offset
-      let current = "all";
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-        const top = el.getBoundingClientRect().top;
-        if (top - offset <= 0) current = id.replace("section-", "");
-      }
-      setSpySlug(current);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome, pathname]);
-
-  const handleClick = (e: React.MouseEvent, slug: string, path: string, isSection: boolean) => {
-    /* Section links always navigate directly */
-    if (isSection) return;
-
-    if (isHome && slug !== "all") {
-      e.preventDefault();
-      const el = document.getElementById(`section-${slug}`);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        navigate(path);
-      }
-    } else if (isHome && slug === "all") {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
 
   return (
     <div className="bg-background border-b hairline">
@@ -94,22 +33,32 @@ export default function CategoryPills() {
           </div>
         )}
         <div className="flex gap-2 overflow-x-auto py-3 -mx-1 px-1 scrollbar-none whitespace-nowrap">
-          {items.map((it) => {
-            const active = isHome ? spySlug === it.slug : routeSlug === it.slug;
+          {/* Home pill */}
+          <Link
+            to="/"
+            className={`smallcaps shrink-0 px-3 py-1.5 border rounded-full transition-colors ${
+              isHome
+                ? "bg-primary text-primary-foreground border-primary"
+                : "border-rule text-foreground/80 hover:text-primary hover:border-primary"
+            }`}
+          >
+            Home
+          </Link>
+
+          {/* Section links: Events, Classifieds, Real Estate */}
+          {SECTION_LINKS.map((section) => {
+            const active = routeSlug === section.slug;
             return (
               <Link
-                key={it.slug}
-                to={it.path}
-                onClick={(e) => handleClick(e, it.slug, it.path, it.isSection)}
+                key={section.slug}
+                to={section.path}
                 className={`smallcaps shrink-0 px-3 py-1.5 border rounded-full transition-colors ${
                   active
                     ? "bg-primary text-primary-foreground border-primary"
-                    : it.isSection
-                      ? "border-primary/30 text-primary/80 hover:bg-primary/5 hover:border-primary"
-                      : "border-rule text-foreground/80 hover:text-primary hover:border-primary"
+                    : "border-rule text-foreground/80 hover:text-primary hover:border-primary"
                 }`}
               >
-                {it.label}
+                {section.label}
               </Link>
             );
           })}
