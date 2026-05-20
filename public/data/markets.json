@@ -1,109 +1,115 @@
 {
   "indices": [
     {
-      "id": "sensex",
-      "name": "Sensex",
+      "key": "sensex",
+      "name": "BSE Sensex",
       "symbol": "^BSESN",
       "price": 75318.39,
-      "change_pct": -0.11,
-      "chart_5d": [
+      "change": -80.33,
+      "changePct": -0.11,
+      "sparkline": [
         75398.72,
         75237.99,
         75315.04,
-        75200.85,
-        75318.39
+        75200.85
       ],
-      "updated_at": "2026-05-20T16:56:52Z"
+      "updatedAt": "2026-05-20T18:39:59.067799+00:00"
     },
     {
-      "id": "nifty50",
+      "key": "nifty",
       "name": "Nifty 50",
       "symbol": "^NSEI",
       "price": 23659.0,
-      "change_pct": -0.13,
-      "chart_5d": [
+      "change": -30.6,
+      "changePct": -0.13,
+      "sparkline": [
         23689.6,
         23643.5,
         23649.95,
-        23618.0,
-        23659.0
+        23618.0
       ],
-      "updated_at": "2026-05-20T16:56:53Z"
+      "updatedAt": "2026-05-20T18:39:59.709411+00:00"
     },
     {
-      "id": "djia",
+      "key": "dow",
       "name": "Dow Jones",
       "symbol": "^DJI",
-      "price": 49871.81,
-      "change_pct": 0.36,
-      "chart_5d": [
+      "price": 49981.6,
+      "change": 288.4,
+      "changePct": 0.58,
+      "sparkline": [
         50063.46,
         49526.17,
         49686.12,
         49363.88,
-        49871.81
+        49981.6
       ],
-      "updated_at": "2026-05-20T16:56:53Z"
+      "updatedAt": "2026-05-20T18:40:00.041496+00:00"
     },
     {
-      "id": "sp500",
+      "key": "sp500",
       "name": "S&P 500",
       "symbol": "^GSPC",
-      "price": 7411.97,
-      "change_pct": -0.43,
-      "chart_5d": [
+      "price": 7425.85,
+      "change": -18.4,
+      "changePct": -0.25,
+      "sparkline": [
         7501.24,
         7408.5,
         7403.05,
         7353.61,
-        7411.97
+        7425.85
       ],
-      "updated_at": "2026-05-20T16:56:53Z"
+      "updatedAt": "2026-05-20T18:40:00.714470+00:00"
     },
     {
-      "id": "nasdaq",
+      "key": "nasdaq",
       "name": "Nasdaq",
       "symbol": "^IXIC",
-      "price": 26162.99,
-      "change_pct": -0.91,
-      "chart_5d": [
+      "price": 26231.86,
+      "change": -170.48,
+      "changePct": -0.65,
+      "sparkline": [
         26635.22,
         26225.14,
         26090.73,
         25870.71,
-        26162.99
+        26231.86
       ],
-      "updated_at": "2026-05-20T16:56:54Z"
+      "updatedAt": "2026-05-20T18:40:01.076138+00:00"
     },
     {
-      "id": "ftse100",
+      "key": "ftse",
       "name": "FTSE 100",
       "symbol": "^FTSE",
       "price": 10432.34,
-      "change_pct": 1.04,
-      "chart_5d": [
+      "change": 106.94,
+      "changePct": 1.04,
+      "sparkline": [
         10372.9,
         10195.4,
         10323.8,
         10330.6,
         10432.34
       ],
-      "updated_at": "2026-05-20T16:56:54Z"
+      "updatedAt": "2026-05-20T18:40:01.436166+00:00"
     },
     {
-      "id": "nikkei225",
-      "name": "Nikkei 225",
-      "symbol": "^N225",
-      "price": 59804.41,
-      "change_pct": -4.55,
-      "chart_5d": [
-        62654.05,
-        61409.29,
-        60815.95,
-        60550.59
+      "key": "usdinr",
+      "name": "USD/INR",
+      "symbol": "USDINR=X",
+      "price": 96.58,
+      "change": 0.88,
+      "changePct": 0.92,
+      "sparkline": [
+        95.7,
+        95.71,
+        95.97,
+        96.27,
+        96.58
       ],
-      "updated_at": "2026-05-20T16:56:55Z"
+      "updatedAt": "2026-05-20T18:40:01.783287+00:00"
     }
   ],
-  "updated_at": "2026-05-20T16:56:55Z"
+  "lastUpdated": "2026-05-20T18:40:01.802473+00:00"
 }
