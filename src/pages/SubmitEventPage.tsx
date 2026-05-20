@@ -5,7 +5,7 @@ import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import { supabase } from "@/integrations/supabase/client";
-import { generateSlug } from "@/lib/events";
+import { generateSlug, formatEventDateLong } from "@/lib/events";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -43,6 +43,13 @@ const CATEGORIES = [
   "Other",
 ];
 
+const CAT_EMOJI: Record<string, string> = {
+  Cultural: "🎭", Music: "🎵", Food: "🍛", Sports: "🏏",
+  Community: "🤝", Festival: "🪔", Comedy: "😂", Dance: "💃",
+  Religious: "🙏", Education: "🎓", Competition: "🏆", Entertainment: "🎶",
+  Other: "📌",
+};
+
 type FormData = {
   title: string;
   date: string;
@@ -71,13 +78,20 @@ const INITIAL: FormData = {
   email: "",
 };
 
+/* Synthesized content from AI */
+type SynthesizedContent = {
+  long_description: string | null;
+  artist_info: string | null;
+  venue_info: string | null;
+};
+
 /* ------------------------------------------------------------------ */
 /* Image preview type                                                 */
 /* ------------------------------------------------------------------ */
 type ImagePreview = {
   id: string;
   file: File;
-  url: string; // object URL for preview
+  url: string;
 };
 
 function createPreview(file: File): ImagePreview {
@@ -96,9 +110,14 @@ function validateImageFile(file: File): string | null {
 export default function SubmitEventPage() {
   const [form, setForm] = useState<FormData>(INITIAL);
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+
+  /* Step: "form" | "synthesizing" | "preview" | "publishing" | "done" */
+  const [step, setStep] = useState<"form" | "synthesizing" | "preview" | "publishing" | "done">("form");
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [publishedSlug, setPublishedSlug] = useState<string | null>(null);
+
+  /* Synthesized content */
+  const [synthesized, setSynthesized] = useState<SynthesizedContent | null>(null);
 
   /* Image state */
   const [coverImage, setCoverImage] = useState<ImagePreview | null>(null);
@@ -219,12 +238,53 @@ export default function SubmitEventPage() {
     return Object.keys(errs).length === 0;
   };
 
-  /* ---- Submit ---- */
-  const handleSubmit = async (e: React.FormEvent) => {
+  /* ---- Step 1: Preview (synthesize) ---- */
+  const handlePreview = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
-    setSubmitting(true);
+    setStep("synthesizing");
+    setSubmitError(null);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("synthesize-event", {
+        body: {
+          title: form.title.trim(),
+          date: form.date,
+          end_date: form.end_date || null,
+          time: form.time || null,
+          city: form.city.trim(),
+          state: form.state,
+          venue_name: form.venue_name.trim(),
+          category: form.category,
+          description: form.description.trim(),
+          ticket_url: form.ticket_url.trim() || null,
+        },
+      });
+
+      if (error) throw error;
+
+      setSynthesized({
+        long_description: data?.long_description || form.description.trim() || null,
+        artist_info: data?.artist_info || null,
+        venue_info: data?.venue_info || null,
+      });
+      setStep("preview");
+    } catch (err: any) {
+      console.error("Synthesize error:", err);
+      /* Graceful fallback — show preview with original content */
+      setSynthesized({
+        long_description: form.description.trim() || null,
+        artist_info: null,
+        venue_info: null,
+      });
+      setStep("preview");
+    }
+  };
+
+  /* ---- Step 2: Publish ---- */
+  const handlePublish = async () => {
+    setStep("publishing");
     setSubmitError(null);
 
     const slug = generateSlug(form.title.trim(), form.date);
@@ -258,6 +318,9 @@ export default function SubmitEventPage() {
       category: form.category,
       ticket_url: form.ticket_url.trim() || null,
       description: form.description.trim() || null,
+      long_description: synthesized?.long_description || null,
+      artist_info: synthesized?.artist_info || null,
+      venue_info: synthesized?.venue_info || null,
       source: "user_submitted",
       organizer: form.email.trim(),
       slug,
@@ -268,19 +331,40 @@ export default function SubmitEventPage() {
     const sbRaw = supabase as unknown as { from: (t: string) => any };
     const { error } = await sbRaw.from("events").insert([row]);
 
-    setSubmitting(false);
-
     if (error) {
       console.error("Submit event error:", error);
       setSubmitError("Something went wrong. Please try again.");
-    } else {
-      setSubmitted(true);
-      if (imageNote) setSubmitError(imageNote);
+      setStep("preview");
+      return;
     }
+
+    setPublishedSlug(slug);
+
+    /* Send confirmation email (fire-and-forget — don't block on failure) */
+    try {
+      await supabase.functions.invoke("send-event-confirmation", {
+        body: {
+          title: form.title.trim(),
+          slug,
+          email: form.email.trim(),
+          date: form.date,
+          venue: form.venue_name.trim(),
+          city: `${form.city.trim()}, ${form.state}`,
+        },
+      });
+    } catch (emailErr) {
+      console.error("Confirmation email failed:", emailErr);
+      /* Non-blocking — event is already created */
+    }
+
+    setStep("done");
+    if (imageNote) setSubmitError(imageNote);
   };
 
-  /* ---- Success view ---- */
-  if (submitted) {
+  /* ================================================================ */
+  /* RENDER: Done (published)                                         */
+  /* ================================================================ */
+  if (step === "done") {
     return (
       <div className="min-h-screen flex flex-col">
         <Masthead />
@@ -289,27 +373,32 @@ export default function SubmitEventPage() {
           <div className="text-center py-20">
             <p className="text-5xl mb-4">🎉</p>
             <h2 className="font-serif text-2xl md:text-3xl text-foreground mb-3">
-              Thanks for submitting your event!
+              Your Event Is Live!
             </h2>
-            <p className="text-muted-foreground text-lg mb-8">
-              Your event will appear on The Videshi shortly. We may reach out to your email for additional details.
+            <p className="text-muted-foreground text-lg mb-3">
+              We've sent a confirmation email with your event link.
+            </p>
+            <p className="text-muted-foreground text-sm mb-8">
+              You can edit it anytime using the link in the email.
             </p>
             {submitError && (
               <p className="text-sm text-amber-600 mb-6">{submitError}</p>
             )}
-            <div className="flex justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              {publishedSlug && (
+                <Link
+                  to={`/events/${publishedSlug}`}
+                  className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                >
+                  View Your Event →
+                </Link>
+              )}
               <Link
                 to="/events"
-                className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
-              >
-                ← Back to Events
-              </Link>
-              <button
-                onClick={() => { setSubmitted(false); setForm(INITIAL); setCoverImage(null); setAdditionalImages([]); setSubmitError(null); }}
                 className="px-6 py-3 border border-border rounded-lg font-medium hover:bg-muted/40 transition-colors"
               >
-                Submit Another
-              </button>
+                Browse Events
+              </Link>
             </div>
           </div>
         </main>
@@ -318,7 +407,204 @@ export default function SubmitEventPage() {
     );
   }
 
-  /* ---- Form view ---- */
+  /* ================================================================ */
+  /* RENDER: Preview                                                  */
+  /* ================================================================ */
+  if (step === "preview" || step === "publishing") {
+    const dateStr = formatEventDateLong(form.date, form.end_date || undefined);
+    const catEmoji = CAT_EMOJI[form.category || "Other"] || "📌";
+    const description = synthesized?.long_description || form.description;
+
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Helmet>
+          <title>Preview Your Event — The Videshi</title>
+          <meta name="robots" content="noindex" />
+        </Helmet>
+
+        <Masthead />
+        <CategoryPills />
+
+        <main className="container flex-1 pt-8 md:pt-10 pb-16 max-w-4xl mx-auto px-4">
+          <div className="mb-6">
+            <p className="text-sm text-primary font-medium mb-2 flex items-center gap-2">
+              <span className="inline-block w-6 h-6 rounded-full bg-primary/10 text-center text-xs leading-6 font-bold">2</span>
+              Preview your event
+            </p>
+            <h1 className="font-serif text-2xl md:text-3xl text-foreground mb-1">
+              Here's how your event will look
+            </h1>
+            <p className="text-muted-foreground text-sm">
+              Review the details below. Our AI has enhanced your description to make it shine.
+            </p>
+          </div>
+
+          {/* ---- Preview Card (dark, matching EventDetailPage) ---- */}
+          <div className="rounded-2xl overflow-hidden bg-[#0a0a0a] text-white mb-8">
+
+            {/* Hero image */}
+            {coverImage ? (
+              <div className="relative w-full max-h-[50vh] overflow-hidden">
+                <img
+                  src={coverImage.url}
+                  alt={form.title}
+                  className="w-full h-full object-contain bg-black"
+                  style={{ maxHeight: "50vh" }}
+                />
+                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+              </div>
+            ) : (
+              <div className="relative w-full h-36 sm:h-44 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
+                <span className="text-[6rem] opacity-15 select-none">{catEmoji}</span>
+              </div>
+            )}
+
+            {/* Content */}
+            <div className="px-6 sm:px-8 pb-8 -mt-4 relative z-10">
+              {/* Category + Date */}
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                {form.category && (
+                  <span className="text-sm font-medium text-white/40 uppercase tracking-widest">
+                    {catEmoji} {form.category}
+                  </span>
+                )}
+                <span className="text-sm text-white/30">•</span>
+                <span className="text-sm text-white/60">{dateStr}</span>
+                {form.time && (
+                  <>
+                    <span className="text-sm text-white/30">•</span>
+                    <span className="text-sm text-white/60">{form.time}</span>
+                  </>
+                )}
+              </div>
+
+              {/* Title */}
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.1] mb-4">
+                {form.title}
+              </h2>
+
+              {/* Venue + City */}
+              <div className="flex flex-wrap items-center gap-2 text-white/50 text-base mb-6">
+                <span className="text-white/70 font-medium">{form.venue_name}</span>
+                <span>·</span>
+                <span>{form.city}, {form.state}</span>
+              </div>
+
+              {/* Ticket CTA */}
+              {form.ticket_url && (
+                <div className="mb-8">
+                  <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-bold text-sm">
+                    Get Tickets
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                    </svg>
+                  </span>
+                </div>
+              )}
+
+              {/* Divider */}
+              <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-8" />
+
+              {/* Description */}
+              {description && (
+                <section className="mb-8">
+                  <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30 mb-4">
+                    About This Event
+                  </h3>
+                  <div className="text-white/70 text-[15px] leading-[1.85] whitespace-pre-line">
+                    {description}
+                  </div>
+                </section>
+              )}
+
+              {/* Artist Info */}
+              {synthesized?.artist_info && (
+                <section className="mb-8">
+                  <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30 mb-4">
+                    About the Artist
+                  </h3>
+                  <div className="text-white/70 text-[15px] leading-[1.85] whitespace-pre-line">
+                    {synthesized.artist_info}
+                  </div>
+                </section>
+              )}
+
+              {/* Venue */}
+              <section>
+                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30 mb-4">
+                  Venue
+                </h3>
+                <div className="rounded-xl bg-white/[0.03] border border-white/[0.06] p-5">
+                  <p className="text-white font-semibold text-lg mb-1">{form.venue_name}</p>
+                  <p className="text-white/40 text-sm mb-3">{form.city}, {form.state}</p>
+                  {synthesized?.venue_info && (
+                    <p className="text-white/60 text-sm leading-relaxed">{synthesized.venue_info}</p>
+                  )}
+                </div>
+              </section>
+
+              {/* Additional images */}
+              {additionalImages.length > 0 && (
+                <div className="mt-8">
+                  <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30 mb-4">
+                    Photos
+                  </h3>
+                  <div className="flex gap-3 overflow-x-auto pb-3 scrollbar-none">
+                    {additionalImages.map((img, i) => (
+                      <div key={img.id} className="flex-shrink-0 w-[45%] sm:w-[30%] rounded-lg overflow-hidden">
+                        <img
+                          src={img.url}
+                          alt={`Photo ${i + 1}`}
+                          className="w-full h-44 object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* ---- Action buttons ---- */}
+          {submitError && (
+            <div className="rounded-lg bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-sm mb-4">
+              {submitError}
+            </div>
+          )}
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              onClick={() => { setStep("form"); setSubmitError(null); }}
+              disabled={step === "publishing"}
+              className="flex-1 sm:flex-none px-8 py-3 border border-border rounded-lg font-medium hover:bg-muted/40 transition-colors disabled:opacity-50"
+            >
+              ✏️ Edit Details
+            </button>
+            <button
+              onClick={handlePublish}
+              disabled={step === "publishing"}
+              className="flex-1 sm:flex-none px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {step === "publishing" ? (
+                <span className="flex items-center gap-2 justify-center">
+                  <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                  Publishing…
+                </span>
+              ) : (
+                "✅ Publish Event"
+              )}
+            </button>
+          </div>
+        </main>
+
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  /* ================================================================ */
+  /* RENDER: Form (step === "form" or "synthesizing")                 */
+  /* ================================================================ */
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -342,7 +628,7 @@ export default function SubmitEventPage() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handlePreview} className="space-y-5">
           {/* Event Name */}
           <Field label="Event Name" required error={errors.title}>
             <input
@@ -447,7 +733,7 @@ export default function SubmitEventPage() {
             <textarea
               value={form.description}
               onChange={set("description")}
-              placeholder="Tell us about this event in a few sentences..."
+              placeholder="Tell us about this event in a few sentences — we'll enhance it for you..."
               rows={4}
               maxLength={500}
               className={inputClass()}
@@ -515,7 +801,6 @@ export default function SubmitEventPage() {
               className="hidden"
             />
 
-            {/* Thumbnails row */}
             {additionalImages.length > 0 && (
               <div className="flex gap-3 overflow-x-auto pb-2 mb-3">
                 {additionalImages.map((img) => (
@@ -576,11 +861,11 @@ export default function SubmitEventPage() {
               className={inputClass(errors.email)}
             />
             <p className="text-xs text-muted-foreground mt-1">
-              We may reach out for additional event details. Not displayed publicly.
+              We'll send you a confirmation with your event link. Not displayed publicly.
             </p>
           </Field>
 
-          {submitError && !submitted && (
+          {submitError && step === "form" && (
             <div className="rounded-lg bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-sm">
               {submitError}
             </div>
@@ -588,16 +873,16 @@ export default function SubmitEventPage() {
 
           <button
             type="submit"
-            disabled={submitting}
+            disabled={step === "synthesizing"}
             className="w-full sm:w-auto px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {submitting ? (
+            {step === "synthesizing" ? (
               <span className="flex items-center gap-2 justify-center">
                 <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                Uploading & Submitting…
+                Preparing Preview…
               </span>
             ) : (
-              "Submit Event"
+              "Preview Event →"
             )}
           </button>
         </form>
