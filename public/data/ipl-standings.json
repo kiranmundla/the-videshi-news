@@ -1,7 +1,7 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-20T20:55:47Z",
-  "stage": "League Stage — Match 64 of 70",
+  "last_updated": "2026-05-21T03:00:00Z",
+  "stage": "League Stage — Match 65 of 70",
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
@@ -59,6 +59,17 @@
       "position": 5
     },
     {
+      "team": "Kolkata Knight Riders",
+      "short": "KKR",
+      "played": 13,
+      "won": 6,
+      "lost": 6,
+      "nr": 1,
+      "nrr": "+0.011",
+      "points": 13,
+      "position": 6
+    },
+    {
       "team": "Chennai Super Kings",
       "short": "CSK",
       "played": 13,
@@ -67,7 +78,7 @@
       "nr": 0,
       "nrr": "-0.016",
       "points": 12,
-      "position": 6
+      "position": 7
     },
     {
       "team": "Delhi Capitals",
@@ -78,27 +89,16 @@
       "nr": 0,
       "nrr": "-0.871",
       "points": 12,
-      "position": 7
-    },
-    {
-      "team": "Kolkata Knight Riders",
-      "short": "KKR",
-      "played": 12,
-      "won": 5,
-      "lost": 6,
-      "nr": 1,
-      "nrr": "-0.038",
-      "points": 11,
       "position": 8
     },
     {
       "team": "Mumbai Indians",
       "short": "MI",
-      "played": 12,
+      "played": 13,
       "won": 4,
-      "lost": 8,
+      "lost": 9,
       "nr": 0,
-      "nrr": "-0.504",
+      "nrr": "-0.550",
       "points": 8,
       "position": 9
     },
@@ -115,6 +115,16 @@
     }
   ],
   "recent_results": [
+    {
+      "match": 65,
+      "date": "20 May",
+      "team1": "KKR",
+      "team2": "MI",
+      "score1": "148/6 (18.5)",
+      "score2": "147/8 (20)",
+      "result": "KKR won by 4 wkts",
+      "venue": "Kolkata"
+    },
     {
       "match": 64,
       "date": "19 May",
@@ -154,27 +164,9 @@
       "score2": "199/8 (20)",
       "result": "RCB won by 23 runs",
       "venue": "Dharamsala"
-    },
-    {
-      "match": 60,
-      "date": "16 May",
-      "team1": "KKR",
-      "team2": "GT",
-      "score1": "247/2 (20)",
-      "score2": "218/4 (20)",
-      "result": "KKR won by 29 runs",
-      "venue": "Kolkata"
     }
   ],
   "upcoming": [
-    {
-      "match": 65,
-      "date": "20 May",
-      "team1": "KKR",
-      "team2": "MI",
-      "venue": "Kolkata",
-      "time": "7:30 PM IST"
-    },
     {
       "match": 66,
       "date": "21 May",
@@ -189,6 +181,14 @@
       "team1": "SRH",
       "team2": "RCB",
       "venue": "Hyderabad",
+      "time": "7:30 PM IST"
+    },
+    {
+      "match": 68,
+      "date": "23 May",
+      "team1": "LSG",
+      "team2": "PBKS",
+      "venue": "Lucknow",
       "time": "7:30 PM IST"
     }
   ]
