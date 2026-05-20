@@ -1,111 +1,117 @@
 {
+  "updated_at": "2026-05-20T08:36:44.910369+00:00",
   "indices": [
     {
-      "key": "sensex",
-      "name": "BSE Sensex",
       "symbol": "^BSESN",
-      "price": 75201.0,
-      "change": -39.13,
-      "changePct": -0.05,
+      "name": "Sensex",
+      "country": "India",
+      "value": 75082.9,
+      "change": -117.95,
+      "change_pct": -0.16,
       "sparkline": [
+        75398.72,
+        75237.99,
         75315.04,
         75200.85,
-        82330.59,
-        75201.0
+        75082.9
       ],
-      "updatedAt": "2026-05-20T06:37:39.159336+00:00"
+      "currency": "INR"
     },
     {
-      "key": "nifty",
-      "name": "Nifty 50",
       "symbol": "^NSEI",
-      "price": 23618.0,
-      "change": 2.1,
-      "changePct": 0.01,
+      "name": "Nifty 50",
+      "country": "India",
+      "value": 23634.15,
+      "change": 16.15,
+      "change_pct": 0.07,
       "sparkline": [
+        23689.6,
+        23643.5,
         23649.95,
         23618.0,
-        25019.8,
-        23618.0
+        23634.15
       ],
-      "updatedAt": "2026-05-20T06:37:39.159336+00:00"
+      "currency": "INR"
     },
     {
-      "key": "dow",
-      "name": "Dow Jones",
       "symbol": "^DJI",
-      "price": 49363.88,
+      "name": "Dow Jones",
+      "country": "US",
+      "value": 49363.88,
       "change": -322.24,
-      "changePct": -0.65,
+      "change_pct": -0.65,
       "sparkline": [
+        49693.2,
+        50063.46,
         49526.17,
         49686.12,
-        49363.88,
         49363.88
       ],
-      "updatedAt": "2026-05-20T06:37:39.159336+00:00"
+      "currency": "USD"
     },
     {
-      "key": "sp500",
-      "name": "S&P 500",
       "symbol": "^GSPC",
-      "price": 7353.61,
+      "name": "S&P 500",
+      "country": "US",
+      "value": 7353.61,
       "change": -49.44,
-      "changePct": -0.67,
+      "change_pct": -0.67,
       "sparkline": [
+        7444.25,
+        7501.24,
         7408.5,
         7403.05,
-        7353.61,
         7353.61
       ],
-      "updatedAt": "2026-05-20T06:37:39.159336+00:00"
+      "currency": "USD"
     },
     {
-      "key": "nasdaq",
-      "name": "Nasdaq",
       "symbol": "^IXIC",
-      "price": 25870.71,
+      "name": "Nasdaq",
+      "country": "US",
+      "value": 25870.71,
       "change": -220.02,
-      "changePct": -0.84,
+      "change_pct": -0.84,
       "sparkline": [
+        26402.34,
+        26635.22,
         26225.14,
         26090.73,
-        25870.71,
         25870.71
       ],
-      "updatedAt": "2026-05-20T06:37:39.159336+00:00"
+      "currency": "USD"
     },
     {
-      "key": "ftse",
-      "name": "FTSE 100",
       "symbol": "^FTSE",
-      "price": 10330.6,
-      "change": -15.4,
-      "changePct": -0.15,
+      "name": "FTSE 100",
+      "country": "UK",
+      "value": 10282.82,
+      "change": -47.78,
+      "change_pct": -0.46,
       "sparkline": [
+        10372.9,
         10195.4,
         10323.8,
         10330.6,
-        10330.6
+        10282.82
       ],
-      "updatedAt": "2026-05-20T06:37:39.159336+00:00"
+      "currency": "GBP"
     },
     {
-      "key": "usdinr",
-      "name": "USD/INR",
-      "symbol": "USDINR=X",
-      "price": 96.6,
-      "change": 0.12,
-      "changePct": 0.12,
+      "symbol": "^N225",
+      "name": "Nikkei 225",
+      "country": "Japan",
+      "value": 59804.41,
+      "change": -746.18,
+      "change_pct": -1.23,
       "sparkline": [
-        95.97,
-        96.27,
-        96.6,
-        96.6
+        62654.05,
+        61409.29,
+        60815.95,
+        60550.59,
+        59804.41
       ],
-      "updatedAt": "2026-05-20T06:37:39.159336+00:00"
+      "currency": "JPY"
     }
-  ],
-  "lastUpdated": "2026-05-20T05:09:56.039943+00:00",
-  "updatedAt": "2026-05-20T05:09:56.039943+00:00"
+  ]
 }
