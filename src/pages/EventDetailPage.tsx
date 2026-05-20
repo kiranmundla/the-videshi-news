@@ -208,8 +208,12 @@ export default function EventDetailPage() {
     getEventBySlug(slug).then((data) => {
       if (data) {
         setEvent(data);
-        // Fetch venue images
-        if (data.venue_name) {
+        // Use venue_images from DB first, fall back to static JSON map
+        const dbImages = Array.isArray(data.venue_images) ? data.venue_images.filter(Boolean) : [];
+        if (dbImages.length > 0) {
+          setVenueImages(dbImages);
+          setVenueAttribution("Google");
+        } else if (data.venue_name) {
           fetchVenueImages().then((map) => {
             const entry = map[data.venue_name!];
             if (entry && entry.images.length) {
