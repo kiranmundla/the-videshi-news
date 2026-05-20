@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-20T08:36:44.910369+00:00",
+  "updated_at": "2026-05-20T10:55:48.478038+00:00",
   "indices": [
     {
       "symbol": "^BSESN",
       "name": "Sensex",
       "country": "India",
-      "value": 75082.9,
-      "change": -117.95,
-      "change_pct": -0.16,
+      "value": 74701.0,
+      "change": -500.0,
+      "change_pct": -0.66,
       "sparkline": [
-        75398.72,
         75237.99,
         75315.04,
         75200.85,
-        75082.9
+        75082.9,
+        74701.0
       ],
       "currency": "INR"
     },
@@ -21,15 +21,15 @@
       "symbol": "^NSEI",
       "name": "Nifty 50",
       "country": "India",
-      "value": 23634.15,
-      "change": 16.15,
-      "change_pct": 0.07,
+      "value": 23450.0,
+      "change": -168.0,
+      "change_pct": -0.71,
       "sparkline": [
-        23689.6,
         23643.5,
         23649.95,
         23618.0,
-        23634.15
+        23634.15,
+        23450.0
       ],
       "currency": "INR"
     },
@@ -85,15 +85,15 @@
       "symbol": "^FTSE",
       "name": "FTSE 100",
       "country": "UK",
-      "value": 10282.82,
-      "change": -47.78,
-      "change_pct": -0.46,
+      "value": 10330.55,
+      "change": 47.73,
+      "change_pct": 0.46,
       "sparkline": [
-        10372.9,
         10195.4,
         10323.8,
         10330.6,
-        10282.82
+        10282.82,
+        10330.55
       ],
       "currency": "GBP"
     },
@@ -101,15 +101,15 @@
       "symbol": "^N225",
       "name": "Nikkei 225",
       "country": "Japan",
-      "value": 59804.41,
-      "change": -746.18,
-      "change_pct": -1.23,
+      "value": 60308.3,
+      "change": -242.5,
+      "change_pct": -0.4,
       "sparkline": [
-        62654.05,
         61409.29,
         60815.95,
         60550.59,
-        59804.41
+        59804.41,
+        60308.3
       ],
       "currency": "JPY"
     }
