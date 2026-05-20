@@ -15,6 +15,9 @@ import sys
 import time
 from datetime import date
 
+# Force unbuffered output
+sys.stdout.reconfigure(line_buffering=True)
+
 try:
     import requests
 except ImportError:
@@ -65,7 +68,7 @@ def find_place(venue_name: str, city: str, state: str) -> dict | None:
 
 
 def get_place_photos(place_id: str) -> list[str]:
-    """Fetch photo references from Place Details, return resolved image URLs."""
+    """Fetch photo references from Place Details, return photo URLs."""
     url = "https://maps.googleapis.com/maps/api/place/details/json"
     params = {
         "place_id": place_id,
@@ -85,23 +88,12 @@ def get_place_photos(place_id: str) -> list[str]:
         ref = photo.get("photo_reference")
         if not ref:
             continue
-        # Resolve the redirect to get the actual image URL
+        # Use the Places photo URL directly — it redirects to the image
         photo_url = (
             f"https://maps.googleapis.com/maps/api/place/photo"
             f"?maxwidth={PHOTO_WIDTH}&photo_reference={ref}&key={GOOGLE_API_KEY}"
         )
-        try:
-            resp = requests.head(photo_url, allow_redirects=True, timeout=10)
-            final_url = resp.url
-            # Only keep googleusercontent URLs (the resolved ones)
-            if "googleusercontent.com" in final_url:
-                image_urls.append(final_url)
-            else:
-                image_urls.append(photo_url)
-        except Exception:
-            # Fall back to the API URL
-            image_urls.append(photo_url)
-        time.sleep(0.05)
+        image_urls.append(photo_url)
 
     return image_urls
 
