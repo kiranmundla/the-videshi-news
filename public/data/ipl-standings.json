@@ -1,29 +1,195 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-20T06:05:00Z",
+  "last_updated": "2026-05-20T06:55:35Z",
   "stage": "League Stage — Match 64 of 70",
   "standings": [
-    {"team": "Royal Challengers Bengaluru", "short": "RCB", "played": 13, "won": 9, "lost": 4, "nr": 0, "nrr": "+1.065", "points": 18, "position": 1},
-    {"team": "Gujarat Titans", "short": "GT", "played": 13, "won": 8, "lost": 5, "nr": 0, "nrr": "+0.400", "points": 16, "position": 2},
-    {"team": "Sunrisers Hyderabad", "short": "SRH", "played": 13, "won": 8, "lost": 5, "nr": 0, "nrr": "+0.350", "points": 16, "position": 3},
-    {"team": "Rajasthan Royals", "short": "RR", "played": 13, "won": 7, "lost": 6, "nr": 0, "nrr": "+0.083", "points": 14, "position": 4},
-    {"team": "Punjab Kings", "short": "PBKS", "played": 13, "won": 6, "lost": 6, "nr": 1, "nrr": "+0.227", "points": 13, "position": 5},
-    {"team": "Chennai Super Kings", "short": "CSK", "played": 13, "won": 6, "lost": 7, "nr": 0, "nrr": "-0.016", "points": 12, "position": 6},
-    {"team": "Delhi Capitals", "short": "DC", "played": 13, "won": 6, "lost": 7, "nr": 0, "nrr": "-0.871", "points": 12, "position": 7},
-    {"team": "Kolkata Knight Riders", "short": "KKR", "played": 12, "won": 5, "lost": 6, "nr": 1, "nrr": "-0.038", "points": 11, "position": 8},
-    {"team": "Mumbai Indians", "short": "MI", "played": 12, "won": 4, "lost": 8, "nr": 0, "nrr": "-0.504", "points": 8, "position": 9},
-    {"team": "Lucknow Super Giants", "short": "LSG", "played": 13, "won": 4, "lost": 9, "nr": 0, "nrr": "-0.702", "points": 8, "position": 10}
+    {
+      "team": "Royal Challengers Bengaluru",
+      "short": "RCB",
+      "played": 13,
+      "won": 9,
+      "lost": 4,
+      "nr": 0,
+      "nrr": "+1.065",
+      "points": 18,
+      "position": 1
+    },
+    {
+      "team": "Gujarat Titans",
+      "short": "GT",
+      "played": 13,
+      "won": 8,
+      "lost": 5,
+      "nr": 0,
+      "nrr": "+0.400",
+      "points": 16,
+      "position": 2
+    },
+    {
+      "team": "Sunrisers Hyderabad",
+      "short": "SRH",
+      "played": 13,
+      "won": 8,
+      "lost": 5,
+      "nr": 0,
+      "nrr": "+0.350",
+      "points": 16,
+      "position": 3
+    },
+    {
+      "team": "Punjab Kings",
+      "short": "PBKS",
+      "played": 13,
+      "won": 6,
+      "lost": 6,
+      "nr": 1,
+      "nrr": "+0.227",
+      "points": 13,
+      "position": 4
+    },
+    {
+      "team": "Rajasthan Royals",
+      "short": "RR",
+      "played": 12,
+      "won": 6,
+      "lost": 6,
+      "nr": 0,
+      "nrr": "+0.027",
+      "points": 12,
+      "position": 5
+    },
+    {
+      "team": "Chennai Super Kings",
+      "short": "CSK",
+      "played": 13,
+      "won": 6,
+      "lost": 7,
+      "nr": 0,
+      "nrr": "-0.016",
+      "points": 12,
+      "position": 6
+    },
+    {
+      "team": "Delhi Capitals",
+      "short": "DC",
+      "played": 13,
+      "won": 6,
+      "lost": 7,
+      "nr": 0,
+      "nrr": "-0.871",
+      "points": 12,
+      "position": 7
+    },
+    {
+      "team": "Kolkata Knight Riders",
+      "short": "KKR",
+      "played": 12,
+      "won": 5,
+      "lost": 6,
+      "nr": 1,
+      "nrr": "-0.038",
+      "points": 11,
+      "position": 8
+    },
+    {
+      "team": "Mumbai Indians",
+      "short": "MI",
+      "played": 12,
+      "won": 4,
+      "lost": 8,
+      "nr": 0,
+      "nrr": "-0.504",
+      "points": 8,
+      "position": 9
+    },
+    {
+      "team": "Lucknow Super Giants",
+      "short": "LSG",
+      "played": 12,
+      "won": 4,
+      "lost": 8,
+      "nr": 0,
+      "nrr": "-0.701",
+      "points": 8,
+      "position": 10
+    }
   ],
   "recent_results": [
-    {"match": 64, "date": "19 May", "team1": "RR", "team2": "LSG", "score1": "225/3 (19.1)", "score2": "220/5 (20)", "result": "RR won by 7 wkts", "venue": "Jaipur"},
-    {"match": 63, "date": "18 May", "team1": "SRH", "team2": "CSK", "score1": "181/5 (19)", "score2": "180/7 (20)", "result": "SRH won by 5 wkts", "venue": "Chennai"},
-    {"match": 62, "date": "17 May", "team1": "DC", "team2": "RR", "score1": "197/5 (19.2)", "score2": "193/8 (20)", "result": "DC won by 5 wkts", "venue": "Delhi"},
-    {"match": 61, "date": "17 May", "team1": "RCB", "team2": "PBKS", "score1": "222/4 (20)", "score2": "199/8 (20)", "result": "RCB won by 23 runs", "venue": "Dharamsala"},
-    {"match": 60, "date": "16 May", "team1": "KKR", "team2": "GT", "score1": "247/2 (20)", "score2": "218/4 (20)", "result": "KKR won by 29 runs", "venue": "Kolkata"}
+    {
+      "match": 64,
+      "date": "19 May",
+      "team1": "RR",
+      "team2": "LSG",
+      "score1": "225/3 (19.1)",
+      "score2": "220/5 (20)",
+      "result": "RR won by 7 wkts",
+      "venue": "Jaipur"
+    },
+    {
+      "match": 63,
+      "date": "18 May",
+      "team1": "SRH",
+      "team2": "CSK",
+      "score1": "181/5 (19)",
+      "score2": "180/7 (20)",
+      "result": "SRH won by 5 wkts",
+      "venue": "Chennai"
+    },
+    {
+      "match": 62,
+      "date": "17 May",
+      "team1": "DC",
+      "team2": "RR",
+      "score1": "197/5 (19.2)",
+      "score2": "193/8 (20)",
+      "result": "DC won by 5 wkts",
+      "venue": "Delhi"
+    },
+    {
+      "match": 61,
+      "date": "17 May",
+      "team1": "RCB",
+      "team2": "PBKS",
+      "score1": "222/4 (20)",
+      "score2": "199/8 (20)",
+      "result": "RCB won by 23 runs",
+      "venue": "Dharamsala"
+    },
+    {
+      "match": 60,
+      "date": "16 May",
+      "team1": "KKR",
+      "team2": "GT",
+      "score1": "247/2 (20)",
+      "score2": "218/4 (20)",
+      "result": "KKR won by 29 runs",
+      "venue": "Kolkata"
+    }
   ],
   "upcoming": [
-    {"match": 65, "date": "20 May", "team1": "KKR", "team2": "MI", "venue": "Kolkata", "time": "7:30 PM IST"},
-    {"match": 66, "date": "21 May", "team1": "GT", "team2": "CSK", "venue": "Ahmedabad", "time": "7:30 PM IST"},
-    {"match": 67, "date": "22 May", "team1": "SRH", "team2": "RCB", "venue": "Hyderabad", "time": "7:30 PM IST"}
+    {
+      "match": 65,
+      "date": "20 May",
+      "team1": "KKR",
+      "team2": "MI",
+      "venue": "Kolkata",
+      "time": "7:30 PM IST"
+    },
+    {
+      "match": 66,
+      "date": "21 May",
+      "team1": "GT",
+      "team2": "CSK",
+      "venue": "Ahmedabad",
+      "time": "7:30 PM IST"
+    },
+    {
+      "match": 67,
+      "date": "22 May",
+      "team1": "SRH",
+      "team2": "RCB",
+      "venue": "Hyderabad",
+      "time": "7:30 PM IST"
+    }
   ]
 }
