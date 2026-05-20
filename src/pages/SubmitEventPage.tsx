@@ -111,10 +111,16 @@ export default function SubmitEventPage() {
   const [form, setForm] = useState<FormData>(INITIAL);
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
 
-  /* Step: "form" | "synthesizing" | "preview" | "publishing" | "done" */
-  const [step, setStep] = useState<"form" | "synthesizing" | "preview" | "publishing" | "done">("form");
+  /* Step: "form" | "synthesizing" | "preview" | "verify-email" | "verify-code" | "publishing" | "done" */
+  const [step, setStep] = useState<"form" | "synthesizing" | "preview" | "verify-email" | "verify-code" | "publishing" | "done">("form");
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [publishedSlug, setPublishedSlug] = useState<string | null>(null);
+
+  /* Email verification state */
+  const [verifyCode, setVerifyCode] = useState("");
+  const [verifySending, setVerifySending] = useState(false);
+  const [verifyChecking, setVerifyChecking] = useState(false);
+  const [verifyError, setVerifyError] = useState<string | null>(null);
 
   /* Synthesized content */
   const [synthesized, setSynthesized] = useState<SynthesizedContent | null>(null);
@@ -131,6 +137,56 @@ export default function SubmitEventPage() {
   ) => {
     setForm((f) => ({ ...f, [field]: e.target.value }));
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
+  };
+
+  /* ---- Email verification: send code (called from Publish button) ---- */
+  const handleSendVerifyCode = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const email = form.email.trim().toLowerCase();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setVerifyError("Please enter a valid email address");
+      return;
+    }
+    setVerifySending(true);
+    setVerifyError(null);
+    try {
+      const { data, error } = await supabase.functions.invoke("send-email-verify", {
+        body: { email },
+      });
+      if (error) throw new Error((data as any)?.error || error.message || "Failed to send code");
+      if (data && !data.ok) throw new Error(data.error || "Failed to send code");
+      setStep("verify-code");
+    } catch (err: any) {
+      setVerifyError(err.message || "Something went wrong");
+    } finally {
+      setVerifySending(false);
+    }
+  };
+
+  /* ---- Email verification: check code then publish ---- */
+  const handleCheckVerifyCode = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const email = form.email.trim().toLowerCase();
+    const code = verifyCode.trim();
+    if (!code || code.length !== 6) {
+      setVerifyError("Please enter the 6-digit code");
+      return;
+    }
+    setVerifyChecking(true);
+    setVerifyError(null);
+    try {
+      const { data, error } = await supabase.functions.invoke("verify-email-code", {
+        body: { email, code },
+      });
+      if (error) throw new Error((data as any)?.error || error.message || "Verification failed");
+      if (data && !data.verified) throw new Error(data.error || "Invalid code");
+      /* Verified — now actually publish */
+      await doPublish();
+    } catch (err: any) {
+      setVerifyError(err.message || "Invalid or expired code");
+    } finally {
+      setVerifyChecking(false);
+    }
   };
 
   /* ---- Cover image handlers ---- */
@@ -282,8 +338,17 @@ export default function SubmitEventPage() {
     }
   };
 
-  /* ---- Step 2: Publish ---- */
+  /* ---- Step 2: Publish button triggers email verification ---- */
   const handlePublish = async () => {
+    setVerifyError(null);
+    setVerifyCode("");
+    setStep("verify-email");
+    /* Send verification code to the email they entered */
+    handleSendVerifyCode();
+  };
+
+  /* ---- Step 3: Actual publish (after email verified) ---- */
+  const doPublish = async () => {
     setStep("publishing");
     setSubmitError(null);
 
@@ -410,7 +475,7 @@ export default function SubmitEventPage() {
   /* ================================================================ */
   /* RENDER: Preview                                                  */
   /* ================================================================ */
-  if (step === "preview" || step === "publishing") {
+  if (step === "preview" || step === "verify-email" || step === "verify-code" || step === "publishing") {
     const dateStr = formatEventDateLong(form.date, form.end_date || undefined);
     const catEmoji = CAT_EMOJI[form.category || "Other"] || "📌";
     const description = synthesized?.long_description || form.description;
@@ -572,28 +637,118 @@ export default function SubmitEventPage() {
             </div>
           )}
 
+          {/* ---- Email Verification (shown after clicking Publish) ---- */}
+          {(step === "verify-email" || step === "verify-code") && (
+            <div className="bg-muted/30 border border-border rounded-xl p-6 mb-4">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-primary/10 text-primary text-xs font-bold">✉</span>
+                <h2 className="font-serif text-lg text-foreground">Verify Your Email to Publish</h2>
+              </div>
+
+              {step === "verify-email" && (
+                <>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    We're sending a verification code to <strong>{form.email.trim()}</strong> to confirm your identity before publishing.
+                  </p>
+                  {verifySending && (
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <span className="inline-block w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                      Sending verification code…
+                    </div>
+                  )}
+                  {verifyError && (
+                    <p className="text-sm text-red-600 mt-2">{verifyError}</p>
+                  )}
+                </>
+              )}
+
+              {step === "verify-code" && (
+                <form onSubmit={handleCheckVerifyCode}>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    We sent a 6-digit code to <strong>{form.email.trim()}</strong>. Check your inbox (and spam folder).
+                  </p>
+
+                  <div>
+                    <label htmlFor="verify-code-input" className="block text-sm font-medium text-foreground mb-1.5">
+                      Verification Code
+                    </label>
+                    <input
+                      id="verify-code-input"
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={6}
+                      value={verifyCode}
+                      onChange={(e) => { setVerifyCode(e.target.value.replace(/\D/g, "").slice(0, 6)); setVerifyError(null); }}
+                      placeholder="000000"
+                      className={`${inputClass()} text-center text-2xl tracking-[0.3em] font-mono max-w-xs`}
+                      autoFocus
+                      required
+                    />
+                  </div>
+
+                  {verifyError && (
+                    <p className="text-sm text-red-600 mt-3">{verifyError}</p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={verifyChecking || verifyCode.length !== 6}
+                    className="mt-4 w-full sm:w-auto px-8 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {verifyChecking ? (
+                      <span className="inline-flex items-center gap-2 justify-center">
+                        <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                        Verifying & Publishing…
+                      </span>
+                    ) : "Verify & Publish"}
+                  </button>
+
+                  <div className="mt-3 flex flex-wrap items-center gap-4">
+                    <button
+                      type="button"
+                      onClick={() => handleSendVerifyCode()}
+                      disabled={verifySending}
+                      className="text-sm text-primary hover:underline disabled:opacity-50"
+                    >
+                      {verifySending ? "Resending…" : "Resend code"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => { setStep("preview"); setVerifyCode(""); setVerifyError(null); }}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      ← Back to preview
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+          )}
+
           <div className="flex flex-col sm:flex-row gap-3">
             <button
-              onClick={() => { setStep("form"); setSubmitError(null); }}
-              disabled={step === "publishing"}
+              onClick={() => { setStep("form"); setSubmitError(null); setVerifyError(null); setVerifyCode(""); }}
+              disabled={step === "publishing" || step === "verify-email"}
               className="flex-1 sm:flex-none px-8 py-3 border border-border rounded-lg font-medium hover:bg-muted/40 transition-colors disabled:opacity-50"
             >
               ✏️ Edit Details
             </button>
-            <button
-              onClick={handlePublish}
-              disabled={step === "publishing"}
-              className="flex-1 sm:flex-none px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {step === "publishing" ? (
-                <span className="flex items-center gap-2 justify-center">
-                  <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                  Publishing…
-                </span>
-              ) : (
-                "✅ Publish Event"
-              )}
-            </button>
+            {step !== "verify-email" && step !== "verify-code" && (
+              <button
+                onClick={handlePublish}
+                disabled={step === "publishing"}
+                className="flex-1 sm:flex-none px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {step === "publishing" ? (
+                  <span className="flex items-center gap-2 justify-center">
+                    <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                    Publishing…
+                  </span>
+                ) : (
+                  "✅ Publish Event"
+                )}
+              </button>
+            )}
           </div>
         </main>
 
@@ -856,12 +1011,12 @@ export default function SubmitEventPage() {
             <input
               type="email"
               value={form.email}
-              onChange={set("email")}
+              onChange={(e) => updateField("email", e.target.value)}
               placeholder="you@example.com"
               className={inputClass(errors.email)}
             />
             <p className="text-xs text-muted-foreground mt-1">
-              We'll send you a confirmation with your event link. Not displayed publicly.
+              Not displayed publicly. We'll verify this email before publishing your event.
             </p>
           </Field>
 
