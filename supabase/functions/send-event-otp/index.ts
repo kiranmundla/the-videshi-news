@@ -116,7 +116,7 @@ Deno.serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "The Videshi <onboarding@resend.dev>",
+        from: "The Videshi <noreply@thevideshi.com>",
         to: [email],
         subject: `Your Event Edit Code — The Videshi`,
         html,
