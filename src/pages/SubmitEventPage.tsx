@@ -430,6 +430,7 @@ export default function SubmitEventPage() {
   /* RENDER: Done (published)                                         */
   /* ================================================================ */
   if (step === "done") {
+    const fullUrl = publishedSlug ? `thevideshi.com/events/${publishedSlug}` : "";
     return (
       <div className="min-h-screen flex flex-col">
         <Masthead />
@@ -443,9 +444,30 @@ export default function SubmitEventPage() {
             <p className="text-muted-foreground text-lg mb-3">
               We've sent a confirmation email with your event link.
             </p>
-            <p className="text-muted-foreground text-sm mb-8">
+            <p className="text-muted-foreground text-sm mb-6">
               You can edit it anytime using the link in the email.
             </p>
+
+            {/* Copyable event URL */}
+            {publishedSlug && (
+              <div className="flex items-center justify-center gap-2 mb-8 max-w-md mx-auto">
+                <div className="flex-1 bg-muted/60 border border-border rounded-lg px-4 py-2.5 text-sm text-foreground/80 font-mono truncate text-left">
+                  {fullUrl}
+                </div>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(`https://${fullUrl}`);
+                    const btn = document.getElementById("copy-url-btn");
+                    if (btn) { btn.textContent = "Copied!"; setTimeout(() => { btn.textContent = "Copy"; }, 2000); }
+                  }}
+                  id="copy-url-btn"
+                  className="px-4 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors whitespace-nowrap"
+                >
+                  Copy
+                </button>
+              </div>
+            )}
+
             {submitError && (
               <p className="text-sm text-amber-600 mb-6">{submitError}</p>
             )}
