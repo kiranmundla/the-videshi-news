@@ -1,117 +1,117 @@
 {
-  "updated_at": "2026-05-20T10:55:48.478038+00:00",
+  "updated_at": "2026-05-20T12:54:20.375755+00:00",
   "indices": [
     {
-      "symbol": "^BSESN",
+      "key": "sensex",
       "name": "Sensex",
-      "country": "India",
-      "value": 74701.0,
-      "change": -500.0,
-      "change_pct": -0.66,
+      "symbol": "^BSESN",
+      "price": 75318.39,
+      "change": 117.54,
+      "change_pct": 0.16,
+      "direction": "up",
       "sparkline": [
+        75398.72,
         75237.99,
         75315.04,
         75200.85,
-        75082.9,
-        74701.0
-      ],
-      "currency": "INR"
+        75318.39
+      ]
     },
     {
-      "symbol": "^NSEI",
+      "key": "nifty50",
       "name": "Nifty 50",
-      "country": "India",
-      "value": 23450.0,
-      "change": -168.0,
-      "change_pct": -0.71,
+      "symbol": "^NSEI",
+      "price": 23659.0,
+      "change": 41.0,
+      "change_pct": 0.17,
+      "direction": "up",
       "sparkline": [
+        23689.6,
         23643.5,
         23649.95,
         23618.0,
-        23634.15,
-        23450.0
-      ],
-      "currency": "INR"
+        23659.0
+      ]
     },
     {
-      "symbol": "^DJI",
+      "key": "dowjones",
       "name": "Dow Jones",
-      "country": "US",
-      "value": 49363.88,
+      "symbol": "^DJI",
+      "price": 49363.88,
       "change": -322.24,
       "change_pct": -0.65,
+      "direction": "down",
       "sparkline": [
         49693.2,
         50063.46,
         49526.17,
         49686.12,
         49363.88
-      ],
-      "currency": "USD"
+      ]
     },
     {
-      "symbol": "^GSPC",
+      "key": "sp500",
       "name": "S&P 500",
-      "country": "US",
-      "value": 7353.61,
+      "symbol": "^GSPC",
+      "price": 7353.61,
       "change": -49.44,
       "change_pct": -0.67,
+      "direction": "down",
       "sparkline": [
         7444.25,
         7501.24,
         7408.5,
         7403.05,
         7353.61
-      ],
-      "currency": "USD"
+      ]
     },
     {
-      "symbol": "^IXIC",
+      "key": "nasdaq",
       "name": "Nasdaq",
-      "country": "US",
-      "value": 25870.71,
+      "symbol": "^IXIC",
+      "price": 25870.71,
       "change": -220.02,
       "change_pct": -0.84,
+      "direction": "down",
       "sparkline": [
         26402.34,
         26635.22,
         26225.14,
         26090.73,
         25870.71
-      ],
-      "currency": "USD"
+      ]
     },
     {
-      "symbol": "^FTSE",
+      "key": "ftse100",
       "name": "FTSE 100",
-      "country": "UK",
-      "value": 10330.55,
-      "change": 47.73,
-      "change_pct": 0.46,
+      "symbol": "^FTSE",
+      "price": 10351.41,
+      "change": 20.81,
+      "change_pct": 0.2,
+      "direction": "up",
       "sparkline": [
+        10372.9,
         10195.4,
         10323.8,
         10330.6,
-        10282.82,
-        10330.55
-      ],
-      "currency": "GBP"
+        10351.41
+      ]
     },
     {
-      "symbol": "^N225",
-      "name": "Nikkei 225",
-      "country": "Japan",
-      "value": 60308.3,
-      "change": -242.5,
-      "change_pct": -0.4,
+      "key": "usdinr",
+      "name": "USD/INR",
+      "symbol": "USDINR=X",
+      "price": 96.81,
+      "change": 0.54,
+      "change_pct": 0.56,
+      "direction": "up",
       "sparkline": [
-        61409.29,
-        60815.95,
-        60550.59,
-        59804.41,
-        60308.3
-      ],
-      "currency": "JPY"
+        95.7,
+        95.71,
+        95.97,
+        96.27,
+        96.81
+      ]
     }
   ]
 }
