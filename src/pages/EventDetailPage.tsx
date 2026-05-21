@@ -541,6 +541,33 @@ export default function EventDetailPage() {
                 </section>
               )}
 
+              {/* Seating Chart */}
+              {event.seatmap_url && (
+                <section>
+                  <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30 mb-5">
+                    Seating Chart
+                  </h2>
+                  <div className="rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
+                    <a
+                      href={event.seatmap_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block cursor-zoom-in"
+                    >
+                      <img
+                        src={event.seatmap_url}
+                        alt={`Seating chart for ${event.venue_name || "venue"}`}
+                        className="w-full rounded-lg bg-white"
+                        loading="lazy"
+                      />
+                    </a>
+                    <p className="text-white/30 text-xs mt-3 text-center">
+                      Tap to view full size · via Ticketmaster
+                    </p>
+                  </div>
+                </section>
+              )}
+
               {/* About the Artist */}
               {event.artist_info && (
                 <section>

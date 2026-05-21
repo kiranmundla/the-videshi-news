@@ -29,6 +29,7 @@ export type EventItem = {
   longitude: number | null;
   is_featured: boolean | null;
   venue_images: string[] | null;
+  seatmap_url: string | null;
 };
 
 // Base columns that always exist
@@ -36,7 +37,7 @@ const BASE_COLS = "id,title,date,time,end_date,venue_name,city,state,category,de
 
 // Extended columns (added by migration-event-detail.sql)
 // If the migration hasn't been run yet, we fall back to BASE_COLS
-const EVENT_COLS = BASE_COLS + ",long_description,artist_info,venue_info,slug,latitude,longitude,is_featured,venue_images";
+const EVENT_COLS = BASE_COLS + ",long_description,artist_info,venue_info,slug,latitude,longitude,is_featured,venue_images,seatmap_url";
 
 /**
  * Run a query with EVENT_COLS; if it fails (columns don't exist yet),
