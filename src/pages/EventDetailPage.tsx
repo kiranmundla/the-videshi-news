@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Share2, Link as LinkIcon, Check } from "lucide-react";
+import { Share2, Link as LinkIcon, Check, CalendarPlus } from "lucide-react";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
@@ -188,8 +188,138 @@ function ShareButtons({ title, slug }: { title: string; slug: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Event Detail Page                                                  */
+/* Add to Calendar                                                    */
 /* ------------------------------------------------------------------ */
+
+function parseEventDateTime(date: string, time: string | null): Date {
+  // date is "YYYY-MM-DD", time is like "5:00 PM" or "10:30 AM" or null
+  const d = new Date(date + "T12:00:00");
+  if (!time) return d;
+  const m = time.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!m) return d;
+  let hours = parseInt(m[1], 10);
+  const mins = parseInt(m[2], 10);
+  const ampm = m[3].toUpperCase();
+  if (ampm === "PM" && hours !== 12) hours += 12;
+  if (ampm === "AM" && hours === 12) hours = 0;
+  d.setHours(hours, mins, 0, 0);
+  return d;
+}
+
+function toGCalDate(d: Date): string {
+  // YYYYMMDDTHHMMSS (local time, no Z)
+  const pad = (n: number) => n.toString().padStart(2, "0");
+  return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+}
+
+function toICSDate(d: Date): string {
+  // YYYYMMDDTHHMMSS
+  const pad = (n: number) => n.toString().padStart(2, "0");
+  return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+}
+
+function AddToCalendar({ event, slug }: { event: EventItem; slug: string }) {
+  const [open, setOpen] = useState(false);
+
+  const location = [event.venue_name, event.city, event.state].filter(Boolean).join(", ");
+  const desc = (event.description || "").slice(0, 500) + `\n\nMore: https://thevideshi.com/events/${slug}`;
+  const start = parseEventDateTime(event.date, event.time);
+  const end = event.end_date
+    ? parseEventDateTime(event.end_date, null)
+    : new Date(start.getTime() + 2 * 60 * 60 * 1000); // default 2 hours
+
+  const hasTime = !!event.time;
+
+  const handleGoogleCal = () => {
+    let dates: string;
+    if (hasTime) {
+      dates = `${toGCalDate(start)}/${toGCalDate(end)}`;
+    } else {
+      // All-day: YYYYMMDD/YYYYMMDD (next day)
+      const pad = (n: number) => n.toString().padStart(2, "0");
+      const startDay = `${start.getFullYear()}${pad(start.getMonth() + 1)}${pad(start.getDate())}`;
+      const nextDay = new Date(start.getTime() + 86400000);
+      const endDay = `${nextDay.getFullYear()}${pad(nextDay.getMonth() + 1)}${pad(nextDay.getDate())}`;
+      dates = `${startDay}/${endDay}`;
+    }
+    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${dates}&location=${encodeURIComponent(location)}&details=${encodeURIComponent(desc)}`;
+    window.open(url, "_blank");
+    setOpen(false);
+  };
+
+  const handleICS = () => {
+    const ics = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//The Videshi//Events//EN",
+      "BEGIN:VEVENT",
+      `DTSTART:${toICSDate(start)}`,
+      `DTEND:${toICSDate(end)}`,
+      `SUMMARY:${event.title.replace(/[,;\\]/g, " ")}`,
+      `LOCATION:${location.replace(/[,;\\]/g, " ")}`,
+      `DESCRIPTION:${desc.replace(/\n/g, "\\n").replace(/[,;\\]/g, " ")}`,
+      `URL:https://thevideshi.com/events/${slug}`,
+      "END:VEVENT",
+      "END:VCALENDAR",
+    ].join("\r\n");
+
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${slug}.ics`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    setOpen(false);
+  };
+
+  const btnClass =
+    "inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all";
+
+  return (
+    <div className="relative inline-block">
+      <button
+        onClick={() => setOpen(!open)}
+        className={`${btnClass} bg-amber-500/15 text-amber-400 hover:bg-amber-500/25 border border-amber-500/20`}
+      >
+        <CalendarPlus className="w-4 h-4" />
+        Add to Calendar
+      </button>
+
+      {open && (
+        <>
+          {/* backdrop */}
+          <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+          {/* dropdown */}
+          <div className="absolute left-0 bottom-full mb-2 z-50 bg-[#1a1a1a] border border-white/10 rounded-xl shadow-xl overflow-hidden min-w-[200px]">
+            <button
+              onClick={handleGoogleCal}
+              className="w-full px-4 py-3 text-left text-sm text-white/80 hover:bg-white/5 flex items-center gap-3 transition-colors"
+            >
+              <svg className="w-4 h-4 text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
+              </svg>
+              Google Calendar
+            </button>
+            <div className="h-px bg-white/5" />
+            <button
+              onClick={handleICS}
+              className="w-full px-4 py-3 text-left text-sm text-white/80 hover:bg-white/5 flex items-center gap-3 transition-colors"
+            >
+              <svg className="w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+              </svg>
+              Download .ics
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 export default function EventDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const [event, setEvent] = useState<EventItem | null>(null);
@@ -377,8 +507,13 @@ export default function EventDetailPage() {
               </div>
             )}
 
-            {/* Share buttons */}
-            <ShareButtons title={event.title} slug={event.slug || slug!} />
+            {/* Share & Calendar buttons */}
+            <div className="flex flex-wrap items-start gap-3">
+              <ShareButtons title={event.title} slug={event.slug || slug!} />
+              <div className="mt-6">
+                <AddToCalendar event={event} slug={event.slug || slug!} />
+              </div>
+            </div>
           </div>
         </div>
 
