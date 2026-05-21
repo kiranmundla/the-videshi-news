@@ -26,6 +26,8 @@ import SubmitEventPage from "./pages/SubmitEventPage.tsx";
 import EditEventPage from "./pages/EditEventPage.tsx";
 import Privacy from "./pages/Privacy.tsx";
 import Terms from "./pages/Terms.tsx";
+import DirectoryPage from "./pages/DirectoryPage.tsx";
+import DirectoryDetailPage from "./pages/DirectoryDetailPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +51,8 @@ const App = () => (
             <Route path="/events/submit" element={<SubmitEventPage />} />
             <Route path="/events/:slug/edit" element={<EditEventPage />} />
             <Route path="/events/:slug" element={<EventDetailPage />} />
+            <Route path="/directory" element={<DirectoryPage />} />
+            <Route path="/directory/:slug" element={<DirectoryDetailPage />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/sources" element={<SourcesPage />} />
             <Route path="/admin/p2" element={<PipelineLayout />}>

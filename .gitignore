@@ -25,3 +25,4 @@ dist-ssr
 __pycache__/
 pipeline/source-images.py
 pipeline/write-articles.py
+supabase/.temp/
