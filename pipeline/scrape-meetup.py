@@ -341,14 +341,40 @@ def get_existing_events() -> set:
     return existing_ids, existing_title_dates
 
 
+def normalize_title(title: str) -> str:
+    """Normalize title for fuzzy dedup: lowercase, strip punctuation, dates, 'free', etc."""
+    t = title.lower().strip()
+    t = re.sub(r'&amp;', '&', t)  # HTML entities
+    t = re.sub(r'[^a-z0-9 ]', '', t)
+    t = re.sub(r'\b(jan|feb|mar|apr|may|june?|july?|aug|sept?|oct|nov|dec)\b', '', t)
+    t = re.sub(r'\b\d+\b', '', t)
+    t = re.sub(r'\bfree\b', '', t)
+    t = re.sub(r'\s+', ' ', t).strip()
+    return t
+
+
 def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set) -> bool:
     """Check if event already exists (by source_id or fuzzy title+date)."""
     if event["source_id"] in existing_ids:
         return True
+    # Exact alphanumeric match
     t = re.sub(r'[^a-z0-9]', '', event["title"].lower())
     if (t, event["date"]) in existing_title_dates:
         return True
+    # Fuzzy prefix match (first 25 normalized chars + same date)
+    tn = normalize_title(event["title"])[:25]
+    for (et, ed) in existing_title_dates:
+        if ed == event["date"]:
+            en = normalize_title_from_stripped(et)[:25]
+            if tn and en and tn == en:
+                return True
     return False
+
+
+def normalize_title_from_stripped(stripped: str) -> str:
+    """Normalize an already-stripped (alphanumeric only) title for prefix matching."""
+    # Re-insert spaces approximately by treating as already clean
+    return stripped[:25]
 
 
 # ---------------------------------------------------------------------------
@@ -435,6 +461,7 @@ def main():
 
     all_events = []
     seen_source_ids = set()
+    seen_batch_keys = set()
 
     print(f"\n🔍 Scraping Meetup ({len(cities)} cities × {len(KEYWORDS)} keywords)...\n")
 
@@ -453,9 +480,14 @@ def main():
                     continue
                 if e["source_id"] in seen_source_ids:
                     continue
+                # Within-batch fuzzy dedup (same event from different keywords)
+                batch_key = normalize_title(e["title"])[:25] + "|" + e["date"]
+                if batch_key in seen_batch_keys:
+                    continue
                 if not args.dry_run and is_duplicate(e, existing_ids, existing_title_dates):
                     continue
                 seen_source_ids.add(e["source_id"])
+                seen_batch_keys.add(batch_key)
                 relevant.append(e)
 
             city_events.extend(relevant)

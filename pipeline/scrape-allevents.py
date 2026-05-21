@@ -387,12 +387,29 @@ def get_existing_events() -> tuple:
     return existing_ids, existing_title_dates
 
 
+def normalize_title(title: str) -> str:
+    """Normalize title for fuzzy dedup."""
+    t = title.lower().strip()
+    t = re.sub(r'&amp;', '&', t)
+    t = re.sub(r'[^a-z0-9 ]', '', t)
+    t = re.sub(r'\b(jan|feb|mar|apr|may|june?|july?|aug|sept?|oct|nov|dec)\b', '', t)
+    t = re.sub(r'\b\d+\b', '', t)
+    t = re.sub(r'\bfree\b', '', t)
+    t = re.sub(r'\s+', ' ', t).strip()
+    return t
+
+
 def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set) -> bool:
     if event["source_id"] in existing_ids:
         return True
     t = re.sub(r'[^a-z0-9]', '', event["title"].lower())
     if (t, event["date"]) in existing_title_dates:
         return True
+    # Fuzzy prefix match
+    tn = normalize_title(event["title"])[:25]
+    for (et, ed) in existing_title_dates:
+        if ed == event["date"] and tn and tn == et[:25]:
+            return True
     return False
 
 
@@ -479,6 +496,7 @@ def main():
 
     all_events = []
     seen_source_ids = set()
+    seen_batch_keys = set()
 
     print(f"\n🔍 Scraping AllEvents.in ({len(cities)} cities × {len(KEYWORDS)} keywords)...\n")
 
@@ -513,10 +531,14 @@ def main():
                 # Dedup check
                 if event["source_id"] in seen_source_ids:
                     continue
+                batch_key = normalize_title(event["title"])[:25] + "|" + event["date"]
+                if batch_key in seen_batch_keys:
+                    continue
                 if not args.dry_run and is_duplicate(event, existing_ids, existing_title_dates):
                     continue
 
                 seen_source_ids.add(event["source_id"])
+                seen_batch_keys.add(batch_key)
                 city_events.append(event)
                 relevant_count += 1
 
