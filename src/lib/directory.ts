@@ -75,6 +75,26 @@ export const CATEGORY_COLORS: Record<string, string> = {
 };
 
 /* ------------------------------------------------------------------ */
+/* JSON field parser                                                  */
+/* ------------------------------------------------------------------ */
+function parseJsonField<T>(val: unknown, fallback: T): T {
+  if (val == null) return fallback;
+  if (typeof val === "object") return val as T;
+  if (typeof val === "string") {
+    try { return JSON.parse(val) as T; } catch { return fallback; }
+  }
+  return fallback;
+}
+
+function parseListing(row: any): DirectoryListing {
+  return {
+    ...row,
+    photos: parseJsonField<string[]>(row.photos, []),
+    hours: parseJsonField<Record<string, string>>(row.hours, null),
+  };
+}
+
+/* ------------------------------------------------------------------ */
 /* Data fetching                                                      */
 /* ------------------------------------------------------------------ */
 
@@ -117,7 +137,7 @@ export async function getDirectoryListings(
     console.error("Failed to fetch directory listings:", error);
     return [];
   }
-  return (data || []) as DirectoryListing[];
+  return ((data || []) as any[]).map(parseListing);
 }
 
 export async function getDirectoryListing(slug: string): Promise<DirectoryListing | null> {
@@ -128,7 +148,7 @@ export async function getDirectoryListing(slug: string): Promise<DirectoryListin
     .limit(1);
 
   if (error || !data || data.length === 0) return null;
-  return data[0] as DirectoryListing;
+  return parseListing(data[0] as any);
 }
 
 export async function getFeaturedListings(): Promise<DirectoryListing[]> {
@@ -143,7 +163,7 @@ export async function getFeaturedListings(): Promise<DirectoryListing[]> {
     console.error("Failed to fetch featured listings:", error);
     return [];
   }
-  return (data || []) as DirectoryListing[];
+  return ((data || []) as any[]).map(parseListing);
 }
 
 export async function getDirectoryCityCounts(): Promise<Record<string, number>> {
