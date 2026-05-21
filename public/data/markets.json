@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-21T00:41:42.011180+00:00",
+  "updated_at": "2026-05-21T00:56:24.590649+00:00",
   "indices": [
     {
       "key": "SENSEX",
@@ -37,15 +37,15 @@
       "key": "DOW",
       "name": "Dow Jones",
       "currency": "$",
-      "value": 50009.35,
-      "change": 645.47,
+      "value": 50011.32,
+      "change": 647.44,
       "change_pct": 1.31,
       "sparkline": [
-        50063.46,
         49526.17,
         49686.12,
         49363.88,
-        50009.35
+        50009.35,
+        50011.32
       ],
       "direction": "up"
     },
@@ -53,15 +53,15 @@
       "key": "SP500",
       "name": "S&P 500",
       "currency": "$",
-      "value": 7432.97,
-      "change": 29.92,
-      "change_pct": 0.4,
+      "value": 7432.67,
+      "change": 79.06,
+      "change_pct": 1.08,
       "sparkline": [
-        7408.5,
         7403.05,
         7353.61,
         7432.97,
-        7432.97
+        7432.97,
+        7432.67
       ],
       "direction": "up"
     },
@@ -69,15 +69,15 @@
       "key": "NASDAQ",
       "name": "Nasdaq",
       "currency": "$",
-      "value": 26270.36,
-      "change": 179.63,
-      "change_pct": 0.69,
+      "value": 26269.04,
+      "change": 398.33,
+      "change_pct": 1.54,
       "sparkline": [
-        26225.14,
         26090.73,
         25870.71,
         26270.36,
-        26270.36
+        26270.36,
+        26269.04
       ],
       "direction": "up"
     },
