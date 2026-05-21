@@ -1,6 +1,6 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-21T02:55:50Z",
+  "last_updated": "2026-05-21T03:00:00Z",
   "stage": "League Stage — Match 65 of 70",
   "standings": [
     {
@@ -59,6 +59,17 @@
       "position": 5
     },
     {
+      "team": "Kolkata Knight Riders",
+      "short": "KKR",
+      "played": 13,
+      "won": 6,
+      "lost": 6,
+      "nr": 1,
+      "nrr": "+0.011",
+      "points": 13,
+      "position": 6
+    },
+    {
       "team": "Chennai Super Kings",
       "short": "CSK",
       "played": 13,
@@ -67,7 +78,7 @@
       "nr": 0,
       "nrr": "-0.016",
       "points": 12,
-      "position": 6
+      "position": 7
     },
     {
       "team": "Delhi Capitals",
@@ -78,27 +89,16 @@
       "nr": 0,
       "nrr": "-0.871",
       "points": 12,
-      "position": 7
-    },
-    {
-      "team": "Kolkata Knight Riders",
-      "short": "KKR",
-      "played": 12,
-      "won": 5,
-      "lost": 6,
-      "nr": 1,
-      "nrr": "-0.038",
-      "points": 11,
       "position": 8
     },
     {
       "team": "Mumbai Indians",
       "short": "MI",
-      "played": 12,
+      "played": 13,
       "won": 4,
-      "lost": 8,
+      "lost": 9,
       "nr": 0,
-      "nrr": "-0.504",
+      "nrr": "-0.510",
       "points": 8,
       "position": 9
     },
