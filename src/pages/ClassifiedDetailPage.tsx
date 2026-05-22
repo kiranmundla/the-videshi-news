@@ -5,16 +5,17 @@ import {
   Share2,
   Link as LinkIcon,
   Check,
-  Phone,
-  Mail,
   MapPin,
   Clock,
   ChevronLeft,
-  Eye,
+  Send,
+  Loader2,
+  MessageCircle,
 } from "lucide-react";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Classified,
   getClassifiedBySlug,
@@ -22,6 +23,8 @@ import {
   CATEGORY_COLORS,
   timeAgo,
 } from "@/lib/classifieds";
+
+const sb = supabase as any;
 
 /* ------------------------------------------------------------------ */
 /* Share buttons                                                      */
@@ -79,13 +82,182 @@ function ShareButtons({ title, url }: { title: string; url: string }) {
 }
 
 /* ------------------------------------------------------------------ */
+/* Inquiry Form                                                       */
+/* ------------------------------------------------------------------ */
+function InquiryForm({ classified }: { classified: Classified }) {
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      setError("Please fill in all fields");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("Please enter a valid email");
+      return;
+    }
+    setSending(true);
+    setError(null);
+    try {
+      const { data, error: fnErr } = await sb.functions.invoke(
+        "send-classified-inquiry",
+        {
+          body: {
+            classified_id: classified.id,
+            sender_name: name.trim(),
+            sender_email: email.trim(),
+            message: message.trim(),
+          },
+        },
+      );
+      if (fnErr) throw new Error(data?.error || fnErr.message || "Failed to send");
+      if (data && !data.ok) throw new Error(data.error || "Failed to send");
+      setSent(true);
+    } catch (err: any) {
+      setError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+    }
+  };
+
+  if (sent) {
+    return (
+      <div className="border border-green-500/30 rounded-lg p-5 bg-green-500/5 space-y-2">
+        <div className="flex items-center gap-2">
+          <Check className="h-5 w-5 text-green-500" />
+          <h2 className="font-semibold text-lg text-green-500">Inquiry Sent!</h2>
+        </div>
+        <p className="text-sm text-foreground/60">
+          The poster will receive your message and can reply directly to your email.
+          Your contact info is only shared with the poster.
+        </p>
+      </div>
+    );
+  }
+
+  if (!open) {
+    return (
+      <div className="border border-border rounded-lg p-5 bg-card space-y-3">
+        <h2 className="font-semibold text-lg">Interested?</h2>
+        <p className="text-sm text-foreground/50">
+          Send the poster a message — your email will only be shared with them so they can reply.
+        </p>
+        <button
+          onClick={() => setOpen(true)}
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-amber-600 text-white font-medium hover:bg-amber-700 transition-colors"
+        >
+          <MessageCircle className="h-4 w-4" />
+          Send Inquiry
+        </button>
+      </div>
+    );
+  }
+
+  const inputClass =
+    "w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/40";
+
+  return (
+    <div className="border border-amber-500/30 rounded-lg p-5 bg-amber-500/5 space-y-4">
+      <h2 className="font-semibold text-lg flex items-center gap-2">
+        <MessageCircle className="h-5 w-5 text-amber-600" />
+        Send Inquiry
+      </h2>
+      <p className="text-sm text-foreground/50">
+        Your message will be sent to the poster. They'll get your name and email
+        so they can reply — their contact info stays private.
+      </p>
+
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <div>
+          <label className="block text-sm font-medium mb-1">
+            Your Name <span className="text-red-400">*</span>
+          </label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Full name"
+            className={inputClass}
+            maxLength={100}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">
+            Your Email <span className="text-red-400">*</span>
+          </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="your@email.com"
+            className={inputClass}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">
+            Message <span className="text-red-400">*</span>
+          </label>
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Hi, I'm interested in this listing..."
+            rows={4}
+            className={inputClass + " resize-y"}
+            maxLength={2000}
+          />
+        </div>
+
+        {error && (
+          <p className="text-sm text-red-400">{error}</p>
+        )}
+
+        <div className="flex gap-3">
+          <button
+            type="submit"
+            disabled={sending}
+            className="flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-lg bg-amber-600 text-white font-medium hover:bg-amber-700 transition-colors disabled:opacity-50"
+          >
+            {sending ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Sending…
+              </>
+            ) : (
+              <>
+                <Send className="h-4 w-4" />
+                Send Message
+              </>
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="px-4 py-3 rounded-lg border border-border font-medium hover:bg-muted/30 transition-colors text-sm"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Main page                                                          */
 /* ------------------------------------------------------------------ */
 export default function ClassifiedDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const [item, setItem] = useState<Classified | null>(null);
   const [loading, setLoading] = useState(true);
-  const [showContact, setShowContact] = useState(false);
 
   useEffect(() => {
     if (!slug) return;
@@ -320,80 +492,8 @@ export default function ClassifiedDetailPage() {
             </div>
           )}
 
-          {/* Contact section */}
-          <div className="border border-border rounded-lg p-5 space-y-4 bg-card">
-            <h2 className="font-semibold text-lg">Contact Information</h2>
-            {(() => {
-              const pref = item.contact_preference || "show_all";
-              const showPhone = pref === "show_all" || pref === "phone_only";
-              const showEmail = pref === "show_all" || pref === "email_only";
-              const inquireOnly = pref === "inquire_only";
-
-              if (inquireOnly) {
-                return (
-                  <div className="space-y-3">
-                    <p className="text-sm text-foreground/50">
-                      This poster prefers to be contacted via inquiry.
-                    </p>
-                    {item.contact_email ? (
-                      <a
-                        href={`mailto:${item.contact_email}?subject=${encodeURIComponent("Inquiry: " + item.title)}`}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
-                      >
-                        <Mail className="h-4 w-4" />
-                        Send Inquiry
-                      </a>
-                    ) : (
-                      <p className="text-sm text-foreground/40">No contact method available.</p>
-                    )}
-                  </div>
-                );
-              }
-
-              if (!showContact) {
-                return (
-                  <button
-                    onClick={() => setShowContact(true)}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
-                  >
-                    <Eye className="h-4 w-4" />
-                    Show Contact Info
-                  </button>
-                );
-              }
-
-              return (
-                <div className="space-y-3">
-                  {item.contact_name && (
-                    <p className="font-medium">{item.contact_name}</p>
-                  )}
-                  {showPhone && item.contact_phone && (
-                    <a
-                      href={`tel:${item.contact_phone}`}
-                      className="flex items-center gap-2 text-primary hover:underline"
-                    >
-                      <Phone className="h-4 w-4" />
-                      {item.contact_phone}
-                    </a>
-                  )}
-                  {showEmail && item.contact_email && (
-                    <a
-                      href={`mailto:${item.contact_email}`}
-                      className="flex items-center gap-2 text-primary hover:underline"
-                    >
-                      <Mail className="h-4 w-4" />
-                      {item.contact_email}
-                    </a>
-                  )}
-                  {!showPhone && !showEmail && (
-                    <p className="text-foreground/50 text-sm">
-                      No contact information available for this preference.
-                    </p>
-                  )}
-                </div>
-              );
-            })()}
-          </div>
+          {/* Inquiry form — replaces all contact info */}
+          <InquiryForm classified={item} />
 
           {/* Location */}
           {locationStr && (

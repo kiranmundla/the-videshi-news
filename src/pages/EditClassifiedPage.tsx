@@ -12,9 +12,7 @@ import {
   CLASSIFIED_CATEGORIES,
   CATEGORY_ICONS,
   SUBCATEGORIES,
-  CONTACT_PREFERENCE_OPTIONS,
 } from "@/lib/classifieds";
-import type { ContactPreference } from "@/lib/classifieds";
 
 const sb = supabase as any;
 
@@ -50,7 +48,6 @@ type FormData = {
   price: string;
   contact_name: string;
   contact_phone: string;
-  contact_preference: ContactPreference;
   city: string;
   state: string;
   zip: string;
@@ -73,7 +70,7 @@ export default function EditClassifiedPage() {
   const [otpError, setOtpError] = useState<string | null>(null);
   const [form, setForm] = useState<FormData>({
     title: "", category: "", subcategory: "", description: "",
-    price: "", contact_name: "", contact_phone: "", contact_preference: "show_all",
+    price: "", contact_name: "", contact_phone: "",
     city: "", state: "", zip: "",
   });
   const [saving, setSaving] = useState(false);
@@ -95,7 +92,6 @@ export default function EditClassifiedPage() {
           price: data.price || "",
           contact_name: data.contact_name || "",
           contact_phone: data.contact_phone || "",
-          contact_preference: data.contact_preference || "show_all",
           city: data.city || "",
           state: data.state || "",
           zip: data.zip || "",
@@ -173,7 +169,6 @@ export default function EditClassifiedPage() {
           price: form.price.trim() || null,
           contact_name: form.contact_name.trim() || null,
           contact_phone: form.contact_phone.trim() || null,
-          contact_preference: form.contact_preference,
           city: form.city.trim() || null,
           state: form.state || null,
           zip: form.zip.trim() || null,
@@ -399,42 +394,18 @@ export default function EditClassifiedPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className={labelClass}>Contact Name</label>
+                  <label className={labelClass}>
+                    Contact Name
+                    <span className="text-foreground/40 ml-1 font-normal text-xs">(never shown publicly)</span>
+                  </label>
                   <input type="text" value={form.contact_name} onChange={set("contact_name")} className={inputClass} />
                 </div>
                 <div>
-                  <label className={labelClass}>Contact Phone</label>
+                  <label className={labelClass}>
+                    Contact Phone
+                    <span className="text-foreground/40 ml-1 font-normal text-xs">(never shown publicly)</span>
+                  </label>
                   <input type="tel" value={form.contact_phone} onChange={set("contact_phone")} className={inputClass} />
-                </div>
-              </div>
-
-              {/* Contact Preference */}
-              <div>
-                <label className={labelClass}>Contact Visibility</label>
-                <div className="space-y-2">
-                  {CONTACT_PREFERENCE_OPTIONS.map((opt) => (
-                    <label
-                      key={opt.value}
-                      className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
-                        form.contact_preference === opt.value
-                          ? "border-primary/60 bg-primary/5"
-                          : "border-border hover:border-border/80"
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="contact_preference_edit"
-                        value={opt.value}
-                        checked={form.contact_preference === opt.value}
-                        onChange={() => setForm((f) => ({ ...f, contact_preference: opt.value as any }))}
-                        className="mt-0.5"
-                      />
-                      <div>
-                        <span className="text-sm font-medium">{opt.label}</span>
-                        <p className="text-xs text-foreground/50">{opt.desc}</p>
-                      </div>
-                    </label>
-                  ))}
                 </div>
               </div>
 

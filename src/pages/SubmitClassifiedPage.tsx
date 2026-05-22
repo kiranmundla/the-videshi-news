@@ -11,10 +11,8 @@ import {
   CATEGORY_ICONS,
   CATEGORY_COLORS,
   SUBCATEGORIES,
-  CONTACT_PREFERENCE_OPTIONS,
   generateClassifiedSlug,
 } from "@/lib/classifieds";
-import type { ContactPreference } from "@/lib/classifieds";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -51,7 +49,6 @@ type FormData = {
   contact_name: string;
   contact_email: string;
   contact_phone: string;
-  contact_preference: ContactPreference;
   city: string;
   state: string;
   zip: string;
@@ -66,7 +63,6 @@ const INITIAL: FormData = {
   contact_name: "",
   contact_email: "",
   contact_phone: "",
-  contact_preference: "show_all",
   city: "",
   state: "",
   zip: "",
@@ -245,7 +241,6 @@ export default function SubmitClassifiedPage() {
         contact_name: form.contact_name.trim() || null,
         contact_email: form.contact_email.trim(),
         contact_phone: form.contact_phone.trim() || null,
-        contact_preference: form.contact_preference,
         city: form.city.trim() || null,
         state: form.state || null,
         zip: form.zip.trim() || null,
@@ -455,9 +450,15 @@ export default function SubmitClassifiedPage() {
 
               {/* Contact info */}
               <div className="space-y-4 border-t border-border pt-5">
-                <h2 className="font-semibold">Contact Information</h2>
+                <h2 className="font-semibold">Your Contact Details</h2>
+                <p className="text-sm text-foreground/40">
+                  Your contact info is never shown publicly. Interested people will send inquiries through the platform, and you'll receive them at your email.
+                </p>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Your Name</label>
+                  <label className="block text-sm font-medium mb-1.5">
+                    Your Name
+                    <span className="text-foreground/40 ml-1 font-normal">(never shown publicly)</span>
+                  </label>
                   <input
                     type="text"
                     value={form.contact_name}
@@ -469,7 +470,7 @@ export default function SubmitClassifiedPage() {
                 <div>
                   <label className="block text-sm font-medium mb-1.5">
                     Email <span className="text-red-400">*</span>
-                    <span className="text-foreground/40 ml-1 font-normal">(verified before publishing)</span>
+                    <span className="text-foreground/40 ml-1 font-normal">(for verification & receiving inquiries — never shown publicly)</span>
                   </label>
                   <input
                     type="email"
@@ -480,7 +481,10 @@ export default function SubmitClassifiedPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Phone</label>
+                  <label className="block text-sm font-medium mb-1.5">
+                    Phone
+                    <span className="text-foreground/40 ml-1 font-normal">(optional — for your records only, never shown publicly)</span>
+                  </label>
                   <input
                     type="tel"
                     value={form.contact_phone}
@@ -488,36 +492,6 @@ export default function SubmitClassifiedPage() {
                     placeholder="(555) 123-4567"
                     className={inputClass}
                   />
-                </div>
-
-                {/* Contact Preference */}
-                <div>
-                  <label className="block text-sm font-medium mb-2">What should visitors see?</label>
-                  <div className="space-y-2">
-                    {CONTACT_PREFERENCE_OPTIONS.map((opt) => (
-                      <label
-                        key={opt.value}
-                        className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
-                          form.contact_preference === opt.value
-                            ? "border-primary/60 bg-primary/5"
-                            : "border-border hover:border-border/80"
-                        }`}
-                      >
-                        <input
-                          type="radio"
-                          name="contact_preference"
-                          value={opt.value}
-                          checked={form.contact_preference === opt.value}
-                          onChange={() => setForm((f) => ({ ...f, contact_preference: opt.value }))}
-                          className="mt-0.5"
-                        />
-                        <div>
-                          <span className="text-sm font-medium">{opt.label}</span>
-                          <p className="text-xs text-foreground/50">{opt.desc}</p>
-                        </div>
-                      </label>
-                    ))}
-                  </div>
                 </div>
               </div>
 
