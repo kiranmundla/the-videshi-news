@@ -323,44 +323,76 @@ export default function ClassifiedDetailPage() {
           {/* Contact section */}
           <div className="border border-border rounded-lg p-5 space-y-4 bg-card">
             <h2 className="font-semibold text-lg">Contact Information</h2>
-            {!showContact ? (
-              <button
-                onClick={() => setShowContact(true)}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
-              >
-                <Eye className="h-4 w-4" />
-                Show Contact Info
-              </button>
-            ) : (
-              <div className="space-y-3">
-                {item.contact_name && (
-                  <p className="font-medium">{item.contact_name}</p>
-                )}
-                {item.contact_phone && (
-                  <a
-                    href={`tel:${item.contact_phone}`}
-                    className="flex items-center gap-2 text-primary hover:underline"
+            {(() => {
+              const pref = item.contact_preference || "show_all";
+              const showPhone = pref === "show_all" || pref === "phone_only";
+              const showEmail = pref === "show_all" || pref === "email_only";
+              const inquireOnly = pref === "inquire_only";
+
+              if (inquireOnly) {
+                return (
+                  <div className="space-y-3">
+                    <p className="text-sm text-foreground/50">
+                      This poster prefers to be contacted via inquiry.
+                    </p>
+                    {item.contact_email ? (
+                      <a
+                        href={`mailto:${item.contact_email}?subject=${encodeURIComponent("Inquiry: " + item.title)}`}
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+                      >
+                        <Mail className="h-4 w-4" />
+                        Send Inquiry
+                      </a>
+                    ) : (
+                      <p className="text-sm text-foreground/40">No contact method available.</p>
+                    )}
+                  </div>
+                );
+              }
+
+              if (!showContact) {
+                return (
+                  <button
+                    onClick={() => setShowContact(true)}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
                   >
-                    <Phone className="h-4 w-4" />
-                    {item.contact_phone}
-                  </a>
-                )}
-                {item.contact_email && (
-                  <a
-                    href={`mailto:${item.contact_email}`}
-                    className="flex items-center gap-2 text-primary hover:underline"
-                  >
-                    <Mail className="h-4 w-4" />
-                    {item.contact_email}
-                  </a>
-                )}
-                {!item.contact_phone && !item.contact_email && (
-                  <p className="text-foreground/50 text-sm">
-                    No contact information provided
-                  </p>
-                )}
-              </div>
-            )}
+                    <Eye className="h-4 w-4" />
+                    Show Contact Info
+                  </button>
+                );
+              }
+
+              return (
+                <div className="space-y-3">
+                  {item.contact_name && (
+                    <p className="font-medium">{item.contact_name}</p>
+                  )}
+                  {showPhone && item.contact_phone && (
+                    <a
+                      href={`tel:${item.contact_phone}`}
+                      className="flex items-center gap-2 text-primary hover:underline"
+                    >
+                      <Phone className="h-4 w-4" />
+                      {item.contact_phone}
+                    </a>
+                  )}
+                  {showEmail && item.contact_email && (
+                    <a
+                      href={`mailto:${item.contact_email}`}
+                      className="flex items-center gap-2 text-primary hover:underline"
+                    >
+                      <Mail className="h-4 w-4" />
+                      {item.contact_email}
+                    </a>
+                  )}
+                  {!showPhone && !showEmail && (
+                    <p className="text-foreground/50 text-sm">
+                      No contact information available for this preference.
+                    </p>
+                  )}
+                </div>
+              );
+            })()}
           </div>
 
           {/* Location */}

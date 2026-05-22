@@ -11,9 +11,10 @@ import {
   CATEGORY_ICONS,
   CATEGORY_COLORS,
   SUBCATEGORIES,
+  CONTACT_PREFERENCE_OPTIONS,
   generateClassifiedSlug,
-  timeAgo,
 } from "@/lib/classifieds";
+import type { ContactPreference } from "@/lib/classifieds";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -50,6 +51,7 @@ type FormData = {
   contact_name: string;
   contact_email: string;
   contact_phone: string;
+  contact_preference: ContactPreference;
   city: string;
   state: string;
   zip: string;
@@ -64,6 +66,7 @@ const INITIAL: FormData = {
   contact_name: "",
   contact_email: "",
   contact_phone: "",
+  contact_preference: "show_all",
   city: "",
   state: "",
   zip: "",
@@ -74,9 +77,12 @@ function createPreview(file: File): ImagePreview {
   return { id: crypto.randomUUID(), file, url: URL.createObjectURL(file) };
 }
 
-type Step = "form" | "preview" | "publishing" | "done";
+type Step = "form" | "preview" | "verify-email" | "verify-code" | "publishing" | "done";
 
 const sb = supabase as any;
+
+const inputClass =
+  "w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40";
 
 export default function SubmitClassifiedPage() {
   const [step, setStep] = useState<Step>("form");
@@ -86,6 +92,12 @@ export default function SubmitClassifiedPage() {
   const [publishedSlug, setPublishedSlug] = useState("");
   const [copied, setCopied] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+
+  /* OTP state */
+  const [verifyCode, setVerifyCode] = useState("");
+  const [verifySending, setVerifySending] = useState(false);
+  const [verifyChecking, setVerifyChecking] = useState(false);
+  const [verifyError, setVerifyError] = useState<string | null>(null);
 
   const set = useCallback(
     (field: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -123,7 +135,7 @@ export default function SubmitClassifiedPage() {
   const validate = (): string | null => {
     if (!form.title.trim()) return "Title is required";
     if (!form.category) return "Category is required";
-    if (!form.contact_email.trim()) return "Email is required (for managing your listing)";
+    if (!form.contact_email.trim()) return "Email is required (for verification & managing your listing)";
     if (!/\S+@\S+\.\S+/.test(form.contact_email)) return "Please enter a valid email";
     return null;
   };
@@ -136,8 +148,65 @@ export default function SubmitClassifiedPage() {
     setStep("preview");
   };
 
-  /* Publish */
-  const publish = async () => {
+  /* Start email verification */
+  const startVerify = () => {
+    setVerifyError(null);
+    setVerifyCode("");
+    setStep("verify-email");
+  };
+
+  /* Send verification code */
+  const handleSendVerifyCode = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const email = form.contact_email.trim().toLowerCase();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setVerifyError("Please enter a valid email address");
+      return;
+    }
+    setVerifySending(true);
+    setVerifyError(null);
+    try {
+      const { data, error } = await sb.functions.invoke("send-email-verify", {
+        body: { email },
+      });
+      if (error) throw new Error(data?.error || error.message || "Failed to send code");
+      if (data && !data.ok) throw new Error(data.error || "Failed to send code");
+      setStep("verify-code");
+    } catch (err: any) {
+      setVerifyError(err.message || "Something went wrong");
+    } finally {
+      setVerifySending(false);
+    }
+  };
+
+  /* Verify code then publish */
+  const handleCheckVerifyCode = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const email = form.contact_email.trim().toLowerCase();
+    const code = verifyCode.trim();
+    if (!code || code.length !== 6) {
+      setVerifyError("Please enter the 6-digit code");
+      return;
+    }
+    setVerifyChecking(true);
+    setVerifyError(null);
+    try {
+      const { data, error } = await sb.functions.invoke("verify-email-code", {
+        body: { email, code },
+      });
+      if (error) throw new Error(data?.error || error.message || "Verification failed");
+      if (data && !data.verified) throw new Error(data.error || "Invalid code");
+      /* Verified — now actually publish */
+      await doPublish();
+    } catch (err: any) {
+      setVerifyError(err.message || "Invalid or expired code");
+    } finally {
+      setVerifyChecking(false);
+    }
+  };
+
+  /* Actual publish (called after OTP verified) */
+  const doPublish = async () => {
     setStep("publishing");
     setError("");
 
@@ -176,6 +245,7 @@ export default function SubmitClassifiedPage() {
         contact_name: form.contact_name.trim() || null,
         contact_email: form.contact_email.trim(),
         contact_phone: form.contact_phone.trim() || null,
+        contact_preference: form.contact_preference,
         city: form.city.trim() || null,
         state: form.state || null,
         zip: form.zip.trim() || null,
@@ -244,7 +314,7 @@ export default function SubmitClassifiedPage() {
                   value={form.title}
                   onChange={set("title")}
                   placeholder="e.g. Looking for roommate in Sunnyvale"
-                  className="w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  className={inputClass}
                   maxLength={200}
                 />
               </div>
@@ -258,7 +328,7 @@ export default function SubmitClassifiedPage() {
                   <select
                     value={form.category}
                     onChange={set("category")}
-                    className="w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    className={inputClass}
                   >
                     <option value="">Select category</option>
                     {CLASSIFIED_CATEGORIES.map((cat) => (
@@ -274,7 +344,7 @@ export default function SubmitClassifiedPage() {
                     value={form.subcategory}
                     onChange={set("subcategory")}
                     disabled={!subcats.length}
-                    className="w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 disabled:opacity-50"
+                    className={inputClass + " disabled:opacity-50"}
                   >
                     <option value="">Select subcategory</option>
                     {subcats.map((sub) => (
@@ -292,7 +362,7 @@ export default function SubmitClassifiedPage() {
                   onChange={set("description")}
                   rows={5}
                   placeholder="Describe what you're offering, looking for, or selling…"
-                  className="w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 resize-y"
+                  className={inputClass + " resize-y"}
                 />
               </div>
 
@@ -304,7 +374,7 @@ export default function SubmitClassifiedPage() {
                   value={form.price}
                   onChange={set("price")}
                   placeholder='e.g. $500, Free, $25/hr, Negotiable'
-                  className="w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  className={inputClass}
                 />
               </div>
 
@@ -354,7 +424,7 @@ export default function SubmitClassifiedPage() {
                     value={form.city}
                     onChange={set("city")}
                     placeholder="City"
-                    className="w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    className={inputClass}
                   />
                 </div>
                 <div>
@@ -362,7 +432,7 @@ export default function SubmitClassifiedPage() {
                   <select
                     value={form.state}
                     onChange={set("state")}
-                    className="w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    className={inputClass}
                   >
                     <option value="">State</option>
                     {US_STATES.map((s) => (
@@ -378,7 +448,7 @@ export default function SubmitClassifiedPage() {
                     onChange={set("zip")}
                     placeholder="ZIP"
                     maxLength={10}
-                    className="w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    className={inputClass}
                   />
                 </div>
               </div>
@@ -393,20 +463,20 @@ export default function SubmitClassifiedPage() {
                     value={form.contact_name}
                     onChange={set("contact_name")}
                     placeholder="Full name"
-                    className="w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    className={inputClass}
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1.5">
                     Email <span className="text-red-400">*</span>
-                    <span className="text-foreground/40 ml-1 font-normal">(for managing your listing)</span>
+                    <span className="text-foreground/40 ml-1 font-normal">(verified before publishing)</span>
                   </label>
                   <input
                     type="email"
                     value={form.contact_email}
                     onChange={set("contact_email")}
                     placeholder="your@email.com"
-                    className="w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    className={inputClass}
                   />
                 </div>
                 <div>
@@ -416,8 +486,38 @@ export default function SubmitClassifiedPage() {
                     value={form.contact_phone}
                     onChange={set("contact_phone")}
                     placeholder="(555) 123-4567"
-                    className="w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    className={inputClass}
                   />
+                </div>
+
+                {/* Contact Preference */}
+                <div>
+                  <label className="block text-sm font-medium mb-2">What should visitors see?</label>
+                  <div className="space-y-2">
+                    {CONTACT_PREFERENCE_OPTIONS.map((opt) => (
+                      <label
+                        key={opt.value}
+                        className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+                          form.contact_preference === opt.value
+                            ? "border-primary/60 bg-primary/5"
+                            : "border-border hover:border-border/80"
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="contact_preference"
+                          value={opt.value}
+                          checked={form.contact_preference === opt.value}
+                          onChange={() => setForm((f) => ({ ...f, contact_preference: opt.value }))}
+                          className="mt-0.5"
+                        />
+                        <div>
+                          <span className="text-sm font-medium">{opt.label}</span>
+                          <p className="text-xs text-foreground/50">{opt.desc}</p>
+                        </div>
+                      </label>
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -432,7 +532,7 @@ export default function SubmitClassifiedPage() {
           )}
 
           {/* ============== PREVIEW ============== */}
-          {step === "preview" && (
+          {(step === "preview" || step === "verify-email" || step === "verify-code" || step === "publishing") && (
             <div className="space-y-6">
               <p className="text-sm text-foreground/50">
                 Review your listing before publishing:
@@ -483,28 +583,101 @@ export default function SubmitClassifiedPage() {
                 </div>
               </div>
 
-              <div className="flex gap-3">
-                <button
-                  onClick={() => setStep("form")}
-                  className="flex-1 py-3 rounded-lg border border-border font-medium hover:bg-muted/30 transition-colors"
-                >
-                  ← Edit
-                </button>
-                <button
-                  onClick={publish}
-                  className="flex-1 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
-                >
-                  Publish
-                </button>
-              </div>
-            </div>
-          )}
+              {/* Email verification section */}
+              {(step === "verify-email" || step === "verify-code") && (
+                <div className="border border-primary/30 rounded-lg p-5 bg-primary/5 space-y-4">
+                  <h3 className="font-semibold">Verify your email</h3>
 
-          {/* ============== PUBLISHING ============== */}
-          {step === "publishing" && (
-            <div className="flex flex-col items-center py-16 gap-4">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
-              <p className="text-foreground/60">Publishing your listing…</p>
+                  {step === "verify-email" && (
+                    <>
+                      <p className="text-sm text-foreground/60">
+                        We'll send a 6-digit code to <strong>{form.contact_email}</strong> to verify your identity.
+                      </p>
+                      {verifySending && (
+                        <div className="flex items-center gap-2 text-sm text-foreground/50">
+                          <Loader2 className="h-4 w-4 animate-spin" /> Sending code…
+                        </div>
+                      )}
+                      {verifyError && (
+                        <p className="text-sm text-red-400">{verifyError}</p>
+                      )}
+                      <button
+                        onClick={() => handleSendVerifyCode()}
+                        disabled={verifySending}
+                        className="w-full py-2.5 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors disabled:opacity-50"
+                      >
+                        {verifySending ? "Sending…" : "Send Verification Code"}
+                      </button>
+                    </>
+                  )}
+
+                  {step === "verify-code" && (
+                    <form onSubmit={handleCheckVerifyCode} className="space-y-3">
+                      <p className="text-sm text-foreground/60">
+                        Enter the 6-digit code we sent to <strong>{form.contact_email}</strong>
+                      </p>
+                      <div>
+                        <label htmlFor="verify-code-input" className="block text-sm font-medium mb-1.5">
+                          Verification Code
+                        </label>
+                        <input
+                          id="verify-code-input"
+                          type="text"
+                          inputMode="numeric"
+                          autoComplete="one-time-code"
+                          value={verifyCode}
+                          onChange={(e) => setVerifyCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                          placeholder="123456"
+                          maxLength={6}
+                          className={inputClass + " text-center text-lg tracking-widest font-mono"}
+                        />
+                      </div>
+                      {verifyError && (
+                        <p className="text-sm text-red-400">{verifyError}</p>
+                      )}
+                      <button
+                        type="submit"
+                        disabled={verifyChecking || verifyCode.length !== 6}
+                        className="w-full py-2.5 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors disabled:opacity-50"
+                      >
+                        {verifyChecking ? (
+                          <span className="flex items-center justify-center gap-2">
+                            <Loader2 className="h-4 w-4 animate-spin" /> Verifying & Publishing…
+                          </span>
+                        ) : (
+                          "Verify & Publish"
+                        )}
+                      </button>
+                    </form>
+                  )}
+                </div>
+              )}
+
+              {/* Buttons (only on initial preview) */}
+              {step === "preview" && (
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => setStep("form")}
+                    className="flex-1 py-3 rounded-lg border border-border font-medium hover:bg-muted/30 transition-colors"
+                  >
+                    ← Edit
+                  </button>
+                  <button
+                    onClick={startVerify}
+                    className="flex-1 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+                  >
+                    Publish
+                  </button>
+                </div>
+              )}
+
+              {/* Publishing spinner */}
+              {step === "publishing" && (
+                <div className="flex flex-col items-center py-8 gap-4">
+                  <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                  <p className="text-foreground/60">Publishing your listing…</p>
+                </div>
+              )}
             </div>
           )}
 

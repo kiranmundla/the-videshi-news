@@ -9,6 +9,8 @@ const supabase = supabaseTyped as unknown as {
 /* Types                                                              */
 /* ------------------------------------------------------------------ */
 
+export type ContactPreference = "show_all" | "phone_only" | "email_only" | "inquire_only";
+
 export type Classified = {
   id: string;
   title: string;
@@ -19,6 +21,7 @@ export type Classified = {
   contact_name: string | null;
   contact_email: string | null;
   contact_phone: string | null;
+  contact_preference: ContactPreference;
   city: string | null;
   state: string | null;
   zip: string | null;
@@ -32,8 +35,15 @@ export type Classified = {
   updated_at: string;
 };
 
+export const CONTACT_PREFERENCE_OPTIONS: { value: ContactPreference; label: string; desc: string }[] = [
+  { value: "show_all", label: "Show phone & email", desc: "Both visible on your listing" },
+  { value: "phone_only", label: "Show phone only", desc: "Email used only for verification" },
+  { value: "email_only", label: "Show email only", desc: "Phone number hidden" },
+  { value: "inquire_only", label: "Inquire only", desc: "Contact info hidden — viewers send inquiry" },
+];
+
 const COLS =
-  "id,title,description,category,subcategory,price,contact_name,contact_email,contact_phone,city,state,zip,image_url,photos,slug,source,status,expires_at,created_at,updated_at";
+  "id,title,description,category,subcategory,price,contact_name,contact_email,contact_phone,contact_preference,city,state,zip,image_url,photos,slug,source,status,expires_at,created_at,updated_at";
 
 /* ------------------------------------------------------------------ */
 /* Categories & subcategories                                         */
@@ -135,6 +145,7 @@ function parseClassified(row: any): Classified {
   return {
     ...row,
     photos: parseJsonField<string[]>(row.photos, []),
+    contact_preference: row.contact_preference || "show_all",
   };
 }
 
