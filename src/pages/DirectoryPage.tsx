@@ -482,9 +482,17 @@ export default function DirectoryPage() {
       <main className="directory-main container flex-1 pt-8 md:pt-10 pb-16">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-3">
-            Directory
-          </h1>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+            <h1 className="font-serif text-3xl md:text-5xl text-foreground">
+              Directory
+            </h1>
+            <Link
+              to="/directory/submit"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors whitespace-nowrap self-start sm:self-auto"
+            >
+              <span>+</span> Submit a Listing
+            </Link>
+          </div>
           <p className="text-muted-foreground text-lg">
             Find trusted Indian &amp; desi professionals and businesses across the US
           </p>

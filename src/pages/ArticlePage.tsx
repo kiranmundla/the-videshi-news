@@ -368,7 +368,24 @@ export default function ArticlePage() {
         <meta name="twitter:title" content={article.title} />
         <meta name="twitter:description" content={article.excerpt} />
         <meta name="twitter:image" content={article.hero_image_url} />
-        <link rel="canonical" href={`/articles/${article.slug}`} />
+        <link rel="canonical" href={`https://www.thevideshi.com/articles/${article.slug}`} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            headline: article.title,
+            ...(article.excerpt ? { description: article.excerpt } : {}),
+            ...(article.published_at ? { datePublished: article.published_at } : {}),
+            ...(article.hero_image_url ? { image: article.hero_image_url } : {}),
+            url: `https://www.thevideshi.com/articles/${article.slug}`,
+            author: { "@type": "Organization", name: "The Videshi" },
+            publisher: {
+              "@type": "Organization",
+              name: "The Videshi",
+              url: "https://www.thevideshi.com",
+            },
+          })}
+        </script>
       </Helmet>
 
       <Masthead />

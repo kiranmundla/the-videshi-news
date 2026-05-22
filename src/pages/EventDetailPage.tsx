@@ -412,7 +412,34 @@ export default function EventDetailPage() {
         <meta property="og:description" content={metaDescription} />
         {event.image_url && <meta property="og:image" content={event.image_url} />}
         <meta property="og:type" content="website" />
-        <link rel="canonical" href={`/events/${slug}`} />
+        <meta property="og:url" content={`https://www.thevideshi.com/events/${slug}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={event.title} />
+        <meta name="twitter:description" content={metaDescription} />
+        {event.image_url && <meta name="twitter:image" content={event.image_url} />}
+        <link rel="canonical" href={`https://www.thevideshi.com/events/${slug}`} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Event",
+            name: event.title,
+            ...(event.date ? { startDate: event.date } : {}),
+            ...(event.end_date ? { endDate: event.end_date } : {}),
+            ...(event.description ? { description: event.description.slice(0, 300) } : {}),
+            ...(event.image_url ? { image: event.image_url } : {}),
+            ...(event.ticket_url ? { url: event.ticket_url } : {}),
+            location: {
+              "@type": "Place",
+              name: event.venue_name || "",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: event.city || "",
+                addressRegion: event.state || "",
+              },
+            },
+            ...(event.organizer ? { organizer: { "@type": "Organization", name: event.organizer } } : {}),
+          })}
+        </script>
       </Helmet>
 
       <Masthead />

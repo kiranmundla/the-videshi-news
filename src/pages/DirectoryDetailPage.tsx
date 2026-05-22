@@ -224,6 +224,43 @@ export default function DirectoryDetailPage() {
           name="description"
           content={`${listing.name} — ${listing.category} in ${location}. Find Indian & desi professionals on The Videshi.`}
         />
+        <meta property="og:title" content={`${listing.name} — ${listing.category}`} />
+        <meta property="og:description" content={`${listing.name} — ${listing.category} in ${location}. Find Indian & desi professionals on The Videshi.`} />
+        {(listing.image_url || photos[0]) && <meta property="og:image" content={listing.image_url || photos[0]} />}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://www.thevideshi.com/directory/${listing.slug}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${listing.name} — ${listing.category}`} />
+        <meta name="twitter:description" content={`${listing.name} — ${listing.category} in ${location}. Find Indian & desi professionals on The Videshi.`} />
+        {(listing.image_url || photos[0]) && <meta name="twitter:image" content={listing.image_url || photos[0]} />}
+        <link rel="canonical" href={`https://www.thevideshi.com/directory/${listing.slug}`} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            name: listing.name,
+            ...(listing.description ? { description: listing.description } : {}),
+            ...(listing.image_url ? { image: listing.image_url } : photos[0] ? { image: photos[0] } : {}),
+            ...(listing.phone ? { telephone: listing.phone } : {}),
+            ...(listing.website ? { url: listing.website } : {}),
+            address: {
+              "@type": "PostalAddress",
+              ...(listing.address ? { streetAddress: listing.address } : {}),
+              ...(listing.city ? { addressLocality: listing.city } : {}),
+              ...(listing.state ? { addressRegion: listing.state } : {}),
+              ...(listing.zip ? { postalCode: listing.zip } : {}),
+            },
+            ...(listing.rating && listing.review_count
+              ? {
+                  aggregateRating: {
+                    "@type": "AggregateRating",
+                    ratingValue: listing.rating,
+                    reviewCount: listing.review_count,
+                  },
+                }
+              : {}),
+          })}
+        </script>
       </Helmet>
 
       <Masthead />
