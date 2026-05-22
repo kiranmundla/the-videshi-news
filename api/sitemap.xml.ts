@@ -17,6 +17,8 @@ const STATIC_PAGES = [
   { loc: "/events/submit", priority: "0.5", changefreq: "monthly" },
   { loc: "/directory", priority: "0.8", changefreq: "daily" },
   { loc: "/directory/submit", priority: "0.5", changefreq: "monthly" },
+  { loc: "/classifieds", priority: "0.8", changefreq: "daily" },
+  { loc: "/classifieds/submit", priority: "0.5", changefreq: "monthly" },
   { loc: "/about", priority: "0.5", changefreq: "monthly" },
   { loc: "/contact", priority: "0.5", changefreq: "monthly" },
   { loc: "/privacy", priority: "0.3", changefreq: "yearly" },
@@ -63,10 +65,11 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     const today = now.split("T")[0];
 
     // Fetch all data in parallel
-    const [articles, events, listings] = await Promise.all([
+    const [articles, events, listings, classifieds] = await Promise.all([
       fetchAll("p2_articles", "slug,published_at,category", "status=eq.published&order=published_at.desc"),
       fetchAll("events", "slug,date,updated_at", `date=gte.${today}&order=date.asc`),
       fetchAll("directory_listings", "slug,updated_at", "order=updated_at.desc"),
+      fetchAll("classifieds", "slug,updated_at", `status=eq.active&expires_at=gte.${now}&order=created_at.desc`),
     ]);
 
     let xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -139,6 +142,21 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     <loc>${escapeXml(SITE + "/directory/" + listing.slug)}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+`;
+    }
+
+    // Classified pages
+    for (const classified of classifieds) {
+      if (!classified.slug) continue;
+      const lastmod = classified.updated_at
+        ? new Date(classified.updated_at).toISOString().split("T")[0]
+        : today;
+      xml += `  <url>
+    <loc>${escapeXml(SITE + "/classifieds/" + classified.slug)}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
 `;

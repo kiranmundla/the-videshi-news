@@ -29,6 +29,10 @@ import Terms from "./pages/Terms.tsx";
 import DirectoryPage from "./pages/DirectoryPage.tsx";
 import DirectoryDetailPage from "./pages/DirectoryDetailPage.tsx";
 import SubmitListingPage from "./pages/SubmitListingPage.tsx";
+import ClassifiedsPage from "./pages/ClassifiedsPage.tsx";
+import ClassifiedDetailPage from "./pages/ClassifiedDetailPage.tsx";
+import SubmitClassifiedPage from "./pages/SubmitClassifiedPage.tsx";
+import EditClassifiedPage from "./pages/EditClassifiedPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +59,10 @@ const App = () => (
             <Route path="/directory" element={<DirectoryPage />} />
             <Route path="/directory/submit" element={<SubmitListingPage />} />
             <Route path="/directory/:slug" element={<DirectoryDetailPage />} />
+            <Route path="/classifieds" element={<ClassifiedsPage />} />
+            <Route path="/classifieds/submit" element={<SubmitClassifiedPage />} />
+            <Route path="/classifieds/:slug/edit" element={<EditClassifiedPage />} />
+            <Route path="/classifieds/:slug" element={<ClassifiedDetailPage />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/sources" element={<SourcesPage />} />
             <Route path="/admin/p2" element={<PipelineLayout />}>
