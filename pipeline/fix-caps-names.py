@@ -1,94 +1,102 @@
 #!/usr/bin/env python3
-"""
-Fix ALL-CAPS names in directory_listings by title-casing them,
-preserving common professional suffixes.
-"""
+"""Fix ALL-CAPS names in directory_listings — title-case while preserving common suffixes."""
 
-import os
-import re
-import requests
+import os, re, sys, requests
 
-def load_env():
-    env = {}
-    for path in [os.path.expanduser("~/.env.supabase"), os.path.expanduser("~/workspace/.env.supabase")]:
-        if os.path.exists(path):
-            for line in open(path):
-                line = line.strip()
-                if "=" in line and not line.startswith("#"):
-                    k, v = line.split("=", 1)
-                    env[k] = v
-    return env
+sys.stdout.reconfigure(line_buffering=True)
 
-ENV = load_env()
-SUPABASE_URL = ENV["SUPABASE_URL"]
-SERVICE_KEY = ENV["SUPABASE_SERVICE_ROLE_KEY"]
-HEADERS = {
-    "apikey": SERVICE_KEY,
-    "Authorization": f"Bearer {SERVICE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=minimal",
+env = {}
+for line in open(os.path.expanduser("~/.env.supabase")):
+    line = line.strip()
+    if '=' in line and not line.startswith('#'):
+        k, v = line.split('=', 1)
+        env[k] = v
+
+SUPABASE_URL = env['SUPABASE_URL']
+SERVICE_KEY = env['SUPABASE_SERVICE_ROLE_KEY']
+
+headers = {
+    'apikey': SERVICE_KEY,
+    'Authorization': f'Bearer {SERVICE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=minimal'
 }
 
-# Suffixes that should stay uppercase
-PRESERVE_UPPER = {
-    "MD", "DDS", "DO", "LLC", "PLLC", "PLC", "DPM", "OD", "DMD", "PC", "PA",
-    "DBA", "INC", "NP", "RN", "LLP", "DC", "PT", "DPT", "OB/GYN",
-    "II", "III", "IV", "JR", "SR", "PhD", "MBBS", "MS", "MPH",
-    "USA", "VJ", "CPA",
+PRESERVE = {
+    'md': 'MD', 'dds': 'DDS', 'do': 'DO', 'dmd': 'DMD',
+    'llc': 'LLC', 'pllc': 'PLLC', 'plc': 'PLC', 'llp': 'LLP',
+    'pc': 'PC', 'pa': 'PA', 'inc': 'Inc',
+    'dpm': 'DPM', 'od': 'OD', 'dvm': 'DVM',
+    'phd': 'PhD', 'jd': 'JD', 'cpa': 'CPA', 'lcsw': 'LCSW',
+    'facp': 'FACP', 'facs': 'FACS', 'cphq': 'CPHQ',
+    'np': 'NP', 'rn': 'RN', 'mph': 'MPH',
+    'ii': 'II', 'iii': 'III', 'iv': 'IV',
+    'ob/gyn': 'OB/GYN', 'obgyn': 'OBGYN',
+    'usa': 'USA', 'us': 'US', 'dba': 'DBA',
 }
 
-def smart_title_case(name: str) -> str:
-    """Title case but preserve known professional/legal suffixes."""
-    words = name.title().split()
-    result = []
+
+def smart_title(name):
+    titled = name.title()
+    words = titled.split()
+    fixed = []
     for w in words:
-        # Strip leading/trailing punctuation for comparison
-        clean = re.sub(r"^[,.:;]+|[,.:;]+$", "", w).upper()
-        if clean in PRESERVE_UPPER:
-            # Restore the uppercase version, keeping original punctuation
-            prefix = re.match(r"^([,.:;]*)", w)
-            suffix = re.search(r"([,.:;]*)$", w)
-            p = prefix.group(1) if prefix else ""
-            s = suffix.group(1) if suffix else ""
-            result.append(p + clean + s)
-        elif w == "Indian'S":
-            result.append("Indian's")
+        clean = re.sub(r'[.,;:()\[\]]', '', w).lower()
+        if clean in PRESERVE:
+            result = re.sub(r'[a-zA-Z/]+', lambda m: PRESERVE.get(m.group().lower(), m.group()), w, count=1)
+            fixed.append(result)
         else:
-            result.append(w)
-    return " ".join(result)
+            fixed.append(w)
+    return ' '.join(fixed)
+
+
+def fetch_all_listings():
+    all_listings = []
+    offset = 0
+    while True:
+        r = requests.get(
+            f"{SUPABASE_URL}/rest/v1/directory_listings",
+            params={'select': 'id,name', 'limit': 1000, 'offset': offset},
+            headers=headers, timeout=15
+        )
+        if r.status_code != 200:
+            break
+        batch = r.json()
+        all_listings.extend(batch)
+        if len(batch) < 1000:
+            break
+        offset += 1000
+    return all_listings
 
 
 def main():
-    # Fetch all listings
-    r = requests.get(
-        f"{SUPABASE_URL}/rest/v1/directory_listings",
-        headers=HEADERS,
-        params={"select": "id,name", "limit": "5000"},
-    )
-    r.raise_for_status()
-    listings = r.json()
+    print("Fetching all directory listings...")
+    listings = fetch_all_listings()
+    print(f"Total: {len(listings)}")
 
-    # Find ALL-CAPS names (length > 5 to avoid things like "ABC")
-    caps_listings = [l for l in listings if l["name"] == l["name"].upper() and len(l["name"]) > 5]
-    print(f"Found {len(caps_listings)} ALL-CAPS listings\n")
+    caps = [l for l in listings if l['name'] == l['name'].upper() and len(l['name']) > 5]
+    print(f"ALL-CAPS names: {len(caps)}\n")
 
-    ok = 0
-    for l in caps_listings:
-        new_name = smart_title_case(l["name"])
-        print(f"  {l['name']}")
-        print(f"  → {new_name}\n")
+    updated = 0
+    for listing in caps:
+        old_name = listing['name']
+        new_name = smart_title(old_name)
+        if old_name == new_name:
+            continue
 
         r = requests.patch(
-            f"{SUPABASE_URL}/rest/v1/directory_listings?id=eq.{l['id']}",
-            headers=HEADERS,
+            f"{SUPABASE_URL}/rest/v1/directory_listings?id=eq.{listing['id']}",
+            headers=headers,
             json={"name": new_name},
+            timeout=10
         )
         if r.status_code < 300:
-            ok += 1
+            updated += 1
+            print(f"  {old_name:50s} → {new_name}")
         else:
-            print(f"  ERROR: {r.status_code} {r.text[:200]}")
+            print(f"  ✗ Failed: {old_name} — {r.status_code}")
 
-    print(f"Done: {ok}/{len(caps_listings)} fixed")
+    print(f"\nFixed {updated} names")
 
 
 if __name__ == "__main__":
