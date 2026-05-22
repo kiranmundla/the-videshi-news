@@ -377,16 +377,6 @@ export default function DirectoryDetailPage() {
                 🌐 Visit Website
               </a>
             )}
-            {mapQuery && (
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-border text-foreground/80 rounded-lg font-medium hover:bg-muted/20 transition-colors"
-              >
-                🗺️ Get Directions
-              </a>
-            )}
           </div>
 
           {/* Back to directory */}
