@@ -154,7 +154,8 @@ function CategoryTabBar({
   onSelect: (v: string | null) => void;
 }) {
   return (
-    <div className="flex flex-wrap items-center gap-1 pb-1">
+    <div className="overflow-x-auto scrollbar-none -mx-4 px-4">
+      <div className="flex items-center gap-1 pb-1 min-w-max">
       <button
         onClick={() => onSelect(null)}
         className={`relative whitespace-nowrap px-4 py-2.5 text-sm font-medium transition-colors rounded-t-md ${
@@ -185,6 +186,7 @@ function CategoryTabBar({
           )}
         </button>
       ))}
+      </div>
     </div>
   );
 }
