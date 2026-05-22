@@ -81,11 +81,11 @@ function ListingCard({ listing, distance }: { listing: DirectoryListing; distanc
       <article className="group flex flex-col sm:flex-row bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full" style={{ wordBreak: "break-word" }}>
         {/* Image */}
         {imageUrl ? (
-          <div className="w-full sm:w-48 sm:min-w-[12rem] h-48 sm:h-auto overflow-hidden flex-shrink-0">
+          <div className="w-full sm:w-48 sm:min-w-[12rem] sm:h-auto overflow-hidden flex-shrink-0">
             <img
               src={imageUrl}
               alt={listing.name}
-              className="w-full h-full object-cover bg-muted/10 group-hover:scale-105 transition-transform duration-300"
+              className="w-full max-h-64 object-contain bg-muted/10 group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
             />
           </div>
