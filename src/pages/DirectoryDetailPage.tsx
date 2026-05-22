@@ -263,6 +263,9 @@ export default function DirectoryDetailPage() {
               <h1 className="font-serif text-2xl md:text-4xl text-foreground leading-tight">
                 {listing.name}
               </h1>
+              {listing.affiliation && (
+                <p className="text-sm text-blue-400/80 mt-1">🏥 {listing.affiliation}</p>
+              )}
             </div>
             <ShareButtons name={listing.name} slug={listing.slug} />
           </div>

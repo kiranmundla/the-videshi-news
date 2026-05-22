@@ -24,6 +24,7 @@ export type DirectoryListing = {
   rating: number | null;
   review_count: number | null;
   google_place_id: string | null;
+  affiliation: string | null;
   hours: Record<string, string> | null;
   source: string | null;
   verified: boolean;
@@ -33,7 +34,7 @@ export type DirectoryListing = {
 };
 
 const LISTING_COLS =
-  "id,name,category,subcategory,description,phone,email,website,address,city,state,zip,latitude,longitude,image_url,photos,rating,review_count,google_place_id,hours,source,verified,featured,slug,created_at";
+  "id,name,category,subcategory,description,phone,email,website,address,city,state,zip,latitude,longitude,image_url,photos,rating,review_count,google_place_id,affiliation,hours,source,verified,featured,slug,created_at";
 
 export const DIRECTORY_CATEGORIES = [
   "Doctors & Healthcare",

@@ -117,6 +117,9 @@ function ListingCard({ listing, distance }: { listing: DirectoryListing; distanc
             <h3 className="font-serif text-lg font-semibold text-foreground leading-snug mb-1 line-clamp-2 group-hover:text-primary transition-colors">
               {listing.name}
             </h3>
+            {listing.affiliation && (
+              <p className="text-xs text-blue-400/80 mb-1">🏥 {listing.affiliation}</p>
+            )}
             <StarRating rating={listing.rating} reviewCount={listing.review_count} />
             {listing.description && (
               <p className="text-sm text-muted-foreground line-clamp-2 mt-1.5">
