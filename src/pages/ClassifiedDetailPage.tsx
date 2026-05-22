@@ -90,12 +90,13 @@ function InquiryForm({ classified }: { classified: Classified }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [sending, setSending] = useState(false);
-  const [sent, setSent] = useState(false);
+  const [step, setStep] = useState<"form" | "verify" | "sending" | "done">("form");
+  const [otpCode, setOtpCode] = useState("");
+  const [otpSending, setOtpSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !email.trim() || !message.trim()) {
       setError("Please fill in all fields");
@@ -109,7 +110,8 @@ function InquiryForm({ classified }: { classified: Classified }) {
       setError("Please complete the bot verification.");
       return;
     }
-    setSending(true);
+
+    setOtpSending(true);
     setError(null);
 
     /* Server-side Turnstile verification */
@@ -123,16 +125,55 @@ function InquiryForm({ classified }: { classified: Classified }) {
       if (!tData.success) {
         setError("Bot verification failed. Please try again.");
         setTurnstileToken(null);
-        setSending(false);
+        setOtpSending(false);
         return;
       }
     } catch {
       setError("Bot verification failed. Please try again.");
       setTurnstileToken(null);
-      setSending(false);
+      setOtpSending(false);
       return;
     }
 
+    /* Send OTP to the inquiry sender's email */
+    try {
+      const { data, error: fnErr } = await sb.functions.invoke(
+        "send-inquiry-otp",
+        { body: { email: email.trim().toLowerCase() } },
+      );
+      if (fnErr) throw new Error(data?.error || fnErr.message || "Failed to send code");
+      if (data && !data.ok) throw new Error(data.error || "Failed to send code");
+      setStep("verify");
+    } catch (err: any) {
+      setError(err.message || "Failed to send verification code. Please try again.");
+    } finally {
+      setOtpSending(false);
+    }
+  };
+
+  const handleVerifyAndSend = async () => {
+    if (!otpCode || otpCode.length !== 6) {
+      setError("Please enter the 6-digit code");
+      return;
+    }
+    setStep("sending");
+    setError(null);
+
+    /* Verify OTP */
+    try {
+      const { data: vData, error: vErr } = await sb.functions.invoke(
+        "verify-inquiry-otp",
+        { body: { email: email.trim().toLowerCase(), code: otpCode.trim() } },
+      );
+      if (vErr) throw new Error(vData?.error || vErr.message || "Verification failed");
+      if (vData && !vData.success) throw new Error(vData.error || "Invalid or expired code");
+    } catch (err: any) {
+      setError(err.message || "Invalid or expired code. Please try again.");
+      setStep("verify");
+      return;
+    }
+
+    /* Send the actual inquiry */
     try {
       const { data, error: fnErr } = await sb.functions.invoke(
         "send-classified-inquiry",
@@ -147,15 +188,14 @@ function InquiryForm({ classified }: { classified: Classified }) {
       );
       if (fnErr) throw new Error(data?.error || fnErr.message || "Failed to send");
       if (data && !data.ok) throw new Error(data.error || "Failed to send");
-      setSent(true);
+      setStep("done");
     } catch (err: any) {
       setError(err.message || "Something went wrong. Please try again.");
-    } finally {
-      setSending(false);
+      setStep("verify");
     }
   };
 
-  if (sent) {
+  if (step === "done") {
     return (
       <div className="border border-green-500/30 rounded-lg p-5 bg-green-500/5 space-y-2">
         <div className="flex items-center gap-2">
@@ -191,6 +231,82 @@ function InquiryForm({ classified }: { classified: Classified }) {
   const inputClass =
     "w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/40";
 
+  /* ---- OTP Verification Step ---- */
+  if (step === "verify" || step === "sending") {
+    return (
+      <div className="border border-amber-500/30 rounded-lg p-5 bg-amber-500/5 space-y-4">
+        <h2 className="font-semibold text-lg flex items-center gap-2">
+          <MessageCircle className="h-5 w-5 text-amber-600" />
+          Verify Your Email
+        </h2>
+        <p className="text-sm text-foreground/50">
+          We sent a 6-digit code to <strong className="text-foreground/80">{email}</strong>.
+          Enter it below to send your inquiry.
+        </p>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">
+            Verification Code <span className="text-red-400">*</span>
+          </label>
+          <input
+            type="text"
+            inputMode="numeric"
+            maxLength={6}
+            value={otpCode}
+            onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+            placeholder="000000"
+            className={inputClass + " text-center text-2xl tracking-[0.3em] font-mono"}
+            autoFocus
+          />
+        </div>
+
+        {error && (
+          <p className="text-sm text-red-400">{error}</p>
+        )}
+
+        <div className="flex gap-3">
+          <button
+            onClick={handleVerifyAndSend}
+            disabled={step === "sending" || otpCode.length !== 6}
+            className="flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-lg bg-amber-600 text-white font-medium hover:bg-amber-700 transition-colors disabled:opacity-50"
+          >
+            {step === "sending" ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Verifying & Sending…
+              </>
+            ) : (
+              <>
+                <Send className="h-4 w-4" />
+                Verify & Send Inquiry
+              </>
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={() => { setStep("form"); setOtpCode(""); setError(null); }}
+            className="px-4 py-3 rounded-lg border border-border font-medium hover:bg-muted/30 transition-colors text-sm"
+          >
+            Back
+          </button>
+        </div>
+
+        <p className="text-xs text-foreground/40">
+          Didn't receive the code? Check your spam folder or{" "}
+          <button
+            type="button"
+            onClick={() => { setStep("form"); setOtpCode(""); setError(null); }}
+            className="underline hover:text-foreground/60"
+          >
+            go back
+          </button>{" "}
+          to resend.
+        </p>
+      </div>
+    );
+  }
+
+  /* ---- Main Form Step ---- */
   return (
     <div className="border border-amber-500/30 rounded-lg p-5 bg-amber-500/5 space-y-4">
       <h2 className="font-semibold text-lg flex items-center gap-2">
@@ -202,7 +318,7 @@ function InquiryForm({ classified }: { classified: Classified }) {
         so they can reply — their contact info stays private.
       </p>
 
-      <form onSubmit={handleSubmit} className="space-y-3">
+      <form onSubmit={handleSendOtp} className="space-y-3">
         <div>
           <label className="block text-sm font-medium mb-1">
             Your Name <span className="text-red-400">*</span>
@@ -228,6 +344,9 @@ function InquiryForm({ classified }: { classified: Classified }) {
             placeholder="your@email.com"
             className={inputClass}
           />
+          <p className="text-xs text-foreground/40 mt-1">
+            We'll send a verification code to this email before your inquiry goes through.
+          </p>
         </div>
 
         <div>
@@ -257,18 +376,18 @@ function InquiryForm({ classified }: { classified: Classified }) {
         <div className="flex gap-3">
           <button
             type="submit"
-            disabled={sending || !turnstileToken}
+            disabled={otpSending || !turnstileToken}
             className="flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-lg bg-amber-600 text-white font-medium hover:bg-amber-700 transition-colors disabled:opacity-50"
           >
-            {sending ? (
+            {otpSending ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Sending…
+                Sending Code…
               </>
             ) : (
               <>
                 <Send className="h-4 w-4" />
-                Send Message
+                Verify Email & Send
               </>
             )}
           </button>

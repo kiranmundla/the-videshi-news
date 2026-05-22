@@ -69,7 +69,7 @@ Deno.serve(async (req) => {
   /* Look up the classified listing */
   const { data: listing, error: listingErr } = await db
     .from("classifieds")
-    .select("id, title, contact_email, status")
+    .select("id, title, contact_email, status, slug")
     .eq("id", classifiedId)
     .single();
 
@@ -87,6 +87,9 @@ Deno.serve(async (req) => {
   }
 
   const listingTitle = escape(listing.title || "your listing");
+  const listingUrl = listing.slug
+    ? `https://www.thevideshi.com/classifieds/${listing.slug}`
+    : "";
   const safeSenderName = escape(senderName);
   const safeSenderEmail = escape(senderEmail);
   const safeMessage = escape(message).replace(/\n/g, "<br />");
@@ -96,6 +99,7 @@ Deno.serve(async (req) => {
       <h2 style="font-size: 20px; color: #1a1a1a; margin: 0 0 8px;">New Inquiry for Your Listing</h2>
       <p style="color: #666; font-size: 14px; margin: 0 0 24px;">
         Someone is interested in your listing: <strong>"${listingTitle}"</strong>
+        ${listingUrl ? `<br /><a href="${listingUrl}" style="color: #7c3aed; font-size: 13px;">View Listing →</a>` : ""}
       </p>
 
       <div style="background: #f8f5f0; border: 1px solid #e5ddd3; border-radius: 12px; padding: 20px; margin: 0 0 24px;">
@@ -129,7 +133,7 @@ Deno.serve(async (req) => {
     </div>
   `;
 
-  const text = `New inquiry for your listing "${listing.title}"
+  const text = `New inquiry for your listing "${listing.title}"${listingUrl ? `\nView listing: ${listingUrl}` : ""}
 
 From: ${senderName} (${senderEmail})
 
