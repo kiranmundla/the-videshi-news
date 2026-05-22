@@ -13,6 +13,8 @@ import {
   DIRECTORY_CATEGORIES,
   CATEGORY_ICONS,
   CATEGORY_COLORS,
+  DOCTOR_SUBCATEGORIES,
+  SUBCATEGORY_ICONS,
 } from "@/lib/directory";
 import { CITY_GROUPS } from "@/lib/events";
 
@@ -98,6 +100,11 @@ function ListingCard({ listing, distance }: { listing: DirectoryListing; distanc
           <div>
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               <CategoryBadge category={listing.category} />
+              {listing.subcategory && listing.subcategory !== "General / Other" && (
+                <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-blue-600/20 text-blue-300">
+                  {SUBCATEGORY_ICONS[listing.subcategory] || "📋"} {listing.subcategory}
+                </span>
+              )}
               {distance != null && distance < 9999 && (
                 <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-orange-600/20 text-orange-300">
                   📍 {formatDistance(distance)}
@@ -195,6 +202,48 @@ function CategoryTabBar({
 }
 
 /* ------------------------------------------------------------------ */
+/* Subcategory Tab Bar (shown when Doctors & Healthcare selected)     */
+/* ------------------------------------------------------------------ */
+function SubcategoryTabBar({
+  selected,
+  onSelect,
+}: {
+  selected: string | null;
+  onSelect: (v: string | null) => void;
+}) {
+  return (
+    <div className="overflow-x-auto scrollbar-none -mx-4 px-4 mt-1">
+      <div className="flex items-center gap-1 pb-1 min-w-max">
+        <button
+          onClick={() => onSelect(null)}
+          className={`relative whitespace-nowrap px-3 py-1.5 text-xs font-medium transition-colors rounded-full ${
+            selected === null
+              ? "bg-primary/15 text-foreground"
+              : "text-muted-foreground hover:text-foreground/70 bg-muted/30"
+          }`}
+        >
+          All Specialties
+        </button>
+        {DOCTOR_SUBCATEGORIES.map((sub) => (
+          <button
+            key={sub}
+            onClick={() => onSelect(sub)}
+            className={`relative whitespace-nowrap px-3 py-1.5 text-xs font-medium transition-colors rounded-full ${
+              selected === sub
+                ? "bg-primary/15 text-foreground"
+                : "text-muted-foreground hover:text-foreground/70 bg-muted/30"
+            }`}
+          >
+            <span className="mr-1">{SUBCATEGORY_ICONS[sub] || "📋"}</span>
+            {sub}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Near Me List with distance grouping                                */
 /* ------------------------------------------------------------------ */
 function NearMeList({ listings }: { listings: ListingWithDistance[] }) {
@@ -255,6 +304,7 @@ export default function DirectoryPage() {
   const rawCity = searchParams.get("city");
   const cityFilter = nearMeActive ? null : (rawCity ?? DEFAULT_CITY);
   const categoryFilter = searchParams.get("category") || null;
+  const subcategoryFilter = searchParams.get("subcategory") || null;
 
   const setCityFilter = useCallback((city: string | null) => {
     setNearMeActive(false);
@@ -275,6 +325,16 @@ export default function DirectoryPage() {
       const next = new URLSearchParams(prev);
       if (cat) next.set("category", cat);
       else next.delete("category");
+      next.delete("subcategory"); // clear subcategory when changing category
+      return next;
+    }, { replace: true });
+  }, [setSearchParams]);
+
+  const setSubcategoryFilter = useCallback((sub: string | null) => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (sub) next.set("subcategory", sub);
+      else next.delete("subcategory");
       return next;
     }, { replace: true });
   }, [setSearchParams]);
@@ -368,25 +428,25 @@ export default function DirectoryPage() {
 
     if (nearMeActive && userCoords) {
       // Near Me mode: fetch all listings, sort by distance
-      getDirectoryListings(categoryFilter, null, searchQuery || null, 500, 0).then((data) => {
+      getDirectoryListings(categoryFilter, null, searchQuery || null, 500, 0, subcategoryFilter).then((data) => {
         const sorted = sortListingsByDistance(data, userCoords.lat, userCoords.lng);
         setListings(sorted);
         setHasMore(false);
         setLoading(false);
       });
     } else {
-      getDirectoryListings(categoryFilter, cityFilter, searchQuery || null, PAGE_SIZE, 0).then((data) => {
+      getDirectoryListings(categoryFilter, cityFilter, searchQuery || null, PAGE_SIZE, 0, subcategoryFilter).then((data) => {
         setListings(data);
         setHasMore(data.length === PAGE_SIZE);
         setLoading(false);
       });
     }
-  }, [cityFilter, categoryFilter, nearMeActive, userCoords, searchQuery]);
+  }, [cityFilter, categoryFilter, subcategoryFilter, nearMeActive, userCoords, searchQuery]);
 
   const loadMore = async () => {
     if (loadingMore || !hasMore || nearMeActive) return;
     setLoadingMore(true);
-    const next = await getDirectoryListings(categoryFilter, cityFilter, searchQuery || null, PAGE_SIZE, listings.length);
+    const next = await getDirectoryListings(categoryFilter, cityFilter, searchQuery || null, PAGE_SIZE, listings.length, subcategoryFilter);
     setListings((prev) => [...prev, ...next]);
     setHasMore(next.length === PAGE_SIZE);
     setLoadingMore(false);
@@ -398,6 +458,7 @@ export default function DirectoryPage() {
   if (nearMeActive) summaryParts.push("near you");
   else if (cityFilter) summaryParts.push(`in ${cityFilter}`);
   if (categoryFilter) summaryParts.push(`· ${categoryFilter}`);
+  if (subcategoryFilter) summaryParts.push(`· ${subcategoryFilter}`);
   const summaryText = summaryParts.length > 0 ? " " + summaryParts.join(" ") : "";
 
   return (
@@ -509,9 +570,16 @@ export default function DirectoryPage() {
         </div>
 
         {/* Category tabs */}
-        <div className="border-b border-border mb-4 overflow-x-auto scrollbar-none">
+        <div className="border-b border-border mb-2 overflow-x-auto scrollbar-none">
           <CategoryTabBar selected={categoryFilter} onSelect={setCategoryFilter} />
         </div>
+
+        {/* Subcategory tabs (shown for Doctors & Healthcare) */}
+        {categoryFilter === "Doctors & Healthcare" && (
+          <div className="mb-4">
+            <SubcategoryTabBar selected={subcategoryFilter} onSelect={setSubcategoryFilter} />
+          </div>
+        )}
 
         {/* Listings */}
         {loading ? (

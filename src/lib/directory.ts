@@ -95,6 +95,38 @@ function parseListing(row: any): DirectoryListing {
   };
 }
 
+export const DOCTOR_SUBCATEGORIES = [
+  "Dentist",
+  "Pediatrician",
+  "Primary Care",
+  "OB/GYN",
+  "Cardiologist",
+  "Dermatologist",
+  "Ophthalmologist",
+  "Orthopedic",
+  "Psychiatrist / Mental Health",
+  "Urgent Care",
+  "Ayurveda & Holistic",
+  "Surgeon",
+  "General / Other",
+];
+
+export const SUBCATEGORY_ICONS: Record<string, string> = {
+  "Dentist": "🦷",
+  "Pediatrician": "👶",
+  "Primary Care": "🏥",
+  "OB/GYN": "🤰",
+  "Cardiologist": "❤️",
+  "Dermatologist": "🧴",
+  "Ophthalmologist": "👁️",
+  "Orthopedic": "🦴",
+  "Psychiatrist / Mental Health": "🧠",
+  "Urgent Care": "🚑",
+  "Ayurveda & Holistic": "🌿",
+  "Surgeon": "🔪",
+  "General / Other": "👨‍⚕️",
+};
+
 /* ------------------------------------------------------------------ */
 /* Data fetching                                                      */
 /* ------------------------------------------------------------------ */
@@ -105,6 +137,7 @@ export async function getDirectoryListings(
   search: string | null = null,
   limit = 50,
   offset = 0,
+  subcategory: string | null = null,
 ): Promise<DirectoryListing[]> {
   let query = supabase
     .from("directory_listings")
@@ -115,6 +148,10 @@ export async function getDirectoryListings(
 
   if (category) {
     query = query.eq("category", category);
+  }
+
+  if (subcategory) {
+    query = query.eq("subcategory", subcategory);
   }
 
   if (city) {
