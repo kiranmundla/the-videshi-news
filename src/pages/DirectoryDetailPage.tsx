@@ -69,7 +69,7 @@ function PhotoGallery({ photos, name }: { photos: string[]; name: string }) {
             <img
               src={url}
               alt={`${name} — photo ${i + 1}`}
-              className="w-full h-44 sm:h-52 object-cover bg-white/5"
+              className="w-full h-44 sm:h-52 object-contain bg-white/5"
               loading="lazy"
             />
           </div>
@@ -281,7 +281,7 @@ export default function DirectoryDetailPage() {
               <img
                 src={listing.image_url || photos[0]}
                 alt={listing.name}
-                className="w-full h-48 sm:h-64 md:h-80 object-cover bg-muted/10"
+                className="w-full max-h-96 object-contain bg-muted/10"
               />
             </div>
           )}
