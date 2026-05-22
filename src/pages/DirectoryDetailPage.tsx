@@ -357,29 +357,6 @@ export default function DirectoryDetailPage() {
             <PhotoGallery photos={photos.slice(1)} name={listing.name} />
           )}
 
-          {/* Map */}
-          {mapQuery && (
-            <div className="mt-6">
-              <h3 className="font-serif text-lg text-foreground mb-3">Location</h3>
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-xl overflow-hidden border border-border hover:border-primary/30 transition-colors"
-              >
-                <img
-                  src={`https://maps.googleapis.com/maps/api/staticmap?center=${mapQuery}&zoom=15&size=600x300&scale=2&markers=color:red%7C${mapQuery}&key=AIzaSyB-KBpDQExIKfEl4J4fxUVMBviTpY7tfZ8`}
-                  alt={`Map of ${listing.name}`}
-                  className="w-full h-[200px] sm:h-[250px] object-cover"
-                  loading="lazy"
-                />
-                <div className="bg-card px-4 py-2 text-sm text-muted-foreground text-center">
-                  Tap to open in Google Maps
-                </div>
-              </a>
-            </div>
-          )}
-
           {/* CTA buttons */}
           <div className="mt-8 flex flex-wrap gap-3">
             {listing.phone && (
