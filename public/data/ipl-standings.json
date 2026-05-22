@@ -1,6 +1,6 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-22T12:55:44Z",
+  "last_updated": "2026-05-22T13:55:37Z",
   "stage": "League Stage — Match 65 of 70",
   "standings": [
     {
@@ -17,12 +17,12 @@
     {
       "team": "Gujarat Titans",
       "short": "GT",
-      "played": 13,
-      "won": 8,
+      "played": 14,
+      "won": 9,
       "lost": 5,
       "nr": 0,
-      "nrr": "+0.400",
-      "points": 16,
+      "nrr": "+0.695",
+      "points": 18,
       "position": 2
     },
     {
@@ -72,11 +72,11 @@
     {
       "team": "Chennai Super Kings",
       "short": "CSK",
-      "played": 13,
+      "played": 14,
       "won": 6,
-      "lost": 7,
+      "lost": 8,
       "nr": 0,
-      "nrr": "-0.016",
+      "nrr": "-0.345",
       "points": 12,
       "position": 7
     },
