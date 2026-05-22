@@ -6,6 +6,7 @@ import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import { supabase } from "@/integrations/supabase/client";
 import { DIRECTORY_CATEGORIES, CATEGORY_ICONS } from "@/lib/directory";
+import TurnstileWidget from "@/components/TurnstileWidget";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -105,6 +106,9 @@ export default function SubmitListingPage() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [publishedSlug, setPublishedSlug] = useState<string | null>(null);
 
+  /* Turnstile bot protection */
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+
   /* Image state */
   const [coverImage, setCoverImage] = useState<ImagePreview | null>(null);
   const [imageError, setImageError] = useState<string | null>(null);
@@ -191,6 +195,10 @@ export default function SubmitListingPage() {
   const handlePreview = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
+    if (!turnstileToken) {
+      setSubmitError("Please complete the bot verification.");
+      return;
+    }
     setStep("preview");
   };
 
@@ -198,6 +206,27 @@ export default function SubmitListingPage() {
   const handlePublish = async () => {
     setStep("publishing");
     setSubmitError(null);
+
+    /* Server-side Turnstile verification */
+    try {
+      const tRes = await fetch("/api/verify-turnstile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: turnstileToken }),
+      });
+      const tData = await tRes.json();
+      if (!tData.success) {
+        setSubmitError("Bot verification failed. Please try again.");
+        setTurnstileToken(null);
+        setStep("preview");
+        return;
+      }
+    } catch {
+      setSubmitError("Bot verification failed. Please try again.");
+      setTurnstileToken(null);
+      setStep("preview");
+      return;
+    }
 
     const slug = generateListingSlug(form.name.trim());
 
@@ -660,9 +689,16 @@ export default function SubmitListingPage() {
             </div>
           )}
 
+          <TurnstileWidget
+            onVerify={(token) => setTurnstileToken(token)}
+            onExpire={() => setTurnstileToken(null)}
+            className="mb-2"
+          />
+
           <button
             type="submit"
-            className="w-full sm:w-auto px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+            disabled={!turnstileToken}
+            className="w-full sm:w-auto px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Preview Listing →
           </button>

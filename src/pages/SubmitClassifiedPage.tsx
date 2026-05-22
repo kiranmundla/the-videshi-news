@@ -6,6 +6,7 @@ import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import { supabase } from "@/integrations/supabase/client";
+import TurnstileWidget from "@/components/TurnstileWidget";
 import {
   CLASSIFIED_CATEGORIES,
   CATEGORY_ICONS,
@@ -89,6 +90,9 @@ export default function SubmitClassifiedPage() {
   const [copied, setCopied] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
+  /* Turnstile bot protection */
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+
   /* OTP state */
   const [verifyCode, setVerifyCode] = useState("");
   const [verifySending, setVerifySending] = useState(false);
@@ -140,6 +144,7 @@ export default function SubmitClassifiedPage() {
   const goPreview = () => {
     const err = validate();
     if (err) { setError(err); return; }
+    if (!turnstileToken) { setError("Please complete the bot verification."); return; }
     setError("");
     setStep("preview");
   };
@@ -205,6 +210,27 @@ export default function SubmitClassifiedPage() {
   const doPublish = async () => {
     setStep("publishing");
     setError("");
+
+    /* Server-side Turnstile verification */
+    try {
+      const tRes = await fetch("/api/verify-turnstile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: turnstileToken }),
+      });
+      const tData = await tRes.json();
+      if (!tData.success) {
+        setError("Bot verification failed. Please try again.");
+        setTurnstileToken(null);
+        setStep("preview");
+        return;
+      }
+    } catch {
+      setError("Bot verification failed. Please try again.");
+      setTurnstileToken(null);
+      setStep("preview");
+      return;
+    }
 
     try {
       const slug = generateClassifiedSlug(form.title);
@@ -495,10 +521,18 @@ export default function SubmitClassifiedPage() {
                 </div>
               </div>
 
+              {/* Turnstile */}
+              <TurnstileWidget
+                onVerify={(token) => setTurnstileToken(token)}
+                onExpire={() => setTurnstileToken(null)}
+                className="mb-2"
+              />
+
               {/* Submit */}
               <button
                 onClick={goPreview}
-                className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+                disabled={!turnstileToken}
+                className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Preview Listing
               </button>

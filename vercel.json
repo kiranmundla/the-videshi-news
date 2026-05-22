@@ -5,6 +5,7 @@
     { "source": "/api/og", "destination": "/api/og" },
     { "source": "/api/subscribe", "destination": "/api/subscribe" },
     { "source": "/api/instagram-thumb", "destination": "/api/instagram-thumb" },
+    { "source": "/api/verify-turnstile", "destination": "/api/verify-turnstile" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

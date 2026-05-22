@@ -6,6 +6,7 @@ import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import { supabase } from "@/integrations/supabase/client";
 import { generateSlug, formatEventDateLong } from "@/lib/events";
+import TurnstileWidget from "@/components/TurnstileWidget";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -115,6 +116,9 @@ export default function SubmitEventPage() {
   const [step, setStep] = useState<"form" | "synthesizing" | "preview" | "verify-email" | "verify-code" | "publishing" | "done">("form");
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [publishedSlug, setPublishedSlug] = useState<string | null>(null);
+
+  /* Turnstile bot protection */
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   /* Email verification state */
   const [verifyCode, setVerifyCode] = useState("");
@@ -298,6 +302,29 @@ export default function SubmitEventPage() {
   const handlePreview = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
+
+    /* Verify Turnstile token */
+    if (!turnstileToken) {
+      setSubmitError("Please complete the bot verification.");
+      return;
+    }
+    try {
+      const tRes = await fetch("/api/verify-turnstile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: turnstileToken }),
+      });
+      const tData = await tRes.json();
+      if (!tData.success) {
+        setSubmitError("Bot verification failed. Please try again.");
+        setTurnstileToken(null);
+        return;
+      }
+    } catch {
+      setSubmitError("Bot verification failed. Please try again.");
+      setTurnstileToken(null);
+      return;
+    }
 
     setStep("synthesizing");
     setSubmitError(null);
@@ -1048,9 +1075,15 @@ export default function SubmitEventPage() {
             </div>
           )}
 
+          <TurnstileWidget
+            onVerify={(token) => setTurnstileToken(token)}
+            onExpire={() => setTurnstileToken(null)}
+            className="mb-2"
+          />
+
           <button
             type="submit"
-            disabled={step === "synthesizing"}
+            disabled={step === "synthesizing" || !turnstileToken}
             className="w-full sm:w-auto px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {step === "synthesizing" ? (

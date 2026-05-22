@@ -23,6 +23,7 @@ import {
   CATEGORY_COLORS,
   timeAgo,
 } from "@/lib/classifieds";
+import TurnstileWidget from "@/components/TurnstileWidget";
 
 const sb = supabase as any;
 
@@ -92,6 +93,7 @@ function InquiryForm({ classified }: { classified: Classified }) {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,8 +105,34 @@ function InquiryForm({ classified }: { classified: Classified }) {
       setError("Please enter a valid email");
       return;
     }
+    if (!turnstileToken) {
+      setError("Please complete the bot verification.");
+      return;
+    }
     setSending(true);
     setError(null);
+
+    /* Server-side Turnstile verification */
+    try {
+      const tRes = await fetch("/api/verify-turnstile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: turnstileToken }),
+      });
+      const tData = await tRes.json();
+      if (!tData.success) {
+        setError("Bot verification failed. Please try again.");
+        setTurnstileToken(null);
+        setSending(false);
+        return;
+      }
+    } catch {
+      setError("Bot verification failed. Please try again.");
+      setTurnstileToken(null);
+      setSending(false);
+      return;
+    }
+
     try {
       const { data, error: fnErr } = await sb.functions.invoke(
         "send-classified-inquiry",
@@ -220,10 +248,16 @@ function InquiryForm({ classified }: { classified: Classified }) {
           <p className="text-sm text-red-400">{error}</p>
         )}
 
+        <TurnstileWidget
+          onVerify={(token) => setTurnstileToken(token)}
+          onExpire={() => setTurnstileToken(null)}
+          className="mb-2"
+        />
+
         <div className="flex gap-3">
           <button
             type="submit"
-            disabled={sending}
+            disabled={sending || !turnstileToken}
             className="flex-1 inline-flex items-center justify-center gap-2 py-3 rounded-lg bg-amber-600 text-white font-medium hover:bg-amber-700 transition-colors disabled:opacity-50"
           >
             {sending ? (
