@@ -42,6 +42,7 @@ import EditClassifiedPage from "./pages/EditClassifiedPage.tsx";
 import CarsPage from "./pages/CarsPage.tsx";
 import CarDetailPage from "./pages/CarDetailPage.tsx";
 import CarComparePage from "./pages/CarComparePage.tsx";
+import LeaseDealsPage from "./pages/LeaseDealsPage.tsx";
 import { FirstCarGuide, LeaseVsBuyGuide, InsuranceGuide, BestFamilySuvsGuide } from "./pages/CarGuides.tsx";
 
 const queryClient = new QueryClient();
@@ -74,6 +75,7 @@ const App = () => (
             <Route path="/classifieds/:slug/edit" element={<EditClassifiedPage />} />
             <Route path="/classifieds/:slug" element={<ClassifiedDetailPage />} />
             <Route path="/cars" element={<CarsPage />} />
+            <Route path="/cars/deals" element={<LeaseDealsPage />} />
             <Route path="/cars/compare" element={<CarComparePage />} />
             <Route path="/cars/guide/first-car-in-america" element={<FirstCarGuide />} />
             <Route path="/cars/guide/lease-vs-buy" element={<LeaseVsBuyGuide />} />

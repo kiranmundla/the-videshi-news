@@ -584,7 +584,9 @@ export default function CarsPage() {
                 <span className="text-xl">🏷️</span>
                 <h2 className="font-serif text-lg font-bold">Best Lease Deals This Month</h2>
               </div>
-              <span className="text-xs text-foreground/40">Updated weekly</span>
+              <Link to="/cars/deals" className="text-sm text-primary hover:text-primary/80 font-medium transition-colors flex items-center gap-1">
+                View all {allCars.filter((c) => c.lease_monthly).length} deals <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {topDeals.map((car) => (
