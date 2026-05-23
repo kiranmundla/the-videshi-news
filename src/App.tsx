@@ -12,6 +12,12 @@ import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Admin from "./pages/Admin.tsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
+import AdminArticles from "./pages/admin/AdminArticles.tsx";
+import AdminCars from "./pages/admin/AdminCars.tsx";
+import AdminEvents from "./pages/admin/AdminEvents.tsx";
+import AdminClassifieds from "./pages/admin/AdminClassifieds.tsx";
+import AdminDirectory from "./pages/admin/AdminDirectory.tsx";
 import PipelineLayout from "./pages/pipeline/PipelineLayout.tsx";
 import FeedSourcesPage from "./pages/pipeline/FeedSourcesPage.tsx";
 import TopicRadarPage from "./pages/pipeline/TopicRadarPage.tsx";
@@ -72,7 +78,13 @@ const App = () => (
             <Route path="/cars/guide/insurance-for-new-immigrants" element={<InsuranceGuide />} />
             <Route path="/cars/guide/best-family-suvs" element={<BestFamilySuvsGuide />} />
             <Route path="/cars/:slug" element={<CarDetailPage />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/articles" element={<AdminArticles />} />
+            <Route path="/admin/cars" element={<AdminCars />} />
+            <Route path="/admin/events" element={<AdminEvents />} />
+            <Route path="/admin/classifieds" element={<AdminClassifieds />} />
+            <Route path="/admin/directory" element={<AdminDirectory />} />
+            <Route path="/admin/featured" element={<Admin />} />
             <Route path="/admin/sources" element={<SourcesPage />} />
             <Route path="/admin/p2" element={<PipelineLayout />}>
               <Route index element={<FeedSourcesPage />} />
