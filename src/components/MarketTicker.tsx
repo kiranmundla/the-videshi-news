@@ -155,7 +155,12 @@ export default function MarketTicker() {
   useEffect(() => {
     fetch("/data/market-indices.json")
       .then((r) => { if (!r.ok) throw new Error("not found"); return r.json(); })
-      .then((d: MarketData) => setData(d))
+      .then((d: MarketData) => {
+        // Guard: cron might push a bare array instead of {indices:[...]}
+        if (Array.isArray(d)) return;
+        if (!d || !Array.isArray(d.indices)) return;
+        setData(d);
+      })
       .catch(() => {});
   }, []);
 
