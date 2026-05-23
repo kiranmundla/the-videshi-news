@@ -1,25 +1,26 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Search, MapPin, X, Plus, Loader2 } from "lucide-react";
+import { Search, MapPin, X, Plus, Loader2, Navigation } from "lucide-react";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import {
   Classified,
   getClassifieds,
+  getAllClassifieds,
   CLASSIFIED_CATEGORIES,
   CATEGORY_ICONS,
   CATEGORY_COLORS,
   SUBCATEGORIES,
   timeAgo,
 } from "@/lib/classifieds";
-import { CITY_GROUPS } from "@/lib/events";
+import { CITY_GROUPS, getCityCoords, getDistanceMiles, formatDistance } from "@/lib/events";
 
 /* ------------------------------------------------------------------ */
 /* Listing Card                                                       */
 /* ------------------------------------------------------------------ */
-function ClassifiedCard({ item }: { item: Classified }) {
+function ClassifiedCard({ item }: { item: Classified & { _dist?: number } }) {
   const imageUrl = item.image_url || (item.photos?.length ? item.photos[0] : null);
   const catColor = CATEGORY_COLORS[item.category] || "bg-muted text-muted-foreground";
   const catEmoji = CATEGORY_ICONS[item.category] || "📌";
@@ -82,6 +83,12 @@ function ClassifiedCard({ item }: { item: Classified }) {
 
           {/* Meta row */}
           <div className="flex items-center gap-3 text-xs text-foreground/50 mt-auto pt-1">
+            {item._dist != null && item._dist < 9999 && (
+              <span className="flex items-center gap-1 text-primary font-medium">
+                <Navigation className="h-3 w-3" />
+                {formatDistance(item._dist)}
+              </span>
+            )}
             {item.city && (
               <span className="flex items-center gap-1">
                 <MapPin className="h-3 w-3" />
@@ -109,23 +116,79 @@ export default function ClassifiedsPage() {
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const searchTimeout = useRef<ReturnType<typeof setTimeout>>();
 
+  // Near Me state
+  const [nearMeActive, setNearMeActive] = useState(false);
+  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
+  const [geoLoading, setGeoLoading] = useState(false);
+
   const onSearchChange = useCallback((val: string) => {
     setSearch(val);
     if (searchTimeout.current) clearTimeout(searchTimeout.current);
     searchTimeout.current = setTimeout(() => setDebouncedSearch(val), 350);
   }, []);
 
+  /* --- Near Me handler --- */
+  const handleNearMe = useCallback(() => {
+    if (nearMeActive) {
+      setNearMeActive(false);
+      return;
+    }
+    if (!navigator.geolocation) return;
+    setGeoLoading(true);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setUserCoords({ lat: position.coords.latitude, lng: position.coords.longitude });
+        setNearMeActive(true);
+        setCity(null);
+        setGeoLoading(false);
+      },
+      () => { setGeoLoading(false); },
+      { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
+    );
+  }, [nearMeActive]);
+
+  /* --- Auto-request geolocation on mount --- */
+  useEffect(() => {
+    if (!userCoords && navigator.geolocation) {
+      setGeoLoading(true);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserCoords({ lat: position.coords.latitude, lng: position.coords.longitude });
+          setNearMeActive(true);
+          setGeoLoading(false);
+        },
+        () => { setGeoLoading(false); },
+        { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    getClassifieds(category, city, debouncedSearch || null, subcategory).then((data) => {
-      if (!cancelled) {
-        setItems(data);
+
+    if (nearMeActive && userCoords) {
+      // Near Me: fetch all, sort by city distance
+      getAllClassifieds(category, debouncedSearch || null, subcategory).then((data) => {
+        if (cancelled) return;
+        const sorted = data
+          .map((item) => {
+            const coords = getCityCoords(item.city);
+            const dist = coords ? getDistanceMiles(userCoords.lat, userCoords.lng, coords.lat, coords.lng) : 9999;
+            return { ...item, _dist: dist };
+          })
+          .sort((a, b) => a._dist - b._dist);
+        setItems(sorted);
         setLoading(false);
-      }
-    });
+      });
+    } else {
+      getClassifieds(category, city, debouncedSearch || null, subcategory).then((data) => {
+        if (!cancelled) { setItems(data); setLoading(false); }
+      });
+    }
     return () => { cancelled = true; };
-  }, [category, subcategory, city, debouncedSearch]);
+  }, [category, subcategory, city, debouncedSearch, nearMeActive, userCoords]);
 
   const subcats = category ? SUBCATEGORIES[category] || [] : [];
 
@@ -218,7 +281,7 @@ export default function ClassifiedsPage() {
           </div>
         )}
 
-        {/* Search + City Filter */}
+        {/* Search + Near Me + City Filter */}
         <div className="flex flex-col sm:flex-row gap-3">
           {/* Search */}
           <div className="relative flex-1">
@@ -240,17 +303,37 @@ export default function ClassifiedsPage() {
             )}
           </div>
 
-          {/* City */}
-          <select
-            value={city || ""}
-            onChange={(e) => setCity(e.target.value || null)}
-            className="px-3 py-2.5 rounded-lg border border-border bg-card text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 sm:w-48"
-          >
-            <option value="">All Cities</option>
-            {CITY_GROUPS.map((g) => (
-              <option key={g.label} value={g.label}>{g.label}</option>
-            ))}
-          </select>
+          {/* Near Me + City */}
+          <div className="flex gap-2">
+            <button
+              onClick={handleNearMe}
+              className={`shrink-0 flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg border text-sm font-medium transition-colors ${
+                nearMeActive
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "border-border text-foreground/70 hover:border-primary hover:text-primary"
+              }`}
+            >
+              {geoLoading ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <Navigation className="h-3.5 w-3.5" />
+              )}
+              Near Me
+            </button>
+            <select
+              value={nearMeActive ? "" : (city || "")}
+              onChange={(e) => {
+                setCity(e.target.value || null);
+                if (e.target.value) setNearMeActive(false);
+              }}
+              className="px-3 py-2.5 rounded-lg border border-border bg-card text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 sm:w-48 min-w-0 flex-1 sm:flex-none"
+            >
+              <option value="">{nearMeActive ? "Near Me" : "All Cities"}</option>
+              {CITY_GROUPS.map((g) => (
+                <option key={g.label} value={g.label}>{g.label}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Listings */}

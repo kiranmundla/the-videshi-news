@@ -228,6 +228,35 @@ export async function getClassifieds(
   return ((data || []) as any[]).map(parseClassified);
 }
 
+/** Fetch all active classifieds (no city filter, no limit). Used for Near Me sorting. */
+export async function getAllClassifieds(
+  category: string | null = null,
+  search: string | null = null,
+  subcategory: string | null = null,
+): Promise<Classified[]> {
+  let query = supabase
+    .from("classifieds")
+    .select(COLS)
+    .eq("status", "active")
+    .gt("expires_at", new Date().toISOString())
+    .order("created_at", { ascending: false })
+    .limit(500);
+
+  if (category) query = query.eq("category", category);
+  if (subcategory) query = query.eq("subcategory", subcategory);
+
+  if (search) {
+    const q = `%${search}%`;
+    query = query.or(
+      `title.ilike.${q},description.ilike.${q},category.ilike.${q},city.ilike.${q},subcategory.ilike.${q}`
+    );
+  }
+
+  const { data, error } = await query;
+  if (error) { console.error("Failed to fetch classifieds:", error); return []; }
+  return ((data || []) as any[]).map(parseClassified);
+}
+
 export async function getClassifiedBySlug(
   slug: string,
 ): Promise<Classified | null> {
