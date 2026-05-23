@@ -19,6 +19,11 @@ const STATIC_PAGES = [
   { loc: "/directory/submit", priority: "0.5", changefreq: "monthly" },
   { loc: "/classifieds", priority: "0.8", changefreq: "daily" },
   { loc: "/classifieds/submit", priority: "0.5", changefreq: "monthly" },
+  { loc: "/cars", priority: "0.8", changefreq: "weekly" },
+  { loc: "/cars/guide/first-car-in-america", priority: "0.6", changefreq: "monthly" },
+  { loc: "/cars/guide/lease-vs-buy", priority: "0.6", changefreq: "monthly" },
+  { loc: "/cars/guide/insurance-for-new-immigrants", priority: "0.6", changefreq: "monthly" },
+  { loc: "/cars/guide/best-family-suvs", priority: "0.6", changefreq: "monthly" },
   { loc: "/about", priority: "0.5", changefreq: "monthly" },
   { loc: "/contact", priority: "0.5", changefreq: "monthly" },
   { loc: "/privacy", priority: "0.3", changefreq: "yearly" },
@@ -65,11 +70,12 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     const today = now.split("T")[0];
 
     // Fetch all data in parallel
-    const [articles, events, listings, classifieds] = await Promise.all([
+    const [articles, events, listings, classifieds, cars] = await Promise.all([
       fetchAll("p2_articles", "slug,published_at,category", "status=eq.published&order=published_at.desc"),
       fetchAll("events", "slug,date,updated_at", `date=gte.${today}&order=date.asc`),
       fetchAll("directory_listings", "slug,updated_at", "order=updated_at.desc"),
       fetchAll("classifieds", "slug,updated_at", `status=eq.active&expires_at=gte.${now}&order=created_at.desc`),
+      fetchAll("cars", "slug,updated_at", "order=sort_order.asc"),
     ]);
 
     let xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -158,6 +164,21 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+  </url>
+`;
+    }
+
+    // Car pages
+    for (const car of cars) {
+      if (!car.slug) continue;
+      const lastmod = car.updated_at
+        ? new Date(car.updated_at).toISOString().split("T")[0]
+        : today;
+      xml += `  <url>
+    <loc>${escapeXml(SITE + "/cars/" + car.slug)}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 `;
     }

@@ -18,6 +18,7 @@ export const CATEGORIES: CategoryDef[] = [
   { slug: "events", label: "Events", path: "/events", hasPipeline: false },
   { slug: "directory", label: "Directory", path: "/directory", hasPipeline: false },
   { slug: "classifieds", label: "Classifieds", path: "/classifieds", hasPipeline: false },
+  { slug: "cars", label: "Cars", path: "/cars", hasPipeline: false },
   { slug: "real-estate", label: "Real Estate", path: "/real-estate", hasPipeline: false },
 ];
 

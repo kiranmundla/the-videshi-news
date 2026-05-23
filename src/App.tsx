@@ -33,6 +33,9 @@ import ClassifiedsPage from "./pages/ClassifiedsPage.tsx";
 import ClassifiedDetailPage from "./pages/ClassifiedDetailPage.tsx";
 import SubmitClassifiedPage from "./pages/SubmitClassifiedPage.tsx";
 import EditClassifiedPage from "./pages/EditClassifiedPage.tsx";
+import CarsPage from "./pages/CarsPage.tsx";
+import CarDetailPage from "./pages/CarDetailPage.tsx";
+import { FirstCarGuide, LeaseVsBuyGuide, InsuranceGuide, BestFamilySuvsGuide } from "./pages/CarGuides.tsx";
 
 const queryClient = new QueryClient();
 
@@ -63,6 +66,12 @@ const App = () => (
             <Route path="/classifieds/submit" element={<SubmitClassifiedPage />} />
             <Route path="/classifieds/:slug/edit" element={<EditClassifiedPage />} />
             <Route path="/classifieds/:slug" element={<ClassifiedDetailPage />} />
+            <Route path="/cars" element={<CarsPage />} />
+            <Route path="/cars/guide/first-car-in-america" element={<FirstCarGuide />} />
+            <Route path="/cars/guide/lease-vs-buy" element={<LeaseVsBuyGuide />} />
+            <Route path="/cars/guide/insurance-for-new-immigrants" element={<InsuranceGuide />} />
+            <Route path="/cars/guide/best-family-suvs" element={<BestFamilySuvsGuide />} />
+            <Route path="/cars/:slug" element={<CarDetailPage />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/sources" element={<SourcesPage />} />
             <Route path="/admin/p2" element={<PipelineLayout />}>
