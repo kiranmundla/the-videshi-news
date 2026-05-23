@@ -23,6 +23,25 @@ export async function uploadImage(
 }
 
 /**
+ * Upload multiple files and return array of public URLs.
+ */
+export async function uploadMultipleImages(
+  bucket: string,
+  prefix: string,
+  slug: string,
+  files: File[],
+): Promise<string[]> {
+  const urls: string[] = [];
+  for (let i = 0; i < files.length; i++) {
+    const ext = files[i].name.split(".").pop()?.toLowerCase() ?? "jpg";
+    const path = `${prefix}/${slug}_${Date.now()}_${i}.${ext}`;
+    const url = await uploadImage(bucket, path, files[i]);
+    if (url) urls.push(url);
+  }
+  return urls;
+}
+
+/**
  * Generate a safe filename from a slug + file extension.
  */
 export function makeStoragePath(prefix: string, slug: string, file: File): string {

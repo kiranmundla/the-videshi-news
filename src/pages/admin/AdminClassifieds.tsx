@@ -11,6 +11,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { CLASSIFIED_CATEGORIES } from "@/lib/classifieds";
+import { uploadMultipleImages } from "@/lib/adminUpload";
+import MultiImageManager from "@/components/admin/MultiImageManager";
 
 const sb = supabase as any;
 const PAGE_SIZE = 25;
@@ -236,12 +238,15 @@ export default function AdminClassifieds() {
               </div>
               <div><label className="text-sm font-medium mb-1 block">Price</label><Input value={editRow.price ?? ""} onChange={(e) => setEditRow({ ...editRow, price: e.target.value })} /></div>
               <div><label className="text-sm font-medium mb-1 block">Description</label><Textarea value={editRow.description ?? ""} onChange={(e) => setEditRow({ ...editRow, description: e.target.value })} rows={6} /></div>
-              {editRow.photos && editRow.photos.length > 0 && (
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Photos</label>
-                  <div className="flex gap-2 flex-wrap">{editRow.photos.map((p, i) => (<img key={i} src={p} alt="" className="w-20 h-20 object-cover rounded" />))}</div>
-                </div>
-              )}
+              <MultiImageManager
+                label="Photos"
+                images={(editRow.photos ?? []).map((p: any) => typeof p === "string" ? { url: p } : p)}
+                onChange={(imgs) => setEditRow({ ...editRow, photos: imgs.map((i: any) => i.url || i), image_url: imgs[0]?.url ?? editRow.image_url })}
+                onUpload={async (files) => {
+                  return await uploadMultipleImages("article-images", "classifieds", editRow.slug || editRow.id, files);
+                }}
+                maxImages={10}
+              />
             </div>
           )}
           <DialogFooter>

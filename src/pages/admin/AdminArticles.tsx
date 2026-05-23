@@ -10,7 +10,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { uploadImage, makeStoragePath } from "@/lib/adminUpload";
+import { uploadImage, makeStoragePath, uploadMultipleImages } from "@/lib/adminUpload";
+import MultiImageManager from "@/components/admin/MultiImageManager";
 
 const sb = supabase as any;
 const PAGE_SIZE = 25;
@@ -29,6 +30,7 @@ type ArticleRow = {
   category: string | null;
   status: string;
   image_url: string | null;
+  gallery_images: { url: string; caption?: string }[] | null;
   slug: string | null;
   published_at: string | null;
   created_at: string;
@@ -49,7 +51,7 @@ export default function AdminArticles() {
   const load = useCallback(async () => {
     setLoading(true);
     let q = sb.from("p2_articles")
-      .select("id,headline,subheadline,body,vertical,category,status,image_url,slug,published_at,created_at", { count: "exact" })
+      .select("id,headline,subheadline,body,vertical,category,status,image_url,gallery_images,slug,published_at,created_at", { count: "exact" })
       .order("published_at", { ascending: false, nullsFirst: false });
 
     if (search) q = q.ilike("headline", `%${search}%`);
@@ -78,6 +80,7 @@ export default function AdminArticles() {
         category: editRow.category,
         status: editRow.status,
         image_url: editRow.image_url,
+        gallery_images: editRow.gallery_images ?? [],
       })
       .eq("id", editRow.id);
     setSaving(false);
@@ -300,6 +303,15 @@ export default function AdminArticles() {
                   </div>
                 </div>
               </div>
+              <MultiImageManager
+                label="Gallery Images"
+                images={editRow.gallery_images ?? []}
+                onChange={(imgs) => setEditRow({ ...editRow, gallery_images: imgs })}
+                onUpload={async (files) => {
+                  return await uploadMultipleImages("article-images", "gallery", editRow.slug || editRow.id, files);
+                }}
+                maxImages={10}
+              />
               <div>
                 <label className="text-sm font-medium mb-1 block">Body</label>
                 <Textarea

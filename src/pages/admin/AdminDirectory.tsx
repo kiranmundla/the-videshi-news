@@ -11,8 +11,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
-import { uploadImage } from "@/lib/adminUpload";
+import { uploadImage, uploadMultipleImages } from "@/lib/adminUpload";
 import { DIRECTORY_CATEGORIES } from "@/lib/directory";
+import MultiImageManager from "@/components/admin/MultiImageManager";
 
 const sb = supabase as any;
 const PAGE_SIZE = 25;
@@ -31,6 +32,7 @@ type DirRow = {
   state: string | null;
   zip: string | null;
   image_url: string | null;
+  photos: { url: string; caption?: string }[] | null;
   rating: number | null;
   review_count: number | null;
   verified: boolean;
@@ -53,7 +55,7 @@ export default function AdminDirectory() {
   const load = useCallback(async () => {
     setLoading(true);
     let q = sb.from("directory_listings")
-      .select("id,name,category,subcategory,description,phone,email,website,address,city,state,zip,image_url,rating,review_count,verified,featured,slug,created_at", { count: "exact" })
+      .select("id,name,category,subcategory,description,phone,email,website,address,city,state,zip,image_url,photos,rating,review_count,verified,featured,slug,created_at", { count: "exact" })
       .order("name");
 
     if (search) q = q.or(`name.ilike.%${search}%,city.ilike.%${search}%`);
@@ -86,6 +88,7 @@ export default function AdminDirectory() {
         state: editRow.state,
         zip: editRow.zip,
         image_url: editRow.image_url,
+        photos: editRow.photos ?? [],
         rating: editRow.rating,
         review_count: editRow.review_count,
         verified: editRow.verified,
@@ -229,7 +232,7 @@ export default function AdminDirectory() {
                 <div><label className="text-sm font-medium mb-1 block">ZIP</label><Input value={editRow.zip ?? ""} onChange={(e) => setEditRow({ ...editRow, zip: e.target.value })} /></div>
               </div>
               <div>
-                <label className="text-sm font-medium mb-1 block">Image</label>
+                <label className="text-sm font-medium mb-1 block">Cover Image</label>
                 <div className="flex items-start gap-4">
                   {editRow.image_url ? (<img src={editRow.image_url} alt="" className="w-32 h-20 object-cover rounded" />) : (<div className="w-32 h-20 bg-muted rounded flex items-center justify-center"><ImageIcon className="h-6 w-6 text-muted-foreground" /></div>)}
                   <div className="flex-1 space-y-2">
@@ -238,6 +241,15 @@ export default function AdminDirectory() {
                   </div>
                 </div>
               </div>
+              <MultiImageManager
+                label="Business Photos"
+                images={(editRow.photos ?? []).map((v: any) => typeof v === "string" ? { url: v } : v)}
+                onChange={(imgs) => setEditRow({ ...editRow, photos: imgs })}
+                onUpload={async (files) => {
+                  return await uploadMultipleImages("article-images", "directory", editRow.slug || editRow.id, files);
+                }}
+                maxImages={10}
+              />
               <div><label className="text-sm font-medium mb-1 block">Description</label><Textarea value={editRow.description ?? ""} onChange={(e) => setEditRow({ ...editRow, description: e.target.value })} rows={4} /></div>
               <div className="grid grid-cols-2 gap-4">
                 <div><label className="text-sm font-medium mb-1 block">Rating</label><Input type="number" step="0.1" min="0" max="5" value={editRow.rating ?? ""} onChange={(e) => setEditRow({ ...editRow, rating: e.target.value ? Number(e.target.value) : null })} /></div>

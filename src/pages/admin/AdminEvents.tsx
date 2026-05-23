@@ -11,7 +11,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
-import { uploadImage } from "@/lib/adminUpload";
+import { uploadImage, uploadMultipleImages } from "@/lib/adminUpload";
+import MultiImageManager from "@/components/admin/MultiImageManager";
 
 const sb = supabase as any;
 const PAGE_SIZE = 25;
@@ -34,6 +35,7 @@ type EventRow = {
   state: string | null;
   category: string | null;
   image_url: string | null;
+  venue_images: { url: string; caption?: string }[] | null;
   ticket_url: string | null;
   is_featured: boolean | null;
   source: string | null;
@@ -55,7 +57,7 @@ export default function AdminEvents() {
   const load = useCallback(async () => {
     setLoading(true);
     let q = sb.from("events")
-      .select("id,title,slug,description,date,end_date,time,venue_name,city,state,category,image_url,ticket_url,is_featured,source,latitude,longitude", { count: "exact" })
+      .select("id,title,slug,description,date,end_date,time,venue_name,city,state,category,image_url,venue_images,ticket_url,is_featured,source,latitude,longitude", { count: "exact" })
       .order("date", { ascending: false });
 
     if (search) q = q.ilike("title", `%${search}%`);
@@ -86,6 +88,7 @@ export default function AdminEvents() {
         state: editRow.state,
         category: editRow.category,
         image_url: editRow.image_url,
+        venue_images: editRow.venue_images ?? [],
         ticket_url: editRow.ticket_url,
         is_featured: editRow.is_featured,
         latitude: editRow.latitude,
@@ -221,7 +224,7 @@ export default function AdminEvents() {
                 <div><label className="text-sm font-medium mb-1 block">State</label><Input value={editRow.state ?? ""} onChange={(e) => setEditRow({ ...editRow, state: e.target.value })} /></div>
               </div>
               <div>
-                <label className="text-sm font-medium mb-1 block">Image</label>
+                <label className="text-sm font-medium mb-1 block">Event Image</label>
                 <div className="flex items-start gap-4">
                   {editRow.image_url ? (<img src={editRow.image_url} alt="" className="w-32 h-20 object-cover rounded" />) : (<div className="w-32 h-20 bg-muted rounded flex items-center justify-center"><ImageIcon className="h-6 w-6 text-muted-foreground" /></div>)}
                   <div className="flex-1 space-y-2">
@@ -230,6 +233,15 @@ export default function AdminEvents() {
                   </div>
                 </div>
               </div>
+              <MultiImageManager
+                label="Venue Photos"
+                images={(editRow.venue_images ?? []).map((v: any) => typeof v === "string" ? { url: v } : v)}
+                onChange={(imgs) => setEditRow({ ...editRow, venue_images: imgs })}
+                onUpload={async (files) => {
+                  return await uploadMultipleImages("article-images", "events", editRow.slug || editRow.id, files);
+                }}
+                maxImages={10}
+              />
               <div><label className="text-sm font-medium mb-1 block">Ticket URL</label><Input value={editRow.ticket_url ?? ""} onChange={(e) => setEditRow({ ...editRow, ticket_url: e.target.value })} /></div>
               <div><label className="text-sm font-medium mb-1 block">Description</label><Textarea value={editRow.description ?? ""} onChange={(e) => setEditRow({ ...editRow, description: e.target.value })} rows={5} /></div>
               <div className="grid grid-cols-2 gap-4">

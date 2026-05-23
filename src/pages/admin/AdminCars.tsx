@@ -11,8 +11,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
-import { uploadImage } from "@/lib/adminUpload";
+import { uploadImage, uploadMultipleImages } from "@/lib/adminUpload";
 import { CAR_CATEGORIES } from "@/lib/cars";
+import MultiImageManager from "@/components/admin/MultiImageManager";
 
 const sb = supabase as any;
 const PAGE_SIZE = 25;
@@ -35,6 +36,7 @@ type CarRow = {
   pros: string[] | null;
   cons: string[] | null;
   image_url: string | null;
+  images: { url: string; caption?: string }[] | null;
   is_our_pick: boolean;
   lease_monthly: number | null;
   lease_due_at_signing: number | null;
@@ -54,7 +56,7 @@ export default function AdminCars() {
   const load = useCallback(async () => {
     setLoading(true);
     let q = sb.from("cars")
-      .select("id,name,brand,model,slug,category,body_type,fuel_type,year,msrp_low,msrp_high,mpg,seating,nri_take,pros,cons,image_url,is_our_pick,lease_monthly,lease_due_at_signing", { count: "exact" })
+      .select("id,name,brand,model,slug,category,body_type,fuel_type,year,msrp_low,msrp_high,mpg,seating,nri_take,pros,cons,image_url,images,is_our_pick,lease_monthly,lease_due_at_signing", { count: "exact" })
       .order("name");
 
     if (search) q = q.ilike("name", `%${search}%`);
@@ -90,6 +92,7 @@ export default function AdminCars() {
         pros: editRow.pros,
         cons: editRow.cons,
         image_url: editRow.image_url,
+        images: editRow.images ?? [],
         is_our_pick: editRow.is_our_pick,
         lease_monthly: editRow.lease_monthly,
         lease_due_at_signing: editRow.lease_due_at_signing,
@@ -243,20 +246,30 @@ export default function AdminCars() {
                 <div><label className="text-sm font-medium mb-1 block">Lease $/mo</label><Input type="number" value={editRow.lease_monthly ?? ""} onChange={(e) => setEditRow({ ...editRow, lease_monthly: e.target.value ? Number(e.target.value) : null })} /></div>
                 <div><label className="text-sm font-medium mb-1 block">Due at signing</label><Input type="number" value={editRow.lease_due_at_signing ?? ""} onChange={(e) => setEditRow({ ...editRow, lease_due_at_signing: e.target.value ? Number(e.target.value) : null })} /></div>
               </div>
-              <div>
-                <label className="text-sm font-medium mb-1 block">Image</label>
-                <div className="flex items-start gap-4">
-                  {editRow.image_url ? (
-                    <img src={editRow.image_url} alt="" className="w-32 h-20 object-contain rounded bg-muted/30" />
-                  ) : (
-                    <div className="w-32 h-20 bg-muted rounded flex items-center justify-center"><ImageIcon className="h-6 w-6 text-muted-foreground" /></div>
-                  )}
-                  <div className="flex-1 space-y-2">
-                    <Input type="file" accept="image/*" onChange={handleImageUpload} />
-                    <Input placeholder="Or paste image URL" value={editRow.image_url ?? ""} onChange={(e) => setEditRow({ ...editRow, image_url: e.target.value })} className="text-xs" />
-                  </div>
-                </div>
-              </div>
+              <MultiImageManager
+                label="Car Images (first = hero)"
+                images={(() => {
+                  const list: { url: string; caption?: string }[] = [];
+                  if (editRow.image_url) list.push({ url: editRow.image_url, caption: "Hero" });
+                  if (editRow.images) {
+                    for (const img of editRow.images) {
+                      if (img.url !== editRow.image_url) list.push(img);
+                    }
+                  }
+                  return list;
+                })()}
+                onChange={(imgs) => {
+                  setEditRow({
+                    ...editRow,
+                    image_url: imgs[0]?.url ?? null,
+                    images: imgs,
+                  });
+                }}
+                onUpload={async (files) => {
+                  return await uploadMultipleImages("article-images", "cars", editRow.slug, files);
+                }}
+                maxImages={10}
+              />
               <div>
                 <label className="text-sm font-medium mb-1 block">NRI Take</label>
                 <Textarea value={editRow.nri_take ?? ""} onChange={(e) => setEditRow({ ...editRow, nri_take: e.target.value })} rows={3} />
