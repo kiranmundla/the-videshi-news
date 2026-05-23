@@ -588,14 +588,37 @@ export default function CarsPage() {
                 View all {allCars.filter((c) => c.lease_monthly).length} deals <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {/* Mobile: compact rows */}
+            <div className="sm:hidden divide-y divide-border border border-border rounded-xl overflow-hidden bg-card">
+              {topDeals.map((car) => (
+                <Link key={car.id} to={`/cars/${car.slug}`} className="flex items-center gap-3 px-3 py-2.5 group hover:bg-primary/5 transition-colors">
+                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${brandGradient(car.brand)} flex items-center justify-center overflow-hidden flex-shrink-0`}>
+                    {car.image_url ? (
+                      <img src={car.image_url} alt={car.name} className="w-full h-full object-contain p-0.5" loading="lazy" />
+                    ) : (
+                      <span className="text-[9px] font-bold text-foreground/40">{car.brand.slice(0, 3)}</span>
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold truncate group-hover:text-primary transition-colors">{car.name}</p>
+                    <p className="text-[11px] text-foreground/40">{formatMsrp(car.msrp_low, car.msrp_high)} · {car.lease_term}mo</p>
+                  </div>
+                  <div className="text-right flex-shrink-0">
+                    <p className="text-base font-bold text-primary">{formatPrice(car.lease_monthly!)}<span className="text-[10px] font-normal text-foreground/40">/mo</span></p>
+                    <p className="text-[10px] text-foreground/40">${car.lease_due_at_signing?.toLocaleString()} due</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            {/* Tablet+: card grid */}
+            <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {topDeals.map((car) => (
                 <Link key={car.id} to={`/cars/${car.slug}`} className="block group">
-                  <div className="p-4 bg-card border border-primary/20 rounded-xl hover:border-primary/40 transition-all hover:shadow-lg hover:shadow-primary/5">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className={`w-14 h-14 rounded-lg bg-gradient-to-br ${brandGradient(car.brand)} flex items-center justify-center overflow-hidden flex-shrink-0`}>
+                  <div className="p-3 bg-card border border-primary/20 rounded-xl hover:border-primary/40 transition-all hover:shadow-lg hover:shadow-primary/5">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${brandGradient(car.brand)} flex items-center justify-center overflow-hidden flex-shrink-0`}>
                         {car.image_url ? (
-                          <img src={car.image_url} alt={car.name} className="w-full h-full object-contain p-1" loading="lazy" />
+                          <img src={car.image_url} alt={car.name} className="w-full h-full object-contain p-0.5" loading="lazy" />
                         ) : (
                           <span className="text-xs font-bold text-foreground/40">{car.brand.slice(0, 3)}</span>
                         )}
@@ -605,7 +628,7 @@ export default function CarsPage() {
                         <p className="text-xs text-foreground/50">{formatMsrp(car.msrp_low, car.msrp_high)}</p>
                       </div>
                     </div>
-                    <div className="p-2.5 rounded-lg bg-primary/5 border border-primary/10">
+                    <div className="p-2 rounded-lg bg-primary/5 border border-primary/10">
                       <p className="text-lg font-bold text-primary">{formatPrice(car.lease_monthly!)}<span className="text-xs font-normal text-foreground/50">/mo</span></p>
                       <p className="text-xs text-foreground/40 mt-0.5">${car.lease_due_at_signing?.toLocaleString()} due · {car.lease_term} months</p>
                     </div>
