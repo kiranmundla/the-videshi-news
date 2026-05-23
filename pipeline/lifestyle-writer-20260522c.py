@@ -343,8 +343,25 @@ for key, name, symbol in MARKET_INDICES:
 if market_data:
     market_path = os.path.join(os.path.dirname(__file__), "..", "public", "data", "market-indices.json")
     os.makedirs(os.path.dirname(market_path), exist_ok=True)
+    # Must match frontend format: { last_updated, indices: [...] } with symbol/name/flag/value/change/change_pct
+    formatted_indices = []
+    FLAGS = {"sensex": "🇮🇳", "nifty": "🇮🇳", "sp500": "🇺🇸", "nasdaq": "🇺🇸", "dowjones": "🇺🇸", "gold": "🪙", "usdinr": "💱"}
+    DISPLAY_NAMES = {"sensex": "Sensex", "nifty": "Nifty 50", "sp500": "S&P 500", "nasdaq": "Nasdaq", "dowjones": "Dow Jones", "gold": "Gold", "usdinr": "USD/INR"}
+    SYMBOLS = {"sensex": "SENSEX", "nifty": "NIFTY", "sp500": "SPX", "nasdaq": "IXIC", "dowjones": "DJI", "gold": "GOLD", "usdinr": "USDINR"}
+    for m in market_data:
+        k = m["key"]
+        price = m["price"]
+        pct = m["change_pct"]
+        formatted_indices.append({
+            "symbol": SYMBOLS.get(k, k.upper()),
+            "name": DISPLAY_NAMES.get(k, m["name"]),
+            "flag": FLAGS.get(k, "📊"),
+            "value": price,
+            "change": round(price * pct / 100, 2),
+            "change_pct": pct,
+        })
     with open(market_path, "w") as f:
-        json.dump(market_data, f, indent=2)
+        json.dump({"last_updated": now, "indices": formatted_indices}, f, indent=2)
     print(f"  Wrote {len(market_data)} indices to market-indices.json")
 
 
