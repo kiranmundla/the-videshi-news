@@ -42,13 +42,13 @@ const GUIDES = [
 ];
 
 const TAG_COLORS: Record<string, string> = {
-  Essential: "bg-blue-500/20 text-blue-300",
-  Popular: "bg-amber-500/20 text-amber-300",
-  Guide: "bg-purple-500/20 text-purple-300",
-  Budget: "bg-green-500/20 text-green-300",
-  Trending: "bg-rose-500/20 text-rose-300",
-  New: "bg-cyan-500/20 text-cyan-300",
-  Lifestyle: "bg-indigo-500/20 text-indigo-300",
+  Essential: "bg-blue-100 text-blue-700",
+  Popular: "bg-amber-100 text-amber-700",
+  Guide: "bg-purple-100 text-purple-700",
+  Budget: "bg-green-100 text-green-700",
+  Trending: "bg-rose-100 text-rose-700",
+  New: "bg-cyan-100 text-cyan-700",
+  Lifestyle: "bg-indigo-100 text-indigo-700",
 };
 
 const PRICE_RANGES = [
@@ -531,36 +531,36 @@ export default function CarsPage() {
 
       <main className="container py-8">
         {/* ── Hero ─────────────────────────────────────────────── */}
-        <section className="relative mb-10 -mx-4 px-4 py-12 md:py-16 rounded-2xl overflow-hidden bg-gradient-to-br from-zinc-900 via-slate-800/80 to-zinc-900 border border-border/30">
+        <section className="relative mb-10 -mx-4 px-4 py-12 md:py-16 rounded-2xl overflow-hidden bg-[#1a1a2e] border border-[#2a2a4a]/40">
           {/* Decorative elements */}
-          <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/3 rounded-full blur-3xl" />
+          <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-amber-500/8 rounded-full blur-3xl" />
 
           <div className="relative z-10 max-w-3xl">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-xs font-bold uppercase tracking-widest text-primary/70 bg-primary/10 px-3 py-1 rounded-full">
+              <span className="text-xs font-bold uppercase tracking-widest text-amber-300 bg-amber-500/15 px-3 py-1 rounded-full">
                 🇮🇳 The Videshi Auto
               </span>
             </div>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white">
               American Roads.<br />
-              <span className="text-primary">Indian Priorities.</span>
+              <span className="text-red-400">Indian Priorities.</span>
             </h1>
-            <p className="text-foreground/60 mt-4 text-lg md:text-xl max-w-2xl leading-relaxed">
+            <p className="text-white/70 mt-4 text-lg md:text-xl max-w-2xl leading-relaxed">
               The smartest car picks for the Indian diaspora — from first-time H‑1B buyers to family upgrades and luxury dreams.
             </p>
-            <div className="flex flex-wrap items-center gap-4 mt-6 text-sm text-foreground/40">
+            <div className="flex flex-wrap items-center gap-4 mt-6 text-sm text-white/50">
               <span className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary/60" />
+                <span className="h-1.5 w-1.5 rounded-full bg-amber-400/70" />
                 {stats.total} vehicles reviewed
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary/60" />
+                <span className="h-1.5 w-1.5 rounded-full bg-amber-400/70" />
                 {stats.brands} brands
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary/60" />
+                <span className="h-1.5 w-1.5 rounded-full bg-amber-400/70" />
                 Lease deals updated weekly
               </span>
             </div>
