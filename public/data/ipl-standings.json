@@ -1,6 +1,6 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-23T09:07:48Z",
+  "last_updated": "2026-05-23T09:55:36Z",
   "stage": "League stage near-complete (67/70 matches). RCB, GT, SRH qualified (all 18 pts). RCB vs GT in Qualifier 1 (May 26, Dharamsala). 4th spot: PBKS, RR, KKR, DC fighting. Eliminator May 27, Qualifier 2 May 29 (New Chandigarh). Final May 31 (Ahmedabad).",
   "recent_results": [
     "Match 67: SRH 255/4 beat RCB 200/4 by 55 runs (Kohli-Head handshake controversy)",
@@ -8,19 +8,19 @@
     "Match 65: KKR beat MI at Eden Gardens (MI eliminated)"
   ],
   "upcoming": [
-    "Match 68: LSG vs PBKS (May 23, Lucknow) \u2014 PBKS must-win for playoff spot",
-    "Match 69: MI vs RR (May 24, Mumbai) \u2014 RR need a win",
-    "Match 70: DC vs KKR (May 25, TBD) \u2014 both need wins"
+    "Match 68: LSG vs PBKS (May 23, Lucknow) — PBKS must-win for playoff spot",
+    "Match 69: MI vs RR (May 24, Mumbai) — RR need a win",
+    "Match 70: DC vs KKR (May 25, TBD) — both need wins"
   ],
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
       "short": "RCB",
-      "played": 14,
+      "played": 13,
       "won": 9,
-      "lost": 5,
+      "lost": 4,
       "nr": 0,
-      "nrr": "+0.783",
+      "nrr": "+1.065",
       "points": 18,
       "position": 1
     },
@@ -38,12 +38,12 @@
     {
       "team": "Sunrisers Hyderabad",
       "short": "SRH",
-      "played": 14,
-      "won": 9,
+      "played": 13,
+      "won": 8,
       "lost": 5,
       "nr": 0,
-      "nrr": "+0.524",
-      "points": 18,
+      "nrr": "+0.350",
+      "points": 16,
       "position": 3
     },
     {
@@ -119,7 +119,7 @@
       "won": 4,
       "lost": 9,
       "nr": 0,
-      "nrr": "-0.620",
+      "nrr": "-0.702",
       "points": 8,
       "position": 10
     }
