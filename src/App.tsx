@@ -43,7 +43,7 @@ import CarsPage from "./pages/CarsPage.tsx";
 import CarDetailPage from "./pages/CarDetailPage.tsx";
 import CarComparePage from "./pages/CarComparePage.tsx";
 import LeaseDealsPage from "./pages/LeaseDealsPage.tsx";
-import { FirstCarGuide, LeaseVsBuyGuide, InsuranceGuide, BestFamilySuvsGuide } from "./pages/CarGuides.tsx";
+import { FirstCarGuide, LeaseVsBuyGuide, InsuranceGuide, BestFamilySuvsGuide, CarsUnder30KGuide, BestEVsGuide, IndiaVsUSDrivingGuide, TechProfessionalsGuide } from "./pages/CarGuides.tsx";
 
 const queryClient = new QueryClient();
 
@@ -81,6 +81,10 @@ const App = () => (
             <Route path="/cars/guide/lease-vs-buy" element={<LeaseVsBuyGuide />} />
             <Route path="/cars/guide/insurance-for-new-immigrants" element={<InsuranceGuide />} />
             <Route path="/cars/guide/best-family-suvs" element={<BestFamilySuvsGuide />} />
+            <Route path="/cars/guide/best-cars-under-30k" element={<CarsUnder30KGuide />} />
+            <Route path="/cars/guide/best-evs-2026" element={<BestEVsGuide />} />
+            <Route path="/cars/guide/india-vs-us-driving" element={<IndiaVsUSDrivingGuide />} />
+            <Route path="/cars/guide/cars-for-tech-professionals" element={<TechProfessionalsGuide />} />
             <Route path="/cars/:slug" element={<CarDetailPage />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/articles" element={<AdminArticles />} />
