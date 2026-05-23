@@ -1,8 +1,8 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
-  Search, X, Star, Fuel, Users, ChevronRight,
+  Search, X, Star, Fuel, Users, ChevronRight, ChevronLeft,
   BookOpen, ArrowRight,
 } from "lucide-react";
 import Masthead from "@/components/Masthead";
@@ -141,14 +141,59 @@ function CarCard({ car }: { car: Car }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Section grid — shows all cars in a responsive grid                 */
+/* Horizontal scroll row — swipeable carousel per section             */
 /* ------------------------------------------------------------------ */
-function SectionGrid({ cars }: { cars: Car[] }) {
+function CarRow({ cars }: { cars: Car[] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [canLeft, setCanLeft] = useState(false);
+  const [canRight, setCanRight] = useState(false);
+
+  const checkScroll = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    setCanLeft(el.scrollLeft > 4);
+    setCanRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+  }, []);
+
+  useEffect(() => {
+    checkScroll();
+    const el = ref.current;
+    if (el) el.addEventListener("scroll", checkScroll, { passive: true });
+    return () => el?.removeEventListener("scroll", checkScroll);
+  }, [checkScroll, cars]);
+
+  const scroll = (dir: "left" | "right") => {
+    ref.current?.scrollBy({ left: dir === "left" ? -300 : 300, behavior: "smooth" });
+  };
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-      {cars.map((car) => (
-        <CarCard key={car.id} car={car} />
-      ))}
+    <div className="relative group/row">
+      {canLeft && (
+        <button
+          onClick={() => scroll("left")}
+          className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 items-center justify-center rounded-full bg-card border border-border shadow-lg hover:bg-primary/10 transition-colors"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+      )}
+      <div
+        ref={ref}
+        className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-2 -mx-1 px-1"
+      >
+        {cars.map((car) => (
+          <div key={car.id} className="w-[280px] shrink-0 snap-start">
+            <CarCard car={car} />
+          </div>
+        ))}
+      </div>
+      {canRight && (
+        <button
+          onClick={() => scroll("right")}
+          className="hidden sm:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 items-center justify-center rounded-full bg-card border border-border shadow-lg hover:bg-primary/10 transition-colors"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      )}
     </div>
   );
 }
@@ -415,7 +460,7 @@ export default function CarsPage() {
                     count={cars.length}
                     onViewAll={() => setActiveFilter(section.key)}
                   />
-                  <SectionGrid cars={cars} />
+                  <CarRow cars={cars} />
                   {/* Mobile view-all link */}
                   <button
                     onClick={() => setActiveFilter(section.key)}
