@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
-  ChevronLeft,
+  ChevronLeft, ChevronRight,
   Star,
   Fuel,
   Users,
@@ -13,6 +13,7 @@ import {
   X as XIcon,
   Share2,
   Link as LinkIcon,
+  BarChart3,
 } from "lucide-react";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
@@ -48,6 +49,61 @@ function ShareButtons({ title, url }: { title: string; url: string }) {
       <button onClick={copyLink} className="p-2 rounded-lg border border-border hover:bg-muted/50 transition-colors" title="Copy link">
         {copied ? <Check className="h-4 w-4 text-green-500" /> : <LinkIcon className="h-4 w-4" />}
       </button>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Image Gallery                                                      */
+/* ------------------------------------------------------------------ */
+function ImageGallery({ images }: { images: { url: string; caption?: string }[] }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  if (images.length === 0) return null;
+
+  const scroll = (dir: "left" | "right") => {
+    const next = dir === "left" ? Math.max(0, activeIdx - 1) : Math.min(images.length - 1, activeIdx + 1);
+    setActiveIdx(next);
+    scrollRef.current?.children[next]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  };
+
+  return (
+    <div className="mt-4">
+      <div className="relative">
+        {images.length > 3 && activeIdx > 0 && (
+          <button
+            onClick={() => scroll("left")}
+            className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-card border border-border shadow-lg flex items-center justify-center hover:bg-primary/10 transition-colors"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+        )}
+        <div ref={scrollRef} className="flex gap-2 overflow-x-auto scrollbar-none pb-1">
+          {images.map((img, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveIdx(idx)}
+              className={`relative shrink-0 w-20 h-14 rounded-lg overflow-hidden border-2 transition-all ${
+                idx === activeIdx ? "border-primary shadow-md" : "border-border/50 opacity-60 hover:opacity-100"
+              }`}
+            >
+              <img src={img.url} alt={img.caption || `Photo ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" />
+            </button>
+          ))}
+        </div>
+        {images.length > 3 && activeIdx < images.length - 1 && (
+          <button
+            onClick={() => scroll("right")}
+            className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-card border border-border shadow-lg flex items-center justify-center hover:bg-primary/10 transition-colors"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        )}
+      </div>
+      {images[activeIdx]?.caption && (
+        <p className="text-xs text-foreground/40 mt-1 text-center">{images[activeIdx].caption}</p>
+      )}
     </div>
   );
 }
@@ -147,6 +203,27 @@ export default function CarDetailPage() {
   const pageUrl = `https://www.thevideshi.com/cars/${car.slug}`;
   const edmundsSearch = car.affiliate_url || `https://www.edmunds.com/${car.brand.toLowerCase().replace(/\s+/g, "-")}/${car.model.toLowerCase().replace(/\s+/g, "-")}/`;
 
+  // Build gallery images from `images` JSONB + fallback hero
+  const galleryImages: { url: string; caption?: string }[] = [];
+  if (car.images && Array.isArray(car.images)) {
+    for (const img of car.images) {
+      if (typeof img === "string") {
+        galleryImages.push({ url: img });
+      } else if (img && typeof img === "object" && img.url) {
+        galleryImages.push(img);
+      }
+    }
+  }
+  // If hero image exists and isn't already in gallery, add it first
+  if (car.image_url && !galleryImages.some((g) => g.url === car.image_url)) {
+    galleryImages.unshift({ url: car.image_url, caption: "Hero" });
+  }
+
+  // Build compare URL with this car + similar cars
+  const compareUrl = similar.length > 0
+    ? `/cars/compare?ids=${car.id},${similar.slice(0, 2).map((s) => s.id).join(",")}`
+    : `/cars/compare?ids=${car.id}`;
+
   return (
     <>
       <Helmet>
@@ -194,28 +271,35 @@ export default function CarDetailPage() {
 
         {/* Hero area */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-10">
-          {/* Image */}
-          <div className={`lg:col-span-3 h-64 md:h-80 rounded-2xl bg-gradient-to-br ${grad} flex items-center justify-center relative overflow-hidden`}>
-            {car.image_url ? (
-              <img src={car.image_url} alt={car.name} className="w-full h-full object-contain p-4" />
-            ) : (
-              <div className="text-center">
-                <p className="text-foreground/30 text-sm uppercase tracking-widest">{car.brand}</p>
-                <p className="text-foreground/60 text-3xl font-bold mt-2">{car.model}</p>
-                <p className="text-foreground/30 text-sm mt-2">{car.year}</p>
-              </div>
-            )}
-            {car.is_our_pick && (
-              <div className="absolute top-4 right-4 flex items-center gap-1 bg-amber-500/90 text-black text-sm font-bold px-3 py-1.5 rounded-full shadow-lg">
-                <Star className="h-4 w-4 fill-current" />
-                Our Pick
-              </div>
-            )}
-            {car.fuel_type === "Electric" && (
-              <div className="absolute top-4 left-4 bg-green-500/90 text-black text-sm font-bold px-3 py-1.5 rounded-full">⚡ Electric</div>
-            )}
-            {car.fuel_type === "Hybrid" && (
-              <div className="absolute top-4 left-4 bg-emerald-600/90 text-white text-sm font-bold px-3 py-1.5 rounded-full">🌿 Hybrid</div>
+          {/* Image + Gallery */}
+          <div className="lg:col-span-3">
+            <div className={`h-64 md:h-80 rounded-2xl bg-gradient-to-br ${grad} flex items-center justify-center relative overflow-hidden`}>
+              {car.image_url ? (
+                <img src={car.image_url} alt={car.name} className="w-full h-full object-contain p-4" />
+              ) : (
+                <div className="text-center">
+                  <p className="text-foreground/30 text-sm uppercase tracking-widest">{car.brand}</p>
+                  <p className="text-foreground/60 text-3xl font-bold mt-2">{car.model}</p>
+                  <p className="text-foreground/30 text-sm mt-2">{car.year}</p>
+                </div>
+              )}
+              {car.is_our_pick && (
+                <div className="absolute top-4 right-4 flex items-center gap-1 bg-amber-500/90 text-black text-sm font-bold px-3 py-1.5 rounded-full shadow-lg">
+                  <Star className="h-4 w-4 fill-current" />
+                  Our Pick
+                </div>
+              )}
+              {car.fuel_type === "Electric" && (
+                <div className="absolute top-4 left-4 bg-green-500/90 text-black text-sm font-bold px-3 py-1.5 rounded-full">⚡ Electric</div>
+              )}
+              {car.fuel_type === "Hybrid" && (
+                <div className="absolute top-4 left-4 bg-emerald-600/90 text-white text-sm font-bold px-3 py-1.5 rounded-full">🌿 Hybrid</div>
+              )}
+            </div>
+
+            {/* Multi-image gallery strip */}
+            {galleryImages.length > 1 && (
+              <ImageGallery images={galleryImages} />
             )}
           </div>
 
@@ -265,7 +349,17 @@ export default function CarDetailPage() {
               </div>
             )}
 
-            <ShareButtons title={car.name} url={pageUrl} />
+            <div className="flex items-center gap-2">
+              <ShareButtons title={car.name} url={pageUrl} />
+              {/* Compare button */}
+              <Link
+                to={compareUrl}
+                className="flex items-center gap-2 px-3.5 py-2 rounded-lg border border-border hover:border-primary/40 hover:bg-primary/5 transition-colors text-sm font-medium"
+              >
+                <BarChart3 className="h-4 w-4 text-primary" />
+                Compare
+              </Link>
+            </div>
           </div>
         </div>
 

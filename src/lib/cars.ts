@@ -28,6 +28,7 @@ export type Car = {
   pros: string[] | null;
   cons: string[] | null;
   image_url: string | null;
+  images: { url: string; caption?: string }[] | null;
   lease_monthly: number | null;
   lease_due_at_signing: number | null;
   lease_term: number | null;
@@ -63,7 +64,7 @@ export const CATEGORY_ICONS: Record<string, string> = {
 };
 
 const COLS =
-  "id,name,brand,model,slug,category,body_type,fuel_type,year,msrp_low,msrp_high,mpg,seating,cargo_cu_ft,safety_rating,nri_take,pros,cons,image_url,lease_monthly,lease_due_at_signing,lease_term,lease_miles_per_year,lease_source,lease_expires,purchase_apr,affiliate_url,is_our_pick,sort_order,created_at,updated_at";
+  "id,name,brand,model,slug,category,body_type,fuel_type,year,msrp_low,msrp_high,mpg,seating,cargo_cu_ft,safety_rating,nri_take,pros,cons,image_url,images,lease_monthly,lease_due_at_signing,lease_term,lease_miles_per_year,lease_source,lease_expires,purchase_apr,affiliate_url,is_our_pick,sort_order,created_at,updated_at";
 
 /* ------------------------------------------------------------------ */
 /* Queries                                                            */
@@ -114,6 +115,16 @@ export async function getCarsByCategory(category: string): Promise<Car[]> {
     .eq("category", category)
     .order("sort_order", { ascending: true })
     .limit(6);
+  if (error) throw error;
+  return (data ?? []) as Car[];
+}
+
+export async function getCarsByIds(ids: string[]): Promise<Car[]> {
+  if (ids.length === 0) return [];
+  const { data, error } = await supabase
+    .from("cars")
+    .select(COLS)
+    .in("id", ids);
   if (error) throw error;
   return (data ?? []) as Car[];
 }
