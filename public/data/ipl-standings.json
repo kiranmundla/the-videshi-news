@@ -1,7 +1,7 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-23T02:55:34Z",
-  "stage": "League Stage — Match 67 of 70",
+  "last_updated": "2026-05-23T03:03:52.365661+00:00",
+  "stage": "League stage complete for top 3. 3 matches remain for 4th playoff spot.",
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
@@ -116,80 +116,62 @@
   ],
   "recent_results": [
     {
-      "match": 67,
-      "date": "22 May",
-      "team1": "SRH",
-      "team2": "RCB",
-      "score1": "255/4 (20)",
-      "score2": "200/4 (20)",
+      "match": "Match 67",
+      "date": "May 22",
+      "teams": "SRH vs RCB",
       "result": "SRH won by 55 runs",
       "venue": "Hyderabad"
     },
     {
-      "match": 66,
-      "date": "21 May",
-      "team1": "GT",
-      "team2": "CSK",
-      "score1": "229/4 (20)",
-      "score2": "140/10 (13.4)",
+      "match": "Match 66",
+      "date": "May 21",
+      "teams": "GT vs CSK",
       "result": "GT won by 89 runs",
       "venue": "Ahmedabad"
     },
     {
-      "match": 65,
-      "date": "20 May",
-      "team1": "KKR",
-      "team2": "MI",
-      "score1": "148/6 (18.5)",
-      "score2": "147/8 (20)",
-      "result": "KKR won by 4 wkts",
+      "match": "Match 65",
+      "date": "May 20",
+      "teams": "KKR vs MI",
+      "result": "KKR won by 4 wickets",
       "venue": "Kolkata"
     },
     {
-      "match": 64,
-      "date": "19 May",
-      "team1": "RR",
-      "team2": "LSG",
-      "score1": "225/3 (19.1)",
-      "score2": "220/5 (20)",
-      "result": "RR won by 7 wkts",
+      "match": "Match 64",
+      "date": "May 19",
+      "teams": "RR vs DC",
+      "result": "RR won by 29 runs",
       "venue": "Jaipur"
     },
     {
-      "match": 63,
-      "date": "18 May",
-      "team1": "SRH",
-      "team2": "CSK",
-      "score1": "181/5 (19)",
-      "score2": "180/7 (20)",
-      "result": "SRH won by 5 wkts",
-      "venue": "Chennai"
+      "match": "Match 63",
+      "date": "May 18",
+      "teams": "PBKS vs CSK",
+      "result": "PBKS won by 6 wickets",
+      "venue": "Dharamsala"
     }
   ],
   "upcoming": [
     {
-      "match": 68,
-      "date": "23 May",
-      "team1": "LSG",
-      "team2": "PBKS",
-      "venue": "Lucknow",
-      "time": "7:30 PM IST"
+      "match": "Match 68",
+      "date": "May 23",
+      "teams": "LSG vs PBKS",
+      "time": "7:30 PM IST",
+      "venue": "Lucknow"
     },
     {
-      "match": 69,
-      "date": "24 May",
-      "team1": "MI",
-      "team2": "RR",
-      "venue": "Mumbai",
-      "time": "3:30 PM IST"
+      "match": "Match 69",
+      "date": "May 24",
+      "teams": "MI vs RR",
+      "time": "3:30 PM IST",
+      "venue": "Mumbai"
     },
     {
-      "match": 70,
-      "date": "24 May",
-      "team1": "KKR",
-      "team2": "DC",
-      "venue": "Kolkata",
-      "time": "7:30 PM IST"
+      "match": "Match 70",
+      "date": "May 24",
+      "teams": "KKR vs DC",
+      "time": "7:30 PM IST",
+      "venue": "Kolkata"
     }
   ]
 }
