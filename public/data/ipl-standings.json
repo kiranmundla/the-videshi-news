@@ -1,16 +1,26 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-23T08:55:39Z",
-  "stage": "Top 3 qualified (RCB, GT, SRH — all 18 pts). 3 matches remain for 4th playoff spot. RCB vs GT in Qualifier 1.",
+  "last_updated": "2026-05-23T09:07:48Z",
+  "stage": "League stage near-complete (67/70 matches). RCB, GT, SRH qualified (all 18 pts). RCB vs GT in Qualifier 1 (May 26, Dharamsala). 4th spot: PBKS, RR, KKR, DC fighting. Eliminator May 27, Qualifier 2 May 29 (New Chandigarh). Final May 31 (Ahmedabad).",
+  "recent_results": [
+    "Match 67: SRH 255/4 beat RCB 200/4 by 55 runs (Kohli-Head handshake controversy)",
+    "Match 66: GT 162/2 beat CSK 158/7 by 8 wickets (CSK eliminated)",
+    "Match 65: KKR beat MI at Eden Gardens (MI eliminated)"
+  ],
+  "upcoming": [
+    "Match 68: LSG vs PBKS (May 23, Lucknow) \u2014 PBKS must-win for playoff spot",
+    "Match 69: MI vs RR (May 24, Mumbai) \u2014 RR need a win",
+    "Match 70: DC vs KKR (May 25, TBD) \u2014 both need wins"
+  ],
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
       "short": "RCB",
-      "played": 13,
+      "played": 14,
       "won": 9,
-      "lost": 4,
+      "lost": 5,
       "nr": 0,
-      "nrr": "+1.065",
+      "nrr": "+0.783",
       "points": 18,
       "position": 1
     },
@@ -28,12 +38,12 @@
     {
       "team": "Sunrisers Hyderabad",
       "short": "SRH",
-      "played": 13,
-      "won": 8,
+      "played": 14,
+      "won": 9,
       "lost": 5,
       "nr": 0,
-      "nrr": "+0.350",
-      "points": 16,
+      "nrr": "+0.524",
+      "points": 18,
       "position": 3
     },
     {
@@ -109,135 +119,9 @@
       "won": 4,
       "lost": 9,
       "nr": 0,
-      "nrr": "-0.702",
+      "nrr": "-0.620",
       "points": 8,
       "position": 10
-    }
-  ],
-  "recent_results": [
-    {
-      "match": "Match 67",
-      "date": "May 22",
-      "teams": "SRH vs RCB",
-      "result": "SRH won by 55 runs (SRH 255/4, RCB 200/4)",
-      "venue": "Hyderabad"
-    },
-    {
-      "match": "Match 66",
-      "date": "May 21",
-      "teams": "GT vs CSK",
-      "result": "GT won by 89 runs (GT 229/4, CSK 140)",
-      "venue": "Ahmedabad"
-    },
-    {
-      "match": "Match 65",
-      "date": "May 20",
-      "teams": "KKR vs MI",
-      "result": "KKR won by 4 wickets",
-      "venue": "Kolkata"
-    },
-    {
-      "match": "Match 64",
-      "date": "May 19",
-      "teams": "RR vs LSG",
-      "result": "RR won by 5 wickets",
-      "venue": "Jaipur"
-    },
-    {
-      "match": "Match 63",
-      "date": "May 18",
-      "teams": "CSK vs SRH",
-      "result": "SRH won by 5 wickets",
-      "venue": "Chennai"
-    }
-  ],
-  "upcoming": [
-    {
-      "match": "Match 68",
-      "date": "May 23",
-      "teams": "LSG vs PBKS",
-      "time": "7:30 PM IST",
-      "venue": "Lucknow",
-      "note": "PBKS must win to stay alive"
-    },
-    {
-      "match": "Match 69",
-      "date": "May 24",
-      "teams": "MI vs RR",
-      "time": "3:30 PM IST",
-      "venue": "Mumbai"
-    },
-    {
-      "match": "Match 70",
-      "date": "May 24",
-      "teams": "KKR vs DC",
-      "time": "7:30 PM IST",
-      "venue": "Kolkata"
-    }
-  ],
-  "playoffs": {
-    "qualifier_1": {
-      "teams": "RCB vs GT",
-      "status": "confirmed"
-    },
-    "eliminator": {
-      "teams": "SRH vs TBD (4th place)",
-      "status": "SRH confirmed, opponent TBD after 3 remaining matches"
-    },
-    "fourth_spot_race": "RR (14 pts, 1 match left) vs PBKS (13 pts, 1 match left) vs KKR (13 pts, 1 match left) vs DC (12 pts, 1 match left)"
-  },
-  "orange_cap": [
-    {
-      "player": "Sai Sudharsan",
-      "team": "GT",
-      "runs": 638
-    },
-    {
-      "player": "Shubman Gill",
-      "team": "GT",
-      "runs": 616
-    },
-    {
-      "player": "Vaibhav Sooryavanshi",
-      "team": "RR",
-      "runs": 579
-    },
-    {
-      "player": "Mitchell Marsh",
-      "team": "LSG",
-      "runs": 563
-    },
-    {
-      "player": "Heinrich Klaasen",
-      "team": "SRH",
-      "runs": 555
-    }
-  ],
-  "purple_cap": [
-    {
-      "player": "Bhuvneshwar Kumar",
-      "team": "RCB",
-      "wickets": 24
-    },
-    {
-      "player": "Kagiso Rabada",
-      "team": "GT",
-      "wickets": 24
-    },
-    {
-      "player": "Anshul Kamboj",
-      "team": "CSK",
-      "wickets": 21
-    },
-    {
-      "player": "Rashid Khan",
-      "team": "GT",
-      "wickets": 19
-    },
-    {
-      "player": "Jofra Archer",
-      "team": "RR",
-      "wickets": 18
     }
   ]
 }
