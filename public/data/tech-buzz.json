@@ -13,10 +13,10 @@
       ],
       "latestPost": {
         "url": "https://x.com/elonmusk",
-        "text": "Spent time with the Anthropic team last week to understand their approach to ensuring Claude is good for humanity — was genuinely impressed. Meanwhile, filing an appeal with the Ninth Circuit on the OpenAI verdict. Creating a precedent to loot charities is incredibly destructive.",
-        "date": "2026-05-21",
-        "likes": 310000,
-        "retweets": 62000
+        "text": "Starship V3 Flight 12 is GO! 🚀 The biggest, most powerful Starship ever built launched from Starbase today — 20 Starlink sats deployed, spacecraft splashed down in the Indian Ocean as planned. Not all booster engines fired on return, but the V3 era has begun. Next up: booster catch attempt. Also, SpaceX IPO is live on Nasdaq under SPCX. The future is multiplanetary.",
+        "date": "2026-05-22",
+        "likes": 485000,
+        "retweets": 98000
       },
       "category": "tech"
     },
@@ -74,9 +74,9 @@
       "category": "tech",
       "latestPost": {
         "url": "https://www.threads.net/@zuck",
-        "text": "Today we began a restructuring that affects about 8,000 roles, while moving 7,000 people to AI-focused teams. I don't expect more company-wide layoffs this year. We're making these changes to invest more aggressively in AI — it's the most transformative technology of our time and Meta needs to lead.",
-        "date": "2026-05-20",
-        "likes": 312000,
+        "text": "Wanted to be transparent: we've restructured the company this week, affecting about 8,000 roles while moving 7,000 people to AI-focused teams. I don't expect more company-wide layoffs this year. These changes let us invest more aggressively in AI — it's the most transformative technology of our lifetimes and Meta needs to lead.",
+        "date": "2026-05-22",
+        "likes": 325000,
         "retweets": 0
       }
     },
@@ -93,10 +93,10 @@
       ],
       "latestPost": {
         "url": "https://x.com/sundarpichai",
-        "text": "What a day at #GoogleIO! Gemini 3.5 Flash is here — better than 3.1 Pro across almost all benchmarks, with an extraordinary jump in coding and real-world tasks. 900 million Gemini app users, 3.2 quadrillion tokens processed monthly. The agentic Gemini era begins now. 🔥",
-        "date": "2026-05-20",
-        "likes": 285000,
-        "retweets": 48000
+        "text": "Today's current AI will look like flip phones compared to what's coming. At Google I/O we showed Gemini 3.5 Flash, Project Astra on new AI glasses, and agents that can handle long-running coding tasks autonomously. Engineers will work alongside teams of AI agents. The shift is steep and it's just beginning.",
+        "date": "2026-05-22",
+        "likes": 298000,
+        "retweets": 52000
       },
       "category": "tech"
     },
@@ -133,10 +133,10 @@
       ],
       "latestPost": {
         "url": "https://x.com/sama",
-        "text": "OpenAI will invest $2M in tokens for every new YC startup this batch. We want the best founders building with our models from day one. The future of AI is going to be built by small teams moving fast.",
-        "date": "2026-05-21",
-        "likes": 165000,
-        "retweets": 32000
+        "text": "Wishing Andrej all the best at Anthropic. He is one of the most talented people in AI and was instrumental in OpenAI's early days. Meanwhile, we're heads down on what's next — the pace of progress at OpenAI has never been faster. Excited about what we're shipping soon.",
+        "date": "2026-05-22",
+        "likes": 145000,
+        "retweets": 28000
       },
       "category": "tech"
     },
@@ -849,10 +849,10 @@
       "avatar": "https://pbs.twimg.com/profile_images/1818300492365152256/-KK8afO4_400x400.jpg",
       "latestPost": {
         "url": "https://x.com/SuellaBraverman",
-        "text": "Britain must control its borders and enforce immigration laws. The small boats crisis demands action, not more committees. I'll continue to speak the truth on behalf of the British people.",
-        "date": "2026-05-20",
-        "likes": 72000,
-        "retweets": 16000
+        "text": "Met with communities across my constituency today. The message is clear — people want secure borders, lower immigration, and a government that listens. I will keep fighting for the values that matter to working families in Britain.",
+        "date": "2026-05-22",
+        "likes": 78000,
+        "retweets": 18000
       },
       "posts": [
         {
@@ -949,10 +949,10 @@
       "category": "india",
       "latestPost": {
         "url": "https://x.com/RahulGandhi",
-        "text": "In Raebareli today, speaking directly to the people about the state of our economy. This government has failed India's middle class, farmers, and youth. The price rise is crushing families. Congress will fight for every Indian's dignity and livelihood. 🇮🇳",
-        "date": "2026-05-20",
-        "likes": 295000,
-        "retweets": 52000
+        "text": "The people of India deserve answers. While the government celebrates GDP numbers, everyday families are crushed by rising prices and unemployment. In Parliament today, I raised the issue of agrarian distress across 5 states. Congress stands with every farmer, every worker, every family struggling to make ends meet. 🇮🇳",
+        "date": "2026-05-22",
+        "likes": 310000,
+        "retweets": 58000
       },
       "posts": [
         {
@@ -1121,5 +1121,5 @@
       ]
     }
   ],
-  "lastUpdated": "2026-05-22T20:00:00-07:00"
+  "lastUpdated": "2026-05-22T23:00:00-07:00"
 }
