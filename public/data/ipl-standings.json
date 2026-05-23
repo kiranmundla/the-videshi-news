@@ -1,16 +1,16 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-23T06:02:21.394383+00:00",
-  "stage": "Top 3 qualified (RCB, GT, SRH \u2014 all 18 pts). 3 matches remain for 4th playoff spot. RCB vs GT in Qualifier 1.",
+  "last_updated": "2026-05-23T06:55:34Z",
+  "stage": "Top 3 qualified (RCB, GT, SRH — all 18 pts). 3 matches remain for 4th playoff spot. RCB vs GT in Qualifier 1.",
   "standings": [
     {
       "team": "Royal Challengers Bengaluru",
       "short": "RCB",
-      "played": 14,
+      "played": 13,
       "won": 9,
-      "lost": 5,
+      "lost": 4,
       "nr": 0,
-      "nrr": "+0.783",
+      "nrr": "+1.065",
       "points": 18,
       "position": 1
     },
@@ -28,12 +28,12 @@
     {
       "team": "Sunrisers Hyderabad",
       "short": "SRH",
-      "played": 14,
-      "won": 9,
+      "played": 13,
+      "won": 8,
       "lost": 5,
       "nr": 0,
-      "nrr": "+0.524",
-      "points": 18,
+      "nrr": "+0.350",
+      "points": 16,
       "position": 3
     },
     {
