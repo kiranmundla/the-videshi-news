@@ -415,7 +415,7 @@ export default function CarsPage() {
                     count={cars.length}
                     onViewAll={() => setActiveFilter(section.key)}
                   />
-                  <CarRow cars={cars} />
+                  <SectionGrid cars={cars} />
                   {/* Mobile view-all link */}
                   <button
                     onClick={() => setActiveFilter(section.key)}

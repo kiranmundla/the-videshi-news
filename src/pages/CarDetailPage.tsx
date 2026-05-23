@@ -75,8 +75,12 @@ function SimilarCard({ car }: { car: Car }) {
   return (
     <Link to={`/cars/${car.slug}`} className="block group">
       <div className="flex items-center gap-4 p-3 rounded-xl bg-card border border-border hover:border-primary/40 transition-colors">
-        <div className={`w-16 h-16 rounded-lg bg-gradient-to-br ${grad} flex items-center justify-center flex-shrink-0`}>
-          <span className="text-foreground/50 text-xs font-bold">{car.brand.slice(0, 3)}</span>
+        <div className={`w-16 h-16 rounded-lg bg-gradient-to-br ${grad} flex items-center justify-center flex-shrink-0 overflow-hidden`}>
+          {car.image_url ? (
+            <img src={car.image_url} alt={car.name} className="w-full h-full object-contain" loading="lazy" />
+          ) : (
+            <span className="text-foreground/50 text-xs font-bold">{car.brand.slice(0, 3)}</span>
+          )}
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-sm font-semibold group-hover:text-primary transition-colors truncate">{car.name}</p>
@@ -191,12 +195,16 @@ export default function CarDetailPage() {
         {/* Hero area */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-10">
           {/* Image */}
-          <div className={`lg:col-span-3 h-64 md:h-80 rounded-2xl bg-gradient-to-br ${grad} flex items-center justify-center relative`}>
-            <div className="text-center">
-              <p className="text-foreground/30 text-sm uppercase tracking-widest">{car.brand}</p>
-              <p className="text-foreground/60 text-3xl font-bold mt-2">{car.model}</p>
-              <p className="text-foreground/30 text-sm mt-2">{car.year}</p>
-            </div>
+          <div className={`lg:col-span-3 h-64 md:h-80 rounded-2xl bg-gradient-to-br ${grad} flex items-center justify-center relative overflow-hidden`}>
+            {car.image_url ? (
+              <img src={car.image_url} alt={car.name} className="w-full h-full object-contain p-4" />
+            ) : (
+              <div className="text-center">
+                <p className="text-foreground/30 text-sm uppercase tracking-widest">{car.brand}</p>
+                <p className="text-foreground/60 text-3xl font-bold mt-2">{car.model}</p>
+                <p className="text-foreground/30 text-sm mt-2">{car.year}</p>
+              </div>
+            )}
             {car.is_our_pick && (
               <div className="absolute top-4 right-4 flex items-center gap-1 bg-amber-500/90 text-black text-sm font-bold px-3 py-1.5 rounded-full shadow-lg">
                 <Star className="h-4 w-4 fill-current" />
