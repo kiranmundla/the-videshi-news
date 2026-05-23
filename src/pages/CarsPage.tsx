@@ -454,6 +454,15 @@ export default function CarsPage() {
   // EV group (cross-category by fuel_type)
   const evCars = useMemo(() => allCars.filter((c) => c.fuel_type === "Electric"), [allCars]);
 
+  // Top lease deals — sorted by monthly payment, show top 8
+  const topDeals = useMemo(() =>
+    allCars
+      .filter((c) => c.lease_monthly)
+      .sort((a, b) => (a.lease_monthly ?? 0) - (b.lease_monthly ?? 0))
+      .slice(0, 8),
+    [allCars]
+  );
+
   // Check if any advanced filter is active
   const hasAdvancedFilter = filterPrice !== "0" || filterFuel !== "All" || filterSeating !== "0";
 
@@ -566,6 +575,44 @@ export default function CarsPage() {
             </div>
           </div>
         </section>
+
+        {/* ── Top Lease Deals ──────────────────────────────────── */}
+        {topDeals.length > 0 && (
+          <section className="mb-10">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">🏷️</span>
+                <h2 className="font-serif text-lg font-bold">Best Lease Deals This Month</h2>
+              </div>
+              <span className="text-xs text-foreground/40">Updated weekly</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {topDeals.map((car) => (
+                <Link key={car.id} to={`/cars/${car.slug}`} className="block group">
+                  <div className="p-4 bg-card border border-primary/20 rounded-xl hover:border-primary/40 transition-all hover:shadow-lg hover:shadow-primary/5">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className={`w-14 h-14 rounded-lg bg-gradient-to-br ${brandGradient(car.brand)} flex items-center justify-center overflow-hidden flex-shrink-0`}>
+                        {car.image_url ? (
+                          <img src={car.image_url} alt={car.name} className="w-full h-full object-contain p-1" loading="lazy" />
+                        ) : (
+                          <span className="text-xs font-bold text-foreground/40">{car.brand.slice(0, 3)}</span>
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold group-hover:text-primary transition-colors truncate">{car.name}</p>
+                        <p className="text-xs text-foreground/50">{formatMsrp(car.msrp_low, car.msrp_high)}</p>
+                      </div>
+                    </div>
+                    <div className="p-2.5 rounded-lg bg-primary/5 border border-primary/10">
+                      <p className="text-lg font-bold text-primary">{formatPrice(car.lease_monthly!)}<span className="text-xs font-normal text-foreground/50">/mo</span></p>
+                      <p className="text-xs text-foreground/40 mt-0.5">${car.lease_due_at_signing?.toLocaleString()} due · {car.lease_term} months</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ── Buyer's Guides ──────────────────────────────────── */}
         <section className="mb-10">
