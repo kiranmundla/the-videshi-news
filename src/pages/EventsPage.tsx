@@ -10,13 +10,14 @@ import {
   EventItem,
   EventWithDistance,
   formatEventDate,
-  formatDistance,
   generateSlug,
   sortEventsByDistance,
   getAllUpcomingEvents,
   getFeaturedEvents,
   CITY_GROUPS,
 } from "@/lib/events";
+import { formatDistance } from "@/lib/geo";
+import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 
 const supabaseRaw = supabaseTyped as unknown as { from: (table: string) => any };
 
@@ -313,10 +314,10 @@ export default function EventsPage() {
   const searchQuery = searchParams.get("q") || "";
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  /* --- Geolocation state --- */
+  /* --- Geolocation / zip code state --- */
   const [nearMeActive, setNearMeActive] = useState(false);
-  const [geoLoading, setGeoLoading] = useState(false);
   const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
+  const [locationLabel, setLocationLabel] = useState<string>("");
 
   /* --- Sync filters with URL --- */
   // Default to Bay Area when no city param is present
@@ -327,6 +328,8 @@ export default function EventsPage() {
   const setCityFilter = useCallback((city: string | null) => {
     // Selecting a city deactivates Near Me
     setNearMeActive(false);
+    setUserCoords(null);
+    setLocationLabel("");
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       if (city && city !== DEFAULT_CITY) {
@@ -338,6 +341,27 @@ export default function EventsPage() {
       return next;
     }, { replace: true });
   }, [setSearchParams]);
+
+  /* --- Location handler (from ZipCodeSearch) --- */
+  const handleLocation = useCallback((result: LocationResult | null) => {
+    if (!result) {
+      // Cleared — go back to default
+      setNearMeActive(false);
+      setUserCoords(null);
+      setLocationLabel("");
+      setCityFilter(DEFAULT_CITY);
+      return;
+    }
+    setUserCoords({ lat: result.lat, lng: result.lng });
+    setNearMeActive(true);
+    setLocationLabel(result.label);
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.delete("city");
+      next.set("nearme", "1");
+      return next;
+    }, { replace: true });
+  }, [setCityFilter, setSearchParams]);
 
   const setTabFilter = useCallback((tab: string | null) => {
     setSearchParams((prev) => {
@@ -373,57 +397,18 @@ export default function EventsPage() {
   const PAGE_SIZE = 30;
   const categoryFilters = tabFilter ? getTabCategories(tabFilter) : null;
 
-  /* --- Near Me handler --- */
-  const handleNearMe = useCallback(() => {
-    if (nearMeActive) {
-      // Toggle off → go back to Bay Area
-      setNearMeActive(false);
-      setCityFilter(DEFAULT_CITY);
-      return;
-    }
-
-    if (!navigator.geolocation) {
-      // No geolocation support — stay on Bay Area
-      return;
-    }
-
-    setGeoLoading(true);
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const coords = { lat: position.coords.latitude, lng: position.coords.longitude };
-        setUserCoords(coords);
-        setNearMeActive(true);
-        setGeoLoading(false);
-        // Clean URL
-        setSearchParams((prev) => {
-          const next = new URLSearchParams(prev);
-          next.delete("city");
-          next.set("nearme", "1");
-          return next;
-        }, { replace: true });
-      },
-      () => {
-        // Denied or error → silently stay on Bay Area
-        setGeoLoading(false);
-        setNearMeActive(false);
-      },
-      { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
-    );
-  }, [nearMeActive, setCityFilter, setSearchParams]);
-
   /* --- Auto-request geolocation on page load --- */
   useEffect(() => {
     // If user navigated here with an explicit city param, respect it
     if (rawCity) return;
     // Otherwise, auto-request location
     if (!nearMeActive && !userCoords && navigator.geolocation) {
-      setGeoLoading(true);
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const coords = { lat: position.coords.latitude, lng: position.coords.longitude };
           setUserCoords(coords);
           setNearMeActive(true);
-          setGeoLoading(false);
+          setLocationLabel("📍 Near You");
           setSearchParams((prev) => {
             const next = new URLSearchParams(prev);
             next.delete("city");
@@ -433,7 +418,6 @@ export default function EventsPage() {
         },
         () => {
           // Denied or error → silently fall back to Bay Area
-          setGeoLoading(false);
           setNearMeActive(false);
         },
         { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
@@ -544,36 +528,18 @@ export default function EventsPage() {
             )}
           </div>
 
-          {/* Near Me + City dropdown */}
+          {/* Location: Zip / Near Me + City dropdown */}
           <div className="flex items-center gap-3 flex-shrink-0">
-          {/* Near Me pill */}
-          <button
-            onClick={handleNearMe}
-            disabled={geoLoading}
-            className={`flex-shrink-0 px-4 py-2.5 rounded-lg text-sm font-medium transition-all border ${
-              nearMeActive
-                ? "bg-primary/15 border-primary/40 text-primary"
-                : "bg-muted/40 border-border text-muted-foreground hover:bg-muted/60 hover:border-border"
-            } ${geoLoading ? "opacity-60 cursor-wait" : "cursor-pointer"}`}
-          >
-            {geoLoading ? (
-              <span className="flex items-center gap-1.5">
-                <span className="inline-block w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                Locating…
-              </span>
-            ) : nearMeActive ? (
-              "📍 Near You"
-            ) : (
-              "📍 Near Me"
-            )}
-          </button>
+          <ZipCodeSearch
+            onLocation={handleLocation}
+            active={nearMeActive}
+          />
 
           {/* City dropdown */}
           <div className="relative flex-shrink-0">
             <select
               value={nearMeActive ? "" : (cityFilter || "")}
               onChange={(e) => setCityFilter(e.target.value || null)}
-              disabled={geoLoading}
               className={`px-4 py-2.5 pr-9 rounded-lg border text-sm font-medium appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors ${
                 nearMeActive
                   ? "bg-muted/20 border-border/50 text-muted-foreground/50"

@@ -9,7 +9,6 @@ import {
   ListingWithDistance,
   getDirectoryListings,
   sortListingsByDistance,
-  formatDistance,
   DIRECTORY_CATEGORIES,
   CATEGORY_ICONS,
   CATEGORY_COLORS,
@@ -17,6 +16,8 @@ import {
   SUBCATEGORY_ICONS,
 } from "@/lib/directory";
 import { CITY_GROUPS } from "@/lib/events";
+import { formatDistance } from "@/lib/geo";
+import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 
 const DEFAULT_CITY = "Bay Area";
 const PAGE_SIZE = 30;
@@ -295,9 +296,8 @@ export default function DirectoryPage() {
   const searchQuery = searchParams.get("q") || "";
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  /* --- Geolocation state --- */
+  /* --- Geolocation / zip code state --- */
   const [nearMeActive, setNearMeActive] = useState(false);
-  const [geoLoading, setGeoLoading] = useState(false);
   const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
 
   /* --- Sync filters with URL --- */
@@ -308,6 +308,7 @@ export default function DirectoryPage() {
 
   const setCityFilter = useCallback((city: string | null) => {
     setNearMeActive(false);
+    setUserCoords(null);
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       if (city && city !== DEFAULT_CITY) {
@@ -319,6 +320,24 @@ export default function DirectoryPage() {
       return next;
     }, { replace: true });
   }, [setSearchParams]);
+
+  /* --- Location handler (from ZipCodeSearch) --- */
+  const handleLocation = useCallback((result: LocationResult | null) => {
+    if (!result) {
+      setNearMeActive(false);
+      setUserCoords(null);
+      setCityFilter(DEFAULT_CITY);
+      return;
+    }
+    setUserCoords({ lat: result.lat, lng: result.lng });
+    setNearMeActive(true);
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.delete("city");
+      next.set("nearme", "1");
+      return next;
+    }, { replace: true });
+  }, [setCityFilter, setSearchParams]);
 
   const setCategoryFilter = useCallback((cat: string | null) => {
     setSearchParams((prev) => {
@@ -363,47 +382,15 @@ export default function DirectoryPage() {
     }, { replace: true });
   }, [setSearchParams]);
 
-  /* --- Near Me handler --- */
-  const handleNearMe = useCallback(() => {
-    if (nearMeActive) {
-      setNearMeActive(false);
-      setCityFilter(DEFAULT_CITY);
-      return;
-    }
-    if (!navigator.geolocation) return;
-    setGeoLoading(true);
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const coords = { lat: position.coords.latitude, lng: position.coords.longitude };
-        setUserCoords(coords);
-        setNearMeActive(true);
-        setGeoLoading(false);
-        setSearchParams((prev) => {
-          const next = new URLSearchParams(prev);
-          next.delete("city");
-          next.set("nearme", "1");
-          return next;
-        }, { replace: true });
-      },
-      () => {
-        setGeoLoading(false);
-        setNearMeActive(false);
-      },
-      { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
-    );
-  }, [nearMeActive, setCityFilter, setSearchParams]);
-
   /* --- Auto-request geolocation on page load --- */
   useEffect(() => {
     if (rawCity) return;
     if (!nearMeActive && !userCoords && navigator.geolocation) {
-      setGeoLoading(true);
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const coords = { lat: position.coords.latitude, lng: position.coords.longitude };
           setUserCoords(coords);
           setNearMeActive(true);
-          setGeoLoading(false);
           setSearchParams((prev) => {
             const next = new URLSearchParams(prev);
             next.delete("city");
@@ -412,7 +399,6 @@ export default function DirectoryPage() {
           }, { replace: true });
         },
         () => {
-          setGeoLoading(false);
           setNearMeActive(false);
         },
         { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
@@ -527,34 +513,17 @@ export default function DirectoryPage() {
             )}
           </div>
 
-          {/* Near Me + City dropdown */}
+          {/* Location: Zip / Near Me + City dropdown */}
           <div className="flex items-center gap-3 flex-shrink-0">
-            <button
-              onClick={handleNearMe}
-              disabled={geoLoading}
-              className={`flex-shrink-0 px-4 py-2.5 rounded-lg text-sm font-medium transition-all border ${
-                nearMeActive
-                  ? "bg-primary/15 border-primary/40 text-primary"
-                  : "bg-muted/40 border-border text-muted-foreground hover:bg-muted/60 hover:border-border"
-              } ${geoLoading ? "opacity-60 cursor-wait" : "cursor-pointer"}`}
-            >
-              {geoLoading ? (
-                <span className="flex items-center gap-1.5">
-                  <span className="inline-block w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                  Locating…
-                </span>
-              ) : nearMeActive ? (
-                "📍 Near You"
-              ) : (
-                "📍 Near Me"
-              )}
-            </button>
+            <ZipCodeSearch
+              onLocation={handleLocation}
+              active={nearMeActive}
+            />
 
             <div className="relative flex-shrink-0">
               <select
                 value={nearMeActive ? "" : (cityFilter || "")}
                 onChange={(e) => setCityFilter(e.target.value || null)}
-                disabled={geoLoading}
                 className={`px-4 py-2.5 pr-9 rounded-lg border text-sm font-medium appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors ${
                   nearMeActive
                     ? "bg-muted/20 border-border/50 text-muted-foreground/50"
