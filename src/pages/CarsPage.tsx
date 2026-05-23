@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
-  Search, X, Star, Fuel, Users, ChevronRight, ChevronLeft,
+  Search, X, Star, Fuel, Users, ChevronRight,
   BookOpen, ArrowRight,
 } from "lucide-react";
 import Masthead from "@/components/Masthead";
@@ -58,19 +58,28 @@ const GUIDES = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* Small Car Card (for horizontal scroll rows)                        */
+/* Car Card                                                           */
 /* ------------------------------------------------------------------ */
-function CarCard({ car, compact }: { car: Car; compact?: boolean }) {
+function CarCard({ car }: { car: Car }) {
   const grad = brandGradient(car.brand);
   return (
-    <Link to={`/cars/${car.slug}`} className={`block group ${compact ? "w-[260px] shrink-0 snap-start" : ""}`}>
+    <Link to={`/cars/${car.slug}`} className="block group">
       <article className="flex flex-col bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5 h-full">
-        {/* Image placeholder */}
-        <div className={`relative w-full ${compact ? "h-36" : "h-44"} bg-gradient-to-br ${grad} flex items-center justify-center`}>
-          <div className="text-center px-4">
-            <p className="text-foreground/40 text-xs uppercase tracking-widest">{car.brand}</p>
-            <p className="text-foreground/70 text-lg font-bold mt-1">{car.model}</p>
-          </div>
+        {/* Image */}
+        <div className={`relative w-full h-44 bg-gradient-to-br ${grad} flex items-center justify-center overflow-hidden`}>
+          {car.image_url ? (
+            <img
+              src={car.image_url}
+              alt={car.name}
+              className="w-full h-full object-contain p-2"
+              loading="lazy"
+            />
+          ) : (
+            <div className="text-center px-4">
+              <p className="text-foreground/40 text-xs uppercase tracking-widest">{car.brand}</p>
+              <p className="text-foreground/70 text-lg font-bold mt-1">{car.model}</p>
+            </div>
+          )}
           {car.is_our_pick && (
             <div className="absolute top-2.5 right-2.5 flex items-center gap-1 bg-amber-500/90 text-black text-xs font-bold px-2 py-0.5 rounded-full shadow-md">
               <Star className="h-3 w-3 fill-current" />
@@ -109,7 +118,7 @@ function CarCard({ car, compact }: { car: Car; compact?: boolean }) {
             {car.seating && (
               <span className="flex items-center gap-1">
                 <Users className="h-3 w-3" />
-                {car.seating}
+                {car.seating} seats
               </span>
             )}
           </div>
@@ -132,57 +141,14 @@ function CarCard({ car, compact }: { car: Car; compact?: boolean }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Horizontally scrollable car row                                    */
+/* Section grid — shows all cars in a responsive grid                 */
 /* ------------------------------------------------------------------ */
-function CarRow({ cars }: { cars: Car[] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [canLeft, setCanLeft] = useState(false);
-  const [canRight, setCanRight] = useState(false);
-
-  const checkScroll = useCallback(() => {
-    const el = ref.current;
-    if (!el) return;
-    setCanLeft(el.scrollLeft > 4);
-    setCanRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
-  }, []);
-
-  useEffect(() => {
-    checkScroll();
-    const el = ref.current;
-    if (el) el.addEventListener("scroll", checkScroll, { passive: true });
-    return () => el?.removeEventListener("scroll", checkScroll);
-  }, [checkScroll, cars]);
-
-  const scroll = (dir: "left" | "right") => {
-    ref.current?.scrollBy({ left: dir === "left" ? -280 : 280, behavior: "smooth" });
-  };
-
+function SectionGrid({ cars }: { cars: Car[] }) {
   return (
-    <div className="relative group/row">
-      {canLeft && (
-        <button
-          onClick={() => scroll("left")}
-          className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 items-center justify-center rounded-full bg-card border border-border shadow-lg hover:bg-primary/10 transition-colors"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </button>
-      )}
-      <div
-        ref={ref}
-        className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-2 -mx-1 px-1"
-      >
-        {cars.map((car) => (
-          <CarCard key={car.id} car={car} compact />
-        ))}
-      </div>
-      {canRight && (
-        <button
-          onClick={() => scroll("right")}
-          className="hidden sm:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 items-center justify-center rounded-full bg-card border border-border shadow-lg hover:bg-primary/10 transition-colors"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </button>
-      )}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {cars.map((car) => (
+        <CarCard key={car.id} car={car} />
+      ))}
     </div>
   );
 }
