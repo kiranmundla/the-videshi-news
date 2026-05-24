@@ -318,6 +318,7 @@ export const GUIDE_CATEGORIES = [
   { key: "family", label: "Family", emoji: "👨‍👩‍👧‍👦" },
   { key: "indian-services", label: "Indian Services", emoji: "🇮🇳" },
   { key: "practical", label: "Practical & Financial", emoji: "💰" },
+  { key: "forms", label: "Form Guides", emoji: "📝" },
 ] as const;
 
 export const GUIDE_PLACEHOLDERS = [
@@ -343,6 +344,14 @@ export const GUIDE_PLACEHOLDERS = [
   { slug: "money-transfer-india", title: "Sending Money to India: Best Methods", category: "practical", emoji: "💸" },
   { slug: "social-security-india", title: "Social Security for Indian Americans", category: "practical", emoji: "🏛️" },
   { slug: "health-insurance-immigration", title: "Health Insurance During Immigration Limbo", category: "practical", emoji: "🏥" },
+  { slug: "how-to-fill-i140", title: "How to Fill Form I-140: Step-by-Step", category: "forms", emoji: "📝" },
+  { slug: "how-to-fill-i485", title: "How to Fill Form I-485: Step-by-Step", category: "forms", emoji: "📝" },
+  { slug: "how-to-fill-i765", title: "How to Fill Form I-765: EAD Application", category: "forms", emoji: "📝" },
+  { slug: "how-to-fill-i131", title: "How to Fill Form I-131: Travel Document", category: "forms", emoji: "📝" },
+  { slug: "how-to-fill-n400", title: "How to Fill Form N-400: Citizenship", category: "forms", emoji: "📝" },
+  { slug: "how-to-fill-i130", title: "How to Fill Form I-130: Family Petition", category: "forms", emoji: "📝" },
+  { slug: "how-to-fill-ds160", title: "How to Fill DS-160: Visa Application", category: "forms", emoji: "📝" },
+  { slug: "how-to-fill-i539", title: "How to Fill Form I-539: Change of Status", category: "forms", emoji: "📝" },
 ];
 
 /* ------------------------------------------------------------------ */
