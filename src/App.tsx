@@ -53,6 +53,15 @@ const CarComparePage = React.lazy(() => import("./pages/CarComparePage.tsx"));
 const LeaseDealsPage = React.lazy(() => import("./pages/LeaseDealsPage.tsx"));
 const CarGuides = React.lazy(() => import("./pages/CarGuides.tsx"));
 
+// Immigration
+const ImmigrationPage = React.lazy(() => import("./pages/ImmigrationPage.tsx"));
+const GreenCardTrackerPage = React.lazy(() => import("./pages/GreenCardTrackerPage.tsx"));
+const ConsulateWaitTimesPage = React.lazy(() => import("./pages/ConsulateWaitTimesPage.tsx"));
+const ProcessingTimesPage = React.lazy(() => import("./pages/ProcessingTimesPage.tsx"));
+const H1BHubPage = React.lazy(() => import("./pages/H1BHubPage.tsx"));
+const ImmigrationGuidesPage = React.lazy(() => import("./pages/ImmigrationGuidesPage.tsx"));
+const ImmigrationGuidePage = React.lazy(() => import("./pages/ImmigrationGuidePage.tsx"));
+
 // Admin (rarely visited — always lazy)
 const Admin = React.lazy(() => import("./pages/Admin.tsx"));
 const AdminDashboard = React.lazy(() => import("./pages/admin/AdminDashboard.tsx"));
@@ -120,6 +129,13 @@ const App = () => (
               <Route path="/cars/guide/india-vs-us-driving" element={<IndiaVsUSDrivingGuide />} />
               <Route path="/cars/guide/cars-for-tech-professionals" element={<TechProfessionalsGuide />} />
               <Route path="/cars/:slug" element={<CarDetailPage />} />
+              <Route path="/immigration" element={<ImmigrationPage />} />
+              <Route path="/immigration/green-card" element={<GreenCardTrackerPage />} />
+              <Route path="/immigration/consulate-wait-times" element={<ConsulateWaitTimesPage />} />
+              <Route path="/immigration/processing-times" element={<ProcessingTimesPage />} />
+              <Route path="/immigration/h1b" element={<H1BHubPage />} />
+              <Route path="/immigration/guides" element={<ImmigrationGuidesPage />} />
+              <Route path="/immigration/guides/:slug" element={<ImmigrationGuidePage />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/admin/articles" element={<AdminArticles />} />
               <Route path="/admin/cars" element={<AdminCars />} />

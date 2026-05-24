@@ -170,6 +170,9 @@ export default function Masthead() {
               <Link to="/cars" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
                 🚗 Cars
               </Link>
+              <Link to="/immigration" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
+                🗽 Immigration
+              </Link>
               <Link to="/travel" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
                 Travel Guides
               </Link>
