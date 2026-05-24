@@ -346,8 +346,7 @@ export default function TravelPage() {
               )}
             </section>
 
-            {/* ── Explore Guides ──────────────────────────────── */}
-            <GuideSection />
+
 
             {/* ── Travel Agent CTA ───────────────────────────── */}
             <section className="mb-12">
