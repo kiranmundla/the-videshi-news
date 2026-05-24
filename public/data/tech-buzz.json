@@ -18,7 +18,10 @@
         "likes": 0,
         "retweets": 0
       },
-      "category": "tech"
+      "category": "tech",
+      "text": "SpaceX IPO filing targets $1.25-2.2 trillion valuation — potentially the largest IPO in history. Starship completes 12th test flight from Starbase, Texas. Meanwhile Nvidia CEO Jensen Huang says SpaceX rival in AI has 'largely conceded' China's chip market to Huawei amid US export controls.",
+      "url": "https://x.com/elonmusk",
+      "date": "2026-05-23"
     },
     {
       "name": "Donald Trump",
@@ -38,7 +41,10 @@
           "url": "https://truthsocial.com/@realDonaldTrump"
         }
       ],
-      "category": "world"
+      "category": "world",
+      "text": "Trump declares Iran peace deal 'largely negotiated' — says Strait of Hormuz 'will be opened.' Tells Axios he's '50/50' on deal vs blowing them 'to kingdom come.' MoU being fine-tuned with Pakistan mediating. VP Vance returns to DC. Tulsi Gabbard resigns as DNI — 4th Cabinet departure this term.",
+      "url": "https://x.com/realDonaldTrump",
+      "date": "2026-05-23"
     },
     {
       "name": "Narendra Modi",
@@ -58,7 +64,10 @@
           "url": "https://x.com/narendramodi"
         }
       ],
-      "category": "india"
+      "category": "india",
+      "text": "PM Modi hosts US Secretary of State Marco Rubio in New Delhi — wide-ranging talks on trade, defense, energy, and Indo-Pacific security. Rubio invites Modi to White House. Quad Foreign Ministers' Meeting set for May 26 in Delhi. Modi also distributed 51,000 government appointment letters this week.",
+      "url": "https://x.com/narendramodi",
+      "date": "2026-05-23"
     },
     {
       "name": "Mark Zuckerberg",
@@ -78,7 +87,10 @@
         "date": "2026-05-23",
         "likes": 0,
         "retweets": 0
-      }
+      },
+      "text": "Meta restructures aggressively: 8,000 jobs cut and 7,000 reassigned to AI teams. Leaked audio reveals Zuckerberg defended employee surveillance to win the AI race. Tells surviving staff: 'I feel the weight of that.' Threads crosses 150M daily active users as Meta's fediverse bet pays off.",
+      "url": "https://x.com/zuck",
+      "date": "2026-05-23"
     },
     {
       "name": "Sundar Pichai",
@@ -98,7 +110,10 @@
         "likes": 0,
         "retweets": 0
       },
-      "category": "tech"
+      "category": "tech",
+      "text": "Google pushes Gemini AI across Search, Workspace, and Cloud to challenge ChatGPT's dominance. Antitrust concerns mount over AI energy consumption and search monopoly. Quad FM meeting in New Delhi on May 26 puts Indo-Pacific tech cooperation in focus — Google's India investments under the spotlight.",
+      "url": "https://x.com/sundarpichai",
+      "date": "2026-05-23"
     },
     {
       "name": "Satya Nadella",
@@ -118,7 +133,10 @@
         "likes": 0,
         "retweets": 0
       },
-      "category": "tech"
+      "category": "tech",
+      "text": "Microsoft defends $80 billion AI infrastructure investment as Azure crosses $75 billion quarterly revenue. Plans $30 billion more in AI infra spending next quarter. Copilot enterprise adoption hits record highs as the AI arms race between Microsoft, Google, and Meta intensifies.",
+      "url": "https://x.com/satyanadella",
+      "date": "2026-05-23"
     },
     {
       "name": "Sam Altman",
@@ -138,7 +156,10 @@
         "likes": 0,
         "retweets": 0
       },
-      "category": "tech"
+      "category": "tech",
+      "text": "Sam Altman teases GPT-5 — 'smarter than the smartest person' — as Musk v. OpenAI lawsuit over the $97.4B acquisition heads toward trial. OpenAI's valuation soars amid fierce competition. The AI safety debate intensifies as Bill Gates argues development pauses are counterproductive.",
+      "url": "https://x.com/sama",
+      "date": "2026-05-23"
     },
     {
       "name": "Tim Cook",
@@ -158,7 +179,10 @@
         "likes": 0,
         "retweets": 0
       },
-      "category": "tech"
+      "category": "tech",
+      "text": "Apple succession lands on John Ternus — 'the mind of an engineer, the soul of an innovator.' Apple asks Supreme Court to review App Store contempt ruling. Firefly-competitive AI features set for WWDC 2026 as Apple plays catch-up in generative AI.",
+      "url": "https://x.com/tim_cook",
+      "date": "2026-05-23"
     },
     {
       "name": "Nandan Nilekani",
@@ -178,7 +202,10 @@
         "likes": 0,
         "retweets": 0
       },
-      "category": "tech"
+      "category": "tech",
+      "text": "Big Tech pours $50 billion into India for AI, cloud, and digital infrastructure. Infosys co-founder's Fundamentum Partnership continues backing India's digital startups. Quad FM meeting on May 26 will discuss critical tech partnerships as India emerges as a key AI talent hub.",
+      "url": "https://x.com/NandanNilekani",
+      "date": "2026-05-23"
     },
     {
       "name": "Bill Gates",
@@ -198,7 +225,10 @@
         "likes": 0,
         "retweets": 0
       },
-      "category": "tech"
+      "category": "tech",
+      "text": "Bill Gates criticizes AI development pauses, argues stopping progress is counterproductive and risks ceding ground to less safety-conscious actors. Continues pushing global health initiatives through the Gates Foundation while maintaining skepticism toward crypto.",
+      "url": "https://x.com/BillGates",
+      "date": "2026-05-23"
     },
     {
       "name": "Jensen Huang",
@@ -218,7 +248,10 @@
         "likes": 0,
         "retweets": 0
       },
-      "category": "tech"
+      "category": "tech",
+      "text": "Nvidia posts jaw-dropping $81.6B Q1 revenue — 10x from three years ago. Stock dips 1.8% despite the record as Dow hits $50,579. Unveils Vera Rubin platform: 10x inference throughput per megawatt over Blackwell. CEO Huang sees $1 trillion in orders through next year but concedes China market to Huawei.",
+      "url": "https://x.com/nvidia",
+      "date": "2026-05-23"
     },
     {
       "name": "Keir Starmer",
@@ -238,7 +271,10 @@
           "url": "https://x.com/Keir_Starmer"
         }
       ],
-      "category": "world"
+      "category": "world",
+      "text": "UK PM Starmer co-chairs 40+ nation Paris meeting with Macron on keeping Strait of Hormuz open. Announces free summer bus travel for kids across England. Defends EU alignment plans as Reform UK's Nigel Farage circles for the kill. The Iran deal's success matters deeply for UK energy security.",
+      "url": "https://x.com/Keir_Starmer",
+      "date": "2026-05-23"
     },
     {
       "name": "Anthony Albanese",
@@ -258,7 +294,10 @@
           "url": "https://x.com/AlboMP"
         }
       ],
-      "category": "world"
+      "category": "world",
+      "text": "Australian PM Albanese prepares for Quad FM meeting in New Delhi on May 26. Indo-Pacific security, technology cooperation, and maritime stability top the agenda as the Iran deal reshapes global energy and security dynamics.",
+      "url": "https://x.com/AlboMP",
+      "date": "2026-05-23"
     },
     {
       "name": "Christopher Luxon",
@@ -278,7 +317,10 @@
           "url": "https://x.com/chrisluxonNZ"
         }
       ],
-      "category": "world"
+      "category": "world",
+      "text": "New Zealand PM Luxon monitors Indo-Pacific developments as Quad FM meeting approaches May 26. Five Eyes alignment and Pacific security remain NZ's key priorities amid shifting US-Iran and US-China dynamics.",
+      "url": "https://x.com/chrisluxonNZ",
+      "date": "2026-05-23"
     },
     {
       "name": "Mohammed bin Rashid",
@@ -298,7 +340,10 @@
           "url": "https://x.com/HHShkMohd"
         }
       ],
-      "category": "world"
+      "category": "world",
+      "text": "UAE ruler Mohammed bin Rashid watches Iran deal developments closely. Gulf nations push for permanent Hormuz resolution. The Gulf's role as trade and logistics hub depends on stable maritime passage — stakes couldn't be higher.",
+      "url": "https://x.com/HHShkMohd",
+      "date": "2026-05-23"
     },
     {
       "name": "Giorgia Meloni",
@@ -318,7 +363,10 @@
           "url": "https://x.com/GiorgiaMeloni"
         }
       ],
-      "category": "world"
+      "category": "world",
+      "text": "Italian PM Meloni's recent Rome meeting with Modi — where a viral 'Melody' candy gift sparked global attention — strengthens Italy-India ties. Europe watches the Iran deal closely as Hormuz reopening would ease energy costs.",
+      "url": "https://x.com/GiorgiaMeloni",
+      "date": "2026-05-23"
     },
     {
       "name": "Emmanuel Macron",
@@ -338,7 +386,10 @@
           "url": "https://x.com/EmmanuelMacron"
         }
       ],
-      "category": "world"
+      "category": "world",
+      "text": "Macron co-hosts 40+ nation Paris summit on Strait of Hormuz security with UK's Starmer. France positions itself at the center of the Iran peace effort. Oil markets and European energy security hang in the balance as the MoU nears finalization.",
+      "url": "https://x.com/EmmanuelMacron",
+      "date": "2026-05-23"
     },
     {
       "name": "PMO India",
@@ -358,7 +409,10 @@
           "url": "https://x.com/PMOIndia"
         }
       ],
-      "category": "india"
+      "category": "india",
+      "text": "India-US bilateral ties deepen as Rubio's 4-day India visit sets the stage for Quad FM meeting on May 26. Modi-Rubio talks cover defense cooperation, critical tech, energy security, and West Asia situation. Both sides emphasize 'global good' and free Indo-Pacific.",
+      "url": "https://x.com/PMOIndia",
+      "date": "2026-05-23"
     },
     {
       "name": "The White House",
@@ -378,7 +432,10 @@
           "url": "https://x.com/WhiteHouse"
         }
       ],
-      "category": "world"
+      "category": "world",
+      "text": "White House navigates Iran deal finalization — 14-point plan with Pakistan mediating. Tulsi Gabbard forced to resign as DNI (citing husband's cancer); Aaron Lukas named acting director. Trump holds calls with Gulf allies and meets with negotiators Witkoff and Kushner. VP Vance returns to DC.",
+      "url": "https://x.com/WhiteHouse",
+      "date": "2026-05-23"
     },
     {
       "name": "Virat Kohli",
@@ -398,7 +455,10 @@
         {
           "url": "https://x.com/imVkohli"
         }
-      ]
+      ],
+      "text": "RCB finish top of IPL 2026 table with 18 points despite losing final league match to SRH by 55 runs. Patidar (56) and Krunal Pandya (41*) ensured RCB crossed the 166-run safety mark. Qualifier 1 vs Gujarat Titans on May 26 at Dharamsala. The King awaits his crown.",
+      "url": "https://x.com/imVkohli",
+      "date": "2026-05-23"
     },
     {
       "name": "Rohit Sharma",
@@ -418,7 +478,10 @@
         {
           "url": "https://x.com/ImRo45"
         }
-      ]
+      ],
+      "text": "Mumbai Indians (4 wins, 9 losses) face Rajasthan Royals at Wankhede tomorrow in the final league match. MI eliminated but playing spoiler — RR need the win for playoff qualification. Rohit's farewell to a forgettable IPL 2026 campaign.",
+      "url": "https://x.com/ImRo45",
+      "date": "2026-05-23"
     },
     {
       "name": "MS Dhoni",
@@ -438,7 +501,10 @@
         {
           "url": "https://x.com/msdhoni"
         }
-      ]
+      ],
+      "text": "CSK eliminated from IPL 2026 playoff race. Captain Cool watches from the sidelines as the final day unfolds with RR, PBKS, and KKR battling for the 4th playoff spot. Arjun Tendulkar debuted for LSG this season as the next generation takes center stage.",
+      "url": "https://x.com/msdhoni",
+      "date": "2026-05-23"
     },
     {
       "name": "Jasprit Bumrah",
@@ -458,7 +524,10 @@
         {
           "url": "https://x.com/Jaspritbumrah93"
         }
-      ]
+      ],
+      "text": "Bumrah left out of India's T20 World Cup squad — managed carefully for longer formats. IPL 2026's purple cap race features Rabada and Malinga variants. MI's season over but Bumrah's workload management signals bigger plans ahead.",
+      "url": "https://x.com/Jaspritbumrah93",
+      "date": "2026-05-23"
     },
     {
       "name": "Hardik Pandya",
@@ -478,7 +547,10 @@
         {
           "url": "https://x.com/hardikpandya7"
         }
-      ]
+      ],
+      "text": "MI face Rajasthan Royals at Wankhede tomorrow in the final league match. Hardik's all-round abilities tested in a dead rubber that's alive for RR — a win sends Rajasthan through to playoffs. MI's dismal 4-9 season ends with a potential spoiler role.",
+      "url": "https://x.com/hardikpandya7",
+      "date": "2026-05-23"
     },
     {
       "name": "BCCI",
@@ -498,7 +570,10 @@
         {
           "url": "https://x.com/BCCI"
         }
-      ]
+      ],
+      "text": "IPL 2026 enters its final league day: MI vs RR (Wankhede) and KKR vs DC (Eden Gardens) on May 24. Top 3 locked: RCB (1st), GT (2nd), SRH (3rd) — all on 18 points. 4th spot between RR, PBKS, KKR. Playoffs: Qualifier 1 May 26 Dharamsala, Eliminator May 27, Final May 31 Ahmedabad.",
+      "url": "https://x.com/BCCI",
+      "date": "2026-05-23"
     },
     {
       "name": "ICC",
@@ -518,7 +593,10 @@
         {
           "url": "https://x.com/ICC"
         }
-      ]
+      ],
+      "text": "ICC board meeting in Ahmedabad on May 30 to discuss playing condition changes. IPL 2026 finale week coincides with global cricket governance decisions. T20 World Cup squad selections create ripples — Bumrah, Shubman Gill left out for workload management.",
+      "url": "https://x.com/ICC",
+      "date": "2026-05-23"
     },
     {
       "name": "IPL",
@@ -538,7 +616,10 @@
         {
           "url": "https://x.com/IPL"
         }
-      ]
+      ],
+      "text": "FINAL DAY: Match 69 MI vs RR at Wankhede, Match 70 KKR vs DC at Eden Gardens — both May 24. Three teams fight for one spot. RR (14 pts) favorites with best NRR. PBKS (13 pts, done playing) pray for RR loss. KKR (13 pts) need to win AND hope. DC eliminated. Playoffs start May 26.",
+      "url": "https://x.com/IPL",
+      "date": "2026-05-23"
     },
     {
       "name": "Neeraj Chopra",
@@ -558,7 +639,10 @@
         {
           "url": "https://x.com/Neeraj_chopra1"
         }
-      ]
+      ],
+      "text": "India's golden arm Neeraj Chopra preps for the 2026 athletics season. The Federation Cup in Ranchi spotlights India's next wave of track and field talent. Diamond League circuit awaits the Olympic champion's return to the javelin runway.",
+      "url": "https://x.com/Neeraj_chopra1",
+      "date": "2026-05-23"
     },
     {
       "name": "PV Sindhu",
@@ -578,7 +662,10 @@
         {
           "url": "https://x.com/Pvsindhu1"
         }
-      ]
+      ],
+      "text": "PV Sindhu continues her badminton campaign as the international circuit heats up. India's shuttlers look to build momentum through the Super Series events ahead of the Asian Games cycle.",
+      "url": "https://x.com/Pvsindhu1",
+      "date": "2026-05-22"
     },
     {
       "name": "Sania Mirza",
@@ -598,7 +685,10 @@
         {
           "url": "https://x.com/MirzaSania"
         }
-      ]
+      ],
+      "text": "Tennis icon Sania Mirza's legacy continues to inspire Indian tennis. Post-retirement, she remains the most prominent Indian face in global tennis history, mentoring the next generation of players.",
+      "url": "https://x.com/MirzaSania",
+      "date": "2026-05-22"
     },
     {
       "name": "D Gukesh",
@@ -618,7 +708,10 @@
         {
           "url": "https://x.com/DGukesh"
         }
-      ]
+      ],
+      "text": "World Chess Champion D Gukesh takes a classical break to prepare for his title defense against Candidates winner Sindarov later this year. Russian GM Nepomniachtchi fires: 'Every top GM would have a good chance against him.' The youngest world champion plots his comeback.",
+      "url": "https://x.com/DGukesh",
+      "date": "2026-05-23"
     },
     {
       "name": "Sunil Chhetri",
@@ -638,7 +731,10 @@
         {
           "url": "https://x.com/chetrisunil11"
         }
-      ]
+      ],
+      "text": "AIFF announces 2026-27 Club Licensing results as Indian football restructures. Sunil Chhetri's legacy as India's all-time top scorer endures — the next generation of Indian footballers looks to carry the torch he lit.",
+      "url": "https://x.com/chetrisunil11",
+      "date": "2026-05-23"
     },
     {
       "name": "Vivek Ramaswamy",
@@ -658,7 +754,10 @@
         {
           "url": "https://x.com/VivekGRamaswamy"
         }
-      ]
+      ],
+      "text": "Vivek Ramaswamy continues his post-DOGE political trajectory. Gabbard's forced resignation as DNI makes him the highest-profile Indian-American to have served and departed Trump's inner circle. His 'anti-woke' brand and Ohio political ambitions remain active.",
+      "url": "https://x.com/VivekGRamaswamy",
+      "date": "2026-05-23"
     },
     {
       "name": "Arvind Krishna",
@@ -678,7 +777,10 @@
         {
           "url": "https://x.com/ArvindKrishna"
         }
-      ]
+      ],
+      "text": "IBM CEO Arvind Krishna expands AI partnerships — Tech Mahindra and IBM to accelerate enterprise adoption of Generative AI using the watsonx platform, targeting hybrid and on-premises environments. India emerging as major enterprise AI deployment hub.",
+      "url": "https://x.com/ArvindKrishna",
+      "date": "2026-05-23"
     },
     {
       "name": "Shantanu Narayen",
@@ -698,7 +800,10 @@
         {
           "url": "https://x.com/ShantanuNarayen"
         }
-      ]
+      ],
+      "text": "Adobe CEO continues integrating generative AI across Creative Cloud and Experience Cloud. Firefly family of models gains traction against Midjourney and DALL-E. Competition intensifies in AI creative tools as Meta, Google, and Adobe race to dominate the creator economy.",
+      "url": "https://x.com/ShantanuNarayen",
+      "date": "2026-05-23"
     },
     {
       "name": "Parag Agrawal",
@@ -718,7 +823,10 @@
         {
           "url": "https://x.com/paraga"
         }
-      ]
+      ],
+      "text": "Former Twitter CEO Parag Agrawal maintains low profile post-Musk acquisition, focusing on AI ventures and advisory roles in Silicon Valley's startup ecosystem. The Indian-American tech diaspora continues to shape global AI leadership.",
+      "url": "https://x.com/paraga",
+      "date": "2026-05-21"
     },
     {
       "name": "Leena Nair",
@@ -738,7 +846,10 @@
         {
           "url": "https://x.com/LeenaNairHR"
         }
-      ]
+      ],
+      "text": "Chanel CEO Leena Nair continues steering the luxury house through a competitive landscape. The Indian-born executive represents growing diaspora influence in global luxury and fashion leadership. Cannes 2026 puts Chanel back in the spotlight.",
+      "url": "https://x.com/LeenaNairHR",
+      "date": "2026-05-23"
     },
     {
       "name": "Raj Subramaniam",
@@ -758,7 +869,10 @@
         {
           "url": "https://x.com/RajSubramaniam"
         }
-      ]
+      ],
+      "text": "FedEx CEO Raj Subramaniam navigates global logistics amid trade disruptions and shifting supply chains. The Indian-American CEO exemplifies diaspora leadership at the helm of a Fortune 50 company reshaping last-mile delivery with AI.",
+      "url": "https://x.com/RajSubramaniam",
+      "date": "2026-05-23"
     },
     {
       "name": "Rishi Sunak",
@@ -778,7 +892,10 @@
         {
           "url": "https://x.com/RishiSunak"
         }
-      ]
+      ],
+      "text": "Former UK PM Rishi Sunak observes from opposition as Starmer navigates Iran, EU alignment, and Reform UK's rise. Sunak's legacy as Britain's first Indian-origin PM continues to resonate with the global diaspora.",
+      "url": "https://x.com/RishiSunak",
+      "date": "2026-05-23"
     },
     {
       "name": "Usha Vance",
@@ -798,7 +915,10 @@
         {
           "url": "https://x.com/UshaVance"
         }
-      ]
+      ],
+      "text": "Second Lady Usha Vance — Indian-American Yale Law grad — watches as VP JD Vance returns to DC amid Iran deal finalization. The Vances represent the most prominent Indian-origin family in the current White House inner circle.",
+      "url": "https://x.com/UshaVance",
+      "date": "2026-05-23"
     },
     {
       "name": "Kash Patel",
@@ -818,7 +938,10 @@
         {
           "url": "https://x.com/KashPatel47"
         }
-      ]
+      ],
+      "text": "FBI Director Kash Patel continues reshaping the Bureau amid Gabbard's departure from DNI. Indian-American influence in national security deepens as the intelligence community transitions to Aaron Lukas as acting DNI. The Iran deal and domestic security remain top priorities.",
+      "url": "https://x.com/KashPatel47",
+      "date": "2026-05-23"
     },
     {
       "name": "Sriram Krishnan",
@@ -838,7 +961,10 @@
         {
           "url": "https://x.com/SriramKrishnan"
         }
-      ]
+      ],
+      "text": "White House AI advisor Sriram Krishnan shapes US tech policy as Big Tech pours $50B into India and AI competition intensifies globally. The Indian-American tech executive bridges Silicon Valley and DC at a pivotal moment for AI governance.",
+      "url": "https://x.com/SriramKrishnan",
+      "date": "2026-05-23"
     },
     {
       "name": "Suella Braverman",
@@ -858,7 +984,10 @@
         {
           "url": "https://x.com/SuellaBraverman"
         }
-      ]
+      ],
+      "text": "Former UK Home Secretary Suella Braverman — Indian-origin Tory — remains vocal on immigration and law enforcement from the backbenches as Starmer's government faces pressure from both Reform UK and the EU alignment debate.",
+      "url": "https://x.com/SuellaBraverman",
+      "date": "2026-05-22"
     },
     {
       "name": "Ajay Banga",
@@ -878,7 +1007,10 @@
         {
           "url": "https://x.com/AjayBanga"
         }
-      ]
+      ],
+      "text": "World Bank President Ajay Banga shapes global development policy as India hosts the Quad FM meeting and the Iran peace deal takes shape. Indian-American diaspora leaders increasingly drive international economic governance at the highest levels.",
+      "url": "https://x.com/AjayBanga",
+      "date": "2026-05-23"
     },
     {
       "name": "Sachin Tendulkar",
@@ -898,7 +1030,10 @@
         {
           "url": "https://x.com/sachin_rt"
         }
-      ]
+      ],
+      "text": "The Master Blaster watches son Arjun Tendulkar play for Lucknow Super Giants in IPL 2026. Punjab Kings chased down 196 to beat LSG and keep their playoff hopes alive. Cricket's greatest legacy extends to the next generation on the biggest stage.",
+      "url": "https://x.com/sachin_rt",
+      "date": "2026-05-23"
     },
     {
       "name": "Saurav Ganguly",
@@ -918,7 +1053,10 @@
         {
           "url": "https://x.com/SGanguly99"
         }
-      ]
+      ],
+      "text": "Former BCCI president Saurav Ganguly watches IPL 2026's thrilling final day unfold. KKR — the franchise he built into champions — face DC at Eden Gardens tomorrow in a do-or-die battle for the 4th playoff spot. The Dada legacy looms large at his home ground.",
+      "url": "https://x.com/SGanguly99",
+      "date": "2026-05-23"
     },
     {
       "name": "Amit Shah",
@@ -938,7 +1076,10 @@
         {
           "url": "https://x.com/AmitShah"
         }
-      ]
+      ],
+      "text": "Home Minister Amit Shah oversees national security preparations as US Secretary of State Rubio visits India ahead of the Quad FM meeting. Internal security and counter-terrorism cooperation remain key bilateral agenda items.",
+      "url": "https://x.com/AmitShah",
+      "date": "2026-05-23"
     },
     {
       "name": "Rahul Gandhi",
@@ -958,7 +1099,10 @@
         {
           "url": "https://x.com/RahulGandhi"
         }
-      ]
+      ],
+      "text": "Congress leader Rahul Gandhi renews attacks on Modi-Adani ties as the Adani Group expands into power, telecom, and green energy. Opposition sharpens its criticism amid $50 billion Big Tech investment wave hitting India.",
+      "url": "https://x.com/RahulGandhi",
+      "date": "2026-05-23"
     },
     {
       "name": "Yogi Adityanath",
@@ -978,7 +1122,10 @@
         {
           "url": "https://x.com/myaborogiadityanath"
         }
-      ]
+      ],
+      "text": "UP CM Yogi Adityanath continues aggressive infrastructure and development push in India's most populous state. UP positions itself as a key destination for Big Tech's $50B India investment wave in AI and data centers.",
+      "url": "https://x.com/myogiadityanath",
+      "date": "2026-05-23"
     },
     {
       "name": "Arvind Kejriwal",
@@ -998,7 +1145,10 @@
         {
           "url": "https://x.com/ArvindKejriwal"
         }
-      ]
+      ],
+      "text": "AAP leader Kejriwal slams what he calls 'dictatorship' in the country, stepping up opposition rhetoric. Delhi politics intensifies as national attention pivots between the Iran deal, Rubio's India visit, and domestic reform debates.",
+      "url": "https://x.com/ArvindKejriwal",
+      "date": "2026-05-23"
     },
     {
       "name": "S Jaishankar",
@@ -1018,7 +1168,10 @@
         {
           "url": "https://x.com/DrSJaishankar"
         }
-      ]
+      ],
+      "text": "External Affairs Minister Jaishankar holds strategic talks with US Secretary of State Rubio ahead of the Quad FM Meeting on May 26 in New Delhi. Agenda covers Indo-Pacific, West Asia crisis, defense, energy, and critical tech partnerships. Australia, Japan FMs also meeting Jaishankar and calling on PM Modi.",
+      "url": "https://x.com/DrSJaishankar",
+      "date": "2026-05-23"
     },
     {
       "name": "Nirmala Sitharaman",
@@ -1038,7 +1191,10 @@
         {
           "url": "https://x.com/nsitharaman"
         }
-      ]
+      ],
+      "text": "Finance Minister Nirmala Sitharaman monitors India's economic outlook as $50 billion in Big Tech investments pour into India's AI, cloud, and digital infrastructure. Trade and investment talks with the US accelerate during Rubio's India visit.",
+      "url": "https://x.com/nsitharaman",
+      "date": "2026-05-23"
     },
     {
       "name": "President of India",
@@ -1058,7 +1214,10 @@
         {
           "url": "https://x.com/rashtrapatibhvn"
         }
-      ]
+      ],
+      "text": "President Droupadi Murmu presides over the constitutional framework as India hosts critical Quad diplomacy. The nation's global standing strengthens with the US, Japan, and Australia deepening Indo-Pacific cooperation through Delhi.",
+      "url": "https://x.com/rashtrapatibhvn",
+      "date": "2026-05-23"
     },
     {
       "name": "Gautam Adani",
@@ -1078,7 +1237,10 @@
         {
           "url": "https://x.com/gautam_adani"
         }
-      ]
+      ],
+      "text": "Adani Group pushes aggressively into green energy, ports, and data centers as India attracts $50B in Big Tech investments. Reliance-Adani rivalry intensifies after Ambani scraps family noncompete. Faces renewed political attacks from Rahul Gandhi over Modi-Adani ties.",
+      "url": "https://x.com/gautam_adani",
+      "date": "2026-05-23"
     },
     {
       "name": "Mukesh Ambani",
@@ -1098,7 +1260,10 @@
         {
           "url": "https://x.com/RelianceJio"
         }
-      ]
+      ],
+      "text": "Mukesh Ambani's Reliance expands into power and telecom after scrapping the family noncompete with brother Anil. $1 billion telecom infrastructure investment, clean energy push, shares up 4.9%. The Ambani-Adani duopoly reshapes India's corporate landscape.",
+      "url": "https://x.com/RelianceJio",
+      "date": "2026-05-23"
     },
     {
       "name": "Ratan Tata Foundation",
@@ -1118,8 +1283,11 @@
         {
           "url": "https://x.com/RNTata2000"
         }
-      ]
+      ],
+      "text": "The Ratan Tata Foundation continues its legacy of philanthropy and nation-building. Tata Group companies remain at the forefront as India attracts record foreign investment in AI and digital infrastructure. The Tata ethos of 'giving back' endures.",
+      "url": "https://x.com/RNTata2000",
+      "date": "2026-05-22"
     }
   ],
-  "lastUpdated": "2026-05-23T21:02:26.286968+00:00"
+  "lastUpdated": "2026-05-24T00:03:45.546519+00:00"
 }
