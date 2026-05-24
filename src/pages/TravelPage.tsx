@@ -8,12 +8,13 @@ import SiteFooter from "@/components/SiteFooter";
 import {
   REGIONS,
   DESTINATIONS,
-  VISA_DASHBOARD,
+  VISA_DASHBOARD_BY_STATUS,
+  VISA_HOLDER_LABELS,
   getTravelNews,
   visaBadgeColor,
   visaBadgeLabel,
 } from "@/lib/travel";
-import type { Destination } from "@/lib/travel";
+import type { Destination, VisaHolderStatus } from "@/lib/travel";
 
 /* ------------------------------------------------------------------ */
 /* Travel News Strip                                                  */
@@ -79,16 +80,46 @@ function TravelNewsStrip({ news }: { news: any[] }) {
 /* ------------------------------------------------------------------ */
 /* Visa Dashboard                                                     */
 /* ------------------------------------------------------------------ */
+const VISA_TABS: VisaHolderStatus[] = ["indian-passport", "us-citizen", "green-card"];
+const VISA_TAB_SHORT: Record<VisaHolderStatus, string> = {
+  "indian-passport": "Indian Passport",
+  "us-citizen": "US Citizen",
+  "green-card": "Green Card",
+};
+
 function VisaDashboard() {
+  const [activeTab, setActiveTab] = useState<VisaHolderStatus>("indian-passport");
+  const cards = VISA_DASHBOARD_BY_STATUS[activeTab];
+
   return (
     <section className="mb-12">
-      <div className="flex items-center gap-2 mb-5">
+      <div className="flex items-center gap-2 mb-4">
         <span className="text-xl">🛂</span>
         <h2 className="font-serif text-xl font-bold">Visa Quick Reference</h2>
-        <span className="text-xs text-foreground/50 ml-1">for Indian passport holders</span>
       </div>
+
+      {/* Status tabs */}
+      <div className="flex items-center gap-2 mb-4 overflow-x-auto" style={{ WebkitOverflowScrolling: "touch" }}>
+        {VISA_TABS.map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
+              activeTab === tab
+                ? "bg-primary text-primary-foreground border-primary"
+                : "border-rule text-foreground/70 hover:text-primary hover:border-primary"
+            }`}
+          >
+            {VISA_TAB_SHORT[tab]}
+          </button>
+        ))}
+        <span className="text-[11px] text-foreground/40 ml-1 whitespace-nowrap">
+          for {VISA_HOLDER_LABELS[activeTab]}
+        </span>
+      </div>
+
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        {VISA_DASHBOARD.map((card) => (
+        {cards.map((card) => (
           <div
             key={card.key}
             className="bg-card border border-border rounded-xl overflow-hidden"

@@ -124,6 +124,14 @@ export const DESTINATIONS: Destination[] = [
 /* Visa Dashboard Data                                                */
 /* ------------------------------------------------------------------ */
 
+export type VisaHolderStatus = "indian-passport" | "us-citizen" | "green-card";
+
+export const VISA_HOLDER_LABELS: Record<VisaHolderStatus, string> = {
+  "indian-passport": "Indian Passport Holders",
+  "us-citizen": "US Citizens",
+  "green-card": "Green Card Holders",
+};
+
 export const VISA_DASHBOARD: VisaDashboardCard[] = [
   {
     key: "visa-free",
@@ -166,6 +174,98 @@ export const VISA_DASHBOARD: VisaDashboardCard[] = [
     description: "Countries NRIs can visit with a US Green Card or valid US visa — no separate visa needed",
   },
 ];
+
+export const VISA_DASHBOARD_US_CITIZEN: VisaDashboardCard[] = [
+  {
+    key: "visa-free",
+    emoji: "🟢",
+    label: "Visa-Free",
+    color: "bg-green-500/10",
+    textColor: "text-green-600",
+    count: 185,
+    topDestinations: ["EU / Schengen", "UK", "Japan", "Australia", "Canada", "Mexico", "South Korea", "Singapore"],
+    description: "Most of the world is open visa-free for US passport holders",
+  },
+  {
+    key: "voa",
+    emoji: "🟡",
+    label: "Visa on Arrival",
+    color: "bg-yellow-500/10",
+    textColor: "text-yellow-600",
+    count: 35,
+    topDestinations: ["Ethiopia", "Madagascar", "Comoros", "Tuvalu", "Mozambique", "Timor-Leste", "Togo", "Palau"],
+    description: "Visa issued at the port of entry — mostly African & Pacific nations",
+  },
+  {
+    key: "e-visa",
+    emoji: "🔵",
+    label: "e-Visa / ETA Required",
+    color: "bg-blue-500/10",
+    textColor: "text-blue-600",
+    count: 25,
+    topDestinations: ["Australia ETA", "Canada eTA", "India e-Visa", "Kenya eTA", "New Zealand NZeTA", "Sri Lanka", "Oman", "Turkey"],
+    description: "Quick online authorization needed before travel",
+  },
+  {
+    key: "visa-required",
+    emoji: "🔴",
+    label: "Visa Required",
+    color: "bg-red-500/10",
+    textColor: "text-red-600",
+    count: 30,
+    topDestinations: ["China", "Russia", "Brazil", "Saudi Arabia", "North Korea", "Iran", "Afghanistan", "Libya"],
+    description: "Full visa application required — plan well in advance",
+  },
+];
+
+export const VISA_DASHBOARD_GREEN_CARD: VisaDashboardCard[] = [
+  {
+    key: "visa-free-gc",
+    emoji: "🟢",
+    label: "Visa-Free (with GC)",
+    color: "bg-green-500/10",
+    textColor: "text-green-600",
+    count: 40,
+    topDestinations: ["Mexico", "Canada", "Costa Rica", "Panama", "Philippines", "Turkey", "Georgia", "Albania"],
+    description: "Countries that waive visa for Indian passport holders with a valid US Green Card",
+  },
+  {
+    key: "voa-gc",
+    emoji: "🟡",
+    label: "VOA (with GC)",
+    color: "bg-yellow-500/10",
+    textColor: "text-yellow-600",
+    count: 15,
+    topDestinations: ["Bermuda", "Aruba", "Curaçao", "Bonaire", "Montserrat", "Turks & Caicos", "BVI", "Dominica"],
+    description: "Visa on arrival available for GC holders — mostly Caribbean islands",
+  },
+  {
+    key: "e-visa-gc",
+    emoji: "🔵",
+    label: "e-Visa Available",
+    color: "bg-blue-500/10",
+    textColor: "text-blue-600",
+    count: 50,
+    topDestinations: ["Turkey", "Sri Lanka", "Australia", "Kenya", "UAE", "Vietnam", "New Zealand", "Egypt"],
+    description: "Apply online — GC status may simplify the process",
+  },
+  {
+    key: "visa-required-gc",
+    emoji: "🔴",
+    label: "Still Need Visa",
+    color: "bg-red-500/10",
+    textColor: "text-red-600",
+    count: 25,
+    topDestinations: ["Schengen / EU", "UK", "Japan", "Australia", "China", "Russia", "South Korea", "Brazil"],
+    description: "US Green Card does not help — full visa application required",
+  },
+];
+
+export const VISA_DASHBOARD_BY_STATUS: Record<VisaHolderStatus, VisaDashboardCard[]> = {
+  "indian-passport": VISA_DASHBOARD,
+  "us-citizen": VISA_DASHBOARD_US_CITIZEN,
+  "green-card": VISA_DASHBOARD_GREEN_CARD,
+};
 
 /* ------------------------------------------------------------------ */
 /* Visa badge helpers                                                 */
