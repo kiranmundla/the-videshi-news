@@ -14,12 +14,12 @@ export const CATEGORIES: CategoryDef[] = [
   { slug: "sports", label: "Sports", path: "/sports", hasPipeline: true },
   { slug: "entertainment", label: "Entertainment", path: "/entertainment", hasPipeline: true },
   { slug: "food", label: "Food", path: "/food", hasPipeline: true },
-  { slug: "travel", label: "Travel", path: "/travel", hasPipeline: false },
   { slug: "immigration", label: "Immigration", path: "/immigration", hasPipeline: false },
-  { slug: "events", label: "Events", path: "/events", hasPipeline: false },
-  { slug: "classifieds", label: "Classifieds", path: "/classifieds", hasPipeline: false },
-  { slug: "directory", label: "Directory", path: "/directory", hasPipeline: false },
+  { slug: "travel", label: "Travel", path: "/travel", hasPipeline: false },
   { slug: "cars", label: "Cars", path: "/cars", hasPipeline: false },
+  { slug: "events", label: "Events", path: "/events", hasPipeline: false },
+  { slug: "directory", label: "Directory", path: "/directory", hasPipeline: false },
+  { slug: "classifieds", label: "Classifieds", path: "/classifieds", hasPipeline: false },
 
 ];
 
