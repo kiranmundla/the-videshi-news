@@ -1,12 +1,22 @@
 {
-  "last_updated": "2026-05-24T03:03:28.656881+00:00",
+  "last_updated": "2026-05-24T06:03:52.753349+00:00",
   "posts": [
+    {
+      "name": "Donald Trump",
+      "handle": "realdonaldtrump",
+      "platform": "instagram",
+      "thumbnail": "",
+      "caption": "BREAKING: Trump says Iran deal 'LARGELY NEGOTIATED' — Strait of Hormuz will open. Axios: 60-day ceasefire extension with no-toll Hormuz passage, Iran clears mines, US lifts port blockade, sanctions waivers for oil. Iran commits to never pursue nukes. Pakistan's Gen Asim Munir mediating in Tehran.",
+      "url": "https://www.instagram.com/realdonaldtrump/",
+      "media_type": "image",
+      "timestamp": "2026-05-23"
+    },
     {
       "name": "Virat Kohli",
       "handle": "virat.kohli",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "HANDSHAKE GATE: Kohli refuses Travis Head's handshake — video goes viral globally. Kohli gestured for Head to bowl, scored 15, then walked past him post-match. RCB still TOP with 18 pts. Qualifier 1 vs GT on May 27. Tomorrow's double-header decides the 4th playoff spot.",
+      "caption": "HANDSHAKE GATE: Kohli refuses Travis Head's handshake — video goes viral globally. Head's cryptic Instagram story adds fuel. RCB finish TOP with 18 pts. Qualifier 1 vs GT on May 27 at Dharamsala. Tomorrow's double-header decides the 4th playoff spot — three teams, one seat.",
       "url": "https://www.instagram.com/virat.kohli/",
       "media_type": "image",
       "timestamp": "2026-05-23"
@@ -16,7 +26,7 @@
       "handle": "narendramodi",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "PM Modi hosts US Secretary of State Rubio — talks on trade, defense, energy, Indo-Pacific. Rubio invites Modi to White House. Quad FM meeting May 26 in Delhi. India faces $22.2B FPI outflows and rupee near ₹94 — but Big Tech pouring $50B into India's digital future.",
+      "caption": "PM Modi hosts Rubio — Trump invites Modi to White House. US calls India 'vital partner.' Rubio's 4-city trip (Kolkata → Delhi → Agra → Jaipur) first US envoy to Kolkata in 14 years. Jaishankar-Rubio bilateral Sunday. 'Mission 500' to double trade by 2030. Iran deal 'largely negotiated.'",
       "url": "https://www.instagram.com/narendramodi/",
       "media_type": "image",
       "timestamp": "2026-05-23"
@@ -26,7 +36,7 @@
       "handle": "shreyasiyer96",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "MAIDEN IPL CENTURY! Shreyas Iyer smashes 101* as PBKS chase down LSG's 196/6 with 7 wickets and 2 overs to spare. Punjab climb to 15 pts in 4th. Now they need MI to beat RR AND KKR to lose to DC tomorrow. The most dramatic IPL final day in years.",
+      "caption": "MAIDEN IPL CENTURY! Shreyas Iyer smashes 101* as PBKS chase down LSG's 196/6 with 7 wickets in hand. Punjab climb to 15 pts. Now need MI to beat RR AND KKR to lose to DC tomorrow. The most dramatic IPL final day in years — three teams, one spot.",
       "url": "https://www.instagram.com/shreyasiyer96/",
       "media_type": "image",
       "timestamp": "2026-05-23"
@@ -36,18 +46,8 @@
       "handle": "aaborofficial",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "Aishwarya dazzles at Cannes 2026 in Amit Aggarwal's sculptural 'Luminara' couture — 1,500 hours of craftsmanship. Daughter Aaradhya joins her on the red carpet in ruby-red. 24th Cannes appearance. ₹5 crore necklace. L'Oréal Lights on Women's Worth Gala celebrates women in cinema.",
+      "caption": "Aishwarya dazzles at Cannes 2026 closing day in Amit Aggarwal couture. Daughter Aaradhya's red carpet debut in ruby-red steals hearts. Cannes wraps: 'Fjord' (Sebastian Stan) wins Palme d'Or. Nepal's 'Elephants In The Fog' makes history. L'Oréal Gala celebrates women in cinema.",
       "url": "https://www.instagram.com/aaborofficial/",
-      "media_type": "image",
-      "timestamp": "2026-05-23"
-    },
-    {
-      "name": "Donald Trump",
-      "handle": "realdonaldtrump",
-      "platform": "instagram",
-      "thumbnail": "",
-      "caption": "Trump sets SUNDAY DEADLINE on Iran deal — '50/50' between signing or 'blowing them to kingdom come.' 14-point MoU fine-tuned with Pakistan mediating. Calls Gulf allies. Tulsi Gabbard exits as DNI. VP Vance returns to DC. Kevin Warsh sworn in as Fed Chair.",
-      "url": "https://www.instagram.com/realdonaldtrump/",
       "media_type": "image",
       "timestamp": "2026-05-23"
     },
@@ -56,7 +56,7 @@
       "handle": "elonmusk",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "SpaceX files for potentially the world's LARGEST IPO ever — JPMorgan targets $1.75T valuation. S&P 500 inclusion could trigger $950B passive fund reallocation. Starship's 12th test flight from Starbase. Meanwhile Dow hits record ~50,563.",
+      "caption": "SpaceX IPO targets $1.75T — potentially the LARGEST ever. S&P 500 inclusion could trigger $950B passive fund reallocation. Starship 12th test flight. Iran deal 'largely negotiated' — if Hormuz reopens, oil drops, and tech sentiment soars. Dow near record ~50,563.",
       "url": "https://www.instagram.com/elonmusk/",
       "media_type": "image",
       "timestamp": "2026-05-23"
@@ -66,28 +66,8 @@
       "handle": "zuck",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "Meta's AI reckoning: 15,000 total job actions (8K cut + 7K reassigned). Spending $115-135B on AI infra in 2026. Leaked audio: Zuck defends surveillance for AI race. NYT: employees 'miserable.' Threads hits 150M daily users. 'Success isn't a given.'",
+      "caption": "Meta's AI reckoning: 15,000 total job actions (8K cut + 7K reassigned). $115-135B on AI infra in 2026. Leaked audio: Zuck defends surveillance for AI race. Employees 'miserable' per NYT. Threads hits 150M daily users. Cannes 2026 wraps — culture moves fast.",
       "url": "https://www.instagram.com/zuck/",
-      "media_type": "image",
-      "timestamp": "2026-05-23"
-    },
-    {
-      "name": "D Gukesh",
-      "handle": "dgukesh",
-      "platform": "instagram",
-      "thumbnail": "",
-      "caption": "World Chess Champion faces heat — GM Nepomniachtchi: 'Every top GM would have a good chance against him.' Gukesh takes classical break to prepare for title defense against Sindarov. The youngest world champion plots his comeback.",
-      "url": "https://www.instagram.com/dgukesh/",
-      "media_type": "image",
-      "timestamp": "2026-05-23"
-    },
-    {
-      "name": "MS Dhoni",
-      "handle": "msdhoni",
-      "platform": "instagram",
-      "thumbnail": "",
-      "caption": "CSK eliminated from IPL 2026 playoffs. Captain Cool watches as Shreyas Iyer hits 101* for PBKS in a 7-wicket demolition of LSG. Tomorrow's double-header decides the 4th spot — three teams, one seat. The IPL Dhoni helped build has never been more dramatic.",
-      "url": "https://www.instagram.com/msdhoni/",
       "media_type": "image",
       "timestamp": "2026-05-23"
     },
@@ -96,18 +76,18 @@
       "handle": "iamsrk",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "'King' — SRK's ₹350 crore action thriller with Suhana and Deepika — may split into two parts. Part 1 reportedly eyed for September 2026. Directed by Siddharth Anand. Meanwhile KKR face DC at Eden Gardens tomorrow — SRK's team needs a miracle to make playoffs.",
+      "caption": "'King' — SRK's ₹350 crore action thriller with Suhana and Deepika — may split into two parts. Part 1 eyed for September 2026 (Christmas release Dec 24). Meanwhile KKR face DC at Eden Gardens tomorrow — SRK's team needs a miracle. Dhurandhar hits ₹1,307 crore.",
       "url": "https://www.instagram.com/iamsrk/",
       "media_type": "image",
       "timestamp": "2026-05-23"
     },
     {
-      "name": "Deepika Padukone",
-      "handle": "deepikapadukone",
+      "name": "MS Dhoni",
+      "handle": "msdhoni",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "Deepika uses body double for action in SRK's 'King' and Atlee's 'Raka' due to pregnancy. Ranveer and Deepika back from her birthday trip in New York. Meanwhile Aishwarya stuns Cannes with daughter Aaradhya on the red carpet.",
-      "url": "https://www.instagram.com/deepikapadukone/",
+      "caption": "CSK eliminated from IPL 2026. Captain Cool watches as Shreyas Iyer hits 101* for PBKS. Tomorrow's double-header decides the 4th spot — three teams, one seat. The IPL Dhoni helped build has never been more dramatic on its final league day.",
+      "url": "https://www.instagram.com/msdhoni/",
       "media_type": "image",
       "timestamp": "2026-05-23"
     },
@@ -116,8 +96,18 @@
       "handle": "hardikpandya93",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "MI face Rajasthan Royals at Wankhede TOMORROW — MI's dead rubber is RR's knockout. If MI win, PBKS (15 pts) get the 4th spot. Hardik's MI can play kingmaker on the most dramatic final day in IPL history. Three teams' fates in MI's hands.",
+      "caption": "MI face RR at Wankhede TOMORROW — MI's dead rubber is RR's knockout. If MI win, PBKS get the 4th spot. Hardik's MI can play kingmaker. Three teams' fates in MI's hands on the most dramatic final day in IPL history.",
       "url": "https://www.instagram.com/hardikpandya93/",
+      "media_type": "image",
+      "timestamp": "2026-05-23"
+    },
+    {
+      "name": "Deepika Padukone",
+      "handle": "deepikapadukone",
+      "platform": "instagram",
+      "thumbnail": "",
+      "caption": "Deepika uses body double for action in SRK's 'King' and Atlee's 'Raka' due to pregnancy — climactic sequence filming in South Africa. Back from birthday trip in New York with Ranveer. Cannes 2026 wraps: 'Fjord' wins Palme d'Or, Aishwarya and Aaradhya steal red carpet.",
+      "url": "https://www.instagram.com/deepikapadukone/",
       "media_type": "image",
       "timestamp": "2026-05-23"
     },
@@ -126,28 +116,8 @@
       "handle": "diljitdosanjh",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "Diljit's concert tour continues selling out across North America — Vancouver the latest stop. The Punjabi superstar is THE face of Indian music going global, bridging Bollywood and the diaspora one sold-out arena at a time.",
+      "caption": "Diljit's concert tour continues selling out across North America. The Punjabi superstar is THE face of Indian music going global — bridging Bollywood and the diaspora one sold-out arena at a time. 6 featured events on The Videshi across major US cities.",
       "url": "https://www.instagram.com/diljitdosanjh/",
-      "media_type": "image",
-      "timestamp": "2026-05-23"
-    },
-    {
-      "name": "Mukesh Ambani",
-      "handle": "reliancejio",
-      "platform": "instagram",
-      "thumbnail": "",
-      "caption": "Reliance expands into power and telecom after scrapping family noncompete. $1B telecom investment, clean energy push, shares up 4.9%. India attracts $50B Big Tech wave while facing $22.2B FPI outflows. The Ambani-Adani duopoly reshapes India Inc.",
-      "url": "https://www.instagram.com/reliancejio/",
-      "media_type": "image",
-      "timestamp": "2026-05-23"
-    },
-    {
-      "name": "Priyanka Chopra",
-      "handle": "priyankachopra",
-      "platform": "instagram",
-      "thumbnail": "",
-      "caption": "Global icon Priyanka Chopra's dual Hollywood-Bollywood career continues. 'Jee Le Zaraa' with Katrina and Alia remains most anticipated. Cannes 2026 puts Indian celebrities front and center — Aishwarya and Aaradhya steal the red carpet.",
-      "url": "https://www.instagram.com/priyankachopra/",
       "media_type": "image",
       "timestamp": "2026-05-23"
     },
@@ -156,7 +126,7 @@
       "handle": "ranveersingh",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "Ranveer's post-apocalyptic thriller 'Pralay' begins filming August 2026 — ₹300 crore budget. Back from Deepika's birthday trip in New York. Meanwhile Vicky Kaushal blocks 18 months for 'Mahavatar.' Bollywood bets big on 2026-27.",
+      "caption": "Ranveer's post-apocalyptic thriller 'Pralay' begins filming August 2026 — ₹300 crore budget. Dhurandhar hits ₹1,307 crore heading to Japan. Back from Deepika's birthday trip in New York. Vicky Kaushal blocks 18 months for 'Mahavatar.' Bollywood bets big on 2026-27.",
       "url": "https://www.instagram.com/ranveersingh/",
       "media_type": "image",
       "timestamp": "2026-05-23"
@@ -166,8 +136,38 @@
       "handle": "sachintendulkar",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "PBKS chase down LSG's 196/6 tonight — Shreyas Iyer's 101* seals it. Son Arjun played for LSG this IPL. Cricket's greatest legacy extends to the next generation. Tomorrow's final day: MI vs RR + KKR vs DC. Three teams, one spot.",
+      "caption": "Son Arjun played for LSG — PBKS chased down 196/6 with Shreyas Iyer's 101*. Arjun Tendulkar bowled a yorker dismissal that made highlights. Tomorrow's final day: MI vs RR + KKR vs DC. Three teams, one spot. Cricket's greatest legacy extends to the next generation.",
       "url": "https://www.instagram.com/sachintendulkar/",
+      "media_type": "image",
+      "timestamp": "2026-05-23"
+    },
+    {
+      "name": "D Gukesh",
+      "handle": "dgukesh",
+      "platform": "instagram",
+      "thumbnail": "",
+      "caption": "World Chess Champion faces heat — GM Nepomniachtchi: 'Every top GM would have a good chance against him.' Gukesh preps for title defense against Sindarov. The youngest world champion plots his comeback amid growing pressure from the old guard.",
+      "url": "https://www.instagram.com/dgukesh/",
+      "media_type": "image",
+      "timestamp": "2026-05-23"
+    },
+    {
+      "name": "Mukesh Ambani",
+      "handle": "reliancejio",
+      "platform": "instagram",
+      "thumbnail": "",
+      "caption": "Reliance expands into power and telecom after scrapping family noncompete. $1B telecom investment, shares up 4.9%. Iran deal 'largely negotiated' — if Hormuz reopens, India's energy costs could drop dramatically. The Ambani-Adani duopoly reshapes India Inc.",
+      "url": "https://www.instagram.com/reliancejio/",
+      "media_type": "image",
+      "timestamp": "2026-05-23"
+    },
+    {
+      "name": "Priyanka Chopra",
+      "handle": "priyankachopra",
+      "platform": "instagram",
+      "thumbnail": "",
+      "caption": "Global icon Priyanka Chopra's dual Hollywood-Bollywood career continues. 'Jee Le Zaraa' with Katrina and Alia remains most anticipated. Cannes 2026 wraps: 'Fjord' wins Palme d'Or, Aishwarya and Aaradhya steal the red carpet. Indian star power going global.",
+      "url": "https://www.instagram.com/priyankachopra/",
       "media_type": "image",
       "timestamp": "2026-05-23"
     },
@@ -176,7 +176,7 @@
       "handle": "shreyaghoshal",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "Shreya Ghoshal's live album generates buzz as her US tour hits 5 cities. The voice of a generation continues selling out venues across the diaspora — bringing Bollywood's golden age of playback singing to NRI audiences worldwide.",
+      "caption": "Shreya Ghoshal's live album generates buzz as her US tour hits 5 cities. The voice of a generation sells out diaspora venues — bringing Bollywood's golden age of playback singing to NRI audiences worldwide.",
       "url": "https://www.instagram.com/shreyaghoshal/",
       "media_type": "image",
       "timestamp": "2026-05-23"
@@ -186,7 +186,7 @@
       "handle": "shraddhakapoor",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "Instagram's most-followed Indian actress (90M+) shares mountain retreat moments between projects. Shraddha's relatable content style continues to dominate social media while Cannes 2026 puts Bollywood glamour on the global stage.",
+      "caption": "Instagram's most-followed Indian actress (90M+) shares mountain retreat moments between projects. Cannes 2026 wraps with 'Fjord' winning Palme d'Or — Bollywood glamour and global cinema collide as the festival season ends.",
       "url": "https://www.instagram.com/shraddhakapoor/",
       "media_type": "image",
       "timestamp": "2026-05-23"
@@ -196,18 +196,8 @@
       "handle": "aliaabhatt",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "Alia's 2026 slate packed with high-profile projects. 'Jee Le Zaraa' with Priyanka and Katrina remains one of the year's most anticipated films. Cannes 2026 and Alia's appearances spark fan debates with Aishwarya loyalists online.",
+      "caption": "Alia's 2026 slate packed — 'Jee Le Zaraa' with Priyanka and Katrina remains most anticipated. Cannes wraps: Mungiu's 'Fjord' takes Palme d'Or, Virginie Efira wins Best Actress. Meanwhile IMAX confirms Ranbir's 'Ramayana' and Yash's 'Toxic' for premium release.",
       "url": "https://www.instagram.com/aliaabhatt/",
-      "media_type": "image",
-      "timestamp": "2026-05-23"
-    },
-    {
-      "name": "Keir Starmer",
-      "handle": "keir_starmer",
-      "platform": "instagram",
-      "thumbnail": "",
-      "caption": "UK PM co-chairs 40+ nation Paris meeting with Macron on Strait of Hormuz. Free summer bus travel for kids. Trump's Sunday Iran deadline raises UK energy security stakes. Reform UK's Farage sharpens attacks as Starmer juggles domestic and global crises.",
-      "url": "https://www.instagram.com/keir_starmer/",
       "media_type": "image",
       "timestamp": "2026-05-23"
     },
@@ -216,8 +206,18 @@
       "handle": "gautam_adani",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "Adani Group pushes into green energy, ports, data centers. $50B Big Tech wave hits India. Reliance-Adani rivalry intensifies. Rahul Gandhi renews political attacks. Kevin Warsh takes Fed chair — global capital flows to watch for India impact.",
+      "caption": "Adani Group pushes into green energy, ports, data centers. $50B Big Tech wave hits India. Iran deal 'largely negotiated' — Hormuz reopening could reshape India's entire energy import chain. Reliance-Adani rivalry intensifies.",
       "url": "https://www.instagram.com/gautam_adani/",
+      "media_type": "image",
+      "timestamp": "2026-05-23"
+    },
+    {
+      "name": "Keir Starmer",
+      "handle": "keir_starmer",
+      "platform": "instagram",
+      "thumbnail": "",
+      "caption": "UK PM co-chaired 40+ nation Hormuz summit with Macron. Hours later, Trump says deal 'largely negotiated.' Hormuz reopening would ease UK energy costs. Free summer bus travel for kids. Reform UK's Farage sharpens attacks as Iran crisis nears resolution.",
+      "url": "https://www.instagram.com/keir_starmer/",
       "media_type": "image",
       "timestamp": "2026-05-23"
     },
@@ -226,7 +226,7 @@
       "handle": "ajay_banga",
       "platform": "instagram",
       "thumbnail": "",
-      "caption": "World Bank President Ajay Banga shapes global development policy as India hosts Quad FM meeting and Trump sets Sunday Iran deadline. Indian-American diaspora leaders drive international economic governance at the highest levels.",
+      "caption": "World Bank President Ajay Banga monitors Iran deal breakthrough — Hormuz reopening would transform global trade and energy flows for developing nations. India hosts Quad FM meeting May 26. Indian-American diaspora leaders at the helm of global economic governance.",
       "url": "https://www.instagram.com/ajay_banga/",
       "media_type": "image",
       "timestamp": "2026-05-23"
