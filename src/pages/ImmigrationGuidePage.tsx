@@ -18,11 +18,56 @@ function renderMarkdown(md: string) {
   const lines = md.split("\n");
   const elements: JSX.Element[] = [];
   let key = 0;
+  let i = 0;
 
-  for (let i = 0; i < lines.length; i++) {
+  while (i < lines.length) {
     const line = lines[i];
     const trimmed = line.trim();
-    if (!trimmed) continue;
+    if (!trimmed) { i++; continue; }
+
+    /* ---- Table detection ---- */
+    if (trimmed.startsWith("|") && i + 1 < lines.length && /^\|[\s-:|]+\|$/.test(lines[i + 1]?.trim())) {
+      // Collect all table rows
+      const tableLines: string[] = [];
+      while (i < lines.length && lines[i].trim().startsWith("|")) {
+        tableLines.push(lines[i].trim());
+        i++;
+      }
+      // Parse header
+      const parseRow = (row: string) =>
+        row.split("|").slice(1, -1).map((c) => c.trim());
+      const headers = parseRow(tableLines[0]);
+      // Skip separator (row 1), parse body rows
+      const bodyRows = tableLines.slice(2).map(parseRow);
+
+      elements.push(
+        <div key={key++} className="overflow-x-auto my-4 rounded-lg border border-border">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-foreground/5 border-b border-border">
+                {headers.map((h, hi) => (
+                  <th key={hi} className="px-4 py-2.5 text-left font-semibold text-foreground/80 whitespace-nowrap"
+                    dangerouslySetInnerHTML={{ __html: inlineMd(h) }}
+                  />
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {bodyRows.map((row, ri) => (
+                <tr key={ri} className={ri % 2 === 0 ? "" : "bg-foreground/[0.02]"}>
+                  {row.map((cell, ci) => (
+                    <td key={ci} className="px-4 py-2 text-foreground/70 border-t border-border/50"
+                      dangerouslySetInnerHTML={{ __html: inlineMd(cell) }}
+                    />
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+      continue;
+    }
 
     if (trimmed.startsWith("### ")) {
       elements.push(<h3 key={key++} className="font-serif text-lg font-bold mt-6 mb-2">{trimmed.slice(4)}</h3>);
@@ -49,6 +94,7 @@ function renderMarkdown(md: string) {
         />
       );
     }
+    i++;
   }
   return elements;
 }
