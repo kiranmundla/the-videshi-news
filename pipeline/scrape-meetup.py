@@ -453,6 +453,8 @@ def main():
     parser = argparse.ArgumentParser(description="Scrape Meetup events for Indian diaspora")
     parser.add_argument("--dry-run", action="store_true", help="Print events without inserting")
     parser.add_argument("--city", type=str, default=None, help="Single city slug (e.g. 'bay-area')")
+    parser.add_argument("--batch", type=str, choices=["A", "B"], default=None,
+                        help="Run batch A (first 7 cities) or B (last 7 cities)")
     args = parser.parse_args()
 
     if not args.dry_run and (not SB_URL or not SB_KEY):
@@ -465,6 +467,13 @@ def main():
         if not cities:
             print(f"Unknown city: {args.city}. Available: {', '.join(c['slug'] for c in CITIES)}")
             sys.exit(1)
+    elif args.batch:
+        mid = len(CITIES) // 2  # 7 each for 14 cities
+        if args.batch == "A":
+            cities = CITIES[:mid]
+        else:
+            cities = CITIES[mid:]
+        print(f"🔀 Running batch {args.batch}: {', '.join(c['display'] for c in cities)}")
 
     # Get existing events for dedup
     existing_ids, existing_title_dates = set(), set()
