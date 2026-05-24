@@ -524,7 +524,16 @@ export default function CelebrityBuzz() {
         const imgs = sc ? (allImages[sc] || []) : [];
         // Fallback to thumbnail if API hasn't returned images yet
         const fallback = sc ? (thumbUrls[sc] || null) : null;
-        const displayImages = imgs.length ? imgs : (fallback ? [fallback] : [post.thumbnail || `/images/celebrity-thumbs/${post.handle}.jpg`]);
+        const hasRealImages = imgs.length > 0 || (fallback && fallback.length > 0);
+        const displayImages = imgs.length ? imgs : (fallback ? [fallback] : []);
+
+        // If no real Instagram post images, open profile directly instead of lightbox
+        if (!hasRealImages) {
+          window.open(post.url, "_blank", "noopener,noreferrer");
+          setSelectedIndex(null);
+          return null;
+        }
+
         return (
           <BuzzLightbox
             post={post}
