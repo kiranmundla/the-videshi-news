@@ -28,6 +28,15 @@ import {
   KEY_FORMS,
 } from "@/lib/immigration";
 
+const MONTH_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+function compactDate(dateStr: string | null, status: string): string {
+  if (status === "current") return "Current";
+  if (status === "unavailable") return "Unavail.";
+  if (!dateStr) return "N/A";
+  const d = new Date(dateStr + "T00:00:00");
+  return `${MONTH_SHORT[d.getMonth()]} '${String(d.getFullYear()).slice(2)}`;
+}
+
 /* ------------------------------------------------------------------ */
 /* Green Card Tracker Card                                            */
 /* ------------------------------------------------------------------ */
@@ -46,12 +55,12 @@ function GreenCardCard({ data }: { data: VisaBulletinRow[] }) {
 
   return (
     <div className="bg-card border border-border rounded-xl overflow-hidden">
-      <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-green-500/5">
+      <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-green-500/5">
         <div className="flex items-center gap-2">
           <span className="text-lg">🟢</span>
-          <h3 className="font-serif font-bold text-base">Green Card Priority Dates</h3>
+          <h3 className="font-serif font-bold text-[15px]">Green Card Priority Dates</h3>
         </div>
-        <span className="text-xs text-foreground/50">Visa Bulletin: {bulletinLabel}</span>
+        <span className="text-[11px] text-foreground/50 whitespace-nowrap">Visa Bulletin: {bulletinLabel}</span>
       </div>
       <div className="divide-y divide-border">
         {categories.map((cat) => {
@@ -65,15 +74,15 @@ function GreenCardCard({ data }: { data: VisaBulletinRow[] }) {
           if (!cur) return null;
           const movement = prv ? computeMovement(cur.priority_date, prv.priority_date, cur.status, prv.status) : null;
           return (
-            <div key={cat} className="flex items-center justify-between px-5 py-3 hover:bg-foreground/[0.02] transition-colors">
-              <div>
+            <div key={cat} className="flex items-center justify-between px-4 py-2.5 hover:bg-foreground/[0.02] transition-colors">
+              <div className="min-w-0">
                 <span className="font-semibold text-sm">{cat} India</span>
-                <p className="text-xs text-foreground/50 mt-0.5">
+                <p className="text-[11px] text-foreground/40 leading-tight">
                   {EB_CATEGORIES.find((e) => e.key === cat)?.desc?.split("(")[0]?.trim()}
                 </p>
               </div>
-              <div className="text-right flex items-center gap-3">
-                <span className="font-mono text-sm font-semibold">{formatPriorityDate(cur.priority_date, cur.status)}</span>
+              <div className="text-right flex items-center gap-2 flex-shrink-0">
+                <span className="font-mono text-sm font-semibold whitespace-nowrap">{compactDate(cur.priority_date, cur.status)}</span>
                 {movement && (
                   <span className={`text-xs font-semibold ${movement.color} flex items-center gap-0.5`}>
                     {movement.arrow} {movement.label}
@@ -84,7 +93,7 @@ function GreenCardCard({ data }: { data: VisaBulletinRow[] }) {
           );
         })}
       </div>
-      <Link to="/immigration/green-card" className="flex items-center justify-center gap-1 px-5 py-2.5 text-sm text-primary font-medium border-t border-border hover:bg-primary/5 transition-colors">
+      <Link to="/immigration/green-card" className="flex items-center justify-center gap-1 px-4 py-2 text-sm text-primary font-medium border-t border-border hover:bg-primary/5 transition-colors">
         View full tracker with history <ChevronRight className="h-4 w-4" />
       </Link>
     </div>
@@ -113,10 +122,10 @@ function ConsulateCard({ data }: { data: ConsulateWaitRow[] }) {
 
   return (
     <div className="bg-card border border-border rounded-xl overflow-hidden">
-      <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-blue-500/5">
+      <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-blue-500/5">
         <div className="flex items-center gap-2">
           <span className="text-lg">🏛️</span>
-          <h3 className="font-serif font-bold text-base">US Consulate Wait Times — India</h3>
+          <h3 className="font-serif font-bold text-[15px]">US Consulate Wait Times — India</h3>
         </div>
       </div>
       <div className="divide-y divide-border">
@@ -126,26 +135,26 @@ function ConsulateCard({ data }: { data: ConsulateWaitRow[] }) {
           const b1Val = b1b2?.next_available_months ?? b1b2?.avg_wait_months ?? null;
           const hlVal = hlop?.next_available_months ?? null;
           return (
-            <div key={c} className="flex items-center justify-between px-5 py-3 hover:bg-foreground/[0.02] transition-colors">
-              <div className="flex items-center gap-3">
+            <div key={c} className="flex items-center justify-between px-4 py-2 hover:bg-foreground/[0.02] transition-colors">
+              <div className="flex items-center gap-2.5">
                 <div className={`w-2 h-2 rounded-full ${b1Val === null ? "bg-gray-400" : b1Val < 2 ? "bg-green-500" : b1Val < 5 ? "bg-yellow-500" : b1Val < 8 ? "bg-orange-500" : "bg-red-500"}`} />
                 <span className="font-semibold text-sm">{CONSULATE_DISPLAY[c] || c}</span>
               </div>
-              <div className="flex items-center gap-6 text-sm">
+              <div className="flex items-center gap-5 text-sm">
                 <div className="text-right">
                   <span className={`font-mono font-semibold ${waitColor(b1Val)}`}>{formatWaitMonths(b1Val)}</span>
-                  <p className="text-[10px] text-foreground/40">B1/B2</p>
+                  <p className="text-[10px] text-foreground/40 leading-tight">B1/B2</p>
                 </div>
                 <div className="text-right">
                   <span className={`font-mono font-semibold ${waitColor(hlVal)}`}>{formatWaitMonths(hlVal)}</span>
-                  <p className="text-[10px] text-foreground/40">H/L/O/P</p>
+                  <p className="text-[10px] text-foreground/40 leading-tight">H/L/O/P</p>
                 </div>
               </div>
             </div>
           );
         })}
       </div>
-      <Link to="/immigration/consulate-wait-times" className="flex items-center justify-center gap-1 px-5 py-2.5 text-sm text-primary font-medium border-t border-border hover:bg-primary/5 transition-colors">
+      <Link to="/immigration/consulate-wait-times" className="flex items-center justify-center gap-1 px-4 py-2 text-sm text-primary font-medium border-t border-border hover:bg-primary/5 transition-colors">
         Compare all consulates <ChevronRight className="h-4 w-4" />
       </Link>
     </div>
@@ -164,33 +173,33 @@ function H1BCard({ data }: { data: H1BDataRow[] }) {
 
   return (
     <div className="bg-card border border-border rounded-xl overflow-hidden">
-      <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-purple-500/5">
+      <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-purple-500/5">
         <div className="flex items-center gap-2">
           <span className="text-lg">🎰</span>
-          <h3 className="font-serif font-bold text-base">H-1B Season — FY{latestFY}</h3>
+          <h3 className="font-serif font-bold text-[15px]">H-1B Season — FY{latestFY}</h3>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-0 divide-x divide-border">
-        <div className="px-5 py-4 text-center">
-          <p className="text-2xl font-bold text-foreground">{get(latestFY, "total_registrations")}</p>
-          <p className="text-xs text-foreground/50 mt-1">Registrations</p>
+        <div className="px-4 py-3 text-center">
+          <p className="text-xl font-bold text-foreground">{get(latestFY, "total_registrations")}</p>
+          <p className="text-[11px] text-foreground/50 mt-0.5">Registrations</p>
         </div>
-        <div className="px-5 py-4 text-center">
-          <p className="text-2xl font-bold text-purple-500">{get(latestFY, "selection_rate")}</p>
-          <p className="text-xs text-foreground/50 mt-1">Selection Rate</p>
+        <div className="px-4 py-3 text-center">
+          <p className="text-xl font-bold text-purple-500">{get(latestFY, "selection_rate")}</p>
+          <p className="text-[11px] text-foreground/50 mt-0.5">Selection Rate</p>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-0 divide-x divide-border border-t border-border">
-        <div className="px-5 py-4 text-center">
-          <p className="text-2xl font-bold text-amber-500">{get(latestFY, "india_pct")}</p>
-          <p className="text-xs text-foreground/50 mt-1">Indian Nationals</p>
+        <div className="px-4 py-3 text-center">
+          <p className="text-xl font-bold text-amber-500">{get(latestFY, "india_pct")}</p>
+          <p className="text-[11px] text-foreground/50 mt-0.5">Indian Nationals</p>
         </div>
-        <div className="px-5 py-4 text-center">
-          <p className="text-2xl font-bold text-foreground">{get(latestFY, "masters_pct")}</p>
-          <p className="text-xs text-foreground/50 mt-1">US Master's+</p>
+        <div className="px-4 py-3 text-center">
+          <p className="text-xl font-bold text-foreground">{get(latestFY, "masters_pct")}</p>
+          <p className="text-[11px] text-foreground/50 mt-0.5">US Master's+</p>
         </div>
       </div>
-      <Link to="/immigration/h1b" className="flex items-center justify-center gap-1 px-5 py-2.5 text-sm text-primary font-medium border-t border-border hover:bg-primary/5 transition-colors">
+      <Link to="/immigration/h1b" className="flex items-center justify-center gap-1 px-4 py-2 text-sm text-primary font-medium border-t border-border hover:bg-primary/5 transition-colors">
         H-1B Hub <ChevronRight className="h-4 w-4" />
       </Link>
     </div>
@@ -204,10 +213,10 @@ function ProcessingCard({ data }: { data: ProcessingTimeRow[] }) {
   const keyForms = ["I-140", "I-485", "I-765", "N-400"];
   return (
     <div className="bg-card border border-border rounded-xl overflow-hidden">
-      <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-amber-500/5">
+      <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-amber-500/5">
         <div className="flex items-center gap-2">
           <span className="text-lg">⏱️</span>
-          <h3 className="font-serif font-bold text-base">USCIS Processing Times</h3>
+          <h3 className="font-serif font-bold text-[15px]">USCIS Processing Times</h3>
         </div>
       </div>
       <div className="divide-y divide-border">
@@ -218,10 +227,10 @@ function ProcessingCard({ data }: { data: ProcessingTimeRow[] }) {
           const high = Math.max(...rows.filter((r) => r.estimated_range_high != null).map((r) => r.estimated_range_high!));
           const info = KEY_FORMS.find((f) => f.number === form);
           return (
-            <div key={form} className="flex items-center justify-between px-5 py-3 hover:bg-foreground/[0.02] transition-colors">
+            <div key={form} className="flex items-center justify-between px-4 py-2.5 hover:bg-foreground/[0.02] transition-colors">
               <div>
                 <span className="font-semibold text-sm">{form}</span>
-                <p className="text-xs text-foreground/50 mt-0.5">{info?.desc}</p>
+                <p className="text-[11px] text-foreground/40 leading-tight">{info?.desc}</p>
               </div>
               <span className="font-mono text-sm font-semibold text-foreground/80">
                 {isFinite(low) && isFinite(high) ? `${low}–${high} mo` : "—"}
@@ -230,7 +239,7 @@ function ProcessingCard({ data }: { data: ProcessingTimeRow[] }) {
           );
         })}
       </div>
-      <Link to="/immigration/processing-times" className="flex items-center justify-center gap-1 px-5 py-2.5 text-sm text-primary font-medium border-t border-border hover:bg-primary/5 transition-colors">
+      <Link to="/immigration/processing-times" className="flex items-center justify-center gap-1 px-4 py-2 text-sm text-primary font-medium border-t border-border hover:bg-primary/5 transition-colors">
         All processing times <ChevronRight className="h-4 w-4" />
       </Link>
     </div>
@@ -367,7 +376,7 @@ export default function ImmigrationPage() {
             )}
 
             {/* ── Data Trackers ────────────────────────────────── */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-12">
               <GreenCardCard data={bulletin} />
               <ConsulateCard data={waits} />
               <H1BCard data={h1b} />
