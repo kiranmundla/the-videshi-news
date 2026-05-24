@@ -3,13 +3,7 @@
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "the-videshi.vercel.app" }],
-      "destination": "https://thevideshi.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.thevideshi.com" }],
-      "destination": "https://thevideshi.com/:path*",
+      "destination": "https://www.thevideshi.com/:path*",
       "permanent": true
     }
   ],
