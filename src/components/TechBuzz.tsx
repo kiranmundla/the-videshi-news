@@ -16,7 +16,7 @@ interface Leader {
   role: string;
   avatar: string;
   latestPost?: LatestPost;
-  posts: { url: string; text?: string }[];
+  posts: { url: string; text?: string; caption?: string }[];
   category?: "tech" | "world" | "sports" | "india";
 }
 
@@ -162,7 +162,7 @@ export default function TechBuzz({ category = "tech" }: { category?: "tech" | "w
             ? `https://x.com/${leader.handle}`
             : `https://www.threads.net/@${leader.handle}`;
           const postUrl = leader.latestPost?.url || leader.posts[0]?.url || profileUrl;
-          const postText = leader.latestPost?.text || leader.posts[0]?.text || "";
+          const postText = leader.latestPost?.text || leader.posts[0]?.text || leader.posts[0]?.caption || "";
           const hasPost = !!postText;
 
           return (
