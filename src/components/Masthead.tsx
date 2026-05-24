@@ -164,17 +164,20 @@ export default function Masthead() {
             </ul>
 
             <div className="border-t py-2">
-              <Link to="/events" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
-                🎪 Events
-              </Link>
-              <Link to="/cars" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
-                🚗 Cars
+              <Link to="/travel" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
+                ✈️ Travel
               </Link>
               <Link to="/immigration" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
                 🗽 Immigration
               </Link>
-              <Link to="/travel" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
-                Travel Guides
+              <Link to="/events" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
+                🎪 Events
+              </Link>
+              <Link to="/classifieds" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
+                📋 Classifieds
+              </Link>
+              <Link to="/cars" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
+                🚗 Cars
               </Link>
               <Link to="/about" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
                 About
