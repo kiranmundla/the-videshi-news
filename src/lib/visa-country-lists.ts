@@ -437,7 +437,7 @@ const ALL_LISTS: Record<string, Record<string, VisaListData>> = {
       countries: IP_E_VISA,
     },
     "us-gc-perks": {
-      meta: { title: "US Green Card / Visa Perks", subtitle: "Countries accessible with valid US visa or Green Card", count: 35, color: "bg-purple-500/10", textColor: "text-purple-600", emoji: "🇺🇸" },
+      meta: { title: "US Visa Perks", subtitle: "Countries accessible with valid US visa (H-1B, B1/B2)", count: 40, color: "bg-purple-500/10", textColor: "text-purple-600", emoji: "🇺🇸" },
       countries: IP_US_GC_PERKS,
     },
   },

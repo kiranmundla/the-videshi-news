@@ -120,7 +120,7 @@ export const DESTINATIONS: Destination[] = [
   { key: "puerto-vallarta", label: "Puerto Vallarta", region: "mexico-caribbean", description: "Pacific coast charm & art scene", bestMonths: "Nov – May", budget: "$40–150/day",
     visa: v(["visa-free","Visa-free with valid US visa (180 days)"],["visa-free","180-day visa-free"],["visa-free","Visa-free with valid US GC"]), hasGuide: false },
   { key: "jamaica", label: "Jamaica", region: "mexico-caribbean", description: "Reggae, jerk chicken & Blue Mountains", bestMonths: "Nov – Apr", budget: "$50–200/day",
-    visa: v(["visa-free","Visa-free with valid US visa"],["visa-free","30-day visa-free"],["visa-free","Visa-free with valid US visa"]), hasGuide: false },
+    visa: v(["visa-required","Visa required (US visa doesn't help for Indians)"],["visa-free","30-day visa-free"],["visa-free","Visa-free with valid US visa"]), hasGuide: false },
   { key: "dominican-republic", label: "Dominican Republic", region: "mexico-caribbean", description: "All-inclusive resorts & merengue", bestMonths: "Dec – Apr", budget: "$40–180/day",
     visa: v(["voa","Tourist card on arrival ($10)"],["visa-free","30-day visa-free"],["voa","Tourist card on arrival ($10)"]), hasGuide: false },
   { key: "bahamas", label: "Bahamas", region: "mexico-caribbean", description: "Pink sand beaches & island hopping", bestMonths: "Dec – May", budget: "$60–300/day",
@@ -205,8 +205,8 @@ export const VISA_DASHBOARD: VisaDashboardCard[] = [
     color: "bg-green-500/10",
     textColor: "text-green-600",
     count: 25,
-    topDestinations: ["Thailand", "Indonesia", "Mauritius", "Nepal", "Bhutan", "Serbia", "Fiji", "Maldives"],
-    description: "Countries you can visit without any visa with a valid US visa stamp",
+    topDestinations: ["Thailand", "Indonesia", "Nepal", "Bhutan", "Fiji", "Mauritius", "Serbia", "Maldives"],
+    description: "Countries you can visit without any visa — even without US status",
   },
   {
     key: "voa",
@@ -231,12 +231,12 @@ export const VISA_DASHBOARD: VisaDashboardCard[] = [
   {
     key: "us-gc-perks",
     emoji: "🇺🇸",
-    label: "US Green Card Perks",
+    label: "US Visa Perks",
     color: "bg-purple-500/10",
     textColor: "text-purple-600",
-    count: 35,
+    count: 40,
     topDestinations: ["Mexico", "Turkey", "Philippines", "Costa Rica", "Panama", "Colombia", "Georgia", "Albania"],
-    description: "Countries NRIs can visit with a US Green Card or valid US visa — no separate visa needed",
+    description: "Countries that grant entry specifically because of your valid US visa — no separate visa needed",
   },
 ];
 

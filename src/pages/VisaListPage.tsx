@@ -25,7 +25,7 @@ const CATEGORY_ORDER: Record<string, { key: string; label: string }[]> = {
     { key: "visa-free", label: "Visa-Free" },
     { key: "voa", label: "Visa on Arrival" },
     { key: "e-visa", label: "e-Visa" },
-    { key: "us-gc-perks", label: "US GC Perks" },
+    { key: "us-gc-perks", label: "US Visa Perks" },
   ],
   "us-citizen": [
     { key: "visa-free", label: "Visa-Free" },
