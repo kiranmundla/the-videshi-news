@@ -125,9 +125,10 @@ function VisaDashboard({
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {cards.map((card) => (
-          <div
+          <Link
             key={card.key}
-            className="bg-card border border-border rounded-xl overflow-hidden"
+            to={`/travel/visa-list/${activeTab}/${card.key}`}
+            className="block bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-200 hover:shadow-lg"
           >
             <div className={`px-4 py-2.5 border-b border-border ${card.color}`}>
               <div className="flex items-center gap-2">
@@ -150,8 +151,9 @@ function VisaDashboard({
                   </span>
                 ))}
               </div>
+              <div className="mt-2 text-[10px] text-primary/60 font-medium">View all →</div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
