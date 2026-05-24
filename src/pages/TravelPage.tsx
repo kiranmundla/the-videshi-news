@@ -87,8 +87,13 @@ const VISA_TAB_SHORT: Record<VisaHolderStatus, string> = {
   "green-card": "Green Card",
 };
 
-function VisaDashboard() {
-  const [activeTab, setActiveTab] = useState<VisaHolderStatus>("indian-passport");
+function VisaDashboard({
+  activeTab,
+  onTabChange,
+}: {
+  activeTab: VisaHolderStatus;
+  onTabChange: (tab: VisaHolderStatus) => void;
+}) {
   const cards = VISA_DASHBOARD_BY_STATUS[activeTab];
 
   return (
@@ -103,7 +108,7 @@ function VisaDashboard() {
         {VISA_TABS.map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => onTabChange(tab)}
             className={`whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
               activeTab === tab
                 ? "bg-primary text-primary-foreground border-primary"
@@ -156,8 +161,15 @@ function VisaDashboard() {
 /* ------------------------------------------------------------------ */
 /* Destination Card                                                   */
 /* ------------------------------------------------------------------ */
-function DestinationCard({ dest }: { dest: Destination }) {
+const HOLDER_SHORT_LABEL: Record<VisaHolderStatus, string> = {
+  "indian-passport": "Indian passport",
+  "us-citizen": "US citizen",
+  "green-card": "Green Card holder",
+};
+
+function DestinationCard({ dest, holderStatus }: { dest: Destination; holderStatus: VisaHolderStatus }) {
   const region = REGIONS.find((r) => r.key === dest.region);
+  const visaInfo = dest.visa[holderStatus];
   return (
     <Link
       to={dest.hasGuide ? `/travel/${dest.key}` : "#"}
@@ -178,16 +190,22 @@ function DestinationCard({ dest }: { dest: Destination }) {
           )}
         </div>
 
-        {/* Meta row */}
-        <div className="flex items-center gap-2 flex-wrap mt-auto">
-          <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${visaBadgeColor(dest.visaStatus)}`}>
-            {visaBadgeLabel(dest.visaStatus)}
-          </span>
-          <span className="text-[10px] text-foreground/40">📅 {dest.bestMonths}</span>
+        {/* Visa badge + note */}
+        <div className="flex flex-col gap-0.5">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${visaBadgeColor(visaInfo.status)}`}>
+              {visaBadgeLabel(visaInfo.status)}
+            </span>
+            <span className="text-[10px] text-foreground/40">📅 {dest.bestMonths}</span>
+          </div>
+          <span className="text-[9px] text-foreground/35 leading-tight pl-0.5">{visaInfo.note}</span>
         </div>
-        <div className="flex items-center gap-3 text-[10px] text-foreground/40">
+
+        <div className="flex items-center gap-3 text-[10px] text-foreground/40 mt-auto">
           <span>💰 {dest.budget}</span>
-          {!dest.hasGuide && (
+          {dest.hasGuide ? (
+            <span className="text-[10px] text-primary/60 font-medium">📖 Guide</span>
+          ) : (
             <span className="text-[10px] text-foreground/30 italic">Guide coming soon</span>
           )}
         </div>
@@ -197,43 +215,11 @@ function DestinationCard({ dest }: { dest: Destination }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Explore Destination Guides                                         */
-/* ------------------------------------------------------------------ */
-function GuideSection() {
-  const guideDests = DESTINATIONS.filter((d) => d.hasGuide);
-  if (!guideDests.length) return null;
-  return (
-    <section className="mb-12">
-      <div className="flex items-center gap-2 mb-5">
-        <span className="text-xl">📖</span>
-        <h2 className="font-serif text-xl font-bold">Destination Guides</h2>
-        <span className="text-xs text-foreground/50 ml-1">in-depth travel guides</span>
-      </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-        {guideDests.map((d) => {
-          const region = REGIONS.find((r) => r.key === d.region);
-          return (
-            <Link key={d.key} to={`/travel/${d.key}`} className="block group">
-              <div className="bg-card border border-border rounded-xl p-4 text-center hover:border-primary/40 transition-all duration-200 hover:shadow-lg">
-                <span className="text-2xl block mb-2">{region?.emoji}</span>
-                <h3 className="font-semibold text-sm group-hover:text-primary transition-colors">{d.label}</h3>
-                <span className={`inline-block mt-1.5 text-[10px] font-semibold px-2 py-0.5 rounded-full ${visaBadgeColor(d.visaStatus)}`}>
-                  {visaBadgeLabel(d.visaStatus)}
-                </span>
-              </div>
-            </Link>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
 /* Main TravelPage                                                    */
 /* ------------------------------------------------------------------ */
 export default function TravelPage() {
   const [selectedRegion, setSelectedRegion] = useState("all");
+  const [holderStatus, setHolderStatus] = useState<VisaHolderStatus>("indian-passport");
   const [news, setNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -252,7 +238,7 @@ export default function TravelPage() {
     <>
       <Helmet>
         <title>Travel Hub — Destinations, Visa Guide & News | The Videshi</title>
-        <meta name="description" content="Explore destinations, visa requirements for Indian passport holders, and the latest travel news for the global Indian diaspora." />
+        <meta name="description" content="Explore destinations, visa requirements for Indian passport holders, US citizens, and Green Card holders. Travel news for the global Indian diaspora." />
         <meta property="og:title" content="Travel Hub — The Videshi" />
         <meta property="og:description" content="Destinations, visa quick-reference, and travel news for NRIs and the Indian diaspora." />
         <meta property="og:type" content="website" />
@@ -300,13 +286,18 @@ export default function TravelPage() {
             <TravelNewsStrip news={news} />
 
             {/* ── Visa Dashboard ─────────────────────────────── */}
-            <VisaDashboard />
+            <VisaDashboard activeTab={holderStatus} onTabChange={setHolderStatus} />
 
             {/* ── Destinations by Region ──────────────────────── */}
             <section className="mb-12">
-              <div className="flex items-center gap-2 mb-5">
-                <span className="text-xl">🗺️</span>
-                <h2 className="font-serif text-xl font-bold">Destinations</h2>
+              <div className="flex items-center justify-between mb-5">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">🗺️</span>
+                  <h2 className="font-serif text-xl font-bold">Destinations</h2>
+                </div>
+                <span className="text-[11px] text-foreground/40">
+                  visa info for {HOLDER_SHORT_LABEL[holderStatus]}
+                </span>
               </div>
 
               {/* Region pills */}
@@ -337,7 +328,7 @@ export default function TravelPage() {
               {/* Destination grid */}
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
                 {filteredDests.map((d) => (
-                  <DestinationCard key={d.key} dest={d} />
+                  <DestinationCard key={d.key} dest={d} holderStatus={holderStatus} />
                 ))}
               </div>
 
@@ -345,8 +336,6 @@ export default function TravelPage() {
                 <p className="text-center text-foreground/40 py-12">No destinations in this region yet.</p>
               )}
             </section>
-
-
 
             {/* ── Travel Agent CTA ───────────────────────────── */}
             <section className="mb-12">

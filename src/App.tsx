@@ -29,6 +29,7 @@ const Privacy = React.lazy(() => import("./pages/Privacy.tsx"));
 const Terms = React.lazy(() => import("./pages/Terms.tsx"));
 const TravelPage = React.lazy(() => import("./pages/TravelPage.tsx"));
 const TravelDestination = React.lazy(() => import("./pages/TravelDestination.tsx"));
+const VisaListPage = React.lazy(() => import("./pages/VisaListPage.tsx"));
 
 // Events
 const EventsPage = React.lazy(() => import("./pages/EventsPage.tsx"));
@@ -107,6 +108,7 @@ const App = () => (
               <Route path="/terms" element={<Terms />} />
               <Route path="/articles/:slug" element={<ArticlePage />} />
               <Route path="/travel" element={<TravelPage />} />
+              <Route path="/travel/visa-list/:status/:category" element={<VisaListPage />} />
               <Route path="/travel/:destination" element={<TravelDestination />} />
               <Route path="/events" element={<EventsPage />} />
               <Route path="/events/submit" element={<SubmitEventPage />} />
