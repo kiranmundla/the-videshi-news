@@ -254,7 +254,7 @@ export default function ImmigrationPage() {
       getConsulateWaitTimes([...INDIA_CONSULATES]),
       getProcessingTimes(),
       getH1BData(),
-      getImmigrationNews(6),
+      getImmigrationNews(8),
     ]).then(([b, w, p, h, n]) => {
       setBulletin(b);
       setWaits(w);
@@ -307,6 +307,65 @@ export default function ImmigrationPage() {
           </div>
         ) : (
           <>
+            {/* ── Immigration News (horizontal scroll) ─────────── */}
+            {news.length > 0 && (
+              <section className="mb-12">
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">📰</span>
+                    <h2 className="font-serif text-xl font-bold">Latest Immigration News</h2>
+                  </div>
+                  <Link to="/immigration" className="text-sm text-primary hover:text-primary/80 font-medium flex items-center gap-1">
+                    More <ChevronRight className="h-4 w-4" />
+                  </Link>
+                </div>
+                <div
+                  className="flex gap-4 overflow-x-auto pb-4"
+                  style={{
+                    scrollSnapType: "x mandatory",
+                    WebkitOverflowScrolling: "touch",
+                    scrollbarWidth: "none",
+                    msOverflowStyle: "none",
+                  } as React.CSSProperties}
+                >
+                  <style>{`.imm-news-strip::-webkit-scrollbar { display: none; }`}</style>
+                  {news.map((article: any) => (
+                    <Link
+                      key={article.id}
+                      to={`/articles/${article.slug}`}
+                      className="block group flex-shrink-0"
+                      style={{ width: "280px", scrollSnapAlign: "start" }}
+                    >
+                      <article className="bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-200 hover:shadow-lg h-full">
+                        {article.image_url && (
+                          <div className="h-36 overflow-hidden">
+                            <img
+                              src={article.image_url}
+                              alt=""
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              loading="lazy"
+                            />
+                          </div>
+                        )}
+                        <div className="p-4">
+                          <div className="flex items-center gap-2 mb-1.5">
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-primary">Immigration</span>
+                            <span className="text-[10px] text-foreground/40">
+                              {new Date(article.published_at).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                            </span>
+                          </div>
+                          <h3 className="font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">{article.title}</h3>
+                          {article.excerpt && (
+                            <p className="text-xs text-foreground/50 mt-1 line-clamp-2">{article.excerpt}</p>
+                          )}
+                        </div>
+                      </article>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
+
             {/* ── Data Trackers ────────────────────────────────── */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
               <GreenCardCard data={bulletin} />
@@ -346,34 +405,6 @@ export default function ImmigrationPage() {
                 })}
               </div>
             </section>
-
-            {/* ── Immigration News ────────────────────────────── */}
-            {news.length > 0 && (
-              <section className="mb-12">
-                <div className="flex items-center gap-2 mb-5">
-                  <span className="text-xl">📰</span>
-                  <h2 className="font-serif text-xl font-bold">Immigration News</h2>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {news.map((article: any) => (
-                    <Link key={article.id} to={`/articles/${article.slug}`} className="block group">
-                      <article className="bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-200 hover:shadow-lg h-full">
-                        {article.image_url && (
-                          <div className="h-36 overflow-hidden">
-                            <img src={article.image_url} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
-                          </div>
-                        )}
-                        <div className="p-4">
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-primary">{article.category}</span>
-                          <h3 className="font-semibold text-sm mt-1 group-hover:text-primary transition-colors line-clamp-2">{article.title}</h3>
-                          {article.excerpt && <p className="text-xs text-foreground/50 mt-1 line-clamp-2">{article.excerpt}</p>}
-                        </div>
-                      </article>
-                    </Link>
-                  ))}
-                </div>
-              </section>
-            )}
 
             {/* ── Find a Lawyer CTA ──────────────────────────── */}
             <section className="mb-12">

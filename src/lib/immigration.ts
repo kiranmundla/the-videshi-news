@@ -295,8 +295,8 @@ export async function getGuideBySlug(slug: string): Promise<ImmigrationGuide | n
 export async function getImmigrationNews(limit: number = 6): Promise<any[]> {
   const { data, error } = await supabase
     .from("p2_articles")
-    .select("id,slug,title,excerpt,image_url,category,published_at")
-    .or("category.eq.Immigration,category.eq.NRI World,category.ilike.%immigration%")
+    .select("id,slug,headline,subheadline,image_url,category,published_at")
+    .or("category.eq.immigration,category.eq.Immigration,category.ilike.%immigration%")
     .eq("status", "published")
     .order("published_at", { ascending: false })
     .limit(limit);
@@ -304,7 +304,12 @@ export async function getImmigrationNews(limit: number = 6): Promise<any[]> {
     console.error("immigration news error:", error);
     return [];
   }
-  return data || [];
+  // Map to expected shape with title/excerpt
+  return (data || []).map((a: any) => ({
+    ...a,
+    title: a.headline || a.title,
+    excerpt: a.subheadline || a.excerpt || "",
+  }));
 }
 
 /* ------------------------------------------------------------------ */
