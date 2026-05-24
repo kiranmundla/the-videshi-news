@@ -89,10 +89,8 @@ const VISA_TAB_SHORT: Record<VisaHolderStatus, string> = {
 
 function VisaDashboard({
   activeTab,
-  onTabChange,
 }: {
   activeTab: VisaHolderStatus;
-  onTabChange: (tab: VisaHolderStatus) => void;
 }) {
   const cards = VISA_DASHBOARD_BY_STATUS[activeTab];
 
@@ -101,26 +99,6 @@ function VisaDashboard({
       <div className="flex items-center gap-2 mb-4">
         <span className="text-xl">🛂</span>
         <h2 className="font-serif text-xl font-bold">Visa Quick Reference</h2>
-      </div>
-
-      {/* Status tabs */}
-      <div className="flex items-center gap-2 mb-4 overflow-x-auto" style={{ WebkitOverflowScrolling: "touch" }}>
-        {VISA_TABS.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => onTabChange(tab)}
-            className={`whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
-              activeTab === tab
-                ? "bg-primary text-primary-foreground border-primary"
-                : "border-rule text-foreground/70 hover:text-primary hover:border-primary"
-            }`}
-          >
-            {VISA_TAB_SHORT[tab]}
-          </button>
-        ))}
-        <span className="text-[11px] text-foreground/40 ml-1 whitespace-nowrap">
-          for {VISA_HOLDER_LABELS[activeTab]}
-        </span>
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -287,20 +265,38 @@ export default function TravelPage() {
             {/* ── Travel News Strip ──────────────────────────── */}
             <TravelNewsStrip news={news} />
 
+            {/* ── Holder Status Toggle (page-level) ──────────── */}
+            <section className="mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-lg">🧳</span>
+                <h2 className="font-serif text-base font-bold">I'm traveling as</h2>
+              </div>
+              <div className="flex gap-2 overflow-x-auto" style={{ WebkitOverflowScrolling: "touch" }}>
+                {VISA_TABS.map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setHolderStatus(tab)}
+                    className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold border transition-colors ${
+                      holderStatus === tab
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "border-rule text-foreground/80 hover:text-primary hover:border-primary"
+                    }`}
+                  >
+                    {VISA_TAB_SHORT[tab]}
+                  </button>
+                ))}
+              </div>
+            </section>
+
             {/* ── Visa Dashboard ─────────────────────────────── */}
-            <VisaDashboard activeTab={holderStatus} onTabChange={setHolderStatus} />
+            <VisaDashboard activeTab={holderStatus} />
 
             {/* ── Destinations by Region ──────────────────────── */}
             <section className="mb-12">
-              <div className="flex items-center justify-between mb-5">
-                <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
                   <span className="text-xl">🗺️</span>
                   <h2 className="font-serif text-xl font-bold">Destinations</h2>
                 </div>
-                <span className="text-[11px] text-foreground/40">
-                  visa info for {HOLDER_SHORT_LABEL[holderStatus]}
-                </span>
-              </div>
 
               {/* Region pills */}
               <style>{`.region-pills::-webkit-scrollbar { display: none; }`}</style>
