@@ -14,7 +14,7 @@ import {
 
 /* ── Status tab labels ─────────────────────────────────────────────── */
 const STATUS_TABS: { key: VisaHolderStatus; short: string }[] = [
-  { key: "indian-passport", short: "Indian Passport" },
+  { key: "indian-passport", short: "US Visa Holder" },
   { key: "us-citizen", short: "US Citizen" },
   { key: "green-card", short: "Green Card" },
 ];

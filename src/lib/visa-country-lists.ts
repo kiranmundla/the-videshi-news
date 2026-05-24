@@ -425,15 +425,15 @@ type VisaListData = {
 const ALL_LISTS: Record<string, Record<string, VisaListData>> = {
   "indian-passport": {
     "visa-free": {
-      meta: { title: "Visa-Free Countries", subtitle: "for Indian Passport Holders", count: 25, color: "bg-green-500/10", textColor: "text-green-600", emoji: "🟢" },
+      meta: { title: "Visa-Free Countries", subtitle: "for US Visa Holders (H-1B, B1/B2)", count: 25, color: "bg-green-500/10", textColor: "text-green-600", emoji: "🟢" },
       countries: IP_VISA_FREE,
     },
     "voa": {
-      meta: { title: "Visa on Arrival Countries", subtitle: "for Indian Passport Holders", count: 30, color: "bg-yellow-500/10", textColor: "text-yellow-600", emoji: "🟡" },
+      meta: { title: "Visa on Arrival Countries", subtitle: "for US Visa Holders (H-1B, B1/B2)", count: 30, color: "bg-yellow-500/10", textColor: "text-yellow-600", emoji: "🟡" },
       countries: IP_VOA,
     },
     "e-visa": {
-      meta: { title: "e-Visa Available Countries", subtitle: "for Indian Passport Holders", count: 50, color: "bg-blue-500/10", textColor: "text-blue-600", emoji: "🔵" },
+      meta: { title: "e-Visa Available Countries", subtitle: "for US Visa Holders (H-1B, B1/B2)", count: 50, color: "bg-blue-500/10", textColor: "text-blue-600", emoji: "🔵" },
       countries: IP_E_VISA,
     },
     "us-gc-perks": {
@@ -461,7 +461,7 @@ const ALL_LISTS: Record<string, Record<string, VisaListData>> = {
   },
   "green-card": {
     "visa-free-gc": {
-      meta: { title: "Visa-Free Countries", subtitle: "for Green Card Holders (Indian Passport)", count: 40, color: "bg-green-500/10", textColor: "text-green-600", emoji: "🟢" },
+      meta: { title: "Visa-Free Countries", subtitle: "for Green Card Holders", count: 40, color: "bg-green-500/10", textColor: "text-green-600", emoji: "🟢" },
       countries: GC_VISA_FREE,
     },
     "voa-gc": {

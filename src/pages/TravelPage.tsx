@@ -82,7 +82,7 @@ function TravelNewsStrip({ news }: { news: any[] }) {
 /* ------------------------------------------------------------------ */
 const VISA_TABS: VisaHolderStatus[] = ["indian-passport", "us-citizen", "green-card"];
 const VISA_TAB_SHORT: Record<VisaHolderStatus, string> = {
-  "indian-passport": "Indian Passport",
+  "indian-passport": "US Visa Holder",
   "us-citizen": "US Citizen",
   "green-card": "Green Card",
 };
@@ -142,7 +142,7 @@ function VisaDashboard({
 /* Destination Card                                                   */
 /* ------------------------------------------------------------------ */
 const HOLDER_SHORT_LABEL: Record<VisaHolderStatus, string> = {
-  "indian-passport": "Indian passport",
+  "indian-passport": "US Visa holder (H-1B, B1/B2)",
   "us-citizen": "US citizen",
   "green-card": "Green Card holder",
 };
