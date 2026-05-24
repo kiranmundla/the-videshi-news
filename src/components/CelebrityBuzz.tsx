@@ -3,11 +3,14 @@ import { useState, useEffect, useCallback, useRef } from "react";
 interface BuzzPost {
   platform: "instagram" | "twitter";
   url: string;
-  celebrity: string;
+  celebrity?: string;
+  name?: string;
   handle: string;
   timestamp: string;
   thumbnail?: string;
   cdn_thumbnail?: string;
+  caption?: string;
+  media_type?: string;
 }
 
 function extractInstaShortcode(url: string): string | null {
@@ -114,7 +117,7 @@ function BuzzLightbox({ post, images, onClose }: {
 
       {/* Celebrity name */}
       <div style={{ position: "absolute", top: 16, left: "50%", transform: "translateX(-50%)", textAlign: "center", zIndex: 20 }}>
-        <div style={{ color: "#fff", fontSize: 16, fontWeight: 600 }}>{post.celebrity}</div>
+        <div style={{ color: "#fff", fontSize: 16, fontWeight: 600 }}>{post.celebrity || post.name}</div>
         {total > 1 && <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, marginTop: 2 }}>{current + 1} / {total}</div>}
       </div>
 
@@ -148,7 +151,7 @@ function BuzzLightbox({ post, images, onClose }: {
           >
             <img
               src={img}
-              alt={`${post.celebrity} photo ${i + 1}`}
+              alt={`${post.celebrity || post.name} photo ${i + 1}`}
               referrerPolicy="no-referrer"
               loading={i < 2 ? "eager" : "lazy"}
               style={{
@@ -208,7 +211,9 @@ function ThumbCard({
   loading: boolean;
   onClick: () => void;
 }) {
+  const displayName = post.celebrity || post.name || post.handle;
   const fallbackSrc = post.thumbnail || `/images/celebrity-thumbs/${post.handle}.jpg`;
+  const hasThumbnail = !!(dynamicSrc || (post.thumbnail && post.thumbnail.length > 0));
   const src = dynamicSrc || fallbackSrc;
 
   return (
@@ -239,24 +244,75 @@ function ThumbCard({
             animation: "shimmer 1.5s ease-in-out infinite",
           }} />
         )}
-        <img
-          src={src}
-          alt={post.celebrity}
-          loading="lazy"
-          referrerPolicy="no-referrer"
-          onError={(e) => {
-            const img = e.currentTarget;
-            if (img.src !== window.location.origin + fallbackSrc && img.src !== fallbackSrc) {
-              img.src = fallbackSrc;
-            }
-          }}
-          style={{
-            width: "100%", height: "100%",
-            objectFit: "cover", display: "block",
-            opacity: loading ? 0 : 1,
-            transition: "opacity 0.3s ease",
-          }}
-        />
+        {hasThumbnail ? (
+          <img
+            src={src}
+            alt={displayName}
+            loading="lazy"
+            referrerPolicy="no-referrer"
+            onError={(e) => {
+              const img = e.currentTarget;
+              // On error, replace with caption card
+              const parent = img.parentElement;
+              if (parent) {
+                img.style.display = "none";
+                // Show caption overlay
+                const overlay = parent.querySelector(".caption-fallback") as HTMLElement;
+                if (overlay) overlay.style.display = "flex";
+              }
+            }}
+            style={{
+              width: "100%", height: "100%",
+              objectFit: "cover", display: "block",
+              opacity: loading ? 0 : 1,
+              transition: "opacity 0.3s ease",
+            }}
+          />
+        ) : null}
+
+        {/* Caption fallback card - shown when no thumbnail or image fails */}
+        <div className="caption-fallback" style={{
+          position: hasThumbnail ? "absolute" : "relative",
+          inset: 0,
+          display: hasThumbnail ? "none" : "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "24px 20px",
+          background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+          width: hasThumbnail ? undefined : "100%",
+          height: hasThumbnail ? undefined : "100%",
+          boxSizing: "border-box",
+        }}>
+          <div style={{
+            fontSize: 36, marginBottom: 12,
+          }}>
+            {post.platform === "instagram" ? "📸" : "🐦"}
+          </div>
+          <div style={{
+            fontSize: 16, fontWeight: 700, color: "#fff",
+            textAlign: "center", marginBottom: 8,
+          }}>
+            {displayName}
+          </div>
+          <div style={{
+            fontSize: 11, color: "#b8860b", marginBottom: 12,
+            fontWeight: 600,
+          }}>
+            @{post.handle}
+          </div>
+          {post.caption && (
+            <div style={{
+              fontSize: 12, color: "#ccc", textAlign: "center",
+              lineHeight: 1.5, maxHeight: "50%", overflow: "hidden",
+              display: "-webkit-box",
+              WebkitLineClamp: 6,
+              WebkitBoxOrient: "vertical" as const,
+            }}>
+              {post.caption}
+            </div>
+          )}
+        </div>
 
         {/* Instagram badge */}
         <div style={{
@@ -265,6 +321,7 @@ function ThumbCard({
           background: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
           display: "flex", alignItems: "center", justifyContent: "center",
           boxShadow: "0 1px 4px rgba(0,0,0,0.3)",
+          zIndex: 3,
         }}>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" />
@@ -280,7 +337,7 @@ function ThumbCard({
           color: "#1a1a1a", fontSize: 13, fontWeight: 600,
           whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
         }}>
-          {post.celebrity}
+          {displayName}
         </div>
         <div style={{
           color: "#888", fontSize: 11, marginTop: 1,
