@@ -1,6 +1,6 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-25T04:55:33Z",
+  "last_updated": "2026-05-25T05:55:36Z",
   "stage": "League stage 68/70 matches done. RCB, GT, SRH qualified (all 18 pts). Qualifier 1: RCB vs GT (May 26, Dharamsala). 4th spot: PBKS (15pts) lead but need other results. 2 matches remain: MI vs RR (May 24), DC vs KKR (May 25). Eliminator May 27 (New Chandigarh). Qualifier 2 May 29. Final May 31 (Ahmedabad).",
   "recent_results": [
     "Match 68: PBKS 200/3 beat LSG 196/6 by 7 wickets (Shreyas Iyer 101* off 51, Prabhsimran 69). PBKS alive for playoffs.",
@@ -15,11 +15,11 @@
     {
       "team": "Royal Challengers Bengaluru",
       "short": "RCB",
-      "played": 13,
+      "played": 14,
       "won": 9,
-      "lost": 4,
+      "lost": 5,
       "nr": 0,
-      "nrr": "+1.065",
+      "nrr": "+0.783",
       "points": 18,
       "position": 1
     },
@@ -37,46 +37,57 @@
     {
       "team": "Sunrisers Hyderabad",
       "short": "SRH",
-      "played": 13,
-      "won": 8,
+      "played": 14,
+      "won": 9,
       "lost": 5,
       "nr": 0,
-      "nrr": "+0.350",
-      "points": 16,
+      "nrr": "+0.524",
+      "points": 18,
       "position": 3
     },
     {
       "team": "Rajasthan Royals",
       "short": "RR",
-      "played": 13,
-      "won": 7,
+      "played": 14,
+      "won": 8,
       "lost": 6,
       "nr": 0,
-      "nrr": "+0.083",
-      "points": 14,
+      "nrr": "+0.189",
+      "points": 16,
       "position": 4
     },
     {
       "team": "Punjab Kings",
       "short": "PBKS",
-      "played": 13,
-      "won": 6,
+      "played": 14,
+      "won": 7,
       "lost": 6,
       "nr": 1,
-      "nrr": "+0.227",
-      "points": 13,
+      "nrr": "+0.309",
+      "points": 15,
       "position": 5
+    },
+    {
+      "team": "Delhi Capitals",
+      "short": "DC",
+      "played": 14,
+      "won": 7,
+      "lost": 7,
+      "nr": 0,
+      "nrr": "-0.651",
+      "points": 14,
+      "position": 6
     },
     {
       "team": "Kolkata Knight Riders",
       "short": "KKR",
-      "played": 13,
+      "played": 14,
       "won": 6,
-      "lost": 6,
+      "lost": 7,
       "nr": 1,
-      "nrr": "+0.011",
+      "nrr": "-0.147",
       "points": 13,
-      "position": 6
+      "position": 7
     },
     {
       "team": "Chennai Super Kings",
@@ -87,38 +98,27 @@
       "nr": 0,
       "nrr": "-0.345",
       "points": 12,
-      "position": 7
-    },
-    {
-      "team": "Delhi Capitals",
-      "short": "DC",
-      "played": 13,
-      "won": 6,
-      "lost": 7,
-      "nr": 0,
-      "nrr": "-0.871",
-      "points": 12,
       "position": 8
     },
     {
       "team": "Mumbai Indians",
       "short": "MI",
-      "played": 13,
+      "played": 14,
       "won": 4,
-      "lost": 9,
+      "lost": 10,
       "nr": 0,
-      "nrr": "-0.510",
+      "nrr": "-0.584",
       "points": 8,
       "position": 9
     },
     {
       "team": "Lucknow Super Giants",
       "short": "LSG",
-      "played": 13,
+      "played": 14,
       "won": 4,
-      "lost": 9,
+      "lost": 10,
       "nr": 0,
-      "nrr": "-0.702",
+      "nrr": "-0.740",
       "points": 8,
       "position": 10
     }
