@@ -418,23 +418,32 @@ def generate_reel(article, upload=False):
         if upload:
             print("   ☁️  Uploading to Supabase storage...")
             sb_url, sb_key = load_supabase_env()
-            with open(out_file, "rb") as f:
-                video_data = f.read()
-            r = requests.post(
-                f"{sb_url}/storage/v1/object/article-images/reels/{slug}.mp4",
-                headers={
-                    "apikey": sb_key,
-                    "Authorization": f"Bearer {sb_key}",
-                    "Content-Type": "video/mp4",
-                    "x-upsert": "true",
-                },
-                data=video_data,
-            )
-            if r.status_code in [200, 201]:
-                public_url = f"{sb_url}/storage/v1/object/public/article-images/reels/{slug}.mp4"
-                print(f"   🔗 {public_url}")
-            else:
-                print(f"   ⚠️  Upload failed: {r.status_code} {r.text[:200]}")
+            storage_path = f"reels/{slug}.mp4"
+            public_url = f"{sb_url}/storage/v1/object/public/article-images/{storage_path}"
+            upload_url = f"{sb_url}/storage/v1/object/article-images/{storage_path}"
+            try:
+                # Use curl for large file upload (more reliable than requests)
+                result = subprocess.run(
+                    [
+                        "curl", "-s", "-w", "%{http_code}", "-o", "/dev/null",
+                        "-X", "POST", upload_url,
+                        "-H", f"apikey: {sb_key}",
+                        "-H", f"Authorization: Bearer {sb_key}",
+                        "-H", "Content-Type: video/mp4",
+                        "-H", "x-upsert: true",
+                        "--data-binary", f"@{out_file}",
+                        "--max-time", "60",
+                    ],
+                    capture_output=True, text=True, timeout=90,
+                )
+                status_code = result.stdout.strip()
+                if status_code in ["200", "201"]:
+                    print(f"   🔗 {public_url}")
+                else:
+                    print(f"   ⚠️  Upload returned HTTP {status_code}")
+            except Exception as e:
+                print(f"   ⚠️  Upload failed: {e}")
+                print(f"   📁 Local file still available at: {out_file}")
 
         return str(out_file)
 
