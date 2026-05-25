@@ -363,9 +363,9 @@ export default function ImmigrationPage() {
                               {new Date(article.published_at).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
                             </span>
                           </div>
-                          <h3 className="font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">{article.title}</h3>
+                          <h3 className="font-serif font-bold text-base group-hover:text-primary transition-colors line-clamp-2 leading-snug">{article.title}</h3>
                           {article.excerpt && (
-                            <p className="text-xs text-foreground/50 mt-1 line-clamp-2">{article.excerpt}</p>
+                            <p className="text-sm text-foreground/50 mt-1.5 line-clamp-2 leading-snug">{article.excerpt}</p>
                           )}
                         </div>
                       </article>

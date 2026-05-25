@@ -193,7 +193,7 @@ export default function ArticleCard({
             )}
             {article.category}
           </p>
-          <h3 className="font-serif font-semibold text-[0.95rem] md:text-base leading-snug text-foreground group-hover:text-primary transition-colors">
+          <h3 className="font-serif font-bold text-base md:text-[1.05rem] leading-snug text-foreground group-hover:text-primary transition-colors">
             {article.title}
           </h3>
         </div>
@@ -268,14 +268,14 @@ export default function ArticleCard({
       ? "text-[2rem] md:text-[2.75rem] lg:text-[3rem] leading-[1.05]"
       : variant === "featured"
       ? "text-[1.35rem] md:text-[1.5rem] leading-[1.2]"
-      : "text-[1.05rem] md:text-[1.125rem] leading-snug";
+      : "text-[1.05rem] md:text-[1.15rem] leading-snug";
 
   const headlineSizeNoImage =
     variant === "hero"
       ? "text-[2.4rem] md:text-[3.25rem] lg:text-[3.6rem] leading-[1.05]"
       : variant === "featured"
       ? "text-[1.6rem] md:text-[1.8rem] leading-[1.2]"
-      : "text-[1.25rem] md:text-[1.35rem] leading-snug";
+      : "text-[1.25rem] md:text-[1.4rem] leading-snug";
 
   if (!hasImage) {
     // Text-first card — denser layout with red top accent bar.
