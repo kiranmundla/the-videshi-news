@@ -1,477 +1,546 @@
 #!/usr/bin/env python3
 """
-The Videshi — Instagram Reel Generator
-Generates 9:16 vertical video (1080x1920) from an article for Instagram Reels.
-
-Usage:
-  python3 generate-reel.py                    # Latest unposted article
-  python3 generate-reel.py --slug my-article  # Specific article
-  python3 generate-reel.py --dry-run          # Preview without generating
-  python3 generate-reel.py --upload            # Also upload to Supabase storage
+The Videshi — Instagram Reel Generator (v2)
+3-scene reel: Headline Card → Article Image → CTA Card
+Output: 1080x1920, ~14 seconds, H.264+AAC MP4
 """
-
 import argparse
 import json
 import os
-import re
+import shutil
 import subprocess
 import sys
 import tempfile
-import textwrap
+import time
 from pathlib import Path
 
 import requests
 from PIL import Image, ImageDraw, ImageFont
 
-# ── Config ──────────────────────────────────────────────────────────────────
-SCRIPT_DIR = Path(__file__).parent
-REELS_DIR = SCRIPT_DIR / "reels"
-REELS_DIR.mkdir(exist_ok=True)
+# ── Paths ──────────────────────────────────────────────────────────────
+SCRIPT_DIR = Path(__file__).resolve().parent
+OUTPUT_DIR = SCRIPT_DIR / "reels"
+ENV_SUPABASE = Path.home() / "workspace" / ".env.supabase"
 
-WIDTH, HEIGHT = 1080, 1920
-DURATION = 12  # seconds
+# Font paths with fallbacks
+def _find_font(candidates):
+    for f in candidates:
+        if os.path.exists(f):
+            return f
+    return candidates[0]
+
+FONT_BOLD = _find_font([
+    "/usr/share/fonts/truetype/inter/Inter-Bold.ttf",
+    "/usr/share/fonts/truetype/noto/NotoSans-Bold.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+])
+FONT_EXTRABOLD = _find_font([
+    "/usr/share/fonts/truetype/inter/InterDisplay-ExtraBold.ttf",
+    "/usr/share/fonts/truetype/inter/Inter-ExtraBold.ttf",
+    FONT_BOLD,
+])
+FONT_SEMIBOLD = _find_font([
+    "/usr/share/fonts/truetype/inter/Inter-SemiBold.ttf",
+    "/usr/share/fonts/truetype/inter/Inter-Medium.ttf",
+    FONT_BOLD,
+])
+FONT_REGULAR = _find_font([
+    "/usr/share/fonts/truetype/inter/Inter-Regular.ttf",
+    "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+])
+
+# ── Constants ──────────────────────────────────────────────────────────
+W, H = 1080, 1920
 FPS = 25
-TOTAL_FRAMES = DURATION * FPS
 
-FONT_BOLD = "/usr/share/fonts/truetype/noto/NotoSans-Bold.ttf"
-FONT_REGULAR = "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf"
-if not os.path.exists(FONT_BOLD):
-    FONT_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
-if not os.path.exists(FONT_REGULAR):
-    FONT_REGULAR = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+SCENE1_DUR = 5.0
+SCENE2_DUR = 6.0
+SCENE3_DUR = 4.0
+XFADE_DUR  = 0.5
 
-GOLD = "#d4a843"
-GOLD_RGB = "0xd4a843"
+NAVY = (26, 26, 46)
+GOLD = (212, 168, 67)
+WHITE = (255, 255, 255)
+WHITE_DIM = (200, 200, 210)
 
-# Category colors for the pill badge
 CATEGORY_COLORS = {
-    "news": "#e74c3c",
-    "immigration": "#3498db",
-    "sports": "#27ae60",
-    "entertainment": "#9b59b6",
-    "lifestyle": "#e67e22",
-    "travel": "#1abc9c",
-    "markets": "#f39c12",
-    "technology": "#2980b9",
-    "food": "#d35400",
-    "nri-world": "#8e44ad",
+    "news":          (220, 53, 53),
+    "immigration":   (59, 130, 246),
+    "sports":        (34, 197, 94),
+    "entertainment": (147, 51, 234),
+    "travel":        (20, 184, 166),
+    "lifestyle":     (236, 72, 153),
+    "markets":       (245, 158, 11),
+    "technology":    (99, 102, 241),
+    "food":          (249, 115, 22),
+    "nri-world":     (59, 130, 246),
 }
 
 
-def load_supabase_env():
-    """Load Supabase credentials."""
+# ── Helpers ────────────────────────────────────────────────────────────
+def load_env(path):
     env = {}
-    env_path = Path.home() / "workspace" / ".env.supabase"
-    with open(env_path) as f:
-        for line in f:
+    if path.exists():
+        for line in path.read_text().splitlines():
             if "=" in line and not line.startswith("#"):
                 k, v = line.strip().split("=", 1)
                 env[k] = v
-    return env["SUPABASE_URL"], env["SUPABASE_SERVICE_ROLE_KEY"]
+    return env
 
 
-def fetch_article(sb_url, sb_key, slug=None):
-    """Fetch article from Supabase."""
-    headers = {"apikey": sb_key, "Authorization": f"Bearer {sb_key}"}
-    fields = "id,slug,headline,subheadline,category,image_url"
-
+def fetch_article(slug=None):
+    env = load_env(ENV_SUPABASE)
+    url, key = env["SUPABASE_URL"], env["SUPABASE_SERVICE_ROLE_KEY"]
+    headers = {"apikey": key, "Authorization": f"Bearer {key}"}
     if slug:
         r = requests.get(
-            f"{sb_url}/rest/v1/p2_articles?slug=eq.{slug}&select={fields}",
-            headers=headers,
-        )
+            f"{url}/rest/v1/p2_articles?slug=eq.{slug}"
+            "&select=id,slug,headline,subheadline,category,image_url",
+            headers=headers)
+        articles = r.json()
+        if not articles:
+            sys.exit(f"❌ No article with slug: {slug}")
+        return articles[0]
     else:
-        r = requests.get(
-            f"{sb_url}/rest/v1/p2_articles?status=eq.published"
-            f"&instagrammed_at=is.null&image_url=not.is.null"
-            f"&order=published_at.desc&limit=1&select={fields}",
-            headers=headers,
-        )
-
-    data = r.json()
-    if not data:
-        print("❌ No article found.")
-        sys.exit(1)
-    return data[0]
+        for filt in [
+            "status=eq.published&instagrammed_at=is.null&image_url=not.is.null",
+            "status=eq.published&image_url=not.is.null",
+        ]:
+            r = requests.get(
+                f"{url}/rest/v1/p2_articles?{filt}"
+                "&order=published_at.desc&limit=1"
+                "&select=id,slug,headline,subheadline,category,image_url",
+                headers=headers)
+            if r.json():
+                return r.json()[0]
+        sys.exit("❌ No articles found")
 
 
 def download_image(url, dest):
-    """Download image to local path."""
     r = requests.get(url, timeout=30)
     r.raise_for_status()
-    with open(dest, "wb") as f:
-        f.write(r.content)
-    return dest
+    Path(dest).write_bytes(r.content)
 
 
-def prepare_background(img_path, out_path):
-    """Scale and crop image to exactly 1080x1920 (cover fit)."""
-    img = Image.open(img_path)
-    w, h = img.size
-
-    # Compute scale to cover 1080x1920
-    scale = max(WIDTH / w, HEIGHT / h)
-    new_w = int(w * scale)
-    new_h = int(h * scale)
-
-    img = img.resize((new_w, new_h), Image.LANCZOS)
-
-    # Center crop to 1080x1920
-    left = (new_w - WIDTH) // 2
-    top = (new_h - HEIGHT) // 2
-    img = img.crop((left, top, left + WIDTH, top + HEIGHT))
-    img.save(out_path, quality=95)
-    return out_path
+def word_wrap(draw, text, font, max_w):
+    lines, cur = [], ""
+    for word in text.split():
+        test = f"{cur} {word}".strip()
+        if draw.textbbox((0, 0), test, font=font)[2] <= max_w:
+            cur = test
+        else:
+            if cur:
+                lines.append(cur)
+            cur = word
+    if cur:
+        lines.append(cur)
+    return lines
 
 
-def create_gradient_overlay(out_path):
-    """Create a gradient overlay PNG: transparent top → dark bottom."""
-    img = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
+def fit_text(draw, text, max_w, max_h, font_path,
+             sizes=(72, 66, 60, 54, 50, 46, 42, 38, 34)):
+    for sz in sizes:
+        font = ImageFont.truetype(font_path, sz)
+        lines = word_wrap(draw, text, font, max_w)
+        a, d = font.getmetrics()
+        lh = a + d + int(sz * 0.22)
+        if lh * len(lines) <= max_h:
+            return font, lines, lh
+    font = ImageFont.truetype(font_path, sizes[-1])
+    lines = word_wrap(draw, text, font, max_w)
+    a, d = font.getmetrics()
+    return font, lines, a + d + int(sizes[-1] * 0.22)
+
+
+def rounded_rect(draw, xy, r, fill):
+    x0, y0, x1, y1 = xy
+    draw.rectangle([x0+r, y0, x1-r, y1], fill=fill)
+    draw.rectangle([x0, y0+r, x1, y1-r], fill=fill)
+    for cx, cy, sa, ea in [
+        (x0+r, y0+r, 180, 270), (x1-r, y0+r, 270, 360),
+        (x0+r, y1-r, 90, 180),  (x1-r, y1-r, 0, 90)]:
+        draw.pieslice([cx-r, cy-r, cx+r, cy+r], sa, ea, fill=fill)
+
+
+# ── Scene Renderers ────────────────────────────────────────────────────
+
+def render_scene1(article, tmp_dir):
+    """Headline card → single PNG, ffmpeg handles fade-in + duration."""
+    headline = article["headline"]
+    cat = (article.get("category") or "news").lower().replace(" ", "-")
+    cat_color = CATEGORY_COLORS.get(cat, CATEGORY_COLORS["news"])
+    cat_label = cat.upper().replace("-", " ")
+
+    img = Image.new("RGB", (W, H), NAVY)
     draw = ImageDraw.Draw(img)
 
-    # Bottom 60% gets a gradient
-    gradient_start = int(HEIGHT * 0.35)
-    for y in range(gradient_start, HEIGHT):
-        progress = (y - gradient_start) / (HEIGHT - gradient_start)
-        # Ease in for smoother gradient
-        alpha = int(220 * (progress ** 1.5))
-        alpha = min(alpha, 220)
-        draw.rectangle([(0, y), (WIDTH, y + 1)], fill=(0, 0, 0, alpha))
-
-    # Also add a subtle top vignette for the category tag
-    for y in range(0, int(HEIGHT * 0.15)):
-        progress = 1 - (y / (HEIGHT * 0.15))
-        alpha = int(100 * (progress ** 2))
-        draw.rectangle([(0, y), (WIDTH, y + 1)], fill=(0, 0, 0, alpha))
-
-    img.save(out_path)
-    return out_path
-
-
-def create_category_badge(category, out_path):
-    """Create a category pill badge PNG."""
-    cat_upper = (category or "news").upper().replace("-", " ")
-    color_hex = CATEGORY_COLORS.get(category, "#555555")
-    r_c, g_c, b_c = int(color_hex[1:3], 16), int(color_hex[3:5], 16), int(color_hex[5:7], 16)
-
-    try:
-        font = ImageFont.truetype(FONT_BOLD, 28)
-    except Exception:
-        font = ImageFont.load_default()
-
-    # Measure text
-    dummy = Image.new("RGBA", (1, 1))
-    dd = ImageDraw.Draw(dummy)
-    bbox = dd.textbbox((0, 0), cat_upper, font=font)
-    tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
-
-    pad_x, pad_y = 24, 12
-    pill_w = tw + pad_x * 2
-    pill_h = th + pad_y * 2
-    radius = pill_h // 2
-
-    img = Image.new("RGBA", (pill_w, pill_h), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(img)
-
-    # Rounded rectangle
-    draw.rounded_rectangle(
-        [(0, 0), (pill_w - 1, pill_h - 1)],
-        radius=radius,
-        fill=(r_c, g_c, b_c, 230),
-    )
-
-    # Text centered
-    tx = (pill_w - tw) // 2 - bbox[0]
-    ty = (pill_h - th) // 2 - bbox[1]
-    draw.text((tx, ty), cat_upper, font=font, fill=(255, 255, 255, 255))
-
-    img.save(out_path)
-    return out_path, pill_w, pill_h
-
-
-def create_text_overlay(headline, category, out_path):
-    """Create the full text overlay PNG with headline + branding."""
-    img = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(img)
+    # ── Category badge ──
+    bf = ImageFont.truetype(FONT_BOLD, 28)
+    bb = draw.textbbox((0, 0), cat_label, font=bf)
+    bw, bh = bb[2]-bb[0]+50, bb[3]-bb[1]+28
+    bx = (W - bw) // 2
+    by = 280
+    rounded_rect(draw, (bx, by, bx+bw, by+bh), 18, cat_color)
+    tx = bx + (bw - (bb[2]-bb[0])) // 2
+    ty = by + (bh - (bb[3]-bb[1])) // 2 - 2
+    draw.text((tx, ty), cat_label, font=bf, fill=WHITE)
 
     # ── Headline ──
-    # Truncate if super long — cut at word boundary
-    if len(headline) > 150:
-        headline = headline[:150]
-        # Cut at last space for clean word break
-        last_space = headline.rfind(" ")
-        if last_space > 100:
-            headline = headline[:last_space] + "..."
-        else:
-            headline = headline + "..."
+    pad = 90
+    max_w = W - 2*pad
+    zone_top = by + bh + 80
+    zone_bot = H - 300
+    max_h = zone_bot - zone_top
 
-    try:
-        font_headline = ImageFont.truetype(FONT_BOLD, 52)
-        font_brand = ImageFont.truetype(FONT_BOLD, 36)
-        font_url = ImageFont.truetype(FONT_REGULAR, 26)
-    except Exception:
-        font_headline = ImageFont.load_default()
-        font_brand = font_headline
-        font_url = font_headline
+    font, lines, lh = fit_text(draw, headline, max_w, max_h, FONT_EXTRABOLD)
+    total_h = lh * len(lines)
+    y0 = zone_top + (max_h - total_h) // 2
 
-    # Word wrap headline to fit ~900px
-    max_chars = 28  # rough chars per line at font size 52 in 900px
-    lines = []
-    for para in headline.split("\n"):
-        lines.extend(textwrap.wrap(para, width=max_chars))
-
-    # Limit to 6 lines max
-    if len(lines) > 6:
-        lines = lines[:6]
-        lines[-1] = lines[-1][:max_chars - 3] + "..."
-
-    # Calculate total text block height
-    line_height = 64  # px per line
-    text_block_h = len(lines) * line_height
-
-    # Position: headline ends ~280px from bottom
-    headline_bottom = HEIGHT - 260
-    headline_top = headline_bottom - text_block_h
-
-    # Draw each line
-    x_margin = 80
     for i, line in enumerate(lines):
-        y = headline_top + i * line_height
-        # Drop shadow
-        draw.text((x_margin + 2, y + 2), line, font=font_headline, fill=(0, 0, 0, 180))
-        # Main text
-        draw.text((x_margin, y), line, font=font_headline, fill=(255, 255, 255, 255))
+        y = y0 + i * lh
+        draw.text((pad+3, y+3), line, font=font, fill=(0, 0, 0))  # shadow
+        draw.text((pad, y), line, font=font, fill=WHITE)
 
-    # ── Gold accent line (static, below headline) ──
-    line_y = headline_bottom + 20
-    draw.rectangle(
-        [(x_margin, line_y), (x_margin + 120, line_y + 4)],
-        fill=(212, 168, 67, 255),
+    # ── Gold accent line ──
+    ly = y0 + total_h + 35
+    draw.rectangle([pad, ly, pad+120, ly+5], fill=GOLD)
+
+    # ── Bottom branding ──
+    brand_f = ImageFont.truetype(FONT_EXTRABOLD, 36)
+    site_f = ImageFont.truetype(FONT_REGULAR, 24)
+    for txt, f, color, yoff in [
+        ("THE VIDESHI", brand_f, GOLD, H-180),
+        ("thevideshi.com", site_f, WHITE_DIM, H-130),
+    ]:
+        bb = draw.textbbox((0, 0), txt, font=f)
+        draw.text(((W - (bb[2]-bb[0])) // 2, yoff), txt, font=f, fill=color)
+
+    out = os.path.join(tmp_dir, "scene1.png")
+    img.save(out, quality=95)
+    return out
+
+
+def render_scene2_image(article, tmp_dir, img_path):
+    """Prepare article image for Ken Burns — crop to 1080x1920, padded for zoom."""
+    img = Image.open(img_path).convert("RGB")
+    # Scale to cover 1080x1920 with 20% margin for zoom
+    tw, th = int(W * 1.20), int(H * 1.20)
+    iw, ih = img.size
+    scale = max(tw / iw, th / ih)
+    img = img.resize((int(iw*scale), int(ih*scale)), Image.LANCZOS)
+    # Center crop to tw x th
+    nw, nh = img.size
+    x0 = (nw - tw) // 2
+    y0 = (nh - th) // 2
+    img = img.crop((x0, y0, x0+tw, y0+th))
+
+    out = os.path.join(tmp_dir, "scene2_src.png")
+    img.save(out, quality=95)
+    return out, tw, th
+
+
+def render_scene3(tmp_dir):
+    """CTA card → single PNG."""
+    img = Image.new("RGB", (W, H), NAVY)
+    draw = ImageDraw.Draw(img)
+
+    # Decorative line
+    draw.rectangle([W//2-100, 600, W//2+100, 603], fill=GOLD)
+
+    # Brand
+    bf = ImageFont.truetype(FONT_EXTRABOLD, 72)
+    txt = "THE VIDESHI"
+    bb = draw.textbbox((0, 0), txt, font=bf)
+    draw.text(((W-(bb[2]-bb[0]))//2, 680), txt, font=bf, fill=GOLD)
+
+    # Tagline
+    tf = ImageFont.truetype(FONT_REGULAR, 32)
+    tag = "Your daily source for Indian diaspora news"
+    bb2 = draw.textbbox((0, 0), tag, font=tf)
+    draw.text(((W-(bb2[2]-bb2[0]))//2, 790), tag, font=tf, fill=WHITE_DIM)
+
+    # Divider
+    draw.rectangle([W//2-60, 870, W//2+60, 873], fill=(*GOLD, ))
+
+    # CTA
+    cf = ImageFont.truetype(FONT_SEMIBOLD, 40)
+    cta = "Read the full story"
+    bb3 = draw.textbbox((0, 0), cta, font=cf)
+    draw.text(((W-(bb3[2]-bb3[0]))//2, 940), cta, font=cf, fill=WHITE)
+
+    # Link in bio
+    lf = ImageFont.truetype(FONT_BOLD, 36)
+    link = "Link in bio"
+    bb4 = draw.textbbox((0, 0), link, font=lf)
+    lx = (W-(bb4[2]-bb4[0]))//2
+    # Arrow above
+    af = ImageFont.truetype(FONT_BOLD, 44)
+    arrow = "↑"
+    ab = draw.textbbox((0, 0), arrow, font=af)
+    draw.text(((W-(ab[2]-ab[0]))//2, 1005), arrow, font=af, fill=GOLD)
+    draw.text((lx, 1060), link, font=lf, fill=GOLD)
+
+    out = os.path.join(tmp_dir, "scene3.png")
+    img.save(out, quality=95)
+    return out
+
+
+def assemble_reel(tmp_dir, s1_png, s2_src, s2_w, s2_h, s3_png, output_path):
+    """Assemble 3 scenes with ffmpeg: fade-in, zoompan, crossfades, silent audio."""
+
+    s1_dur = SCENE1_DUR
+    s2_dur = SCENE2_DUR
+    s3_dur = SCENE3_DUR
+    xf = XFADE_DUR
+
+    # Zoompan: zoom from 1.0 to 1.15 over s2_dur
+    # zoompan z expression: start at zoom that shows WxH in the s2_w x s2_h image
+    # We want to go from showing the full padded image (zoom=1.0) to cropped (zoom=1.15)
+    zp_frames = int(s2_dur * FPS)
+    # The input is s2_w x s2_h. We want output W x H.
+    # zoom=1 means show WxH area; zoom=1.15 means show W/1.15 x H/1.15 area
+    # zoompan uses zoom relative to output size vs input size
+    # z = s2_w/W at start (showing full width), increasing to s2_w/W * 1.15
+
+    base_z = s2_w / W  # ≈ 1.20
+    end_z = base_z * 1.15 / 1.20  # back to ~1.0 to simulate zoom in from content
+
+    # Actually simpler: start z=1.0 (crops to WxH from center of s2_w x s2_h),
+    # end z = s2_w/W (shows "more" = zoom out effect). But we want zoom IN.
+    # For zoom IN on zoompan: z starts lower and increases.
+    # z='min(zoom+0.0015,1.5)' is a common pattern
+    # Let's use: z = 1.0 + 0.15*(on/total) to go from 1.0x to 1.15x zoom
+    z_expr = f"1+0.15*(on/{zp_frames})"
+
+    # Build filter graph
+    # Input 0: scene1 PNG (looped for s1_dur)
+    # Input 1: scene2 source image (zoompan)
+    # Input 2: scene3 PNG (looped for s3_dur)
+
+    # The overlay bar on scene2 is tricky in pure ffmpeg. Let's add it as a
+    # drawtext overlay instead.
+    bar_font = FONT_SEMIBOLD.replace("'", "\\'")
+
+    filter_parts = []
+
+    # Scene 1: fade in from black over 0.5s, hold for s1_dur
+    filter_parts.append(
+        f"[0:v]loop=loop={int(s1_dur*FPS)-1}:size=1:start=0,"
+        f"setpts=PTS-STARTPTS,fps={FPS},"
+        f"fade=t=in:st=0:d=0.5[s1v]"
     )
 
-    # ── Branding at bottom ──
-    brand_text = "THE VIDESHI"
-    brand_bbox = draw.textbbox((0, 0), brand_text, font=font_brand)
-    brand_w = brand_bbox[2] - brand_bbox[0]
-    brand_x = (WIDTH - brand_w) // 2
-    brand_y = HEIGHT - 150
+    # Scene 2: zoompan + bottom bar overlay
+    filter_parts.append(
+        f"[1:v]zoompan=z='{z_expr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+        f":d={zp_frames}:s={W}x{H}:fps={FPS},"
+        f"setpts=PTS-STARTPTS,"
+        # Dark bar at bottom
+        f"drawbox=x=0:y=ih-70:w=iw:h=70:color=black@0.55:t=fill,"
+        # Text on bar
+        f"drawtext=text='thevideshi.com':fontfile='{bar_font}'"
+        f":fontsize=26:fontcolor=white:x=(w-text_w)/2:y=h-70+(70-text_h)/2"
+        f"[s2v]"
+    )
 
-    draw.text((brand_x, brand_y), brand_text, font=font_brand, fill=(212, 168, 67, 255))
+    # Scene 3: hold for s3_dur
+    filter_parts.append(
+        f"[2:v]loop=loop={int(s3_dur*FPS)-1}:size=1:start=0,"
+        f"setpts=PTS-STARTPTS,fps={FPS}[s3v]"
+    )
 
-    url_text = "thevideshi.com"
-    url_bbox = draw.textbbox((0, 0), url_text, font=font_url)
-    url_w = url_bbox[2] - url_bbox[0]
-    url_x = (WIDTH - url_w) // 2
-    url_y = brand_y + 50
+    # Crossfade 1→2
+    off1 = s1_dur - xf
+    filter_parts.append(
+        f"[s1v][s2v]xfade=transition=fade:duration={xf}:offset={off1}[v12]"
+    )
 
-    draw.text((url_x, url_y), url_text, font=font_url, fill=(255, 255, 255, 200))
+    # Crossfade (1+2)→3
+    off2 = s1_dur + s2_dur - 2*xf
+    filter_parts.append(
+        f"[v12][s3v]xfade=transition=fade:duration={xf}:offset={off2}[vout]"
+    )
 
-    img.save(out_path)
-    return out_path
+    filter_complex = ";".join(filter_parts)
 
+    total_dur = s1_dur + s2_dur + s3_dur - 2*xf
 
-def create_gold_line_animation(out_dir, frames=TOTAL_FRAMES):
-    """Create frame sequence for the animated gold accent line.
-    
-    Line draws from left to right over first 2 seconds (50 frames).
-    """
-    line_dir = Path(out_dir) / "gold_line"
-    line_dir.mkdir(exist_ok=True)
+    cmd = [
+        "ffmpeg", "-y",
+        "-i", s1_png,           # input 0: scene1 image
+        "-i", s2_src,           # input 1: scene2 source image
+        "-i", s3_png,           # input 2: scene3 image
+        "-f", "lavfi", "-i",    # input 3: silent audio
+        f"anullsrc=channel_layout=stereo:sample_rate=44100:duration={total_dur}",
+        "-filter_complex", filter_complex,
+        "-map", "[vout]",
+        "-map", "3:a",
+        "-c:v", "libx264", "-pix_fmt", "yuv420p",
+        "-preset", "medium", "-crf", "22",
+        "-r", str(FPS),
+        "-c:a", "aac", "-b:a", "128k",
+        "-t", str(total_dur),
+        output_path,
+    ]
 
-    max_width = 920  # full line width
-    x_start = 80
-    line_y = 0  # will be composited at correct position
-    anim_frames = FPS * 2  # 2 seconds
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode != 0:
+        print(f"  ⚠️  FFmpeg error: {result.stderr[-500:]}")
+        # Fallback: simple concat without crossfade
+        print("  Falling back to simple concat...")
+        _fallback_concat(tmp_dir, s1_png, s2_src, s2_w, s2_h, s3_png, output_path)
 
-    for i in range(frames):
-        img = Image.new("RGBA", (WIDTH, 10), (0, 0, 0, 0))
-        draw = ImageDraw.Draw(img)
-
-        if i < anim_frames:
-            progress = i / anim_frames
-            # Ease out
-            progress = 1 - (1 - progress) ** 3
-            current_w = int(max_width * progress)
-        else:
-            current_w = max_width
-
-        if current_w > 0:
-            draw.rectangle(
-                [(x_start, 3), (x_start + current_w, 7)],
-                fill=(212, 168, 67, 255),
-            )
-
-        img.save(line_dir / f"frame_{i:04d}.png")
-
-    return str(line_dir / "frame_%04d.png")
-
-
-def generate_reel(article, upload=False):
-    """Generate the actual reel video."""
-    slug = article["slug"]
-    headline = article["headline"]
-    category = article.get("category", "news")
-    image_url = article["image_url"]
-
-    print(f"🎬 Generating reel for: {headline[:60]}...")
-    print(f"   Category: {category}")
-    print(f"   Image: {image_url[:60]}...")
-
-    with tempfile.TemporaryDirectory() as tmpdir:
-        tmpdir = Path(tmpdir)
-
-        # 1. Download and prepare background image
-        raw_img = tmpdir / "raw.jpg"
-        bg_img = tmpdir / "bg.jpg"
-        print("   📥 Downloading image...")
-        download_image(image_url, raw_img)
-        prepare_background(raw_img, bg_img)
-
-        # 2. Create gradient overlay
-        gradient = tmpdir / "gradient.png"
-        create_gradient_overlay(gradient)
-
-        # 3. Create category badge
-        badge, badge_w, badge_h = create_category_badge(category, tmpdir / "badge.png")
-
-        # 4. Create text overlay
-        text_overlay = tmpdir / "text.png"
-        create_text_overlay(headline, category, text_overlay)
-
-        # 5. Build ffmpeg command
-        out_file = REELS_DIR / f"reel-{slug}.mp4"
-
-        # Badge position: centered at top
-        badge_x = (WIDTH - badge_w) // 2
-        badge_y = 80
-
-        # Using ffmpeg filter chain:
-        # - zoompan on background for Ken Burns
-        # - overlay gradient
-        # - overlay badge
-        # - overlay text
-        # The gold line animation is baked into the text overlay approach
-        # for simplicity — we'll use the static gold line from the text overlay
-        # and add a subtle fade-in via ffmpeg
-
-        cmd = [
-            "ffmpeg", "-y",
-            # Input 0: background image
-            "-loop", "1", "-i", str(bg_img),
-            # Input 1: gradient overlay
-            "-loop", "1", "-i", str(gradient),
-            # Input 2: category badge
-            "-loop", "1", "-i", str(badge),
-            # Input 3: text overlay
-            "-loop", "1", "-i", str(text_overlay),
-            # Input 4: silent audio
-            "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
-            # Filter complex
-            "-filter_complex",
-            # Scale background slightly larger for zoom headroom
-            f"[0:v]scale=1296:2304,zoompan=z='1.0+0.012*on/{TOTAL_FRAMES}'"
-            f":x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
-            f":d={TOTAL_FRAMES}:s={WIDTH}x{HEIGHT}:fps={FPS}[bg];"
-            # Overlay gradient
-            f"[bg][1:v]overlay=0:0:shortest=1:format=auto[bg_grad];"
-            # Overlay category badge with fade in (0.5s delay, 0.5s fade)
-            f"[2:v]format=rgba,fade=in:st=0.3:d=0.5:alpha=1[badge_fade];"
-            f"[bg_grad][badge_fade]overlay={badge_x}:{badge_y}:shortest=1:format=auto[bg_badge];"
-            # Overlay text with fade in (0.8s delay, 0.8s fade)
-            f"[3:v]format=rgba,fade=in:st=0.5:d=0.8:alpha=1[text_fade];"
-            f"[bg_badge][text_fade]overlay=0:0:shortest=1:format=auto[out]",
-            "-map", "[out]",
-            "-map", "4:a",
-            "-t", str(DURATION),
-            "-c:v", "libx264",
-            "-preset", "medium",
-            "-crf", "23",
-            "-pix_fmt", "yuv420p",
-            "-movflags", "+faststart",
-            "-c:a", "aac",
-            "-shortest",
-            str(out_file),
-        ]
-
-        print("   🔨 Running ffmpeg...")
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
-
-        if result.returncode != 0:
-            print(f"   ❌ ffmpeg failed:\n{result.stderr[-1000:]}")
-            sys.exit(1)
-
-        # Verify output
-        probe = subprocess.run(
-            ["ffprobe", "-v", "quiet", "-print_format", "json",
-             "-show_format", "-show_streams", str(out_file)],
-            capture_output=True, text=True,
-        )
-        info = json.loads(probe.stdout)
-        duration = float(info["format"]["duration"])
-        size_mb = os.path.getsize(out_file) / (1024 * 1024)
-
-        print(f"\n   ✅ Reel generated!")
-        print(f"   📁 {out_file}")
-        print(f"   ⏱  {duration:.1f}s | 📦 {size_mb:.1f}MB")
-
-        # Upload to Supabase if requested
-        if upload:
-            print("   ☁️  Uploading to Supabase storage...")
-            sb_url, sb_key = load_supabase_env()
-            storage_path = f"reels/{slug}.mp4"
-            public_url = f"{sb_url}/storage/v1/object/public/article-images/{storage_path}"
-            upload_url = f"{sb_url}/storage/v1/object/article-images/{storage_path}"
-            try:
-                # Use curl for large file upload (more reliable than requests)
-                result = subprocess.run(
-                    [
-                        "curl", "-s", "-w", "%{http_code}", "-o", "/dev/null",
-                        "-X", "POST", upload_url,
-                        "-H", f"apikey: {sb_key}",
-                        "-H", f"Authorization: Bearer {sb_key}",
-                        "-H", "Content-Type: video/mp4",
-                        "-H", "x-upsert: true",
-                        "--data-binary", f"@{out_file}",
-                        "--max-time", "60",
-                    ],
-                    capture_output=True, text=True, timeout=90,
-                )
-                status_code = result.stdout.strip()
-                if status_code in ["200", "201"]:
-                    print(f"   🔗 {public_url}")
-                else:
-                    print(f"   ⚠️  Upload returned HTTP {status_code}")
-            except Exception as e:
-                print(f"   ⚠️  Upload failed: {e}")
-                print(f"   📁 Local file still available at: {out_file}")
-
-        return str(out_file)
+    return output_path
 
 
+def _fallback_concat(tmp_dir, s1_png, s2_src, s2_w, s2_h, s3_png, output_path):
+    """Simpler assembly without xfade."""
+    zp_frames = int(SCENE2_DUR * FPS)
+    z_expr = f"1+0.15*(on/{zp_frames})"
+    bar_font = FONT_SEMIBOLD.replace("'", "\\'")
+    total = SCENE1_DUR + SCENE2_DUR + SCENE3_DUR
+
+    # Make individual scene videos first
+    s1v = os.path.join(tmp_dir, "s1.mp4")
+    subprocess.run([
+        "ffmpeg", "-y", "-loop", "1", "-i", s1_png,
+        "-t", str(SCENE1_DUR), "-r", str(FPS),
+        "-vf", f"fade=t=in:st=0:d=0.5,scale={W}:{H},format=yuv420p",
+        "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+        s1v
+    ], capture_output=True)
+
+    s2v = os.path.join(tmp_dir, "s2.mp4")
+    subprocess.run([
+        "ffmpeg", "-y", "-i", s2_src,
+        "-vf", (
+            f"zoompan=z='{z_expr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+            f":d={zp_frames}:s={W}x{H}:fps={FPS},"
+            f"drawbox=x=0:y=ih-70:w=iw:h=70:color=black@0.55:t=fill,"
+            f"drawtext=text='thevideshi.com':fontfile='{bar_font}'"
+            f":fontsize=26:fontcolor=white:x=(w-text_w)/2:y=h-70+(70-text_h)/2,"
+            f"format=yuv420p"
+        ),
+        "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+        s2v
+    ], capture_output=True)
+
+    s3v = os.path.join(tmp_dir, "s3.mp4")
+    subprocess.run([
+        "ffmpeg", "-y", "-loop", "1", "-i", s3_png,
+        "-t", str(SCENE3_DUR), "-r", str(FPS),
+        "-vf", f"scale={W}:{H},format=yuv420p",
+        "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+        s3v
+    ], capture_output=True)
+
+    concat_file = os.path.join(tmp_dir, "concat.txt")
+    with open(concat_file, "w") as f:
+        f.write(f"file '{s1v}'\nfile '{s2v}'\nfile '{s3v}'\n")
+
+    subprocess.run([
+        "ffmpeg", "-y",
+        "-f", "concat", "-safe", "0", "-i", concat_file,
+        "-f", "lavfi", "-i", f"anullsrc=channel_layout=stereo:sample_rate=44100:duration={total}",
+        "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "medium", "-crf", "22",
+        "-c:a", "aac", "-b:a", "128k", "-shortest",
+        output_path
+    ], capture_output=True)
+
+
+def upload_to_supabase(local_path, slug):
+    env = load_env(ENV_SUPABASE)
+    url, key = env["SUPABASE_URL"], env["SUPABASE_SERVICE_ROLE_KEY"]
+    filename = f"reels/{slug}.mp4"
+    r = requests.post(
+        f"{url}/storage/v1/object/article-images/{filename}",
+        headers={"apikey": key, "Authorization": f"Bearer {key}",
+                 "Content-Type": "video/mp4", "x-upsert": "true"},
+        data=Path(local_path).read_bytes())
+    if r.status_code in [200, 201]:
+        return f"{url}/storage/v1/object/public/article-images/{filename}"
+    print(f"  ⚠️  Upload failed: {r.status_code} {r.text[:200]}")
+    return None
+
+
+# ── Main ───────────────────────────────────────────────────────────────
 def main():
     parser = argparse.ArgumentParser(description="Generate Instagram Reel for The Videshi")
-    parser.add_argument("--slug", help="Article slug (default: latest unposted)")
-    parser.add_argument("--dry-run", action="store_true", help="Preview without generating")
-    parser.add_argument("--upload", action="store_true", help="Upload to Supabase storage")
+    parser.add_argument("--slug", help="Article slug")
+    parser.add_argument("--upload", action="store_true", help="Upload to Supabase")
+    parser.add_argument("--dry-run", action="store_true", help="Preview only")
     args = parser.parse_args()
 
-    sb_url, sb_key = load_supabase_env()
-    article = fetch_article(sb_url, sb_key, slug=args.slug)
+    print("🎬 The Videshi Reel Generator v2")
+    print("=" * 50)
 
-    print(f"\n{'='*60}")
-    print(f"🎞  The Videshi — Reel Generator")
-    print(f"{'='*60}")
-    print(f"Article: {article['headline'][:80]}...")
-    print(f"Slug:    {article['slug']}")
-    print(f"Cat:     {article.get('category', 'news')}")
-    print(f"Image:   {article['image_url'][:60]}...")
-    print(f"{'='*60}\n")
+    article = fetch_article(args.slug)
+    slug = article["slug"]
+    print(f"📰 {article['headline']}")
+    print(f"📁 {article.get('category', 'news')}")
+    print(f"🔗 {slug}")
 
     if args.dry_run:
-        print("🏃 Dry run — would generate reel for above article.")
+        print("\n🏃 Dry run — skipping generation")
         return
 
-    generate_reel(article, upload=args.upload)
+    if not article.get("image_url"):
+        sys.exit("❌ No image URL")
+
+    OUTPUT_DIR.mkdir(exist_ok=True)
+    tmp_dir = tempfile.mkdtemp(prefix="reel-")
+    out = str(OUTPUT_DIR / f"reel-{slug[:80]}.mp4")
+
+    try:
+        print("\n⬇️  Downloading image...")
+        img_path = os.path.join(tmp_dir, "article.jpg")
+        download_image(article["image_url"], img_path)
+        print(f"  ✓ {os.path.getsize(img_path)} bytes")
+
+        print("🎨 Scene 1 (headline card)...")
+        t0 = time.time()
+        s1 = render_scene1(article, tmp_dir)
+        print(f"  ✓ {time.time()-t0:.1f}s")
+
+        print("🖼️  Scene 2 (article image)...")
+        t0 = time.time()
+        s2, s2w, s2h = render_scene2_image(article, tmp_dir, img_path)
+        print(f"  ✓ prepared {s2w}x{s2h} ({time.time()-t0:.1f}s)")
+
+        print("✨ Scene 3 (CTA card)...")
+        t0 = time.time()
+        s3 = render_scene3(tmp_dir)
+        print(f"  ✓ {time.time()-t0:.1f}s")
+
+        print("🔗 Assembling reel...")
+        t0 = time.time()
+        assemble_reel(tmp_dir, s1, s2, s2w, s2h, s3, out)
+        print(f"  ✓ {time.time()-t0:.1f}s")
+
+        # Verify
+        probe = subprocess.run(
+            ["ffprobe", "-v", "quiet", "-print_format", "json",
+             "-show_format", "-show_streams", out],
+            capture_output=True, text=True)
+        info = json.loads(probe.stdout)
+        dur = float(info["format"]["duration"])
+        sz = os.path.getsize(out) / (1024*1024)
+
+        print(f"\n✅ Reel generated!")
+        print(f"  📁 {out}")
+        print(f"  ⏱️  {dur:.1f}s")
+        print(f"  📐 1080x1920")
+        print(f"  💾 {sz:.1f}MB")
+
+        if args.upload:
+            print("\n☁️  Uploading...")
+            url = upload_to_supabase(out, slug[:80])
+            if url:
+                print(f"  ✅ {url}")
+
+    finally:
+        shutil.rmtree(tmp_dir, ignore_errors=True)
 
 
 if __name__ == "__main__":
