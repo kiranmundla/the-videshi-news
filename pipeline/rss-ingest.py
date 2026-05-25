@@ -63,18 +63,19 @@ print(f"\n  📡 Active feed sources: {len(feeds)}")
 print("  🔍 Loading existing signal hashes...")
 existing = set()
 offset = 0
+PAGE = 1000
 while True:
     r = requests.get(f"{SB_URL}/rest/v1/p2_signals",
-        headers={**HEADERS, "Range": f"{offset}-{offset+4999}"},
+        headers={**HEADERS, "Range": f"{offset}-{offset+PAGE-1}", "Prefer": "count=none"},
         params={"select": "url_hash"}, timeout=30)
     data = r.json()
     if not data or isinstance(data, dict):
         break
     for row in data:
         existing.add(row["url_hash"])
-    if len(data) < 5000:
+    if len(data) < PAGE:
         break
-    offset += 5000
+    offset += PAGE
     print(f"    ... loaded {len(existing)} hashes")
 print(f"  📊 Existing signals: {len(existing)}")
 
@@ -139,10 +140,20 @@ if all_new:
     for i in range(0, len(all_new), 50):
         batch = all_new[i:i+50]
         r = requests.post(f"{SB_URL}/rest/v1/p2_signals",
-            headers={**HEADERS, "Prefer": "return=minimal,resolution=ignore-duplicates"},
+            headers={**HEADERS, "Prefer": "return=minimal, resolution=ignore-duplicates"},
             json=batch)
         if r.status_code in (200, 201):
             inserted += len(batch)
+        elif r.status_code == 409:
+            # Batch had duplicates; fall back to individual inserts
+            for item in batch:
+                ri = requests.post(f"{SB_URL}/rest/v1/p2_signals",
+                    headers={**HEADERS, "Prefer": "return=minimal, resolution=ignore-duplicates"},
+                    json=item)
+                if ri.status_code in (200, 201):
+                    inserted += 1
+                elif ri.status_code != 409:
+                    print(f"  ⚠ Insert error: {ri.status_code} {ri.text[:200]}")
         else:
             print(f"  ⚠ Insert error: {r.status_code} {r.text[:200]}")
     print(f"  ✅ Inserted {inserted} new signals")
