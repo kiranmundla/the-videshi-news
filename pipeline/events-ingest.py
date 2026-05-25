@@ -467,7 +467,7 @@ def upsert_events(events: list) -> int:
         batch = unique[i:i + batch_size]
         try:
             resp = requests.post(
-                f"{REST}/events",
+                f"{REST}/events?on_conflict=source,source_id",
                 headers=HEADERS,
                 json=batch,
                 timeout=30
