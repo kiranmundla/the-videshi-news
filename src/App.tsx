@@ -30,6 +30,7 @@ const Terms = React.lazy(() => import("./pages/Terms.tsx"));
 const TravelPage = React.lazy(() => import("./pages/TravelPage.tsx"));
 const TravelDestination = React.lazy(() => import("./pages/TravelDestination.tsx"));
 const VisaListPage = React.lazy(() => import("./pages/VisaListPage.tsx"));
+const LinksPage = React.lazy(() => import("./pages/LinksPage.tsx"));
 
 // Events
 const EventsPage = React.lazy(() => import("./pages/EventsPage.tsx"));
@@ -106,6 +107,7 @@ const App = () => (
               <Route path="/search" element={<SearchPage />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/links" element={<LinksPage />} />
               <Route path="/articles/:slug" element={<ArticlePage />} />
               <Route path="/travel" element={<TravelPage />} />
               <Route path="/travel/visa-list/:status/:category" element={<VisaListPage />} />
