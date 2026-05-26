@@ -206,24 +206,49 @@ def split_subheadline(subheadline):
     if not subheadline:
         return []
 
-    # Try splitting on sentence boundaries
-    sentences = re.split(r'(?<=[.!?])\s+', subheadline.strip())
-    sentences = [s.strip() for s in sentences if s.strip() and len(s.strip()) > 15]
+    # Try splitting on sentence boundaries — but be careful with abbreviations
+    # First, protect common abbreviations from being split
+    protected = subheadline
+    for abbr in ["D.Litt.", "D.Sc.", "Ph.D.", "M.D.", "B.A.", "M.A.", "Mr.", "Mrs.",
+                 "Dr.", "Jr.", "Sr.", "vs.", "etc.", "U.S.", "U.K.", "A.R.", "A.P.",
+                 "St.", "Lt.", "Gov.", "Gen.", "Sgt.", "Corp.", "Inc.", "Ltd."]:
+        protected = protected.replace(abbr, abbr.replace(".", "●"))
 
-    if len(sentences) <= 1:
+    sentences = re.split(r'(?<=[.!?])\s+', protected.strip())
+    # Restore dots
+    sentences = [s.replace("●", ".").strip() for s in sentences if s.strip()]
+
+    # Filter: must be >15 chars AND start with uppercase (not a fragment)
+    good = [s for s in sentences if len(s.strip()) > 15 and s.strip()[0].isupper()]
+
+    if len(good) <= 1:
+        # If only one sentence, try splitting on em-dash or semicolon
+        parts = re.split(r'\s*[—;]\s*', subheadline.strip())
+        parts = [p.strip() for p in parts if len(p.strip()) > 15 and p.strip()[0].isupper()]
+        if len(parts) > 1:
+            good = parts
+
+    if not good:
         return [subheadline.strip()]
 
     # Pick up to 3 of the most informative sentences
     # Prefer shorter, punchier ones and skip very long ones
     picked = []
-    for s in sentences:
+    for s in good:
         if len(s) <= 150:
             picked.append(s)
         if len(picked) >= 3:
             break
 
+    # If all were too long, truncate the best ones
     if not picked:
-        picked = sentences[:3]
+        for s in good[:3]:
+            if len(s) > 150:
+                # Truncate at last space before 147 chars
+                cut = s[:147].rsplit(" ", 1)[0] + "..."
+                picked.append(cut)
+            else:
+                picked.append(s)
 
     return picked
 
