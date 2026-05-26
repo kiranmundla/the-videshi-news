@@ -468,62 +468,57 @@ def render_takeaways(article, tmp_dir):
 
     # ── Measure all content heights first ──
     # 1. Category badge
-    bf = ImageFont.truetype(FONT_BOLD, 22)
+    bf = ImageFont.truetype(FONT_BOLD, 28)
     bb = draw.textbbox((0, 0), cat_label, font=bf)
     bw_txt, bh_txt = bb[2] - bb[0], bb[3] - bb[1]
-    bw, bh = bw_txt + 34, bh_txt + 16
+    bw, bh = bw_txt + 40, bh_txt + 20
 
     # 2. Header
-    hf = ImageFont.truetype(FONT_BOLD, 30)
+    hf = ImageFont.truetype(FONT_EXTRABOLD, 44)
     header = "KEY TAKEAWAYS"
     hb = draw.textbbox((0, 0), header, font=hf)
     header_h = hb[3] - hb[1]
 
-    # 3. Bullets — pick font size
-    for sz in (36, 33, 30, 28, 26, 24, 22):
+    # 3. Bullets — pick font size; start very large to fill frame
+    for sz in (58, 54, 50, 46, 42, 38, 34, 30):
         test_font = ImageFont.truetype(FONT_SEMIBOLD, sz)
         total_lines = 0
         for b in bullets:
             total_lines += len(word_wrap(draw, b, test_font, max_w))
         a, d = test_font.getmetrics()
-        test_lh = a + d + int(sz * 0.25)
-        test_gap = int(sz * 1.2)
+        test_lh = a + d + int(sz * 0.35)
+        test_gap = int(sz * 1.8)
         bullets_h = total_lines * test_lh + (len(bullets) - 1) * test_gap
-        if bullets_h <= 900:
+        if bullets_h <= 1000:
             break
 
     bullet_font = ImageFont.truetype(FONT_SEMIBOLD, sz)
     a, d = bullet_font.getmetrics()
-    lh = a + d + int(sz * 0.25)
-    gap = int(sz * 1.2)
+    lh = a + d + int(sz * 0.35)
+    gap = int(sz * 1.8)
 
     # 4. Bottom branding
-    brand_f = ImageFont.truetype(FONT_EXTRABOLD, 32)
-    site_f = ImageFont.truetype(FONT_REGULAR, 20)
+    brand_f = ImageFont.truetype(FONT_EXTRABOLD, 44)
+    site_f = ImageFont.truetype(FONT_REGULAR, 28)
     brand_bb = draw.textbbox((0, 0), "THE VIDESHI", font=brand_f)
     brand_h = brand_bb[3] - brand_bb[1]
     site_bb = draw.textbbox((0, 0), "thevideshi.com", font=site_f)
     site_h = site_bb[3] - site_bb[1]
 
-    # Spacing between elements
-    sp_badge_header = 50
-    sp_header_line = 15
-    gold_line_h = 3
-    sp_line_bullets = 45
-    sp_bullets_brand = 55
-    sp_brand_site = 15
+    # Spacing between elements (generous)
+    sp_badge_header = 65
+    sp_header_line = 25
+    gold_line_h = 4
+    sp_line_bullets = 60
+    sp_bullets_brand = 80
+    sp_brand_site = 20
 
     total_h = (bh + sp_badge_header + header_h + sp_header_line + gold_line_h
                + sp_line_bullets + bullets_h + sp_bullets_brand
                + brand_h + sp_brand_site + site_h)
 
-    # Centre the whole block vertically
+    # Centre the whole block vertically (true center, no offset)
     y0 = (H - total_h) // 2
-    # Optical centering: nudge down slightly so the heavy text (bullets)
-    # appears centered rather than the entire block (which includes subtle
-    # small branding at the bottom). Shift ~8% of frame height down.
-    y0 += 60
-    print(f"  [DBG takeaways] total_h={total_h}, y0={y0}, content_end={y0+total_h}, bullets_h={bullets_h}")
 
     # ── Draw everything from y0 ──
     # Category badge
@@ -547,9 +542,9 @@ def render_takeaways(article, tmp_dir):
     for i, bullet in enumerate(bullets):
         lines = word_wrap(draw, bullet, bullet_font, max_w)
 
-        # Gold bullet marker (circle)
-        marker_y = y_cursor + lh // 2 - 8
-        draw.ellipse([pad + 8, marker_y, pad + 24, marker_y + 16], fill=GOLD)
+        # Gold bullet marker (circle) — sized to match text
+        marker_y = y_cursor + lh // 2 - 12
+        draw.ellipse([pad + 4, marker_y, pad + 28, marker_y + 24], fill=GOLD)
 
         for j, line in enumerate(lines):
             draw.text((bullet_x + 2, y_cursor + 2), line, font=bullet_font, fill=(15, 15, 30))
@@ -591,67 +586,63 @@ def render_cta(article, tmp_dir):
 
     # ── Measure all element heights ──
     # 1. Category badge
-    bf_cat = ImageFont.truetype(FONT_BOLD, 20)
+    bf_cat = ImageFont.truetype(FONT_BOLD, 26)
     cb = draw.textbbox((0, 0), cat_label, font=bf_cat)
     bw_txt, bh_txt = cb[2] - cb[0], cb[3] - cb[1]
-    bw, bh = bw_txt + 30, bh_txt + 14
+    bw, bh = bw_txt + 36, bh_txt + 18
 
     # 2. Brand text
-    brand_f = ImageFont.truetype(FONT_EXTRABOLD, 64)
+    brand_f = ImageFont.truetype(FONT_EXTRABOLD, 80)
     brand_txt = "THE VIDESHI"
     brand_bb = draw.textbbox((0, 0), brand_txt, font=brand_f)
     brand_w = brand_bb[2] - brand_bb[0]
     brand_h = brand_bb[3] - brand_bb[1]
 
-    # 3. URL text (the star)
-    url_f = ImageFont.truetype(FONT_EXTRABOLD, 88)
+    # 3. URL text (the star) — HUGE
+    url_f = ImageFont.truetype(FONT_EXTRABOLD, 100)
     url_txt = "TheVideshi.com"
     url_bb = draw.textbbox((0, 0), url_txt, font=url_f)
     url_w = url_bb[2] - url_bb[0]
     url_h = url_bb[3] - url_bb[1]
 
     # 4. Tagline
-    tag_f = ImageFont.truetype(FONT_REGULAR, 26)
+    tag_f = ImageFont.truetype(FONT_REGULAR, 34)
     tag_txt = "Your daily source for Indian diaspora news"
     tag_bb = draw.textbbox((0, 0), tag_txt, font=tag_f)
     tag_w = tag_bb[2] - tag_bb[0]
     tag_h = tag_bb[3] - tag_bb[1]
 
     # 5. CTA text
-    cta_f = ImageFont.truetype(FONT_SEMIBOLD, 36)
+    cta_f = ImageFont.truetype(FONT_SEMIBOLD, 48)
     cta_txt = "Read more on our site  ↗"
     cta_bb = draw.textbbox((0, 0), cta_txt, font=cta_f)
     cta_w = cta_bb[2] - cta_bb[0]
     cta_h = cta_bb[3] - cta_bb[1]
 
     # 6. Follow text
-    follow_f = ImageFont.truetype(FONT_REGULAR, 24)
+    follow_f = ImageFont.truetype(FONT_REGULAR, 32)
     follow_txt = "Follow @the.videshi"
     follow_bb = draw.textbbox((0, 0), follow_txt, font=follow_f)
     follow_w = follow_bb[2] - follow_bb[0]
     follow_h = follow_bb[3] - follow_bb[1]
 
-    # Spacing constants
-    gold_line_h = 3
-    sp_badge_line1 = 35
-    sp_line1_brand = 30
-    sp_brand_url = 20
-    sp_url_tag = 28
-    sp_tag_line2 = 30
-    sp_line2_cta = 28
-    sp_cta_follow = 30
+    # Spacing constants (generous)
+    gold_line_h = 5
+    sp_badge_line1 = 50
+    sp_line1_brand = 50
+    sp_brand_url = 30
+    sp_url_tag = 40
+    sp_tag_line2 = 50
+    sp_line2_cta = 45
+    sp_cta_follow = 50
 
     total_h = (bh + sp_badge_line1 + gold_line_h + sp_line1_brand
                + brand_h + sp_brand_url + url_h + sp_url_tag
                + tag_h + sp_tag_line2 + gold_line_h + sp_line2_cta
                + cta_h + sp_cta_follow + follow_h)
 
-    # Centre the whole block
+    # Centre the whole block (true center, no offset)
     y0 = (H - total_h) // 2
-    # Optical centering: nudge down slightly so the heavy text (TheVideshi.com)
-    # appears centred rather than the geometric block.
-    y0 += 40
-    print(f"  [DBG cta] total_h={total_h}, y0={y0}, content_end={y0+total_h}")
 
     # ── Draw from y0 ──
     # Category badge
