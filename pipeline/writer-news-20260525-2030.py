@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Videshi Writer — 2 fresh NEWS articles for 2026-05-25 20:30 UTC batch
-Topics: 1) India fuel price hike — 4th in 10 days, petrol crosses Rs 102, Rs 7.5/liter cumulative, post-election timing, inflation spiral
-        2) Trump demands Abraham Accords expansion — Pakistan rejects, "silence on the line," India's strategic advantage
+Topics: 1) Garden Grove chemical crisis — 50,000 evacuated in Orange County, five miles from Disneyland, NRI impact
+        2) Trump's live phone call to Delhi — "Anything India wants, they get" — America@250 celebration with AR Rahman, QUAD tomorrow
 """
 
 import json, os, uuid, re, requests, subprocess
@@ -120,309 +120,310 @@ now_plus1 = (now + timedelta(minutes=1)).isoformat().replace('+00:00', 'Z')
 articles = []
 
 # ══════════════════════════════════════════════════════════════
-# ARTICLE 1: India Fuel Price Hike — 4th in 10 Days
+# ARTICLE 1: Garden Grove Chemical Crisis — 50,000 Evacuated in Orange County
 # ══════════════════════════════════════════════════════════════
 
-slug1 = make_slug("india-fuel-price-hike-fourth-time-petrol-crosses-102-delhi-iran-war")
-headline1_check = "fuel price"
-headline1_check2 = "petrol"
-if slug1 not in existing_slugs and not any(headline1_check in h and headline1_check2 in h for h in existing_headlines_lower):
-    body1 = """India's state-run fuel retailers raised petrol and diesel prices for the fourth time in ten days on Monday. Petrol in Delhi crossed ₹102 per litre. Diesel hit ₹95.20. In Mumbai, petrol is now ₹111.21. The cumulative increase since May 15 is nearly ₹7.50 per litre — a 7.8 percent rise for petrol and 8.6 percent for diesel, pushing prices to their highest levels since May 2022.
+slug1 = make_slug("garden-grove-chemical-crisis-50000-evacuated-orange-county-nri")
+headline1_prefix = "garden grove"
+if slug1 not in existing_slugs and not any(headline1_prefix in h for h in existing_headlines_lower):
+    body1 = """A 34,000-gallon tank of methyl methacrylate has been overheating at a GKN Aerospace facility in Garden Grove, California, since Thursday. The explosion risk has been eliminated. The evacuation order has not.
 
-Indian Oil Corporation, Bharat Petroleum, and Hindustan Petroleum — which together control roughly 90 percent of India's retail fuel market — cited surging global crude oil prices, a weakened rupee, and tightening refining margins. Private operators like Shell are already charging more than ₹116 per litre for petrol and ₹127 for diesel.
+As of Monday morning, 50,000 people remain displaced from their homes across six cities in Orange County — Garden Grove, Westminster, Anaheim, Cypress, and parts of surrounding communities. Schools are closed. Businesses are shuttered. Four of five evacuation shelters hit capacity over the weekend. A class-action lawsuit has already been filed.
 
-The hikes have triggered a political firestorm. Congress leader Rahul Gandhi coined a new epithet for the prime minister — "Mehangai Manav Modi" — accusing the government of picking citizens' pockets "in installments, bit by bit." Congress president Mallikarjun Kharge described the repeated revisions as a "daily assault" of "fuel loot."
+The facility is five miles from Disneyland. Four miles from Knott's Berry Farm. And directly in the middle of one of the densest South Asian residential corridors in Southern California.
 
-## The Timing Is the Story
+## What Happened
 
-The opposition's sharpest argument is not about the economics. It is about the calendar.
+On May 21, a storage tank at GKN Aerospace Transparency Systems on Western Avenue began overheating. The tank contains methyl methacrylate — MMA — a toxic, highly flammable chemical used to manufacture acrylic plastics for aircraft canopies and transparencies. A faulty valve prevented crews from off-loading the chemical or introducing a neutralizing stabilizer.
 
-India had effectively frozen retail fuel prices for nearly four years. The Modi government maintained this freeze through a period when crude oil surged more than 50 percent — absorbing the cost through state-run oil companies that were posting combined losses of ₹10 billion daily at the peak.
+The temperature inside the tank climbed past 100°F. Officials warned that the tank could rupture, spilling up to 7,000 gallons of toxic material, or explode — potentially triggering secondary explosions in adjacent tanks at the facility.
 
-The first hike came on May 15. That date matters. The BJP had just won three of five state and union territory assembly elections, including West Bengal. The Congress argues that the government weaponized fuel pricing: freeze the pain before votes are cast, unleash it once they are counted.
+By Friday, evacuation orders covered a one-mile buffer around the facility. Governor Gavin Newsom declared a state of emergency. President Trump authorized a federal emergency declaration.
 
-"For months, I had been warning of an impending economic storm," Gandhi wrote on X. "But Modi Ji, true to form, was busy with elections at the time — and the moment the elections ended, he hiked the prices of petrol and diesel by ₹8."
+Overnight between Sunday and Monday, a crack in the tank was confirmed — paradoxically, this was good news. The crack relieved internal pressure, and the Orange County Fire Authority announced that the catastrophic explosion scenario was "off the table." But the crack also means the tank's structural integrity is compromised. It could fail in other ways. The 7,000 gallons of MMA remain inside.
 
-The timeline: May 15, ₹3 per litre up. May 19, 90 paise. May 23, 87-91 paise. May 25, ₹2.61-2.71. Four installments in ten days. The Congress calls it "installment looting." The BJP responds that prices are still below market-linked levels — oil companies are still losing roughly ₹6 billion daily even after the hikes — and that further adjustments are necessary to prevent a fiscal crisis.
+"The catastrophic event is eliminated," said OCFA Division Chief Craig Covey. "We are now focused on the controlled release and remediation."
 
-Both sides are correct. That is the problem.
+The evacuation order remains in force because MMA vapor, even in small concentrations, is a respiratory and neurological hazard. Residents cannot return until officials confirm that any release can be contained and the air quality meets safety thresholds.
 
-## The Iran War Made This Inevitable
+## Why This Is a Five-Day Crisis, Not a Five-Hour One
 
-India's fuel pricing was already unsustainable before the first hike. What made it untenable was the Iran war.
+This is not a typical industrial accident. MMA does not behave like a petroleum spill. It is volatile at relatively low temperatures, its vapors are heavier than air and settle into low-lying areas, and it polymerizes — turns into a solid — in uncontrolled conditions, which can generate additional heat and accelerate the chemical reaction.
 
-Global crude oil prices have surged more than 50 percent since late February, driven by US-Israeli strikes on Iran and the effective closure of the Strait of Hormuz — the chokepoint through which roughly 20 percent of the world's oil supply passes. India imports more than 85 percent of its crude oil. A significant share of that historically transited through Hormuz.
+Fire crews have been spraying the tank with water around the clock to keep its temperature down. The OCFA brought in subject matter experts from federal agencies, chemical manufacturers, and hazardous materials response teams. EPA Administrator Lee Zeldin flew to the site and said authorities were evaluating a "low-volume controlled release" as the safest path forward.
 
-The rupee has dropped 4.7 percent against the dollar since the war began — making every barrel of imported crude more expensive in rupee terms. Brent crude, though it dipped below $100 on Monday on Iran peace deal optimism, remains structurally elevated. The Energy Information Administration expects it to average above $100 in the near term.
+The tank cannot simply be emptied. The faulty valve that started the crisis is the same valve that would ordinarily allow a controlled drain. Until crews can either repair the valve or engineer an alternative extraction method, the 7,000 gallons stay where they are — inside a cracked, compromised vessel.
 
-Even after Monday's hike, India's state-run retailers are selling fuel below market-linked levels. Sujata Sharma, joint secretary in the oil ministry, told reporters that oil marketing companies' losses have "narrowed to slightly less than ₹6 billion daily, from ₹10 billion." That framing — celebrating that public companies are only losing ₹6 billion per day — tells you everything about the scale of the problem.
+Firefighters and chemical engineers are essentially improvising. There is no playbook for this specific failure mode.
 
-## The Cascade Is Coming
+## The Orange County Map That Matters
 
-Diesel is the bloodstream of India's economy. Every truck, every tractor, every freight train runs on it. When diesel prices rise ₹7.50 in ten days, the cost of moving vegetables from farm to mandi rises. The cost of delivering rice from warehouse to ration shop rises. The cost of running the generator that keeps the cold storage unit operational during a power cut rises.
+The evacuation zone covers Garden Grove, Westminster, and parts of Anaheim — three cities with some of the highest concentrations of Asian and South Asian residents in Southern California.
 
-Economists are flagging a broader inflationary spiral. Radhika Piplani of Motilal Oswal projects inflation climbing to 5.7 percent for the current financial year — well above the Reserve Bank of India's own forecast of 4.6 percent. The fuel price hikes alone will add an estimated 38 basis points to the consumer price index, according to Nomura's Sonal Varma.
+Orange County is home to an estimated 90,000 Indian Americans. The broader AAPI population exceeds 600,000. The cities in the evacuation zone — particularly Garden Grove, Westminster, and Anaheim — sit within the residential and commercial orbit of one of the largest South Asian economic corridors in the region.
 
-The RBI's Monetary Policy Committee meets June 3-5 for an interest rate decision. The central bank had been on a cautious easing cycle. That calculus has changed. Governor Sanjay Malhotra has said the RBI will do "whatever is required" to ensure orderly movement in the foreign exchange market — language that carries more weight when the rupee is at its weakest against the dollar in years.
+Indian grocery stores along Brookhurst Street. Hindu and Sikh temples within the evacuation radius. Dental practices, medical offices, and IT consulting firms run by Indian American families — all shuttered. The Patel Brothers on Katella Avenue, the single most recognizable Indian grocery chain in the country, sits just outside the mandatory zone but well within the area of voluntary evacuation advisories.
 
-Indian Oil reported that diesel sales at its retail outlets climbed 18 percent in the first 22 days of May compared to last year. Petrol sales rose 14 percent. Part of this is genuine demand. Part of it is panic buying. And part of it is arbitrage — state-run companies are selling diesel to bulk users at premiums of at least ₹40 per litre above retail prices, which has driven commercial buyers to stock up at subsidized retail stations. The result: dry-outs at fuel stations across multiple states, and growing concerns about supply shortages.
+For Indian families in the zone, the disruption is layered. Many are multigenerational households — grandparents who flew in on B-2 visitor visas, parents who work from home on H-1B-sponsored remote arrangements, children in local school districts. When an evacuation order hits a multigenerational household, you are not evacuating four people. You are evacuating eight. Some of those eight do not drive. Some do not speak English as their first language. Some have chronic health conditions that make temporary shelter arrangements medically complicated.
 
-LPG prices are expected to follow. "We expect more action to come through another retail fuel price hike and a hike in liquefied petroleum gas prices," Piplani said.
+The evacuation shelters — at Garden Grove High School, Cypress College, Magnolia High School, and Christ Cathedral — hit capacity by Saturday. Families with the resources to do so went to hotels in Irvine, Tustin, or further into South County. Families without those resources stayed in their cars, stayed with friends, or returned to homes within the evacuation zone against official orders — because the alternative was sleeping on a gymnasium floor with eighty strangers.
 
-## What This Means for the Diaspora
+## GKN Aerospace's Track Record
 
-For the 32 million Indians living abroad, the fuel price hikes are not a domestic news story. They are a direct hit on the families they support.
+GKN Aerospace is not a small operation. It is a subsidiary of Melrose Industries, a British engineering conglomerate. The Garden Grove facility manufactures transparent acrylic and polycarbonate components for military and commercial aircraft — cockpit canopies, cabin windows, sensor housings.
 
-India received $129 billion in remittances in 2024 — more than any other country. A significant share of that money goes toward household expenses: cooking gas, transportation, school fees, medical bills. When petrol crosses ₹102 and diesel approaches ₹100, the purchasing power of every rupee remitted from San Jose or Dubai or London diminishes.
+The facility has a documented history of environmental violations. A proposed class-action lawsuit, filed within 48 hours of the crisis, alleges that GKN failed to maintain safety systems, did not adequately monitor chemical storage conditions, and delayed reporting the overheating to local authorities.
 
-The cascade is real. When diesel rises, the auto-rickshaw fare rises. The delivery charge on the Swiggy order rises. The price of tomatoes at the vegetable market rises — not because tomatoes cost more to grow, but because they cost more to move. A grandmother in Chennai whose NRI son sends ₹50,000 per month is now buying less with that money than she was buying ten days ago.
+The lawsuit will take months to resolve. The evacuation will take days, possibly weeks. The respiratory and neurological health monitoring of residents exposed to MMA vapors — even at low concentrations — will take years.
 
-The timing compounds the pain. The rupee's 4.7 percent decline against the dollar since February means remittances in dollar terms go slightly further in rupee value — but the inflation those rupees encounter when spent erases the gain. If you are sending $600 from the Bay Area to your parents in Hyderabad, the exchange rate might give you 57,000 rupees instead of 55,000. But when those rupees hit a city where petrol has risen 8 percent and vegetables have followed, your parents are not better off. They are worse off.
+## Disneyland Stayed Open
 
-For NRIs who are planning visits home this summer, the costs compound further. Domestic flights in India run on aviation turbine fuel, which is derived from the same crude oil that just got more expensive. Internal travel costs — taxi fares, train travel, even the cost of hiring a car for a family trip — are all rising.
+One detail that has drawn attention and criticism: Disneyland, located five miles from the GKN facility, remained open throughout the crisis. Disney issued a statement saying it was monitoring the situation in coordination with local authorities.
 
-And for the Indian tech workers on H-1B visas who send money home while navigating their own cost-of-living pressures in the US — where inflation has stubbornly persisted — the dual squeeze is acute. Prices are rising in both countries simultaneously, and there is no hedge for a family that straddles both economies.
+The park draws approximately 50,000 visitors per day. The evacuation zone displaces approximately 50,000 residents. One group was told to leave their homes. The other was told to enjoy their vacation.
 
-The Indian government's argument is that the hikes were inevitable and that further delay would have created a larger crisis. The opposition's argument is that the government chose the timing for political advantage. For the diaspora, neither argument matters much. What matters is that cooking gas, petrol, and diesel in India just got significantly more expensive, and every indication suggests they will get more expensive still."""
+The optics are not great. But they are also not unusual. Disneyland has remained open during wildfires, during the pandemic (briefly), and during virtually every other crisis that has not physically reached its property line. The park is its own jurisdiction in all but name, and its economic footprint in Anaheim — approximately $8.5 billion annually — gives it a gravitational pull that municipal emergency orders rarely override.
+
+## What This Means for NRIs in Orange County
+
+For the Indian diaspora in Southern California, the Garden Grove crisis is a stress test of something that rarely gets discussed: what happens when an industrial disaster hits a neighborhood where a significant portion of residents are immigrants.
+
+The evacuation communications were issued in English and Vietnamese (Westminster has a large Vietnamese community). Hindi, Gujarati, Punjabi, and Telugu — languages spoken by tens of thousands of Orange County residents — were not included in initial emergency broadcasts.
+
+FEMA's emergency alert system does not translate into South Asian languages. Orange County's 211 information hotline has translation services, but the wait times during a crisis with 50,000 displaced people exceeded two hours on Friday.
+
+The Indian Consulate in San Francisco — the closest Indian consular office — has not issued a public advisory about the Garden Grove crisis. There is no official communication channel between the Indian government and the approximately 90,000 Indian nationals and Indian Americans in Orange County who may be affected.
+
+For Indian families in the evacuation zone, the practical response has been what it always is: the community organized itself. WhatsApp groups circulated in Gujarati and Hindi with shelter locations, air quality updates, and offers of temporary housing. Gurdwaras opened their doors. Temple committees sent volunteers. The formal emergency infrastructure did not account for them. The informal infrastructure — the one built on family networks, religious institutions, and group chats — did.
+
+This is not a complaint. It is a description. And it is a pattern that repeats every time a natural disaster, industrial accident, or public health emergency hits a community where the immigrant population is large enough to matter but not large enough — or not organized enough politically — to be reflected in the official emergency response apparatus.
+
+The tank has cracked. The explosion is off the table. The evacuation continues. And 50,000 people — including an uncounted but significant number of Indian and South Asian families — wait for the all-clear to go home."""
 
     articles.append({
         "id": str(uuid.uuid4()),
-        "headline": "India Just Raised Fuel Prices for the Fourth Time in Ten Days. Petrol Has Crossed ₹102 in Delhi. ₹111 in Mumbai. The Cumulative Hike Is Nearly ₹7.50 Per Litre. The Opposition Is Calling It 'Installment Looting.' The Government Says It Is Still Losing ₹6 Billion a Day.",
-        "subheadline": "State-run fuel retailers — Indian Oil, Bharat Petroleum, Hindustan Petroleum — raised petrol by ₹2.61 and diesel by ₹2.71 on Monday, the fourth hike since May 15. Cumulative increases: 7.8% for petrol, 8.6% for diesel, pushing prices to the highest since 2022. Rahul Gandhi coined 'Mehangai Manav Modi'; Congress president Kharge called it a 'daily assault of fuel loot.' The opposition's core argument: prices were frozen during state elections, then unleashed after the BJP won. Oil companies are still losing ₹6 billion daily at these prices. The Iran war's closure of the Strait of Hormuz has pushed crude up 50% since February. The rupee has fallen 4.7% against the dollar. RBI meets June 3-5. Economists expect inflation to hit 5.7%, well above the central bank's 4.6% forecast. LPG hikes are expected next.",
+        "headline": "A Chemical Tank Has Been Threatening to Explode in Orange County for Five Days. Fifty Thousand People Are Evacuated. The Facility Is Five Miles from Disneyland. And Nobody Is Issuing Emergency Alerts in Hindi.",
+        "subheadline": "A 34,000-gallon tank of methyl methacrylate at a GKN Aerospace facility in Garden Grove, California, has been overheating since May 21. The explosion risk has been eliminated after a crack relieved pressure, but 50,000 residents across six cities remain evacuated. Governor Newsom declared a state of emergency. Trump authorized a federal emergency declaration. The evacuation zone sits in one of the densest South Asian residential corridors in Southern California — Orange County is home to approximately 90,000 Indian Americans. Evacuation communications were issued in English and Vietnamese. Hindi, Gujarati, Punjabi, and Telugu were not included. The Indian Consulate has not issued a public advisory. Disneyland, five miles away, stayed open.",
         "slug": slug1,
         "category": "news",
-        "vertical": "economy",
-        "diaspora_angle": "India received $129 billion in remittances in 2024. When petrol crosses ₹102 and diesel approaches ₹100, every rupee remitted from San Jose or Dubai buys less. The rupee's 4.7% decline since the Iran war means dollar remittances convert to slightly more rupees — but inflation erases the gain. Cooking gas, transport, vegetables, school fees — all rising simultaneously. NRIs planning summer visits face higher domestic flight costs (aviation fuel), taxi fares, and internal travel costs. Indian tech workers on H-1B face a dual squeeze: inflation in both countries, no hedge for families straddling both economies.",
-        "tags": ["fuel prices", "petrol", "diesel", "India", "inflation", "Iran war", "Strait of Hormuz", "rupee", "RBI", "Congress", "BJP", "Rahul Gandhi", "remittances", "NRI", "oil companies", "economy"],
+        "vertical": "nri-world",
+        "diaspora_angle": "Orange County is home to approximately 90,000 Indian Americans. The evacuation zone — Garden Grove, Westminster, parts of Anaheim — sits in one of the densest South Asian residential corridors in Southern California. Indian grocery stores along Brookhurst Street. Temples within the evacuation radius. Multigenerational households with grandparents on visitor visas, parents on H-1B remote work, and children in local schools — all displaced. The evacuation shelters hit capacity within 48 hours. Emergency communications were issued in English and Vietnamese but not in Hindi, Gujarati, Punjabi, or Telugu. FEMA alerts do not translate into South Asian languages. The Indian Consulate in San Francisco has not issued a public advisory. WhatsApp groups in Gujarati and Hindi became the de facto emergency communication channel. Gurdwaras and temple committees organized shelter and food. This is the pattern every time a disaster hits an area with a significant Indian population — the formal emergency infrastructure does not account for them, and the informal infrastructure built on family networks and religious institutions fills the gap.",
+        "tags": ["Garden Grove", "chemical crisis", "Orange County", "California", "GKN Aerospace", "methyl methacrylate", "evacuation", "NRI", "Indian Americans", "emergency response", "Disneyland", "state of emergency", "environmental disaster"],
         "urgency": "high",
         "sources": json.dumps([
-            {"name": "Bloomberg via Rigzone — India Raises Diesel, Gasoline Prices for 4th Time in May", "url": "https://www.rigzone.com/news/wire/india_raises_diesel_gasoline_prices_for_4th_time_in_may-25-may-2026-183771-article/"},
-            {"name": "BRICS Times — Opposition Demands Rollback of 4th Fuel Hike", "url": "https://bricstimes.in/india/opposition-demands-rollback-fourth-petrol-diesel-price-hike-10-days-india-2026/"},
-            {"name": "Livemint — Oil drops below $100 on Iran peace hopes, but fuel prices rise again", "url": "https://www.livemint.com/"},
-            {"name": "Reuters — Rupee gains to two-week high, forward premiums dip as oil prices slump", "url": "https://www.reuters.com/"},
-            {"name": "APAC News Network — Fuel Price Hike Today: Petrol Up Rs 2.61, Diesel Rises", "url": "https://apacnewsnetwork.com/"}
+            {"name": "Reuters — Overheating chemical tank in California no longer at risk of exploding, fire officials say", "url": "https://www.reuters.com/world/us/potential-crack-california-chemical-tank-may-prevent-explosion-fire-official-says-2026-05-25/"},
+            {"name": "Fox LA — Garden Grove chemical crisis reaches 5th day", "url": "https://www.foxla.com/news/garden-grove-chemical-leak-gkn-aerospace-evacuation"},
+            {"name": "USA Today — California officials race to avoid chemical tank explosion", "url": "https://www.usatoday.com/story/news/nation/2026/05/24/garden-grove-chemical-tank-explosion-risk/"},
+            {"name": "Wikipedia — Garden Grove chemical leak", "url": "https://en.wikipedia.org/wiki/Garden_Grove_chemical_leak"},
+            {"name": "People — Disneyland to Remain Open Amid Ongoing Chemical Incident", "url": "https://people.com/disneyland-open-garden-grove-chemical-crisis/"}
         ]),
-        "score_total": 85,
+        "score_total": 88,
         "status": "published",
         "published_at": now_iso,
         "body": body1
     })
-    print(f"✓ Article 1 prepared: India fuel price hike — 4th in 10 days")
+    print(f"✓ Article 1 prepared: Garden Grove chemical crisis / NRI impact")
 else:
     print(f"✗ Article 1 skipped (duplicate detected)")
 
 
 # ══════════════════════════════════════════════════════════════
-# ARTICLE 2: Trump Demands Abraham Accords Expansion — Pakistan Rejects
+# ARTICLE 2: Trump's "Anything India Wants, They Get" — The Delhi Call
 # ══════════════════════════════════════════════════════════════
 
-slug2 = make_slug("trump-abraham-accords-expansion-pakistan-rejects-india-advantage")
-headline2_check = "abraham accords"
-if slug2 not in existing_slugs and not any(headline2_check in h for h in existing_headlines_lower):
-    body2 = """On Saturday, Donald Trump got on a conference call with the leaders of Saudi Arabia, the United Arab Emirates, Qatar, Pakistan, Turkey, Egypt, Jordan, and Bahrain. He told them he wanted every single one of them to sign the Abraham Accords — the US-brokered framework for normalizing relations with Israel — as a condition of any deal to end the Iran war.
+slug2 = make_slug("trump-anything-india-wants-they-get-delhi-call-ar-rahman-quad")
+headline2_prefix = "anything india wants"
+if slug2 not in existing_slugs and not any(headline2_prefix in h for h in existing_headlines_lower):
+    body2 = """On Sunday evening in New Delhi, the United States Ambassador to India, Sergio Gor, hosted what he called the "grandest-ever celebration" of the United States on Indian soil — a star-studded gala marking the upcoming 250th anniversary of American independence.
 
-There was silence on the line. Trump joked and asked if they were still there.
+The show opened with a live telephone call from the President of the United States.
 
-On Monday, he made it public. "I am mandatorily requesting that all Countries immediately sign the Abraham Accords," Trump wrote on Truth Social. "And that, if Iran signs its Agreement with me, as President of the United States of America, it would be an Honor to have them also be part of this unparalleled World Coalition."
+"I just want to say hello to everybody," Donald Trump said over the speakers. "I love the Prime Minister. Modi is great. He is my friend. And we have never been closer to India. And India can count on me and our country 100 percent."
 
-Pakistan was the first to publicly reject the demand. "Pakistan is under no compulsion to adhere to any such demand," a Pakistani source familiar with the matter told Reuters, adding that the Abraham Accords and the Iran ceasefire were "not interlinked and cannot be made so."
+Then he said this: "Anything India wants, they get."
 
-None of the other five uninvolved countries — Saudi Arabia, Qatar, Turkey, Egypt, or Jordan — have publicly responded. None are expected to say yes. But none said no on the call either, and that is the space Trump is working in.
+The audience — a mix of Indian government officials, business leaders, diplomats, and cultural figures — cheered. Secretary of State Marco Rubio, standing onstage, smiled. External Affairs Minister S. Jaishankar, who spoke next, offered measured diplomatic praise.
 
-## What Trump Is Actually Doing
+And then A.R. Rahman took the stage and played "Jai Ho."
 
-This is not a peace proposal. This is leverage architecture.
+## The Spectacle
 
-The Abraham Accords were originally brokered during Trump's first term in 2020, largely by his son-in-law Jared Kushner. The United Arab Emirates and Bahrain signed first, followed by Morocco and Sudan. The accords established normalized diplomatic, commercial, and security relations between Israel and Arab states — without resolving the Palestinian issue. The biggest prize, Saudi Arabia, never signed. Crown Prince Mohammed bin Salman signaled openness but set a precondition: a clear and irreversible roadmap for a Palestinian state, which Israel has never agreed to provide.
+The event was unmistakably a production. Ambassador Gor, who has been in New Delhi for approximately five months, orchestrated an evening that included the US Marine Corps band Orient Express (flown in from Japan), the Village People (flown in from wherever the Village People currently reside), and a full performance by the two-time Academy Award winner A.R. Rahman — accompanied by choreographer Shiamak Davar's dance troupe.
 
-What Trump did on Saturday's call was take his Iran war leverage — America's military position, the Strait of Hormuz reopening, the potential release of tens of billions in frozen Iranian assets — and attach it to a completely separate diplomatic objective: Israel normalization. He is using the Iran crisis as a forcing function for the Abraham Accords expansion that eluded him in his first term.
+Rahman performed "Jai Ho," "Chaiyya Chaiyya," and "Maa Tujhe Salaam." The audience was on its feet.
 
-The logic, from Trump's perspective, is that these countries need the Iran war to end — disrupted oil flows, spiking fuel costs, closed airspace — and that need gives him leverage to extract concessions on Israel that have nothing to do with Iran. It is transactional diplomacy applied with a sledgehammer.
+The Village People played "Y.M.C.A." — a song that has become, through a series of cultural mutations that no one fully understands, the unofficial anthem of the Trump political movement.
 
-## Why Pakistan Said No
+"I don't know anyone who is a better event producer than all of our ambassadors, that Sergio has put on here today," Rubio said from the stage, complimenting Gor. It was the kind of thing you say when you know the president is on the phone and the cameras are rolling.
 
-Pakistan's rejection was immediate and unambiguous, and it was never really in doubt.
+## What Trump Said — and What It Means
 
-Pakistan has never recognized Israel. The country's founding identity is intertwined with Muslim solidarity — its very creation was predicated on the idea that Muslims on the Indian subcontinent needed a separate state. Recognizing Israel, in the context of the ongoing war in Gaza and the destruction of Palestinian infrastructure, would be political suicide for any Pakistani leader.
+"Anything India wants, they get" is one of those sentences that sounds like policy but reads like affection. It is the language of a personal relationship being projected onto a bilateral one. It is the way Trump speaks about allies he is currently courting — warm, transactional, and carefully unspecific.
 
-But Pakistan's rejection carries an additional irony. Pakistan was reportedly invited to the Saturday call because of its recent role as a mediator in the Iran crisis — its army chief, General Asim Munir, had just returned from Tehran where he met with Iranian leadership. Pakistan has been positioning itself as a diplomatic bridge between the US and Iran. Trump's demand to sign the Abraham Accords as part of that same process effectively conflated two fundamentally different diplomatic tracks.
+Twenty-four hours earlier, Rubio and Jaishankar had held a joint press conference in New Delhi where the specific things India wants were discussed in detail — and the answers were considerably less generous.
 
-The Pakistani source's statement — that the two issues are "not interlinked and cannot be made so" — was both a rejection and a warning. Pakistan will continue mediating on Iran. It will not normalize with Israel. And it will not accept a framework where one requires the other.
+On visas: Jaishankar raised concerns about "challenges that legitimate travelers face in respect of visa issuance." Rubio said the reforms were "not India-specific" and that there would be "some bumps on that road."
 
-## The Silence on the Line
+On H-1B: Registrations have dropped 38.5 percent. India's top IT firms lost 40 percent of their H-1B approvals in the latest cycle. TCS alone lost 3,242 visas. Rubio called it "modernization."
 
-What is more telling than Pakistan's rejection is the silence from the others.
+On anti-Indian racism: Rubio acknowledged that "every country in the world has stupid people" and said India should not listen to them. This is true but not exactly a policy response.
 
-Saudi Arabia did not respond. For the kingdom that controls Islam's two holiest sites, Mecca and Medina, recognizing Israel while the world watches Gaza remains a non-starter in public. But privately, Saudi-Israeli relations have been developing for years — intelligence cooperation, backchannel diplomacy, shared concern about Iran's nuclear program. The kingdom has not said no. It has said "not yet, and not without a Palestinian state." That is a negotiating position, not a brick wall.
+On trade: India committed to purchasing $500 billion in US goods over the next five years. This is the number that Gor highlighted and that the US side wants headlined. It is a purchasing commitment, not a trade deal — India is agreeing to buy American energy, defense equipment, and technology, not receiving reciprocal access to American markets.
 
-Qatar, which hosts Hamas's political leadership and has been the primary mediator in Gaza hostage negotiations, is in an impossible position. Turkey, under Erdogan, has been the most vocal critic of Israel in the Muslim world. Egypt has a cold peace with Israel dating to 1979 but has no appetite for expanding it during a period of regional instability. Jordan, which has the largest Palestinian refugee population of any country, faces domestic constraints that make Abraham Accords membership politically toxic.
+On Iran: Rubio used New Delhi as his stage to tell reporters that the US would give diplomacy "every chance to succeed" before dealing with Iran "another way." He described a "pretty solid thing on the table" involving the Strait of Hormuz and Iran's nuclear material. India — which depends on Middle Eastern oil routes that run through the Strait — listened carefully and said nothing publicly.
 
-But none of them pushed back on the call the way Pakistan did. The silence, as Axios reported, hung in the air. And that silence is data. It means Trump's proposal is being considered — not as a realistic near-term outcome, but as a marker of what America will expect in exchange for ending the Iran war.
+So when Trump says "anything India wants, they get," the question is: which India? And which anything?
 
-## What This Means for India
+## The QUAD Meeting
 
-India was not on Saturday's call. India does not need to sign the Abraham Accords — it already has full diplomatic relations with Israel, established in 1992. But Trump's gambit reshapes the regional geometry in ways that matter enormously for New Delhi.
+The timing of the gala was not accidental. On Monday — today — New Delhi hosts the Quad Foreign Ministers' Meeting, bringing together Rubio, Jaishankar, Australian Foreign Minister Penny Wong, and Japanese Foreign Minister Toshimitsu Motegi.
 
-First, it deepens Pakistan's isolation. If the Abraham Accords expand — even modestly, even to one or two additional countries — Pakistan's refusal to recognize Israel puts it further outside the emerging Middle Eastern security architecture. Pakistan's traditional leverage in the Gulf — its military manpower, its nuclear capability, its ideological solidarity — is being eroded by economic realities. The Gulf states are diversifying away from security dependence on Pakistan and toward commercial partnerships with India, Israel, and East Asia. Every step toward expanded Abraham Accords is a step away from the regional framework Pakistan has relied on for decades.
+The Quad — the informal strategic grouping of the US, India, Japan, and Australia — has been the primary vehicle through which India and the United States have built their security partnership in the Indo-Pacific. Its agenda includes maritime cooperation, critical minerals supply chains, cybersecurity, semiconductor collaboration, and the ongoing effort to present a democratic counterweight to China's regional influence.
 
-Second, it accelerates corridors that benefit India. The India-Middle East-Europe Economic Corridor (IMEC), announced at the G20 in 2023 under India's presidency, is designed to create a shipping and rail link from India through the UAE and Saudi Arabia to Europe via Israel. The corridor requires normalized relations between the Gulf states and Israel to function. If Trump's pressure yields even partial results — Saudi Arabia formalizing commercial ties with Israel, for instance — the IMEC corridor becomes more viable.
+Jaishankar, speaking ahead of the meeting, described the Indo-Pacific as poised to become "a big energy lifeline" — a pointed reference to the fact that the Strait of Hormuz crisis has forced India to completely redraw its oil supply map in 90 days, and the Indo-Pacific shipping routes that bypass the Middle East are now strategically essential.
 
-Third, it reinforces India's multi-alignment strategy. India maintains strong ties with Israel (defense, technology, agriculture), with the Gulf states (energy, labor, remittances), and with Iran (Chabahar port, cultural ties). Trump's attempt to force countries into a binary — sign the accords or lose access to Iran deal benefits — is exactly the kind of rigid framework India has been navigating around. India's position on the Abraham Accords is simple: it does not need to sign because it already recognizes Israel, and it does not need to choose between Israel and the Arab world because it has relationships with both.
+Rubio, for his part, used his India visit to reinforce the message that the US-India relationship is about more than trade numbers. "If I think about all of the key issues and all of the key opportunities of the modern economy, India and the United States together are perfectly positioned to work together," he said at the gala.
 
-The Quad foreign ministers meeting scheduled for May 26 — with Jaishankar hosting Rubio, along with counterparts from Australia and Japan — adds another layer. India is simultaneously deepening its strategic partnership with the US while maintaining its independent foreign policy. Trump's Abraham Accords push, by pressuring Pakistan and the Gulf states, creates space for India without requiring India to do anything.
+The Quad meeting is where that positioning gets tested. The pleasantries happened at the gala. The negotiations happen in the conference room.
 
-## The Diaspora Dimension
+## What the Diaspora Heard
 
-For the Indian diaspora, this story operates on multiple levels.
+For the Indian diaspora in the United States, Trump's call and the Delhi gala exist in a dissonant key.
 
-The 3.5 million Indians in the Gulf — the largest migrant worker population in the region — are directly affected by Middle Eastern stability. The Abraham Accords, if expanded, could create new economic corridors, new business opportunities, and new labor markets. But instability in the process — Saudi-Israeli tensions, Pakistan-Gulf frictions, the ongoing Iran war — keeps the region volatile and keeps Indian workers exposed.
+"Anything India wants, they get" is a phrase that resonates differently when you are an Indian national who has been waiting 300 days for a B-2 visa appointment at the Mumbai consulate. Or when you are an Indian-born software engineer whose H-1B registration was among the 38.5 percent that got rejected. Or when you are the parent of an Indian student whose F-1 visa appointment was frozen when Rubio paused student visa scheduling worldwide.
 
-For the 4.8 million Indian Americans, the geopolitical chess game has a more subtle implication. Indian Americans are increasingly prominent in US foreign policy circles — from Vivek Ramaswamy to Sriram Krishnan to Kash Patel. India's strategic ascent in a post-Abraham Accords Middle East is not just a diplomatic abstraction. It is a source of community standing, of professional relevance, and of the quiet pride that comes from watching your country of origin gain influence in the world's most consequential region.
+The warmth is real. Trump's personal regard for Modi is well-documented and, by all available evidence, genuine. Rubio's respect for Jaishankar — whom he called "truly a wise gentleman" at the gala — appears sincere. The strategic convergence between the US and India is not performance; it is structural.
 
-The contrast with Pakistan is stark. While India navigates multi-alignment and deepens ties with every major player in the Middle East, Pakistan is being asked to make a choice it cannot make — and the consequences of that refusal are being compounded by its own internal instability, its debt crisis, and its diminishing leverage with Gulf allies who increasingly see India as the more reliable partner.
+But "anything India wants, they get" sits uneasily next to "the changes, while they may be having a disproportionate impact on a place like India that provides so many high-skilled workers to the US economy, it is not a system that is targeted at India" — which is what Rubio said at the press conference one day before Trump's phone call.
 
-Trump's demand for mandatory Abraham Accords signing will almost certainly not succeed in its current form. Pakistan will not recognize Israel. Saudi Arabia will not move without a Palestinian state framework. Turkey will not reverse under Erdogan. But the demand has changed the conversation. It has established a price for American involvement in ending the Iran war. And in that repricing, India — which already has what Trump is asking others to give — finds itself on the right side of every equation."""
+The relationship between the two countries is at its warmest in diplomatic history. The relationship between the two countries' immigration systems is at its most hostile in a decade. Both of these things are true at the same time. Both are being said by the same administration, to the same audience, on the same four-day trip.
+
+A.R. Rahman played "Maa Tujhe Salaam" to a cheering crowd that included the Secretary of State who, hours earlier, had told India's foreign minister that the pain its citizens were experiencing at American consulates was a "period of adjustment."
+
+The music was spectacular. The dissonance was louder.
+
+## What Comes Next
+
+The Quad meeting on Monday will produce a joint statement. It will reference maritime security, supply chains, technology cooperation, and the rules-based international order. It will not reference H-1B denials, visa wait times, or the fact that Indian IT firms just lost 40 percent of their visa approvals.
+
+India will buy $500 billion in American goods. America will sell India energy and weapons. The strategic partnership will deepen. And 4.8 million Indian Americans will continue to navigate a system that tells them, through one channel, that they are welcome — and through another, that they are being "modernized" out of the queue.
+
+Trump said "anything India wants, they get." The QUAD communiqué will be released later today. Watch what India actually gets."""
 
     articles.append({
         "id": str(uuid.uuid4()),
-        "headline": "Trump Got on a Call with Eight Middle Eastern Leaders and Told Them to Sign the Abraham Accords. There Was Silence on the Line. He Asked If They Were Still There. Pakistan Was the First to Say No. India Was Not on the Call. India Did Not Need to Be.",
-        "subheadline": "Trump demanded that Saudi Arabia, Qatar, Pakistan, Turkey, Egypt, and Jordan sign the Abraham Accords — normalizing relations with Israel — as a precondition for ending the Iran war. He posted it on Truth Social: 'I am mandatorily requesting that all Countries immediately sign.' Pakistan immediately rejected the demand: 'Pakistan is under no compulsion to adhere to any such demand.' None of the others have responded publicly. The Axios account of the Saturday conference call — where silence followed Trump's demand, and he had to ask if the leaders were still on the line — captures a collision between American transactional leverage and the deepest political fault lines in the Muslim world. India, which has had full diplomatic relations with Israel since 1992, does not need to sign. But the expansion of the Abraham Accords framework accelerates corridors, deepens Pakistan's isolation, and reinforces the multi-alignment strategy that has made India the Middle East's most versatile partner.",
+        "headline": "Trump Called Into a Delhi Gala and Said 'Anything India Wants, They Get.' A.R. Rahman Played 'Jai Ho.' The Village People Played 'Y.M.C.A.' Twenty-Four Hours Earlier, Rubio Had Told India Its Visa Pain Was a 'Period of Adjustment.'",
+        "subheadline": "At the America@250 celebration in New Delhi on Sunday, President Trump surprised the audience with a live phone call declaring 'I love Modi' and 'anything India wants, they get.' A.R. Rahman performed 'Jai Ho' and 'Maa Tujhe Salaam.' The US Marine Corps band and the Village People were flown in. Secretary of State Rubio called it the grandest celebration of the US ever held in India. But the gala capped a four-day visit in which Rubio told India that its citizens' visa pain was a 'period of adjustment,' that H-1B reforms were 'not India-specific,' and that immigration modernization would have 'some bumps.' India committed to $500 billion in US goods purchases. On Monday, the Quad Foreign Ministers meet in New Delhi to discuss Indo-Pacific security, maritime cooperation, and the structural partnership that exists alongside the structural immigration hostility.",
         "slug": slug2,
         "category": "news",
-        "vertical": "diplomacy",
-        "diaspora_angle": "3.5 million Indians in the Gulf are directly affected by Abraham Accords dynamics — expanded normalization could create new economic corridors and business opportunities. For 4.8 million Indian Americans, India's rising influence in the Middle East is a source of community standing: Indian Americans are increasingly prominent in US foreign policy (Ramaswamy, Krishnan, Patel). India's multi-alignment — strong ties with Israel, Gulf states, and Iran simultaneously — positions it uniquely. Pakistan's rejection deepens its isolation from the emerging Middle Eastern security architecture that Indian diaspora professionals are helping shape. The IMEC corridor (India-UAE-Saudi-Israel-Europe) becomes more viable with every step toward expanded accords.",
-        "tags": ["Abraham Accords", "Trump", "Pakistan", "Israel", "India", "Saudi Arabia", "Iran war", "Middle East", "diplomacy", "IMEC", "Quad", "Gulf states", "Jaishankar", "NRI"],
+        "vertical": "nri-world",
+        "diaspora_angle": "For 4.8 million Indian Americans, the Delhi gala exists in a dissonant key. 'Anything India wants, they get' resonates differently when you have been waiting 300 days for a B-2 visa at the Mumbai consulate — or when your H-1B registration was among the 38.5 percent rejected — or when your child's F-1 appointment was frozen. The warmth is real: Trump's regard for Modi is genuine, and Rubio's respect for Jaishankar appears sincere. The strategic convergence is structural, not theatrical. But 'anything India wants, they get' was said by the same president whose administration reduced Indian IT firms' H-1B approvals by 40 percent, proposed a $250 visa integrity fee, and froze student visa scheduling worldwide. A.R. Rahman played 'Maa Tujhe Salaam' to a cheering crowd that included the Secretary of State who had told India's foreign minister, hours earlier, that their citizens' visa pain was 'a period of adjustment.' The music was spectacular. The dissonance was louder. India will buy $500 billion in American goods. America will sell India energy and weapons. And 4.8 million Indian Americans will continue navigating a system that tells them through one channel that they are welcome and through another that they are being 'modernized' out of the queue.",
+        "tags": ["Trump", "Modi", "Rubio", "Jaishankar", "Delhi", "QUAD", "India-US relations", "America@250", "A.R. Rahman", "diplomacy", "visa", "H-1B", "NRI", "diaspora", "Sergio Gor", "Indo-Pacific"],
         "urgency": "high",
         "sources": json.dumps([
-            {"name": "Reuters — Trump links Abraham Accords to any Iran deal", "url": "https://www.reuters.com/world/trump-links-abraham-accords-any-iran-deal-2026-05-25/"},
-            {"name": "The Daily Jagran — Abraham Accords Explained: Could Iran's Entry Hurt Pakistan?", "url": "https://www.thedailyjagran.com/world/trump-urges-arab-nations-to-join-abraham-accords-after-iran-deal-10313549"},
-            {"name": "Axios — Trump demands Abraham Accords expansion on conference call", "url": "https://www.axios.com/"},
-            {"name": "Global Defense Corp — Pakistan, Qatar and Saudi Arabia under pressure", "url": "https://globaldefensecorp.com/"},
-            {"name": "Washington Examiner — Trump says Gulf States should recognize Israel", "url": "https://www.washingtonexaminer.com/"}
+            {"name": "India Outbound — Trump joins in over a call, Rubio, A R Rahman star in America@250 celebrations in Delhi", "url": "https://indiaoutbound.info/io-exclusive/trump-joins-in-over-a-call-rubio-a-r-rahman-star-in-america250-celebrations-in-delhi/"},
+            {"name": "The Bridge Chronicle — Trump Joins Delhi Event via Call, Praises PM Modi", "url": "https://thebridgechronicle.com/trump-joins-delhi-event-via-call-praises-pm-modi"},
+            {"name": "Fox News — Rubio pushes back on India's concerns over US visa curbs", "url": "https://foxnews.com/politics/rubio-pushes-back-indias-concerns-us-visa-curbs-says-policy-must-america-first-trump"},
+            {"name": "The Indian Eye — Marco Rubio arrives in India for Historic First Visit", "url": "https://theindianeye.com/2026/05/23/marco-rubio-arrives-in-india-for-historic-first-visit/"},
+            {"name": "The Indian Eye — New Delhi to host Quad Foreign Ministers on May 26", "url": "https://theindianeye.com/2026/05/25/new-delhi-quad-foreign-ministers-may-26/"}
         ]),
-        "score_total": 87,
+        "score_total": 85,
         "status": "published",
         "published_at": now_plus1,
         "body": body2
     })
-    print(f"✓ Article 2 prepared: Trump Abraham Accords expansion / Pakistan rejects")
+    print(f"✓ Article 2 prepared: Trump Delhi call / QUAD meeting")
 else:
     print(f"✗ Article 2 skipped (duplicate detected)")
 
 
 # ══════════════════════════════════════════════════════════════
-# PUBLISH + IMAGES
+# PUBLISH + IMAGE SOURCING
 # ══════════════════════════════════════════════════════════════
 
-image_queries = [
-    ("India petrol pump fuel station", "Indian gas station queue"),
-    ("diplomatic conference call world leaders", "Middle East diplomacy summit"),
-]
+if not articles:
+    print("\n⚠ No new articles to publish. Exiting.")
+    exit(0)
 
-for i, article in enumerate(articles):
-    print(f"\n{'='*60}")
-    print(f"Publishing article {i+1}: {article['headline'][:80]}...")
+print(f"\n📝 Publishing {len(articles)} articles...")
 
-    # Fetch Pexels image
-    q1, q2 = image_queries[i] if i < len(image_queries) else ("news", None)
-    pexels_url = fetch_pexels_image(q1, q2)
-
-    # Insert article
-    row = {
-        "id": article["id"],
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "slug": article["slug"],
-        "body": article["body"],
-        "category": article["category"],
-        "vertical": article.get("vertical", ""),
-        "diaspora_angle": article.get("diaspora_angle", ""),
-        "tags": article["tags"],
-        "sources": article["sources"],
-        "score_total": article["score_total"],
-        "status": "published",
-        "published_at": article["published_at"],
-        "image_url": pexels_url or "",
-    }
+for i, art in enumerate(articles):
+    art_id = art["id"]
+    print(f"\n--- Article {i+1}: {art['headline'][:80]}...")
 
     try:
-        result = sb_post("p2_articles", row)
-        print(f"  ✓ Inserted: {article['slug']}")
-        article_id = result[0]["id"] if isinstance(result, list) else result["id"]
+        result = sb_post("p2_articles", art)
+        print(f"  ✓ Inserted: {art_id}")
     except Exception as e:
         print(f"  ✗ Insert failed: {e}")
         continue
 
-    # If we have a Pexels image but insert didn't set it, patch it
-    if pexels_url and not row.get("image_url"):
-        try:
-            sb_patch("p2_articles", {"id": f"eq.{article_id}"}, {"image_url": pexels_url})
-            print(f"  ✓ Image URL patched")
-        except Exception as e:
-            print(f"  ⚠ Image patch failed: {e}")
-
-print(f"\n{'='*60}")
-print(f"Published {len(articles)} articles total")
-
-# ── Score decay ──
-print("\n── Score decay ──")
-# Decay articles older than 7 days
-decay_7d = sb_get("p2_articles", {
-    "select": "id,score_total",
-    "status": "eq.published",
-    "category": "eq.news",
-    "published_at": "lt.2026-05-18T00:00:00Z",
-    "score_total": "gt.35",
-    "limit": "50"
-})
-if decay_7d:
-    for a in decay_7d:
-        try:
-            sb_patch("p2_articles", {"id": f"eq.{a['id']}"}, {"score_total": 35})
-        except:
-            pass
-    print(f"  7d+ decay: {len(decay_7d)} articles → 35")
-
-# Decay articles 3-7 days old
-decay_3d = sb_get("p2_articles", {
-    "select": "id,score_total",
-    "status": "eq.published",
-    "category": "eq.news",
-    "published_at": "lt.2026-05-22T00:00:00Z",
-    "published_at": "gte.2026-05-18T00:00:00Z",
-    "score_total": "gt.50",
-    "limit": "50"
-})
-if decay_3d:
-    for a in decay_3d:
-        try:
-            sb_patch("p2_articles", {"id": f"eq.{a['id']}"}, {"score_total": 50})
-        except:
-            pass
-    print(f"  3-7d decay: {len(decay_3d)} articles → 50")
-
-if not decay_7d and not decay_3d:
-    print("  No articles to decay")
-
-# ── Git commit ──
-print("\n── Git commit ──")
-try:
-    subprocess.run(["git", "add", "-A"], cwd=str(Path.home() / "workspace" / "the-videshi-news"), capture_output=True)
-    result = subprocess.run(
-        ["git", "commit", "-m", f"writer-news 20:30 UTC — fuel hikes + abraham accords"],
-        cwd=str(Path.home() / "workspace" / "the-videshi-news"),
-        capture_output=True, text=True
-    )
-    if result.returncode == 0:
-        push = subprocess.run(
-            ["git", "push"],
-            cwd=str(Path.home() / "workspace" / "the-videshi-news"),
-            capture_output=True, text=True, timeout=30
-        )
-        print(f"  ✓ Pushed to git" if push.returncode == 0 else f"  ⚠ Push failed: {push.stderr[:200]}")
+    if i == 0:
+        img_url = fetch_pexels_image("chemical factory industrial emergency", "hazmat firefighters chemical plant")
     else:
-        print(f"  ℹ Nothing to commit")
+        img_url = fetch_pexels_image("India American flag diplomatic celebration", "India United States flags diplomacy")
+
+    if img_url:
+        filename = f"{art['slug']}.jpg"
+        final_url = upload_image_to_supabase(img_url, filename)
+        try:
+            sb_patch("p2_articles", {"id": f"eq.{art_id}"}, {"image_url": final_url})
+            print(f"  ✓ Image linked")
+        except Exception as e:
+            print(f"  ⚠ Image PATCH failed: {e}")
+
+# ══════════════════════════════════════════════════════════════
+# SCORE DECAY
+# ══════════════════════════════════════════════════════════════
+
+print("\n📉 Applying score decay to older news articles...")
+try:
+    old_arts = sb_get("p2_articles", {
+        "select": "id,score_total",
+        "status": "eq.published",
+        "category": "eq.news",
+        "published_at": f"lt.{(now - timedelta(days=7)).isoformat().replace('+00:00', 'Z')}",
+        "score_total": "gt.35",
+        "limit": "200"
+    })
+    for a in old_arts:
+        sb_patch("p2_articles", {"id": f"eq.{a['id']}"}, {"score_total": 35})
+    print(f"  Decayed {len(old_arts)} articles (>7d → 35)")
+
+    mid_arts = sb_get("p2_articles", {
+        "select": "id,score_total",
+        "status": "eq.published",
+        "category": "eq.news",
+        "published_at": f"lt.{(now - timedelta(days=3)).isoformat().replace('+00:00', 'Z')}",
+        "score_total": "gt.50",
+        "limit": "200"
+    })
+    mid_arts = [a for a in mid_arts if a["id"] not in {x["id"] for x in old_arts}]
+    for a in mid_arts:
+        sb_patch("p2_articles", {"id": f"eq.{a['id']}"}, {"score_total": 50})
+    print(f"  Decayed {len(mid_arts)} articles (3-7d → 50)")
+except Exception as e:
+    print(f"  ⚠ Decay error: {e}")
+
+# ══════════════════════════════════════════════════════════════
+# GIT COMMIT + PUSH
+# ══════════════════════════════════════════════════════════════
+
+print("\n📦 Committing and pushing...")
+repo_dir = Path.home() / "workspace" / "the-videshi-news"
+try:
+    subprocess.run(["git", "add", "-A"], cwd=repo_dir, capture_output=True, timeout=15)
+    result = subprocess.run(
+        ["git", "commit", "-m", f"news: Garden Grove chemical crisis + Trump Delhi call QUAD ({now.strftime('%Y-%m-%d %H:%M')} UTC)"],
+        cwd=repo_dir, capture_output=True, text=True, timeout=15
+    )
+    print(f"  Commit: {result.stdout.strip()[:100]}")
+    push = subprocess.run(["git", "push"], cwd=repo_dir, capture_output=True, text=True, timeout=30)
+    if push.returncode == 0:
+        print("  ✓ Pushed to main → Vercel auto-deploy")
+    else:
+        print(f"  ⚠ Push issue: {push.stderr[:200]}")
 except Exception as e:
     print(f"  ⚠ Git error: {e}")
 
-print("\n✅ Writer run complete")
+print("\n✅ News writer batch complete.")
