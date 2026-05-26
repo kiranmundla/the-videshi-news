@@ -1119,6 +1119,16 @@ def main():
         scene_list.append({"type": "zoompan", "path": img_scene, "dur": IMAGE_DUR,
                           "zw": iw, "zh": ih})
 
+        # Save Scene 2 as cover image for Instagram (thumb_offset unreliable)
+        cover_path = str(OUTPUT_DIR / f"reel-{slug[:80]}-cover.jpg")
+        cover_img = Image.open(img_scene)
+        # Crop to 1080x1920 from center of the zoompan source
+        cw, ch = cover_img.size
+        cx0, cy0 = (cw - W) // 2, (ch - H) // 2
+        cover_img = cover_img.crop((cx0, cy0, cx0 + W, cy0 + H))
+        cover_img.save(cover_path, quality=90)
+        print(f"  📸 Cover image saved: {cover_path}")
+
         if article.get("subheadline"):
             print("📋 Scene 3 (key takeaways)...")
             t0 = time.time()
