@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
-The Videshi — Instagram Reel Generator (v2)
-3-scene reel: Headline Card → Article Image → CTA Card
-Output: 1080x1920, ~14 seconds, H.264+AAC MP4
+The Videshi — Instagram Reel Generator (v3)
+2-scene reel: Article Image + Headline Chyron → CTA Card
+Output: 1080x1920, ~15 seconds, H.264+AAC MP4
 """
 import argparse
 import json
 import os
+import random
 import shutil
 import subprocess
 import sys
@@ -54,10 +55,9 @@ FONT_REGULAR = _find_font([
 W, H = 1080, 1920
 FPS = 25
 
-SCENE1_DUR = 5.0
-SCENE2_DUR = 6.0
-SCENE3_DUR = 4.0
-XFADE_DUR  = 0.5
+IMAGE_DUR = 11.0   # Scene 1: article image + headline chyron
+CTA_DUR   = 4.0    # Scene 2: CTA card
+XFADE_DUR = 0.5
 
 NAVY = (26, 26, 46)
 GOLD = (212, 168, 67)
@@ -165,66 +165,10 @@ def rounded_rect(draw, xy, r, fill):
 
 # ── Scene Renderers ────────────────────────────────────────────────────
 
-def render_scene1(article, tmp_dir):
-    """Headline card → single PNG, ffmpeg handles fade-in + duration."""
-    headline = article["headline"]
-    cat = (article.get("category") or "news").lower().replace(" ", "-")
-    cat_color = CATEGORY_COLORS.get(cat, CATEGORY_COLORS["news"])
-    cat_label = cat.upper().replace("-", " ")
-
-    img = Image.new("RGB", (W, H), NAVY)
-    draw = ImageDraw.Draw(img)
-
-    # ── Category badge ──
-    bf = ImageFont.truetype(FONT_BOLD, 28)
-    bb = draw.textbbox((0, 0), cat_label, font=bf)
-    bw, bh = bb[2]-bb[0]+50, bb[3]-bb[1]+28
-    bx = (W - bw) // 2
-    by = 280
-    rounded_rect(draw, (bx, by, bx+bw, by+bh), 18, cat_color)
-    tx = bx + (bw - (bb[2]-bb[0])) // 2
-    ty = by + (bh - (bb[3]-bb[1])) // 2 - 2
-    draw.text((tx, ty), cat_label, font=bf, fill=WHITE)
-
-    # ── Headline ──
-    pad = 90
-    max_w = W - 2*pad
-    zone_top = by + bh + 80
-    zone_bot = H - 300
-    max_h = zone_bot - zone_top
-
-    font, lines, lh = fit_text(draw, headline, max_w, max_h, FONT_EXTRABOLD)
-    total_h = lh * len(lines)
-    y0 = zone_top + (max_h - total_h) // 2
-
-    for i, line in enumerate(lines):
-        y = y0 + i * lh
-        draw.text((pad+3, y+3), line, font=font, fill=(0, 0, 0))  # shadow
-        draw.text((pad, y), line, font=font, fill=WHITE)
-
-    # ── Gold accent line ──
-    ly = y0 + total_h + 35
-    draw.rectangle([pad, ly, pad+120, ly+5], fill=GOLD)
-
-    # ── Bottom branding ──
-    brand_f = ImageFont.truetype(FONT_EXTRABOLD, 36)
-    site_f = ImageFont.truetype(FONT_REGULAR, 24)
-    for txt, f, color, yoff in [
-        ("THE VIDESHI", brand_f, GOLD, H-180),
-        ("thevideshi.com", site_f, WHITE_DIM, H-130),
-    ]:
-        bb = draw.textbbox((0, 0), txt, font=f)
-        draw.text(((W - (bb[2]-bb[0])) // 2, yoff), txt, font=f, fill=color)
-
-    out = os.path.join(tmp_dir, "scene1.png")
-    img.save(out, quality=95)
-    return out
-
-
-def render_scene2_image(article, tmp_dir, img_path):
-    """Prepare article image with headline chyron overlay for Ken Burns.
+def render_image_scene(article, tmp_dir, img_path):
+    """Article image with headline chyron overlay for Ken Burns zoom.
     Crops to (W*1.20) x (H*1.20) with gradient + category badge + headline + branding
-    composited via PIL so the viewer always knows what the story is about."""
+    composited via PIL. This is the hero scene of the reel."""
 
     headline = article["headline"]
     cat = (article.get("category") or "news").lower().replace(" ", "-")
@@ -246,10 +190,9 @@ def render_scene2_image(article, tmp_dir, img_path):
     # ── Dark gradient overlay on bottom 50% ──
     gradient = Image.new("RGBA", (tw, th), (0, 0, 0, 0))
     grad_draw = ImageDraw.Draw(gradient)
-    grad_start = int(th * 0.45)  # gradient starts at 45% from top
+    grad_start = int(th * 0.45)
     for y in range(grad_start, th):
         progress = (y - grad_start) / (th - grad_start)
-        # ease-in curve for smoother gradient
         alpha = int(210 * (progress ** 1.3))
         grad_draw.rectangle([0, y, tw, y + 1], fill=(0, 0, 0, alpha))
 
@@ -258,10 +201,9 @@ def render_scene2_image(article, tmp_dir, img_path):
 
     draw = ImageDraw.Draw(img)
 
-    # All overlay positions are relative to the zoompan-visible centre area.
-    # The visible area at zoom=1.0 is W x H centred in tw x th.
-    ox = (tw - W) // 2  # left offset of visible area
-    oy = (th - H) // 2  # top offset of visible area
+    # Overlay positions relative to the zoompan-visible centre area.
+    ox = (tw - W) // 2
+    oy = (th - H) // 2
     pad = 70
 
     # ── Category badge ──
@@ -269,7 +211,6 @@ def render_scene2_image(article, tmp_dir, img_path):
     bb = draw.textbbox((0, 0), cat_label, font=bf)
     bw_txt, bh_txt = bb[2] - bb[0], bb[3] - bb[1]
     bw, bh = bw_txt + 36, bh_txt + 18
-    # Position badge above headline area
     badge_x = ox + pad
     badge_y = oy + int(H * 0.58)
     rounded_rect(draw, (badge_x, badge_y, badge_x + bw, badge_y + bh), 14, cat_color)
@@ -279,14 +220,13 @@ def render_scene2_image(article, tmp_dir, img_path):
     # ── Headline text ──
     max_w = W - 2 * pad
     zone_top = badge_y + bh + 20
-    zone_bot = oy + H - 90  # leave room for branding
+    zone_bot = oy + H - 90
     max_h = zone_bot - zone_top - 50
 
     font, lines, lh = fit_text(draw, headline, max_w, max_h, FONT_EXTRABOLD,
                                sizes=(52, 48, 44, 40, 36, 32, 28))
     y_cursor = zone_top
     for line in lines:
-        # text shadow for readability
         draw.text((ox + pad + 2, y_cursor + 2), line, font=font, fill=(0, 0, 0))
         draw.text((ox + pad, y_cursor), line, font=font, fill=WHITE)
         y_cursor += lh
@@ -304,13 +244,13 @@ def render_scene2_image(article, tmp_dir, img_path):
     draw.text((ox + (W - site_w) // 2, site_y), site_txt, font=site_f, fill=WHITE_DIM)
 
     img = img.convert("RGB")
-    out = os.path.join(tmp_dir, "scene2_src.png")
+    out = os.path.join(tmp_dir, "image_scene.png")
     img.save(out, quality=95)
     return out, tw, th
 
 
-def render_scene3(article, tmp_dir):
-    """CTA card → single PNG.  Vertically centred with category context."""
+def render_cta_card(article, tmp_dir):
+    """CTA card — vertically centred with category context."""
     cat = (article.get("category") or "news").lower().replace(" ", "-")
     cat_color = CATEGORY_COLORS.get(cat, CATEGORY_COLORS["news"])
     cat_label = cat.upper().replace("-", " ")
@@ -318,14 +258,13 @@ def render_scene3(article, tmp_dir):
     img = Image.new("RGB", (W, H), NAVY)
     draw = ImageDraw.Draw(img)
 
-    # ── Subtle decorative dots pattern (top + bottom thirds) ──
+    # ── Subtle decorative dots pattern ──
     dot_f = ImageFont.truetype(FONT_REGULAR, 14)
     for dy in range(0, H, 120):
         for dx in range(0, W, 120):
             draw.text((dx, dy), "·", font=dot_f, fill=(40, 40, 65))
 
-    # All content is vertically centred in the frame.
-    # Total block height ≈ 420px; centre that.
+    # Vertically centre content block.
     block_h = 420
     base_y = (H - block_h) // 2
 
@@ -378,7 +317,7 @@ def render_scene3(article, tmp_dir):
     draw.text(((W - (ab[2] - ab[0])) // 2, arrow_y), "↑", font=af, fill=GOLD)
     draw.text((lx, arrow_y + (ab[3] - ab[1]) + 6), link, font=lf, fill=GOLD)
 
-    out = os.path.join(tmp_dir, "scene3.png")
+    out = os.path.join(tmp_dir, "cta.png")
     img.save(out, quality=95)
     return out
 
@@ -386,106 +325,71 @@ def render_scene3(article, tmp_dir):
 def _pick_music_track():
     """Pick a random background music track from the music pool."""
     music_dir = os.path.join(SCRIPT_DIR, "music")
+    if not os.path.isdir(music_dir):
+        return None
     tracks = [os.path.join(music_dir, f) for f in os.listdir(music_dir)
               if f.endswith("-15s.mp3")]
     if tracks:
-        import random
         return random.choice(tracks)
     return None
 
 
-def assemble_reel(tmp_dir, s1_png, s2_src, s2_w, s2_h, s3_png, output_path):
-    """Assemble 3 scenes with ffmpeg: fade-in, zoompan, crossfades, background music."""
+def assemble_reel(tmp_dir, img_src, img_w, img_h, cta_png, output_path):
+    """Assemble 2 scenes with ffmpeg: image zoom + crossfade to CTA + music."""
 
-    s1_dur = SCENE1_DUR
-    s2_dur = SCENE2_DUR
-    s3_dur = SCENE3_DUR
+    img_dur = IMAGE_DUR
+    cta_dur = CTA_DUR
     xf = XFADE_DUR
 
-    # Zoompan: zoom from 1.0 to 1.15 over s2_dur
-    # zoompan z expression: start at zoom that shows WxH in the s2_w x s2_h image
-    # We want to go from showing the full padded image (zoom=1.0) to cropped (zoom=1.15)
-    zp_frames = int(s2_dur * FPS)
-    # The input is s2_w x s2_h. We want output W x H.
-    # zoom=1 means show WxH area; zoom=1.15 means show W/1.15 x H/1.15 area
-    # zoompan uses zoom relative to output size vs input size
-    # z = s2_w/W at start (showing full width), increasing to s2_w/W * 1.15
-
-    base_z = s2_w / W  # ≈ 1.20
-    end_z = base_z * 1.15 / 1.20  # back to ~1.0 to simulate zoom in from content
-
-    # Actually simpler: start z=1.0 (crops to WxH from center of s2_w x s2_h),
-    # end z = s2_w/W (shows "more" = zoom out effect). But we want zoom IN.
-    # For zoom IN on zoompan: z starts lower and increases.
-    # z='min(zoom+0.0015,1.5)' is a common pattern
-    # Let's use: z = 1.0 + 0.15*(on/total) to go from 1.0x to 1.15x zoom
-    z_expr = f"1+0.15*(on/{zp_frames})"
-
-    # Build filter graph
-    # Input 0: scene1 PNG (looped for s1_dur)
-    # Input 1: scene2 source image (zoompan) — PIL has already composited the headline overlay
-    # Input 2: scene3 PNG (looped for s3_dur)
+    # Zoompan: slow zoom from 1.0x → 1.12x over img_dur
+    zp_frames = int(img_dur * FPS)
+    z_expr = f"1+0.12*(on/{zp_frames})"
 
     filter_parts = []
 
-    # Scene 1: fade in from black over 0.5s, hold for s1_dur
+    # Scene 1 (image): zoompan + fade-in from black over 0.5s
     filter_parts.append(
-        f"[0:v]loop=loop={int(s1_dur*FPS)-1}:size=1:start=0,"
-        f"setpts=PTS-STARTPTS,fps={FPS},"
-        f"fade=t=in:st=0:d=0.5[s1v]"
-    )
-
-    # Scene 2: zoompan (headline/gradient already composited by PIL)
-    filter_parts.append(
-        f"[1:v]zoompan=z='{z_expr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+        f"[0:v]zoompan=z='{z_expr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
         f":d={zp_frames}:s={W}x{H}:fps={FPS},"
-        f"setpts=PTS-STARTPTS"
-        f"[s2v]"
+        f"setpts=PTS-STARTPTS,"
+        f"fade=t=in:st=0:d=0.5"
+        f"[imgv]"
     )
 
-    # Scene 3: hold for s3_dur
+    # Scene 2 (CTA): static card
     filter_parts.append(
-        f"[2:v]loop=loop={int(s3_dur*FPS)-1}:size=1:start=0,"
-        f"setpts=PTS-STARTPTS,fps={FPS}[s3v]"
+        f"[1:v]loop=loop={int(cta_dur*FPS)-1}:size=1:start=0,"
+        f"setpts=PTS-STARTPTS,fps={FPS}[ctav]"
     )
 
-    # Crossfade 1→2
-    off1 = s1_dur - xf
+    # Crossfade image → CTA
+    xf_offset = img_dur - xf
     filter_parts.append(
-        f"[s1v][s2v]xfade=transition=fade:duration={xf}:offset={off1}[v12]"
-    )
-
-    # Crossfade (1+2)→3
-    off2 = s1_dur + s2_dur - 2*xf
-    filter_parts.append(
-        f"[v12][s3v]xfade=transition=fade:duration={xf}:offset={off2}[vout]"
+        f"[imgv][ctav]xfade=transition=fade:duration={xf}:offset={xf_offset}[vout]"
     )
 
     filter_complex = ";".join(filter_parts)
+    total_dur = img_dur + cta_dur - xf
 
-    total_dur = s1_dur + s2_dur + s3_dur - 2*xf
-
-    # Pick background music or fall back to silent audio
+    # Pick background music or silent audio
     music_track = _pick_music_track()
     if music_track:
         print(f"  🎵 Music: {os.path.basename(music_track)}")
         audio_inputs = ["-i", music_track]
-        audio_map = ["-map", "3:a"]
-        # Trim audio to match video duration and add fade out
+        audio_map = ["-map", "2:a"]
         audio_filter = ["-af", f"atrim=0:{total_dur},afade=out:st={total_dur-1.5}:d=1.5"]
     else:
         print("  🔇 No music tracks found, using silent audio")
         audio_inputs = ["-f", "lavfi", "-i",
                         f"anullsrc=channel_layout=stereo:sample_rate=44100:duration={total_dur}"]
-        audio_map = ["-map", "3:a"]
+        audio_map = ["-map", "2:a"]
         audio_filter = []
 
     cmd = [
         "ffmpeg", "-y",
-        "-i", s1_png,           # input 0: scene1 image
-        "-i", s2_src,           # input 1: scene2 source image
-        "-i", s3_png,           # input 2: scene3 image
-        *audio_inputs,          # input 3: music or silent audio
+        "-i", img_src,          # input 0: image with chyron overlay
+        "-i", cta_png,          # input 1: CTA card
+        *audio_inputs,          # input 2: music or silent audio
         "-filter_complex", filter_complex,
         "-map", "[vout]",
         *audio_map,
@@ -501,62 +405,65 @@ def assemble_reel(tmp_dir, s1_png, s2_src, s2_w, s2_h, s3_png, output_path):
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode != 0:
         print(f"  ⚠️  FFmpeg error: {result.stderr[-500:]}")
-        # Fallback: simple concat without crossfade
         print("  Falling back to simple concat...")
-        _fallback_concat(tmp_dir, s1_png, s2_src, s2_w, s2_h, s3_png, output_path)
+        _fallback_concat(tmp_dir, img_src, img_w, img_h, cta_png, output_path)
 
     return output_path
 
 
-def _fallback_concat(tmp_dir, s1_png, s2_src, s2_w, s2_h, s3_png, output_path):
-    """Simpler assembly without xfade."""
-    zp_frames = int(SCENE2_DUR * FPS)
-    z_expr = f"1+0.15*(on/{zp_frames})"
-    total = SCENE1_DUR + SCENE2_DUR + SCENE3_DUR
+def _fallback_concat(tmp_dir, img_src, img_w, img_h, cta_png, output_path):
+    """Simpler assembly without xfade (2 scenes)."""
+    zp_frames = int(IMAGE_DUR * FPS)
+    z_expr = f"1+0.12*(on/{zp_frames})"
+    total = IMAGE_DUR + CTA_DUR
 
-    # Make individual scene videos first
-    s1v = os.path.join(tmp_dir, "s1.mp4")
+    imgv = os.path.join(tmp_dir, "img.mp4")
     subprocess.run([
-        "ffmpeg", "-y", "-loop", "1", "-i", s1_png,
-        "-t", str(SCENE1_DUR), "-r", str(FPS),
-        "-vf", f"fade=t=in:st=0:d=0.5,scale={W}:{H},format=yuv420p",
-        "-c:v", "libx264", "-preset", "fast", "-crf", "23",
-        s1v
-    ], capture_output=True)
-
-    s2v = os.path.join(tmp_dir, "s2.mp4")
-    subprocess.run([
-        "ffmpeg", "-y", "-i", s2_src,
+        "ffmpeg", "-y", "-i", img_src,
         "-vf", (
             f"zoompan=z='{z_expr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
             f":d={zp_frames}:s={W}x{H}:fps={FPS},"
-            f"format=yuv420p"
+            f"fade=t=in:st=0:d=0.5,format=yuv420p"
         ),
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
-        s2v
+        imgv
     ], capture_output=True)
 
-    s3v = os.path.join(tmp_dir, "s3.mp4")
+    ctav = os.path.join(tmp_dir, "cta.mp4")
     subprocess.run([
-        "ffmpeg", "-y", "-loop", "1", "-i", s3_png,
-        "-t", str(SCENE3_DUR), "-r", str(FPS),
+        "ffmpeg", "-y", "-loop", "1", "-i", cta_png,
+        "-t", str(CTA_DUR), "-r", str(FPS),
         "-vf", f"scale={W}:{H},format=yuv420p",
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
-        s3v
+        ctav
     ], capture_output=True)
 
     concat_file = os.path.join(tmp_dir, "concat.txt")
     with open(concat_file, "w") as f:
-        f.write(f"file '{s1v}'\nfile '{s2v}'\nfile '{s3v}'\n")
+        f.write(f"file '{imgv}'\nfile '{ctav}'\n")
 
-    subprocess.run([
-        "ffmpeg", "-y",
-        "-f", "concat", "-safe", "0", "-i", concat_file,
-        "-f", "lavfi", "-i", f"anullsrc=channel_layout=stereo:sample_rate=44100:duration={total}",
-        "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "medium", "-crf", "22",
-        "-c:a", "aac", "-b:a", "128k", "-shortest",
-        output_path
-    ], capture_output=True)
+    # Pick music for fallback too
+    music_track = _pick_music_track()
+    if music_track:
+        subprocess.run([
+            "ffmpeg", "-y",
+            "-f", "concat", "-safe", "0", "-i", concat_file,
+            "-i", music_track,
+            "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "medium", "-crf", "22",
+            "-c:a", "aac", "-b:a", "128k",
+            "-af", f"atrim=0:{total},afade=out:st={total-1.5}:d=1.5",
+            "-shortest",
+            output_path
+        ], capture_output=True)
+    else:
+        subprocess.run([
+            "ffmpeg", "-y",
+            "-f", "concat", "-safe", "0", "-i", concat_file,
+            "-f", "lavfi", "-i", f"anullsrc=channel_layout=stereo:sample_rate=44100:duration={total}",
+            "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "medium", "-crf", "22",
+            "-c:a", "aac", "-b:a", "128k", "-shortest",
+            output_path
+        ], capture_output=True)
 
 
 def upload_to_supabase(local_path, slug):
@@ -582,7 +489,7 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Preview only")
     args = parser.parse_args()
 
-    print("🎬 The Videshi Reel Generator v2")
+    print("🎬 The Videshi Reel Generator v3")
     print("=" * 50)
 
     article = fetch_article(args.slug)
@@ -608,24 +515,19 @@ def main():
         download_image(article["image_url"], img_path)
         print(f"  ✓ {os.path.getsize(img_path)} bytes")
 
-        print("🎨 Scene 1 (headline card)...")
+        print("🖼️  Article image + headline chyron...")
         t0 = time.time()
-        s1 = render_scene1(article, tmp_dir)
-        print(f"  ✓ {time.time()-t0:.1f}s")
+        img_scene, iw, ih = render_image_scene(article, tmp_dir, img_path)
+        print(f"  ✓ prepared {iw}x{ih} ({time.time()-t0:.1f}s)")
 
-        print("🖼️  Scene 2 (article image)...")
+        print("✨ CTA card...")
         t0 = time.time()
-        s2, s2w, s2h = render_scene2_image(article, tmp_dir, img_path)
-        print(f"  ✓ prepared {s2w}x{s2h} ({time.time()-t0:.1f}s)")
-
-        print("✨ Scene 3 (CTA card)...")
-        t0 = time.time()
-        s3 = render_scene3(article, tmp_dir)
+        cta = render_cta_card(article, tmp_dir)
         print(f"  ✓ {time.time()-t0:.1f}s")
 
         print("🔗 Assembling reel...")
         t0 = time.time()
-        assemble_reel(tmp_dir, s1, s2, s2w, s2h, s3, out)
+        assemble_reel(tmp_dir, img_scene, iw, ih, cta, out)
         print(f"  ✓ {time.time()-t0:.1f}s")
 
         # Verify
@@ -640,7 +542,7 @@ def main():
         print(f"\n✅ Reel generated!")
         print(f"  📁 {out}")
         print(f"  ⏱️  {dur:.1f}s")
-        print(f"  📐 1080x1920")
+        print(f"  📐 {W}x{H}")
         print(f"  💾 {sz:.1f}MB")
 
         if args.upload:
