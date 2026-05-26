@@ -519,6 +519,11 @@ def render_takeaways(article, tmp_dir):
 
     # Centre the whole block vertically
     y0 = (H - total_h) // 2
+    # Optical centering: nudge down slightly so the heavy text (bullets)
+    # appears centered rather than the entire block (which includes subtle
+    # small branding at the bottom). Shift ~8% of frame height down.
+    y0 += 60
+    print(f"  [DBG takeaways] total_h={total_h}, y0={y0}, content_end={y0+total_h}, bullets_h={bullets_h}")
 
     # ── Draw everything from y0 ──
     # Category badge
@@ -643,6 +648,10 @@ def render_cta(article, tmp_dir):
 
     # Centre the whole block
     y0 = (H - total_h) // 2
+    # Optical centering: nudge down slightly so the heavy text (TheVideshi.com)
+    # appears centred rather than the geometric block.
+    y0 += 40
+    print(f"  [DBG cta] total_h={total_h}, y0={y0}, content_end={y0+total_h}")
 
     # ── Draw from y0 ──
     # Category badge
