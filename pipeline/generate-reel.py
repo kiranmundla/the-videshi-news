@@ -222,72 +222,180 @@ def render_scene1(article, tmp_dir):
 
 
 def render_scene2_image(article, tmp_dir, img_path):
-    """Prepare article image for Ken Burns — crop to 1080x1920, padded for zoom."""
+    """Prepare article image with headline chyron overlay for Ken Burns.
+    Crops to (W*1.20) x (H*1.20) with gradient + category badge + headline + branding
+    composited via PIL so the viewer always knows what the story is about."""
+
+    headline = article["headline"]
+    cat = (article.get("category") or "news").lower().replace(" ", "-")
+    cat_color = CATEGORY_COLORS.get(cat, CATEGORY_COLORS["news"])
+    cat_label = cat.upper().replace("-", " ")
+
     img = Image.open(img_path).convert("RGB")
     # Scale to cover 1080x1920 with 20% margin for zoom
     tw, th = int(W * 1.20), int(H * 1.20)
     iw, ih = img.size
     scale = max(tw / iw, th / ih)
-    img = img.resize((int(iw*scale), int(ih*scale)), Image.LANCZOS)
+    img = img.resize((int(iw * scale), int(ih * scale)), Image.LANCZOS)
     # Center crop to tw x th
     nw, nh = img.size
     x0 = (nw - tw) // 2
     y0 = (nh - th) // 2
-    img = img.crop((x0, y0, x0+tw, y0+th))
+    img = img.crop((x0, y0, x0 + tw, y0 + th))
 
+    # ── Dark gradient overlay on bottom 50% ──
+    gradient = Image.new("RGBA", (tw, th), (0, 0, 0, 0))
+    grad_draw = ImageDraw.Draw(gradient)
+    grad_start = int(th * 0.45)  # gradient starts at 45% from top
+    for y in range(grad_start, th):
+        progress = (y - grad_start) / (th - grad_start)
+        # ease-in curve for smoother gradient
+        alpha = int(210 * (progress ** 1.3))
+        grad_draw.rectangle([0, y, tw, y + 1], fill=(0, 0, 0, alpha))
+
+    img = img.convert("RGBA")
+    img = Image.alpha_composite(img, gradient)
+
+    draw = ImageDraw.Draw(img)
+
+    # All overlay positions are relative to the zoompan-visible centre area.
+    # The visible area at zoom=1.0 is W x H centred in tw x th.
+    ox = (tw - W) // 2  # left offset of visible area
+    oy = (th - H) // 2  # top offset of visible area
+    pad = 70
+
+    # ── Category badge ──
+    bf = ImageFont.truetype(FONT_BOLD, 24)
+    bb = draw.textbbox((0, 0), cat_label, font=bf)
+    bw_txt, bh_txt = bb[2] - bb[0], bb[3] - bb[1]
+    bw, bh = bw_txt + 36, bh_txt + 18
+    # Position badge above headline area
+    badge_x = ox + pad
+    badge_y = oy + int(H * 0.58)
+    rounded_rect(draw, (badge_x, badge_y, badge_x + bw, badge_y + bh), 14, cat_color)
+    draw.text((badge_x + (bw - bw_txt) // 2, badge_y + (bh - bh_txt) // 2 - 1),
+              cat_label, font=bf, fill=WHITE)
+
+    # ── Headline text ──
+    max_w = W - 2 * pad
+    zone_top = badge_y + bh + 20
+    zone_bot = oy + H - 90  # leave room for branding
+    max_h = zone_bot - zone_top - 50
+
+    font, lines, lh = fit_text(draw, headline, max_w, max_h, FONT_EXTRABOLD,
+                               sizes=(52, 48, 44, 40, 36, 32, 28))
+    y_cursor = zone_top
+    for line in lines:
+        # text shadow for readability
+        draw.text((ox + pad + 2, y_cursor + 2), line, font=font, fill=(0, 0, 0))
+        draw.text((ox + pad, y_cursor), line, font=font, fill=WHITE)
+        y_cursor += lh
+
+    # ── Gold accent line ──
+    line_y = y_cursor + 14
+    draw.rectangle([ox + pad, line_y, ox + pad + 80, line_y + 3], fill=GOLD)
+
+    # ── Bottom branding ──
+    site_f = ImageFont.truetype(FONT_SEMIBOLD, 22)
+    site_txt = "thevideshi.com"
+    sb = draw.textbbox((0, 0), site_txt, font=site_f)
+    site_w = sb[2] - sb[0]
+    site_y = oy + H - 55
+    draw.text((ox + (W - site_w) // 2, site_y), site_txt, font=site_f, fill=WHITE_DIM)
+
+    img = img.convert("RGB")
     out = os.path.join(tmp_dir, "scene2_src.png")
     img.save(out, quality=95)
     return out, tw, th
 
 
-def render_scene3(tmp_dir):
-    """CTA card → single PNG."""
+def render_scene3(article, tmp_dir):
+    """CTA card → single PNG.  Vertically centred with category context."""
+    cat = (article.get("category") or "news").lower().replace(" ", "-")
+    cat_color = CATEGORY_COLORS.get(cat, CATEGORY_COLORS["news"])
+    cat_label = cat.upper().replace("-", " ")
+
     img = Image.new("RGB", (W, H), NAVY)
     draw = ImageDraw.Draw(img)
 
-    # Decorative line
-    draw.rectangle([W//2-100, 600, W//2+100, 603], fill=GOLD)
+    # ── Subtle decorative dots pattern (top + bottom thirds) ──
+    dot_f = ImageFont.truetype(FONT_REGULAR, 14)
+    for dy in range(0, H, 120):
+        for dx in range(0, W, 120):
+            draw.text((dx, dy), "·", font=dot_f, fill=(40, 40, 65))
 
-    # Brand
+    # All content is vertically centred in the frame.
+    # Total block height ≈ 420px; centre that.
+    block_h = 420
+    base_y = (H - block_h) // 2
+
+    # ── Category badge ──
+    bf_cat = ImageFont.truetype(FONT_BOLD, 22)
+    cb = draw.textbbox((0, 0), cat_label, font=bf_cat)
+    cw, ch = cb[2] - cb[0] + 34, cb[3] - cb[1] + 16
+    cx = (W - cw) // 2
+    cy = base_y
+    rounded_rect(draw, (cx, cy, cx + cw, cy + ch), 12, cat_color)
+    draw.text((cx + (cw - (cb[2] - cb[0])) // 2, cy + (ch - (cb[3] - cb[1])) // 2 - 1),
+              cat_label, font=bf_cat, fill=WHITE)
+
+    # ── Gold decorative line ──
+    draw.rectangle([W // 2 - 80, cy + ch + 30, W // 2 + 80, cy + ch + 33], fill=GOLD)
+
+    # ── Brand ──
     bf = ImageFont.truetype(FONT_EXTRABOLD, 72)
     txt = "THE VIDESHI"
     bb = draw.textbbox((0, 0), txt, font=bf)
-    draw.text(((W-(bb[2]-bb[0]))//2, 680), txt, font=bf, fill=GOLD)
+    brand_y = cy + ch + 55
+    draw.text(((W - (bb[2] - bb[0])) // 2, brand_y), txt, font=bf, fill=GOLD)
 
-    # Tagline
-    tf = ImageFont.truetype(FONT_REGULAR, 32)
+    # ── Tagline ──
+    tf = ImageFont.truetype(FONT_REGULAR, 28)
     tag = "Your daily source for Indian diaspora news"
     bb2 = draw.textbbox((0, 0), tag, font=tf)
-    draw.text(((W-(bb2[2]-bb2[0]))//2, 790), tag, font=tf, fill=WHITE_DIM)
+    tag_y = brand_y + (bb[3] - bb[1]) + 24
+    draw.text(((W - (bb2[2] - bb2[0])) // 2, tag_y), tag, font=tf, fill=WHITE_DIM)
 
-    # Divider
-    draw.rectangle([W//2-60, 870, W//2+60, 873], fill=(*GOLD, ))
+    # ── Divider ──
+    div_y = tag_y + (bb2[3] - bb2[1]) + 30
+    draw.rectangle([W // 2 - 50, div_y, W // 2 + 50, div_y + 3], fill=GOLD)
 
-    # CTA
-    cf = ImageFont.truetype(FONT_SEMIBOLD, 40)
+    # ── CTA ──
+    cf = ImageFont.truetype(FONT_SEMIBOLD, 38)
     cta = "Read the full story"
     bb3 = draw.textbbox((0, 0), cta, font=cf)
-    draw.text(((W-(bb3[2]-bb3[0]))//2, 940), cta, font=cf, fill=WHITE)
+    cta_y = div_y + 30
+    draw.text(((W - (bb3[2] - bb3[0])) // 2, cta_y), cta, font=cf, fill=WHITE)
 
-    # Link in bio
-    lf = ImageFont.truetype(FONT_BOLD, 36)
+    # ── Link in bio with arrow ──
+    lf = ImageFont.truetype(FONT_BOLD, 34)
     link = "Link in bio"
     bb4 = draw.textbbox((0, 0), link, font=lf)
-    lx = (W-(bb4[2]-bb4[0]))//2
-    # Arrow above
-    af = ImageFont.truetype(FONT_BOLD, 44)
-    arrow = "↑"
-    ab = draw.textbbox((0, 0), arrow, font=af)
-    draw.text(((W-(ab[2]-ab[0]))//2, 1005), arrow, font=af, fill=GOLD)
-    draw.text((lx, 1060), link, font=lf, fill=GOLD)
+    lx = (W - (bb4[2] - bb4[0])) // 2
+    arrow_y = cta_y + (bb3[3] - bb3[1]) + 24
+    af = ImageFont.truetype(FONT_BOLD, 40)
+    ab = draw.textbbox((0, 0), "↑", font=af)
+    draw.text(((W - (ab[2] - ab[0])) // 2, arrow_y), "↑", font=af, fill=GOLD)
+    draw.text((lx, arrow_y + (ab[3] - ab[1]) + 6), link, font=lf, fill=GOLD)
 
     out = os.path.join(tmp_dir, "scene3.png")
     img.save(out, quality=95)
     return out
 
 
+def _pick_music_track():
+    """Pick a random background music track from the music pool."""
+    music_dir = os.path.join(SCRIPT_DIR, "music")
+    tracks = [os.path.join(music_dir, f) for f in os.listdir(music_dir)
+              if f.endswith("-15s.mp3")]
+    if tracks:
+        import random
+        return random.choice(tracks)
+    return None
+
+
 def assemble_reel(tmp_dir, s1_png, s2_src, s2_w, s2_h, s3_png, output_path):
-    """Assemble 3 scenes with ffmpeg: fade-in, zoompan, crossfades, silent audio."""
+    """Assemble 3 scenes with ffmpeg: fade-in, zoompan, crossfades, background music."""
 
     s1_dur = SCENE1_DUR
     s2_dur = SCENE2_DUR
@@ -315,12 +423,8 @@ def assemble_reel(tmp_dir, s1_png, s2_src, s2_w, s2_h, s3_png, output_path):
 
     # Build filter graph
     # Input 0: scene1 PNG (looped for s1_dur)
-    # Input 1: scene2 source image (zoompan)
+    # Input 1: scene2 source image (zoompan) — PIL has already composited the headline overlay
     # Input 2: scene3 PNG (looped for s3_dur)
-
-    # The overlay bar on scene2 is tricky in pure ffmpeg. Let's add it as a
-    # drawtext overlay instead.
-    bar_font = FONT_SEMIBOLD.replace("'", "\\'")
 
     filter_parts = []
 
@@ -331,16 +435,11 @@ def assemble_reel(tmp_dir, s1_png, s2_src, s2_w, s2_h, s3_png, output_path):
         f"fade=t=in:st=0:d=0.5[s1v]"
     )
 
-    # Scene 2: zoompan + bottom bar overlay
+    # Scene 2: zoompan (headline/gradient already composited by PIL)
     filter_parts.append(
         f"[1:v]zoompan=z='{z_expr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
         f":d={zp_frames}:s={W}x{H}:fps={FPS},"
-        f"setpts=PTS-STARTPTS,"
-        # Dark bar at bottom
-        f"drawbox=x=0:y=ih-70:w=iw:h=70:color=black@0.55:t=fill,"
-        # Text on bar
-        f"drawtext=text='thevideshi.com':fontfile='{bar_font}'"
-        f":fontsize=26:fontcolor=white:x=(w-text_w)/2:y=h-70+(70-text_h)/2"
+        f"setpts=PTS-STARTPTS"
         f"[s2v]"
     )
 
@@ -366,20 +465,35 @@ def assemble_reel(tmp_dir, s1_png, s2_src, s2_w, s2_h, s3_png, output_path):
 
     total_dur = s1_dur + s2_dur + s3_dur - 2*xf
 
+    # Pick background music or fall back to silent audio
+    music_track = _pick_music_track()
+    if music_track:
+        print(f"  🎵 Music: {os.path.basename(music_track)}")
+        audio_inputs = ["-i", music_track]
+        audio_map = ["-map", "3:a"]
+        # Trim audio to match video duration and add fade out
+        audio_filter = ["-af", f"atrim=0:{total_dur},afade=out:st={total_dur-1.5}:d=1.5"]
+    else:
+        print("  🔇 No music tracks found, using silent audio")
+        audio_inputs = ["-f", "lavfi", "-i",
+                        f"anullsrc=channel_layout=stereo:sample_rate=44100:duration={total_dur}"]
+        audio_map = ["-map", "3:a"]
+        audio_filter = []
+
     cmd = [
         "ffmpeg", "-y",
         "-i", s1_png,           # input 0: scene1 image
         "-i", s2_src,           # input 1: scene2 source image
         "-i", s3_png,           # input 2: scene3 image
-        "-f", "lavfi", "-i",    # input 3: silent audio
-        f"anullsrc=channel_layout=stereo:sample_rate=44100:duration={total_dur}",
+        *audio_inputs,          # input 3: music or silent audio
         "-filter_complex", filter_complex,
         "-map", "[vout]",
-        "-map", "3:a",
+        *audio_map,
         "-c:v", "libx264", "-pix_fmt", "yuv420p",
         "-preset", "medium", "-crf", "22",
         "-r", str(FPS),
         "-c:a", "aac", "-b:a", "128k",
+        *audio_filter,
         "-t", str(total_dur),
         output_path,
     ]
@@ -398,7 +512,6 @@ def _fallback_concat(tmp_dir, s1_png, s2_src, s2_w, s2_h, s3_png, output_path):
     """Simpler assembly without xfade."""
     zp_frames = int(SCENE2_DUR * FPS)
     z_expr = f"1+0.15*(on/{zp_frames})"
-    bar_font = FONT_SEMIBOLD.replace("'", "\\'")
     total = SCENE1_DUR + SCENE2_DUR + SCENE3_DUR
 
     # Make individual scene videos first
@@ -417,9 +530,6 @@ def _fallback_concat(tmp_dir, s1_png, s2_src, s2_w, s2_h, s3_png, output_path):
         "-vf", (
             f"zoompan=z='{z_expr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
             f":d={zp_frames}:s={W}x{H}:fps={FPS},"
-            f"drawbox=x=0:y=ih-70:w=iw:h=70:color=black@0.55:t=fill,"
-            f"drawtext=text='thevideshi.com':fontfile='{bar_font}'"
-            f":fontsize=26:fontcolor=white:x=(w-text_w)/2:y=h-70+(70-text_h)/2,"
             f"format=yuv420p"
         ),
         "-c:v", "libx264", "-preset", "fast", "-crf", "23",
@@ -510,7 +620,7 @@ def main():
 
         print("✨ Scene 3 (CTA card)...")
         t0 = time.time()
-        s3 = render_scene3(tmp_dir)
+        s3 = render_scene3(article, tmp_dir)
         print(f"  ✓ {time.time()-t0:.1f}s")
 
         print("🔗 Assembling reel...")
