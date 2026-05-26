@@ -787,7 +787,7 @@ def render_cta(article, tmp_dir):
 
     # 7. Social line
     social_f = ImageFont.truetype(FONT_REGULAR, 26)
-    social_txt = "X: @thevideshi  ·  YT: @TheVideshi"
+    social_txt = "X: @thevideshi  ·  YT: @the.videshi"
     social_bb = draw.textbbox((0, 0), social_txt, font=social_f)
     social_w = social_bb[2] - social_bb[0]
     social_h = social_bb[3] - social_bb[1]
@@ -852,7 +852,7 @@ def render_cta(article, tmp_dir):
     follow_y = cta_y + cta_h + sp_cta_follow
     draw.text(((W - follow_w) // 2, follow_y), follow_txt, font=follow_f, fill=WHITE_DIM)
 
-    # "X: @thevideshi  ·  YT: @TheVideshi"
+    # "X: @thevideshi  ·  YT: @the.videshi"
     social_y = follow_y + follow_h + sp_follow_social
     draw.text(((W - social_w) // 2, social_y), social_txt, font=social_f, fill=WHITE_DIM)
 
