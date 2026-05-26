@@ -244,8 +244,95 @@ def _make_bg_image(img_path, blur=True):
 
 # ── Scene Renderers ────────────────────────────────────────────────────
 
+def fetch_wikipedia_image(headline):
+    """Try to fetch a Wikipedia image for a named person in the headline.
+    Returns local file path on success, None on failure."""
+    # Common non-name words to filter
+    STOP_WORDS = {
+        "India", "Indian", "Indians", "America", "American", "Britain", "British",
+        "Europe", "European", "Dubai", "Paris", "London", "Delhi", "Kerala",
+        "Mumbai", "What", "When", "Where", "Which", "That", "This", "These",
+        "Those", "Here", "There", "Their", "They", "Have", "From", "With",
+        "About", "After", "Before", "Between", "Under", "Over", "Into",
+        "Every", "Some", "Most", "Many", "Much", "Such", "Just", "Also",
+        "Even", "Still", "Back", "Down", "Away", "Why", "How",
+        "Your", "More", "Than", "Then", "Could", "Would", "Should",
+        "Will", "Been", "Being", "Were", "Was", "Are", "The",
+        "New", "Old", "Next", "Last", "First", "Third", "Second",
+        "Killed", "Supposed", "Receive", "Instead", "Accepting",
+        "Today", "Tomorrow", "Yesterday", "Quietly", "Slowly",
+        "Gulf", "Carriers", "Flights", "Card", "Means", "Digital",
+        "Booklet", "Blue", "Million", "Overseas", "Pushed",
+        "Turned", "Weeks", "Trial", "Smartphone", "Cognitive",
+        "Highest", "Civilian", "Honour", "Honor", "Doctorate",
+        "University", "Award", "Awards", "President", "Minister",
+        "Kottayam", "Rashtrapat", "Padma", "Says", "Said",
+    }
+
+    # Extract all capitalized words from the headline
+    all_caps = re.findall(r"\b([A-Z][a-z]+(?:\.[A-Z]\.?)*)\b", headline)
+    # Filter to potential name words (not stop words)
+    name_words = [w for w in all_caps if w not in STOP_WORDS and len(w) >= 3]
+
+    # Build candidate names: try consecutive pairs first, then singles
+    candidates = []
+    # Look for consecutive name words in original headline order
+    for i in range(len(name_words)):
+        # Check if two consecutive name_words appear next to each other in headline
+        if i + 1 < len(name_words):
+            pair = f"{name_words[i]} {name_words[i+1]}"
+            if pair in headline and pair not in candidates:
+                candidates.append(pair)
+        # Single name
+        if name_words[i] not in candidates:
+            candidates.append(name_words[i])
+
+    if not candidates:
+        return None
+
+    print(f"  🔍 Wikipedia candidates: {candidates[:5]}")
+
+    for name in candidates[:5]:  # Try up to 5 candidates
+        try:
+            wiki_name = name.replace(" ", "_")
+            r = requests.get(
+                f"https://en.wikipedia.org/api/rest_v1/page/summary/{wiki_name}",
+                headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+                timeout=10
+            )
+            if r.status_code != 200:
+                continue
+            data = r.json()
+            img_url = data.get("originalimage", {}).get("source")
+            if not img_url:
+                img_url = data.get("thumbnail", {}).get("source")
+            if not img_url:
+                continue
+
+            # Download the image
+            img_r = requests.get(img_url, timeout=15, headers={
+                "User-Agent": "TheVideshi/1.0 (thevideshi.com; mailto:hello@thevideshi.com)"
+            })
+            img_r.raise_for_status()
+            ext = ".jpg" if "jpeg" in img_url.lower() or "jpg" in img_url.lower() else ".png"
+            tmp_path = os.path.join(tempfile.gettempdir(), f"wiki_{wiki_name}{ext}")
+            Path(tmp_path).write_bytes(img_r.content)
+
+            # Verify it's a valid image
+            test_img = Image.open(tmp_path)
+            test_img.verify()
+            print(f"  ✓ Wikipedia image for '{name}': {len(img_r.content)} bytes")
+            return tmp_path
+        except Exception as e:
+            print(f"  ⚠️  Wikipedia lookup failed for '{name}': {e}")
+            continue
+
+    return None
+
+
 def render_hook(article, tmp_dir, img_path):
-    """Scene 1: Hook — blurred image bg + giant punchy text."""
+    """Scene 1: Hook — branded navy bg + punchy text. No article image.
+    Clean, professional news-alert card that stands on its own."""
     headline = article["headline"]
     cat = (article.get("category") or "news").lower().replace("-", " ").replace(" ", "-")
     cat_color = CATEGORY_COLORS.get(cat.replace(" ", "-"), CATEGORY_COLORS["news"])
@@ -253,56 +340,103 @@ def render_hook(article, tmp_dir, img_path):
 
     hook_text = extract_hook(headline)
 
-    # Blurred + darkened article image as background
-    img = _make_bg_image(img_path, blur=True)
-    # Darken
-    dark = Image.new("RGBA", (W, H), (0, 0, 0, 140))
-    img = img.convert("RGBA")
-    img = Image.alpha_composite(img, dark)
+    # Navy background
+    img = Image.new("RGB", (W, H), NAVY)
     draw = ImageDraw.Draw(img)
+
+    # Subtle dot pattern for texture (same as CTA scene)
+    dot_f = ImageFont.truetype(FONT_REGULAR, 14)
+    for dy in range(0, H, 120):
+        for dx in range(0, W, 120):
+            draw.text((dx, dy), "·", font=dot_f, fill=(40, 40, 65))
 
     pad = 80
 
-    # Category badge at top
-    bf = ImageFont.truetype(FONT_BOLD, 26)
+    # ── Measure all element heights for vertical centering ──
+
+    # 1. "THE VIDESHI" logo text
+    logo_f = ImageFont.truetype(FONT_EXTRABOLD, 36)
+    logo_txt = "THE VIDESHI"
+    logo_bb = draw.textbbox((0, 0), logo_txt, font=logo_f)
+    logo_w = logo_bb[2] - logo_bb[0]
+    logo_h = logo_bb[3] - logo_bb[1]
+
+    # 2. Gold accent line
+    gold_line_h = 4
+
+    # 3. Category badge
+    bf = ImageFont.truetype(FONT_BOLD, 28)
     bb = draw.textbbox((0, 0), cat_label, font=bf)
     bw_txt, bh_txt = bb[2] - bb[0], bb[3] - bb[1]
-    bw, bh = bw_txt + 40, bh_txt + 22
+    bw, bh = bw_txt + 44, bh_txt + 22
+
+    # 4. Hook text — fit to available space
+    max_w = W - 2 * pad
+    # Pre-measure with a large zone
+    hook_font, hook_lines, hook_lh = fit_text(
+        draw, hook_text, max_w, 800, FONT_EXTRABOLD,
+        sizes=(82, 76, 70, 64, 58, 52, 46)
+    )
+    hook_text_h = hook_lh * len(hook_lines)
+
+    # 5. Gold accent line below hook
+    gold_line2_h = 5
+
+    # 6. Bottom site text
+    site_f = ImageFont.truetype(FONT_SEMIBOLD, 24)
+    site_txt = "thevideshi.com"
+    site_bb = draw.textbbox((0, 0), site_txt, font=site_f)
+    site_w = site_bb[2] - site_bb[0]
+    site_h = site_bb[3] - site_bb[1]
+
+    # Spacing
+    sp_logo_line = 30
+    sp_line_badge = 50
+    sp_badge_hook = 60
+    sp_hook_line2 = 40
+    sp_line2_site = 50
+
+    total_h = (logo_h + sp_logo_line + gold_line_h + sp_line_badge
+               + bh + sp_badge_hook + hook_text_h + sp_hook_line2
+               + gold_line2_h + sp_line2_site + site_h)
+
+    # Centre the whole block vertically
+    y0 = (H - total_h) // 2
+
+    # ── Draw from y0 ──
+
+    # "THE VIDESHI" logo
+    draw.text(((W - logo_w) // 2, y0), logo_txt, font=logo_f, fill=GOLD)
+
+    # Gold accent line 1
+    line1_y = y0 + logo_h + sp_logo_line
+    draw.rectangle([W // 2 - 80, line1_y, W // 2 + 80, line1_y + gold_line_h], fill=GOLD)
+
+    # Category badge (centered)
+    badge_y = line1_y + gold_line_h + sp_line_badge
     bx = (W - bw) // 2
-    by = 220
-    rounded_rect(draw, (bx, by, bx + bw, by + bh), 16, cat_color)
-    draw.text((bx + (bw - bw_txt) // 2, by + (bh - bh_txt) // 2 - 1),
+    rounded_rect(draw, (bx, badge_y, bx + bw, badge_y + bh), 16, cat_color)
+    draw.text((bx + (bw - bw_txt) // 2, badge_y + (bh - bh_txt) // 2 - 1),
               cat_label, font=bf, fill=WHITE)
 
-    # Giant hook text — centred vertically
-    max_w = W - 2 * pad
-    zone_top = by + bh + 100
-    zone_bot = H - 300
-    max_h = zone_bot - zone_top
+    # Giant hook text — centered
+    hook_y = badge_y + bh + sp_badge_hook
+    for i, line in enumerate(hook_lines):
+        y = hook_y + i * hook_lh
+        # Center each line
+        line_bb = draw.textbbox((0, 0), line, font=hook_font)
+        line_w = line_bb[2] - line_bb[0]
+        lx = (W - line_w) // 2
+        draw.text((lx, y), line, font=hook_font, fill=WHITE)
 
-    font, lines, lh = fit_text(draw, hook_text, max_w, max_h, FONT_EXTRABOLD,
-                               sizes=(82, 76, 70, 64, 58, 52, 46))
-    total_h = lh * len(lines)
-    y0 = zone_top + (max_h - total_h) // 2
-
-    for i, line in enumerate(lines):
-        y = y0 + i * lh
-        # Strong shadow for readability over blurred image
-        draw.text((pad + 4, y + 4), line, font=font, fill=(0, 0, 0))
-        draw.text((pad + 2, y + 2), line, font=font, fill=(30, 30, 30))
-        draw.text((pad, y), line, font=font, fill=WHITE)
-
-    # Gold accent line under text
-    ly = y0 + total_h + 30
-    draw.rectangle([pad, ly, pad + 140, ly + 5], fill=GOLD)
+    # Gold accent line 2
+    line2_y = hook_y + hook_text_h + sp_hook_line2
+    draw.rectangle([pad, line2_y, pad + 140, line2_y + gold_line2_h], fill=GOLD)
 
     # Bottom branding
-    site_f = ImageFont.truetype(FONT_SEMIBOLD, 22)
-    site_txt = "thevideshi.com"
-    sb = draw.textbbox((0, 0), site_txt, font=site_f)
-    draw.text(((W - (sb[2] - sb[0])) // 2, H - 100), site_txt, font=site_f, fill=WHITE_DIM)
+    site_y = line2_y + gold_line2_h + sp_line2_site
+    draw.text(((W - site_w) // 2, site_y), site_txt, font=site_f, fill=WHITE_DIM)
 
-    img = img.convert("RGB")
     out = os.path.join(tmp_dir, "hook.png")
     img.save(out, quality=95)
     return out
@@ -626,6 +760,13 @@ def render_cta(article, tmp_dir):
     follow_w = follow_bb[2] - follow_bb[0]
     follow_h = follow_bb[3] - follow_bb[1]
 
+    # 7. Social line
+    social_f = ImageFont.truetype(FONT_REGULAR, 26)
+    social_txt = "X: @thevideshi  ·  YT: @TheVideshi"
+    social_bb = draw.textbbox((0, 0), social_txt, font=social_f)
+    social_w = social_bb[2] - social_bb[0]
+    social_h = social_bb[3] - social_bb[1]
+
     # Spacing constants (generous)
     gold_line_h = 5
     sp_badge_line1 = 50
@@ -634,12 +775,14 @@ def render_cta(article, tmp_dir):
     sp_url_tag = 40
     sp_tag_line2 = 50
     sp_line2_cta = 45
-    sp_cta_follow = 50
+    sp_cta_follow = 40
+    sp_follow_social = 20
 
     total_h = (bh + sp_badge_line1 + gold_line_h + sp_line1_brand
                + brand_h + sp_brand_url + url_h + sp_url_tag
                + tag_h + sp_tag_line2 + gold_line_h + sp_line2_cta
-               + cta_h + sp_cta_follow + follow_h)
+               + cta_h + sp_cta_follow + follow_h
+               + sp_follow_social + social_h)
 
     # Centre the whole block (true center, no offset)
     y0 = (H - total_h) // 2
@@ -683,6 +826,10 @@ def render_cta(article, tmp_dir):
     # "Follow @the.videshi"
     follow_y = cta_y + cta_h + sp_cta_follow
     draw.text(((W - follow_w) // 2, follow_y), follow_txt, font=follow_f, fill=WHITE_DIM)
+
+    # "X: @thevideshi  ·  YT: @TheVideshi"
+    social_y = follow_y + follow_h + sp_follow_social
+    draw.text(((W - social_w) // 2, social_y), social_txt, font=social_f, fill=WHITE_DIM)
 
     out = os.path.join(tmp_dir, "cta.png")
     img.save(out, quality=95)
@@ -905,8 +1052,30 @@ def main():
     try:
         print("\n⬇️  Downloading image...")
         img_path = os.path.join(tmp_dir, "article.jpg")
-        download_image(article["image_url"], img_path)
-        print(f"  ✓ {os.path.getsize(img_path)} bytes")
+
+        # Try Wikipedia image first for person-specific articles
+        wiki_img = fetch_wikipedia_image(article["headline"])
+        if wiki_img:
+            img_path = wiki_img
+            print(f"  ✓ Using Wikipedia image")
+        else:
+            download_image(article["image_url"], img_path)
+            # Validate the downloaded image
+            try:
+                test = Image.open(img_path)
+                test.verify()
+                print(f"  ✓ Article image: {os.path.getsize(img_path)} bytes")
+            except Exception:
+                print(f"  ⚠️  Article image invalid ({os.path.getsize(img_path)} bytes), using branded fallback")
+                # Create a branded fallback image (navy bg with logo)
+                fb = Image.new("RGB", (W, H), NAVY)
+                fbd = ImageDraw.Draw(fb)
+                # THE VIDESHI logo centered
+                logo_f = ImageFont.truetype(FONT_EXTRABOLD, 72)
+                logo_txt = "THE VIDESHI"
+                lb = fbd.textbbox((0, 0), logo_txt, font=logo_f)
+                fbd.text(((W - (lb[2]-lb[0]))//2, (H - (lb[3]-lb[1]))//2), logo_txt, font=logo_f, fill=GOLD)
+                fb.save(img_path, quality=95)
 
         # Build scene list
         scene_list = []
