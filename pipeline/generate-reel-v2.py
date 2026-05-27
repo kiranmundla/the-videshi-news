@@ -402,26 +402,60 @@ def record_video(html_path: str, output_webm_dir: str) -> str:
     return os.path.join(output_webm_dir, webms[0])
 
 
-def _pick_music_track() -> str | None:
-    """Pick a random background music track."""
+def _pick_music_track(category: str = "", headline: str = "") -> str | None:
+    """Pick background music based on article category/tone.
+    
+    Mood mapping:
+    - Upbeat: Entertainment, Sports, Technology, Lifestyle, Food, Travel
+    - Breaking/News: News, NRI World, Markets & Finance, general
+    - Dramatic: sad/tragic/death/crisis/disaster keywords in headline
+    - Indian beat: Culture, festivals, heritage, Bollywood
+    """
     import random
     music_dir = os.path.join(os.path.dirname(__file__), "music")
     if not os.path.isdir(music_dir):
         return None
-    # Prefer 15s tracks for tighter fit, then 30s
-    tracks = [f for f in os.listdir(music_dir) if f.endswith(".mp3")]
-    short = [f for f in tracks if "15s" in f]
-    if short:
-        pick = random.choice(short)
-    elif tracks:
-        pick = random.choice(tracks)
+
+    cat_lower = (category or "").lower()
+    headline_lower = (headline or "").lower()
+
+    # Detect sad/dramatic tone from headline keywords
+    dramatic_keywords = ["death", "dies", "killed", "tragedy", "tragic", "crisis",
+                         "disaster", "flood", "earthquake", "attack", "victim",
+                         "mourns", "fatal", "crash", "devastat", "war", "conflict"]
+    is_dramatic = any(kw in headline_lower for kw in dramatic_keywords)
+
+    # Detect Indian cultural content
+    indian_keywords = ["bollywood", "festival", "diwali", "holi", "navratri",
+                       "puja", "temple", "classical", "dance", "rangoli",
+                       "garba", "bhangra", "cricket", "ipl"]
+    is_indian = any(kw in headline_lower for kw in indian_keywords)
+
+    if is_dramatic:
+        pool = ["pixabay-dramatic-15s.mp3"]
+    elif is_indian or cat_lower in ["entertainment", "food"]:
+        pool = ["indian-beat-15s.mp3", "pixabay-upbeat-15s.mp3"]
+    elif cat_lower in ["sports", "technology", "lifestyle & health", "travel"]:
+        pool = ["pixabay-upbeat-15s.mp3"]
+    elif cat_lower in ["news", "nri world", "markets & finance"]:
+        pool = ["pixabay-breaking-15s.mp3"]
     else:
+        # Default: mix of breaking news and upbeat
+        pool = ["pixabay-breaking-15s.mp3", "pixabay-upbeat-15s.mp3"]
+
+    # Verify files exist, fall back to any 15s track
+    pool = [f for f in pool if os.path.isfile(os.path.join(music_dir, f))]
+    if not pool:
+        all_15s = [f for f in os.listdir(music_dir) if f.endswith(".mp3") and "15s" in f]
+        pool = all_15s if all_15s else [f for f in os.listdir(music_dir) if f.endswith(".mp3")]
+
+    if not pool:
         return None
-    return os.path.join(music_dir, pick)
+    return os.path.join(music_dir, random.choice(pool))
 
 
-def convert_to_mp4(webm_path: str, mp4_path: str):
-    music = _pick_music_track()
+def convert_to_mp4(webm_path: str, mp4_path: str, category: str = "", headline: str = ""):
+    music = _pick_music_track(category=category, headline=headline)
 
     if music:
         # Two-pass: first convert video, then mix audio
@@ -543,7 +577,7 @@ def main():
     t0 = time.time()
     mp4_name = f"reel-{slug[:80]}.mp4"
     mp4_path = str(OUTPUT_DIR / mp4_name)
-    convert_to_mp4(webm_path, mp4_path)
+    convert_to_mp4(webm_path, mp4_path, category=article.get("category", ""), headline=article.get("headline", ""))
     mb = os.path.getsize(mp4_path) / (1024*1024)
     print(f"   ✅ {mb:.1f}MB ({time.time()-t0:.1f}s)\n   {mp4_path}\n")
 
