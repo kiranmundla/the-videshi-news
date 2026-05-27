@@ -310,13 +310,34 @@ export default function ArticlePage() {
     // Redirect is handled in render, skip fetch for travel guides
     if (TRAVEL_GUIDE_REDIRECTS[slug]) return;
     let cancelled = false;
-    (async () => {
+
+    // Fallback: original Supabase fetch
+    const fetchFromSupabase = async () => {
       const a = await getArticleBySlug(slug);
       if (cancelled) return;
       setArticle(a ?? null);
       if (a) setRelated(await getRelatedArticles(a.slug, a.category, 3));
       window.scrollTo(0, 0);
-    })();
+    };
+
+    // Fast path: try pre-built static article JSON from CDN
+    fetch(`/data/articles/${slug}.json`)
+      .then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
+      .then(async (a) => {
+        if (cancelled) return;
+        setArticle(a);
+        // Related articles still come from Supabase (they're lightweight)
+        try {
+          const rel = await getRelatedArticles(a.slug, a.category, 3);
+          if (!cancelled) setRelated(rel);
+        } catch { /* related articles are non-critical */ }
+        window.scrollTo(0, 0);
+      })
+      .catch(() => {
+        // Static JSON not available for this article — fall back to Supabase
+        if (!cancelled) fetchFromSupabase();
+      });
+
     return () => {
       cancelled = true;
     };

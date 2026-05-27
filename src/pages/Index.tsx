@@ -218,53 +218,84 @@ export default function Index() {
     // If we have cached data, skip the fetch on mount (back-button case)
     if (initialCache) return;
 
-    const timeout = setTimeout(() => setLoading(false), 8000);
-    Promise.all([
-      getFeaturedArticle().catch(() => null),
-      getArticlesByCategory(INDIA_NEWS.slug, INDIA_NEWS.limit).catch(() => []),
-      getArticlesByCategory(WORLD_NEWS.slug, WORLD_NEWS.limit).catch(() => []),
-      ...CATEGORY_SECTIONS.map((s) =>
-        getArticlesByCategory(s.slug, s.limit)
-          .then((items) => [s.slug, items] as const)
-          .catch(() => [s.slug, []] as const),
-      ),
-      // Fetch top article from each carousel category
-      ...CAROUSEL_CATEGORIES.map((cat) =>
-        getArticlesByCategory(cat, 1)
-          .then((items) => items[0] || null)
-          .catch(() => null),
-      ),
-    ]).then((results) => {
-      clearTimeout(timeout);
-      const catSectionCount = CATEGORY_SECTIONS.length;
-      const carouselCount = CAROUSEL_CATEGORIES.length;
-      const f = results[0] as Article | null;
-      const n = results[1] as Article[];
-      const nri = results[2] as Article[];
-      const catResults = results.slice(3, 3 + catSectionCount) as Array<readonly [string, Article[]]>;
-      const carouselRaw = results.slice(3 + catSectionCount, 3 + catSectionCount + carouselCount) as Array<Article | null>;
-      const sp = Object.fromEntries(catResults);
-
-      // Build carousel: filter to articles that have images, dedupe
-      const seenIds = new Set<string>();
-      const carousel = carouselRaw.filter((a): a is Article => {
-        if (!a) return false;
-        if (seenIds.has(a.id)) return false;
-        seenIds.add(a.id);
-        return true;
-      });
-
+    // Populate state from loaded homepage data
+    const applyData = (
+      f: Article | null,
+      carousel: Article[],
+      n: Article[],
+      nri: Article[],
+      sp: Record<string, Article[]>,
+      ts: Date,
+    ) => {
       setFeaturedArticle(f);
       setCarouselArticles(carousel);
       setNewsPool(n);
       setNriPool(nri);
       setSectionPools(sp);
-      setLastUpdated(new Date());
+      setLastUpdated(ts);
       setLoading(false);
-
-      // Save to cache for back-button restore
       saveCache({ ts: Date.now(), featured: f, carouselArticles: carousel, newsPool: n, nriPool: nri, sectionPools: sp });
-    });
+    };
+
+    // Fallback: original Supabase fetch (14 parallel queries)
+    const fetchFromSupabase = () => {
+      const timeout = setTimeout(() => setLoading(false), 8000);
+      Promise.all([
+        getFeaturedArticle().catch(() => null),
+        getArticlesByCategory(INDIA_NEWS.slug, INDIA_NEWS.limit).catch(() => []),
+        getArticlesByCategory(WORLD_NEWS.slug, WORLD_NEWS.limit).catch(() => []),
+        ...CATEGORY_SECTIONS.map((s) =>
+          getArticlesByCategory(s.slug, s.limit)
+            .then((items) => [s.slug, items] as const)
+            .catch(() => [s.slug, []] as const),
+        ),
+        ...CAROUSEL_CATEGORIES.map((cat) =>
+          getArticlesByCategory(cat, 1)
+            .then((items) => items[0] || null)
+            .catch(() => null),
+        ),
+      ]).then((results) => {
+        clearTimeout(timeout);
+        const catSectionCount = CATEGORY_SECTIONS.length;
+        const carouselCount = CAROUSEL_CATEGORIES.length;
+        const f = results[0] as Article | null;
+        const n = results[1] as Article[];
+        const nri = results[2] as Article[];
+        const catResults = results.slice(3, 3 + catSectionCount) as Array<readonly [string, Article[]]>;
+        const carouselRaw = results.slice(3 + catSectionCount, 3 + catSectionCount + carouselCount) as Array<Article | null>;
+        const sp = Object.fromEntries(catResults);
+        const seenIds = new Set<string>();
+        const carousel = carouselRaw.filter((a): a is Article => {
+          if (!a) return false;
+          if (seenIds.has(a.id)) return false;
+          seenIds.add(a.id);
+          return true;
+        });
+        applyData(f, carousel, n, nri, sp, new Date());
+      });
+    };
+
+    // Fast path: try pre-built static JSON from CDN (single request)
+    fetch("/data/homepage-feed.json")
+      .then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
+      .then((data) => {
+        const sp: Record<string, Article[]> = {};
+        for (const [k, v] of Object.entries(data.sections || {})) {
+          if (k !== "news" && k !== "nri-world") sp[k] = v as Article[];
+        }
+        applyData(
+          data.featured ?? null,
+          data.carousel ?? [],
+          data.sections?.["news"] ?? [],
+          data.sections?.["nri-world"] ?? [],
+          sp,
+          new Date(data.generated_at),
+        );
+      })
+      .catch(() => {
+        // Static feed unavailable or corrupt — fall back to Supabase
+        fetchFromSupabase();
+      });
   }, []);
 
   // Save scroll position when leaving the homepage
