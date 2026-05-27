@@ -165,6 +165,60 @@ export default function DiasporaPhotoStrip() {
     };
   }, [updateScrollButtons]);
 
+  // ── Pull-down-to-dismiss state ──
+  const [dragY, setDragY] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dismissing, setDismissing] = useState(false);
+  const touchStartY = useRef<number | null>(null);
+  const touchStartX2 = useRef<number | null>(null);
+  const isVerticalGesture = useRef(false);
+
+  const closeWithDismiss = useCallback(() => {
+    setDismissing(true);
+    setTimeout(() => {
+      setSelectedIndex(null);
+      setDragY(0);
+      setIsDragging(false);
+      setDismissing(false);
+    }, 200);
+  }, []);
+
+  const handleLightboxTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+    touchStartX2.current = e.touches[0].clientX;
+    isVerticalGesture.current = false;
+  }, []);
+
+  const handleLightboxTouchMove = useCallback((e: React.TouchEvent) => {
+    if (touchStartY.current === null || touchStartX2.current === null) return;
+    const dy = e.touches[0].clientY - touchStartY.current;
+    const dx = Math.abs(e.touches[0].clientX - touchStartX2.current);
+    if (!isVerticalGesture.current && !isDragging) {
+      if (Math.abs(dy) > 10 && Math.abs(dy) > dx * 1.2) {
+        isVerticalGesture.current = true;
+      } else if (dx > 10) return;
+    }
+    if (!isVerticalGesture.current) return;
+    if (dy > 0) { setIsDragging(true); setDragY(dy); }
+  }, [isDragging]);
+
+  const handleLightboxTouchEnd = useCallback(() => {
+    if (isVerticalGesture.current && dragY > 120) {
+      closeWithDismiss();
+    } else {
+      setDragY(0);
+      setIsDragging(false);
+    }
+    touchStartY.current = null;
+    touchStartX2.current = null;
+    isVerticalGesture.current = false;
+  }, [dragY, closeWithDismiss]);
+
+  const dragProgress = Math.min(dragY / 300, 1);
+  const overlayOpacity = dismissing ? 0 : 1 - dragProgress * 0.6;
+  const overlayScale = dismissing ? 0.9 : 1 - dragProgress * 0.1;
+  const overlayTranslateY = dismissing ? 100 : dragY;
+
   return (
     <>
       <section style={{ margin: "2rem 0 1rem", position: "relative" }}>
