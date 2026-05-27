@@ -861,23 +861,57 @@ def render_cta(article, tmp_dir):
     return out
 
 
-def _pick_music_track():
-    """Pick a random background music track (30s preferred, trimmed to reel length in assembly)."""
+def _pick_music_track(category="", headline=""):
+    """Pick background music based on article category/tone.
+    
+    Mood mapping:
+    - Upbeat: Entertainment, Sports, Technology, Lifestyle, Food, Travel
+    - Breaking/News: News, NRI World, Markets & Finance, general
+    - Dramatic: sad/tragic/death/crisis/disaster keywords in headline
+    - Indian beat: Culture, festivals, heritage, Bollywood
+    """
     music_dir = os.path.join(SCRIPT_DIR, "music")
     if not os.path.isdir(music_dir):
         return None
-    # Prefer 30s tracks
-    tracks = [os.path.join(music_dir, f) for f in os.listdir(music_dir)
-              if f.endswith("-30s.mp3")]
-    if not tracks:
-        tracks = [os.path.join(music_dir, f) for f in os.listdir(music_dir)
-                  if f.endswith("-15s.mp3")]
-    if tracks:
-        return random.choice(tracks)
-    return None
+
+    cat_lower = (category or "").lower()
+    headline_lower = (headline or "").lower()
+
+    # Detect sad/dramatic tone from headline keywords
+    dramatic_keywords = ["death", "dies", "killed", "tragedy", "tragic", "crisis",
+                         "disaster", "flood", "earthquake", "attack", "victim",
+                         "mourns", "fatal", "crash", "devastat", "war", "conflict"]
+    is_dramatic = any(kw in headline_lower for kw in dramatic_keywords)
+
+    # Detect Indian cultural content
+    indian_keywords = ["bollywood", "festival", "diwali", "holi", "navratri",
+                       "puja", "temple", "classical", "dance", "rangoli",
+                       "garba", "bhangra", "cricket", "ipl"]
+    is_indian = any(kw in headline_lower for kw in indian_keywords)
+
+    if is_dramatic:
+        pool = ["pixabay-dramatic-30s.mp3", "pixabay-dramatic-15s.mp3"]
+    elif is_indian or cat_lower in ["entertainment", "food"]:
+        pool = ["indian-beat-30s.mp3", "pixabay-upbeat-30s.mp3", "indian-beat-15s.mp3"]
+    elif cat_lower in ["sports", "technology", "lifestyle & health", "travel"]:
+        pool = ["pixabay-upbeat-30s.mp3", "pixabay-upbeat-15s.mp3"]
+    elif cat_lower in ["news", "nri world", "markets & finance"]:
+        pool = ["pixabay-breaking-30s.mp3", "pixabay-breaking-15s.mp3"]
+    else:
+        pool = ["pixabay-breaking-30s.mp3", "pixabay-upbeat-30s.mp3"]
+
+    # Verify files exist, fall back to any 30s then 15s track
+    pool = [f for f in pool if os.path.isfile(os.path.join(music_dir, f))]
+    if not pool:
+        all_30s = [f for f in os.listdir(music_dir) if f.endswith("-30s.mp3")]
+        all_15s = [f for f in os.listdir(music_dir) if f.endswith("-15s.mp3")]
+        pool = all_30s or all_15s
+    if not pool:
+        return None
+    return os.path.join(music_dir, random.choice(pool))
 
 
-def assemble_reel(tmp_dir, scenes, output_path):
+def assemble_reel(tmp_dir, scenes, output_path, category="", headline=""):
     """Assemble N scenes with ffmpeg xfade transitions + background music.
 
     scenes: list of dicts with keys:
@@ -939,7 +973,7 @@ def assemble_reel(tmp_dir, scenes, output_path):
 
     # Audio
     audio_idx = n  # audio input index
-    music_track = _pick_music_track()
+    music_track = _pick_music_track(category=category, headline=headline)
     if music_track:
         print(f"  🎵 Music: {os.path.basename(music_track)}")
         audio_inputs = ["-i", music_track]
@@ -1005,7 +1039,7 @@ def _fallback_concat(tmp_dir, scenes, output_path):
             f.write(f"file '{p}'\n")
 
     total = sum(s["dur"] for s in scenes)
-    music_track = _pick_music_track()
+    music_track = _pick_music_track(category=category, headline=headline)
     audio_args = ["-i", music_track, "-af",
                   f"atrim=0:{total},afade=out:st={total-2}:d=2"] if music_track else \
                  ["-f", "lavfi", "-i",
@@ -1151,7 +1185,7 @@ def main():
         expected_dur = sum(s["dur"] for s in scene_list) - XFADE_DUR * (len(scene_list) - 1)
         print(f"\n🔗 Assembling {len(scene_list)}-scene reel (~{expected_dur:.0f}s)...")
         t0 = time.time()
-        assemble_reel(tmp_dir, scene_list, out)
+        assemble_reel(tmp_dir, scene_list, out, category=article.get("category", ""), headline=article.get("headline", ""))
         print(f"  ✓ {time.time()-t0:.1f}s")
 
         # Verify
