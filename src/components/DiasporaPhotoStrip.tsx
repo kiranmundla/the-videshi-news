@@ -346,27 +346,26 @@ export default function DiasporaPhotoStrip() {
         </p>
       </section>
 
-      {/* Fullscreen lightbox — native scroll-snap, no JS touch handlers */}
+      {/* Fullscreen lightbox — scroll-snap + pull-down-to-dismiss */}
       {selectedIndex !== null && (
         <div
+          onTouchStart={handleLightboxTouchStart}
+          onTouchMove={handleLightboxTouchMove}
+          onTouchEnd={handleLightboxTouchEnd}
           style={{
             position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0,0,0,0.95)",
+            top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: `rgba(0,0,0,${0.95 * overlayOpacity})`,
             zIndex: 9999,
             display: "flex",
             flexDirection: "column",
-            animation: "snapFadeIn 0.15s ease-out",
+            animation: dismissing ? "none" : "snapFadeIn 0.15s ease-out",
+            transition: isDragging ? "none" : "background-color 0.2s ease",
           }}
         >
-          <style>{`
-            @keyframes snapFadeIn { from { opacity: 0; } to { opacity: 1; } }
-          `}</style>
+          <style>{`@keyframes snapFadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
 
-          {/* Close button */}
+          {/* Close button — stays fixed */}
           <button
             onClick={closeOverlay}
             style={{
@@ -377,115 +376,92 @@ export default function DiasporaPhotoStrip() {
             }}
           >×</button>
 
-          {/* Counter */}
-          <p
-            style={{
-              color: "rgba(255,255,255,0.5)",
-              fontSize: "13px",
-              fontFamily: "var(--font-sans, sans-serif)",
-              textAlign: "center",
-              padding: "16px 0 8px",
-              margin: 0,
-              userSelect: "none",
-            }}
-          >
-            {currentIndex + 1} / {photos.length}
-          </p>
+          {/* Inner content — moves with vertical drag */}
+          <div style={{
+            flex: 1, display: "flex", flexDirection: "column",
+            transform: `translateY(${overlayTranslateY}px) scale(${overlayScale})`,
+            opacity: overlayOpacity,
+            transition: isDragging ? "none" : "transform 0.25s cubic-bezier(0.2,0,0,1), opacity 0.2s ease",
+            willChange: "transform, opacity",
+          }}>
+            {/* Counter */}
+            <p style={{
+              color: "rgba(255,255,255,0.5)", fontSize: "13px",
+              fontFamily: "var(--font-sans, sans-serif)", textAlign: "center",
+              padding: "16px 0 8px", margin: 0, userSelect: "none",
+            }}>
+              {currentIndex + 1} / {photos.length}
+            </p>
 
-          {/* Scroll-snap container — native 60fps swiping */}
-          <div
-            ref={overlayScrollRef}
-            className="snap-lightbox"
-            onScroll={handleOverlayScroll}
-            style={{
-              flex: 1,
-              display: "flex",
-              overflowX: "auto",
-              overflowY: "hidden",
-              scrollSnapType: "x mandatory",
-              WebkitOverflowScrolling: "touch",
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-            } as React.CSSProperties}
-          >
-            {photos.map((photo, i) => (
-              <div
-                key={photo.src}
-                style={{
-                  minWidth: "100vw",
-                  width: "100vw",
-                  height: "100%",
-                  scrollSnapAlign: "start",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                  padding: "0 20px",
-                  boxSizing: "border-box",
-                }}
-              >
-                <img
-                  src={photo.src}
-                  alt={photo.label}
-                  loading={Math.abs(i - (selectedIndex ?? 0)) <= 2 ? "eager" : "lazy"}
-                  draggable={false}
-                  style={{
-                    maxWidth: "calc(100vw - 40px)",
-                    maxHeight: "calc(100vh - 140px)",
-                    objectFit: "contain",
-                    borderRadius: "8px",
-                    userSelect: "none",
-                    WebkitUserSelect: "none",
-                  } as React.CSSProperties}
-                />
-              </div>
-            ))}
-          </div>
+            {/* Scroll-snap container — native 60fps horizontal swiping */}
+            <div
+              ref={overlayScrollRef}
+              className="snap-lightbox"
+              onScroll={handleOverlayScroll}
+              style={{
+                flex: 1, display: "flex",
+                overflowX: "auto", overflowY: "hidden",
+                scrollSnapType: "x mandatory",
+                WebkitOverflowScrolling: "touch",
+                scrollbarWidth: "none", msOverflowStyle: "none",
+              } as React.CSSProperties}
+            >
+              {photos.map((photo, i) => (
+                <div key={photo.src} style={{
+                  minWidth: "100vw", width: "100vw", height: "100%",
+                  scrollSnapAlign: "start", display: "flex",
+                  alignItems: "center", justifyContent: "center",
+                  flexShrink: 0, padding: "0 20px", boxSizing: "border-box",
+                }}>
+                  <img
+                    src={photo.src} alt={photo.label}
+                    loading={Math.abs(i - (selectedIndex ?? 0)) <= 2 ? "eager" : "lazy"}
+                    draggable={false}
+                    style={{
+                      maxWidth: "calc(100vw - 40px)", maxHeight: "calc(100vh - 140px)",
+                      objectFit: "contain", borderRadius: "8px",
+                      userSelect: "none", WebkitUserSelect: "none",
+                    } as React.CSSProperties}
+                  />
+                </div>
+              ))}
+            </div>
 
-          {/* Caption */}
-          <p
-            style={{
-              color: "#fff",
-              fontSize: "15px",
-              fontWeight: 600,
-              fontFamily: "var(--font-sans, sans-serif)",
-              letterSpacing: "0.02em",
-              textAlign: "center",
-              padding: "8px 20px 20px",
-              margin: 0,
-              maxWidth: "600px",
-              alignSelf: "center",
-            }}
-          >
-            {photos[currentIndex]?.label}
-          </p>
+            {/* Caption */}
+            <p style={{
+              color: "#fff", fontSize: "15px", fontWeight: 600,
+              fontFamily: "var(--font-sans, sans-serif)", letterSpacing: "0.02em",
+              textAlign: "center", padding: "8px 20px 12px", margin: 0,
+              maxWidth: "600px", alignSelf: "center",
+            }}>
+              {photos[currentIndex]?.label}
+            </p>
 
-          {/* Dot indicators */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "6px",
-              paddingBottom: "20px",
-            }}
-          >
-            {photos.map((_, i) => (
-              <div
-                key={i}
-                onClick={() => {
+            {/* Dot indicators */}
+            <div style={{ display: "flex", justifyContent: "center", gap: "6px", paddingBottom: "12px" }}>
+              {photos.map((_, i) => (
+                <div key={i} onClick={() => {
                   const el = overlayScrollRef.current;
                   if (el) el.scrollTo({ left: i * el.clientWidth, behavior: "smooth" });
-                }}
-                style={{
-                  width: i === currentIndex ? "18px" : "6px",
-                  height: "6px",
-                  borderRadius: "3px",
+                }} style={{
+                  width: i === currentIndex ? "18px" : "6px", height: "6px",
+                  borderRadius: "3px", cursor: "pointer",
                   background: i === currentIndex ? "#c9a84c" : "rgba(255,255,255,0.3)",
                   transition: "all 0.2s ease",
-                  cursor: "pointer",
-                }}
-              />
-            ))}
+                }} />
+              ))}
+            </div>
+
+            {/* Pull-down hint */}
+            {isDragging && (
+              <div style={{
+                textAlign: "center", paddingBottom: "8px",
+                color: dragY > 120 ? "#c9a84c" : "rgba(255,255,255,0.4)",
+                fontSize: "12px", fontFamily: "var(--font-sans, sans-serif)",
+              }}>
+                {dragY > 120 ? "Release to close" : "↓ Pull down to close"}
+              </div>
+            )}
           </div>
         </div>
       )}
