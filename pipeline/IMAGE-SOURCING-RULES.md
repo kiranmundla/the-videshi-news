@@ -97,6 +97,16 @@ if img_url:
 - Images that don't match the article's actual subject
 - Satellite/aerial/map images (filtered by BAD_ALT_RE in the pipeline)
 - Random kid bowling when the article is about Jofra Archer
+- **NEVER use Facebook/Instagram/Meta CDN URLs** (`fbcdn.net`, `cdninstagram.com`, `scontent-*.fbcdn.net`, `lookaside.fbsbx.com`) — these expire within 24-48 hours and will show broken images. Always download and re-upload to Supabase storage.
+- **NEVER use any URL with `_nc_ht=`, `_nc_cat=`, `ccb=` query params** — these are signed Meta CDN URLs that expire
+
+## Allowed image sources (permanent URLs only)
+- **Supabase storage** (our own bucket — best option, always works)
+- **Pexels** (`images.pexels.com` — permanent hotlinks allowed by their license)
+- **Wikipedia/Wikimedia** (`upload.wikimedia.org` — permanent)
+- **Unsplash** (`images.unsplash.com` — permanent)
+
+If sourcing from any other domain, **download the image and re-upload to Supabase storage** to guarantee permanence.
 
 ## Skip list
 Check `pipeline/image-skip-list.json` before sourcing. Articles in this list had images manually removed — don't re-source them.

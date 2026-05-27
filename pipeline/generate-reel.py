@@ -861,14 +861,12 @@ def render_cta(article, tmp_dir):
     return out
 
 
-def _pick_music_track(category="", headline=""):
-    """Pick background music based on article category/tone.
+def _pick_music_track(category="", headline="", video_dur=25):
+    """Pick background music based on article category/tone AND video duration.
     
-    Mood mapping:
-    - Upbeat: Entertainment, Sports, Technology, Lifestyle, Food, Travel
-    - Breaking/News: News, NRI World, Markets & Finance, general
-    - Dramatic: sad/tragic/death/crisis/disaster keywords in headline
-    - Indian beat: Culture, festivals, heritage, Bollywood
+    Always picks a track that covers the full video. Prefers 20s for short
+    videos (~13s), 30s for standard (~20s). Falls back to longer tracks
+    and lets ffmpeg atrim handle the cut.
     """
     music_dir = os.path.join(SCRIPT_DIR, "music")
     if not os.path.isdir(music_dir):
@@ -889,26 +887,50 @@ def _pick_music_track(category="", headline=""):
                        "garba", "bhangra", "cricket", "ipl"]
     is_indian = any(kw in headline_lower for kw in indian_keywords)
 
+    # Choose mood prefix
     if is_dramatic:
-        pool = ["pixabay-dramatic-30s.mp3", "pixabay-dramatic-15s.mp3"]
+        mood_prefixes = ["pixabay-dramatic"]
     elif is_indian or cat_lower in ["entertainment", "food"]:
-        pool = ["indian-beat-30s.mp3", "pixabay-upbeat-30s.mp3", "indian-beat-15s.mp3"]
-    elif cat_lower in ["sports", "technology", "lifestyle & health", "travel"]:
-        pool = ["pixabay-upbeat-30s.mp3", "pixabay-upbeat-15s.mp3"]
-    elif cat_lower in ["news", "nri world", "markets & finance"]:
-        pool = ["pixabay-breaking-30s.mp3", "pixabay-breaking-15s.mp3"]
+        mood_prefixes = ["indian-beat", "pixabay-upbeat"]
+    elif cat_lower in ["sports", "technology", "lifestyle-health", "travel"]:
+        mood_prefixes = ["pixabay-upbeat"]
+    elif cat_lower in ["news", "nri-world", "markets-finance"]:
+        mood_prefixes = ["pixabay-breaking"]
     else:
-        pool = ["pixabay-breaking-30s.mp3", "pixabay-upbeat-30s.mp3"]
+        mood_prefixes = ["pixabay-breaking", "pixabay-upbeat"]
 
-    # Verify files exist, fall back to any 30s then 15s track
-    pool = [f for f in pool if os.path.isfile(os.path.join(music_dir, f))]
-    if not pool:
-        all_30s = [f for f in os.listdir(music_dir) if f.endswith("-30s.mp3")]
-        all_15s = [f for f in os.listdir(music_dir) if f.endswith("-15s.mp3")]
-        pool = all_30s or all_15s
-    if not pool:
+    # Pick the shortest track that covers the video duration
+    # Priority: exact fit > slightly longer > loop shorter
+    def find_best_track(prefixes):
+        candidates = []
+        for prefix in prefixes:
+            for suffix in ["-30s.mp3", "-20s.mp3", "-15s.mp3", "-full.mp3"]:
+                path = os.path.join(music_dir, prefix + suffix)
+                if os.path.isfile(path):
+                    # Get actual duration from filename hint
+                    if "-15s" in suffix: dur = 15
+                    elif "-20s" in suffix: dur = 20
+                    elif "-30s" in suffix: dur = 30
+                    else: dur = 120  # full tracks are 100-250s
+                    candidates.append((path, dur))
+        
+        # Sort: prefer tracks that cover the video, then shortest first
+        covers = [(p, d) for p, d in candidates if d >= video_dur]
+        if covers:
+            covers.sort(key=lambda x: x[1])  # shortest that covers
+            return covers[0][0]
+        
+        # Nothing covers it — pick longest available
+        if candidates:
+            candidates.sort(key=lambda x: -x[1])
+            return candidates[0][0]
         return None
-    return os.path.join(music_dir, random.choice(pool))
+
+    track = find_best_track(mood_prefixes)
+    if not track:
+        # Fall back to any available track that covers duration
+        track = find_best_track(["pixabay-breaking", "pixabay-upbeat", "pixabay-dramatic", "indian-beat"])
+    return track
 
 
 def assemble_reel(tmp_dir, scenes, output_path, category="", headline=""):
@@ -939,10 +961,10 @@ def assemble_reel(tmp_dir, scenes, output_path, category="", headline=""):
             )
         else:
             nframes = int(sc["dur"] * FPS)
-            fade_in = ",fade=t=in:st=0:d=0.5" if i == 0 else ""
+            # No fade-in on first scene — black frame 1 kills IG thumbnails
             filter_parts.append(
                 f"[{i}:v]loop=loop={nframes - 1}:size=1:start=0,"
-                f"setpts=PTS-STARTPTS,fps={FPS}{fade_in}[v{i}]"
+                f"setpts=PTS-STARTPTS,fps={FPS}[v{i}]"
             )
 
     # Chain xfade transitions
@@ -971,13 +993,27 @@ def assemble_reel(tmp_dir, scenes, output_path, category="", headline=""):
     filter_complex = ";".join(filter_parts)
     total_dur = sum(s["dur"] for s in scenes) - xf * (n - 1)
 
-    # Audio
+    # Audio — pick track that covers the full video duration
     audio_idx = n  # audio input index
-    music_track = _pick_music_track(category=category, headline=headline)
+    music_track = _pick_music_track(category=category, headline=headline, video_dur=total_dur)
     if music_track:
-        print(f"  🎵 Music: {os.path.basename(music_track)}")
-        audio_inputs = ["-i", music_track]
-        audio_filter = ["-af", f"atrim=0:{total_dur},afade=out:st={total_dur-2}:d=2"]
+        # Check actual track duration
+        probe_a = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "csv=p=0", music_track], capture_output=True, text=True)
+        track_dur = float(probe_a.stdout.strip()) if probe_a.stdout.strip() else 0
+        print(f"  🎵 Music: {os.path.basename(music_track)} ({track_dur:.1f}s for {total_dur:.1f}s video)")
+
+        if track_dur >= total_dur:
+            # Track covers the video — just trim and fade out
+            audio_inputs = ["-i", music_track]
+            audio_filter = ["-af", f"atrim=0:{total_dur},afade=out:st={total_dur-2}:d=2"]
+        else:
+            # Track is too short — loop it to cover the video
+            loops_needed = int(total_dur / track_dur) + 1
+            audio_inputs = ["-stream_loop", str(loops_needed), "-i", music_track]
+            audio_filter = ["-af", f"atrim=0:{total_dur},afade=out:st={total_dur-2}:d=2"]
+            print(f"  🔁 Looping {loops_needed}x to cover {total_dur:.1f}s")
     else:
         print("  🔇 No music tracks, silent audio")
         audio_inputs = ["-f", "lavfi", "-i",
@@ -1024,11 +1060,10 @@ def _fallback_concat(tmp_dir, scenes, output_path):
                 "-c:v", "libx264", "-preset", "fast", "-crf", "23", part
             ], capture_output=True)
         else:
-            fade = f"fade=t=in:st=0:d=0.5," if i == 0 else ""
             subprocess.run([
                 "ffmpeg", "-y", "-loop", "1", "-i", sc["path"],
                 "-t", str(sc["dur"]), "-r", str(FPS),
-                "-vf", f"{fade}scale={W}:{H},format=yuv420p",
+                "-vf", f"scale={W}:{H},format=yuv420p",
                 "-c:v", "libx264", "-preset", "fast", "-crf", "23", part
             ], capture_output=True)
         parts.append(part)
@@ -1039,11 +1074,23 @@ def _fallback_concat(tmp_dir, scenes, output_path):
             f.write(f"file '{p}'\n")
 
     total = sum(s["dur"] for s in scenes)
-    music_track = _pick_music_track(category=category, headline=headline)
-    audio_args = ["-i", music_track, "-af",
-                  f"atrim=0:{total},afade=out:st={total-2}:d=2"] if music_track else \
-                 ["-f", "lavfi", "-i",
-                  f"anullsrc=channel_layout=stereo:sample_rate=44100:duration={total}"]
+    music_track = _pick_music_track(category=category, headline=headline, video_dur=total)
+    if music_track:
+        # Check if track covers video, loop if needed
+        probe_a = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "csv=p=0", music_track], capture_output=True, text=True)
+        track_dur = float(probe_a.stdout.strip()) if probe_a.stdout.strip() else 0
+        if track_dur >= total:
+            audio_args = ["-i", music_track, "-af",
+                          f"atrim=0:{total},afade=out:st={total-2}:d=2"]
+        else:
+            loops = int(total / track_dur) + 1
+            audio_args = ["-stream_loop", str(loops), "-i", music_track, "-af",
+                          f"atrim=0:{total},afade=out:st={total-2}:d=2"]
+    else:
+        audio_args = ["-f", "lavfi", "-i",
+                      f"anullsrc=channel_layout=stereo:sample_rate=44100:duration={total}"]
 
     subprocess.run([
         "ffmpeg", "-y",
