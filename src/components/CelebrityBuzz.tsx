@@ -220,8 +220,8 @@ function ThumbCard({
     <div
       onClick={onClick}
       style={{
-        width: "92vw",
-        maxWidth: 500,
+        width: "72vw",
+        maxWidth: 340,
         flexShrink: 0,
         cursor: "pointer",
         scrollSnapAlign: "start",
@@ -230,7 +230,7 @@ function ThumbCard({
       <div style={{
         position: "relative",
         width: "100%",
-        aspectRatio: "4/5",
+        aspectRatio: "5/4",
         borderRadius: 12,
         overflow: "hidden",
         background: "#1a1a1a",
