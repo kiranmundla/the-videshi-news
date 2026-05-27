@@ -1,6 +1,6 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-27T19:57:00Z",
+  "last_updated": "2026-05-27T20:55:33Z",
   "stage": "PLAYOFFS. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1 done: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator done: RR beat SRH by 47 runs (May 27, Hyderabad). Qualifier 2: GT vs RR (May 29). Final: RCB vs Q2 winner (May 31, Ahmedabad).",
   "recent_results": [
     {
@@ -185,11 +185,12 @@
     "eliminator": {
       "date": "May 27",
       "venue": "Hyderabad",
-      "result": "RR 243/8 beat SRH 196/10 by 47 runs"
+      "result": "RR 243/8 beat SRH 196/10 by 47 runs",
+      "key": "Sooryavanshi 97(29), Archer 1st-over wicket; Klaasen, Tewatia led SRH chase"
     },
     "qualifier2": {
       "date": "May 29",
-      "venue": "TBD",
+      "venue": "New Chandigarh",
       "teams": "GT vs RR"
     },
     "final": {

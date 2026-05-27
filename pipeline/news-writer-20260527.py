@@ -1,79 +1,38 @@
 #!/usr/bin/env python3
-"""News writer for The Videshi — 2026-05-27 batch"""
+"""
+The Videshi — News Writer (2026-05-27 evening batch)
+Publishes 3 articles to the 'news' category.
+"""
 
 import json
 import os
 import re
 import sys
-import time
 import uuid
-import subprocess
-import urllib.parse
+import requests
 from datetime import datetime, timezone
 
-# Load env
-env_path = os.path.expanduser("~/.env.supabase")
-with open(env_path) as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            key, val = line.split("=", 1)
-            key = key.replace("export ", "").strip()
-            val = val.strip().strip('"').strip("'")
-            os.environ[key] = val
-
+# ── Supabase config ──────────────────────────────────────────────
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+HEADERS = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
+}
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
-# Load Pexels key
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-PEXELS_KEY = ""
-if os.path.exists(pexels_env):
-    with open(pexels_env) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith("#") and "=" in line:
-                key, val = line.split("=", 1)
-                key = key.replace("export ", "").strip()
-                val = val.strip().strip('"').strip("'")
-                if "PEXELS" in key.upper():
-                    PEXELS_KEY = val
 
-import requests
-
-def sb_headers():
-    return {
-        "apikey": SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Content-Type": "application/json",
-        "Prefer": "return=representation"
-    }
-
-def sb_insert(table, data):
-    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=sb_headers(), json=data, timeout=30)
-    if r.status_code in (200, 201):
-        return r.json()
-    else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
-        return None
-
-def sb_patch(table, filters, data):
-    url = f"{SUPABASE_URL}/rest/v1/{table}?{filters}"
-    r = requests.patch(url, headers=sb_headers(), json=data, timeout=30)
-    if r.status_code in (200, 204):
-        return True
-    else:
-        print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
-        return False
-
+# ── Image helpers ────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    encoded = person_name.replace(" ", "_")
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            timeout=10,
         )
         if r.status_code == 200:
             data = r.json()
@@ -85,322 +44,384 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels using curl (urllib gets 403)."""
+    """Fetch an image from Pexels with specific search terms. Returns URL or None."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key available")
+        print("  ⚠ No Pexels API key")
         return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            result = subprocess.run(
-                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
-                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape"],
-                capture_output=True, text=True, timeout=15
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                headers={"Authorization": PEXELS_KEY},
+                params={"query": q, "per_page": 5, "orientation": "landscape"},
+                timeout=10,
             )
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for photo in photos:
-                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
-                if url:
-                    # Validate
-                    head = requests.head(url, timeout=10)
-                    ct = head.headers.get("Content-Type", "")
-                    cl = int(head.headers.get("Content-Length", "0"))
-                    if "image" in ct and cl > 5000:
-                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                for p in photos:
+                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+                    if url:
+                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
                         return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+
 def validate_image(url):
-    """Validate image URL returns 200 with image content > 5KB."""
-    if not url:
-        return False
+    """Check that an image URL returns 200 with image/* content-type and >5KB."""
     try:
-        head = requests.head(url, timeout=10, allow_redirects=True,
-                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = head.headers.get("Content-Type", "")
-        cl = int(head.headers.get("Content-Length", "0"))
-        if "image" in ct and cl > 5000:
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
             return True
-        # Some servers don't return Content-Length on HEAD
-        if "image" in ct:
-            r = requests.get(url, timeout=10, stream=True,
-                           headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r.raw.read(6000)
+        # Try GET if HEAD didn't give good Content-Length
+        if r.status_code == 200 and "image" in ct and cl == 0:
+            r2 = requests.get(url, timeout=10, stream=True,
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
+            r2.close()
             if len(chunk) > 5000:
                 return True
+        print(f"  ⚠ Image validation failed: status={r.status_code} ct={ct} cl={cl}")
     except Exception as e:
         print(f"  ⚠ Image validation error: {e}")
     return False
 
-def check_banned_url(url):
-    """Check if URL is from a banned source."""
-    if not url:
-        return True
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
-    for b in banned:
-        if b in url:
-            print(f"  ✗ BANNED image source detected: {b}")
+
+def upload_image_to_supabase(image_url, filename):
+    """Download image and upload to Supabase storage bucket 'article-images'."""
+    try:
+        r = requests.get(image_url, timeout=20,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code != 200 or len(r.content) < 5000:
+            print(f"  ⚠ Failed to download image: status={r.status_code} size={len(r.content)}")
+            return None
+        ct = r.headers.get("Content-Type", "image/jpeg")
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        resp = requests.post(
+            upload_url,
+            headers={
+                "apikey": SUPABASE_KEY,
+                "Authorization": f"Bearer {SUPABASE_KEY}",
+                "Content-Type": ct,
+                "x-upsert": "true",
+            },
+            data=r.content,
+            timeout=30,
+        )
+        if resp.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Supabase upload failed: {resp.status_code} {resp.text[:200]}")
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
+    return None
+
+
+# ── Dedup check ──────────────────────────────────────────────────
+def check_duplicate(slug_fragment):
+    """Check if a similar article already exists in the last 3 days."""
+    since = (datetime.now(timezone.utc)).strftime("%Y-%m-%dT00:00:00Z")
+    # Check last 3 days
+    from datetime import timedelta
+    since_3d = (datetime.now(timezone.utc) - timedelta(days=3)).strftime("%Y-%m-%dT00:00:00Z")
+    r = requests.get(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        params={
+            "select": "headline,slug",
+            "status": "eq.published",
+            "published_at": f"gte.{since_3d}",
+            "category": "eq.news",
+            "slug": f"like.*{slug_fragment}*",
+            "limit": "5",
+        },
+        timeout=15,
+    )
+    if r.status_code == 200:
+        matches = r.json()
+        if matches:
+            print(f"  ⚠ Possible duplicate for '{slug_fragment}': {[m['slug'] for m in matches]}")
             return True
     return False
 
-# ─── ARTICLES ─────────────────────────────────────────────────────────────────
+
+# ── Article publishing ───────────────────────────────────────────
+def publish_article(article):
+    """Insert article into Supabase p2_articles table."""
+    payload = {
+        "id": str(uuid.uuid4()),
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": "news",
+        "vertical": article.get("vertical", "general"),
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": json.dumps(article.get("sources", [])),
+        "image_url": article.get("image_url"),
+        "image_attribution": article.get("image_attribution"),
+    }
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload,
+        timeout=20,
+    )
+    if r.status_code in (200, 201):
+        result = r.json()
+        art_id = result[0]["id"] if isinstance(result, list) else result.get("id", "unknown")
+        print(f"  ✅ Published: {article['headline'][:60]}... (id={art_id})")
+        return art_id
+    else:
+        print(f"  ❌ Publish failed: {r.status_code} {r.text[:300]}")
+        return None
+
+
+# ── ARTICLES ─────────────────────────────────────────────────────
 
 articles = []
 
-# ─── ARTICLE 1: Green Card Process Upended ────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════
+# ARTICLE 1: India's AMCA Fifth-Generation Fighter Jet
+# ═══════════════════════════════════════════════════════════════════
+
 articles.append({
-    "headline": "Trump Just Ordered Every Green Card Applicant in America to Leave the Country and Reapply From Home",
-    "subheadline": "The new rule affects hundreds of thousands of legal immigrants — including an estimated 400,000 Indians in the green card backlog. Immigration lawyers say it could separate families for years.",
-    "slug": "trump-green-card-applicants-must-leave-us-apply-from-home-country-20260527",
-    "category": "news",
-    "vertical": "immigration",
-    "sources": json.dumps(["CNN", "Associated Press", "Cato Institute", "Department of Homeland Security"]),
-    "person_for_image": "USCIS",  # Not a person article
-    "image_search": "US immigration green card passport visa",
-    "image_search_fallback": "US passport immigration office",
-    "body": """The Trump administration has announced a rule that will upend the lives of hundreds of thousands of legal immigrants living and working in the United States. As of last Friday, anyone applying for a green card — the document that grants permanent residency — must leave the country and complete the application process from their home country.
+    "headline": "India Just Invited Three Private Companies to Build Its First Stealth Fighter Jet. The F-35 and Su-57 Were Not Invited.",
+    "subheadline": "The ₹15,000 crore AMCA programme marks India's boldest bet yet on indigenous defence manufacturing — and a deliberate snub to Washington and Moscow.",
+    "slug": "india-amca-stealth-fighter-jet-rfp-tata-lt-bharat-forge-20260527",
+    "sources": ["Reuters", "ANI", "The Asia Live"],
+    "image_person": "Advanced Medium Combat Aircraft",
+    "image_pexels_query": "fighter jet military aircraft",
+    "image_pexels_fallback": "Indian Air Force jet",
+    "vertical": "defence",
+    "body": """India's Ministry of Defence on Wednesday issued a formal Request for Proposal to three private-sector consortia to develop the Advanced Medium Combat Aircraft — the country's first indigenous fifth-generation stealth fighter jet. The move marks the most significant step yet in New Delhi's push to break its decades-long dependence on imported warplanes.
 
-The policy reverses decades of practice under which immigrants already in the U.S. on valid work or family visas could adjust their status to permanent residency without leaving. Now they must return home, wait for consular processing, and hope to be readmitted — a process that immigration attorneys say can take months to years.
+## Who's Building It
 
-## Who This Hits Hardest
+The three shortlisted bidders are all Indian: **Tata Advanced Systems**, a joint venture between **Larsen & Toubro and Bharat Electronics**, and a consortium of **Bharat Forge and BEML**. Notably absent from the bidding: Hindustan Aeronautics Limited (HAL), the state-owned monopoly that has built nearly every Indian military aircraft to date. The exclusion of HAL signals a decisive shift toward private-sector defence manufacturing under Prime Minister Narendra Modi's Atmanirbhar Bharat (self-reliant India) framework.
 
-The rule lands squarely on the Indian American community. Indians make up the single largest group in the U.S. green card backlog, with an estimated 400,000 applicants waiting for employment-based green cards alone. Many have been in the queue for over a decade, working on H-1B visas, paying taxes, buying homes, and raising American-born children.
+The bids open on June 11. The winning consortium is expected to develop five prototypes at a cost of approximately ₹15,000 crore ($1.57 billion), with the first flight targeted within 30 months of contract award. A new Core Integration Centre in Andhra Pradesh will house the flight testing programme.
 
-Under the new rule, these workers would have to leave their jobs, uproot their families, and return to India — with no guarantee of a timeline for return. For dual-income households where both spouses hold work authorization tied to a pending green card, the disruption is compounded.
+## What the AMCA Is
 
-"This is devastating for people who have followed every rule, paid every fee, and waited patiently for years," said David J. Bier, director of immigration studies at the Cato Institute, who described the policy as "illogical" in a detailed analysis of its potential cascading impacts.
+The AMCA is designed to be a twin-engine, multirole stealth fighter capable of air supremacy, ground attack, and electronic warfare missions. Key features include internal weapons bays, low-observable radar cross-section, sensor fusion, supercruise capability, and a 10-hour continuous flight endurance. If it performs as designed, it would place India in an exclusive club of nations with operational fifth-generation fighters — currently limited to the United States, China, and Russia.
 
-## The Administration's Justification
+The programme has been in development under the Aeronautical Development Agency (ADA) for over a decade, but the issuance of a formal RFP to private bidders represents the transition from paper design to industrial reality.
 
-US Citizenship and Immigration Services defended the change. "When aliens apply from their home country, it reduces the need to find and remove those who decide to slip into the shadows and remain in the US illegally after being denied residency," spokesperson Zach Kahler said in a statement.
+## Why India Turned Down the F-35 and Su-57
 
-The agency said exemptions would be available for "extraordinary circumstances," though it did not define what would qualify.
+Both the United States and Russia have aggressively pitched their own fifth-generation platforms to India. Washington offered the **Lockheed Martin F-35 Lightning II**, the world's most advanced operational fighter. Moscow countered with the **Sukhoi Su-57**, its own stealth contender. India declined both.
 
-## Legal Challenges Expected
+The reasoning is strategic rather than purely technical. Buying either platform would deepen dependency on a single foreign supplier for maintenance, spare parts, and upgrades over a 30-to-40-year service life. India's experience with its ageing fleet of Russian-made Sukhoi Su-30MKIs — which now constitute the backbone of the air force but have faced chronic spare-parts shortages — has reinforced the case for an indigenous alternative.
 
-The rule is expected to face immediate legal challenges. Since its announcement, it has drawn a torrent of criticism from immigration attorneys, lawmakers, and advocacy groups across the political spectrum.
+India's Air Force currently operates fewer than 30 fighter squadrons against a sanctioned strength of 42, a gap that grows more acute as older MiG-21s and MiG-27s are retired. The AMCA is not merely an ambition project — it is a force-structure necessity.
 
-New York Governor Kathy Hochul said the policy "betrays the very promise that built this country." California Representative Ted Lieu called it "stupid" and warned it "will help competitors such as China and Russia." Arizona Democrat Greg Stanton said the rule makes "legal immigration harder — on purpose."
+## Defence Production Is Already at Record Highs
 
-The Cato Institute's analysis warned that the policy could trigger a cascade of unintended consequences: employers losing critical workers, housing markets losing buyers, and the U.S. losing its competitive edge in attracting global talent.
+The RFP arrives as India's defence production hits an all-time high of ₹1.54 trillion ($16.09 billion) in the financial year ending March 2025, according to government data. Defence exports have also surged, with India now supplying military hardware to over 85 countries including the Philippines, Armenia, and several African nations.
 
-## A Pattern of Legal Immigration Restrictions
+The private sector's share of defence production has grown from under 20% a decade ago to nearly 35% today. The AMCA programme, if executed on schedule, would cement that trajectory and potentially position Indian defence firms as exporters of next-generation platforms.
 
-The green card rule is part of a broader pattern. The administration has already halted refugee admissions for all nationalities except White South Africans, ended Temporary Protected Status for several countries, restricted work and student visas, and proposed making every federal employee sign a non-disclosure agreement.
+## The Diaspora Angle
 
-Last week, the administration announced that H-1B visa registrations dropped 38.5 percent — a decline that immigration experts attribute directly to policy uncertainty and hostile signaling from Washington.
+For the roughly 4.4 million Indian Americans and the broader NRI community, the AMCA programme carries significance beyond its military dimensions. India's defence sector has historically been opaque, state-dominated, and notoriously slow. The entry of publicly listed firms like Tata, L&T, and Bharat Forge — companies whose shares trade on the BSE and NSE — opens a direct investment pathway for diaspora investors who have long been bullish on India's growth story but wary of its defence bureaucracy.
 
-For the estimated 4.4 million Indians living in the United States — the second-largest immigrant community after Mexicans — the cumulative effect of these changes is transforming what it means to build a life in America.
+The programme also raises the profile of Indian engineering talent at a moment when the country's IT sector is under pressure from AI-driven disruption. Building a stealth fighter from scratch — with indigenous avionics, composites, and weapons integration — requires a different class of engineering entirely.
 
-## What Happens Next
-
-Immigration attorneys are advising affected clients to consult legal counsel immediately and not to make any travel decisions before understanding the full scope of the rule and any pending legal challenges.
-
-The rule does not affect naturalized citizens or those who already hold green cards. But for the hundreds of thousands in the pipeline — many of whom have spent the better part of their adult lives in the United States — the question is no longer when they will get their green card. It is whether they can afford to leave everything behind to find out."""
+Serial production is targeted for the mid-2030s, with an eventual fleet of 120 to 250 aircraft for the Indian Air Force and Navy. If India pulls it off, the AMCA will be the most complex machine the country has ever built.""",
+    "source": "The Videshi",
+    "image_attribution": "Wikimedia Commons",
 })
 
-# ─── ARTICLE 2: Supreme Court Upholds SIR ─────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════
+# ARTICLE 2: India Stocks — First Yearly Drop in a Decade
+# ═══════════════════════════════════════════════════════════════════
+
 articles.append({
-    "headline": "India's Supreme Court Just Upheld the Government's Power to Purge Voter Rolls. But It Drew One Hard Line.",
-    "subheadline": "The court ruled the Election Commission's Special Intensive Revision of electoral rolls is constitutional — but stripped the commission of the power to decide who is and isn't a citizen.",
-    "slug": "supreme-court-upholds-sir-electoral-roll-revision-strips-eci-citizenship-power-20260527",
-    "category": "news",
-    "vertical": "politics",
-    "sources": json.dumps(["Supreme Court of India", "LatestLY", "Law Trend", "Dainik Jagran", "DevDiscourse"]),
-    "person_for_image": None,
-    "image_search": "India Supreme Court building New Delhi",
-    "image_search_fallback": "Indian parliament democracy voting",
-    "body": """India's Supreme Court delivered a landmark ruling on Wednesday, upholding the Election Commission's controversial Special Intensive Revision (SIR) of electoral rolls — while simultaneously stripping the commission of any authority to determine citizenship status.
+    "headline": "Foreign Investors Have Pulled $23 Billion Out of India This Year. The Nifty Is Headed for Its First Annual Drop Since 2015.",
+    "subheadline": "A Reuters poll of 24 analysts says India's stock market darling status is over — for now. The AI boom, Iran war oil shock, and weak earnings are all working against it.",
+    "slug": "india-stocks-first-yearly-drop-decade-foreign-investors-exit-nifty-20260527",
+    "sources": ["Reuters", "Societe Generale", "Copley Fund Research"],
+    "image_person": None,
+    "image_pexels_query": "Bombay stock exchange Mumbai trading",
+    "image_pexels_fallback": "India stock market Mumbai finance",
+    "vertical": "economy",
+    "body": """India's stock market is on track for its first annual decline in more than a decade, according to a Reuters poll of 24 equity analysts published Wednesday. The Nifty 50, already down approximately 8.5% in 2026, is forecast to close the year at 26,000 — a marginal 0.5% annual loss that would be its first negative year since 2015.
 
-The ruling settles a politically explosive legal battle that has raged for months. Opposition parties had challenged the SIR as an unconstitutional overreach that was being used to disenfranchise voters, particularly in states like Bihar and West Bengal where millions of names were removed from voter lists.
+The Sensex is projected to finish at 84,150, with both benchmarks sharply downgraded from a February poll conducted before the U.S.-Israel war with Iran began.
 
-## What the Court Said
+## The $23 Billion Exodus
 
-The Supreme Court ruled that the SIR is "constitutional and legally tenable," affirming the Election Commission's authority under Article 324 of the Constitution and Section 21(3) of the Representation of the People Act, 1950.
+Foreign investors have sold more than $23 billion of Indian equities so far in 2026, surpassing the record annual outflows recorded last year. Meanwhile, they have poured approximately $25 billion into Taiwan, whose AI-heavy KOSPI-equivalent index has surged over 200% in the past year.
 
-"SIR breathes life into the Constitution," the bench observed, emphasizing that the process of cleaning up voter rolls — removing duplicates, deceased voters, and fraudulent entries — is essential for electoral integrity.
+"Everyone wants returns at the end of the day," said **Rajat Agarwal**, Asia equity strategist at Societe Generale. "The returns are not there, earnings growth is almost negligible to very low. AI is where the flavour of the town is right now, and this is where India — not just we lack it, we are actually on the wrong side."
 
-In Bihar, the SIR resulted in the removal of 65 lakh (6.5 million) names from voter rolls, a process the commission said was necessitated by rapid urbanization and migration patterns that had left rolls bloated with outdated entries.
+India's heavyweight IT stocks index, the Nifty IT, has fallen by more than a third since December 2024. The country's information technology sector — once the crown jewel that attracted billions in foreign portfolio investment — has been unable to ride the global AI wave the way Korean, Taiwanese, and American tech stocks have.
 
-The court noted that 99.8 percent coverage was achieved in the Bihar revision, and that the process included Aadhaar as an additional verification tool — a practice it found permissible.
+## The Valuation Problem
 
-## The Critical Limitation
+India trades at more than 20 times earnings, above most major European and emerging markets, while offering one of the world's lowest dividend yields. For years, that premium was justified by GDP growth rates north of 6% and a demographic dividend that promised decades of consumer expansion. But the Iran war's oil shock has rewritten the macro calculus.
 
-But the court drew a firm line on one point: the Election Commission cannot decide who is and is not a citizen of India.
+India imports roughly 85% of its crude oil. The three-month closure of the Strait of Hormuz has sent Brent prices soaring, widened India's current account deficit, pushed the rupee to 95.68 against the dollar, and forced the Reserve Bank of India into a defensive posture. Goldman Sachs analysts now forecast 50 basis points of additional rate hikes for India in 2026.
 
-This distinction matters enormously. Opposition parties, led by Congress, had argued that the SIR was being used as a backdoor National Register of Citizens (NRC) — a mechanism to strip citizenship from vulnerable populations, particularly Muslims and migrants.
+## Domestic Buyers Are the Last Line of Defence
 
-The court ruled that any voter whose name is removed from the roll on grounds related to citizenship must have their case reviewed by the Union Home Ministry within four weeks. Removal from the voter list, the court emphasized, "does not erase citizenship."
+The market has not collapsed entirely thanks to domestic institutional investors (DIIs) and the systematic investment plan (SIP) revolution. Monthly SIP contributions have grown nearly tenfold over the past decade, creating a structural floor of domestic buying that foreign exits alone cannot overwhelm.
 
-This means the Election Commission can clean rolls, verify identities, and eliminate duplicates — but it cannot make the final call on whether someone is Indian.
+"It is thanks to local DIIs and liquidity from retail participants the market has held up," said **Aman Sethia**, head of treasury at Groww. "If this hadn't been in place, we would have seen the Nifty at around 19,000 or 20,000 over the last year."
 
-## The Political Fallout
+But even the SIP engine is showing signs of fatigue. According to **Copley Fund Research**, average India weights in global funds tracked by the firm now stand at 9.94% — the first time India has dipped below 10% since January 2021, and a far cry from the highs of 17.47% in August 2024. India's fifth spot in global market capitalisation, valued at $4.92 trillion, is now under threat as Taiwan closes in.
 
-The ruling was immediately claimed as a victory by both sides.
+## No AI Story, No Easy Fix
 
-The BJP welcomed the verdict, with party MP Sudhanshu Trivedi calling it a vindication that exposed the "true character" of the opposition INDIA bloc. "This is a constitutional defeat for those who politicized the integrity of voter rolls," he said.
+A slim majority of analysts — 13 of 24 — said a further correction was likely over the coming three months. The core problem is structural: India's corporate sector has not built significant AI capabilities or AI-linked revenue streams, leaving it out of the single largest wealth-creation cycle in global equity markets.
 
-Congress took a more measured view, acknowledging the constitutional validation of the SIR but pointing to the citizenship limitation as proof that their concerns about overreach were justified.
+"A culture of innovation — that thing is absent in our country," said **Kishan Gupta**, director at CD Equisearch. "Our exports are not growing and we know import bills will swell now with high energy prices."
 
-Activist Yogendra Yadav offered a more skeptical assessment, arguing the ruling was "decided long ago" and that the focus on grievance redressal mechanisms obscured deeper constitutional questions about who controls the definition of Indian citizenship.
+## What NRI Investors Should Watch
 
-## What This Means for NRIs
+For the millions of diaspora investors who hold Indian equities through mutual funds, PMS schemes, or direct NRE/NRO demat accounts, the message from the poll is sobering but not catastrophic. The median forecast still expects a recovery to Nifty 27,000 by mid-2027 and 29,000 by end-2027 — roughly 20% upside from current levels over 18 months.
 
-For Indians living abroad, the ruling has implications for their voting rights. Overseas Indian voters are registered through a separate process, but the SIR framework could theoretically be applied to scrutinize their registrations. The ruling's emphasis on Aadhaar verification also raises questions for NRIs whose Aadhaar cards may have lapsed or been deactivated due to prolonged absence from India.
-
-The Supreme Court's decision is final and cannot be appealed, though specific aspects of SIR implementation in individual states could still be challenged in lower courts.
-
-## The Bigger Picture
-
-The ruling arrives at a charged moment in Indian democracy. With state elections approaching in multiple states and the 2029 general election on the horizon, the integrity of voter rolls has become a front-line political battleground.
-
-The court has tried to thread a needle: affirming the government's power to maintain clean voter rolls while preventing that power from being weaponized to determine who belongs. Whether that distinction holds in practice — in states where political pressure and bureaucratic machinery often blur legal boundaries — remains the unanswered question."""
+The near-term catalysts to watch: any resolution to the Iran-Hormuz crisis that brings oil prices back below $90, a stabilisation in the rupee, and the September quarter earnings season that could reveal whether India Inc. has any AI-adjacent growth story to tell. Until then, the world's fastest-growing major economy will keep losing the fight for global capital to markets that are growing faster in the one sector that matters most right now.""",
+    "source": "The Videshi",
+    "image_attribution": "Pexels",
 })
 
-# ─── ARTICLE 3: Atlassian Cuts 1,600 Jobs ─────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════
+# ARTICLE 3: American Airlines Doubles India Tech Hub
+# ═══════════════════════════════════════════════════════════════════
+
 articles.append({
-    "headline": "Atlassian Just Cut 1,600 Jobs and Replaced Its Indian-Origin CTO With an AI-Focused Leader. The Signal Is Clear.",
-    "subheadline": "Sri Viswanath built Atlassian's cloud infrastructure. His departure — and the company's pivot to 'next-gen AI talent' — is a warning shot for every Indian engineer in Silicon Valley.",
-    "slug": "atlassian-cuts-1600-jobs-indian-cto-sri-viswanath-ai-replacement-20260527",
-    "category": "news",
+    "headline": "American Airlines Will Double Its India Tech Hub to 800 People. Southwest Just Expanded to 1,000. The GCC Boom Has Reached the Airlines.",
+    "subheadline": "India now hosts over 2,100 global capability centres employing 2.36 million people and generating $100 billion in revenue. The latest entrants: America's two biggest domestic carriers.",
+    "slug": "american-airlines-southwest-india-gcc-tech-hub-hyderabad-double-20260527",
+    "sources": ["Reuters", "Nasscom-Zinnov 2026 Report"],
+    "image_person": None,
+    "image_pexels_query": "Hyderabad India technology office skyline",
+    "image_pexels_fallback": "India technology hub office workers",
     "vertical": "technology",
-    "sources": json.dumps(["Times Now", "Atlassian Inc.", "Reuters", "CryptoBriefing", "Jagranjosh"]),
-    "person_for_image": "Sri Viswanath",
-    "image_search": "Atlassian software company office",
-    "image_search_fallback": "tech company layoffs office",
-    "body": """Atlassian, the Australian software giant behind Jira, Confluence, and Trello, has announced it is cutting 1,600 jobs globally — roughly 10 percent of its workforce — as it restructures around artificial intelligence. Among those departing: Chief Technology Officer Sri Viswanath, the Indian-origin executive who built the company's cloud infrastructure over the past several years.
+    "body": """American Airlines plans to double headcount at its India technology hub to approximately 800 employees by early 2027, two people familiar with the matter told Reuters on Wednesday. The expansion comes just a week after rival Southwest Airlines announced plans to grow its Hyderabad global capability centre (GCC) to about 1,000 employees over the next few years.
 
-The move sent a clear signal. Atlassian is not just trimming headcount. It is replacing a generation of engineering leadership with executives whose backgrounds are in AI, machine learning, and automation. Investors welcomed the news. The company's stock rose on the announcement.
+The moves mark a new chapter in India's GCC story — one in which even America's legacy carriers, long focused on domestic operations, are building significant technology operations in India's southern tech corridor.
 
-## The Numbers
+## From Back Office to Core Engineering
 
-Of the 1,600 positions eliminated, approximately 250 are in India, where Atlassian has a significant engineering presence. The company has centers in Bengaluru that handle core product development, not just back-office functions.
+American Airlines established its Hyderabad hub in 2024 with roughly 400 staff focused on software engineering, artificial intelligence, and cybersecurity. The planned doubling would take the centre to 800 people working on core airline technology — not customer service scripts or data entry, but the digital infrastructure that keeps 6,700 daily flights in the air.
 
-Atlassian CEO Mike Cannon-Brookes framed the cuts as a "reshaping" rather than a cost-cutting exercise. "We're reorganizing our teams to build the next generation of AI-powered products," he said in a statement. "This requires different skills and different leadership."
+"Teams in Fort Worth, Phoenix and Hyderabad work closely with the business to digitize processes, deploy new tools that improve speed to market and business outcomes, and build a more resilient airline and better experience for team members and customers," American Airlines told Reuters.
 
-## The CTO Departure
+The airline said it has increased both IT investment and U.S.-based technology headcount every year since 2021 — the India expansion is additive, not a replacement for domestic hiring.
 
-Sri Viswanath's exit is the most symbolically significant part of the restructuring. As CTO, Viswanath led Atlassian's migration from on-premise software to its cloud platform — a multi-year, technically complex transformation that was central to the company's growth story.
+## The $100 Billion Machine
 
-But Atlassian's board has decided that the next phase requires a different kind of technical leadership. Viswanath's replacement, whose appointment has not yet been formally announced, is expected to have deep expertise in large language models, AI agents, and the automation of software development itself.
+India has emerged as the world's largest GCC hub by every metric that matters. According to the **2026 Nasscom-Zinnov report**, the country now hosts more than 2,100 global capability centres employing approximately 2.36 million people and generating nearly $100 billion in annual revenue.
 
-The message is hard to miss: the skills that built cloud infrastructure — distributed systems, database architecture, DevOps pipelines — are no longer the skills that matter most. What matters now is the ability to build AI systems that can do the work those infrastructures were designed to support.
+The roster reads like a who's who of global capitalism: **JPMorgan Chase**, **Walmart**, **McDonald's**, **Nvidia**, **Eli Lilly**, and now the two largest U.S. domestic airlines. What started as a cost arbitrage play — hiring Indian engineers at a fraction of Silicon Valley salaries — has evolved into something more fundamental. These centres now handle engineering, R&D, finance, analytics, and strategic operations.
 
-## The Wider Pattern
+The shift reflects two converging forces. First, the cost of talent in the United States and Europe has risen sharply, particularly for AI and cybersecurity specialists. Second, macroeconomic uncertainty — driven by the Iran war's energy shock, rising interest rates, and trade policy volatility — has pushed companies to build geographically distributed teams that can absorb disruption.
 
-Atlassian is not alone. Across the global tech industry, companies are simultaneously cutting traditional engineering roles and hiring for AI-specific positions — a phenomenon that has been particularly acute in India.
+## Hyderabad's Quiet Dominance
 
-Cognizant, the Indian-American IT giant, is planning to cut between 4,000 and 15,000 jobs globally under its "Project Leap" restructuring, with a disproportionate impact on its 250,000-strong Indian workforce. The company is investing the savings in AI and automation capabilities.
+While Bengaluru remains India's startup capital and Mumbai its financial hub, Hyderabad has emerged as the preferred destination for GCC operations. The city's advantages include lower real estate costs than Bengaluru, a deep talent pipeline from institutions like the Indian School of Business, IIIT Hyderabad, and the University of Hyderabad, and a state government that has been aggressively courting multinational tech investment for over two decades.
 
-Standard Chartered announced it would cut 7,800 jobs in its Chennai and Bengaluru operations. CEO Bill Winters described the move not as cost-cutting but as "replacing in some cases lower-value human capital."
+Both American Airlines and Southwest chose Hyderabad over Bengaluru, Chennai, and Pune — the other top contenders. The city is now home to GCCs from Google, Microsoft, Amazon, Apple, Meta, Qualcomm, Wells Fargo, Deloitte, and dozens more.
 
-A joint report by Nasscom and Indeed found that 40 percent of employers now prefer demonstrable AI skills or certifications over traditional degrees. Another 32 percent give equal weight to both. Puneet Chandok, president of Microsoft India and South Asia, put it plainly: "The biggest challenge is to get the right talent with the right AI skill."
+## The Model Is Changing
 
-## What This Means for Indian Tech Workers
+The most significant shift in India's GCC story is functional, not geographic. A decade ago, these centres were synonymous with cost savings — companies moved low-value tasks offshore to trim margins. Today, the conversation has inverted. Companies are moving high-value work to India because the talent is genuinely competitive at the frontier.
 
-For the Indian diaspora in tech — and for India's massive IT workforce — the Atlassian restructuring is a case study in the speed of displacement.
+American Airlines' Hyderabad hub works on AI and cybersecurity — not legacy mainframe maintenance. Southwest's centre builds operational technology. JPMorgan's India operations include quantitative research and risk modelling. Nvidia's Indian engineers work on GPU architecture and CUDA development.
 
-The company is not failing. Its products are used by hundreds of thousands of organizations worldwide. Revenue continues to grow. But the nature of the work that drives that revenue is changing faster than the workforce can adapt.
+This evolution carries implications for India's broader economic narrative. At a moment when the country's IT outsourcing giants — TCS, Infosys, Wipro, HCL Tech — are facing margin pressure and headcount reductions driven by AI automation, the GCC sector is growing in the opposite direction. The irony is sharp: the same AI revolution that threatens India's outsourcing model is fuelling the GCC model, because building and deploying AI requires exactly the kind of deep engineering talent that India's elite institutions produce.
 
-"The zero-to-two-years experience bucket will go away is my assumption in the next few years," said Deena Dayalan, the global head of digital operations at Kimberly Clark, speaking about entry-level hiring at global capability centers in India. A Nasscom-Zinnov report found that 73 percent of HR leaders are flagging a widening skills gap.
+## What It Means for the Diaspora
 
-For Indian engineers who spent the last decade mastering cloud, microservices, and container orchestration, the lesson from Atlassian is uncomfortable: those skills bought you a seat at the table. They may not keep you there.
+For Indian Americans working in U.S. aviation, finance, or technology, the GCC expansion creates two-way career pathways that did not exist a decade ago. Engineers who build systems in Fort Worth can rotate through Hyderabad; talent developed in India can eventually move into leadership roles at U.S. headquarters.
 
-## The Reskilling Race
-
-The question now is whether India's tech workforce can reskill fast enough. IBM India head Sandip Patel has called for a "trifecta" approach — industry, government, and academia working together to bridge the gap.
-
-Some GCCs (Global Capability Centers) are investing in internal reskilling programs. Others are partnering with universities to redesign curricula around AI and machine learning. But the pace of change is outrunning these efforts.
-
-India currently houses over 2,100 GCCs employing 2.36 million people and generating roughly $100 billion in revenue. That engine was built on the assumption that India's vast pool of skilled, affordable workers would always be in demand. AI is testing that assumption in real time."""
+The broader signal is structural: India's place in the global economy is shifting from labour arbitrage to capability arbitrage. The question is whether the country can sustain the talent pipeline — and the infrastructure — to support a $100 billion sector that shows no signs of slowing down.""",
+    "source": "The Videshi",
+    "image_attribution": "Pexels",
 })
 
-# ─── PUBLISH ──────────────────────────────────────────────────────────────────
 
-for i, art in enumerate(articles):
-    print(f"\n{'='*60}")
-    print(f"Article {i+1}: {art['headline'][:80]}...")
-    print(f"{'='*60}")
+# ── MAIN ─────────────────────────────────────────────────────────
+if __name__ == "__main__":
+    print("=" * 60)
+    print("The Videshi — News Writer (2026-05-27 evening)")
+    print("=" * 60)
 
-    # Check for duplicate
-    slug_check = requests.get(
-        f"{SUPABASE_URL}/rest/v1/p2_articles?select=id&slug=eq.{art['slug']}&limit=1",
-        headers=sb_headers(), timeout=10
-    )
-    if slug_check.status_code == 200 and slug_check.json():
-        print(f"  ⚠ Slug already exists, skipping: {art['slug']}")
-        continue
+    for i, article in enumerate(articles, 1):
+        print(f"\n{'─' * 50}")
+        print(f"Article {i}: {article['headline'][:70]}...")
+        print(f"{'─' * 50}")
 
-    # Validate body length
-    word_count = len(art["body"].split())
-    if word_count < 400:
-        print(f"  ✗ Body too short ({word_count} words), skipping")
-        continue
-    print(f"  ✓ Body: {word_count} words")
+        # Dedup check
+        slug_core = article["slug"].replace("-20260527", "").split("-")[0:4]
+        slug_fragment = "-".join(slug_core)
+        if check_duplicate(slug_fragment):
+            print(f"  ⏭ Skipping — possible duplicate found")
+            continue
 
-    # Image sourcing
-    img_url = None
-
-    # 1. Wikipedia for person articles
-    if art.get("person_for_image"):
-        img_url = fetch_wikipedia_person_image(art["person_for_image"])
-        # Try alternate names
-        if not img_url and " " in art["person_for_image"]:
-            # Try with disambiguation
-            for suffix in ["(engineer)", "(businessman)", "(computer scientist)"]:
-                img_url = fetch_wikipedia_person_image(f"{art['person_for_image']} {suffix}")
-                if img_url:
-                    break
-
-    # 2. Pexels fallback
-    if not img_url:
-        img_url = fetch_pexels_image(art["image_search"], art.get("image_search_fallback"))
-
-    # 3. Validate
-    if img_url and check_banned_url(img_url):
+        # Image sourcing
         img_url = None
-    if img_url and not validate_image(img_url):
-        print(f"  ✗ Image validation failed, proceeding without image")
-        img_url = None
+        attribution = "The Videshi"
 
-    # Build record
-    art_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+        # Step 1: Try Wikipedia if person article
+        if article.get("image_person"):
+            img_url = fetch_wikipedia_person_image(article["image_person"])
+            if img_url:
+                attribution = "Wikimedia Commons"
 
-    # Determine image attribution
-    img_attr = None
-    if img_url:
-        if "wikipedia" in img_url.lower() or "wikimedia" in img_url.lower():
-            img_attr = "Wikimedia Commons"
-        else:
-            img_attr = "The Videshi"
+        # Step 2: Pexels fallback
+        if not img_url:
+            img_url = fetch_pexels_image(
+                article.get("image_pexels_query", ""),
+                article.get("image_pexels_fallback", ""),
+            )
+            if img_url:
+                attribution = "Pexels"
 
-    record = {
-        "id": art_id,
-        "headline": art["headline"],
-        "subheadline": art["subheadline"],
-        "slug": art["slug"],
-        "body": art["body"],
-        "category": art["category"],
-        "vertical": art["vertical"],
-        "status": "published",
-        "published_at": now,
-        "sources": art["sources"],
-        "image_url": img_url,
-        "image_attribution": img_attr,
-    }
+        # Step 3: Validate and upload
+        final_image_url = None
+        if img_url:
+            if validate_image(img_url):
+                # Upload to Supabase for permanence
+                ext = "jpg"
+                filename = f"{article['slug']}.{ext}"
+                final_image_url = upload_image_to_supabase(img_url, filename)
+                if not final_image_url:
+                    # Use direct URL if upload fails (only for permanent sources)
+                    if "upload.wikimedia.org" in img_url or "images.pexels.com" in img_url:
+                        final_image_url = img_url
+                        print(f"  ℹ Using direct URL as fallback")
+            else:
+                print(f"  ⚠ Image failed validation, trying without image")
 
-    result = sb_insert("p2_articles", record)
-    if result:
-        print(f"  ✓ Published: {art['slug']}")
-        print(f"    ID: {art_id}")
-        print(f"    Image: {'Yes' if img_url else 'No'}")
-    else:
-        print(f"  ✗ Failed to publish: {art['slug']}")
+        article["image_url"] = final_image_url
+        article["image_attribution"] = attribution if final_image_url else None
 
-print("\n✓ News writer batch complete")
+        # Word count check
+        word_count = len(article["body"].split())
+        print(f"  📝 Word count: {word_count}")
+        if word_count < 400:
+            print(f"  ❌ Below 400-word floor! Skipping.")
+            continue
+
+        # Publish
+        art_id = publish_article(article)
+        if art_id and final_image_url:
+            print(f"  🖼 Image: {final_image_url[:80]}...")
+
+    print(f"\n{'=' * 60}")
+    print("Done.")
