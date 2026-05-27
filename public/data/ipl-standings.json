@@ -1,17 +1,67 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-27T19:03:02Z",
+  "last_updated": "2026-05-27T19:20:36Z",
   "stage": "PLAYOFFS. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1 done: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator done: RR beat SRH by 47 runs (May 27, Chandigarh). Qualifier 2: GT vs RR (May 29, Chandigarh). Final: RCB vs winner of Q2 (May 31, Ahmedabad).",
   "recent_results": [
-    "Eliminator: RR 243/8 beat SRH 196/10 by 47 runs (Sooryavanshi 97 off 40, broke Gayle all-time IPL sixes record). RR advance to Qualifier 2.",
-    "Qualifier 1: RCB 254/5 beat GT 162/10 by 92 runs (Patidar 93* off 33, 5 fours 9 sixes). RCB in the Final. Highest-ever IPL playoff target (255).",
-    "Match 70: DC vs KKR — final league match",
-    "Match 69: RR beat MI — RR qualified 4th, PBKS eliminated",
-    "Match 68: PBKS 200/3 beat LSG 196/6 by 7 wickets (Shreyas Iyer 101*)"
+    {
+      "team1": "RR",
+      "team2": "SRH",
+      "score1": "243/8",
+      "score2": "196/10",
+      "winner": "RR",
+      "margin": "47 runs",
+      "date": "May 27",
+      "venue": "New Chandigarh",
+      "match": "Eliminator"
+    },
+    {
+      "team1": "RCB",
+      "team2": "GT",
+      "score1": "254/5",
+      "score2": "162/10",
+      "winner": "RCB",
+      "margin": "92 runs",
+      "date": "May 26",
+      "venue": "Dharamsala",
+      "match": "Qualifier 1"
+    },
+    {
+      "team1": "DC",
+      "team2": "KKR",
+      "score1": "",
+      "score2": "",
+      "winner": "DC",
+      "margin": "",
+      "date": "May 25",
+      "venue": "",
+      "match": 70
+    },
+    {
+      "team1": "RR",
+      "team2": "MI",
+      "score1": "",
+      "score2": "",
+      "winner": "RR",
+      "margin": "",
+      "date": "May 25",
+      "venue": "",
+      "match": 69
+    },
+    {
+      "team1": "PBKS",
+      "team2": "LSG",
+      "score1": "200/3",
+      "score2": "196/6",
+      "winner": "PBKS",
+      "margin": "7 wickets",
+      "date": "May 24",
+      "venue": "",
+      "match": 68
+    }
   ],
   "upcoming": [
-    "Qualifier 2: GT vs RR (May 29, Chandigarh) — loser eliminated",
-    "FINAL: RCB vs winner of Q2 (May 31, Ahmedabad, Narendra Modi Stadium)"
+    "Qualifier 2: GT vs RR (May 29, New Chandigarh)",
+    "FINAL: RCB vs Q2 winner (May 31, Ahmedabad)"
   ],
   "standings": [
     {
@@ -126,31 +176,28 @@
     }
   ],
   "playoffs": {
-    "qualifier_1": {
-      "teams": "RCB vs GT",
+    "qualifier1": {
       "date": "May 26",
-      "venue": "Dharamsala",
-      "result": "RCB won by 92 runs",
-      "motm": "Rajat Patidar (93* off 33)"
+      "venue": "Dharamsala"
     },
     "eliminator": {
-      "teams": "SRH vs RR",
       "date": "May 27",
-      "venue": "New Chandigarh",
-      "result": "RR won by 47 runs",
-      "motm": "Vaibhav Sooryavanshi (97 off 40)"
+      "venue": "New Chandigarh"
     },
-    "qualifier_2": {
-      "teams": "GT vs RR",
+    "qualifier2": {
       "date": "May 29",
-      "venue": "New Chandigarh",
-      "result": "TBD"
+      "venue": "New Chandigarh"
     },
     "final": {
-      "teams": "RCB vs TBD",
       "date": "May 31",
-      "venue": "Ahmedabad (Narendra Modi Stadium)",
-      "result": "TBD"
+      "venue": "Ahmedabad (Narendra Modi Stadium)"
     }
+  },
+  "next_match": {
+    "team1": "GT",
+    "team2": "RR",
+    "date": "May 29",
+    "time": "7:30 PM IST",
+    "venue": "New Chandigarh"
   }
 }

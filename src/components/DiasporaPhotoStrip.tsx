@@ -1,6 +1,8 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 
-const PHOTOS: { src: string; label: string }[] = [
+type Photo = { src: string; label: string; source?: string; added_date?: string };
+
+const FALLBACK_PHOTOS: Photo[] = [
   { src: "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/jaipur-hawa-mahal.jpg", label: "Albert Hall Museum, Jaipur" },
   { src: "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/republic-day-parade.jpg", label: "BSF camel contingent, Republic Day parade, New Delhi" },
   { src: "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/delhi-street-food.jpg", label: "Curry and naan" },
@@ -23,13 +25,58 @@ const PHOTOS: { src: string; label: string }[] = [
   { src: "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/indian-wedding.jpg", label: "Mehndi and bangles, Indian wedding" },
 ];
 
+const DISPLAY_COUNT = 20;
+
+/** Simple seeded PRNG (mulberry32) for date-stable shuffle */
+function seededRng(seed: number) {
+  return () => {
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+/** Shuffle array in place using a seeded RNG */
+function seededShuffle<T>(arr: T[], seed: number): T[] {
+  const rng = seededRng(seed);
+  const out = [...arr];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
+/** Date seed: same value all day so shuffle is stable across re-renders */
+function todaySeed(): number {
+  const d = new Date();
+  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+}
+
 export default function DiasporaPhotoStrip() {
+  const [pool, setPool] = useState<Photo[]>(FALLBACK_PHOTOS);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const overlayScrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Fetch pool from JSON on mount
+  useEffect(() => {
+    fetch("/data/snapshots-pool.json")
+      .then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
+      .then((data: Photo[]) => { if (Array.isArray(data) && data.length > 0) setPool(data); })
+      .catch(() => { /* keep FALLBACK_PHOTOS */ });
+  }, []);
+
+  // Pick 20 photos from the pool with a date-stable shuffle
+  const photos = useMemo(() => {
+    if (pool.length <= DISPLAY_COUNT) return pool;
+    const shuffled = seededShuffle(pool, todaySeed());
+    return shuffled.slice(0, DISPLAY_COUNT);
+  }, [pool]);
 
   const closeOverlay = useCallback(() => {
     setSelectedIndex(null);
@@ -40,17 +87,17 @@ export default function DiasporaPhotoStrip() {
     const el = overlayScrollRef.current;
     if (!el) return;
     const idx = Math.round(el.scrollLeft / el.clientWidth);
-    if (idx >= 0 && idx < PHOTOS.length) {
+    if (idx >= 0 && idx < photos.length) {
       setCurrentIndex(idx);
     }
-  }, []);
+  }, [photos.length]);
 
   // When overlay opens, scroll to the tapped photo instantly
   useEffect(() => {
     if (selectedIndex === null) return;
     setCurrentIndex(selectedIndex);
     // Preload all images when overlay opens
-    PHOTOS.forEach((p) => {
+    photos.forEach((p) => {
       const img = new Image();
       img.src = p.src;
     });
@@ -61,9 +108,9 @@ export default function DiasporaPhotoStrip() {
         el.scrollTo({ left: selectedIndex * el.clientWidth, behavior: "instant" as ScrollBehavior });
       }
     });
-  }, [selectedIndex]);
+  }, [selectedIndex, photos]);
 
-  // Keyboard nav in lightbox — programmatic scroll, not state swap
+  // Keyboard nav in lightbox
   useEffect(() => {
     if (selectedIndex === null) return;
     const handleKey = (e: KeyboardEvent) => {
@@ -71,7 +118,7 @@ export default function DiasporaPhotoStrip() {
       if (!el) return;
       if (e.key === "Escape") closeOverlay();
       if (e.key === "ArrowRight") {
-        const next = Math.min(currentIndex + 1, PHOTOS.length - 1);
+        const next = Math.min(currentIndex + 1, photos.length - 1);
         el.scrollTo({ left: next * el.clientWidth, behavior: "smooth" });
       }
       if (e.key === "ArrowLeft") {
@@ -81,7 +128,7 @@ export default function DiasporaPhotoStrip() {
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [selectedIndex, currentIndex, closeOverlay]);
+  }, [selectedIndex, currentIndex, closeOverlay, photos.length]);
 
   // Strip scroll buttons
   const updateScrollButtons = useCallback(() => {
@@ -100,11 +147,11 @@ export default function DiasporaPhotoStrip() {
 
   // Preload first 4 strip images eagerly on mount
   useEffect(() => {
-    PHOTOS.slice(0, 4).forEach((p) => {
+    photos.slice(0, 4).forEach((p) => {
       const img = new Image();
       img.src = p.src;
     });
-  }, []);
+  }, [photos]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -222,9 +269,9 @@ export default function DiasporaPhotoStrip() {
               padding: "0 1rem",
             } as React.CSSProperties}
           >
-            {PHOTOS.map((photo, i) => (
+            {photos.map((photo, i) => (
               <div
-                key={i}
+                key={photo.src}
                 onClick={() => setSelectedIndex(i)}
                 style={{
                   position: "relative",
@@ -342,12 +389,10 @@ export default function DiasporaPhotoStrip() {
               userSelect: "none",
             }}
           >
-            {currentIndex + 1} / {PHOTOS.length}
+            {currentIndex + 1} / {photos.length}
           </p>
 
-          {/* Scroll-snap container — THIS is where the magic happens.
-              Native horizontal scroll with snap points = compositor-driven 60fps swiping.
-              No JS touch handlers, no state updates per swipe frame. */}
+          {/* Scroll-snap container — native 60fps swiping */}
           <div
             ref={overlayScrollRef}
             className="snap-lightbox"
@@ -363,9 +408,9 @@ export default function DiasporaPhotoStrip() {
               msOverflowStyle: "none",
             } as React.CSSProperties}
           >
-            {PHOTOS.map((photo, i) => (
+            {photos.map((photo, i) => (
               <div
-                key={i}
+                key={photo.src}
                 style={{
                   minWidth: "100vw",
                   width: "100vw",
@@ -412,7 +457,7 @@ export default function DiasporaPhotoStrip() {
               alignSelf: "center",
             }}
           >
-            {PHOTOS[currentIndex]?.label}
+            {photos[currentIndex]?.label}
           </p>
 
           {/* Dot indicators */}
@@ -424,7 +469,7 @@ export default function DiasporaPhotoStrip() {
               paddingBottom: "20px",
             }}
           >
-            {PHOTOS.map((_, i) => (
+            {photos.map((_, i) => (
               <div
                 key={i}
                 onClick={() => {

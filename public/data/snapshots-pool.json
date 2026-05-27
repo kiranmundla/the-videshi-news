@@ -1,22 +1,262 @@
 [
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/holi-mathura.jpg", "label": "Holi celebrations, India" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/republic-day-parade.jpg", "label": "BSF camel contingent, Republic Day parade, New Delhi" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/diwali-diyas.jpg", "label": "Diwali diyas" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/ipl-cricket.jpg", "label": "Cricket practice, India" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/kumbh-mela.jpg", "label": "Boats on the Ganges, Varanasi" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/ganesh-chaturthi-mumbai.jpg", "label": "Ganesh Chaturthi idol, Mumbai" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/durga-puja-kolkata.jpg", "label": "Durga Puja pandal, Kolkata" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/ram-mandir-temple.jpg", "label": "Hindu temple gopuram, South India" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/taj-mahal-agra.jpg", "label": "Taj Mahal, Agra" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/varanasi-ghats.jpg", "label": "Boats at the ghats, Varanasi" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/mumbai-skyline.jpg", "label": "Mumbai skyline from the Arabian Sea" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/india-gate-delhi.jpg", "label": "India Gate, New Delhi" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/kerala-backwaters.jpg", "label": "Houseboat on the backwaters, Kerala" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/jaipur-hawa-mahal.jpg", "label": "Albert Hall Museum, Jaipur" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/indian-spice-market.jpg", "label": "Indian spices" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/indian-wedding.jpg", "label": "Mehndi and bangles, Indian wedding" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/delhi-street-food.jpg", "label": "Curry and naan" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/pushkar-camel-fair.jpg", "label": "Camel trader, Pushkar, Rajasthan" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/onam-boat-race.jpg", "label": "Snake boat race, Kerala" },
-  { "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/indian-railway.jpg", "label": "Indian Railways" }
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/holi-mathura.jpg",
+    "label": "Holi celebrations, India",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/republic-day-parade.jpg",
+    "label": "BSF camel contingent, Republic Day parade, New Delhi",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/diwali-diyas.jpg",
+    "label": "Diwali diyas",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/ipl-cricket.jpg",
+    "label": "Cricket practice, India",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/kumbh-mela.jpg",
+    "label": "Boats on the Ganges, Varanasi",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/ganesh-chaturthi-mumbai.jpg",
+    "label": "Ganesh Chaturthi idol, Mumbai",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/durga-puja-kolkata.jpg",
+    "label": "Durga Puja pandal, Kolkata",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/ram-mandir-temple.jpg",
+    "label": "Hindu temple gopuram, South India",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/taj-mahal-agra.jpg",
+    "label": "Taj Mahal, Agra",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/varanasi-ghats.jpg",
+    "label": "Boats at the ghats, Varanasi",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/mumbai-skyline.jpg",
+    "label": "Mumbai skyline from the Arabian Sea",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/india-gate-delhi.jpg",
+    "label": "India Gate, New Delhi",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/kerala-backwaters.jpg",
+    "label": "Houseboat on the backwaters, Kerala",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/jaipur-hawa-mahal.jpg",
+    "label": "Albert Hall Museum, Jaipur",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/indian-spice-market.jpg",
+    "label": "Indian spices",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/indian-wedding.jpg",
+    "label": "Mehndi and bangles, Indian wedding",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/delhi-street-food.jpg",
+    "label": "Curry and naan",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/pushkar-camel-fair.jpg",
+    "label": "Camel trader, Pushkar, Rajasthan",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/onam-boat-race.jpg",
+    "label": "Snake boat race, Kerala",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/events/indian-railway.jpg",
+    "label": "Indian Railways",
+    "source": "curated",
+    "added_date": "2026-05-01"
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-community-celebration-11094777.jpg",
+    "label": "A lively scene of men playing traditional drums at a cultural festival, wearing colorful attire. · 📷 Swastik Arora",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 11094777
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-community-celebration-15675903.jpg",
+    "label": "Smiling Indian women in colorful traditional clothing engaging in a lively outdoor gathering. · 📷 Voters Party International",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 15675903
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-community-celebration-30074203.jpg",
+    "label": "A vibrant festival scene in Delhi, showcasing traditional Indian culture and celebration. · 📷 Shantanu Kumar",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 30074203
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-community-celebration-10003451.jpg",
+    "label": "Three Native American men in traditional attire play guitars outdoors, capturing a cultural musical moment. · 📷 Sami  Aksu",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 10003451
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-community-celebration-10892569.jpg",
+    "label": "A group of musicians celebrating a traditional Indian festival with vibrant attire and instruments. · 📷 Swastik Arora",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 10892569
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-temple-festival-36849624.jpg",
+    "label": "Vibrant traditional Indian festival with performers in elaborate costumes and makeup, showcasing cultural heritage. · 📷 Pavan Prasad",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 36849624
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-temple-festival-36849636.jpg",
+    "label": "Colorful scene of people in traditional attire celebrating a Hindu festival at a temple. · 📷 Pavan Prasad",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 36849636
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-temple-festival-36849683.jpg",
+    "label": "Vibrant Indian cultural procession at a Hindu temple with participants in traditional attire. · 📷 Pavan Prasad",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 36849683
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-temple-festival-32316805.jpg",
+    "label": "Elephant adorned with vibrant decorations parades through a festive procession with a cheering crowd. · 📷 Abhishek  Vadakkan",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 32316805
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-temple-festival-36771232.jpg",
+    "label": "Capturing a vibrant Hindu procession at Tirumala Temple, highlighting cultural and religious traditions in Tirupati, India. · 📷 Vijay Richhiya",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 36771232
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/onam-kerala-celebration-31154802.jpg",
+    "label": "Women in traditional attire participate in outdoor cooking festival. · 📷 PREM GS",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 31154802
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/onam-kerala-celebration-37565104.jpg",
+    "label": "Colorful Kathakali dancer in traditional costume at Thrissur festival, Kerala, India. · 📷 Jomon Kollannoor",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 37565104
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/onam-kerala-celebration-8566097.jpg",
+    "label": "Vibrant Kathakali dancers performing in traditional costumes at a cultural event in Kerala, India. · 📷 Jithin murali",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 8566097
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/onam-kerala-celebration-32455915.jpg",
+    "label": "Elegant South Indian woman in traditional attire adorned with jewelry, celebrating culture. · 📷 Manoj Bharathi",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 32455915
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/onam-kerala-celebration-12517577.jpg",
+    "label": "Captivating scene of a traditional dance festival in Bengaluru, showcasing cultural vibrancy and community spirit. · 📷 Ravi Mittal",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 12517577
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/mumbai-gateway-of-india-36874536.jpg",
+    "label": "Stunning view of the iconic Gateway of India with boats and visitors at sunset in Mumbai. · 📷 Frank van Dijk",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 36874536
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/mumbai-gateway-of-india-6522109.jpg",
+    "label": "Vibrant crowd gathered at the famous Gateway of India in Mumbai, India during the day. · 📷 Shubam Bhasin",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 6522109
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/mumbai-gateway-of-india-6522114.jpg",
+    "label": "The iconic Gateway of India in Mumbai, a popular tourist attraction and historical landmark, on a sunny day. · 📷 Shubam Bhasin",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 6522114
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/mumbai-gateway-of-india-21319632.jpg",
+    "label": "Iconic Gateway of India monument in Mumbai, a popular tourist attraction, captured at dusk. · 📷 Shivam ‎",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 21319632
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/mumbai-gateway-of-india-10587328.jpg",
+    "label": "Low-angle view of the Gateway of India showcasing intricate architectural design in Mumbai. · 📷 Thé Aditya  Jadhav",
+    "source": "pexels",
+    "added_date": "2026-05-27",
+    "pexels_id": 10587328
+  }
 ]
