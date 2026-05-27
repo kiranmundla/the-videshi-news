@@ -545,7 +545,7 @@ def render_image_scene(article, tmp_dir, img_path):
     text_block_h = chosen_lh * len(chosen_lines)
     # Total chyron content: badge + gap + text + gap + gold line + gap + site text
     chyron_content_h = bh_badge + 20 + text_block_h + 14 + 3 + 20 + 22
-    chyron_bottom_pad = 40
+    chyron_bottom_pad = 280
     chyron_top_pad = 80
 
     # Position chyron content so it ends near the bottom
