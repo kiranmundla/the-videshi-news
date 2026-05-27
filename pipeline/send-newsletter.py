@@ -144,17 +144,16 @@ def fetch_weekly_articles(since_iso):
 
 
 def fetch_upcoming_events(from_date, to_date):
-    """Fetch events in the next 7 days."""
+    """Fetch featured/national events."""
     try:
-        params = {
-            "select": "id,title,slug,date,city,state,venue_name,ticket_url",
+        featured = supabase_get("events", {
+            "select": "id,title,slug,date,city,state,venue_name,ticket_url,is_featured,image_url,venue_images",
+            "is_featured": "eq.true",
             "date": f"gte.{from_date}",
             "order": "date.asc",
             "limit": "5",
-        }
-        events = supabase_get("events", params)
-        # Filter to within the window
-        return [e for e in events if e.get("date", "") <= to_date]
+        })
+        return featured
     except Exception as e:
         print(f"⚠ Events fetch failed (non-critical): {e}")
         return []
@@ -329,20 +328,47 @@ def build_email_html(hero, stories, events, week_start, week_end, unsub_url):
                 body_summary = summarise(s.get("body", ""), 2) or s.get("subheadline", "")
                 if len(body_summary) > 200:
                     body_summary = body_summary[:197].rsplit(" ", 1)[0] + "…"
+                img_url = s.get("image_url", "")
 
-                article_rows += f"""
+                if img_url:
+                    article_rows += f"""
                   <tr>
-                    <td style="padding: 6px 0 10px 0;">
-                      <a href="{url}" target="_blank" style="font-size: 15px; font-weight: 600; color: #1a1a2e; text-decoration: none; line-height: 1.4;">
+                    <td style="padding: 6px 0 12px 0;">
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td width="80" style="vertical-align: top; padding-right: 12px;">
+                            <a href="{url}" target="_blank">
+                              <img src="{img_url}" alt="" width="80" height="80" style="display: block; border-radius: 6px; width: 80px; height: 80px; object-fit: cover;" />
+                            </a>
+                          </td>
+                          <td style="vertical-align: top;">
+                            <a href="{url}" target="_blank" style="font-size: 15px; font-weight: 600; color: #1a1a2e; text-decoration: none; line-height: 1.3;">
+                              {s['headline']}
+                            </a>
+                            <br />
+                            <span style="font-size: 13px; color: #666; line-height: 1.4;">
+                              {body_summary}
+                            </span>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                    """
+                else:
+                    article_rows += f"""
+                  <tr>
+                    <td style="padding: 6px 0 12px 0;">
+                      <a href="{url}" target="_blank" style="font-size: 15px; font-weight: 600; color: #1a1a2e; text-decoration: none; line-height: 1.3;">
                         {s['headline']}
                       </a>
                       <br />
-                      <span style="font-size: 13px; color: #666; line-height: 1.5;">
+                      <span style="font-size: 13px; color: #666; line-height: 1.4;">
                         {body_summary}
                       </span>
                     </td>
                   </tr>
-                """
+                    """
 
             category_blocks += f"""
               <tr>
@@ -371,11 +397,11 @@ def build_email_html(hero, stories, events, week_start, week_end, unsub_url):
         </tr>
         """
 
-    # Events section
+    # Events section — featured/national only, with thumbnails
     events_html = ""
     if events:
         event_rows = ""
-        for ev in events[:3]:
+        for ev in events[:5]:
             ev_date = ev.get("date", "")
             try:
                 ev_date_fmt = datetime.strptime(ev_date, "%Y-%m-%d").strftime("%b %d")
@@ -384,18 +410,38 @@ def build_email_html(hero, stories, events, week_start, week_end, unsub_url):
             city = ev.get("city", "")
             state = ev.get("state", "")
             location = f"{city}, {state}" if city and state else city or state or ""
-            ev_url = ev.get("ticket_url") or f"{SITE_URL}/events/{ev.get('slug', '')}"
+            ev_url = f"{SITE_URL}/events/{ev.get('slug', '')}"
+
+            # Pick best image: image_url > venue_images[0] > none
+            img_url = ev.get("image_url") or ""
+            if not img_url:
+                vi = ev.get("venue_images") or []
+                if vi:
+                    img_url = vi[0] if isinstance(vi, list) else ""
+
+            img_td = ""
+            if img_url:
+                img_td = f"""
+                    <td width="70" valign="top" style="padding-right: 12px;">
+                      <a href="{ev_url}" target="_blank">
+                        <img src="{img_url}" alt="" width="70" style="display: block; border-radius: 6px; width: 70px; height: auto;" />
+                      </a>
+                    </td>"""
 
             event_rows += f"""
               <tr>
                 <td style="padding: 10px 0; border-bottom: 1px solid #eee;">
-                  <a href="{ev_url}" target="_blank" style="font-size: 15px; font-weight: 600; color: #1a1a2e; text-decoration: none;">
-                    {ev['title']}
-                  </a>
-                  <br />
-                  <span style="font-size: 13px; color: #666;">
-                    📅 {ev_date_fmt} &nbsp;·&nbsp; 📍 {location}
-                  </span>
+                  <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>{img_td}
+                    <td valign="top">
+                      <a href="{ev_url}" target="_blank" style="font-size: 15px; font-weight: 600; color: #1a1a2e; text-decoration: none;">
+                        {ev['title']}
+                      </a>
+                      <br />
+                      <span style="font-size: 13px; color: #666;">
+                        📅 {ev_date_fmt} &nbsp;·&nbsp; 📍 {location}
+                      </span>
+                    </td>
+                  </tr></table>
                 </td>
               </tr>
             """
@@ -406,14 +452,14 @@ def build_email_html(hero, stories, events, week_start, week_end, unsub_url):
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top: 2px solid #1a1a2e;">
               <tr>
                 <td style="padding-top: 16px; padding-bottom: 8px; font-size: 18px; font-weight: 700; color: #1a1a2e;">
-                  🎉 Upcoming Events
+                  🎉 Featured Events
                 </td>
               </tr>
               {event_rows}
               <tr>
-                <td style="padding-top: 12px;">
-                  <a href="{SITE_URL}/events" target="_blank" style="font-size: 13px; color: #c9a84c; font-weight: 600; text-decoration: none;">
-                    See all events →
+                <td style="padding-top: 14px; text-align: center;">
+                  <a href="{SITE_URL}/events" target="_blank" style="display: inline-block; padding: 10px 24px; background-color: #1a1a2e; color: #c9a84c; font-size: 13px; font-weight: 700; text-decoration: none; border-radius: 6px; letter-spacing: 0.3px;">
+                    Find events near you →
                   </a>
                 </td>
               </tr>
@@ -515,13 +561,14 @@ def build_email_html(hero, stories, events, week_start, week_end, unsub_url):
                 Your daily source for Indian diaspora news
               </div>
               <div style="margin-bottom: 16px;">
-                <a href="https://x.com/thevideshi" target="_blank" style="color: #c9a84c; text-decoration: none; font-size: 12px; margin: 0 8px;">𝕏 @thevideshi</a>
-                &nbsp;·&nbsp;
-                <a href="https://www.threads.net/@the.videshi" target="_blank" style="color: #c9a84c; text-decoration: none; font-size: 12px; margin: 0 8px;">Threads @the.videshi</a>
-                &nbsp;·&nbsp;
-                <a href="https://www.instagram.com/the.videshi" target="_blank" style="color: #c9a84c; text-decoration: none; font-size: 12px; margin: 0 8px;">IG @the.videshi</a>
-                &nbsp;·&nbsp;
-                <a href="https://www.youtube.com/@TheVideshi" target="_blank" style="color: #c9a84c; text-decoration: none; font-size: 12px; margin: 0 8px;">YouTube</a>
+                <table cellpadding="0" cellspacing="0" border="0" align="center">
+                  <tr>
+                    <td style="padding: 0 8px;"><a href="https://x.com/thevideshi" target="_blank"><img src="https://cdn.simpleicons.org/x/c9a84c" alt="X" width="20" height="20" style="display: block;" /></a></td>
+                    <td style="padding: 0 8px;"><a href="https://www.threads.net/@the.videshi" target="_blank"><img src="https://cdn.simpleicons.org/threads/c9a84c" alt="Threads" width="20" height="20" style="display: block;" /></a></td>
+                    <td style="padding: 0 8px;"><a href="https://www.instagram.com/the.videshi" target="_blank"><img src="https://cdn.simpleicons.org/instagram/c9a84c" alt="Instagram" width="20" height="20" style="display: block;" /></a></td>
+                    <td style="padding: 0 8px;"><a href="https://www.youtube.com/@TheVideshi" target="_blank"><img src="https://cdn.simpleicons.org/youtube/c9a84c" alt="YouTube" width="20" height="20" style="display: block;" /></a></td>
+                  </tr>
+                </table>
               </div>
               <div style="border-top: 1px solid #333; padding-top: 14px;">
                 <a href="{SITE_URL}" target="_blank" style="color: #c9a84c; text-decoration: none; font-size: 12px;">thevideshi.com</a>

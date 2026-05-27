@@ -179,13 +179,23 @@ def score_article(a):
 
 
 def pick_daily_stories(articles):
-    """Pick 1 best per category, max 6 total, ranked by quality score."""
+    """Pick a hero + 5 stories across categories, ranked by quality score."""
     # Sort by score (desc), then recency as tiebreaker
     scored = sorted(articles, key=lambda a: (score_article(a), a.get("published_at", "")), reverse=True)
 
+    # Hero: best-scoring article with an image
+    hero = None
+    for a in scored:
+        if a.get("image_url") and a.get("slug"):
+            hero = a
+            break
+
+    hero_id = hero["id"] if hero else None
+    hero_cat = hero.get("category") if hero else None
+
     by_cat = {}
     for a in scored:
-        if not a.get("slug"):
+        if not a.get("slug") or a["id"] == hero_id:
             continue
         cat = a.get("category", "news")
         if cat not in by_cat:
@@ -193,18 +203,66 @@ def pick_daily_stories(articles):
 
     stories = []
     for cat in CATEGORY_ORDER:
+        if cat == hero_cat:
+            continue
         if cat in by_cat:
             stories.append(by_cat[cat])
-        if len(stories) >= 6:
+        if len(stories) >= 5:
             break
 
-    return stories
+    return hero, stories
 
 
 # ── HTML email builder ──────────────────────────────────────────────────────
 
-def build_daily_html(stories, date_label, unsub_url):
+def build_daily_html(hero, stories, date_label, unsub_url):
     """Build the daily briefing HTML email."""
+
+    # Hero section
+    hero_html = ""
+    if hero:
+        hero_summary = summarise(hero.get("body", ""), 2) or hero.get("subheadline", "")
+        hero_cat = hero.get("category", "news")
+        hero_emoji = CATEGORY_EMOJI.get(hero_cat, "📰")
+        hero_label = CATEGORY_LABEL.get(hero_cat, hero_cat.upper())
+        hero_url = f"{SITE_URL}/articles/{hero['slug']}"
+        hero_img = hero.get("image_url", "")
+
+        hero_html = f"""
+        <tr>
+          <td style="padding: 0 24px 24px 24px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="padding-bottom: 12px;">
+                  <span style="font-size: 11px; font-weight: 700; color: #c9a84c; letter-spacing: 1.5px; text-transform: uppercase;">
+                    {hero_emoji} {hero_label} &mdash; TOP STORY
+                  </span>
+                </td>
+              </tr>
+              {"<tr><td style='padding-bottom: 16px;'><a href='" + hero_url + "' target='_blank'><img src='" + hero_img + "' alt='' width='100%' style='display: block; border-radius: 8px; max-width: 100%; height: auto;' /></a></td></tr>" if hero_img else ""}
+              <tr>
+                <td>
+                  <a href="{hero_url}" target="_blank" style="font-size: 20px; font-weight: 700; color: #1a1a2e; text-decoration: none; line-height: 1.3;">
+                    {hero['headline']}
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding-top: 10px; font-size: 14px; color: #444; line-height: 1.6;">
+                  {hero_summary}
+                </td>
+              </tr>
+              <tr>
+                <td style="padding-top: 14px;">
+                  <a href="{hero_url}" target="_blank" style="display: inline-block; padding: 10px 24px; background-color: #c9a84c; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 6px;">
+                    Read more &rarr;
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        """
 
     # Group stories by category (preserving order)
     grouped = OrderedDict()
@@ -226,20 +284,48 @@ def build_daily_html(stories, date_label, unsub_url):
             body_summary = summarise(s.get("body", ""), 2) or s.get("subheadline", "")
             if len(body_summary) > 180:
                 body_summary = body_summary[:177].rsplit(" ", 1)[0] + "…"
+            img_url = s.get("image_url", "")
 
-            article_rows += f"""
+            # Thumbnail + text layout if image exists, text-only otherwise
+            if img_url:
+                article_rows += f"""
               <tr>
-                <td style="padding: 4px 0 10px 0;">
-                  <a href="{url}" target="_blank" style="font-size: 15px; font-weight: 600; color: #1a1a2e; text-decoration: none; line-height: 1.4;">
+                <td style="padding: 6px 0 12px 0;">
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td width="80" style="vertical-align: top; padding-right: 12px;">
+                        <a href="{url}" target="_blank">
+                          <img src="{img_url}" alt="" width="80" height="80" style="display: block; border-radius: 6px; width: 80px; height: 80px; object-fit: cover;" />
+                        </a>
+                      </td>
+                      <td style="vertical-align: top;">
+                        <a href="{url}" target="_blank" style="font-size: 15px; font-weight: 600; color: #1a1a2e; text-decoration: none; line-height: 1.3;">
+                          {s['headline']}
+                        </a>
+                        <br />
+                        <span style="font-size: 13px; color: #666; line-height: 1.4;">
+                          {body_summary}
+                        </span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+                """
+            else:
+                article_rows += f"""
+              <tr>
+                <td style="padding: 6px 0 12px 0;">
+                  <a href="{url}" target="_blank" style="font-size: 15px; font-weight: 600; color: #1a1a2e; text-decoration: none; line-height: 1.3;">
                     {s['headline']}
                   </a>
                   <br />
-                  <span style="font-size: 13px; color: #666; line-height: 1.5;">
+                  <span style="font-size: 13px; color: #666; line-height: 1.4;">
                     {body_summary}
                   </span>
                 </td>
               </tr>
-            """
+                """
 
         category_blocks += f"""
           <tr>
@@ -319,6 +405,9 @@ def build_daily_html(stories, date_label, unsub_url):
           <!-- SPACER -->
           <tr><td style="height: 16px;"></td></tr>
 
+          <!-- HERO -->
+          {hero_html}
+
           {stories_html}
 
           {quick_links_html}
@@ -333,13 +422,14 @@ def build_daily_html(stories, date_label, unsub_url):
                 Your daily source for Indian diaspora news
               </div>
               <div style="margin-bottom: 12px;">
-                <a href="https://x.com/thevideshi" target="_blank" style="color: #c9a84c; text-decoration: none; font-size: 11px;">𝕏 @thevideshi</a>
-                &nbsp;·&nbsp;
-                <a href="https://www.threads.net/@the.videshi" target="_blank" style="color: #c9a84c; text-decoration: none; font-size: 11px;">Threads</a>
-                &nbsp;·&nbsp;
-                <a href="https://www.instagram.com/the.videshi" target="_blank" style="color: #c9a84c; text-decoration: none; font-size: 11px;">Instagram</a>
-                &nbsp;·&nbsp;
-                <a href="https://www.youtube.com/@TheVideshi" target="_blank" style="color: #c9a84c; text-decoration: none; font-size: 11px;">YouTube</a>
+                <table cellpadding="0" cellspacing="0" border="0" align="center">
+                  <tr>
+                    <td style="padding: 0 8px;"><a href="https://x.com/thevideshi" target="_blank"><img src="https://cdn.simpleicons.org/x/c9a84c" alt="X" width="20" height="20" style="display: block;" /></a></td>
+                    <td style="padding: 0 8px;"><a href="https://www.threads.net/@the.videshi" target="_blank"><img src="https://cdn.simpleicons.org/threads/c9a84c" alt="Threads" width="20" height="20" style="display: block;" /></a></td>
+                    <td style="padding: 0 8px;"><a href="https://www.instagram.com/the.videshi" target="_blank"><img src="https://cdn.simpleicons.org/instagram/c9a84c" alt="Instagram" width="20" height="20" style="display: block;" /></a></td>
+                    <td style="padding: 0 8px;"><a href="https://www.youtube.com/@TheVideshi" target="_blank"><img src="https://cdn.simpleicons.org/youtube/c9a84c" alt="YouTube" width="20" height="20" style="display: block;" /></a></td>
+                  </tr>
+                </table>
               </div>
               <div style="border-top: 1px solid #333; padding-top: 10px;">
                 <a href="{SITE_URL}" target="_blank" style="color: #c9a84c; text-decoration: none; font-size: 11px;">thevideshi.com</a>
@@ -437,8 +527,10 @@ def main():
         print("⚠ No articles in the past 24h — skipping daily briefing.")
         sys.exit(0)
 
-    # Pick stories
-    stories = pick_daily_stories(articles)
+    # Pick hero + stories
+    hero, stories = pick_daily_stories(articles)
+    if hero:
+        print(f"   Hero: [{hero.get('category', '?')}] {hero['headline'][:65]}…")
     print(f"   Selected {len(stories)} stories across {len(set(s.get('category') for s in stories))} categories")
     for s in stories:
         cat = s.get("category", "?")
@@ -465,7 +557,7 @@ def main():
 
     # Build preview HTML
     preview_unsub = f"{SITE_URL}/unsubscribe?email=preview@example.com&token=preview"
-    preview_html = build_daily_html(stories, date_label, preview_unsub)
+    preview_html = build_daily_html(hero, stories, date_label, preview_unsub)
 
     if args.dry_run:
         out_dir = Path(__file__).parent / "newsletter-previews"
@@ -483,7 +575,7 @@ def main():
         email = sub["email"]
         token = make_unsub_token(email)
         unsub_url = f"{SITE_URL}/unsubscribe?email={quote(email)}&token={token}"
-        html = build_daily_html(stories, date_label, unsub_url)
+        html = build_daily_html(hero, stories, date_label, unsub_url)
 
         try:
             result = send_email(email, subject, html, resend_key, unsub_url)
@@ -510,6 +602,7 @@ def main():
         "subscribers": len(subscribers),
         "sent": sent,
         "errors": len(errors),
+        "hero_slug": hero["slug"] if hero else None,
         "story_count": len(stories),
     })
     log_path.write_text(json.dumps(log, indent=2))
@@ -518,7 +611,7 @@ def main():
     archive_dir = Path(__file__).parent / "newsletter-archive"
     archive_dir.mkdir(exist_ok=True)
     archive_path = archive_dir / f"daily-{now.strftime('%Y-%m-%d')}.html"
-    archive_html = build_daily_html(stories, date_label, "#")
+    archive_html = build_daily_html(hero, stories, date_label, "#")
     archive_path.write_text(archive_html)
     print(f"   Archived: {archive_path}")
 

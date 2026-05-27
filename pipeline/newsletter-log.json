@@ -96,5 +96,165 @@
     "sent": 1,
     "errors": 0,
     "story_count": 6
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-05-27T14:59:27.536506+00:00Z",
+    "subject": "The Videshi Daily \u2014 May 27, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "economic-benefit-package-immigration-lawyers-50k-documentation-20260527",
+    "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-05-27T15:00:42.407288+00:00Z",
+    "subject": "The Videshi Daily \u2014 May 27, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "economic-benefit-package-immigration-lawyers-50k-documentation-20260527",
+    "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-05-27T15:01:21.345999+00:00Z",
+    "subject": "The Videshi Daily \u2014 May 27, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "economic-benefit-package-immigration-lawyers-50k-documentation-20260527",
+    "story_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T15:01:23.051026+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "india-outsourcing-ai-fewer-workers-reuters-summit-jobs-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-05-27T15:04:18.669379+00:00Z",
+    "subject": "The Videshi Daily \u2014 May 27, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "economic-benefit-package-immigration-lawyers-50k-documentation-20260527",
+    "story_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T15:04:20.228385+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "india-outsourcing-ai-fewer-workers-reuters-summit-jobs-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-05-27T15:04:53.768425+00:00Z",
+    "subject": "The Videshi Daily \u2014 May 27, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "economic-benefit-package-immigration-lawyers-50k-documentation-20260527",
+    "story_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T15:04:54.997243+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "india-outsourcing-ai-fewer-workers-reuters-summit-jobs-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-05-27T15:07:16.483482+00:00Z",
+    "subject": "The Videshi Daily \u2014 May 27, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "economic-benefit-package-immigration-lawyers-50k-documentation-20260527",
+    "story_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T15:07:18.319063+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "india-outsourcing-ai-fewer-workers-reuters-summit-jobs-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-05-27T15:20:10.866288+00:00Z",
+    "subject": "The Videshi Daily \u2014 May 27, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "economic-benefit-package-immigration-lawyers-50k-documentation-20260527",
+    "story_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T15:20:12.527815+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "india-outsourcing-ai-fewer-workers-reuters-summit-jobs-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T15:26:12.628370+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "india-outsourcing-ai-fewer-workers-reuters-summit-jobs-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T15:28:16.973919+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "india-outsourcing-ai-fewer-workers-reuters-summit-jobs-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T15:29:27.369599+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "india-outsourcing-ai-fewer-workers-reuters-summit-jobs-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T15:32:54.827383+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "india-outsourcing-ai-fewer-workers-reuters-summit-jobs-20260527",
+    "story_count": 8,
+    "event_count": 5
   }
 ]
