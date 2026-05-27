@@ -131,6 +131,38 @@ def parse_espn(html: str) -> list[dict] | None:
                         break
     return standings if len(standings) >= 8 else None
 
+def fetch_recent_results_and_status() -> dict:
+    """Fetch recent IPL results and playoff status via web search scraping."""
+    info = {"recent_results": [], "stage": "", "upcoming": [], "playoffs": {}}
+    try:
+        # Use Cricbuzz recent results page
+        resp = requests.get(
+            "https://www.espncricinfo.com/series/ipl-2026-1473498/match-results",
+            timeout=15,
+            headers={"User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1)"},
+        )
+        if resp.status_code == 200:
+            soup = BeautifulSoup(resp.text, "html.parser")
+            # Try to extract match result cards
+            results = []
+            for el in soup.find_all(["a", "div"], class_=re.compile(r"match|result|score", re.I)):
+                text = el.get_text(" ", strip=True)
+                if "won by" in text.lower() and len(text) > 20:
+                    # Clean up the result text
+                    clean = re.sub(r"\s+", " ", text).strip()
+                    if clean and clean not in results:
+                        results.append(clean)
+                    if len(results) >= 5:
+                        break
+            if results:
+                info["recent_results"] = results
+                print(f"  → Got {len(results)} recent results from ESPN")
+    except Exception as e:
+        print(f"  → Recent results fetch failed: {e}")
+
+    return info
+
+
 def fetch_standings() -> list[dict] | None:
     """Try each source until we get valid standings."""
     parsers = {"parse_espn": parse_espn, "parse_durham": parse_durham}

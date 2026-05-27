@@ -1,16 +1,16 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-27T19:02:39Z",
+  "last_updated": "2026-05-27T19:03:02Z",
   "stage": "PLAYOFFS. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1 done: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator done: RR beat SRH by 47 runs (May 27, Chandigarh). Qualifier 2: GT vs RR (May 29, Chandigarh). Final: RCB vs winner of Q2 (May 31, Ahmedabad).",
   "recent_results": [
     "Eliminator: RR 243/8 beat SRH 196/10 by 47 runs (Sooryavanshi 97 off 40, broke Gayle all-time IPL sixes record). RR advance to Qualifier 2.",
     "Qualifier 1: RCB 254/5 beat GT 162/10 by 92 runs (Patidar 93* off 33, 5 fours 9 sixes). RCB in the Final. Highest-ever IPL playoff target (255).",
-    "Match 70: DC vs KKR \u2014 final league match",
-    "Match 69: RR beat MI \u2014 RR qualified 4th, PBKS eliminated",
+    "Match 70: DC vs KKR — final league match",
+    "Match 69: RR beat MI — RR qualified 4th, PBKS eliminated",
     "Match 68: PBKS 200/3 beat LSG 196/6 by 7 wickets (Shreyas Iyer 101*)"
   ],
   "upcoming": [
-    "Qualifier 2: GT vs RR (May 29, Chandigarh) \u2014 loser eliminated",
+    "Qualifier 2: GT vs RR (May 29, Chandigarh) — loser eliminated",
     "FINAL: RCB vs winner of Q2 (May 31, Ahmedabad, Narendra Modi Stadium)"
   ],
   "standings": [
