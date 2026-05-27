@@ -310,13 +310,22 @@ def check_broken_slugs(fix=False):
 # ─── Check 9: Ingest health ───────────────────────────────────────────────────
 
 def check_ingest_health():
-    """Check if RSS ingest is feeding fresh signals. If signals dried up,
-    writers have nothing to work with."""
+    """Check if RSS ingest is feeding fresh topics. If topics dried up,
+    writers have nothing to work with.
+    Note: pipeline was refactored from p2_signals to p2_topics; check both."""
     cutoff_6h = utc_iso(datetime.now(timezone.utc) - timedelta(hours=6))
     cutoff_24h = utc_iso(datetime.now(timezone.utc) - timedelta(hours=24))
 
-    recent_6h = sb_get_count("p2_signals", f"created_at=gte.{cutoff_6h}")
-    recent_24h = sb_get_count("p2_signals", f"created_at=gte.{cutoff_24h}")
+    # Primary: check p2_topics (current ingest target)
+    recent_6h = sb_get_count("p2_topics", f"created_at=gte.{cutoff_6h}")
+    recent_24h = sb_get_count("p2_topics", f"created_at=gte.{cutoff_24h}")
+
+    # Fallback: also check p2_signals (legacy, uses fetched_at column)
+    if recent_24h == 0:
+        legacy_6h = sb_get_count("p2_signals", f"fetched_at=gte.{cutoff_6h}")
+        legacy_24h = sb_get_count("p2_signals", f"fetched_at=gte.{cutoff_24h}")
+        recent_6h = max(recent_6h, legacy_6h)
+        recent_24h = max(recent_24h, legacy_24h)
 
     dry = recent_24h == 0
     low = recent_24h < 10 and not dry
