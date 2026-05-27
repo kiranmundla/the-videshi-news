@@ -24,47 +24,9 @@
       "why_watch": "The biggest Bollywood hit of 2026 just got a longer, uncut version — and it's streaming on two platforms simultaneously.",
       "is_indian": true,
       "watch_url": "https://www.netflix.com/search?q=dhurandhar",
-      "language": "Hindi"
-    },
-    {
-      "title": "Kara",
-      "slug": "kara-dhanush",
-      "platform": "Netflix",
-      "platform_icon": "netflix",
-      "genre": "Heist Thriller",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/4f/Kara_2025_poster.jpg",
-      "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/results?search_query=Kara+Dhanush+2026+official+trailer",
-      "synopsis": "Set in 1991 during the Gulf War, a reformed thief in rural Tamil Nadu is forced back into crime when a corrupt bank seizes his family's ancestral land. Dhanush delivers one of his most restrained performances in this slow-burn heist drama with an 8.2 IMDb rating.",
-      "cast": [
-        "Dhanush",
-        "Mamitha Baiju",
-        "K. S. Ravikumar"
-      ],
-      "director": "Vignesh Raja",
-      "why_watch": "Dhanush at his brooding best. A Tamil heist film that earned ₹41 crore and is now available in five languages.",
-      "is_indian": true,
-      "watch_url": "https://www.netflix.com/search?q=kara+dhanush",
-      "language": "Tamil"
-    },
-    {
-      "title": "Satrangi: Badle Ka Khel",
-      "slug": "satrangi-badle-ka-khel",
-      "platform": "JioHotstar",
-      "platform_icon": "hotstar",
-      "genre": "Action Crime",
-      "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/results?search_query=Satrangi+Badle+Ka+Khel+trailer+2026",
-      "synopsis": "A gritty revenge saga set across seven interconnected stories. When a family is torn apart by a powerful crime syndicate, each member takes a different path to justice — some legal, some not. A Hindi-language original series that blends revenge drama with moral ambiguity.",
-      "cast": [],
-      "director": "",
-      "why_watch": "Think Sacred Games meets a revenge anthology. Seven stories, one vendetta — a fresh format for Hindi crime TV.",
-      "is_indian": true,
-      "watch_url": "https://www.hotstar.com/in/search?q=satrangi",
-      "language": "Hindi"
+      "language": "Hindi",
+      "rank": 1,
+      "trending": true
     },
     {
       "title": "Jolly LLB 3",
@@ -86,7 +48,53 @@
       "why_watch": "The Jolly franchise is comfort food for Bollywood fans. Akshay Kumar's David-vs-Goliath courtroom antics never get old.",
       "is_indian": true,
       "watch_url": "https://www.hotstar.com/in/search?q=jolly+llb+3",
-      "language": "Hindi"
+      "language": "Hindi",
+      "rank": 2,
+      "trending": true
+    },
+    {
+      "title": "Kara",
+      "slug": "kara-dhanush",
+      "platform": "Netflix",
+      "platform_icon": "netflix",
+      "genre": "Heist Thriller",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/4f/Kara_2025_poster.jpg",
+      "backdrop_url": "",
+      "trailer_url": "https://www.youtube.com/results?search_query=Kara+Dhanush+2026+official+trailer",
+      "synopsis": "Set in 1991 during the Gulf War, a reformed thief in rural Tamil Nadu is forced back into crime when a corrupt bank seizes his family's ancestral land. Dhanush delivers one of his most restrained performances in this slow-burn heist drama with an 8.2 IMDb rating.",
+      "cast": [
+        "Dhanush",
+        "Mamitha Baiju",
+        "K. S. Ravikumar"
+      ],
+      "director": "Vignesh Raja",
+      "why_watch": "Dhanush at his brooding best. A Tamil heist film that earned ₹41 crore and is now available in five languages.",
+      "is_indian": true,
+      "watch_url": "https://www.netflix.com/search?q=kara+dhanush",
+      "language": "Tamil",
+      "rank": 3,
+      "trending": false
+    },
+    {
+      "title": "Satrangi: Badle Ka Khel",
+      "slug": "satrangi-badle-ka-khel",
+      "platform": "JioHotstar",
+      "platform_icon": "hotstar",
+      "genre": "Action Crime",
+      "year": 2026,
+      "poster_url": "",
+      "backdrop_url": "",
+      "trailer_url": "https://www.youtube.com/results?search_query=Satrangi+Badle+Ka+Khel+trailer+2026",
+      "synopsis": "A gritty revenge saga set across seven interconnected stories. When a family is torn apart by a powerful crime syndicate, each member takes a different path to justice — some legal, some not. A Hindi-language original series that blends revenge drama with moral ambiguity.",
+      "cast": [],
+      "director": "",
+      "why_watch": "Think Sacred Games meets a revenge anthology. Seven stories, one vendetta — a fresh format for Hindi crime TV.",
+      "is_indian": true,
+      "watch_url": "https://www.hotstar.com/in/search?q=satrangi",
+      "language": "Hindi",
+      "rank": 4,
+      "trending": false
     },
     {
       "title": "Jetlee",
@@ -104,7 +112,9 @@
       "why_watch": "Telugu cinema continues its hot streak. If you loved Pushpa, this scratches the same itch — ordinary man, extraordinary circumstances.",
       "is_indian": true,
       "watch_url": "https://www.hotstar.com/in/search?q=jetlee",
-      "language": "Telugu"
+      "language": "Telugu",
+      "rank": 5,
+      "trending": false
     },
     {
       "title": "Warrant: From the World of Vilangu",
@@ -122,7 +132,9 @@
       "why_watch": "If Vilangu was your gateway into Tamil crime thrillers, Warrant takes you deeper. Same universe, fresh case, higher stakes.",
       "is_indian": true,
       "watch_url": "https://www.sonyliv.com/search?q=warrant",
-      "language": "Tamil"
+      "language": "Tamil",
+      "rank": 6,
+      "trending": false
     },
     {
       "title": "Memu Copulam",
@@ -140,7 +152,9 @@
       "why_watch": "Telugu comedy meets crime caper. Light, fun, and doesn't take itself too seriously — the perfect weekend binge.",
       "is_indian": true,
       "watch_url": "https://www.zee5.com/search?q=memu+copulam",
-      "language": "Telugu"
+      "language": "Telugu",
+      "rank": 7,
+      "trending": false
     },
     {
       "title": "Spider-Noir",
@@ -162,7 +176,9 @@
       "why_watch": "Nicolas Cage doing noir detective work with spider powers in the 1930s? Critics are calling it 'Cage at his best.' Choose your flavor: black-and-white or color.",
       "is_indian": false,
       "watch_url": "https://www.primevideo.com/search?phrase=spider-noir",
-      "language": "English"
+      "language": "English",
+      "rank": 8,
+      "trending": true
     },
     {
       "title": "A Good Girl's Guide to Murder S2",
@@ -184,7 +200,9 @@
       "why_watch": "The YA mystery that became a global hit is back — and this time it's personal. If you binged season 1, this picks up right where it left off.",
       "is_indian": false,
       "watch_url": "https://www.netflix.com/search?q=good+girl+guide+murder",
-      "language": "English"
+      "language": "English",
+      "rank": 9,
+      "trending": false
     },
     {
       "title": "Dead Man's Wire",
@@ -202,7 +220,9 @@
       "why_watch": "Netflix's latest edge-of-your-seat thriller. If you liked The Call or Buried, this is your cup of chai.",
       "is_indian": false,
       "watch_url": "https://www.netflix.com/search?q=dead+man+wire",
-      "language": "English"
+      "language": "English",
+      "rank": 10,
+      "trending": false
     }
   ]
 }

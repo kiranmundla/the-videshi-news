@@ -18,6 +18,8 @@ interface StreamingPick {
   is_indian: boolean;
   watch_url: string;
   language: string;
+  rank?: number;
+  trending?: boolean;
 }
 
 interface StreamingData {
@@ -144,6 +146,30 @@ function PosterCard({ pick, onClick }: { pick: StreamingPick; onClick: () => voi
             }}
           >
             {pick.language}
+          </div>
+        )}
+
+        {/* Trending badge */}
+        {pick.trending && (
+          <div
+            style={{
+              position: "absolute",
+              top: 6,
+              right: 6,
+              background: "linear-gradient(135deg, #ff6b35, #e50914)",
+              color: "#fff",
+              fontSize: 8,
+              fontWeight: 700,
+              padding: "2px 6px",
+              borderRadius: 4,
+              letterSpacing: "0.05em",
+              textTransform: "uppercase" as const,
+              display: "flex",
+              alignItems: "center",
+              gap: 2,
+            }}
+          >
+            🔥 Trending
           </div>
         )}
       </div>

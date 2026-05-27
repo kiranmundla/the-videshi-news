@@ -191,6 +191,22 @@ export default function WatchDetailPage() {
                   >
                     {pick.platform}
                   </span>
+                  {(pick as any).trending && (
+                    <span
+                      style={{
+                        background: "linear-gradient(135deg, #ff6b35, #e50914)",
+                        color: "#fff",
+                        fontSize: 10,
+                        fontWeight: 700,
+                        padding: "3px 8px",
+                        borderRadius: 4,
+                        letterSpacing: "0.04em",
+                        textTransform: "uppercase" as const,
+                      }}
+                    >
+                      🔥 Trending
+                    </span>
+                  )}
                   <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>{pick.genre}</span>
                   {pick.year > 0 && (
                     <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 12 }}>{pick.year}</span>
