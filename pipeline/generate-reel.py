@@ -235,7 +235,7 @@ def split_subheadline(subheadline):
     # Prefer shorter, punchier ones and skip very long ones
     picked = []
     for s in good:
-        if len(s) <= 150:
+        if len(s) <= 200:
             picked.append(s)
         if len(picked) >= 3:
             break
@@ -243,9 +243,9 @@ def split_subheadline(subheadline):
     # If all were too long, truncate the best ones
     if not picked:
         for s in good[:3]:
-            if len(s) > 150:
-                # Truncate at last space before 147 chars
-                cut = s[:147].rsplit(" ", 1)[0] + "..."
+            if len(s) > 200:
+                # Truncate at last space before 197 chars
+                cut = s[:197].rsplit(" ", 1)[0] + "..."
                 picked.append(cut)
             else:
                 picked.append(s)
@@ -639,7 +639,7 @@ def render_takeaways(article, tmp_dir):
     header_h = hb[3] - hb[1]
 
     # 3. Bullets — pick font size; start very large to fill frame
-    for sz in (58, 54, 50, 46, 42, 38, 34, 30):
+    for sz in (58, 54, 50, 46, 42, 38, 34, 30, 26):
         test_font = ImageFont.truetype(FONT_SEMIBOLD, sz)
         total_lines = 0
         for b in bullets:
@@ -648,7 +648,7 @@ def render_takeaways(article, tmp_dir):
         test_lh = a + d + int(sz * 0.35)
         test_gap = int(sz * 1.8)
         bullets_h = total_lines * test_lh + (len(bullets) - 1) * test_gap
-        if bullets_h <= 1000:
+        if bullets_h <= 1200:
             break
 
     bullet_font = ImageFont.truetype(FONT_SEMIBOLD, sz)
