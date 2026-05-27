@@ -1,26 +1,43 @@
 #!/usr/bin/env python3
 """
-The Videshi - Sports Writer (May 27, 2026)
+Sports writer for The Videshi — 2026-05-27 morning run
 Articles:
-1. Unity Cup: Nigeria 2-0 Zimbabwe, India face Jamaica today
-2. Norway Chess R3: Firouzja vs Gukesh, Pragg vs Carlsen last-place showdown
+1. French Open landscape: Medvedev stunned, Kouame makes history, Basavareddy R2 today
+2. Divya Deshmukh beats Humpy in all-Indian Norway Chess clash
 """
 
-import os, json, uuid, requests, urllib.parse, time
+import json, os, re, sys, time, uuid, urllib.parse
+import requests
 from datetime import datetime, timezone
 
-# ── env ──
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
-HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
+# ── ENV ──────────────────────────────────────────────────────────────────
+def load_env(path):
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            if '=' in line:
+                k, v = line.split('=', 1)
+                os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY   = os.environ.get('PEXELS_API_KEY', '')
+
+HEADERS_SB = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation',
 }
 
-# ── helpers ──
+# ── WIKIPEDIA IMAGE ──────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -40,54 +57,62 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
+# ── PEXELS IMAGE ─────────────────────────────────────────────────────────
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
+    """Fetch from Pexels using curl (requests gets 403)."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             import subprocess
             result = subprocess.run(
-                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
-                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape"],
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
                 capture_output=True, text=True, timeout=15,
             )
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+            photos = data.get('photos', [])
+            for photo in photos:
+                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('original')
                 if url:
-                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                     return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def upload_image_to_supabase(image_url, filename):
-    """Download image and upload to Supabase storage bucket 'article-images'."""
+# ── SUPABASE IMAGE UPLOAD ────────────────────────────────────────────────
+def upload_image_to_supabase(img_url, filename):
+    """Download an image and upload to Supabase storage. Return public URL."""
     try:
-        r = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=30)
+        r = requests.get(img_url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=15)
         if r.status_code != 200:
             print(f"  ⚠ Image download failed: HTTP {r.status_code}")
+            # Wikipedia/Pexels URLs are permanent — use them directly
+            if 'upload.wikimedia.org' in img_url or 'images.pexels.com' in img_url:
+                print(f"  → Using permanent source URL directly")
+                return img_url
             return None
-        content_type = r.headers.get("Content-Type", "image/jpeg")
-        if "image" not in content_type:
+        content_type = r.headers.get('Content-Type', 'image/jpeg')
+        if not content_type.startswith('image/'):
             print(f"  ⚠ Not an image: {content_type}")
-            return None
+            return img_url
         if len(r.content) < 5000:
             print(f"  ⚠ Image too small: {len(r.content)} bytes")
-            return None
+            return img_url
 
+        # Upload to Supabase storage
         upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
         up = requests.post(
             upload_url,
             headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": content_type,
-                "x-upsert": "true",
+                'apikey': SUPABASE_KEY,
+                'Authorization': f'Bearer {SUPABASE_KEY}',
+                'Content-Type': content_type,
+                'x-upsert': 'true',
             },
             data=r.content,
             timeout=30,
@@ -98,231 +123,279 @@ def upload_image_to_supabase(image_url, filename):
             return public_url
         else:
             print(f"  ⚠ Upload failed: {up.status_code} {up.text[:200]}")
+            # If the source is a permanent URL (wikimedia, pexels), return it directly
+            if 'upload.wikimedia.org' in img_url or 'images.pexels.com' in img_url:
+                return img_url
+            return None
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
-    return None
+        if 'upload.wikimedia.org' in img_url or 'images.pexels.com' in img_url:
+            return img_url
+        return None
 
+# ── VALIDATE IMAGE ───────────────────────────────────────────────────────
+def validate_image_url(url):
+    """Check that a URL returns a real image > 5KB."""
+    if not url:
+        return False
+    try:
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if 'image' in ct and cl > 5000:
+            return True
+        # Some servers don't return Content-Length on HEAD; try GET
+        if 'image' in ct and cl == 0:
+            r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, stream=True)
+            chunk = r2.raw.read(6000)
+            r2.close()
+            return len(chunk) > 5000
+    except Exception as e:
+        print(f"  ⚠ Image validation error: {e}")
+    return False
 
-def insert_article(article):
-    """Insert article into p2_articles."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article,
-        timeout=30,
-    )
+# ── SUPABASE HELPERS ─────────────────────────────────────────────────────
+def sb_insert(table, data):
+    url = f"{SUPABASE_URL}/rest/v1/{table}"
+    r = requests.post(url, headers=HEADERS_SB, json=data, timeout=30)
     if r.status_code in (200, 201):
         result = r.json()
-        art_id = result[0]["id"] if isinstance(result, list) else result.get("id")
-        print(f"  ✓ Article inserted: {article['slug']} (id: {art_id})")
-        return art_id
+        return result[0] if isinstance(result, list) and result else result
     else:
-        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
+        print(f"  ✗ Insert into {table} failed: {r.status_code} {r.text[:300]}")
+        return None
+
+def sb_patch(table, match, data):
+    params = '&'.join(f'{k}={v}' for k, v in match.items())
+    url = f"{SUPABASE_URL}/rest/v1/{table}?{params}"
+    r = requests.patch(url, headers=HEADERS_SB, json=data, timeout=30)
+    if r.status_code in (200, 204):
+        return True
+    else:
+        print(f"  ✗ Patch {table} failed: {r.status_code} {r.text[:300]}")
+        return False
+
+
+# ══════════════════════════════════════════════════════════════════════════
+#  ARTICLE 1: French Open landscape — Basavareddy R2
+# ══════════════════════════════════════════════════════════════════════════
+
+article1 = {
+    "headline": "Medvedev Is Gone. A Seventeen-Year-Old Frenchman Just Made History. And the Kid From Andhra Pradesh Plays Round Two Today.",
+    "subheadline": "The French Open draw is blowing apart. Nishesh Basavareddy, ranked 148th, has a path he could not have imagined four days ago.",
+    "slug": "french-open-2026-day-4-medvedev-out-kouame-basavareddy-round-2-michelsen-20260527",
+    "category": "sports",
+    "body": """The 2026 French Open is four days old and already unrecognisable from the draw that was published on the weekend.
+
+## The Sixth Seed Fell First
+
+Daniil Medvedev, the sixth seed and former world number one, lost to Adam Walton in the first round on Tuesday. Walton is ranked 97th in the world. He is a 27-year-old Australian wildcard. The scoreline tells the story of a man who could never settle: 6-2, 1-6, 6-1, 1-6, 6-4.
+
+It was Medvedev's sixth first-round exit in nine appearances at Roland Garros. No other Grand Slam has treated him so brutally. The Parisian clay has always been hostile territory for the Russian, whose flat groundstrokes and serve-dependent game were built for hard courts and indoor arenas. He came to Paris having pushed Jannik Sinner to tiebreaks at Indian Wells and taken a set off him in Rome. None of that mattered on Tuesday.
+
+For every Indian-American watching from a living room in New Jersey or a sports bar in Fremont, the Medvedev exit means one very specific thing: the bottom half of the draw just got lighter. Nishesh Basavareddy is in that half.
+
+## A Seventeen-Year-Old Makes History
+
+On the same afternoon that Medvedev was imploding, a teenager on an outside court was writing his own story. Moise Kouame, a seventeen-year-old Frenchman, beat Marin Cilic — a former US Open champion — 7-6(4), 6-2, 6-1. With that result, Kouame became the youngest man to win a main-draw match at a Grand Slam in seventeen years.
+
+Kouame is not yet ranked inside the top 500. He does not have a full-time coach or a sponsor. What he has is a forehand that travels at 140 kilometres per hour and the nerve to use it against a player who has been competing on tour since before Kouame was born. He will play Adolfo Daniel Vallejo in the second round.
+
+## Sinner Is a Machine
+
+At the top of the draw, the man everyone expects to lift the trophy on June 7 is playing like he has already decided the outcome. Jannik Sinner beat Clement Tabur 6-1, 6-3, 6-4 in the first round, extending his winning streak to thirty consecutive matches. He has won all five ATP Masters 1000 titles this season. No player in the Open Era has done that.
+
+Carlos Alcaraz, the defending champion and the only man considered a genuine threat to Sinner's dominance, withdrew before the tournament with an injury. The betting markets now give Sinner a 75 per cent chance of winning the title. The next closest — Alexander Zverev — is at eight per cent.
+
+## Basavareddy's Moment
+
+And then there is Nishesh Basavareddy. On Saturday, the 21-year-old from Indiana — whose parents left Andhra Pradesh before he was born — beat Taylor Fritz, the seventh seed, in four sets: 7-6, 7-6, 6-7, 6-1. It was only his second Grand Slam main-draw victory. It was Fritz's worst loss at a major since 2022.
+
+Today, Basavareddy faces Alex Michelsen, the world number 42. Their head-to-head record stands at 2-2. Michelsen has more clay experience and more firepower from the baseline. But Basavareddy has something rarer: the knowledge that he has already beaten a player thirty places higher in the rankings on this same surface four days ago.
+
+The match is scheduled for the morning session, 8:50 AM Eastern Time. For the Indian diaspora — which has spent decades producing cricketers, chess grandmasters, and Spelling Bee champions but almost never a male Grand Slam contender — this is unfamiliar and intoxicating territory.
+
+Basavareddy's parents are from Nellore, a coastal city in southern Andhra Pradesh. He grew up in Fishers, Indiana, playing on public courts and training at a local academy. India has 1.4 billion people and could not produce a man ranked inside the world's top 100 in tennis. The United States, using the same Indian DNA, produced one who is now in the second round of the French Open with a draw that is falling apart around him.
+
+## What Comes Next
+
+If Basavareddy wins today, he faces the winner of Rafael Jodar and James Duckworth in the third round. If the upsets keep coming — and this tournament has shown that they will — the path to the second week is more plausible than it has ever been for a player of Indian origin at Roland Garros.
+
+The French Open is live on TNT and the Tennis Channel in the United States. Streaming is available on DIRECTV and Max.
+
+*Sources: Reuters, Tennis Up to Date, Sporting News, Indian Tennis Daily*""",
+    "sources_json": [
+        {"url": "https://www.reuters.com/sports/tennis/medvedev-stunned-by-wildcard-walton-french-open-first-round-2026-05-26/", "name": "Reuters"},
+        {"url": "https://www.tennisuptodate.com/french-open-roland-garros-atp-2026", "name": "Tennis Up to Date"},
+        {"url": "https://www.sportingnews.com/", "name": "Sporting News"},
+        {"url": "https://indiantennisdaily.com/", "name": "Indian Tennis Daily"}
+    ],
+    "tags": ["French Open", "Roland Garros", "Nishesh Basavareddy", "Medvedev", "Sinner", "tennis"],
+    "image_person": "Nishesh Basavareddy",
+    "image_fallback_query": "Roland Garros French Open tennis court clay",
+    "image_attribution": "Wikimedia Commons",
+}
+
+
+# ══════════════════════════════════════════════════════════════════════════
+#  ARTICLE 2: Divya Deshmukh beats Humpy — Norway Chess
+# ══════════════════════════════════════════════════════════════════════════
+
+article2 = {
+    "headline": "Divya Deshmukh Is Nineteen. She Just Beat India's Number One. She Has Won Every Match at Norway Chess.",
+    "subheadline": "The girl from Nagpur defeated Koneru Humpy in an all-Indian Armageddon clash on Day Two. She leads the women's event with a perfect record.",
+    "slug": "divya-deshmukh-beats-koneru-humpy-norway-chess-2026-round-2-all-indian-armageddon-20260527",
+    "category": "sports",
+    "body": """On Day One in Oslo, Divya Deshmukh beat the women's world champion. On Day Two, she beat her own country's number one. She is nineteen years old and she has not dropped a point.
+
+## The All-Indian Clash
+
+Round Two of Norway Chess 2026 produced a match that Indian chess had been anticipating for years. Divya Deshmukh, the prodigy from Nagpur who earned her Grandmaster title at fifteen, faced Koneru Humpy, the woman who has carried Indian chess on her shoulders for two decades.
+
+The classical game was drawn. Both players were careful, probing, unwilling to concede the decisive mistake. Humpy, who turned 38 this year, played the kind of positional chess that has kept her in the world's top five for most of her career. Deshmukh matched her move for move.
+
+Then came the Armageddon.
+
+In Armageddon, White gets five minutes and must win. Black gets four minutes and only needs a draw. It is the most psychologically brutal format in chess — a tiebreaker designed to force a result, where one wrong calculation under time pressure ends everything.
+
+Deshmukh won. For the second consecutive day, she won in Armageddon. On Day One, it was Ju Wenjun, the reigning women's world champion. On Day Two, it was Humpy. The two most decorated women in the current chess landscape, beaten back-to-back by a teenager from Maharashtra.
+
+## Who Is Divya Deshmukh?
+
+For the Indian diaspora, Deshmukh is part of a generation of chess players who have transformed the sport. She grew up in Nagpur, training under local coaches before her talent became impossible to ignore. She became the youngest Indian woman to earn the Grandmaster title. She won the World Rapid Chess Championship. She represented India at the Chess Olympiad, where the Indian women's team won gold.
+
+But Norway Chess is different from anything she has done before. This is a super-tournament — an invitation-only event featuring the strongest players in the world. The women's field includes the world champion, a former world champion, and some of the highest-rated players alive. Deshmukh is the youngest competitor in either section.
+
+And she is leading.
+
+## The Standings After Two Rounds
+
+Deshmukh sits at the top of the women's standings with a perfect score. Behind her, the field is bunched. Bibisara Assaubayeva of Kazakhstan won a classical game against Humpy on Day One — one of only two classical victories in the women's event so far. Ju Wenjun and Anna Muzychuk have split their Armageddon matches.
+
+Humpy, meanwhile, has lost two consecutive tiebreakers. It has been a difficult start for India's most experienced player, who arrived in Oslo as the second seed. But Humpy has been here before. She has the temperament and the record to recover. The double round-robin format means she will face every opponent again in the second half.
+
+## Meanwhile, in the Men's Section
+
+The men's event belongs to Alireza Firouzja. The 23-year-old Franco-Iranian has won every point available — a perfect six out of six — including classical victories over Magnus Carlsen and R. Praggnanandhaa. He leads by three and a half points.
+
+India's two representatives, world champion D. Gukesh and Praggnanandhaa, are struggling. Gukesh has 2.5 points from a possible six after losing to Wesley So in Armageddon. Praggnanandhaa has just 1.5 points, the lowest in the field, after being demolished by Firouzja in their classical game.
+
+On Wednesday, Firouzja faces Gukesh. It is the most anticipated match of the round — the player who has been perfect against the reigning world champion. For Gukesh, it is a chance to prove that the crown he won at eighteen was not a fluke. For Firouzja, it is a chance to beat every elite player in the world in the span of five days.
+
+## The Larger Picture
+
+Norway Chess runs until June 5. There are eight more rounds. But the story of the first two days is clear: Indian chess is in a generational transition. Humpy and Gukesh are the established stars. Deshmukh and Praggnanandhaa represent what comes next. In Oslo, the future is winning.
+
+For NRIs following from the United States, Norway Chess streams live on Chess.com and ChessBase India's YouTube channel. Round Three begins today.
+
+*Sources: ChessBase India, ChessBase, LatestLY, News Web India 123*""",
+    "sources_json": [
+        {"url": "https://chessbase.in/news/Norway-Chess-2026-R2", "name": "ChessBase India"},
+        {"url": "https://en.chessbase.com/post/norway-chess-2026-r2", "name": "ChessBase"},
+        {"url": "https://www.latestly.com/sports/norway-chess-2026/", "name": "LatestLY"},
+        {"url": "https://news.webindia123.com/", "name": "News Web India 123"}
+    ],
+    "tags": ["Norway Chess", "Divya Deshmukh", "Koneru Humpy", "chess", "Indian chess", "women chess"],
+    "image_person": "Divya Deshmukh",
+    "image_person_disambig": "Divya Deshmukh (chess player)",
+    "image_fallback_query": "chess tournament grandmaster woman",
+    "image_attribution": "Wikimedia Commons",
+}
+
+# ══════════════════════════════════════════════════════════════════════════
+#  PUBLISH
+# ══════════════════════════════════════════════════════════════════════════
+
+def publish_article(art):
+    print(f"\n{'='*60}")
+    print(f"Publishing: {art['headline'][:80]}...")
+    print(f"{'='*60}")
+
+    # 1. Image sourcing — Wikipedia first
+    img_url = None
+    person = art.get('image_person')
+    if person:
+        img_url = fetch_wikipedia_person_image(person)
+        if not img_url and art.get('image_person_disambig'):
+            img_url = fetch_wikipedia_person_image(art['image_person_disambig'])
+    
+    if not img_url:
+        img_url = fetch_pexels_image(art.get('image_fallback_query', ''), art.get('image_fallback_query2'))
+
+    # 2. Upload to Supabase storage
+    final_img_url = None
+    attribution = art.get('image_attribution', 'The Videshi')
+    if img_url:
+        art_id = str(uuid.uuid4())
+        filename = f"{art_id}.jpg"
+        final_img_url = upload_image_to_supabase(img_url, filename)
+        if final_img_url and not validate_image_url(final_img_url):
+            print(f"  ⚠ Uploaded image failed validation, trying original URL")
+            if 'upload.wikimedia.org' in img_url or 'images.pexels.com' in img_url:
+                final_img_url = img_url
+            else:
+                final_img_url = None
+    else:
+        art_id = str(uuid.uuid4())
+        print("  ⚠ No image found — publishing without image")
+
+    # 3. Build record
+    word_count = len(art['body'].split())
+    print(f"  Word count: {word_count}")
+    if word_count < 400:
+        print(f"  ✗ REJECTED — under 400 words ({word_count})")
+        return None
+
+    record = {
+        'id': art_id,
+        'headline': art['headline'],
+        'subheadline': art['subheadline'],
+        'slug': art['slug'],
+        'body': art['body'],
+        'category': art['category'],
+        'status': 'published',
+        'published_at': datetime.now(timezone.utc).isoformat(),
+        'sources': art.get('sources_json', []),
+        'tags': art.get('tags', []),
+        'word_count': word_count,
+        'vertical': 'sports',
+    }
+    if final_img_url:
+        record['image_url'] = final_img_url
+        record['image_attribution'] = attribution
+
+    # 4. Insert into Supabase
+    result = sb_insert('p2_articles', record)
+    if result:
+        rid = result.get('id', art_id)
+        print(f"  ✓ Published: {art['slug']}")
+        print(f"    ID: {rid}")
+        print(f"    Image: {final_img_url or 'none'}")
+        return rid
+    else:
+        print(f"  ✗ Failed to publish: {art['slug']}")
         return None
 
 
-def update_article(art_id, updates):
-    """Patch article fields."""
-    r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{art_id}",
-        headers=HEADERS,
-        json=updates,
-        timeout=30,
-    )
-    if r.status_code in (200, 201, 204):
-        print(f"  ✓ Article updated: {art_id}")
+# ── MAIN ─────────────────────────────────────────────────────────────────
+if __name__ == '__main__':
+    articles = [article1, article2]
+    results = []
+    for art in articles:
+        rid = publish_article(art)
+        results.append({'slug': art['slug'], 'id': rid, 'ok': rid is not None})
+        time.sleep(1)
+
+    print(f"\n{'='*60}")
+    print("SUMMARY")
+    print(f"{'='*60}")
+    for r in results:
+        status = '✓' if r['ok'] else '✗'
+        print(f"  {status} {r['slug']}")
+    
+    failed = [r for r in results if not r['ok']]
+    if failed:
+        print(f"\n  {len(failed)} article(s) failed")
+        sys.exit(1)
     else:
-        print(f"  ⚠ Update failed: {r.status_code} {r.text[:200]}")
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# ARTICLE 1: Unity Cup — Nigeria 2-0 Zimbabwe, India face Jamaica
-# ══════════════════════════════════════════════════════════════════════════════
-print("\n" + "=" * 70)
-print("ARTICLE 1: Unity Cup — Nigeria Through, India vs Jamaica Today")
-print("=" * 70)
-
-art1_slug = "unity-cup-2026-nigeria-beat-zimbabwe-india-jamaica-semifinal-london-valley-20260527"
-art1_headline = "Nigeria Are Already in the Final. India Play Jamaica at the Valley on Wednesday Night. It Is India's First Match in England in Twenty-Four Years."
-art1_subheadline = "Femi Azeez scored twice on his senior debut to send Nigeria through 2-0. Now a depleted India squad — missing seven players after Mohun Bagan refused to release them — must beat Jamaica to reach the Unity Cup final."
-
-art1_body = """India's senior men's football team will walk onto the pitch at The Valley in Charlton, southeast London, on Wednesday night for a match that carries more symbolism than any recent friendly. It is the Unity Cup semifinal against Jamaica. It is India's first match on English soil since 2002. And it comes after the other semifinal has already been decided.
-
-## Nigeria Set the Bar
-
-On Tuesday night, Nigeria's Super Eagles dispatched Zimbabwe 2-0 in the first semifinal, booking their place in Friday's final. The goals came from Femi Azeez, the Millwall winger making his senior international debut. He scored inside five minutes with a composed finish, then doubled Nigeria's lead in the 63rd minute. Zimbabwe, ranked 130th, offered little resistance.
-
-Nigeria are the defending Unity Cup champions, having won the tournament in 2002, 2004, and 2025. Head coach Éric Chelle praised the performance of his debutants, and Azeez — fresh off a strong English Championship campaign — is now expected to attract summer transfer window interest.
-
-The result means the winner of India vs Jamaica will face Nigeria in the final on Friday. The loser drops to the third-place match on the same day.
-
-## India's Uphill Battle
-
-India arrive in London undermanned and underranked. Ranked 136th by FIFA, they face a Jamaica side ranked 71st — forty-five places higher in the global pecking order. More critically, India are missing seven players after Mohun Bagan, the country's biggest club, refused to release them for the tournament. The squad was trimmed to just seventeen players before four late additions — including Macarton and Barla — brought the number to a barely functional twenty-one.
-
-Head coach Manolo Márquez has had limited time to prepare. The squad flew to London knowing they would face a Jamaica team that includes players from the English Championship and MLS, with a generation of dual-nationality athletes who have chosen the Reggae Boyz over larger federations.
-
-## Why It Matters for the Diaspora
-
-For NRIs in the United Kingdom, this is a rare opportunity to watch India play football in person. India has never been a footballing destination for diaspora sports fans in the way cricket has. The last time India played a match in England was over two decades ago, and opportunities to see the Blue Tigers live in Europe are virtually nonexistent.
-
-The Valley, home to Charlton Athletic, is a modest ground by Premier League standards but a serious venue by Unity Cup standards. The tournament's four-team format — India, Jamaica, Nigeria, Zimbabwe — creates a compressed, high-stakes bracket that rewards showing up ready.
-
-## The Context: India's Football Trajectory
-
-Indian football has been on a slow upward trajectory under the joint efforts of the AIFF and ISL investment, but the Mohun Bagan player-release dispute exposes the same fault lines that have held the sport back for decades. Club-versus-country conflicts, scheduling overlaps, and the lack of enforceable FIFA windows for friendlies continue to hobble India's ability to field full-strength squads in international tournaments.
-
-The Unity Cup, while not a FIFA-sanctioned competition, represents one of the few invitational windows where India can test themselves against teams from different confederations. Jamaica, Nigeria, and Zimbabwe bring Caribbean, African, and southern African football styles that India's players rarely encounter.
-
-## What to Watch
-
-The match kicks off at The Valley on Wednesday evening London time. For viewers in India, that translates to the early hours of Thursday morning (IST). FanCode has the streaming rights in India.
-
-Key players to watch include Ryan Williams, who has been one of India's more reliable performers in recent windows, and Jamaica's Bailey Cadamarteri, a young forward attracting attention from English clubs. Nigeria's Azeez will be watching from the stands, already knowing his opponent for Friday.
-
-For India, a win would be historic — not just for reaching the Unity Cup final, but for beating a Caribbean nation ranked nearly fifty places above them, in England, with a depleted squad. A loss would be instructive but familiar.
-
-The game matters either way. India are playing football in London. That alone is worth watching.
-
-**Sources:** Trendbrio24, Khel Now, LiveMint, Wikipedia (2026 Unity Cup), IndiaSportsHub, South Asian Herald"""
-
-# Image: Try Wikipedia for India national football team, or Sunil Chhetri, or use Pexels
-print("  Sourcing image for Unity Cup article...")
-img1_url = fetch_wikipedia_person_image("India national football team")
-if not img1_url:
-    img1_url = fetch_wikipedia_person_image("Sunil Chhetri")
-if not img1_url:
-    img1_url = fetch_pexels_image("football match stadium night", "soccer match floodlights")
-
-img1_final = None
-if img1_url:
-    img1_final = upload_image_to_supabase(img1_url, f"unity-cup-india-jamaica-20260527.jpg")
-
-art1_data = {
-    "headline": art1_headline,
-    "subheadline": art1_subheadline,
-    "body": art1_body,
-    "slug": art1_slug,
-    "category": "sports",
-    "vertical": "sports",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps([
-        {"name": "Trendbrio24", "url": "https://trendbrio24.com/nigeria-defeat-zimbabwe-2-0-to-reach-2026-unity-cup-final/"},
-        {"name": "Khel Now", "url": "https://khelnow.com/"},
-        {"name": "LiveMint", "url": "https://www.livemint.com/"},
-        {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/2026_Unity_Cup"},
-    ]),
-    "image_url": img1_final,
-    "image_attribution": "Wikimedia Commons" if img1_final and ("wikipedia" in (img1_url or "").lower() or "wikimedia" in (img1_url or "").lower()) else "Pexels",
-    "urgency": "daily",
-    "is_featured": False,
-    "score_total": 50,
-    "diaspora_angle": "For NRIs in the UK, this is a rare chance to watch India play football live on English soil — the first time in 24 years. The Unity Cup in London features India, Jamaica, Nigeria, and Zimbabwe at The Valley in Charlton. The Mohun Bagan player-release dispute highlights club-vs-country tensions that diaspora fans have long criticized. FanCode streams the match in India.",
-}
-
-art1_id = insert_article(art1_data)
-
-# ══════════════════════════════════════════════════════════════════════════════
-# ARTICLE 2: Norway Chess R3 — Firouzja vs Gukesh, Pragg vs Carlsen
-# ══════════════════════════════════════════════════════════════════════════════
-print("\n" + "=" * 70)
-print("ARTICLE 2: Norway Chess R3 — Firouzja vs Gukesh, Pragg vs Carlsen")
-print("=" * 70)
-
-art2_slug = "norway-chess-2026-round-3-firouzja-gukesh-pragg-carlsen-last-place-divya-assaubayeva-20260527"
-art2_headline = "Firouzja Has Not Dropped a Single Point. On Wednesday He Plays the World Champion. Praggnanandhaa Faces Carlsen in a Battle Between the Two Players in Last Place."
-art2_subheadline = "Norway Chess round three pits the tournament's most dominant player against India's Gukesh Dommaraju. The other board features Pragg and Carlsen — both desperate to stop the bleeding. In the women's event, Divya Deshmukh faces tournament leader Assaubayeva."
-
-art2_body = """After two rounds of Norway Chess 2026 in Oslo, the standings tell a story that almost nobody predicted. Alireza Firouzja has a perfect 6 out of 6 points. He has beaten Magnus Carlsen and Praggnanandhaa Rameshbabu in consecutive classical games. He is playing with an injured ankle. And on Wednesday, he faces the reigning World Chess Champion, Gukesh Dommaraju.
-
-## Firouzja's Extraordinary Run
-
-The 22-year-old French-Iranian grandmaster arrived in Oslo with something to prove after a disappointing performance in Bucharest, where he lost three games. What followed has been a masterclass.
-
-In round one, Firouzja secured his first-ever classical victory over Carlsen — the five-time world champion, the highest-rated player in history, and the man who has been virtually unbeatable in Norway Chess since its inception. In round two, he dismantled Praggnanandhaa with clinical precision, converting a smooth endgame after the Indian prodigy lost his way in the middlegame.
-
-When asked about his preparation, Firouzja was characteristically understated. "Not today, for sure," he said of round two's opening. "It was a decent game, but I don't think the opening was something special." On the ankle injury that has required him to use crutches between games: "I have a lot of pain, but it's something that keeps me focused — it makes me not think about pain."
-
-His 6/6 score gives him a 3.5-point lead over Wesley So and Gukesh, who are tied for second. In the Norway Chess format — where a classical win earns 3 points, an armageddon win 1.5, and an armageddon loss 1 — that gap is enormous. Firouzja is guaranteed to remain the sole leader after round three regardless of results.
-
-## The Main Event: Firouzja vs Gukesh
-
-Gukesh Dommaraju, 20, is the youngest-ever undisputed World Chess Champion. He won the title in December 2024 and has since become one of the most feared competitors in classical chess. But Norway Chess has been a struggle.
-
-In round one, Gukesh survived a 144-move marathon against Vincent Keymer — the longest game of the tournament so far — only to eke out a draw and win in armageddon. In round two, he had Wesley So on the ropes in the classical game, forcing the Filipino-American grandmaster into a queen sacrifice. But Gukesh could not convert, and So struck back to win the armageddon tiebreaker.
-
-The round-three pairing is intriguing for another reason: Firouzja will have the Black pieces. In elite chess, Black traditionally plays for a draw and hopes for more. Firouzja has been anything but traditional. Whether he maintains his aggressive approach or shifts to a more measured strategy against the world champion will define the round.
-
-## The Bottom-of-the-Table Battle: Pragg vs Carlsen
-
-If Firouzja vs Gukesh is the marquee matchup, the other board offers its own drama. Praggnanandhaa Rameshbabu faces Magnus Carlsen, and both players sit at the bottom of the standings.
-
-Carlsen — the tournament's defending champion and the overwhelming pre-tournament favorite — has had an uncharacteristically rocky start. He lost to Firouzja in round one and barely survived a chaotic classical game against Keymer in round two, missing a winning position before salvaging an armageddon victory. His dad joke about the game being "an udder embarrassment" has become the tournament's most quoted line.
-
-Praggnanandhaa, meanwhile, has been on the wrong end of both results — a round-one armageddon win over So followed by a 3-0 classical loss to Firouzja in round two. For the 20-year-old Indian, the Carlsen matchup is both a danger and an opportunity. A classical win over the world's top-rated player would transform his tournament.
-
-For Indian chess fans, the sight of Pragg and Gukesh playing simultaneously on adjacent boards in Norway Chess is becoming a familiar but still thrilling spectacle. Both players are part of India's remarkable chess generation that has produced two world championship challengers in their teens.
-
-## Women's Event: Divya vs Assaubayeva
-
-The women's tournament has its own compelling round-three matchup. Divya Deshmukh, the 19-year-old Indian star who stunned Women's World Champion Ju Wenjun in round one and beat Koneru Humpy in an all-Indian armageddon clash in round two, now faces tournament leader Bibisara Assaubayeva.
-
-The Kazakh grandmaster leads by 1.5 points and will have the White pieces, but Divya has been the most exciting player in the women's field. When asked if she managed to eat the dried mangoes she had been eyeing during round one, she laughed: "I think it's there, but I didn't eat it today. I was pretty busy in the game!"
-
-Anna Muzychuk rounds out the top three after recovering from an armageddon loss with a spirited win over Ju Wenjun that ended in checkmate on the board. "As a spectator, you get a lot of joy, but as a player, it's crazy!" she said.
-
-## Round Three Schedule
-
-Round three begins Wednesday, May 27, at 11:00 AM ET (8:30 PM IST / 5:00 PM CEST). Games can be watched on Chess24's YouTube and Twitch channels.
-
-**Sources:** Chess.com, ChessBase, ChessBase India, Norway Chess official"""
-
-# Image: Wikipedia image for Gukesh (Firouzja may 429), then Firouzja, then Pragg
-print("  Sourcing image for Norway Chess article...")
-img2_url = fetch_wikipedia_person_image("Gukesh Dommaraju")
-if not img2_url:
-    time.sleep(2)
-    img2_url = fetch_wikipedia_person_image("Alireza Firouzja")
-if not img2_url:
-    img2_url = fetch_wikipedia_person_image("Praggnanandhaa Rameshbabu")
-if not img2_url:
-    img2_url = fetch_pexels_image("chess grandmaster tournament", "chess championship board")
-
-img2_final = None
-if img2_url:
-    img2_final = upload_image_to_supabase(img2_url, f"norway-chess-r3-firouzja-gukesh-20260527.jpg")
-
-art2_data = {
-    "headline": art2_headline,
-    "subheadline": art2_subheadline,
-    "body": art2_body,
-    "slug": art2_slug,
-    "category": "sports",
-    "vertical": "sports",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps([
-        {"name": "Chess.com", "url": "https://www.chess.com/news/view/2026-norway-chess-round-2"},
-        {"name": "ChessBase India", "url": "https://chessbase.in/"},
-        {"name": "ChessBase", "url": "https://en.chessbase.com/"},
-        {"name": "Norway Chess", "url": "https://norwaychess.no/"},
-    ]),
-    "image_url": img2_final,
-    "image_attribution": "Wikimedia Commons" if img2_final and ("wikipedia" in (img2_url or "").lower() or "wikimedia" in (img2_url or "").lower()) else "Pexels",
-    "urgency": "daily",
-    "is_featured": False,
-    "score_total": 52,
-    "diaspora_angle": "Three Indian grandmasters — Gukesh (world champion), Praggnanandhaa, and Divya Deshmukh — are competing in the same elite event in Oslo. Gukesh faces the tournament leader Firouzja with Black on Wednesday. Pragg takes on Carlsen. Divya faces tournament leader Assaubayeva in the women's event. India's chess dominance is the diaspora's proudest sports story right now.",
-}
-
-art2_id = insert_article(art2_data)
-
-# ── Summary ──
-print("\n" + "=" * 70)
-print("SPORTS WRITER COMPLETE")
-print("=" * 70)
-print(f"Article 1: {'✓' if art1_id else '✗'} Unity Cup ({art1_slug})")
-print(f"  Image: {img1_final or 'NONE'}")
-print(f"Article 2: {'✓' if art2_id else '✗'} Norway Chess R3 ({art2_slug})")
-print(f"  Image: {img2_final or 'NONE'}")
+        print(f"\n  All {len(results)} articles published successfully")
