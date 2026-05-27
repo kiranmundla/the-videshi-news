@@ -30,15 +30,43 @@ export default function DiasporaPhotoStrip() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const closeOverlay = useCallback(() => setSelectedIndex(null), []);
+  const [slideDir, setSlideDir] = useState<"left" | "right" | null>(null);
+
+  const closeOverlay = useCallback(() => {
+    setSelectedIndex(null);
+    setSlideDir(null);
+  }, []);
 
   const goNext = useCallback(() => {
+    setSlideDir("left");
     setSelectedIndex((prev) => (prev !== null ? (prev + 1) % PHOTOS.length : null));
   }, []);
 
   const goPrev = useCallback(() => {
+    setSlideDir("right");
     setSelectedIndex((prev) => (prev !== null ? (prev - 1 + PHOTOS.length) % PHOTOS.length : null));
   }, []);
+
+  // Preload adjacent images when overlay is open
+  useEffect(() => {
+    if (selectedIndex === null) return;
+    const toPreload = [
+      (selectedIndex + 1) % PHOTOS.length,
+      (selectedIndex - 1 + PHOTOS.length) % PHOTOS.length,
+      (selectedIndex + 2) % PHOTOS.length,
+    ];
+    toPreload.forEach((i) => {
+      const img = new Image();
+      img.src = PHOTOS[i].src;
+    });
+  }, [selectedIndex]);
+
+  // Clear slide direction after animation completes
+  useEffect(() => {
+    if (slideDir === null) return;
+    const t = setTimeout(() => setSlideDir(null), 250);
+    return () => clearTimeout(t);
+  }, [slideDir, selectedIndex]);
 
   const updateScrollButtons = useCallback(() => {
     const el = scrollRef.current;
@@ -52,6 +80,14 @@ export default function DiasporaPhotoStrip() {
     if (!el) return;
     const amount = el.clientWidth * 0.75;
     el.scrollBy({ left: direction === "right" ? amount : -amount, behavior: "smooth" });
+  }, []);
+
+  // Preload first 4 strip images eagerly on mount
+  useEffect(() => {
+    PHOTOS.slice(0, 4).forEach((p) => {
+      const img = new Image();
+      img.src = p.src;
+    });
   }, []);
 
   useEffect(() => {
@@ -218,7 +254,7 @@ export default function DiasporaPhotoStrip() {
               <img
                 src={photo.src}
                 alt={photo.label}
-                loading="lazy"
+                loading={i < 4 ? "eager" : "lazy"}
                 draggable={false}
                 style={{
                   width: "100%",
@@ -304,7 +340,14 @@ export default function DiasporaPhotoStrip() {
         >
           <style>{`
             @keyframes snapFadeIn { from { opacity: 0; } to { opacity: 1; } }
-            .snap-photo-transition { transition: opacity 0.2s ease; }
+            @keyframes snapSlideLeft {
+              from { transform: translateX(60px); opacity: 0.3; }
+              to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes snapSlideRight {
+              from { transform: translateX(-60px); opacity: 0.3; }
+              to { transform: translateX(0); opacity: 1; }
+            }
           `}</style>
 
           {/* Close button */}
@@ -341,11 +384,16 @@ export default function DiasporaPhotoStrip() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              willChange: "transform",
+              animation: slideDir === "left"
+                ? "snapSlideLeft 0.25s ease-out"
+                : slideDir === "right"
+                ? "snapSlideRight 0.25s ease-out"
+                : "none",
             }}
           >
             <img
               key={selectedIndex}
-              className="snap-photo-transition"
               src={selected.src}
               alt={selected.label}
               style={{
@@ -353,6 +401,7 @@ export default function DiasporaPhotoStrip() {
                 maxHeight: "75vh",
                 objectFit: "contain",
                 borderRadius: "8px",
+                willChange: "transform",
               }}
             />
           </div>
