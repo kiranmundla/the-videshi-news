@@ -25,49 +25,65 @@ const PHOTOS: { src: string; label: string }[] = [
 
 export default function DiasporaPhotoStrip() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const touchStartX = useRef<number | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const overlayScrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-
-  const [slideDir, setSlideDir] = useState<"left" | "right" | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const closeOverlay = useCallback(() => {
     setSelectedIndex(null);
-    setSlideDir(null);
   }, []);
 
-  const goNext = useCallback(() => {
-    setSlideDir("left");
-    setSelectedIndex((prev) => (prev !== null ? (prev + 1) % PHOTOS.length : null));
+  // Track which photo is visible in the lightbox via scroll position
+  const handleOverlayScroll = useCallback(() => {
+    const el = overlayScrollRef.current;
+    if (!el) return;
+    const idx = Math.round(el.scrollLeft / el.clientWidth);
+    if (idx >= 0 && idx < PHOTOS.length) {
+      setCurrentIndex(idx);
+    }
   }, []);
 
-  const goPrev = useCallback(() => {
-    setSlideDir("right");
-    setSelectedIndex((prev) => (prev !== null ? (prev - 1 + PHOTOS.length) % PHOTOS.length : null));
-  }, []);
-
-  // Preload adjacent images when overlay is open
+  // When overlay opens, scroll to the tapped photo instantly
   useEffect(() => {
     if (selectedIndex === null) return;
-    const toPreload = [
-      (selectedIndex + 1) % PHOTOS.length,
-      (selectedIndex - 1 + PHOTOS.length) % PHOTOS.length,
-      (selectedIndex + 2) % PHOTOS.length,
-    ];
-    toPreload.forEach((i) => {
+    setCurrentIndex(selectedIndex);
+    // Preload all images when overlay opens
+    PHOTOS.forEach((p) => {
       const img = new Image();
-      img.src = PHOTOS[i].src;
+      img.src = p.src;
+    });
+    // Wait for DOM, then scroll to selected
+    requestAnimationFrame(() => {
+      const el = overlayScrollRef.current;
+      if (el) {
+        el.scrollTo({ left: selectedIndex * el.clientWidth, behavior: "instant" as ScrollBehavior });
+      }
     });
   }, [selectedIndex]);
 
-  // Clear slide direction after animation completes
+  // Keyboard nav in lightbox — programmatic scroll, not state swap
   useEffect(() => {
-    if (slideDir === null) return;
-    const t = setTimeout(() => setSlideDir(null), 250);
-    return () => clearTimeout(t);
-  }, [slideDir, selectedIndex]);
+    if (selectedIndex === null) return;
+    const handleKey = (e: KeyboardEvent) => {
+      const el = overlayScrollRef.current;
+      if (!el) return;
+      if (e.key === "Escape") closeOverlay();
+      if (e.key === "ArrowRight") {
+        const next = Math.min(currentIndex + 1, PHOTOS.length - 1);
+        el.scrollTo({ left: next * el.clientWidth, behavior: "smooth" });
+      }
+      if (e.key === "ArrowLeft") {
+        const prev = Math.max(currentIndex - 1, 0);
+        el.scrollTo({ left: prev * el.clientWidth, behavior: "smooth" });
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [selectedIndex, currentIndex, closeOverlay]);
 
+  // Strip scroll buttons
   const updateScrollButtons = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
@@ -102,33 +118,6 @@ export default function DiasporaPhotoStrip() {
     };
   }, [updateScrollButtons]);
 
-  useEffect(() => {
-    if (selectedIndex === null) return;
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeOverlay();
-      if (e.key === "ArrowRight") goNext();
-      if (e.key === "ArrowLeft") goPrev();
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [selectedIndex, closeOverlay, goNext, goPrev]);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
-    if (Math.abs(deltaX) > 50) {
-      if (deltaX < 0) goNext();
-      else goPrev();
-    }
-    touchStartX.current = null;
-  };
-
-  const selected = selectedIndex !== null ? PHOTOS[selectedIndex] : null;
-
   return (
     <>
       <section style={{ margin: "2rem 0 1rem", position: "relative" }}>
@@ -147,14 +136,13 @@ export default function DiasporaPhotoStrip() {
           Snapshots
         </p>
 
-        {/* Hide scrollbar styles */}
         <style>{`
           .diaspora-scroll-strip::-webkit-scrollbar { display: none; }
+          .snap-lightbox::-webkit-scrollbar { display: none; }
         `}</style>
 
         {/* Container with nav arrows */}
         <div style={{ position: "relative" }}>
-          {/* Left arrow */}
           {canScrollLeft && (
             <button
               onClick={() => scrollStrip("left")}
@@ -187,7 +175,6 @@ export default function DiasporaPhotoStrip() {
             </button>
           )}
 
-          {/* Right arrow */}
           {canScrollRight && (
             <button
               onClick={() => scrollStrip("right")}
@@ -224,84 +211,81 @@ export default function DiasporaPhotoStrip() {
           <div
             ref={scrollRef}
             className="diaspora-scroll-strip"
-          style={{
-            display: "flex",
-            gap: "12px",
-            overflowX: "auto",
-            overflowY: "hidden",
-            WebkitOverflowScrolling: "touch",
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-            padding: "0 1rem",
-          } as React.CSSProperties}
-        >
-          {PHOTOS.map((photo, i) => (
-            <div
-              key={i}
-              onClick={() => setSelectedIndex(i)}
-              style={{
-                position: "relative",
-                minWidth: "260px",
-                width: "300px",
-                height: "200px",
-                borderRadius: "8px",
-                overflow: "hidden",
-                flexShrink: 0,
-                background: "#1C1C1E",
-                cursor: "pointer",
-              }}
-            >
-              <img
-                src={photo.src}
-                alt={photo.label}
-                loading={i < 4 ? "eager" : "lazy"}
-                draggable={false}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                  transition: "transform 0.3s ease",
-                }}
-                onMouseEnter={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1.05)"; }}
-                onMouseLeave={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1)"; }}
-              />
-              {/* Gradient overlay for readability */}
+            style={{
+              display: "flex",
+              gap: "12px",
+              overflowX: "auto",
+              overflowY: "hidden",
+              WebkitOverflowScrolling: "touch",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              padding: "0 1rem",
+            } as React.CSSProperties}
+          >
+            {PHOTOS.map((photo, i) => (
               <div
+                key={i}
+                onClick={() => setSelectedIndex(i)}
                 style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  height: "70px",
-                  background: "linear-gradient(transparent, rgba(0,0,0,0.75))",
-                  pointerEvents: "none",
-                }}
-              />
-              {/* Label */}
-              <span
-                style={{
-                  position: "absolute",
-                  bottom: "10px",
-                  left: "12px",
-                  right: "12px",
-                  color: "#fff",
-                  fontSize: "12px",
-                  fontWeight: 600,
-                  lineHeight: "1.3",
-                  letterSpacing: "0.02em",
-                  textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-                  fontFamily: "var(--font-sans, sans-serif)",
+                  position: "relative",
+                  minWidth: "260px",
+                  width: "300px",
+                  height: "200px",
+                  borderRadius: "8px",
+                  overflow: "hidden",
+                  flexShrink: 0,
+                  background: "#1C1C1E",
+                  cursor: "pointer",
                 }}
               >
-                {photo.label}
-              </span>
-            </div>
-          ))}
-        </div>
+                <img
+                  src={photo.src}
+                  alt={photo.label}
+                  loading={i < 4 ? "eager" : "lazy"}
+                  draggable={false}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                    transition: "transform 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1.05)"; }}
+                  onMouseLeave={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1)"; }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: "70px",
+                    background: "linear-gradient(transparent, rgba(0,0,0,0.75))",
+                    pointerEvents: "none",
+                  }}
+                />
+                <span
+                  style={{
+                    position: "absolute",
+                    bottom: "10px",
+                    left: "12px",
+                    right: "12px",
+                    color: "#fff",
+                    fontSize: "12px",
+                    fontWeight: 600,
+                    lineHeight: "1.3",
+                    letterSpacing: "0.02em",
+                    textShadow: "0 1px 4px rgba(0,0,0,0.9)",
+                    fontFamily: "var(--font-sans, sans-serif)",
+                  }}
+                >
+                  {photo.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Pexels attribution */}
         <p
           style={{
             fontFamily: "var(--font-sans, sans-serif)",
@@ -315,12 +299,9 @@ export default function DiasporaPhotoStrip() {
         </p>
       </section>
 
-      {/* Fullscreen overlay with navigation */}
-      {selected && selectedIndex !== null && (
+      {/* Fullscreen lightbox — native scroll-snap, no JS touch handlers */}
+      {selectedIndex !== null && (
         <div
-          onClick={closeOverlay}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
           style={{
             position: "fixed",
             top: 0,
@@ -330,24 +311,12 @@ export default function DiasporaPhotoStrip() {
             backgroundColor: "rgba(0,0,0,0.95)",
             zIndex: 9999,
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
             flexDirection: "column",
-            cursor: "pointer",
-            padding: "20px",
             animation: "snapFadeIn 0.15s ease-out",
           }}
         >
           <style>{`
             @keyframes snapFadeIn { from { opacity: 0; } to { opacity: 1; } }
-            @keyframes snapSlideLeft {
-              from { transform: translateX(60px); opacity: 0.3; }
-              to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes snapSlideRight {
-              from { transform: translateX(-60px); opacity: 0.3; }
-              to { transform: translateX(0); opacity: 1; }
-            }
           `}</style>
 
           {/* Close button */}
@@ -363,65 +332,116 @@ export default function DiasporaPhotoStrip() {
 
           {/* Counter */}
           <p
-            onClick={(e) => e.stopPropagation()}
             style={{
               color: "rgba(255,255,255,0.5)",
               fontSize: "13px",
               fontFamily: "var(--font-sans, sans-serif)",
-              marginBottom: "12px",
+              textAlign: "center",
+              padding: "16px 0 8px",
+              margin: 0,
               userSelect: "none",
             }}
           >
-            {selectedIndex + 1} / {PHOTOS.length}
+            {currentIndex + 1} / {PHOTOS.length}
           </p>
 
-          {/* Image */}
+          {/* Scroll-snap container — THIS is where the magic happens.
+              Native horizontal scroll with snap points = compositor-driven 60fps swiping.
+              No JS touch handlers, no state updates per swipe frame. */}
           <div
-            onClick={(e) => e.stopPropagation()}
+            ref={overlayScrollRef}
+            className="snap-lightbox"
+            onScroll={handleOverlayScroll}
             style={{
-              maxWidth: "90vw",
-              maxHeight: "75vh",
+              flex: 1,
               display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              willChange: "transform",
-              animation: slideDir === "left"
-                ? "snapSlideLeft 0.25s ease-out"
-                : slideDir === "right"
-                ? "snapSlideRight 0.25s ease-out"
-                : "none",
-            }}
+              overflowX: "auto",
+              overflowY: "hidden",
+              scrollSnapType: "x mandatory",
+              WebkitOverflowScrolling: "touch",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            } as React.CSSProperties}
           >
-            <img
-              key={selectedIndex}
-              src={selected.src}
-              alt={selected.label}
-              style={{
-                maxWidth: "90vw",
-                maxHeight: "75vh",
-                objectFit: "contain",
-                borderRadius: "8px",
-                willChange: "transform",
-              }}
-            />
+            {PHOTOS.map((photo, i) => (
+              <div
+                key={i}
+                style={{
+                  minWidth: "100vw",
+                  width: "100vw",
+                  height: "100%",
+                  scrollSnapAlign: "start",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                  padding: "0 20px",
+                  boxSizing: "border-box",
+                }}
+              >
+                <img
+                  src={photo.src}
+                  alt={photo.label}
+                  loading={Math.abs(i - (selectedIndex ?? 0)) <= 2 ? "eager" : "lazy"}
+                  draggable={false}
+                  style={{
+                    maxWidth: "calc(100vw - 40px)",
+                    maxHeight: "calc(100vh - 140px)",
+                    objectFit: "contain",
+                    borderRadius: "8px",
+                    userSelect: "none",
+                    WebkitUserSelect: "none",
+                  } as React.CSSProperties}
+                />
+              </div>
+            ))}
           </div>
 
           {/* Caption */}
           <p
-            onClick={(e) => e.stopPropagation()}
             style={{
               color: "#fff",
-              marginTop: "16px",
               fontSize: "15px",
               fontWeight: 600,
               fontFamily: "var(--font-sans, sans-serif)",
               letterSpacing: "0.02em",
               textAlign: "center",
+              padding: "8px 20px 20px",
+              margin: 0,
               maxWidth: "600px",
+              alignSelf: "center",
             }}
           >
-            {selected.label}
+            {PHOTOS[currentIndex]?.label}
           </p>
+
+          {/* Dot indicators */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "6px",
+              paddingBottom: "20px",
+            }}
+          >
+            {PHOTOS.map((_, i) => (
+              <div
+                key={i}
+                onClick={() => {
+                  const el = overlayScrollRef.current;
+                  if (el) el.scrollTo({ left: i * el.clientWidth, behavior: "smooth" });
+                }}
+                style={{
+                  width: i === currentIndex ? "18px" : "6px",
+                  height: "6px",
+                  borderRadius: "3px",
+                  background: i === currentIndex ? "#c9a84c" : "rgba(255,255,255,0.3)",
+                  transition: "all 0.2s ease",
+                  cursor: "pointer",
+                }}
+              />
+            ))}
+          </div>
         </div>
       )}
     </>
