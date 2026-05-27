@@ -1,26 +1,70 @@
 #!/usr/bin/env python3
-"""
-The Videshi — News Writer (May 27, 2026 morning run)
-Publishes 3 news articles with proper images, dedup, and quality.
-"""
+"""News writer for The Videshi — 2026-05-27 batch"""
 
-import json, os, re, sys, time, uuid, urllib.parse
+import json
+import os
+import re
+import sys
+import time
+import uuid
+import subprocess
+import urllib.parse
 from datetime import datetime, timezone
+
+# Load env
+env_path = os.path.expanduser("~/.env.supabase")
+with open(env_path) as f:
+    for line in f:
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            key, val = line.split("=", 1)
+            key = key.replace("export ", "").strip()
+            val = val.strip().strip('"').strip("'")
+            os.environ[key] = val
+
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+
+# Load Pexels key
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+PEXELS_KEY = ""
+if os.path.exists(pexels_env):
+    with open(pexels_env) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                key, val = line.split("=", 1)
+                key = key.replace("export ", "").strip()
+                val = val.strip().strip('"').strip("'")
+                if "PEXELS" in key.upper():
+                    PEXELS_KEY = val
 
 import requests
 
-# --- Config ---
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
-HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
-}
+def sb_headers():
+    return {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "application/json",
+        "Prefer": "return=representation"
+    }
 
-# --- Helpers ---
+def sb_insert(table, data):
+    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=sb_headers(), json=data, timeout=30)
+    if r.status_code in (200, 201):
+        return r.json()
+    else:
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        return None
+
+def sb_patch(table, filters, data):
+    url = f"{SUPABASE_URL}/rest/v1/{table}?{filters}"
+    r = requests.patch(url, headers=sb_headers(), json=data, timeout=30)
+    if r.status_code in (200, 204):
+        return True
+    else:
+        print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
+        return False
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -41,391 +85,322 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels with curl-like headers."""
-    if not PEXELS_API_KEY:
+    """Fetch image from Pexels using curl (urllib gets 403)."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key available")
         return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = requests.get(
-                "https://api.pexels.com/v1/search",
-                params={"query": q, "per_page": 5, "orientation": "landscape"},
-                headers={"Authorization": PEXELS_API_KEY},
-                timeout=10
+            result = subprocess.run(
+                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape"],
+                capture_output=True, text=True, timeout=15
             )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for photo in photos:
-                    url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("original")
-                    if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            for photo in photos:
+                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
+                if url:
+                    # Validate
+                    head = requests.head(url, timeout=10)
+                    ct = head.headers.get("Content-Type", "")
+                    cl = int(head.headers.get("Content-Length", "0"))
+                    if "image" in ct and cl > 5000:
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                         return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def validate_image_url(url):
-    """Validate that URL returns a real image > 5KB."""
+def validate_image(url):
+    """Validate image URL returns 200 with image content > 5KB."""
     if not url:
         return False
-    # Block banned sources
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
-    if any(b in url for b in banned):
-        print(f"  ✗ BANNED source: {url[:60]}")
-        return False
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
+        head = requests.head(url, timeout=10, allow_redirects=True,
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = head.headers.get("Content-Type", "")
+        cl = int(head.headers.get("Content-Length", "0"))
         if "image" in ct and cl > 5000:
             return True
-        # Some servers don't return Content-Length on HEAD; try GET
-        if "image" in ct and cl == 0:
-            r2 = requests.get(url, timeout=10, stream=True,
-                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
+        # Some servers don't return Content-Length on HEAD
+        if "image" in ct:
+            r = requests.get(url, timeout=10, stream=True,
+                           headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r.raw.read(6000)
             if len(chunk) > 5000:
                 return True
-        print(f"  ✗ Image validation failed: ct={ct}, cl={cl}")
     except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
+        print(f"  ⚠ Image validation error: {e}")
     return False
 
-
-def sb_insert(table, data):
-    """Insert into Supabase table."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
-        headers=HEADERS,
-        json=data,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            return result[0]
-        return result
-    print(f"  ✗ Insert error ({r.status_code}): {r.text[:200]}")
-    return None
-
-
-def check_duplicate(headline_keywords):
-    """Check if a similar article was published recently."""
-    try:
-        three_days_ago = datetime.now(timezone.utc).strftime('%Y-%m-%dT00:00:00Z')
-        # Rough timestamp for 3 days ago
-        from datetime import timedelta
-        ts = (datetime.now(timezone.utc) - timedelta(days=3)).strftime('%Y-%m-%dT00:00:00Z')
-        r = requests.get(
-            f"{SUPABASE_URL}/rest/v1/p2_articles",
-            params={
-                "select": "headline,slug",
-                "status": "eq.published",
-                "published_at": f"gte.{ts}",
-                "category": "eq.news",
-                "order": "published_at.desc",
-                "limit": "50"
-            },
-            headers=HEADERS,
-            timeout=15
-        )
-        if r.status_code == 200:
-            existing = r.json()
-            for art in existing:
-                h = art.get("headline", "").lower()
-                matches = sum(1 for kw in headline_keywords if kw.lower() in h)
-                if matches >= 3:
-                    print(f"  ⚠ Possible duplicate: {art['headline'][:80]}")
-                    return True
-    except Exception as e:
-        print(f"  ⚠ Dedup check error: {e}")
+def check_banned_url(url):
+    """Check if URL is from a banned source."""
+    if not url:
+        return True
+    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
+    for b in banned:
+        if b in url:
+            print(f"  ✗ BANNED image source detected: {b}")
+            return True
     return False
 
-
-# --- Articles ---
+# ─── ARTICLES ─────────────────────────────────────────────────────────────────
 
 articles = []
 
-# ============================================================
-# ARTICLE 1: Iran-US Draft MoU Framework Revealed
-# ============================================================
+# ─── ARTICLE 1: Green Card Process Upended ────────────────────────────────────
+articles.append({
+    "headline": "Trump Just Ordered Every Green Card Applicant in America to Leave the Country and Reapply From Home",
+    "subheadline": "The new rule affects hundreds of thousands of legal immigrants — including an estimated 400,000 Indians in the green card backlog. Immigration lawyers say it could separate families for years.",
+    "slug": "trump-green-card-applicants-must-leave-us-apply-from-home-country-20260527",
+    "category": "news",
+    "vertical": "immigration",
+    "sources": json.dumps(["CNN", "Associated Press", "Cato Institute", "Department of Homeland Security"]),
+    "person_for_image": "USCIS",  # Not a person article
+    "image_search": "US immigration green card passport visa",
+    "image_search_fallback": "US passport immigration office",
+    "body": """The Trump administration has announced a rule that will upend the lives of hundreds of thousands of legal immigrants living and working in the United States. As of last Friday, anyone applying for a green card — the document that grants permanent residency — must leave the country and complete the application process from their home country.
 
-art1_headline = "Iran Says It Has the Text of a Draft Deal With the U.S. The Strait of Hormuz Would Reopen Within a Month."
-art1_subheadline = "The unofficial framework envisions Iran managing ship traffic through the strait with Oman, a 60-day window for a binding UN Security Council resolution, and U.S. military withdrawal — but Tehran says it won't move without 'tangible verification.'"
-art1_slug = "iran-us-draft-mou-hormuz-reopen-60-day-unsc-framework-india-oil-20260527"
+The policy reverses decades of practice under which immigrants already in the U.S. on valid work or family visas could adjust their status to permanent residency without leaving. Now they must return home, wait for consular processing, and hope to be readmitted — a process that immigration attorneys say can take months to years.
 
-art1_body = """Iranian state television on Tuesday revealed what it called a draft of an initial, unofficial framework for a memorandum of understanding between Tehran and Washington — the most detailed picture yet of what a deal to end the three-month-old war could look like.
+## Who This Hits Hardest
 
-## What the Framework Says
+The rule lands squarely on the Indian American community. Indians make up the single largest group in the U.S. green card backlog, with an estimated 400,000 applicants waiting for employment-based green cards alone. Many have been in the queue for over a decade, working on H-1B visas, paying taxes, buying homes, and raising American-born children.
 
-Under the proposed MoU, Iran would restore commercial shipping through the Strait of Hormuz to pre-war levels within one month. In exchange, the United States would withdraw military forces from Iran's vicinity and lift its naval blockade of Iranian ports.
+Under the new rule, these workers would have to leave their jobs, uproot their families, and return to India — with no guarantee of a timeline for return. For dual-income households where both spouses hold work authorization tied to a pending green card, the disruption is compounded.
 
-The framework excludes military vessels entirely. Ship traffic through the strait would be managed by Iran in cooperation with Oman — a provision that effectively gives Tehran a gatekeeping role over the world's most critical oil chokepoint.
+"This is devastating for people who have followed every rule, paid every fee, and waited patiently for years," said David J. Bier, director of immigration studies at the Cato Institute, who described the policy as "illogical" in a detailed analysis of its potential cascading impacts.
 
-If a final agreement is reached within 60 days, the MoU could be approved as a binding United Nations Security Council resolution, according to Iranian state TV.
+## The Administration's Justification
 
-## Pakistan's Central Role
+US Citizenship and Immigration Services defended the change. "When aliens apply from their home country, it reduces the need to find and remove those who decide to slip into the shadows and remain in the US illegally after being denied residency," spokesperson Zach Kahler said in a statement.
 
-The emerging framework stems from indirect talks launched after the war began in February, with Pakistan playing a central mediating role between Tehran and Washington. Pakistan Army Chief Asim Munir has been repeatedly praised by President Trump for his mediation efforts — a dynamic that has rattled India, given the longstanding rivalry between New Delhi and Islamabad.
+The agency said exemptions would be available for "extraordinary circumstances," though it did not define what would qualify.
 
-## Why It Matters for India
+## Legal Challenges Expected
 
-The Hormuz crisis has hit India harder than almost any other major economy. India imports roughly 85 percent of its crude oil, and the strait's near-total closure since February has sent petrol prices past ₹100 per litre, pushed the rupee to 95.68 against the dollar, and forced the country to scramble for alternative supplies from Venezuela, Brazil, Angola, and Nigeria.
+The rule is expected to face immediate legal challenges. Since its announcement, it has drawn a torrent of criticism from immigration attorneys, lawmakers, and advocacy groups across the political spectrum.
 
-A reopening of the strait within a month would provide immediate relief to Indian consumers and businesses. But the framework's provision for Iranian management of ship traffic — rather than a return to the pre-war status quo — introduces a new variable that could keep insurance premiums and shipping costs elevated.
+New York Governor Kathy Hochul said the policy "betrays the very promise that built this country." California Representative Ted Lieu called it "stupid" and warned it "will help competitors such as China and Russia." Arizona Democrat Greg Stanton said the rule makes "legal immigration harder — on purpose."
 
-The Reserve Bank of India has already signalled concern. Traders are pricing in up to 100 basis points of rate hikes if oil stays above $95 per barrel, and the RBI intervened in currency markets this week to support the rupee.
+The Cato Institute's analysis warned that the policy could trigger a cascade of unintended consequences: employers losing critical workers, housing markets losing buyers, and the U.S. losing its competitive edge in attracting global talent.
 
-## The Sticking Points
+## A Pattern of Legal Immigration Restrictions
 
-Despite the detail in the draft, significant obstacles remain. The Institute for the Study of War assessed that talks are at a "major impasse":
+The green card rule is part of a broader pattern. The administration has already halted refugee admissions for all nationalities except White South Africans, ended Temporary Protected Status for several countries, restricted work and student visas, and proposed making every federal employee sign a non-disclosure agreement.
 
-- Iran is demanding the U.S. unfreeze $12 billion of $24 billion in frozen Iranian assets as a condition for signing the MoU — and has explicitly said it would use the money to rebuild its ballistic missile and drone programmes.
-- Iran insists on retaining the right to enrich uranium on Iranian soil, while the U.S. demands serious commitments on the nuclear programme before any sanctions relief.
-- Iran wants the deal to cover "all fronts," including Lebanon, where Israeli Prime Minister Netanyahu has announced a deepening operation against Hezbollah.
+Last week, the administration announced that H-1B visa registrations dropped 38.5 percent — a decline that immigration experts attribute directly to policy uncertainty and hostile signaling from Washington.
 
-Supreme Leader Mojtaba Khamenei's guidance to the Iranian government on May 25 said Iran must "leverage the strait for economic gain" — a position fundamentally at odds with the free-navigation principles India and other major importers have insisted on.
+For the estimated 4.4 million Indians living in the United States — the second-largest immigrant community after Mexicans — the cumulative effect of these changes is transforming what it means to build a life in America.
 
 ## What Happens Next
 
-Trump convened a full Cabinet meeting on Wednesday to discuss the war's endgame. Secretary of State Marco Rubio, speaking from Jaipur during his four-day India visit, said negotiating the deal's language could "take a few days."
+Immigration attorneys are advising affected clients to consult legal counsel immediately and not to make any travel decisions before understanding the full scope of the rule and any pending legal challenges.
 
-For India's 1.4 billion people, every one of those days matters. Each week the strait remains closed adds roughly ₹2 to the price of a litre of petrol and drains an estimated $1.5 billion from India's foreign exchange reserves.
-
-*Sources: Reuters, Washington Examiner, ISW, Livemint*"""
-
-art1_keywords = ["iran", "draft", "deal", "hormuz", "mou", "framework"]
-
-articles.append({
-    "headline": art1_headline,
-    "subheadline": art1_subheadline,
-    "slug": art1_slug,
-    "body": art1_body,
-    "category": "news",
-    "keywords": art1_keywords,
-    "person_for_image": "Mojtaba Khamenei",
-    "pexels_query": "strait of hormuz oil tanker ship",
-    "pexels_fallback": "oil tanker shipping gulf",
-    "sources": ["Reuters", "Washington Examiner", "ISW", "Livemint"],
-    "image_attribution": None,
+The rule does not affect naturalized citizens or those who already hold green cards. But for the hundreds of thousands in the pipeline — many of whom have spent the better part of their adult lives in the United States — the question is no longer when they will get their green card. It is whether they can afford to leave everything behind to find out."""
 })
 
-# ============================================================
-# ARTICLE 2: Rubio's 4-Day India Visit
-# ============================================================
-
-art2_headline = "Rubio Spent Four Days in India Trying to Repair the Damage. Trump Called In to Say 'I Love India.' Here's What Actually Happened."
-art2_subheadline = "The secretary of state visited four cities, took his wife to the Taj Mahal, and insisted the friction hadn't knocked the relationship off course. India's foreign minister had a two-word response: 'India First.'"
-art2_slug = "rubio-four-day-india-visit-trump-i-love-india-jaishankar-india-first-20260527"
-
-art2_body = """At a splashy U.S. Embassy celebration in New Delhi featuring Bollywood dance numbers and life-size cutouts of Trump officials, President Trump called in on speakerphone to deliver his message to more than 1,500 guests.
-
-"I love India," he said. "We've never been closer to India. India can count on me 100 percent."
-
-The call was part of a carefully choreographed four-day visit by Secretary of State Marco Rubio — his first trip to the country — designed to repair one of Washington's most important partnerships at a moment of genuine strain.
-
-## The Rift
-
-Beneath the pageantry, the relationship between the world's two largest democracies has been rattled by a cascade of Trump administration moves:
-
-**Tariffs.** Trump imposed 50 percent tariffs on Indian goods last summer — the highest new tariffs for any country in Asia. The tariffs were later struck down by U.S. courts, but the signal they sent has not been forgotten.
-
-**Immigration.** Changes to U.S. visa policy have hit Indian skilled workers and students disproportionately. Rubio acknowledged the impact was "disproportionate" on Indian engineers and tech workers but insisted the changes were "not targeted at India" and were "being applied globally."
-
-**Pakistan.** Trump's enthusiastic embrace of Pakistan — India's longtime rival — has been particularly galling to New Delhi. Since Pakistan emerged as a key mediator between the U.S. and Iran in April, Trump has repeatedly praised Pakistan Army Chief Asim Munir.
-
-**China.** Trump's summit with Chinese leader Xi Jinping and his less confrontational approach to Beijing in his second term has unsettled India, which has clashed with China multiple times along their contested Himalayan border. China is also an ally and weapons supplier to Pakistan, including jet fighters used in last year's India-Pakistan conflict.
-
-**The 'Hellhole' Comment.** Just weeks before Rubio arrived, Trump reposted comments calling India a "hellhole" — drawing a rare rebuke from India's foreign ministry that followed Rubio throughout his visit.
-
-## 'India First'
-
-Rubio framed the friction as a natural consequence of Trump's America First agenda. "This is not about India, it's about the United States in terms of trade," he said.
-
-External Affairs Minister S. Jaishankar offered a pointed counterpart at a joint press conference: "The Trump administration has been very forthright in putting forward its foreign policy outlook as America First. Now, where we are concerned, we have a view of India First."
-
-The exchange captured the dynamic perfectly — two nations that need each other but refuse to subordinate their own interests.
-
-## What Rubio Accomplished
-
-Rubio visited four cities — New Delhi, Kolkata, Agra, and Jaipur — and attended the Quad meeting with Australia and Japan on his final day. Key outcomes:
-
-- **Modi White House Invitation.** Rubio extended an invitation from Trump for Modi to visit the White House. The personal bond between the two leaders has been a buffer as tensions mounted, with both leaning on it heavily in public.
-- **Quad Continuity.** The Quad announced a $20 billion critical minerals initiative and agreed to build a port in Fiji — signals that the grouping remains active despite questions about Trump's commitment to Indo-Pacific alliances.
-- **No New Deals.** Rubio did not announce any new trade agreements or visa concessions. The India-U.S. trade deal deadline remains July 8, and digital trade rules were explicitly deferred.
-
-## The Assessment
-
-"The soundtrack to U.S.-India relations is less discordant than it has been," said Michael Kugelman, a senior fellow at the Atlantic Council. "But there are very hard constraints that have made it difficult to bring the relationship back to where it was some years ago."
-
-For the 4.4 million Indian Americans in the U.S. and the millions more who depend on trade, remittances, and visa pathways between the two countries, the visit offered warm words but few concrete answers. The tariffs remain a live issue. The visa squeeze continues. And Pakistan's elevated role in U.S. diplomacy shows no sign of fading.
-
-*Sources: Wall Street Journal, Reuters, The Hindu Business Line*"""
-
-art2_keywords = ["rubio", "india", "visit", "jaishankar", "trump"]
-
+# ─── ARTICLE 2: Supreme Court Upholds SIR ─────────────────────────────────────
 articles.append({
-    "headline": art2_headline,
-    "subheadline": art2_subheadline,
-    "slug": art2_slug,
-    "body": art2_body,
+    "headline": "India's Supreme Court Just Upheld the Government's Power to Purge Voter Rolls. But It Drew One Hard Line.",
+    "subheadline": "The court ruled the Election Commission's Special Intensive Revision of electoral rolls is constitutional — but stripped the commission of the power to decide who is and isn't a citizen.",
+    "slug": "supreme-court-upholds-sir-electoral-roll-revision-strips-eci-citizenship-power-20260527",
     "category": "news",
-    "keywords": art2_keywords,
-    "person_for_image": "Marco Rubio",
-    "pexels_query": None,
-    "pexels_fallback": None,
-    "sources": ["Wall Street Journal", "Reuters", "The Hindu Business Line"],
-    "image_attribution": None,
-})
-
-# ============================================================
-# ARTICLE 3: Bengaluru Ebola Case Tests Negative
-# ============================================================
-
-art3_headline = "Bengaluru's Ebola Scare Is Over. The Quarantined Ugandan Woman Tested Negative."
-art3_subheadline = "India averted what would have been South Asia's first Ebola case since 2014. But the scare has exposed how close the country came — and how much the airport screening system will be tested in the weeks ahead."
-art3_slug = "bengaluru-ebola-quarantine-tests-negative-india-airport-screening-20260527"
-
-art3_body = """The 28-year-old Ugandan woman quarantined in Bengaluru on suspicion of carrying the Ebola virus has tested negative, averting what would have been South Asia's first confirmed case since 2014.
-
-Samples sent to the National Institute of Virology in Pune came back clear, bringing to an end a scare that had put India's public health system on high alert and dominated headlines for 48 hours.
-
-## What Happened
-
-The woman, who had arrived from Uganda, was isolated at Bengaluru's Epidemic Diseases Hospital after airport screening flagged fatigue and mild symptoms consistent with early-stage Ebola infection. She showed no obvious severe symptoms — no fever spike, no haemorrhaging — but the global context made every protocol non-negotiable.
-
-The World Health Organisation had declared the ongoing Ebola outbreak — caused by the rare Bundibugyo strain, for which there is no approved vaccine — a Public Health Emergency of International Concern just days earlier. Over 1,000 cases and 241 deaths have been reported across the Democratic Republic of Congo and Uganda.
-
-## India's Response
-
-Health Minister J.P. Nadda intensified surveillance across the country even before the test results came back:
-
-- **Airport screenings** have been scaled up at all international terminals, with enhanced protocols for passengers arriving from the DRC, Uganda, and South Sudan.
-- **Travel advisories** urging Indians to avoid non-essential travel to affected African nations were issued within hours of the WHO declaration.
-- **Standard operating procedures** have been distributed to state health departments, with isolation wards activated at designated hospitals in every major city.
-- **Repeat testing** was conducted on the quarantined woman as a precaution, given the Bundibugyo strain's unpredictable incubation period.
-
-## The Diaspora Dimension
-
-For the estimated 30,000 Indians living and working in East Africa — including significant communities in Uganda, Kenya, and Tanzania — the outbreak has created a new layer of anxiety. Return travel to India now involves enhanced screening, potential quarantine, and the social stigma that comes with arriving from an affected region.
-
-Canada has already suspended visas for nationals of the DRC, Uganda, and South Sudan for 90 days and imposed a 21-day quarantine for asymptomatic travellers — a move that has affected dual nationals in the Indian diaspora as well.
-
-India has stopped short of visa suspensions, but the pressure to tighten entry requirements is likely to grow if the outbreak spreads further. The FIFA World Cup, scheduled for later this year, has added urgency to global containment efforts.
-
-## What Comes Next
-
-The negative result is relief, not resolution. The Bundibugyo strain is the least-studied of the five known Ebola species, and the absence of a vaccine means containment depends entirely on surveillance, isolation, and contact tracing — the same tools India used during the early days of COVID-19.
-
-With monsoon season approaching and international travel volumes rising through the summer, the screening infrastructure at India's airports will face its most sustained test. The Bengaluru case proved the system can catch a potential case. The question is whether it can keep catching them.
-
-*Sources: Reuters, Bharat Affairs, Latestly, WHO*"""
-
-art3_keywords = ["bengaluru", "ebola", "negative", "quarantine", "test"]
-
-articles.append({
-    "headline": art3_headline,
-    "subheadline": art3_subheadline,
-    "slug": art3_slug,
-    "body": art3_body,
-    "category": "news",
-    "keywords": art3_keywords,
+    "vertical": "politics",
+    "sources": json.dumps(["Supreme Court of India", "LatestLY", "Law Trend", "Dainik Jagran", "DevDiscourse"]),
     "person_for_image": None,
-    "pexels_query": "airport health screening passengers",
-    "pexels_fallback": "airport terminal security passengers",
-    "sources": ["Reuters", "Bharat Affairs", "Latestly", "WHO"],
-    "image_attribution": None,
+    "image_search": "India Supreme Court building New Delhi",
+    "image_search_fallback": "Indian parliament democracy voting",
+    "body": """India's Supreme Court delivered a landmark ruling on Wednesday, upholding the Election Commission's controversial Special Intensive Revision (SIR) of electoral rolls — while simultaneously stripping the commission of any authority to determine citizenship status.
+
+The ruling settles a politically explosive legal battle that has raged for months. Opposition parties had challenged the SIR as an unconstitutional overreach that was being used to disenfranchise voters, particularly in states like Bihar and West Bengal where millions of names were removed from voter lists.
+
+## What the Court Said
+
+The Supreme Court ruled that the SIR is "constitutional and legally tenable," affirming the Election Commission's authority under Article 324 of the Constitution and Section 21(3) of the Representation of the People Act, 1950.
+
+"SIR breathes life into the Constitution," the bench observed, emphasizing that the process of cleaning up voter rolls — removing duplicates, deceased voters, and fraudulent entries — is essential for electoral integrity.
+
+In Bihar, the SIR resulted in the removal of 65 lakh (6.5 million) names from voter rolls, a process the commission said was necessitated by rapid urbanization and migration patterns that had left rolls bloated with outdated entries.
+
+The court noted that 99.8 percent coverage was achieved in the Bihar revision, and that the process included Aadhaar as an additional verification tool — a practice it found permissible.
+
+## The Critical Limitation
+
+But the court drew a firm line on one point: the Election Commission cannot decide who is and is not a citizen of India.
+
+This distinction matters enormously. Opposition parties, led by Congress, had argued that the SIR was being used as a backdoor National Register of Citizens (NRC) — a mechanism to strip citizenship from vulnerable populations, particularly Muslims and migrants.
+
+The court ruled that any voter whose name is removed from the roll on grounds related to citizenship must have their case reviewed by the Union Home Ministry within four weeks. Removal from the voter list, the court emphasized, "does not erase citizenship."
+
+This means the Election Commission can clean rolls, verify identities, and eliminate duplicates — but it cannot make the final call on whether someone is Indian.
+
+## The Political Fallout
+
+The ruling was immediately claimed as a victory by both sides.
+
+The BJP welcomed the verdict, with party MP Sudhanshu Trivedi calling it a vindication that exposed the "true character" of the opposition INDIA bloc. "This is a constitutional defeat for those who politicized the integrity of voter rolls," he said.
+
+Congress took a more measured view, acknowledging the constitutional validation of the SIR but pointing to the citizenship limitation as proof that their concerns about overreach were justified.
+
+Activist Yogendra Yadav offered a more skeptical assessment, arguing the ruling was "decided long ago" and that the focus on grievance redressal mechanisms obscured deeper constitutional questions about who controls the definition of Indian citizenship.
+
+## What This Means for NRIs
+
+For Indians living abroad, the ruling has implications for their voting rights. Overseas Indian voters are registered through a separate process, but the SIR framework could theoretically be applied to scrutinize their registrations. The ruling's emphasis on Aadhaar verification also raises questions for NRIs whose Aadhaar cards may have lapsed or been deactivated due to prolonged absence from India.
+
+The Supreme Court's decision is final and cannot be appealed, though specific aspects of SIR implementation in individual states could still be challenged in lower courts.
+
+## The Bigger Picture
+
+The ruling arrives at a charged moment in Indian democracy. With state elections approaching in multiple states and the 2029 general election on the horizon, the integrity of voter rolls has become a front-line political battleground.
+
+The court has tried to thread a needle: affirming the government's power to maintain clean voter rolls while preventing that power from being weaponized to determine who belongs. Whether that distinction holds in practice — in states where political pressure and bureaucratic machinery often blur legal boundaries — remains the unanswered question."""
 })
 
+# ─── ARTICLE 3: Atlassian Cuts 1,600 Jobs ─────────────────────────────────────
+articles.append({
+    "headline": "Atlassian Just Cut 1,600 Jobs and Replaced Its Indian-Origin CTO With an AI-Focused Leader. The Signal Is Clear.",
+    "subheadline": "Sri Viswanath built Atlassian's cloud infrastructure. His departure — and the company's pivot to 'next-gen AI talent' — is a warning shot for every Indian engineer in Silicon Valley.",
+    "slug": "atlassian-cuts-1600-jobs-indian-cto-sri-viswanath-ai-replacement-20260527",
+    "category": "news",
+    "vertical": "technology",
+    "sources": json.dumps(["Times Now", "Atlassian Inc.", "Reuters", "CryptoBriefing", "Jagranjosh"]),
+    "person_for_image": "Sri Viswanath",
+    "image_search": "Atlassian software company office",
+    "image_search_fallback": "tech company layoffs office",
+    "body": """Atlassian, the Australian software giant behind Jira, Confluence, and Trello, has announced it is cutting 1,600 jobs globally — roughly 10 percent of its workforce — as it restructures around artificial intelligence. Among those departing: Chief Technology Officer Sri Viswanath, the Indian-origin executive who built the company's cloud infrastructure over the past several years.
 
-# ============================================================
-# PUBLISH
-# ============================================================
+The move sent a clear signal. Atlassian is not just trimming headcount. It is replacing a generation of engineering leadership with executives whose backgrounds are in AI, machine learning, and automation. Investors welcomed the news. The company's stock rose on the announcement.
 
-def publish_article(art):
+## The Numbers
+
+Of the 1,600 positions eliminated, approximately 250 are in India, where Atlassian has a significant engineering presence. The company has centers in Bengaluru that handle core product development, not just back-office functions.
+
+Atlassian CEO Mike Cannon-Brookes framed the cuts as a "reshaping" rather than a cost-cutting exercise. "We're reorganizing our teams to build the next generation of AI-powered products," he said in a statement. "This requires different skills and different leadership."
+
+## The CTO Departure
+
+Sri Viswanath's exit is the most symbolically significant part of the restructuring. As CTO, Viswanath led Atlassian's migration from on-premise software to its cloud platform — a multi-year, technically complex transformation that was central to the company's growth story.
+
+But Atlassian's board has decided that the next phase requires a different kind of technical leadership. Viswanath's replacement, whose appointment has not yet been formally announced, is expected to have deep expertise in large language models, AI agents, and the automation of software development itself.
+
+The message is hard to miss: the skills that built cloud infrastructure — distributed systems, database architecture, DevOps pipelines — are no longer the skills that matter most. What matters now is the ability to build AI systems that can do the work those infrastructures were designed to support.
+
+## The Wider Pattern
+
+Atlassian is not alone. Across the global tech industry, companies are simultaneously cutting traditional engineering roles and hiring for AI-specific positions — a phenomenon that has been particularly acute in India.
+
+Cognizant, the Indian-American IT giant, is planning to cut between 4,000 and 15,000 jobs globally under its "Project Leap" restructuring, with a disproportionate impact on its 250,000-strong Indian workforce. The company is investing the savings in AI and automation capabilities.
+
+Standard Chartered announced it would cut 7,800 jobs in its Chennai and Bengaluru operations. CEO Bill Winters described the move not as cost-cutting but as "replacing in some cases lower-value human capital."
+
+A joint report by Nasscom and Indeed found that 40 percent of employers now prefer demonstrable AI skills or certifications over traditional degrees. Another 32 percent give equal weight to both. Puneet Chandok, president of Microsoft India and South Asia, put it plainly: "The biggest challenge is to get the right talent with the right AI skill."
+
+## What This Means for Indian Tech Workers
+
+For the Indian diaspora in tech — and for India's massive IT workforce — the Atlassian restructuring is a case study in the speed of displacement.
+
+The company is not failing. Its products are used by hundreds of thousands of organizations worldwide. Revenue continues to grow. But the nature of the work that drives that revenue is changing faster than the workforce can adapt.
+
+"The zero-to-two-years experience bucket will go away is my assumption in the next few years," said Deena Dayalan, the global head of digital operations at Kimberly Clark, speaking about entry-level hiring at global capability centers in India. A Nasscom-Zinnov report found that 73 percent of HR leaders are flagging a widening skills gap.
+
+For Indian engineers who spent the last decade mastering cloud, microservices, and container orchestration, the lesson from Atlassian is uncomfortable: those skills bought you a seat at the table. They may not keep you there.
+
+## The Reskilling Race
+
+The question now is whether India's tech workforce can reskill fast enough. IBM India head Sandip Patel has called for a "trifecta" approach — industry, government, and academia working together to bridge the gap.
+
+Some GCCs (Global Capability Centers) are investing in internal reskilling programs. Others are partnering with universities to redesign curricula around AI and machine learning. But the pace of change is outrunning these efforts.
+
+India currently houses over 2,100 GCCs employing 2.36 million people and generating roughly $100 billion in revenue. That engine was built on the assumption that India's vast pool of skilled, affordable workers would always be in demand. AI is testing that assumption in real time."""
+})
+
+# ─── PUBLISH ──────────────────────────────────────────────────────────────────
+
+for i, art in enumerate(articles):
     print(f"\n{'='*60}")
-    print(f"Publishing: {art['headline'][:70]}...")
-    
-    # 1. Dedup check
-    if check_duplicate(art['keywords']):
-        print("  ⚠ Skipping — possible duplicate detected")
-        return None
-    
-    # 2. Image sourcing
-    image_url = None
-    image_attribution = None
-    
-    # Try Wikipedia first for person articles
+    print(f"Article {i+1}: {art['headline'][:80]}...")
+    print(f"{'='*60}")
+
+    # Check for duplicate
+    slug_check = requests.get(
+        f"{SUPABASE_URL}/rest/v1/p2_articles?select=id&slug=eq.{art['slug']}&limit=1",
+        headers=sb_headers(), timeout=10
+    )
+    if slug_check.status_code == 200 and slug_check.json():
+        print(f"  ⚠ Slug already exists, skipping: {art['slug']}")
+        continue
+
+    # Validate body length
+    word_count = len(art["body"].split())
+    if word_count < 400:
+        print(f"  ✗ Body too short ({word_count} words), skipping")
+        continue
+    print(f"  ✓ Body: {word_count} words")
+
+    # Image sourcing
+    img_url = None
+
+    # 1. Wikipedia for person articles
     if art.get("person_for_image"):
-        image_url = fetch_wikipedia_person_image(art["person_for_image"])
-        if image_url:
-            image_attribution = "Wikimedia Commons"
-    
-    # Fall back to Pexels
-    if not image_url and art.get("pexels_query"):
-        image_url = fetch_pexels_image(art["pexels_query"], art.get("pexels_fallback"))
-        if image_url:
-            image_attribution = "Pexels"
-    
-    # Validate image
-    if image_url and not validate_image_url(image_url):
-        print(f"  ✗ Image validation failed, publishing without image")
-        image_url = None
-        image_attribution = None
-    
-    # 3. Build record
-    now = datetime.now(timezone.utc).isoformat()
+        img_url = fetch_wikipedia_person_image(art["person_for_image"])
+        # Try alternate names
+        if not img_url and " " in art["person_for_image"]:
+            # Try with disambiguation
+            for suffix in ["(engineer)", "(businessman)", "(computer scientist)"]:
+                img_url = fetch_wikipedia_person_image(f"{art['person_for_image']} {suffix}")
+                if img_url:
+                    break
+
+    # 2. Pexels fallback
+    if not img_url:
+        img_url = fetch_pexels_image(art["image_search"], art.get("image_search_fallback"))
+
+    # 3. Validate
+    if img_url and check_banned_url(img_url):
+        img_url = None
+    if img_url and not validate_image(img_url):
+        print(f"  ✗ Image validation failed, proceeding without image")
+        img_url = None
+
+    # Build record
+    art_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+
+    # Determine image attribution
+    img_attr = None
+    if img_url:
+        if "wikipedia" in img_url.lower() or "wikimedia" in img_url.lower():
+            img_attr = "Wikimedia Commons"
+        else:
+            img_attr = "The Videshi"
+
     record = {
+        "id": art_id,
         "headline": art["headline"],
         "subheadline": art["subheadline"],
         "slug": art["slug"],
         "body": art["body"],
         "category": art["category"],
+        "vertical": art["vertical"],
         "status": "published",
         "published_at": now,
-        "created_at": now,
-        "updated_at": now,
-        "author": "The Videshi Newsroom",
-        "sources": json.dumps(art["sources"]),
+        "sources": art["sources"],
+        "image_url": img_url,
+        "image_attribution": img_attr,
     }
-    
-    if image_url:
-        record["image_url"] = image_url
-    if image_attribution:
-        record["image_attribution"] = image_attribution
-    
-    # 4. Insert
+
     result = sb_insert("p2_articles", record)
     if result:
-        art_id = result.get("id", "unknown")
-        print(f"  ✓ Published: {art['slug']} (id: {art_id})")
-        return art_id
+        print(f"  ✓ Published: {art['slug']}")
+        print(f"    ID: {art_id}")
+        print(f"    Image: {'Yes' if img_url else 'No'}")
     else:
         print(f"  ✗ Failed to publish: {art['slug']}")
-        return None
 
-
-# --- Main ---
-
-if __name__ == "__main__":
-    print(f"The Videshi News Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    print(f"Publishing {len(articles)} articles...")
-    
-    results = []
-    for art in articles:
-        art_id = publish_article(art)
-        results.append({"slug": art["slug"], "id": art_id, "success": art_id is not None})
-    
-    print(f"\n{'='*60}")
-    print("SUMMARY:")
-    for r in results:
-        status = "✓" if r["success"] else "✗"
-        print(f"  {status} {r['slug']}")
-    
-    success_count = sum(1 for r in results if r["success"])
-    print(f"\n{success_count}/{len(results)} articles published successfully.")
+print("\n✓ News writer batch complete")
