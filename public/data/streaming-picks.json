@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-27T21:46:01Z",
+  "generated_at": "2026-05-27T22:58:35Z",
   "week_of": "May 25 – May 31, 2026",
   "editorial_intro": "Dhurandhar drops its uncut version on Netflix this week. Dhanush's heist thriller Kara arrives in five languages. Nicolas Cage goes full noir on Prime Video. And if you're looking for regional gems, Telugu and Tamil cinema deliver again.",
   "picks": [
@@ -10,9 +10,6 @@
       "platform_icon": "netflix",
       "genre": "Action Thriller",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/2e/Dhurandhar_poster.jpg",
-      "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/results?search_query=Dhurandhar+Raw+and+Undekha+official+trailer",
       "synopsis": "The extended, uncensored cut of Aditya Dhar's record-breaking spy thriller. Ranveer Singh leads a raw intelligence mission across hostile terrain with Sanjay Dutt and Arjun Rampal in a story that doesn't flinch. The theatrical version shattered box office records — this version goes further.",
       "cast": [
         "Ranveer Singh",
@@ -21,12 +18,15 @@
         "Sara Arjun"
       ],
       "director": "Aditya Dhar",
-      "why_watch": "The biggest Bollywood hit of 2026 just got a longer, uncut version — and it's streaming on two platforms simultaneously.",
+      "why_watch": "The biggest Bollywood hit of 2026 just got a longer, uncut version — and it's streaming on Netflix.",
       "is_indian": true,
       "watch_url": "https://www.netflix.com/search?q=dhurandhar",
       "language": "Hindi",
-      "rank": 1,
-      "trending": true
+      "trending": true,
+      "poster_url": "",
+      "backdrop_url": "",
+      "trailer_url": "https://www.youtube.com/watch?v=xAuK76rdEPE",
+      "rank": 1
     },
     {
       "title": "Jolly LLB 3",
@@ -34,10 +34,7 @@
       "platform": "JioHotstar",
       "platform_icon": "hotstar",
       "genre": "Courtroom Comedy-Drama",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/1/14/Jolly_LLB_3.jpg",
-      "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/results?search_query=Jolly+LLB+3+trailer+2026",
+      "year": 2025,
       "synopsis": "Akshay Kumar returns as the lovably incompetent small-town lawyer who stumbles into cases too big for him. This time, Jolly takes on a pharmaceutical giant in a case that hits uncomfortably close to home. The franchise that proved courtroom dramas can be funny.",
       "cast": [
         "Akshay Kumar",
@@ -49,8 +46,11 @@
       "is_indian": true,
       "watch_url": "https://www.hotstar.com/in/search?q=jolly+llb+3",
       "language": "Hindi",
-      "rank": 2,
-      "trending": true
+      "trending": true,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/1/1d/Jolly_LLB_3_poster.jpg",
+      "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/1/1d/Jolly_LLB_3_poster.jpg",
+      "trailer_url": "https://www.youtube.com/watch?v=eSgJ8PfSUSk",
+      "rank": 2
     },
     {
       "title": "Kara",
@@ -58,43 +58,43 @@
       "platform": "Netflix",
       "platform_icon": "netflix",
       "genre": "Heist Thriller",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/4f/Kara_2025_poster.jpg",
-      "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/results?search_query=Kara+Dhanush+2026+official+trailer",
-      "synopsis": "Set in 1991 during the Gulf War, a reformed thief in rural Tamil Nadu is forced back into crime when a corrupt bank seizes his family's ancestral land. Dhanush delivers one of his most restrained performances in this slow-burn heist drama with an 8.2 IMDb rating.",
+      "year": 2025,
+      "synopsis": "Set in 1991 during the Gulf War, a reformed thief in rural Tamil Nadu is forced back into crime when a corrupt bank seizes his family's ancestral land. Dhanush delivers one of his most restrained performances in this slow-burn heist drama.",
       "cast": [
         "Dhanush",
         "Mamitha Baiju",
         "K. S. Ravikumar"
       ],
       "director": "Vignesh Raja",
-      "why_watch": "Dhanush at his brooding best. A Tamil heist film that earned ₹41 crore and is now available in five languages.",
+      "why_watch": "Dhanush at his brooding best. A Tamil heist film now available in five languages on Netflix.",
       "is_indian": true,
       "watch_url": "https://www.netflix.com/search?q=kara+dhanush",
       "language": "Tamil",
-      "rank": 3,
-      "trending": false
+      "trending": false,
+      "poster_url": "",
+      "backdrop_url": "",
+      "trailer_url": "https://www.youtube.com/watch?v=xkQS_TET5NI",
+      "rank": 3
     },
     {
-      "title": "Satrangi: Badle Ka Khel",
+      "title": "Satrangi",
       "slug": "satrangi-badle-ka-khel",
       "platform": "JioHotstar",
       "platform_icon": "hotstar",
       "genre": "Action Crime",
       "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/results?search_query=Satrangi+Badle+Ka+Khel+trailer+2026",
-      "synopsis": "A gritty revenge saga set across seven interconnected stories. When a family is torn apart by a powerful crime syndicate, each member takes a different path to justice — some legal, some not. A Hindi-language original series that blends revenge drama with moral ambiguity.",
+      "synopsis": "A gritty revenge saga set across seven interconnected stories. When a family is torn apart by a powerful crime syndicate, each member takes a different path to justice — some legal, some not.",
       "cast": [],
       "director": "",
       "why_watch": "Think Sacred Games meets a revenge anthology. Seven stories, one vendetta — a fresh format for Hindi crime TV.",
       "is_indian": true,
       "watch_url": "https://www.hotstar.com/in/search?q=satrangi",
       "language": "Hindi",
-      "rank": 4,
-      "trending": false
+      "trending": false,
+      "poster_url": "",
+      "backdrop_url": "",
+      "trailer_url": "https://www.youtube.com/watch?v=htULC5gxZnM",
+      "rank": 4
     },
     {
       "title": "Jetlee",
@@ -103,9 +103,6 @@
       "platform_icon": "hotstar",
       "genre": "Action Thriller",
       "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/results?search_query=Jetlee+Telugu+movie+2026+trailer",
       "synopsis": "A Telugu action thriller that's been generating buzz for its high-octane sequences and layered storytelling. When an ordinary man discovers a conspiracy that goes all the way to the top, he must become something he never imagined to protect his family.",
       "cast": [],
       "director": "",
@@ -113,19 +110,19 @@
       "is_indian": true,
       "watch_url": "https://www.hotstar.com/in/search?q=jetlee",
       "language": "Telugu",
-      "rank": 5,
-      "trending": false
+      "trending": false,
+      "poster_url": "",
+      "backdrop_url": "",
+      "trailer_url": "https://www.youtube.com/watch?v=NFf-psCV8-Y",
+      "rank": 5
     },
     {
-      "title": "Warrant: From the World of Vilangu",
+      "title": "Warrant",
       "slug": "warrant-vilangu",
       "platform": "SonyLIV",
       "platform_icon": "sonyliv",
       "genre": "Crime Thriller",
       "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/results?search_query=Warrant+Vilangu+Tamil+series+2026+trailer",
       "synopsis": "A spinoff from the acclaimed Tamil series Vilangu, following a new case that pulls investigators into a web of corruption and violence. The series expands the universe of one of Tamil television's most critically acclaimed crime dramas.",
       "cast": [],
       "director": "",
@@ -133,8 +130,11 @@
       "is_indian": true,
       "watch_url": "https://www.sonyliv.com/search?q=warrant",
       "language": "Tamil",
-      "rank": 6,
-      "trending": false
+      "trending": false,
+      "poster_url": "",
+      "backdrop_url": "",
+      "trailer_url": "https://www.youtube.com/watch?v=uIy0j4OlPCw",
+      "rank": 6
     },
     {
       "title": "Memu Copulam",
@@ -143,9 +143,6 @@
       "platform_icon": "zee5",
       "genre": "Comedy Crime",
       "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/results?search_query=Memu+Copulam+Telugu+series+2026+trailer",
       "synopsis": "A Telugu comedy-crime series following a group of small-time con artists who accidentally stumble into a much bigger heist than they bargained for. Think Ocean's Eleven meets Telugu slapstick — sharp writing, chaotic energy.",
       "cast": [],
       "director": "",
@@ -153,8 +150,11 @@
       "is_indian": true,
       "watch_url": "https://www.zee5.com/search?q=memu+copulam",
       "language": "Telugu",
-      "rank": 7,
-      "trending": false
+      "trending": false,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/f/f5/Memu_Copulam.jpg",
+      "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/f/f5/Memu_Copulam.jpg",
+      "trailer_url": "https://www.youtube.com/watch?v=WO0bg33MpsU",
+      "rank": 7
     },
     {
       "title": "Spider-Noir",
@@ -162,34 +162,31 @@
       "platform": "Prime Video",
       "platform_icon": "prime",
       "genre": "Superhero Noir",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/09/Spider-Noir_%28TV_series%29_poster.jpg",
-      "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/results?search_query=Spider-Noir+Prime+Video+official+trailer+Nicolas+Cage",
-      "synopsis": "Nicolas Cage stars as Ben Reilly, an aging private investigator in 1933 New York City hired on a case that forces him to confront his past as the city's only superhero. Available in both black-and-white and full color versions. 91% on Rotten Tomatoes.",
+      "year": 2025,
+      "synopsis": "Nicolas Cage stars as Ben Reilly, an aging private investigator in 1933 New York City hired on a case that forces him to confront his past as the city's only superhero. Available in both black-and-white and full color versions.",
       "cast": [
         "Nicolas Cage",
         "Brendan Gleeson",
         "Lamorne Morris"
       ],
       "director": "Harry Bradbeer",
-      "why_watch": "Nicolas Cage doing noir detective work with spider powers in the 1930s? Critics are calling it 'Cage at his best.' Choose your flavor: black-and-white or color.",
+      "why_watch": "Nicolas Cage doing noir detective work with spider powers in the 1930s? Critics are calling it 'Cage at his best.'",
       "is_indian": false,
       "watch_url": "https://www.primevideo.com/search?phrase=spider-noir",
       "language": "English",
-      "rank": 8,
-      "trending": true
+      "trending": true,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/8/81/Spider-Noir_poster.jpg",
+      "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/8/81/Spider-Noir_poster.jpg",
+      "trailer_url": "https://www.youtube.com/watch?v=u48_JpUloGY",
+      "rank": 8
     },
     {
-      "title": "A Good Girl's Guide to Murder S2",
+      "title": "A Good Girl's Guide to Murder",
       "slug": "good-girls-guide-to-murder-s2",
       "platform": "Netflix",
       "platform_icon": "netflix",
       "genre": "Mystery Thriller",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/36/A_Good_Girl%27s_Guide_to_Murder_%28TV_series%29.jpg",
-      "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/results?search_query=A+Good+Girl%27s+Guide+to+Murder+Season+2+trailer",
+      "year": 2024,
       "synopsis": "Emma Myers returns as Pip Fitz-Amobi, the amateur detective who can't stop digging. Season 2 takes a darker turn as Pip investigates a new case while dealing with the fallout of her first investigation. Based on Holly Jackson's bestselling trilogy.",
       "cast": [
         "Emma Myers",
@@ -197,12 +194,15 @@
         "Rahul Pattni"
       ],
       "director": "Dolly Wells",
-      "why_watch": "The YA mystery that became a global hit is back — and this time it's personal. If you binged season 1, this picks up right where it left off.",
+      "why_watch": "The YA mystery that became a global hit is back — and this time it's personal.",
       "is_indian": false,
       "watch_url": "https://www.netflix.com/search?q=good+girl+guide+murder",
       "language": "English",
-      "rank": 9,
-      "trending": false
+      "trending": false,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/A_Good_Girl%27s_Guide_to_Murder_%28TV_series%29_title_card.png/330px-A_Good_Girl%27s_Guide_to_Murder_%28TV_series%29_title_card.png",
+      "backdrop_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/A_Good_Girl%27s_Guide_to_Murder_%28TV_series%29_title_card.png/330px-A_Good_Girl%27s_Guide_to_Murder_%28TV_series%29_title_card.png",
+      "trailer_url": "https://www.youtube.com/watch?v=wA39lIDm75Y",
+      "rank": 9
     },
     {
       "title": "Dead Man's Wire",
@@ -211,9 +211,6 @@
       "platform_icon": "netflix",
       "genre": "Thriller",
       "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/results?search_query=Dead+Man%27s+Wire+Netflix+2026+trailer",
       "synopsis": "A taut psychological thriller about a crisis negotiator who receives a call that changes everything — the voice on the other end knows secrets about her past that no one else should. As the clock ticks down, the line between negotiator and target blurs.",
       "cast": [],
       "director": "",
@@ -221,8 +218,11 @@
       "is_indian": false,
       "watch_url": "https://www.netflix.com/search?q=dead+man+wire",
       "language": "English",
-      "rank": 10,
-      "trending": false
+      "trending": false,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/b/bb/Dead_Man%27s_Wire_poster.jpg",
+      "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/b/bb/Dead_Man%27s_Wire_poster.jpg",
+      "trailer_url": "https://www.youtube.com/watch?v=xJH8iCcoSDw",
+      "rank": 10
     }
   ]
 }
