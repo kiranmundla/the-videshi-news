@@ -411,7 +411,7 @@ export default function ArticlePage() {
             <span>{time} min read</span>
             <span className="ml-auto flex gap-1.5">
               <a
-                href={`https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + ' — The Videshi\n' + window.location.href)}`}
+                href={`https://api.whatsapp.com/send?text=${encodeURIComponent(window.location.href)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20 transition-colors"
