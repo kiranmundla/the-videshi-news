@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
@@ -48,6 +48,7 @@ function extractYouTubeId(url: string): string | null {
 
 export default function WatchDetailPage() {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const [pick, setPick] = useState<StreamingPick | null>(null);
   const [allPicks, setAllPicks] = useState<StreamingPick[]>([]);
   const [loading, setLoading] = useState(true);
@@ -116,7 +117,13 @@ export default function WatchDetailPage() {
         {/* Back link */}
         <div style={{ padding: "16px 0 8px" }}>
           <button
-            onClick={() => window.history.back()}
+            onClick={() => {
+              if (window.history.length > 1) {
+                navigate(-1);
+              } else {
+                navigate("/");
+              }
+            }}
             style={{
               color: "#888",
               fontSize: 12,

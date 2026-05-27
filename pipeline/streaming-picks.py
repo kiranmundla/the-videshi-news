@@ -102,14 +102,17 @@ def youtube_search_url(title: str, suffix: str = "official trailer") -> str:
     return f"https://www.youtube.com/results?search_query={quote(query)}"
 
 
-def try_find_youtube_trailer(title: str, year: int = 0) -> str:
+def try_find_youtube_trailer(title: str, year: int = 0, language: str = "") -> str:
     """
     Try to find actual YouTube video ID by searching.
+    Include language to avoid wrong-language matches.
     Falls back to search URL if we can't find a direct link.
     """
+    lang_tag = f" {language}" if language and language != "English" else ""
     queries = [
-        f"{title} official trailer {year}" if year else f"{title} official trailer",
-        f"{title} trailer",
+        f"{title}{lang_tag} official trailer {year}" if year else f"{title}{lang_tag} official trailer",
+        f"{title}{lang_tag} trailer",
+        f"{title} trailer {year}" if year else f"{title} trailer",
     ]
 
     for query in queries:
@@ -337,7 +340,7 @@ def build():
         pick["backdrop_url"] = poster  # Use same image for backdrop
 
         # Find YouTube trailer
-        trailer = try_find_youtube_trailer(pick["title"], pick.get("year", 0))
+        trailer = try_find_youtube_trailer(pick["title"], pick.get("year", 0), pick.get("language", ""))
         pick["trailer_url"] = trailer
 
         print()
