@@ -1,0 +1,100 @@
+[
+  {
+    "sent_at": "2026-05-27T14:18:00.446386+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 0,
+    "errors": 1,
+    "hero_slug": "supreme-court-quashes-cci-202-crore-amazon-penalty-future-coupons-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T14:18:58.426468+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "supreme-court-quashes-cci-202-crore-amazon-penalty-future-coupons-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T14:20:04.056452+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "supreme-court-quashes-cci-202-crore-amazon-penalty-future-coupons-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T14:24:00.842611+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "supreme-court-quashes-cci-202-crore-amazon-penalty-future-coupons-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T14:35:48.671005+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "supreme-court-quashes-cci-202-crore-amazon-penalty-future-coupons-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T14:37:43.825058+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "bengaluru-ebola-test-negative-india-airport-screening-worked-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T14:38:34.794054+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "bengaluru-ebola-test-negative-india-airport-screening-worked-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "sent_at": "2026-05-27T14:53:19.051575+00:00Z",
+    "subject": "The Videshi Weekly \u2014 May 20\u201327, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "hero_slug": "india-outsourcing-ai-fewer-workers-reuters-summit-jobs-20260527",
+    "story_count": 8,
+    "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-05-27T14:54:07.214721+00:00Z",
+    "subject": "The Videshi Daily \u2014 May 27, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "story_count": 6
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-05-27T14:55:30.889034+00:00Z",
+    "subject": "The Videshi Daily \u2014 May 27, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "story_count": 6
+  }
+]
