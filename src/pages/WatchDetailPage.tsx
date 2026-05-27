@@ -115,8 +115,8 @@ export default function WatchDetailPage() {
       <main style={{ maxWidth: 720, margin: "0 auto", padding: "0 16px" }}>
         {/* Back link */}
         <div style={{ padding: "16px 0 8px" }}>
-          <Link
-            to="/"
+          <button
+            onClick={() => window.history.back()}
             style={{
               color: "#888",
               fontSize: 12,
@@ -124,10 +124,14 @@ export default function WatchDetailPage() {
               letterSpacing: "0.06em",
               textTransform: "uppercase" as const,
               fontWeight: 600,
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
             }}
           >
-            ← Entertainment
-          </Link>
+            ← Back
+          </button>
         </div>
 
         {/* Hero section */}
