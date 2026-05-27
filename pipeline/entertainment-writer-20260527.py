@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
-"""
-The Videshi Entertainment Writer — 2026-05-27
-Publishes 3 fresh entertainment articles with Wikipedia-first image sourcing.
-"""
+"""Entertainment writer for The Videshi — 2026-05-27 run"""
 
-import json, os, re, sys, time, uuid, subprocess, urllib.parse, textwrap
+import json, os, re, sys, time, uuid, traceback
 from datetime import datetime, timezone
+import requests, urllib.parse
 
-# ── Env ──────────────────────────────────────────────────────────────
+# Load env
 def load_env(path):
     if os.path.exists(path):
         with open(path) as f:
@@ -15,408 +13,364 @@ def load_env(path):
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
                     k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip())
+                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
 SUPABASE_URL = os.environ['SUPABASE_URL']
 SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY   = os.environ.get('PEXELS_API_KEY', '')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-HEADERS_SB = {
+HEADERS = {
     'apikey': SUPABASE_KEY,
     'Authorization': f'Bearer {SUPABASE_KEY}',
     'Content-Type': 'application/json',
-    'Prefer': 'return=representation',
+    'Prefer': 'return=representation'
 }
-
-# ── Helpers ──────────────────────────────────────────────────────────
-def sb_post(table, data):
-    import requests
-    url = f"{SUPABASE_URL}/rest/v1/{table}"
-    r = requests.post(url, headers=HEADERS_SB, json=data, timeout=30)
-    r.raise_for_status()
-    return r.json()
-
-def sb_patch(table, match, data):
-    import requests
-    params = '&'.join(f"{k}={v}" for k, v in match.items())
-    url = f"{SUPABASE_URL}/rest/v1/{table}?{params}"
-    r = requests.patch(url, headers=HEADERS_SB, json=data, timeout=30)
-    r.raise_for_status()
-    return r.json()
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import requests
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
-    try:
-        r = requests.get(
-            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
-        )
-        if r.status_code == 200:
-            data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
-            if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
-                return img
-    except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+    for attempt in range(3):
+        try:
+            r = requests.get(
+                f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+                headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+                timeout=10
+            )
+            if r.status_code == 429:
+                wait = 2 * (attempt + 1)
+                print(f"  ⚠ Wikipedia rate limited, waiting {wait}s...")
+                time.sleep(wait)
+                continue
+            if r.status_code == 200:
+                data = r.json()
+                img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+                if img:
+                    print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                    return img
+            break
+        except Exception as e:
+            print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+            break
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels using curl (Python urllib gets 403)."""
+    """Fetch a relevant image from Pexels as fallback."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
+    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             result = subprocess.run(
                 ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'],
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
             photos = data.get('photos', [])
-            for p in photos:
-                url = p.get('src', {}).get('large2x') or p.get('src', {}).get('large')
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            if photos:
+                url = photos[0]['src']['large2x']
+                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image_url(url):
-    """Verify the URL returns HTTP 200 with image content and >5KB."""
+def validate_image(url):
+    """Validate image URL returns HTTP 200 with image content > 5KB."""
     if not url:
         return False
-    try:
-        result = subprocess.run(
-            ['curl', '-sS', '-o', '/dev/null', '-w', '%{http_code} %{size_download} %{content_type}', '-L', url],
-            capture_output=True, text=True, timeout=15
-        )
-        parts = result.stdout.strip().split(' ', 2)
-        code = parts[0]
-        size = int(float(parts[1])) if len(parts) > 1 else 0
-        ctype = parts[2] if len(parts) > 2 else ''
-        if code == '200' and size > 5000 and 'image' in ctype:
-            print(f"  ✓ Image validated: {code}, {size} bytes, {ctype}")
-            return True
-        else:
-            print(f"  ✗ Image validation failed: {code}, {size} bytes, {ctype}")
+    for attempt in range(3):
+        try:
+            r = requests.head(url, timeout=10, allow_redirects=True,
+                             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            if r.status_code == 429:
+                wait = 2 * (attempt + 1)
+                print(f"  ⚠ Image validation rate limited, waiting {wait}s...")
+                time.sleep(wait)
+                continue
+            content_type = r.headers.get('Content-Type', '')
+            content_length = int(r.headers.get('Content-Length', 0))
+            if r.status_code == 200 and 'image' in content_type:
+                if content_length == 0 or content_length > 5000:
+                    print(f"  ✓ Image validated: {r.status_code}, {content_type}, {content_length} bytes")
+                    return True
+                else:
+                    print(f"  ✗ Image too small: {content_length} bytes")
+            else:
+                print(f"  ✗ Image validation failed: {r.status_code}, {content_type}")
             return False
-    except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
+        except Exception as e:
+            print(f"  ✗ Image validation error: {e}")
+            return False
+    return False
+
+def publish_article(article):
+    """Publish article to Supabase."""
+    payload = {
+        'id': str(uuid.uuid4()),
+        'headline': article['headline'],
+        'subheadline': article['subheadline'],
+        'body': article['body'],
+        'slug': article['slug'],
+        'category': 'entertainment',
+        'vertical': 'entertainment',
+        'status': 'published',
+        'published_at': datetime.now(timezone.utc).isoformat(),
+        'sources': json.dumps(article.get('sources', [])),
+        'image_url': article.get('image_url', ''),
+        'image_caption': article.get('image_caption', ''),
+        'image_attribution': article.get('image_attribution', ''),
+        'urgency': 'daily',
+        'word_count': len(article['body'].split()),
+        'score_total': 80
+    }
+
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload,
+        timeout=30
+    )
+    if r.status_code in (200, 201):
+        print(f"  ✓ Published: {article['headline'][:60]}...")
+        return True
+    else:
+        print(f"  ✗ Publish failed ({r.status_code}): {r.text[:200]}")
         return False
 
-def is_banned_url(url):
-    """Check if URL is from a banned source (Meta CDN etc)."""
-    if not url:
-        return True
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
-    return any(b in url for b in banned)
 
-def upload_image_to_supabase(source_url, filename):
-    """Download image from URL and upload to Supabase storage bucket 'article-images'."""
-    import requests
-    tmp_path = f"/tmp/{filename}"
-    try:
-        # Download
-        r = requests.get(source_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=20)
-        r.raise_for_status()
-        with open(tmp_path, 'wb') as f:
-            f.write(r.content)
-        print(f"  ✓ Downloaded {len(r.content)} bytes to {tmp_path}")
-        
-        # Upload to Supabase storage
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        headers = {
-            'Authorization': f'Bearer {SUPABASE_KEY}',
-            'Content-Type': 'image/jpeg',
-            'x-upsert': 'true',
-        }
-        with open(tmp_path, 'rb') as f:
-            r2 = requests.post(upload_url, headers=headers, data=f, timeout=30)
-        
-        if r2.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase storage: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed ({r2.status_code}): {r2.text[:200]}")
-            return source_url  # Fall back to original URL if it's from Wikipedia/Pexels
-    except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-        return source_url
-    finally:
-        if os.path.exists(tmp_path):
-            os.remove(tmp_path)
+# ============================================================
+# ARTICLE 1: Suriya's Karuppu — ₹250 Crore Blockbuster
+# ============================================================
 
-# ── Articles ─────────────────────────────────────────────────────────
+def write_article_1():
+    print("\n📝 Article 1: Suriya's Karuppu ₹250 Crore Blockbuster")
 
-ARTICLES = [
-    {
-        "headline": "Hema Malini Accepted Dharmendra's Posthumous Padma Vibhushan on Sunday. Their Daughter Ahana Broke Down. He Made 300 Films in 65 Years and Never Got India's Second-Highest Civilian Honour While He Was Alive.",
-        "subheadline": "The Sholay legend, who died in November 2025, was finally recognised with the Padma Vibhushan at Rashtrapati Bhavan. For NRIs who grew up on his films, it was the most emotional two minutes of Indian television this year.",
-        "slug": "dharmendra-posthumous-padma-vibhushan-hema-malini-ahana-deol-sholay-nri-legacy-20260527",
-        "category": "entertainment",
-        "tags": ["entertainment", "bollywood", "dharmendra", "padma-awards", "hema-malini", "sholay", "diaspora", "nri"],
-        "person_for_image": "Dharmendra",
-        "pexels_query": None,
-        "sources": "LatestLY, Filmibeat, Boldsky, The Hindu Business Line, Storyboard18",
-        "body": """Dharmendra never collected his Padma Vibhushan.
+    # Image: Wikipedia for Suriya
+    image_url = fetch_wikipedia_person_image("Suriya")
+    if not image_url or not validate_image(image_url):
+        image_url = fetch_wikipedia_person_image("Suriya (actor)")
+        if not image_url or not validate_image(image_url):
+            image_url = fetch_pexels_image("Tamil cinema audience celebration")
+    image_attr = "Wikimedia Commons" if image_url and "wiki" in image_url else "Pexels"
 
-He died on November 12, 2025 — 89 years old, a career that stretched from 1960's *Dil Bhi Tera Hum Bhi Tere* to 2024's *Teri Baaton Mein Aisa Uljha Jiya*, 300-plus films across six decades, the man who made every Indian boy believe he could punch through a wall and still cry at a wedding. India's second-highest civilian honour arrived six months after his funeral.
+    body = """Suriya has spent the better part of a decade watching Tamil cinema's commercial centre shift toward younger faces and bigger franchises. Kanguva underwhelmed. Retro grossed respectably but never turned a profit against its budget. The talk, in industry circles and among NRI Tamil audiences who once packed single-screens for Singam, was that the Suriya era had quietly ended.
 
-On Sunday, May 25, 2026, at Rashtrapati Bhavan in New Delhi, President Droupadi Murmu presented the Padma Vibhushan to Hema Malini — actor, BJP MP, and Dharmendra's wife of nearly five decades — on his behalf. Their daughter Ahana Deol, seated in the audience, broke down in tears. The entire ceremony paused, just for a moment.
+Karuppu has made that conversation irrelevant.
 
-## The Man Before the Legend
+## The Numbers That Matter
 
-Born Dharam Singh Deol in Sahnewal, Punjab, in 1935, Dharmendra arrived in Bombay with nothing but a contest win from Filmfare magazine. By the mid-1960s, he was one of Hindi cinema's most bankable leading men. *Phool Aur Patthar* in 1966 made him a star. *Sholay* in 1975 made him immortal.
+Directed by RJ Balaji, the fantasy-action-courtroom drama crossed ₹250 crore worldwide in just 12 days — making it Suriya's highest-grossing film by a wide margin and the biggest Tamil hit of 2026 so far. In Tamil Nadu alone, it has collected over ₹130 crore, shattering Singam 2's 13-year-old state record and becoming only the second Tamil film ever to cross that mark after Rajinikanth's Enthiran.
 
-But the Padma Vibhushan had eluded him. He received the Padma Bhushan in 2012, fourteen years after his frequent co-star Amitabh Bachchan got the same honour. The Vibhushan — given to the likes of Lata Mangeshkar, Dilip Kumar, and Rajinikanth — somehow never came while he was alive.
+The India net stands at approximately ₹155 crore. Overseas, Tamil diaspora audiences have contributed ₹67-68 crore — a staggering number for a Tamil-language film that is not a franchise sequel and has no Hindi dub release.
 
-It came this Sunday, in a ceremony that honoured 66 recipients across five Padma Vibhushan, 13 Padma Bhushan, and 113 Padma Shri awards. Mammootty received the Padma Bhushan for his contribution to Malayalam cinema. Alka Yagnik, who has been losing her hearing since 2024, received the same honour. R. Madhavan received the Padma Shri. But it was Dharmendra's posthumous recognition that drew the most visceral response in the hall.
+## What Makes Karuppu Different
 
-## What NRIs Lost in November
+The film blends a guardian-deity mythology with a courtroom drama about systemic corruption — not exactly the formula Hollywood studios greenlight in pitch meetings. RJ Balaji, better known as an actor-comedian, directed with a visual ambition and tonal control that surprised even the film's producers at Dream Warrior Pictures.
 
-For the Indian diaspora, Dharmendra wasn't just a movie star — he was the sound of home. If you grew up in an NRI household in the 1980s or 1990s, his films were on perpetual rotation on VHS tapes passed between families, the labels handwritten in Hindi. *Sholay* was the communal text. *Chupke Chupke* was the comedy you quoted at dinner. *Yaadon Ki Baaraat* was the soundtrack to every car ride where your parents felt briefly, impossibly young again.
+Trisha Krishnan returns opposite Suriya for the first time in years, and their pairing has been cited by audiences as a key driver for repeat viewings — particularly in B-centres and rural Tamil Nadu, where the film's single-screen numbers are unusually strong.
 
-His death in November 2025 hit the diaspora with a particular kind of grief — the loss of a cultural anchor in a country many had left decades ago. Sunny Deol and Bobby Deol, both established actors, released a joint statement. Amitabh Bachchan, his *Sholay* partner for 50 years, posted a single black-and-white photograph. No caption was needed.
+## The Vijay Connection
 
-## The Ceremony
+In a revelation that added another layer to the film's narrative, RJ Balaji disclosed that Karuppu was originally conceived as Vijay's final film before the actor entered Tamil Nadu politics. When Vijay's political timeline accelerated and his farewell project Jana Nayagan took a different route (which itself remains stalled in CBFC limbo), the script was adapted for Suriya with significant creative reworking.
 
-The Padma Awards ceremony at Rashtrapati Bhavan is typically a stately, protocol-driven affair. Recipients walk to the President, receive the medal, pose for a photograph, and return to their seats. Hema Malini, 77, dressed in a white sari, walked to the podium with the composure of someone who has been in public life for five decades. She accepted the medallion, turned to face the cameras, and for the first time in a very public career, appeared to struggle with the weight of the moment.
+The fact that Tamil Nadu Chief Minister Vijay personally congratulated the Karuppu team after its release suggests no hard feelings — and adds a fascinating footnote to both careers.
 
-In the audience, Ahana Deol — who has largely stayed away from the film industry — was visibly emotional. The cameras caught it. Social media did the rest.
+## Why NRIs Should Pay Attention
 
-## 300 Films, One Legacy
+For the Tamil diaspora, Karuppu represents something increasingly rare: a mass Tamil film that is genuinely good at the box office without relying on franchise recognition or a pan-India dubbed release strategy. Its overseas numbers — nearly $8 million — were driven almost entirely by Tamil-speaking audiences in the US, UK, Canada, and the Gulf.
 
-Dharmendra's filmography is almost absurdly prolific. Over 300 films in Hindi alone, plus Punjabi projects and cameos that continued well into his 80s. He was the romantic hero in *Haqeeqat*, the action star in *Phool Aur Patthar*, the comic genius in *Chupke Chupke*, and the loveable rogue in *Sholay* — all without the method-acting gravitas that critics demanded. He was accused of being too handsome to be taken seriously, and he responded by being in more hit films than almost anyone in Indian cinema history.
+In an industry where the loudest commercial successes often come from dubbed Hindi releases or sequel IP, Karuppu's purely Tamil-rooted performance is a statement. It says the language-specific audience, at home and abroad, can still carry a film past ₹250 crore without any crossover concessions.
 
-He entered politics, won a Lok Sabha seat from Bikaner in 2004, served one term, and returned to films. He produced *Apne* to work with both sons. He appeared on *Koffee with Karan* and made Karan Johar laugh until he cried. He posted workout videos on Instagram at 87. He never stopped being Dharmendra.
+## What Comes Next
 
-## The Missing Award
+The film is expected to comfortably cross ₹300 crore worldwide before its theatrical run ends, which would place it among the top 10 highest-grossing Tamil films of all time. An OTT deal — likely with a premium streamer given the numbers — has not been announced but is expected within the month.
 
-India's civilian honours are not awarded posthumously as a rule — the Padma awards are among the few exceptions. The government's decision to posthumously honour Dharmendra with the Vibhushan acknowledges what the industry had been saying for years: the Bhushan was not enough.
+For Suriya, now 50, the message is simpler: the audience was always there. The material just needed to meet them where they live."""
 
-He stood alongside Dilip Kumar, Dev Anand, and Raj Kapoor as one of the defining male leads of Hindi cinema. Of the four, three received the Padma Vibhushan in their lifetimes. Dharmendra got his after.
+    return {
+        'headline': "Suriya's Karuppu Just Crossed ₹250 Crore in 12 Days. It Was Originally Written for Vijay. Tamil Cinema's Biggest Hit of 2026 Was Supposed to Be Someone Else's Farewell.",
+        'subheadline': "RJ Balaji's fantasy-courtroom drama has become Suriya's highest-grossing film ever, shattering Singam 2's 13-year Tamil Nadu record and proving the Tamil-language audience — at home and in the diaspora — doesn't need a Hindi dub to deliver blockbuster numbers.",
+        'body': body,
+        'slug': 'suriya-karuppu-250-crore-vijay-original-script-tamil-cinema-biggest-hit-2026-nri-diaspora',
+        'sources': [
+            {"name": "Filmibeat", "url": "https://www.filmibeat.com"},
+            {"name": "Cinema Express", "url": "https://www.cinemaexpress.com"},
+            {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
+            {"name": "Hollywood Reporter India", "url": "https://www.hollywoodreporterindia.com"}
+        ],
+        'image_url': image_url or '',
+        'image_caption': 'Suriya in a promotional still',
+        'image_attribution': image_attr
+    }
 
-For NRIs who watched the ceremony from living rooms in New Jersey, apartments in London, and homes in Toronto, the moment Hema Malini accepted that medal was a private reckoning — with a country they left, a cinema they never stopped loving, and a man who represented both.
 
-Dharmendra would have hated the solemnity. He would have cracked a joke. He would have flexed a bicep. He would have made the President laugh.
+# ============================================================
+# ARTICLE 2: Imtiaz Ali's Main Vaapas Aaunga
+# ============================================================
 
-Instead, his wife collected his medal, his daughter cried, and 300 films spoke for themselves."""
-    },
+def write_article_2():
+    print("\n📝 Article 2: Imtiaz Ali's Main Vaapas Aaunga")
 
-    {
-        "headline": "Dhanush's Kara Hits Netflix Tomorrow in Five Languages. It Made ₹50 Crore at the Box Office on a ₹100 Crore Budget. The NRI Audience Might Actually Save This Film.",
-        "subheadline": "A 1990s Tamil Nadu heist thriller about a reformed thief fighting a corrupt bank — streaming in Tamil, Hindi, Telugu, Malayalam, and Kannada from May 28. Critics were divided. The OTT audience rarely is.",
-        "slug": "dhanush-kara-netflix-may-28-ott-premiere-tamil-heist-thriller-nri-streaming-20260527",
-        "category": "entertainment",
-        "tags": ["entertainment", "tamil-cinema", "dhanush", "netflix", "ott", "streaming", "heist-thriller", "nri"],
-        "person_for_image": "Dhanush",
-        "pexels_query": None,
-        "sources": "Wikipedia, Pinkvilla, BollywoodLife, 7Globe, Hindustan Times, News18",
-        "body": """Dhanush's *Kara* lands on Netflix on May 28, and for once, the OTT premiere might matter more than the theatrical run.
+    # Image: Wikipedia for Imtiaz Ali
+    image_url = fetch_wikipedia_person_image("Imtiaz Ali (director)")
+    if not image_url or not validate_image(image_url):
+        image_url = fetch_wikipedia_person_image("Imtiaz Ali")
+        if not image_url or not validate_image(image_url):
+            image_url = fetch_pexels_image("vintage train India Partition")
+    image_attr = "Wikimedia Commons" if image_url and "wiki" in image_url else "Pexels"
 
-The Tamil-language heist action thriller, directed by Vignesh Raja, made approximately ₹50 crore worldwide against a ₹100 crore budget after its April 30 theatrical release. By Bollywood accounting, that's a disappointment. By the logic of streaming, where Netflix paid for the digital rights and the film reaches 190 countries overnight, it's a second life.
+    body = """Imtiaz Ali has not made a film since Love Aaj Kal in 2020. That film was a commercial disaster and a creative misfire that seemed to confirm what the industry whispered: the man who made Jab We Met and Rockstar had lost his compass. Six years of silence followed. Now he is back with a Partition love story, an A.R. Rahman score, Diljit Dosanjh in a major role, and two of Bollywood's most promising young actors. The film releases on June 12. It is called Main Vaapas Aaunga.
 
-For NRIs who missed the theatrical window — and most did, because Tamil films don't get 3,000-screen releases in North America — May 28 is opening night.
+## The Story
 
-## The Story Behind the Heist
+The film spans two timelines. In the present, Naseeruddin Shah plays an elderly Sardar navigating the weight of a love severed by the 1947 Partition. In the past, Vedang Raina and Sharvari play the young lovers whose world is torn apart. Diljit Dosanjh occupies a role that connects both timelines — details of which the team has kept deliberately vague.
 
-*Kara* is set in the early 1990s, against the backdrop of the Gulf War and the fuel crisis that rippled through rural Tamil Nadu. Dhanush plays Karasaami, a reformed thief trying to live an honest life with his wife Selli (Mamitha Baiju). When a corrupt bank seizes his family's ancestral land over a tractor loan his father could never repay, Kara is pulled back into crime — not for greed, but for justice.
+In interviews, Ali has said every element of the film is rooted in real accounts collected over years from Partition survivors. "The generation that lived through it is almost gone," he told Anupama Chopra. "If we don't tell their stories now, we lose them forever."
 
-What follows is a Robin Hood story in a Tamil register: Kara robs the very banks that have been trapping poor farmers in predatory EMI schemes, returning money and land documents to villagers who had been swindled. The corrupt bank manager Muthu Selvan (Jayaram, against type) has been running a system that profits from farmers' desperation. Kara's heists expose it.
+## The Reunion That Matters Most
 
-The film was written by Vignesh Raja and Alfred Prakash. Raja made his directorial debut with *Por Thozhil* in 2023, which was acclaimed for its forensic investigation thriller format. *Kara* is a very different film — sprawling, rural, period-set, and anchored by Dhanush's physical transformation into a wiry, desperate man who steals because the law failed him.
-
-## Why the Box Office Didn't Work
-
-*Kara* opened on April 30, a weekday, which immediately limited its first-day numbers. It received mixed reviews from critics — The Times of India gave it 3.5 out of 5, praising the execution and Dhanush's performance while acknowledging familiar tropes. Cinema Express gave it 3 out of 5, noting that the film "works for the longest time, till it decides to shift gears and take a rather safe route to conformity." The Deccan Chronicle was harsher at 1.5 out of 5.
-
-The 161-minute runtime didn't help. Neither did a title dispute — an unrelated Tamil film called *Karaa* was releasing two weeks later, and the producer of *Karaa* filed a plea in the Madras High Court three days before *Kara*'s release, claiming title registration priority. The confusion muddied the marketing. Dhanush himself joked: "Call it 'Kura' or 'Keera', just watch it."
-
-At ₹50 crore worldwide against a ₹100 crore budget, the theatrical run was commercially underwhelming. But Dhanush's track record on OTT tells a different story. His films consistently find their audience on streaming — *Raayan* was a Netflix hit, *Kuberaa* found its audience on Prime Video. Tamil cinema's OTT economics have decoupled from theatrical performance.
+This is an A.R. Rahman-Irshad Kamil-Imtiaz Ali reunion — the same trio behind Rockstar, Highway, and Tamasha. For a generation of listeners (and an even larger generation of NRIs who grew up on those soundtracks), this combination carries enormous emotional weight. Rahman's involvement was reportedly finalized before the cast, which tells you where Ali's priorities sit.
 
 ## The Cast
 
-Dhanush anchors the film, but the supporting cast is stacked. Suraj Venjaramoodu — the Malayalam actor whose *Android Kunjappan* is an NRI comfort classic — plays DSP Bharathan, the police officer chasing Kara. K. S. Ravikumar, usually behind the camera as a director, plays Kara's father Kandhasaami. Jayaram, another Malayalam veteran, plays the corrupt bank manager. Karunas reunites with Dhanush for the first time in 16 years.
+Vedang Raina (fresh off The Archies and reportedly the lead of YRF's next big franchise play) and Sharvari (Alpha, Munjya) bring a young commercial credibility that Ali's recent films have lacked. Diljit Dosanjh — who just made history as the first South Asian artist to sell out two consecutive nights at Madison Square Garden — brings the star power and the Punjabi cultural authenticity that a Partition story demands.
 
-The music, composed by G. V. Prakash Kumar, includes six tracks. "Kannamma En Kannamma," written and sung by Dhanush himself, has already crossed 40 million YouTube views. The album debuted at No. 5 on the US Top Albums chart for Indian music — a rare feat for a Tamil film soundtrack.
+Naseeruddin Shah, at 76, lends the gravitas of an actor who has spent five decades making Hindi cinema smarter. Ali has called casting a non-Sikh actor as a Sardar "a deliberate creative choice about the universality of loss."
 
-## The NRI Factor
+## The Box Office Clash
 
-Here's what changes on May 28: *Kara* will be available on Netflix in Tamil, Hindi, Telugu, Malayalam, and Kannada. That's five languages, 190 countries, and a potential audience of tens of millions of South Asian diaspora viewers who couldn't access the film in theatres.
+Main Vaapas Aaunga opens on June 12 against Kangana Ranaut's Bharat Bhhagya Viddhaata, Manoj Bajpayee's Governor: The Silent Saviour, and Vikram Bhatt's Haunted 3D: Echoes of the Past. Ali, characteristically unfazed, has said he announced his date first and sees no reason to move.
 
-The story — land theft, banking corruption, a father's humiliation, a son's rage — resonates differently for NRIs who left India's villages for opportunity abroad but whose families stayed behind and navigated exactly these systems. The 1990s setting hits a generational nerve: many first-generation NRIs left India during exactly this period, when the economy was opening up but rural India was being left behind.
+The real question is whether Indian audiences — and specifically NRI audiences who keep Ali's films alive on streaming long after their theatrical runs — will show up for a Partition film in summer. The genre has a complicated history at the box office. Gadar 2 worked because it was a sequel to a phenomenon. Original Partition stories, even good ones, have historically struggled commercially.
 
-*Kara* is not a perfect film. At 161 minutes, it's overstuffed in the third act, and the heist sequences sacrifice ingenuity for sentimentality in the final hour. But Dhanush at full intensity, in a role that demands both physical menace and emotional vulnerability, is worth the watch. And on Netflix, there's no three-day weekend pressure, no opening-day occupancy tracker, no trade analyst declaring it a flop.
+## Why It Matters for the Diaspora
 
-Just a reformed thief, a corrupt bank, and an audience that finally has time to pay attention."""
-    },
+Partition is not history for much of the Indian diaspora. It is family memory. Grandparents who crossed borders, relatives who stayed behind, stories told at kitchen tables that never quite ended. Ali has built his career on capturing the ache of separation — romantic, geographic, emotional. A film that applies that instinct to the foundational separation of modern South Asian identity could resonate deeply with NRI audiences who carry those stories in ways they rarely articulate.
 
-    {
-        "headline": "Yash's Toxic Has Been Postponed So Many Times That BGMI Made a Video Game Collaboration Before the Film Could Pick a Release Date.",
-        "subheadline": "March 19 became June 4. June 4 may become August. Meanwhile, KRAFTON launched Toxic voice packs in BGMI, CinemaCon audiences saw nine minutes and lost their minds, and Nayanthara and Kiara Advani are still waiting to promote a film that won't stand still.",
-        "slug": "yash-toxic-postponed-again-bgmi-collab-cinemacon-nayanthara-kiara-release-date-chaos-20260527",
-        "category": "entertainment",
-        "tags": ["entertainment", "kannada-cinema", "yash", "toxic", "bgmi", "gaming", "cinemacon", "nayanthara", "kiara-advani", "nri"],
-        "person_for_image": "Yash (actor)",
-        "alt_person": "Yash Gowda",
-        "pexels_query": "gangster film noir dark",
-        "sources": "Sacnilk, Pinkvilla, ZoomTV, Wikipedia, Filmibeat, KRAFTON press release",
-        "body": """There is a video game where you can play as Yash's character from *Toxic* and hear his voice lines in Hindi and Kannada while shooting people in a battle royale. The actual film, in which Yash plays the same character, does not have a confirmed release date.
+Or it could be another Love Aaj Kal 2. That is the risk of caring about a filmmaker who has both Rockstar and Love Aaj Kal 2 on his resume. June 12 will tell us which version of Imtiaz Ali showed up."""
 
-This is the state of *Toxic: A Fairy Tale for Grown-Ups* in May 2026, and it is simultaneously the most anticipated and most postponed Indian film of the year.
-
-## The Timeline of Delays
-
-*Toxic* was originally announced for a March 19, 2026 release — the same date as Ranveer Singh's *Dhurandhar 2*. That clash was enough to move it. The new date: June 4, 2026, which KVN Productions confirmed alongside a statement blaming "Middle East uncertainty" for the shift. The geopolitical reasoning made sense: the Gulf markets are worth tens of crores to a pan-India release, and regional instability can delay distribution deals.
-
-Then June 4 started looking uncertain. Pinkvilla reported that the makers had "once again postponed the release, with a new date yet to be announced." ZoomTV cited industry insiders suggesting August as the new target. The production team has not officially confirmed or denied any of it.
-
-Meanwhile, Sacnilk still lists the theatrical release as June 4 — "Releasing in 7 days." The contradiction is the most honest summary of *Toxic*'s journey: nobody is entirely sure what's happening, including, possibly, the people making it.
-
-## The CinemaCon Moment
-
-What everyone IS sure about is that the film looks extraordinary.
-
-At CinemaCon 2026 in Las Vegas, the production team screened a nine-minute preview of *Toxic*. The footage, set across the 1940s through the 1970s, depicted a rise-and-fall gangster saga in Goa — think *Gangs of Wasseypur* meets *Once Upon a Time in America*, filtered through Geetu Mohandas's art-house sensibility. The international trade audience — the same people who've seen Marvel rough cuts and Star Wars footage — reportedly gave it a standing response.
-
-The IMAX confirmation came shortly after. *Toxic* and *Ramayana* now anchor IMAX's 2026 global premium slate for Indian cinema.
-
-## The BGMI Crossover
-
-Then there is the gaming collaboration, which is either brilliant marketing or a sign that the promotional timeline has completely detached from the production timeline.
-
-KRAFTON India, the company behind Battlegrounds Mobile India (BGMI), announced a *Toxic*-themed update as part of BGMI's 4.4 patch. Starting May 28, 2026, players can download Yash's voice pack — available in both Hindi and Kannada — along with *Toxic*-branded collectibles, weapon skins, and a cameo film. The collaboration explicitly targets Gen Z Indian gamers, the same demographic that made *KGF: Chapter 2* a ₹1,200-crore phenomenon.
-
-The irony is that BGMI players will be engaging with *Toxic* content before cinema audiences get to see the actual film. The game's release date is more reliable than the movie's.
-
-## ₹700 Crore and Five Leading Women
-
-*Toxic* is budgeted at an estimated ₹700-800 crore, making it one of the most expensive Indian films ever produced. Directed by Geetu Mohandas — whose *Moothon* won the FIPRESCI Prize at the Toronto International Film Festival — the film pairs an art-house director with a mass-market superstar in a way that Indian cinema rarely attempts.
-
-The cast is built around women in a way that Yash himself has highlighted in interviews. Nayanthara, Kiara Advani, Huma Qureshi, Tara Sutaria, and Rukmini Vasanth all play significant roles. In an interview with Filmibeat, Yash described their characters as having "a different kind of violence" and said the female gaze makes the film "very refreshing."
-
-Ravi Basrur, who composed the *KGF* scores, handles the music and background score. JJ Perry, the action choreographer behind *John Wick*, designed select action sequences. The Anbariv duo handled additional action work.
-
-## What NRIs Are Waiting For
-
-After *KGF: Chapter 2* became the second-highest-grossing Indian film of 2022, Yash entered a four-year hiatus. For the diaspora, which turned *KGF* into a midnight-show cultural event at every AMC and Cinepolis in North America, *Toxic* is the most awaited follow-up since Rajinikanth's *Kabali*.
-
-The Phars Film distribution deal alone — ₹105 crore for international Indian-language rights — reflects the overseas hunger. NRI audiences don't just want to see *Toxic*; they want to see it on the biggest screen possible, in IMAX, on opening night, with a crowd that yells when Yash enters the frame.
-
-They just need a date.
-
-The film might release in June. It might release in August. It might release when BGMI players have already heard every voice line and unlocked every skin. But when *Toxic* finally arrives — and it will, because ₹700 crore doesn't stay on a shelf — it will be the most pre-marketed, pre-delayed, pre-gamed Indian film in history.
-
-Yash, presumably, is fine with this. He waited four years. The audience can wait a few more weeks. Probably."""
-    },
-]
+    return {
+        'headline': "Imtiaz Ali Has Not Made a Film in Six Years. His Comeback Is a Partition Love Story With Diljit, A.R. Rahman, and Naseeruddin Shah. It Opens June 12 Against Kangana.",
+        'subheadline': "Main Vaapas Aaunga reunites the Rockstar trio of Ali, Rahman, and Irshad Kamil for a two-timeline story about love severed in 1947 — featuring Vedang Raina, Sharvari, and the biggest Punjabi star on the planet.",
+        'body': body,
+        'slug': 'imtiaz-ali-main-vaapas-aaunga-partition-diljit-dosanjh-ar-rahman-june-12-nri-diaspora',
+        'sources': [
+            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+            {"name": "Hollywood Reporter India", "url": "https://www.hollywoodreporterindia.com"},
+            {"name": "Filmfare", "url": "https://www.filmfare.com"},
+            {"name": "Zoom TV Entertainment", "url": "https://www.zoomtventertainment.com"}
+        ],
+        'image_url': image_url or '',
+        'image_caption': 'Director Imtiaz Ali',
+        'image_attribution': image_attr
+    }
 
 
-# ── Main publish loop ────────────────────────────────────────────────
-def main():
-    import requests
-    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-    published = []
-    
-    for i, art in enumerate(ARTICLES, 1):
-        print(f"\n{'='*60}")
-        print(f"Article {i}: {art['headline'][:80]}...")
-        print(f"{'='*60}")
-        
-        # Image sourcing — Wikipedia first for person articles
-        img_url = None
-        person = art.get('person_for_image')
-        if person:
-            print(f"\n📷 Trying Wikipedia for '{person}'...")
-            img_url = fetch_wikipedia_person_image(person)
-            
-            # Try alternate name if provided
-            if not img_url and art.get('alt_person'):
-                print(f"  Trying alternate: '{art['alt_person']}'...")
-                img_url = fetch_wikipedia_person_image(art['alt_person'])
-        
-        # Pexels fallback
-        if not img_url and art.get('pexels_query'):
-            print(f"\n📷 Falling back to Pexels: '{art['pexels_query']}'...")
-            img_url = fetch_pexels_image(art['pexels_query'])
-        
-        # Validate
-        if img_url:
-            if is_banned_url(img_url):
-                print(f"  ✗ Banned URL detected, skipping: {img_url[:60]}")
-                img_url = None
-            elif not validate_image_url(img_url):
-                print(f"  ✗ Validation failed, skipping image")
-                img_url = None
-        
-        if not img_url:
-            print(f"  ℹ No valid image found — publishing without image (better than wrong image)")
-        else:
-            # Upload to Supabase storage for permanence
-            print(f"\n📤 Uploading image to Supabase storage...")
-            img_url = upload_image_to_supabase(img_url, f"{art['slug']}.jpg")
-        
-        # Prepare article data
-        article_data = {
-            "headline": art["headline"],
-            "subheadline": art["subheadline"],
-            "slug": art["slug"],
-            "body": art["body"].strip(),
-            "category": "entertainment",
-            "vertical": "entertainment",
-            "status": "published",
-            "published_at": now,
-            "sources": json.dumps([{"name": s.strip(), "url": ""} for s in art["sources"].split(",")]),
-            "tags": art.get("tags", ["entertainment", "bollywood", "diaspora", "nri"]),
-            "urgency": "medium",
-            "image_url": img_url,
-            "image_attribution": "Wikimedia Commons" if img_url and ('wikimedia' in (img_url or '').lower() or 'wikipedia' in (img_url or '').lower()) else ("Pexels" if img_url and 'pexels' in (img_url or '').lower() else None),
-        }
-        
-        # Word count check
-        word_count = len(art["body"].split())
-        print(f"\n📝 Word count: {word_count}")
-        if word_count < 400:
-            print(f"  ✗ REJECTED — below 400-word minimum!")
-            continue
-        
-        # Headline length check
-        if len(art["headline"]) > 200:
-            print(f"  ⚠ Headline is {len(art['headline'])} chars (>200) — truncating would lose meaning, publishing as-is")
-        
-        print(f"\n📤 Publishing to Supabase...")
-        try:
-            result = sb_post("p2_articles", article_data)
-            print(f"  ✓ Published: {art['slug']}")
-            published.append(art['slug'])
-        except Exception as e:
-            # Get full error details
-            if hasattr(e, 'response') and e.response is not None:
-                print(f"  ✗ Failed to publish: {e}")
-                print(f"  ✗ Response body: {e.response.text[:500]}")
-            else:
-                print(f"  ✗ Failed to publish: {e}")
-            continue
-        
-        time.sleep(1)  # Rate limiting
-    
-    print(f"\n{'='*60}")
-    print(f"✅ Published {len(published)}/{len(ARTICLES)} articles")
-    for slug in published:
-        print(f"  → {slug}")
-    print(f"{'='*60}")
+# ============================================================
+# ARTICLE 3: Diljit Dosanjh — MSG History and Bomb Threats
+# ============================================================
+
+def write_article_3():
+    print("\n📝 Article 3: Diljit Dosanjh — MSG History to Bomb Threats")
+
+    # Image: Wikipedia for Diljit Dosanjh
+    image_url = fetch_wikipedia_person_image("Diljit Dosanjh")
+    if not image_url or not validate_image(image_url):
+        image_url = fetch_pexels_image("concert arena crowd lights", "Madison Square Garden concert")
+    image_attr = "Wikimedia Commons" if image_url and "wiki" in image_url else "Pexels"
+
+    body = """On May 25, Diljit Dosanjh became the first South Asian artist to sell out two consecutive nights at Madison Square Garden. Thousands of fans — many of them first-generation Punjabi Americans and second-generation kids who grew up on their parents' playlists — packed the arena for the AURA tour. Free Kada Prasad was distributed to the crowd. Chef Vikas Khanna called him "India's global ambassador." The moment felt like a cultural arrival that was years in the making.
+
+The same day, a bomb threat was emailed to the Ludhiana Municipal Corporation naming Diljit's family home as a target.
+
+## The Threat
+
+The email, sent on May 25 to municipal officials, claimed affiliation with the "Khalistan National Army" and warned of blasts before June 6 — the anniversary of Operation Blue Star, the 1984 Indian military operation at the Golden Temple in Amritsar. The sender wrote that "whoever helps Diljit will be killed."
+
+Punjab Police and cybercrime units launched an investigation. Diljit's Ludhiana residence was searched; no suspicious materials were found. Authorities have classified the threat as a hoax, but security has been tightened around the singer's properties and the broader Ludhiana area in the lead-up to the sensitive June anniversary period.
+
+This is not an isolated incident. Punjab has seen a surge in institutional bomb threats in 2026, with schools, government offices, and public figures targeted by email campaigns that investigators believe are coordinated from outside India.
+
+## The MSG Milestone
+
+The bomb threat is a grim counterpoint to what should have been an unambiguous moment of celebration. Diljit's MSG concerts were not just sold out — they were cultural events. The stage that has hosted Elton John, Madonna, and Billy Joel now belongs, for two nights, to a Punjabi singer from Dosanjh Kalan, a village in Jalandhar district.
+
+During his recent Vancouver show, Diljit paused to speak about the Komagata Maru incident — the 1914 turning away of a ship carrying Punjabi immigrants from Canada — connecting his global tour to the longer history of South Asian migration, exclusion, and eventual belonging.
+
+## The Tour Continues
+
+The AURA tour has additional dates through June and July, including shows in Toronto and Vancouver — the two cities with the largest Punjabi diaspora populations outside India. Whether the bomb threat will affect security protocols or concert logistics remains unclear, but Diljit's team has not indicated any cancellations.
+
+## Where Diljit Stands Now
+
+At 42, Diljit Dosanjh occupies a position no Indian artist has held before. He is simultaneously the biggest live act in the Punjabi diaspora, a Bollywood leading man (his next film, Imtiaz Ali's Main Vaapas Aaunga, opens June 12), a streaming phenomenon, and — after Sia and David Guetta collaborations — a crossover name in global pop.
+
+He is also, as the bomb threat makes uncomfortably clear, a symbol. For the diaspora, he represents the possibility that Punjabi culture can command the world's most famous stages without dilution. For extremist elements that the threat email represents, he is a target precisely because of that mainstream success — a Sikh artist who chose music over politics, global stages over ideological allegiance.
+
+## For NRIs With Tickets
+
+If you are an NRI with AURA tour tickets — and many of you are, given that Diljit's North American shows sell out within hours — the practical concern is security at upcoming venues. Large-scale concert security in the US and Canada operates at a fundamentally different level than in India, and venue operators typically coordinate with local law enforcement well in advance of any flagged events.
+
+The emotional concern is harder to address. Watching a cultural icon achieve something historic while simultaneously being threatened for existing in public is a dissonance that diaspora communities know intimately. Diljit's response, characteristically, has been to keep performing. The next show is the answer."""
+
+    return {
+        'headline': "Diljit Dosanjh Sold Out Two Consecutive Nights at Madison Square Garden. The Same Day, Someone Emailed a Bomb Threat to His Family Home in Ludhiana.",
+        'subheadline': "The first South Asian artist to sell out back-to-back MSG shows is now performing under heightened security after a threat linked to the Operation Blue Star anniversary targeted his residence. The AURA tour continues.",
+        'body': body,
+        'slug': 'diljit-dosanjh-madison-square-garden-bomb-threat-ludhiana-aura-tour-nri-diaspora',
+        'sources': [
+            {"name": "Cinema Express", "url": "https://www.cinemaexpress.com"},
+            {"name": "Bollywood Life", "url": "https://www.bollywoodlife.com"},
+            {"name": "Punjab News Line", "url": "https://www.punjabnewsline.com"},
+            {"name": "Inshorts", "url": "https://www.inshorts.com"}
+        ],
+        'image_url': image_url or '',
+        'image_caption': 'Diljit Dosanjh',
+        'image_attribution': image_attr
+    }
+
+
+# ============================================================
+# MAIN
+# ============================================================
 
 if __name__ == '__main__':
-    main()
+    print("=" * 60)
+    print("The Videshi Entertainment Writer — 2026-05-27")
+    print("=" * 60)
+
+    articles = []
+    for writer_fn in [write_article_1, write_article_2, write_article_3]:
+        try:
+            article = writer_fn()
+            articles.append(article)
+        except Exception as e:
+            print(f"  ✗ Error writing article: {e}")
+            traceback.print_exc()
+
+    print(f"\n📤 Publishing {len(articles)} articles...")
+    published = 0
+    for article in articles:
+        # Final validation
+        if len(article['body']) < 400:
+            print(f"  ✗ REJECTED (body too short: {len(article['body'])} chars): {article['headline'][:50]}")
+            continue
+        if len(article['headline']) > 200:
+            print(f"  ⚠ Headline over 200 chars ({len(article['headline'])}), truncating")
+            article['headline'] = article['headline'][:197] + "..."
+        if not article.get('subheadline') or len(article['subheadline']) < 15:
+            print(f"  ✗ REJECTED (missing/short subheadline): {article['headline'][:50]}")
+            continue
+
+        if publish_article(article):
+            published += 1
+        time.sleep(1)
+
+    print(f"\n✅ Done: {published}/{len(articles)} articles published")

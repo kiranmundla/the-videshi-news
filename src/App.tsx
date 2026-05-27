@@ -43,6 +43,9 @@ const DirectoryPage = React.lazy(() => import("./pages/DirectoryPage.tsx"));
 const DirectoryDetailPage = React.lazy(() => import("./pages/DirectoryDetailPage.tsx"));
 const SubmitListingPage = React.lazy(() => import("./pages/SubmitListingPage.tsx"));
 
+// Watch / Streaming
+const WatchDetailPage = React.lazy(() => import("./pages/WatchDetailPage.tsx"));
+
 // Classifieds
 const ClassifiedsPage = React.lazy(() => import("./pages/ClassifiedsPage.tsx"));
 const ClassifiedDetailPage = React.lazy(() => import("./pages/ClassifiedDetailPage.tsx"));
@@ -109,6 +112,7 @@ const App = () => (
               <Route path="/terms" element={<Terms />} />
               <Route path="/links" element={<LinksPage />} />
               <Route path="/articles/:slug" element={<ArticlePage />} />
+              <Route path="/watch/:slug" element={<WatchDetailPage />} />
               <Route path="/travel" element={<TravelPage />} />
               <Route path="/travel/visa-list/:status/:category" element={<VisaListPage />} />
               <Route path="/travel/:destination" element={<TravelDestination />} />
