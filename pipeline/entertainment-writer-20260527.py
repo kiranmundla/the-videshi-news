@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-05-27 run"""
+"""Entertainment writer - 2026-05-27 evening batch"""
 
-import json, os, re, sys, time, uuid, traceback
+import json, os, sys, uuid, re, subprocess
 from datetime import datetime, timezone
-import requests, urllib.parse
 
 # Load env
 def load_env(path):
@@ -12,8 +11,9 @@ def load_env(path):
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+                    key, _, val = line.partition('=')
+                    val = val.strip().strip('"').strip("'")
+                    os.environ.setdefault(key.strip(), val)
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
@@ -22,355 +22,364 @@ SUPABASE_URL = os.environ['SUPABASE_URL']
 SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
-}
+import urllib.parse, urllib.request
+
+def sb_headers():
+    return {
+        'apikey': SUPABASE_KEY,
+        'Authorization': f'Bearer {SUPABASE_KEY}',
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+    }
+
+def sb_insert(table, data):
+    url = f"{SUPABASE_URL}/rest/v1/{table}"
+    body = json.dumps(data).encode()
+    req = urllib.request.Request(url, data=body, headers=sb_headers(), method='POST')
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read())
+    except urllib.error.HTTPError as e:
+        print(f"  ✗ Insert error: {e.code} {e.read().decode()[:300]}")
+        return None
+    except Exception as e:
+        print(f"  ✗ Insert exception: {e}")
+        return None
+
+def sb_patch(table, filter_str, data):
+    url = f"{SUPABASE_URL}/rest/v1/{table}?{filter_str}"
+    body = json.dumps(data).encode()
+    headers = sb_headers()
+    req = urllib.request.Request(url, data=body, headers=headers, method='PATCH')
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read())
+    except Exception as e:
+        print(f"  ✗ Patch error: {e}")
+        return None
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
-    for attempt in range(3):
-        try:
-            r = requests.get(
-                f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-                headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-                timeout=10
-            )
-            if r.status_code == 429:
-                wait = 2 * (attempt + 1)
-                print(f"  ⚠ Wikipedia rate limited, waiting {wait}s...")
-                time.sleep(wait)
-                continue
-            if r.status_code == 200:
-                data = r.json()
-                img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
-                if img:
-                    print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
-                    return img
-            break
-        except Exception as e:
-            print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
-            break
+    try:
+        req = urllib.request.Request(
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            data = json.loads(resp.read())
+            # Prefer originalimage for higher res, fall back to thumbnail AS-IS
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            if img:
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                return img
+    except Exception as e:
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels as fallback."""
+    """Fetch an image from Pexels using curl (urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
-    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             result = subprocess.run(
                 ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
             photos = data.get('photos', [])
-            if photos:
-                url = photos[0]['src']['large2x']
-                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                return url
+            for p in photos:
+                url = p.get('src', {}).get('large2x') or p.get('src', {}).get('original')
+                if url:
+                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image(url):
-    """Validate image URL returns HTTP 200 with image content > 5KB."""
+def validate_image_url(url):
+    """Validate that URL returns an image with Content-Length > 5000."""
     if not url:
         return False
-    for attempt in range(3):
+    try:
+        req = urllib.request.Request(url, method='HEAD', headers={
+            'User-Agent': 'TheVideshi/1.0 (thevideshi.com)'
+        })
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            ct = resp.headers.get('Content-Type', '')
+            cl = int(resp.headers.get('Content-Length', '0') or '0')
+            if 'image' in ct and cl > 5000:
+                return True
+            # Sometimes HEAD doesn't return Content-Length; try GET
+            if 'image' in ct and cl == 0:
+                return True  # Trust it if content-type is image
+    except Exception as e:
+        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
+        # Try GET as fallback
         try:
-            r = requests.head(url, timeout=10, allow_redirects=True,
-                             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            if r.status_code == 429:
-                wait = 2 * (attempt + 1)
-                print(f"  ⚠ Image validation rate limited, waiting {wait}s...")
-                time.sleep(wait)
-                continue
-            content_type = r.headers.get('Content-Type', '')
-            content_length = int(r.headers.get('Content-Length', 0))
-            if r.status_code == 200 and 'image' in content_type:
-                if content_length == 0 or content_length > 5000:
-                    print(f"  ✓ Image validated: {r.status_code}, {content_type}, {content_length} bytes")
+            req2 = urllib.request.Request(url, headers={
+                'User-Agent': 'TheVideshi/1.0 (thevideshi.com)'
+            })
+            with urllib.request.urlopen(req2, timeout=10) as resp2:
+                data = resp2.read(10000)
+                if len(data) > 5000:
                     return True
-                else:
-                    print(f"  ✗ Image too small: {content_length} bytes")
-            else:
-                print(f"  ✗ Image validation failed: {r.status_code}, {content_type}")
-            return False
-        except Exception as e:
-            print(f"  ✗ Image validation error: {e}")
-            return False
+        except:
+            pass
     return False
 
-def publish_article(article):
-    """Publish article to Supabase."""
-    payload = {
-        'id': str(uuid.uuid4()),
-        'headline': article['headline'],
-        'subheadline': article['subheadline'],
-        'body': article['body'],
-        'slug': article['slug'],
-        'category': 'entertainment',
-        'vertical': 'entertainment',
-        'status': 'published',
-        'published_at': datetime.now(timezone.utc).isoformat(),
-        'sources': json.dumps(article.get('sources', [])),
-        'image_url': article.get('image_url', ''),
-        'image_caption': article.get('image_caption', ''),
-        'image_attribution': article.get('image_attribution', ''),
-        'urgency': 'daily',
-        'word_count': len(article['body'].split()),
-        'score_total': 80
-    }
-
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=payload,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        print(f"  ✓ Published: {article['headline'][:60]}...")
+# Check for banned image sources
+def is_banned_source(url):
+    if not url:
         return True
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
+    banned_params = ['_nc_ht=', '_nc_cat=', 'ccb=']
+    for b in banned:
+        if b in url:
+            return True
+    for p in banned_params:
+        if p in url:
+            return True
+    return False
+
+# ─── ARTICLES ───
+
+articles = []
+
+# ── Article 1: FWICE vs Ranveer Singh ──
+art1_id = str(uuid.uuid4())
+art1 = {
+    "id": art1_id,
+    "headline": "Bollywood's Oldest Film Union Just Told Ranveer Singh No One Will Work With Him. He Succeeded Shah Rukh Khan as Don. Now He Can't Make a Film.",
+    "subheadline": "FWICE issues a non-cooperation directive after Ranveer walked out of Don 3 three weeks before the shoot. Farhan Akhtar and Ritesh Sidhwani claim ₹45 crore in pre-production losses. The actor offered ₹35 crore. They said no.",
+    "slug": "fwice-non-cooperation-ranveer-singh-don-3-farhan-akhtar-45-crore-bollywood-ban-20260527",
+    "category": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        "https://www.livemint.com/entertainment/fwice-bans-ranveer-singh-amid-don-3-fallout-and-dispute-with-farhan-akhtar-11779722131684.html",
+        "https://www.storyboard18.com/photos/trending/ranveer-singh-and-farhan-akhtar-fallout-explained-inside-the-don-3-controversy-99220.htm",
+        "https://www.pinkvilla.com/entertainment/news/ranveer-singh-hit-with-fwice-ban-no-member-of-the-film-body-will-work-with-him-says-president"
+    ]),
+    "body": """The Federation of Western India Cine Employees — FWICE, the sixty-eight-year-old umbrella body of over thirty film worker unions — has issued a Non-Cooperation Directive against Ranveer Singh. The directive tells every camera technician, spot boy, costume designer, editor, and makeup artist registered under FWICE to refuse to work with one of Bollywood's biggest stars until further notice.
+
+The trigger is Don 3. Ranveer was announced as the new face of the franchise in 2023, inheriting a role that had passed from Amitabh Bachchan to Shah Rukh Khan. Farhan Akhtar, who directed the 2006 and 2011 installments, was returning to direct. Excel Entertainment, co-founded by Akhtar and Ritesh Sidhwani, had been in pre-production for months.
+
+## Three Weeks Before the Shoot
+
+According to the complaint filed by Akhtar with the Indian Film & Television Directors' Association on April 11, 2026, Ranveer withdrew from the project "at the very last moment, just three weeks before our unit was scheduled to depart for a shoot." By that point, Excel Entertainment claims to have spent approximately ₹45 crore on pre-production — locations scouted, travel arranged, crew hired, schedules locked for hundreds of workers.
+
+FWICE registered the complaint and sent three formal notices to Ranveer over the next month: April 22, April 30, and May 13. The actor did not respond to any of them. He replied only after FWICE announced plans to address the matter publicly.
+
+## The Actor's Response
+
+Through his legal team, Ranveer argued that FWICE "would not be the appropriate forum" for the dispute and that the issues were "contractual in nature" requiring adjudication in a proper legal forum.
+
+His spokesperson later issued a softer statement: "Ranveer Singh holds the highest regard for the film fraternity and for everyone associated with the Don franchise. Throughout the recent developments surrounding Don 3, he has consciously chosen to maintain silence, believing that professional discussions and personal equations are best handled with dignity, maturity and mutual respect."
+
+Reports suggest Ranveer offered to return his ₹10 crore signing amount. Separately, he reportedly proposed a ₹35 crore settlement. Excel Entertainment declined both, insisting on the full ₹45 crore.
+
+## What Went Wrong
+
+Industry reports point to creative disagreements. Ranveer reportedly pushed for a darker, more aggressive interpretation of the Don character — heavier language, more intensity. Farhan Akhtar wanted to preserve the suave, witty tone that defined his version of the franchise. Repeated requests for script revisions deepened the friction. The absence of a final locked script may have been the breaking point.
+
+## Can FWICE Actually Enforce This?
+
+Legally, no. FWICE's non-cooperation directives carry no statutory authority. They are registered under the Trade Unions Act of 1926 and can negotiate wages, mediate disputes, and organize collective action — but they cannot legally prevent a producer from hiring someone.
+
+What they can do is make things very difficult. If crew members collectively refuse to work on a Ranveer Singh film, productions become logistically impossible. "Ranveer Singh is a superstar," FWICE president B.N. Tiwari told reporters. "But that doesn't mean anyone is above the rules."
+
+FWICE has done this before. In 2019, they issued a directive against Punjabi singer Mika Singh for performing in Pakistan; it was revoked after he apologized. Last year, they banned all Pakistani artists following the Pahalgam attack.
+
+## The Diaspora Angle
+
+For NRI audiences, this matters because it directly impacts when — or whether — they will see a new Don film. The franchise has been one of Bollywood's most reliable draws overseas. Don 2 did exceptional business in international markets, and a Ranveer-led Don 3 was positioned as a global tentpole.
+
+Instead, the franchise is in limbo. Excel Entertainment has not announced a replacement. The ₹45 crore dispute remains unresolved. And the question of whether a trade body can effectively blacklist a star worth hundreds of crores to the industry is now being tested in real time.
+
+The directive remains in effect. FWICE says the door is open for Ranveer to appear before them and present his side. So far, he has not walked through it.""",
+    "image_url": None,
+    "image_attribution": None
+}
+articles.append(art1)
+
+# ── Article 2: Kangana Defends Aishwarya at Cannes ──
+art2_id = str(uuid.uuid4())
+art2 = {
+    "id": art2_id,
+    "headline": "Kangana Ranaut Defended Aishwarya Rai at Cannes. These Two Women Have Spent a Decade Being Pitted Against Each Other. The Internet Had No Script for This.",
+    "subheadline": "Aishwarya Rai walked the Cannes red carpet for the 24th time. Trolls mocked her appearance. Kangana Ranaut posted an Instagram Story calling her 'glorious' and told critics to get used to seeing older women. Bollywood's most unlikely alliance just happened.",
+    "slug": "kangana-ranaut-defends-aishwarya-rai-cannes-2026-ageism-trolling-instagram-24th-appearance-20260527",
+    "category": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        "https://www.filmibeat.com/bollywood/news/2026/cannes-2026-kangana-ranaut-slams-trolls-mocking-aishwarya-rai-bachchan-s-look-get-used-to-seeing-014-517897.html",
+        "https://www.bollywoodhungama.com/news/kangana-ranaut-defends-aishwarya-rai-bachchan-amid-cannes-criticism",
+        "https://www.filmfare.com/photos/aaradhya-bachchan-reaction-aishwarya-rai-cannes"
+    ]),
+    "body": """Aishwarya Rai Bachchan walked the Cannes Film Festival red carpet for the twenty-fourth time this year. She is fifty-two years old. She wore a sculpted blue mermaid-style gown designed by Amit Aggarwal. She looked like herself — which is to say, like a woman who has been attending Cannes since 2002, who has walked every iteration of the red carpet in every possible silhouette, and who long ago stopped needing anyone's permission to be there.
+
+The internet, predictably, had opinions. Trolls posted body-shaming comments. Ageist remarks circulated on Instagram and X. The tone was familiar: an aging actress clinging to relevance, a woman who should know better, a former beauty queen who no longer looks twenty-five.
+
+## The Unlikely Defender
+
+Then Kangana Ranaut posted an Instagram Story.
+
+If you follow Bollywood even casually, you know why this is remarkable. Kangana and Aishwarya have spent the better part of a decade being positioned — by the media, by publicists, by the architecture of celebrity feuds — as adversaries. Kangana has been Bollywood's most vocal critic of the industry's power structures, and Aishwarya, married into the Bachchan family, has been one of its most visible symbols.
+
+But on May 24, Kangana shared a photo of Aishwarya's Cannes look and wrote: "Fashion and style is a self expression, it is one's own interpretation of life and their attitude, no woman owes anything to anyone, Ash looks great!! Those of you who want to see her any other way, why don't you show what you got?? She is not here to please you, she is glorious, if you are not used to seeing older women on red carpets, get used to them now."
+
+## Twenty-Four Years at Cannes
+
+Aishwarya's relationship with Cannes predates Instagram, X, smartphones, and the very concept of going viral. She first attended as a L'Oréal Paris ambassador in 2002, three years after winning Miss World, the same year she became the first Indian woman on the TIME 100 list. She has returned every year since, through pregnancies, personal tragedies, career pivots, and an industry that perpetually asks women to justify their presence.
+
+This year, her daughter Aaradhya — now fourteen — accompanied her. A viral video showed Aaradhya beaming as her mother signed autographs for fans outside the Palais des Festivals. In a press interaction, Aishwarya offered advice to aspiring actresses: prioritize self-discovery, avoid overthinking external pressures, remain a lifelong learner.
+
+Her stylist Mohit Rai told reporters he wanted "something timeless, beautiful and iconic" for this appearance. Across the week, she wore a pastel crystal gown with a feathered cape, a sculptural white ensemble with 3D floral designs by Rahul Mishra, and the sapphire Aggarwal gown that drew the loudest reactions — both admiring and cruel.
+
+## The Cannes Pattern
+
+Every year, Indian celebrities at Cannes face a cycle that is now almost ritualistic: the walk, the photos, the praise, the backlash, the discourse about whether Indian stars "belong" at a European film festival primarily because of a cosmetics sponsorship.
+
+What makes this year different is not the cycle itself but who broke it. Kangana Ranaut — the politician, the provocateur, the woman who once called Bollywood's A-list "movie mafia" — stood up for the industry's most establishment figure. She did it not in defense of fashion or celebrity but against the specific cruelty of telling a fifty-two-year-old woman she has no business being on a red carpet.
+
+## Why It Matters for NRIs
+
+For the Indian diaspora, Aishwarya is not just an actress. She is a reference point — the face that launched a thousand "Do you know Aishwarya Rai?" conversations with non-Indian colleagues, the bridge between Bollywood and the world before Bollywood had a global audience. The fact that she is still walking Cannes at fifty-two, and that the harshest criticism comes from Indian social media rather than from the French press, says something about what the diaspora already knows: the standards applied to Indian women by Indian audiences are the most unforgiving ones in the room.
+
+Kangana's defense, whatever its motivations, named that dynamic. And for one news cycle, two women who have never publicly agreed on anything agreed on the most basic thing: a woman at Cannes does not owe you youth.""",
+    "image_url": None,
+    "image_attribution": None
+}
+articles.append(art2)
+
+# ── Article 3: Aamir Khan on Ek Din Failure ──
+art3_id = str(uuid.uuid4())
+art3 = {
+    "id": art3_id,
+    "headline": "Aamir Khan Says a Film Flopping Feels Like Losing a Child. His Son's Film Just Made ₹5.44 Crore. He Produced It.",
+    "subheadline": "Ek Din opened advance bookings 39 days early — a Bollywood record. It starred Sai Pallavi in her Hindi debut. It earned ₹1 crore on day one. Aamir says he goes into depression for two to three months after every flop. This one had his son's name on it.",
+    "slug": "aamir-khan-ek-din-flop-depression-losing-child-junaid-khan-sai-pallavi-box-office-20260527",
+    "category": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        "https://www.newsbeep.com/ie/458632/",
+        "https://www.filmfare.com/features/ek-din-opens-advance-bookings-39-days-early",
+        "https://www.bollywoodhungama.com/news/ek-din-39-day-advance-booking"
+    ]),
+    "body": """Aamir Khan does not believe in pretending a failure did not happen. In a recent conversation with Zee Music Company, the actor — Bollywood's self-appointed perfectionist, the man who makes one film every three years and treats each one like an existential project — said this about what happens when it does not work:
+
+"I go into depression for two to three months when a film doesn't work. A film is like your child. When it doesn't work or gets rejected, it is very painful. I feel it's important to mourn your losses. When your film doesn't work, it is like losing a child, so you should cry over it, give it time, so that it is out of your system and helps you move on."
+
+He was speaking in general terms, but the timing made the subtext impossible to miss. Ek Din, produced by Aamir and starring his son Junaid Khan opposite Sai Pallavi, had just finished its theatrical run with a worldwide gross of ₹5.44 crore — a commercial disaster by any standard, and a particularly painful one for a film that had tried everything right.
+
+## The 39-Day Experiment
+
+Ek Din opened advance bookings thirty-nine days before its May 1 release — the earliest in Bollywood history. The strategy was deliberate. Rather than rely on a big opening weekend, the team tried to build anticipation slowly, letting word of mouth carry the film. Screenings were limited to twenty cities initially. The marketing leaned on the film's emotional core rather than spectacle.
+
+It was, in theory, exactly the kind of release strategy that the industry has been calling for: patient, audience-first, designed for a film that did not have a ₹200 crore action set-piece to sell. But audiences did not show up. Day one collected ₹1 crore. Eleven days in, the India total sat at ₹4.25 crore.
+
+## Sai Pallavi's Hindi Debut
+
+Part of the anticipation was Sai Pallavi. The actress, already a star in Tamil and Telugu cinema — Premam, Fidaa, Jai Bhim — was making her Bollywood debut. The pairing with Junaid Khan, who had debuted the previous year in Maharaj to warmer reception, was positioned as a fresh combination with old-school appeal. Director Sunil Pandey adapted the 2016 Thai film One Day into a romantic drama about two people who share a single significant encounter.
+
+Critics were kinder than audiences. Reviews noted emotional depth and genuine performances, particularly from Pallavi. But a film needs bodies in seats to survive its first week, and Ek Din did not have them. Competition from Raja Shivaji and the lingering pull of Dhurandhar 2 left no room in multiplexes.
+
+## The Father's Reckoning
+
+What makes this story unusual is not that a Bollywood film flopped — roughly eighty percent of them do — but that the producer who flopped is also the father of the lead actor, and he is talking about it with the candor of a man who has decided transparency is the only dignified option.
+
+"When a film flops, it breaks my heart," Aamir continued. "At the end of the day, we make a film for our audience. When they buy a ticket and come to theaters to have a good time, and when they don't like a film, then there is a flaw in your work; the audience never decides intentionally to go and watch a bad film."
+
+He then revealed that several of his most acclaimed films — Delhi Belly, Taare Zameen Par, Laapataa Ladies — had terrible first cuts that required extensive reworking. "You can always correct a film if you want to; it requires lots of endurance, stamina, patience, and passion."
+
+Junaid himself acknowledged his father's struggle in an interview the previous week, saying Aamir was having difficulty processing Ek Din's performance. The younger Khan has not distanced himself from the result; if anything, the shared vulnerability has humanized a family name that Indian audiences have spent decades regarding with a mix of reverence and expectation.
+
+## The NRI Audience Question
+
+For diaspora audiences, Ek Din was exactly the kind of film they claim to want: small, sincere, romance-driven, anchored by two genuinely talented actors. It was not a franchise sequel. It was not a jingoistic spectacle. It was not a three-hour musical extravaganza. It was a film about two people, and it lasted eleven days in theaters.
+
+The uncomfortable truth is that the Indian audience — at home and abroad — keeps saying it wants more of these films while buying tickets to Dhurandhar 2. Aamir Khan knows this. He has spent his career trying to bridge the gap between what audiences say and what they do. This time, the gap won.
+
+"For me, real success is to manage to make what you set out to make," he said. By that measure, Ek Din might be a success. By every other measure, it is the thing Aamir compares to losing a child. And he is letting himself grieve it in public, which is more than most Bollywood stars would ever do.""",
+    "image_url": None,
+    "image_attribution": None
+}
+articles.append(art3)
+
+# ─── IMAGE SOURCING ───
+
+print("\n=== Image Sourcing ===\n")
+
+# Article 1: Ranveer Singh
+print("Article 1: Ranveer Singh / Don 3")
+img1 = fetch_wikipedia_person_image("Ranveer Singh")
+if not img1:
+    img1 = fetch_wikipedia_person_image("Ranveer Singh (actor)")
+if img1 and not is_banned_source(img1):
+    articles[0]["image_url"] = img1
+    articles[0]["image_attribution"] = "Wikimedia Commons"
+else:
+    img1 = fetch_pexels_image("Bollywood film set production", "Indian cinema spotlight")
+    if img1 and not is_banned_source(img1):
+        articles[0]["image_url"] = img1
+        articles[0]["image_attribution"] = "Pexels"
+
+# Article 2: Aishwarya Rai
+print("\nArticle 2: Aishwarya Rai / Cannes")
+img2 = fetch_wikipedia_person_image("Aishwarya Rai")
+if not img2:
+    img2 = fetch_wikipedia_person_image("Aishwarya Rai Bachchan")
+if img2 and not is_banned_source(img2):
+    articles[1]["image_url"] = img2
+    articles[1]["image_attribution"] = "Wikimedia Commons"
+else:
+    img2 = fetch_pexels_image("Cannes film festival red carpet", "film festival gala")
+    if img2 and not is_banned_source(img2):
+        articles[1]["image_url"] = img2
+        articles[1]["image_attribution"] = "Pexels"
+
+# Article 3: Aamir Khan
+print("\nArticle 3: Aamir Khan / Ek Din")
+img3 = fetch_wikipedia_person_image("Aamir Khan")
+if img3 and not is_banned_source(img3):
+    articles[2]["image_url"] = img3
+    articles[2]["image_attribution"] = "Wikimedia Commons"
+else:
+    img3 = fetch_pexels_image("Indian cinema theater empty seats", "Bollywood film screening")
+    if img3 and not is_banned_source(img3):
+        articles[2]["image_url"] = img3
+        articles[2]["image_attribution"] = "Pexels"
+
+# ─── VALIDATE IMAGES ───
+print("\n=== Validating Images ===\n")
+for i, art in enumerate(articles):
+    url = art.get("image_url")
+    if url:
+        if validate_image_url(url):
+            print(f"  ✓ Article {i+1}: Image OK")
+        else:
+            print(f"  ✗ Article {i+1}: Image validation failed, removing")
+            art["image_url"] = None
+            art["image_attribution"] = None
     else:
-        print(f"  ✗ Publish failed ({r.status_code}): {r.text[:200]}")
-        return False
-
-
-# ============================================================
-# ARTICLE 1: Suriya's Karuppu — ₹250 Crore Blockbuster
-# ============================================================
-
-def write_article_1():
-    print("\n📝 Article 1: Suriya's Karuppu ₹250 Crore Blockbuster")
-
-    # Image: Wikipedia for Suriya
-    image_url = fetch_wikipedia_person_image("Suriya")
-    if not image_url or not validate_image(image_url):
-        image_url = fetch_wikipedia_person_image("Suriya (actor)")
-        if not image_url or not validate_image(image_url):
-            image_url = fetch_pexels_image("Tamil cinema audience celebration")
-    image_attr = "Wikimedia Commons" if image_url and "wiki" in image_url else "Pexels"
-
-    body = """Suriya has spent the better part of a decade watching Tamil cinema's commercial centre shift toward younger faces and bigger franchises. Kanguva underwhelmed. Retro grossed respectably but never turned a profit against its budget. The talk, in industry circles and among NRI Tamil audiences who once packed single-screens for Singam, was that the Suriya era had quietly ended.
-
-Karuppu has made that conversation irrelevant.
-
-## The Numbers That Matter
-
-Directed by RJ Balaji, the fantasy-action-courtroom drama crossed ₹250 crore worldwide in just 12 days — making it Suriya's highest-grossing film by a wide margin and the biggest Tamil hit of 2026 so far. In Tamil Nadu alone, it has collected over ₹130 crore, shattering Singam 2's 13-year-old state record and becoming only the second Tamil film ever to cross that mark after Rajinikanth's Enthiran.
-
-The India net stands at approximately ₹155 crore. Overseas, Tamil diaspora audiences have contributed ₹67-68 crore — a staggering number for a Tamil-language film that is not a franchise sequel and has no Hindi dub release.
-
-## What Makes Karuppu Different
-
-The film blends a guardian-deity mythology with a courtroom drama about systemic corruption — not exactly the formula Hollywood studios greenlight in pitch meetings. RJ Balaji, better known as an actor-comedian, directed with a visual ambition and tonal control that surprised even the film's producers at Dream Warrior Pictures.
-
-Trisha Krishnan returns opposite Suriya for the first time in years, and their pairing has been cited by audiences as a key driver for repeat viewings — particularly in B-centres and rural Tamil Nadu, where the film's single-screen numbers are unusually strong.
-
-## The Vijay Connection
-
-In a revelation that added another layer to the film's narrative, RJ Balaji disclosed that Karuppu was originally conceived as Vijay's final film before the actor entered Tamil Nadu politics. When Vijay's political timeline accelerated and his farewell project Jana Nayagan took a different route (which itself remains stalled in CBFC limbo), the script was adapted for Suriya with significant creative reworking.
-
-The fact that Tamil Nadu Chief Minister Vijay personally congratulated the Karuppu team after its release suggests no hard feelings — and adds a fascinating footnote to both careers.
-
-## Why NRIs Should Pay Attention
-
-For the Tamil diaspora, Karuppu represents something increasingly rare: a mass Tamil film that is genuinely good at the box office without relying on franchise recognition or a pan-India dubbed release strategy. Its overseas numbers — nearly $8 million — were driven almost entirely by Tamil-speaking audiences in the US, UK, Canada, and the Gulf.
-
-In an industry where the loudest commercial successes often come from dubbed Hindi releases or sequel IP, Karuppu's purely Tamil-rooted performance is a statement. It says the language-specific audience, at home and abroad, can still carry a film past ₹250 crore without any crossover concessions.
-
-## What Comes Next
-
-The film is expected to comfortably cross ₹300 crore worldwide before its theatrical run ends, which would place it among the top 10 highest-grossing Tamil films of all time. An OTT deal — likely with a premium streamer given the numbers — has not been announced but is expected within the month.
-
-For Suriya, now 50, the message is simpler: the audience was always there. The material just needed to meet them where they live."""
-
-    return {
-        'headline': "Suriya's Karuppu Just Crossed ₹250 Crore in 12 Days. It Was Originally Written for Vijay. Tamil Cinema's Biggest Hit of 2026 Was Supposed to Be Someone Else's Farewell.",
-        'subheadline': "RJ Balaji's fantasy-courtroom drama has become Suriya's highest-grossing film ever, shattering Singam 2's 13-year Tamil Nadu record and proving the Tamil-language audience — at home and in the diaspora — doesn't need a Hindi dub to deliver blockbuster numbers.",
-        'body': body,
-        'slug': 'suriya-karuppu-250-crore-vijay-original-script-tamil-cinema-biggest-hit-2026-nri-diaspora',
-        'sources': [
-            {"name": "Filmibeat", "url": "https://www.filmibeat.com"},
-            {"name": "Cinema Express", "url": "https://www.cinemaexpress.com"},
-            {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
-            {"name": "Hollywood Reporter India", "url": "https://www.hollywoodreporterindia.com"}
-        ],
-        'image_url': image_url or '',
-        'image_caption': 'Suriya in a promotional still',
-        'image_attribution': image_attr
-    }
-
-
-# ============================================================
-# ARTICLE 2: Imtiaz Ali's Main Vaapas Aaunga
-# ============================================================
-
-def write_article_2():
-    print("\n📝 Article 2: Imtiaz Ali's Main Vaapas Aaunga")
-
-    # Image: Wikipedia for Imtiaz Ali
-    image_url = fetch_wikipedia_person_image("Imtiaz Ali (director)")
-    if not image_url or not validate_image(image_url):
-        image_url = fetch_wikipedia_person_image("Imtiaz Ali")
-        if not image_url or not validate_image(image_url):
-            image_url = fetch_pexels_image("vintage train India Partition")
-    image_attr = "Wikimedia Commons" if image_url and "wiki" in image_url else "Pexels"
-
-    body = """Imtiaz Ali has not made a film since Love Aaj Kal in 2020. That film was a commercial disaster and a creative misfire that seemed to confirm what the industry whispered: the man who made Jab We Met and Rockstar had lost his compass. Six years of silence followed. Now he is back with a Partition love story, an A.R. Rahman score, Diljit Dosanjh in a major role, and two of Bollywood's most promising young actors. The film releases on June 12. It is called Main Vaapas Aaunga.
-
-## The Story
-
-The film spans two timelines. In the present, Naseeruddin Shah plays an elderly Sardar navigating the weight of a love severed by the 1947 Partition. In the past, Vedang Raina and Sharvari play the young lovers whose world is torn apart. Diljit Dosanjh occupies a role that connects both timelines — details of which the team has kept deliberately vague.
-
-In interviews, Ali has said every element of the film is rooted in real accounts collected over years from Partition survivors. "The generation that lived through it is almost gone," he told Anupama Chopra. "If we don't tell their stories now, we lose them forever."
-
-## The Reunion That Matters Most
-
-This is an A.R. Rahman-Irshad Kamil-Imtiaz Ali reunion — the same trio behind Rockstar, Highway, and Tamasha. For a generation of listeners (and an even larger generation of NRIs who grew up on those soundtracks), this combination carries enormous emotional weight. Rahman's involvement was reportedly finalized before the cast, which tells you where Ali's priorities sit.
-
-## The Cast
-
-Vedang Raina (fresh off The Archies and reportedly the lead of YRF's next big franchise play) and Sharvari (Alpha, Munjya) bring a young commercial credibility that Ali's recent films have lacked. Diljit Dosanjh — who just made history as the first South Asian artist to sell out two consecutive nights at Madison Square Garden — brings the star power and the Punjabi cultural authenticity that a Partition story demands.
-
-Naseeruddin Shah, at 76, lends the gravitas of an actor who has spent five decades making Hindi cinema smarter. Ali has called casting a non-Sikh actor as a Sardar "a deliberate creative choice about the universality of loss."
-
-## The Box Office Clash
-
-Main Vaapas Aaunga opens on June 12 against Kangana Ranaut's Bharat Bhhagya Viddhaata, Manoj Bajpayee's Governor: The Silent Saviour, and Vikram Bhatt's Haunted 3D: Echoes of the Past. Ali, characteristically unfazed, has said he announced his date first and sees no reason to move.
-
-The real question is whether Indian audiences — and specifically NRI audiences who keep Ali's films alive on streaming long after their theatrical runs — will show up for a Partition film in summer. The genre has a complicated history at the box office. Gadar 2 worked because it was a sequel to a phenomenon. Original Partition stories, even good ones, have historically struggled commercially.
-
-## Why It Matters for the Diaspora
-
-Partition is not history for much of the Indian diaspora. It is family memory. Grandparents who crossed borders, relatives who stayed behind, stories told at kitchen tables that never quite ended. Ali has built his career on capturing the ache of separation — romantic, geographic, emotional. A film that applies that instinct to the foundational separation of modern South Asian identity could resonate deeply with NRI audiences who carry those stories in ways they rarely articulate.
-
-Or it could be another Love Aaj Kal 2. That is the risk of caring about a filmmaker who has both Rockstar and Love Aaj Kal 2 on his resume. June 12 will tell us which version of Imtiaz Ali showed up."""
-
-    return {
-        'headline': "Imtiaz Ali Has Not Made a Film in Six Years. His Comeback Is a Partition Love Story With Diljit, A.R. Rahman, and Naseeruddin Shah. It Opens June 12 Against Kangana.",
-        'subheadline': "Main Vaapas Aaunga reunites the Rockstar trio of Ali, Rahman, and Irshad Kamil for a two-timeline story about love severed in 1947 — featuring Vedang Raina, Sharvari, and the biggest Punjabi star on the planet.",
-        'body': body,
-        'slug': 'imtiaz-ali-main-vaapas-aaunga-partition-diljit-dosanjh-ar-rahman-june-12-nri-diaspora',
-        'sources': [
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-            {"name": "Hollywood Reporter India", "url": "https://www.hollywoodreporterindia.com"},
-            {"name": "Filmfare", "url": "https://www.filmfare.com"},
-            {"name": "Zoom TV Entertainment", "url": "https://www.zoomtventertainment.com"}
-        ],
-        'image_url': image_url or '',
-        'image_caption': 'Director Imtiaz Ali',
-        'image_attribution': image_attr
-    }
-
-
-# ============================================================
-# ARTICLE 3: Diljit Dosanjh — MSG History and Bomb Threats
-# ============================================================
-
-def write_article_3():
-    print("\n📝 Article 3: Diljit Dosanjh — MSG History to Bomb Threats")
-
-    # Image: Wikipedia for Diljit Dosanjh
-    image_url = fetch_wikipedia_person_image("Diljit Dosanjh")
-    if not image_url or not validate_image(image_url):
-        image_url = fetch_pexels_image("concert arena crowd lights", "Madison Square Garden concert")
-    image_attr = "Wikimedia Commons" if image_url and "wiki" in image_url else "Pexels"
-
-    body = """On May 25, Diljit Dosanjh became the first South Asian artist to sell out two consecutive nights at Madison Square Garden. Thousands of fans — many of them first-generation Punjabi Americans and second-generation kids who grew up on their parents' playlists — packed the arena for the AURA tour. Free Kada Prasad was distributed to the crowd. Chef Vikas Khanna called him "India's global ambassador." The moment felt like a cultural arrival that was years in the making.
-
-The same day, a bomb threat was emailed to the Ludhiana Municipal Corporation naming Diljit's family home as a target.
-
-## The Threat
-
-The email, sent on May 25 to municipal officials, claimed affiliation with the "Khalistan National Army" and warned of blasts before June 6 — the anniversary of Operation Blue Star, the 1984 Indian military operation at the Golden Temple in Amritsar. The sender wrote that "whoever helps Diljit will be killed."
-
-Punjab Police and cybercrime units launched an investigation. Diljit's Ludhiana residence was searched; no suspicious materials were found. Authorities have classified the threat as a hoax, but security has been tightened around the singer's properties and the broader Ludhiana area in the lead-up to the sensitive June anniversary period.
-
-This is not an isolated incident. Punjab has seen a surge in institutional bomb threats in 2026, with schools, government offices, and public figures targeted by email campaigns that investigators believe are coordinated from outside India.
-
-## The MSG Milestone
-
-The bomb threat is a grim counterpoint to what should have been an unambiguous moment of celebration. Diljit's MSG concerts were not just sold out — they were cultural events. The stage that has hosted Elton John, Madonna, and Billy Joel now belongs, for two nights, to a Punjabi singer from Dosanjh Kalan, a village in Jalandhar district.
-
-During his recent Vancouver show, Diljit paused to speak about the Komagata Maru incident — the 1914 turning away of a ship carrying Punjabi immigrants from Canada — connecting his global tour to the longer history of South Asian migration, exclusion, and eventual belonging.
-
-## The Tour Continues
-
-The AURA tour has additional dates through June and July, including shows in Toronto and Vancouver — the two cities with the largest Punjabi diaspora populations outside India. Whether the bomb threat will affect security protocols or concert logistics remains unclear, but Diljit's team has not indicated any cancellations.
-
-## Where Diljit Stands Now
-
-At 42, Diljit Dosanjh occupies a position no Indian artist has held before. He is simultaneously the biggest live act in the Punjabi diaspora, a Bollywood leading man (his next film, Imtiaz Ali's Main Vaapas Aaunga, opens June 12), a streaming phenomenon, and — after Sia and David Guetta collaborations — a crossover name in global pop.
-
-He is also, as the bomb threat makes uncomfortably clear, a symbol. For the diaspora, he represents the possibility that Punjabi culture can command the world's most famous stages without dilution. For extremist elements that the threat email represents, he is a target precisely because of that mainstream success — a Sikh artist who chose music over politics, global stages over ideological allegiance.
-
-## For NRIs With Tickets
-
-If you are an NRI with AURA tour tickets — and many of you are, given that Diljit's North American shows sell out within hours — the practical concern is security at upcoming venues. Large-scale concert security in the US and Canada operates at a fundamentally different level than in India, and venue operators typically coordinate with local law enforcement well in advance of any flagged events.
-
-The emotional concern is harder to address. Watching a cultural icon achieve something historic while simultaneously being threatened for existing in public is a dissonance that diaspora communities know intimately. Diljit's response, characteristically, has been to keep performing. The next show is the answer."""
-
-    return {
-        'headline': "Diljit Dosanjh Sold Out Two Consecutive Nights at Madison Square Garden. The Same Day, Someone Emailed a Bomb Threat to His Family Home in Ludhiana.",
-        'subheadline': "The first South Asian artist to sell out back-to-back MSG shows is now performing under heightened security after a threat linked to the Operation Blue Star anniversary targeted his residence. The AURA tour continues.",
-        'body': body,
-        'slug': 'diljit-dosanjh-madison-square-garden-bomb-threat-ludhiana-aura-tour-nri-diaspora',
-        'sources': [
-            {"name": "Cinema Express", "url": "https://www.cinemaexpress.com"},
-            {"name": "Bollywood Life", "url": "https://www.bollywoodlife.com"},
-            {"name": "Punjab News Line", "url": "https://www.punjabnewsline.com"},
-            {"name": "Inshorts", "url": "https://www.inshorts.com"}
-        ],
-        'image_url': image_url or '',
-        'image_caption': 'Diljit Dosanjh',
-        'image_attribution': image_attr
-    }
-
-
-# ============================================================
-# MAIN
-# ============================================================
-
-if __name__ == '__main__':
-    print("=" * 60)
-    print("The Videshi Entertainment Writer — 2026-05-27")
-    print("=" * 60)
-
-    articles = []
-    for writer_fn in [write_article_1, write_article_2, write_article_3]:
-        try:
-            article = writer_fn()
-            articles.append(article)
-        except Exception as e:
-            print(f"  ✗ Error writing article: {e}")
-            traceback.print_exc()
-
-    print(f"\n📤 Publishing {len(articles)} articles...")
-    published = 0
-    for article in articles:
-        # Final validation
-        if len(article['body']) < 400:
-            print(f"  ✗ REJECTED (body too short: {len(article['body'])} chars): {article['headline'][:50]}")
-            continue
-        if len(article['headline']) > 200:
-            print(f"  ⚠ Headline over 200 chars ({len(article['headline'])}), truncating")
-            article['headline'] = article['headline'][:197] + "..."
-        if not article.get('subheadline') or len(article['subheadline']) < 15:
-            print(f"  ✗ REJECTED (missing/short subheadline): {article['headline'][:50]}")
-            continue
-
-        if publish_article(article):
-            published += 1
-        time.sleep(1)
-
-    print(f"\n✅ Done: {published}/{len(articles)} articles published")
+        print(f"  ⚠ Article {i+1}: No image found")
+
+# ─── PUBLISH ───
+print("\n=== Publishing ===\n")
+for i, art in enumerate(articles):
+    print(f"Publishing article {i+1}: {art['headline'][:60]}...")
+    result = sb_insert("p2_articles", art)
+    if result:
+        print(f"  ✓ Published: {art['slug']}")
+    else:
+        print(f"  ✗ Failed to publish: {art['slug']}")
+
+print("\n=== Done ===")
