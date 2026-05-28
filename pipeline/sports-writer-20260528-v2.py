@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Sports writer for The Videshi — 2026-05-28 batch"""
+"""Sports writer for The Videshi — 2026-05-28 batch (fixed)"""
 
-import json, os, sys, time, uuid, re
+import json, os, sys, time, uuid, re, subprocess
 from datetime import datetime, timezone
 
 import requests
@@ -42,21 +42,10 @@ def sb_insert(table, data):
     if r.status_code in (200, 201):
         result = r.json()
         return result[0] if isinstance(result, list) and result else result
-    print(f'  ✗ Insert to {table} failed ({r.status_code}): {r.text[:300]}')
+    print(f'  ✗ Insert to {table} failed ({r.status_code}): {r.text[:500]}')
     return None
 
-def sb_patch(table, match, data):
-    params = '&'.join(f'{k}={v}' for k, v in match.items())
-    url = f'{SB_URL}/rest/v1/{table}?{params}'
-    r = requests.patch(url, headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 204):
-        print(f'  ✓ Patched {table}')
-        return True
-    print(f'  ✗ Patch to {table} failed ({r.status_code}): {r.text[:300]}')
-    return False
-
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = requests.utils.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -68,22 +57,19 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get('originalimage', {}).get('source') or data.get('thumbnail', {}).get('source')
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
     if not PEXELS_KEY:
-        print('  ⚠ No Pexels API key')
         return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            import subprocess
             cmd = [
                 'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
                 f'https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape'
@@ -91,8 +77,7 @@ def fetch_pexels_image(query, fallback_query=None):
             result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
             if result.returncode == 0:
                 data = json.loads(result.stdout)
-                photos = data.get('photos', [])
-                for p in photos:
+                for p in data.get('photos', []):
                     url = p.get('src', {}).get('large2x') or p.get('src', {}).get('large')
                     if url:
                         print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
@@ -102,52 +87,44 @@ def fetch_pexels_image(query, fallback_query=None):
     return None
 
 def validate_image_url(url):
-    """Verify URL returns a real image >5KB."""
     if not url:
         return False
-    # Block banned sources
     banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
     if any(b in url for b in banned):
-        print(f'  ✗ Banned image source: {url[:60]}')
         return False
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={'User-Agent': 'TheVideshi/1.0 (thevideshi.com)'})
+        r = requests.get(url, timeout=10, stream=True,
+                        headers={'User-Agent': 'TheVideshi/1.0 (thevideshi.com)'})
         ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if 'image' in ct and cl > 5000:
+        if 'image' not in ct:
+            print(f'  ⚠ Not an image: ct={ct}')
+            return False
+        chunk = r.raw.read(6000)
+        if len(chunk) > 5000:
             return True
-        # Some servers don't return Content-Length on HEAD, try GET
-        if 'image' in ct:
-            r2 = requests.get(url, timeout=10, stream=True,
-                            headers={'User-Agent': 'TheVideshi/1.0 (thevideshi.com)'})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                return True
-        print(f'  ⚠ Image validation failed: ct={ct}, cl={cl}')
+        print(f'  ⚠ Image too small: {len(chunk)} bytes')
     except Exception as e:
-        print(f'  ⚠ Image validation error: {e}')
+        print(f'  ⚠ Validation error: {e}')
     return False
-
-def make_slug(headline):
-    """Generate a human-readable slug from headline."""
-    s = headline.lower()
-    s = re.sub(r'[^a-z0-9\s-]', '', s)
-    s = re.sub(r'\s+', '-', s.strip())
-    s = re.sub(r'-+', '-', s)
-    s = s[:120].rstrip('-')
-    # Add date suffix
-    return f"{s}-{datetime.now(timezone.utc).strftime('%Y%m%d')}"
 
 # ── articles ─────────────────────────────────────────────────────────
 articles = []
 
-# ── ARTICLE 1: Virat Kohli 600+ Runs Four Consecutive Seasons ──────
+# ── ARTICLE 1: Virat Kohli 600+ Runs Record ────────────────────────
 articles.append({
     'headline': "Virat Kohli Becomes the First Player in IPL History to Score 600 Runs in Four Consecutive Seasons",
     'subheadline': "The 37-year-old reached the milestone in Qualifier 1 against Gujarat Titans, adding another line to a record book that increasingly reads like autobiography",
     'slug': 'virat-kohli-600-runs-four-consecutive-ipl-seasons-record-rcb-2026-20260528',
     'category': 'sports',
+    'vertical': 'sports',
+    'tags': ['Virat Kohli', 'IPL', 'RCB', 'IPL 2026', 'cricket records', 'batting milestone'],
+    'urgency': 'daily',
+    'score_total': 78,
+    'sources': [
+        {'name': 'Cricbuzz', 'url': 'https://www.cricbuzz.com'},
+        {'name': 'ESPNcricinfo', 'url': 'https://www.espncricinfo.com'},
+        {'name': 'Mykhel', 'url': 'https://www.mykhel.com'}
+    ],
     'body': """Virat Kohli does not chase records. Records simply happen to orbit the same places he occupies. On Monday night at the HPCA Stadium in Dharamsala, with the Himalayas framing the floodlights behind him, Kohli stroked 43 off 25 balls against Gujarat Titans in IPL 2026 Qualifier 1. It was not his most spectacular innings. It was not the decisive one — that belonged to his captain Rajat Patidar, who smashed an unbeaten 93 off 33 balls. But buried inside those 43 runs was a number that matters more than any single knock: 600.
 
 Kohli has now scored 600 or more runs in four consecutive IPL seasons. No one in the tournament's 19-year history has done this before. Chris Gayle managed three straight 600-plus seasons. KL Rahul did it three times as well. Kohli has gone past both.
@@ -176,10 +153,7 @@ Now 37, Kohli is playing in what many believe could be his final IPL season, tho
 
 RCB await the winner of Thursday's Qualifier 2 between Gujarat Titans and Rajasthan Royals. If GT progress, Kohli will face Kagiso Rabada and Jofra Archer for the second time in the playoffs. If RR advance, the 15-year-old Vaibhav Sooryavanshi — who has already broken Chris Gayle's all-time sixes record this season — could be the man standing between Kohli and a second consecutive title.
 
-Either way, when Kohli walks out for the final at Mullanpur, the number 600 will already be stitched into the record. And for a player who has made the IPL his personal stage for 18 seasons, four straight 600-run campaigns may be the achievement that ages best of all.
-
-*Sources: Cricbuzz, ESPNcricinfo, IPL official statistics*""",
-    'sources': ['Cricbuzz', 'ESPNcricinfo', 'IPL official statistics'],
+Either way, when Kohli walks out for the final at Mullanpur, the number 600 will already be stitched into the record. And for a player who has made the IPL his personal stage for 18 seasons, four straight 600-run campaigns may be the achievement that ages best of all.""",
     'person_for_image': 'Virat Kohli',
     'image_caption': 'Virat Kohli during IPL 2026 — the first player to score 600+ runs in four consecutive seasons',
     'image_attribution': 'Wikimedia Commons',
@@ -191,6 +165,16 @@ articles.append({
     'subheadline': "BCCI chairman Arun Dhumal confirms discussions about shifting the tournament to a September-October window, citing extreme heat, broadcaster interest, and the pull of Diwali-season advertising",
     'slug': 'ipl-september-october-window-dhumal-bcci-schedule-shift-nri-impact-20260528',
     'category': 'sports',
+    'vertical': 'sports',
+    'tags': ['IPL', 'BCCI', 'Arun Dhumal', 'IPL schedule', 'NRI', 'cricket calendar', 'Diwali'],
+    'urgency': 'daily',
+    'score_total': 75,
+    'sources': [
+        {'name': 'BestMediaInfo', 'url': 'https://www.bestmediainfo.com'},
+        {'name': 'Cricbuzz', 'url': 'https://www.cricbuzz.com'},
+        {'name': 'CricTracker', 'url': 'https://www.crictracker.com'},
+        {'name': 'CricketAddictor', 'url': 'https://www.cricketaddictor.com'}
+    ],
     'body': """The Indian Premier League has been a March-to-May institution since its first season in 2008. For eighteen years, the tournament has occupied the hottest months of the Indian calendar — a scheduling reality that has produced heatstroke scares, exhausted cricketers, and, for diaspora fans in the Northern Hemisphere, an overlap with the end of the American and European work year that makes following every match a logistical challenge.
 
 That may be about to change.
@@ -201,7 +185,7 @@ In a series of interviews this week, IPL chairman Arun Dhumal confirmed that the
 
 Three factors are driving the discussion.
 
-**Heat.** The 2026 season has been one of the most punishing on record. A player collapsed after match point at the French Open this week, and Roland Garros is mild compared to Ahmedabad in May. Multiple IPL matches this season were played in temperatures exceeding 42°C. The Qualifier 1 in Dharamsala — a hill station — was deliberately chosen for its cooler climate. The BCCI can no longer ignore the medical reality.
+**Heat.** The 2026 season has been one of the most punishing on record. Multiple IPL matches this season were played in temperatures exceeding 42°C. The Qualifier 1 in Dharamsala — a hill station — was deliberately chosen partly for its cooler climate. The BCCI can no longer ignore the medical reality of asking athletes to perform at peak intensity in Indian summer conditions.
 
 **Player fatigue.** The modern cricketer plays year-round. The IPL's March-May slot clashes with the end of the international summer in Australia and South Africa, forcing overseas stars to fly in mid-season. A September-October window would sit between the English summer and the Australian home season, potentially improving squad availability.
 
@@ -221,25 +205,22 @@ For the estimated 32 million Indians living abroad, a September-October IPL wind
 
 **Diwali season alignment.** For NRI families, the IPL final happening in the week before Diwali would create a cultural super-event. Cricket and Diwali are already the two most unifying threads of diaspora identity. Combining them into a single season could transform how NRI communities gather and celebrate.
 
-**Fantasy and betting markets.** The growing legal sports betting market in North America has begun to include IPL. A September-October window would reduce competition with the NBA and NHL playoffs (which dominate March-May) and instead compete with the NFL regular season — a period when cricket could carve out a distinct niche.
+**Fantasy and betting markets.** The growing legal sports betting market in North America has begun to include IPL. A September-October window would reduce competition with the NBA and NHL playoffs (which dominate March-May) and instead compete with the NFL regular season — a period when cricket could carve out a distinct niche among South Asian audiences.
 
 ## The Obstacles
 
-Not everyone is convinced. Franchise owners who have invested in stadium infrastructure designed for pre-monsoon conditions would face the challenge of September rain — monsoon season typically ends in late September across much of India. The IPL has never been played during the monsoon, and the logistics of indoor-quality drainage are nontrivial.
+Not everyone is convinced. Franchise owners who have invested in stadium infrastructure designed for pre-monsoon conditions would face the challenge of September rain — monsoon season typically ends in late September across much of India. The IPL has never been played during the monsoon, and the logistics of indoor-quality drainage across fourteen venues are nontrivial.
 
-The ICC's crowded calendar is another hurdle. September-October overlaps with bilateral series that generate revenue for smaller cricket boards. The BCCI's leverage within the ICC is substantial, but unilaterally shifting the IPL would provoke resistance.
+The ICC's crowded calendar is another hurdle. September-October overlaps with bilateral series that generate revenue for smaller cricket boards. The BCCI's leverage within the ICC is substantial, but unilaterally shifting the IPL would provoke resistance from boards that depend on that window for their own fixtures.
 
 ## What Happens Now
 
-Dhumal was careful to frame this as a discussion, not a decision. The earliest any change could take effect is IPL 2028, given existing broadcast contracts and the ICC's cycle. But the fact that the BCCI chairman is speaking publicly about it — rather than letting it leak as a rumour — suggests the conversation is further along than the cautious language implies.
+Dhumal was careful to frame this as a discussion, not a decision. The earliest any change could take effect is IPL 2028, given existing broadcast contracts and the ICC's scheduling cycle. But the fact that the BCCI chairman is speaking publicly about it — rather than letting it leak as a rumour — suggests the conversation is further along than the cautious language implies.
 
-For NRI cricket fans who have spent eighteen years setting 4 AM alarms and muting Slack channels to avoid spoilers, the prospect of an autumn IPL is more than a scheduling change. It is a recognition that the diaspora audience matters enough to rethink the calendar.
-
-*Sources: BestMediaInfo, Cricbuzz, CricTracker, CricketAddictor*""",
-    'sources': ['BestMediaInfo', 'Cricbuzz', 'CricTracker', 'CricketAddictor'],
+For NRI cricket fans who have spent eighteen years setting 4 AM alarms and muting Slack channels to avoid spoilers, the prospect of an autumn IPL is more than a scheduling change. It is a recognition that the diaspora audience matters enough to rethink the calendar.""",
     'person_for_image': None,
-    'pexels_query': 'IPL cricket stadium India night',
-    'pexels_fallback': 'cricket stadium floodlights',
+    'pexels_query': 'cricket stadium night lights',
+    'pexels_fallback': 'cricket match stadium India',
     'image_caption': 'The IPL may move to a September-October window as the BCCI considers scheduling changes',
     'image_attribution': 'Pexels',
 })
@@ -247,9 +228,18 @@ For NRI cricket fans who have spent eighteen years setting 4 AM alarms and mutin
 # ── ARTICLE 3: Kagiso Rabada Powerplay Record ──────────────────────
 articles.append({
     'headline': "Kagiso Rabada Now Holds the All-Time IPL Record for Powerplay Wickets in a Season",
-    'subheadline': "The South African fast bowler took his 18th powerplay wicket in Qualifier 1, surpassing Mohammed Shami's 2023 mark, and has been the most dangerous new-ball bowler in IPL 2026",
+    'subheadline': "The South African fast bowler took his 18th powerplay wicket in Qualifier 1, surpassing Mohammed Shami's 2023 mark and confirming his status as the most dangerous new-ball bowler in IPL 2026",
     'slug': 'kagiso-rabada-ipl-powerplay-wickets-record-18-shami-gt-2026-20260528',
     'category': 'sports',
+    'vertical': 'sports',
+    'tags': ['Kagiso Rabada', 'IPL', 'Gujarat Titans', 'fast bowling', 'IPL 2026', 'powerplay', 'cricket records'],
+    'urgency': 'daily',
+    'score_total': 72,
+    'sources': [
+        {'name': 'Cricbuzz', 'url': 'https://www.cricbuzz.com'},
+        {'name': 'Wisden', 'url': 'https://www.wisden.com'},
+        {'name': 'ESPNcricinfo', 'url': 'https://www.espncricinfo.com'}
+    ],
     'body': """The wicket that broke the record was not even particularly dramatic. Second over of RCB's innings in Qualifier 1 at Dharamsala. Venkatesh Iyer, the tall left-hander who had been promoted up the order, pushed at a ball outside off stump. Edge. Gone. Kagiso Rabada did not celebrate extravagantly. He simply walked back to his mark, adjusted his collar, and prepared to bowl the next ball.
 
 That was powerplay wicket number 18 in IPL 2026. No bowler in the tournament's history has ever taken more in a single season.
@@ -278,7 +268,7 @@ But Rabada's record survived the defeat. Personal landmarks rarely depend on tea
 
 ## A Quiet Giant
 
-Rabada is not an IPL showman. He does not have a signature celebration. He does not court the cameras. He joined Gujarat Titans before the 2024 season and has been their most consistent performer since — a fact that gets lost in the noise around Shubman Gill's captaincy and Rashid Khan's spin.
+Rabada is not an IPL showman. He does not have a signature celebration. He does not court the cameras. He joined Gujarat Titans before the 2024 season and has been their most consistent performer since — a fact that gets lost in the noise around Shubman Gill's captaincy and Rashid Khan's spin wizardry.
 
 At 30, Rabada is in the prime of his fast-bowling career. He has 26 wickets in IPL 2026, tied with Bhuvneshwar Kumar at the top of the Purple Cap standings. He has been GT's most valuable player in a season where they have reached the playoffs despite a middle-order that has been inconsistent at best.
 
@@ -286,12 +276,12 @@ At 30, Rabada is in the prime of his fast-bowling career. He has 26 wickets in I
 
 Gujarat Titans face Rajasthan Royals in Qualifier 2 on Thursday at Mullanpur. If GT progress to the final, Rabada will bowl the powerplay overs against RCB for the second time in a week. The record will already be his. The question is whether he can add to it — and whether those first six overs can help GT overturn a 92-run deficit from the last time these two teams met.
 
-For diaspora fans who appreciate the craft of fast bowling — the seam position, the wrist angle, the controlled aggression that defines the art — Rabada's 18 powerplay wickets are a season-defining achievement. In a tournament increasingly dominated by batters, the South African has proven that the new ball still belongs to the bowler who knows how to use it.
-
-*Sources: Cricbuzz, Wisden, ESPNcricinfo, Sporting News*""",
-    'sources': ['Cricbuzz', 'Wisden', 'ESPNcricinfo', 'Sporting News'],
+For diaspora fans who appreciate the craft of fast bowling — the seam position, the wrist angle, the controlled aggression that defines the art — Rabada's 18 powerplay wickets are a season-defining achievement. In a tournament increasingly dominated by batters and sixes and strike rates above 200, the South African has proven that the new ball still belongs to the bowler who knows how to use it.""",
     'person_for_image': 'Kagiso Rabada',
-    'image_caption': 'Kagiso Rabada — the new holder of the IPL all-time powerplay wickets record with 18 in a single season',
+    'person_for_image_alt': 'Kagiso Rabada (cricketer)',
+    'pexels_query': 'fast bowling cricket',
+    'pexels_fallback': 'cricket bowler action',
+    'image_caption': 'Kagiso Rabada — holder of the IPL all-time powerplay wickets record with 18 in a single season',
     'image_attribution': 'Wikimedia Commons',
 })
 
@@ -308,25 +298,39 @@ for i, art in enumerate(articles, 1):
     img_url = None
     img_attr = art.get('image_attribution', '')
 
+    # Try Wikipedia for person articles
     if art.get('person_for_image'):
-        print(f'  → Trying Wikipedia for: {art["person_for_image"]}')
-        img_url = fetch_wikipedia_person_image(art['person_for_image'])
+        person = art['person_for_image']
+        print(f'  → Wikipedia: {person}')
+        img_url = fetch_wikipedia_person_image(person)
+        if not img_url and art.get('person_for_image_alt'):
+            print(f'  → Wikipedia alt: {art["person_for_image_alt"]}')
+            img_url = fetch_wikipedia_person_image(art['person_for_image_alt'])
         if img_url:
             img_attr = 'Wikimedia Commons'
 
+    # Pexels fallback
     if not img_url and art.get('pexels_query'):
-        print(f'  → Trying Pexels for: {art["pexels_query"]}')
+        print(f'  → Pexels: {art["pexels_query"]}')
         img_url = fetch_pexels_image(art['pexels_query'], art.get('pexels_fallback'))
         if img_url:
             img_attr = 'Pexels'
 
-    # Validate image
+    # Validate
     if img_url:
         if validate_image_url(img_url):
-            print(f'  ✓ Image validated')
+            print(f'  ✓ Image OK')
         else:
-            print(f'  ✗ Image validation failed, dropping image')
+            print(f'  ✗ Image failed validation, trying fallback...')
             img_url = None
+            # Try pexels as fallback for failed wikipedia images
+            if art.get('pexels_query'):
+                img_url = fetch_pexels_image(art['pexels_query'], art.get('pexels_fallback'))
+                if img_url and validate_image_url(img_url):
+                    img_attr = 'Pexels'
+                    print(f'  ✓ Fallback image OK')
+                else:
+                    img_url = None
 
     # Build record
     now_iso = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
@@ -335,11 +339,15 @@ for i, art in enumerate(articles, 1):
         'subheadline': art['subheadline'],
         'slug': art['slug'],
         'category': art['category'],
+        'vertical': art['vertical'],
         'body': art['body'],
         'sources': art['sources'],
+        'tags': art['tags'],
+        'urgency': art['urgency'],
+        'score_total': art['score_total'],
         'image_url': img_url,
         'image_caption': art.get('image_caption', ''),
-        'image_attribution': img_attr,
+        'image_attribution': img_attr if img_url else None,
         'status': 'published',
         'published_at': now_iso,
         'created_at': now_iso,
@@ -348,11 +356,12 @@ for i, art in enumerate(articles, 1):
     result = sb_insert('p2_articles', record)
     if result:
         art_id = result.get('id', 'unknown')
-        print(f'  ✓ Published: id={art_id}, slug={art["slug"]}')
+        print(f'  ✓ Published: id={art_id}')
+        print(f'    slug={art["slug"]}')
     else:
-        print(f'  ✗ FAILED to publish: {art["headline"][:50]}')
+        print(f'  ✗ FAILED to publish')
 
-    time.sleep(1)  # breathing room
+    time.sleep(1)
 
 print(f'\n{"="*60}')
 print('Sports writer complete.')

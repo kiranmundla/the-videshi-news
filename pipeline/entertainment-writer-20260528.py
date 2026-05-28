@@ -1,436 +1,363 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-05-28 batch"""
+"""Entertainment writer for The Videshi — 2026-05-28 batch."""
 
-import os, json, requests, urllib.parse, time, uuid, re
+import json, os, sys, time, uuid, re
+import requests
 from datetime import datetime, timezone
 
-# Load env
-def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
-
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
-
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
+# ── Supabase config ──────────────────────────────────────────────────────────
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
 }
 
-# ── Wikipedia image fetcher ──
-def fetch_wikipedia_person_image(person_name, retries=3):
+PEXELS_KEY = None
+try:
+    with open(os.path.expanduser("~/.env.pexels")) as f:
+        for line in f:
+            if "PEXELS_API_KEY" in line:
+                PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
+except Exception:
+    pass
+
+# ── Image helpers ────────────────────────────────────────────────────────────
+def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
-    for attempt in range(retries):
-        try:
-            r = requests.get(
-                f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-                headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-                timeout=10
-            )
-            if r.status_code == 200:
-                data = r.json()
-                img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
-                if img:
-                    print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
-                    return img
-                return None
-            elif r.status_code == 429:
-                wait = (attempt + 1) * 3
-                print(f"  ⚠ Wikipedia rate limit for '{person_name}', retrying in {wait}s...")
-                time.sleep(wait)
-                continue
-            else:
-                return None
-        except Exception as e:
-            print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+    encoded = requests.utils.quote(person_name.replace(' ', '_'))
+    try:
+        r = requests.get(
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
+        )
+        if r.status_code == 200:
+            data = r.json()
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            if img:
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                return img
+    except Exception as e:
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-# ── Pexels image fetcher ──
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (urllib gets 403)."""
+    """Fetch a relevant image from Pexels. Returns URL or None."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
+        print("  ⚠ No Pexels API key available")
         return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            import subprocess
-            result = subprocess.run(
-                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
-                capture_output=True, text=True, timeout=15
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                headers={"Authorization": PEXELS_KEY},
+                params={"query": q, "per_page": 5, "orientation": "landscape"},
+                timeout=10
             )
-            data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for photo in photos:
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('original')
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                for p in photos:
+                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+                    if url:
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                        return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-# ── Image upload to Supabase ──
-def upload_image_to_supabase(image_url, filename):
-    """Download image and upload to Supabase storage bucket."""
-    try:
-        r = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=20)
-        if r.status_code != 200:
-            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
-            return image_url  # Return original URL as fallback
-        
-        content_type = r.headers.get('Content-Type', 'image/jpeg')
-        if 'image' not in content_type:
-            print(f"  ⚠ Not an image: {content_type}")
-            return image_url
-            
-        if len(r.content) < 5000:
-            print(f"  ⚠ Image too small: {len(r.content)} bytes")
-            return image_url
 
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        upload_r = requests.post(
-            upload_url,
-            headers={
-                'apikey': SUPABASE_KEY,
-                'Authorization': f'Bearer {SUPABASE_KEY}',
-                'Content-Type': content_type,
-                'x-upsert': 'true'
-            },
-            data=r.content,
-            timeout=30
-        )
-        if upload_r.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed: {upload_r.status_code} {upload_r.text[:200]}")
-            # If it's a wikimedia URL, it's permanent, so return it directly
-            if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
-                return image_url
-            return image_url
-    except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-        if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
-            return image_url
-        return image_url
-
-# ── Supabase helpers ──
-def sb_insert(table, data):
-    """Insert a record into Supabase."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
-        headers=HEADERS,
-        json=data,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and len(result) > 0:
-            return result[0]
-        return result
-    else:
-        print(f"  ⚠ Insert error: {r.status_code} {r.text[:300]}")
-        return None
-
-def sb_patch(table, filters, data):
-    """Update records in Supabase."""
-    params = '&'.join(f"{k}={v}" for k, v in filters.items())
-    r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
-        headers=HEADERS,
-        json=data,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        return r.json()
-    else:
-        print(f"  ⚠ Patch error: {r.status_code} {r.text[:300]}")
-        return None
-
-# ── Validate image URL ──
 def validate_image(url):
-    """Check that a URL returns a valid image."""
-    if not url:
-        return False
-    # Block banned sources
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
-    for b in banned:
-        if b in url:
-            print(f"  ❌ BANNED source detected: {b}")
-            return False
+    """Verify an image URL returns 200 with image content and >5KB."""
     try:
-        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, allow_redirects=True)
-        if r.status_code == 200:
-            ct = r.headers.get('Content-Type', '')
-            cl = int(r.headers.get('Content-Length', 0))
-            if 'image' in ct and cl > 5000:
-                return True
-            elif 'image' in ct and cl == 0:
-                # Some servers don't return Content-Length on HEAD
-                return True
-        # Try GET for servers that don't support HEAD well
-        r = requests.get(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, stream=True)
-        ct = r.headers.get('Content-Type', '')
-        if r.status_code == 200 and 'image' in ct:
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
             return True
+        # Try GET for servers that don't support HEAD properly
+        r = requests.get(url, timeout=10, stream=True, allow_redirects=True,
+                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct:
+            # Read a chunk to verify
+            chunk = r.raw.read(6000)
+            if len(chunk) > 5000:
+                return True
     except Exception as e:
-        print(f"  ⚠ Validation error for {url[:60]}: {e}")
+        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
     return False
 
 
-# ════════════════════════════════════════════
-# ARTICLE 1: Agar Tum Saath Ho Spotify milestone
-# ════════════════════════════════════════════
+def sb_insert(table, payload):
+    """Insert a row into Supabase and return the response."""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/{table}",
+        headers=HEADERS,
+        json=payload,
+        timeout=30,
+    )
+    if r.status_code in (200, 201):
+        data = r.json()
+        return data[0] if isinstance(data, list) and data else data
+    else:
+        print(f"  ✗ Insert to {table} failed ({r.status_code}): {r.text[:300]}")
+        return None
 
-article1 = {
-    "headline": "A Song From a Film That Flopped in 2015 Just Became the Most-Streamed Indian Track on Spotify. It Has 717 Million Plays.",
-    "subheadline": "'Agar Tum Saath Ho' from Tamasha overtakes 'Kesariya' — composed by A.R. Rahman, sung by Arijit Singh and Alka Yagnik, the track is now Indian music's defining digital monument.",
-    "slug": "agar-tum-saath-ho-tamasha-most-streamed-indian-song-spotify-717-million-arijit-ar-rahman",
+
+# ── Articles ─────────────────────────────────────────────────────────────────
+
+articles = []
+
+# ─── Article 1: Karuppu ──────────────────────────────────────────────────────
+articles.append({
+    "headline": "Karuppu Was Supposed to Be Vijay's Last Film. Suriya Took It to ₹253 Crore.",
+    "subheadline": "The Tamil fantasy blockbuster was written for the Chief Minister. Then RJ Balaji gave it to Suriya, who delivered the highest-grossing Tamil film of 2026 and his career-best.",
+    "slug": "karuppu-suriya-vijay-last-film-253-crore-rj-balaji-tamil-blockbuster-nri-20260528",
     "category": "entertainment",
-    "body": """A song about two people who can't be together just became the most-streamed Indian song on any platform, anywhere in the world.
+    "body": """When RJ Balaji sat across from Vijay in a room in Chennai and narrated the story of a guardian deity who disguises himself as a lawyer to fight judicial corruption, both men knew it was a farewell. Vijay was preparing to leave cinema for politics. This was supposed to be his last film.
 
-"Agar Tum Saath Ho," the devastating ballad from Imtiaz Ali's *Tamasha* (2015), has crossed approximately 717 million streams on Spotify — overtaking "Kesariya" from *Brahmastra* to claim the all-time record for an Indian track. A decade after its release, and nearly seven years after streaming became India's primary way of consuming music, the song is still growing.
+"This was supposed to be his last film, so we had two or three meetings which went on for some time, discussing things like him entering politics and taking a call as to which film to make as his last film," Balaji told The Hollywood Reporter India.
 
-## The Numbers Don't Make Sense Until They Do
+Vijay backed out. Balaji respected the decision. And then the producers asked the obvious question: can you narrate it to Suriya?
 
-*Tamasha* opened to mixed reviews and earned ₹138 crore worldwide — respectable, not spectacular. It was considered a commercial disappointment by Ranbir Kapoor's standards. The soundtrack, released weeks before the film, was treated as A.R. Rahman's quietest album in years. No club bangers. No remixes for DJ nights. Just four tracks that sounded like private conversations.
+## The Film That Nearly Didn't Happen
 
-"Agar Tum Saath Ho" wasn't the lead single. It wasn't the one that played during the trailer. It was the song that played during the scene where Deepika Padukone tells Ranbir Kapoor she can't keep pretending he's someone he's not. If you've seen the film, you know the exact frame. If you haven't, you've still heard the song — at a wedding reception, in someone's car at 2 AM, through a cousin's Instagram story with no caption except the lyrics.
+Karuppu was initially scheduled for May 14, 2026. Then the shows got cancelled. The audience waited exactly one day. On May 15, Suriya and Trisha Krishnan's fantasy courtroom drama opened across India — and something extraordinary happened.
 
-Rahman composed it in a register he rarely uses: stripped down, conversational, almost like humming to yourself. Arijit Singh sang his parts like he was trying to convince someone to stay. Alka Yagnik — the voice behind three decades of Bollywood's biggest love songs — sang hers like she already knew they wouldn't.
+The film crossed ₹100 crore in Tamil Nadu alone within eight days. It became the first Tamil film in nine months to hit the ₹100 crore mark in India, ending a drought that had lasted since Rajinikanth's Coolie. By Day 12, the worldwide gross had climbed past ₹253 crore, with approximately ₹160 crore in India net and significant overseas contributions.
 
-## Why 717 Million Is a Different Kind of Record
+For Suriya, this was personal. After years of mid-range commercial results, Karuppu became his first ₹100 crore film in India and his highest-grossing film ever — by a massive margin.
 
-The previous record-holder, "Kesariya," is from a ₹431-crore blockbuster. It was pre-released months before the film, went viral on Instagram Reels, and was designed for maximum streaming impact. It's a beautiful song that was also a marketing campaign.
+## Ancient Mythology Meets Modern Courtroom
 
-"Agar Tum Saath Ho" had none of that infrastructure. It comes from a film most people discovered years after its theatrical run — often on Netflix, often alone, often at exactly the moment they needed it. Its streaming curve isn't a spike followed by a decline. It's a steady, relentless climb, month after month, year after year. Spotify's data shows the track has never left India's top 200 since the platform launched in the country in 2019.
+The premise is deceptively simple. A father's gold is stolen. He prays to the guardian deity Karuppasamy. The deity takes human form — as a lawyer named Saravanan — and walks into a corrupt courtroom to deliver divine justice. What follows blends Tamil folk religion, superhero-scale action, and genuine social commentary about a judicial system that fails the poor.
 
-That's not virality. That's something closer to need.
+RJ Balaji, who both directed and co-starred, has made a career of wrapping populist political commentary inside commercial Tamil cinema. But Karuppu operates on a different scale. GK Vishnu's cinematography gives the deity sequences an almost mythological grandeur, and Sai Abhyankkar's score pushes the emotional crescendos past standard masala territory.
 
-## The Diaspora Connection
+## The Suriya-Trisha Reunion
 
-Ask any NRI which Bollywood song makes them homesick and you'll hear one of three answers: "Agar Tum Saath Ho," "Kun Faya Kun," or "Tujhe Dekha Toh." Two of those are Rahman. The third is from a 1995 film that defined an entire generation's idea of romance.
+The last time Suriya and Trisha Krishnan shared a screen was in 2005's Aaru — twenty-one years ago. Their reunion in Karuppu has been one of the film's most discussed elements, with audiences and critics both noting the effortless chemistry that time apparently did not diminish.
 
-A significant portion of those 717 million streams come from outside India. Spotify's own data has repeatedly named Arijit Singh — who became the platform's most-followed artist globally in 2025, surpassing Taylor Swift — as one of India's most-exported cultural figures. And Alka Yagnik, who received the Padma Bhushan just days ago, has been losing her hearing since 2024. The voice on this track may be one of the last recordings of Yagnik at the peak of her powers.
+The supporting cast includes Indrans (the National Award-winning Malayalam actor making his Tamil debut), Swasika, Sshivada, and Yogi Babu, with RJ Balaji himself playing a key role.
 
-## What This Means for Indian Music
+## A Sequel Is Coming
 
-The record matters because of what it represents. Indian music is no longer a niche category on global streaming platforms — it's a dominant force. In May 2026, Spotify's India charts are led almost entirely by Indian artists. Fewer international hits are breaking through in India than at any point since streaming began. The audience isn't just large; it's loyal in a way that Western pop audiences often aren't.
+At a recent meet-and-greet, Suriya dropped a telling line: "Belief is life." The film's epilogue already hints at a sequel titled Karuppu vs Vellai — Black vs White. Given the box office numbers, it's not a question of if but when.
 
-And at the top of all of it sits a quiet song from a misunderstood film about a man who couldn't figure out who he was supposed to be.
+Balaji thanked Vijay — now Tamil Nadu's Chief Minister — in the opening credits. Vijay personally congratulated the team after the film's release. "The entire thing happened because he asked me the right questions after my narration, questions that made my film and my script better," Balaji said.
 
-Irfan Siddiqui, who wrote the lyrics, once said he wrote the words in a single sitting. Rahman called it one of his most personal compositions. Imtiaz Ali has said *Tamasha* is the film closest to his heart. Ranbir Kapoor considers it his best performance. None of those claims seemed credible in November 2015, when the film underperformed and everyone moved on.
+## What It Means for the Diaspora
 
-717 million streams later, everyone came back.
+Karuppu is streaming in Tamil, Telugu (as Veerabhadrudu), Hindi, Malayalam, and Kannada — making it accessible to virtually every Indian language audience abroad. The film's overseas gross of approximately ₹57 crore in its first week alone signals that the Tamil diaspora showed up in force, particularly in Malaysia, Singapore, the US, and the Gulf states.
 
-*Sources: Filmibeat, Zoom TV, Spotify India charts, Koimoi*""",
-    "sources": ["Filmibeat", "Zoom TV", "Spotify India", "Koimoi"],
-    "image_person": "Arijit Singh"
-}
+For NRIs who grew up watching Suriya in Ghajini, Kaakha Kaakha, and Singham, this is the comeback they have been waiting for — and perhaps the most satisfying second act in contemporary Tamil cinema.""",
+    "sources": [
+        {"url": "https://www.hollywoodreporterindia.com", "name": "The Hollywood Reporter India"},
+        {"url": "https://www.cinemaexpress.com", "name": "Cinema Express"},
+        {"url": "https://www.pinkvilla.com", "name": "Pinkvilla"},
+        {"url": "https://www.koimoi.com", "name": "Koimoi"},
+    ],
+    "vertical": "entertainment",
+    "tags": ["Suriya", "Karuppu", "Vijay", "RJ Balaji", "Tamil cinema", "Trisha Krishnan", "box office"],
+    "image_person": "Suriya (actor)",
+    "image_attribution": "Wikimedia Commons",
+})
 
-
-# ════════════════════════════════════════════
-# ARTICLE 2: Triptii Dimri's meteoric rise
-# ════════════════════════════════════════════
-
-article2 = {
-    "headline": "Triptii Dimri Was a Background in a Bathtub Two Years Ago. She Now Has Four Films Opposite Prabhas, Madhuri Dixit, and Ranbir Kapoor.",
-    "subheadline": "From Animal's breakout moment to a ₹1,000-crore slate spanning Spirit, Maa Behen, Animal Park, and a Parveen Babi biopic — the fastest career acceleration in recent Bollywood history.",
-    "slug": "triptii-dimri-rise-spirit-prabhas-maa-behen-animal-park-bollywood-leading-lady-2026",
+# ─── Article 2: Bhooth Bangla ────────────────────────────────────────────────
+articles.append({
+    "headline": "Bhooth Bangla Just Crossed ₹260 Crore. Akshay Kumar's Longest Box Office Run in a Decade.",
+    "subheadline": "Priyadarshan's horror-comedy is the third-biggest Bollywood grosser of 2026 and Akshay Kumar's most durable hit since Housefull 4. It's still in theatres on Day 40.",
+    "slug": "bhooth-bangla-260-crore-akshay-kumar-priyadarshan-horror-comedy-third-biggest-2026-nri-20260528",
     "category": "entertainment",
-    "body": """Two years ago, Triptii Dimri was best known for being in a bathtub. The scene in Sandeep Reddy Vanga's *Animal* (2023) — where Ranbir Kapoor's character brings his girlfriend to confront his wife — made Dimri the subject of a thousand memes, a million Instagram followers, and an uncomfortable national conversation about what it means to be the "other woman" in a Bollywood blockbuster.
+    "body": """Forty days into its theatrical run, Bhooth Bangla is still filling seats. That sentence, applied to an Akshay Kumar film in 2026, would have been dismissed as fantasy three months ago.
 
-The conversation was reductive. Her career since has not been.
+The horror-comedy directed by Priyadarshan has crossed ₹260 crore worldwide — approximately ₹175 crore net in India and over ₹48 crore from overseas territories. It is now the third-highest-grossing Bollywood film of 2026, behind only the Dhurandhar franchise's colossal numbers. And for Akshay Kumar, it represents something far more significant than a box office milestone.
 
-## The Slate That Changed Everything
+## The Priyadarshan Factor
 
-In the next eighteen months, Dimri will appear in four major films that span the full range of Indian cinema's ambitions:
+Priyadarshan and Akshay Kumar built an empire together in the 2000s. Hera Pheri, Bhool Bhulaiyaa, Bhagam Bhag, Garam Masala — these films defined a generation of Bollywood comedy. Then came a decade-long gap, during which Akshay shifted to nationalistic dramas, social message films, and action thrillers with diminishing returns.
 
-**Maa Behen** (Netflix, June 4, 2026): A dark comedy directed by Ashwiny Iyer Tiwari, starring Dimri alongside Madhuri Dixit. The premise — Madhuri hides a dead body while Dimri plays her daughter who discovers it — inverts the typical mother-daughter dynamic in Hindi cinema. Dimri gets her first pairing with a legacy star, and the film positions her as the dramatic anchor, not the romantic interest.
+Bhooth Bangla is a deliberate return to what worked. Priyadarshan has constructed a haunted-house comedy that plays on every horror trope while relying on Kumar's physical comedy instincts — the same instincts that made Bhool Bhulaiyaa a cultural landmark in 2007.
 
-**Spirit** (Theatrical, March 5, 2027): Sandeep Reddy Vanga's follow-up to *Animal*, this time with Prabhas in the lead. Dimri plays opposite one of South India's biggest stars in a medical-cop drama about an international crime syndicate. The first-look poster, released on January 1, 2026, showed Prabhas injured and Dimri unadorned — no glamour shots, no dance number tease. The production budget is reportedly north of ₹300 crore. This is a pan-India film in eight languages.
+The results speak for themselves. Bhooth Bangla has already surpassed OMG 2 to become Akshay Kumar's third-biggest post-pandemic film. Its legs are remarkable: the film earned ₹100 crore in India by Day 13 and has continued adding steady numbers through its fifth and sixth weeks, a rarity in an era where most Bollywood films evaporate after the opening weekend.
 
-**Animal Park** (Date TBA): The sequel to the film that made her famous. Dimri returns opposite Ranbir Kapoor in what Vanga has described as a "continuation, not a repetition." If *Animal* made her a name, *Animal Park* will determine whether she can carry the weight of a franchise.
+## Horror-Comedy: Bollywood's Safest Bet
 
-**Parveen Babi biopic** (Date TBA): Directed by Shonali Bose (*The Sky Is Pink*), this film about the troubled 1970s-80s icon is Dimri's first solo-lead project with a prestige director. Parveen Babi — who struggled with schizophrenia, made the cover of TIME Magazine, and died alone in her Mumbai apartment in 2005 — is one of Bollywood's most haunting stories. It is also a role that every young actress would want and very few could pull off.
+The genre is on an unprecedented streak. Stree 2 shattered records in 2024. Bhool Bhulaiyaa 3 crossed ₹400 crore worldwide in the same year. Now Bhooth Bangla adds another data point to what is becoming Bollywood's most reliable formula.
 
-## The Speed of the Ascent
+The pattern is clear: Indian audiences are choosing laughter and scares over earnest social dramas. The horror-comedy allows for star-driven set pieces, memorable supporting characters, catchy music, and franchise potential — all wrapped in a premise that travels across demographics.
 
-Before *Animal*, Dimri had exactly one film that anyone outside of critics' circles had seen: *Bulbbul* (2020), a Netflix supernatural drama produced by Anushka Sharma. She was excellent in it. Almost nobody watched it. Her next two films — *Qala* and *Bad Newz* — ranged from underseen to underperforming.
+Bhooth Bangla benefits particularly from occupancy in Tier 2 and Tier 3 cities, where family audiences have driven its weekday numbers consistently. Cities like Pune, Bengaluru, and Ahmedabad have shown stronger holds than the traditional Mumbai-Delhi corridor.
 
-What *Animal* did was prove that she could command attention in a scene designed to focus entirely on someone else. The bathtub scene was Ranbir Kapoor's moment of moral collapse. Dimri's job was to be present, vulnerable, and completely real in a way that made the audience unable to look away. She did it so well that the audience remembered her face, not his.
+## The BookMyShow Record
 
-The industry noticed. Within months, she was attached to four films with a combined production budget that likely exceeds ₹1,000 crore. She went from "the girl from *Animal*" to a leading lady with a slate that includes Madhuri Dixit, Prabhas, and a biographical drama that could win awards.
+Bollywood's box office in 2026 has been dominated by a single metric: BookMyShow ticket sales. Dhurandhar 2 crossed 18 million tickets on the platform, an all-time record. Bhooth Bangla, while not in that stratosphere, has comfortably entered the top-performing films of the year on the platform, validating the horror-comedy genre's mainstream appeal.
 
-## What the Diaspora Should Watch For
+What is notable about Bhooth Bangla's performance is not the peak but the plateau. The film's daily collections have remained above ₹1 crore even in its sixth week — a feat that most 2026 Bollywood releases, including some that opened much bigger, could not sustain.
 
-For NRI audiences, Dimri's trajectory matters because she represents a new model for how Bollywood stardom works. She didn't come from a film family. She didn't have a debut opposite a Khan. She wasn't launched by Dharma or YRF. She was a working actress who took the right role at the right time and turned a supporting part into a career.
+## Why the Diaspora Cares
 
-*Maa Behen* arrives on Netflix on June 4 — the same day Ram Charan's *Peddi* opens in theatres. If the film works, Dimri gets to prove she can hold the screen alongside Madhuri Dixit, not just Ranbir Kapoor. If *Spirit* works, she becomes one of the very few actresses working simultaneously across Bollywood and the South Indian film industry.
+For NRIs, the Priyadarshan-Akshay reunion carries deep nostalgia value. Hera Pheri and Bhool Bhulaiyaa are comfort films for an entire generation that grew up in Indian households abroad — films that played at family gatherings, on road trips, and during every Diwali weekend.
 
-She's 31 years old. Two years ago she was in a bathtub. Now she's in four of the most anticipated films on the Indian calendar.
+Bhooth Bangla's overseas gross of ₹48 crore confirms that the diaspora responded to that nostalgia. The film's clean comedy and family-friendly tone — no graphic violence, no heavy social messaging — made it an easy choice for multiplex audiences in North America, the UK, and Australia.
 
-The industry has a word for this kind of acceleration. They call it a moment. Triptii Dimri's moment is looking less like a moment and more like a decade.
+The question now is whether this represents a genuine course correction for Akshay Kumar's career. His recent track record has been uneven: Selfiee, Bade Miyan Chote Miyan, Khel Khel Mein, and Sarfira all underperformed. Bhooth Bangla suggests the answer was always obvious — stay in the lane where the audience already loves you.""",
+    "sources": [
+        {"url": "https://sacnilk.com", "name": "Sacnilk"},
+        {"url": "https://www.bollywoodhungama.com", "name": "Bollywood Hungama"},
+        {"url": "https://www.koimoi.com", "name": "Koimoi"},
+    ],
+    "vertical": "entertainment",
+    "tags": ["Akshay Kumar", "Bhooth Bangla", "Priyadarshan", "horror-comedy", "box office", "Bollywood 2026"],
+    "image_person": "Akshay Kumar",
+    "image_attribution": "Wikimedia Commons",
+})
 
-*Sources: Bombay Times, Pinkvilla, Zoom TV, Bollywood Hungama*""",
-    "sources": ["Bombay Times", "Pinkvilla", "Zoom TV", "Bollywood Hungama"],
-    "image_person": "Triptii Dimri"
-}
-
-
-# ════════════════════════════════════════════
-# ARTICLE 3: JioHotstar's ₹4,000 crore South India bet
-# ════════════════════════════════════════════
-
-article3 = {
-    "headline": "JioHotstar Just Put ₹4,000 Crore on South India. After Bollywood's Worst May in Five Years, the Math Makes Sense.",
-    "subheadline": "1,500 hours of new Tamil, Telugu, and Malayalam content. Kerala Crime Files returns. Vijay Sethupathi and Nivin Pauly sign on. The biggest bet in Indian OTT history follows the money to where the audiences actually are.",
-    "slug": "jiohotstar-4000-crore-south-india-ott-investment-tamil-malayalam-telugu-bollywood-may-2026",
+# ─── Article 3: Netflix Telugu Slate ──────────────────────────────────────────
+articles.append({
+    "headline": "Netflix Just Spent Over ₹500 Crore on Telugu Cinema. This Is the 2026 Slate.",
+    "subheadline": "Thirteen films. Ram Charan, Pawan Kalyan, Nani, Fahadh Faasil, Vijay Deverakonda, Dulquer Salmaan. The streaming giant's Telugu bet is now bigger than most Bollywood budgets.",
+    "slug": "netflix-telugu-slate-2026-500-crore-peddi-pawan-kalyan-nani-tollywood-nri-streaming-20260528",
     "category": "entertainment",
-    "body": """The numbers from May 2026 tell a story that Bollywood would rather not hear.
+    "body": """Netflix South has unveiled its 2026 Telugu film slate, and the numbers are staggering. The streaming giant has secured post-theatrical digital rights for thirteen Telugu films, with reported acquisition costs that collectively exceed ₹500 crore — a figure that, even two years ago, would have seemed implausible for a single regional language.
 
-The three highest-grossing Indian films this month are a Tamil thriller (*Karuppu*, ₹163 crore), a Marathi period drama (*Raja Shivaji*, ₹93 crore), and a Malayalam sequel (*Drishyam 3*, ₹75 crore). The best Bollywood managed was *Pati Patni Aur Woh Do* at ₹40 crore. Not one Hindi film cracked the top three. Regional cinema didn't just compete with Bollywood in May — it replaced it.
+The headline deal: ₹105–130 crore for Ram Charan's Peddi alone. Then ₹80–100 crore for Pawan Kalyan's Ustaad Bhagat Singh. Then ₹65 crore for Nani's The Paradise. The economics of Telugu cinema have shifted permanently, and Netflix is leading the bet.
 
-JioHotstar, it seems, read the same report card.
+## The Big Three
 
-## The Bet
+**Peddi** opens June 4 with A.R. Rahman's soundtrack, a ₹250–300 crore production budget, and advance booking numbers in North America that are already challenging RRR's premiere records. Ram Charan plays a rugged 1980s villager who uses cricket to defend his community's honour. The first single, Chikiri Chikiri, crossed 200 million views. Netflix's digital rights deal helps the film recover a massive portion of its budget before a single ticket is sold.
 
-The platform has committed ₹4,000 crore over five years to South Indian content — the single largest investment in regional streaming in Indian OTT history. The details, announced in partnership with the Tamil Nadu government, are staggering:
+**Ustaad Bhagat Singh** marks Pawan Kalyan's return to the screen after his political commitments. Director Harish Shankar has confirmed this is an original script — not a remake — tailored specifically for the Power Star. Pawan Kalyan plays a police officer, with Sreeleela and Raashii Khanna in the cast. The budget sits at ₹150–170 crore, and Netflix's reported ₹80–100 crore digital deal underscores the platform's belief in the film's global appeal.
 
-**1,500 hours** of new original programming across Tamil, Telugu, Malayalam, and Kannada. **25 new titles** in the first slate alone. A letter of intent signed with Deputy Chief Minister Udhayanidhi Stalin's government, which projects the deal will create 1,000 direct jobs and 15,000 indirect ones.
+**The Paradise** reunites Nani with Dasara director Srikanth Odela in what Nani himself has called "India's Mad Max." Set in 1980s Secunderabad, it follows a marginalized community's fight for survival, with Mohan Babu as the antagonist and Raghav Juyal making his Telugu debut. Anirudh Ravichander composed the score. Netflix paid ₹65 crore for the streaming rights — the highest for any Nani film.
 
-The names attached are not filler. **Kerala Crime Files**, the Malayalam true-crime series that became JioHotstar's most-watched original from the South, returns for a new season. **Vijay Sethupathi**, arguably the most bankable actor in Tamil cinema, is on the slate. So is **Nivin Pauly**, Malayalam cinema's most reliable hitmaker. The titles range from *Kaattaan* (an adventure series) to *Heartbeat Season 3* to *Good Wife Season 2* — a deliberate mix of returning franchises and new IP.
+## The Prestige Projects
 
-## Why Now
+Two films on the slate carry particular weight for cinephiles.
 
-The timing is not coincidence. Three structural shifts have converged:
+**Don't Trouble the Trouble** pairs Fahadh Faasil — arguably the best actor working in Indian cinema — with director Shashank Yeleti, and is presented by SS Rajamouli under Arka Mediaworks. A fantasy-tinged drama about a character who "counts his fortune amidst sirens and screams," it will stream in five languages after its theatrical run. Rajamouli's name as presenter alone elevates this beyond a standard acquisition.
 
-**The box office has moved south.** In 2026, the highest-grossing Indian film is *Dhurandhar 2: The Revenge* (₹1,850 crore) — a Hindi film, yes, but one starring Ranveer Singh in a franchise modeled on South Indian action cinema. The second-highest is *Border 2* (₹464 crore), which drew heavily from the Telugu war-film playbook. Meanwhile, *Karuppu* became the Tamil industry's biggest May opening ever, and *Drishyam 3* is tracking to become the highest-grossing Malayalam film of all time. The audience hasn't abandoned Hindi cinema — they've expanded their appetite, and South Indian films are feeding it.
+**VD14** is Vijay Deverakonda's most ambitious project: a period epic set during British colonial rule in the Rayalaseema region (1854–1878). The cast is extraordinary — Amitabh Bachchan in a pivotal role, Rashmika Mandanna, and South African actor Arnold Vosloo (The Mummy) as a British officer. Ajay-Atul composed the score. The budget exceeds ₹100 crore.
 
-**OTT viewership in the South is surging.** JioHotstar reported a 70% increase in South Indian content viewership year-over-year, driven by multilingual releases and improved dubbing. The platform now offers content in 8 languages, and its 100 million subscriber base increasingly skews toward regional content.
+## The Discovery Plays
 
-**The NRI audience is driving premiums.** For the Indian diaspora, OTT platforms are often the primary — sometimes the only — way to watch regional cinema. Tamil, Malayalam, and Telugu films that might get limited or no theatrical release in North America are available on streaming within weeks. Platforms that invest in this content capture not just eyeballs but high-ARPU subscribers who pay for annual plans and rarely churn.
+Netflix's Telugu slate is not all star-driven spectacle. 418 is a supernatural thriller about a haunted hotel room. Biker is India's first authentic motocross racing film, with Sharwanand undergoing real track training. Raakaasa headlines Sangeeth Shobhan in a revenge thriller. Funky reunites Vishwak Sen with Jathi Ratnalu director Anudeep KV for a satire on the film industry itself.
 
-## What This Means for Diaspora Viewers
+These mid-budget films — with budgets between ₹30–60 crore — represent Netflix's conviction that Telugu cinema's audience has an appetite beyond the ₹100-crore tentpoles.
 
-If you're an NRI who grew up watching Malayalam or Tamil films at home and has struggled to find them on mainstream streaming platforms, this is the inflection point. ₹4,000 crore doesn't buy a few prestige originals — it buys an ecosystem. It means more shows in your mother tongue, with subtitles, available the day they premiere, on a platform you already pay for.
+## What It Means for NRIs
 
-It also means competition. Netflix India has been investing in South Indian original content (*Paava Kadhaigal*, *Minnal Murali*, *Maharaja*), and Amazon Prime has had early success with Tamil and Telugu films (*Jai Bhim*, *Soorarai Pottru*). JioHotstar's move forces both platforms to either match the spend or cede the territory. For viewers, that means more content, higher production values, and faster release windows.
+Here is the shift that matters for the diaspora: these thirteen films will be available globally on Netflix in Telugu, Tamil, Hindi, Malayalam, and Kannada within weeks of their theatrical release. For NRIs who cannot get to an Indian cinema, or who live in cities without Telugu-language screens, Netflix has essentially become the primary window.
+
+The platform's investment also reflects a demographic truth. Telugu-speaking audiences abroad — particularly in the US, UK, Canada, and Australia — are among the highest-spending diaspora moviegoers per capita. They drove Baahubali's international gross. They made RRR a global phenomenon. They powered Pushpa 2's overseas numbers.
+
+Netflix is not making a bet on Telugu cinema. It is following the money that the diaspora already laid down.
 
 ## The Bigger Picture
 
-JioHotstar's ₹4,000 crore bet is not charity toward regional cinema. It's a business decision that reflects where Indian entertainment is actually headed. Hindi cinema still has the star power and the global brand recognition, but the box office increasingly rewards stories and styles that originate in the South. The streaming platforms are simply following the money.
+Two years ago, Netflix India was perceived as a Hindi-first platform struggling with subscriber churn. The Telugu slate announcement is the clearest signal yet that the strategy has fundamentally changed. Regional cinema — particularly from the South — is now the growth engine.
 
-For the Tamil, Telugu, Malayalam, and Kannada film industries — long accustomed to being described as "regional" in a dismissive tone — this is vindication. For the diaspora audiences who've always known what the rest of India is slowly discovering, it's about time.
+JioHotstar's ₹4,000 crore investment in South Indian content, announced earlier this week, confirms the trend. Amazon Prime Video has been acquiring Tamil and Malayalam rights aggressively. But Netflix's Telugu slate, with its combination of star power, auteur-driven projects, and mid-budget genre films, represents the most coherent and ambitious regional cinema strategy from any global streaming platform operating in India.
 
-*Sources: Exchange4Media, Bollywood Hungama, Filmibeat, Sacnilk, AngelOne*""",
-    "sources": ["Exchange4Media", "Bollywood Hungama", "Filmibeat", "Sacnilk"],
-    "image_person": None  # No single person — use Pexels
-}
+The era of Telugu cinema as a "regional" afterthought is over. The numbers have made that argument for years. Netflix just put ₹500 crore behind the obvious conclusion.""",
+    "sources": [
+        {"url": "https://sacnilk.com", "name": "Sacnilk"},
+        {"url": "https://www.filmibeat.com", "name": "FilmiBeat"},
+        {"url": "https://www.whats-on-netflix.com", "name": "What's on Netflix"},
+        {"url": "https://bizzbuzz.news", "name": "Bizz Buzz"},
+    ],
+    "vertical": "entertainment",
+    "tags": ["Netflix", "Telugu cinema", "Tollywood", "OTT", "streaming", "Peddi", "Pawan Kalyan", "Nani"],
+    "image_person": "Nani (actor)",
+    "image_attribution": "Wikimedia Commons",
+})
 
 
-# ════════════════════════════════════════════
-# PUBLISH
-# ════════════════════════════════════════════
-
-articles = [article1, article2, article3]
-
-for i, art in enumerate(articles, 1):
-    print(f"\n{'='*60}")
-    print(f"ARTICLE {i}: {art['headline'][:80]}...")
-    print(f"{'='*60}")
+# ── Main execution ───────────────────────────────────────────────────────────
+def main():
+    published = 0
     
-    # Image sourcing
-    img_url = None
-    img_attribution = "The Videshi"
-    
-    if art.get('image_person'):
-        person = art['image_person']
-        print(f"\n📸 Sourcing image for: {person}")
-        img_url = fetch_wikipedia_person_image(person)
+    for i, art in enumerate(articles, 1):
+        print(f"\n{'='*60}")
+        print(f"Article {i}: {art['headline'][:60]}...")
+        print(f"{'='*60}")
+        
+        # 1. Source image
+        person = art.get("image_person")
+        img_url = None
+        img_attr = art.get("image_attribution", "")
+        
+        if person:
+            img_url = fetch_wikipedia_person_image(person)
+            if not img_url:
+                # Try alternate forms
+                alt = person.split("(")[0].strip()
+                if alt != person:
+                    img_url = fetch_wikipedia_person_image(alt)
+        
         if img_url:
-            img_attribution = "Wikimedia Commons"
+            if validate_image(img_url):
+                print(f"  ✓ Image validated: {img_url[:60]}...")
+            else:
+                print(f"  ✗ Image validation failed, trying Pexels fallback")
+                img_url = fetch_pexels_image(person.split("(")[0].strip() if person else art["slug"][:20])
+                img_attr = "Pexels"
+                if img_url and not validate_image(img_url):
+                    img_url = None
+                    img_attr = ""
+        
+        if not img_url:
+            print(f"  ⚠ No valid image found, publishing without image")
+        
+        # 2. Build payload
+        article_id = str(uuid.uuid4())
+        now_iso = datetime.now(timezone.utc).isoformat()
+        
+        payload = {
+            "id": article_id,
+            "headline": art["headline"],
+            "subheadline": art["subheadline"],
+            "slug": art["slug"],
+            "category": art["category"],
+            "vertical": art.get("vertical", art["category"]),
+            "body": art["body"].strip(),
+            "sources": art["sources"],
+            "tags": art.get("tags", []),
+            "status": "published",
+            "published_at": now_iso,
+            "created_at": now_iso,
+            "image_url": img_url or None,
+            "image_caption": f"Photo: {img_attr}" if img_url else None,
+            "image_attribution": img_attr if img_url else None,
+        }
+        
+        # 3. Insert into Supabase
+        result = sb_insert("p2_articles", payload)
+        if result:
+            aid = result.get("id", article_id)
+            print(f"  ✓ Published: {art['slug']}")
+            print(f"    ID: {aid}")
+            print(f"    Category: {art['category']}")
+            print(f"    Image: {'Yes' if img_url else 'No'}")
+            published += 1
         else:
-            # Try alternate names
-            for alt in [f"{person} (singer)", f"{person} (actress)", f"{person} (actor)"]:
-                img_url = fetch_wikipedia_person_image(alt)
-                if img_url:
-                    img_attribution = "Wikimedia Commons"
-                    break
+            print(f"  ✗ Failed to publish: {art['slug']}")
+        
+        time.sleep(1)  # Brief pause between inserts
     
-    if not img_url:
-        # Pexels fallback with specific terms
-        if i == 1:
-            img_url = fetch_pexels_image("music streaming headphones concert", "Spotify music listening")
-        elif i == 2:
-            img_url = fetch_pexels_image("Bollywood actress film set", "Indian cinema actress")
-        elif i == 3:
-            img_url = fetch_pexels_image("South Indian cinema film", "Indian movie theater audience")
-    
-    # Validate image
-    if img_url and not validate_image(img_url):
-        print(f"  ⚠ Image validation failed, trying Pexels fallback...")
-        if i == 1:
-            img_url = fetch_pexels_image("music concert stage lights", "Indian music performance")
-        elif i == 2:
-            img_url = fetch_pexels_image("movie film camera Bollywood", "Indian cinema production")
-        elif i == 3:
-            img_url = fetch_pexels_image("streaming television OTT", "Indian entertainment digital")
-    
-    # Upload to Supabase if we have an image
-    final_img_url = None
-    if img_url:
-        filename = f"{art['slug']}.jpg"
-        final_img_url = upload_image_to_supabase(img_url, filename)
-    
-    # Create article record
-    now = datetime.now(timezone.utc).isoformat()
-    record = {
-        "headline": art["headline"],
-        "subheadline": art["subheadline"],
-        "slug": art["slug"],
-        "category": art["category"],
-        "vertical": art["category"],  # vertical matches category
-        "body": art["body"],
-        "sources": json.dumps(art["sources"]),
-        "status": "published",
-        "published_at": now,
-        "image_url": final_img_url,
-        "image_attribution": img_attribution if final_img_url else None,
-    }
-    
-    print(f"\n📝 Publishing: {art['slug']}")
-    result = sb_insert("p2_articles", record)
-    
-    if result:
-        art_id = result.get('id', 'unknown')
-        print(f"  ✅ Published! ID: {art_id}")
-        print(f"  📰 Headline: {art['headline'][:70]}...")
-        print(f"  🏷️  Category: {art['category']}")
-        print(f"  🔗 Slug: {art['slug']}")
-        if final_img_url:
-            print(f"  🖼️  Image: {final_img_url[:60]}...")
-    else:
-        print(f"  ❌ FAILED to publish article {i}")
-    
-    time.sleep(1)
+    print(f"\n{'='*60}")
+    print(f"DONE: {published}/{len(articles)} articles published")
+    print(f"{'='*60}")
+    return 0 if published == len(articles) else 1
 
-print(f"\n{'='*60}")
-print("✅ Entertainment writer batch complete!")
-print(f"{'='*60}")
+
+if __name__ == "__main__":
+    sys.exit(main())
