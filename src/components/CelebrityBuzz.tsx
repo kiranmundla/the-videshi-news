@@ -104,7 +104,6 @@ function InstagramEmbedCard({
           overflow: "hidden",
           background: "#fafafa",
           boxShadow: "0 2px 8px rgba(0,0,0,0.10)",
-          minHeight: 300,
         }}
       >
         {active && sc ? (
@@ -441,6 +440,7 @@ export default function CelebrityBuzz() {
           style={
             {
               display: "flex",
+              alignItems: "flex-start",
               gap: 12,
               overflowX: "auto",
               overflowY: "hidden",
