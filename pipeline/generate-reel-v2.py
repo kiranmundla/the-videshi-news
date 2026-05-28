@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 
 # ── Config ──────────────────────────────────────────────────────────────────
 W, H = 1080, 1920
-TOTAL_DUR_MS = 17000  # 17 seconds of animation
+TOTAL_DUR_MS = 22000  # 22 seconds of animation
 OUTPUT_DIR = Path(__file__).parent / "reels"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
@@ -111,7 +111,17 @@ def generate_html(article: dict) -> str:
     cat_label = cat.replace("-", " ").upper()
 
     headline = article.get("headline", "")
-    short_hl = esc(shorten_headline(headline, 100))
+    short_hl = esc(shorten_headline(headline, 50))
+    # Dynamic font size based on headline length
+    hl_len = len(short_hl)
+    if hl_len <= 25:
+        hl_font = 160
+    elif hl_len <= 35:
+        hl_font = 140
+    elif hl_len <= 50:
+        hl_font = 120
+    else:
+        hl_font = 100
     subheadline = article.get("subheadline", "")
     takeaways = split_takeaways(subheadline)
     stats = extract_stats(subheadline)
@@ -120,7 +130,7 @@ def generate_html(article: dict) -> str:
     # Takeaway HTML for scene 2
     takeaway_html = ""
     for i, t in enumerate(takeaways):
-        delay = 6.2 + i * 1.8
+        delay = 7.0 + i * 3.5
         takeaway_html += f'''
         <div class="tk-item" style="animation-delay:{delay}s">
             <div class="tk-dot"></div>
@@ -158,10 +168,10 @@ body{{
 .s1{{
   position:absolute;inset:0;z-index:10;
   display:flex;flex-direction:column;
-  justify-content:center;
-  padding:0 72px 360px;
+  justify-content:flex-start;
+  padding:280px 56px 0;
   background:linear-gradient(160deg,{g1} 0%,{g2} 50%,{g1} 100%);
-  animation:fadeOut .6s ease-in 4.2s forwards;
+  animation:fadeOut .6s ease-in 4.7s forwards;
 }}
 .s1-dots{{
   position:absolute;inset:0;opacity:.03;
@@ -189,7 +199,7 @@ body{{
 }}
 .hl{{
   font-family:'Playfair Display',serif;
-  font-size:80px;font-weight:900;line-height:1.08;
+  font-size:{hl_font}px;font-weight:900;line-height:1.08;
 }}
 .hl-line{{
   width:0;height:4px;margin-top:32px;
@@ -201,30 +211,24 @@ body{{
 .s2{{
   position:absolute;inset:0;z-index:5;
   background:{g1};
-  opacity:0;animation:fadeIn .6s ease-out 4.2s forwards;
+  opacity:0;animation:fadeIn .6s ease-out 4.7s forwards;
 }}
 .s2-img{{
   position:absolute;inset:0;
   background-size:cover;background-position:center top;
   transform:scale(1);
-  animation:slowZoom 8s ease-in-out 4.5s forwards;
+  animation:slowZoom 12s ease-in-out 5s forwards;
 }}
 .s2-img-grad{{
   position:absolute;inset:0;
-  background:linear-gradient(180deg,
-    {g1}99 0%,
-    {g1}22 8%,
-    transparent 15%,
-    transparent 35%,
-    {g1}88 50%,
-    {g1} 60%,
-    {g1} 100%
-  );
+  background:{g1}cc;
   z-index:1;
 }}
 .s2-content{{
-  position:absolute;bottom:60px;left:0;right:0;
-  padding:0 64px;
+  position:absolute;top:0;bottom:0;left:0;right:0;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  padding:0 56px;
   z-index:2;
 }}
 .stats-row{{
@@ -239,18 +243,18 @@ body{{
   opacity:0;animation:popIn .4s ease-out forwards;
 }}
 .tk-item{{
-  display:flex;align-items:flex-start;gap:16px;
-  margin-bottom:22px;
+  display:flex;align-items:flex-start;gap:20px;
+  margin-bottom:36px;
   opacity:0;transform:translateX(-24px);
   animation:slideRight .5s ease-out forwards;
 }}
 .tk-dot{{
-  width:10px;height:10px;border-radius:50%;
-  background:{accent};margin-top:10px;flex-shrink:0;
+  width:18px;height:18px;border-radius:50%;
+  background:{accent};margin-top:18px;flex-shrink:0;
 }}
 .tk-text{{
-  font-size:27px;font-weight:500;line-height:1.45;
-  color:rgba(255,255,255,.88);
+  font-size:64px;font-weight:700;line-height:1.3;
+  color:#fff;
 }}
 
 /* ══════ SCENE 3 — CTA (12.5-17s) ══════ */
@@ -260,31 +264,31 @@ body{{
   align-items:center;justify-content:center;
   background:linear-gradient(160deg,{g1},{g2});
   opacity:0;pointer-events:none;
-  animation:ctaIn .5s ease-out 12.5s forwards;
+  animation:ctaIn .5s ease-out 17s forwards;
 }}
 .s3-name{{
   font-family:'Playfair Display',serif;
   font-size:68px;font-weight:900;letter-spacing:3px;
-  opacity:0;animation:slideUp .6s ease-out 12.6s forwards;
+  opacity:0;animation:slideUp .6s ease-out 17.1s forwards;
 }}
 .s3-tag{{
   font-size:24px;font-weight:500;
   color:rgba(255,255,255,.55);margin-top:10px;
-  opacity:0;animation:slideUp .4s ease-out 12.9s forwards;
+  opacity:0;animation:slideUp .4s ease-out 17.4s forwards;
 }}
 .s3-div{{
   width:0;height:2px;background:{accent};
   margin:36px 0;
-  animation:lineGrow .4s ease-out 13.1s forwards;
+  animation:lineGrow .4s ease-out 17.6s forwards;
 }}
 .s3-url{{
   font-size:38px;font-weight:800;color:{accent};
-  opacity:0;animation:slideUp .4s ease-out 13.3s forwards;
+  opacity:0;animation:slideUp .4s ease-out 17.8s forwards;
 }}
 .s3-socials{{
   margin-top:44px;display:flex;flex-direction:column;
   align-items:center;gap:16px;
-  opacity:0;animation:slideUp .4s ease-out 13.6s forwards;
+  opacity:0;animation:slideUp .4s ease-out 18.1s forwards;
 }}
 .s3-soc{{
   font-size:22px;font-weight:500;color:rgba(255,255,255,.45);
@@ -432,16 +436,16 @@ def _pick_music_track(category: str = "", headline: str = "") -> str | None:
     is_indian = any(kw in headline_lower for kw in indian_keywords)
 
     if is_dramatic:
-        pool = ["pixabay-dramatic-15s.mp3"]
+        pool = ["pixabay-dramatic-30s.mp3"]
     elif is_indian or cat_lower in ["entertainment", "food"]:
-        pool = ["indian-beat-15s.mp3", "pixabay-upbeat-15s.mp3"]
+        pool = ["indian-beat-30s.mp3", "pixabay-upbeat-30s.mp3"]
     elif cat_lower in ["sports", "technology", "lifestyle & health", "travel"]:
-        pool = ["pixabay-upbeat-15s.mp3"]
+        pool = ["pixabay-upbeat-30s.mp3"]
     elif cat_lower in ["news", "nri world", "markets & finance"]:
-        pool = ["pixabay-breaking-15s.mp3"]
+        pool = ["pixabay-breaking-30s.mp3"]
     else:
         # Default: mix of breaking news and upbeat
-        pool = ["pixabay-breaking-15s.mp3", "pixabay-upbeat-15s.mp3"]
+        pool = ["pixabay-breaking-30s.mp3", "pixabay-upbeat-30s.mp3"]
 
     # Verify files exist, fall back to any 15s track
     pool = [f for f in pool if os.path.isfile(os.path.join(music_dir, f))]
@@ -478,13 +482,13 @@ def convert_to_mp4(webm_path: str, mp4_path: str, category: str = "", headline: 
             print(f"ffmpeg video error: {result.stderr[-500:]}")
             raise RuntimeError("ffmpeg video conversion failed")
 
-        # Mix music: fade in 0.5s, fade out last 2s, volume at 30%
+        # Mix music: fade in 0.5s, fade out last 2s, volume at 70%
         cmd_audio = [
             "ffmpeg", "-y",
             "-i", tmp_video,
             "-i", music,
             "-filter_complex",
-            "[1:a]atrim=0:17,afade=t=in:st=0:d=0.5,afade=t=out:st=15:d=2,volume=0.3[bg];[bg]apad[a]",
+            "[1:a]atrim=0:22,afade=t=in:st=0:d=0.5,afade=t=out:st=20:d=2,volume=0.7[bg];[bg]apad[a]",
             "-map", "0:v", "-map", "[a]",
             "-c:v", "copy",
             "-c:a", "aac", "-b:a", "128k",
