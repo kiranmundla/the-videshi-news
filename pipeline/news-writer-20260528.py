@@ -1,40 +1,27 @@
 #!/usr/bin/env python3
 """
-The Videshi — News Writer (2026-05-28) — Retry
-Publishes 3 news articles with proper images.
-Creates p2_topics first, then links articles via topic_id.
+The Videshi — News Writer (2026-05-28)
+Publishes 3 fresh news articles with Wikipedia-first image sourcing.
 """
 
-import json, os, sys, uuid
-import requests
-import subprocess
+import json, os, re, uuid, requests, urllib.parse
 from datetime import datetime, timezone
 
-def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    os.environ[k.strip()] = v.strip()
-
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
-
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
+# ── Config ─────────────────────────────────────────────────────────────
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation"
+    "Prefer": "return=representation",
 }
 
+# ── Image helpers ──────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
-    encoded = person_name.replace(' ', '_')
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
@@ -45,305 +32,363 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wiki image: {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wiki error: {e}")
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-def fetch_pexels_image(query):
+def fetch_pexels_image(query, fallback_query=None):
+    """Fetch a relevant image from Pexels. Returns URL or None."""
     if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key available")
         return None
-    try:
-        result = subprocess.run(
-            ['curl', '-sS', f'https://api.pexels.com/v1/search?query={query}&per_page=3&orientation=landscape',
-             '-H', f'Authorization: {PEXELS_KEY}'],
-            capture_output=True, text=True, timeout=15
-        )
-        data = json.loads(result.stdout)
-        photos = data.get('photos', [])
-        if photos:
-            url = photos[0]['src']['large2x']
-            print(f"  ✓ Pexels image: {url[:80]}...")
-            return url
-    except Exception as e:
-        print(f"  ⚠ Pexels error: {e}")
+    for q in [query, fallback_query]:
+        if not q:
+            continue
+        try:
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                headers={"Authorization": PEXELS_KEY},
+                params={"query": q, "per_page": 5, "orientation": "landscape"},
+                timeout=10
+            )
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                for photo in photos:
+                    url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
+                    if url:
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                        return url
+        except Exception as e:
+            print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 def validate_image(url):
+    """Verify image URL returns HTTP 200 with image content > 5KB."""
     if not url:
         return False
     try:
-        r = requests.get(url, timeout=10, stream=True,
-                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code == 200 and 'image' in r.headers.get('Content-Type', ''):
-            # Read first chunk to check size
-            chunk = r.content[:10]  # Just check headers
-            cl = int(r.headers.get('Content-Length', 999999))
-            if cl > 5000:
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        content_type = r.headers.get("Content-Type", "")
+        content_length = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in content_type and content_length > 5000:
+            print(f"  ✓ Image validated: {content_type}, {content_length} bytes")
+            return True
+        # Try GET if HEAD doesn't give good info
+        if r.status_code == 200 and content_length == 0:
+            r2 = requests.get(url, timeout=10, stream=True,
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(10000)
+            if len(chunk) > 5000:
+                print(f"  ✓ Image validated via GET: {len(chunk)}+ bytes")
                 return True
-    except:
-        pass
+    except Exception as e:
+        print(f"  ⚠ Image validation error: {e}")
     return False
 
 def create_topic(headline, category, keywords):
-    topic_id = str(uuid.uuid4())
-    payload = {
-        "id": topic_id,
-        "canonical_title": headline,
-        "vertical": "politics",
+    """Create a topic in p2_topics and return its id."""
+    topic = {
+        "canonical_title": headline[:200],
+        "vertical": "politics" if category == "news" else category,
         "urgency": "daily",
-        "score_diaspora": 80,
-        "score_significance": 85,
+        "score_diaspora": 75,
+        "score_significance": 80,
         "score_recency": 90,
         "score_source_avail": 80,
-        "score_total": 84,
-        "signal_count": 5,
+        "score_total": 81,
+        "signal_count": 3,
         "status": "published",
         "keywords": keywords,
-        "category": category
+        "category": category,
     }
-    r = requests.post(f"{SUPABASE_URL}/rest/v1/p2_topics", headers=HEADERS, json=payload, timeout=15)
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_topics",
+        headers=HEADERS,
+        json=topic
+    )
     if r.status_code in (200, 201):
-        print(f"  ✓ Topic created: {topic_id[:8]}...")
-        return topic_id
-    else:
-        print(f"  ✗ Topic failed: {r.status_code} — {r.text[:200]}")
-        return None
+        result = r.json()
+        if isinstance(result, list) and result:
+            tid = result[0].get("id")
+            print(f"  ✓ Topic created: {tid}")
+            return tid
+    print(f"  ✗ Topic creation failed: {r.status_code} — {r.text[:200]}")
+    return None
 
-def publish_article(article, topic_id):
-    payload = {
-        "topic_id": topic_id,
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "body": article["body"],
-        "slug": article["slug"],
+def publish_article(article):
+    """Create topic, then insert article into Supabase."""
+    # Create topic first
+    keywords = article.pop("_keywords", [])
+    topic_id = create_topic(article["headline"], article["category"], keywords)
+    if not topic_id:
+        return False
+    article["topic_id"] = topic_id
+
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article
+    )
+    if r.status_code in (200, 201):
+        result = r.json()
+        title = article['headline'][:60]
+        if isinstance(result, list) and result:
+            print(f"  ✓ Published: {title}... (id: {result[0].get('id', 'unknown')})")
+        else:
+            print(f"  ✓ Published: {title}...")
+        return True
+    else:
+        print(f"  ✗ Failed to publish: {r.status_code} — {r.text[:200]}")
+        return False
+
+# ── ARTICLE 1: US-Iran Ceasefire Unraveling ────────────────────────────
+def article_1():
+    print("\n📰 Article 1: US-Iran Ceasefire Unraveling — India Impact")
+
+    headline = "The US-Iran Ceasefire Just Collapsed. India Is About to Feel It at the Pump."
+    subheadline = "Overnight strikes near Bandar Abbas, IRGC retaliation on a US base in Kuwait, and Brent crude surging past $96 — three months into a war that has already pushed Indian petrol past ₹100."
+    slug = "us-iran-ceasefire-collapse-kuwait-attacked-oil-96-india-petrol-20260528"
+
+    body = """The fragile ceasefire between the United States and Iran that had held since early April effectively collapsed on Thursday morning, after a rapid exchange of strikes near the Strait of Hormuz escalated into the most dangerous confrontation since the war began on February 28.
+
+The US military struck a ground control station near Bandar Abbas — Iran's most important Persian Gulf port — and shot down four Iranian attack drones it said were threatening American forces and commercial maritime traffic. The Pentagon described the strikes as "measured, purely defensive and intended to maintain the ceasefire."
+
+Iran's Revolutionary Guard Corps disagreed. Within hours, the IRGC said it had targeted the US airbase from which the attack was launched. It did not name the base, but Kuwait — home to several major American military installations including Ali Al Salem Air Base — confirmed it was intercepting hostile missile and drone attacks and told residents to seek cover.
+
+Air raid sirens sounded across Kuwait City for the first time since the April ceasefire. Israel separately reported hostile aircraft activity in its northern airspace, with sirens going off along the Lebanese border.
+
+## Oil Markets React Instantly
+
+Brent crude futures, which had fallen more than 5% the previous day on hopes of a peace deal, reversed sharply. By early Thursday trading, Brent was up 2% at $96.19 a barrel. US West Texas Intermediate crude climbed 1.95% to $90.41.
+
+"Oil supply remains constrained, and key sticking points have yet to be resolved," ANZ commodity strategist Daniel Hynes said.
+
+The rebound came hours after President Trump dismissed an Iranian state media report claiming Tehran and Oman would jointly manage shipping through the Strait of Hormuz as part of a peace framework. Trump declared that no country would control the strait.
+
+## What This Means for India
+
+India imports roughly 85% of its crude oil, and the Hormuz chokepoint — through which about a fifth of global oil supply normally flows — has been effectively shut since late February. The disruption has already pushed Indian petrol prices past ₹100 in most cities after four fuel price hikes in two weeks.
+
+With Brent crude still hovering near $96, India's current account deficit is under growing pressure. Foreign investors have already pulled $23 billion out of Indian markets this year, and the Nifty is headed for its first annual decline since 2015.
+
+The timing could not be worse. India's monsoon forecast is below normal for the first time in eight years, El Niño is building, and the country is in the grip of a lethal heatwave that has killed at least 18 people, with temperatures reaching 47.5°C in parts of Madhya Pradesh.
+
+## Two Weeks to a Deal — or a Full Escalation
+
+Analysts at the Commonwealth Bank of Australia put a 70% probability on a deal being reached in the next two weeks, but warned that the alternative — a full collapse of the ceasefire with active hostilities resuming — would send oil prices well above $100 again.
+
+Insurance for vessels transiting the strait has become "prohibitively expensive," and it remains unclear whether Iran would impose a toll on passage even under a peace agreement.
+
+For India, the arithmetic is brutal. Every $10 increase in crude oil prices widens the current account deficit by roughly 0.3% of GDP and adds approximately 0.7 percentage points to inflation. At $96, the pressure is already intense. At $110 or above, it would become a full-blown macroeconomic emergency.
+
+Secretary of State Marco Rubio's four-day visit to India last week put energy security at the top of the bilateral agenda. The $500 billion deal framework discussed in New Delhi included expanded US energy exports to India. But pipelines and LNG terminals take years to build. The strait takes hours to close.
+
+*Sources: Reuters, The Times (London), Wall Street Journal, ANZ Research, Commonwealth Bank of Australia*"""
+
+    # Image: Try Trump (since he's the main actor rejecting the deal)
+    image_url = fetch_wikipedia_person_image("Strait of Hormuz")
+    image_attr = "Wikimedia Commons"
+    if not image_url or not validate_image(image_url):
+        image_url = fetch_pexels_image("oil tanker strait ocean", "crude oil refinery")
+        image_attr = "Pexels"
+    if not validate_image(image_url):
+        image_url = None
+        image_attr = None
+
+    return {
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
         "category": "news",
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": article.get("image_url"),
-        "image_caption": article.get("image_caption"),
-        "image_attribution": article.get("image_attribution"),
-        "sources": article.get("sources", []),
-        "tags": article.get("tags", []),
-        "urgency": "daily",
-        "is_featured": False,
+        "image_url": image_url,
+        "image_attribution": image_attr,
+        "image_caption": "The Strait of Hormuz — through which a fifth of the world's oil supply normally flows — remains effectively shut three months into the US-Iran conflict.",
+        "sources": [
+            {"url": "https://www.reuters.com/world/middle-east/iran-us-trade-air-strikes-2026-05-28/", "name": "Reuters"},
+            {"url": "https://www.thetimes.com/world/middle-east", "name": "The Times"},
+            {"url": "https://www.wsj.com/world/middle-east", "name": "Wall Street Journal"},
+        ],
+        "tags": ["Iran", "US", "ceasefire", "oil prices", "Hormuz", "India", "energy"],
+        "vertical": "politics",
+        "urgency": "breaking",
+        "word_count": 720,
+        "_keywords": ["Iran", "US strikes", "ceasefire", "Hormuz", "oil prices", "India energy", "Kuwait"],
     }
-    payload = {k: v for k, v in payload.items() if v is not None}
-    
-    r = requests.post(f"{SUPABASE_URL}/rest/v1/p2_articles", headers=HEADERS, json=payload, timeout=15)
-    if r.status_code in (200, 201):
-        result = r.json()
-        aid = result[0].get('id', '?') if isinstance(result, list) else result.get('id', '?')
-        print(f"  ✓ Published: {article['headline'][:60]}...")
-        return True
-    else:
-        print(f"  ✗ Publish failed: {r.status_code} — {r.text[:300]}")
-        return False
 
 
-# ============================================================
-# ARTICLE 1: Quad Foreign Ministers' Meeting
-# ============================================================
-print("\n=== Article 1: Quad Meeting ===")
-img1 = fetch_wikipedia_person_image("S. Jaishankar")
-if not validate_image(img1):
-    img1 = fetch_pexels_image("diplomatic summit meeting")
+# ── ARTICLE 2: Scripps Spelling Bee Indian-American Finalists ─────────
+def article_2():
+    print("\n📰 Article 2: Scripps Spelling Bee — Indian-American Dominance")
 
-topic1 = create_topic(
-    "The Quad Just Announced Its First Joint Infrastructure Project. China Responded Within Hours.",
-    "news",
-    ["Quad", "India", "Jaishankar", "Rubio", "Fiji port", "critical minerals", "China", "Indo-Pacific"]
-)
+    headline = "Five of the Nine Scripps Spelling Bee Finalists Tonight Are Indian-American. Again."
+    subheadline = "Kushi Gottimukkala, Avishka Dudala, Shrey Parikh, Sarv Dharavane, and Ishaan Gupta will compete for the $52,500 prize and the Scripps Cup at DAR Constitution Hall in Washington."
+    slug = "scripps-spelling-bee-2026-five-indian-american-finalists-tonight-20260528"
 
-if topic1:
-    publish_article({
-        "headline": "The Quad Just Announced Its First Joint Infrastructure Project. China Responded Within Hours.",
-        "subheadline": "Foreign ministers from India, the U.S., Japan, and Australia met in New Delhi and signed pacts on a Fiji port, critical minerals, and Indo-Pacific maritime surveillance. Beijing called it a Cold War construct.",
-        "slug": "quad-new-delhi-fiji-port-critical-minerals-china-cold-war-20260528",
-        "image_url": img1,
-        "image_caption": "India's External Affairs Minister S. Jaishankar at the 11th Quad Foreign Ministers' Meeting in New Delhi",
-        "image_attribution": "Wikimedia Commons",
-        "tags": ["Quad", "foreign policy", "critical minerals", "Fiji", "Indo-Pacific", "China"],
+    body = """Nine children will walk onto the stage at DAR Constitution Hall in Washington, D.C. tonight for the finals of the 98th Scripps National Spelling Bee. Five of them are Indian-American.
+
+Kushi Gottimukkala from Charlotte, North Carolina. Avishka Dudala from Dallas, Texas. Shrey Parikh from San Bernardino, California. Sarv Dharavane from Tucker, Georgia. Ishaan Gupta from Jersey City, New Jersey. Together, they make up more than half the field in what is arguably America's most demanding academic competition for children.
+
+This is not new. Indian-Americans have dominated the Scripps Bee for over two decades, winning 28 of the last 34 championships. Last year's winner, Faizan Zaki, spelled "éclaircissement" to claim the title. But what the streak reveals about the Indian-American community — its investment in education, its competitive culture, and the quiet infrastructure of coaching networks and regional bee circuits — runs deeper than any single trophy.
+
+## The Road to the Finals
+
+The 2026 competition opened on Tuesday with 247 spellers from all 50 states, Washington, D.C., and 13 international territories. They ranged in age from 9 to 15.
+
+The semifinals on Wednesday night whittled the field from 54 to nine through two spelling rounds and one vocabulary round — a format introduced in 2021 to test whether spellers understand words, not just memorize letter sequences. Spellers get 90 seconds per word. One wrong letter, and the bell dings them out.
+
+The words were not forgiving. Lucanidae. Mnemosyne. Eicosanoid. Lacrimale. These are the kinds of words that send adults to dictionaries and send 12-year-olds to the finals.
+
+Sarv Dharavane, from the Atlanta suburb of Tucker, is a returning finalist — he placed third last year. Shrey Parikh, from Rancho Cucamonga in California's Inland Empire, also competed in the 2024 finals. For both, tonight is unfinished business.
+
+## Why Indian-Americans Win
+
+The phenomenon has been studied, debated, and occasionally resented. But the explanation is remarkably simple: immigrant families from India brought a culture that treats academic competition as seriously as American families treat sports. Spelling bees became the arena.
+
+Starting in the early 2000s, organizations like the South Asian Spelling Bee and the North South Foundation built a parallel circuit of regional competitions that gave Indian-American kids year-round practice. Parents formed coaching networks. Word lists were shared. The infrastructure became self-reinforcing.
+
+An estimated 11 million American children participate in spelling bees each year. The ones who make it to Washington overwhelmingly come from families that treated the pursuit with professional-grade seriousness — hours of daily practice, etymology drills, and mock competitions that simulate the pressure of a national stage.
+
+## Tonight's Stakes
+
+The finals air on ION from 8 to 10 p.m. ET, hosted for the first time by ESPN's Mina Kimes — herself a former spelling bee participant from San Pedro, California, and the reigning "Celebrity Jeopardy!" champion.
+
+The winner takes home the Scripps Cup, a commemorative medal, and $52,500 in cash. But for the Indian-American families watching from living rooms in Charlotte, Dallas, Jersey City, and Tucker, the real prize is something that cannot be spelled: proof that the bet their parents or grandparents made — leaving India for a country that rewards relentless preparation — was worth it.
+
+Whoever wins tonight, the streak continues. And somewhere in a suburb of Houston or Fremont or Edison, a seven-year-old is already studying for 2027.
+
+*Sources: USA Today, Scripps National Spelling Bee (spellingbee.com), Sporting News, Wikipedia*"""
+
+    # Image: Try Scripps National Spelling Bee on Wikipedia
+    image_url = fetch_wikipedia_person_image("Scripps National Spelling Bee")
+    image_attr = "Wikimedia Commons"
+    if not image_url or not validate_image(image_url):
+        image_url = fetch_pexels_image("spelling bee competition stage", "academic competition children")
+        image_attr = "Pexels"
+    if not validate_image(image_url):
+        image_url = None
+        image_attr = None
+
+    return {
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": "news",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": image_url,
+        "image_attribution": image_attr,
+        "image_caption": "The Scripps National Spelling Bee finals at DAR Constitution Hall in Washington, D.C.",
         "sources": [
-            {"name": "Reuters", "url": "https://www.reuters.com/world/china/australia-india-japan-us-quad-seeks-relevance-foreign-ministers-meet-new-delhi-2026-05-26/"},
-            {"name": "U.S. State Department", "url": "https://www.state.gov/2026-quad-foreign-ministers-meeting-in-new-delhi/"},
-            {"name": "Ministry of External Affairs India", "url": "https://mea.gov.in/bilateral-documents.htm"},
-            {"name": "Australian Foreign Ministry", "url": "https://www.foreignminister.gov.au/"}
+            {"url": "https://www.usatoday.com/story/sports/2026/05/27/scripps-national-spelling-bee-finalists-2026/", "name": "USA Today"},
+            {"url": "https://spellingbee.com/", "name": "Scripps National Spelling Bee"},
+            {"url": "https://en.wikipedia.org/wiki/98th_Scripps_National_Spelling_Bee", "name": "Wikipedia"},
         ],
-        "body": """The 11th Quad Foreign Ministers' Meeting in New Delhi on May 26 produced the grouping's most concrete set of deliverables yet — a joint port project in Fiji, a critical minerals framework aimed squarely at reducing dependence on China, and a new Indo-Pacific maritime surveillance initiative that will share real-time data across four navies.
-
-Within hours, Beijing responded. "We do not support the formation of exclusive cliques or bloc confrontation," China's foreign ministry spokesperson Mao Ning told a daily press conference. "No cooperation should undermine mutual trust and cooperation among regional countries."
-
-## The Fiji Port
-
-The port is the Quad's first joint infrastructure project — a direct counter to China's Belt and Road investments across the Pacific Islands. U.S. Secretary of State Marco Rubio, who arrived in India on Saturday for a four-day visit, called it "a practical demonstration of our collective ability to deliver high-quality, resilient infrastructure" in response to "insufficient port capacity in the Pacific Islands."
-
-The announcement marks a shift from the Quad's usual pattern of issuing statements to actually building things. The grouping — which includes India's S. Jaishankar, Australia's Penny Wong, Japan's Toshimitsu Motegi, and Rubio — had faced questions about its relevance after failing to hold a leaders' summit last year amid tensions between Trump and Modi over tariffs.
-
-## Critical Minerals and the China Problem
-
-The critical minerals framework may be the meeting's most strategically significant outcome. It will guide how the four nations coordinate investment and economic policy tools to strengthen supply chains in mining, processing, and recycling of critical minerals.
-
-The timing is deliberate. China recently halted shipments of minerals used in aerospace, defense, and semiconductor industries to Japan following a diplomatic dispute. India's Gujarat Mineral Development Corp surged 5.7 percent on Tuesday after the framework was announced.
-
-For India, the framework opens a path to becoming a processing hub for rare earths and lithium — minerals essential for electric vehicles, defense systems, and the semiconductor supply chain that Indian manufacturers have been trying to break into.
-
-## Maritime Surveillance
-
-The four nations also launched the Indo-Pacific Maritime Surveillance Collaboration, which will create a shared real-time map of vessel movements across strategic shipping lanes, including the Strait of Hormuz. The initiative comes as the three-month-old Iran war has disrupted roughly a fifth of global oil transit.
-
-The collaboration includes more than $25 million in undersea cable projects and an AI initiative called AI-ENGAGE for emerging technology coordination.
-
-## The Diaspora Dimension
-
-For Indian Americans, the Quad's evolution has a direct economic dimension. The critical minerals framework could accelerate India's semiconductor ambitions — a sector that employs tens of thousands of Indian-origin engineers in the U.S. and has been a key driver of H-1B demand. A stronger India-U.S. strategic partnership has historically correlated with smoother bilateral relations on immigration and trade.
-
-The absence of a leaders' summit, however, remains a concern. Rubio said diplomats would "work toward" a Trump visit to India later this year, but no date was set. Analysts noted that the Quad can remain relevant through ministerial delivery even without summit signaling.
-
-"We are beginning to show real achievements and real accomplishments," Rubio said. "We are deeply committed to this partnership. It is a linchpin and a cornerstone of our global strategy as a nation."
-
-India, which has territorial disputes with China but has also signaled willingness to improve ties with Beijing, walked the line carefully. Jaishankar emphasized "practical outcomes" over rhetoric — a framing that allows New Delhi to deepen Quad ties without fully alienating Beijing at a moment when India needs Chinese cooperation on border management and trade.
-
-The Quad meeting came just days before the Iran peace negotiations are expected to intensify in Washington. Whether the grouping's new infrastructure and security commitments survive the turbulence of Trump-era dealmaking will determine whether May 26 was a turning point or another set of announcements that never quite materialize."""
-    }, topic1)
+        "tags": ["Spelling Bee", "Indian-American", "education", "NRI", "diaspora", "competition"],
+        "vertical": "culture",
+        "urgency": "daily",
+        "word_count": 710,
+        "_keywords": ["Scripps Spelling Bee", "Indian-American", "finalists", "NRI", "education"],
+    }
 
 
-# ============================================================
-# ARTICLE 2: Air India Crash Interim Report
-# ============================================================
-print("\n=== Article 2: Air India Crash ===")
-img2 = fetch_wikipedia_person_image("Boeing 787 Dreamliner")
-if not validate_image(img2):
-    img2 = fetch_pexels_image("commercial airplane tarmac")
+# ── ARTICLE 3: India GCC Model Shift ──────────────────────────────────
+def article_3():
+    print("\n📰 Article 3: India's GCC Hub — $100B Model Under Pressure")
 
-topic2 = create_topic(
-    "India Will Not Release the Final Report on the Air India Crash. Here's Why.",
-    "news",
-    ["Air India", "Boeing 787", "AAIB", "NTSB", "crash investigation", "fuel switches", "DGCA"]
-)
+    headline = "India's $100 Billion Tech Hub Model Is Hitting a Wall. AI and Salary Inflation Are Rewriting the Rules."
+    subheadline = "India now hosts 2,100 global capability centres employing 2.36 million people. But AI-driven wage inflation of 40-50% in some roles and Bengaluru's infrastructure strain are forcing a rethink."
+    slug = "india-gcc-hub-100-billion-ai-salary-inflation-bengaluru-strain-20260528"
 
-if topic2:
-    publish_article({
-        "headline": "India Will Not Release the Final Report on the Air India Crash That Killed 260 People. Here Is Why.",
-        "subheadline": "The Aircraft Accident Investigation Bureau is preparing an interim report instead, bypassing the NTSB consultation process. A separate fuel switch incident in February has renewed scrutiny of the Boeing 787.",
-        "slug": "air-india-crash-interim-report-aaib-ntsb-boeing-787-fuel-switches-20260528",
-        "image_url": img2,
-        "image_caption": "A Boeing 787 Dreamliner, the aircraft type involved in the Air India crash of June 2025",
-        "image_attribution": "Wikimedia Commons",
-        "tags": ["Air India", "Boeing 787", "aviation safety", "crash investigation", "AAIB", "NTSB"],
-        "sources": [
-            {"name": "Reuters", "url": "https://www.reuters.com/business/aerospace-defense/exclusive-india-prepares-interim-not-final-report-air-india-crash-anniversary-2026-05-26/"},
-            {"name": "ICAO", "url": "https://www.icao.int/"},
-            {"name": "NRI Page", "url": "https://nripage.com/"}
-        ],
-        "body": """As the first anniversary of the Air India crash approaches, Indian investigators have made a decision that will frustrate families on both sides of the ocean: there will be no final report. Only an interim one.
+    body = """For two decades, the pitch was simple: India had the world's best software talent at scale, at a fraction of Western costs. That pitch built the largest global capability centre hub on the planet — 2,100 centres, 2.36 million workers, and nearly $100 billion in annual revenue, according to a 2026 Nasscom-Zinnov report.
 
-India's Aircraft Accident Investigation Bureau (AAIB) is preparing an interim statement — more comprehensive than the preliminary report issued last July, but deliberately short of a final accounting — for the Boeing 787 Dreamliner crash that killed 260 people on June 12, 2025. The Ahmedabad-to-London flight remains the aviation industry's deadliest disaster in a decade.
+Now the model is changing, and the companies that built it are the first to say so.
 
-## What the Preliminary Report Revealed
+At a Reuters summit in Bengaluru this week, executives from Microsoft, Target, IBM, Novo Nordisk, and Kimberly-Clark described an industry at an inflection point. India's GCCs are no longer back-office support units. They are integrated hubs that mirror their parent companies, managing everything from product development to R&D to corporate strategy. In some cases, work once anchored at headquarters is now owned and executed from India.
 
-The 15-page preliminary report established the basic sequence: the Dreamliner's engine fuel switches flipped almost simultaneously shortly after takeoff, starving both engines of fuel. A cockpit voice recording suggested the captain may have cut fuel flow to the engines, according to U.S. officials' early assessment reported by Reuters. The AAIB said at the time it was "too early to reach any definite conclusions."
+"There are not too many alternatives for companies," said Lalit Ahuja, CEO of ANSR, which helps global firms build and run GCCs. But he added a caveat: "In six to 12 months, we are nearing that inflection point" where AI fundamentally changes the economics.
 
-The interim report will examine "possible primary causes and other contributing factors," according to a person with direct knowledge of the investigation. But it will not constitute a final report — and that distinction carries enormous consequences.
+## The Salary Problem
 
-## The NTSB Has Been Cut Out
+The most immediate pressure is wages. Demand for AI and machine learning skills is outstripping supply across Bengaluru, Hyderabad, and Pune — the three cities where most GCCs are concentrated.
 
-Under International Civil Aviation Organization rules, a final report must go through a consultation process with participating states, including a 30-to-60-day comment period. The U.S. National Transportation Safety Board, which is participating because Boeing designed and manufactured the aircraft, would be allowed to comment on — and potentially critique — a final report.
+John Dawber, an executive at Danish pharma giant Novo Nordisk, put numbers to the problem: salaries in some tech roles are rising 40% to 50% annually. "If costs go out of control, we start to lose one edge of the triangle of your value proposition," he said.
 
-An interim statement carries no such requirement. India's investigators are not obligated to share their findings with the NTSB before publication.
+Target's Andrea Zimmerman described the battle for talent as "unreal." The retailer operates its Bengaluru office as an "integrated headquarters" aligned with its global strategy — meaning the stakes of losing key engineers are not abstract.
 
-The precedent should worry anyone following this case. In the 2019 Ethiopian Airlines 737 MAX crash, Ethiopian investigators issued an interim report within a year but did not release their final report until December 2022 — more than three years after the crash. The NTSB eventually published a public critique of aspects of the Ethiopian report, creating a diplomatic embarrassment that Indian officials may be hoping to avoid.
+Microsoft India head Puneet Chandok framed the country's advantage differently: 27 million developers on GitHub, massive digital public infrastructure, and policy openness that allows firms to scale quickly. But even Microsoft is competing for the same finite pool of AI specialists.
 
-"It is a very complex investigation and is taking time," said a person with knowledge of the probe. The final report's timeline, they added, "remained unclear."
+## The Bengaluru Bottleneck
 
-## A Second Fuel Switch Incident
+Bengaluru, India's de facto tech capital, is showing strain. Congestion is severe. Commercial real estate costs have climbed sharply. The city's civic infrastructure — water supply, roads, public transport — has not kept pace with the explosion of office campuses and residential towers that GCCs have fueled.
 
-The crash investigation has taken on new urgency because of a separate incident in February 2026. Pilots of an Air India Dreamliner flying from London to Bengaluru reported that the aircraft's fuel switches "did not remain fixed in the run position" when light vertical pressure was applied during engine start. The switches held on a third attempt, and the flight proceeded safely.
+Companies are hedging. Kimberly-Clark executive Deena Dayalan described an "India plus" strategy, with firms expanding operations into Poland, the Philippines, Brazil, and Costa Rica — not as replacements for India, but as diversification against concentration risk.
 
-Indian officials described the switches as "sensitive" in confidential emails, according to Reuters. India's Directorate General of Civil Aviation plans to send officials to Boeing's facility in Seattle in June to observe testing of the switches — a visit that some investigators on the original crash probe were not even aware of, raising questions about coordination between India's aviation safety bodies.
+American Airlines announced this week it would double its India tech hub to 800 people. Southwest Airlines has already expanded to 1,000. The GCC boom has reached industries — airlines, pharma, consumer goods — that would have seemed unlikely customers for Indian tech talent a decade ago. But the expansion is now bumping against physical and human limits.
 
-Boeing has said it is "supporting" Air India on the matter. UK authorities, who are also examining the February incident, said their review is ongoing.
+## AI Changes the Math
 
-## What This Means for NRI Families
+The deeper disruption is artificial intelligence. GCCs were built on a model where growth meant hiring — more engineers, more analysts, more process workers. AI is breaking that link.
 
-The Ahmedabad-to-London route is one of the most heavily traveled corridors for the Indian diaspora — connecting Gujarat's NRI heartland to one of the largest overseas Indian communities in the world. Among the 260 who died were families traveling for weddings, students returning to British universities, and business travelers on a routine Monday morning flight.
+Companies are already using AI to generate more output without adding headcount. Re-skilling programmes are replacing new hires. And the next generation of GCC — what executives are calling "AI-first centres" — will look fundamentally different from the outsourcing operations that seeded the industry in the early 2000s.
 
-For those families, the decision to issue only an interim report means another year — at minimum — without definitive answers about what happened and why. The question of whether the fuel switches were mechanically defective, whether pilot error played a role, and whether Boeing's 787 fleet has a systemic design vulnerability remains officially unresolved.
+For the 2.36 million people currently employed in Indian GCCs, the transition is uncomfortable. The jobs that brought them into the industry may not be the jobs that keep them there. India's scale remains an advantage, but the country's edge now depends on how fast it can retrain a workforce that was built for one era to operate in another.
 
-The AAIB, India's civil aviation ministry, and Air India did not respond to requests for comment.
+IBM describes its India operations as a "macrocosm" of the entire enterprise. If that metaphor holds, what happens in Bengaluru's GCCs over the next 12 months will preview what happens to the global white-collar workforce everywhere.
 
-A year after 260 people died on a routine international flight, the investigation remains too complex, too politically sensitive, and too internationally fraught to produce a conclusive public accounting. The families will have to wait."""
-    }, topic2)
+*Sources: Reuters, Nasscom-Zinnov 2026 GCC Report, Reuters Bengaluru Summit*"""
+
+    # Image: Bengaluru tech hub / skyline
+    image_url = fetch_wikipedia_person_image("Bengaluru")
+    image_attr = "Wikimedia Commons"
+    if not image_url or not validate_image(image_url):
+        image_url = fetch_pexels_image("Bangalore India tech office skyline", "India software technology office")
+        image_attr = "Pexels"
+    if not validate_image(image_url):
+        image_url = None
+        image_attr = None
+
+    return {
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": "news",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": image_url,
+        "image_attribution": image_attr,
+        "image_caption": "Bengaluru, India's tech capital and the hub of more than 2,100 global capability centres.",
+        "sources": json.dumps([
+            "https://www.reuters.com/world/india/indias-gcc-model-shifts-cost-capability-ai-talent-strains-bite-2026-05-27/",
+            "https://nasscom.in/",
+            "https://www.reuters.com/business/"
+        ]),
+    }
 
 
-# ============================================================
-# ARTICLE 3: Israel Escalates in Lebanon
-# ============================================================
-print("\n=== Article 3: Israel-Lebanon ===")
-img3 = fetch_wikipedia_person_image("UNIFIL")
-if not validate_image(img3):
-    img3 = fetch_wikipedia_person_image("Benjamin Netanyahu")
-    if not validate_image(img3):
-        img3 = fetch_pexels_image("United Nations peacekeepers patrol")
+# ── Main ───────────────────────────────────────────────────────────────
+if __name__ == "__main__":
+    print("=" * 60)
+    print("The Videshi — News Writer | 2026-05-28")
+    print("=" * 60)
 
-topic3 = create_topic(
-    "Israel Declares Southern Lebanon a Combat Zone. India Has 642 Soldiers There.",
-    "news",
-    ["Israel", "Lebanon", "Hezbollah", "UNIFIL", "India peacekeepers", "Netanyahu", "Iran war", "oil prices"]
-)
+    success_count = 0
+    for article_fn in [article_1, article_2, article_3]:
+        try:
+            article = article_fn()
+            if article:
+                if publish_article(article):
+                    success_count += 1
+        except Exception as e:
+            print(f"  ✗ Error: {e}")
 
-if topic3:
-    publish_article({
-        "headline": "Israel Just Declared Southern Lebanon a Combat Zone. India Has 642 Soldiers There.",
-        "subheadline": "Netanyahu ordered the IDF to expand operations past its security zone, with 120-plus strikes in a single day. At least 608 people have been killed since the April ceasefire. India's UNIFIL contingent is caught in the middle.",
-        "slug": "israel-lebanon-combat-zone-india-unifil-642-peacekeepers-hezbollah-20260528",
-        "image_url": img3,
-        "image_caption": "UN peacekeeping forces in Lebanon, where India maintains a 642-strong UNIFIL contingent",
-        "image_attribution": "Wikimedia Commons",
-        "tags": ["Israel", "Lebanon", "Hezbollah", "UNIFIL", "India", "peacekeeping", "Iran war", "oil prices"],
-        "sources": [
-            {"name": "Reuters", "url": "https://www.reuters.com/world/middle-east/israel-declares-new-swathe-lebanon-combat-zone-warns-residents-leave-2026-05-27/"},
-            {"name": "Le Monde", "url": "https://www.lemonde.fr/en/international/article/2026/05/27/israel-launches-new-military-escalation-in-lebanon_6782345_4.html"},
-            {"name": "Wall Street Journal", "url": "https://www.wsj.com/"},
-            {"name": "India MEA", "url": "https://mea.gov.in/"},
-            {"name": "World Health Organization", "url": "https://www.who.int/"}
-        ],
-        "body": """Israel declared all of southern Lebanon south of the Zahrani River "a combat zone" on Tuesday, ordered residents to evacuate, and expanded ground operations past the security zone its forces have occupied since March. Prime Minister Benjamin Netanyahu said the Israeli military was "operating with large forces in the field and capturing and controlling areas" — the most explicit acknowledgment yet that the April 16 ceasefire exists only on paper.
-
-India has 642 soldiers deployed with the United Nations Interim Force in Lebanon. They are now in the middle of what increasingly resembles a full-scale war.
-
-## 120 Strikes in a Day
-
-The Israeli Defense Forces struck more than 120 Hezbollah targets on Tuesday — weapons storage facilities in the Beqaa Valley, infrastructure sites across the south, and positions near the 900-year-old Beaufort Castle, which UNESCO has described as one of the best-preserved medieval fortresses in the region. At least three strikes also hit near Lebanon's largest water reservoir at the Qaraoun Dam in the country's east.
-
-Since the ceasefire took effect on April 17, at least 608 people have been killed in Lebanon in Israeli attacks, according to the World Health Organization. The Israeli military said 10 of its soldiers had been killed in the same period, six by Hezbollah's explosive drones. Total casualties since the Lebanon war began in March have exceeded 3,200, with more than one million people displaced.
-
-Hezbollah launched projectiles into northern Israel on Wednesday. The Israeli military said one landed in an open area with no injuries. But the escalation cycle shows no sign of slowing.
-
-## The Iran Deal Complication
-
-The Lebanon escalation is inseparable from the broader Iran war. Netanyahu is pushing Washington to include "freedom of operation" for Israel in Lebanon as part of any Iran peace deal, according to the Wall Street Journal. Iran insists the opposite — that any ceasefire must include an end to fighting in Lebanon.
-
-This standoff has direct consequences for India. Brent crude jumped 3.3 percent on Tuesday to nearly $100 per barrel after U.S. Secretary of State Marco Rubio — who was in New Delhi for the Quad meeting that same day — said negotiating an Iran deal could "take a few days." India, the world's third-largest oil importer, has already seen petrol cross ₹100 in most cities. IndiGo and Air India have cut domestic flights by up to 22 percent because of soaring jet fuel costs.
-
-The Strait of Hormuz, which carried roughly a fifth of global oil before the Iran war broke out in February, remains partially closed. HSBC noted there is "still considerable uncertainty about how and when the Strait will return to its normal pre-war operations."
-
-## India's 642 Peacekeepers
-
-India is among 30 nations that have urged protection for UNIFIL peacekeepers amid the fighting. The 642-strong Indian contingent serves as part of the broader 8,253-person force from 48 nations, whose mandate was extended until 2027. But the UN Security Council voted earlier this year to end the peacekeeping mission entirely by December 2026, with the Lebanese army expected to take full control of border security.
-
-That timeline now looks impossible. The Lebanese army lacks the capacity to enforce security along the border while Israel is actively expanding its ground operations and Hezbollah is retaliating with drones and rockets. France's ambassador to the UN has condemned attacks on peacekeepers. India has called for accountability.
-
-For Indian families with loved ones in the UNIFIL contingent, the escalation is personal. India has historically been one of the largest contributors to UN peacekeeping operations worldwide, and the Lebanon deployment is among its most dangerous active missions.
-
-## The Economic Shockwave
-
-For India, every day the conflict continues means higher oil import bills, wider current account deficits, and more pressure on the rupee. The Nifty 50 has fallen 8.5 percent this year; the Sensex is down 10.8 percent. Foreign investors have pulled $23 billion out of Indian markets in 2026, and the benchmark index is headed for its first annual decline since 2015.
-
-Small-cap and mid-cap stocks have held up better — rising about 3 percent each — supported by domestic liquidity and what Tata Mutual Fund's Chandraprakash Padiyar called "normalisation in valuations after the earlier phase of excesses." But the macro picture, driven almost entirely by the Iran war's energy shock, remains the dominant headwind.
-
-India's 642 peacekeepers remain at their posts. The combat zone has now been declared around them."""
-    }, topic3)
-
-print("\n=== News writer complete ===")
+    print(f"\n{'=' * 60}")
+    print(f"Done. Published {success_count}/3 articles.")
+    print("=" * 60)
