@@ -69,10 +69,16 @@ function InstagramEmbedCard({
   const sc = post.shortcode || extractInstaShortcode(post.url);
   const embedRef = useRef<HTMLDivElement>(null);
   const [processed, setProcessed] = useState(false);
+  // Once activated, stay alive — never tear down
+  const [everActivated, setEverActivated] = useState(false);
+
+  useEffect(() => {
+    if (active && !everActivated) setEverActivated(true);
+  }, [active, everActivated]);
 
   // Process embed when card becomes active
   useEffect(() => {
-    if (!active || !sc || processed) return;
+    if (!everActivated || !sc || processed) return;
     ensureInstagramEmbed(() => {
       // Short delay to let the blockquote render in DOM
       setTimeout(() => {
@@ -80,7 +86,7 @@ function InstagramEmbedCard({
         setProcessed(true);
       }, 100);
     });
-  }, [active, sc, processed]);
+  }, [everActivated, sc, processed]);
 
   // Re-process if shortcode changes
   useEffect(() => {
@@ -100,19 +106,28 @@ function InstagramEmbedCard({
         style={{
           position: "relative",
           width: "100%",
+          aspectRatio: "3/4",
           borderRadius: 12,
           overflow: "hidden",
-          background: "#fafafa",
+          background: "#1a1a1a",
           boxShadow: "0 2px 8px rgba(0,0,0,0.10)",
         }}
       >
-        {active && sc ? (
+        {everActivated && sc ? (
           <div
             ref={embedRef}
             onClick={(e) => {
-              // Don't intercept clicks on the actual embed iframe
               if ((e.target as HTMLElement).tagName === "IFRAME") return;
               onClick();
+            }}
+            className="ig-embed-minimal"
+            style={{
+              position: "absolute",
+              top: -54,   /* Crop Instagram header (profile pic, handle, follow) */
+              left: 0,
+              right: 0,
+              bottom: -100, /* Extend past container to hide footer/likes/captions */
+              pointerEvents: "none", /* Let clicks pass to parent */
             }}
           >
             <blockquote
@@ -122,7 +137,7 @@ function InstagramEmbedCard({
               style={{
                 background: "#FFF",
                 border: 0,
-                borderRadius: 12,
+                borderRadius: 0,
                 boxShadow: "none",
                 margin: 0,
                 maxWidth: "100%",
@@ -399,14 +414,20 @@ export default function CelebrityBuzz() {
           min-width: 100% !important;
           width: 100% !important;
           margin: 0 !important;
-          border-radius: 12px !important;
+          border-radius: 0 !important;
           box-shadow: none !important;
         }
         .celeb-buzz-strip .instagram-media iframe {
           max-width: 100% !important;
           min-width: 100% !important;
           width: 100% !important;
-          border-radius: 12px !important;
+          border-radius: 0 !important;
+        }
+        .ig-embed-minimal {
+          pointer-events: none;
+        }
+        .ig-embed-minimal iframe {
+          pointer-events: auto;
         }
       `}</style>
 
