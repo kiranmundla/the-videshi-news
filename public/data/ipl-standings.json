@@ -1,7 +1,7 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-28T10:55:30Z",
-  "stage": "PLAYOFFS. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1 done: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator done: RR beat SRH by 47 runs (May 27, New Chandigarh). Qualifier 2: GT vs RR (May 29). Final: RCB vs Q2 winner (May 31, Ahmedabad).",
+  "last_updated": "2026-05-28T12:00:00Z",
+  "stage": "PLAYOFFS. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1 done: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator done: RR beat SRH by 47 runs (May 27, Hyderabad). Qualifier 2: GT vs RR (May 29, Ahmedabad). Final: RCB vs Q2 winner (May 31, Ahmedabad).",
   "recent_results": [
     {
       "team1": "RR",
@@ -11,7 +11,7 @@
       "winner": "RR",
       "margin": "47 runs",
       "date": "May 27",
-      "venue": "New Chandigarh",
+      "venue": "Hyderabad",
       "match": "Eliminator"
     },
     {
@@ -60,7 +60,7 @@
     }
   ],
   "upcoming": [
-    "Qualifier 2: GT vs RR (May 29, New Chandigarh)",
+    "Qualifier 2: GT vs RR (May 29, Ahmedabad)",
     "FINAL: RCB vs Q2 winner (May 31, Ahmedabad)"
   ],
   "standings": [
@@ -184,13 +184,13 @@
     },
     "eliminator": {
       "date": "May 27",
-      "venue": "New Chandigarh",
+      "venue": "Hyderabad",
       "result": "RR 243/8 beat SRH 196/10 by 47 runs",
       "key": "Sooryavanshi 97 with 12 sixes, Archer 3/58; Klaasen 56(31) led SRH chase"
     },
     "qualifier2": {
       "date": "May 29",
-      "venue": "New Chandigarh",
+      "venue": "Ahmedabad (Narendra Modi Stadium)",
       "teams": "GT vs RR"
     },
     "final": {
@@ -204,6 +204,6 @@
     "team2": "RR",
     "date": "May 29",
     "time": "7:30 PM IST",
-    "venue": "New Chandigarh"
+    "venue": "Ahmedabad"
   }
 }

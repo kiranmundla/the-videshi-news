@@ -1,33 +1,38 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-05-28 batch."""
+"""Entertainment writer for The Videshi — 2026-05-28 batch"""
 
 import json, os, sys, time, uuid, re
-import requests
 from datetime import datetime, timezone
+import requests
+import subprocess
 
-# ── Supabase config ──────────────────────────────────────────────────────────
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+# Load env
+def load_env(path):
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    k, v = line.split('=', 1)
+                    os.environ[k] = v
+
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
 
-PEXELS_KEY = None
-try:
-    with open(os.path.expanduser("~/.env.pexels")) as f:
-        for line in f:
-            if "PEXELS_API_KEY" in line:
-                PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
-except Exception:
-    pass
-
-# ── Image helpers ────────────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = requests.utils.quote(person_name.replace(' ', '_'))
+    encoded = person_name.replace(' ', '_')
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
@@ -44,320 +49,289 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels. Returns URL or None."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key available")
-        return None
+    """Fetch image from Pexels using curl (urllib gets 403)."""
+    import urllib.parse as _up
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = requests.get(
-                "https://api.pexels.com/v1/search",
-                headers={"Authorization": PEXELS_KEY},
-                params={"query": q, "per_page": 5, "orientation": "landscape"},
-                timeout=10
+            encoded_q = _up.quote(q)
+            result = subprocess.run(
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={encoded_q}&per_page=3&orientation=landscape'],
+                capture_output=True, text=True, timeout=15
             )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for p in photos:
-                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
-                    if url:
-                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                        return url
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            if photos:
+                img_url = photos[0]['src']['large2x']
+                print(f"  ✓ Pexels image found for '{q}': {img_url[:80]}...")
+                return img_url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
 def validate_image(url):
-    """Verify an image URL returns 200 with image content and >5KB."""
+    """Validate image URL returns 200 with image content type and >5KB."""
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
+        content_type = r.headers.get('Content-Type', '')
+        content_length = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in content_type and content_length > 5000:
+            print(f"  ✓ Image validated: {content_length} bytes, {content_type}")
             return True
-        # Try GET for servers that don't support HEAD properly
+        # Try GET if HEAD fails
         r = requests.get(url, timeout=10, stream=True, allow_redirects=True,
                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct:
-            # Read a chunk to verify
-            chunk = r.raw.read(6000)
-            if len(chunk) > 5000:
-                return True
+        content_type = r.headers.get('Content-Type', '')
+        content_length = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in content_type:
+            # Read enough to check size
+            data = b''
+            for chunk in r.iter_content(chunk_size=8192):
+                data += chunk
+                if len(data) > 5000:
+                    print(f"  ✓ Image validated via GET: >{len(data)} bytes")
+                    return True
+            r.close()
     except Exception as e:
-        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
+        print(f"  ⚠ Image validation error: {e}")
     return False
 
-
-def sb_insert(table, payload):
-    """Insert a row into Supabase and return the response."""
+def create_topic(title, category='entertainment'):
+    """Create a topic stub in p2_topics and return its ID."""
+    topic_id = str(uuid.uuid4())
+    payload = {
+        'id': topic_id,
+        'canonical_title': title[:200],
+        'category': category,
+        'status': 'published',
+        'urgency': 'normal',
+        'score_total': 5,
+    }
     r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
+        f"{SUPABASE_URL}/rest/v1/p2_topics",
         headers=HEADERS,
         json=payload,
-        timeout=30,
+        timeout=15
     )
     if r.status_code in (200, 201):
-        data = r.json()
-        return data[0] if isinstance(data, list) and data else data
+        print(f"  ✓ Topic created: {topic_id}")
+        return topic_id
     else:
-        print(f"  ✗ Insert to {table} failed ({r.status_code}): {r.text[:300]}")
+        print(f"  ⚠ Topic creation error: {r.status_code} — {r.text[:200]}")
+        return topic_id  # might still work
+
+def publish_article(article):
+    """Insert article into Supabase."""
+    body_text = article['body']
+    word_count = len(body_text.split())
+    payload = {
+        'id': str(uuid.uuid4()),
+        'headline': article['headline'],
+        'subheadline': article['subheadline'],
+        'body': body_text,
+        'slug': article['slug'],
+        'category': 'entertainment',
+        'status': 'published',
+        'published_at': datetime.now(timezone.utc).isoformat(),
+        'image_url': article.get('image_url'),
+        'image_caption': article.get('image_caption', ''),
+        'image_attribution': article.get('image_attribution', ''),
+        'word_count': word_count,
+        'sources': json.dumps(article.get('sources_list', [])),
+    }
+    
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload,
+        timeout=15
+    )
+    if r.status_code in (200, 201):
+        result = r.json()
+        art_id = result[0]['id'] if isinstance(result, list) else result.get('id', payload['id'])
+        print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
+        return art_id
+    else:
+        print(f"  ✗ FAILED to publish: {r.status_code} — {r.text[:200]}")
         return None
 
+# ============================================================
+# ARTICLE 1: NTR 103rd Birth Anniversary
+# ============================================================
+print("\n=== ARTICLE 1: NTR 103rd Birth Anniversary ===")
 
-# ── Articles ─────────────────────────────────────────────────────────────────
+ntr_image = fetch_wikipedia_person_image("N. T. Rama Rao")
+if not ntr_image:
+    ntr_image = fetch_wikipedia_person_image("N. T. Rama Rao (actor)")
 
-articles = []
+if ntr_image and not validate_image(ntr_image):
+    ntr_image = None
 
-# ─── Article 1: Karuppu ──────────────────────────────────────────────────────
-articles.append({
-    "headline": "Karuppu Was Supposed to Be Vijay's Last Film. Suriya Took It to ₹253 Crore.",
-    "subheadline": "The Tamil fantasy blockbuster was written for the Chief Minister. Then RJ Balaji gave it to Suriya, who delivered the highest-grossing Tamil film of 2026 and his career-best.",
-    "slug": "karuppu-suriya-vijay-last-film-253-crore-rj-balaji-tamil-blockbuster-nri-20260528",
-    "category": "entertainment",
-    "body": """When RJ Balaji sat across from Vijay in a room in Chennai and narrated the story of a guardian deity who disguises himself as a lawyer to fight judicial corruption, both men knew it was a farewell. Vijay was preparing to leave cinema for politics. This was supposed to be his last film.
+article1 = {
+    'headline': "N.T. Rama Rao Was Born 103 Years Ago Today. PM Modi, Chiranjeevi, and Jr NTR All Stopped to Say So.",
+    'subheadline': "The Telugu icon who became a Chief Minister, founded a political dynasty, and played Lord Krishna 17 times was honoured across India on May 28.",
+    'slug': 'ntr-103rd-birth-anniversary-modi-chiranjeevi-jr-ntr-tribute-telugu-cinema-20260528',
+    'image_url': ntr_image,
+    'image_caption': 'N.T. Rama Rao, the Telugu cinema legend and former Andhra Pradesh Chief Minister',
+    'image_attribution': 'Wikimedia Commons',
+    'body': """N.T. Rama Rao was born on May 28, 1923, in Nimmakuru, a village in what is now Andhra Pradesh. He died in 1996. In between, he made over 300 films, played Hindu deities so convincingly that villagers reportedly prayed to his posters, served as Chief Minister three times, and founded the Telugu Desam Party — the political machine that still shapes Andhra politics today.
 
-"This was supposed to be his last film, so we had two or three meetings which went on for some time, discussing things like him entering politics and taking a call as to which film to make as his last film," Balaji told The Hollywood Reporter India.
+On Wednesday, exactly 103 years after his birth, India's political and cinematic establishment lined up to remember him.
 
-Vijay backed out. Balaji respected the decision. And then the producers asked the obvious question: can you narrate it to Suriya?
+## Modi, Chiranjeevi, and the Family
 
-## The Film That Nearly Didn't Happen
+Prime Minister Narendra Modi posted a tribute calling NTR's contributions to cinema and governance "unparalleled." He specifically noted that NTR's welfare schemes — particularly subsidised rice at ₹2 per kilo, launched in the 1980s — established a model that subsequent governments across India would replicate.
 
-Karuppu was initially scheduled for May 14, 2026. Then the shows got cancelled. The audience waited exactly one day. On May 15, Suriya and Trisha Krishnan's fantasy courtroom drama opened across India — and something extraordinary happened.
+Megastar Chiranjeevi, NTR's greatest rival in the Telugu film industry and now a political ally, shared a vintage photograph and wrote that NTR's "influence will never fade from history." The tribute was notable for its warmth — Chiranjeevi and NTR competed fiercely for Telugu audiences through the 1980s, and their political trajectories diverged sharply. For Chiranjeevi to publicly honour NTR's legacy signals how thoroughly the elder actor's reputation has transcended faction.
 
-The film crossed ₹100 crore in Tamil Nadu alone within eight days. It became the first Tamil film in nine months to hit the ₹100 crore mark in India, ending a drought that had lasted since Rajinikanth's Coolie. By Day 12, the worldwide gross had climbed past ₹253 crore, with approximately ₹160 crore in India net and significant overseas contributions.
+Jr NTR — NTR's grandson, now one of Indian cinema's biggest global stars after RRR — visited NTR Ghat in Hyderabad with family members. His social media post was brief and emotional, avoiding the political framing that surrounded other tributes.
 
-For Suriya, this was personal. After years of mid-range commercial results, Karuppu became his first ₹100 crore film in India and his highest-grossing film ever — by a massive margin.
+## The Legacy in Numbers
 
-## Ancient Mythology Meets Modern Courtroom
+NTR won three National Film Awards and a Rashtrapati Award. He played Lord Krishna in 17 films and Lord Rama in multiple others, earning the title *Nataratna* (Jewel of Acting). His 1957 film *Mayabazar* is still regularly cited as one of the greatest Indian films ever made.
 
-The premise is deceptively simple. A father's gold is stolen. He prays to the guardian deity Karuppasamy. The deity takes human form — as a lawyer named Saravanan — and walks into a corrupt courtroom to deliver divine justice. What follows blends Tamil folk religion, superhero-scale action, and genuine social commentary about a judicial system that fails the poor.
+But his political legacy may be larger. The Telugu Desam Party, which he founded in 1982 to challenge the Congress monopoly in Andhra Pradesh, won its first election within nine months — one of the fastest party-to-power transitions in Indian democratic history. The TDP remains a major force in Andhra Pradesh under his grandson-in-law, Chief Minister N. Chandrababu Naidu.
 
-RJ Balaji, who both directed and co-starred, has made a career of wrapping populist political commentary inside commercial Tamil cinema. But Karuppu operates on a different scale. GK Vishnu's cinematography gives the deity sequences an almost mythological grandeur, and Sai Abhyankkar's score pushes the emotional crescendos past standard masala territory.
+## Why This Matters to the Diaspora
 
-## The Suriya-Trisha Reunion
+For Telugu NRIs, NTR is not a historical figure in the way other mid-century Indian actors are. He is a living cultural reference. Telugu associations in the US, UK, and the Gulf regularly screen his mythological films during festivals. The NTR National Award, established in his honour, has been given to Chiranjeevi, Kamal Haasan, and other figures who bridge cinema and public life.
 
-The last time Suriya and Trisha Krishnan shared a screen was in 2005's Aaru — twenty-one years ago. Their reunion in Karuppu has been one of the film's most discussed elements, with audiences and critics both noting the effortless chemistry that time apparently did not diminish.
+Jr NTR's global stardom — RRR played in over 1,000 screens in North America alone — has introduced a new generation of international audiences to the family name. But for older diaspora audiences, the grandson is simply carrying forward something that started in a village in coastal Andhra a century ago.
 
-The supporting cast includes Indrans (the National Award-winning Malayalam actor making his Tamil debut), Swasika, Sshivada, and Yogi Babu, with RJ Balaji himself playing a key role.
+## What's Next
 
-## A Sequel Is Coming
+The demand for NTR to receive the Bharat Ratna, India's highest civilian honour, has intensified in recent years. Chiranjeevi has publicly backed the campaign. With the BJP-TDP alliance currently governing Andhra Pradesh, the political alignment for such an honour has arguably never been stronger.
 
-At a recent meet-and-greet, Suriya dropped a telling line: "Belief is life." The film's epilogue already hints at a sequel titled Karuppu vs Vellai — Black vs White. Given the box office numbers, it's not a question of if but when.
+Whether or not the award comes, the annual ritual of May 28 tributes shows no sign of fading. In Hyderabad, at NTR Ghat, the flowers were fresh again this morning.
 
-Balaji thanked Vijay — now Tamil Nadu's Chief Minister — in the opening credits. Vijay personally congratulated the team after the film's release. "The entire thing happened because he asked me the right questions after my narration, questions that made my film and my script better," Balaji said.
+*Sources: PM Modi's official tribute, Chiranjeevi's social media post, IndiaPost, BizzBuzz News, The Popular Story*"""
+}
 
-## What It Means for the Diaspora
+art1_id = publish_article(article1)
 
-Karuppu is streaming in Tamil, Telugu (as Veerabhadrudu), Hindi, Malayalam, and Kannada — making it accessible to virtually every Indian language audience abroad. The film's overseas gross of approximately ₹57 crore in its first week alone signals that the Tamil diaspora showed up in force, particularly in Malaysia, Singapore, the US, and the Gulf states.
+# ============================================================
+# ARTICLE 2: Dhinchak Pooja Gets Married
+# ============================================================
+print("\n=== ARTICLE 2: Dhinchak Pooja Wedding ===")
 
-For NRIs who grew up watching Suriya in Ghajini, Kaakha Kaakha, and Singham, this is the comeback they have been waiting for — and perhaps the most satisfying second act in contemporary Tamil cinema.""",
-    "sources": [
-        {"url": "https://www.hollywoodreporterindia.com", "name": "The Hollywood Reporter India"},
-        {"url": "https://www.cinemaexpress.com", "name": "Cinema Express"},
-        {"url": "https://www.pinkvilla.com", "name": "Pinkvilla"},
-        {"url": "https://www.koimoi.com", "name": "Koimoi"},
-    ],
-    "vertical": "entertainment",
-    "tags": ["Suriya", "Karuppu", "Vijay", "RJ Balaji", "Tamil cinema", "Trisha Krishnan", "box office"],
-    "image_person": "Suriya (actor)",
-    "image_attribution": "Wikimedia Commons",
-})
+pooja_image = fetch_wikipedia_person_image("Dhinchak Pooja")
+if not pooja_image or not validate_image(pooja_image):
+    # She's an internet personality, try Pexels for Indian wedding
+    pooja_image = fetch_pexels_image("Indian wedding bride ceremony", "Indian bridal mehendi celebration")
+    if pooja_image and not validate_image(pooja_image):
+        pooja_image = None
 
-# ─── Article 2: Bhooth Bangla ────────────────────────────────────────────────
-articles.append({
-    "headline": "Bhooth Bangla Just Crossed ₹260 Crore. Akshay Kumar's Longest Box Office Run in a Decade.",
-    "subheadline": "Priyadarshan's horror-comedy is the third-biggest Bollywood grosser of 2026 and Akshay Kumar's most durable hit since Housefull 4. It's still in theatres on Day 40.",
-    "slug": "bhooth-bangla-260-crore-akshay-kumar-priyadarshan-horror-comedy-third-biggest-2026-nri-20260528",
-    "category": "entertainment",
-    "body": """Forty days into its theatrical run, Bhooth Bangla is still filling seats. That sentence, applied to an Akshay Kumar film in 2026, would have been dismissed as fantasy three months ago.
+article2 = {
+    'headline': "The Internet's Most Trolled Singer Just Got Married. She Hid the Groom's Face. Fans Want a Wedding Song.",
+    'subheadline': "Dhinchak Pooja — whose 'Selfie Maine Leli Aaj' defined a generation of cringe-pop — shared bridal photos on Instagram. The internet responded exactly how you'd expect.",
+    'slug': 'dhinchak-pooja-married-wedding-selfie-maine-leli-aaj-singer-groom-hidden-viral-20260528',
+    'image_url': pooja_image,
+    'image_caption': 'Dhinchak Pooja shared wedding photos on Instagram, keeping her husband\'s identity hidden',
+    'image_attribution': 'Pexels' if pooja_image and 'pexels' in (pooja_image or '') else 'Wikimedia Commons',
+    'body': """Dhinchak Pooja got married. The internet's most polarising singer — the woman who uploaded "Selfie Maine Leli Aaj" in 2017 and accidentally invented an entire genre of cringe-pop — shared her wedding photos and clips on Instagram on Wednesday, and the reaction has been exactly what you'd expect: chaotic, affectionate, and deeply meme-driven.
 
-The horror-comedy directed by Priyadarshan has crossed ₹260 crore worldwide — approximately ₹175 crore net in India and over ₹48 crore from overseas territories. It is now the third-highest-grossing Bollywood film of 2026, behind only the Dhurandhar franchise's colossal numbers. And for Akshay Kumar, it represents something far more significant than a box office milestone.
+## What We Know
 
-## The Priyadarshan Factor
+Pooja, whose real name is Pooja Jain, posted images from what appear to be her sangeet, mehendi, haldi, and wedding ceremonies. She wore a pink bridal look. She did not reveal the groom's name. She did not show his face. The clips are edited in her signature style — slightly off-beat, oddly sincere, and impossible to look away from.
 
-Priyadarshan and Akshay Kumar built an empire together in the 2000s. Hera Pheri, Bhool Bhulaiyaa, Bhagam Bhag, Garam Masala — these films defined a generation of Bollywood comedy. Then came a decade-long gap, during which Akshay shifted to nationalistic dramas, social message films, and action thrillers with diminishing returns.
+Her 788,000 Instagram followers immediately began doing what Dhinchak Pooja fans have always done: oscillating between genuine congratulations and requests for content.
 
-Bhooth Bangla is a deliberate return to what worked. Priyadarshan has constructed a haunted-house comedy that plays on every horror trope while relying on Kumar's physical comedy instincts — the same instincts that made Bhool Bhulaiyaa a cultural landmark in 2007.
+"Where is the wedding song?" was the most common comment. "Selfie Maine Leli Aaj — shaadi edition" trended within hours.
 
-The results speak for themselves. Bhooth Bangla has already surpassed OMG 2 to become Akshay Kumar's third-biggest post-pandemic film. Its legs are remarkable: the film earned ₹100 crore in India by Day 13 and has continued adding steady numbers through its fifth and sixth weeks, a rarity in an era where most Bollywood films evaporate after the opening weekend.
+## The Unlikely Cultural Legacy
 
-## Horror-Comedy: Bollywood's Safest Bet
+It is easy to dismiss Dhinchak Pooja. Millions of people have, loudly and repeatedly, since she first appeared on YouTube nearly a decade ago. Her songs — "Selfie Maine Leli Aaj," "Dilon Ka Shooter," "Baapu Dede Thoda Cash" — violated every conventional standard of pitch, production, and musical competence. They were also unstoppable. "Selfie Maine Leli Aaj" crossed 40 million views before YouTube took it down for spam reports. It was re-uploaded. It kept spreading.
 
-The genre is on an unprecedented streak. Stree 2 shattered records in 2024. Bhool Bhulaiyaa 3 crossed ₹400 crore worldwide in the same year. Now Bhooth Bangla adds another data point to what is becoming Bollywood's most reliable formula.
+What Pooja understood, perhaps before the Indian internet fully grasped it, was that virality does not require quality. It requires memorability. Her songs burrowed into the national consciousness not despite their flaws but because of them. She appeared on Bigg Boss 11. She became a meme template. She outlasted dozens of "real" artists who debuted in the same era.
 
-The pattern is clear: Indian audiences are choosing laughter and scares over earnest social dramas. The horror-comedy allows for star-driven set pieces, memorable supporting characters, catchy music, and franchise potential — all wrapped in a premise that travels across demographics.
+For the Indian diaspora, Dhinchak Pooja occupies a specific cultural niche: she is the reference that every NRI cousin understands. At desi parties from Edison to Fremont, someone has played "Dilon Ka Shooter" ironically. That ironic play has outlasted most of the year's Bollywood soundtrack.
 
-Bhooth Bangla benefits particularly from occupancy in Tier 2 and Tier 3 cities, where family audiences have driven its weekday numbers consistently. Cities like Pune, Bengaluru, and Ahmedabad have shown stronger holds than the traditional Mumbai-Delhi corridor.
+## The Groom Mystery
 
-## The BookMyShow Record
+The deliberate decision to hide the groom's face is either savvy content strategy or genuine privacy — and with Dhinchak Pooja, the line between the two has always been blurry. Several fan accounts and news outlets are now speculating about the identity, comparing hand jewellery and clothing in different photos. This is precisely the kind of internet detective work that Pooja's career has always generated.
 
-Bollywood's box office in 2026 has been dominated by a single metric: BookMyShow ticket sales. Dhurandhar 2 crossed 18 million tickets on the platform, an all-time record. Bhooth Bangla, while not in that stratosphere, has comfortably entered the top-performing films of the year on the platform, validating the horror-comedy genre's mainstream appeal.
+MensXP and several other outlets raised the question of whether the entire thing might be a music video rather than a real wedding, citing Pooja's history of blurring the line between personal content and performance. As of Wednesday evening, she has not clarified.
 
-What is notable about Bhooth Bangla's performance is not the peak but the plateau. The film's daily collections have remained above ₹1 crore even in its sixth week — a feat that most 2026 Bollywood releases, including some that opened much bigger, could not sustain.
+## What's Next
 
-## Why the Diaspora Cares
+If history is any guide, a Dhinchak Pooja wedding song is coming. The demand is already there. The audience is already primed. And if there is one thing Pooja Jain has proven over the past nine years, it is that she will always give the internet exactly what it asks for — just not in the way anyone expects.
 
-For NRIs, the Priyadarshan-Akshay reunion carries deep nostalgia value. Hera Pheri and Bhool Bhulaiyaa are comfort films for an entire generation that grew up in Indian households abroad — films that played at family gatherings, on road trips, and during every Diwali weekend.
+The comments section under her post is, as always, a masterpiece of contradictions: "Queen 👑," "Please no wedding song 🙏," "Where is the song??? 😭," and "This woman is more consistent than half of Bollywood."
 
-Bhooth Bangla's overseas gross of ₹48 crore confirms that the diaspora responded to that nostalgia. The film's clean comedy and family-friendly tone — no graphic violence, no heavy social messaging — made it an easy choice for multiplex audiences in North America, the UK, and Australia.
+She is. And now she's married.
 
-The question now is whether this represents a genuine course correction for Akshay Kumar's career. His recent track record has been uneven: Selfiee, Bade Miyan Chote Miyan, Khel Khel Mein, and Sarfira all underperformed. Bhooth Bangla suggests the answer was always obvious — stay in the lane where the audience already loves you.""",
-    "sources": [
-        {"url": "https://sacnilk.com", "name": "Sacnilk"},
-        {"url": "https://www.bollywoodhungama.com", "name": "Bollywood Hungama"},
-        {"url": "https://www.koimoi.com", "name": "Koimoi"},
-    ],
-    "vertical": "entertainment",
-    "tags": ["Akshay Kumar", "Bhooth Bangla", "Priyadarshan", "horror-comedy", "box office", "Bollywood 2026"],
-    "image_person": "Akshay Kumar",
-    "image_attribution": "Wikimedia Commons",
-})
+*Sources: LiveMint, MensXP, Inshorts, SaptashwaTV, News Jobaaj*"""
+}
 
-# ─── Article 3: Netflix Telugu Slate ──────────────────────────────────────────
-articles.append({
-    "headline": "Netflix Just Spent Over ₹500 Crore on Telugu Cinema. This Is the 2026 Slate.",
-    "subheadline": "Thirteen films. Ram Charan, Pawan Kalyan, Nani, Fahadh Faasil, Vijay Deverakonda, Dulquer Salmaan. The streaming giant's Telugu bet is now bigger than most Bollywood budgets.",
-    "slug": "netflix-telugu-slate-2026-500-crore-peddi-pawan-kalyan-nani-tollywood-nri-streaming-20260528",
-    "category": "entertainment",
-    "body": """Netflix South has unveiled its 2026 Telugu film slate, and the numbers are staggering. The streaming giant has secured post-theatrical digital rights for thirteen Telugu films, with reported acquisition costs that collectively exceed ₹500 crore — a figure that, even two years ago, would have seemed implausible for a single regional language.
+art2_id = publish_article(article2)
 
-The headline deal: ₹105–130 crore for Ram Charan's Peddi alone. Then ₹80–100 crore for Pawan Kalyan's Ustaad Bhagat Singh. Then ₹65 crore for Nani's The Paradise. The economics of Telugu cinema have shifted permanently, and Netflix is leading the bet.
+# ============================================================
+# ARTICLE 3: Raja Shivaji Breaks Sairat's Record
+# ============================================================
+print("\n=== ARTICLE 3: Raja Shivaji ===")
 
-## The Big Three
+riteish_image = fetch_wikipedia_person_image("Riteish Deshmukh")
+if not riteish_image or not validate_image(riteish_image):
+    riteish_image = fetch_pexels_image("Shivaji Maharaj statue monument", "Marathi cinema historical")
+    if riteish_image and not validate_image(riteish_image):
+        riteish_image = None
 
-**Peddi** opens June 4 with A.R. Rahman's soundtrack, a ₹250–300 crore production budget, and advance booking numbers in North America that are already challenging RRR's premiere records. Ram Charan plays a rugged 1980s villager who uses cricket to defend his community's honour. The first single, Chikiri Chikiri, crossed 200 million views. Netflix's digital rights deal helps the film recover a massive portion of its budget before a single ticket is sold.
+article3 = {
+    'headline': "A Marathi Film Just Broke a Record That Stood for Ten Years. Riteish Deshmukh Directed It.",
+    'subheadline': "Raja Shivaji crossed ₹114 crore worldwide in 26 days, surpassing Sairat's ₹110 crore lifetime. While Bollywood's May flopped, Marathi cinema made history.",
+    'slug': 'raja-shivaji-highest-grossing-marathi-film-sairat-record-riteish-deshmukh-114-crore-20260528',
+    'image_url': riteish_image,
+    'image_caption': 'Riteish Deshmukh, who directed and starred in Raja Shivaji',
+    'image_attribution': 'Wikimedia Commons',
+    'body': """For ten years, Sairat held the record. Nagraj Manjule's 2016 love story about caste and consequence earned ₹110 crore worldwide and became the film that proved Marathi cinema could play in the big leagues. No Marathi film had come close since.
 
-**Ustaad Bhagat Singh** marks Pawan Kalyan's return to the screen after his political commitments. Director Harish Shankar has confirmed this is an original script — not a remake — tailored specifically for the Power Star. Pawan Kalyan plays a police officer, with Sreeleela and Raashii Khanna in the cast. The budget sits at ₹150–170 crore, and Netflix's reported ₹80–100 crore digital deal underscores the platform's belief in the film's global appeal.
+Raja Shivaji just passed it. In 26 days.
 
-**The Paradise** reunites Nani with Dasara director Srikanth Odela in what Nani himself has called "India's Mad Max." Set in 1980s Secunderabad, it follows a marginalized community's fight for survival, with Mohan Babu as the antagonist and Raghav Juyal making his Telugu debut. Anirudh Ravichander composed the score. Netflix paid ₹65 crore for the streaming rights — the highest for any Nani film.
+Riteish Deshmukh's directorial debut — a historical epic about Chhatrapati Shivaji Maharaj's rise to power — has crossed ₹114 crore worldwide as of May 27, with ₹109.8 crore in India alone across 87,098 shows. It is now the highest-grossing Marathi film of all time.
 
-## The Prestige Projects
+## The Numbers Tell a Story
 
-Two films on the slate carry particular weight for cinephiles.
+The breakdown is revealing. The Marathi version — the film's primary audience — contributed ₹67.4 crore net from 38,130 shows, maintaining an average occupancy of 33.8%. The Hindi version added ₹24.65 crore from a much wider spread of 47,296 shows, at 13.4% occupancy.
 
-**Don't Trouble the Trouble** pairs Fahadh Faasil — arguably the best actor working in Indian cinema — with director Shashank Yeleti, and is presented by SS Rajamouli under Arka Mediaworks. A fantasy-tinged drama about a character who "counts his fortune amidst sirens and screams," it will stream in five languages after its theatrical run. Rajamouli's name as presenter alone elevates this beyond a standard acquisition.
+What this means: Marathi audiences showed up in force and kept showing up. The Hindi crossover extended the film's reach but wasn't the primary driver. This is a Marathi film that won on Marathi terms, in Marathi theatres, with Marathi-speaking audiences — and then happened to find Hindi audiences too.
 
-**VD14** is Vijay Deverakonda's most ambitious project: a period epic set during British colonial rule in the Rayalaseema region (1854–1878). The cast is extraordinary — Amitabh Bachchan in a pivotal role, Rashmika Mandanna, and South African actor Arnold Vosloo (The Mummy) as a British officer. Ajay-Atul composed the score. The budget exceeds ₹100 crore.
+On its opening day, Raja Shivaji earned ₹13.5 crore. By day three, it had hit ₹14.3 crore in a single day. It crossed ₹50 crore in five days. It hit ₹100 crore on day 17. The holds were remarkable — a 53% drop from week two to week three is strong for any Indian film, exceptional for a Marathi one.
 
-## The Discovery Plays
+## Why Riteish Deshmukh Matters
 
-Netflix's Telugu slate is not all star-driven spectacle. 418 is a supernatural thriller about a haunted hotel room. Biker is India's first authentic motocross racing film, with Sharwanand undergoing real track training. Raakaasa headlines Sangeeth Shobhan in a revenge thriller. Funky reunites Vishwak Sen with Jathi Ratnalu director Anudeep KV for a satire on the film industry itself.
+Riteish Deshmukh is best known to Bollywood audiences as a comic actor — the guy from Housefull, the charmer from Grand Masti, the sidekick in a dozen ensemble comedies. But he is also Vilasrao Deshmukh's son — the late Chief Minister of Maharashtra — and his Marathi identity has always run deeper than his Bollywood filmography suggests.
 
-These mid-budget films — with budgets between ₹30–60 crore — represent Netflix's conviction that Telugu cinema's audience has an appetite beyond the ₹100-crore tentpoles.
+His decision to direct a film about Shivaji Maharaj, the foundational figure of Marathi identity and pride, was not casual. It was a statement about where his creative ambitions actually live. That the film also features Abhishek Bachchan — for whom Raja Shivaji has become his sixth highest-grossing film — speaks to the scale Deshmukh was aiming for. But the heart of the film is Marathi.
 
-## What It Means for NRIs
+## Bollywood's Worst May vs. Marathi's Best
 
-Here is the shift that matters for the diaspora: these thirteen films will be available globally on Netflix in Telugu, Tamil, Hindi, Malayalam, and Kannada within weeks of their theatrical release. For NRIs who cannot get to an Indian cinema, or who live in cities without Telugu-language screens, Netflix has essentially become the primary window.
+The timing makes this story sharper. May 2026 has been brutal for Bollywood. Pati Patni Aur Woh Do managed ₹53.85 crore worldwide — underwhelming for a sequel with name recognition. Chand Mera Dil, Karan Johar's romantic drama, scraped ₹21 crore in five days. The two biggest Hindi releases of the month collectively earned less than one Marathi film about a 17th-century warrior king.
 
-The platform's investment also reflects a demographic truth. Telugu-speaking audiences abroad — particularly in the US, UK, Canada, and Australia — are among the highest-spending diaspora moviegoers per capita. They drove Baahubali's international gross. They made RRR a global phenomenon. They powered Pushpa 2's overseas numbers.
+Meanwhile, Marathi cinema produced not one but two hits. Deool Band 2, a devotional comedy-drama directed by Pravin Tarde, opened to ₹2.45 crore, grew through word of mouth, and hit ₹26.5 crore in six days. With a budget estimated at ₹8-10 crore, it's marching toward blockbuster status. It became the second-highest Marathi opener of 2026, behind only Raja Shivaji.
 
-Netflix is not making a bet on Telugu cinema. It is following the money that the diaspora already laid down.
+## The Diaspora Connection
 
-## The Bigger Picture
+For Maharashtrian NRIs, Shivaji Maharaj is not a historical figure — he is a living cultural reference, invoked at every Marathi community gathering from New Jersey to the Bay Area. The film's overseas collection of ₹4.18 crore is modest compared to Telugu or Tamil blockbusters, but for a Marathi film, it represents unprecedented international interest.
 
-Two years ago, Netflix India was perceived as a Hindi-first platform struggling with subscriber churn. The Telugu slate announcement is the clearest signal yet that the strategy has fundamentally changed. Regional cinema — particularly from the South — is now the growth engine.
+Sairat's record-breaking run in 2016 coincided with a surge in Marathi cultural pride among diaspora communities. Raja Shivaji's success may accelerate that trend. When a Marathi film about the community's most revered historical figure becomes the industry's biggest hit ever, it sends a signal: there is a global Marathi audience willing to show up in theatres.
 
-JioHotstar's ₹4,000 crore investment in South Indian content, announced earlier this week, confirms the trend. Amazon Prime Video has been acquiring Tamil and Malayalam rights aggressively. But Netflix's Telugu slate, with its combination of star power, auteur-driven projects, and mid-budget genre films, represents the most coherent and ambitious regional cinema strategy from any global streaming platform operating in India.
+## What Comes Next
 
-The era of Telugu cinema as a "regional" afterthought is over. The numbers have made that argument for years. Netflix just put ₹500 crore behind the obvious conclusion.""",
-    "sources": [
-        {"url": "https://sacnilk.com", "name": "Sacnilk"},
-        {"url": "https://www.filmibeat.com", "name": "FilmiBeat"},
-        {"url": "https://www.whats-on-netflix.com", "name": "What's on Netflix"},
-        {"url": "https://bizzbuzz.news", "name": "Bizz Buzz"},
-    ],
-    "vertical": "entertainment",
-    "tags": ["Netflix", "Telugu cinema", "Tollywood", "OTT", "streaming", "Peddi", "Pawan Kalyan", "Nani"],
-    "image_person": "Nani (actor)",
-    "image_attribution": "Wikimedia Commons",
-})
+The trade is now watching whether Raja Shivaji can sustain its run long enough to push past ₹120-130 crore before its digital premiere. More importantly, it is watching whether this success — combined with Deool Band 2's strong performance — signals a structural shift in Marathi cinema's commercial ceiling.
 
+For a decade, Sairat's ₹110 crore stood as both a record and a ceiling. Raja Shivaji has broken through it. The question now is whether other Marathi filmmakers will follow Riteish Deshmukh through the door he just opened.
 
-# ── Main execution ───────────────────────────────────────────────────────────
-def main():
-    published = 0
-    
-    for i, art in enumerate(articles, 1):
-        print(f"\n{'='*60}")
-        print(f"Article {i}: {art['headline'][:60]}...")
-        print(f"{'='*60}")
-        
-        # 1. Source image
-        person = art.get("image_person")
-        img_url = None
-        img_attr = art.get("image_attribution", "")
-        
-        if person:
-            img_url = fetch_wikipedia_person_image(person)
-            if not img_url:
-                # Try alternate forms
-                alt = person.split("(")[0].strip()
-                if alt != person:
-                    img_url = fetch_wikipedia_person_image(alt)
-        
-        if img_url:
-            if validate_image(img_url):
-                print(f"  ✓ Image validated: {img_url[:60]}...")
-            else:
-                print(f"  ✗ Image validation failed, trying Pexels fallback")
-                img_url = fetch_pexels_image(person.split("(")[0].strip() if person else art["slug"][:20])
-                img_attr = "Pexels"
-                if img_url and not validate_image(img_url):
-                    img_url = None
-                    img_attr = ""
-        
-        if not img_url:
-            print(f"  ⚠ No valid image found, publishing without image")
-        
-        # 2. Build payload
-        article_id = str(uuid.uuid4())
-        now_iso = datetime.now(timezone.utc).isoformat()
-        
-        payload = {
-            "id": article_id,
-            "headline": art["headline"],
-            "subheadline": art["subheadline"],
-            "slug": art["slug"],
-            "category": art["category"],
-            "vertical": art.get("vertical", art["category"]),
-            "body": art["body"].strip(),
-            "sources": art["sources"],
-            "tags": art.get("tags", []),
-            "status": "published",
-            "published_at": now_iso,
-            "created_at": now_iso,
-            "image_url": img_url or None,
-            "image_caption": f"Photo: {img_attr}" if img_url else None,
-            "image_attribution": img_attr if img_url else None,
-        }
-        
-        # 3. Insert into Supabase
-        result = sb_insert("p2_articles", payload)
-        if result:
-            aid = result.get("id", article_id)
-            print(f"  ✓ Published: {art['slug']}")
-            print(f"    ID: {aid}")
-            print(f"    Category: {art['category']}")
-            print(f"    Image: {'Yes' if img_url else 'No'}")
-            published += 1
-        else:
-            print(f"  ✗ Failed to publish: {art['slug']}")
-        
-        time.sleep(1)  # Brief pause between inserts
-    
-    print(f"\n{'='*60}")
-    print(f"DONE: {published}/{len(articles)} articles published")
-    print(f"{'='*60}")
-    return 0 if published == len(articles) else 1
+*Sources: Sacnilk box office data, Pinkvilla, Koimoi, ZoomTV Entertainment*"""
+}
 
+art3_id = publish_article(article3)
 
-if __name__ == "__main__":
-    sys.exit(main())
+# Summary
+print("\n=== BATCH COMPLETE ===")
+print(f"Published: {sum(1 for x in [art1_id, art2_id, art3_id] if x)}/3 articles")
+for label, aid in [("NTR Anniversary", art1_id), ("Dhinchak Pooja", art2_id), ("Raja Shivaji", art3_id)]:
+    print(f"  {'✓' if aid else '✗'} {label}: {aid or 'FAILED'}")
