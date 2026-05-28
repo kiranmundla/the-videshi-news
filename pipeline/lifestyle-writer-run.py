@@ -1,52 +1,29 @@
 #!/usr/bin/env python3
-"""Lifestyle-health & markets-finance writer — 2026-05-27 run"""
+"""
+Videshi Lifestyle-Health + Markets-Finance Writer
+Run: 2026-05-27 19:00 PDT
+Articles:
+1. GLP-1 drugs linked to slowing cancer spread (lifestyle-health)
+2. Food dyes linked to diabetes & cancer risk (lifestyle-health)
+3. India markets: first yearly decline in a decade (markets-finance)
+"""
 
-import json, os, uuid, requests, urllib.parse
+import json, os, sys, uuid, requests, urllib.parse
 from datetime import datetime, timezone
 
-# Load env
-def load_env(path):
-    try:
-        with open(os.path.expanduser(path)) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
-    except FileNotFoundError:
-        pass
-
-load_env('~/.env.supabase')
-load_env('~/workspace/.env.pexels')
-
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+# --- Config ---
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
 }
 
-def sb_insert(table, data):
-    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 201):
-        result = r.json()
-        return result[0] if isinstance(result, list) else result
-    else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
-        return None
-
-def sb_patch(table, match, data):
-    params = '&'.join(f"{k}={v}" for k, v in match.items())
-    r = requests.patch(f"{SUPABASE_URL}/rest/v1/{table}?{params}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 204):
-        print(f"  ✓ Patched {table}")
-    else:
-        print(f"  ✗ Patch failed ({r.status_code}): {r.text[:200]}")
-
+# --- Image Sourcing ---
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -66,311 +43,343 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
-    import subprocess
+    """Fetch a relevant image from Pexels. Returns URL or None."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            result = subprocess.run([
-                'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'
-            ], capture_output=True, text=True, timeout=15)
-            data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for p in photos:
-                url = p.get('src', {}).get('large2x') or p.get('src', {}).get('large')
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                headers={"Authorization": PEXELS_KEY},
+                params={"query": q, "per_page": 5, "orientation": "landscape"},
+                timeout=10
+            )
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                for photo in photos:
+                    url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
+                    if url:
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                        return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+
 def validate_image(url):
-    """Verify the URL returns a valid image >5KB."""
-    try:
-        r = requests.get(url, timeout=15, stream=True, headers={"User-Agent": "TheVideshi/1.0"})
-        ct = r.headers.get('Content-Type', '')
-        if 'image' not in ct:
-            print(f"  ⚠ Not an image Content-Type: {ct}")
-            return False
-        # Read enough to confirm size
-        data = b''
-        for chunk in r.iter_content(chunk_size=8192):
-            data += chunk
-            if len(data) > 5000:
-                r.close()
-                return True
-        print(f"  ⚠ Image too small: {len(data)} bytes")
+    """Verify image URL returns HTTP 200 with image content > 5KB."""
+    if not url:
         return False
+    try:
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
+            return True
+        # Try GET if HEAD doesn't return Content-Length
+        if r.status_code == 200 and "image" in ct and cl == 0:
+            r2 = requests.get(url, timeout=10, stream=True,
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
+            r2.close()
+            if len(chunk) > 5000:
+                return True
     except Exception as e:
         print(f"  ⚠ Image validation error: {e}")
-        return False
+    return False
+
 
 def publish_article(article):
-    """Insert article into p2_articles."""
+    """Insert article into Supabase."""
     art_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-    
-    row = {
-        'id': art_id,
-        'headline': article['headline'],
-        'subheadline': article['subheadline'],
-        'body': article['body'],
-        'slug': article['slug'],
-        'category': article['category'],
-        'vertical': article['category'],
-        'sources': json.dumps(article['sources']),
-        'image_url': article.get('image_url'),
-        'image_attribution': article.get('image_attribution', ''),
-        'status': 'published',
-        'published_at': now,
-        'created_at': now
+    topic_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
+
+    # Create topic first
+    cat = article["category"]
+    vertical_map = {
+        "lifestyle-health": "culture",
+        "markets-finance": "economy",
+        "news": "politics",
+        "entertainment": "culture",
+        "sports": "sports",
+        "technology": "tech",
+        "nri-world": "diaspora",
+        "food": "culture",
+        "travel": "culture",
+        "immigration": "policy"
     }
-    
-    result = sb_insert('p2_articles', row)
-    if result:
-        print(f"  ✓ Published: {article['headline'][:60]}... [{article['category']}]")
-        return art_id
-    return None
+    vertical = vertical_map.get(cat, "culture")
 
+    topic_payload = {
+        "id": topic_id,
+        "canonical_title": article["headline"][:200],
+        "vertical": vertical,
+        "category": cat,
+        "status": "published",
+        "score_total": 0,
+        "signal_count": 1,
+        "created_at": now,
+        "updated_at": now
+    }
+    r_topic = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_topics",
+        headers=HEADERS,
+        json=topic_payload
+    )
+    if r_topic.status_code not in (200, 201):
+        print(f"  ⚠ Topic creation: {r_topic.status_code} {r_topic.text[:100]}")
+        return None
+
+    payload = {
+        "id": art_id,
+        "topic_id": topic_id,
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": cat,
+        "vertical": vertical,
+        "sources": json.dumps(article["sources"]),
+        "image_url": article.get("image_url"),
+        "image_caption": article.get("image_caption", ""),
+        "image_attribution": article.get("image_attribution", ""),
+        "status": "published",
+        "published_at": now,
+        "created_at": now,
+        "updated_at": now
+    }
+
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload
+    )
+    if r.status_code in (200, 201):
+        result = r.json()
+        returned_id = result[0]["id"] if isinstance(result, list) and result else art_id
+        print(f"  ✓ Published: {article['headline'][:60]}... [{returned_id}]")
+        return returned_id
+    else:
+        print(f"  ✗ Failed to publish: {r.status_code} {r.text[:200]}")
+        return None
+
+
+# --- Articles ---
+
+articles = []
 
 # ============================================================
-# ARTICLE 1: AHA 2026 Dietary Guidelines — lifestyle-health
+# ARTICLE 1: GLP-1 Drugs and Cancer (lifestyle-health)
 # ============================================================
+art1_body = """A Cleveland Clinic study of 12,112 cancer patients has found that GLP-1 receptor agonists — the drug class that includes Ozempic, Wegovy and Zepbound — are associated with significantly lower rates of cancer progression across four major tumour types. The findings were posted on 21 May on the American Society of Clinical Oncology website ahead of the annual ASCO meeting.
 
-article1 = {
-    'headline': "The American Heart Association Just Rewrote Its Dietary Rules. Your Mother's Indian Kitchen Already Follows Most of Them.",
-    'subheadline': "The 2026 AHA guidelines prioritise plant proteins over meat, push potassium and whole grains, and take a harder line on alcohol. Traditional Indian cooking checks nearly every box — except the one about salt.",
-    'slug': 'aha-2026-dietary-guidelines-indian-kitchen-plant-protein-potassium-20260527',
-    'category': 'lifestyle-health',
-    'sources': [
-        'Lichtenstein AH et al., 2026 Dietary Guidance to Improve Cardiovascular Health, Circulation (AHA Scientific Statement), March 2026',
-        'Health.com — New American Heart Association Guidelines Break Down What to Eat — and What to Skip, May 2026',
-        'Healthline — AHA Releases Updated Heart-Healthy Dietary Guidance, 2026',
-        'MedicalXpress — Following 9 Key Steps for a Lifetime of Eating Well, AHA 2026'
+## The Numbers That Matter
+
+The study, led by Dr Mark David Orland of the Taussig Cancer Institute, compared cancer patients taking GLP-1 drugs against a matched group taking DPP-4 inhibitors, another class of Type 2 diabetes medication. Researchers tracked whether Stage 1 through Stage 3 cancers advanced to Stage 4.
+
+The reductions were substantial. Among non-small cell lung cancer patients, 10 per cent of GLP-1 users progressed to Stage 4, compared with 22 per cent of those on DPP-4 inhibitors. Breast cancer progression dropped from 20 per cent to 10 per cent. Colorectal cancer fell from 22 per cent to 13 per cent. Liver cancer went from 28 per cent to 19 per cent.
+
+Patients whose tumours had higher levels of the GLP-1 receptor itself lived longer. In breast cancer patients, higher GLP-1 receptor expression was linked to a 45 per cent lower risk of death.
+
+## Why This Matters for South Asians
+
+South Asians carry the highest burden of Type 2 diabetes of any ethnic group on earth. In the United States alone, Indian Americans are diagnosed with diabetes at nearly four times the rate of white Americans when adjusted for body mass index. Millions are already on GLP-1 medications or their earlier-generation alternatives.
+
+The implications are double-edged. If you or your parents are taking semaglutide or a related drug for diabetes or weight management, you may already be receiving a cancer-protective benefit that neither you nor your doctor expected. But the study also raises uncomfortable questions about access. GLP-1 drugs remain expensive — Ozempic lists at roughly $900 per month without insurance in the US — and South Asian patients in India and the broader diaspora are far less likely to have access to these medications than those in the West.
+
+## What the Experts Say
+
+Dr Marcin Chwistek of the Fox Chase Cancer Center called the consistency across tumour types particularly noteworthy. "Data this large and this consistent warrant a prospective randomised trial," he said.
+
+Researchers cautioned that the study is observational, not a randomised controlled trial, and cannot prove the drugs directly slowed cancer growth. But they noted no increase in serious side effects, including pancreatitis, among cancer patients on GLP-1 medications.
+
+The working hypothesis is that GLP-1 drugs may fight cancer through multiple pathways — reducing chronic inflammation, altering tumour metabolism and improving immune system surveillance. All three mechanisms are especially relevant for South Asians, who tend toward higher baseline inflammatory markers.
+
+## What to Do With This Information
+
+Do not start taking Ozempic because of this study. That would be reckless. But if you are already on a GLP-1 medication for diabetes or weight management, these findings suggest the drug may be doing more for you than you realised. Discuss the results with your doctor at your next appointment.
+
+If you have a parent or relative in India on older-generation diabetes drugs like metformin or sulfonylureas, this study adds to the growing evidence that GLP-1 medications may offer benefits that extend well beyond blood sugar control. The conversation about upgrading their treatment is worth having — with their endocrinologist, not at the dinner table."""
+
+articles.append({
+    "headline": "The Diabetes Drug Millions of South Asians Already Take May Be Quietly Slowing Their Cancer. A Cleveland Clinic Study of 12,112 Patients Found the Evidence.",
+    "subheadline": "GLP-1 drugs like Ozempic cut cancer progression by up to 55 per cent across four tumour types. South Asians, who carry the world's highest diabetes burden, may be benefiting without knowing it.",
+    "body": art1_body,
+    "slug": "glp1-ozempic-cancer-progression-cleveland-clinic-south-asian-diabetes-20260527",
+    "category": "lifestyle-health",
+    "sources": [
+        {"name": "USA Today", "url": "https://www.usatoday.com/story/news/health/2026/05/23/glp-1-drugs-cancer-may-reduce-cancer-progression/90218499007/"},
+        {"name": "American Society of Clinical Oncology (ASCO)", "url": "https://www.asco.org"},
+        {"name": "Fox News Health", "url": "https://www.foxnews.com/health/ozempic-style-drugs-linked-major-slowdown-cancer-spread"}
     ],
-    'body': """The American Heart Association has released its most consequential dietary update in five years. The 2026 Scientific Statement, published in *Circulation*, replaces the 2021 edition and lays out nine features of a heart-healthy diet that the AHA wants every adult to follow for life. The headline shift: plant proteins should actively replace meat, not merely supplement it.
-
-For the roughly five million Indian Americans navigating a food culture that already revolves around dal, roti, and sabzi, the new guidance reads less like a revolution and more like a homecoming.
-
-## What Changed
-
-The nine pillars of the 2026 guidelines are: balance energy intake with activity; eat plenty of vegetables and fruits; choose whole grains over refined grains; shift protein from meat to plant sources like legumes and nuts; favour unsaturated fats over saturated fats; choose minimally processed foods over ultra-processed ones; minimise added sugars; reduce sodium; and avoid or limit alcohol.
-
-Six of those nine were in the 2021 edition. The meaningful changes lie in emphasis and tone.
-
-**Plant proteins over meat — not alongside it.** The previous guidelines simply recommended plant proteins. The 2026 version explicitly says to *shift from meat to plant sources* — legumes, lentils, beans, nuts, and seeds. Alice Lichtenstein, the volunteer chair of the AHA's writing committee and a senior scientist at Tufts University, explained that plant proteins "are higher in unsaturated fat than saturated fat, and rich in fibre, an under-consumed but important nutrient."
-
-The distinction matters. Replacing a portion of red meat with dal is not the same as adding dal on the side. The AHA now wants the replacement, not the addition.
-
-**Potassium enters the conversation.** For the first time, the AHA highlights potassium alongside sodium as a blood pressure lever. "Sodium and potassium sort of work like teeter-totters. They're best in balance," said Alison Steiber, chief mission officer at the Academy of Nutrition and Dietetics. "But more potassium can have very beneficial blood pressure impacts." Bananas, potatoes, coconut water, and spinach are all potassium-dense — and all common in Indian kitchens.
-
-**Alcohol gets a harder line.** Previous guidelines allowed one to two drinks per day. The 2026 version eliminates any stated safe amount. "When it comes to alcohol consumption, the more you can avoid it, the better," said Lisa Moskovitz, founder of The NY Nutrition Group. For the first time, the AHA also acknowledges that no amount of alcohol is safe with respect to certain cancer risks.
-
-**Ultra-processed food gets a systemic call.** The 2021 edition warned against ultra-processed foods. The 2026 version goes further, calling for marketplace-level change: more minimally processed options wherever food is sold. With American diets estimated at 60 per cent ultra-processed, the AHA is recognising that individual willpower alone cannot solve the problem.
-
-## The Indian Kitchen Advantage
-
-Run through the nine features and count how many a traditional Indian thali already covers.
-
-Vegetables and fruits? The typical thali is built around seasonal sabzi. Whole grains? Roti is whole wheat. Bajra, jowar, and ragi rotis are gaining ground again. Plant protein? Dal is the protein anchor of the Indian plate — toor, moong, masoor, chana, rajma. Unsaturated fats? Mustard oil, groundnut oil, and sesame oil are traditional cooking fats across regions. Minimally processed? A home-cooked Indian meal uses whole ingredients. Added sugars? Traditional Indian cooking uses jaggery sparingly, not high-fructose corn syrup. Alcohol? The majority of Indian adults — and a disproportionate number of Indian women — do not drink.
-
-That is seven out of nine.
-
-The two gaps: sodium and energy balance. Indian cooking is generous with salt. Pickles, papads, and packaged snacks amplify the problem. And portion sizes — especially of rice and bread — tend to exceed what the body needs, particularly for sedentary NRI tech workers who sit ten hours a day and eat as though they still play cricket on weekends.
-
-## What This Means for the Diaspora
-
-The AHA guidelines are written for a general American audience. They do not reference South Asian cardiovascular risk, which is two to four times higher than the general population at equivalent BMI levels. But the dietary pattern they describe — legume-heavy, plant-forward, low in red meat and alcohol, rich in whole grains and unsaturated fats — is remarkably close to the traditional Indian pattern that the diaspora has been slowly abandoning.
-
-Every generation of NRIs drifts further from the home kitchen. The teenagers eat burgers. The young professionals order DoorDash. The parents start buying frozen samosas. The 2026 AHA guidelines are, inadvertently, a case for going back.
-
-The one caveat: traditional does not mean perfect. Ghee is saturated fat. Deep-fried snacks are deep-fried snacks. And the AHA's new emphasis on potassium is an implicit reminder that salt needs to come down. But the architecture of the Indian plate — dal, roti, sabzi, dahi, with small amounts of meat if any — is closer to the AHA's ideal than any Western convenience diet.
-
-Your mother's kitchen was not just feeding you. It was, according to the most powerful cardiology body in the world, protecting your heart."""
-}
+    "image_search": {"pexels": "diabetes medication pills prescription", "pexels_fallback": "medical research laboratory"},
+    "image_caption": "GLP-1 receptor agonists, originally developed for diabetes, are showing unexpected cancer-protective properties",
+    "image_attribution": "Pexels"
+})
 
 # ============================================================
-# ARTICLE 2: Exercise study — lifestyle-health
+# ARTICLE 2: Food Dyes and Diabetes/Cancer (lifestyle-health)
 # ============================================================
+art2_body = """Two landmark studies from the NutriNet-Santé cohort — published in Diabetes Care and the European Journal of Epidemiology — have found that high consumption of food dyes is associated with a 38 per cent increase in Type 2 diabetes risk and a 14 per cent increase in overall cancer risk. The research, conducted with more than 100,000 participants tracked over 14 years, is the first large-scale epidemiological study to document the connection between colour additives and chronic disease.
 
-article2 = {
-    'headline': "A Study of 17,000 Adults Found You Need Four Times More Exercise Than the Guidelines Recommend. The 150-Minute Rule Is a Floor, Not a Ceiling.",
-    'subheadline': "Researchers at Macao Polytechnic University found that 560 to 610 minutes of weekly aerobic exercise — about 85 minutes a day — reduced cardiovascular events by more than 30 per cent. The standard 150-minute guideline cut risk by only 8 per cent.",
-    'slug': 'exercise-four-times-more-150-minutes-heart-attack-stroke-bjsm-study-20260527',
-    'category': 'lifestyle-health',
-    'sources': [
-        'British Journal of Sports Medicine, May 19, 2026 — exercise volume and cardiovascular events (Macao Polytechnic University)',
-        'Healthline — Weekly Exercise Goals Should Be Higher to Prevent Heart Attack, Stroke, May 2026',
-        'Scientific American — A New Study Says You Need 10 Hours of Exercise a Week, May 2026',
-        "NY Post — How Much Exercise Should You Be Doing a Week? It's Not 150 Minutes, May 2026"
+## What the Studies Found
+
+Researchers at INSERM and Sorbonne Paris Nord University divided participants into three groups based on their exposure to food dyes. Those in the highest third — people who regularly consumed a soda, a ready-made meal and a dessert cream — faced sharply elevated risks compared with the lowest-exposure group.
+
+The diabetes findings, published on 20 May in Diabetes Care, showed a 38 per cent higher risk of Type 2 diabetes. For cancer, published in the European Journal of Epidemiology, the numbers were a 14 per cent higher overall risk, climbing to 21 per cent for breast cancer and 32 per cent for postmenopausal breast cancer.
+
+But here is the twist that should alarm every Indian kitchen: curcumin used as a food additive (E100) was associated with a 49 per cent increased risk of Type 2 diabetes. Beta-carotenes (E160a) showed a 44 per cent higher risk. Caramel colourings (E150) added 43 per cent.
+
+## The Curcumin Paradox
+
+The finding about curcumin will seem counterintuitive to anyone raised in an Indian household. Turmeric is the backbone of Indian cooking, used for centuries as an anti-inflammatory spice. But the curcumin in a supplement or a food additive is not the same molecule in the same context.
+
+"Some substances, when removed from their original food matrix and separated from nutrients and fibers, no longer provide the same health benefits once isolated, purified and reintroduced into ultra-processed foods," explained Mathilde Touvier, INSERM research director who coordinates the study.
+
+When your mother grinds turmeric into dal, the curcumin is embedded in a matrix of fibre, fat and other phytochemicals that modulate its absorption and metabolism. When a food manufacturer extracts curcumin and adds it as E100 to a packaged snack, that context is gone. The molecule is the same. The metabolic response is not.
+
+## The American Processed Food Trap
+
+This matters for the Indian diaspora because the dietary transition that happens after immigration is almost universally toward more processed food. The family that cooked every meal from scratch in Hyderabad or Pune starts buying pre-made sauces, packaged snacks, coloured beverages and ready meals in Houston or London.
+
+A third study from the same team, published in the European Heart Journal, found that preservatives — sulfites and nitrites — were associated with a 24 per cent increased risk of hypertension. South Asians already have the highest cardiovascular death rate of any ethnic group.
+
+The pattern is consistent: the further you move from whole-food cooking toward processed alternatives, the more additive exposure accumulates, and the more chronic disease risk stacks.
+
+## What This Means for Your Kitchen
+
+The message is not that all food additives will kill you. It is that the dose matters, the frequency matters, and the food matrix matters. One packaged meal is not a health crisis. A daily diet built around processed food — which is increasingly what second-generation diaspora children eat — introduces cumulative exposure to dozens of colour additives, preservatives and emulsifiers that traditional Indian cooking never contained.
+
+The United States, under Health Secretary Robert Kennedy Jr, is preparing to ban eight synthetic colourings by the end of the year. European regulations are already stricter. But even the natural additives used by European manufacturers are not harmless in industrial concentrations.
+
+Your grandmother did not need a PhD in food chemistry to feed you safely. She used turmeric, not E100. She used tamarind, not citric acid. She used jaggery, not caramel colouring. The epidemiology is finally catching up to what her kitchen already knew."""
+
+articles.append({
+    "headline": "A Study of 100,000 People Found That Food Dyes Raise Diabetes Risk by 38 Per Cent and Cancer Risk by 14 Per Cent. Your Grandmother's Kitchen Did Not Use a Single One of Them.",
+    "subheadline": "The NutriNet-Santé cohort study is the first to link colour additives to chronic disease at scale. Curcumin as an additive — not as turmeric — was the worst offender.",
+    "body": art2_body,
+    "slug": "food-dyes-diabetes-cancer-risk-100000-nutrinet-curcumin-additive-indian-kitchen-20260527",
+    "category": "lifestyle-health",
+    "sources": [
+        {"name": "Le Monde", "url": "https://www.lemonde.fr/en/environment/article/2026/05/22/high-consumption-of-food-dyes-linked-to-increased-risk-of-type-2-diabetes-and-cancer_6753721_114.html"},
+        {"name": "Diabetes Care (journal)", "url": "https://diabetesjournals.org/care"},
+        {"name": "European Journal of Epidemiology", "url": "https://link.springer.com/journal/10654"}
     ],
-    'body': """The number that has governed exercise advice for two decades is 150. As in: 150 minutes of moderate-to-vigorous physical activity per week. Walk briskly for 22 minutes a day, and you have met the World Health Organization and American Heart Association threshold. You are, officially, an active adult.
-
-A study published on May 19 in the *British Journal of Sports Medicine* says that threshold is real — and far too low.
-
-## The Study
-
-Researchers at Macao Polytechnic University analysed data from 17,000 UK Biobank participants who wore wrist-mounted accelerometers for seven consecutive days. The average age was 57. Ninety-six per cent were white, and 56 per cent were female. Each participant also completed a cycle test to estimate VO2 max — a direct measure of cardiovascular fitness.
-
-Over a follow-up period of nearly eight years, 1,233 cardiovascular events were recorded: 874 cases of atrial fibrillation, 156 heart attacks, 111 heart failure episodes, and 92 strokes.
-
-The dose-response findings were stark.
-
-Adults who met the 150-minute weekly guideline experienced an 8 to 9 per cent reduction in cardiovascular risk. Meaningful, but modest.
-
-Those who exercised for 370 minutes per week — about 53 minutes a day — saw a 20 per cent reduction. Those at the lowest fitness level needed slightly more: 370 minutes. Those at the highest fitness level achieved the same result at 340 minutes.
-
-But the truly significant reduction — more than 30 per cent — required 560 to 610 minutes per week. That is roughly 85 minutes a day. Nearly ten hours a week. Four times the current guideline.
-
-## The Expert Reaction
-
-Keith Diaz, a professor of behavioural medicine at Columbia University and a member of the AHA's Physical Activity Science Committee, urged caution. "I would urge caution in interpreting the specific recommendation that people may need three to four times the current physical activity guidelines to substantially reduce heart disease risk," he said. "From a public health perspective, I worry that setting extremely high targets could discourage people who are currently inactive."
-
-Michael Fredericson, a professor of orthopaedic surgery at Stanford, agreed with the underlying data but shifted the emphasis. "I would rather emphasise that small increases in physical activity and cardiovascular fitness, especially among the least active individuals, produce the largest cardiovascular benefits," he said.
-
-Kevin Shah, a cardiologist at MemorialCare in Long Beach, California, put it more simply: "The standard recommendation — 150 minutes of moderate to vigorous activity each week — is a solid baseline. But it's just that: a baseline."
-
-Only about 12 per cent of study participants achieved the 600-minute level. Fewer than half of American adults currently meet even the 150-minute floor.
-
-## The South Asian Context
-
-The study was conducted on a mostly white British population. It does not account for the elevated baseline cardiovascular risk that South Asians carry due to genetics, insulin resistance, visceral fat distribution, and inflammatory profiles.
-
-Previous research from the University of Leicester found that South Asian men may need to exercise 20 minutes longer daily than white Europeans to achieve the same heart disease and diabetes risk reduction — suggesting that the effective exercise threshold for South Asians is already higher than the general population.
-
-For Indian Americans, the arithmetic is uncomfortable. The diaspora's relationship with exercise is largely generational. Parents walked — to the market, to the temple, up four flights of stairs because the lift was broken again. But they rarely exercised deliberately. Their children, the NRI tech workforce, sit for ten to twelve hours a day, commute by car, and count a weekend walk around the neighbourhood as activity.
-
-The 150-minute guideline was already a stretch for most. The idea that meaningful protection requires four times that is not discouraging — it is clarifying. It means the question is no longer "Am I doing enough?" but "How much more can I build in?"
-
-## What to Do With This
-
-The researchers and experts converge on one practical point: do not let the number paralyse you.
-
-"You don't have to carve out a full hour at the gym to make exercise count," Shah said. "Small bursts of activity throughout the day can add up. A quick morning bike ride, a walk after dinner, taking the stairs, or even short movement breaks between meetings all contribute."
-
-Fredericson offered practical strategies: substitute vigorous activity for moderate activity to save time (running beats walking per minute); accumulate activity in shorter bouts throughout the day; use wearable devices for motivation; and integrate movement into daily routines.
-
-The bottom line is not that everyone needs to exercise ten hours a week. It is that 150 minutes — the number the world has been told is sufficient — provides an 8 per cent safety margin. For South Asians, whose cardiovascular risk profile is already elevated, that margin may be even thinner.
-
-The biggest gains, as Fredericson noted, come from moving the least active people to some activity. If you are currently doing nothing, 30 minutes matters more than anything. If you are at 150 minutes, getting to 300 doubles your protection. And if you can reach 400 or 500, you are in territory where the data says the heart genuinely starts to thank you.
-
-The study does not prescribe guilt. It prescribes a gradient. Start where you are. Add what you can. The curve rewards every minute."""
-}
+    "image_search": {"pexels": "Indian spices turmeric cooking kitchen", "pexels_fallback": "colorful processed food snacks"},
+    "image_caption": "Turmeric in whole-food form offers anti-inflammatory benefits. As an isolated food additive, it was linked to a 49 per cent increase in diabetes risk.",
+    "image_attribution": "Pexels"
+})
 
 # ============================================================
-# ARTICLE 3: Taiwan overtakes India market cap — markets-finance
+# ARTICLE 3: India Markets First Yearly Decline (markets-finance)
 # ============================================================
+art3_body = """Indian equities are on course for their first annual decline in more than a decade, according to a Reuters poll of 24 analysts published on 27 May. The Nifty 50 has fallen 8.5 per cent since January. The Sensex has dropped 10.8 per cent. Foreign portfolio investors have sold more than $23 billion of Indian stocks this year, surpassing last year's record outflows. And the rupee has hit an all-time low of 96.96 against the dollar.
 
-article3 = {
-    'headline': "Taiwan Just Overtook India as the World's Fifth-Largest Stock Market. A Single Chip Company Did Most of the Work.",
-    'subheadline': "TSMC now accounts for 42 per cent of Taiwan's benchmark index. India's market cap has fallen to $4.92 trillion. Foreign investors have pulled $24 billion out of Indian equities this year — more than all of 2025.",
-    'slug': 'taiwan-overtakes-india-fifth-largest-stock-market-tsmc-fii-outflows-20260527',
-    'category': 'markets-finance',
-    'sources': [
-        'Reuters — India\'s fifth spot in global market cap list under threat as Taiwan closes in, May 26, 2026',
-        'AInvest — Taiwan\'s market cap rises to $4.95 trillion to overtake India, May 2026',
-        'Reuters — India stocks set for first yearly drop in over a decade as foreign investors leave, 2026',
-        'Copley Fund Research — India fund weight dips below 10% for first time since January 2021, May 2026 report'
+## The Scale of the Unravelling
+
+A year ago, India was the world's most celebrated emerging market. Fund managers from New York to Singapore were overweight Indian equities. The Nifty traded at 26,000. The narrative was simple: fastest-growing major economy, young demographics, digital infrastructure, Modi's reform agenda. That narrative has cracked.
+
+The benchmark Nifty 50 was forecast to end 2026 at 26,000 — roughly flat from current levels after recovering from the drawdown. If realised, the annual decline of about 0.5 per cent would be India's first yearly loss since 2015. The Sensex is projected to end the year at 84,150.
+
+"Everyone wants returns at the end of the day," said Rajat Agarwal, Asia equity strategist at Société Générale. "The returns are not there, earnings growth is almost negligible to very low. AI is where the flavour of the town is right now and this is where India, not just we lack it, we are actually on the wrong side."
+
+South Korea's AI-laden KOSPI index has surged more than 200 per cent in a year. India's information technology stocks index has fallen by more than a third since December 2024.
+
+## Three Crises Converging
+
+The first crisis is capital flight. Foreign portfolio investors now own a record-low share of Indian equities. Domestic institutional investors, buoyed by monthly SIP inflows from retail investors, have been absorbing the selling. Without them, analysts estimate the Nifty would be near 19,000 to 20,000 — not 24,000.
+
+The second crisis is the rupee. The currency hit 96.96 per dollar last week before recovering to about 95.50 on RBI interventions. The central bank just conducted a $5 billion dollar-rupee swap that attracted nearly $10 billion in bids, underscoring the desperation for dollar liquidity. Goldman Sachs is forecasting another 50 basis points of rate hikes for India, driven by imported energy costs and a widening current account deficit.
+
+The third crisis is oil. The Iran-Israel war, now three months old, has kept the Strait of Hormuz partially blocked and Brent crude near $100 per barrel. India imports over 85 per cent of its oil. Every $10 increase in crude widens the trade deficit, weakens the rupee and feeds inflation.
+
+## What This Means for NRI Money
+
+If you hold Indian mutual funds through a US-based brokerage or an Indian demat account, your portfolio has likely lost 15 to 20 per cent in dollar terms this year — the equity drawdown compounded by rupee depreciation.
+
+India's GDP data for Q1 2026 is due on 28 May. The consensus forecast is 6.5 per cent year-on-year growth, which sounds robust until you factor in that nominal GDP growth is barely ahead of inflation, corporate earnings are stagnant, and exports are contracting.
+
+The RBI is quietly dusting off its 2013 playbook — NRI bonds, FCNR deposit schemes and emergency swaps — to attract dollar inflows. If you have a US dollar account, expect your Indian bank to start calling you with offers.
+
+For NRI investors who have been dollar-cost-averaging into Indian equities through SIPs, the mathematics remains sound over a five-to-ten-year horizon. But the next three to six months carry meaningful downside risk. A slim majority of analysts — 13 of 24 — expect a further correction.
+
+## The Structural Problem
+
+The deeper issue is not cyclical but structural. India has not built significant exposure to the global AI trade. It has not produced a company in the league of TSMC, Samsung or NVIDIA. Its IT services giants — Infosys, TCS, Wipro — are labour-arbitrage businesses, not innovation engines.
+
+"A culture of innovation — that thing is absent in our country," said Kishan Gupta, director at CD Equisearch. As long as that remains true, India will continue to trade at a premium it cannot justify when global capital has cheaper, higher-return alternatives."""
+
+articles.append({
+    "headline": "India's Stock Market Is Heading for Its First Annual Loss in a Decade. Foreign Investors Have Pulled Out $23 Billion. The Rupee Just Hit an All-Time Low. Here Is What It Means for Your Money.",
+    "subheadline": "A Reuters poll of 24 analysts forecasts the Nifty flat at best by year-end. Goldman Sachs expects more rate hikes. The RBI is courting NRI dollars. A guide for diaspora investors navigating the worst year since 2015.",
+    "body": art3_body,
+    "slug": "india-stock-market-first-yearly-decline-nifty-fpi-exodus-rupee-nri-investor-guide-20260527",
+    "category": "markets-finance",
+    "sources": [
+        {"name": "Reuters", "url": "https://www.reuters.com/world/india/india-stocks-set-first-yearly-drop-over-decade-foreign-investors-leave-2026-05-27/"},
+        {"name": "Reuters", "url": "https://www.reuters.com/world/india/indian-central-banks-5-billion-fx-swap-subscribed-nearly-twice-over-2026-05-26/"},
+        {"name": "Reuters", "url": "https://www.reuters.com/world/india/india-track-become-stock-pickers-market-june-brokerages-say-2026-05-27/"}
     ],
-    'body': """India is no longer the world's fifth-largest stock market. Taiwan passed it this week, powered almost entirely by a single company: Taiwan Semiconductor Manufacturing Co.
-
-The aggregate market capitalisation of stocks listed on the Taiwan stock exchange and OTC exchange stood at $4.95 trillion as of Tuesday. India's NSE-listed companies sat at $4.92 trillion. The United States, China, Japan, and Hong Kong occupy the top four slots. South Korea, at $4.89 trillion, is close behind India.
-
-The gap is narrow. The symbolism is not.
-
-## How One Company Did It
-
-TSMC shares have surged over 44 per cent in 2026. The company now accounts for roughly 42 per cent of Taiwan's benchmark TAIEX index by market value. Taiwan's index is up 50.3 per cent this year.
-
-India does not have a TSMC. It does not have a single company that dominates global AI infrastructure, that builds the chips powering every major language model and data centre on Earth. "The Indian market does not offer direct equivalents to the AI trade and companies such as TSMC, Nvidia, or large-scale AI infrastructure businesses," said Manish Bhandari, CEO and portfolio manager at Vallum Capital.
-
-India's equity market is diversified — banking, IT services, consumer goods, energy, pharmaceuticals. That diversity is usually a strength. In 2026, it is a handicap. Global capital is chasing the AI trade, and India's largest companies make software services, not semiconductors.
-
-## The Foreign Exodus
-
-Foreign portfolio investors have pulled $24.18 billion out of Indian equities so far in 2026, already surpassing 2025's record annual sales. In contrast, Taiwan received about $25 billion in foreign inflows over the same period.
-
-The drain is structural, not cyclical.
-
-Copley Fund Research, which tracks global fund flows and investment trends, said in its May report that the average India weight in funds it monitors has fallen to 9.94 per cent — the first time India has dipped below 10 per cent since January 2021. At its peak in August 2024, that weight stood at 17.47 per cent.
-
-"India has moved from being the darling of emerging markets to the runt of the litter among Asia's Big Four," Copley wrote.
-
-India's declining share in the MSCI Global Standard index — down to 12.3 per cent from a peak of 21 per cent in September 2024 — is compounding the problem. Passive funds that track the index are mechanically reducing their India allocation, creating a self-reinforcing cycle.
-
-## The Geopolitical Drag
-
-The Iran war that began in February has battered India disproportionately. India imports more than 80 per cent of its crude oil. Brent crude has risen roughly 45 per cent since the conflict began. The rupee has weakened to around 95.4 per dollar. The Nifty 50 and BSE Sensex are down 8.5 per cent and 10.8 per cent respectively in 2026.
-
-Manish Bhandari cited oil-price volatility, India-Pakistan tensions, U.S. tariff uncertainty, and erratic monsoon risks as additional accelerators of foreign outflows.
-
-SEBI chief Tuhin Kanta Pandey offered the regulator's perspective on Tuesday: "India is a diversified economy but Taiwan is concentrated on certain companies. These companies are attracting foreign flows at this time."
-
-He is not wrong. Taiwan's entire market rally rests on one company in one sector. If the AI trade cools or TSMC stumbles, the positions reverse overnight. But that has not happened yet, and fund managers allocate to momentum, not to arguments about diversification.
-
-## What NRI Investors Should Watch
-
-For the Indian diaspora with portfolios straddling both countries, the situation presents a dilemma.
-
-**India-focused mutual funds are underperforming.** The India mutual fund industry recently crossed ₹82 lakh crore ($990 billion) in assets, largely driven by domestic SIP flows. But fund performance has deteriorated as the Nifty has dropped. NRIs who invested in India-focused funds expecting 15–20 per cent annual returns are looking at negative returns in 2026.
-
-**The RBI is firefighting.** The central bank's $5 billion dollar-rupee swap this week was subscribed nearly twice over, with $9.8 billion in bids. The swap is designed to inject rupee liquidity into the banking system and bring down hedging costs — but it is a defensive measure, not a growth catalyst. The rupee at 95.4 is the weakest it has been in years.
-
-**The MSCI rebalancing creates a mechanical drag.** As India's weight in the MSCI Global Standard index falls, passive funds sell Indian stocks. The selling pushes prices lower, which reduces the weight further, which triggers more selling. NRI investors in global ETFs are indirectly exposed to this cycle.
-
-**The recovery catalyst is unclear.** India needs either an oil price collapse (peace in the Middle East), a global rotation out of AI stocks (TSMC multiple compression), or a domestic earnings rebound. None of these is imminent.
-
-The structural case for India — demographics, digitisation, formalisation, consumption — remains intact. But structural cases operate on decade timelines. On the 2026 scoreboard, a country of 1.4 billion people just lost a market-cap race to an island of 24 million, because that island makes the chips the world cannot live without.
-
-The ranking will flip again. Rankings always do. But the lesson is worth absorbing: in a market driven by AI infrastructure, diversification without exposure to the defining technology of the era is not a shield. It is a gap."""
-}
+    "image_search": {"pexels": "Indian stock exchange Bombay trading floor", "pexels_fallback": "stock market charts red decline"},
+    "image_caption": "Indian equities are on track for their first annual decline since 2015, battered by foreign capital flight, a weak rupee and surging oil prices",
+    "image_attribution": "Pexels"
+})
 
 
-# ============================================================
-# MAIN EXECUTION
-# ============================================================
-
-articles = [article1, article2, article3]
-
-for art in articles:
+# --- Main ---
+if __name__ == "__main__":
     print(f"\n{'='*60}")
-    print(f"Publishing: {art['headline'][:70]}...")
-    print(f"Category: {art['category']}")
-    
-    # Image sourcing
-    img_url = None
-    img_attr = ''
-    
-    if art == article1:
-        # AHA guidelines — no person, use Pexels for Indian food / thali
-        img_url = fetch_pexels_image("indian thali dal roti vegetables", "indian home cooking traditional")
-        img_attr = 'Pexels'
-    elif art == article2:
-        # Exercise study — use Pexels for exercise/running
-        img_url = fetch_pexels_image("morning jogging running exercise", "person exercising outdoors cardio")
-        img_attr = 'Pexels'
-    elif art == article3:
-        # Taiwan/India market — stock market / trading imagery
-        img_url = fetch_pexels_image("stock market trading screen data", "financial stock exchange board")
-        img_attr = 'Pexels'
-    
-    if img_url and validate_image(img_url):
-        art['image_url'] = img_url
-        art['image_attribution'] = img_attr
-        print(f"  ✓ Image validated: {img_url[:80]}...")
-    else:
-        print(f"  ⚠ No valid image found, publishing without image")
-        art['image_url'] = None
-    
-    art_id = publish_article(art)
-    if art_id:
-        print(f"  ✓ ID: {art_id}")
-    else:
-        print(f"  ✗ FAILED to publish")
+    print(f"Videshi Lifestyle/Markets Writer — {datetime.now()}")
+    print(f"{'='*60}\n")
 
-print(f"\n{'='*60}")
-print("Done. Published 3 articles (2 lifestyle-health, 1 markets-finance)")
+    for i, article in enumerate(articles, 1):
+        print(f"\n--- Article {i}/{len(articles)}: {article['category']} ---")
+        print(f"  Headline: {article['headline'][:80]}...")
+
+        # Validate article quality
+        word_count = len(article["body"].split())
+        print(f"  Word count: {word_count}")
+        if word_count < 400:
+            print(f"  ✗ REJECTED: Body too short ({word_count} words, min 400)")
+            continue
+        if len(article["headline"]) > 200:
+            print(f"  ⚠ Headline long ({len(article['headline'])} chars) but keeping")
+        if len(article["subheadline"]) < 15:
+            print(f"  ✗ REJECTED: Subheadline too short")
+            continue
+
+        # Source image
+        img_url = None
+        search = article.pop("image_search", {})
+
+        # Try Pexels
+        if not img_url and search.get("pexels"):
+            img_url = fetch_pexels_image(search["pexels"], search.get("pexels_fallback"))
+
+        # Validate
+        if img_url and not validate_image(img_url):
+            print(f"  ⚠ Image validation failed, dropping image")
+            img_url = None
+
+        article["image_url"] = img_url
+        if not img_url:
+            print(f"  ⚠ No image found, publishing without image")
+            article["image_attribution"] = ""
+
+        # Publish
+        art_id = publish_article(article)
+        if art_id:
+            print(f"  ✓ Article {i} published successfully")
+        else:
+            print(f"  ✗ Article {i} failed to publish")
+
+    print(f"\n{'='*60}")
+    print(f"Writer run complete")
+    print(f"{'='*60}\n")
