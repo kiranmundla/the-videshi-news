@@ -256,5 +256,15 @@
     "hero_slug": "india-outsourcing-ai-fewer-workers-reuters-summit-jobs-20260527",
     "story_count": 8,
     "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-05-28T13:55:54.884637+00:00Z",
+    "subject": "The Videshi Daily \u2014 May 28, 2026",
+    "subscribers": 2,
+    "sent": 2,
+    "errors": 0,
+    "hero_slug": "us-pce-inflation-3-8-percent-iran-war-fed-rate-hike-indian-americans-20260528",
+    "story_count": 5
   }
 ]

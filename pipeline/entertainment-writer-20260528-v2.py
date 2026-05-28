@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Entertainment writer batch - May 28, 2026 (afternoon run)"""
+"""Entertainment writer batch - May 28, 2026 (afternoon run) - Fixed"""
 
-import json, os, sys, time, requests, urllib.parse
+import json, os, sys, time, uuid, requests, urllib.parse, subprocess
 from datetime import datetime, timezone
 
 # Load env
@@ -30,7 +30,6 @@ HEADERS = {
 }
 
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -42,18 +41,15 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels. Use curl approach."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
         return None
-    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
@@ -64,28 +60,26 @@ def fetch_pexels_image(query, fallback_query=None):
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for photo in photos:
+            for photo in data.get('photos', []):
                 url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
                 if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
                     return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 def validate_image(url):
-    """Check image URL returns 200 with image content-type and >5KB."""
     if not url:
         return False
     try:
         r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, allow_redirects=True)
         ct = r.headers.get('Content-Type', '')
         cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
-            return True
-        # Some servers don't return Content-Length on HEAD, try GET
         if r.status_code == 200 and 'image' in ct:
+            if cl > 5000:
+                return True
+            # HEAD might not give Content-Length
             r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, stream=True)
             chunk = r2.raw.read(6000)
             if len(chunk) > 5000:
@@ -94,8 +88,38 @@ def validate_image(url):
         print(f"  ⚠ Image validation error: {e}")
     return False
 
+def create_topic(title, category):
+    """Create a p2_topics entry and return its ID."""
+    topic_id = str(uuid.uuid4())
+    topic = {
+        "id": topic_id,
+        "canonical_title": title,
+        "category": category,
+        "vertical": "entertainment",
+        "urgency": "developing",
+        "score_diaspora": 75,
+        "score_significance": 70,
+        "score_recency": 90,
+        "score_source_avail": 80,
+        "score_total": 79,
+        "signal_count": 1,
+        "status": "published",
+        "keywords": []
+    }
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_topics",
+        headers=HEADERS,
+        json=topic,
+        timeout=15
+    )
+    if r.status_code in (200, 201):
+        print(f"  ✓ Topic created: {topic_id[:8]}... - {title[:50]}")
+        return topic_id
+    else:
+        print(f"  ✗ Topic creation failed ({r.status_code}): {r.text[:200]}")
+        return None
+
 def publish_article(article):
-    """Publish an article to Supabase."""
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
@@ -105,44 +129,47 @@ def publish_article(article):
     if r.status_code in (200, 201):
         result = r.json()
         if isinstance(result, list) and result:
-            print(f"  ✓ Published: {result[0].get('headline', 'unknown')}")
-            return True
-        print(f"  ✓ Published (no body returned)")
+            print(f"  ✓ Published: {result[0].get('headline', 'unknown')[:60]}...")
+        else:
+            print(f"  ✓ Published")
         return True
     else:
-        print(f"  ✗ Failed ({r.status_code}): {r.text[:200]}")
+        print(f"  ✗ Failed ({r.status_code}): {r.text[:300]}")
         return False
 
-# ============================================================
-# ARTICLE 1: June 2026 OTT - The Biggest Month in Indian Streaming
-# ============================================================
+now = datetime.now(timezone.utc).isoformat()
 
+# ============================================================
+# ARTICLE 1: June 2026 OTT Mega-Month
+# ============================================================
 print("\n=== Article 1: June 2026 OTT Mega-Month ===")
 
-# Image: streaming/entertainment themed from Pexels
 img1 = fetch_pexels_image("family watching television streaming night", "streaming television couch")
 if not validate_image(img1):
-    img1 = fetch_pexels_image("cinema popcorn remote control", "movie night television")
+    img1 = fetch_pexels_image("movie night television remote", "cinema night living room")
     if not validate_image(img1):
         img1 = None
 
-article1 = {
-    "headline": "June 2026 Might Be the Biggest Month in Indian Streaming History. Here's Everything Dropping.",
-    "subheadline": "Dhurandhar 2, Maa Behen, Gullak Season 5, Patriot, Bhooth Bangla, Raja Shivaji, and a Titan origin story — all in 30 days. If you live abroad, your watchlist just became a full-time job.",
-    "slug": "june-2026-biggest-month-indian-streaming-ott-nri-guide",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img1,
-    "image_caption": "June 2026 brings an unprecedented wave of Indian content to streaming platforms worldwide",
-    "image_attribution": "Pexels" if img1 and 'pexels' in (img1 or '') else None,
-    "sources": json.dumps([
-        {"name": "MensXP", "url": "https://www.mensxp.com/entertainment/celebrities/183978-june-2026-ott-releases-dhurandhar-the-revenge-bhooth-bangla-gullak-season-5.html"},
-        {"name": "iDiva", "url": "https://www.idiva.com/entertainment/bollywood/ott-releases-june-dhurandhar-the-revenge-maa-behen-raja-shivaji/18096921"},
-        {"name": "SacNilk", "url": "https://sacnilk.com"},
-        {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"}
-    ]),
-    "body": """Every few months, Indian OTT has a week that feels overstuffed. June 2026 is not a week. It is the entire month.
+topic1 = create_topic("June 2026 Indian OTT Streaming Calendar", "entertainment")
+if topic1:
+    article1 = {
+        "topic_id": topic1,
+        "headline": "June 2026 Might Be the Biggest Month in Indian Streaming History. Here's Everything Dropping.",
+        "subheadline": "Dhurandhar 2, Maa Behen, Gullak Season 5, Patriot, Bhooth Bangla, Raja Shivaji, and a Titan origin story — all in 30 days. If you live abroad, your watchlist just became a full-time job.",
+        "slug": "june-2026-biggest-month-indian-streaming-ott-nri-guide",
+        "category": "entertainment",
+        "status": "published",
+        "published_at": now,
+        "image_url": img1,
+        "image_caption": "June 2026 brings an unprecedented wave of Indian content to streaming platforms worldwide",
+        "image_attribution": "Pexels" if img1 and 'pexels' in str(img1) else None,
+        "sources": [
+            {"name": "MensXP", "url": "https://www.mensxp.com/entertainment/celebrities/183978-june-2026-ott-releases-dhurandhar-the-revenge-bhooth-bangla-gullak-season-5.html"},
+            {"name": "iDiva", "url": "https://www.idiva.com/entertainment/bollywood/ott-releases-june-dhurandhar-the-revenge-maa-behen-raja-shivaji/18096921"},
+            {"name": "SacNilk", "url": "https://sacnilk.com"},
+            {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"}
+        ],
+        "body": """Every few months, Indian OTT has a week that feels overstuffed. June 2026 is not a week. It is the entire month.
 
 Between June 3 and June 26, at least eleven major titles will premiere across JioHotstar, Netflix, Amazon MX Player, SonyLIV, and Zee5. Some are box office juggernauts finally hitting digital. Others are originals that have been in production for years. And one is the story of how a watch company changed Indian manufacturing forever.
 
@@ -158,23 +185,23 @@ On **June 5**, SonyLIV releases **Gullak Season 5**, the beloved TVF series abou
 
 ## The Surprise Entry
 
-**Made in India: A Titan Story** premieres on Amazon MX Player on **June 3** — and it might be the most NRI-relevant release of the month. Naseeruddin Shah plays JRD Tata. Jim Sarbh plays Xerxes Desai, the man Tata trusted to build what would become one of India's most iconic consumer brands.
-
-The six-part series, adapted from Vinay Kamath's book, traces the founding of Titan in pre-liberalisation India — when making a watch domestically was considered absurd. For anyone in the diaspora who grew up with a Titan on their wrist or a Sonata in their school bag, this is personal history told as prestige television.
+**Made in India: A Titan Story** premieres on Amazon MX Player on **June 3** — and it might be the most NRI-relevant release of the month. Naseeruddin Shah plays JRD Tata. Jim Sarbh plays Xerxes Desai, the man Tata trusted to build what became one of India's most iconic consumer brands. The six-part series, adapted from Vinay Kamath's book, is free to stream.
 
 ## The Malayalam Event
 
 **Patriot** streams on Zee5 from **June 5** in Malayalam, Hindi, Tamil, Kannada, and Telugu. Directed by Mahesh Narayanan, it reunites Mammootty and Mohanlal on screen after 18 years. Fahadh Faasil, Nayanthara, and Kunchacko Boban round out a cast that reads like a Malayalam cinema all-star game.
 
-The plot follows a scientist who exposes government spyware misuse, triggering a conspiracy and a nationwide protest against surveillance. The film underperformed theatrically — ₹80 crore on a ₹100 crore budget — but the star power and the timeliness of its surveillance-state themes make the digital premiere an event in itself.
+The plot follows a scientist who exposes government spyware misuse, triggering a conspiracy and a nationwide protest against surveillance. The film earned ₹80 crore globally on a ₹100 crore budget — but the star power and the timeliness of its surveillance-state themes make the digital premiere an event in itself.
 
 ## The Second Wave
 
 **Bhooth Bangla** hits Netflix on **June 12**. Akshay Kumar and Priyadarshan's horror-comedy reunion crossed ₹260 crore theatrically and became the third-biggest Bollywood grosser of 2026. If you missed it in theatres, this is Priyadarshan at his most Hera Pheri-adjacent.
 
-**Thukra Ke Mera Pyaar Season 2** arrives on JioHotstar on **June 19** — deepening its story of love, betrayal, and political rivalry.
+**Thukra Ke Mera Pyaar Season 2** arrives on JioHotstar on **June 19**, deepening its story of love, betrayal, and political rivalry.
 
 **Raja Shivaji** lands on Netflix on **June 26**. Riteish Deshmukh, Genelia Deshmukh, Sanjay Dutt, Abhishek Bachchan, and Bhagyashree star in the Marathi-language historical drama that earned ₹93 crore domestically and broke every Marathi cinema box office record. This is its first global streaming window.
+
+And if your tastes run international: **Avatar: Fire and Ash** premieres on JioHotstar June 24, and **The Bear Season 5** — the final season — drops June 25.
 
 ## What It Means for NRIs
 
@@ -185,44 +212,44 @@ Compared to the 8-week window South Indian exhibitors demanded just last month, 
 The only problem is time. Between work, the school run, and whatever your family WhatsApp group is arguing about, finding 150 hours of viewing time in June will require commitment.
 
 Start clearing the schedule now."""
-}
+    }
+    publish_article(article1)
 
-publish_article(article1)
 time.sleep(1)
 
 # ============================================================
-# ARTICLE 2: Yudhvir Ahlawat - 14-year-old tops IMDb
+# ARTICLE 2: Yudhvir Ahlawat tops IMDb
 # ============================================================
-
 print("\n=== Article 2: Yudhvir Ahlawat IMDb ===")
 
-# Image: try Wikipedia for Yudhvir Ahlawat (unlikely), then Pexels
-img2 = fetch_wikipedia_person_image("Yudhvir Ahlawat")
+img2 = fetch_pexels_image("young Indian boy spotlight stage performance", "child actor cinema")
 if not validate_image(img2):
-    # Try Netflix/Kartavya related image — use Pexels as fallback
-    img2 = fetch_pexels_image("young Indian boy actor spotlight", "child actor cinema India")
+    img2 = fetch_pexels_image("Indian cinema audience discovery", "streaming audience surprise")
     if not validate_image(img2):
         img2 = None
 
-article2 = {
-    "headline": "A 14-Year-Old From Haryana Just Beat Shah Rukh Khan on IMDb's Most Searched List. His Name Is Yudhvir Ahlawat.",
-    "subheadline": "The Kartavya actor topped IMDb India's weekly popularity rankings, surpassing Aishwarya Rai, CM Vijay, and every Bollywood A-lister. The streaming era just rewrote who gets to be famous.",
-    "slug": "yudhvir-ahlawat-kartavya-imdb-most-searched-beats-shah-rukh-khan-nri-20260528",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img2,
-    "image_caption": "Yudhvir Ahlawat's breakout performance in Netflix's Kartavya catapulted him past Bollywood's biggest names on IMDb",
-    "image_attribution": "Pexels" if img2 and 'pexels' in (img2 or '') else "Wikimedia Commons" if img2 and 'wiki' in (img2 or '') else None,
-    "sources": json.dumps([
-        {"name": "iDiva", "url": "https://www.idiva.com"},
-        {"name": "News Ei Samay", "url": "https://newseisamay.com"},
-        {"name": "SRK Bharat", "url": "https://srkbharat.com"},
-        {"name": "IMDb", "url": "https://www.imdb.com"}
-    ]),
-    "body": """In any other era, the path to the top of India's celebrity search rankings required a decade of box office hits, a few magazine covers, and at least one Karan Johar film. Yudhvir Ahlawat skipped all of it.
+topic2 = create_topic("Yudhvir Ahlawat Tops IMDb India Popularity Rankings", "entertainment")
+if topic2:
+    article2 = {
+        "topic_id": topic2,
+        "headline": "A 14-Year-Old From Haryana Just Beat Shah Rukh Khan on IMDb's Most Searched List. His Name Is Yudhvir Ahlawat.",
+        "subheadline": "The Kartavya actor topped IMDb India's weekly popularity rankings, surpassing Aishwarya Rai and CM Vijay. The streaming era just rewrote who gets to be famous.",
+        "slug": "yudhvir-ahlawat-kartavya-imdb-most-searched-beats-shah-rukh-khan-nri-20260528",
+        "category": "entertainment",
+        "status": "published",
+        "published_at": now,
+        "image_url": img2,
+        "image_caption": "Yudhvir Ahlawat's breakout performance in Netflix's Kartavya catapulted him past Bollywood's biggest names on IMDb",
+        "image_attribution": "Pexels" if img2 and 'pexels' in str(img2) else None,
+        "sources": [
+            {"name": "iDiva", "url": "https://www.idiva.com"},
+            {"name": "News Ei Samay", "url": "https://newseisamay.com"},
+            {"name": "SRK Bharat", "url": "https://srkbharat.com"},
+            {"name": "IMDb", "url": "https://www.imdb.com"}
+        ],
+        "body": """In any other era, the path to the top of India's celebrity search rankings required a decade of box office hits, a few magazine covers, and at least one Karan Johar film. Yudhvir Ahlawat skipped all of it.
 
-The 14-year-old actor from Haryana topped IMDb India's weekly STARmeter popularity rankings this month after his performance in Netflix's *Kartavya*. He surpassed Shah Rukh Khan, Aishwarya Rai, CM Vijay, and every other name that has dominated Indian celebrity culture for the past thirty years.
+The 14-year-old actor from Haryana topped IMDb India's weekly STARmeter popularity rankings after his performance in Netflix's *Kartavya*. He surpassed Shah Rukh Khan, Aishwarya Rai, CM Vijay, and every other name that has dominated Indian celebrity culture for the past thirty years.
 
 He did it without a film release in theatres. Without a brand endorsement. Without a famous parent.
 
@@ -257,43 +284,44 @@ The streaming era is more forgiving. *Kartavya* will remain on Netflix indefinit
 He is fourteen. He has time. And the industry, for once, is structured in a way that rewards patience over proximity to power.
 
 The old playbook said you needed Mumbai. Yudhvir Ahlawat says you need a good script, a camera, and a broadband connection."""
-}
+    }
+    publish_article(article2)
 
-publish_article(article2)
 time.sleep(1)
 
 # ============================================================
 # ARTICLE 3: Made in India: A Titan Story
 # ============================================================
-
 print("\n=== Article 3: Made in India: A Titan Story ===")
 
-# Image: Naseeruddin Shah from Wikipedia
 img3 = fetch_wikipedia_person_image("Naseeruddin Shah")
 if not validate_image(img3):
     img3 = fetch_wikipedia_person_image("Jim Sarbh")
     if not validate_image(img3):
-        img3 = fetch_pexels_image("vintage watch Indian craftsmanship", "wristwatch luxury India")
+        img3 = fetch_pexels_image("vintage watch Indian craftsmanship", "wristwatch luxury")
         if not validate_image(img3):
             img3 = None
 
-article3 = {
-    "headline": "Naseeruddin Shah Plays JRD Tata. Jim Sarbh Plays the Man He Trusted to Build Titan. It Drops June 3.",
-    "subheadline": "'Made in India: A Titan Story' is a six-part Amazon MX Player series about how a watch company born in pre-liberalisation India became a global icon. For NRIs who grew up with a Titan on their wrist, this is personal.",
-    "slug": "made-in-india-titan-story-naseeruddin-shah-jrd-tata-jim-sarbh-amazon-mx-june-2026-nri",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img3,
-    "image_caption": "Naseeruddin Shah as JRD Tata in 'Made in India: A Titan Story', streaming June 3 on Amazon MX Player",
-    "image_attribution": "Wikimedia Commons" if img3 and 'wiki' in (img3 or '') else "Pexels" if img3 and 'pexels' in (img3 or '') else None,
-    "sources": json.dumps([
-        {"name": "Nation Press", "url": "https://nationpress.com"},
-        {"name": "Brownstone Worldwide", "url": "https://brownstoneworldwide.com"},
-        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-        {"name": "iDiva", "url": "https://www.idiva.com"}
-    ]),
-    "body": """Before liberalisation, before Infosys, before the idea that India could build global consumer brands felt anything other than absurd — there was a watch.
+topic3 = create_topic("Made in India: A Titan Story Series Premiere", "entertainment")
+if topic3:
+    article3 = {
+        "topic_id": topic3,
+        "headline": "Naseeruddin Shah Plays JRD Tata. Jim Sarbh Plays the Man He Trusted to Build Titan. It Drops June 3.",
+        "subheadline": "'Made in India: A Titan Story' is a six-part Amazon MX Player series about how a watch company born in pre-liberalisation India became a global icon. For NRIs who grew up with a Titan on their wrist, this is personal.",
+        "slug": "made-in-india-titan-story-naseeruddin-shah-jrd-tata-jim-sarbh-amazon-mx-june-2026-nri",
+        "category": "entertainment",
+        "status": "published",
+        "published_at": now,
+        "image_url": img3,
+        "image_caption": "Naseeruddin Shah as JRD Tata in 'Made in India: A Titan Story', streaming June 3 on Amazon MX Player",
+        "image_attribution": "Wikimedia Commons" if img3 and 'wiki' in str(img3) else "Pexels" if img3 and 'pexels' in str(img3) else None,
+        "sources": [
+            {"name": "Nation Press", "url": "https://nationpress.com"},
+            {"name": "Brownstone Worldwide", "url": "https://brownstoneworldwide.com"},
+            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+            {"name": "iDiva", "url": "https://www.idiva.com"}
+        ],
+        "body": """Before liberalisation, before Infosys, before the idea that India could build global consumer brands felt anything other than absurd — there was a watch.
 
 Titan was born in 1984, when the Indian market was dominated by HMT and the idea of a Tata Group entry into consumer electronics was met with scepticism from within the group itself. Xerxes Desai, a Tata loyalist who had spent years reviving Tata Press, was handed the job. JRD Tata backed him. The rest became one of the great Indian business origin stories.
 
@@ -332,8 +360,7 @@ Jim Sarbh, who broke through with *Neerja* and has since built a career choosing
 In a month when JioHotstar, Netflix, SonyLIV, and Zee5 are all demanding your attention and your credit card, a free prestige series about Indian entrepreneurship feels like a gift.
 
 The six episodes drop together on June 3. Clear an evening. Wear your old Titan if you still have one."""
-}
-
-publish_article(article3)
+    }
+    publish_article(article3)
 
 print("\n=== Entertainment writer batch complete ===")
