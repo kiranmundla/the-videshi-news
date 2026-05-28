@@ -1,42 +1,67 @@
 #!/usr/bin/env python3
-"""Entertainment writer batch - May 28, 2026 (afternoon run)"""
+"""Entertainment writer for The Videshi — 2026-05-28 batch"""
 
-import json, os, sys, time, requests, urllib.parse
+import json, os, sys, time, uuid, re, hashlib
 from datetime import datetime, timezone
 
-# Load env
+import requests
+from urllib.parse import quote
+
+# ── env ──────────────────────────────────────────────────────────────────
 def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    key, val = line.split('=', 1)
-                    val = val.strip().strip('"').strip("'")
-                    os.environ.setdefault(key.strip(), val)
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            if line.startswith("export "):
+                line = line[7:]
+            k, _, v = line.partition("=")
+            v = v.strip().strip('"').strip("'")
+            os.environ.setdefault(k.strip(), v)
 
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
+load_env(os.path.expanduser("~/.env.supabase"))
+load_env(os.path.expanduser("~/workspace/.env.pexels"))
 
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+SB_URL = os.environ["SUPABASE_URL"]
+SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SB_KEY,
+    "Authorization": f"Bearer {SB_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
 }
+
+# ── helpers ──────────────────────────────────────────────────────────────
+def sb_post(table, data):
+    r = requests.post(f"{SB_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
+    if r.status_code in (200, 201):
+        return r.json()
+    print(f"  ✗ sb_post {table} failed ({r.status_code}): {r.text[:300]}")
+    return None
+
+def sb_patch(table, match, data):
+    params = "&".join(f"{k}={v}" for k, v in match.items())
+    url = f"{SB_URL}/rest/v1/{table}?{params}"
+    r = requests.patch(url, headers=HEADERS, json=data, timeout=30)
+    if r.status_code in (200, 204):
+        return True
+    print(f"  ✗ sb_patch {table} failed ({r.status_code}): {r.text[:300]}")
+    return False
+
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    encoded = quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            timeout=10,
         )
         if r.status_code == 200:
             data = r.json()
@@ -48,25 +73,26 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels. Use curl approach."""
+    """Fetch a relevant image from Pexels API using curl (urllib gets 403)."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
+        print("  ⚠ No Pexels API key available")
         return None
-    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
+            import subprocess
             result = subprocess.run(
-                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'],
-                capture_output=True, text=True, timeout=15
+                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+                 f"https://api.pexels.com/v1/search?query={quote(q)}&per_page=3&orientation=landscape"],
+                capture_output=True, text=True, timeout=15,
             )
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for photo in photos:
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+            photos = data.get("photos", [])
+            for p in photos:
+                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
                 if url:
                     print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                     return url
@@ -74,266 +100,374 @@ def fetch_pexels_image(query, fallback_query=None):
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image(url):
-    """Check image URL returns 200 with image content-type and >5KB."""
+
+def validate_image_url(url):
+    """Verify image URL returns HTTP 200 with Content-Type image/* and size > 5000."""
     if not url:
         return False
     try:
-        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, allow_redirects=True)
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
             return True
-        # Some servers don't return Content-Length on HEAD, try GET
-        if r.status_code == 200 and 'image' in ct:
-            r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, stream=True)
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
+        # Try GET for servers that don't support HEAD well
+        if r.status_code != 200:
+            r2 = requests.get(url, timeout=10, stream=True, allow_redirects=True,
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            ct = r2.headers.get("Content-Type", "")
+            cl = int(r2.headers.get("Content-Length", 0))
+            r2.close()
+            if r2.status_code == 200 and "image" in ct:
                 return True
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
+        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
     return False
+
+
+def generate_slug(headline):
+    """Generate clean slug from headline."""
+    slug = headline.lower()
+    slug = re.sub(r'[^a-z0-9\s-]', '', slug)
+    slug = re.sub(r'\s+', '-', slug.strip())
+    slug = re.sub(r'-+', '-', slug)
+    slug = slug[:80].rstrip('-')
+    return slug
+
+
+def create_topic(article):
+    """Create a topic in p2_topics for the article."""
+    topic_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
+
+    payload = {
+        "id": topic_id,
+        "canonical_title": article["headline"][:200],
+        "vertical": "entertainment",
+        "urgency": article.get("urgency", "developing"),
+        "score_diaspora": 70,
+        "score_significance": 65,
+        "score_recency": 80,
+        "score_source_avail": 75,
+        "score_total": 72,
+        "signal_count": len(article.get("sources", [])),
+        "status": "published",
+        "keywords": article.get("tags", []),
+        "category": "entertainment",
+        "created_at": now,
+        "updated_at": now,
+        "image_url": article.get("image_url"),
+        "image_attribution": article.get("image_attribution", ""),
+    }
+
+    result = sb_post("p2_topics", payload)
+    if result:
+        print(f"  ✓ Topic created: {topic_id}")
+        return topic_id
+    return None
+
 
 def publish_article(article):
     """Publish an article to Supabase."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            print(f"  ✓ Published: {result[0].get('headline', 'unknown')}")
-            return True
-        print(f"  ✓ Published (no body returned)")
-        return True
-    else:
-        print(f"  ✗ Failed ({r.status_code}): {r.text[:200]}")
-        return False
+    # First create a topic
+    topic_id = create_topic(article)
+    if not topic_id:
+        print(f"  ✗ Failed to create topic, skipping article")
+        return None
 
-# ============================================================
-# ARTICLE 1: June 2026 OTT - The Biggest Month in Indian Streaming
-# ============================================================
+    art_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
 
-print("\n=== Article 1: June 2026 OTT Mega-Month ===")
+    sources_data = article.get("sources", [])
+    # Convert to list of URL strings for compat
+    sources_urls = [s["url"] if isinstance(s, dict) else s for s in sources_data]
 
-# Image: streaming/entertainment themed from Pexels
-img1 = fetch_pexels_image("family watching television streaming night", "streaming television couch")
-if not validate_image(img1):
-    img1 = fetch_pexels_image("cinema popcorn remote control", "movie night television")
-    if not validate_image(img1):
-        img1 = None
+    payload = {
+        "id": art_id,
+        "topic_id": topic_id,
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "urgency": article.get("urgency", "developing"),
+        "tags": article.get("tags", []),
+        "diaspora_angle": article.get("diaspora_angle", ""),
+        "status": "published",
+        "published_at": now,
+        "sources": json.dumps(sources_urls),
+        "image_url": article.get("image_url"),
+        "image_caption": article.get("image_caption", ""),
+        "image_attribution": article.get("image_attribution", ""),
+        "word_count": len(article["body"].split()),
+    }
 
-article1 = {
-    "headline": "June 2026 Might Be the Biggest Month in Indian Streaming History. Here's Everything Dropping.",
-    "subheadline": "Dhurandhar 2, Maa Behen, Gullak Season 5, Patriot, Bhooth Bangla, Raja Shivaji, and a Titan origin story — all in 30 days. If you live abroad, your watchlist just became a full-time job.",
-    "slug": "june-2026-biggest-month-indian-streaming-ott-nri-guide",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img1,
-    "image_caption": "June 2026 brings an unprecedented wave of Indian content to streaming platforms worldwide",
-    "image_attribution": "Pexels" if img1 and 'pexels' in (img1 or '') else None,
-    "sources": json.dumps([
-        {"name": "MensXP", "url": "https://www.mensxp.com/entertainment/celebrities/183978-june-2026-ott-releases-dhurandhar-the-revenge-bhooth-bangla-gullak-season-5.html"},
-        {"name": "iDiva", "url": "https://www.idiva.com/entertainment/bollywood/ott-releases-june-dhurandhar-the-revenge-maa-behen-raja-shivaji/18096921"},
-        {"name": "SacNilk", "url": "https://sacnilk.com"},
-        {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"}
-    ]),
-    "body": """Every few months, Indian OTT has a week that feels overstuffed. June 2026 is not a week. It is the entire month.
+    result = sb_post("p2_articles", payload)
+    if result:
+        print(f"  ✓ Published: {article['headline'][:60]}... (id={art_id})")
+        return art_id
+    return None
 
-Between June 3 and June 26, at least eleven major titles will premiere across JioHotstar, Netflix, Amazon MX Player, SonyLIV, and Zee5. Some are box office juggernauts finally hitting digital. Others are originals that have been in production for years. And one is the story of how a watch company changed Indian manufacturing forever.
 
-For the diaspora, this is the month your subscriptions actually earn their keep.
+# ── articles ─────────────────────────────────────────────────────────────
 
-## The Headliners
+def article_pankaj_bhadouria():
+    """MasterChef India Winner Pankaj Bhadouria Diagnosed With Breast Cancer."""
+    print("\n📰 Article 1: Pankaj Bhadouria breast cancer diagnosis")
 
-**Dhurandhar: The Revenge** arrives on JioHotstar on **June 4**. Ranveer Singh's spy thriller has earned ₹1,850 crore worldwide and nearly ₹1,150 crore domestically — making it the highest-grossing Indian film of all time. After ten weeks in theatres, it finally comes home. Netflix will stream an alternate "Uncut" version starting June 19.
+    headline = "MasterChef India's First Winner Just Announced She Has Breast Cancer. She Left a 16-Year Teaching Career for This."
+    subheadline = "Pankaj Bhadouria, who won Season 1 in 2010 and became a household name for millions of NRI families, shared her diagnosis from a hospital bed on May 28."
+    slug = "pankaj-bhadouria-masterchef-india-winner-breast-cancer-diagnosis-nri-20260528"
 
-The same day, Netflix drops **Maa Behen**, a dark comedy starring Madhuri Dixit, Triptii Dimri, and Dharna Durga. Dysfunctional family dynamics, crime, and chaos — the kind of film that would have been a mid-budget theatrical release five years ago and is now a streaming-first event.
+    body = """Pankaj Bhadouria shared the news the way she shares everything — directly, without preamble. From a hospital bed in India, the 2010 MasterChef India winner posted to Instagram on May 28: she has been diagnosed with breast cancer and is seeking prayers and support as she begins treatment.
 
-On **June 5**, SonyLIV releases **Gullak Season 5**, the beloved TVF series about a middle-class family navigating everyday life. Anant V Joshi joins the ensemble this season. If you have ever explained to an American friend why a show about a family buying a mixer-grinder made you cry, this is for you.
+For NRIs of a certain generation — the ones who watched the first season of MasterChef India with their families, debated her dishes at dinner tables from New Jersey to Toronto — Bhadouria is not just a name from reality television. She was the first. The woman who proved that an Indian home cook, a schoolteacher with no professional culinary training, could stand in a competition kitchen and win.
 
-## The Surprise Entry
+## The Career She Left Behind
 
-**Made in India: A Titan Story** premieres on Amazon MX Player on **June 3** — and it might be the most NRI-relevant release of the month. Naseeruddin Shah plays JRD Tata. Jim Sarbh plays Xerxes Desai, the man Tata trusted to build what would become one of India's most iconic consumer brands.
+Before MasterChef, Bhadouria taught school for 16 years. When she won Season 1, she did what very few contestants from Indian reality television manage: she turned the moment into a career. She became a cookbook author, a YouTube personality, a food consultant. She built a digital presence that reached millions of Indian families — in India and abroad — who cook at home and wanted someone who understood what that kitchen looks like.
 
-The six-part series, adapted from Vinay Kamath's book, traces the founding of Titan in pre-liberalisation India — when making a watch domestically was considered absurd. For anyone in the diaspora who grew up with a Titan on their wrist or a Sonata in their school bag, this is personal history told as prestige television.
+Her content was never about molecular gastronomy or restaurant plating. It was about dal, parathas, and the kind of food that NRI families make when they're homesick.
 
-## The Malayalam Event
+## What She Said
 
-**Patriot** streams on Zee5 from **June 5** in Malayalam, Hindi, Tamil, Kannada, and Telugu. Directed by Mahesh Narayanan, it reunites Mammootty and Mohanlal on screen after 18 years. Fahadh Faasil, Nayanthara, and Kunchacko Boban round out a cast that reads like a Malayalam cinema all-star game.
+Bhadouria shared hospital photos and updates on social media, emphasising the need for prayers during her recovery. She did not disclose her full treatment plan or prognosis. The announcement was straightforward — no PR release, no delay, no softening. The same directness that won her a cooking competition 16 years ago.
 
-The plot follows a scientist who exposes government spyware misuse, triggering a conspiracy and a nationwide protest against surveillance. The film underperformed theatrically — ₹80 crore on a ₹100 crore budget — but the star power and the timeliness of its surveillance-state themes make the digital premiere an event in itself.
+Multiple Indian news outlets confirmed the diagnosis. Medical experts cited in Indian media coverage used the moment to highlight breast cancer detection rates in India, which remain significantly lower than in Western countries despite the disease being the most common cancer among Indian women.
 
-## The Second Wave
+## A Health Conversation the Diaspora Needs
 
-**Bhooth Bangla** hits Netflix on **June 12**. Akshay Kumar and Priyadarshan's horror-comedy reunion crossed ₹260 crore theatrically and became the third-biggest Bollywood grosser of 2026. If you missed it in theatres, this is Priyadarshan at his most Hera Pheri-adjacent.
+Breast cancer screening rates among South Asian women in the US, UK, and Canada consistently lag behind the general population. Cultural stigma, language barriers, and a tendency to deprioritise personal health checks are well-documented factors. Bhadouria's public disclosure — from a figure who is genuinely trusted in Indian households — may carry more weight than any public health campaign.
 
-**Thukra Ke Mera Pyaar Season 2** arrives on JioHotstar on **June 19** — deepening its story of love, betrayal, and political rivalry.
-
-**Raja Shivaji** lands on Netflix on **June 26**. Riteish Deshmukh, Genelia Deshmukh, Sanjay Dutt, Abhishek Bachchan, and Bhagyashree star in the Marathi-language historical drama that earned ₹93 crore domestically and broke every Marathi cinema box office record. This is its first global streaming window.
-
-## What It Means for NRIs
-
-If you are outside India, June 2026 is the month the gap between theatrical and streaming finally collapses. Dhurandhar 2 gets a 10-week window. Raja Shivaji gets roughly 8 weeks. Bhooth Bangla gets 9.
-
-Compared to the 8-week window South Indian exhibitors demanded just last month, Bollywood is moving faster. The streamers are spending — JioHotstar reportedly committed ₹4,000 crore to South Indian content alone this year — and the content pipeline is delivering.
-
-The only problem is time. Between work, the school run, and whatever your family WhatsApp group is arguing about, finding 150 hours of viewing time in June will require commitment.
-
-Start clearing the schedule now."""
-}
-
-publish_article(article1)
-time.sleep(1)
-
-# ============================================================
-# ARTICLE 2: Yudhvir Ahlawat - 14-year-old tops IMDb
-# ============================================================
-
-print("\n=== Article 2: Yudhvir Ahlawat IMDb ===")
-
-# Image: try Wikipedia for Yudhvir Ahlawat (unlikely), then Pexels
-img2 = fetch_wikipedia_person_image("Yudhvir Ahlawat")
-if not validate_image(img2):
-    # Try Netflix/Kartavya related image — use Pexels as fallback
-    img2 = fetch_pexels_image("young Indian boy actor spotlight", "child actor cinema India")
-    if not validate_image(img2):
-        img2 = None
-
-article2 = {
-    "headline": "A 14-Year-Old From Haryana Just Beat Shah Rukh Khan on IMDb's Most Searched List. His Name Is Yudhvir Ahlawat.",
-    "subheadline": "The Kartavya actor topped IMDb India's weekly popularity rankings, surpassing Aishwarya Rai, CM Vijay, and every Bollywood A-lister. The streaming era just rewrote who gets to be famous.",
-    "slug": "yudhvir-ahlawat-kartavya-imdb-most-searched-beats-shah-rukh-khan-nri-20260528",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img2,
-    "image_caption": "Yudhvir Ahlawat's breakout performance in Netflix's Kartavya catapulted him past Bollywood's biggest names on IMDb",
-    "image_attribution": "Pexels" if img2 and 'pexels' in (img2 or '') else "Wikimedia Commons" if img2 and 'wiki' in (img2 or '') else None,
-    "sources": json.dumps([
-        {"name": "iDiva", "url": "https://www.idiva.com"},
-        {"name": "News Ei Samay", "url": "https://newseisamay.com"},
-        {"name": "SRK Bharat", "url": "https://srkbharat.com"},
-        {"name": "IMDb", "url": "https://www.imdb.com"}
-    ]),
-    "body": """In any other era, the path to the top of India's celebrity search rankings required a decade of box office hits, a few magazine covers, and at least one Karan Johar film. Yudhvir Ahlawat skipped all of it.
-
-The 14-year-old actor from Haryana topped IMDb India's weekly STARmeter popularity rankings this month after his performance in Netflix's *Kartavya*. He surpassed Shah Rukh Khan, Aishwarya Rai, CM Vijay, and every other name that has dominated Indian celebrity culture for the past thirty years.
-
-He did it without a film release in theatres. Without a brand endorsement. Without a famous parent.
-
-## The Film That Changed Everything
-
-*Kartavya* is a Netflix original that tells the story of duty, sacrifice, and coming-of-age in rural India. Ahlawat plays the central role — a boy navigating impossible choices in a world that offers him very few.
-
-The performance is the kind that makes you forget you are watching a child actor. It is restrained where most child performances are loud, emotionally precise where others rely on tears, and physically committed in a way that suggests someone who understood the character before the cameras rolled.
-
-Netflix's algorithm did the rest. The film appeared on India's Top 10 within days of release. Social media clips of Ahlawat's key scenes went viral. And IMDb's search data — which measures raw public curiosity — put him above actors who have collectively earned tens of thousands of crores at the box office.
-
-## What the Numbers Mean
-
-IMDb's STARmeter is not a popularity contest in the traditional sense. It tracks page views and search volume — a proxy for who the world is actively curious about at any given moment. When a 14-year-old from Haryana overtakes Shah Rukh Khan on that metric, it does not mean he is more famous. It means, for that specific week, more people wanted to know who he was.
-
-That distinction matters. In the theatrical era, curiosity was manufactured through trailers, TV appearances, and Filmfare spreads. In the streaming era, it is manufactured by performance. The audience discovers you on their own terms. The algorithm amplifies what they respond to. And if your work is good enough, you can go from unknown to the most searched person in India without ever doing a press junket.
-
-Ahlawat is not the first streaming-era breakout — Jaideep Ahlawat (no relation) had a similar trajectory with *Paatal Lok* in 2020. But he may be the youngest, and certainly the most dramatic example of how completely the discovery pipeline has changed.
-
-## The Diaspora Connection
-
-For NRIs, Ahlawat's rise is a reminder of what streaming has done to Indian entertainment's export model. A decade ago, a Hindi-language film about rural India would have had no distribution outside the subcontinent. Today, it premieres simultaneously in 190 countries on Netflix, and a teenager from Haryana becomes a global search trend.
-
-The platforms have not just changed how Indians abroad consume content. They have changed who gets to make content. The gatekeepers — the Yash Raj talent scouts, the star-kid launch machinery, the metropolitan networks that decide who gets a first film — still exist. But they now share the pipeline with an algorithm that does not care about your last name or your city of origin.
+She didn't frame it as activism. She asked for prayers. But the effect is the same: a woman whom millions of NRI families invited into their kitchens is now asking them to pay attention to their own health.
 
 ## What Comes Next
 
-Ahlawat has not announced a follow-up project. No production house has confirmed a signing. In the pre-streaming era, this would have been a problem — the window between a breakout and a second role was short, and if you missed it, the industry moved on.
+Bhadouria has not announced a timeline for her return to public life. Her social media accounts, which typically feature cooking content and food industry commentary, have shifted to health updates. The outpouring of support has been immediate and widespread — from fans, fellow chefs, and media personalities across India and the diaspora.
 
-The streaming era is more forgiving. *Kartavya* will remain on Netflix indefinitely. New audiences will discover it months and years from now. And Ahlawat's IMDb page — currently the most visited actor page in India — will serve as a permanent digital audition reel.
+For the NRI community that grew up watching her, the message is simple: get screened. The woman who taught you how to make restaurant-style butter chicken is telling you that early detection matters. Listen."""
 
-He is fourteen. He has time. And the industry, for once, is structured in a way that rewards patience over proximity to power.
+    # Image sourcing — Wikipedia first
+    img_url = fetch_wikipedia_person_image("Pankaj Bhadouria")
+    img_attribution = "Wikimedia Commons"
+    img_caption = "Pankaj Bhadouria, winner of MasterChef India Season 1"
 
-The old playbook said you needed Mumbai. Yudhvir Ahlawat says you need a good script, a camera, and a broadband connection."""
-}
+    if not img_url or not validate_image_url(img_url):
+        print("  ⚠ Wikipedia image not found or invalid, trying Pexels...")
+        img_url = fetch_pexels_image("Indian cooking kitchen chef", "MasterChef cooking")
+        img_attribution = "Pexels"
+        img_caption = "Representational image"
 
-publish_article(article2)
-time.sleep(1)
+    if img_url and not validate_image_url(img_url):
+        print("  ⚠ Image validation failed, skipping image")
+        img_url = None
 
-# ============================================================
-# ARTICLE 3: Made in India: A Titan Story
-# ============================================================
+    return {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "urgency": "developing",
+        "tags": ["Pankaj Bhadouria", "MasterChef India", "breast cancer", "health awareness", "diaspora"],
+        "diaspora_angle": "Bhadouria is a household name for NRI families who watched MasterChef India Season 1. Her diagnosis has sparked a health awareness conversation particularly relevant to South Asian women abroad, who consistently show lower breast cancer screening rates than the general population.",
+        "sources": [
+            {"name": "LatestLY", "url": "https://latestly.com"},
+            {"name": "Curly Tales", "url": "https://curlytales.com"},
+            {"name": "Nation Press", "url": "https://nationpress.com"},
+        ],
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attribution,
+    }
 
-print("\n=== Article 3: Made in India: A Titan Story ===")
 
-# Image: Naseeruddin Shah from Wikipedia
-img3 = fetch_wikipedia_person_image("Naseeruddin Shah")
-if not validate_image(img3):
-    img3 = fetch_wikipedia_person_image("Jim Sarbh")
-    if not validate_image(img3):
-        img3 = fetch_pexels_image("vintage watch Indian craftsmanship", "wristwatch luxury India")
-        if not validate_image(img3):
-            img3 = None
+def article_toxic_yash():
+    """Yash's Toxic — the most expensive Kannada film ever made keeps getting delayed."""
+    print("\n📰 Article 2: Yash's Toxic delays")
 
-article3 = {
-    "headline": "Naseeruddin Shah Plays JRD Tata. Jim Sarbh Plays the Man He Trusted to Build Titan. It Drops June 3.",
-    "subheadline": "'Made in India: A Titan Story' is a six-part Amazon MX Player series about how a watch company born in pre-liberalisation India became a global icon. For NRIs who grew up with a Titan on their wrist, this is personal.",
-    "slug": "made-in-india-titan-story-naseeruddin-shah-jrd-tata-jim-sarbh-amazon-mx-june-2026-nri",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img3,
-    "image_caption": "Naseeruddin Shah as JRD Tata in 'Made in India: A Titan Story', streaming June 3 on Amazon MX Player",
-    "image_attribution": "Wikimedia Commons" if img3 and 'wiki' in (img3 or '') else "Pexels" if img3 and 'pexels' in (img3 or '') else None,
-    "sources": json.dumps([
-        {"name": "Nation Press", "url": "https://nationpress.com"},
-        {"name": "Brownstone Worldwide", "url": "https://brownstoneworldwide.com"},
-        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-        {"name": "iDiva", "url": "https://www.idiva.com"}
-    ]),
-    "body": """Before liberalisation, before Infosys, before the idea that India could build global consumer brands felt anything other than absurd — there was a watch.
+    headline = "Yash's Toxic Is the Most Expensive Kannada Film Ever Made. It Has Been Delayed Three Times. No One Knows When It Opens."
+    subheadline = "At ₹700-800 crore, Toxic was supposed to follow KGF into the stratosphere. Instead, it has bounced from March to June to a date yet to be announced."
+    slug = "yash-toxic-most-expensive-kannada-film-delayed-three-times-release-date-nri-20260528"
 
-Titan was born in 1984, when the Indian market was dominated by HMT and the idea of a Tata Group entry into consumer electronics was met with scepticism from within the group itself. Xerxes Desai, a Tata loyalist who had spent years reviving Tata Press, was handed the job. JRD Tata backed him. The rest became one of the great Indian business origin stories.
+    body = """The math on Yash's Toxic is simple. The film cost between ₹700 and ₹800 crore to make. It was announced as the follow-up to KGF: Chapter 2, one of the highest-grossing Indian films of all time. It stars Kiara Advani, Nayanthara, Huma Qureshi, and Tara Sutaria alongside Yash in a dual role. The action sequences were choreographed by JJ Perry, the man behind John Wick. The music is by Ravi Basrur. The director is Geetu Mohandas — the first woman to helm a film at this budget level in Indian cinema.
 
-Now, it is a television series. And the casting alone should tell you how seriously the makers are treating the material.
+And nobody knows when you can watch it.
 
-## The Show
+## Three Delays and Counting
 
-*Made in India: A Titan Story* is a six-part series premiering on Amazon MX Player on June 3, 2026. It is free to stream — no subscription required.
+Toxic was originally scheduled for March 19, 2026 — timed to land on the Ugadi, Gudi Padwa, and Eid holiday window. It would have clashed with Ranveer Singh's Dhurandhar 2: The Revenge, which was the kind of box office war that gets trade analysts writing in ALL CAPS.
 
-Naseeruddin Shah plays JRD Tata. Jim Sarbh plays Xerxes Desai. The series is adapted from Vinay Kamath's book *Titan: Inside India's Most Successful Consumer Brand* and directed by Robbie Grewal.
+Then it was pushed to June 4, 2026. The stated reason: the Middle East crisis had disrupted global distribution plans, and the makers wanted a wider worldwide theatrical window. The film was shot in Kannada and English — a first for Indian cinema at this scale — and securing English-language distribution across markets required more time.
 
-The trailer, released on May 26, establishes the tone: this is not a glossy corporate hagiography. It is a story about two men who believed India could build something world-class in a decade when the country's industrial policy was designed to prevent exactly that. Import restrictions meant components had to be sourced domestically. Bureaucratic approvals took years. The market did not believe an Indian watch could compete with Swiss and Japanese imports.
+Then, in what has become a pattern, the June 4 date was also pulled. The producers at KVN Productions issued a statement emphasising "patience" and "global ambitions," but offered no replacement date. As of today — May 28, 2026 — Toxic has no confirmed release.
 
-Desai built Titan anyway. He launched Sonata as an affordable sub-brand. He introduced Fastrack for younger buyers. He turned a watch company into a lifestyle conglomerate that now includes Tanishq, one of India's largest jewellery brands.
+## What the Industry Saw at CinemaCon
 
-## Why It Matters for the Diaspora
+The film is complete. That much is clear. At CinemaCon 2026, the makers showed a nine-minute preview to international distributors and exhibitors. The response, by multiple trade accounts, was "speechless." The footage reportedly showcased the film's period setting — a sprawling narrative across the 1940s to 1970s — and a tone that blends gangster mythology with fairy tale imagery. The subtitle of the film is "A Fairy Tale for Grown-Ups."
 
-Every NRI over 30 has a Titan memory. It was the watch your father wore to the office. It was the Sonata you received as a school prize. It was the Fastrack you bought with your first pocket money because you wanted something that felt modern and Indian at the same time.
+Dil Raju's Sri Venkateswara Creations paid ₹120 crore for the Andhra Pradesh and Telangana theatrical rights — the highest ever for a non-Telugu film in the region. Anil Thadani's AA Films is handling North India and Nepal. Phars Film locked the international Indian-language rights for ₹105 crore. These are not the deal structures of a film that anyone thinks will underperform.
 
-For a generation that left India and built careers in Silicon Valley, Wall Street, the NHS, and Bay Street, the Titan story resonates at a level that most business narratives do not. It is proof that the India they left — the India of license raj and import substitution — contained within it the seeds of the global India that followed.
+## The Problem With Being Too Big
 
-The series arrives at a moment when Indian business stories are having a cultural moment. *The Romantics* documented Yash Raj Films. *Scam 1992* turned Harshad Mehta into a streaming antihero. *Rocket Boys* dramatised Homi Bhabha and Vikram Sarabhai. But none of those stories centred on a consumer product that millions of Indians personally owned and emotionally associated with growing up.
+Toxic exists in a category that Indian cinema has only recently created: the ₹500 crore+ production that must perform globally to break even. KGF: Chapter 2 proved a Kannada film could do it. But KGF 2 arrived as a sequel with a built-in audience and thunderous momentum. Toxic is an original property — a period gangster film with an unconventional director and a fairy tale framing. The ingredients are spectacular. The risk is commensurate.
 
-Titan is different. It is intimate. You did not need to understand nuclear physics or stock markets to feel the brand. You just needed a wrist.
+Every delay compounds the problem. Marketing campaigns lose momentum. Distribution partners recalculate their projections. Audiences move on to the next headline. The ₹120 crore that Dil Raju paid was priced on the assumption of a specific release window — not an indefinite hold.
 
-## The Performances
+## What NRIs Should Know
 
-Casting Naseeruddin Shah as JRD Tata is a statement of intent. Shah brings the same measured authority he brought to *A Wednesday*, *Sarfarosh*, and decades of parallel cinema. JRD Tata was not a loud leader — he was precise, deliberate, and fiercely protective of the people he trusted. Shah's screen persona mirrors those qualities almost exactly.
+If you saw KGF in a packed North American theatre and felt like Indian cinema had permanently changed, Toxic is the film that either confirms that theory or challenges it. The scale is genuine. The talent is undeniable. The financial stakes are the highest in Kannada cinema history.
 
-Jim Sarbh, who broke through with *Neerja* and has since built a career choosing projects that prioritise craft over commerce, plays Desai as a man who combines idealism with execution. The trailer suggests a performance grounded in quiet determination — a man who does not give speeches about changing India but simply builds something that does.
+The only thing missing is a date on the calendar. When it arrives, you'll want to be in a theatre. If it arrives."""
 
-## The Streaming Landscape
+    # Image sourcing — Wikipedia for Yash
+    img_url = fetch_wikipedia_person_image("Yash (actor)")
+    img_attribution = "Wikimedia Commons"
+    img_caption = "Yash, star of KGF and the upcoming Toxic"
 
-*Made in India* arrives on Amazon MX Player, which has been positioning itself as a free, ad-supported alternative to the subscription-heavy Indian OTT market. For NRIs, this matters. No paywall means no geo-restriction friction. If you can access Amazon MX Player — and it is available in most markets — you can watch a Naseeruddin Shah series about the founding of Titan for free.
+    if not img_url or not validate_image_url(img_url):
+        img_url = fetch_wikipedia_person_image("Yash Kannada actor")
+        
+    if not img_url or not validate_image_url(img_url):
+        img_url = fetch_pexels_image("gangster film noir dark", "cinematic dark throne")
+        img_attribution = "Pexels"
+        img_caption = "Representational image"
 
-In a month when JioHotstar, Netflix, SonyLIV, and Zee5 are all demanding your attention and your credit card, a free prestige series about Indian entrepreneurship feels like a gift.
+    if img_url and not validate_image_url(img_url):
+        img_url = None
 
-The six episodes drop together on June 3. Clear an evening. Wear your old Titan if you still have one."""
-}
+    return {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "urgency": "developing",
+        "tags": ["Yash", "Toxic", "Kannada cinema", "KGF", "Kiara Advani", "Nayanthara", "box office"],
+        "diaspora_angle": "NRIs who packed theatres for KGF have been waiting for Yash's next. Toxic's repeated delays and enormous budget make it the biggest question mark in Indian cinema's global expansion — and the answer directly affects how many Kannada-language films get wide releases in North America and the UK.",
+        "sources": [
+            {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
+            {"name": "Hollywood Reporter India", "url": "https://hollywoodreporterindia.com"},
+            {"name": "Sacnilk", "url": "https://sacnilk.com"},
+            {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Toxic_(2026_film)"},
+        ],
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attribution,
+    }
 
-publish_article(article3)
 
-print("\n=== Entertainment writer batch complete ===")
+def article_ramayana_preponed():
+    """Ramayana Part 1 — preponed to October 30."""
+    print("\n📰 Article 3: Ramayana Part 1 preponed to October 30")
+
+    headline = "Ramayana Part 1 Is Reportedly Coming a Week Before Diwali. The Cast List Alone Would Have Sold Out 2015."
+    subheadline = "Ranbir Kapoor as Ram, Sai Pallavi as Sita, Yash as Ravana, Sunny Deol as Hanuman. Music by AR Rahman and Hans Zimmer. Distribution deal: ₹450 crore. Release: October 30, 2026."
+    slug = "ramayana-part-1-preponed-october-30-ranbir-kapoor-yash-sai-pallavi-ar-rahman-hans-zimmer-nri-20260528"
+
+    body = """The most anticipated Indian film of 2026 may have just moved up its arrival. According to multiple trade reports, Ramayana Part 1 — directed by Nitesh Tiwari and produced by Namit Malhotra — is now targeting October 30, 2026, a week ahead of Diwali. The original plan was a Diwali-day release. The preponed date is designed to capture the maximum festive window, giving the film a full week of holiday-period screenings before the celebrations peak.
+
+This is, by every available metric, the biggest Indian production currently in existence.
+
+## A Cast That Reads Like a Fever Dream
+
+Ranbir Kapoor plays Lord Ram. Sai Pallavi plays Sita. Yash — the KGF franchise star currently navigating the delayed release of Toxic — plays Ravana. Sunny Deol, in what may be the most inspired piece of casting in recent Indian cinema, plays Hanuman. Ravi Dubey plays Lakshman. Prithviraj Sukumaran has an undisclosed role.
+
+The music is composed by AR Rahman and Hans Zimmer. If you read that twice, you read it correctly. The man who scored Slumdog Millionaire and the man who scored The Dark Knight, Inception, and Interstellar are collaborating on the same Indian film.
+
+## The Business Behind the Mythology
+
+The theatrical distribution deal is reportedly worth ₹450 crore — a figure that reflects the industry's confidence in the film's commercial ceiling. This is a two-part project. Part 1 arrives October 30, 2026. Part 2 is scheduled for Diwali 2027. The introductory video was released on July 3, 2025, more than a year before the first film's release, suggesting a marketing timeline modelled on Hollywood tentpoles rather than typical Bollywood campaigns.
+
+Nitesh Tiwari — the director of Dangal, one of the highest-grossing Indian films globally — is helming the project. The film has been shot across multiple international locations and utilises a visual effects pipeline that the producers describe as the most advanced ever deployed in Indian cinema.
+
+## The Teaser That Already Exists
+
+In late March 2026, a CBFC-certified asset titled "Rama" was cleared for release — a 2 minute, 38-second video that was shown at a special IMAX screening in Los Angeles. Ranbir Kapoor, Nitesh Tiwari, and Namit Malhotra attended the LA event. The footage was released publicly on April 2, Hanuman Jayanti — the cultural alignment between the marketing calendar and the source material being neither subtle nor accidental.
+
+Early reports from the LA screening emphasise character presence and emotional depth over action spectacle. This is not, by available accounts, an effects-driven blockbuster that happens to use Hindu mythology. It is a character film that happens to have an unprecedented effects budget.
+
+## Why NRIs Should Pay Attention
+
+Ramayana occupies a unique position in the diaspora's cultural consciousness. For millions of NRI families, the Ramayan TV serial of the late 1980s is foundational — a shared reference that bridges generations and geographies. A big-screen adaptation with this cast, this director, and this budget is not just a film release. It is a cultural event.
+
+The October 30 date, if confirmed, positions the film to dominate the global box office during a period when Indian audiences — both domestic and overseas — are at their most receptive. Diwali weekend in North America has become one of the most reliable windows for Indian cinema's biggest releases.
+
+Part 1 of Ramayana. Ranbir as Ram. Yash as Ravana. Rahman and Zimmer on the score. October 30. Mark it."""
+
+    # Image sourcing — Wikipedia for Ranbir Kapoor
+    img_url = fetch_wikipedia_person_image("Ranbir Kapoor")
+    img_attribution = "Wikimedia Commons"
+    img_caption = "Ranbir Kapoor, who plays Lord Ram in Ramayana Part 1"
+
+    if not img_url or not validate_image_url(img_url):
+        img_url = fetch_wikipedia_person_image("Nitesh Tiwari")
+        img_caption = "Nitesh Tiwari, director of Ramayana"
+
+    if not img_url or not validate_image_url(img_url):
+        img_url = fetch_pexels_image("ancient Indian temple architecture", "Hindu temple India")
+        img_attribution = "Pexels"
+        img_caption = "Representational image"
+
+    if img_url and not validate_image_url(img_url):
+        img_url = None
+
+    return {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "urgency": "developing",
+        "tags": ["Ramayana", "Ranbir Kapoor", "Yash", "Sai Pallavi", "Nitesh Tiwari", "AR Rahman", "Hans Zimmer", "Diwali 2026"],
+        "diaspora_angle": "Ramayana is the most culturally significant Indian film project in a generation for the diaspora. The 1987 TV serial is a shared reference across NRI families worldwide. A big-screen adaptation with this cast and this budget, releasing during Diwali, will be the biggest Indian film event of the year in overseas markets.",
+        "sources": [
+            {"name": "Sacnilk", "url": "https://sacnilk.com"},
+            {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
+        ],
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attribution,
+    }
+
+
+# ── main ─────────────────────────────────────────────────────────────────
+def main():
+    print("=" * 60)
+    print("The Videshi — Entertainment Writer — 2026-05-28")
+    print("=" * 60)
+
+    articles = [
+        article_pankaj_bhadouria(),
+        article_toxic_yash(),
+        article_ramayana_preponed(),
+    ]
+
+    published = 0
+    for art in articles:
+        # Validate
+        if len(art["headline"]) > 200:
+            print(f"  ⚠ Headline too long ({len(art['headline'])} chars), truncating")
+            art["headline"] = art["headline"][:197] + "..."
+        if len(art.get("subheadline", "")) < 15:
+            print(f"  ⚠ Subheadline too short, skipping article")
+            continue
+        word_count = len(art["body"].split())
+        if word_count < 400:
+            print(f"  ⚠ Body too short ({word_count} words), skipping article")
+            continue
+
+        print(f"\n  Publishing: {art['headline'][:70]}...")
+        print(f"  Slug: {art['slug']}")
+        print(f"  Words: {word_count}")
+        print(f"  Image: {art.get('image_url', 'None')[:80] if art.get('image_url') else 'None'}")
+
+        result = publish_article(art)
+        if result:
+            published += 1
+
+    print(f"\n{'=' * 60}")
+    print(f"Done. Published {published}/{len(articles)} articles.")
+    print(f"{'=' * 60}")
+
+if __name__ == "__main__":
+    main()

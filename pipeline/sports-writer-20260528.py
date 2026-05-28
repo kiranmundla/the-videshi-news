@@ -1,14 +1,30 @@
 #!/usr/bin/env python3
-"""Sports writer for The Videshi — 2026-05-28 batch"""
+"""Sports writer for The Videshi - May 28, 2026
+Sinner's historic French Open collapse article.
+"""
 
-import json, os, re, sys, time, uuid, urllib.parse
-import requests
+import json
+import os
+import re
+import subprocess
+import sys
+import uuid
 from datetime import datetime, timezone
 
-# ── env ──
+import requests
+import urllib.parse
+
+# Load environment
+env_path = os.path.expanduser("~/.env.supabase")
+with open(env_path) as f:
+    for line in f:
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            key, val = line.split("=", 1)
+            os.environ[key.strip()] = val.strip().strip('"').strip("'")
+
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
     "apikey": SUPABASE_KEY,
@@ -17,7 +33,19 @@ HEADERS = {
     "Prefer": "return=representation",
 }
 
-# ── helpers ──
+# Load Pexels key
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+PEXELS_KEY = None
+if os.path.exists(pexels_env):
+    with open(pexels_env) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                if "PEXELS" in k.upper():
+                    PEXELS_KEY = v.strip().strip('"').strip("'")
+
+
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -39,317 +67,245 @@ def fetch_wikipedia_person_image(person_name):
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels via curl (urllib gets 403)."""
+    """Fetch image from Pexels. Returns URL or None."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels key available")
+        return None
+    
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            import subprocess
             result = subprocess.run(
-                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
-                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape"],
+                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
+                 "-H", f"Authorization: {PEXELS_KEY}"],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
             photos = data.get("photos", [])
-            for photo in photos:
-                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
-                if url:
-                    # Verify it's a real image
-                    head = requests.head(url, timeout=10)
-                    clen = int(head.headers.get("Content-Length", "0"))
-                    if head.status_code == 200 and clen > 5000:
-                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                        return url
+            if photos:
+                url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 
 def validate_image(url):
-    """Validate image URL returns 200 with image content > 5KB."""
+    """Validate that image URL returns a valid image > 5KB."""
     if not url:
         return False
     try:
-        # Check for banned sources
-        banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com"]
-        if any(b in url for b in banned):
-            print(f"  ✗ BANNED source: {url[:80]}")
-            return False
-        ua = {"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
-        head = requests.head(url, timeout=10, allow_redirects=True, headers=ua)
-        ctype = head.headers.get("Content-Type", "")
-        clen = int(head.headers.get("Content-Length", "0"))
-        if head.status_code == 200 and "image" in ctype and clen > 5000:
+        r = requests.head(url, timeout=10, allow_redirects=True, headers={"User-Agent": "TheVideshi/1.0"})
+        content_type = r.headers.get("Content-Type", "")
+        content_length = int(r.headers.get("Content-Length", 0))
+        if "image" in content_type and content_length > 5000:
+            print(f"  ✓ Image validated: {content_type}, {content_length} bytes")
             return True
-        # Retry with GET if HEAD fails (some servers don't support HEAD)
-        if head.status_code != 200:
-            resp = requests.get(url, timeout=10, headers=ua, stream=True)
-            ctype = resp.headers.get("Content-Type", "")
-            clen = int(resp.headers.get("Content-Length", "0"))
-            resp.close()
-            if resp.status_code == 200 and "image" in ctype and clen > 5000:
+        elif "image" in content_type and content_length == 0:
+            # Some servers don't return Content-Length for HEAD
+            r2 = requests.get(url, timeout=10, stream=True, headers={"User-Agent": "TheVideshi/1.0"})
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
+                print(f"  ✓ Image validated via GET: {len(chunk)}+ bytes")
                 return True
-        print(f"  ✗ Image validation failed: status={head.status_code} type={ctype} len={clen}")
+        print(f"  ✗ Image invalid: type={content_type}, size={content_length}")
+        return False
     except Exception as e:
         print(f"  ✗ Image validation error: {e}")
-    return False
+        return False
+
+
+def is_banned_url(url):
+    """Check if URL is from a banned source."""
+    if not url:
+        return True
+    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
+    return any(b in url for b in banned)
 
 
 def publish_article(article):
-    """Insert article into p2_articles."""
-    article_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
-    # Format sources as JSON array of objects with name key
-    raw_sources = article.get("sources", [])
-    formatted_sources = []
-    for s in raw_sources:
-        if isinstance(s, str):
-            # Split on " — " to get name and description
-            parts = s.split(" — ", 1)
-            formatted_sources.append({"name": parts[0].strip(), "url": parts[1].strip() if len(parts) > 1 else ""})
-        elif isinstance(s, dict):
-            formatted_sources.append(s)
-
+    """Publish article to Supabase."""
     payload = {
-        "id": article_id,
+        "id": str(uuid.uuid4()),
         "headline": article["headline"],
         "subheadline": article["subheadline"],
         "body": article["body"],
         "slug": article["slug"],
         "category": "sports",
-        "vertical": "sports",
         "status": "published",
-        "published_at": now,
-        "sources": json.dumps(formatted_sources),
-        "image_url": article.get("image_url", ""),
-        "image_caption": article.get("image_caption", ""),
-        "image_attribution": article.get("image_attribution", ""),
+        "sources": json.dumps(article["sources"]),
+        "image_url": article.get("image_url"),
+        "image_caption": article.get("image_caption"),
+        "image_attribution": article.get("image_attribution"),
+        "published_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "created_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
 
-    resp = requests.post(
+    # Remove None values
+    payload = {k: v for k, v in payload.items() if v is not None}
+
+    r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
         json=payload,
-        timeout=30
+        timeout=30,
     )
-    if resp.status_code in (200, 201):
-        print(f"  ✓ Published: {article['headline'][:60]}... (id={article_id})")
-        return article_id
+    if r.status_code in (200, 201):
+        result = r.json()
+        print(f"  ✓ Published: {article['headline'][:60]}... (slug: {article['slug']})")
+        return True
     else:
-        print(f"  ✗ Failed to publish: {resp.status_code} {resp.text[:200]}")
-        return None
+        print(f"  ✗ Failed to publish: {r.status_code} — {r.text[:200]}")
+        return False
 
 
-# ══════════════════════════════════════════════════════════════
-# ARTICLES
-# ══════════════════════════════════════════════════════════════
+def write_sinner_collapse():
+    """Sinner's historic French Open collapse."""
+    headline = "He Was One Game Away. Then Jannik Sinner Lost Eighteen Straight Points and the French Open."
+    subheadline = "The world number one was up 6-3, 6-2, 5-1, serving for the match. What happened next was one of the most extraordinary collapses in Grand Slam history."
+    slug = "sinner-collapse-french-open-2026-cerundolo-heat-djokovic-25th-grand-slam-20260528"
 
-articles = []
+    body = """The scoreboard told a simple story. Jannik Sinner led Juan Manuel Cerúndolo 6-3, 6-2, 5-1. He was serving for the match. He had lost seven games in two and a half sets. The world number one, riding a thirty-match winning streak that included three consecutive clay-court Masters titles, was about to cruise into the third round of the 2026 French Open.
 
-# ── ARTICLE 1: FIFA World Cup Broadcast Crisis ──
-print("\n═══ Article 1: FIFA World Cup Broadcast Crisis in India ═══")
+Then he lost eighteen straight points.
 
-art1_img = fetch_pexels_image("FIFA World Cup football stadium crowd", "world cup football fans")
-if art1_img and not validate_image(art1_img):
-    art1_img = None
+## The Collapse
 
-articles.append({
-    "headline": "The World Cup Starts in Two Weeks. India Still Does Not Have a Broadcaster.",
-    "subheadline": "FIFA wanted a hundred million dollars. Reliance offered twenty. Zee entered talks this week. NRIs in America will watch every match. Their families in India might not see a single one.",
-    "slug": "fifa-world-cup-2026-india-broadcast-crisis-zee-reliance-disney-nri-20260528",
-    "image_url": art1_img or "",
-    "image_caption": "The 2026 FIFA World Cup kicks off June 11 across the United States, Canada, and Mexico",
-    "image_attribution": "Pexels" if art1_img else "",
-    "sources": [
-        "Reuters — Zee Entertainment in talks with FIFA on World Cup broadcast rights in India",
-        "Exchange4Media — FIFA set to close India media rights deal for World Cup soon",
-        "BestMediaInfo — The FIFA World Cup 2026 is coming to every screen in Asia except India"
-    ],
-    "body": """The 2026 FIFA World Cup begins on June 11. Forty-eight nations will play across sixteen cities in the United States, Canada, and Mexico. FIFA has sold broadcast rights in more than 180 countries. India is not one of them.
+It began at 0-40 in the third set. Sinner looked visibly uncomfortable, pausing between points, bouncing less on his toes. He held a lengthy discussion with the chair umpire, then walked off Court Philippe Chatrier for medical treatment. The temperature in Paris had climbed past 32 degrees Celsius — around 90 degrees Fahrenheit — and the scorching conditions that had already claimed multiple players this week finally found their biggest victim.
 
-With barely two weeks remaining before the opening match, the world's most-watched sporting event has no confirmed broadcaster in the country of 1.4 billion people. For the Indian diaspora scattered across North America — living in the very cities hosting the tournament — the irony is extraordinary. They will watch matches at MetLife Stadium, SoFi, and AT&T Stadium. Their parents, siblings, and friends in Mumbai, Delhi, and Chennai may not be able to watch at all.
+When Sinner returned, he was a different player. Cerúndolo won the final six games of the third set. He won the fourth set 6-1. He won the fifth set 6-1. The final score read 3-6, 2-6, 7-5, 6-1, 6-1 — a result so improbable that one bettor who had wagered $5,000 on Sinner's moneyline at -10000 odds (for a potential $50 return) lost everything.
 
-## The Money Problem
+Sinner committed 54 unforced errors and hit 7 double faults across the match. In the final three sets, his body language deteriorated from discomfort to resignation. He lost 18 of the last 20 games.
 
-The deadlock is about price. FIFA initially sought $100 million for the combined broadcast rights to the 2026 and 2030 World Cups in India. That number has been revised downward — reports suggest FIFA is now looking for somewhere between $35 million and $60 million — but the gap between what FIFA wants and what Indian broadcasters are willing to pay remains vast.
+"Of course, it's tough for him. He was leading the match. I couldn't win more than three games per set," Cerúndolo said afterward. "I think I was a little bit lucky. I feel sorry for him because he deserved to win. But then I don't know what happened — I think he was cramping maybe, or maybe the pressure, I don't know."
 
-JioHotstar, the Reliance-Disney joint venture that broadcast the 2022 World Cup, has reportedly maintained an offer of approximately $20 million. FIFA has rejected it. Sony, the other major sports broadcaster in India, declined to bid at all.
+## The Numbers
 
-On Tuesday, Zee Entertainment entered the conversation. The company confirmed it is in talks with FIFA to stream and broadcast the tournament through its Unite8 Sports initiative, though no financial details were disclosed. Whether Zee can close a deal in the next fourteen days — when larger players with deeper pockets could not — remains an open question.
+According to ESPN Insights, Sinner is now the first man in the Open Era to lose more than one Grand Slam match as the top seed after holding a two-sets-to-love lead. It is a record no one wants.
 
-## A Cricket Country's Football Problem
+The 24-year-old Italian had entered Roland Garros as the overwhelming favourite. With Carlos Alcaraz — the defending champion and world number two — sidelined by a wrist injury that will also keep him out of Wimbledon, Sinner's path to a maiden French Open title and a career Grand Slam had looked historically clear. He had won five consecutive Masters 1000 titles. His 30-match winning streak was the longest on tour. The French Open was the only major he had never won, having lost to Alcaraz in a fifth-set tiebreak in last year's epic final.
 
-The underlying issue is structural. India is a cricket-first market. The IPL alone commands billions in broadcast revenue. Football, despite a passionate and growing fanbase, does not generate the advertising returns that justify World Cup-level pricing.
+Now he is out in the second round — the earliest exit for a men's top seed at Roland Garros since 2008.
 
-In 2022, India accounted for roughly 2.9 percent of the World Cup's global linear TV reach — significant in absolute numbers given India's population, but a fraction of what cricket delivers to advertisers. The tournament's timing this year compounds the problem: the IPL final is May 31, and the World Cup begins eleven days later. Advertisers who just spent heavily on cricket may not have the budget for football.
+## A Tournament Without Its Two Best Players
 
-A petition has been filed in Indian courts arguing that depriving millions of fans of the World Cup broadcast would be unjust. The petition invokes Article 226 of the Constitution, though its legal prospects are uncertain.
+For the first time since the 2023 US Open, a men's Grand Slam final will not feature either Alcaraz or Sinner. The two players who have shared the last seven major titles between them are both absent from the second week.
 
-## What This Means for NRIs
+The new betting favourite is Alexander Zverev, the second seed, who has cruised through his opening matches. But the name on everyone's mind is Novak Djokovic.
 
-For the estimated 4.4 million Indian-origin residents in the United States alone, the situation creates a surreal split screen. NRIs in the New York metro area can walk to MetLife Stadium to watch group-stage matches. NRIs in Los Angeles can attend games at SoFi Stadium, where the US opens against Paraguay on June 12. Houston, with its massive South Asian community, hosts multiple matches at NRG Stadium.
+The 39-year-old Serbian, seeded third, is chasing a record-breaking 25th Grand Slam singles title. He beat Frenchman Valentin Royer 6-3, 6-2, 6-7(7), 6-3 to reach the third round, where he faces the talented young Brazilian Joao Fonseca on Friday. After his second-round win, Djokovic celebrated with a Michael Jackson-style moonwalk on Chatrier — the kind of showmanship that suggests he senses an opportunity.
 
-But when these fans call home to discuss the matches, their families may have nothing to watch. No legal stream, no TV broadcast, no highlights package.
+Sania Mirza, the Indian tennis icon, had flagged Djokovic as the "dark horse" in the men's draw before the tournament began. With Sinner gone, that assessment looks prophetic.
 
-India is not the only market where football struggles against cricket — Pakistan faces similar dynamics — but it is by far the largest. The 2022 World Cup final between Argentina and France drew an estimated 1.5 billion viewers globally. The idea that India could be blacked out entirely from the 2026 edition would have seemed absurd even six months ago.
+## The Diaspora Angle
 
-## The Clock Is Ticking
+For the Indian tennis community watching from afar, Sinner's exit reshapes the tournament in which India still has a stake. Yuki Bhambri and Sriram Balaji — India's last two men standing at Roland Garros — are into the second round of doubles. Their run continues even as the singles draw has been torn apart by heat and chaos.
 
-FIFA and potential Indian broadcasters have approximately fourteen days to close a deal. If Zee's talks succeed, the tournament could land on Zee5 and its linear channels. If they fail, India joins a vanishingly small list of major nations without World Cup coverage.
+This has been a French Open unlike any other. Seventeen players withdrew before the tournament began. Fifteen seeds lost in the first round. Czech player Jakub Menšík collapsed on court during his second-round match. Elena Rybakina, the world number two, was stunned in the second round. And now the world number one is gone too.
 
-For NRIs, the situation is a reminder of a familiar truth: the diaspora experience often means straddling two worlds that operate on entirely different logics. In one world, the World Cup is two weeks away and the excitement is building. In the other, no one is even sure they will be able to watch it."""
-})
-
-
-# ── ARTICLE 2: Dhruv-Tanisha Olympic Medalist Upset ──
-print("\n═══ Article 2: Dhruv-Tanisha Upset at Singapore Open ═══")
-
-art2_img = fetch_wikipedia_person_image("Tanisha Crasto")
-if not art2_img:
-    art2_img = fetch_wikipedia_person_image("Dhruv Kapila (badminton)")
-if not art2_img:
-    art2_img = fetch_wikipedia_person_image("Dhruv Kapila")
-if not art2_img:
-    art2_img = fetch_pexels_image("badminton mixed doubles match", "badminton court shuttlecock")
-if art2_img and not validate_image(art2_img):
-    art2_img = None
-
-articles.append({
-    "headline": "They Lost the First Game 8-21. Then Dhruv Kapila and Tanisha Crasto Destroyed an Olympic Medalist.",
-    "subheadline": "The unseeded Indian mixed doubles pair staged one of the most dramatic comebacks of the badminton season to knock out Japan's Yuta Watanabe and Maya Taguchi at the Singapore Open.",
-    "slug": "dhruv-kapila-tanisha-crasto-upset-olympic-medalist-watanabe-singapore-open-2026-20260528",
-    "image_url": art2_img or "",
-    "image_caption": "Dhruv Kapila and Tanisha Crasto have risen to a career-high world No. 17 in mixed doubles",
-    "image_attribution": "Wikimedia Commons" if (art2_img and "wikimedia" in (art2_img or "").lower()) or (art2_img and "wikipedia" in (art2_img or "").lower()) else ("Pexels" if art2_img else ""),
-    "sources": [
-        "myKhel — Singapore Open 2026: Unseeded Indian Pair Dhruv-Tanisha Stun Olympic Medallist Watanabe & Taguchi",
-        "IANS — Singapore Open: Sindhu, Lakshya, Satwik-Chirag, Tanisha-Dhruv march into QFs",
-        "The Bridge — Badminton: Tanisha Crasto-Dhruv Kapila climb to career high world ranking"
-    ],
-    "body": """At 8-21 down after the first game, Dhruv Kapila and Tanisha Crasto looked finished. The scoreline was not merely lopsided — it was the kind of deficit that suggests a mismatch, a pairing that does not belong on the same court as its opponents.
-
-Their opponents were Yuta Watanabe and Maya Taguchi of Japan. Watanabe is an Olympic bronze medalist from the Tokyo Games. Taguchi is one of the most experienced mixed doubles players on the World Tour. The match, a quarterfinal-round contest at the Singapore Open 2026 — a BWF Super 750 event with a million-dollar prize pool — was supposed to be a formality for the Japanese pair.
-
-It was not.
-
-## The Comeback
-
-What followed the first-game demolition was one of the most remarkable turnarounds of the badminton season. Kapila and Crasto regrouped between games and came out with a fundamentally different approach. They attacked the net with more aggression, disrupted Watanabe's rhythm with sharper returns, and forced errors from a pair that had barely made any in the opening game.
-
-The second game went 21-17 to the Indians. Not a blowout, but a clear and controlled reversal. By the third game, the momentum had shifted completely. Kapila and Crasto won it 21-16, and the Japanese pair that had seemed untouchable thirty minutes earlier walked off the court eliminated.
-
-Final score: 8-21, 21-17, 21-16.
-
-## Who Are They?
-
-Dhruv Kapila, 27, is from Hyderabad. Tanisha Crasto, 21, is from Goa — born into a family with deep badminton roots (her sister Ashwini Ponnappa is one of India's most decorated doubles players). Together, they have been climbing the world rankings steadily over the past two years. After a quarterfinal run at the 2025 Badminton Asia Championships, they reached a career-high world ranking of No. 17.
-
-But rankings only tell part of the story. Mixed doubles has historically been India's weakest discipline. The country has produced world-class singles players — Saina Nehwal, PV Sindhu, Kidambi Srikanth — and a genuinely elite men's doubles pair in Satwiksairaj Rankireddy and Chirag Shetty. But mixed doubles has been a persistent blind spot, a category where India rarely advances past the early rounds of major tournaments.
-
-Kapila and Crasto are changing that narrative. Their partnership, which began in earnest in 2023, has evolved from a developmental project into a legitimate threat at the highest level. Beating an Olympic medalist at a Super 750 event is not a fluke — it is a statement.
-
-## Part of Something Bigger
-
-Their Singapore Open run is part of a broader Indian surge at the tournament. PV Sindhu, Lakshya Sen, Satwiksairaj Rankireddy and Chirag Shetty, and HS Prannoy have all advanced deep into the draw. India had five entries across disciplines in the quarterfinals — the kind of depth that would have been unthinkable a decade ago.
-
-For the diaspora, this matters beyond the scoreboard. Badminton is a sport that many NRI families grew up playing — in backyards in Chennai, in community halls in Hyderabad, in school gymnasiums across India. The sport's presence in the Indian cultural memory is deep even if its professional infrastructure was, until recently, thin. Watching India compete credibly across multiple disciplines at the world's top tournaments is a validation of something families have believed for generations: that India can be a badminton power.
+The 2026 French Open began with one clear favourite. It now has none. And in the brutal Paris heat, anything can happen.
 
 ## What Comes Next
 
-Kapila and Crasto now face Malaysia's Chen Tang Jie and Toh Ee Wei in the quarterfinals proper — another formidable pair. Whether they can sustain the magic of their Watanabe-Taguchi comeback remains to be seen.
+Sinner's early exit will cost him significant ranking points — he had reached the final last year. The question now is whether the physical issues were a one-off heat reaction or something more concerning ahead of Wimbledon and the US Open.
 
-But even if their run ends here, the result stands. An unseeded Indian pair lost the first game 8-21 against an Olympic medalist and came back to win the match. In a sport where India's mixed doubles program was an afterthought for decades, that is not a footnote. It is a beginning."""
-})
+For Djokovic, the draw has opened up in a way he could not have imagined. At thirty-nine, with knees that have been surgically repaired and a body that defies every athletic timeline, this may be his best and last chance at twenty-five."""
 
+    sources = [
+        {"name": "Reuters", "url": "https://www.reuters.com/sports/tennis/ailing-sinner-knocked-out-french-open-second-round-by-cerundolo-2026-05-28/"},
+        {"name": "CNN", "url": "https://www.cnn.com/2026/05/28/sport/jannik-sinner-crashes-out-roland-garros"},
+        {"name": "New York Post", "url": "https://nypost.com/2026/05/28/sports/jannik-sinner-stunned-at-2026-french-open-in-all-time-collapse/"},
+        {"name": "ESPN Insights", "url": "https://x.com/ESPNInsights"}
+    ]
 
-# ── ARTICLE 3: Women's T20 World Cup NRI Guide ──
-print("\n═══ Article 3: Women's T20 World Cup in England ═══")
+    # Image sourcing — Wikipedia for Sinner
+    print("  Sourcing image for Sinner article...")
+    image_url = None
+    image_caption = "Jannik Sinner during his second-round match at the 2026 French Open"
+    image_attribution = None
 
-art3_img = fetch_wikipedia_person_image("Smriti Mandhana")
-if not art3_img:
-    art3_img = fetch_wikipedia_person_image("Harmanpreet Kaur")
-if not art3_img:
-    art3_img = fetch_pexels_image("women cricket match India", "cricket stadium England")
-if art3_img and not validate_image(art3_img):
-    art3_img = None
+    # Try Wikipedia for Sinner
+    wiki_img = fetch_wikipedia_person_image("Jannik Sinner")
+    if wiki_img and not is_banned_url(wiki_img) and validate_image(wiki_img):
+        image_url = wiki_img
+        image_attribution = "Wikimedia Commons"
+    else:
+        # Try Pexels - specific clay court tennis
+        pexels_img = fetch_pexels_image("tennis clay court Roland Garros match", "tennis player clay court heat")
+        if pexels_img and not is_banned_url(pexels_img) and validate_image(pexels_img):
+            image_url = pexels_img
+            image_attribution = "Pexels"
 
-articles.append({
-    "headline": "India vs Pakistan on June 14 in Birmingham. The Women's T20 World Cup Is Two Weeks Away.",
-    "subheadline": "The biggest tournament in women's cricket is being held in England — home to the largest NRI population outside India. Here is everything the diaspora needs to know.",
-    "slug": "womens-t20-world-cup-2026-india-pakistan-june-birmingham-nri-guide-england-20260528",
-    "image_url": art3_img or "",
-    "image_caption": "Smriti Mandhana leads India's batting lineup into the Women's T20 World Cup in England",
-    "image_attribution": "Wikimedia Commons" if (art3_img and ("wikimedia" in (art3_img or "").lower() or "wikipedia" in (art3_img or "").lower())) else ("Pexels" if art3_img else ""),
-    "sources": [
-        "Wikipedia — India women's cricket team in England in 2026",
-        "Sportradar — ICC T20 World Cup Women 2026 schedule",
-        "SportsCafe — ENG vs IND T20 Series England vs India Women Squads",
-        "IANS — Focus on bowling unit as India begin key World Cup rehearsal against England"
-    ],
-    "body": """The ICC Women's T20 World Cup begins on June 12 in England and Wales. India's opening match is against Pakistan on June 14 at Edgbaston in Birmingham. For the estimated 1.8 million people of Indian origin living in the United Kingdom, this is not a tournament happening somewhere far away. It is happening in their backyard.
-
-Birmingham alone has one of the highest concentrations of British Indians in the country. Edgbaston — a ground that has hosted multiple India-England men's Tests to packed stands of Indian fans — will be the venue for what is arguably the most emotionally charged fixture in women's cricket. India versus Pakistan, in a World Cup, in a city where the diaspora can walk to the ground.
-
-## India's Path
-
-India are the reigning champions. They won the ICC Women's T20 World Cup title in the most recent edition, and they enter this tournament as one of the favorites. The squad, led by Harmanpreet Kaur, features a formidable top order — Shafali Verma's explosive power, Smriti Mandhana's elegance, and Jemimah Rodrigues's inventiveness give India one of the most dangerous batting lineups in the tournament.
-
-The bowling has been the question mark. India's three-match T20I series against England, which begins today at Chelmsford, is specifically designed to answer it. Deepti Sharma, Arundhati Reddy, Sneh Rana, and Renuka Singh are all in the touring party. How they perform against a strong England batting lineup in English conditions will determine India's bowling combinations for the World Cup.
-
-India's group-stage schedule after the Pakistan opener includes the Netherlands on June 17 and Australia on June 28 — the last of those being a match that could decide group standings. The knockout rounds follow in late June and early July, with the final scheduled for July 5.
-
-## Why This Tournament Matters for NRIs
-
-Previous Women's T20 World Cups have been held in Australia, the Caribbean, South Africa, and the UAE. For most NRIs, attending in person was impractical. This time is different.
-
-The tournament is spread across seven venues in England and Wales: Edgbaston (Birmingham), Lord's (London), The Oval (London), Old Trafford (Manchester), Headingley (Leeds), Sophia Gardens (Cardiff), and the County Ground (Bristol). Every one of these cities has a significant Indian-origin population. The logistics of attending a match — no intercontinental flights, no visa complications for UK residents — are trivial compared to previous editions.
-
-This accessibility matters because women's cricket in India has undergone a transformation in the past five years. The Women's Premier League launched in 2023 and has grown into a genuine domestic competition. India's results have followed: consistent performances in bilateral series, competitive showings in ICC events, and now a World Cup defense.
-
-For the diaspora, supporting the women's team in person is a way to participate in that transformation — to move beyond the familiar cycle of men's cricket fandom and invest in a team that is building something new.
-
-## The India-Pakistan Factor
-
-India versus Pakistan in any sport commands attention that transcends the game itself. In women's cricket, the rivalry has been less explored than its men's equivalent, partly because the teams have met less frequently and partly because the commercial infrastructure around women's cricket is still developing.
-
-But June 14 at Edgbaston could be a watershed moment. If the stadium fills — and given Birmingham's demographics, it very likely will — it would be the largest live audience for a women's India-Pakistan cricket match in history. The atmosphere at Edgbaston during men's India matches has been compared to playing in India. For the women's team, experiencing that level of support in a World Cup opener would be unprecedented.
-
-## What to Watch For
-
-Beyond the headline fixture, India's World Cup campaign will be defined by a few key questions. Can Shafali Verma, who turns 22 during the tournament, deliver the consistency that her talent has always promised? Will Richa Ghosh's power-hitting at number five or six give India the finishing ability they have sometimes lacked? And can the bowling attack, which has historically relied heavily on spin, adapt to English conditions that may offer more for seam?
-
-The bilateral series against England starting today is the first test. The World Cup — and that June 14 date at Edgbaston — is the real one.
-
-For NRIs in the UK, the message is simple: this is the most accessible major cricket tournament in memory, featuring a team that has genuine title credentials, opening against Pakistan in a city that feels like home. The tickets are available. The ground is close. The moment is now."""
-})
+    return {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "sources": sources,
+        "image_url": image_url,
+        "image_caption": image_caption,
+        "image_attribution": image_attribution,
+    }
 
 
-# ══════════════════════════════════════════════════════════════
-# PUBLISH ALL
-# ══════════════════════════════════════════════════════════════
+def main():
+    print("=" * 60)
+    print("The Videshi — Sports Writer (May 28, 2026)")
+    print("=" * 60)
 
-print(f"\n═══ Publishing {len(articles)} articles ═══\n")
+    # Check for duplicates
+    print("\nChecking for duplicate articles...")
+    try:
+        three_days_ago = datetime.now(timezone.utc).strftime("%Y-%m-%dT00:00:00Z")
+        r = requests.get(
+            f"{SUPABASE_URL}/rest/v1/p2_articles",
+            headers=HEADERS,
+            params={
+                "select": "headline,slug",
+                "status": "eq.published",
+                "category": "eq.sports",
+                "order": "published_at.desc",
+                "limit": "30",
+            },
+            timeout=15,
+        )
+        existing = r.json() if r.status_code == 200 else []
+        existing_slugs = [a["slug"] for a in existing]
+        existing_headlines_lower = [a["headline"].lower() for a in existing]
+        print(f"  Found {len(existing)} recent sports articles")
+    except Exception as e:
+        print(f"  ⚠ Could not check duplicates: {e}")
+        existing_slugs = []
+        existing_headlines_lower = []
 
-published = 0
-for i, art in enumerate(articles, 1):
-    print(f"\n── Article {i}: {art['headline'][:60]}...")
-    word_count = len(art["body"].split())
-    print(f"   Words: {word_count}")
-    if word_count < 400:
-        print(f"   ✗ REJECTED: below 400 word minimum")
-        continue
-    if not art.get("subheadline") or len(art["subheadline"]) < 15:
-        print(f"   ✗ REJECTED: subheadline missing or too short")
-        continue
-    if not art.get("slug") or art["slug"] != art["slug"].lower():
-        print(f"   ✗ REJECTED: slug issue")
-        continue
+    articles_to_write = []
 
-    result = publish_article(art)
-    if result:
-        published += 1
-    time.sleep(1)
+    # Article 1: Sinner collapse
+    sinner_slug = "sinner-collapse-french-open-2026-cerundolo-heat-djokovic-25th-grand-slam-20260528"
+    sinner_dupe = any("sinner" in s and "collapse" in s for s in existing_slugs) or \
+                  any("sinner" in h and "cerundolo" in h for h in existing_headlines_lower) or \
+                  any("sinner" in h and "eighteen" in h for h in existing_headlines_lower)
+    
+    if not sinner_dupe:
+        print("\n📝 Writing Article 1: Sinner's French Open Collapse")
+        article = write_sinner_collapse()
+        articles_to_write.append(article)
+    else:
+        print("\n⏭  Skipping Sinner article (duplicate detected)")
 
-print(f"\n═══ Done. Published {published}/{len(articles)} articles. ═══")
+    # Publish
+    print(f"\n{'=' * 60}")
+    print(f"Publishing {len(articles_to_write)} article(s)...")
+    
+    success = 0
+    for article in articles_to_write:
+        if publish_article(article):
+            success += 1
+
+    print(f"\n✅ Done. Published {success}/{len(articles_to_write)} articles.")
+
+
+if __name__ == "__main__":
+    main()
