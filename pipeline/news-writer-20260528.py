@@ -4,32 +4,53 @@ The Videshi — News Writer (2026-05-28)
 Generates 3 news articles with proper images and publishes to Supabase.
 """
 
-import os, json, re, uuid, subprocess, urllib.parse, time
+import json
+import os
+import subprocess
+import uuid
+import re
+import time
 from datetime import datetime, timezone
 
-# ─── Env ───
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
+# --- Load environment ---
+def load_env(path):
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                k, v = line.split('=', 1)
+                os.environ.setdefault(k.strip(), v.strip())
 
-HEADERS_JSON = f'-H "apikey: {SUPABASE_KEY}" -H "Authorization: Bearer {SUPABASE_KEY}" -H "Content-Type: application/json" -H "Prefer: return=representation"'
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-# ─── Image Sourcing ───
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_API_KEY = os.environ.get('PEXELS_API_KEY', '')
 
+HEADERS_SB = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
+}
+
+# --- Wikipedia person image ---
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
-        import requests
-        r = requests.get(
-            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+        result = subprocess.run(
+            ['curl', '-sS', '-H', 'User-Agent: TheVideshi/1.0 (thevideshi.com)',
+             f'https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}'],
+            capture_output=True, text=True, timeout=15
         )
-        if r.status_code == 200:
-            data = r.json()
-            # Prefer originalimage (higher res), fall back to thumbnail AS-IS
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            img = data.get('originalimage', {}).get('source') or data.get('thumbnail', {}).get('source')
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
@@ -38,351 +59,376 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 
+# --- Pexels image ---
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
+    """Fetch an image from Pexels. Returns URL or None."""
+    if not PEXELS_API_KEY:
+        print("  ⚠ No Pexels API key")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            cmd = f'curl -sS "https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape" -H "Authorization: {PEXELS_API_KEY}"'
-            result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=15)
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for photo in photos:
-                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            result = subprocess.run(
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_API_KEY}',
+                 f'https://api.pexels.com/v1/search?query={q}&per_page=5&orientation=landscape'],
+                capture_output=True, text=True, timeout=15
+            )
+            if result.returncode == 0:
+                data = json.loads(result.stdout)
+                photos = data.get('photos', [])
+                if photos:
+                    url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('original')
+                    if url:
+                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                        return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 
-def validate_image_url(url):
-    """Validate that URL returns a real image > 5KB."""
-    if not url:
-        return False
+# --- Upload image to Supabase storage ---
+def upload_image_to_supabase(image_url, filename):
+    """Download image from URL and upload to Supabase storage. Returns public URL."""
+    tmp_path = f'/tmp/{filename}'
     try:
-        cmd = f'curl -sS -o /dev/null -w "%{{http_code}} %{{size_download}} %{{content_type}}" -L "{url}" --max-time 10'
-        result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=15)
-        parts = result.stdout.strip().split()
-        if len(parts) >= 2:
-            code = parts[0]
-            size = int(parts[1])
-            if code == "200" and size > 5000:
-                print(f"  ✓ Image validated: {code}, {size} bytes")
-                return True
-            else:
-                print(f"  ✗ Image invalid: HTTP {code}, {size} bytes")
+        # Download
+        dl = subprocess.run(
+            ['curl', '-sS', '-L', '-o', tmp_path, '-H', 'User-Agent: TheVideshi/1.0 (thevideshi.com)', image_url],
+            capture_output=True, text=True, timeout=30
+        )
+        if dl.returncode != 0:
+            print(f"  ⚠ Download failed for {image_url[:60]}")
+            return None
+
+        # Check file size
+        size = os.path.getsize(tmp_path)
+        if size < 5000:
+            print(f"  ⚠ Image too small ({size} bytes), skipping")
+            return None
+
+        # Upload to Supabase storage
+        upload_url = f'{SUPABASE_URL}/storage/v1/object/article-images/{filename}'
+        up = subprocess.run(
+            ['curl', '-sS', '-X', 'POST',
+             '-H', f'Authorization: Bearer {SUPABASE_KEY}',
+             '-H', 'Content-Type: image/jpeg',
+             '-H', 'x-upsert: true',
+             '--data-binary', f'@{tmp_path}',
+             upload_url],
+            capture_output=True, text=True, timeout=30
+        )
+        if up.returncode == 0:
+            pub_url = f'{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}'
+            print(f"  ✓ Uploaded to Supabase: {pub_url[:80]}")
+            return pub_url
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-    return False
+        print(f"  ⚠ Upload error: {e}")
+    finally:
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
+    return None
 
 
-def publish_article(article):
-    """Publish article to Supabase."""
-    payload = json.dumps(article).replace("'", "'\\''")
-    cmd = f"""curl -sS -X POST '{SUPABASE_URL}/rest/v1/p2_articles' \
-      -H 'apikey: {SUPABASE_KEY}' \
-      -H 'Authorization: Bearer {SUPABASE_KEY}' \
-      -H 'Content-Type: application/json' \
-      -H 'Prefer: return=representation' \
-      -d '{payload}'"""
-    result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=30)
+# --- Insert article ---
+def insert_article(article):
+    """Insert article into Supabase p2_articles table."""
+    payload = json.dumps(article)
+    result = subprocess.run(
+        ['curl', '-sS', '-X', 'POST',
+         f'{SUPABASE_URL}/rest/v1/p2_articles',
+         '-H', f'apikey: {SUPABASE_KEY}',
+         '-H', f'Authorization: Bearer {SUPABASE_KEY}',
+         '-H', 'Content-Type: application/json',
+         '-H', 'Prefer: return=representation',
+         '-d', payload],
+        capture_output=True, text=True, timeout=30
+    )
     if result.returncode == 0:
         try:
             resp = json.loads(result.stdout)
             if isinstance(resp, list) and len(resp) > 0:
-                print(f"  ✓ Published: {resp[0].get('headline', '?')[:60]}...")
-                return True
-            elif isinstance(resp, dict) and resp.get("message"):
-                print(f"  ✗ Error: {resp['message']}")
-                return False
-        except:
-            pass
-    print(f"  ✗ Publish failed: {result.stdout[:200]}")
-    print(f"  stderr: {result.stderr[:200]}")
-    return False
+                art_id = resp[0].get('id')
+                print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
+                return art_id
+            elif isinstance(resp, dict) and resp.get('message'):
+                print(f"  ✗ Error: {resp.get('message')}")
+                return None
+        except json.JSONDecodeError:
+            print(f"  ✗ Response parse error: {result.stdout[:200]}")
+    else:
+        print(f"  ✗ curl error: {result.stderr[:200]}")
+    return None
 
 
-# ═══════════════════════════════════════════════════
-# ARTICLE 1: H-1B Green Card Crisis
-# ═══════════════════════════════════════════════════
+# ===================================================================
+# ARTICLE 1: India's Basmati Rice Exports
+# ===================================================================
 
 def write_article_1():
-    print("\n📝 Article 1: H-1B Green Card Crisis")
+    print("\n=== ARTICLE 1: Basmati Rice Exports ===")
 
-    headline = "The U.S. Just Told H-1B Workers to Go Home to Get a Green Card. A Million Indians Are in Line."
-    subheadline = "A new USCIS policy ends in-country green card processing for temporary visa holders. AI-driven layoffs are compounding the crisis, giving laid-off workers 60 days to find a new sponsor or leave."
-    slug = "uscis-green-card-consular-processing-h1b-indian-workers-layoffs-20260528"
+    slug = "india-basmati-rice-exports-crash-iran-war-gulf-trade-routes-20260528"
+    headline = "India's Basmati Rice Exports Just Crashed 27 Percent. The Iran War Has Choked Every Gulf Trade Route."
+    subheadline = "Four hundred thousand tonnes of premium basmati are stuck at Indian ports. Iran, Iraq, Saudi Arabia, and Qatar have all but stopped placing new orders."
 
-    body = """The American dream for Indian tech workers just got a forced layover.
+    body = """India's rice export machine — the largest in the world, accounting for more than 40 percent of global shipments — is seizing up. And the damage is concentrated in exactly the market segment that matters most to Indian exporters and Gulf-based consumers alike: basmati.
 
-Under a policy memo issued by U.S. Citizenship and Immigration Services in May 2026, foreign nationals on temporary visas — including the hundreds of thousands of Indians on H-1B work permits — will generally no longer be allowed to complete the green card application process from within the United States. Instead, they must return to their home country and apply through a U.S. embassy or consulate.
+## The Numbers Are Stark
 
-"From now on, an alien who is in the US temporarily and wants a Green Card must return to their home country to apply, except in extraordinary circumstances," USCIS spokesman Zach Kahler said in a statement.
+India's basmati rice exports fell 27 percent in April 2026 compared to the same month last year, according to data from India's Directorate General of Commercial Intelligence and Statistics. For the January-to-April period, total rice exports slipped 1.3 percent year-on-year to 8.39 million metric tons. But the headline figure masks a sharper divergence: basmati shipments dropped 7 percent to 2.3 million tons, while cheaper non-basmati varieties edged up slightly to 6.09 million tons.
 
-## The Numbers Tell the Story
+The culprit is geography. India's premium basmati rice goes overwhelmingly to Gulf markets — Saudi Arabia, Iran, Iraq, Qatar, and the United Arab Emirates. These are precisely the markets that the three-month-old Iran war has made nearly impossible to serve reliably.
 
-The impact is staggering. Over 1.2 million Indians are currently in employment-based green card backlogs, many of whom have lived and worked in the United States for a decade or more. Indian nationals accounted for 283,772 of the 406,348 approved H-1B petitions in fiscal year 2025 — roughly 70 percent of the total.
+## Four Hundred Thousand Tonnes Stuck at Port
 
-H-1B registrations have already dropped 38.5 percent under the new Trump administration rules. Secretary of State Marco Rubio, during his recent visit to India, pushed back on concerns that the policies specifically target Indians, calling them a global modernization effort. But the data suggests otherwise.
+The Strait of Hormuz, through which roughly a fifth of the world's oil and a significant share of Indian agricultural exports pass, has been disrupted since U.S.-Israeli airstrikes on Iran began on February 28. Shipping insurance premiums have spiked. Freight rates on India-Gulf routes have doubled in some cases. And cargo vessels carrying basmati rice to Iran, Iraq, Qatar, and Saudi Arabia remain stranded in transit or anchored at Indian ports waiting for clearance.
 
-## AI Layoffs Compound the Crisis
+An estimated 400,000 metric tonnes of basmati rice are backed up at ports, according to industry reports. Exporters in Karnal, Haryana — the heart of India's basmati belt — describe a market in paralysis. New deals have effectively stalled.
 
-The policy shift arrives at the worst possible time. A wave of AI-driven restructuring at major tech companies — Meta, Amazon, LinkedIn, and others — has left over 110,000 tech workers without jobs in 2026 so far. For H-1B holders, a layoff starts a 60-day clock: find a new employer willing to sponsor your visa, or leave the country.
+"No buyer in the Gulf is placing fresh orders," said one New Delhi-based exporter who spoke to Reuters on condition of anonymity. "Shipments are expected to remain below typical levels until the war ends."
 
-Immigration attorney Rajiv Khanna told the Economic Times that scrutiny has intensified across the board. "We are seeing a significant spike in Requests for Evidence and Notices of Intent to Deny on change-of-status applications filed by laid-off H-1B workers," he said.
+## The Gulf Connection Runs Deep
 
-Some laid-off workers are scrambling for B-2 tourist visa conversions to buy time, but even those applications face rising denial rates. Others are exploring options in Canada, the U.K., or returning to India — where the booming Global Capability Center sector now employs many of the same companies that once sponsored their American visas.
+Iran was India's largest basmati buyer until last year, when Saudi Arabia overtook it. Together with Iraq and the UAE, these four markets absorb the bulk of India's $5 billion annual basmati trade. The disruption is not just a trade statistic — it is a kitchen-table reality for millions of families across the Gulf, including the roughly 9 million Indians living in the region.
 
-## The Diaspora Impact
+For NRIs in Dubai, Riyadh, Doha, and Kuwait City, basmati rice is a staple that connects them to home. Rising prices and intermittent availability at Gulf supermarkets are a tangible reminder that the war is not just a geopolitical abstraction but a daily grocery problem.
 
-For the Indian American community — now the fastest-growing immigrant group in the United States — the policy represents a fundamental shift in the immigration bargain. Families who have built lives, bought homes, and put children through American schools now face the prospect of leaving the country to process paperwork that was previously handled domestically.
+## Domestic Prices Are Falling — But That Is Not Good News
 
-The per-country cap on green cards means Indian applicants already face estimated wait times of 50 to 80 years in some employment categories. The new consular processing requirement adds another layer of uncertainty: leaving the U.S. means risking delays, visa interview backlogs at overburdened consulates, and the possibility of being stuck abroad for months.
+Paradoxically, the export crunch is pushing domestic basmati prices down. Indian rice prices have fallen more than 5 percent this year, squeezed by a record harvest on one side and collapsing Gulf demand on the other. Farmers in Punjab, Haryana, and western Uttar Pradesh — who planted basmati expecting export-driven premiums — are being hit hardest.
 
-USCIS issued a partial clarification on May 26, noting that applicants who can demonstrate "economic or national interest benefits" may still qualify for in-country adjustment of status. But the criteria remain undefined, and immigration lawyers say the exception is likely to be narrow.
+The All India Rice Exporters Association has urged the government to intervene with freight subsidies and alternative market development. Pakistan, which competes directly in the global basmati market, is watching closely. Any prolonged Indian absence from Gulf shelves could open a window for Pakistani exporters to fill.
 
 ## What Comes Next
 
-The policy change feeds into a broader pattern under the Trump administration's second term: tightening immigration pathways while maintaining the appearance of keeping the door open for skilled workers. The H-1B program was designed to bring the world's best talent to American companies. Whether it can continue to do that when the path from temporary work to permanent residency now requires leaving the country remains an open question.
+The Iran war shows no signs of a quick resolution. While a draft framework for a U.S.-Iran memorandum of understanding has surfaced — including a plan to restore commercial shipping through Hormuz within 30 days — Trump dismissed the reported deal on Thursday, and fresh air strikes between the two sides this week have further dimmed prospects for de-escalation.
 
-For the million-plus Indians in the queue, the answer will shape not just their careers but their families, their children's futures, and the next chapter of the Indian American story.
+For India's rice industry, the math is grim. The basmati export season runs roughly from October to March, and the current disruption is eating into what should be peak shipping months. If the war drags into the monsoon season, when domestic logistics slow anyway, the compounding effect on exports could be severe.
 
-*Sources: USCIS policy memo (May 2026), Livemint, Economic Times, Outlook Business, Fox News (Rubio interview), American Bazaar*"""
+India ships more rice than Thailand, Vietnam, Myanmar, and Pakistan combined. When that pipeline breaks, the world's food trade feels it — and the Gulf's Indian kitchens feel it first.
 
-    # Image: Try Wikipedia for USCIS building or use Pexels
+*Sources: Reuters, Directorate General of Commercial Intelligence and Statistics (India), All India Rice Exporters Association, Rural Voice*"""
+
+    # Image: Try Pexels for basmati rice fields
     print("  Sourcing image...")
-    image_url = fetch_pexels_image("US visa stamp Indian passport", "immigration visa document")
-    image_caption = "Indian H-1B workers face an uncertain path as new USCIS rules upend the green card process"
-    image_attribution = "Pexels"
-
-    if not validate_image_url(image_url):
-        image_url = None
-        image_caption = None
-        image_attribution = None
-        print("  ⚠ No valid image found, publishing without image")
+    img_url = fetch_pexels_image("basmati rice field India harvest", "rice paddy field green")
+    final_image = None
+    if img_url:
+        final_image = upload_image_to_supabase(img_url, f"{slug}.jpg")
 
     article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "slug": slug,
-        "body": body,
-        "category": "news",
-        "vertical": "news",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": image_url,
-        "image_caption": image_caption,
-        "image_attribution": image_attribution,
-        "sources": json.dumps([
-            "USCIS policy memo (May 2026)",
-            "Livemint",
-            "Economic Times",
-            "Outlook Business",
-            "Fox News",
-            "American Bazaar",
-            "Archyde"
-        ])
+        'headline': headline,
+        'subheadline': subheadline,
+        'body': body,
+        'slug': slug,
+        'category': 'news',
+        'vertical': 'news',
+        'status': 'published',
+        'published_at': datetime.now(timezone.utc).isoformat(),
+        'image_url': final_image,
+        'image_attribution': 'Pexels' if final_image else None,
+        'image_caption': 'India\'s basmati rice exports to Gulf markets have crashed as the Iran war disrupts Strait of Hormuz shipping routes',
+        'sources': json.dumps(['Reuters', 'Directorate General of Commercial Intelligence and Statistics', 'Rural Voice', 'All India Rice Exporters Association']),
+        'tags': ['rice exports', 'basmati', 'Iran war', 'Gulf trade', 'agriculture'],
+        'score_total': 82,
     }
-    # Remove None values
-    article = {k: v for k, v in article.items() if v is not None}
-    return publish_article(article)
+
+    return insert_article(article)
 
 
-# ═══════════════════════════════════════════════════
-# ARTICLE 2: Pope Leo's Encyclical
-# ═══════════════════════════════════════════════════
+# ===================================================================
+# ARTICLE 2: India-Canada Free Trade Deal
+# ===================================================================
 
 def write_article_2():
-    print("\n📝 Article 2: Pope Leo's Encyclical")
+    print("\n=== ARTICLE 2: India-Canada Trade Deal ===")
 
-    headline = "Pope Leo Just Killed the 'Just War' Doctrine. His First Encyclical Also Wants to Regulate AI and Apologize for Slavery."
-    subheadline = "Magnifica Humanitas — the first major document of Leo XIV's papacy — repudiates 1,600 years of Catholic war theory, calls for global AI regulation, and issues the Church's clearest apology for its role in transatlantic slavery."
-    slug = "pope-leo-encyclical-magnifica-humanitas-just-war-ai-regulation-slavery-20260528"
+    slug = "india-canada-cepa-free-trade-deal-50-billion-goyal-carney-20260528"
+    headline = "India and Canada Are Racing to Close a Free Trade Deal by December. The Target Is $50 Billion."
+    subheadline = "Commerce Minister Piyush Goyal and Canadian PM Mark Carney call the CEPA a 'game changer.' The third round of negotiations is underway in Ottawa this week."
 
-    body = """The Catholic Church's new pope has declared war on war itself — and he did it while the Middle East burns.
+    # Try Wikipedia for Piyush Goyal and Mark Carney
+    print("  Sourcing images...")
+    img_url = fetch_wikipedia_person_image("Piyush Goyal")
+    if not img_url:
+        img_url = fetch_wikipedia_person_image("Mark Carney")
+    if not img_url:
+        img_url = fetch_pexels_image("India Canada trade diplomacy", "international trade agreement handshake")
 
-In his first encyclical, released on May 25, Pope Leo XIV took a theological sledgehammer to one of Christianity's oldest and most politically convenient frameworks: the doctrine of just war. The 43,000-word document, titled *Magnifica Humanitas* ("Magnificent Humanity"), declared the theory "outdated" and argued that humanity now has better tools — dialogue, diplomacy, forgiveness — for resolving conflicts.
+    final_image = None
+    if img_url:
+        final_image = upload_image_to_supabase(img_url, f"{slug}.jpg")
 
-"The 'just war' theory which has all too often been used to justify any kind of war, is now outdated," Leo wrote. The timing was not accidental. The encyclical landed during Eid al-Adha, with U.S. and Iranian forces trading air strikes over the Strait of Hormuz, Israel declaring southern Lebanon a combat zone, and Vice President JD Vance publicly invoking just war theory to defend American military operations.
+    body = """Two years ago, India and Canada were barely speaking. A diplomatic crisis over the assassination of Sikh separatist leader Hardeep Singh Nijjar in British Columbia in June 2023 had frozen relations, expelled diplomats, and made a trade deal unthinkable. Now, Commerce Minister Piyush Goyal is in Ottawa, sitting across the table from Canada's Trade Minister Maninder Sidhu, and both governments are publicly racing to close a Comprehensive Economic Partnership Agreement by December.
 
-## More Than a Peace Document
+## The Stakes Are Enormous
 
-But *Magnifica Humanitas* is about far more than pacifism. The pope used the document to stake out the Vatican's position on artificial intelligence — calling for global regulation of AI systems and warning against what he called the "algorithmic concentration of power." Leo argued that AI development without ethical guardrails risks creating new forms of exploitation and dehumanization.
+The headline number is $50 billion — three times the current bilateral trade of roughly $17 billion. India and Canada want to reach that target by 2030, and the CEPA is the vehicle to get there.
 
-The document drew parallels between the colonial era and the current technology landscape, warning that data concentration and algorithmic control could produce a new kind of digital colonialism. "The temptation to build a future that excludes God," Leo wrote, echoing the biblical story of the Tower of Babel, must be resisted.
+The third round of negotiations is underway in Ottawa from May 25 to 29, with India's chief negotiator, Joint Secretary Brij Mohan Mishra, leading the Indian delegation. The talks cover goods, services, investments, intellectual property, and government procurement — the full architecture of a modern free trade agreement.
 
-The encyclical also contained the Catholic Church's clearest apology yet for its historic role in supporting transatlantic slavery — a statement that resonated across the Global South, including India, where the Portuguese colonial church's role in Goa and along the western coast remains a living memory.
+"Our prime ministers have tasked us not only with completing the free trade agreement with a comprehensive outlook before the end of this year or earlier," Goyal said at a joint press appearance with Sidhu on May 25, "but also with tripling our trade."
 
-## Why India Should Pay Attention
+Canadian Prime Minister Mark Carney was even more direct. "We're negotiating a free trade deal with India," he wrote on social media after meeting Goyal. "This will be a game changer for Canadian workers and businesses — unlocking a massive new market."
 
-India's 19 million Catholics — concentrated in Goa, Kerala, Tamil Nadu, and the Northeast — make it one of Asia's largest Catholic populations. The encyclical's slavery apology carries particular weight in communities that trace their faith to Portuguese colonial-era conversions, many of which were coerced.
+## What India Exports, What Canada Needs
 
-But it is the AI regulation language that may have the most practical impact. India's technology sector — now a $250 billion industry powering global capability centers for every major Western corporation — sits squarely in the crosshairs of any global AI regulatory framework. Pope Leo's call for algorithmic transparency and data governance aligns with debates already underway in Delhi about India's own AI governance policy.
+The trade complementarity is striking. India exports pharmaceuticals, iron and steel, seafood, cotton garments, electronic goods, and chemicals to Canada. Canada ships back pulses, coal, crude oil, fertilizer, and paper — exactly the commodities India needs to feed its population and power its industry.
 
-For the Indian diaspora in Silicon Valley, Hyderabad's tech corridors, and Bengaluru's startup ecosystem, the encyclical raises questions that transcend theology: Who governs the algorithms? Who owns the data? And who is accountable when AI systems make decisions that affect millions of lives?
+But the real growth potential is in services. India's telecommunications, IT, and business process outsourcing sectors are already deeply embedded in the Canadian economy. A CEPA would formalize and expand that relationship, potentially opening Canadian government procurement contracts to Indian IT firms for the first time.
 
-## The Pushback Has Already Started
+Energy is another frontier. Canada is a major producer of oil, natural gas, and uranium. With India desperate to diversify its energy sources away from the war-disrupted Gulf, Canadian crude and nuclear fuel could become strategic imports. Both sides have discussed nuclear fuel cooperation as part of the broader package.
 
-Not everyone welcomed the encyclical. Anglican theologians pushed back on the just war repudiation, arguing that the doctrine — when properly applied — serves as a restraint on war rather than a permission slip. Vice President Vance, a Catholic convert, has been notably silent on the document.
+## The Diaspora Factor
 
-Conservative Catholic media in the United States framed the encyclical as naive, particularly given the ongoing Iran conflict. But peace activists and interfaith groups hailed it as the most significant papal statement on war since the Second Vatican Council.
+None of this happens in a vacuum. Canada is home to over 425,000 Indian students — the largest international student population in the country. The broader Indian diaspora in Canada numbers well over a million. These are not just trade statistics; they are families, businesses, and voting constituencies that create organic economic demand.
 
-## The Bigger Picture
+The student pipeline alone is worth billions in tuition and living expenses. A CEPA that eases work permit pathways and recognizes Indian professional credentials could deepen that flow further. For NRIs already in Canada, the deal could reduce costs on everything from imported Indian food products to pharmaceutical generics.
 
-Leo XIV — the first American-born pope, born Robert Francis Prevost — appears to be signaling that his papacy will not shy away from the era's most contentious questions. In a single document, he took positions on war, technology, colonialism, and institutional accountability that will shape Catholic social teaching for a generation.
+## The Diplomatic Reset
 
-For India's Catholics, its tech workers, and its diaspora, the message is clear: the Church is watching the same future they are building.
+The speed of the turnaround is remarkable. After the Nijjar crisis, India and Canada expelled each other's diplomats, trade talks were shelved, and bilateral relations hit their lowest point in decades. The reset began in early 2026, driven partly by shared concerns about the Iran war's impact on energy security and partly by the Carney government's strategic pivot toward Asia.
 
-*Sources: Reuters, Religion News Service, Le Monde, NCR Online, North Jersey Media, Barron's (via George Conger/Substack)*"""
+Carney, who took office in March 2025, has made diversifying Canada's trade partnerships a signature priority — explicitly to reduce dependence on the United States, where Trump's tariff policies have created persistent uncertainty. India, with its 1.4 billion consumers and 7-percent-plus growth rate, is the obvious partner.
 
-    # Image: Pope Leo XIV
-    print("  Sourcing image...")
-    image_url = fetch_wikipedia_person_image("Pope Leo XIV")
-    if not image_url:
-        image_url = fetch_wikipedia_person_image("Robert Francis Prevost")
-    image_caption = "Pope Leo XIV's first encyclical takes on war, AI, and slavery in a single sweeping document"
-    image_attribution = "Wikimedia Commons"
+The July round of negotiations will focus on tariff structures and market access timelines. Both sides are targeting a framework agreement by October and a final text by December.
 
-    if not validate_image_url(image_url):
-        # Fallback to Pexels
-        image_url = fetch_pexels_image("Vatican St Peter Basilica", "Catholic church Rome")
-        image_attribution = "Pexels"
-        if not validate_image_url(image_url):
-            image_url = None
-            image_caption = None
-            image_attribution = None
+## What Could Go Wrong
 
+The optimism is real, but so are the obstacles. Agricultural market access is a perennial sticking point — India's farmers' lobbies resist cheap Canadian pulse imports, while Canada's dairy sector opposes Indian competition. Intellectual property rules for pharmaceuticals, where India's generic drug industry clashes with Canadian patent protections, will require creative compromises.
+
+And the political ghosts have not fully disappeared. The Khalistan issue, while no longer dominating headlines, has not been resolved. Any flare-up could freeze the talks overnight.
+
+But for now, the momentum is unmistakable. After two years of silence, India and Canada are talking again — and talking fast.
+
+*Sources: Outlook Business, Reuters, Government of Canada, Ministry of Commerce and Industry (India)*"""
+
+    wiki_used = final_image and ('wikipedia' in (img_url or '').lower() or 'wikimedia' in (img_url or '').lower())
     article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "slug": slug,
-        "body": body,
-        "category": "news",
-        "vertical": "news",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": image_url,
-        "image_caption": image_caption,
-        "image_attribution": image_attribution,
-        "sources": json.dumps([
-            "Reuters",
-            "Religion News Service",
-            "Le Monde",
-            "NCR Online",
-            "North Jersey Media",
-            "Medium (Pope Leo analysis)"
-        ])
+        'headline': headline,
+        'subheadline': subheadline,
+        'body': body,
+        'slug': slug,
+        'category': 'news',
+        'vertical': 'news',
+        'status': 'published',
+        'published_at': datetime.now(timezone.utc).isoformat(),
+        'image_url': final_image,
+        'image_attribution': 'Wikimedia Commons' if wiki_used else ('Pexels' if final_image else None),
+        'image_caption': 'India\'s Commerce Minister Piyush Goyal is in Ottawa for the third round of CEPA negotiations with Canada',
+        'sources': json.dumps(['Outlook Business', 'Reuters', 'Government of Canada', 'Ministry of Commerce and Industry (India)']),
+        'tags': ['India-Canada', 'CEPA', 'free trade', 'Piyush Goyal', 'Mark Carney'],
+        'score_total': 84,
     }
-    article = {k: v for k, v in article.items() if v is not None}
-    return publish_article(article)
+
+    return insert_article(article)
 
 
-# ═══════════════════════════════════════════════════
-# ARTICLE 3: US Inflation PCE at 3.8%
-# ═══════════════════════════════════════════════════
+# ===================================================================
+# ARTICLE 3: India Heatwave
+# ===================================================================
 
 def write_article_3():
-    print("\n📝 Article 3: US Inflation PCE at 3.8%")
+    print("\n=== ARTICLE 3: India Heatwave ===")
 
-    headline = "U.S. Inflation Just Hit 3.8 Percent. The Iran War Is Baked Into Every Price Tag in America."
-    subheadline = "The Fed's preferred inflation gauge rose to its highest level since May 2023, driven by energy costs from the Iran conflict. Rate hikes are back on the table — and that changes everything for Indian American homebuyers and H-1B workers."
-    slug = "us-pce-inflation-3-8-percent-iran-war-fed-rate-hike-indian-americans-20260528"
+    slug = "india-heatwave-50-cities-record-temperatures-wet-bulb-survival-limits-20260528"
+    headline = "Fifty Indian Cities Just Hit Record Temperatures. Scientists Say the Heat Is Approaching Human Survival Limits."
+    subheadline = "Delhi touched 46°C on Wednesday. Wet-bulb temperatures in parts of India are nearing 33°C — dangerously close to the threshold where the human body can no longer cool itself."
 
-    body = """The number the Federal Reserve watches most closely just confirmed what every American already feels at the gas pump: the Iran war is making everything more expensive.
-
-The Bureau of Economic Analysis reported Thursday that the Personal Consumption Expenditures price index — the Fed's preferred inflation gauge — rose 3.8 percent in the 12 months through April, up from 3.5 percent in March. It is the largest annual increase since May 2023 and the sharpest acceleration since the Iran conflict began disrupting global energy markets in late February.
-
-Core PCE, which strips out volatile food and energy prices, came in at 3.3 percent year-over-year — the highest since November 2023. Monthly core growth eased slightly to 0.2 percent from 0.3 percent, offering a faint silver lining that was immediately overwhelmed by the headline numbers.
-
-## The Iran Premium
-
-The math is straightforward. Crude oil prices have remained elevated since the Strait of Hormuz was effectively closed to commercial traffic in March, cutting off roughly 20 percent of global oil supply. Gasoline prices have driven the bulk of the PCE acceleration, but the ripple effects extend far beyond the pump: jet fuel costs have forced airlines to cut domestic flights, food logistics chains are passing through higher transport costs, and everything from plastics to pharmaceuticals has gotten more expensive.
-
-"The headline PCE is well above the Fed's 2 percent inflation target, and it should justify a shift in the Fed's stance from dovish to neutral or hawkish," said Kathleen Brooks, research director at XTB.
-
-Markets are now pricing in a roughly 50 percent chance of a 25-basis-point rate hike by the end of 2026 — a dramatic reversal from the rate-cutting expectations that dominated early this year.
-
-## What This Means for Indian Americans
-
-For Indian Americans — the fastest-growing homebuyer group in the United States, according to National Association of Realtors data — the inflation report lands like a second punch after mortgage rates hit a nine-month high earlier this week.
-
-Higher inflation means higher rates for longer. Higher rates mean more expensive mortgages, car loans, and student debt. For dual-income households where one or both earners are on H-1B visas, the financial squeeze is compounded by immigration uncertainty: it is harder to make a 30-year mortgage commitment when your right to remain in the country depends on employer sponsorship.
-
-Remittances are also affected. A stronger dollar — which typically accompanies rate hike expectations — makes transfers to India slightly more efficient in rupee terms, but the underlying squeeze on disposable income means there is less to send. India received $136 billion in remittances in fiscal year 2025, with the U.S. diaspora contributing a significant share.
-
-## The Fed's Dilemma
-
-The Federal Reserve now faces an uncomfortable choice. Inflation is accelerating, but the economy is showing signs of stress: consumer confidence is weakening, travel spending is splitting along income lines, and Obamacare enrollment is dropping as premium subsidies expire. Raising rates would fight inflation but risk tipping vulnerable households into genuine financial hardship.
-
-The next Fed meeting in June will be watched closely. Chair Jerome Powell has been careful to describe the Iran-driven price increases as "supply-side" rather than demand-driven, leaving room to hold rates steady. But with headline PCE nearly double the 2 percent target and rising, the political and market pressure to act is mounting.
-
-## The Bigger Picture
-
-For the Indian diaspora, the inflation data is one more data point in a year that has reshaped the economics of living in America. Higher grocery bills, more expensive flights to India, rising insurance premiums, and a housing market that keeps moving further out of reach — all of it traces back, directly or indirectly, to a conflict 7,000 miles away that has rewritten the global energy map.
-
-The PCE report is a number. But it measures something real: the cost of daily life in America is going up, and the people who came here to build a better future are feeling it as much as anyone.
-
-*Sources: Bureau of Economic Analysis, MarketWatch, Barron's, Stifel Economics, FXStreet, Reuters, National Association of Realtors*"""
-
-    # Image: Pexels for inflation/economy
+    # Image: Pexels for heatwave/Delhi heat
     print("  Sourcing image...")
-    image_url = fetch_pexels_image("US dollar bills inflation economy", "gasoline prices fuel pump")
-    image_caption = "U.S. inflation hit 3.8 percent in April as the Iran war drives energy costs higher across the economy"
-    image_attribution = "Pexels"
+    img_url = fetch_pexels_image("extreme heat India summer sun cracked earth", "hot summer dry land drought")
+    final_image = None
+    if img_url:
+        final_image = upload_image_to_supabase(img_url, f"{slug}.jpg")
 
-    if not validate_image_url(image_url):
-        image_url = None
-        image_caption = None
-        image_attribution = None
+    body = """India is being cooked. Not metaphorically — the country is experiencing a heatwave so severe that climate scientists are warning some regions are approaching the physical limits of human survival. Fifty cities have recorded their highest-ever temperatures this month. Delhi touched 46°C on Wednesday. And the most dangerous number is one most people have never heard of: the wet-bulb temperature.
+
+## What the Wet-Bulb Number Means
+
+Regular temperature readings tell you how hot the air is. Wet-bulb temperature tells you whether your body can survive in it. It measures the combined effect of heat and humidity — specifically, whether sweat can evaporate fast enough to cool the body. When the wet-bulb reading approaches 35°C, the human body cannot shed heat regardless of hydration, shade, or fitness. Death from hyperthermia becomes inevitable within hours.
+
+Parts of India are now recording wet-bulb temperatures of 33°C. Portuguese climate analyst Bruno Brezenski, who has been tracking the heatwave, issued a blunt warning: "At that threshold, no human can last beyond two hours, and vulnerable groups such as infants and the elderly may collapse within half an hour."
+
+Research from Penn State University has shown that even healthy young adults begin losing the ability to regulate body temperature at wet-bulb levels near 31°C — a threshold that several Indian cities have already crossed.
+
+## The Nautapa Is Not Normal This Year
+
+The current heatwave coincides with Nautapa, the traditional nine-day period of peak summer heat in the Hindu calendar. But 2026's Nautapa is being supercharged by El Niño, the Pacific Ocean warming pattern that amplifies heat across South and Southeast Asia.
+
+The India Meteorological Department has issued red alerts — the highest category — across Punjab, Haryana, Delhi, Uttar Pradesh, Rajasthan, Madhya Pradesh, and Vidarbha. Temperatures in several districts have breached 47°C. In Telangana, twelve districts recorded above 46°C in a single day. The IMD says relief is unlikely before May 29, when western disturbances are expected to bring some cooling.
+
+But the heat is not just a daytime problem. A 2024 Climate Trends study in Chennai found that indoor nighttime temperatures in several homes remained above 32°C and occasionally crossed 35°C. Fishers in Kerala's Alappuzha district report that nights no longer cool down. Labourers in Odisha's coastal districts describe severe dehydration within an hour of outdoor work.
+
+## The Power Grid Is Buckling
+
+India's peak power demand hit a record 270.8 gigawatts last week as air conditioning usage surged. Despite 228 GW of non-fossil fuel capacity, coal still generates more than 70 percent of India's electricity. And the coal supply chain is straining.
+
+Twenty-one power plants now have critically low coal stocks — enough for less than a week of operation, according to the Central Electricity Authority. Coal India, the world's largest coal miner, has ordered its eight subsidiaries to maximize dispatches using all transport modes, including direct mine-to-plant rail links. The company's production fell 9.7 percent in April to 56.1 million metric tons, even as demand surged.
+
+Several states are already imposing power cuts, mainly at night when solar and wind generation drops to zero. The grid is being held together by emergency measures.
+
+## The Economic Toll
+
+The heatwave is not just a humanitarian crisis. Manufacturing output is dipping as factories face unplanned downtime from overheated equipment and worker absenteeism. Agricultural yields for wheat, rice, and pulses — all in critical growth stages — are under threat. Supply chains for perishable goods are disrupted as cold chains struggle to maintain temperatures during transit.
+
+Odisha, a major producer of minerals and steel, is particularly vulnerable. If industrial output there slows further, the effects will cascade through India's broader manufacturing index. Global investors with exposure to Indian commodities are already flagging supply chain risks.
+
+## What NRIs Need to Know
+
+For the roughly 32 million Indians living abroad, this is personal. Elderly parents, grandparents, and extended family across northern and central India are enduring conditions that scientists describe as life-threatening. The standard advice — stay hydrated, avoid midday sun, use air conditioning — assumes access to reliable power and cooling infrastructure that millions of Indians simply do not have.
+
+If your family is in Delhi, UP, Rajasthan, MP, Haryana, or Telangana, this is the week to check in. The IMD's heatwave warning system is at imd.gov.in. Municipal heat action plans vary wildly in quality, but most major cities now operate cooling centers during peak hours.
+
+The broader pattern is unmistakable. The Indian Institute of Tropical Meteorology reports that heatwave frequency in India's core heatwave zone has increased by 2.5 days per decade since 1961, with the trend accelerating sharply. This is not an anomaly. It is the new baseline.
+
+*Sources: India Meteorological Department, Reuters, Central Electricity Authority, Penn State University, Climate Trends (Chennai), Bruno Brezenski/climate analysis*"""
 
     article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "slug": slug,
-        "body": body,
-        "category": "news",
-        "vertical": "news",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": image_url,
-        "image_caption": image_caption,
-        "image_attribution": image_attribution,
-        "sources": json.dumps([
-            "Bureau of Economic Analysis",
-            "MarketWatch",
-            "Barron's",
-            "Stifel Economics",
-            "FXStreet",
-            "Reuters"
-        ])
+        'headline': headline,
+        'subheadline': subheadline,
+        'body': body,
+        'slug': slug,
+        'category': 'news',
+        'vertical': 'news',
+        'status': 'published',
+        'published_at': datetime.now(timezone.utc).isoformat(),
+        'image_url': final_image,
+        'image_attribution': 'Pexels' if final_image else None,
+        'image_caption': 'Fifty Indian cities have hit record temperatures as a severe heatwave grips the country',
+        'sources': json.dumps(['India Meteorological Department', 'Reuters', 'Central Electricity Authority', 'Penn State University', 'Climate Trends']),
+        'tags': ['heatwave', 'climate', 'wet-bulb temperature', 'power grid', 'El Nino', 'Delhi'],
+        'score_total': 86,
     }
-    article = {k: v for k, v in article.items() if v is not None}
-    return publish_article(article)
+
+    return insert_article(article)
 
 
-# ═══════════════════════════════════════════════════
+# ===================================================================
 # MAIN
-# ═══════════════════════════════════════════════════
+# ===================================================================
 
-if __name__ == "__main__":
-    print("=" * 60)
-    print("The Videshi — News Writer")
-    print(f"Run: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    print("=" * 60)
-
+if __name__ == '__main__':
+    print(f"=== The Videshi News Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} ===")
+    
     results = []
-    results.append(("H-1B Green Card Crisis", write_article_1()))
-    results.append(("Pope Leo Encyclical", write_article_2()))
-    results.append(("US Inflation PCE 3.8%", write_article_3()))
-
-    print("\n" + "=" * 60)
-    print("RESULTS:")
-    for name, ok in results:
-        print(f"  {'✓' if ok else '✗'} {name}")
-    print("=" * 60)
-
-    successes = sum(1 for _, ok in results if ok)
-    print(f"\n{successes}/{len(results)} articles published successfully.")
+    
+    art1 = write_article_1()
+    results.append(('Basmati Rice Exports', art1))
+    time.sleep(1)
+    
+    art2 = write_article_2()
+    results.append(('India-Canada Trade Deal', art2))
+    time.sleep(1)
+    
+    art3 = write_article_3()
+    results.append(('India Heatwave', art3))
+    
+    print("\n=== SUMMARY ===")
+    for name, art_id in results:
+        status = f"✓ {art_id}" if art_id else "✗ FAILED"
+        print(f"  {name}: {status}")
+    
+    successes = sum(1 for _, a in results if a)
+    print(f"\n  Published: {successes}/3 articles")
