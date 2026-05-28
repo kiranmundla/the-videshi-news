@@ -10,64 +10,42 @@ from datetime import datetime
 
 # --- Config ---
 THREADS_USER_ID = "26854521280856098"
+SUPABASE_URL = "https://lboecaekpynbpyijrbfz.supabase.co"
 LOG_PATH = os.path.expanduser("~/workspace/the-videshi-news/pipeline/threads-log.json")
-MAX_ARTICLES = 3
-POST_DELAY = 10  # seconds between posts
+MAX_POSTS = 3
 
-# Load env files
+# Load credentials
 def load_env(path):
     env = {}
-    try:
-        with open(os.path.expanduser(path)) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    env[k.strip()] = v.strip()
-    except FileNotFoundError:
-        print(f"ERROR: {path} not found")
-        sys.exit(1)
+    with open(os.path.expanduser(path)) as f:
+        for line in f:
+            line = line.strip()
+            if '=' in line and not line.startswith('#'):
+                k, v = line.split('=', 1)
+                env[k.strip()] = v.strip()
     return env
 
 threads_env = load_env("~/workspace/.env.threads")
-supa_env = load_env("~/workspace/.env.supabase")
+supabase_env = load_env("~/workspace/.env.supabase")
 
-THREADS_ACCESS_TOKEN = threads_env.get("THREADS_ACCESS_TOKEN")
-SUPABASE_URL = supa_env.get("SUPABASE_URL", "https://lboecaekpynbpyijrbfz.supabase.co")
-SUPABASE_KEY = supa_env.get("SUPABASE_SERVICE_ROLE_KEY")
-
-if not THREADS_ACCESS_TOKEN:
-    print("ERROR: THREADS_ACCESS_TOKEN not found"); sys.exit(1)
-if not SUPABASE_KEY:
-    print("ERROR: SUPABASE_SERVICE_ROLE_KEY not found"); sys.exit(1)
+THREADS_ACCESS_TOKEN = threads_env["THREADS_ACCESS_TOKEN"]
+SUPABASE_KEY = supabase_env["SUPABASE_SERVICE_ROLE_KEY"]
 
 # Category emoji mapping
-CATEGORY_EMOJI = {
+EMOJI = {
     "news": "🇮🇳",
     "immigration": "🛂",
     "nri-world": "🌏",
     "travel": "✈️",
-    "lifestyle": "🧘",
-    "markets": "📈",
+    "lifestyle-health": "🧘",
+    "markets-finance": "📈",
     "technology": "💻",
     "sports": "🏏",
     "entertainment": "🎬",
     "food": "🍛",
 }
 
-# --- 1. Load threads log ---
-if os.path.exists(LOG_PATH):
-    with open(LOG_PATH) as f:
-        threads_log = json.load(f)
-else:
-    threads_log = {}
-    os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
-    with open(LOG_PATH, 'w') as f:
-        json.dump(threads_log, f, indent=2)
-
-print(f"Threads log has {len(threads_log)} existing entries.")
-
-# --- 2. Fetch recent published articles ---
+# --- Step 1: Fetch recent published articles ---
 headers = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -78,146 +56,207 @@ resp = requests.get(
         "status": "eq.published",
         "order": "published_at.desc",
         "limit": "10",
-        "select": "id,slug,headline,subheadline,category,image_url",
+        "select": "id,slug,headline,subheadline,category,image_url,body",
     },
     headers=headers,
 )
-
-if resp.status_code != 200:
-    print(f"ERROR: Supabase fetch failed: {resp.status_code} {resp.text}")
-    sys.exit(1)
-
+resp.raise_for_status()
 articles = resp.json()
-print(f"Fetched {len(articles)} recent articles from Supabase.")
+print(f"Fetched {len(articles)} recent published articles")
 
-# --- 3. Filter out already-posted ---
-unposted = [a for a in articles if str(a['id']) not in threads_log]
-print(f"Found {len(unposted)} unposted articles.")
+# --- Step 2: Load tracking log ---
+if os.path.exists(LOG_PATH):
+    with open(LOG_PATH) as f:
+        threads_log = json.load(f)
+else:
+    threads_log = {}
+    os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
 
-to_post = unposted[:MAX_ARTICLES]
+# --- Step 3: Filter to unposted articles with images ---
+to_post = []
+for a in articles:
+    aid = str(a["id"])
+    if aid in threads_log:
+        continue
+    if not a.get("image_url"):
+        print(f"  Skipping {a['slug']} — no image_url")
+        continue
+    to_post.append(a)
+    if len(to_post) >= MAX_POSTS:
+        break
+
+print(f"Articles to post: {len(to_post)}")
 if not to_post:
-    print("No new articles to post. Done.")
+    print("Nothing to post. Done.")
     sys.exit(0)
 
-print(f"Will post {len(to_post)} articles.\n")
+# --- Step 4: Compose and post ---
+def compose_post(article):
+    cat = (article.get("category") or "news").lower()
+    emoji = EMOJI.get(cat, "📰")
+    cat_label = cat.upper().replace("-", " ")
+    slug = article["slug"]
+    headline = article["headline"].upper()
+    
+    # Extract a sharp summary from the body
+    body = article.get("body") or article.get("subheadline") or ""
+    # Get first meaningful paragraph from body for summary
+    summary = ""
+    if body:
+        # Try to get first 1-2 sentences that aren't just the headline
+        paragraphs = [p.strip() for p in body.split("\n") if p.strip() and len(p.strip()) > 30]
+        # Skip markdown headers
+        paragraphs = [p for p in paragraphs if not p.startswith("#") and not p.startswith("![")]
+        # Clean markdown formatting
+        for p in paragraphs[:3]:
+            clean = p.replace("**", "").replace("*", "").replace("`", "").strip()
+            # Skip if it's basically the headline
+            if clean.upper()[:30] == headline[:30]:
+                continue
+            summary = clean
+            break
+    
+    if not summary and article.get("subheadline"):
+        summary = article["subheadline"]
+    
+    # Truncate summary if needed
+    if len(summary) > 200:
+        summary = summary[:197].rsplit(" ", 1)[0] + "..."
+    
+    url = f"thevideshi.com/articles/{slug}"
+    
+    post = f"""{emoji} {cat_label} | The Videshi
 
-# --- 4. Post each article ---
-posted_count = 0
+━━━━━━━━━━━━━━━━━━━━
+
+{headline}
+
+{summary}
+
+📰 {url}"""
+    
+    # Ensure within 500 chars
+    if len(post) > 500:
+        # Trim summary more aggressively
+        avail = 500 - len(post) + len(summary)
+        if avail > 20:
+            summary = summary[:avail - 3].rsplit(" ", 1)[0] + "..."
+            post = f"""{emoji} {cat_label} | The Videshi
+
+━━━━━━━━━━━━━━━━━━━━
+
+{headline}
+
+{summary}
+
+📰 {url}"""
+        else:
+            # Drop summary entirely
+            post = f"""{emoji} {cat_label} | The Videshi
+
+━━━━━━━━━━━━━━━━━━━━
+
+{headline}
+
+📰 {url}"""
+    
+    return post[:500]
+
+posted = 0
 errors = []
 
 for i, article in enumerate(to_post):
-    slug = article.get('slug', '')
-    headline = article.get('headline', 'Untitled')
-    subheadline = article.get('subheadline', '')
-    category = (article.get('category') or 'news').lower().strip()
-    emoji = CATEGORY_EMOJI.get(category, "📰")
-
-    # Build the post text
-    link = f"thevideshi.com/articles/{slug}"
-
-    # Use subheadline as summary, fallback to headline
-    summary = subheadline if subheadline else headline
-
-    post_text = f"{emoji} {headline}\n\n{summary}\n\n🔗 {link}"
-
-    # Truncate if over 500 chars
-    if len(post_text) > 500:
-        # Shorten summary to fit
-        max_summary = 500 - len(f"{emoji} {headline}\n\n\n\n🔗 {link}") - 3
-        if max_summary > 20:
-            summary = summary[:max_summary] + "..."
-            post_text = f"{emoji} {headline}\n\n{summary}\n\n🔗 {link}"
-        else:
-            post_text = post_text[:497] + "..."
-
-    print(f"--- Article {i+1}/{len(to_post)} ---")
-    print(f"ID: {article['id']}")
-    print(f"Headline: {headline}")
-    print(f"Category: {category}")
-    print(f"Post ({len(post_text)} chars):\n{post_text}\n")
-
+    slug = article["slug"]
+    post_text = compose_post(article)
+    print(f"\n--- Posting {i+1}/{len(to_post)}: {slug} ---")
+    print(f"Text ({len(post_text)} chars):\n{post_text}\n")
+    
+    # Step 1: Create media container with image
+    image_url = article["image_url"]
+    container_data = {
+        "media_type": "IMAGE",
+        "image_url": image_url,
+        "text": post_text,
+        "access_token": THREADS_ACCESS_TOKEN,
+    }
+    
     try:
-        # Step 1: Create media container
-        create_resp = requests.post(
+        resp = requests.post(
             f"https://graph.threads.net/v1.0/{THREADS_USER_ID}/threads",
-            data={
+            data=container_data,
+            timeout=30,
+        )
+        container_resp = resp.json()
+        print(f"Container response: {container_resp}")
+        
+        if "id" not in container_resp:
+            # Image failed — fallback to text-only
+            print(f"  Image container failed, falling back to TEXT")
+            container_data = {
                 "media_type": "TEXT",
                 "text": post_text,
                 "access_token": THREADS_ACCESS_TOKEN,
-            },
-        )
-
-        if create_resp.status_code != 200:
-            err = f"Create container failed for {article['id']}: {create_resp.status_code} {create_resp.text}"
-            print(f"ERROR: {err}")
-            errors.append(err)
-            continue
-
-        container_id = create_resp.json().get("id")
-        if not container_id:
-            err = f"No container ID returned for {article['id']}: {create_resp.text}"
-            print(f"ERROR: {err}")
-            errors.append(err)
-            continue
-
-        print(f"Container created: {container_id}")
-
-        # Wait for processing
-        time.sleep(3)
-
-        # Step 2: Publish
-        pub_resp = requests.post(
+            }
+            resp = requests.post(
+                f"https://graph.threads.net/v1.0/{THREADS_USER_ID}/threads",
+                data=container_data,
+                timeout=30,
+            )
+            container_resp = resp.json()
+            print(f"  Text container response: {container_resp}")
+            if "id" not in container_resp:
+                errors.append(f"{slug}: container creation failed — {container_resp}")
+                continue
+        
+        container_id = container_resp["id"]
+        
+        # Step 2: Wait for processing then publish
+        print(f"  Waiting 12s for media processing...")
+        time.sleep(12)
+        
+        resp = requests.post(
             f"https://graph.threads.net/v1.0/{THREADS_USER_ID}/threads_publish",
             data={
                 "creation_id": container_id,
                 "access_token": THREADS_ACCESS_TOKEN,
             },
+            timeout=30,
         )
-
-        if pub_resp.status_code != 200:
-            err = f"Publish failed for {article['id']}: {pub_resp.status_code} {pub_resp.text}"
-            print(f"ERROR: {err}")
-            errors.append(err)
+        publish_resp = resp.json()
+        print(f"  Publish response: {publish_resp}")
+        
+        if "id" not in publish_resp:
+            errors.append(f"{slug}: publish failed — {publish_resp}")
             continue
-
-        post_id = pub_resp.json().get("id")
-        if not post_id:
-            err = f"No post ID returned for {article['id']}: {pub_resp.text}"
-            print(f"ERROR: {err}")
-            errors.append(err)
-            continue
-
-        print(f"Published! Post ID: {post_id}")
-
+        
+        post_id = publish_resp["id"]
+        print(f"  ✅ Published! Post ID: {post_id}")
+        
         # Update log
-        threads_log[str(article['id'])] = {
+        threads_log[str(article["id"])] = {
             "slug": slug,
             "threads_post_id": str(post_id),
             "posted_at": datetime.utcnow().isoformat() + "Z",
         }
-        with open(LOG_PATH, 'w') as f:
+        with open(LOG_PATH, "w") as f:
             json.dump(threads_log, f, indent=2)
-
-        posted_count += 1
-        print(f"Logged successfully.\n")
-
+        
+        posted += 1
+        
+        # Wait between posts
+        if i < len(to_post) - 1:
+            print("  Waiting 10s before next post...")
+            time.sleep(10)
+    
     except Exception as e:
-        err = f"Exception posting {article['id']}: {str(e)}"
-        print(f"ERROR: {err}")
-        errors.append(err)
-
-    # Rate limit delay (skip after last post)
-    if i < len(to_post) - 1:
-        print(f"Waiting {POST_DELAY}s before next post...")
-        time.sleep(POST_DELAY)
+        errors.append(f"{slug}: {str(e)}")
+        print(f"  ❌ Error: {e}")
 
 # --- Summary ---
-print("\n=== SUMMARY ===")
-print(f"Posted: {posted_count}/{len(to_post)}")
+print(f"\n{'='*40}")
+print(f"SUMMARY: {posted}/{len(to_post)} articles posted to Threads")
 if errors:
     print(f"Errors ({len(errors)}):")
     for e in errors:
         print(f"  - {e}")
-else:
-    print("No errors.")
-print("Done.")
+print(f"Total in threads-log.json: {len(threads_log)}")

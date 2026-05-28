@@ -1,18 +1,13 @@
 #!/usr/bin/env python3
 """
-The Videshi — News Writer (2026-05-28)
-Generates 3 news articles with proper images and publishes to Supabase.
+Videshi News Writer — 2026-05-28 batch
+Publishes 3 news articles with Wikipedia-first image sourcing.
 """
 
-import json
-import os
-import subprocess
-import uuid
-import re
-import time
+import os, json, requests, urllib.parse, uuid, time, re, subprocess
 from datetime import datetime, timezone
 
-# --- Load environment ---
+# ── Supabase credentials ────────────────────────────────────────────
 def load_env(path):
     if not os.path.exists(path):
         return
@@ -21,36 +16,35 @@ def load_env(path):
             line = line.strip()
             if line and not line.startswith('#') and '=' in line:
                 k, v = line.split('=', 1)
-                os.environ.setdefault(k.strip(), v.strip())
+                k = k.replace('export ', '').strip()
+                v = v.strip().strip('"').strip("'")
+                os.environ[k] = v
 
 load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
 SUPABASE_URL = os.environ['SUPABASE_URL']
 SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_API_KEY = os.environ.get('PEXELS_API_KEY', '')
-
-HEADERS_SB = {
+HEADERS = {
     'apikey': SUPABASE_KEY,
     'Authorization': f'Bearer {SUPABASE_KEY}',
     'Content-Type': 'application/json',
     'Prefer': 'return=representation'
 }
 
-# --- Wikipedia person image ---
+# ── Image Sourcing ──────────────────────────────────────────────────
+
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
-        result = subprocess.run(
-            ['curl', '-sS', '-H', 'User-Agent: TheVideshi/1.0 (thevideshi.com)',
-             f'https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}'],
-            capture_output=True, text=True, timeout=15
+        r = requests.get(
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
         )
-        if result.returncode == 0:
-            data = json.loads(result.stdout)
-            img = data.get('originalimage', {}).get('source') or data.get('thumbnail', {}).get('source')
+        if r.status_code == 200:
+            data = r.json()
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
@@ -59,376 +53,401 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 
-# --- Pexels image ---
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels. Returns URL or None."""
-    if not PEXELS_API_KEY:
-        print("  ⚠ No Pexels API key")
+    """Fetch an image from Pexels API using curl (urllib gets 403)."""
+    pexels_key = None
+    pexels_env = os.path.expanduser('~/workspace/.env.pexels')
+    if os.path.exists(pexels_env):
+        with open(pexels_env) as f:
+            for line in f:
+                if 'PEXELS' in line and '=' in line:
+                    pexels_key = line.split('=', 1)[1].strip().strip('"').strip("'")
+                    break
+    if not pexels_key:
+        print("  ⚠ No Pexels API key found")
         return None
+
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             result = subprocess.run(
-                ['curl', '-sS', '-H', f'Authorization: {PEXELS_API_KEY}',
-                 f'https://api.pexels.com/v1/search?query={q}&per_page=5&orientation=landscape'],
+                ['curl', '-sS', '-H', f'Authorization: {pexels_key}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'],
                 capture_output=True, text=True, timeout=15
             )
-            if result.returncode == 0:
-                data = json.loads(result.stdout)
-                photos = data.get('photos', [])
-                if photos:
-                    url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('original')
-                    if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            for photo in photos:
+                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+                if url:
+                    # Validate size
+                    head = requests.head(url, timeout=10)
+                    cl = int(head.headers.get('Content-Length', 0))
+                    if cl > 5000:
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                         return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 
-# --- Upload image to Supabase storage ---
-def upload_image_to_supabase(image_url, filename):
-    """Download image from URL and upload to Supabase storage. Returns public URL."""
-    tmp_path = f'/tmp/{filename}'
+def upload_to_supabase_storage(image_url, filename):
+    """Download image and upload to Supabase article-images bucket."""
     try:
-        # Download
-        dl = subprocess.run(
-            ['curl', '-sS', '-L', '-o', tmp_path, '-H', 'User-Agent: TheVideshi/1.0 (thevideshi.com)', image_url],
-            capture_output=True, text=True, timeout=30
-        )
-        if dl.returncode != 0:
-            print(f"  ⚠ Download failed for {image_url[:60]}")
-            return None
+        r = requests.get(image_url, timeout=20, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code != 200:
+            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
+            return image_url  # fallback to direct URL
+        
+        content_type = r.headers.get('Content-Type', 'image/jpeg')
+        if 'image' not in content_type:
+            content_type = 'image/jpeg'
+        
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small ({len(r.content)} bytes), skipping upload")
+            return image_url
 
-        # Check file size
-        size = os.path.getsize(tmp_path)
-        if size < 5000:
-            print(f"  ⚠ Image too small ({size} bytes), skipping")
-            return None
-
-        # Upload to Supabase storage
-        upload_url = f'{SUPABASE_URL}/storage/v1/object/article-images/{filename}'
-        up = subprocess.run(
-            ['curl', '-sS', '-X', 'POST',
-             '-H', f'Authorization: Bearer {SUPABASE_KEY}',
-             '-H', 'Content-Type: image/jpeg',
-             '-H', 'x-upsert: true',
-             '--data-binary', f'@{tmp_path}',
-             upload_url],
-            capture_output=True, text=True, timeout=30
-        )
-        if up.returncode == 0:
-            pub_url = f'{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}'
-            print(f"  ✓ Uploaded to Supabase: {pub_url[:80]}")
-            return pub_url
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        upload_headers = {
+            'apikey': SUPABASE_KEY,
+            'Authorization': f'Bearer {SUPABASE_KEY}',
+            'Content-Type': content_type,
+            'x-upsert': 'true'
+        }
+        up = requests.post(upload_url, data=r.content, headers=upload_headers, timeout=30)
+        if up.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Upload failed: {up.status_code} {up.text[:200]}")
+            return image_url
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
-    finally:
-        if os.path.exists(tmp_path):
-            os.remove(tmp_path)
-    return None
+        return image_url
 
 
-# --- Insert article ---
-def insert_article(article):
-    """Insert article into Supabase p2_articles table."""
-    payload = json.dumps(article)
-    result = subprocess.run(
-        ['curl', '-sS', '-X', 'POST',
-         f'{SUPABASE_URL}/rest/v1/p2_articles',
-         '-H', f'apikey: {SUPABASE_KEY}',
-         '-H', f'Authorization: Bearer {SUPABASE_KEY}',
-         '-H', 'Content-Type: application/json',
-         '-H', 'Prefer: return=representation',
-         '-d', payload],
-        capture_output=True, text=True, timeout=30
+def validate_image(url):
+    """Validate image URL returns proper image with sufficient size."""
+    if not url:
+        return False
+    # Block banned sources
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
+    for b in banned:
+        if b in url:
+            print(f"  ✗ Banned source detected: {b}")
+            return False
+    try:
+        head = requests.head(url, timeout=10, allow_redirects=True,
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = head.headers.get('Content-Type', '')
+        cl = int(head.headers.get('Content-Length', 0))
+        if 'image' in ct and cl > 5000:
+            return True
+        # Some servers don't return Content-Length on HEAD
+        if 'image' in ct:
+            return True
+    except:
+        pass
+    return False
+
+
+# ── Article publishing ──────────────────────────────────────────────
+
+def publish_article(article):
+    """Insert an article into p2_articles."""
+    art_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    
+    payload = {
+        'id': art_id,
+        'headline': article['headline'],
+        'subheadline': article['subheadline'],
+        'body': article['body'],
+        'slug': article['slug'],
+        'category': article['category'],
+        'vertical': article.get('vertical', 'general'),
+        'status': 'published',
+        'published_at': now,
+        'created_at': now,
+        'sources': json.dumps(article['sources']),
+        'image_url': article.get('image_url'),
+        'image_caption': article.get('image_caption'),
+        'image_attribution': article.get('image_attribution'),
+        'score_total': article.get('score_total', 75),
+        'is_featured': False,
+        'tags': '{' + ','.join(article.get('tags', [])) + '}',
+        'diaspora_angle': article.get('diaspora_angle', ''),
+        'urgency': article.get('urgency', 'medium'),
+    }
+
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload,
+        timeout=30
     )
-    if result.returncode == 0:
-        try:
-            resp = json.loads(result.stdout)
-            if isinstance(resp, list) and len(resp) > 0:
-                art_id = resp[0].get('id')
-                print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
-                return art_id
-            elif isinstance(resp, dict) and resp.get('message'):
-                print(f"  ✗ Error: {resp.get('message')}")
-                return None
-        except json.JSONDecodeError:
-            print(f"  ✗ Response parse error: {result.stdout[:200]}")
+    if r.status_code in (200, 201):
+        print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
+        return art_id
     else:
-        print(f"  ✗ curl error: {result.stderr[:200]}")
-    return None
+        print(f"  ✗ Failed to publish: {r.status_code} {r.text[:300]}")
+        return None
 
 
-# ===================================================================
-# ARTICLE 1: India's Basmati Rice Exports
-# ===================================================================
+# ── Articles ────────────────────────────────────────────────────────
 
-def write_article_1():
-    print("\n=== ARTICLE 1: Basmati Rice Exports ===")
+articles = []
 
-    slug = "india-basmati-rice-exports-crash-iran-war-gulf-trade-routes-20260528"
-    headline = "India's Basmati Rice Exports Just Crashed 27 Percent. The Iran War Has Choked Every Gulf Trade Route."
-    subheadline = "Four hundred thousand tonnes of premium basmati are stuck at Indian ports. Iran, Iraq, Saudi Arabia, and Qatar have all but stopped placing new orders."
+# ────────────────────────────────────────────────────────────────────
+# ARTICLE 1: Iran-US Ceasefire Framework Deal
+# ────────────────────────────────────────────────────────────────────
+articles.append({
+    'headline': "Iran and the U.S. Have a Draft Deal to Reopen the Strait of Hormuz. India Needs It More Than Either of Them.",
+    'subheadline': "A 60-day memorandum would restore shipping, lift the naval blockade, and launch nuclear talks. Pakistan brokered it. Trump has not signed it yet.",
+    'slug': 'iran-us-ceasefire-deal-hormuz-60-day-mou-india-oil-imports-20260528',
+    'category': 'news',
+    'sources': [
+        {"name": "Reuters", "url": "https://www.reuters.com/world/middle-east/iran-says-draft-us-deal-would-reopen-hormuz-shipping-end-naval-blockade-2026-05-27/"},
+        {"name": "Axios", "url": "https://www.axios.com"},
+        {"name": "FX Street", "url": "https://www.fxstreet.com"},
+        {"name": "Reuters - Dollar falls", "url": "https://www.reuters.com"}
+    ],
+    'image_search_person': None,
+    'image_pexels_query': 'oil tanker strait shipping',
+    'image_pexels_fallback': 'cargo ship ocean sunset',
+    'image_caption': 'Oil tankers in the Strait of Hormuz, a chokepoint for 20 percent of global crude shipments',
+    'vertical': 'geopolitics',
+    'tags': ['iran', 'ceasefire', 'hormuz', 'oil', 'gulf-indians', 'trade', 'india-foreign-policy'],
+    'diaspora_angle': 'Nine million Indians live in Gulf states directly affected by the Hormuz blockade. Oil price relief would ease fuel costs for NRI families visiting India and reduce remittance friction.',
+    'urgency': 'high',
+    'body': """The outlines of a deal to end the three-month-old Iran-U.S. war emerged on Thursday, and the details explain why Delhi has been making frantic calls to both Washington and Tehran for weeks.
 
-    body = """India's rice export machine — the largest in the world, accounting for more than 40 percent of global shipments — is seizing up. And the damage is concentrated in exactly the market segment that matters most to Indian exporters and Gulf-based consumers alike: basmati.
+According to an Axios report citing two U.S. officials, American and Iranian negotiators have agreed on a 60-day memorandum of understanding that would extend the ceasefire, reopen commercial shipping through the Strait of Hormuz to pre-war levels within 30 days, and launch direct negotiations over Iran's nuclear program. The agreement awaits President Donald Trump's final signature.
 
-## The Numbers Are Stark
+## What the Draft Says
 
-India's basmati rice exports fell 27 percent in April 2026 compared to the same month last year, according to data from India's Directorate General of Commercial Intelligence and Statistics. For the January-to-April period, total rice exports slipped 1.3 percent year-on-year to 8.39 million metric tons. But the headline figure masks a sharper divergence: basmati shipments dropped 7 percent to 2.3 million tons, while cheaper non-basmati varieties edged up slightly to 6.09 million tons.
+Iran's state television published what it described as an unofficial framework. Under its terms, Iran would restore commercial vessel traffic through the strait within a month. The United States would withdraw military forces from Iran's vicinity and lift the naval blockade that has choked global shipping since February.
 
-The culprit is geography. India's premium basmati rice goes overwhelmingly to Gulf markets — Saudi Arabia, Iran, Iraq, Qatar, and the United Arab Emirates. These are precisely the markets that the three-month-old Iran war has made nearly impossible to serve reliably.
+The framework excludes military vessels and envisions Iran managing ship traffic through the strait in cooperation with Oman. Tehran said it would take no steps without "tangible verification." If a final agreement is reached within 60 days, it could be approved as a binding United Nations Security Council resolution.
 
-## Four Hundred Thousand Tonnes Stuck at Port
+Pakistan played the central mediating role in the indirect talks that produced the framework — a diplomatic win for Islamabad and a sign of how deeply the Gulf conflict has reshaped South Asian diplomacy.
 
-The Strait of Hormuz, through which roughly a fifth of the world's oil and a significant share of Indian agricultural exports pass, has been disrupted since U.S.-Israeli airstrikes on Iran began on February 28. Shipping insurance premiums have spiked. Freight rates on India-Gulf routes have doubled in some cases. And cargo vessels carrying basmati rice to Iran, Iraq, Qatar, and Saudi Arabia remain stranded in transit or anchored at Indian ports waiting for clearance.
+## Why India Cannot Wait
 
-An estimated 400,000 metric tonnes of basmati rice are backed up at ports, according to industry reports. Exporters in Karnal, Haryana — the heart of India's basmati belt — describe a market in paralysis. New deals have effectively stalled.
+India imports roughly 85 percent of its crude oil, and the Strait of Hormuz handles about 20 percent of global crude shipments. Since the war began on February 28, when U.S. and Israeli forces struck Iranian targets and Iran retaliated with missiles and drones, oil prices have surged past $110 a barrel. Indian petrol prices have crossed ₹100 in most cities after four fuel-price hikes in two weeks.
 
-"No buyer in the Gulf is placing fresh orders," said one New Delhi-based exporter who spoke to Reuters on condition of anonymity. "Shipments are expected to remain below typical levels until the war ends."
+The blockade has also disrupted non-oil trade. India's basmati rice exports crashed 27 percent as Gulf trade routes choked. IndiGo and Air India cut up to 22 percent of domestic flights because of jet fuel costs. The Reserve Bank of India is watching imported inflation closely, with consumer prices already above the central bank's comfort zone.
 
-## The Gulf Connection Runs Deep
+For the nearly 9 million Indians living in Gulf states — the largest diaspora bloc in the region — the shipping disruption has meant delayed remittances, paused construction projects, and an ambient sense of danger underscored this week when Iranian drones and a ballistic missile targeted a U.S. base in Kuwait, where nearly a million Indians live.
 
-Iran was India's largest basmati buyer until last year, when Saudi Arabia overtook it. Together with Iraq and the UAE, these four markets absorb the bulk of India's $5 billion annual basmati trade. The disruption is not just a trade statistic — it is a kitchen-table reality for millions of families across the Gulf, including the roughly 9 million Indians living in the region.
+## The Fragility Problem
 
-For NRIs in Dubai, Riyadh, Doha, and Kuwait City, basmati rice is a staple that connects them to home. Rising prices and intermittent availability at Gulf supermarkets are a tangible reminder that the war is not just a geopolitical abstraction but a daily grocery problem.
+The framework arrived hours after the latest ceasefire violation. U.S. Central Command said it shot down five Iranian attack drones and struck a ground control station near Bandar Abbas that was about to launch a sixth. Iran's Revolutionary Guard Corps then fired a ballistic missile at the U.S. base in Kuwait, which Kuwaiti forces intercepted.
 
-## Domestic Prices Are Falling — But That Is Not Good News
+Both sides described their actions as defensive. The U.S. called its strikes "measured" and "intended to maintain the ceasefire." Iran said any repeat would invite a "more decisive response." Kuwait condemned the attack and demanded an immediate halt.
 
-Paradoxically, the export crunch is pushing domestic basmati prices down. Indian rice prices have fallen more than 5 percent this year, squeezed by a record harvest on one side and collapsing Gulf demand on the other. Farmers in Punjab, Haryana, and western Uttar Pradesh — who planted basmati expecting export-driven premiums — are being hit hardest.
+This is the second flare-up this week, and it coincided with Eid al-Adha celebrations across the region — a reminder that the ceasefire exists more on paper than on the ground.
 
-The All India Rice Exporters Association has urged the government to intervene with freight subsidies and alternative market development. Pakistan, which competes directly in the global basmati market, is watching closely. Any prolonged Indian absence from Gulf shelves could open a window for Pakistani exporters to fill.
+## What the Markets Heard
+
+Financial markets responded instantly to the Axios report. Oil prices reversed course and traded lower. The U.S. dollar fell against major currencies, with the euro gaining 0.27 percent and the dollar index dropping 0.29 percent to 99.02. Indian markets were closed on Thursday for the Eid holiday, but the rupee and Sensex are likely to react on Friday.
+
+For Indian policymakers, the math is straightforward. Every dollar added to the oil price costs India approximately $2 billion in additional import bills annually. If the MOU holds and Hormuz reopens, crude prices could ease by $15-20 a barrel within weeks — translating to ₹5-8 per liter in fuel price relief and a significant easing of the current account deficit.
 
 ## What Comes Next
 
-The Iran war shows no signs of a quick resolution. While a draft framework for a U.S.-Iran memorandum of understanding has surfaced — including a plan to restore commercial shipping through Hormuz within 30 days — Trump dismissed the reported deal on Thursday, and fresh air strikes between the two sides this week have further dimmed prospects for de-escalation.
+Trump has not signed. The framework is unofficial. Both militaries are still firing at each other. But the mere existence of a written agreement — with a timeline, a verification mechanism, and a path to the UN Security Council — is the most concrete progress since the April ceasefire that never quite held.
 
-For India's rice industry, the math is grim. The basmati export season runs roughly from October to March, and the current disruption is eating into what should be peak shipping months. If the war drags into the monsoon season, when domestic logistics slow anyway, the compounding effect on exports could be severe.
+India's external affairs ministry has not commented on the draft, but Delhi's position is well known: India wants the strait open, fuel prices down, and its Gulf diaspora safe. Whether Trump signs may depend on domestic politics as much as geopolitics. For the million Indians in Kuwait who heard a ballistic missile intercepted overhead this week, the 60-day clock cannot start soon enough."""
+})
 
-India ships more rice than Thailand, Vietnam, Myanmar, and Pakistan combined. When that pipeline breaks, the world's food trade feels it — and the Gulf's Indian kitchens feel it first.
+# ────────────────────────────────────────────────────────────────────
+# ARTICLE 2: India's First Hydrogen Train
+# ────────────────────────────────────────────────────────────────────
+articles.append({
+    'headline': "India Just Approved Its First Hydrogen-Powered Passenger Train. It Runs on Water Vapour.",
+    'subheadline': "The 10-coach train will serve 2,600 passengers daily on a Haryana route, joining Germany, Japan, and China in the hydrogen rail club.",
+    'slug': 'india-first-hydrogen-train-jind-sonipat-green-railways-20260528',
+    'category': 'news',
+    'sources': [
+        {"name": "APAC News Network", "url": "https://apacnewsnetwork.com/2026/05/indias-first-hydrogen-powered-passenger-train-gets-green-signal-from-railways-ministry/"},
+        {"name": "The Hindu Business Line", "url": "https://www.thehindubusinessline.com"},
+        {"name": "Latestly", "url": "https://www.latestly.com"},
+        {"name": "Enerside Media", "url": "https://enersidermedia.com"}
+    ],
+    'image_search_person': None,
+    'image_pexels_query': 'Indian railway train modern station',
+    'image_pexels_fallback': 'train railway station India',
+    'image_caption': 'Indian Railways is betting on hydrogen fuel cells to replace diesel on non-electrified routes',
+    'vertical': 'infrastructure',
+    'tags': ['railways', 'hydrogen', 'green-energy', 'infrastructure', 'india-modernization', 'net-zero'],
+    'diaspora_angle': 'The hydrogen train sits alongside Vande Bharat and the bullet train as evidence of infrastructure modernization NRIs hear about but rarely see. Green hydrogen investment opportunities may emerge as India targets below-₹100/kg costs.',
+    'urgency': 'medium',
+    'body': """India's Railway Board has approved the launch of the country's first hydrogen-powered passenger train, clearing the final regulatory hurdle for a project that turns water vapour into a selling point and diesel into a relic.
 
-*Sources: Reuters, Directorate General of Commercial Intelligence and Statistics (India), All India Rice Exporters Association, Rural Voice*"""
+The train — a 10-coach Diesel Electric Multiple Unit retrofitted with 1,200 kilowatt hydrogen fuel cells — will operate on the 89-kilometre Jind-Sonipat route in Haryana, serving over 2,600 passengers daily with two round trips at speeds up to 75 kilometres per hour. Its only emission is water vapour.
 
-    # Image: Try Pexels for basmati rice fields
-    print("  Sourcing image...")
-    img_url = fetch_pexels_image("basmati rice field India harvest", "rice paddy field green")
-    final_image = None
-    if img_url:
-        final_image = upload_image_to_supabase(img_url, f"{slug}.jpg")
+## How It Works
 
-    article = {
-        'headline': headline,
-        'subheadline': subheadline,
-        'body': body,
-        'slug': slug,
-        'category': 'news',
-        'vertical': 'news',
-        'status': 'published',
-        'published_at': datetime.now(timezone.utc).isoformat(),
-        'image_url': final_image,
-        'image_attribution': 'Pexels' if final_image else None,
-        'image_caption': 'India\'s basmati rice exports to Gulf markets have crashed as the Iran war disrupts Strait of Hormuz shipping routes',
-        'sources': json.dumps(['Reuters', 'Directorate General of Commercial Intelligence and Statistics', 'Rural Voice', 'All India Rice Exporters Association']),
-        'tags': ['rice exports', 'basmati', 'Iran war', 'Gulf trade', 'agriculture'],
-        'score_total': 82,
-    }
+Unlike conventional trains that burn diesel to generate electricity for traction motors, the hydrogen DEMU uses fuel cells that combine hydrogen and oxygen in an electrochemical reaction. The process produces electricity, heat, and water — no carbon dioxide, no particulate matter, no nitrogen oxides.
 
-    return insert_article(article)
+The 1,200 kW system uses Distributed Power Rolling Stock technology, distributing propulsion across multiple coaches rather than relying on a single locomotive. The Research Designs and Standards Organisation completed oscillation trial runs in March 2026, and the Railway Board's approval followed technical safety evaluations that included hydrogen leak detection systems and round-the-clock monitoring protocols.
 
+## India Joins an Elite Club
 
-# ===================================================================
-# ARTICLE 2: India-Canada Free Trade Deal
-# ===================================================================
+With this approval, India becomes the fifth country to operate hydrogen-powered passenger trains, joining Germany, which launched the world's first hydrogen train in 2018, along with Sweden, Japan, and China. Germany's Coradia iLint, built by Alstom, runs on routes in Lower Saxony. China began hydrogen tram operations in Foshan in 2019 and is expanding to intercity routes.
 
-def write_article_2():
-    print("\n=== ARTICLE 2: India-Canada Trade Deal ===")
+India's version is notable because it is indigenously developed — not imported or licensed — and is part of the National Green Hydrogen Mission, a ₹19,744 crore initiative launched in 2023 to position India as a global green hydrogen hub.
 
-    slug = "india-canada-cepa-free-trade-deal-50-billion-goyal-carney-20260528"
-    headline = "India and Canada Are Racing to Close a Free Trade Deal by December. The Target Is $50 Billion."
-    subheadline = "Commerce Minister Piyush Goyal and Canadian PM Mark Carney call the CEPA a 'game changer.' The third round of negotiations is underway in Ottawa this week."
+## The Economics Are Complicated
 
-    # Try Wikipedia for Piyush Goyal and Mark Carney
-    print("  Sourcing images...")
-    img_url = fetch_wikipedia_person_image("Piyush Goyal")
-    if not img_url:
-        img_url = fetch_wikipedia_person_image("Mark Carney")
-    if not img_url:
-        img_url = fetch_pexels_image("India Canada trade diplomacy", "international trade agreement handshake")
+The approval is a technical achievement, but the economics are harder. Green hydrogen — produced by splitting water using renewable electricity — currently costs between ₹300 and ₹400 per kilogram in India, roughly three to four times the cost of diesel on an energy-equivalent basis. The government's target is to bring green hydrogen costs below ₹100 per kilogram by 2030, a target that requires massive scaling of electrolyser manufacturing and renewable energy capacity.
 
-    final_image = None
-    if img_url:
-        final_image = upload_image_to_supabase(img_url, f"{slug}.jpg")
+The Jind-Sonipat route was chosen partly because a hydrogen production plant in Jind is nearing final commissioning. Without co-located production, transporting hydrogen to fuelling points would add significant cost and logistical complexity.
 
-    body = """Two years ago, India and Canada were barely speaking. A diplomatic crisis over the assassination of Sikh separatist leader Hardeep Singh Nijjar in British Columbia in June 2023 had frozen relations, expelled diplomats, and made a trade deal unthinkable. Now, Commerce Minister Piyush Goyal is in Ottawa, sitting across the table from Canada's Trade Minister Maninder Sidhu, and both governments are publicly racing to close a Comprehensive Economic Partnership Agreement by December.
+Industry analysts note that the real value of the project lies in proving the technology at scale on Indian railways, which operates the fourth-largest rail network in the world. Indian Railways consumed approximately 2.6 billion litres of diesel in the 2023-24 fiscal year. Converting even a fraction of non-electrified routes to hydrogen could significantly reduce the railway's carbon footprint and its ₹30,000 crore annual diesel bill.
 
-## The Stakes Are Enormous
+## The Bigger Push
 
-The headline number is $50 billion — three times the current bilateral trade of roughly $17 billion. India and Canada want to reach that target by 2030, and the CEPA is the vehicle to get there.
+The hydrogen train is part of a broader ₹1.53 lakh crore railway investment wave approved in the current fiscal year, covering more than 100 projects across 6,000 kilometres of network expansion. The Railway Ministry reported a 56 percent increase in project approvals and a 110 percent rise in capital spending year-on-year.
 
-The third round of negotiations is underway in Ottawa from May 25 to 29, with India's chief negotiator, Joint Secretary Brij Mohan Mishra, leading the Indian delegation. The talks cover goods, services, investments, intellectual property, and government procurement — the full architecture of a modern free trade agreement.
+For Indian Railways, the calculation is both environmental and strategic. About 40 percent of India's rail network remains non-electrified, mostly in rural and semi-urban stretches where overhead wiring is expensive and geographically difficult. Hydrogen offers a zero-emission alternative without the infrastructure cost of electrification — if the fuel economics come down.
 
-"Our prime ministers have tasked us not only with completing the free trade agreement with a comprehensive outlook before the end of this year or earlier," Goyal said at a joint press appearance with Sidhu on May 25, "but also with tripling our trade."
+## What NRIs Should Watch
 
-Canadian Prime Minister Mark Carney was even more direct. "We're negotiating a free trade deal with India," he wrote on social media after meeting Goyal. "This will be a game changer for Canadian workers and businesses — unlocking a massive new market."
+For the diaspora, the hydrogen train is a signal of the kind of India they often hear about but rarely see firsthand. It sits alongside the Vande Bharat semi-high-speed trains and the Mumbai-Ahmedabad bullet train project as evidence that Indian infrastructure is no longer decades behind the rest of the world.
 
-## What India Exports, What Canada Needs
+The commercial question — whether hydrogen trains make financial sense at scale before the Green Hydrogen Mission brings costs down — will determine whether this is a one-off showcase or the beginning of a transformation. The trial runs start on an 89-kilometre stretch in Haryana. The answer will determine whether they reach the rest of the country's 68,000 kilometres of railway track."""
+})
 
-The trade complementarity is striking. India exports pharmaceuticals, iron and steel, seafood, cotton garments, electronic goods, and chemicals to Canada. Canada ships back pulses, coal, crude oil, fertilizer, and paper — exactly the commodities India needs to feed its population and power its industry.
+# ────────────────────────────────────────────────────────────────────
+# ARTICLE 3: India Forms Committee on Illegal Immigration
+# ────────────────────────────────────────────────────────────────────
+articles.append({
+    'headline': "Modi Just Created a Committee to Study How Illegal Immigration Changed India's Demographics. It Has One Year.",
+    'subheadline': "A retired Supreme Court judge will lead the panel. It can recommend detention and deportation systems. The timing — days after Rubio's visit — is not coincidental.",
+    'slug': 'india-high-level-committee-illegal-immigration-demographics-naolekar-20260528',
+    'category': 'news',
+    'sources': [
+        {"name": "VisaVerge", "url": "https://www.visaverge.com/news/modi-government-forms-high-level-committee-to-study-illegal-immigration-and-demography-change/"},
+        {"name": "DevDiscourse", "url": "https://www.devdiscourse.com"},
+        {"name": "SCC Online", "url": "https://www.scconline.com"},
+        {"name": "Press Information Bureau", "url": "https://pib.gov.in"}
+    ],
+    'image_search_person': 'Amit Shah',
+    'image_pexels_query': None,
+    'image_pexels_fallback': None,
+    'image_caption': 'Union Home Minister Amit Shah announced the committee, calling illegal infiltration a challenge to India\'s present and future',
+    'vertical': 'immigration',
+    'tags': ['immigration', 'demographics', 'amit-shah', 'nri-world', 'deportation', 'border-security', 'rubio-india'],
+    'diaspora_angle': 'India cracking down on illegal immigration mirrors its argument to the U.S. about protecting legal H-1B and student pathways. NRIs on both sides of the immigration debate will see parallels with their own visa battles.',
+    'urgency': 'high',
+    'body': """India's government has created a committee with the power to reshape how the country identifies, detains, and deports people it classifies as illegal immigrants. The timing — announced two days after U.S. Secretary of State Marco Rubio left Delhi — places it at the intersection of two countries simultaneously tightening their borders.
+
+Union Home Minister Amit Shah announced the formation of the High-Level Committee on Demographic Change on May 26, 2026, through the Press Information Bureau and social media. The committee will study how illegal immigration has altered population patterns across India and recommend enforcement mechanisms.
+
+## Who Is on the Panel
+
+The committee is chaired by retired Supreme Court Justice Prakash Prabhakar Naolekar. Its members include the Census Commissioner of India, Durga Shankar Mishra (a former Urban Affairs Secretary), Balaji Srivastava (a former Delhi Police Commissioner), Dr. Shamika Ravi (an economist and former member of the Prime Minister's Economic Advisory Council), and the Joint Secretary for Foreigners in the Ministry of Home Affairs, who will serve as member secretary.
+
+The composition is deliberate. A former Supreme Court judge gives the panel judicial authority. A former police commissioner brings enforcement perspective. An economist provides demographic modelling capacity. The Census Commissioner connects the work to India's population data infrastructure.
+
+## What It Can Do
+
+The committee's mandate extends far beyond a population study. It will conduct a scientific assessment of demographic shifts caused by "illegal infiltration" and "unnatural causes" across religious and social communities. It will recommend institutional mechanisms to strengthen borders and stabilize populations. Most significantly, it will propose a permanent operational mechanism for identifying, detaining, and deporting illegal immigrants.
+
+Shah framed the issue in security terms: "Infiltration and other reasons causing unnatural demographic change pose a very significant challenge to the present and future of any nation."
+
+The committee has one year to deliver its report, with a possible six-month extension. An Updated Deportation Framework released in 2026 sets 30-to-90-day verification timelines for suspected foreign nationals — suggesting the government wants a standing system rather than case-by-case action.
+
+## The Independence Day Promise
+
+The committee fulfils a commitment Prime Minister Narendra Modi made during his Independence Day address on August 15, 2025, when he proposed a formal study of immigration-driven demographic change. That speech was widely seen as a signal that the BJP intended to make illegal immigration — particularly from Bangladesh and Myanmar — a central governance issue in its third term.
+
+India shares a 4,096-kilometre border with Bangladesh, much of it porous. The government estimates millions of undocumented Bangladeshi migrants live in India, concentrated in West Bengal, Assam, and the northeast. The Assam National Register of Citizens exercise in 2019 excluded 1.9 million people, though the follow-up process stalled amid legal challenges and political controversy.
+
+## The Rubio Connection
+
+The committee's announcement came during a consequential week for immigration diplomacy. Rubio visited Delhi from May 23-26 and discussed immigration during a joint press conference with External Affairs Minister S. Jaishankar on May 24.
+
+Rubio described Washington's immigration crackdown as global rather than India-specific: "The modernization of our migration system is not focused on India specifically. We've had a migratory crisis in the US — over 20 million people illegally entered the US over the last few years."
+
+Jaishankar responded with a line India has repeated in every recent migration conversation: "While we cooperate to deal with illegal and irregular mobility, our expectation is that legal mobility would not be adversely impacted."
+
+That distinction — illegal immigration bad, legal immigration protected — is India's position at home and abroad. The committee's domestic mandate to crack down on illegal infiltration mirrors the argument India makes to Washington about protecting H-1B workers and students.
+
+## What This Means for the Diaspora
+
+For Indian Americans and NRIs, the committee creates a two-track reality. India is simultaneously arguing that the United States should protect legal Indian immigration while launching its own enforcement mechanism against illegal immigration from its neighbours.
+
+The USCIS directive issued on May 22 — requiring foreign nationals seeking Green Cards to leave the U.S. and apply from home — has already unsettled the Indian American community. Jaishankar's public pushback on that policy during Rubio's visit showed how seriously Delhi takes the legal-immigration issue.
+
+The domestic committee will likely generate headlines that read differently in Assam than they do in Silicon Valley. For the diaspora, the key question is whether India's crackdown on illegal immigration strengthens or weakens its moral authority when arguing for legal immigration protections abroad.
+
+The committee has one year. The debate will last much longer."""
+})
+
+
+# ── Main Execution ──────────────────────────────────────────────────
+
+def main():
+    print("=" * 60)
+    print("Videshi News Writer — 2026-05-28 Batch")
+    print("=" * 60)
+    
+    for i, article in enumerate(articles, 1):
+        print(f"\n--- Article {i}/{len(articles)}: {article['headline'][:50]}... ---")
+        
+        # Image sourcing
+        img_url = None
+        img_attribution = None
+        
+        # Step 1: Try Wikipedia for person articles
+        person = article.get('image_search_person')
+        if person:
+            print(f"  Trying Wikipedia for '{person}'...")
+            img_url = fetch_wikipedia_person_image(person)
+            if img_url:
+                img_attribution = "Wikimedia Commons"
+        
+        # Step 2: Try Pexels as fallback
+        if not img_url and article.get('image_pexels_query'):
+            print(f"  Trying Pexels for '{article['image_pexels_query']}'...")
+            img_url = fetch_pexels_image(article['image_pexels_query'], article.get('image_pexels_fallback'))
+            if img_url:
+                img_attribution = "Pexels"
+        
+        # Step 3: Upload to Supabase if we found an image
+        if img_url:
+            if validate_image(img_url):
+                filename = f"{article['slug']}.jpg"
+                final_url = upload_to_supabase_storage(img_url, filename)
+                article['image_url'] = final_url
+                article['image_attribution'] = img_attribution
+            else:
+                print(f"  ⚠ Image validation failed, proceeding without image")
+                article['image_url'] = None
+                article['image_attribution'] = None
+        else:
+            print(f"  ⚠ No image found, proceeding without image")
+            article['image_url'] = None
+            article['image_attribution'] = None
+        
+        # Publish
+        art_id = publish_article(article)
+        if art_id:
+            print(f"  ✓ Article {i} published successfully")
+        else:
+            print(f"  ✗ Article {i} failed to publish")
+        
+        time.sleep(1)
+    
+    print("\n" + "=" * 60)
+    print("Batch complete.")
+    print("=" * 60)
 
-But the real growth potential is in services. India's telecommunications, IT, and business process outsourcing sectors are already deeply embedded in the Canadian economy. A CEPA would formalize and expand that relationship, potentially opening Canadian government procurement contracts to Indian IT firms for the first time.
-
-Energy is another frontier. Canada is a major producer of oil, natural gas, and uranium. With India desperate to diversify its energy sources away from the war-disrupted Gulf, Canadian crude and nuclear fuel could become strategic imports. Both sides have discussed nuclear fuel cooperation as part of the broader package.
-
-## The Diaspora Factor
-
-None of this happens in a vacuum. Canada is home to over 425,000 Indian students — the largest international student population in the country. The broader Indian diaspora in Canada numbers well over a million. These are not just trade statistics; they are families, businesses, and voting constituencies that create organic economic demand.
-
-The student pipeline alone is worth billions in tuition and living expenses. A CEPA that eases work permit pathways and recognizes Indian professional credentials could deepen that flow further. For NRIs already in Canada, the deal could reduce costs on everything from imported Indian food products to pharmaceutical generics.
-
-## The Diplomatic Reset
-
-The speed of the turnaround is remarkable. After the Nijjar crisis, India and Canada expelled each other's diplomats, trade talks were shelved, and bilateral relations hit their lowest point in decades. The reset began in early 2026, driven partly by shared concerns about the Iran war's impact on energy security and partly by the Carney government's strategic pivot toward Asia.
-
-Carney, who took office in March 2025, has made diversifying Canada's trade partnerships a signature priority — explicitly to reduce dependence on the United States, where Trump's tariff policies have created persistent uncertainty. India, with its 1.4 billion consumers and 7-percent-plus growth rate, is the obvious partner.
-
-The July round of negotiations will focus on tariff structures and market access timelines. Both sides are targeting a framework agreement by October and a final text by December.
-
-## What Could Go Wrong
-
-The optimism is real, but so are the obstacles. Agricultural market access is a perennial sticking point — India's farmers' lobbies resist cheap Canadian pulse imports, while Canada's dairy sector opposes Indian competition. Intellectual property rules for pharmaceuticals, where India's generic drug industry clashes with Canadian patent protections, will require creative compromises.
-
-And the political ghosts have not fully disappeared. The Khalistan issue, while no longer dominating headlines, has not been resolved. Any flare-up could freeze the talks overnight.
-
-But for now, the momentum is unmistakable. After two years of silence, India and Canada are talking again — and talking fast.
-
-*Sources: Outlook Business, Reuters, Government of Canada, Ministry of Commerce and Industry (India)*"""
-
-    wiki_used = final_image and ('wikipedia' in (img_url or '').lower() or 'wikimedia' in (img_url or '').lower())
-    article = {
-        'headline': headline,
-        'subheadline': subheadline,
-        'body': body,
-        'slug': slug,
-        'category': 'news',
-        'vertical': 'news',
-        'status': 'published',
-        'published_at': datetime.now(timezone.utc).isoformat(),
-        'image_url': final_image,
-        'image_attribution': 'Wikimedia Commons' if wiki_used else ('Pexels' if final_image else None),
-        'image_caption': 'India\'s Commerce Minister Piyush Goyal is in Ottawa for the third round of CEPA negotiations with Canada',
-        'sources': json.dumps(['Outlook Business', 'Reuters', 'Government of Canada', 'Ministry of Commerce and Industry (India)']),
-        'tags': ['India-Canada', 'CEPA', 'free trade', 'Piyush Goyal', 'Mark Carney'],
-        'score_total': 84,
-    }
-
-    return insert_article(article)
-
-
-# ===================================================================
-# ARTICLE 3: India Heatwave
-# ===================================================================
-
-def write_article_3():
-    print("\n=== ARTICLE 3: India Heatwave ===")
-
-    slug = "india-heatwave-50-cities-record-temperatures-wet-bulb-survival-limits-20260528"
-    headline = "Fifty Indian Cities Just Hit Record Temperatures. Scientists Say the Heat Is Approaching Human Survival Limits."
-    subheadline = "Delhi touched 46°C on Wednesday. Wet-bulb temperatures in parts of India are nearing 33°C — dangerously close to the threshold where the human body can no longer cool itself."
-
-    # Image: Pexels for heatwave/Delhi heat
-    print("  Sourcing image...")
-    img_url = fetch_pexels_image("extreme heat India summer sun cracked earth", "hot summer dry land drought")
-    final_image = None
-    if img_url:
-        final_image = upload_image_to_supabase(img_url, f"{slug}.jpg")
-
-    body = """India is being cooked. Not metaphorically — the country is experiencing a heatwave so severe that climate scientists are warning some regions are approaching the physical limits of human survival. Fifty cities have recorded their highest-ever temperatures this month. Delhi touched 46°C on Wednesday. And the most dangerous number is one most people have never heard of: the wet-bulb temperature.
-
-## What the Wet-Bulb Number Means
-
-Regular temperature readings tell you how hot the air is. Wet-bulb temperature tells you whether your body can survive in it. It measures the combined effect of heat and humidity — specifically, whether sweat can evaporate fast enough to cool the body. When the wet-bulb reading approaches 35°C, the human body cannot shed heat regardless of hydration, shade, or fitness. Death from hyperthermia becomes inevitable within hours.
-
-Parts of India are now recording wet-bulb temperatures of 33°C. Portuguese climate analyst Bruno Brezenski, who has been tracking the heatwave, issued a blunt warning: "At that threshold, no human can last beyond two hours, and vulnerable groups such as infants and the elderly may collapse within half an hour."
-
-Research from Penn State University has shown that even healthy young adults begin losing the ability to regulate body temperature at wet-bulb levels near 31°C — a threshold that several Indian cities have already crossed.
-
-## The Nautapa Is Not Normal This Year
-
-The current heatwave coincides with Nautapa, the traditional nine-day period of peak summer heat in the Hindu calendar. But 2026's Nautapa is being supercharged by El Niño, the Pacific Ocean warming pattern that amplifies heat across South and Southeast Asia.
-
-The India Meteorological Department has issued red alerts — the highest category — across Punjab, Haryana, Delhi, Uttar Pradesh, Rajasthan, Madhya Pradesh, and Vidarbha. Temperatures in several districts have breached 47°C. In Telangana, twelve districts recorded above 46°C in a single day. The IMD says relief is unlikely before May 29, when western disturbances are expected to bring some cooling.
-
-But the heat is not just a daytime problem. A 2024 Climate Trends study in Chennai found that indoor nighttime temperatures in several homes remained above 32°C and occasionally crossed 35°C. Fishers in Kerala's Alappuzha district report that nights no longer cool down. Labourers in Odisha's coastal districts describe severe dehydration within an hour of outdoor work.
-
-## The Power Grid Is Buckling
-
-India's peak power demand hit a record 270.8 gigawatts last week as air conditioning usage surged. Despite 228 GW of non-fossil fuel capacity, coal still generates more than 70 percent of India's electricity. And the coal supply chain is straining.
-
-Twenty-one power plants now have critically low coal stocks — enough for less than a week of operation, according to the Central Electricity Authority. Coal India, the world's largest coal miner, has ordered its eight subsidiaries to maximize dispatches using all transport modes, including direct mine-to-plant rail links. The company's production fell 9.7 percent in April to 56.1 million metric tons, even as demand surged.
-
-Several states are already imposing power cuts, mainly at night when solar and wind generation drops to zero. The grid is being held together by emergency measures.
-
-## The Economic Toll
-
-The heatwave is not just a humanitarian crisis. Manufacturing output is dipping as factories face unplanned downtime from overheated equipment and worker absenteeism. Agricultural yields for wheat, rice, and pulses — all in critical growth stages — are under threat. Supply chains for perishable goods are disrupted as cold chains struggle to maintain temperatures during transit.
-
-Odisha, a major producer of minerals and steel, is particularly vulnerable. If industrial output there slows further, the effects will cascade through India's broader manufacturing index. Global investors with exposure to Indian commodities are already flagging supply chain risks.
-
-## What NRIs Need to Know
-
-For the roughly 32 million Indians living abroad, this is personal. Elderly parents, grandparents, and extended family across northern and central India are enduring conditions that scientists describe as life-threatening. The standard advice — stay hydrated, avoid midday sun, use air conditioning — assumes access to reliable power and cooling infrastructure that millions of Indians simply do not have.
-
-If your family is in Delhi, UP, Rajasthan, MP, Haryana, or Telangana, this is the week to check in. The IMD's heatwave warning system is at imd.gov.in. Municipal heat action plans vary wildly in quality, but most major cities now operate cooling centers during peak hours.
-
-The broader pattern is unmistakable. The Indian Institute of Tropical Meteorology reports that heatwave frequency in India's core heatwave zone has increased by 2.5 days per decade since 1961, with the trend accelerating sharply. This is not an anomaly. It is the new baseline.
-
-*Sources: India Meteorological Department, Reuters, Central Electricity Authority, Penn State University, Climate Trends (Chennai), Bruno Brezenski/climate analysis*"""
-
-    article = {
-        'headline': headline,
-        'subheadline': subheadline,
-        'body': body,
-        'slug': slug,
-        'category': 'news',
-        'vertical': 'news',
-        'status': 'published',
-        'published_at': datetime.now(timezone.utc).isoformat(),
-        'image_url': final_image,
-        'image_attribution': 'Pexels' if final_image else None,
-        'image_caption': 'Fifty Indian cities have hit record temperatures as a severe heatwave grips the country',
-        'sources': json.dumps(['India Meteorological Department', 'Reuters', 'Central Electricity Authority', 'Penn State University', 'Climate Trends']),
-        'tags': ['heatwave', 'climate', 'wet-bulb temperature', 'power grid', 'El Nino', 'Delhi'],
-        'score_total': 86,
-    }
-
-    return insert_article(article)
-
-
-# ===================================================================
-# MAIN
-# ===================================================================
 
 if __name__ == '__main__':
-    print(f"=== The Videshi News Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} ===")
-    
-    results = []
-    
-    art1 = write_article_1()
-    results.append(('Basmati Rice Exports', art1))
-    time.sleep(1)
-    
-    art2 = write_article_2()
-    results.append(('India-Canada Trade Deal', art2))
-    time.sleep(1)
-    
-    art3 = write_article_3()
-    results.append(('India Heatwave', art3))
-    
-    print("\n=== SUMMARY ===")
-    for name, art_id in results:
-        status = f"✓ {art_id}" if art_id else "✗ FAILED"
-        print(f"  {name}: {status}")
-    
-    successes = sum(1 for _, a in results if a)
-    print(f"\n  Published: {successes}/3 articles")
+    main()
