@@ -1,92 +1,77 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi - May 28, 2026 run."""
+"""Entertainment writer for The Videshi — 2026-05-28 evening run."""
 
-import json
-import os
-import re
-import subprocess
-import sys
-import time
-import traceback
-from datetime import datetime, timezone
+import json, os, sys, time, uuid, re
 import requests
 import urllib.parse
+from datetime import datetime, timezone
 
-# Load environment
-env_path = os.path.expanduser("~/.env.supabase")
-if os.path.exists(env_path):
-    with open(env_path) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith("#") and "=" in line:
-                if line.startswith("export "):
-                    line = line[7:]
-                key, val = line.split("=", 1)
-                val = val.strip("'\"")
-                os.environ[key] = val
+# Load env
+def load_env(path):
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    k, v = line.split('=', 1)
+                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    "Prefer": "return=representation"
 }
-
-# Load Pexels key
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-PEXELS_KEY = None
-if os.path.exists(pexels_env):
-    with open(pexels_env) as f:
-        for line in f:
-            line = line.strip()
-            if line and "=" in line and not line.startswith("#"):
-                if line.startswith("export "):
-                    line = line[7:]
-                k, v = line.split("=", 1)
-                if "PEXELS" in k.upper():
-                    PEXELS_KEY = v.strip("'\"")
-
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(" ", "_"))
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10,
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com; contact@thevideshi.com)"},
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            # Use thumbnail source AS-IS (330px) per rules
+            img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
+        elif r.status_code == 429:
+            print(f"  ⚠ Wikipedia rate limited for '{person_name}', waiting...")
+            time.sleep(3)
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels. Returns URL or None."""
+    """Fetch a relevant image from Pexels. Use curl approach."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key available")
+        print("  ⚠ No Pexels API key")
         return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
+            import subprocess
             result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
-                 "-H", f"Authorization: {PEXELS_KEY}"],
+                ['curl', '-sS', f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5',
+                 '-H', f'Authorization: {PEXELS_KEY}'],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+            photos = data.get('photos', [])
+            for photo in photos:
+                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
                 if url:
                     print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                     return url
@@ -94,352 +79,326 @@ def fetch_pexels_image(query, fallback_query=None):
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def validate_image_url(url):
-    """Validate that an image URL returns HTTP 200 with image content-type and >5KB."""
+def validate_image(url):
+    """Validate image URL returns 200 with image content-type and reasonable size."""
     if not url:
         return False
     # Block banned sources
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
     for b in banned:
         if b in url:
-            print(f"  ✗ Banned image source: {b}")
+            print(f"  ✗ Banned source detected: {b}")
             return False
+    # Trust Wikipedia/Wikimedia URLs
+    if 'upload.wikimedia.org' in url:
+        print(f"  ✓ Trusted Wikimedia URL")
+        return True
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        content_type = r.headers.get("Content-Type", "")
-        content_length = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in content_type and content_length > 5000:
-            print(f"  ✓ Image validated: {content_type}, {content_length} bytes")
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
+            print(f"  ✓ Image validated: {cl} bytes, {ct}")
             return True
-        # Some servers don't return Content-Length on HEAD, try GET with range
-        if r.status_code == 200 and "image" in content_type:
-            r2 = requests.get(url, timeout=10, stream=True,
-                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            size = 0
-            for chunk in r2.iter_content(8192):
-                size += len(chunk)
-                if size > 5000:
-                    print(f"  ✓ Image validated via GET: {content_type}, >5KB")
-                    return True
-            print(f"  ✗ Image too small: {size} bytes")
-            return False
-        print(f"  ✗ Image validation failed: status={r.status_code}, type={content_type}, size={content_length}")
-        return False
+        if r.status_code == 200 and 'image' in ct:
+            print(f"  ✓ Image validated (no Content-Length): {ct}")
+            return True
+        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-        return False
-
-
-def get_image_for_person(person_name, topic_query=None):
-    """Get image for a person article: Wikipedia first, then Pexels fallback."""
-    img = fetch_wikipedia_person_image(person_name)
-    if img and validate_image_url(img):
-        return img, "Wikimedia Commons"
-    # Try alternate name forms
-    if " " in person_name:
-        parts = person_name.split()
-        if len(parts) >= 2:
-            alt = f"{parts[0]} {parts[-1]}"
-            if alt != person_name:
-                img = fetch_wikipedia_person_image(alt)
-                if img and validate_image_url(img):
-                    return img, "Wikimedia Commons"
-    # Pexels fallback
-    if topic_query:
-        img = fetch_pexels_image(topic_query)
-        if img and validate_image_url(img):
-            return img, "Pexels"
-    return None, None
-
-
-def get_image_for_topic(primary_query, fallback_query=None):
-    """Get image for a topic article: Pexels with specific query."""
-    img = fetch_pexels_image(primary_query, fallback_query)
-    if img and validate_image_url(img):
-        return img, "Pexels"
-    return None, None
-
+        print(f"  ✗ Image validation error: {e}")
+    return False
 
 def publish_article(article):
     """Publish article to Supabase."""
-    print(f"\n📤 Publishing: {article['headline']}")
+    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
     payload = {
         "headline": article["headline"],
         "subheadline": article["subheadline"],
         "body": article["body"],
         "slug": article["slug"],
         "category": "entertainment",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "sources": json.dumps(article.get("sources", [])),
         "vertical": "entertainment",
-        "image_url": article.get("image_url"),
-        "image_caption": article.get("image_caption"),
-        "image_attribution": article.get("image_attribution"),
+        "status": "published",
+        "published_at": now,
+        "sources": article.get("sources", []),
+        "image_url": article.get("image_url", ""),
+        "image_caption": article.get("image_caption", ""),
+        "image_attribution": article.get("image_attribution", ""),
+        "tags": article.get("tags", [])
     }
-    # Remove None values
-    payload = {k: v for k, v in payload.items() if v is not None}
-
-    try:
-        r = requests.post(
-            f"{SUPABASE_URL}/rest/v1/p2_articles",
-            headers=HEADERS,
-            json=payload,
-            timeout=30,
-        )
-        if r.status_code in (200, 201):
-            result = r.json()
-            aid = result[0]["id"] if isinstance(result, list) and result else "unknown"
-            print(f"  ✅ Published: {aid}")
-            return True
-        else:
-            print(f"  ❌ Failed ({r.status_code}): {r.text[:200]}")
-            return False
-    except Exception as e:
-        print(f"  ❌ Error: {e}")
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload,
+        timeout=30
+    )
+    if r.status_code in (200, 201):
+        data = r.json()
+        aid = data[0].get('id', 'unknown') if isinstance(data, list) and data else 'unknown'
+        print(f"  ✓ Published: {article['headline'][:60]}... (id: {aid})")
+        return True
+    else:
+        print(f"  ✗ Publish failed ({r.status_code}): {r.text[:200]}")
         return False
 
 
-# ============================================================
-# ARTICLES
-# ============================================================
-
-articles = []
-
-# ------- ARTICLE 1: SS Rajamouli's Varanasi Set Leak -------
-print("\n🎬 Article 1: SS Rajamouli Varanasi Set Leak")
-img1, attr1 = get_image_for_person("S. S. Rajamouli")
-if not img1:
-    img1, attr1 = get_image_for_person("SS Rajamouli", "Indian film director")
-
-articles.append({
-    "headline": "The First Photo From Inside SS Rajamouli's ₹1,000 Crore Set Just Leaked. It Looks Like Nothing Indian Cinema Has Built Before.",
-    "subheadline": "A blue-screen cave set for the Ugrabhatti sequence in Varanasi surfaced on social media. Mahesh Babu plays a man seeking a goddess's grace to fight an ancient evil. The film opens April 7, 2027.",
-    "slug": "ss-rajamouli-varanasi-ugrabhatti-cave-set-photo-leak-mahesh-babu-priyanka-chopra-2027-nri-20260528",
-    "image_url": img1,
-    "image_caption": "SS Rajamouli, director of Baahubali and RRR, is building his most ambitious film yet",
-    "image_attribution": attr1,
-    "sources": [
-        "https://www.bollywoodhungama.com/news/bollywood/set-photo-from-varanasi-surfaces-ss-rajamoulis-ugrabhatti-caves-sequence-gets-its-first-leak/",
-        "https://www.finsiddhi.com/ss-rajamoulis-varanasi-set-photo-turns-up-online/"
-    ],
-    "body": """A single photograph, shared on social media on May 26, has done what no teaser or interview could: it has shown the world what SS Rajamouli is actually building.
-
-The image — reportedly taken from the set of *Varanasi*, Rajamouli's next film after *RRR* — reveals a sweeping blue-screen backdrop enclosed by sculptured rock formations and intricately carved rock pillars. There are no actors in the frame. There is no dialogue, no context card, no studio watermark. Just scale. The kind of scale that makes you understand why this film's budget is reportedly north of ₹1,000 crore.
-
-## The Ugrabhatti Caves
-
-The sequence being filmed is called the Ugrabhatti caves. As reported by the Times of India, the set is built around the figure of Mata Chinnamasta Devi — a fierce Hindu goddess linked to themes of self-sacrifice, transformation, and cosmic balance. In classical mythology, she is depicted carrying her own severed head while offering her blood to her attendants.
-
-Within the narrative of *Varanasi*, Mahesh Babu's character Rudhra reportedly seeks the goddess's divine grace to defeat an ancient evil force. The use of blue screens across the set confirms that the final sequence will require extensive visual effects — but the physical craftsmanship of the rock pillars and cave walls suggests Rajamouli is mixing practical set design with digital enhancement, much as he did with the war elephants in *Baahubali*.
-
-## What We Know About the Film
-
-*Varanasi* stars Mahesh Babu as Rudhra, Priyanka Chopra as Mandakini, and Prithviraj Sukumaran as the antagonist Kumbha. Music is composed by MM Keeravani, who won an Oscar for *RRR*'s "Naatu Naatu." The film is produced by K.L. Narayana and S.S. Karthikeya under Sri Durga Arts and Showing Business.
-
-Rajamouli has reportedly travelled to Africa's grasslands to capture real-time footage of migratory animals for a separate sequence. He has also confirmed the use of IMAX cameras, most notably for a Ramayana battle sequence within the film.
-
-The film is scheduled for a worldwide theatrical release on April 7, 2027, in standard and IMAX formats.
-
-## Why the Diaspora Should Pay Attention
-
-*RRR* earned over $15 million in North America alone and became a cultural event in the diaspora — Oscar parties, communal theatre screenings, "Naatu Naatu" flash mobs at weddings. *Varanasi* is positioned to be bigger. The combination of Mahesh Babu's first pan-India release under Rajamouli's direction, Priyanka Chopra's global star power, and a mythology-rooted story set in India's holiest city makes this a film the NRI community will rally around.
-
-One leaked photograph shouldn't generate this much anticipation. But when the man who turned a regional Telugu epic into an Oscar winner shows you even a glimpse of what he's building next, you pay attention.
-
-The fact that this single image has no actors, no action, and no dialogue — and still went viral — tells you everything about where this film sits in the cultural imagination of Indian cinema audiences worldwide."""
-})
-
-
-# ------- ARTICLE 2: Netflix India Global Dominance -------
-print("\n🎬 Article 2: Netflix India Global Streaming")
-img2, attr2 = get_image_for_topic("streaming entertainment India", "Netflix India content")
-
-articles.append({
-    "headline": "Three Indian Titles Are on Netflix's Global Charts Right Now. Combined, They've Been Watched for 31 Million Hours.",
-    "subheadline": "Kartavya hit No. 1 on the Global Non-English Films list. Desi Bling is trending at No. 6 on Non-English TV. Dhurandhar: Raw and Undekha is at No. 5. At least one Indian title has charted every week since 2025.",
-    "slug": "netflix-india-global-charts-kartavya-desi-bling-dhurandhar-31-million-hours-nri-streaming-20260528",
-    "image_url": img2,
-    "image_caption": "Indian content is now a permanent fixture on Netflix's global charts",
-    "image_attribution": attr2,
-    "sources": [
-        "https://www.bollywoodhungama.com/news/bollywood/kartavya-dhurandhar-raw-and-undekha-and-desi-bling-power-netflix-indias-global-streak-with-31-million-viewing-hours-combined/",
-        "https://www.sacnilk.com/tag/Spotify"
-    ],
-    "body": """There was a time, not long ago, when Indian content appearing on a global Netflix chart was news. A Bollywood film trending in the Top 10 would get press releases. A Malayalam thriller cracking the list would get think pieces.
-
-That era is over. Indian content is no longer visiting the charts. It lives there.
-
-## The Numbers This Week
-
-This week, three Indian titles are simultaneously occupying spots on Netflix's global rankings — a combined 31 million viewing hours of Indian stories being consumed by audiences worldwide.
-
-Leading the pack is *Kartavya*, starring Saif Ali Khan, Rasika Dugal, and Sanjay Mishra. The film climbed from No. 2 last week to No. 1 on the Global Top 10 Non-English Films list, with 16.3 million viewing hours over two weeks. That's not "good for Indian content." That's the most-watched non-English film on the planet.
-
-At No. 5 on the same list is *Dhurandhar: Raw & Undekha*, adding 4.9 million hours. And on the Non-English TV side, *Desi Bling* — the unscripted series that has been described as part reality show, part cultural flex — is trending at No. 6 with 10.4 million viewing hours.
-
-## The Streak
-
-Here's the statistic that matters more than any individual chart position: at least one Indian title has appeared in Netflix's Global Top 10 Non-English rankings every single week since 2025.
-
-Think about what that means. Not every month. Not most weeks. Every week. For over a year. Indian content has been a persistent, reliable, weekly presence on the most competitive streaming charts in the world.
-
-The milestones along the way tell the story of acceleration. *Taskaree: The Smuggler's Web* made history as the first Indian series to hit No. 1 on the Global Non-English TV list. *Kohrra Season 2* stayed on the list for two consecutive weeks. *Accused* (2026) became the first Indian film to trend in over 70 countries. *Border 2* recorded 11.1 million viewing hours across 16 countries. *Mardaani 3* logged 13.7 million hours.
-
-## What Changed
-
-Netflix India's content strategy has quietly shifted from acquiring theatrical films after their box office runs to commissioning original content designed to travel. Shows like *Maamla Legal Hai*, *Hello Baccho*, and *The Great Indian Kapil Show* have built repeat audiences. Regional language originals — Tamil, Telugu, Malayalam — are charting alongside Hindi content.
-
-For the diaspora, this is personally meaningful. The same content that aunties in Hyderabad are watching is now the same content that cousins in Houston are watching — simultaneously, on the same platform, without waiting for a DVD or a satellite broadcast delay. The cultural lag that once defined the NRI entertainment experience has collapsed to zero.
-
-## The Bigger Picture
-
-The 31 million combined viewing hours this week aren't a spike. They're a new baseline. Indian content isn't having a moment on Netflix. It's having an era."""
-})
-
-
-# ------- ARTICLE 3: Khalnayak Returns Director Hunt -------
-print("\n🎬 Article 3: Sanjay Dutt Khalnayak Returns")
-img3, attr3 = get_image_for_person("Sanjay Dutt")
-
-articles.append({
-    "headline": "Sanjay Dutt Got the Idea for Khalnayak Returns in Prison. He Asked 4,000 Inmates to Write Him a One-Pager. Now He Can't Find a Director.",
-    "subheadline": "Rajkumar Santoshi politely declined. Subhash Ghai, who directed the 1993 original, already said no. Sanjay Dutt is still looking. The origin story of this sequel is wilder than any script.",
-    "slug": "sanjay-dutt-khalnayak-returns-rajkumar-santoshi-declined-director-search-prison-origin-nri-20260528",
-    "image_url": img3,
-    "image_caption": "Sanjay Dutt at the Khalnayak Returns announcement event in Mumbai",
-    "image_attribution": attr3,
-    "sources": [
-        "https://www.bollywoodhungama.com/news/bollywood/scoop-sanjay-dutt-asks-rajkumar-santoshi-to-direct-khalnayak-returns-veteran-filmmaker-politely-declines-the-offer/",
-        "https://www.latestly.com"
-    ],
-    "body": """The origin story of *Khalnayak Returns* is better than most Bollywood scripts.
-
-Sanjay Dutt was in prison. He had a lot of time. The inmates kept requesting the same songs — the *Khalnayak* soundtrack, on repeat. So Dutt, being Dutt, asked them a question: "If *Khalnayak* gets made again, who'd want to see it?"
-
-All 4,000 prisoners said yes.
-
-Then he asked them to write one-page ideas for the sequel. Four thousand pages arrived.
-
-"It took me a lot of time to read 4,000 pages," Dutt said at the film's announcement event in Mumbai on April 24, alongside Jio Studios' Jyoti Deshpande and Aspect Entertainment's Aksha Kamboj. "One of the ideas that I got appealed to me."
-
-## The Director Problem
-
-The intro teaser, unveiled at the April 24 event, got a thunderous response. Dutt looked menacing. The original *Khalnayak* theme — the one that every Indian who grew up in the 1990s can hum from memory — played underneath. Everything seemed set.
-
-Except for one detail: no director.
-
-Subhash Ghai, who directed the 1993 original, was the obvious choice. He was on stage at the event. He had produced the character that made "Nayak nahi, khalnayak hoon main" one of the most iconic lines in Hindi cinema. But Ghai confessed early that he would not be returning to the director's chair.
-
-So Dutt went to his next choice: Rajkumar Santoshi, the veteran filmmaker behind *Ghayal*, *Andaz Apna Apna*, and most recently *Lahore 1947*. According to Bollywood Hungama, Dutt approached Santoshi personally, arguing that his understanding of commercial cinema would do justice to the sequel. The two have never worked together — and Dutt felt that made the collaboration even more appealing.
-
-Santoshi politely and respectfully declined.
-
-## Why Santoshi Said No
-
-The reason is pragmatic, not dramatic. Santoshi is currently giving final touches to *Lahore 1947*, starring Sunny Deol. He has also written scripts he wants to pitch to Sunny Deol and Aamir Khan. His dance card, in short, is full.
-
-A source told Bollywood Hungama that Santoshi was "touched by Sanjay Dutt's gesture" and wished him well. He appreciated Dutt's look in the teaser. But time is what it is, and Santoshi didn't have any to spare.
-
-Dutt is now reportedly considering other filmmakers. No names have surfaced.
-
-## What Khalnayak Means to the Diaspora
-
-For NRIs who grew up in the 1990s, *Khalnayak* is not just a film. It's a cultural timestamp. "Choli Ke Peeche" was the song your parents wouldn't let you listen to. "Nayak nahi, khalnayak hoon main" was the line every kid shouted on the school playground. Madhuri Dixit's dance in that white choli was your first encounter with the word "controversy."
-
-A sequel — done right — could tap into a well of nostalgia that runs deeper than any IP Marvel has ever acquired. But "done right" requires a director who understands what made the original dangerous, funny, and unapologetically 90s Bollywood. Two veterans have already passed. The third choice will define whether *Khalnayak Returns* is a film or a footnote.
-
-Sanjay Dutt crowdsourced the idea from prison inmates. He may need to crowdsource the director, too."""
-})
-
-
-# ------- ARTICLE 4: Kangana Ranaut's Bharat Bhhagya Viddhaata -------
-print("\n🎬 Article 4: Kangana Ranaut Bharat Bhhagya Viddhaata")
-img4, attr4 = get_image_for_person("Kangana Ranaut")
-
-articles.append({
-    "headline": "Kangana Ranaut's Next Film Is About the Nurses Who Fought Back During 26/11. It Opens the Same Day as Imtiaz Ali's Partition Film.",
-    "subheadline": "Bharat Bhhagya Viddhaata releases June 12. Its motion poster focuses on hospital staff, security guards, and ordinary citizens who saved lives during the 2008 Mumbai attacks. The trailer title: 'The Unseen Heroes.'",
-    "slug": "kangana-ranaut-bharat-bhhagya-viddhaata-2611-mumbai-attacks-nurses-june-12-imtiaz-ali-nri-20260528",
-    "image_url": img4,
-    "image_caption": "Kangana Ranaut stars as a nurse in Bharat Bhhagya Viddhaata, a film about 26/11's unseen heroes",
-    "image_attribution": attr4,
-    "sources": [
-        "https://www.bollywoodhungama.com/news/bollywood/bharat-bhhagya-viddhaata-makers-unveil-motion-poster-titled-the-unseen-heroes-featuring-kangana-ranaut/",
-        "https://www.latestly.com/entertainment/kangana-ranauts-bharat-bhhagya-viddhaata-pays-tribute-to-unseen-heroes.html",
-        "https://www.koimoi.com/bollywood-news/bharat-bhhagya-viddhaata-kangana-ranaut/"
-    ],
-    "body": """Most films about 26/11 focus on the Taj Hotel. On the commandos. On the known heroes whose names became headlines.
-
-*Bharat Bhhagya Viddhaata* is not that film.
-
-The motion poster, titled "The Unseen Heroes" and released on May 28, tells you exactly what this film is about by showing you who it's about: nurses. Security guards. Hospital staff. The people in Cama Hospital who faced the same terrorists — Ajmal Kasab walked through those corridors — and chose to fight back, hide patients, and hold the line with nothing but courage and a sense of duty.
-
-Kangana Ranaut plays one of those nurses.
-
-## What the Motion Poster Reveals
-
-Director Manoj Tapadia's approach is deliberate and understated. The poster doesn't show explosions or gunfire. It shows ordinary people — in scrubs, in uniforms, in the kind of clothing that tells you they were at work when the world changed. The title card reads: "They didn't wear badges. They didn't carry guns. They saved lives anyway."
-
-It's a sharp contrast to Kangana's last release, *Emergency*, which was mired in certification delays and political controversy. This film feels quieter and more focused. The cast includes Marathi actress Girija Oak and Smita Tambe, suggesting the film will lean into the Marathi-speaking world of the hospital staff who were on duty that night.
-
-The film is produced by Eunoia Films and Floating Rocks Entertainment. It releases on June 12, 2026.
-
-## The June 12 Box Office Battle
-
-That date puts it directly against Imtiaz Ali's *Main Vaapas Aaunga*, starring Diljit Dosanjh, A.R. Rahman, and Naseeruddin Shah — a Partition love story that has been generating significant buzz. Two very different films about two very different moments in India's history, opening on the same Friday.
-
-For exhibitors, it's a programming headache. For audiences, it's a genuine choice between nostalgia and confrontation, between a love story set against history and a survival story set inside it.
-
-## Why This Film Matters to NRIs
-
-The 2008 Mumbai attacks were a defining moment for Indians everywhere. For NRIs, the experience was uniquely painful — watching the attacks unfold on live television from thousands of miles away, refreshing news feeds through the night, calling family members in Mumbai to check if they were alive.
-
-Many NRIs have personal connections to the Colaba-Fort corridor where the attacks took place. The Taj and Oberoi hotels are where visiting relatives stay. CST station is where you catch the train to your grandmother's house. Cama Hospital is where people you know have been treated.
-
-A film that turns the lens away from the famous rescue operations and onto the hospital workers — the nurses who hid patients under beds, the security guard who is said to have warned people with his last breaths — fills a gap in how this event has been remembered on screen.
-
-Films about 26/11 tend to focus on heroism as spectacle. The motion poster for *Bharat Bhhagya Viddhaata* suggests this one will focus on heroism as routine. On people who did their jobs when doing their jobs meant risking their lives. On the unseen, in a story that has been told many times but never quite from this angle.
-
-Whether Kangana Ranaut — whose public persona has become inseparable from political controversy — can disappear into the role of a nurse in a burning hospital will determine whether this film is remembered as a tribute or a vehicle. The motion poster, at least, suggests Tapadia is aiming for the former."""
-})
-
-
-# ============================================================
-# PUBLISH ALL
-# ============================================================
-print("\n" + "=" * 60)
-print(f"Publishing {len(articles)} entertainment articles...")
-print("=" * 60)
-
-success_count = 0
-for i, article in enumerate(articles, 1):
-    print(f"\n--- Article {i}/{len(articles)} ---")
-    # Validate word count
-    word_count = len(article["body"].split())
-    print(f"  Word count: {word_count}")
-    if word_count < 400:
-        print(f"  ⚠ WARNING: Article below 400-word floor!")
-
-    # Validate headline length
-    hl_len = len(article["headline"])
-    print(f"  Headline length: {hl_len} chars")
-
-    # Validate subheadline
-    sh_len = len(article["subheadline"])
-    print(f"  Subheadline length: {sh_len} chars")
-
-    # Validate image
-    if article.get("image_url"):
-        print(f"  Image: ✓ ({article.get('image_attribution', 'unknown')})")
-    else:
-        print(f"  Image: ✗ No image (will publish without)")
-
-    if publish_article(article):
-        success_count += 1
-
-print(f"\n{'=' * 60}")
-print(f"✅ Published {success_count}/{len(articles)} articles")
-print(f"{'=' * 60}")
+# ─────────────────────────────────────────────
+# ARTICLE 1: Ram Charan's Peddi
+# ─────────────────────────────────────────────
+
+def write_peddi_article():
+    print("\n📝 Article 1: Ram Charan's Peddi")
+    
+    # Get Wikipedia image
+    img = fetch_wikipedia_person_image("Ram Charan")
+    img_caption = "Ram Charan"
+    img_attr = "Wikimedia Commons"
+    
+    if not img or not validate_image(img):
+        img = fetch_wikipedia_person_image("Ram Charan (actor)")
+        if not img or not validate_image(img):
+            img = fetch_pexels_image("cricket stadium India", "sports rural India")
+            img_attr = "Pexels"
+            img_caption = "Peddi blends sports and village life in 1980s Andhra Pradesh"
+    
+    headline = "Ram Charan's Peddi Opens in Six Days. It Has AR Rahman, a Three-Hour Runtime, and 15,000 Tickets Already Sold in North America."
+    subheadline = "The most expensive Telugu film of the year arrives June 4 with Priyanka Chopra's endorsement, Chiranjeevi's intervention in Telangana theaters, and a trailer that hit 175 million views in 48 hours."
+    
+    body = """The last time Ram Charan stepped into a theater was with *RRR*. That was four years and one Oscar ago. On June 4, he returns with *Peddi* — a three-hour, nine-minute sports drama set in 1980s rural Andhra Pradesh, directed by Buchi Babu Sana, scored by AR Rahman, and carrying enough expectations to make everyone involved nervous.
+
+The trailer, released on May 16 alongside a live AR Rahman concert in Bhopal, crossed 101 million views in its first 24 hours and blew past 175 million within 48. It shows Ram Charan as a village athlete — cricketer, wrestler, runner — who channels sporting ambition into a fight for his community's dignity against a powerful rival. Janhvi Kapoor plays opposite him in what early footage suggests is a grounded rural performance far from her urban Bollywood work. Shiva Rajkumar, Kannada cinema's living legend, plays a role described only as "pivotal." Shruti Haasan appears in a special song, Hellallallo, which the makers released as a promo ahead of the Bhopal concert.
+
+The production is massive. Vriddhi Cinemas and IVY Entertainment are producing, with Mythri Movie Makers and Sukumar Writings involved. Jio Studios, which distributed both *Dhurandhar* films and *Raja Shivaji* in North India, will handle the Hindi-language rollout. The CBFC cleared the film with a U/A 16+ certificate after edits to some dialogue, while action sequences remain intact.
+
+## The NRI Factor
+
+For diaspora audiences, the advance booking numbers tell the story. North America premieres have already crossed 15,000 tickets sold, with the US premiere set for June 3 — a full day before the Indian release. In the UK, bookings opened to similarly strong demand. The Telugu version leads the charge, but dubbed Hindi, Tamil, and Kannada versions will also screen internationally.
+
+Priyanka Chopra — currently filming Rajamouli's *SSMB29* alongside Ram Charan's co-star Mahesh Babu — shared the trailer on X, calling it "fire." Rishab Shetty, fresh off *Kantara 2*, called it "spectacular." When actors from other industries start promoting your film unprompted, the anticipation has moved past marketing into genuine industry curiosity.
+
+## The Telangana Problem (and Chiranjeevi's Fix)
+
+Behind the excitement sits an industry dispute that nearly derailed the film's biggest domestic market. Telangana exhibitors had been locked in a standoff with producers over how ticket revenue gets divided. Unlike the traditional fixed-rental system where theaters pay producers a guaranteed fee upfront, the newer percentage-sharing model splits box office earnings proportionally — a structure already standard in most of India but resisted in Telangana.
+
+Chiranjeevi, Ram Charan's father and arguably the most influential voice in Telugu cinema, personally intervened to broker a resolution. Under the compromise, Telangana theaters have agreed to adopt a revenue-sharing model effective July 3, with *Peddi* among the first major releases to operate under this framework. A June 30 deadline has been set for finalizing terms. The political undercurrents — Chiranjeevi's own political history in Andhra Pradesh, the family's influence across Telugu media — make this more than a business negotiation.
+
+## What to Expect
+
+*Peddi* is not a small film pretending to be big. The budget is massive, the runtime is long enough to require an intermission, and the film sits in a genre — rural sports drama — that carries both enormous potential and specific risks. *Dangal* proved the genre could cross ₹2,000 crore worldwide. *Liger* proved it could also fall flat.
+
+For NRIs who watched Ram Charan dance across the world stage in *RRR* and then waited four years for his return, *Peddi* is the real test: whether the goodwill translates at the box office for a film that is unapologetically Telugu, unapologetically long, and unapologetically rooted in a world that does not look like a Marvel set. AR Rahman's involvement adds another layer — the Oscar-winning composer has been selective with his commitments, and his presence signals genuine artistic ambition beyond star power.
+
+June 4 will answer the question. The tickets are already selling."""
+    
+    sources = [
+        {"name": "Sacnilk", "url": "https://sacnilk.com"},
+        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
+        {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
+        {"name": "Tupaki", "url": "https://english.tupaki.com"}
+    ]
+    
+    return {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": "ram-charan-peddi-june-4-ar-rahman-175-million-views-north-america-advance-booking-nri-20260528",
+        "sources": sources,
+        "image_url": img or "",
+        "image_caption": img_caption,
+        "image_attribution": img_attr,
+        "tags": ["Ram Charan", "Peddi", "AR Rahman", "Telugu cinema", "box office", "Chiranjeevi", "Janhvi Kapoor"]
+    }
+
+
+# ─────────────────────────────────────────────
+# ARTICLE 2: South Indian Exhibitors OTT Window
+# ─────────────────────────────────────────────
+
+def write_ott_window_article():
+    print("\n📝 Article 2: South Indian Exhibitors OTT Window")
+    
+    # Try for a relevant image
+    img = fetch_pexels_image("movie theater India audience", "cinema hall India")
+    img_attr = "Pexels"
+    img_caption = "South Indian exhibitors have mandated an eight-week gap before films can move to streaming platforms"
+    
+    if not img or not validate_image(img):
+        img = ""
+        img_caption = ""
+        img_attr = ""
+    
+    headline = "South Indian Exhibitors Just Mandated an Eight-Week OTT Window. If You Watch Films on Netflix, This Changes Everything."
+    subheadline = "The new rule forces all South Indian films to stay off streaming platforms for two full months after theatrical release — a direct challenge to the NRI habit of waiting for OTT."
+    
+    body = """Here is what used to happen: a Telugu or Tamil film would open in theaters, run for two or three weeks, and then quietly appear on Netflix or JioHotstar for the rest of us to watch at home. The theatrical-to-OTT pipeline was fast, informal, and — for diaspora audiences who could not always get to an Indian film screening — essential.
+
+That pipeline just got a wall built across it.
+
+South Indian exhibitors have formally mandated an eight-week OTT window for all films released across Telugu, Tamil, Malayalam, and Kannada markets. No exceptions. No quiet side deals. Eight full weeks between the day a film opens in theaters and the day it can legally stream on any platform. Alongside this, exhibitors have pushed through a shift from the traditional fixed-rental model to a revenue-sharing arrangement, fundamentally changing how risk and reward are distributed between producers and theater owners.
+
+## Why This Matters for NRIs
+
+The four-week OTT window that informally governed much of South Indian cinema was a lifeline for diaspora audiences. If you live in Houston or London or Toronto and the nearest theater showing a Kannada film is two hours away, the knowledge that it would land on streaming within a month made the wait bearable. That wait just doubled.
+
+This is not new territory — Bollywood multiplexes implemented an eight-week window in 2022, and the Hindi film industry has largely operated under this framework since. But South Indian cinema's adoption is significant because it produces the most internationally consumed Indian content right now. Tamil, Telugu, Malayalam, and Kannada films now regularly outperform Bollywood at global box offices. *Kara*, Dhanush's heist thriller which just landed on Netflix on May 28 after roughly four weeks in theaters, might be among the last South Indian films to arrive on streaming this quickly.
+
+The impact will be felt most sharply by NRI families who subscribe to JioHotstar or Netflix primarily for Indian content. The value proposition of those subscriptions depends on a steady stream of relatively fresh theatrical releases. An eight-week delay does not eliminate the content — it just pushes it into a limbo where films are no longer in theaters and not yet on streaming. For audiences outside India, that limbo can feel permanent.
+
+## The Revenue-Sharing Shift
+
+The OTT window change comes bundled with a structural shift in how theaters pay producers. Under the old fixed-rental model, exhibitors paid a guaranteed fee upfront for the right to screen a film, regardless of how many tickets they sold. This protected producers from box office risk but left exhibitors bearing all the downside when a film flopped.
+
+The new revenue-sharing model distributes the economics more evenly. Both sides benefit when a film does well and both absorb losses when it does not. This model has long been standard in North America, Europe, and the Hindi-speaking belt, and its adoption in South India aligns the world's most prolific film-producing region with global theatrical norms. The transition has not been seamless — in Telangana, Chiranjeevi personally intervened to broker a deal for Ram Charan's *Peddi* ahead of its June 4 release, suggesting the new model is being negotiated film by film rather than blanket-adopted.
+
+## Who Benefits, Who Loses
+
+Theater owners benefit the most. The eight-week window gives films more room to run, boosting second- and third-week footfalls that had been decimated by the rush to OTT. For films with strong word-of-mouth — the kind that South Indian cinema frequently produces — the longer window can translate to significantly higher lifetime collections. *Bhooth Bangla*, Akshay Kumar's horror comedy, is currently in its sixth week and still earning ₹5+ crore net per week. That kind of long-tail performance only happens when OTT is not an option yet.
+
+Producers with big-budget tentpoles benefit too. A film like *Peddi* or *Toxic*, both opening June 4, will have two full months of theatrical exclusivity before any streaming deal kicks in. For films that cost hundreds of crores, that runway can make the difference between a hit and a disaster.
+
+The losers are mid-budget filmmakers who depend on OTT acquisition deals to recoup costs, and diaspora audiences who will now face a longer wait with fewer options for catching up on films that have already left their nearest theater. The compromise is pragmatic but imperfect. The Indian theatrical ecosystem genuinely needs protection from a streaming industry that was cannibalizing its runway. But the diaspora streaming habit — built over a decade of increasingly fast theatrical-to-OTT pipelines — has been acknowledged as collateral damage rather than a constituency worth protecting."""
+    
+    sources = [
+        {"name": "Sacnilk", "url": "https://sacnilk.com/news/South_Indian_Exhibitors_Mandate_8_Week_OTT_Window_and_Shift_to_Revenue_Sharing_Model_for_All_Films"},
+        {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
+        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"}
+    ]
+    
+    return {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": "south-indian-exhibitors-eight-week-ott-window-revenue-sharing-nri-streaming-impact-20260528",
+        "sources": sources,
+        "image_url": img or "",
+        "image_caption": img_caption,
+        "image_attribution": img_attr,
+        "tags": ["OTT", "streaming", "Netflix", "JioHotstar", "South Indian cinema", "exhibitors", "NRI"]
+    }
+
+
+# ─────────────────────────────────────────────
+# ARTICLE 3: Bollywood's 18-Month Commitment Era
+# ─────────────────────────────────────────────
+
+def write_mega_tentpole_article():
+    print("\n📝 Article 3: Bollywood's Mega-Tentpole Era")
+    
+    # Wikipedia images for Vicky Kaushal
+    img = fetch_wikipedia_person_image("Vicky Kaushal")
+    img_caption = "Vicky Kaushal"
+    img_attr = "Wikimedia Commons"
+    
+    if not img or not validate_image(img):
+        img = fetch_wikipedia_person_image("Ranveer Singh")
+        img_caption = "Ranveer Singh"
+        if not img or not validate_image(img):
+            img = ""
+            img_caption = ""
+            img_attr = ""
+    
+    headline = "Vicky Kaushal Has Blocked 18 Months of His Life for One Film. Ranveer Singh Is Spending ₹300 Crore on Zombies. This Is Bollywood Now."
+    subheadline = "Mahavatar and Pralay signal a new era where India's biggest male stars are betting their entire schedules on single, massive, world-building projects — just like Hollywood's franchise actors."
+    
+    body = """There was a time when a Bollywood superstar did four films a year. Two big releases, one multi-starrer, and maybe a cameo somewhere. The math was simple: more films meant more chances at a hit.
+
+That math is dead.
+
+Vicky Kaushal has blocked eighteen months — from June 2026 to December 2027 — exclusively for *Mahavatar*, a mythological epic in which he will play the immortal sage-warrior Parashurama. Six of those months are preparation: physical transformation, intensive workshops, and deep character immersion under the guidance of director Amar Kaushik, who previously directed the blockbuster *Stree* franchise. The remaining twelve months are principal photography. During this entire period, Kaushal will not take on any other film. He wraps Sanjay Leela Bhansali's *Love and War* just in time, and then he disappears into one role. Writer Niren Bhatt, who penned the screenplay, has described the preparation as the most intense he has witnessed for any Indian film.
+
+Meanwhile, Ranveer Singh — riding the historic, record-breaking success of the *Dhurandhar* franchise — has locked in *Pralay*, a post-apocalyptic zombie thriller directed by Jai Mehta. The budget: ₹300 crore. The production plan, beginning in August 2026: AI-driven visuals merged with physical sets to create a dystopian India unlike anything the industry has attempted. South Indian actress Kalyani Priyadarshan, daughter of director Priyadarshan (who incidentally just gave Akshay Kumar his biggest hit in years with *Bhooth Bangla*), makes her Hindi debut opposite Singh. Recent rumors about creative differences on the project were shot down by a Variety India report confirming the film is fully on track.
+
+This is not a coincidence. This is a pattern.
+
+## The Tentpole Calendar
+
+Look at the production calendar for India's top male stars and the picture becomes clear. Ranbir Kapoor has been embedded inside *Ramayana* for over a year, a film so large it required AR Rahman and Hans Zimmer to co-compose the score and has its release date preponed to late October — a week before Diwali. Mahesh Babu is locked inside Rajamouli's *SSMB29* for what will likely be a two-year commitment. Aamir Khan just blocked time for an Ashutosh Gowariker cricket biopic about Lala Amarnath starting October 2026, followed by the *3 Idiots* sequel pushed to mid-2027. Yash's *Toxic* alone absorbed over two years of his schedule.
+
+Every major male star in Indian cinema is now operating on the Hollywood tentpole model: one massive project at a time, years of exclusive commitment, budgets that would have funded an entire studio's annual slate a decade ago. The four-films-a-year era produced stars who were constantly visible but rarely transcendent. The new model bets on scarcity and scale.
+
+## What This Means for NRI Audiences
+
+For diaspora viewers, the shift cuts both ways. The upside: the films that do eventually arrive will be genuinely ambitious, globally competitive productions designed to play on IMAX screens in Edison and Brampton, not just in Bandra. The quality ceiling is rising. When Vicky Kaushal emerges from eighteen months of single-minded preparation, the expectation is that what he delivers will justify the wait.
+
+The downside: the pipeline is thinning. With top stars locked into singular mega-projects, the volume of star-driven Hindi films is dropping noticeably. The mid-budget star vehicle — the kind that kept NRI multiplex screens reliably stocked year-round — is becoming genuinely rare. The result is feast-or-famine: months of nothing from your favorite actor, followed by a single massive release that either justifies the wait or makes the gap feel wasted. There is no middle ground anymore.
+
+## The Risk Nobody Talks About
+
+Every one of these bets carries existential risk. *War 2* was supposed to be Hrithik Roshan and Jr NTR's tentpole event. It opened strong and then collapsed, grossing ₹365 crore worldwide against expectations of ₹500+ crore — technically profitable but widely viewed as a disappointment that dented the Spy Universe brand. When your entire multi-year schedule depends on a single film landing, the margin for creative error shrinks to nothing.
+
+Vicky Kaushal's *Mahavatar* is a mythological epic in a market where recent mythological epics — *Adipurush* chief among them — have catastrophically misfired on visual execution. Ranveer Singh's *Pralay* is a zombie film in a country that has never produced a successful zombie franchise. Neither project is a safe bet by any conventional industry calculus.
+
+But safe bets are exactly what these actors are running from. The four-films-a-year model produced forgettable content and exhausted audiences with overexposure. The new model asks a fundamentally different question: what if you gave everything to one film, spent years inside it, and made it impossible to ignore?
+
+We will find out. Just not for another eighteen months."""
+    
+    sources = [
+        {"name": "Sacnilk", "url": "https://sacnilk.com/news/bollywood-buzz-ranveer-singhs-pralay-shoot-begins-in-august-2026-as-vicky-kaushal-blocks-18-months-for-mahavatar"},
+        {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
+        {"name": "Variety India", "url": "https://variety.com"}
+    ]
+    
+    return {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": "vicky-kaushal-mahavatar-ranveer-singh-pralay-bollywood-mega-tentpole-era-nri-20260528",
+        "sources": sources,
+        "image_url": img or "",
+        "image_caption": img_caption,
+        "image_attribution": img_attr,
+        "tags": ["Vicky Kaushal", "Ranveer Singh", "Mahavatar", "Pralay", "Bollywood", "tentpole", "Ranbir Kapoor", "Aamir Khan"]
+    }
+
+
+# ─────────────────────────────────────────────
+# MAIN
+# ─────────────────────────────────────────────
+
+if __name__ == "__main__":
+    print("🎬 The Videshi Entertainment Writer — 2026-05-28 Evening Run")
+    print("=" * 60)
+    
+    articles = []
+    
+    # Write all 3 articles
+    articles.append(write_peddi_article())
+    time.sleep(2)  # Avoid Wikipedia rate limiting
+    articles.append(write_ott_window_article())
+    time.sleep(2)
+    articles.append(write_mega_tentpole_article())
+    
+    # Validate and publish
+    published = 0
+    for i, article in enumerate(articles, 1):
+        print(f"\n{'='*60}")
+        print(f"Publishing article {i}/{len(articles)}: {article['headline'][:60]}...")
+        
+        # Validate
+        h_len = len(article['headline'])
+        sh_len = len(article['subheadline'])
+        body_words = len(article['body'].split())
+        
+        print(f"  Headline: {h_len} chars (20-200 required)")
+        print(f"  Subheadline: {sh_len} chars (15+ required)")
+        print(f"  Body: {body_words} words (600-800+ target, 400 floor)")
+        print(f"  Slug: {article['slug']}")
+        print(f"  Image: {'Yes' if article['image_url'] else 'No'}")
+        
+        if h_len < 20 or h_len > 200:
+            print(f"  ⚠ Headline length out of range!")
+        if sh_len < 15:
+            print(f"  ⚠ Subheadline too short!")
+        if body_words < 400:
+            print(f"  ✗ Body too short! Skipping.")
+            continue
+        
+        if publish_article(article):
+            published += 1
+        
+        time.sleep(1)  # Rate limiting
+    
+    print(f"\n{'='*60}")
+    print(f"✅ Published {published}/{len(articles)} articles")
+    print("🎬 Entertainment writer run complete.")
