@@ -1,38 +1,21 @@
 #!/usr/bin/env python3
-"""The Videshi — News Writer (2026-05-28 batch)
-Three articles on fresh, uncovered stories with strong India/diaspora angles.
-"""
+"""News writer for The Videshi — 2026-05-28 evening run."""
 
-import json, os, re, sys, time, uuid, urllib.parse
-import requests
+import json, os, re, sys, time, uuid, requests, urllib.parse
+from datetime import datetime, timezone
 
-# ── env ──────────────────────────────────────────────────────────────────
-with open(os.path.expanduser("~/.env.supabase")) as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1)
-            os.environ[k] = v
-
-with open(os.path.expanduser("~/workspace/.env.pexels")) as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1)
-            os.environ[k] = v
-
-SB_URL = os.environ["SUPABASE_URL"]
-SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ["PEXELS_API_KEY"]
-
+# ── Supabase config ──────────────────────────────────────────────────────────
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
-    "apikey": SB_KEY,
-    "Authorization": f"Bearer {SB_KEY}",
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation",
 }
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
-# ── image helpers ────────────────────────────────────────────────────────
+# ── Wikipedia image fetcher ──────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -46,306 +29,294 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
+# ── Pexels image fetcher ─────────────────────────────────────────────────────
 def fetch_pexels_image(query, fallback_query=None):
-    """Search Pexels for a relevant image. Returns URL or None."""
+    """Fetch a relevant image from Pexels. Uses curl internally (urllib gets 403)."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = requests.get(
-                "https://api.pexels.com/v1/search",
-                params={"query": q, "per_page": 5, "orientation": "landscape"},
-                headers={"Authorization": PEXELS_KEY},
-                timeout=10,
+            import subprocess
+            result = subprocess.run(
+                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
+                 "-H", f"Authorization: {PEXELS_KEY}"],
+                capture_output=True, text=True, timeout=15,
             )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for p in photos:
-                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
-                    if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                        return url
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            for photo in photos:
+                src = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
+                if src:
+                    print(f"  ✓ Pexels image found for '{q}': {src[:80]}...")
+                    return src
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def validate_image(url):
-    """Verify URL returns a real image > 5KB."""
-    if not url:
-        return False
+# ── Supabase image upload ────────────────────────────────────────────────────
+def upload_image_to_supabase(image_url, filename):
+    """Download image and upload to Supabase storage. Returns public URL."""
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if "image" in ct and cl > 5000:
-            return True
-        # Some servers don't return Content-Length on HEAD, try GET with range
-        if "image" in ct:
-            r2 = requests.get(url, timeout=10, stream=True,
-                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                return True
+        r = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=15)
+        if r.status_code != 200:
+            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
+            return None
+        content_type = r.headers.get("Content-Type", "image/jpeg")
+        if not content_type.startswith("image/"):
+            print(f"  ⚠ Not an image: {content_type}")
+            return None
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small: {len(r.content)} bytes")
+            return None
+
+        # Upload to Supabase storage
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        upload_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": content_type,
+            "x-upsert": "true",
+        }
+        ur = requests.post(upload_url, headers=upload_headers, data=r.content, timeout=20)
+        if ur.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Upload failed: HTTP {ur.status_code} — {ur.text[:200]}")
+            return None
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-    return False
+        print(f"  ⚠ Upload error: {e}")
+        return None
 
-
-def sb_insert(table, payload):
-    """Insert into Supabase and return the record."""
-    r = requests.post(
-        f"{SB_URL}/rest/v1/{table}",
-        headers=HEADERS,
-        json=payload,
-    )
+# ── Supabase helpers ──────────────────────────────────────────────────────────
+def sb_insert(table, data):
+    """Insert a row into Supabase."""
+    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=20)
     if r.status_code in (200, 201):
-        data = r.json()
-        return data[0] if isinstance(data, list) else data
-    print(f"  ✗ Insert error ({r.status_code}): {r.text[:600]}")
+        result = r.json()
+        if isinstance(result, list) and result:
+            return result[0]
+        return result
+    print(f"  ⚠ Insert failed: HTTP {r.status_code} — {r.text[:300]}")
     return None
 
-
-def sb_patch(table, filters, payload):
-    """Patch a Supabase row."""
+def sb_patch(table, filters, data):
+    """Patch a row in Supabase."""
     params = "&".join(f"{k}={v}" for k, v in filters.items())
-    r = requests.patch(
-        f"{SB_URL}/rest/v1/{table}?{params}",
-        headers=HEADERS,
-        json=payload,
-    )
+    r = requests.patch(f"{SUPABASE_URL}/rest/v1/{table}?{params}", headers=HEADERS, json=data, timeout=20)
     if r.status_code in (200, 204):
         return True
-    print(f"  ✗ Patch error ({r.status_code}): {r.text[:300]}")
+    print(f"  ⚠ Patch failed: HTTP {r.status_code} — {r.text[:300]}")
     return False
 
-
-# ── Articles ─────────────────────────────────────────────────────────────
+# ── Article definitions ──────────────────────────────────────────────────────
 articles = [
-    # ── ARTICLE 1: India Rice Exports ──
     {
-        "headline": "India's Basmati Exports to the Gulf Dropped 7 Percent. The Iran War Made the World's Biggest Rice Exporter a Bystander.",
-        "subheadline": "Cargoes bound for Iran, Iraq, Qatar and Saudi Arabia sit in limbo as freight costs soar and buyers hold back on new deals. Non-basmati shipments to Africa are slipping too.",
-        "slug": "india-basmati-rice-exports-gulf-drop-7-percent-iran-war-shipping-20260528",
+        "headline": "Rubio Just Committed India to $500 Billion in American Purchases. Reliance Is Building the First U.S. Refinery in 50 Years.",
+        "subheadline": "The Secretary of State's four-day India visit produced a trade pledge, a nuclear energy roadmap, and a Texas refinery that will process American shale — all while the Iran war rewrites the global oil map.",
+        "slug": "rubio-india-visit-500-billion-deal-reliance-texas-refinery-energy-nuclear-20260528",
         "category": "news",
-        "body": """India's rice exports in the first four months of 2026 fell 1.3 percent from a year ago, according to two government officials who spoke to Reuters on condition of anonymity. The headline number barely registers. The story underneath it does.
+        "sources": "Reuters, Fox Business, Upstox, U.S. State Department",
+        "image_person": "Marco Rubio",
+        "image_fallback_query": "US India diplomatic meeting",
+        "image_fallback_query2": "oil refinery Texas",
+        "body": """Secretary of State Marco Rubio wrapped a four-day visit to India over the weekend with a pledge that would reshape trade between the world's largest and fifth-largest economies: New Delhi has committed to buying $500 billion in American goods over the next five years, with the bulk flowing through energy, technology, and agriculture.
 
-## The Gulf Pipeline Is Broken
+Rubio, who also holds the title of National Security Advisor, met with Prime Minister Narendra Modi and External Affairs Minister S. Jaishankar in New Delhi before heading to a Quad foreign ministers' meeting. Energy dominated the agenda. India imports nearly 88 percent of its crude oil, and more than half of it transits the Strait of Hormuz — the same waterway that has been choked by the Iran conflict since February.
 
-Basmati rice — the fragrant, long-grain variety that India dominates globally — saw exports fall 7 percent to 2.3 million metric tons between January and April. The damage is concentrated in the Gulf, where India's most lucrative buyers sit: Iran, Iraq, Qatar and Saudi Arabia.
+"We want to sell them as much energy as they'll buy," Rubio told reporters in Miami before the trip. "There's a lot to work on with India. They're a great ally, a great partner."
 
-Cargoes bound for those markets remain delayed in transit. Neither buyers nor exporters are signing new deals. A New Delhi-based exporter told Reuters that shipments would stay below typical levels until the Iran war ends — a timeline that, as of this week's fresh air strikes near the Strait of Hormuz, remains entirely uncertain.
+## A Refinery That Changes the Map
 
-India accounts for more than 40 percent of global rice exports, shipping more than Thailand, Vietnam and Pakistan combined. When India's rice trade seizes up, the effects cascade across continents.
+The most concrete outcome was not a diplomatic communiqué but a construction project. President Trump announced that Reliance Industries, India's largest privately held energy company, will invest in a $300 billion refinery complex at the Port of Brownsville, Texas — the first new major oil refinery built in the United States in half a century.
 
-## How the War Changed the Math
+"America is returning to REAL ENERGY DOMINANCE," Trump posted on Truth Social. The facility will process 100 percent American shale oil, supply domestic markets, support exports, and generate thousands of jobs in South Texas. Reliance has not yet publicly commented on the announcement, but the deal reflects a deepening strategic calculus: India wants secure energy supply, and the U.S. wants India to stop buying Iranian and Russian crude.
 
-The U.S.-Israeli airstrikes that began the war on Iran at the end of February disrupted maritime traffic through the Strait of Hormuz — the narrow chokepoint through which roughly a fifth of the world's oil and a significant share of South Asian food exports pass.
+Venezuela recently overtook Saudi Arabia and the United States to become India's third-largest crude supplier — a development that worries Washington. "India cannot be a strategic energy partner for Washington while Indian firms are repeatedly surfacing in sanctions designations involving Iranian energy flows, shadow fleet shipping, and Russian sanctions evasion," said Max Meizlish, a research fellow at the Foundation for Defense of Democracies.
 
-Shipping insurance premiums spiked. Freight costs followed. The result: Indian exporters found it increasingly expensive to send rice to the Gulf, and Gulf buyers found it increasingly risky to place orders.
+## Nuclear Ambitions
 
-Iran was India's largest basmati market until last year, when Saudi Arabia overtook it. Both remain critical. Together with Iraq and the UAE, they absorb the vast majority of India's premium rice output.
+Beyond oil, the visit accelerated nuclear cooperation. India hit a milestone earlier this month when its Prototype Fast Breeder Reactor achieved a self-sustaining stage — making India only the second country after Russia to run a commercial fast-breeder reactor. A 20-member U.S. Executive Nuclear Industry Delegation visited India to explore investment opportunities in small modular reactors and advanced nuclear technologies.
 
-## Africa Feels It Too
+India's Parliament recently passed the SHANTI Bill, which opens the country's civilian nuclear sector to private investment for the first time. The government plans to scale nuclear capacity from 8.8 gigawatts to 100 gigawatts by 2047, creating what officials estimate will be a $300 billion market.
 
-Non-basmati rice exports — the cheaper varieties that go to Bangladesh, Benin, Ivory Coast, Guinea and Cameroon — edged up marginally to 6.09 million tons from 6.03 million. But an exporter in Kakinada, southeastern India, told Reuters that rising freight and insurance costs were already weighing on demand from African buyers.
+## What It Means for NRIs
 
-India competes with Thailand, Vietnam, Myanmar and Pakistan in these markets. Any sustained cost disadvantage pushes buyers toward alternatives.
+For the 4.4 million Indian Americans in the United States, the Rubio visit signals a phase-shift in the bilateral relationship. The energy partnership alone could reshape job markets in Texas, Louisiana, and the Gulf Coast — regions where Indian-American professionals already cluster in the petrochemical and technology sectors.
 
-## What This Means for the Diaspora
+The $500 billion trade pledge, if fulfilled, would also make the U.S.-India corridor one of the largest bilateral trade relationships in the world, second only to U.S.-China. But the fine print matters. India's track record on defense procurement commitments has been uneven, and the trade pledge is non-binding.
 
-For NRIs across the Gulf — and there are an estimated 9 million Indians living in GCC countries — the disruption is not abstract. Basmati rice is a staple, a cultural anchor, and a grocery-line item that has gotten measurably harder to source and more expensive to buy.
-
-Indian grocery stores in Dubai, Doha and Riyadh have already reported intermittent shortages of specific basmati brands. Prices have risen even as Indian domestic prices fell more than 5 percent this year following a record harvest — a painful paradox where surplus at home cannot reach demand abroad.
-
-## The Bigger Picture
-
-India's rice export infrastructure was not built for war. The Strait of Hormuz was supposed to be a shipping lane, not a frontline. The current disruption exposes how dependent India's agricultural export economy is on a single maritime corridor — and how quickly geopolitics can sever the link between an Indian paddy field and a Gulf kitchen.
-
-The government has not announced any specific relief measures for affected exporters. For now, the rice sits — in warehouses, on ships, and in a strategic limbo that neither Delhi nor the market can resolve without a ceasefire that keeps slipping further away.
-
-*Sources: Reuters, The Hindu Business Line, India Shipping News*""",
-        "sources": "Reuters, The Hindu Business Line, India Shipping News",
-        "image_search": ("basmati rice sacks export", "rice grain harvest India"),
-        "person_image": None,
+For now, the direction is clear. As U.S. Ambassador Sergio Gor put it: "Big things lie ahead."
+""",
     },
-
-    # ── ARTICLE 2: Taiwan Nuclear Escalation / Shangri-La ──
     {
-        "headline": "A War Over Taiwan Would Go Nuclear. That Warning Just Landed as Asia's Biggest Defense Summit Opens.",
-        "subheadline": "A 156-page IISS assessment says U.S. and Chinese forces lack the guard rails to prevent nuclear escalation in a Taiwan conflict. The finding drops two days after India hosted the Quad in New Delhi.",
-        "slug": "iiss-taiwan-nuclear-war-risk-shangri-la-dialogue-india-quad-20260528",
+        "headline": "India Quarantined Its First Suspected Ebola Patient in a Decade. She Tested Negative.",
+        "subheadline": "A 28-year-old Ugandan woman was isolated in Bengaluru after developing symptoms. The scare triggered airport screenings, a travel advisory for three African countries, and the postponement of the India-Africa summit.",
+        "slug": "india-ebola-scare-bengaluru-quarantine-ugandan-woman-negative-preparedness-20260528",
         "category": "news",
-        "body": """A conflict between the United States and China over Taiwan would risk escalating to a nuclear exchange, with both militaries likely to launch sweeping operations targeting each other's command and communications infrastructure. That is the central finding of a strategic assessment released Thursday by the International Institute for Strategic Studies, timed to land hours before Asia's biggest annual defense summit opens in Singapore.
+        "sources": "Reuters, LiveMint, CNN, Devdiscourse, WHO",
+        "image_person": None,
+        "image_fallback_query": "airport health screening passengers",
+        "image_fallback_query2": "medical quarantine hospital isolation",
+        "body": """India's first Ebola scare in more than a decade ended with a negative test — but not before it forced the country to confront a global outbreak that the World Health Organisation says is moving at "breakneck speed."
 
-## The IISS Assessment
+A 28-year-old Ugandan woman, identified as Nagire Latifa, was quarantined at the Epidemic Diseases Hospital in Bengaluru on Wednesday after developing mild body aches. She had arrived in southern India from Ahmedabad, having traveled from East Africa. Samples were sent to the National Institute of Virology in Pune. The results came back negative.
 
-The 156-page document, published ahead of the Shangri-La Dialogue running May 29 to 31, warns that the world is on the cusp of a new nuclear arms race "with the Asia-Pacific at its core."
+But the incident — which would have been India's first confirmed Ebola case since 2014 — exposed how thin the margin is between a false alarm and a public health crisis.
 
-The assessment is blunt about the absence of safeguards. "There is currently little public evidence to suggest that both militaries understand the necessary guard rails to prevent, or rules of engagement that would restrict, both sides potentially targeting each other's key command, control, communications, computers, intelligence, surveillance and reconnaissance nodes," the report states.
+## A Virus Without a Vaccine
 
-Translation: in a real shooting war over Taiwan, neither Washington nor Beijing has a reliable way to stop things from going nuclear.
+The current outbreak involves the Bundibugyo strain of Ebola, for which no approved vaccine or treatment exists. The WHO has declared it a public health emergency of international concern. As of this week, there have been more than 1,077 suspected cases globally, 121 confirmed, and at least 246 suspected deaths. Congo remains the epicenter, but cross-border spread to Uganda has been confirmed.
 
-China has never ruled out the use of force to take control of Taiwan. Its government says it prefers "peaceful reunification." Taiwan's government rejects Beijing's sovereignty claims entirely.
+Uganda sealed its border with Congo on Tuesday. The United States has imposed travel bans on people arriving from Congo, Uganda, and South Sudan, and is setting up a quarantine facility at Laikipia Air Base in Kenya to isolate exposed American citizens rather than bring them home — a sharp break from precedent during previous outbreaks.
 
-## The Nuclear Math
+## India's Response
 
-The raw numbers still favor the United States and Russia. The Federation of American Scientists estimates that Russia fields roughly 4,400 active warheads, the U.S. about 3,700, and China approximately 620. But a December Pentagon report concluded that China is on track to field 1,000 warheads by 2030 — and that it is expanding and improving its nuclear capabilities faster than any other power.
+Health Minister Jagat Prakash Nadda had initially said India had no reported cases. Within 24 hours, the Bengaluru quarantine changed that calculus. The government has since activated a multi-layered response:
 
-The IISS report notes that this is no longer just about the two superpowers. Regional states across the Asia-Pacific are expanding their own nuclear arsenals, while non-nuclear states are pursuing long-range conventional-strike capabilities that blur the line between conventional and strategic deterrence.
+India's Directorate General of Civil Aviation has issued pandemic-style preparedness guidelines for airlines, requiring them to isolate symptomatic passengers, provide protective gear, and coordinate with airport health authorities. Screening and surveillance measures are now in effect at all international airports and major entry points.
 
-## Why This Matters for India
+The government has issued travel advisories urging citizens to avoid non-essential travel to Congo, Uganda, and South Sudan. And in the most dramatic signal of concern, the India-Africa Forum Summit scheduled for this week in New Delhi was postponed over public health concerns on the continent.
 
-India sits at the intersection of nearly every tension line in this assessment.
+The Mumbai civic body, BMC MARD, has separately issued alerts to healthcare workers, emphasizing that no vaccine exists, diagnostics are limited, and the fatality rate is high.
 
-Two days before the IISS published its warning, New Delhi hosted the 11th Quad Foreign Ministers' Meeting. External Affairs Minister S. Jaishankar welcomed U.S. Secretary of State Marco Rubio, Australia's Penny Wong and Japan's Toshimitsu Motegi for what became the Quad's most operationally concrete session yet.
+## What NRIs Should Know
 
-The group unveiled its first joint infrastructure project — a port in Fiji — and launched the Indo-Pacific Maritime Surveillance Collaboration, a shared surveillance framework covering strategic shipping lanes. A Quad Critical Minerals Initiative was formalized. More than $25 million was committed to undersea cable projects.
+For Indian Americans with family in Bengaluru, Hyderabad, Mumbai, and other cities with high international traffic, the negative result is reassuring but the broader picture is not. The Bundibugyo strain is less studied than the Zaire strain that drove the 2014 West Africa epidemic, and the WHO has warned that the outbreak is "outpacing" the global response.
 
-None of this is accidental. The Quad exists, in large part, because of exactly the scenario the IISS just war-gamed: a China that is militarily assertive, nuclear-capable, and increasingly willing to challenge the status quo around Taiwan and in the South China Sea.
+India has roughly 800,000 nationals living and working in East and Central Africa. The postponement of the India-Africa summit suggests New Delhi is taking the risk seriously — a notable shift from 2014, when India was slower to activate screening.
 
-## The Shangri-La Context
+The woman in Bengaluru has been placed under a 21-day isolation watch, standard protocol even after a negative result. Her condition remains stable.
 
-U.S. Defense Secretary Pete Hegseth will speak at the Singapore conference on Saturday. China has sent a delegation from the PLA National Defence University, headed by Meng Xiangqing — but for the second consecutive year, Defense Minister Dong Jun will not attend.
-
-The event follows a summit between Xi Jinping and Donald Trump in Beijing earlier this month that left Taipei visibly nervous about the durability of U.S. commitments to Taiwan's defense.
-
-India, which has steadily deepened its defense ties with both the U.S. and Japan while managing a complex relationship with Beijing, will be watching closely. The IISS assessment validates what Indian strategic planners have argued for years: that the Indo-Pacific is not a peripheral theater but the central one — and that India's choices in this space carry nuclear-age consequences.
-
-## What Comes Next
-
-The Shangri-La Dialogue has historically been the venue where Asian security anxieties get aired publicly. This year's edition arrives with the Iran war still burning, a Taiwan flashpoint the IISS now frames in explicitly nuclear terms, and an India that just demonstrated — through the Quad meeting — that it intends to be at the table, not watching from the sidelines.
-
-The 156 pages are a warning. Whether anyone at the conference acts on it is another question entirely.
-
-*Sources: Reuters, IISS Strategic Assessment 2026, U.S. State Department, Australian Foreign Ministry*""",
-        "sources": "Reuters, IISS Strategic Assessment 2026, U.S. State Department, Australian Foreign Ministry",
-        "image_search": ("Shangri-La Dialogue Singapore defense summit", "Asia Pacific military naval ships"),
-        "person_image": None,
+If you are planning travel to India or to East Africa, the government's advisory is blunt: avoid non-essential travel to Congo, Uganda, and South Sudan. If you develop symptoms after returning, contact health authorities immediately.
+""",
     },
-
-    # ── ARTICLE 3: USCIS Green Card Clarification for H-1B ──
     {
-        "headline": "USCIS Says H-1B Workers Can Stay in the US for Green Cards. The Fine Print Is Doing a Lot of Heavy Lifting.",
-        "subheadline": "After weeks of panic over a return-home mandate, the agency now says workers who provide 'economic benefit' can remain. It has not defined what that means. Indian professionals — 71 percent of all H-1B holders — are the most exposed.",
-        "slug": "uscis-h1b-green-card-stay-us-clarification-fine-print-indian-workers-20260528",
+        "headline": "EB-2 India Is Shut for the Year. Green Card Approvals Are Frozen Until October.",
+        "subheadline": "The State Department has exhausted all available EB-2 immigrant visas for Indian applicants in FY2026. Final approvals will not resume until the new fiscal year begins on October 1.",
+        "slug": "eb2-india-green-card-frozen-fy2026-visa-numbers-exhausted-october-20260528",
         "category": "news",
-        "body": """On May 22, USCIS dropped a policy bomb: foreign nationals in the United States on temporary visas who want a green card must return to their home country to apply, except in "extraordinary circumstances." Six days later, on May 26, the same agency walked it back — partially, ambiguously, and with enough caveats to keep immigration lawyers billing through the summer.
+        "sources": "U.S. State Department, NRI Page, USA Today, VisaHQ",
+        "image_person": None,
+        "image_fallback_query": "US immigration visa passport stamp",
+        "image_fallback_query2": "green card application documents",
+        "body": """If you are an Indian professional waiting for an EB-2 green card, the U.S. State Department has a four-month message: wait.
 
-## What USCIS Actually Said
+All available Employment-Based Second Preference immigrant visas for applicants chargeable to India have been issued for fiscal year 2026. That means no new EB-2 green cards will be approved for Indian nationals until the fiscal year resets on October 1, 2026.
 
-Spokesperson Zach Kahler's updated statement introduced three conditions under which H-1B holders might avoid the return-home requirement:
+The announcement, confirmed in the latest visa bulletin, hits a population that has been waiting years — sometimes more than a decade — for permanent residency. The June 2026 Visa Bulletin listed India's EB-2 Final Action Date as September 1, 2013. That is not a typo. Indian professionals filing today are joining a line that stretches back 13 years.
 
-**Economic benefit.** If your role contributes positively to the U.S. economy, you can likely stay.
+## How the System Works Against Indian Applicants
 
-**National interest.** If your position serves the broader national interest, same deal.
+The EB-2 category covers professionals with advanced degrees or people with exceptional ability in science, business, and the arts. It receives 28.6 percent of all employment-based immigrant visas annually — roughly 40,000 slots. But a separate per-country cap limits how many visas any single nationality can receive.
 
-**Individualized circumstances.** Everyone else gets a case-by-case review, with no publicly available criteria for how those cases will be decided.
+For India, demand has exceeded supply for two decades. The result is a backlog that the Cato Institute has estimated at over 800,000 applicants, with wait times stretching to 50 years for some categories when family members are included.
 
-The problem, which immigration attorneys spotted immediately, is that none of these terms have been formally defined. "Economic benefit" could mean a software engineer at Google or it could mean anyone with a job. "National interest" could mean a defense contractor or it could mean a nurse in a shortage area. USCIS has not said.
+The FY2026 exhaustion means even applicants whose priority dates are current cannot receive final approval. Their cases may continue through processing steps — document review, interviews, background checks — but the last step, actual visa issuance, is locked until new numbers become available.
 
-## The Numbers That Matter
+## The Compounding Crisis
 
-Indian nationals account for approximately 71 percent of all approved H-1B petitions. That is not a rounding error — it is the structural reality of America's skilled-immigration pipeline. When USCIS changes H-1B rules, it is changing rules that disproportionately affect Indians, regardless of whether the policy is "targeted."
+This freeze arrives at the worst possible time. The Trump administration announced on May 21 that most green card applicants would need to pursue consular processing abroad rather than adjusting status inside the United States. While USCIS issued a partial clarification on May 26 — stating that H-1B holders may still qualify for in-country adjustment on a case-by-case basis — the combined effect is paralyzing.
 
-The broader context makes the clarification feel even more precarious. H-1B registrations dropped 38.5 percent in fiscal year 2027, from 343,981 to 211,600. USCIS itself attributes this to stricter selection filters favoring advanced degrees and higher salaries. India's six largest IT firms — TCS, Cognizant, Infosys, HCL, Wipro and Tech Mahindra — received a combined 11,041 H-1B visas as of March 2026, down 40 percent from the prior year.
+Indian H-1B workers now face a triple bind: a 13-year backlog, a new requirement to potentially leave the country to get a green card, and a fiscal-year freeze that stops all EB-2 approvals regardless.
 
-A proposed Department of Labor rule would raise minimum prevailing wages for H-1B workers by up to 33 percent for entry-level positions — from $73,279 to $97,746. The comment period closed May 26, the same day USCIS issued its green card clarification.
+The tech industry, where Indian nationals hold a disproportionate share of H-1B visas, is already responding. Immigration attorneys report a surge in EB-1 filings — the "extraordinary ability" category with shorter backlogs — and an increase in Canadian permanent residency applications. Canada's Express Entry system processes most applications in six months.
 
-## What Rubio Said — and What the Data Says
+## What Changes on October 1
 
-When Secretary of State Marco Rubio visited New Delhi last week, he insisted the visa overhaul is a global modernization effort, not an India-specific measure. "The changes that are happening now are not India-specific; it is global, it's being applied across the world," Rubio told reporters alongside External Affairs Minister Jaishankar.
+The annual visa limit resets at the start of FY2027. At that point, EB-2 India applicants whose priority dates are eligible may receive final action again — assuming the new fiscal year's allocation is not consumed even faster.
 
-The statistics tell a different story. When 71 percent of affected visa holders come from one country, a "global" policy has a very specific address. Indian IT companies absorbed the steepest declines. TCS alone lost 3,242 approvals year-over-year. The only major Indian firm to gain was Infosys, with 3,195 approvals.
+There is no legislative fix on the horizon. The EAGLE Act, which would have eliminated per-country caps, has been introduced in multiple Congressional sessions and has never reached a floor vote. The Fairness for High-Skilled Immigrants Act has had a similar trajectory.
 
-## The Return-Home Nightmare Scenario
+## What You Can Do Now
 
-For Indian H-1B holders, the original May 22 policy was not just an inconvenience — it was an existential threat. India and China face green card backlogs spanning multiple decades. An Indian national in the EB-2 category who is told to return home to apply is not going home for a few weeks. They may be going home for years.
+If your I-140 is approved and your priority date is before September 2013, your case should continue through processing. File any pending documentation — medical exams, affidavits, civil documents — now so you are ready when numbers become available in October.
 
-The EB-2 India category is already frozen for fiscal year 2026, with final approvals paused until October. The backlog means that even with priority dates, the wait can stretch to 10 to 15 years.
+If you are considering switching to EB-1, consult an immigration attorney about whether your profile qualifies. The "extraordinary ability" threshold is high but not impossible for senior engineers, researchers, and executives.
 
-The May 26 clarification softens the worst fears, but does not resolve them. An H-1B holder who loses their job still faces a 60-day window to find new sponsorship or leave the country. The "economic benefit" exception does not appear to cover the unemployed.
+If you are exploring alternatives, Canada's Express Entry, Australia's skilled migration program, and the UK's High Potential Individual visa all accept applicants with the profile typical of EB-2 India petitioners.
 
-## The Sridhar Vembu Question
-
-Zoho CEO Sridhar Vembu added fuel to the debate by publicly urging Indian professionals in the U.S. to consider returning home. "Please come home… self-respect should dictate your course," he wrote. The response was polarized — some applauded the sentiment, others pointed out that uprooting a career, a family, children's education, and a decade of investment is not a question of self-respect but of structural reality.
-
-## Where This Leaves Things
-
-The USCIS clarification is a band-aid on a policy wound that is still bleeding. Indian professionals — the single largest group in the H-1B ecosystem — have been told they can probably stay, under conditions that have not been specified, subject to reviews that have no published criteria, in a regulatory environment that changed twice in four days.
-
-For the estimated 300,000-plus Indian H-1B holders in the United States, the message is clear: plan for uncertainty, document everything, and do not assume that today's clarification will be tomorrow's policy.
-
-*Sources: USCIS, LiveMint, Global Net News, Reuters*""",
-        "sources": "USCIS, LiveMint, Global Net News, Reuters",
-        "image_search": ("US visa passport immigration", "H-1B visa United States"),
-        "person_image": None,
+The system was not designed for a country that produces this many qualified applicants. Until Congress changes it, the math will keep producing the same result.
+""",
     },
 ]
 
-# ── Publish loop ─────────────────────────────────────────────────────────
-published = 0
+# ── Publish ───────────────────────────────────────────────────────────────────
+now = datetime.now(timezone.utc).isoformat()
+
 for i, art in enumerate(articles, 1):
     print(f"\n{'='*60}")
-    print(f"Article {i}: {art['headline'][:70]}...")
+    print(f"Article {i}: {art['headline'][:60]}...")
+    print(f"{'='*60}")
 
     # Image sourcing
     img_url = None
+    img_attribution = "The Videshi"
 
-    # Try person image first
-    if art.get("person_image"):
-        img_url = fetch_wikipedia_person_image(art["person_image"])
+    if art.get("image_person"):
+        img_url = fetch_wikipedia_person_image(art["image_person"])
+        if img_url:
+            img_attribution = "Wikimedia Commons"
 
-    # Pexels fallback
-    if not img_url and art.get("image_search"):
-        q1, q2 = art["image_search"]
-        img_url = fetch_pexels_image(q1, q2)
+    if not img_url:
+        img_url = fetch_pexels_image(art["image_fallback_query"], art.get("image_fallback_query2"))
 
-    # Validate
-    if img_url and not validate_image(img_url):
-        print(f"  ⚠ Image failed validation, dropping: {img_url[:80]}")
-        img_url = None
-
+    # Upload to Supabase storage if we got an image
+    final_image_url = None
     if img_url:
-        print(f"  ✓ Final image: {img_url[:80]}...")
+        art_id = str(uuid.uuid4())
+        filename = f"{art_id}.jpg"
+        final_image_url = upload_image_to_supabase(img_url, filename)
     else:
-        print(f"  ⚠ No image — publishing without image (no image > wrong image)")
+        art_id = str(uuid.uuid4())
+        print("  ⚠ No image found — publishing without image (no image > wrong image)")
 
-    # Build payload
-    payload = {
+    # Build article body - trim whitespace
+    body = art["body"].strip()
+
+    # Word count check
+    word_count = len(body.split())
+    print(f"  Word count: {word_count}")
+    if word_count < 400:
+        print(f"  ⚠ BELOW 400 word minimum! Skipping.")
+        continue
+
+    # Build the record
+    record = {
+        "id": art_id,
         "headline": art["headline"],
         "subheadline": art["subheadline"],
         "slug": art["slug"],
+        "body": body,
         "category": art["category"],
-        "body": art["body"].strip(),
-        "sources": art["sources"],
         "status": "published",
-        "published_at": time.strftime("%Y-%m-%dT%H:%M:%S+00:00", time.gmtime()),
+        "published_at": now,
+        "sources": art["sources"],
+        "image_attribution": img_attribution,
     }
-    if img_url:
-        payload["image_url"] = img_url
-        if "upload.wikimedia.org" in img_url:
-            payload["image_attribution"] = "Wikimedia Commons"
-        elif "pexels.com" in img_url:
-            payload["image_attribution"] = "Pexels"
 
-    result = sb_insert("p2_articles", payload)
+    if final_image_url:
+        record["image_url"] = final_image_url
+
+    # Insert
+    result = sb_insert("p2_articles", record)
     if result:
-        aid = result.get("id", "?")
-        print(f"  ✓ Published: id={aid}, slug={art['slug']}")
-        published += 1
+        print(f"  ✓ Published: {art['slug']}")
+        print(f"    ID: {art_id}")
+        if final_image_url:
+            print(f"    Image: {final_image_url[:80]}...")
     else:
-        print(f"  ✗ FAILED to publish article {i}")
+        print(f"  ✗ FAILED to publish: {art['slug']}")
 
-    time.sleep(1)
-
-print(f"\n{'='*60}")
-print(f"Done. Published {published}/{len(articles)} articles.")
+print("\n" + "="*60)
+print("Done! Published articles.")
