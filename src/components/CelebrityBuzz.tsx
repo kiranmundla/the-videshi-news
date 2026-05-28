@@ -230,7 +230,7 @@ function ThumbCard({
       <div style={{
         position: "relative",
         width: "100%",
-        aspectRatio: "5/4",
+        aspectRatio: "3/4",
         borderRadius: 12,
         overflow: "hidden",
         background: "#1a1a1a",
@@ -263,7 +263,7 @@ function ThumbCard({
             }}
             style={{
               width: "100%", height: "100%",
-              objectFit: "cover", display: "block",
+              objectFit: "cover", objectPosition: "top", display: "block",
               opacity: loading ? 0 : 1,
               transition: "opacity 0.3s ease",
             }}

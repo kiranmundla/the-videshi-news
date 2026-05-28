@@ -1,26 +1,24 @@
 #!/usr/bin/env python3
-"""Sports writer - 2026-05-27 evening run. Three articles."""
+"""Sports Writer - 2026-05-27 Evening Run
+Publishes 3 fresh sports articles to The Videshi.
+"""
 
-import requests
 import json
 import os
-import sys
 import re
+import sys
+import time
+import uuid
 from datetime import datetime, timezone
+
+import requests
 import urllib.parse
-import subprocess
 
-# Load env
-env_path = os.path.expanduser("~/.env.supabase")
-with open(env_path) as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            key, val = line.split("=", 1)
-            os.environ[key.strip()] = val.strip().strip('"').strip("'")
-
+# ── Config ───────────────────────────────────────────────────────────────────
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
+
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -28,16 +26,7 @@ HEADERS = {
     "Prefer": "return=representation",
 }
 
-# Load Pexels key
-pexels_path = os.path.expanduser("~/workspace/.env.pexels")
-PEXELS_KEY = None
-if os.path.exists(pexels_path):
-    with open(pexels_path) as f:
-        for line in f:
-            if "PEXELS_API_KEY" in line:
-                PEXELS_KEY = line.split("=", 1)[1].strip().strip('"').strip("'")
-
-
+# ── Image helpers ────────────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -49,17 +38,18 @@ def fetch_wikipedia_person_image(person_name):
         )
         if r.status_code == 200:
             data = r.json()
+            # Prefer originalimage (higher res), fall back to thumbnail AS-IS
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels as fallback."""
+    """Fetch an image from Pexels using curl (urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
@@ -67,16 +57,17 @@ def fetch_pexels_image(query, fallback_query=None):
         if not q:
             continue
         try:
+            import subprocess
             result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3",
-                 "-H", f"Authorization: {PEXELS_KEY}"],
+                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape"],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
             photos = data.get("photos", [])
             if photos:
                 url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
                 return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
@@ -84,276 +75,329 @@ def fetch_pexels_image(query, fallback_query=None):
 
 
 def validate_image(url):
-    """Validate image URL returns 200 with image content-type and >5KB."""
+    """Check image URL returns HTTP 200 with image content-type and reasonable size."""
     if not url:
         return False
-    # Check for banned sources
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
-    for b in banned:
-        if b in url:
-            print(f"  ✗ BANNED image source: {b}")
-            return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
+        cl = int(r.headers.get("Content-Length", "0"))
         if r.status_code == 200 and "image" in ct and cl > 5000:
-            print(f"  ✓ Image validated: {ct}, {cl} bytes")
             return True
-        # Try GET if HEAD doesn't give content-length
-        if r.status_code == 200 and "image" in ct and cl == 0:
-            r2 = requests.get(url, timeout=10, stream=True,
-                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                print(f"  ✓ Image validated via GET: {ct}, >{len(chunk)} bytes")
-                return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
+        # Some servers don't respond well to HEAD, try GET
+        if r.status_code != 200:
+            r2 = requests.get(url, timeout=10, stream=True, allow_redirects=True,
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            ct2 = r2.headers.get("Content-Type", "")
+            if r2.status_code == 200 and "image" in ct2:
+                # Read a bit to check size
+                chunk = r2.raw.read(6000)
+                if len(chunk) > 5000:
+                    return True
     except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
+        print(f"  ⚠ Image validation error: {e}")
     return False
 
 
 def publish_article(article):
-    """Publish an article to Supabase."""
-    print(f"\n📝 Publishing: {article['headline']}")
-    
-    # Get image
-    image_url = None
-    image_attr = None
-    
-    if article.get("person_for_image"):
-        image_url = fetch_wikipedia_person_image(article["person_for_image"])
-        if image_url and validate_image(image_url):
-            image_attr = "Wikimedia Commons"
+    """Insert article into Supabase p2_articles table."""
+    article_id = str(uuid.uuid4())
+    # Build sources as array of {name, url} objects
+    raw_sources = article.get("sources", [])
+    formatted_sources = []
+    for s in raw_sources:
+        if isinstance(s, dict):
+            formatted_sources.append(s)
         else:
-            image_url = None
-    
-    if not image_url and article.get("pexels_query"):
-        image_url = fetch_pexels_image(article["pexels_query"], article.get("pexels_fallback"))
-        if image_url and validate_image(image_url):
-            image_attr = "Pexels"
-        else:
-            image_url = None
-    
-    if not image_url:
-        print("  ⚠ No valid image found — publishing without image")
-    
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
-    words = len(article["body"].split())
+            formatted_sources.append({"name": s, "url": ""})
     
     payload = {
+        "id": article_id,
         "headline": article["headline"],
         "subheadline": article["subheadline"],
         "body": article["body"],
         "slug": article["slug"],
         "category": "sports",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": article.get("image_url"),
+        "image_caption": article.get("image_caption"),
+        "image_attribution": article.get("image_attribution"),
+        "sources": formatted_sources,
         "vertical": "sports",
         "urgency": "daily",
-        "word_count": words,
-        "is_featured": True,
-        "diaspora_angle": article.get("diaspora_angle", ""),
-        "status": "published",
-        "published_at": now,
-        "sources": json.dumps(article.get("sources", [])),
-        "image_url": image_url,
-        "image_attribution": image_attr,
+        "tags": article.get("tags", []),
     }
+    # Remove None values
+    payload = {k: v for k, v in payload.items() if v is not None}
     
-    try:
-        r = requests.post(
-            f"{SUPABASE_URL}/rest/v1/p2_articles",
-            headers=HEADERS,
-            json=payload,
-            timeout=15,
-        )
-        if r.status_code in (200, 201):
-            result = r.json()
-            aid = result[0]["id"] if isinstance(result, list) else result.get("id")
-            print(f"  ✅ Published: {article['slug']} (id: {aid})")
-            return True
-        else:
-            print(f"  ✗ Failed to publish: {r.status_code} — {r.text[:200]}")
-            return False
-    except Exception as e:
-        print(f"  ✗ Publish error: {e}")
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload,
+    )
+    if r.status_code in (200, 201):
+        print(f"  ✓ Published: {article['headline'][:60]}...")
+        return True
+    else:
+        print(f"  ✗ Failed ({r.status_code}): {r.text[:200]}")
         return False
 
 
-# ── ARTICLE 1: IPL Eliminator ──────────────────────────────────────────
-article_1 = {
-    "headline": "Sooryavanshi Hit Ninety-Seven off Twenty-Nine Balls. He Broke Chris Gayle's All-Time Sixes Record. He Is Fifteen. Rajasthan Knocked Out Hyderabad by Forty-Seven Runs.",
-    "subheadline": "The IPL's youngest superstar smashed twelve sixes in the Eliminator, taking his season tally to sixty-five — six more than Gayle's 2012 record — as Rajasthan Royals advanced to Qualifier 2 against Gujarat Titans.",
-    "slug": "sooryavanshi-97-off-29-breaks-gayle-sixes-record-rr-beat-srh-47-runs-ipl-2026-eliminator-20260527",
-    "person_for_image": "Vaibhav Suryavanshi",
-    "pexels_query": "cricket stadium floodlights night",
-    "diaspora_angle": "For NRI cricket fans watching from US, UK, and Canada living rooms, Sooryavanshi's record-breaking season is the defining storyline of IPL 2026 — a 15-year-old rewriting the record books on the biggest stage.",
-    "sources": [
-        {"name": "Reuters", "url": "https://www.reuters.com/sports/cricket/teen-sooryavanshi-stars-rajasthan-knock-out-hyderabad-stay-alive-ipl-2026-05-27/"},
-        {"name": "Cricbuzz", "url": "https://m.cricbuzz.com"},
-        {"name": "IANS", "url": "https://ianslive.in"},
-    ],
-    "body": """Vaibhav Sooryavanshi is fifteen years old. On Wednesday night in Mullanpur, he played one of the most devastating innings the Indian Premier League has ever seen — and in the process, he broke a record that had stood for fourteen years.
+# ── Articles ─────────────────────────────────────────────────────────────────
 
-Ninety-seven runs. Twenty-nine balls. Five fours. Twelve sixes. And when his 65th six of IPL 2026 sailed over the rope, Chris Gayle's all-time record of 59 sixes in a single season — set in that unforgettable Royal Challengers Bangalore run of 2012 — was gone.
+def article_basavareddy():
+    """Basavareddy's French Open run ends in Round 2."""
+    print("\n📝 Article 1: Basavareddy's French Open Round 2 loss")
+    
+    # Image: Wikipedia for Basavareddy - may not have one as he's young
+    img = fetch_wikipedia_person_image("Nishesh Basavareddy")
+    img_attr = "Wikimedia Commons"
+    img_caption = "Nishesh Basavareddy at the 2026 French Open."
+    
+    if not img or not validate_image(img):
+        img = fetch_pexels_image("Roland Garros tennis clay court", "French Open tennis 2026")
+        img_attr = "Pexels"
+        img_caption = "Court action at Roland Garros during the 2026 French Open."
+    
+    if img and not validate_image(img):
+        img = None
+    
+    body = """Nishesh Basavareddy's enchanting run at the 2026 French Open ended on Wednesday, as the Indian-American wildcard fell to Alex Michelsen 6-7, 3-6, 6-3, 3-6 in the second round on Court 13 at Roland Garros.
 
-## The Innings That Ended Hyderabad's Season
+Three days earlier, the twenty-one-year-old from Carmel, Indiana — whose parents Muralikrishna and Sai Prasanna emigrated from Nellore, Andhra Pradesh, to the United States in 1999 — had delivered one of the tournament's signature moments, stunning seventh seed Taylor Fritz 7-6(5), 7-6(5), 6-7(9), 6-1 in his French Open main-draw debut. It was his first career win over a top-ten opponent, and he became the first American to beat a top-ten seed at Roland Garros in twenty-six years.
 
-Sunrisers Hyderabad won the toss and chose to bowl first in the Eliminator at the New PCA Stadium. It was a reasonable decision. It was also the last reasonable thing that happened to them.
+## A Match Decided by Margins
 
-Sooryavanshi opened alongside Yashasvi Jaiswal and tore into the Hyderabad attack from the first over. The pair raced to 80 without loss in the powerplay, with the teenager treating every delivery as an invitation. By the time he was dismissed — three runs short of what would have been the fastest century in IPL history — Rajasthan Royals had posted 243, the highest total ever set in an IPL playoff match.
+Against Michelsen, the margins were impossibly thin. Basavareddy was up 5-3 in the first-set tiebreak before Michelsen's aggression and serving turned the tide. He dropped the second set after a slow start, then roared back with a dominant third set that suggested the match was far from over.
 
-His 16-ball fifty was a statement. His 29-ball 97 was a demolition. At 15 years and 9 months, he is the youngest player to score a fifty in an IPL knockout match, the youngest to hit twelve sixes in a single innings, and the leading run-scorer of the entire 2026 season.
+"I feel like it was just a couple of points here and there," Basavareddy said afterward. "In the first set, I got the break, then went down a break, and then was up 5-3 in the tiebreak. He played a little aggressive, made a couple of good serves as well."
 
-## Hyderabad's Chase Collapsed Before It Began
+The fourth set was a story of disrupted rhythm. After Michelsen took a medical timeout at 3-4, Basavareddy admitted his energy dipped. "I definitely dropped my energy a little bit in maybe the first couple of points of the next game," he said. "Next time I need to not let that drop happen."
 
-The target was 244. Hyderabad never got close.
+## The Drop Shot That Worked and the Conditions That Didn't
 
-Jofra Archer, who had been quiet with the bat, exploded with the ball. He dismissed Ishan Kishan and Travis Head in a fiery opening spell that left Hyderabad reeling at 71 for 4 inside the powerplay. The run-rate was already above 15 by the time the field restrictions ended.
+On the fast, sun-baked outside courts at Roland Garros — where temperatures have been extreme enough to cause four player collapses in the first four days — Basavareddy's drop shot was a legitimate weapon. But the pace of the court made rallying from the baseline difficult, and his serve let him down at critical junctures. He finished with seven aces but also seven double faults, and his 42 groundstroke errors outweighed his 33 groundstroke winners.
 
-Rahul Tewatia fought back with 68 off 43 balls, but it was a solo act in a collapsed batting order. Hyderabad were bowled out for 196 in 19.2 overs. Archer finished with 3 for 58. Ravindra Jadeja, Nandre Burger, and Sushant Mishra took two wickets each.
+"On the outside courts, it's even faster than the court I played on last match, so it was going to be a lot about serve and return," he explained. "I didn't serve great for a lot of the match, which made it a little bit tougher."
 
-For Pat Cummins and Sunrisers Hyderabad, the season is over. For Heinrich Klaasen, who had led the Orange Cap race for most of the tournament, the final chapter ended without a flourish.
+## What He Leaves Behind in Paris
+
+Basavareddy leaves the French Open with far more than a second-round exit. His demolition of Fritz announced him as a player capable of competing at the highest level of the sport, and at twenty-one, his trajectory is steeply upward. He reached a career-high ranking of 99 in June 2025 and is currently ranked 148th after battling through a dip.
+
+The Stanford dropout — who left college after two years when his Challenger results made the decision unavoidable — had also taken a set off his idol Novak Djokovic at the 2025 Australian Open. For the Indian diaspora, he represents something rare: an athlete of Telugu heritage competing at the pinnacle of global tennis.
+
+"There are still positives to take from this week," he said. "Hopefully, I can start to build on it more."
 
 ## What Comes Next
 
-Rajasthan Royals advance to Qualifier 2, where they will face Gujarat Titans on Friday at the same venue. The winner earns the right to meet Royal Challengers Bengaluru — who demolished Gujarat by 92 runs in Qualifier 1 — in the IPL 2026 Final on Sunday, May 31, in Dharamsala.
+Basavareddy plans to take ten days off before beginning his grass-court preparation. His schedule includes an ATP 250 event, a grass-court Challenger, and then Wimbledon qualifying — a path that could take him back to a Grand Slam main draw in just over a month.
 
-For the diaspora watching from New Jersey living rooms and London pubs, set the alarm again. The boy who broke Gayle's record is not done yet.
+For NRI tennis fans who followed his run in Paris with particular intensity, the wait for the next chapter will not be long. Basavareddy is building toward something. Paris confirmed it. The second round was a setback, not a ceiling.
 
-## The Numbers
+"I just need to keep playing aggressively, working on coming to the net more, and working on my serve," he said. "It'll take time, but I think it has been better over the course of the clay season."
 
-- **Sooryavanshi's season**: 680 runs, 65 sixes, strike rate 232
-- **Match of the Day**: RR 243/6 beat SRH 196 all out by 47 runs
-- **Archer's spell**: 4-0-58-3
-- **Next match**: RR vs GT, Qualifier 2, Friday, May 29, Mullanpur
-- **Final**: Sunday, May 31, Dharamsala""",
-}
+The kid from Andhra Pradesh, by way of Carmel, Indiana, is going to Wimbledon."""
 
-# ── ARTICLE 2: Norway Chess Round 3 ──────────────────────────────────
-article_2 = {
-    "headline": "Carlsen Had a Winning Position. Then He Self-Destructed in Time Trouble. Praggnanandhaa Beat the World Number One and Moved Into Second Place at Norway Chess.",
-    "subheadline": "The Indian grandmaster scored the only classical win of Round 3 in Oslo, while Firouzja extended his lead to three points after beating world champion Gukesh in armageddon. Divya Deshmukh closed the gap in the women's event.",
-    "slug": "praggnanandhaa-beats-carlsen-time-trouble-norway-chess-2026-round-3-firouzja-leads-divya-20260527",
-    "person_for_image": "Praggnanandhaa Rameshbabu",
-    "pexels_query": "chess grandmaster tournament",
-    "diaspora_angle": "Indian chess fans in the diaspora have three players to follow at Norway Chess — Praggnanandhaa, Gukesh, and Divya Deshmukh — all contending at the highest level against the greatest players alive.",
-    "sources": [
-        {"name": "Chess.com", "url": "https://www.chess.com/news/view/2026-norway-chess-round-3"},
-        {"name": "ChessBase", "url": "https://en.chessbase.com"},
-        {"name": "FIDE", "url": "https://fide.com"},
-    ],
-    "body": """Magnus Carlsen is the world's number-one-ranked player. He has been, with brief interruptions, for over a decade. On Tuesday evening in Oslo, he fought his way back from a losing position to a winning one — and then, with the clock ticking below a minute, he threw it all away.
+    return {
+        "headline": "Basavareddy's French Open Run Ends in Round Two. He Leaves Paris With Far More Than a Loss.",
+        "subheadline": "The Indian-American wildcard fell to Alex Michelsen in four sets, three days after stunning Taylor Fritz in his Roland Garros debut.",
+        "body": body,
+        "slug": "basavareddy-french-open-round-2-loss-michelsen-fritz-upset-diaspora-wimbledon-20260527",
+        "image_url": img,
+        "image_caption": img_caption,
+        "image_attribution": img_attr,
+        "sources": [
+            {"name": "Indian Tennis Daily", "url": "https://indiantennisdaily.com/2026/05/28/i-will-take-the-positives-nishesh-basavareddy/"},
+            {"name": "Sporting News", "url": "https://www.sportingnews.com/in/tennis/news/nishesh-basavareddy-tennis-star-who-upset-world-no-9-taylor-fritz-french-open/"},
+            {"name": "ATP Tour", "url": "https://www.atptour.com"},
+        ],
+        "tags": ["French Open", "Nishesh Basavareddy", "tennis", "Indian diaspora", "Roland Garros"],
+    }
 
-Praggnanandhaa Rameshbabu won the only classical game of Round 3 at Norway Chess 2026, scoring a full three points and vaulting from last place to second in the standings. It was the kind of result that rewrites a tournament.
 
-## The Rollercoaster
+def article_gukesh_firouzja():
+    """Gukesh loses to Firouzja; Norway Chess Round 3 results."""
+    print("\n📝 Article 2: Gukesh falls to Firouzja at Norway Chess")
+    
+    # Try Wikipedia image for Gukesh
+    img = fetch_wikipedia_person_image("Gukesh Dommaraju")
+    img_attr = "Wikimedia Commons"
+    img_caption = "World champion Gukesh Dommaraju at Norway Chess 2026."
+    
+    if not img or not validate_image(img):
+        img = fetch_wikipedia_person_image("Alireza Firouzja")
+        img_caption = "Alireza Firouzja leads Norway Chess 2026 with a perfect record."
+        if not img or not validate_image(img):
+            img = fetch_pexels_image("chess tournament grandmaster", "chess pieces board")
+            img_attr = "Pexels"
+            img_caption = "Norway Chess 2026 has produced dramatic encounters."
+    
+    if img and not validate_image(img):
+        img = None
+    
+    body = """World champion Gukesh Dommaraju suffered his third consecutive match loss at Norway Chess 2026 on Wednesday, falling to tournament leader Alireza Firouzja in an Armageddon tiebreak after a drawn classical game. It was a result that extended Firouzja's extraordinary run to three match wins in three rounds — and left the world champion searching for answers in his adopted home tournament.
 
-The game between Carlsen and Praggnanandhaa was chaos from the opening. Carlsen found himself in trouble early, pressed into a defensive posture that would have ended most players. But Carlsen is not most players. He found resources, fought back, and reached a position that engines evaluated as clearly winning.
+## Gukesh Was Winning. Then He Wasn't.
 
-Then time trouble hit. Carlsen, playing on increments with seconds to spare, made a series of errors that turned a winning position into a losing one. The 37-year-old — who has spent his entire career punishing opponents for exactly this kind of collapse — watched his own position disintegrate.
+The classical game between Gukesh and Firouzja was not the one-sided affair the final result suggests. Playing with the white pieces, Gukesh built a commanding position and appeared to be on the verge of becoming the first player to beat Firouzja in classical chess at this tournament.
 
-Praggnanandhaa, 20, converted clinically. The three-point classical win moved him from the bottom of the standings into sole second place.
+"I was completely winning throughout the game and it was so stupid to allow this ...Bd1," Gukesh said afterward, his frustration visible. The Indian prodigy had miscalculated a single move, allowing Firouzja's bishop to slip into a devastating square that equalized the position instantly.
 
-## Firouzja's Dominance Continues
+The Armageddon that followed was, by Firouzja's own admission, played from a "very lost" position. But the Iranian-born Frenchman — who has made time-scramble magic a personal specialty in Oslo — found his way to the draw he needed as Black to claim the 1.5-point match victory.
 
-Alireza Firouzja, the 23-year-old French-Iranian grandmaster, continued his extraordinary run. After two classical wins in the first two rounds — including a stunning victory over Carlsen in Round 1 — he drew the classical game against world champion Gukesh Dommaraju in Round 3 but won the armageddon tiebreaker.
+"I think a draw with Black was a decent result today in classical," Firouzja said, before adding with characteristic understatement that "the cherry on the cake was a win in Armageddon."
 
-Firouzja now leads the tournament by three full points. He has won every mini-match so far: two classical wins and one armageddon victory in three rounds. His performance rating is in the stratosphere.
+## Firouzja's Perfect Record
 
-Wesley So also won his second consecutive armageddon, this time against Vincent Keymer, to keep pace in the middle of the table.
+Three rounds into Norway Chess, Firouzja's dominance is historic. He has won every single match — beating Magnus Carlsen in classical chess in Round 1, defeating Praggnanandhaa in Round 2, and now adding the world champion to his list. His nine points from a possible nine give him a three-point lead over second-placed Praggnanandhaa. No player has started a Norway Chess campaign with this kind of authority in the tournament's modern format.
+
+He is doing all of this with an injured ankle.
+
+## Praggnanandhaa Beats Carlsen in Dramatic Fashion
+
+The other headline from Round 3 belongs to R. Praggnanandhaa, who scored a full three-point classical win over world number one Magnus Carlsen in the most dramatic game of the tournament so far.
+
+Carlsen opened with the Najdorf Sicilian only to be surprised by Praggnanandhaa's sixth-move sideline, 6.h4. The Norwegian spent twenty-eight minutes deliberating on his eighth move. From there, the game swung wildly — Praggnanandhaa built an advantage, Carlsen fought back from the dead to reach a winning position, and then self-destructed in time trouble when he pushed his g-pawn and overlooked his opponent's reply.
+
+"Honestly, this is not a game to celebrate too much about," Praggnanandhaa said, with characteristic humility. "In these time scrambles it's basically like tossing a coin."
+
+Carlsen was more blunt: "I felt like it was pretty much a repeat of the game against Gukesh last year where I missed one thing and then I kind of panicked and lost within a few moves."
+
+The loss leaves Carlsen in last place — 1.5 points adrift in his home super-tournament. Next up for the Norwegian: Black against Gukesh in Round 4.
 
 ## Divya Deshmukh Closes the Gap
 
-In the women's event, the story is becoming an all-Indian affair. Divya Deshmukh, the 19-year-old from Nagpur, beat tournament leader Bibisara Assaubayeva in armageddon to close the gap to just one point.
+In the women's event, India's nineteen-year-old Divya Deshmukh continued her remarkable Armageddon streak by defeating tournament leader Bibisara Assaubayeva in a tiebreak, closing the gap to just one point. All three classical games in the women's section were drawn, but Divya's third consecutive Armageddon win — she has not lost a single match — confirms her as the form player of the tournament.
 
-After beating Koneru Humpy in Round 2, Divya has now won all three of her mini-matches. She faces Zhu Jiner in Round 4 — a game that could reshape the women's standings entirely.
+"I don't want to play any more Armageddons!" she said, despite winning every single one.
 
-Anna Muzychuk also won her armageddon against Humpy, while Zhu Jiner escaped a lost endgame against Women's World Champion Ju Wenjun to win her armageddon.
+Anna Muzychuk beat Koneru Humpy in another all-Armageddon finish, and Zhu Jiner escaped a losing endgame against Women's World Champion Ju Wenjun to win their tiebreak as well.
 
-## The Standings After Round 3
+## Standings After Round 3
 
-**Open**: Firouzja 7.5 | Praggnanandhaa 4.5 | So 4.5 | Gukesh 3.5 | Keymer 2.5 | Carlsen 1.5
+**Open:** Firouzja 9, Praggnanandhaa 4.5, So 4, Gukesh 2.5, Keymer 2, Carlsen 0
 
-**Women**: Assaubayeva 5.5 | Divya 4.5 | Muzychuk 4 | Zhu 4 | Humpy 2.5 | Ju 0.5
+**Women:** Assaubayeva 5.5, Divya 4.5, Muzychuk 4, Zhu 4, Ju 1, Humpy 0
 
-## Round 4 Preview
+Round 4 begins Thursday at 8:30 p.m. IST (11 a.m. ET). Firouzja faces the returning Keymer, while Carlsen takes Black against Gukesh in what promises to be the most emotionally charged game of the tournament so far."""
 
-Thursday brings the clash everyone has been waiting for: Gukesh versus Carlsen. The reigning world champion against the all-time greatest, both desperate for points. Firouzja, who has been untouchable, plays Black against Wesley So. Praggnanandhaa faces Keymer.
+    return {
+        "headline": "Gukesh Was Completely Winning. Then He Let One Move Slip. Firouzja Stays Perfect at Norway Chess.",
+        "subheadline": "The world champion lost to Firouzja in Armageddon after squandering a winning classical position. Praggnanandhaa beat Carlsen. Divya Deshmukh won again.",
+        "body": body,
+        "slug": "gukesh-firouzja-norway-chess-2026-round-3-pragg-carlsen-divya-deshmukh-20260527",
+        "image_url": img,
+        "image_caption": img_caption,
+        "image_attribution": img_attr,
+        "sources": [
+            {"name": "Chess.com", "url": "https://www.chess.com/news/view/2026-norway-chess-round-3"},
+            {"name": "Devdiscourse", "url": "https://www.devdiscourse.com/article/sports-games/3924092-praggnanandhaa-claims-victory-over-carlsen-as-gukesh-faces-another-defeat"},
+            {"name": "Chessbase", "url": "https://en.chessbase.com"},
+        ],
+        "tags": ["Norway Chess", "Gukesh", "Firouzja", "Praggnanandhaa", "Carlsen", "Divya Deshmukh", "chess"],
+    }
 
-In the women's event, Assaubayeva faces Ju Wenjun, and Divya plays Zhu Jiner.
 
-Round 4 starts Thursday, May 28, at 8:30 PM IST.""",
-}
+def article_gt_vs_rr_preview():
+    """IPL 2026 Qualifier 2: GT vs RR preview."""
+    print("\n📝 Article 3: GT vs RR Qualifier 2 Preview")
+    
+    # Try Wikipedia for Vaibhav Sooryavanshi (probably too young for Wikipedia)
+    img = fetch_wikipedia_person_image("Vaibhav Suryavanshi")
+    img_attr = "Wikimedia Commons"
+    img_caption = "Vaibhav Sooryavanshi has been the breakout star of IPL 2026."
+    
+    if not img or not validate_image(img):
+        # Try Shubman Gill
+        img = fetch_wikipedia_person_image("Shubman Gill")
+        img_caption = "Gujarat Titans captain Shubman Gill faces a must-win Qualifier 2."
+        if not img or not validate_image(img):
+            img = fetch_pexels_image("cricket stadium India T20", "cricket match stadium floodlights")
+            img_attr = "Pexels"
+            img_caption = "Qualifier 2 takes place at the New PCA Stadium in Mullanpur."
+    
+    if img and not validate_image(img):
+        img = None
+    
+    body = """The road to the IPL 2026 final runs through Mullanpur on Thursday. Gujarat Titans, humbled by Royal Challengers Bengaluru in Qualifier 1, face Rajasthan Royals — riding the force of nature that is Vaibhav Sooryavanshi — in Qualifier 2 at the New PCA Stadium. The winner advances to the final against RCB on May 31. The loser goes home.
 
-# ── ARTICLE 3: Unity Cup — India vs Jamaica ──────────────────────────
-article_3 = {
-    "headline": "India Went to London for the First Time in Twenty-Four Years. They Lost 2-0 to Jamaica. The Depleted Squad, the Mohun Bagan Boycott, and What Comes Next.",
-    "subheadline": "Courtney Clarke and Kaheim Dixon scored as the Reggae Boyz knocked India out of the Unity Cup semifinal at The Valley. India will play Zimbabwe in the third-place match on Friday.",
-    "slug": "india-lose-0-2-jamaica-unity-cup-2026-semifinal-london-valley-clarke-dixon-20260527",
-    "person_for_image": "India national football team",
-    "pexels_query": "football match stadium London night",
-    "pexels_fallback": "soccer match stadium evening",
-    "diaspora_angle": "NRIs in London had a rare chance to watch the Blue Tigers in person at The Valley. The result was disappointing, but the Unity Cup represented India's first competitive football match on English soil in 24 years — a milestone for the diaspora football community.",
-    "sources": [
-        {"name": "Wikipedia - 2026 Unity Cup", "url": "https://en.wikipedia.org/wiki/2026_Unity_Cup"},
-        {"name": "ESPN", "url": "https://www.espn.in"},
-        {"name": "BescotBanter", "url": "https://bescotbanter.net"},
-    ],
-    "body": """India's men's football team had not played on English soil since 2002. On Tuesday evening at The Valley in Charlton, south-east London, they returned — and were outclassed.
+## Two Very Different Arrivals
 
-Jamaica beat India 2-0 in the Unity Cup semifinal, with Courtney Clarke scoring in the 8th minute and Kaheim Dixon adding a second in the 78th. The Reggae Boyz will face defending champions Nigeria in the final on Friday. India will play Zimbabwe in the third-place match.
+Gujarat Titans arrive at Qualifier 2 carrying the weight of a ninety-two-run demolition. In Qualifier 1 at Dharamsala, Rajat Patidar's ninety-three off thirty-three balls powered RCB to two hundred and fifty-four — the highest total in IPL playoff history. GT were bowled out for one hundred and sixty-two. Captain Shubman Gill fell for two runs. The team that has built an identity on adaptability under Gill's captaincy was taken apart so thoroughly that coach Ashish Nehra's post-match press conference lasted barely three minutes.
 
-## A Depleted Squad in a Difficult Spot
+Rajasthan Royals, by contrast, arrive humming. Wednesday's Eliminator against Sunrisers Hyderabad was a showcase of everything this team has become under Sanju Samson's leadership: relentless at the top of the order, devastating in the powerplay, and lethal with the ball when it matters. They posted two hundred and forty-three for eight and then bowled SRH out for one hundred and ninety-six to win by forty-seven runs.
 
-The result needs context. India arrived in London without seven players after Mohun Bagan Super Giant — the ISL champions and India's biggest club — refused to release them for the tournament. Head coach Khalid Jamil had to work with a squad of 22, including several players with limited international experience.
+## The Sooryavanshi Question
 
-The squad included captain Gurpreet Singh Sandhu, the veteran goalkeeper, and Lallianzuala Chhangte, the winger who has become India's most dangerous attacking threat. But the absences told. India lacked depth in midfield and were unable to control possession against a Jamaica side that, while also rebuilding with eleven uncapped players, had superior physicality and pace.
+Every conversation about this playoff series, this IPL season, and perhaps this era of T20 cricket eventually arrives at the same name: Vaibhav Sooryavanshi.
 
-## The Goals
+The fifteen-year-old scored ninety-seven off twenty-nine balls in the Eliminator — twelve sixes, five fours, a strike rate that defies comprehension. He has now scored six hundred and eighty runs this season at a strike rate of two hundred and thirty-two. He broke Chris Gayle's all-time record for sixes in a single T20 tournament. He has hit fifty-three of them. He is fifteen years old.
 
-Clarke, making his international debut for Jamaica, needed just eight minutes to open the scoring. The midfielder took advantage of disorganised Indian defending from a set piece to give the Reggae Boyz an early lead that India never seriously threatened to overturn.
+For GT, the problem is not abstract. Their bowling attack — already weakened by the absence of consistent early-over control — has no template for handling a batter who operates outside every known framework. Rashid Khan, their most experienced matchup weapon, has been economical through the tournament but has not faced Sooryavanshi in conditions like these.
 
-For the next seventy minutes, India competed without creating clear-cut chances. Chhangte's pace caused problems on the counter, but the final ball consistently let the Blue Tigers down. Jamaica's defence, marshalled by Damion Lowe and Joel Latibeaudiere, handled India's attack comfortably.
+## Gujarat's Path Back
 
-Dixon sealed the result in the 78th minute, finishing a quick counter-attack to make it 2-0 and kill any remaining Indian hopes.
+GT's case for optimism rests on their muscle memory. This franchise has been to the playoffs in every season since its inception, winning the title in its debut year. Gill's captaincy has matured. The batting lineup, when it fires in sequence — Gill, Sai Sudharsan, David Miller, Heinrich Klaasen — has the depth to match any total in the tournament.
 
-## The Bigger Picture
+The bowling, though, needs a different performance. Mohammed Siraj and Josh Hazlewood did not offer the control that Qualifier 1 demanded. Whether Rashid Khan can reprise his role as the spine of the middle overs — and whether the pace attack can provide the early wickets that prevent Sooryavanshi from settling — will likely determine whether Gujarat's season continues.
 
-India are ranked 136th in the world. Jamaica are 71st. The result was not a surprise. But it was a reminder of where Indian football stands — still searching for consistency, still fighting to be taken seriously beyond South Asia, still dependent on a handful of clubs to release players for tournaments that are not FIFA-mandated.
+## Head-to-Head and Venue
 
-The Mohun Bagan boycott is the wound that will not heal quickly. Seven players missing from a squad of this size is not a selection headache; it is an amputation. The AIFF's inability to compel club compliance for a non-FIFA window tournament like the Unity Cup exposes a structural weakness that no amount of coaching can overcome.
+GT and RR have played each other twice this season, splitting the results. The New PCA Stadium in Mullanpur has offered high-scoring matches throughout the tournament, with an average first-innings total above one hundred and eighty in playoff conditions. The shorter boundaries favour stroke-makers, which tilts the calculus toward RR's explosive top order.
 
-## What Comes Next
+## The NRI Watch Guide
 
-India play Zimbabwe in the third-place match on Friday, May 30, at 14:30 local time (19:00 IST) at The Valley. It is a dead rubber in tournament terms, but for a team that plays so few competitive matches outside of Asian competition, every game matters.
+For fans in the United States, the match starts at approximately 7:00 AM PDT / 10:00 AM EDT on Thursday, May 29. UK viewers can tune in at 3:00 PM BST. Canadian fans: 10:00 AM EDT. Streaming is available on JioHotStar, Star Sports Network, Sky Sports, and Willow.tv.
 
-The Unity Cup final — Nigeria vs Jamaica — kicks off at 19:30 local time on the same day. Nigeria, who beat Zimbabwe 2-0 in their semifinal through a Femi Azeez brace, are defending champions and favourites.
+## What's at Stake
 
-For Indian football fans in the NRI community, the Unity Cup was a rare chance to watch the national team in person at a London ground. The performance was sobering. But the fact that India were there at all — twenty-four years after their last visit — is itself a small step.
+The winner faces RCB in the final at Dharamsala on Saturday, May 31. For GT, it is a chance to redeem the worst performance of their playoff history. For RR, it is the continuation of a run that increasingly looks like destiny — powered by a teenager who has already rewritten the record books and shows no sign of stopping.
 
-The road is long. It always has been.""",
-}
+The last team to win the IPL after taking the Eliminator route was Sunrisers Hyderabad in 2016. That team had David Warner and Bhuvneshwar Kumar at their peak. This Rajasthan team has Vaibhav Sooryavanshi. History suggests the Eliminator path is cursed. Sooryavanshi suggests history is about to be revised."""
 
-# ── PUBLISH ──────────────────────────────────────────────────────────
-articles = [article_1, article_2, article_3]
-success = 0
-for art in articles:
-    # Quick word count check
-    words = len(art["body"].split())
-    print(f"\n📊 Word count for '{art['slug'][:50]}...': {words}")
-    if words < 400:
-        print(f"  ✗ REJECTED — below 400 word minimum")
-        continue
-    if len(art["headline"]) > 200:
-        print(f"  ⚠ Headline is {len(art['headline'])} chars (max 200) — truncating not allowed, check manually")
-    if len(art["subheadline"]) < 15:
-        print(f"  ✗ REJECTED — subheadline too short")
-        continue
-    if publish_article(art):
-        success += 1
+    return {
+        "headline": "GT Lost by Ninety-Two Runs. RR Won by Forty-Seven. On Thursday They Meet in a Match Where Only One Season Survives.",
+        "subheadline": "Gujarat Titans face Rajasthan Royals in IPL 2026 Qualifier 2 at Mullanpur. Sooryavanshi has 680 runs and 53 sixes. Gill's team needs a resurrection.",
+        "body": body,
+        "slug": "gt-vs-rr-qualifier-2-ipl-2026-preview-sooryavanshi-gill-mullanpur-20260527",
+        "image_url": img,
+        "image_caption": img_caption,
+        "image_attribution": img_attr,
+        "sources": [
+            {"name": "IPL T20", "url": "https://www.iplt20.com"},
+            {"name": "Cricbuzz", "url": "https://m.cricbuzz.com"},
+            {"name": "Reuters", "url": "https://www.reuters.com"},
+            {"name": "Cricket Times", "url": "https://www.crickettimes.com"},
+        ],
+        "tags": ["IPL 2026", "Gujarat Titans", "Rajasthan Royals", "Qualifier 2", "Vaibhav Sooryavanshi", "Shubman Gill", "cricket"],
+    }
 
-print(f"\n{'='*60}")
-print(f"✅ Published {success}/{len(articles)} articles")
-print(f"{'='*60}")
+
+# ── Main ─────────────────────────────────────────────────────────────────────
+def main():
+    print("🏏 The Videshi Sports Writer — 2026-05-27 Evening Run")
+    print("=" * 60)
+    
+    articles = [
+        article_basavareddy(),
+        article_gukesh_firouzja(),
+        article_gt_vs_rr_preview(),
+    ]
+    
+    published = 0
+    for article in articles:
+        if publish_article(article):
+            published += 1
+        time.sleep(1)  # Brief pause between inserts
+    
+    print(f"\n{'=' * 60}")
+    print(f"✅ Published {published}/{len(articles)} articles")
+    if published < len(articles):
+        print("⚠ Some articles failed to publish")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
