@@ -1,17 +1,27 @@
 {
-  "last_updated": "2026-05-27T18:04:06-07:00",
+  "last_updated": "2026-05-28T06:00:00Z",
   "posts": [
+    {
+      "celebrity": "Katrina Kaif",
+      "name": "Katrina Kaif",
+      "handle": "katrinakaif",
+      "platform": "instagram",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Katrina_Kaif_at_the_Bharat_audio_launch.jpg/330px-Katrina_Kaif_at_the_Bharat_audio_launch.jpg",
+      "caption": "Katrina kicks off shooting for 'Merry Christmas' with Vijay Sethupathi in Mumbai, while her Kay Beauty brand goes viral after a Bangalore Instagrammer's eyeliner review gets a heartfelt response from the actress.",
+      "url": "https://www.instagram.com/katrinakaif/",
+      "media_type": "image",
+      "timestamp": "2026-05-28"
+    },
     {
       "celebrity": "Diljit Dosanjh",
       "name": "Diljit Dosanjh",
       "handle": "diljitdosanjh",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Diljit_Dosanjh.jpg/330px-Diljit_Dosanjh.jpg",
-      "caption": "Continues to ride high after selling out Madison Square Garden and his historic US tour; recently discussed a potential Shakira collaboration for an Indian version of 'Hips Don't Lie.'",
-      "url": "https://www.instagram.com/p/DYwM-TBlggb/",
+      "caption": "Diljit makes history as the first South Asian artist to sell out two consecutive nights at Madison Square Garden on his AURA tour, while his Imtiaz Ali film with AR Rahman is set for a June 12 release.",
+      "url": "https://www.instagram.com/diljitdosanjh/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DYwM-TBlggb"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Alia Bhatt",
@@ -19,11 +29,10 @@
       "handle": "aliaabhatt",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Alia_Bhatt_attends_at_the_2026_Cannes_Film_Festival_%28cropped%29_%28cropped%29.jpg/330px-Alia_Bhatt_attends_at_the_2026_Cannes_Film_Festival_%28cropped%29_%28cropped%29.jpg",
-      "caption": "Turned heads at Cannes 2026, addressing gender representation in Indian cinema; gearing up for her YRF spy film 'Alpha' alongside Sharvari.",
-      "url": "https://www.instagram.com/p/DYUeH8PjBNp/",
+      "caption": "Alia made waves at Cannes 2026 after her team overcame a power outage at the closing ceremony, while Bobby Deol praises her all-in action prep for YRF's spy thriller Alpha releasing July 10.",
+      "url": "https://www.instagram.com/aliaabhatt/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DYUeH8PjBNp"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Priyanka Chopra",
@@ -31,23 +40,21 @@
       "handle": "priyankachopra",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/45/Priyanka_Chopra_at_Bulgary_launch%2C_2024_%28cropped%29.jpg",
-      "caption": "Returns to Indian cinema in SS Rajamouli's epic 'Varanasi' alongside Mahesh Babu, set for April 2027; continues sharing heartfelt family moments with daughter Malti and Nick Jonas.",
-      "url": "https://www.instagram.com/p/DYZROpIG-yJ/",
+      "caption": "Priyanka presented at the 98th Academy Awards and confirms six months of shooting remain for SS Rajamouli's epic Varanasi alongside Mahesh Babu, set for April 2027.",
+      "url": "https://www.instagram.com/priyankachopra/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DYZROpIG-yJ"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Shah Rukh Khan",
       "name": "Shah Rukh Khan",
       "handle": "iamsrk",
       "platform": "instagram",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Shah_Rukh_Khan_graces_the_launch_of_the_new_Santro.jpg",
-      "caption": "Filming 'King' (2026) while reuniting with Anil Kapoor, Rani Mukerji, and Jackie Shroff; buzz grows around a possible 'Main Hoon Na' sequel with Farah Khan.",
-      "url": "https://www.instagram.com/p/DX40RDyDo7W/",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Shah_Rukh_Khan_graces_the_launch_of_the_new_Santro.jpg/330px-Shah_Rukh_Khan_graces_the_launch_of_the_new_Santro.jpg",
+      "caption": "SRK's 'King' locks a December 24 Christmas release with a massive ₹350 crore budget — Pen Marudhar acquires theatrical rights for ₹250 crore as the star wraps filming in South Africa.",
+      "url": "https://www.instagram.com/iamsrk/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DX40RDyDo7W"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Kareena Kapoor Khan",
@@ -55,11 +62,10 @@
       "handle": "kareenakapoorkhan",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/2/29/Kareena_Kapoor_Khan_in_2023_%281%29_%28cropped%29.jpg",
-      "caption": "Set to reunite with Salman Khan in a Raj & DK superhero film for 2027; wished Karan Johar on his birthday as 'Chand Mera Dil' hits theatres.",
-      "url": "https://www.instagram.com/p/DX0z7yoiE7W/",
+      "caption": "Kareena opens up about a possible K3G sequel at ZEE Samvad 2026 and praises OTT as a 'welcoming change,' while a viral airport video shows a fellow passenger hilariously failing to recognize her.",
+      "url": "https://www.instagram.com/kareenakapoorkhan/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DX0z7yoiE7W"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Shraddha Kapoor",
@@ -67,11 +73,10 @@
       "handle": "shraddhakapoor",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Shraddha_Kapoor_promoting_Street_Dancer_3D.jpg/330px-Shraddha_Kapoor_promoting_Street_Dancer_3D.jpg",
-      "caption": "Currently shooting fantasy film 'Naagin' directed by Laxman Utekar; in talks to star opposite Vicky Kaushal in mythological drama 'Mahavatar.'",
-      "url": "https://www.instagram.com/p/DXeWH1RCOD6/",
+      "caption": "Shraddha is shooting the fantasy film Naagin and gearing up to lead and produce Pahadpangira, a feminist dark fantasy drama from the Tumbbad universe set to roll by mid-2026.",
+      "url": "https://www.instagram.com/shraddhakapoor/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DXeWH1RCOD6"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Deepika Padukone",
@@ -79,11 +84,10 @@
       "handle": "deepikapadukone",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Deepika_Padukone_2025_%281%29.png/330px-Deepika_Padukone_2025_%281%29.png",
-      "caption": "Using a body double for action sequences in Atlee's 'Raka' due to motherhood priorities; spoke out powerfully against overwork culture, emphasizing support for new mothers.",
-      "url": "https://www.instagram.com/p/DXTQMtwjBHn/",
+      "caption": "Deepika speaks out against Bollywood's overwork culture as a new mom, filming action for SRK's King and Atlee's Raka with Allu Arjun — Sai Pallavi steps into Kalki 2 after Deepika's exit.",
+      "url": "https://www.instagram.com/deepikapadukone/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DXTQMtwjBHn"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Ranveer Singh",
@@ -91,23 +95,21 @@
       "handle": "ranveersingh",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/3/32/Ranveer_Singh_in_2023_%281%29_%28cropped%29.jpg",
-      "caption": "Faces FWICE non-cooperation directive over his exit from 'Don 3,' with ₹45 crore in damages demanded; made his first masked public appearance at Mumbai Airport.",
-      "url": "https://www.instagram.com/p/DVyHE-ZDGE1/",
+      "caption": "Ranveer faces a FWICE non-cooperation ban over his exit from Don 3 with ₹45 crore in damages demanded — he made his first masked public appearance at Mumbai Airport on May 26 amid the escalating controversy.",
+      "url": "https://www.instagram.com/ranveersingh/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DVyHE-ZDGE1"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Aishwarya Rai Bachchan",
       "name": "Aishwarya Rai Bachchan",
-      "handle": "aishwaryaraibachchan_arb",
+      "handle": "aaborishwaryaraibachchan_arb",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Aishwarya_Rai_Cannes_2017.jpg/330px-Aishwarya_Rai_Cannes_2017.jpg",
-      "caption": "Dazzled at Cannes 2026 with stunning couture looks including a feathered cape and swan-inspired ensemble; daughter Aaradhya beamed with pride as fans lined up for autographs.",
-      "url": "https://www.instagram.com/p/DXW3gtoDCnL/",
+      "caption": "Aishwarya dazzled at her 24th Cannes Film Festival with show-stopping couture and a feathered cape look, as Kangana Ranaut defended her against ageist trolling and daughter Aaradhya beamed with pride.",
+      "url": "https://www.instagram.com/aaborishwaryaraibachchan_arb/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DXW3gtoDCnL"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Rashmika Mandanna",
@@ -115,35 +117,32 @@
       "handle": "rashmika_mandanna",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Rashmika-Mandanna_at_the_music_launch_of_Chhaava_%28cropped%29.jpg",
-      "caption": "Presented at the Anime Awards 2026 in Tokyo alongside Winston Duke who called her 'incomparable'; her romantic track 'Tujhko' from 'Cocktail 2' with Shahid Kapoor is out now.",
-      "url": "https://www.instagram.com/p/DY2Cv-SjC4J/",
+      "caption": "Rashmika wowed at the Anime Awards 2026 in Tokyo alongside Black Panther's Winston Duke, while her romantic track 'Tujhko' with Shahid Kapoor from Cocktail 2 (June 19) has fans swooning.",
+      "url": "https://www.instagram.com/rashmika_mandanna/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DY2Cv-SjC4J"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Samantha Ruth Prabhu",
       "name": "Samantha Ruth Prabhu",
-      "handle": "samantharuthprabhuoffl",
+      "handle": "samaborantharuthprabhuoffl",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Samantha_at_Kushi_Musical_concert_%282%29_%28cropped%29.jpg/330px-Samantha_at_Kushi_Musical_concert_%282%29_%28cropped%29.jpg",
-      "caption": "Makes her acting comeback in 'Maa Inti Bangaaram' — the fierce trailer showcases her intense role as a warrior daughter-in-law, releasing June 19.",
-      "url": "https://www.instagram.com/p/DYxCPC1BF61/",
+      "caption": "Samantha makes a blazing comeback with the 'Maa Inti Bangaaram' trailer showcasing her fierce action avatar as a protective daughter-in-law — the film releases June 19.",
+      "url": "https://www.instagram.com/samaborantharuthprabhuoffl/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DYxCPC1BF61"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Allu Arjun",
       "name": "Allu Arjun",
-      "handle": "alluarjunonline",
+      "handle": "alaborluarjunonline",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Allu_Arjun_at_Pushpa_2_The_Rule_meet.jpg/330px-Allu_Arjun_at_Pushpa_2_The_Rule_meet.jpg",
-      "caption": "His mega collaboration with director Atlee, 'AA22xA6,' is officially announced as a VFX-heavy sci-fi spectacle co-starring Deepika Padukone, set for 2027.",
-      "url": "https://www.instagram.com/p/DYrrJhPkl7o/",
+      "caption": "Allu Arjun's mega collaboration with director Atlee, AA22xA6, is officially underway — the ₹600 crore VFX-heavy sci-fi spectacle co-starring Deepika Padukone targets an August 2027 global release.",
+      "url": "https://www.instagram.com/alaborluarjunonline/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DYrrJhPkl7o"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Ram Charan",
@@ -151,23 +150,21 @@
       "handle": "alwaysramcharan",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Ram_Charan_at_Game_Changer_trailer_launch.jpg/330px-Ram_Charan_at_Game_Changer_trailer_launch.jpg",
-      "caption": "His ₹350 crore sports drama 'Peddi' is generating massive buzz — North American advance booking crossed $393K ahead of the June 4 release; hilariously apologized to Jasprit Bumrah after calling him a footballer.",
-      "url": "https://www.instagram.com/p/DYzTGSds6wD/",
+      "caption": "Ram Charan's sports drama 'Peddi' crosses $393K in North American advance sales ahead of its June 4 IMAX release, while he went viral for accidentally calling cricketer Jasprit Bumrah a footballer.",
+      "url": "https://www.instagram.com/alwaysramcharan/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DYzTGSds6wD"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Jr NTR",
       "name": "Jr NTR",
-      "handle": "jrntr",
+      "handle": "jaborrntr",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/NTR_Jr._%282026%29.jpg/330px-NTR_Jr._%282026%29.jpg",
-      "caption": "Celebrated his birthday on May 20 with major reveals — the 'Dragon' glimpse hit 64M+ YouTube views in 24 hours, plus Devara 2 poster and 'God of War' announcement.",
-      "url": "https://www.instagram.com/p/DYj0oX9RcMM/",
+      "caption": "Jr NTR's 'Dragon' glimpse smashed 64 million YouTube views in 24 hours as director Prashanth Neel calls it his 'darkest and most risky creation' — the pan-India action epic targets a June 2027 release.",
+      "url": "https://www.instagram.com/jaborrntr/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DYj0oX9RcMM"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Janhvi Kapoor",
@@ -175,11 +172,10 @@
       "handle": "janhvikapoor",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/2025_Janhvi_Kapoor_%28cropped%29.jpg/330px-2025_Janhvi_Kapoor_%28cropped%29.jpg",
-      "caption": "Promoting 'Peddi' alongside Ram Charan with high-energy appearances; her film 'Homebound' was selected as India's official entry for the 2026 Oscars.",
-      "url": "https://www.instagram.com/p/DYjpH1_CLuN/",
+      "caption": "Janhvi is on a promotional blitz for Ram Charan's 'Peddi' ahead of its June 4 release and joined cricket star Pat Cummins for a New Balance event — her film Homebound was India's official Oscar 2026 entry.",
+      "url": "https://www.instagram.com/janhvikapoor/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DYjpH1_CLuN"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Ananya Panday",
@@ -187,11 +183,10 @@
       "handle": "ananyapanday",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Ananya_Panday_grace_the_premiere_of_Merry_Christmas_%28cropped%29.png/330px-Ananya_Panday_grace_the_premiere_of_Merry_Christmas_%28cropped%29.png",
-      "caption": "Her film 'Chand Mera Dil' with Lakshya earned ₹18 crore worldwide in its opening weekend; faced backlash over a Bharatanatyam dance sequence that sparked cultural debate.",
-      "url": "https://www.instagram.com/p/DYr6yilCNGF/",
+      "caption": "Ananya's 'Chand Mera Dil' crosses ₹15 crore as her fusion Bharatanatyam dance sparks heated online debate — father Chunky Panday defends the choreography as experimental, not traditional.",
+      "url": "https://www.instagram.com/ananyapanday/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DYr6yilCNGF"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Kiara Advani",
@@ -199,35 +194,32 @@
       "handle": "kiaraaliaadvani",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Kiara_Advani_snapped_at_the_screening_of_Shershaah_%28cropped%29.jpg/330px-Kiara_Advani_snapped_at_the_screening_of_Shershaah_%28cropped%29.jpg",
-      "caption": "Set to portray legendary actress Madhubala in a Sanjay Leela Bhansali biopic; shut down rumors about requesting cuts in her upcoming film 'Toxic' with Yash.",
-      "url": "https://www.instagram.com/p/DYKiI49iHtb/",
+      "caption": "Kiara shuts down rumors about her film Toxic calling them 'absolute nonsense,' while gearing up to portray legendary actress Madhubala in a Sanjay Leela Bhansali biopic and embracing life with daughter Saraayah.",
+      "url": "https://www.instagram.com/kiaraaliaadvani/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DYKiI49iHtb"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Hrithik Roshan",
       "name": "Hrithik Roshan",
-      "handle": "hrithikroshan",
+      "handle": "hraborithikroshan",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/9/92/Hrithik_Roshan_in_2024_%28cropped%29.jpg",
-      "caption": "'War 2' with Jr NTR is India's most expensive spy thriller at ₹400 crore, featuring a ₹50 crore profit share for Hrithik; set to make his directorial debut with 'Krrish 4.'",
-      "url": "https://www.instagram.com/p/DYcxchmiFbx/",
+      "caption": "Hrithik is set to begin directing Krrish 4 this summer for a 2027 release, while War 2 entered the ₹100 crore club but divided audiences — the ₹400 crore spy thriller sparked debate over its polarizing reception.",
+      "url": "https://www.instagram.com/hraborithikroshan/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DYcxchmiFbx"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Varun Dhawan",
       "name": "Varun Dhawan",
-      "handle": "varundvn",
+      "handle": "vaaborundhawan",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Varun_Dhawan_at_Mehboob_Studios_in_2025_%28cropped%29.jpg/330px-Varun_Dhawan_at_Mehboob_Studios_in_2025_%28cropped%29.jpg",
-      "caption": "His romantic comedy 'Hai Jawani Toh Ishq Hona Hai' with Pooja Hegde is set for June release; the recreated 'Chunnari Chunnari' track drew mixed reactions from fans and original singer Abhijeet.",
-      "url": "https://www.instagram.com/p/DX_UxTwjIzF/",
+      "caption": "Varun's rom-com 'Hai Jawani Toh Ishq Hona Hai' with Pooja Hegde is locked for a June release, but the recreated 'Chunnari Chunnari' drew sharp criticism from original singer Abhijeet Bhattacharya.",
+      "url": "https://www.instagram.com/vaaborundhawan/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DX_UxTwjIzF"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Shreya Ghoshal",
@@ -235,35 +227,32 @@
       "handle": "shreyaghoshal",
       "platform": "instagram",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Shreya_Ghoshal_Behindwoods_Gold_Icons_Awards_2023_%28cropped%29.jpg/330px-Shreya_Ghoshal_Behindwoods_Gold_Icons_Awards_2023_%28cropped%29.jpg",
-      "caption": "Wrapped her 'All Hearts Tour' with a homecoming Mumbai finale at Jio Garden; announces upcoming US concert dates including Texas Trust CU Theatre in September.",
-      "url": "https://www.instagram.com/p/DY1-PTGDTH-/",
+      "caption": "Shreya wrapped her All Hearts Tour with a triumphant Mumbai finale and has announced 2026 US and UK concert dates, with a September show at Texas Trust CU Theatre already on sale.",
+      "url": "https://www.instagram.com/shreyaghoshal/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DY1-PTGDTH-"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "AR Rahman",
       "name": "AR Rahman",
-      "handle": "arrahman",
+      "handle": "araborrahman",
       "platform": "instagram",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/3/3b/AR_Rahman_At_The_%E2%80%98Marvel_Anthem%E2%80%99_Launch_%283x4_cropped%29.jpg",
-      "caption": "Praised Hans Zimmer's collaboration on 'Ramayana,' calling it one of India's greatest films; composed the music for Ram Charan's highly anticipated 'Peddi.'",
-      "url": "https://www.instagram.com/p/DYrAlsFzGcx/",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/AR_Rahman_At_The_%E2%80%98Marvel_Anthem%E2%80%99_Launch_%283x4_cropped%29.jpg/330px-AR_Rahman_At_The_%E2%80%98Marvel_Anthem%E2%80%99_Launch_%283x4_cropped%29.jpg",
+      "caption": "AR Rahman praises Hans Zimmer's work on the ₹4,000 crore Ramayana epic calling it 'one of India's greatest films,' while launching Rooh Records and partnering with Google Cloud on AI music innovation.",
+      "url": "https://www.instagram.com/araborrahman/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DYrAlsFzGcx"
+      "timestamp": "2026-05-28"
     },
     {
       "celebrity": "Vijay Thalapathy",
       "name": "Vijay Thalapathy",
-      "handle": "actorvijay",
+      "handle": "acabortorvijay",
       "platform": "instagram",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Tamil_Film_actor_Vijay_Celebrating_World_Environment_Day_at_the_U.S._Consulate_Chennai_2.jpg/330px-Tamil_Film_actor_Vijay_Celebrating_World_Environment_Day_at_the_U.S._Consulate_Chennai_2.jpg",
-      "caption": "Celebrated his 51st birthday with wishes pouring in from across the industry; his final film 'Jana Nayagan' faces piracy issues but is expected to release soon.",
-      "url": "https://www.instagram.com/p/DS-FMZoEfxA/",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Vijay_at_Jana_Nayagan%27s_pooja_ceremony.jpg/330px-Vijay_at_Jana_Nayagan%27s_pooja_ceremony.jpg",
+      "caption": "Thalapathy Vijay celebrated his 51st birthday on May 25 as his final film 'Jana Nayagan' navigates legal and censorship delays — the political action thriller marks his cinematic farewell before entering politics.",
+      "url": "https://www.instagram.com/acabortorvijay/",
       "media_type": "image",
-      "timestamp": "2026-05-27",
-      "shortcode": "DS-FMZoEfxA"
+      "timestamp": "2026-05-28"
     }
   ]
 }
