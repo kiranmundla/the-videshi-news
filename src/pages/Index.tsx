@@ -5,7 +5,7 @@ import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
 import DiasporaPhotoStrip from "@/components/DiasporaPhotoStrip";
-import CelebrityBuzz from "@/components/CelebrityBuzz";
+// import CelebrityBuzz from "@/components/CelebrityBuzz"; // temporarily hidden
 import TechBuzz from "@/components/TechBuzz";
 import StreamingPicks from "@/components/StreamingPicks";
 import FeaturedHero from "@/components/FeaturedHero";
@@ -426,7 +426,7 @@ export default function Index() {
                 pool={s.pool}
                 afterHeader={
                   s.slug === "technology" ? <TechBuzz category="tech" /> :
-                  s.slug === "entertainment" ? <><StreamingPicks /><CelebrityBuzz /></> :
+                  s.slug === "entertainment" ? <><StreamingPicks /></> :
                   s.slug === "sports" ? <TechBuzz category="sports" /> :
                   undefined
                 }
