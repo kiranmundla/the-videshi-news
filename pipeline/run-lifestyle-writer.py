@@ -209,11 +209,15 @@ Your cousin in New Jersey still has that number saved in her phone. The question
         'category': 'lifestyle-health',
         'status': 'published',
         'published_at': datetime.now(timezone.utc).isoformat(),
-        'sources': json.dumps([
+        'topic_id': '293c17e2-fae8-4ff1-91bb-a8e8a42f401f',
+        'vertical': 'health',
+        'urgency': 'daily',
+        'tags': ['mental health', 'anxiety', 'Asian Americans', 'South Asian', 'medication', 'cultural stigma'],
+        'sources': [
             {"name": "Frontiers in Public Health", "url": "https://doi.org/10.3389/fpubh.2026.1803386"},
             {"name": "2023 National Health Interview Survey (NHIS)", "url": "https://www.cdc.gov/nchs/nhis/index.htm"},
             {"name": "Emory University — South Asian Women Mental Health", "url": "https://etd.library.emory.edu/concern/etds/tm70mw610"}
-        ])
+        ]
     }
     
     art_id = insert_article(article)
@@ -298,10 +302,14 @@ Your mother's evening habit of watching three hours of serials and your father's
         'category': 'lifestyle-health',
         'status': 'published',
         'published_at': datetime.now(timezone.utc).isoformat(),
-        'sources': json.dumps([
+        'topic_id': '816ff5b7-e8a2-44a4-8d6a-888b528fbab7',
+        'vertical': 'health',
+        'urgency': 'daily',
+        'tags': ['dementia', 'sedentary behaviour', 'cognitive health', 'tech workers', 'sitting', 'brain health'],
+        'sources': [
             {"name": "American Journal of Preventive Medicine", "url": "https://doi.org/10.1016/j.amepre.2026.108317"},
             {"name": "Frontiers in Public Health — Sedentary Behaviour and Burnout", "url": "https://www.frontiersin.org/journals/public-health"}
-        ])
+        ]
     }
     
     art_id = insert_article(article)
@@ -400,12 +408,16 @@ For NRIs, the advice is straightforward: if you need gold for a wedding or cerem
         'category': 'markets-finance',
         'status': 'published',
         'published_at': datetime.now(timezone.utc).isoformat(),
-        'sources': json.dumps([
+        'topic_id': '1c8c4280-427c-46d6-9e50-4164f1180912',
+        'vertical': 'economy',
+        'urgency': 'daily',
+        'tags': ['gold', 'import duty', 'India', 'wedding', 'NRI', 'Modi', 'rupee', 'jewellery'],
+        'sources': [
             {"name": "World Gold Council — India Gold Market Update", "url": "https://www.gold.org/goldhub/data/gold-demand-trends"},
             {"name": "Crisil Ratings — Gold Jewellery Volumes FY27", "url": "https://www.crisil.com"},
             {"name": "The Hindu Business Line", "url": "https://www.thehindubusinessline.com/markets/gold/gold-offered-at-450g-to-indian-consumers-after-import-duty-hike/article71016944.ece"},
             {"name": "Reuters — India Gold Import Policy", "url": "https://www.reuters.com"}
-        ])
+        ]
     }
     
     art_id = insert_article(article)
