@@ -1,72 +1,35 @@
 #!/usr/bin/env python3
 """Sports writer for The Videshi — 2026-05-28 batch"""
 
-import json, os, sys, time, uuid, re
+import json, os, re, sys, time, uuid, urllib.parse
+import requests
 from datetime import datetime, timezone
 
-import requests
-
-# ── env ──────────────────────────────────────────────────────────────
-def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith('#'):
-                continue
-            if line.startswith('export '):
-                line = line[7:]
-            if '=' in line:
-                k, v = line.split('=', 1)
-                v = v.strip().strip('"').strip("'")
-                os.environ.setdefault(k.strip(), v)
-
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
-
-SB_URL = os.environ['SUPABASE_URL']
-SB_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+# ── env ──
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
-    'apikey': SB_KEY,
-    'Authorization': f'Bearer {SB_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation',
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
 }
 
-# ── helpers ──────────────────────────────────────────────────────────
-def sb_insert(table, data):
-    r = requests.post(f'{SB_URL}/rest/v1/{table}', headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 201):
-        result = r.json()
-        return result[0] if isinstance(result, list) and result else result
-    print(f'  ✗ Insert to {table} failed ({r.status_code}): {r.text[:300]}')
-    return None
-
-def sb_patch(table, match, data):
-    params = '&'.join(f'{k}={v}' for k, v in match.items())
-    url = f'{SB_URL}/rest/v1/{table}?{params}'
-    r = requests.patch(url, headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 204):
-        print(f'  ✓ Patched {table}')
-        return True
-    print(f'  ✗ Patch to {table} failed ({r.status_code}): {r.text[:300]}')
-    return False
-
+# ── helpers ──
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = requests.utils.quote(person_name.replace(' ', '_'))
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
-            f'https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}',
-            headers={'User-Agent': 'TheVideshi/1.0 (thevideshi.com)'},
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
             timeout=10
         )
         if r.status_code == 200:
             data = r.json()
-            img = data.get('originalimage', {}).get('source') or data.get('thumbnail', {}).get('source')
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
@@ -74,286 +37,319 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
-    if not PEXELS_KEY:
-        print('  ⚠ No Pexels API key')
-        return None
+    """Fetch a relevant image from Pexels via curl (urllib gets 403)."""
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             import subprocess
-            cmd = [
-                'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                f'https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape'
-            ]
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
-            if result.returncode == 0:
-                data = json.loads(result.stdout)
-                photos = data.get('photos', [])
-                for p in photos:
-                    url = p.get('src', {}).get('large2x') or p.get('src', {}).get('large')
-                    if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+            result = subprocess.run(
+                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape"],
+                capture_output=True, text=True, timeout=15
+            )
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            for photo in photos:
+                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
+                if url:
+                    # Verify it's a real image
+                    head = requests.head(url, timeout=10)
+                    clen = int(head.headers.get("Content-Length", "0"))
+                    if head.status_code == 200 and clen > 5000:
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                         return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image_url(url):
-    """Verify URL returns a real image >5KB."""
+
+def validate_image(url):
+    """Validate image URL returns 200 with image content > 5KB."""
     if not url:
         return False
-    # Block banned sources
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
-    if any(b in url for b in banned):
-        print(f'  ✗ Banned image source: {url[:60]}')
-        return False
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={'User-Agent': 'TheVideshi/1.0 (thevideshi.com)'})
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if 'image' in ct and cl > 5000:
+        # Check for banned sources
+        banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com"]
+        if any(b in url for b in banned):
+            print(f"  ✗ BANNED source: {url[:80]}")
+            return False
+        ua = {"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
+        head = requests.head(url, timeout=10, allow_redirects=True, headers=ua)
+        ctype = head.headers.get("Content-Type", "")
+        clen = int(head.headers.get("Content-Length", "0"))
+        if head.status_code == 200 and "image" in ctype and clen > 5000:
             return True
-        # Some servers don't return Content-Length on HEAD, try GET
-        if 'image' in ct:
-            r2 = requests.get(url, timeout=10, stream=True,
-                            headers={'User-Agent': 'TheVideshi/1.0 (thevideshi.com)'})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
+        # Retry with GET if HEAD fails (some servers don't support HEAD)
+        if head.status_code != 200:
+            resp = requests.get(url, timeout=10, headers=ua, stream=True)
+            ctype = resp.headers.get("Content-Type", "")
+            clen = int(resp.headers.get("Content-Length", "0"))
+            resp.close()
+            if resp.status_code == 200 and "image" in ctype and clen > 5000:
                 return True
-        print(f'  ⚠ Image validation failed: ct={ct}, cl={cl}')
+        print(f"  ✗ Image validation failed: status={head.status_code} type={ctype} len={clen}")
     except Exception as e:
-        print(f'  ⚠ Image validation error: {e}')
+        print(f"  ✗ Image validation error: {e}")
     return False
 
-def make_slug(headline):
-    """Generate a human-readable slug from headline."""
-    s = headline.lower()
-    s = re.sub(r'[^a-z0-9\s-]', '', s)
-    s = re.sub(r'\s+', '-', s.strip())
-    s = re.sub(r'-+', '-', s)
-    s = s[:120].rstrip('-')
-    # Add date suffix
-    return f"{s}-{datetime.now(timezone.utc).strftime('%Y%m%d')}"
 
-# ── articles ─────────────────────────────────────────────────────────
-articles = []
-
-# ── ARTICLE 1: Virat Kohli 600+ Runs Four Consecutive Seasons ──────
-articles.append({
-    'headline': "Virat Kohli Becomes the First Player in IPL History to Score 600 Runs in Four Consecutive Seasons",
-    'subheadline': "The 37-year-old reached the milestone in Qualifier 1 against Gujarat Titans, adding another line to a record book that increasingly reads like autobiography",
-    'slug': 'virat-kohli-600-runs-four-consecutive-ipl-seasons-record-rcb-2026-20260528',
-    'category': 'sports',
-    'body': """Virat Kohli does not chase records. Records simply happen to orbit the same places he occupies. On Monday night at the HPCA Stadium in Dharamsala, with the Himalayas framing the floodlights behind him, Kohli stroked 43 off 25 balls against Gujarat Titans in IPL 2026 Qualifier 1. It was not his most spectacular innings. It was not the decisive one — that belonged to his captain Rajat Patidar, who smashed an unbeaten 93 off 33 balls. But buried inside those 43 runs was a number that matters more than any single knock: 600.
-
-Kohli has now scored 600 or more runs in four consecutive IPL seasons. No one in the tournament's 19-year history has done this before. Chris Gayle managed three straight 600-plus seasons. KL Rahul did it three times as well. Kohli has gone past both.
-
-## The Numbers Behind the Milestone
-
-His 2026 tally stands at 600 runs across 15 matches, with a strike rate of 164.38. He has four fifties and one century — a magnificent 105 not out against Kolkata Knight Riders earlier in the season that reminded the cricket world he still has gears most batters have never found.
-
-The four-season arc tells the story of an athlete who refuses to decline on anyone else's schedule. In 2023, when many expected him to slow down, he piled on 639 runs. In 2024, he scored a tournament-record 741. In 2025, the year RCB finally won their first-ever IPL title, he contributed 708. And now, in 2026, another 600.
-
-Across his IPL career, Kohli has now crossed 9,000 runs — a threshold no other player has reached. He has also become the first batter to score 500 runs specifically against Gujarat Titans, a team that has existed for only five seasons.
-
-## What It Means for RCB's Title Defence
-
-The milestone came at the perfect time. RCB's 92-run demolition of Gujarat Titans in Qualifier 1 sent them straight to the IPL 2026 final, scheduled for Saturday, May 31, at Mullanpur. They are chasing back-to-back titles — something only Mumbai Indians and Chennai Super Kings have achieved in IPL history.
-
-Kohli's form is a significant reason why RCB enter the final as favourites. While Patidar has taken over the explosive role and Bhuvneshwar Kumar leads a formidable bowling attack with 26 wickets, Kohli provides the stability that allows the rest of the lineup to take risks. His 43 in Qualifier 1 came at a crucial point: he put on a rapid opening stand that set the platform for Patidar's assault.
-
-## The Diaspora Angle
-
-For the millions of Indian cricket fans watching from the United States, the United Kingdom, Canada, and the Gulf, Kohli's longevity is personal. He was the player many NRI families grew up watching — the teenager who led India to the 2008 Under-19 World Cup, the man who inherited Sachin Tendulkar's mantle, the captain who made run-chases look like destiny.
-
-Now 37, Kohli is playing in what many believe could be his final IPL season, though he has said nothing about retirement. Every innings carries a quiet weight for diaspora fans who have followed him for nearly two decades across time zones and streaming services and 3 AM alarm clocks.
-
-## What Comes Next
-
-RCB await the winner of Thursday's Qualifier 2 between Gujarat Titans and Rajasthan Royals. If GT progress, Kohli will face Kagiso Rabada and Jofra Archer for the second time in the playoffs. If RR advance, the 15-year-old Vaibhav Sooryavanshi — who has already broken Chris Gayle's all-time sixes record this season — could be the man standing between Kohli and a second consecutive title.
-
-Either way, when Kohli walks out for the final at Mullanpur, the number 600 will already be stitched into the record. And for a player who has made the IPL his personal stage for 18 seasons, four straight 600-run campaigns may be the achievement that ages best of all.
-
-*Sources: Cricbuzz, ESPNcricinfo, IPL official statistics*""",
-    'sources': ['Cricbuzz', 'ESPNcricinfo', 'IPL official statistics'],
-    'person_for_image': 'Virat Kohli',
-    'image_caption': 'Virat Kohli during IPL 2026 — the first player to score 600+ runs in four consecutive seasons',
-    'image_attribution': 'Wikimedia Commons',
-})
-
-# ── ARTICLE 2: IPL September-October Window ─────────────────────────
-articles.append({
-    'headline': "The IPL Could Move to September. For NRIs, That Changes Everything.",
-    'subheadline': "BCCI chairman Arun Dhumal confirms discussions about shifting the tournament to a September-October window, citing extreme heat, broadcaster interest, and the pull of Diwali-season advertising",
-    'slug': 'ipl-september-october-window-dhumal-bcci-schedule-shift-nri-impact-20260528',
-    'category': 'sports',
-    'body': """The Indian Premier League has been a March-to-May institution since its first season in 2008. For eighteen years, the tournament has occupied the hottest months of the Indian calendar — a scheduling reality that has produced heatstroke scares, exhausted cricketers, and, for diaspora fans in the Northern Hemisphere, an overlap with the end of the American and European work year that makes following every match a logistical challenge.
-
-That may be about to change.
-
-In a series of interviews this week, IPL chairman Arun Dhumal confirmed that the BCCI is actively discussing a shift to a September-October window. The conversations involve broadcasters, franchise owners, and the ICC's Future Tours Programme committee. Nothing has been decided. But the direction of travel is unmistakable.
-
-## Why the Change Is Being Considered
-
-Three factors are driving the discussion.
-
-**Heat.** The 2026 season has been one of the most punishing on record. A player collapsed after match point at the French Open this week, and Roland Garros is mild compared to Ahmedabad in May. Multiple IPL matches this season were played in temperatures exceeding 42°C. The Qualifier 1 in Dharamsala — a hill station — was deliberately chosen for its cooler climate. The BCCI can no longer ignore the medical reality.
-
-**Player fatigue.** The modern cricketer plays year-round. The IPL's March-May slot clashes with the end of the international summer in Australia and South Africa, forcing overseas stars to fly in mid-season. A September-October window would sit between the English summer and the Australian home season, potentially improving squad availability.
-
-**Advertising.** This is the factor that may ultimately decide the outcome. Dhumal explicitly mentioned the Diwali advertising season as a commercial draw. September-October places the IPL's final stages in the weeks before Diwali, when Indian brands spend most aggressively. From a broadcaster's perspective, this is the most valuable advertising inventory window in the Indian market.
-
-## The Two-Window Model
-
-Dhumal also floated a more radical idea: splitting the IPL across two windows. One phase — perhaps February to early April — would host the league stage. A second phase in September-October would cover the playoffs and final. This would shorten each concentrated block of matches, reduce player workload, and create two annual spikes of IPL viewership rather than one.
-
-The two-window model has precedent. The English Premier League effectively operates with a winter break. Formula 1 splits its season across nine months. The idea is not as alien as it might sound to cricket traditionalists.
-
-## What It Means for the Diaspora
-
-For the estimated 32 million Indians living abroad, a September-October IPL window has immediate practical implications.
-
-**Better time zones for North America.** The current March-May window puts most IPL matches at inconvenient times for US and Canadian viewers — early morning on the East Coast, pre-dawn on the West Coast. September-October in India would overlap with autumn in North America, and the shorter days could make afternoon matches more accessible.
-
-**Diwali season alignment.** For NRI families, the IPL final happening in the week before Diwali would create a cultural super-event. Cricket and Diwali are already the two most unifying threads of diaspora identity. Combining them into a single season could transform how NRI communities gather and celebrate.
-
-**Fantasy and betting markets.** The growing legal sports betting market in North America has begun to include IPL. A September-October window would reduce competition with the NBA and NHL playoffs (which dominate March-May) and instead compete with the NFL regular season — a period when cricket could carve out a distinct niche.
-
-## The Obstacles
-
-Not everyone is convinced. Franchise owners who have invested in stadium infrastructure designed for pre-monsoon conditions would face the challenge of September rain — monsoon season typically ends in late September across much of India. The IPL has never been played during the monsoon, and the logistics of indoor-quality drainage are nontrivial.
-
-The ICC's crowded calendar is another hurdle. September-October overlaps with bilateral series that generate revenue for smaller cricket boards. The BCCI's leverage within the ICC is substantial, but unilaterally shifting the IPL would provoke resistance.
-
-## What Happens Now
-
-Dhumal was careful to frame this as a discussion, not a decision. The earliest any change could take effect is IPL 2028, given existing broadcast contracts and the ICC's cycle. But the fact that the BCCI chairman is speaking publicly about it — rather than letting it leak as a rumour — suggests the conversation is further along than the cautious language implies.
-
-For NRI cricket fans who have spent eighteen years setting 4 AM alarms and muting Slack channels to avoid spoilers, the prospect of an autumn IPL is more than a scheduling change. It is a recognition that the diaspora audience matters enough to rethink the calendar.
-
-*Sources: BestMediaInfo, Cricbuzz, CricTracker, CricketAddictor*""",
-    'sources': ['BestMediaInfo', 'Cricbuzz', 'CricTracker', 'CricketAddictor'],
-    'person_for_image': None,
-    'pexels_query': 'IPL cricket stadium India night',
-    'pexels_fallback': 'cricket stadium floodlights',
-    'image_caption': 'The IPL may move to a September-October window as the BCCI considers scheduling changes',
-    'image_attribution': 'Pexels',
-})
-
-# ── ARTICLE 3: Kagiso Rabada Powerplay Record ──────────────────────
-articles.append({
-    'headline': "Kagiso Rabada Now Holds the All-Time IPL Record for Powerplay Wickets in a Season",
-    'subheadline': "The South African fast bowler took his 18th powerplay wicket in Qualifier 1, surpassing Mohammed Shami's 2023 mark, and has been the most dangerous new-ball bowler in IPL 2026",
-    'slug': 'kagiso-rabada-ipl-powerplay-wickets-record-18-shami-gt-2026-20260528',
-    'category': 'sports',
-    'body': """The wicket that broke the record was not even particularly dramatic. Second over of RCB's innings in Qualifier 1 at Dharamsala. Venkatesh Iyer, the tall left-hander who had been promoted up the order, pushed at a ball outside off stump. Edge. Gone. Kagiso Rabada did not celebrate extravagantly. He simply walked back to his mark, adjusted his collar, and prepared to bowl the next ball.
-
-That was powerplay wicket number 18 in IPL 2026. No bowler in the tournament's history has ever taken more in a single season.
-
-## The Record That Was
-
-Mohammed Shami set the previous benchmark in IPL 2023, when he took 17 wickets in the first six overs across Gujarat Titans' title-winning campaign. It was a record built on raw pace and the ability to move the new ball both ways — skills that made Shami virtually unplayable in those first six overs.
-
-Rabada has matched those skills and added something else: relentless accuracy under pressure. His 18 powerplay wickets have come across 15 matches, at an economy rate of 8.34 in the first six overs — remarkable when you consider that powerplay scoring rates across IPL 2026 have averaged over 9 runs per over.
-
-## How He Does It
-
-Rabada's method in the powerplay is deceptively simple. He bowls at the stumps. He hits the length that forces batters to play. And he varies his pace just enough — between 140 and 148 km/h — to create the hesitation that produces edges, bowled dismissals, and LBW decisions.
-
-What makes him particularly effective in 2026 is his partnership with Jofra Archer at the other end. Gujarat Titans' new-ball pairing of Rabada and Archer has been the best in the tournament. Archer has 24 wickets of his own, and between them, the two fast bowlers have taken 50 wickets — nearly half of GT's entire tournament tally.
-
-The numbers tell only part of the story. Rabada's powerplay wickets have often come at critical moments. He dismissed Ruturaj Gaikwad in the first over against CSK. He removed Yashasvi Jaiswal inside the powerplay against Rajasthan Royals. He got Virat Kohli early in the league stage meeting between GT and RCB. The best batters in the tournament have all fallen to him before the field spreads.
-
-## The Qualifier 1 Performance
-
-In the match where he broke the record, Rabada's overall figures were modest by his standards — 2 for 43 in four overs. But the damage he did was in the context of the game. His early removal of Iyer disrupted RCB's middle-order timing, and his second wicket — Jitesh Sharma, caught behind off a rising delivery — came at a moment when GT were trying to slow the run rate.
-
-It was not enough. RCB scored 254 for 5, the highest total in IPL playoff history. Rajat Patidar's unbeaten 93 off 33 balls was simply too good for any bowling attack. GT were bowled out for 162, losing by 92 runs.
-
-But Rabada's record survived the defeat. Personal landmarks rarely depend on team results, and this one is significant enough to stand on its own.
-
-## A Quiet Giant
-
-Rabada is not an IPL showman. He does not have a signature celebration. He does not court the cameras. He joined Gujarat Titans before the 2024 season and has been their most consistent performer since — a fact that gets lost in the noise around Shubman Gill's captaincy and Rashid Khan's spin.
-
-At 30, Rabada is in the prime of his fast-bowling career. He has 26 wickets in IPL 2026, tied with Bhuvneshwar Kumar at the top of the Purple Cap standings. He has been GT's most valuable player in a season where they have reached the playoffs despite a middle-order that has been inconsistent at best.
-
-## What Comes Next
-
-Gujarat Titans face Rajasthan Royals in Qualifier 2 on Thursday at Mullanpur. If GT progress to the final, Rabada will bowl the powerplay overs against RCB for the second time in a week. The record will already be his. The question is whether he can add to it — and whether those first six overs can help GT overturn a 92-run deficit from the last time these two teams met.
-
-For diaspora fans who appreciate the craft of fast bowling — the seam position, the wrist angle, the controlled aggression that defines the art — Rabada's 18 powerplay wickets are a season-defining achievement. In a tournament increasingly dominated by batters, the South African has proven that the new ball still belongs to the bowler who knows how to use it.
-
-*Sources: Cricbuzz, Wisden, ESPNcricinfo, Sporting News*""",
-    'sources': ['Cricbuzz', 'Wisden', 'ESPNcricinfo', 'Sporting News'],
-    'person_for_image': 'Kagiso Rabada',
-    'image_caption': 'Kagiso Rabada — the new holder of the IPL all-time powerplay wickets record with 18 in a single season',
-    'image_attribution': 'Wikimedia Commons',
-})
-
-# ── publish ──────────────────────────────────────────────────────────
-print(f'\n{"="*60}')
-print(f'Sports Writer — {datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}')
-print(f'Articles to publish: {len(articles)}')
-print(f'{"="*60}\n')
-
-for i, art in enumerate(articles, 1):
-    print(f'\n── Article {i}/{len(articles)}: {art["headline"][:70]}...')
-
-    # Image sourcing
-    img_url = None
-    img_attr = art.get('image_attribution', '')
-
-    if art.get('person_for_image'):
-        print(f'  → Trying Wikipedia for: {art["person_for_image"]}')
-        img_url = fetch_wikipedia_person_image(art['person_for_image'])
-        if img_url:
-            img_attr = 'Wikimedia Commons'
-
-    if not img_url and art.get('pexels_query'):
-        print(f'  → Trying Pexels for: {art["pexels_query"]}')
-        img_url = fetch_pexels_image(art['pexels_query'], art.get('pexels_fallback'))
-        if img_url:
-            img_attr = 'Pexels'
-
-    # Validate image
-    if img_url:
-        if validate_image_url(img_url):
-            print(f'  ✓ Image validated')
-        else:
-            print(f'  ✗ Image validation failed, dropping image')
-            img_url = None
-
-    # Build record
-    now_iso = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
-    record = {
-        'headline': art['headline'],
-        'subheadline': art['subheadline'],
-        'slug': art['slug'],
-        'category': art['category'],
-        'body': art['body'],
-        'sources': art['sources'],
-        'image_url': img_url,
-        'image_caption': art.get('image_caption', ''),
-        'image_attribution': img_attr,
-        'status': 'published',
-        'published_at': now_iso,
-        'created_at': now_iso,
+def publish_article(article):
+    """Insert article into p2_articles."""
+    article_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    # Format sources as JSON array of objects with name key
+    raw_sources = article.get("sources", [])
+    formatted_sources = []
+    for s in raw_sources:
+        if isinstance(s, str):
+            # Split on " — " to get name and description
+            parts = s.split(" — ", 1)
+            formatted_sources.append({"name": parts[0].strip(), "url": parts[1].strip() if len(parts) > 1 else ""})
+        elif isinstance(s, dict):
+            formatted_sources.append(s)
+
+    payload = {
+        "id": article_id,
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": "sports",
+        "vertical": "sports",
+        "status": "published",
+        "published_at": now,
+        "sources": json.dumps(formatted_sources),
+        "image_url": article.get("image_url", ""),
+        "image_caption": article.get("image_caption", ""),
+        "image_attribution": article.get("image_attribution", ""),
     }
 
-    result = sb_insert('p2_articles', record)
-    if result:
-        art_id = result.get('id', 'unknown')
-        print(f'  ✓ Published: id={art_id}, slug={art["slug"]}')
+    resp = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload,
+        timeout=30
+    )
+    if resp.status_code in (200, 201):
+        print(f"  ✓ Published: {article['headline'][:60]}... (id={article_id})")
+        return article_id
     else:
-        print(f'  ✗ FAILED to publish: {art["headline"][:50]}')
+        print(f"  ✗ Failed to publish: {resp.status_code} {resp.text[:200]}")
+        return None
 
-    time.sleep(1)  # breathing room
 
-print(f'\n{"="*60}')
-print('Sports writer complete.')
-print(f'{"="*60}')
+# ══════════════════════════════════════════════════════════════
+# ARTICLES
+# ══════════════════════════════════════════════════════════════
+
+articles = []
+
+# ── ARTICLE 1: FIFA World Cup Broadcast Crisis ──
+print("\n═══ Article 1: FIFA World Cup Broadcast Crisis in India ═══")
+
+art1_img = fetch_pexels_image("FIFA World Cup football stadium crowd", "world cup football fans")
+if art1_img and not validate_image(art1_img):
+    art1_img = None
+
+articles.append({
+    "headline": "The World Cup Starts in Two Weeks. India Still Does Not Have a Broadcaster.",
+    "subheadline": "FIFA wanted a hundred million dollars. Reliance offered twenty. Zee entered talks this week. NRIs in America will watch every match. Their families in India might not see a single one.",
+    "slug": "fifa-world-cup-2026-india-broadcast-crisis-zee-reliance-disney-nri-20260528",
+    "image_url": art1_img or "",
+    "image_caption": "The 2026 FIFA World Cup kicks off June 11 across the United States, Canada, and Mexico",
+    "image_attribution": "Pexels" if art1_img else "",
+    "sources": [
+        "Reuters — Zee Entertainment in talks with FIFA on World Cup broadcast rights in India",
+        "Exchange4Media — FIFA set to close India media rights deal for World Cup soon",
+        "BestMediaInfo — The FIFA World Cup 2026 is coming to every screen in Asia except India"
+    ],
+    "body": """The 2026 FIFA World Cup begins on June 11. Forty-eight nations will play across sixteen cities in the United States, Canada, and Mexico. FIFA has sold broadcast rights in more than 180 countries. India is not one of them.
+
+With barely two weeks remaining before the opening match, the world's most-watched sporting event has no confirmed broadcaster in the country of 1.4 billion people. For the Indian diaspora scattered across North America — living in the very cities hosting the tournament — the irony is extraordinary. They will watch matches at MetLife Stadium, SoFi, and AT&T Stadium. Their parents, siblings, and friends in Mumbai, Delhi, and Chennai may not be able to watch at all.
+
+## The Money Problem
+
+The deadlock is about price. FIFA initially sought $100 million for the combined broadcast rights to the 2026 and 2030 World Cups in India. That number has been revised downward — reports suggest FIFA is now looking for somewhere between $35 million and $60 million — but the gap between what FIFA wants and what Indian broadcasters are willing to pay remains vast.
+
+JioHotstar, the Reliance-Disney joint venture that broadcast the 2022 World Cup, has reportedly maintained an offer of approximately $20 million. FIFA has rejected it. Sony, the other major sports broadcaster in India, declined to bid at all.
+
+On Tuesday, Zee Entertainment entered the conversation. The company confirmed it is in talks with FIFA to stream and broadcast the tournament through its Unite8 Sports initiative, though no financial details were disclosed. Whether Zee can close a deal in the next fourteen days — when larger players with deeper pockets could not — remains an open question.
+
+## A Cricket Country's Football Problem
+
+The underlying issue is structural. India is a cricket-first market. The IPL alone commands billions in broadcast revenue. Football, despite a passionate and growing fanbase, does not generate the advertising returns that justify World Cup-level pricing.
+
+In 2022, India accounted for roughly 2.9 percent of the World Cup's global linear TV reach — significant in absolute numbers given India's population, but a fraction of what cricket delivers to advertisers. The tournament's timing this year compounds the problem: the IPL final is May 31, and the World Cup begins eleven days later. Advertisers who just spent heavily on cricket may not have the budget for football.
+
+A petition has been filed in Indian courts arguing that depriving millions of fans of the World Cup broadcast would be unjust. The petition invokes Article 226 of the Constitution, though its legal prospects are uncertain.
+
+## What This Means for NRIs
+
+For the estimated 4.4 million Indian-origin residents in the United States alone, the situation creates a surreal split screen. NRIs in the New York metro area can walk to MetLife Stadium to watch group-stage matches. NRIs in Los Angeles can attend games at SoFi Stadium, where the US opens against Paraguay on June 12. Houston, with its massive South Asian community, hosts multiple matches at NRG Stadium.
+
+But when these fans call home to discuss the matches, their families may have nothing to watch. No legal stream, no TV broadcast, no highlights package.
+
+India is not the only market where football struggles against cricket — Pakistan faces similar dynamics — but it is by far the largest. The 2022 World Cup final between Argentina and France drew an estimated 1.5 billion viewers globally. The idea that India could be blacked out entirely from the 2026 edition would have seemed absurd even six months ago.
+
+## The Clock Is Ticking
+
+FIFA and potential Indian broadcasters have approximately fourteen days to close a deal. If Zee's talks succeed, the tournament could land on Zee5 and its linear channels. If they fail, India joins a vanishingly small list of major nations without World Cup coverage.
+
+For NRIs, the situation is a reminder of a familiar truth: the diaspora experience often means straddling two worlds that operate on entirely different logics. In one world, the World Cup is two weeks away and the excitement is building. In the other, no one is even sure they will be able to watch it."""
+})
+
+
+# ── ARTICLE 2: Dhruv-Tanisha Olympic Medalist Upset ──
+print("\n═══ Article 2: Dhruv-Tanisha Upset at Singapore Open ═══")
+
+art2_img = fetch_wikipedia_person_image("Tanisha Crasto")
+if not art2_img:
+    art2_img = fetch_wikipedia_person_image("Dhruv Kapila (badminton)")
+if not art2_img:
+    art2_img = fetch_wikipedia_person_image("Dhruv Kapila")
+if not art2_img:
+    art2_img = fetch_pexels_image("badminton mixed doubles match", "badminton court shuttlecock")
+if art2_img and not validate_image(art2_img):
+    art2_img = None
+
+articles.append({
+    "headline": "They Lost the First Game 8-21. Then Dhruv Kapila and Tanisha Crasto Destroyed an Olympic Medalist.",
+    "subheadline": "The unseeded Indian mixed doubles pair staged one of the most dramatic comebacks of the badminton season to knock out Japan's Yuta Watanabe and Maya Taguchi at the Singapore Open.",
+    "slug": "dhruv-kapila-tanisha-crasto-upset-olympic-medalist-watanabe-singapore-open-2026-20260528",
+    "image_url": art2_img or "",
+    "image_caption": "Dhruv Kapila and Tanisha Crasto have risen to a career-high world No. 17 in mixed doubles",
+    "image_attribution": "Wikimedia Commons" if (art2_img and "wikimedia" in (art2_img or "").lower()) or (art2_img and "wikipedia" in (art2_img or "").lower()) else ("Pexels" if art2_img else ""),
+    "sources": [
+        "myKhel — Singapore Open 2026: Unseeded Indian Pair Dhruv-Tanisha Stun Olympic Medallist Watanabe & Taguchi",
+        "IANS — Singapore Open: Sindhu, Lakshya, Satwik-Chirag, Tanisha-Dhruv march into QFs",
+        "The Bridge — Badminton: Tanisha Crasto-Dhruv Kapila climb to career high world ranking"
+    ],
+    "body": """At 8-21 down after the first game, Dhruv Kapila and Tanisha Crasto looked finished. The scoreline was not merely lopsided — it was the kind of deficit that suggests a mismatch, a pairing that does not belong on the same court as its opponents.
+
+Their opponents were Yuta Watanabe and Maya Taguchi of Japan. Watanabe is an Olympic bronze medalist from the Tokyo Games. Taguchi is one of the most experienced mixed doubles players on the World Tour. The match, a quarterfinal-round contest at the Singapore Open 2026 — a BWF Super 750 event with a million-dollar prize pool — was supposed to be a formality for the Japanese pair.
+
+It was not.
+
+## The Comeback
+
+What followed the first-game demolition was one of the most remarkable turnarounds of the badminton season. Kapila and Crasto regrouped between games and came out with a fundamentally different approach. They attacked the net with more aggression, disrupted Watanabe's rhythm with sharper returns, and forced errors from a pair that had barely made any in the opening game.
+
+The second game went 21-17 to the Indians. Not a blowout, but a clear and controlled reversal. By the third game, the momentum had shifted completely. Kapila and Crasto won it 21-16, and the Japanese pair that had seemed untouchable thirty minutes earlier walked off the court eliminated.
+
+Final score: 8-21, 21-17, 21-16.
+
+## Who Are They?
+
+Dhruv Kapila, 27, is from Hyderabad. Tanisha Crasto, 21, is from Goa — born into a family with deep badminton roots (her sister Ashwini Ponnappa is one of India's most decorated doubles players). Together, they have been climbing the world rankings steadily over the past two years. After a quarterfinal run at the 2025 Badminton Asia Championships, they reached a career-high world ranking of No. 17.
+
+But rankings only tell part of the story. Mixed doubles has historically been India's weakest discipline. The country has produced world-class singles players — Saina Nehwal, PV Sindhu, Kidambi Srikanth — and a genuinely elite men's doubles pair in Satwiksairaj Rankireddy and Chirag Shetty. But mixed doubles has been a persistent blind spot, a category where India rarely advances past the early rounds of major tournaments.
+
+Kapila and Crasto are changing that narrative. Their partnership, which began in earnest in 2023, has evolved from a developmental project into a legitimate threat at the highest level. Beating an Olympic medalist at a Super 750 event is not a fluke — it is a statement.
+
+## Part of Something Bigger
+
+Their Singapore Open run is part of a broader Indian surge at the tournament. PV Sindhu, Lakshya Sen, Satwiksairaj Rankireddy and Chirag Shetty, and HS Prannoy have all advanced deep into the draw. India had five entries across disciplines in the quarterfinals — the kind of depth that would have been unthinkable a decade ago.
+
+For the diaspora, this matters beyond the scoreboard. Badminton is a sport that many NRI families grew up playing — in backyards in Chennai, in community halls in Hyderabad, in school gymnasiums across India. The sport's presence in the Indian cultural memory is deep even if its professional infrastructure was, until recently, thin. Watching India compete credibly across multiple disciplines at the world's top tournaments is a validation of something families have believed for generations: that India can be a badminton power.
+
+## What Comes Next
+
+Kapila and Crasto now face Malaysia's Chen Tang Jie and Toh Ee Wei in the quarterfinals proper — another formidable pair. Whether they can sustain the magic of their Watanabe-Taguchi comeback remains to be seen.
+
+But even if their run ends here, the result stands. An unseeded Indian pair lost the first game 8-21 against an Olympic medalist and came back to win the match. In a sport where India's mixed doubles program was an afterthought for decades, that is not a footnote. It is a beginning."""
+})
+
+
+# ── ARTICLE 3: Women's T20 World Cup NRI Guide ──
+print("\n═══ Article 3: Women's T20 World Cup in England ═══")
+
+art3_img = fetch_wikipedia_person_image("Smriti Mandhana")
+if not art3_img:
+    art3_img = fetch_wikipedia_person_image("Harmanpreet Kaur")
+if not art3_img:
+    art3_img = fetch_pexels_image("women cricket match India", "cricket stadium England")
+if art3_img and not validate_image(art3_img):
+    art3_img = None
+
+articles.append({
+    "headline": "India vs Pakistan on June 14 in Birmingham. The Women's T20 World Cup Is Two Weeks Away.",
+    "subheadline": "The biggest tournament in women's cricket is being held in England — home to the largest NRI population outside India. Here is everything the diaspora needs to know.",
+    "slug": "womens-t20-world-cup-2026-india-pakistan-june-birmingham-nri-guide-england-20260528",
+    "image_url": art3_img or "",
+    "image_caption": "Smriti Mandhana leads India's batting lineup into the Women's T20 World Cup in England",
+    "image_attribution": "Wikimedia Commons" if (art3_img and ("wikimedia" in (art3_img or "").lower() or "wikipedia" in (art3_img or "").lower())) else ("Pexels" if art3_img else ""),
+    "sources": [
+        "Wikipedia — India women's cricket team in England in 2026",
+        "Sportradar — ICC T20 World Cup Women 2026 schedule",
+        "SportsCafe — ENG vs IND T20 Series England vs India Women Squads",
+        "IANS — Focus on bowling unit as India begin key World Cup rehearsal against England"
+    ],
+    "body": """The ICC Women's T20 World Cup begins on June 12 in England and Wales. India's opening match is against Pakistan on June 14 at Edgbaston in Birmingham. For the estimated 1.8 million people of Indian origin living in the United Kingdom, this is not a tournament happening somewhere far away. It is happening in their backyard.
+
+Birmingham alone has one of the highest concentrations of British Indians in the country. Edgbaston — a ground that has hosted multiple India-England men's Tests to packed stands of Indian fans — will be the venue for what is arguably the most emotionally charged fixture in women's cricket. India versus Pakistan, in a World Cup, in a city where the diaspora can walk to the ground.
+
+## India's Path
+
+India are the reigning champions. They won the ICC Women's T20 World Cup title in the most recent edition, and they enter this tournament as one of the favorites. The squad, led by Harmanpreet Kaur, features a formidable top order — Shafali Verma's explosive power, Smriti Mandhana's elegance, and Jemimah Rodrigues's inventiveness give India one of the most dangerous batting lineups in the tournament.
+
+The bowling has been the question mark. India's three-match T20I series against England, which begins today at Chelmsford, is specifically designed to answer it. Deepti Sharma, Arundhati Reddy, Sneh Rana, and Renuka Singh are all in the touring party. How they perform against a strong England batting lineup in English conditions will determine India's bowling combinations for the World Cup.
+
+India's group-stage schedule after the Pakistan opener includes the Netherlands on June 17 and Australia on June 28 — the last of those being a match that could decide group standings. The knockout rounds follow in late June and early July, with the final scheduled for July 5.
+
+## Why This Tournament Matters for NRIs
+
+Previous Women's T20 World Cups have been held in Australia, the Caribbean, South Africa, and the UAE. For most NRIs, attending in person was impractical. This time is different.
+
+The tournament is spread across seven venues in England and Wales: Edgbaston (Birmingham), Lord's (London), The Oval (London), Old Trafford (Manchester), Headingley (Leeds), Sophia Gardens (Cardiff), and the County Ground (Bristol). Every one of these cities has a significant Indian-origin population. The logistics of attending a match — no intercontinental flights, no visa complications for UK residents — are trivial compared to previous editions.
+
+This accessibility matters because women's cricket in India has undergone a transformation in the past five years. The Women's Premier League launched in 2023 and has grown into a genuine domestic competition. India's results have followed: consistent performances in bilateral series, competitive showings in ICC events, and now a World Cup defense.
+
+For the diaspora, supporting the women's team in person is a way to participate in that transformation — to move beyond the familiar cycle of men's cricket fandom and invest in a team that is building something new.
+
+## The India-Pakistan Factor
+
+India versus Pakistan in any sport commands attention that transcends the game itself. In women's cricket, the rivalry has been less explored than its men's equivalent, partly because the teams have met less frequently and partly because the commercial infrastructure around women's cricket is still developing.
+
+But June 14 at Edgbaston could be a watershed moment. If the stadium fills — and given Birmingham's demographics, it very likely will — it would be the largest live audience for a women's India-Pakistan cricket match in history. The atmosphere at Edgbaston during men's India matches has been compared to playing in India. For the women's team, experiencing that level of support in a World Cup opener would be unprecedented.
+
+## What to Watch For
+
+Beyond the headline fixture, India's World Cup campaign will be defined by a few key questions. Can Shafali Verma, who turns 22 during the tournament, deliver the consistency that her talent has always promised? Will Richa Ghosh's power-hitting at number five or six give India the finishing ability they have sometimes lacked? And can the bowling attack, which has historically relied heavily on spin, adapt to English conditions that may offer more for seam?
+
+The bilateral series against England starting today is the first test. The World Cup — and that June 14 date at Edgbaston — is the real one.
+
+For NRIs in the UK, the message is simple: this is the most accessible major cricket tournament in memory, featuring a team that has genuine title credentials, opening against Pakistan in a city that feels like home. The tickets are available. The ground is close. The moment is now."""
+})
+
+
+# ══════════════════════════════════════════════════════════════
+# PUBLISH ALL
+# ══════════════════════════════════════════════════════════════
+
+print(f"\n═══ Publishing {len(articles)} articles ═══\n")
+
+published = 0
+for i, art in enumerate(articles, 1):
+    print(f"\n── Article {i}: {art['headline'][:60]}...")
+    word_count = len(art["body"].split())
+    print(f"   Words: {word_count}")
+    if word_count < 400:
+        print(f"   ✗ REJECTED: below 400 word minimum")
+        continue
+    if not art.get("subheadline") or len(art["subheadline"]) < 15:
+        print(f"   ✗ REJECTED: subheadline missing or too short")
+        continue
+    if not art.get("slug") or art["slug"] != art["slug"].lower():
+        print(f"   ✗ REJECTED: slug issue")
+        continue
+
+    result = publish_article(art)
+    if result:
+        published += 1
+    time.sleep(1)
+
+print(f"\n═══ Done. Published {published}/{len(articles)} articles. ═══")
