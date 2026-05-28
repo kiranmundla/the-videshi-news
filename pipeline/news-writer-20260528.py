@@ -1,389 +1,399 @@
 #!/usr/bin/env python3
-"""
-The Videshi — News Writer (2026-05-28 batch)
-Writes 3 news articles, sources images, publishes to Supabase.
-"""
+"""News writer for The Videshi — 2026-05-28 batch."""
 
-import json, os, re, sys, uuid, time
+import json, os, sys, time, uuid, re, subprocess
 from datetime import datetime, timezone
-import requests, urllib.parse
 
-# ── env ──
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
+# Load env
+def load_env(path):
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    k, v = line.split('=', 1)
+                    os.environ.setdefault(k.strip(), v.strip())
+
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_API_KEY = os.environ.get('PEXELS_API_KEY', '')
 
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
 
-# ── helpers ──
+import requests
+
+def sb_insert(table, data):
+    """Insert a row into Supabase."""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/{table}",
+        headers=HEADERS,
+        json=data,
+        timeout=30
+    )
+    if r.status_code not in (200, 201):
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        return None
+    result = r.json()
+    return result[0] if isinstance(result, list) and result else result
+
+def sb_patch(table, filters, data):
+    """Patch a row in Supabase."""
+    url = f"{SUPABASE_URL}/rest/v1/{table}?{filters}"
+    r = requests.patch(url, headers=HEADERS, json=data, timeout=30)
+    if r.status_code not in (200, 204):
+        print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
+    return r.status_code in (200, 204)
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10,
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Search Pexels for a relevant image. Use curl-style request (urllib gets 403)."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
+    """Fetch a relevant image from Pexels. Returns URL or None."""
+    if not PEXELS_API_KEY:
+        print("  ⚠ No Pexels API key available")
         return None
+    
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = requests.get(
-                "https://api.pexels.com/v1/search",
-                params={"query": q, "per_page": 5, "orientation": "landscape"},
-                headers={"Authorization": PEXELS_KEY},
-                timeout=10,
+            # Use curl since urllib gets 403 from Pexels
+            result = subprocess.run(
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_API_KEY}',
+                 f'https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape'],
+                capture_output=True, text=True, timeout=15
             )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for p in photos:
-                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
-                    if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                        return url
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            for photo in photos:
+                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+def upload_image_to_supabase(image_url, filename):
+    """Download an image and upload it to Supabase storage."""
+    try:
+        # Download
+        r = requests.get(image_url, timeout=15, headers={
+            "User-Agent": "TheVideshi/1.0 (thevideshi.com)"
+        })
+        if r.status_code != 200:
+            print(f"  ✗ Download failed ({r.status_code}): {image_url[:80]}")
+            return image_url  # Return original as fallback
+        
+        content_type = r.headers.get('Content-Type', 'image/jpeg')
+        if 'image' not in content_type:
+            print(f"  ✗ Not an image ({content_type}): {image_url[:80]}")
+            return image_url
+        
+        if len(r.content) < 5000:
+            print(f"  ✗ Image too small ({len(r.content)} bytes): {image_url[:80]}")
+            return image_url
+        
+        # Upload to Supabase storage
+        upload_headers = {
+            'Authorization': f'Bearer {SUPABASE_KEY}',
+            'Content-Type': content_type,
+            'x-upsert': 'true'
+        }
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        ur = requests.post(upload_url, headers=upload_headers, data=r.content, timeout=30)
+        
+        if ur.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Upload failed ({ur.status_code}): {ur.text[:200]}")
+            # If Wikipedia/Wikimedia, the URL is permanent so return it directly
+            if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
+                return image_url
+            return image_url
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
+        return image_url
 
-def validate_image(url):
-    """Check that image URL returns valid image > 5KB."""
+def validate_image_url(url):
+    """Validate image URL is not from banned sources."""
     if not url:
         return False
-    try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if "image" in ct and cl > 5000:
-            return True
-        # If HEAD doesn't give content-length, try GET
-        if "image" in ct and cl == 0:
-            r2 = requests.get(url, timeout=10, stream=True,
-                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                return True
-    except Exception as e:
-        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
-    return False
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', 'scontent-']
+    banned_params = ['_nc_ht=', '_nc_cat=', 'ccb=']
+    for b in banned:
+        if b in url:
+            print(f"  ✗ BANNED source detected: {b}")
+            return False
+    for p in banned_params:
+        if p in url:
+            print(f"  ✗ BANNED param detected: {p}")
+            return False
+    return True
 
-
-def sb_insert(table, row):
-    """Insert a row into Supabase."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
-        headers=HEADERS,
-        json=row,
-        timeout=30,
-    )
-    if r.status_code in (200, 201):
-        data = r.json()
-        if isinstance(data, list) and data:
-            return data[0].get("id")
-        return True
-    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+def publish_article(article):
+    """Publish an article to Supabase."""
+    art_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
+    
+    row = {
+        'id': art_id,
+        'headline': article['headline'],
+        'subheadline': article['subheadline'],
+        'body': article['body'],
+        'slug': article['slug'],
+        'category': article['category'],
+        'vertical': article.get('vertical', 'general'),
+        'urgency': article.get('urgency', 'standard'),
+        'status': 'published',
+        'published_at': now,
+        'sources': article.get('sources', '[]'),
+        'image_url': article.get('image_url'),
+        'image_caption': article.get('image_caption', ''),
+        'image_attribution': article.get('image_attribution', ''),
+    }
+    
+    result = sb_insert('p2_articles', row)
+    if result:
+        print(f"  ✓ Published: {article['headline'][:60]}... [{art_id[:8]}]")
+        return art_id
     return None
 
 
-def publish_article(article):
-    """Insert article into p2_articles."""
-    art_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+# ─── ARTICLE DEFINITIONS ───────────────────────────────────────────────
 
-    row = {
-        "id": art_id,
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "body": article["body"],
-        "slug": article["slug"],
-        "category": "news",
-        "vertical": article.get("vertical", "news"),
-        "status": "published",
-        "published_at": now,
-        "created_at": now,
-        "updated_at": now,
-        "sources": json.dumps(article["sources"]),
-        "tags": article.get("tags", []),
-        "diaspora_angle": article.get("diaspora_angle", ""),
-        "urgency": article.get("urgency", "medium"),
-        "image_url": article.get("image_url"),
-        "image_caption": article.get("image_caption"),
-        "image_attribution": article.get("image_attribution"),
-    }
+articles = []
 
-    result = sb_insert("p2_articles", row)
-    if result:
-        print(f"  ✓ Published: {article['headline'][:60]}... (id={art_id[:8]})")
-    return result
+# ─── ARTICLE 1: Scripps Spelling Bee ─────────────────────────────────
+articles.append({
+    'headline': "Five of Nine Scripps Spelling Bee Finalists Are Indian American. Again.",
+    'subheadline': "The 101st National Spelling Bee finals air tonight in Washington. Indian American kids have won 28 of the last 34 titles — and five of this year's nine finalists carry on the streak.",
+    'slug': 'scripps-spelling-bee-2026-five-indian-american-finalists-28-of-34-titles',
+    'category': 'news',
+    'sources': json.dumps([
+        {"name": "USA Today", "url": "https://www.usatoday.com/story/sports/2026/05/27/scripps-national-spelling-bee-finalists-2026/90280761007/"},
+        {"name": "USA Today", "url": "https://www.usatoday.com/story/sports/2026/05/27/here-are-some-of-the-toughest-words-from-this-years-scripps-national-spelling-bee/90284081007/"},
+        {"name": "Associated Press", "url": "https://gmg-wdiv-prod.cdn.arcpublishing.com/news/2024/05/26/national-spelling-bee-reflects-the-economic-success-and-cultural-impact-of-immigrants-from-india/"},
+        {"name": "Scripps National Spelling Bee", "url": "https://spellingbee.com"}
+    ]),
+    'vertical': 'culture',
+    'urgency': 'high',
+    'image_search_person': 'Scripps National Spelling Bee',
+    'image_search_pexels': 'spelling bee competition stage',
+    'image_pexels_fallback': 'student academic competition',
+    'image_caption': 'The Scripps National Spelling Bee at DAR Constitution Hall in Washington, D.C.',
+    'body': """Nine children will stand at the microphone tonight inside DAR Constitution Hall in Washington, D.C., competing for the Scripps Cup and $52,500 in prize money at the 101st National Spelling Bee. Five of those nine finalists — more than half — are Indian American. For a community that has claimed 28 of the last 34 national titles, the question is no longer whether an Indian American kid will win. It is whether anyone else can.
 
+## The Finalists
 
-# ── ARTICLE 1: Kuwait under attack — Indian diaspora on alert ──
+The nine semifinal survivors, whittled from a starting field of 247 spellers, are Oliver Halkett from Los Angeles; Zwe Spacetime from Washington, D.C.; Kushi Gottimukkala from Charlotte, North Carolina; Avishka Dudala from Dallas, Texas; Aiden Meng from Danville, California; Shrey Parikh from San Bernardino, California; Sarv Dharavane from Tucker, Georgia; Ishaan Gupta from Jersey City, New Jersey; and Logan Bailey from Houston, Texas.
 
-def write_article_1():
-    print("\n📰 Article 1: Kuwait under missile attack — Indian diaspora")
+Of these, Gottimukkala, Dudala, Parikh, Dharavane, and Gupta are of Indian descent. Dharavane is a returning finalist who placed third in 2025, and Parikh competed in the 2024 finals. Both are making their final attempts before aging out of eligibility — spellers must be 15 or younger and cannot have passed the eighth grade.
 
-    headline = "Kuwait Is Under Missile Attack. Nearly a Million Indians Live There."
-    subheadline = "Iran struck a U.S. base after American jets shot down four drones near the Strait of Hormuz. Kuwait's air defenses intercepted the incoming fire. India's embassy has not issued an advisory — yet."
-    slug = "kuwait-missile-drone-attack-indian-diaspora-safety-iran-war-20260528"
+## A Quarter-Century of Dominance
 
-    body = """The fragile ceasefire in the Iran war cracked open again on Thursday when Kuwait reported intercepting hostile missiles and drones — the first time the Gulf state has come under direct fire since the conflict began in February.
+The Indian American winning streak at Scripps has become one of the most extraordinary statistical runs in any American competition. Since Nupur Lala won in 1999, Indian American children have taken the trophy 28 times out of 34 — including three consecutive years of Indian American co-champions and 2019, when seven of eight co-champions were of Indian descent. Last year's winner, Faizan Zaki, won with the word "éclaircissement."
 
-The Kuwaiti military said its air defense systems engaged incoming threats early Thursday morning, urging residents to seek cover. The attacks came hours after American fighter jets shot down four Iranian attack drones near the Strait of Hormuz and struck a ground control station in the port city of Bandar Abbas that was preparing to launch a fifth.
+The dominance tracks directly to immigration patterns. Nearly 70 percent of Indian-born U.S. residents arrived after 2000, according to census data, and Indian American households report a median income of $147,000 — more than twice the national median. Indians received 74 percent of H-1B specialized work visas approved in 2021. The families are disproportionately from Andhra Pradesh and Telangana, the Telugu-speaking states that supply Hyderabad's information-technology workforce and a large share of H-1B recipients.
 
-Iran's Islamic Revolutionary Guard Corps said it had "targeted" a U.S. base in retaliation. Kuwait — which hosts a major American military installation — did not identify where the attacks originated, but the timing left little ambiguity.
+## More Than Privilege
 
-## Nearly a Million Indians in the Line of Fire
+But reducing the streak to economics misses the point. "It is important to note that the children participating come from striving middle-class immigrant families, often in occupations like IT, and not from wealthier Indian American households in finance or tech start-ups," said Devesh Kapur, professor of South Asian Studies at Johns Hopkins University.
 
-The escalation is not abstract for India. Kuwait is home to approximately 900,000 Indian nationals — the largest expatriate community in the country and one of the largest Indian populations anywhere in the Gulf. Indian workers dominate Kuwait's construction, oil services, healthcare, retail, and domestic labor sectors.
+What drives the run is infrastructure. Organizations like the North South Foundation hold spelling competitions specifically aimed at the Indian diaspora. Parents network across metro areas, sharing word lists, study strategies, and coaching contacts. Ganesh Dasari, whose own children competed at Scripps, said he once tracked down a young speller's parents after judging a regional competition to tell them their daughter had national-level potential. That girl, Harini Logan, went on to win the 2022 national title.
 
-During the early weeks of the Iran war in March, India's Ministry of External Affairs issued advisories for Indian nationals in the Gulf to "exercise caution and remain in contact with the Indian Embassy." But as the ceasefire held through April and May, that advisory was quietly shelved. No fresh advisory had been issued as of Thursday afternoon.
+"Whenever we go to the spelling bee events, everybody speaks that language," Dasari said of the Telugu-speaking families. "We realized there are so many people from the same state."
 
-India's embassy in Kuwait posted a general safety notice on its website but stopped short of recommending evacuation or restricting travel.
+## What It Means for the Diaspora
 
-## The Ceasefire That Keeps Breaking
+When Prime Minister Narendra Modi addressed the U.S. Congress in 2016, he specifically cited "spelling bee champions" among India's contributions to America. The two co-champions that year, Nihar Janga and Jairam Hathwar, watched from the gallery.
 
-The U.S.-Iran ceasefire, which took effect in early April, was always fragile. Both sides have engaged in sporadic skirmishes — drone intercepts, naval provocations near the Strait of Hormuz, and cyberattacks — while maintaining the fiction that the ceasefire was holding.
+For Indian Americans, the Spelling Bee has become something more than a competition. It is proof of concept — evidence that the immigrant bargain works, that a family can arrive on a work visa, invest in a child's education, and watch that child stand on a national stage and win. In a year when new green card rules may force H-1B holders to leave the country to apply for permanent residency, that proof matters more than usual.
 
-Thursday's exchange was the most serious breach yet. The U.S. characterized its strikes as "measured, purely defensive and intended to maintain the ceasefire." Iran called them an unprovoked attack.
+The finals air tonight at 8 p.m. ET on ION. An estimated 11 million children participate in spelling bees across the United States each year. Only nine are left. Five of them carry last names that trace back to India — and the odds, as they have for a quarter-century, are in their favor."""
+})
 
-Oil prices, which had fallen more than 5% on Wednesday amid hopes of a Hormuz deal, surged back. U.S. crude futures gained more than 3%.
+# ─── ARTICLE 2: Mail-In Voting Executive Order ─────────────────────
+articles.append({
+    'headline': "A Judge Just Cleared the Way for Trump's Mail-In Voting Crackdown. Indian Americans Vote by Mail More Than Ever.",
+    'subheadline': "A federal judge declined to block the executive order that gives the Postal Service new power over who gets a ballot. With midterms five months away, 4.8 million Indian American voters are watching.",
+    'slug': 'trump-mail-in-voting-executive-order-upheld-indian-american-voters-midterms',
+    'category': 'news',
+    'sources': json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com/legal/government/judge-allows-trump-implement-mail-in-voting-executive-order-2026-05-28/"},
+        {"name": "USA Today", "url": "https://www.usatoday.com/story/news/politics/2026/05/27/uscis-green-card-announcement/90258641007/"},
+        {"name": "Wall Street Journal", "url": "https://www.wsj.com/politics/policy/what-to-know-about-the-trump-administrations-new-green-card-policy-c3c08a4c"}
+    ]),
+    'vertical': 'politics',
+    'urgency': 'high',
+    'image_search_person': None,
+    'image_search_pexels': 'mail ballot voting United States',
+    'image_pexels_fallback': 'US election ballot box',
+    'image_caption': 'Mail-in ballots have become a critical voting method for Indian American communities.',
+    'body': """A federal judge on Thursday cleared the way for President Donald Trump's executive order tightening rules on mail-in voting, declining to issue a preliminary injunction in a case brought by Democratic lawmakers led by Senate Minority Leader Chuck Schumer. The ruling, by Washington-based U.S. District Judge Carl Nichols, is a significant legal victory for an administration that has spent six years attacking the integrity of voting by mail — and it lands with particular force on Indian American communities that have increasingly relied on mail ballots.
 
-## What NRIs Should Know
+## What the Order Does
 
-For the Indian diaspora in Kuwait — and in the wider Gulf — the immediate concern is physical safety. Kuwait's air defense systems intercepted the incoming fire, and there were no reported casualties. But the incident shattered the assumption that the ceasefire had moved Gulf states out of the conflict's direct path.
+The executive order, signed on March 31, directs the administration to compile a list of confirmed U.S. citizens eligible to vote in each state, using data from the Department of Homeland Security and the Social Security Administration. It requires the U.S. Postal Service to deliver ballots only to voters on each state's approved mail-in ballot list and mandates that states preserve election-related records for five years.
 
-Indian nationals in Kuwait should register with the Indian Embassy if they haven't already. The embassy's 24-hour helpline is +965-25306300. For emergencies, the consular helpline is +965-65062263.
+Democrats argued that the citizenship lists risk improperly excluding lawfully registered voters because the underlying data sources can be outdated and contain errors. They contended that the order infringes on states' constitutional rights to regulate their own elections.
 
-Travel insurers have been quietly tightening exclusion clauses for Gulf destinations since March. NRIs planning travel to Kuwait, Bahrain, or Qatar should verify their coverage.
+Judge Nichols, who was appointed by Trump during his first term, rejected the request for an injunction on procedural grounds. "Given that the Executive Order does not command Plaintiffs to do anything, and that no agency has yet acted pursuant to the Order in a way that could harm Plaintiffs, they have not suffered any harm at present," Nichols wrote.
 
-## The Bigger Picture
+## Why This Matters for Indian Americans
 
-India's exposure to the Iran war extends well beyond its diaspora. The conflict has pushed Indian petrol prices past ₹100 in most cities, triggered India's first below-normal monsoon forecast in eight years via El Niño amplification, and contributed to a $23 billion foreign investor exodus from Indian equity markets this year.
+The Indian American population has grown to approximately 4.8 million, making it one of the fastest-growing voter blocs in the country. Concentrated in suburban districts across New Jersey, California, Texas, Virginia, Georgia, and the Research Triangle in North Carolina, Indian American voters have increasingly favored mail-in ballots — particularly since the pandemic normalized absentee voting in 2020.
 
-Every escalation in the Gulf ripples through Indian households within days — at the pump, in grocery bills, and in the remittance flows that connect Gulf-based workers to families back home. Kuwait alone sent an estimated $4.8 billion in remittances to India in 2025.
+For a community where both spouses frequently work in demanding professional fields — medicine, technology, engineering, and finance — mail-in voting is not a political preference. It is a logistical necessity. Many Indian American voters also maintain complex schedules around religious holidays, family obligations in India, and international travel that make in-person voting on a single Tuesday unreliable.
 
-Thursday's attack was intercepted. The next one might not be. For India's Gulf diaspora, the ceasefire has become a warning, not a guarantee."""
+The risk is not that the executive order will directly prevent Indian American citizens from voting. It is that the citizenship verification machinery — built on DHS and SSA databases that immigration lawyers say are riddled with processing delays, name transliteration errors, and lag times — could flag naturalized citizens for additional scrutiny or accidentally remove them from ballot lists.
 
-    sources = [
-        {"name": "Reuters", "url": "https://www.reuters.com/world/middle-east/kuwaiti-army-says-air-defences-intercepting-hostile-missile-drone-attacks-2026-05-28/"},
-        {"name": "Wall Street Journal", "url": "https://www.wsj.com/world/middle-east/u-s-military-conducts-new-strikes-on-iran-416f76cf"},
-        {"name": "New York Post", "url": "https://nypost.com/2026/05/28/iran-targeted-us-airbase-retaliation-strikes/"}
-    ]
+## The Wider Immigration Context
 
-    # Image: try Pexels for Kuwait skyline or Gulf military
-    img_url = fetch_pexels_image("Kuwait city skyline", "Middle East military defense")
-    if img_url and not validate_image(img_url):
-        img_url = None
+The mail-in voting ruling arrives in the same week that USCIS announced a sweeping policy change requiring most green card applicants to leave the country and apply from their home nations, rather than adjusting status inside the United States. For the hundreds of thousands of Indian nationals on H-1B visas who are waiting — some for decades — in the employment-based green card queue, the combined effect is a signal: the administrative infrastructure of American life is becoming less accommodating.
 
-    return {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "sources": sources,
-        "vertical": "geopolitics",
-        "tags": ["kuwait", "iran-war", "indian-diaspora", "gulf", "missiles", "ceasefire", "strait-of-hormuz"],
-        "diaspora_angle": "Kuwait is home to nearly 900,000 Indian nationals — one of the largest Indian communities in the Gulf. Thursday's missile and drone attacks on Kuwait put this diaspora directly in harm's way. No fresh MEA advisory has been issued. NRIs in Kuwait should register with the Indian Embassy and verify travel insurance coverage.",
-        "urgency": "high",
-        "image_url": img_url,
-        "image_caption": "Kuwait City skyline — nearly a million Indian nationals live and work in the Gulf state",
-        "image_attribution": "Pexels" if img_url else None,
-    }
+Indian Americans who have naturalized still face practical challenges. Names like Raghunathan or Venkataraman can be inconsistently recorded across federal databases. A DHS record might list "Venkat R.," while the SSA record shows "Raghunathan Venkataraman." These discrepancies, immigration attorneys say, are exactly the kind of data mismatches that could trigger false exclusions from voter rolls built on automated cross-referencing.
 
+## What Happens Next
 
-# ── ARTICLE 2: SEBI tightens IPO fund oversight ──
+A coalition of Democratic states has filed a separate lawsuit challenging the executive order in federal court in Boston. The legal battle is far from over, and Judge Nichols left open the possibility that plaintiffs could seek an injunction again once federal agencies begin implementing the order's provisions.
 
-def write_article_2():
-    print("\n📰 Article 2: SEBI tightens IPO fund oversight")
+The November midterm elections are five months away. Republicans are fighting to maintain their slim majorities in both the House and the Senate. For the Trump administration, tighter mail-in voting rules are a centerpiece of election integrity. For Indian Americans — naturalized citizens who played by every rule to earn the right to vote — the concern is simpler: that the systems designed to verify their citizenship might not recognize their names."""
+})
 
-    headline = "SEBI Wants to Know Where Your IPO Money Goes. Here Is How the Rules Are Changing."
-    subheadline = "India's markets regulator is proposing mandatory monitoring of equity fund usage, penalties for non-cooperating companies, and a pilot for tokenized corporate bonds. NRI investors should pay attention."
-    slug = "sebi-ipo-fund-oversight-tokenized-bonds-nri-investors-20260528"
-
-    body = """India's securities regulator is moving to close one of the widest gaps in the country's capital markets: the near-total absence of accountability for how companies spend the money they raise through IPOs.
-
-The Securities and Exchange Board of India, or SEBI, has drafted proposals that would require credit rating agencies to report directly to stock exchanges on how listed companies deploy equity capital raised from public markets. Companies that refuse to cooperate would face penalties of ₹50,000 per violation. The monitoring threshold — the minimum fundraise that triggers mandatory oversight — would drop from ₹100 crore to ₹50 crore, casting a much wider net.
-
-The draft proposals, reviewed by Reuters, have not been publicly released. A SEBI panel will send them to the regulator for formal market consultation.
-
-## The Problem SEBI Is Trying to Fix
-
-Under current rules, credit rating firms are supposed to monitor how IPO proceeds are used. In practice, the system barely functions. Companies routinely withhold information. Rating agencies have no enforcement power. And the monitoring reports, such as they are, don't have to be made public.
-
-The result: investors pour billions into Indian IPOs on the strength of prospectus promises — "we will build a factory in Gujarat," "we will acquire three logistics companies" — and have almost no way to verify whether the money went where it was supposed to go.
-
-"Monitoring agency reports are intended to enhance transparency, accountability and safeguarding investor interests," the draft proposals state. "Timely and adequate submission of report to exchanges is paramount to ensuring investor protection."
-
-SEBI's framework mirrors the UK model, where an investment bank or advisory firm is mandated to oversee IPO proceeds.
-
-## Why This Matters for NRI Investors
-
-NRIs have been some of the most active participants in India's IPO market. Under India's liberalized NRI investment rules, non-resident Indians can invest in Indian IPOs through their NRE or NRO accounts, and the 2023-2024 IPO boom saw significant NRI participation across fintech, EV, and consumer-tech listings.
-
-But the same IPO boom exposed the accountability problem. Several high-profile listings — including companies in the EV and edtech sectors — saw stock prices collapse within months of listing as investors discovered that fundraise proceeds were being diverted to unrelated expenses, promoter compensation, or simply sitting idle in bank accounts.
-
-Better monitoring won't prevent all misuse, but it gives investors — including NRIs investing remotely — a paper trail they can follow.
-
-## Tokenized Bonds: The Other Big Move
-
-SEBI chairman Tuhin Kanta Pandey also announced that the regulator is preparing a pilot program for tokenized corporate bonds, with rollout expected in six to nine months.
-
-Tokenization means converting securities like bonds into digital tokens on a shared ledger, enabling faster, cheaper, and more transparent trading. India's corporate bond market remains underdeveloped compared to its equity markets — and SEBI sees blockchain-based infrastructure as a way to leapfrog the liquidity and settlement bottlenecks that have held it back.
-
-For NRI investors, tokenized bonds could eventually simplify cross-border fixed-income investing in India — a segment that has historically been paperwork-heavy and opaque.
-
-## The Market Backdrop
-
-The timing is deliberate. India's IPO pipeline is at an all-time high — 190 companies with approved offerings worth a combined ₹2.5 lakh crore are waiting to go to market. But only 15 companies have actually listed since January, as the Iran war-driven market selloff has frozen fundraising activity.
-
-When the pipeline eventually thaws, SEBI wants tighter guardrails in place. Foreign investors have pulled $23 billion out of India this year. The Nifty is headed for its first annual decline since 2015. Regaining investor confidence — domestic and international — will require more than a market rebound. It will require proof that the money raised in Indian markets is being used as promised."""
-
-    sources = [
-        {"name": "Reuters", "url": "https://www.reuters.com/legal/government/india-regulator-seeks-tighter-oversight-use-equity-funds-raised-document-shows-2026-05-27/"},
-        {"name": "Reuters", "url": "https://www.reuters.com/business/finance/indias-markets-regulator-eyes-equity-style-norms-debt-pilot-tokenised-bond-market-2026-05-27/"},
-        {"name": "Gulf Business", "url": "https://gulfbusiness.com/india-sebi-equity-fund-oversight/"}
-    ]
-
-    # Image: SEBI chairman or Bombay Stock Exchange
-    img_url = fetch_wikipedia_person_image("Bombay Stock Exchange")
-    if not img_url or not validate_image(img_url):
-        img_url = fetch_pexels_image("Indian stock market trading", "Bombay stock exchange building")
-        if img_url and not validate_image(img_url):
-            img_url = None
-
-    return {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "sources": sources,
-        "vertical": "economy",
-        "tags": ["sebi", "ipo", "markets", "regulation", "tokenized-bonds", "nri-investors", "bombay-stock-exchange"],
-        "diaspora_angle": "NRIs have been active participants in India's IPO market through NRE/NRO accounts. SEBI's tighter fund-use monitoring gives remote investors a paper trail to follow. Tokenized corporate bonds could simplify cross-border fixed-income investing for the diaspora.",
-        "urgency": "medium",
-        "image_url": img_url,
-        "image_caption": "India's markets regulator SEBI is proposing sweeping changes to how IPO fund usage is monitored",
-        "image_attribution": "Wikimedia Commons" if img_url and "wikimedia" in (img_url or "").lower() else "Pexels",
-    }
-
-
-# ── ARTICLE 3: UN climate report — global temps near-record, El Niño building ──
-
-def write_article_3():
-    print("\n📰 Article 3: UN climate report — global temps, India impact")
-
-    headline = "The UN Says Global Temperatures Will Hit Near-Record Highs by 2030. India Is Already Baking at 48°C."
-    subheadline = "A joint report by the WMO and UK Met Office predicts the 1.5°C Paris threshold will be temporarily breached. A strong El Niño is building. India's below-normal monsoon forecast just got more ominous."
-    slug = "un-climate-report-global-temperature-record-el-nino-india-heatwave-20260528"
-
-    body = """The world is about to get hotter — and India, already enduring its deadliest May in years, will feel it first.
-
-A report published Thursday by the World Meteorological Organization and the UK's Met Office forecasts that average global temperatures will reach near-record levels over the next five years, ranging between 1.3°C and 1.9°C above pre-industrial baselines. At least one year between 2026 and 2030 is "very likely" to exceed 2024 — currently the warmest year on record — when global temperatures crossed the 1.5°C threshold for the first time.
-
-"There's very clear evidence that the climate is warming and that the global average temperature is continuing to rise," said Melissa Seabrook, a research scientist at the UK Met Office. "The science is very clear that the window to keeping the global average temperature to 1.5 degrees is closing rapidly."
-
-## El Niño Is Building Again
-
-The report identifies a strong El Niño developing this winter that could persist into 2027, supercharging the warming trend. El Niño — the periodic heating of Pacific Ocean surface waters — typically amplifies heatwaves, disrupts monsoon patterns, and pushes global temperatures toward record territory.
-
-For India, the El Niño signal compounds an already dire situation. The India Meteorological Department issued its first below-normal monsoon forecast in eight years earlier this month, warning that the southwest monsoon — which delivers roughly 70% of India's annual rainfall — is likely to underperform this year.
-
-A weak monsoon directly hits India's 150 million farming households. It means lower reservoir levels, reduced hydropower output, and higher food prices — all layered on top of an economy already strained by the Iran war's impact on energy costs.
-
-## India's Heatwave Has Already Killed at Least 18 People
-
-The UN report arrives as India endures one of its worst May heatwaves on record. Temperatures in Rajasthan have touched 48.2°C. At least 18 people have died from heat-related causes across northern and central India. Power cuts are spreading as air-conditioning demand overwhelms grids.
-
-Several Indian cities — including Delhi, Lucknow, Varanasi, and Nagpur — have recorded temperatures above 45°C for multiple consecutive days. The Indian government has issued advisories urging citizens to stay indoors between 11 a.m. and 4 p.m. and to avoid strenuous outdoor work.
-
-The heatwave is not just a weather event. It is an economic one. Agricultural productivity drops sharply above 40°C. Construction — India's second-largest employer — effectively shuts down during extreme heat. Daily wage workers, who have no air-conditioned fallback, bear the heaviest burden.
-
-## The Arctic Is Warming 3.5 Times Faster
-
-The WMO report also highlights that Arctic winter temperatures are projected to warm at more than three and a half times the global average, reaching around 2.8°C above the 1991-2020 baseline. Arctic sea ice is expected to melt in March in the Barents Sea, Bering Sea, and Sea of Okhotsk.
-
-The Arctic warming is not just a polar concern. Disrupted jet stream patterns — driven by the shrinking temperature differential between the Arctic and the equator — are increasingly linked to the persistent heatwaves and erratic monsoon behavior that India has experienced in recent years.
-
-## What the Diaspora Needs to Watch
-
-For NRIs with family in India, the convergence of El Niño, a weak monsoon, and record-proximate global temperatures means this summer and the kharif growing season (June-October) will be particularly stressful.
-
-Food inflation — already running above 8% year-on-year — could spike further if the monsoon disappoints. Rural distress typically triggers migration surges into already-strained cities. And power infrastructure in states like Uttar Pradesh, Bihar, and Rajasthan is nowhere near adequate for sustained 45°C-plus heat.
-
-The 1.5°C threshold is a number negotiated in Paris. The 48°C thermometer reading in Rajasthan is the number that matters."""
-
-    sources = [
-        {"name": "Reuters", "url": "https://www.reuters.com/sustainability/cop/global-temperatures-reach-near-record-highs-next-five-years-report-finds-2026-05-28/"},
-        {"name": "UN India", "url": "https://india.un.org/en/stories/un-weather-agency-warns-record-climate-imbalance"},
-        {"name": "CurrentIndia.com", "url": "https://currentindia.com/india-heat-un-warns-climate-extremes/"}
-    ]
-
-    # Image: heatwave India or climate change
-    img_url = fetch_pexels_image("India heatwave scorching heat", "extreme heat summer drought")
-    if img_url and not validate_image(img_url):
-        img_url = None
-
-    return {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "sources": sources,
-        "vertical": "climate",
-        "tags": ["climate-change", "el-nino", "heatwave", "india", "wmo", "paris-agreement", "monsoon", "arctic"],
-        "diaspora_angle": "For NRIs with family in India, the convergence of El Niño, a weak monsoon, and near-record global temperatures means this summer and kharif season will be especially stressful. Food inflation could spike further. Rural distress hits families that depend on remittances.",
-        "urgency": "high",
-        "image_url": img_url,
-        "image_caption": "India is enduring one of its deadliest May heatwaves on record as global temperatures approach new highs",
-        "image_attribution": "Pexels" if img_url else None,
-    }
-
-
-# ── MAIN ──
-
-if __name__ == "__main__":
-    print("=" * 60)
-    print("The Videshi — News Writer (2026-05-28)")
-    print("=" * 60)
-
-    articles_funcs = [write_article_1, write_article_2, write_article_3]
-    published = 0
-
-    for fn in articles_funcs:
-        try:
-            article = fn()
-            result = publish_article(article)
-            if result:
-                published += 1
-            else:
-                print(f"  ✗ Failed to publish: {article['headline'][:50]}")
-        except Exception as e:
-            print(f"  ✗ Error in {fn.__name__}: {e}")
-
-    print(f"\n{'=' * 60}")
-    print(f"Done. Published {published}/{len(articles_funcs)} articles.")
-    print(f"{'=' * 60}")
+# ─── ARTICLE 3: Pentagon Location Data ──────────────────────────────
+articles.append({
+    'headline': "The Pentagon Says the Adtech Industry Is Getting American Soldiers Killed. Indian Americans Built Half That Industry.",
+    'subheadline': "Commercial location data from smartphones is being used to target U.S. troops in the Gulf. Lawmakers want the advertising technology sector treated as a national security threat.",
+    'slug': 'pentagon-adtech-location-data-targeting-us-troops-iran-war-indian-americans-tech',
+    'category': 'news',
+    'sources': json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com/business/media-telecom/pentagon-says-us-military-personnel-are-reportedly-being-targeted-using-location-2026-05-28/"},
+        {"name": "Senator Ron Wyden Letter", "url": "https://www.documentcloud.org"},
+        {"name": "Wall Street Journal", "url": "https://www.wsj.com"},
+        {"name": "Wired", "url": "https://www.wired.com"}
+    ]),
+    'vertical': 'technology',
+    'urgency': 'high',
+    'image_search_person': None,
+    'image_search_pexels': 'military smartphone surveillance technology',
+    'image_pexels_fallback': 'smartphone location tracking digital',
+    'image_caption': 'U.S. Senator Ron Wyden has called for the adtech industry to be treated as a national security threat.',
+    'body': """The Pentagon has confirmed for the first time that U.S. military personnel deployed to war zones have been targeted using commercially available location data — the same data that powers the advertising technology industry where Indian Americans hold an outsized share of the most senior engineering and leadership roles.
+
+In a letter shared with Reuters on Thursday, U.S. Central Command told Senator Ron Wyden that it had "received multiple threat reports concerning adversary exploitation of commercial location data to target or surveil U.S. personnel in theater." The disclosure is the first official acknowledgment that the vast commercial market for smartphone location data — a market worth tens of billions of dollars — has been weaponized against American soldiers in an active conflict zone.
+
+## How Location Data Becomes a Weapon
+
+The mechanism is disturbingly simple. Every smartphone has a unique advertising identifier. Apps and service providers collect location data tied to that identifier. Data brokers aggregate and resell the data, often through complex networks of intermediaries, to anyone willing to pay.
+
+In peacetime, this data powers targeted advertising — the reason you see an ad for a restaurant after walking past it. In the Gulf, where U.S. forces are engaged in a three-month-old confrontation with Iran over the Strait of Hormuz, the same data can reveal where troops congregate, their daily patterns of movement, and the location of staging posts.
+
+"Commercial location data can be used to identify where U.S. troops congregate and their pattern of life, which can be exploited by adversaries to target attacks such as missiles, drones, and roadside bombs," the lawmakers' letter warned.
+
+This is not theoretical. As far back as 2016, a U.S. defense contractor demonstrated that it could use commercially available data to track special operations forces from their domestic bases to a sensitive staging post in Syria. More recently, journalists at Wired and two German news outlets used billions of coordinates collected by a single data broker to map the movements of people at 11 U.S. military and intelligence installations in Germany.
+
+## The Indian American Connection
+
+Wyden's statement that it is time to "start treating the adtech industry as a national security threat" lands squarely in a sector where Indian Americans have built careers, companies, and fortunes. Indian-origin engineers and executives are deeply embedded across the advertising technology stack — from Google's ad infrastructure, where former Google CEO Sundar Pichai built his career partly on the company's advertising products, to the data analytics firms, demand-side platforms, and data management companies that form the backbone of programmatic advertising.
+
+The companies named or implicated are not fringe operators. Google, whose Chrome browser was specifically called out by lawmakers as a tool that is "built from the ground up to collect and share user data," responded that Chrome had "industry-leading security" and that it had "long advocated for stronger rules and safeguards against data brokers." Google's parent company, Alphabet, is one of the world's largest collectors and monetizers of location data.
+
+Representative Pat Harrigan, a North Carolina Republican and former Army Special Forces officer who cosigned the letter, said that every day Chrome remains on government-issued devices "is another day we are handing our adversaries a weapon against our own troops."
+
+## A Reckoning for the Industry
+
+For years, the advertising technology industry has treated user location data as a commodity — collected at scale, sold at volume, lightly regulated. The trade has powered a surveillance economy that generates hundreds of billions in annual revenue and employs tens of thousands of engineers, disproportionately of Indian and Chinese origin, across Silicon Valley, Seattle, and Hyderabad.
+
+The Pentagon's confirmation forces a question that the industry has avoided: at what point does a business model built on tracking people become a national security liability? The lawmakers' recommendations include disabling advertising IDs on military-issued devices, automatically turning off location sharing on smartphones in the field, and steering personnel away from Chrome toward more privacy-focused browsers.
+
+For Indian Americans in the technology sector — many of whom arrived on H-1B visas and built careers in exactly the companies now under scrutiny — the moment is uncomfortable. The industry that offered them economic opportunity is now being described as a threat to the country that gave them that opportunity. How the community responds, and whether it leads on reform rather than defending the status quo, may define whether the advertising technology sector survives this reckoning with its business model intact."""
+})
+
+
+# ─── MAIN EXECUTION ─────────────────────────────────────────────────
+
+print(f"\n{'='*60}")
+print(f"The Videshi — News Writer — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+print(f"{'='*60}\n")
+
+published_count = 0
+
+for i, article in enumerate(articles, 1):
+    print(f"\n--- Article {i}/{len(articles)}: {article['headline'][:60]}... ---\n")
+    
+    # Image sourcing
+    image_url = None
+    image_attribution = ""
+    
+    # Step 1: Try Wikipedia for person articles
+    if article.get('image_search_person'):
+        print(f"  Trying Wikipedia for: {article['image_search_person']}")
+        image_url = fetch_wikipedia_person_image(article['image_search_person'])
+        if image_url:
+            image_attribution = "Wikimedia Commons"
+    
+    # Step 2: Try Pexels fallback
+    if not image_url and article.get('image_search_pexels'):
+        print(f"  Trying Pexels for: {article['image_search_pexels']}")
+        image_url = fetch_pexels_image(
+            article['image_search_pexels'],
+            article.get('image_pexels_fallback')
+        )
+        if image_url:
+            image_attribution = "Pexels"
+    
+    # Step 3: Validate
+    if image_url and not validate_image_url(image_url):
+        print(f"  ✗ Image failed validation, skipping")
+        image_url = None
+    
+    # Step 4: Upload to Supabase
+    if image_url:
+        filename = f"{article['slug']}.jpg"
+        uploaded_url = upload_image_to_supabase(image_url, filename)
+        if uploaded_url:
+            image_url = uploaded_url
+            if 'supabase' in uploaded_url:
+                image_attribution = "The Videshi"
+    
+    article['image_url'] = image_url
+    article['image_attribution'] = image_attribution
+    
+    # Publish
+    art_id = publish_article(article)
+    if art_id:
+        published_count += 1
+    
+    time.sleep(1)
+
+print(f"\n{'='*60}")
+print(f"Done. Published {published_count}/{len(articles)} articles.")
+print(f"{'='*60}\n")
