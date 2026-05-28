@@ -140,12 +140,19 @@ export default function CelebrityBuzz() {
       {/* Main embed area — one celebrity at a time */}
       <div className="celeb-embed-container" style={{ marginBottom: 12 }}>
         {sc ? (
-          <div ref={embedRef} key={`embed-${activeIdx}`}>
+          <div
+            ref={embedRef}
+            key={`embed-${activeIdx}`}
+            style={{
+              maxHeight: "70vh",
+              overflow: "hidden",
+              borderRadius: 12,
+            }}
+          >
             <blockquote
               className="instagram-media"
               data-instgrm-permalink={`https://www.instagram.com/p/${sc}/`}
               data-instgrm-version="14"
-              data-instgrm-captioned
               style={{
                 background: "#FFF",
                 border: 0,
