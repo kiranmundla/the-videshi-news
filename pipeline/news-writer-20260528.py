@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """
-The Videshi — News Writer (2026-05-28)
-Publishes 3 fresh news articles with Wikipedia-first image sourcing.
+The Videshi — News Writer (2026-05-28 batch)
+Writes 3 news articles, sources images, publishes to Supabase.
 """
 
-import json, os, re, uuid, requests, urllib.parse
+import json, os, re, sys, uuid, time
 from datetime import datetime, timezone
+import requests, urllib.parse
 
-# ── Config ─────────────────────────────────────────────────────────────
+# ── env ──
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
+
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -18,7 +20,8 @@ HEADERS = {
     "Prefer": "return=representation",
 }
 
-# ── Image helpers ──────────────────────────────────────────────────────
+# ── helpers ──
+
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -26,22 +29,23 @@ def fetch_wikipedia_person_image(person_name):
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            timeout=10,
         )
         if r.status_code == 200:
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels. Returns URL or None."""
+    """Search Pexels for a relevant image. Use curl-style request (urllib gets 403)."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key available")
+        print("  ⚠ No Pexels API key")
         return None
     for q in [query, fallback_query]:
         if not q:
@@ -49,346 +53,337 @@ def fetch_pexels_image(query, fallback_query=None):
         try:
             r = requests.get(
                 "https://api.pexels.com/v1/search",
-                headers={"Authorization": PEXELS_KEY},
                 params={"query": q, "per_page": 5, "orientation": "landscape"},
-                timeout=10
+                headers={"Authorization": PEXELS_KEY},
+                timeout=10,
             )
             if r.status_code == 200:
                 photos = r.json().get("photos", [])
-                for photo in photos:
-                    url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
+                for p in photos:
+                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
                     if url:
-                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
                         return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+
 def validate_image(url):
-    """Verify image URL returns HTTP 200 with image content > 5KB."""
+    """Check that image URL returns valid image > 5KB."""
     if not url:
         return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        content_type = r.headers.get("Content-Type", "")
-        content_length = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in content_type and content_length > 5000:
-            print(f"  ✓ Image validated: {content_type}, {content_length} bytes")
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if "image" in ct and cl > 5000:
             return True
-        # Try GET if HEAD doesn't give good info
-        if r.status_code == 200 and content_length == 0:
+        # If HEAD doesn't give content-length, try GET
+        if "image" in ct and cl == 0:
             r2 = requests.get(url, timeout=10, stream=True,
-                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(10000)
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
             if len(chunk) > 5000:
-                print(f"  ✓ Image validated via GET: {len(chunk)}+ bytes")
                 return True
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
+        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
     return False
 
-def create_topic(headline, category, keywords):
-    """Create a topic in p2_topics and return its id."""
-    topic = {
-        "canonical_title": headline[:200],
-        "vertical": "politics" if category == "news" else category,
-        "urgency": "daily",
-        "score_diaspora": 75,
-        "score_significance": 80,
-        "score_recency": 90,
-        "score_source_avail": 80,
-        "score_total": 81,
-        "signal_count": 3,
-        "status": "published",
-        "keywords": keywords,
-        "category": category,
-    }
+
+def sb_insert(table, row):
+    """Insert a row into Supabase."""
     r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_topics",
+        f"{SUPABASE_URL}/rest/v1/{table}",
         headers=HEADERS,
-        json=topic
+        json=row,
+        timeout=30,
     )
     if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            tid = result[0].get("id")
-            print(f"  ✓ Topic created: {tid}")
-            return tid
-    print(f"  ✗ Topic creation failed: {r.status_code} — {r.text[:200]}")
+        data = r.json()
+        if isinstance(data, list) and data:
+            return data[0].get("id")
+        return True
+    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
     return None
 
+
 def publish_article(article):
-    """Create topic, then insert article into Supabase."""
-    # Create topic first
-    keywords = article.pop("_keywords", [])
-    topic_id = create_topic(article["headline"], article["category"], keywords)
-    if not topic_id:
-        return False
-    article["topic_id"] = topic_id
+    """Insert article into p2_articles."""
+    art_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article
-    )
-    if r.status_code in (200, 201):
-        result = r.json()
-        title = article['headline'][:60]
-        if isinstance(result, list) and result:
-            print(f"  ✓ Published: {title}... (id: {result[0].get('id', 'unknown')})")
-        else:
-            print(f"  ✓ Published: {title}...")
-        return True
-    else:
-        print(f"  ✗ Failed to publish: {r.status_code} — {r.text[:200]}")
-        return False
+    row = {
+        "id": art_id,
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": "news",
+        "vertical": article.get("vertical", "news"),
+        "status": "published",
+        "published_at": now,
+        "created_at": now,
+        "updated_at": now,
+        "sources": json.dumps(article["sources"]),
+        "tags": article.get("tags", []),
+        "diaspora_angle": article.get("diaspora_angle", ""),
+        "urgency": article.get("urgency", "medium"),
+        "image_url": article.get("image_url"),
+        "image_caption": article.get("image_caption"),
+        "image_attribution": article.get("image_attribution"),
+    }
 
-# ── ARTICLE 1: US-Iran Ceasefire Unraveling ────────────────────────────
-def article_1():
-    print("\n📰 Article 1: US-Iran Ceasefire Unraveling — India Impact")
+    result = sb_insert("p2_articles", row)
+    if result:
+        print(f"  ✓ Published: {article['headline'][:60]}... (id={art_id[:8]})")
+    return result
 
-    headline = "The US-Iran Ceasefire Just Collapsed. India Is About to Feel It at the Pump."
-    subheadline = "Overnight strikes near Bandar Abbas, IRGC retaliation on a US base in Kuwait, and Brent crude surging past $96 — three months into a war that has already pushed Indian petrol past ₹100."
-    slug = "us-iran-ceasefire-collapse-kuwait-attacked-oil-96-india-petrol-20260528"
 
-    body = """The fragile ceasefire between the United States and Iran that had held since early April effectively collapsed on Thursday morning, after a rapid exchange of strikes near the Strait of Hormuz escalated into the most dangerous confrontation since the war began on February 28.
+# ── ARTICLE 1: Kuwait under attack — Indian diaspora on alert ──
 
-The US military struck a ground control station near Bandar Abbas — Iran's most important Persian Gulf port — and shot down four Iranian attack drones it said were threatening American forces and commercial maritime traffic. The Pentagon described the strikes as "measured, purely defensive and intended to maintain the ceasefire."
+def write_article_1():
+    print("\n📰 Article 1: Kuwait under missile attack — Indian diaspora")
 
-Iran's Revolutionary Guard Corps disagreed. Within hours, the IRGC said it had targeted the US airbase from which the attack was launched. It did not name the base, but Kuwait — home to several major American military installations including Ali Al Salem Air Base — confirmed it was intercepting hostile missile and drone attacks and told residents to seek cover.
+    headline = "Kuwait Is Under Missile Attack. Nearly a Million Indians Live There."
+    subheadline = "Iran struck a U.S. base after American jets shot down four drones near the Strait of Hormuz. Kuwait's air defenses intercepted the incoming fire. India's embassy has not issued an advisory — yet."
+    slug = "kuwait-missile-drone-attack-indian-diaspora-safety-iran-war-20260528"
 
-Air raid sirens sounded across Kuwait City for the first time since the April ceasefire. Israel separately reported hostile aircraft activity in its northern airspace, with sirens going off along the Lebanese border.
+    body = """The fragile ceasefire in the Iran war cracked open again on Thursday when Kuwait reported intercepting hostile missiles and drones — the first time the Gulf state has come under direct fire since the conflict began in February.
 
-## Oil Markets React Instantly
+The Kuwaiti military said its air defense systems engaged incoming threats early Thursday morning, urging residents to seek cover. The attacks came hours after American fighter jets shot down four Iranian attack drones near the Strait of Hormuz and struck a ground control station in the port city of Bandar Abbas that was preparing to launch a fifth.
 
-Brent crude futures, which had fallen more than 5% the previous day on hopes of a peace deal, reversed sharply. By early Thursday trading, Brent was up 2% at $96.19 a barrel. US West Texas Intermediate crude climbed 1.95% to $90.41.
+Iran's Islamic Revolutionary Guard Corps said it had "targeted" a U.S. base in retaliation. Kuwait — which hosts a major American military installation — did not identify where the attacks originated, but the timing left little ambiguity.
 
-"Oil supply remains constrained, and key sticking points have yet to be resolved," ANZ commodity strategist Daniel Hynes said.
+## Nearly a Million Indians in the Line of Fire
 
-The rebound came hours after President Trump dismissed an Iranian state media report claiming Tehran and Oman would jointly manage shipping through the Strait of Hormuz as part of a peace framework. Trump declared that no country would control the strait.
+The escalation is not abstract for India. Kuwait is home to approximately 900,000 Indian nationals — the largest expatriate community in the country and one of the largest Indian populations anywhere in the Gulf. Indian workers dominate Kuwait's construction, oil services, healthcare, retail, and domestic labor sectors.
 
-## What This Means for India
+During the early weeks of the Iran war in March, India's Ministry of External Affairs issued advisories for Indian nationals in the Gulf to "exercise caution and remain in contact with the Indian Embassy." But as the ceasefire held through April and May, that advisory was quietly shelved. No fresh advisory had been issued as of Thursday afternoon.
 
-India imports roughly 85% of its crude oil, and the Hormuz chokepoint — through which about a fifth of global oil supply normally flows — has been effectively shut since late February. The disruption has already pushed Indian petrol prices past ₹100 in most cities after four fuel price hikes in two weeks.
+India's embassy in Kuwait posted a general safety notice on its website but stopped short of recommending evacuation or restricting travel.
 
-With Brent crude still hovering near $96, India's current account deficit is under growing pressure. Foreign investors have already pulled $23 billion out of Indian markets this year, and the Nifty is headed for its first annual decline since 2015.
+## The Ceasefire That Keeps Breaking
 
-The timing could not be worse. India's monsoon forecast is below normal for the first time in eight years, El Niño is building, and the country is in the grip of a lethal heatwave that has killed at least 18 people, with temperatures reaching 47.5°C in parts of Madhya Pradesh.
+The U.S.-Iran ceasefire, which took effect in early April, was always fragile. Both sides have engaged in sporadic skirmishes — drone intercepts, naval provocations near the Strait of Hormuz, and cyberattacks — while maintaining the fiction that the ceasefire was holding.
 
-## Two Weeks to a Deal — or a Full Escalation
+Thursday's exchange was the most serious breach yet. The U.S. characterized its strikes as "measured, purely defensive and intended to maintain the ceasefire." Iran called them an unprovoked attack.
 
-Analysts at the Commonwealth Bank of Australia put a 70% probability on a deal being reached in the next two weeks, but warned that the alternative — a full collapse of the ceasefire with active hostilities resuming — would send oil prices well above $100 again.
+Oil prices, which had fallen more than 5% on Wednesday amid hopes of a Hormuz deal, surged back. U.S. crude futures gained more than 3%.
 
-Insurance for vessels transiting the strait has become "prohibitively expensive," and it remains unclear whether Iran would impose a toll on passage even under a peace agreement.
+## What NRIs Should Know
 
-For India, the arithmetic is brutal. Every $10 increase in crude oil prices widens the current account deficit by roughly 0.3% of GDP and adds approximately 0.7 percentage points to inflation. At $96, the pressure is already intense. At $110 or above, it would become a full-blown macroeconomic emergency.
+For the Indian diaspora in Kuwait — and in the wider Gulf — the immediate concern is physical safety. Kuwait's air defense systems intercepted the incoming fire, and there were no reported casualties. But the incident shattered the assumption that the ceasefire had moved Gulf states out of the conflict's direct path.
 
-Secretary of State Marco Rubio's four-day visit to India last week put energy security at the top of the bilateral agenda. The $500 billion deal framework discussed in New Delhi included expanded US energy exports to India. But pipelines and LNG terminals take years to build. The strait takes hours to close.
+Indian nationals in Kuwait should register with the Indian Embassy if they haven't already. The embassy's 24-hour helpline is +965-25306300. For emergencies, the consular helpline is +965-65062263.
 
-*Sources: Reuters, The Times (London), Wall Street Journal, ANZ Research, Commonwealth Bank of Australia*"""
+Travel insurers have been quietly tightening exclusion clauses for Gulf destinations since March. NRIs planning travel to Kuwait, Bahrain, or Qatar should verify their coverage.
 
-    # Image: Try Trump (since he's the main actor rejecting the deal)
-    image_url = fetch_wikipedia_person_image("Strait of Hormuz")
-    image_attr = "Wikimedia Commons"
-    if not image_url or not validate_image(image_url):
-        image_url = fetch_pexels_image("oil tanker strait ocean", "crude oil refinery")
-        image_attr = "Pexels"
-    if not validate_image(image_url):
-        image_url = None
-        image_attr = None
+## The Bigger Picture
+
+India's exposure to the Iran war extends well beyond its diaspora. The conflict has pushed Indian petrol prices past ₹100 in most cities, triggered India's first below-normal monsoon forecast in eight years via El Niño amplification, and contributed to a $23 billion foreign investor exodus from Indian equity markets this year.
+
+Every escalation in the Gulf ripples through Indian households within days — at the pump, in grocery bills, and in the remittance flows that connect Gulf-based workers to families back home. Kuwait alone sent an estimated $4.8 billion in remittances to India in 2025.
+
+Thursday's attack was intercepted. The next one might not be. For India's Gulf diaspora, the ceasefire has become a warning, not a guarantee."""
+
+    sources = [
+        {"name": "Reuters", "url": "https://www.reuters.com/world/middle-east/kuwaiti-army-says-air-defences-intercepting-hostile-missile-drone-attacks-2026-05-28/"},
+        {"name": "Wall Street Journal", "url": "https://www.wsj.com/world/middle-east/u-s-military-conducts-new-strikes-on-iran-416f76cf"},
+        {"name": "New York Post", "url": "https://nypost.com/2026/05/28/iran-targeted-us-airbase-retaliation-strikes/"}
+    ]
+
+    # Image: try Pexels for Kuwait skyline or Gulf military
+    img_url = fetch_pexels_image("Kuwait city skyline", "Middle East military defense")
+    if img_url and not validate_image(img_url):
+        img_url = None
 
     return {
         "headline": headline,
         "subheadline": subheadline,
-        "slug": slug,
         "body": body,
-        "category": "news",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": image_url,
-        "image_attribution": image_attr,
-        "image_caption": "The Strait of Hormuz — through which a fifth of the world's oil supply normally flows — remains effectively shut three months into the US-Iran conflict.",
-        "sources": [
-            {"url": "https://www.reuters.com/world/middle-east/iran-us-trade-air-strikes-2026-05-28/", "name": "Reuters"},
-            {"url": "https://www.thetimes.com/world/middle-east", "name": "The Times"},
-            {"url": "https://www.wsj.com/world/middle-east", "name": "Wall Street Journal"},
-        ],
-        "tags": ["Iran", "US", "ceasefire", "oil prices", "Hormuz", "India", "energy"],
-        "vertical": "politics",
-        "urgency": "breaking",
-        "word_count": 720,
-        "_keywords": ["Iran", "US strikes", "ceasefire", "Hormuz", "oil prices", "India energy", "Kuwait"],
+        "slug": slug,
+        "sources": sources,
+        "vertical": "geopolitics",
+        "tags": ["kuwait", "iran-war", "indian-diaspora", "gulf", "missiles", "ceasefire", "strait-of-hormuz"],
+        "diaspora_angle": "Kuwait is home to nearly 900,000 Indian nationals — one of the largest Indian communities in the Gulf. Thursday's missile and drone attacks on Kuwait put this diaspora directly in harm's way. No fresh MEA advisory has been issued. NRIs in Kuwait should register with the Indian Embassy and verify travel insurance coverage.",
+        "urgency": "high",
+        "image_url": img_url,
+        "image_caption": "Kuwait City skyline — nearly a million Indian nationals live and work in the Gulf state",
+        "image_attribution": "Pexels" if img_url else None,
     }
 
 
-# ── ARTICLE 2: Scripps Spelling Bee Indian-American Finalists ─────────
-def article_2():
-    print("\n📰 Article 2: Scripps Spelling Bee — Indian-American Dominance")
+# ── ARTICLE 2: SEBI tightens IPO fund oversight ──
 
-    headline = "Five of the Nine Scripps Spelling Bee Finalists Tonight Are Indian-American. Again."
-    subheadline = "Kushi Gottimukkala, Avishka Dudala, Shrey Parikh, Sarv Dharavane, and Ishaan Gupta will compete for the $52,500 prize and the Scripps Cup at DAR Constitution Hall in Washington."
-    slug = "scripps-spelling-bee-2026-five-indian-american-finalists-tonight-20260528"
+def write_article_2():
+    print("\n📰 Article 2: SEBI tightens IPO fund oversight")
 
-    body = """Nine children will walk onto the stage at DAR Constitution Hall in Washington, D.C. tonight for the finals of the 98th Scripps National Spelling Bee. Five of them are Indian-American.
+    headline = "SEBI Wants to Know Where Your IPO Money Goes. Here Is How the Rules Are Changing."
+    subheadline = "India's markets regulator is proposing mandatory monitoring of equity fund usage, penalties for non-cooperating companies, and a pilot for tokenized corporate bonds. NRI investors should pay attention."
+    slug = "sebi-ipo-fund-oversight-tokenized-bonds-nri-investors-20260528"
 
-Kushi Gottimukkala from Charlotte, North Carolina. Avishka Dudala from Dallas, Texas. Shrey Parikh from San Bernardino, California. Sarv Dharavane from Tucker, Georgia. Ishaan Gupta from Jersey City, New Jersey. Together, they make up more than half the field in what is arguably America's most demanding academic competition for children.
+    body = """India's securities regulator is moving to close one of the widest gaps in the country's capital markets: the near-total absence of accountability for how companies spend the money they raise through IPOs.
 
-This is not new. Indian-Americans have dominated the Scripps Bee for over two decades, winning 28 of the last 34 championships. Last year's winner, Faizan Zaki, spelled "éclaircissement" to claim the title. But what the streak reveals about the Indian-American community — its investment in education, its competitive culture, and the quiet infrastructure of coaching networks and regional bee circuits — runs deeper than any single trophy.
+The Securities and Exchange Board of India, or SEBI, has drafted proposals that would require credit rating agencies to report directly to stock exchanges on how listed companies deploy equity capital raised from public markets. Companies that refuse to cooperate would face penalties of ₹50,000 per violation. The monitoring threshold — the minimum fundraise that triggers mandatory oversight — would drop from ₹100 crore to ₹50 crore, casting a much wider net.
 
-## The Road to the Finals
+The draft proposals, reviewed by Reuters, have not been publicly released. A SEBI panel will send them to the regulator for formal market consultation.
 
-The 2026 competition opened on Tuesday with 247 spellers from all 50 states, Washington, D.C., and 13 international territories. They ranged in age from 9 to 15.
+## The Problem SEBI Is Trying to Fix
 
-The semifinals on Wednesday night whittled the field from 54 to nine through two spelling rounds and one vocabulary round — a format introduced in 2021 to test whether spellers understand words, not just memorize letter sequences. Spellers get 90 seconds per word. One wrong letter, and the bell dings them out.
+Under current rules, credit rating firms are supposed to monitor how IPO proceeds are used. In practice, the system barely functions. Companies routinely withhold information. Rating agencies have no enforcement power. And the monitoring reports, such as they are, don't have to be made public.
 
-The words were not forgiving. Lucanidae. Mnemosyne. Eicosanoid. Lacrimale. These are the kinds of words that send adults to dictionaries and send 12-year-olds to the finals.
+The result: investors pour billions into Indian IPOs on the strength of prospectus promises — "we will build a factory in Gujarat," "we will acquire three logistics companies" — and have almost no way to verify whether the money went where it was supposed to go.
 
-Sarv Dharavane, from the Atlanta suburb of Tucker, is a returning finalist — he placed third last year. Shrey Parikh, from Rancho Cucamonga in California's Inland Empire, also competed in the 2024 finals. For both, tonight is unfinished business.
+"Monitoring agency reports are intended to enhance transparency, accountability and safeguarding investor interests," the draft proposals state. "Timely and adequate submission of report to exchanges is paramount to ensuring investor protection."
 
-## Why Indian-Americans Win
+SEBI's framework mirrors the UK model, where an investment bank or advisory firm is mandated to oversee IPO proceeds.
 
-The phenomenon has been studied, debated, and occasionally resented. But the explanation is remarkably simple: immigrant families from India brought a culture that treats academic competition as seriously as American families treat sports. Spelling bees became the arena.
+## Why This Matters for NRI Investors
 
-Starting in the early 2000s, organizations like the South Asian Spelling Bee and the North South Foundation built a parallel circuit of regional competitions that gave Indian-American kids year-round practice. Parents formed coaching networks. Word lists were shared. The infrastructure became self-reinforcing.
+NRIs have been some of the most active participants in India's IPO market. Under India's liberalized NRI investment rules, non-resident Indians can invest in Indian IPOs through their NRE or NRO accounts, and the 2023-2024 IPO boom saw significant NRI participation across fintech, EV, and consumer-tech listings.
 
-An estimated 11 million American children participate in spelling bees each year. The ones who make it to Washington overwhelmingly come from families that treated the pursuit with professional-grade seriousness — hours of daily practice, etymology drills, and mock competitions that simulate the pressure of a national stage.
+But the same IPO boom exposed the accountability problem. Several high-profile listings — including companies in the EV and edtech sectors — saw stock prices collapse within months of listing as investors discovered that fundraise proceeds were being diverted to unrelated expenses, promoter compensation, or simply sitting idle in bank accounts.
 
-## Tonight's Stakes
+Better monitoring won't prevent all misuse, but it gives investors — including NRIs investing remotely — a paper trail they can follow.
 
-The finals air on ION from 8 to 10 p.m. ET, hosted for the first time by ESPN's Mina Kimes — herself a former spelling bee participant from San Pedro, California, and the reigning "Celebrity Jeopardy!" champion.
+## Tokenized Bonds: The Other Big Move
 
-The winner takes home the Scripps Cup, a commemorative medal, and $52,500 in cash. But for the Indian-American families watching from living rooms in Charlotte, Dallas, Jersey City, and Tucker, the real prize is something that cannot be spelled: proof that the bet their parents or grandparents made — leaving India for a country that rewards relentless preparation — was worth it.
+SEBI chairman Tuhin Kanta Pandey also announced that the regulator is preparing a pilot program for tokenized corporate bonds, with rollout expected in six to nine months.
 
-Whoever wins tonight, the streak continues. And somewhere in a suburb of Houston or Fremont or Edison, a seven-year-old is already studying for 2027.
+Tokenization means converting securities like bonds into digital tokens on a shared ledger, enabling faster, cheaper, and more transparent trading. India's corporate bond market remains underdeveloped compared to its equity markets — and SEBI sees blockchain-based infrastructure as a way to leapfrog the liquidity and settlement bottlenecks that have held it back.
 
-*Sources: USA Today, Scripps National Spelling Bee (spellingbee.com), Sporting News, Wikipedia*"""
+For NRI investors, tokenized bonds could eventually simplify cross-border fixed-income investing in India — a segment that has historically been paperwork-heavy and opaque.
 
-    # Image: Try Scripps National Spelling Bee on Wikipedia
-    image_url = fetch_wikipedia_person_image("Scripps National Spelling Bee")
-    image_attr = "Wikimedia Commons"
-    if not image_url or not validate_image(image_url):
-        image_url = fetch_pexels_image("spelling bee competition stage", "academic competition children")
-        image_attr = "Pexels"
-    if not validate_image(image_url):
-        image_url = None
-        image_attr = None
+## The Market Backdrop
+
+The timing is deliberate. India's IPO pipeline is at an all-time high — 190 companies with approved offerings worth a combined ₹2.5 lakh crore are waiting to go to market. But only 15 companies have actually listed since January, as the Iran war-driven market selloff has frozen fundraising activity.
+
+When the pipeline eventually thaws, SEBI wants tighter guardrails in place. Foreign investors have pulled $23 billion out of India this year. The Nifty is headed for its first annual decline since 2015. Regaining investor confidence — domestic and international — will require more than a market rebound. It will require proof that the money raised in Indian markets is being used as promised."""
+
+    sources = [
+        {"name": "Reuters", "url": "https://www.reuters.com/legal/government/india-regulator-seeks-tighter-oversight-use-equity-funds-raised-document-shows-2026-05-27/"},
+        {"name": "Reuters", "url": "https://www.reuters.com/business/finance/indias-markets-regulator-eyes-equity-style-norms-debt-pilot-tokenised-bond-market-2026-05-27/"},
+        {"name": "Gulf Business", "url": "https://gulfbusiness.com/india-sebi-equity-fund-oversight/"}
+    ]
+
+    # Image: SEBI chairman or Bombay Stock Exchange
+    img_url = fetch_wikipedia_person_image("Bombay Stock Exchange")
+    if not img_url or not validate_image(img_url):
+        img_url = fetch_pexels_image("Indian stock market trading", "Bombay stock exchange building")
+        if img_url and not validate_image(img_url):
+            img_url = None
 
     return {
         "headline": headline,
         "subheadline": subheadline,
-        "slug": slug,
         "body": body,
-        "category": "news",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": image_url,
-        "image_attribution": image_attr,
-        "image_caption": "The Scripps National Spelling Bee finals at DAR Constitution Hall in Washington, D.C.",
-        "sources": [
-            {"url": "https://www.usatoday.com/story/sports/2026/05/27/scripps-national-spelling-bee-finalists-2026/", "name": "USA Today"},
-            {"url": "https://spellingbee.com/", "name": "Scripps National Spelling Bee"},
-            {"url": "https://en.wikipedia.org/wiki/98th_Scripps_National_Spelling_Bee", "name": "Wikipedia"},
-        ],
-        "tags": ["Spelling Bee", "Indian-American", "education", "NRI", "diaspora", "competition"],
-        "vertical": "culture",
-        "urgency": "daily",
-        "word_count": 710,
-        "_keywords": ["Scripps Spelling Bee", "Indian-American", "finalists", "NRI", "education"],
+        "slug": slug,
+        "sources": sources,
+        "vertical": "economy",
+        "tags": ["sebi", "ipo", "markets", "regulation", "tokenized-bonds", "nri-investors", "bombay-stock-exchange"],
+        "diaspora_angle": "NRIs have been active participants in India's IPO market through NRE/NRO accounts. SEBI's tighter fund-use monitoring gives remote investors a paper trail to follow. Tokenized corporate bonds could simplify cross-border fixed-income investing for the diaspora.",
+        "urgency": "medium",
+        "image_url": img_url,
+        "image_caption": "India's markets regulator SEBI is proposing sweeping changes to how IPO fund usage is monitored",
+        "image_attribution": "Wikimedia Commons" if img_url and "wikimedia" in (img_url or "").lower() else "Pexels",
     }
 
 
-# ── ARTICLE 3: India GCC Model Shift ──────────────────────────────────
-def article_3():
-    print("\n📰 Article 3: India's GCC Hub — $100B Model Under Pressure")
+# ── ARTICLE 3: UN climate report — global temps near-record, El Niño building ──
 
-    headline = "India's $100 Billion Tech Hub Model Is Hitting a Wall. AI and Salary Inflation Are Rewriting the Rules."
-    subheadline = "India now hosts 2,100 global capability centres employing 2.36 million people. But AI-driven wage inflation of 40-50% in some roles and Bengaluru's infrastructure strain are forcing a rethink."
-    slug = "india-gcc-hub-100-billion-ai-salary-inflation-bengaluru-strain-20260528"
+def write_article_3():
+    print("\n📰 Article 3: UN climate report — global temps, India impact")
 
-    body = """For two decades, the pitch was simple: India had the world's best software talent at scale, at a fraction of Western costs. That pitch built the largest global capability centre hub on the planet — 2,100 centres, 2.36 million workers, and nearly $100 billion in annual revenue, according to a 2026 Nasscom-Zinnov report.
+    headline = "The UN Says Global Temperatures Will Hit Near-Record Highs by 2030. India Is Already Baking at 48°C."
+    subheadline = "A joint report by the WMO and UK Met Office predicts the 1.5°C Paris threshold will be temporarily breached. A strong El Niño is building. India's below-normal monsoon forecast just got more ominous."
+    slug = "un-climate-report-global-temperature-record-el-nino-india-heatwave-20260528"
 
-Now the model is changing, and the companies that built it are the first to say so.
+    body = """The world is about to get hotter — and India, already enduring its deadliest May in years, will feel it first.
 
-At a Reuters summit in Bengaluru this week, executives from Microsoft, Target, IBM, Novo Nordisk, and Kimberly-Clark described an industry at an inflection point. India's GCCs are no longer back-office support units. They are integrated hubs that mirror their parent companies, managing everything from product development to R&D to corporate strategy. In some cases, work once anchored at headquarters is now owned and executed from India.
+A report published Thursday by the World Meteorological Organization and the UK's Met Office forecasts that average global temperatures will reach near-record levels over the next five years, ranging between 1.3°C and 1.9°C above pre-industrial baselines. At least one year between 2026 and 2030 is "very likely" to exceed 2024 — currently the warmest year on record — when global temperatures crossed the 1.5°C threshold for the first time.
 
-"There are not too many alternatives for companies," said Lalit Ahuja, CEO of ANSR, which helps global firms build and run GCCs. But he added a caveat: "In six to 12 months, we are nearing that inflection point" where AI fundamentally changes the economics.
+"There's very clear evidence that the climate is warming and that the global average temperature is continuing to rise," said Melissa Seabrook, a research scientist at the UK Met Office. "The science is very clear that the window to keeping the global average temperature to 1.5 degrees is closing rapidly."
 
-## The Salary Problem
+## El Niño Is Building Again
 
-The most immediate pressure is wages. Demand for AI and machine learning skills is outstripping supply across Bengaluru, Hyderabad, and Pune — the three cities where most GCCs are concentrated.
+The report identifies a strong El Niño developing this winter that could persist into 2027, supercharging the warming trend. El Niño — the periodic heating of Pacific Ocean surface waters — typically amplifies heatwaves, disrupts monsoon patterns, and pushes global temperatures toward record territory.
 
-John Dawber, an executive at Danish pharma giant Novo Nordisk, put numbers to the problem: salaries in some tech roles are rising 40% to 50% annually. "If costs go out of control, we start to lose one edge of the triangle of your value proposition," he said.
+For India, the El Niño signal compounds an already dire situation. The India Meteorological Department issued its first below-normal monsoon forecast in eight years earlier this month, warning that the southwest monsoon — which delivers roughly 70% of India's annual rainfall — is likely to underperform this year.
 
-Target's Andrea Zimmerman described the battle for talent as "unreal." The retailer operates its Bengaluru office as an "integrated headquarters" aligned with its global strategy — meaning the stakes of losing key engineers are not abstract.
+A weak monsoon directly hits India's 150 million farming households. It means lower reservoir levels, reduced hydropower output, and higher food prices — all layered on top of an economy already strained by the Iran war's impact on energy costs.
 
-Microsoft India head Puneet Chandok framed the country's advantage differently: 27 million developers on GitHub, massive digital public infrastructure, and policy openness that allows firms to scale quickly. But even Microsoft is competing for the same finite pool of AI specialists.
+## India's Heatwave Has Already Killed at Least 18 People
 
-## The Bengaluru Bottleneck
+The UN report arrives as India endures one of its worst May heatwaves on record. Temperatures in Rajasthan have touched 48.2°C. At least 18 people have died from heat-related causes across northern and central India. Power cuts are spreading as air-conditioning demand overwhelms grids.
 
-Bengaluru, India's de facto tech capital, is showing strain. Congestion is severe. Commercial real estate costs have climbed sharply. The city's civic infrastructure — water supply, roads, public transport — has not kept pace with the explosion of office campuses and residential towers that GCCs have fueled.
+Several Indian cities — including Delhi, Lucknow, Varanasi, and Nagpur — have recorded temperatures above 45°C for multiple consecutive days. The Indian government has issued advisories urging citizens to stay indoors between 11 a.m. and 4 p.m. and to avoid strenuous outdoor work.
 
-Companies are hedging. Kimberly-Clark executive Deena Dayalan described an "India plus" strategy, with firms expanding operations into Poland, the Philippines, Brazil, and Costa Rica — not as replacements for India, but as diversification against concentration risk.
+The heatwave is not just a weather event. It is an economic one. Agricultural productivity drops sharply above 40°C. Construction — India's second-largest employer — effectively shuts down during extreme heat. Daily wage workers, who have no air-conditioned fallback, bear the heaviest burden.
 
-American Airlines announced this week it would double its India tech hub to 800 people. Southwest Airlines has already expanded to 1,000. The GCC boom has reached industries — airlines, pharma, consumer goods — that would have seemed unlikely customers for Indian tech talent a decade ago. But the expansion is now bumping against physical and human limits.
+## The Arctic Is Warming 3.5 Times Faster
 
-## AI Changes the Math
+The WMO report also highlights that Arctic winter temperatures are projected to warm at more than three and a half times the global average, reaching around 2.8°C above the 1991-2020 baseline. Arctic sea ice is expected to melt in March in the Barents Sea, Bering Sea, and Sea of Okhotsk.
 
-The deeper disruption is artificial intelligence. GCCs were built on a model where growth meant hiring — more engineers, more analysts, more process workers. AI is breaking that link.
+The Arctic warming is not just a polar concern. Disrupted jet stream patterns — driven by the shrinking temperature differential between the Arctic and the equator — are increasingly linked to the persistent heatwaves and erratic monsoon behavior that India has experienced in recent years.
 
-Companies are already using AI to generate more output without adding headcount. Re-skilling programmes are replacing new hires. And the next generation of GCC — what executives are calling "AI-first centres" — will look fundamentally different from the outsourcing operations that seeded the industry in the early 2000s.
+## What the Diaspora Needs to Watch
 
-For the 2.36 million people currently employed in Indian GCCs, the transition is uncomfortable. The jobs that brought them into the industry may not be the jobs that keep them there. India's scale remains an advantage, but the country's edge now depends on how fast it can retrain a workforce that was built for one era to operate in another.
+For NRIs with family in India, the convergence of El Niño, a weak monsoon, and record-proximate global temperatures means this summer and the kharif growing season (June-October) will be particularly stressful.
 
-IBM describes its India operations as a "macrocosm" of the entire enterprise. If that metaphor holds, what happens in Bengaluru's GCCs over the next 12 months will preview what happens to the global white-collar workforce everywhere.
+Food inflation — already running above 8% year-on-year — could spike further if the monsoon disappoints. Rural distress typically triggers migration surges into already-strained cities. And power infrastructure in states like Uttar Pradesh, Bihar, and Rajasthan is nowhere near adequate for sustained 45°C-plus heat.
 
-*Sources: Reuters, Nasscom-Zinnov 2026 GCC Report, Reuters Bengaluru Summit*"""
+The 1.5°C threshold is a number negotiated in Paris. The 48°C thermometer reading in Rajasthan is the number that matters."""
 
-    # Image: Bengaluru tech hub / skyline
-    image_url = fetch_wikipedia_person_image("Bengaluru")
-    image_attr = "Wikimedia Commons"
-    if not image_url or not validate_image(image_url):
-        image_url = fetch_pexels_image("Bangalore India tech office skyline", "India software technology office")
-        image_attr = "Pexels"
-    if not validate_image(image_url):
-        image_url = None
-        image_attr = None
+    sources = [
+        {"name": "Reuters", "url": "https://www.reuters.com/sustainability/cop/global-temperatures-reach-near-record-highs-next-five-years-report-finds-2026-05-28/"},
+        {"name": "UN India", "url": "https://india.un.org/en/stories/un-weather-agency-warns-record-climate-imbalance"},
+        {"name": "CurrentIndia.com", "url": "https://currentindia.com/india-heat-un-warns-climate-extremes/"}
+    ]
+
+    # Image: heatwave India or climate change
+    img_url = fetch_pexels_image("India heatwave scorching heat", "extreme heat summer drought")
+    if img_url and not validate_image(img_url):
+        img_url = None
 
     return {
         "headline": headline,
         "subheadline": subheadline,
-        "slug": slug,
         "body": body,
-        "category": "news",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": image_url,
-        "image_attribution": image_attr,
-        "image_caption": "Bengaluru, India's tech capital and the hub of more than 2,100 global capability centres.",
-        "sources": json.dumps([
-            "https://www.reuters.com/world/india/indias-gcc-model-shifts-cost-capability-ai-talent-strains-bite-2026-05-27/",
-            "https://nasscom.in/",
-            "https://www.reuters.com/business/"
-        ]),
+        "slug": slug,
+        "sources": sources,
+        "vertical": "climate",
+        "tags": ["climate-change", "el-nino", "heatwave", "india", "wmo", "paris-agreement", "monsoon", "arctic"],
+        "diaspora_angle": "For NRIs with family in India, the convergence of El Niño, a weak monsoon, and near-record global temperatures means this summer and kharif season will be especially stressful. Food inflation could spike further. Rural distress hits families that depend on remittances.",
+        "urgency": "high",
+        "image_url": img_url,
+        "image_caption": "India is enduring one of its deadliest May heatwaves on record as global temperatures approach new highs",
+        "image_attribution": "Pexels" if img_url else None,
     }
 
 
-# ── Main ───────────────────────────────────────────────────────────────
+# ── MAIN ──
+
 if __name__ == "__main__":
     print("=" * 60)
-    print("The Videshi — News Writer | 2026-05-28")
+    print("The Videshi — News Writer (2026-05-28)")
     print("=" * 60)
 
-    success_count = 0
-    for article_fn in [article_1, article_2, article_3]:
+    articles_funcs = [write_article_1, write_article_2, write_article_3]
+    published = 0
+
+    for fn in articles_funcs:
         try:
-            article = article_fn()
-            if article:
-                if publish_article(article):
-                    success_count += 1
+            article = fn()
+            result = publish_article(article)
+            if result:
+                published += 1
+            else:
+                print(f"  ✗ Failed to publish: {article['headline'][:50]}")
         except Exception as e:
-            print(f"  ✗ Error: {e}")
+            print(f"  ✗ Error in {fn.__name__}: {e}")
 
     print(f"\n{'=' * 60}")
-    print(f"Done. Published {success_count}/3 articles.")
-    print("=" * 60)
+    print(f"Done. Published {published}/{len(articles_funcs)} articles.")
+    print(f"{'=' * 60}")
