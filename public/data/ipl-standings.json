@@ -1,8 +1,19 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-29T16:57:04Z",
-  "stage": "PLAYOFFS \u2014 Qualifier 2 LIVE. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator: RR beat SRH by 47 runs (May 27, Mullanpur). Qualifier 2: GT vs RR \u2014 LIVE, Narendra Modi Stadium, Ahmedabad. RR 214/6, GT chasing 89/0 (7.4 ov). Final: RCB vs Q2 winner (May 31, 7:30 PM IST, Ahmedabad).",
+  "last_updated": "2026-05-29T18:05:00Z",
+  "stage": "PLAYOFFS — Final next. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator: RR beat SRH by 47 runs (May 27, Mullanpur). Qualifier 2: GT beat RR by 7 wickets (May 29, Mullanpur). FINAL: RCB vs GT — May 31, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad.",
   "recent_results": [
+    {
+      "team1": "RR",
+      "team2": "GT",
+      "score1": "214/6",
+      "score2": "219/3",
+      "winner": "GT",
+      "margin": "7 wickets",
+      "date": "May 29",
+      "venue": "Mullanpur",
+      "match": "Qualifier 2"
+    },
     {
       "team1": "RR",
       "team2": "SRH",
@@ -46,22 +57,10 @@
       "date": "May 25",
       "venue": "",
       "match": 69
-    },
-    {
-      "team1": "PBKS",
-      "team2": "LSG",
-      "score1": "200/3",
-      "score2": "196/6",
-      "winner": "PBKS",
-      "margin": "7 wickets",
-      "date": "May 24",
-      "venue": "",
-      "match": 68
     }
   ],
   "upcoming": [
-    "Qualifier 2: GT vs RR \u2014 LIVE, Narendra Modi Stadium, Ahmedabad. RR 214/6, GT 89/0 (7.4 ov). Required rate: 10.22.",
-    "FINAL: RCB vs Q2 winner \u2014 May 31, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad"
+    "FINAL: RCB vs GT — May 31, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad"
   ],
   "standings": [
     {
@@ -178,13 +177,13 @@
   "playoffs": {
     "qualifier_1": "RCB 254/5 beat GT 162/10 by 92 runs (May 26, Dharamsala). POTM: Rajat Patidar 93*(33).",
     "eliminator": "RR 243/8 beat SRH 196/10 by 47 runs (May 27, Mullanpur). Vaibhav Sooryavanshi 97(29), Jofra Archer 3 wkts.",
-    "qualifier_2": "GT vs RR \u2014 LIVE at Narendra Modi Stadium, Ahmedabad (May 29). RR 214/6, GT 89/0 (7.4 ov).",
-    "final": "RCB vs Q2 winner \u2014 May 31, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad"
+    "qualifier_2": "GT 219/3 beat RR 214/6 by 7 wickets (May 29, Mullanpur). Vaibhav Sooryavanshi 96 for RR, but GT chased it down with 8 balls to spare.",
+    "final": "RCB vs GT — May 31, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad"
   },
   "next_match": {
-    "team1": "GT",
-    "team2": "RR",
-    "date": "May 29",
+    "team1": "RCB",
+    "team2": "GT",
+    "date": "May 31",
     "time": "7:30 PM IST",
     "venue": "Narendra Modi Stadium, Ahmedabad"
   }
