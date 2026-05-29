@@ -1,7 +1,7 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-29T07:55:29Z",
-  "stage": "PLAYOFFS. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1 done: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator done: RR beat SRH by 47 runs (May 27, Hyderabad). Qualifier 2: GT vs RR (May 29, New Chandigarh). Final: RCB vs Q2 winner (May 31, Ahmedabad).",
+  "last_updated": "2026-05-29T09:00:00Z",
+  "stage": "PLAYOFFS. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator: RR beat SRH by 47 runs (May 27, Hyderabad). Qualifier 2: GT vs RR (May 29, Ahmedabad). Final: RCB vs Q2 winner (May 31, Ahmedabad).",
   "recent_results": [
     {
       "team1": "RR",
@@ -60,8 +60,8 @@
     }
   ],
   "upcoming": [
-    "Qualifier 2: GT vs RR (May 29, 7:30 PM IST, New Chandigarh)",
-    "FINAL: RCB vs Q2 winner (May 31, 7:30 PM IST, Ahmedabad)"
+    "Qualifier 2: GT vs RR (May 29, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad)",
+    "FINAL: RCB vs Q2 winner (May 31, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad)"
   ],
   "standings": [
     {
@@ -176,28 +176,10 @@
     }
   ],
   "playoffs": {
-    "qualifier1": {
-      "date": "May 26",
-      "venue": "Dharamsala",
-      "result": "RCB 254/5 beat GT 162/10 by 92 runs",
-      "key": "Patidar 93*(33), Duffy 3-39; Tewatia 68(43) for GT"
-    },
-    "eliminator": {
-      "date": "May 27",
-      "venue": "Hyderabad",
-      "result": "RR 243/8 beat SRH 196/10 by 47 runs",
-      "key": "Sooryavanshi 97 with 12 sixes, Archer 3/58; Klaasen 56(31) led SRH chase"
-    },
-    "qualifier2": {
-      "date": "May 29",
-      "venue": "Maharaja Yadavindra Singh Stadium, New Chandigarh",
-      "teams": "GT vs RR"
-    },
-    "final": {
-      "date": "May 31",
-      "venue": "Ahmedabad (Narendra Modi Stadium)",
-      "teams": "RCB vs Q2 winner"
-    }
+    "qualifier_1": "RCB beat GT by 92 runs (May 26, Dharamsala). Virat Kohli 113(52), Faf du Plessis 78(41). RCB 254/5, GT 162/10.",
+    "eliminator": "RR beat SRH by 47 runs (May 27, Hyderabad). RR 243/8, SRH 196/10.",
+    "qualifier_2": "GT vs RR (May 29, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad) \u2014 NOT YET PLAYED",
+    "final": "RCB vs Q2 winner (May 31, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad) \u2014 NOT YET PLAYED"
   },
   "next_match": {
     "team1": "GT",
