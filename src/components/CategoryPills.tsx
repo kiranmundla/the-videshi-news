@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { CATEGORIES, getCategoryBySlug } from "@/lib/categories";
@@ -12,6 +12,25 @@ export default function CategoryPills() {
 
   const routeSlug = pathname === "/" ? "" : pathname.replace(/^\//, "").split("/")[0];
   const currentCategory = getCategoryBySlug(routeSlug);
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const activeRef = useRef<HTMLAnchorElement>(null);
+
+  // Auto-scroll to show the active pill when the page loads
+  useEffect(() => {
+    if (activeRef.current && scrollRef.current) {
+      const pill = activeRef.current;
+      const container = scrollRef.current;
+      const pillLeft = pill.offsetLeft;
+      const pillWidth = pill.offsetWidth;
+      const containerWidth = container.offsetWidth;
+      // Center the active pill in the scroll container
+      container.scrollTo({
+        left: pillLeft - containerWidth / 2 + pillWidth / 2,
+        behavior: "instant",
+      });
+    }
+  }, [routeSlug]);
 
   return (
     <div className="bg-background border-b hairline">
@@ -32,10 +51,11 @@ export default function CategoryPills() {
             </Link>
           </div>
         )}
-        <div className="flex gap-2 overflow-x-auto py-3 -mx-1 px-1 scrollbar-none whitespace-nowrap">
+        <div ref={scrollRef} className="flex gap-2 overflow-x-auto py-3 -mx-1 px-1 scrollbar-none whitespace-nowrap">
           {/* Home pill */}
           <Link
             to="/"
+            ref={isHome ? activeRef : undefined}
             className={`smallcaps shrink-0 px-3 py-1.5 border rounded-full transition-colors ${
               isHome
                 ? "bg-primary text-primary-foreground border-primary"
@@ -52,6 +72,7 @@ export default function CategoryPills() {
               <Link
                 key={section.slug}
                 to={section.path}
+                ref={active ? activeRef : undefined}
                 className={`smallcaps shrink-0 px-3 py-1.5 border rounded-full transition-colors ${
                   active
                     ? "bg-primary text-primary-foreground border-primary"
