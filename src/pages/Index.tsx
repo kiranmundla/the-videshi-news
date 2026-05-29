@@ -14,6 +14,7 @@ import IPLTracker from "@/components/IPLTracker";
 import MarketTicker from "@/components/MarketTicker";
 import CategoryPills from "@/components/CategoryPills";
 import EventCluster from "@/components/EventCluster";
+import EditorsDesk from "@/components/EditorsDesk";
 import {
   Article,
   getArticlesByCategory,
@@ -385,6 +386,8 @@ export default function Index() {
       <MarketTicker />
 
       <main className="container flex-1 pt-6 md:pt-8">
+        <EditorsDesk />
+
         {carouselArticles.length > 1 ? (
           <div className="mb-10">
             <FeaturedCarousel articles={carouselArticles} />
