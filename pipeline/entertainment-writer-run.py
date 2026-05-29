@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-05-28 evening run."""
+"""Entertainment writer for The Videshi – May 29, 2026 run."""
 
-import json, os, sys, time, uuid, re
-import requests
-import urllib.parse
+import json, os, subprocess, sys, uuid, re, time
 from datetime import datetime, timezone
 
 # Load env
@@ -14,58 +12,85 @@ def load_env(path):
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
                     k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+                    v = v.strip().strip('"').strip("'")
+                    os.environ[k] = v
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
+HEADERS_SB = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
+
+import requests
+
+def sb_post(table, data):
+    """Insert into Supabase table."""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/{table}",
+        headers=HEADERS_SB,
+        json=data,
+        timeout=30
+    )
+    if r.status_code in (200, 201):
+        result = r.json()
+        return result[0] if isinstance(result, list) and result else result
+    else:
+        print(f"  ✗ Supabase insert failed ({r.status_code}): {r.text[:300]}")
+        return None
+
+def sb_patch(table, match, data):
+    """Update a Supabase row."""
+    params = '&'.join(f"{k}={v}" for k, v in match.items())
+    r = requests.patch(
+        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
+        headers=HEADERS_SB,
+        json=data,
+        timeout=30
+    )
+    if r.status_code in (200, 204):
+        return True
+    else:
+        print(f"  ✗ Supabase patch failed ({r.status_code}): {r.text[:300]}")
+        return False
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com; contact@thevideshi.com)"},
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
             timeout=10
         )
         if r.status_code == 200:
             data = r.json()
-            # Use thumbnail source AS-IS (330px) per rules
-            img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
+            # Prefer originalimage (higher res), fall back to thumbnail AS-IS
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
-        elif r.status_code == 429:
-            print(f"  ⚠ Wikipedia rate limited for '{person_name}', waiting...")
-            time.sleep(3)
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels. Use curl approach."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
+    """Fetch an image from Pexels using curl (urllib gets 403)."""
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            import subprocess
             result = subprocess.run(
-                ['curl', '-sS', f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5',
-                 '-H', f'Authorization: {PEXELS_KEY}'],
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={q}&per_page=5&orientation=landscape'],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
@@ -79,326 +104,285 @@ def fetch_pexels_image(query, fallback_query=None):
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image(url):
-    """Validate image URL returns 200 with image content-type and reasonable size."""
+def validate_image_url(url):
+    """Verify image URL returns 200 with image content-type and >5KB."""
     if not url:
         return False
-    # Block banned sources
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
-    for b in banned:
-        if b in url:
-            print(f"  ✗ Banned source detected: {b}")
-            return False
-    # Trust Wikipedia/Wikimedia URLs
-    if 'upload.wikimedia.org' in url:
-        print(f"  ✓ Trusted Wikimedia URL")
-        return True
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
+        r = requests.head(url, timeout=10, allow_redirects=True, 
                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         ct = r.headers.get('Content-Type', '')
         cl = int(r.headers.get('Content-Length', 0))
         if r.status_code == 200 and 'image' in ct and cl > 5000:
-            print(f"  ✓ Image validated: {cl} bytes, {ct}")
             return True
-        if r.status_code == 200 and 'image' in ct:
-            print(f"  ✓ Image validated (no Content-Length): {ct}")
-            return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
+        # Some servers don't support HEAD well, try GET
+        if r.status_code != 200:
+            r2 = requests.get(url, timeout=10, stream=True,
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            ct2 = r2.headers.get('Content-Type', '')
+            cl2 = int(r2.headers.get('Content-Length', 0))
+            if r2.status_code == 200 and 'image' in ct2:
+                return True
     except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
+        print(f"  ⚠ Image validation error: {e}")
     return False
 
-def publish_article(article):
-    """Publish article to Supabase."""
-    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
-    payload = {
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "body": article["body"],
-        "slug": article["slug"],
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "sources": article.get("sources", []),
-        "image_url": article.get("image_url", ""),
-        "image_caption": article.get("image_caption", ""),
-        "image_attribution": article.get("image_attribution", ""),
-        "tags": article.get("tags", [])
-    }
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=payload,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        data = r.json()
-        aid = data[0].get('id', 'unknown') if isinstance(data, list) and data else 'unknown'
-        print(f"  ✓ Published: {article['headline'][:60]}... (id: {aid})")
+def is_banned_url(url):
+    """Check if URL is from a banned source."""
+    if not url:
         return True
-    else:
-        print(f"  ✗ Publish failed ({r.status_code}): {r.text[:200]}")
-        return False
+    banned_patterns = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com',
+                       '_nc_ht=', '_nc_cat=', 'ccb=']
+    for p in banned_patterns:
+        if p in url:
+            return True
+    return False
 
-
-# ─────────────────────────────────────────────
-# ARTICLE 1: Ram Charan's Peddi
-# ─────────────────────────────────────────────
-
-def write_peddi_article():
-    print("\n📝 Article 1: Ram Charan's Peddi")
+def source_image(person_name=None, topic_query=None, fallback_query=None):
+    """Source an image following the hierarchy: Wikipedia → Pexels → None."""
+    img_url = None
+    attribution = None
     
-    # Get Wikipedia image
-    img = fetch_wikipedia_person_image("Ram Charan")
-    img_caption = "Ram Charan"
-    img_attr = "Wikimedia Commons"
+    # 1. Try Wikipedia for person articles
+    if person_name:
+        img_url = fetch_wikipedia_person_image(person_name)
+        if img_url and not is_banned_url(img_url) and validate_image_url(img_url):
+            return img_url, "Wikimedia Commons"
+        # Try alternate forms
+        if not img_url and ' ' in person_name:
+            # Try just last name
+            parts = person_name.split()
+            for alt in [f"{parts[0]}_{parts[-1]}", person_name]:
+                img_url = fetch_wikipedia_person_image(alt)
+                if img_url and not is_banned_url(img_url) and validate_image_url(img_url):
+                    return img_url, "Wikimedia Commons"
     
-    if not img or not validate_image(img):
-        img = fetch_wikipedia_person_image("Ram Charan (actor)")
-        if not img or not validate_image(img):
-            img = fetch_pexels_image("cricket stadium India", "sports rural India")
-            img_attr = "Pexels"
-            img_caption = "Peddi blends sports and village life in 1980s Andhra Pradesh"
+    # 2. Try Pexels with specific queries
+    if topic_query:
+        img_url = fetch_pexels_image(topic_query, fallback_query)
+        if img_url and not is_banned_url(img_url) and validate_image_url(img_url):
+            return img_url, "Pexels"
     
-    headline = "Ram Charan's Peddi Opens in Six Days. It Has AR Rahman, a Three-Hour Runtime, and 15,000 Tickets Already Sold in North America."
-    subheadline = "The most expensive Telugu film of the year arrives June 4 with Priyanka Chopra's endorsement, Chiranjeevi's intervention in Telangana theaters, and a trailer that hit 175 million views in 48 hours."
-    
-    body = """The last time Ram Charan stepped into a theater was with *RRR*. That was four years and one Oscar ago. On June 4, he returns with *Peddi* — a three-hour, nine-minute sports drama set in 1980s rural Andhra Pradesh, directed by Buchi Babu Sana, scored by AR Rahman, and carrying enough expectations to make everyone involved nervous.
+    return None, None
 
-The trailer, released on May 16 alongside a live AR Rahman concert in Bhopal, crossed 101 million views in its first 24 hours and blew past 175 million within 48. It shows Ram Charan as a village athlete — cricketer, wrestler, runner — who channels sporting ambition into a fight for his community's dignity against a powerful rival. Janhvi Kapoor plays opposite him in what early footage suggests is a grounded rural performance far from her urban Bollywood work. Shiva Rajkumar, Kannada cinema's living legend, plays a role described only as "pivotal." Shruti Haasan appears in a special song, Hellallallo, which the makers released as a promo ahead of the Bhopal concert.
+# ============================================
+# ARTICLES
+# ============================================
 
-The production is massive. Vriddhi Cinemas and IVY Entertainment are producing, with Mythri Movie Makers and Sukumar Writings involved. Jio Studios, which distributed both *Dhurandhar* films and *Raja Shivaji* in North India, will handle the Hindi-language rollout. The CBFC cleared the film with a U/A 16+ certificate after edits to some dialogue, while action sequences remain intact.
+articles = []
 
-## The NRI Factor
+# --- ARTICLE 1: Diljit Dosanjh Sardaar Ji 3 ---
+articles.append({
+    "headline": "Sardaar Ji 3 Is Banned in India. For the Diaspora, It's the Only Way to Watch Diljit's Next Film.",
+    "subheadline": "FWICE has called for a complete ban on Diljit Dosanjh's projects over casting Pakistani actress Hania Aamir. The film releases overseas-only on June 27.",
+    "slug": "diljit-dosanjh-sardaar-ji-3-banned-india-overseas-only-hania-aamir-fwice-nri-20260529",
+    "category": "entertainment",
+    "person": "Diljit Dosanjh",
+    "topic_query": "Punjabi Bollywood film production",
+    "fallback_query": "Indian film cinema",
+    "sources": "Bollywood Life, India Today, Hindustan Times, Zoom TV",
+    "body": """Diljit Dosanjh's *Sardaar Ji 3* has become the most politically charged Punjabi film of 2026 — and it hasn't even released yet.
 
-For diaspora audiences, the advance booking numbers tell the story. North America premieres have already crossed 15,000 tickets sold, with the US premiere set for June 3 — a full day before the Indian release. In the UK, bookings opened to similarly strong demand. The Telugu version leads the charge, but dubbed Hindi, Tamil, and Kannada versions will also screen internationally.
+The trailer, which dropped this week confirming Pakistani actress **Hania Aamir** in a prominent role, has triggered a full-blown industry crisis. The Federation of Western India Cine Employees (FWICE) has called for a ban not just on the film, but on **all of Diljit Dosanjh's upcoming projects** — films, songs, everything.
 
-Priyanka Chopra — currently filming Rajamouli's *SSMB29* alongside Ram Charan's co-star Mahesh Babu — shared the trailer on X, calling it "fire." Rishab Shetty, fresh off *Kantara 2*, called it "spectacular." When actors from other industries start promoting your film unprompted, the anticipation has moved past marketing into genuine industry curiosity.
+## The Ban and the Backlash
 
-## The Telangana Problem (and Chiranjeevi's Fix)
+FWICE President **BN Tiwari** didn't mince words. In a statement to Hindustan Times, he said Diljit had "hurt Indian sentiments, disrespected the nation, and insulted the sacrifices of our brave soldiers" by casting a Pakistani actor amid ongoing India-Pakistan tensions.
 
-Behind the excitement sits an industry dispute that nearly derailed the film's biggest domestic market. Telangana exhibitors had been locked in a standoff with producers over how ticket revenue gets divided. Unlike the traditional fixed-rental system where theaters pay producers a guaranteed fee upfront, the newer percentage-sharing model splits box office earnings proportionally — a structure already standard in most of India but resisted in Telangana.
+The directive goes beyond Sardaar Ji 3. FWICE has called for a strict ban on all future projects involving Diljit, as well as sanctions against the film's producers — **White Hill Studios** and **Story Time Productions**, led by producer **Gunbir Singh Sidhu**.
 
-Chiranjeevi, Ram Charan's father and arguably the most influential voice in Telugu cinema, personally intervened to broker a resolution. Under the compromise, Telangana theaters have agreed to adopt a revenue-sharing model effective July 3, with *Peddi* among the first major releases to operate under this framework. A June 30 deadline has been set for finalizing terms. The political undercurrents — Chiranjeevi's own political history in Andhra Pradesh, the family's influence across Telugu media — make this more than a business negotiation.
+Sidhu, for his part, has pushed back. Speaking to India Today, he pointed out that the film was shot *before* the escalation in India-Pakistan tensions. He also confirmed the decision to skip India's theatrical market entirely, citing respect for public sentiment.
+
+## Overseas-Only: What That Means for NRIs
+
+*Sardaar Ji 3* will release globally on **June 27** — but not in India. For the Indian diaspora in North America, the UK, Australia, and the Middle East, this creates an unusual situation: a major Punjabi franchise film available only to audiences abroad.
+
+The horror-comedy, directed by **Amar Hundal**, reunites Diljit with **Neeru Bajwa** and adds **Gulshan Grover** to the cast. It continues the franchise that began with 2015's *Sardaar Ji*, which became a landmark in Punjabi cinema's commercial growth. Behind-the-scenes photos released this week show the film leaning into its signature blend of comedy and supernatural elements.
+
+## The Bigger Picture
+
+This isn't the first time FWICE has taken action against an artist over Pakistani collaborations. The federation previously issued directives against **Mika Singh** for performing in Karachi. But the Diljit situation carries heavier weight — he's one of the biggest crossover stars in Indian entertainment, fresh off his Met Gala appearance, a collaboration with **A.R. Rahman** and **Imtiaz Ali**, and the global success of Border 2.
+
+The irony isn't lost on anyone. Diljit's next Bollywood release is also an **Imtiaz Ali** film — a romantic drama co-starring **Vedang Raina** and **Sharvari**, releasing on **June 12**. That film, produced by Applause Entertainment and Window Seat Films, faces no controversy. The difference: no Pakistani talent involved.
+
+## What the Diaspora Is Saying
+
+On social media, the reaction has been split. Some NRI audiences have rallied behind the ban, echoing FWICE's position. Others have questioned why a film shot before the current tensions should be retroactively punished — especially when the artist has otherwise been a vocal supporter of Indian armed forces (his role in *Border 2* was literally a tribute to the 1971 war).
+
+Diljit himself has stayed silent. No Instagram post, no press statement, no response to FWICE. For an artist who normally controls his narrative with precision, the quiet is conspicuous.
+
+The film will find its audience — the Punjabi diaspora is one of the most commercially active cinema-going communities in the world. Whether *Sardaar Ji 3* becomes a rallying point for artistic freedom or a cautionary tale about geopolitical timing will depend on what happens in the next four weeks.
+
+*Sardaar Ji 3 releases overseas on June 27, 2026. No Indian theatrical release is planned.*"""
+})
+
+# --- ARTICLE 2: Cocktail 2 ---
+articles.append({
+    "headline": "Cocktail 2's Trailer Was Supposed to Drop Today. Then Maddock Films Pulled the Plug at the Last Minute.",
+    "subheadline": "Shahid Kapoor, Kriti Sanon, and Rashmika Mandanna's modern love triangle has been pushed to a tighter June launch window. Here's what we know.",
+    "slug": "cocktail-2-trailer-postponed-shahid-kapoor-kriti-sanon-rashmika-mandanna-june-2026-nri-20260529",
+    "category": "entertainment",
+    "person": "Shahid Kapoor",
+    "topic_query": "Bollywood romantic film modern love",
+    "fallback_query": "Mumbai city nightlife",
+    "sources": "Filmibeat, Bollywood Hungama, Sacnilk",
+    "body": """The trailer launch event for *Cocktail 2* was set for today — May 29, 2026. Everything was in place: venue booked, press invited, social media countdown running. Then Maddock Films cancelled it at the last moment.
+
+The new date is **June 2**, and the film's theatrical release on **June 19** remains unchanged. But the sudden postponement has become a story in itself, raising questions about marketing strategy, industry jitters, and what this sequel is actually trying to be.
+
+## Not a Sequel. A Spiritual Successor.
+
+Let's get this straight: *Cocktail 2* is not a continuation of Saif Ali Khan, Deepika Padukone, and Diana Penty's 2012 story. Director **Homi Adajania** returns, but the film is being described as a **spiritual successor** — same thematic DNA (friendship, romance, emotional complications in modern urban India), entirely new characters.
+
+The new cast is a deliberate remix. **Shahid Kapoor** and **Kriti Sanon**, who built undeniable chemistry in *Teri Baaton Mein Aisa Uljha Jiya*, reunite here. Adding **Rashmika Mandanna** gives the project pan-India reach — she's been the most bankable face in Telugu and Kannada cinema for years, and her Bollywood presence keeps growing.
+
+## Why the Delay?
+
+Maddock Films hasn't offered a detailed explanation, but the pattern is clear: a **tighter promotional window**. Instead of giving the trailer three weeks before release, the team is compressing the marketing into 17 days — trailer on June 2, release on June 19.
+
+This isn't unusual in 2026's Bollywood landscape. Studios are learning that audiences have shorter attention spans for trailers. A compressed campaign keeps the film in active social media conversation right until opening weekend, rather than peaking early and fading. *Dhurandhar 2* ran a similar compressed campaign and it became the highest-grossing Hindi film of the year.
+
+## The Legacy It's Chasing
+
+The original *Cocktail* was a sleeper hit that became a cultural touchstone. Its music — *Tumhi Ho Bandhu*, *Daaru Desi*, *Tera Naam Doon* — dominated playlists for years. Deepika Padukone's Veronica became one of Bollywood's most referenced characters. The film didn't just tell a love triangle story; it captured a very specific moment in urban Indian relationships, particularly for young Indians navigating Western and Indian identities simultaneously.
+
+That's the bar *Cocktail 2* has to clear — and it's a high one, especially for NRI audiences who saw themselves in the original's London setting and cultural tensions. Whether Shahid, Kriti, and Rashmika can create the same generational resonance remains the biggest question.
 
 ## What to Expect
 
-*Peddi* is not a small film pretending to be big. The budget is massive, the runtime is long enough to require an intermission, and the film sits in a genre — rural sports drama — that carries both enormous potential and specific risks. *Dangal* proved the genre could cross ₹2,000 crore worldwide. *Liger* proved it could also fall flat.
+The storyline is under wraps, but the film is expected to explore **modern relationships, heartbreak, friendship, and emotional choices** set against a stylish city backdrop. Given Homi Adajania's track record (*Finding Fanny*, *Angrezi Medium*), expect a film that's emotionally literate, visually polished, and willing to let its characters be messy.
 
-For NRIs who watched Ram Charan dance across the world stage in *RRR* and then waited four years for his return, *Peddi* is the real test: whether the goodwill translates at the box office for a film that is unapologetically Telugu, unapologetically long, and unapologetically rooted in a world that does not look like a Marvel set. AR Rahman's involvement adds another layer — the Oscar-winning composer has been selective with his commitments, and his presence signals genuine artistic ambition beyond star power.
+The trailer — now arriving June 2 — will be the real test. Can it make audiences feel the way the original's trailer did fourteen years ago? Or will this be another franchise revival that trades on nostalgia without earning its own identity?
 
-June 4 will answer the question. The tickets are already selling."""
-    
-    sources = [
-        {"name": "Sacnilk", "url": "https://sacnilk.com"},
-        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-        {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
-        {"name": "Tupaki", "url": "https://english.tupaki.com"}
-    ]
-    
-    return {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": "ram-charan-peddi-june-4-ar-rahman-175-million-views-north-america-advance-booking-nri-20260528",
-        "sources": sources,
-        "image_url": img or "",
-        "image_caption": img_caption,
-        "image_attribution": img_attr,
-        "tags": ["Ram Charan", "Peddi", "AR Rahman", "Telugu cinema", "box office", "Chiranjeevi", "Janhvi Kapoor"]
-    }
+For NRI audiences, the timing is ideal: a potential date-night film arriving in the middle of June, before the summer blockbuster season heats up. If the music lands (no composer has been officially announced yet for this installment), *Cocktail 2* could become one of the most rewatchable Bollywood films of the year.
 
+*Cocktail 2 trailer drops June 2. Theatrical release June 19, 2026.*"""
+})
 
-# ─────────────────────────────────────────────
-# ARTICLE 2: South Indian Exhibitors OTT Window
-# ─────────────────────────────────────────────
+# --- ARTICLE 3: Desi Bling on Netflix ---
+articles.append({
+    "headline": "Netflix Put Dubai's Richest Indians on Camera. The Internet Can't Decide Whether to Cringe or Binge.",
+    "subheadline": "Desi Bling premiered with a viral on-screen engagement, Bollywood cameos, and enough drama to make Dubai Bling look subtle. It's already on Netflix's global charts.",
+    "slug": "netflix-desi-bling-dubai-indian-reality-karan-kundrra-tejasswi-prakash-engagement-nri-20260529",
+    "category": "entertainment",
+    "person": "Tejasswi Prakash",
+    "person_alt": "Karan Kundrra",
+    "topic_query": "Dubai luxury lifestyle Indian",
+    "fallback_query": "Dubai skyline luxury",
+    "sources": "Bollywood Hungama, Mint, Koimoi, The Tab, Hollywood Reporter India",
+    "body": """Netflix didn't just make a show about wealthy Indians in Dubai. It made a show where a man proposes to his girlfriend on camera, in Punjabi, on one knee, inside what appears to be a private ballroom in the UAE — and 31 million hours of viewership followed.
 
-def write_ott_window_article():
-    print("\n📝 Article 2: South Indian Exhibitors OTT Window")
-    
-    # Try for a relevant image
-    img = fetch_pexels_image("movie theater India audience", "cinema hall India")
-    img_attr = "Pexels"
-    img_caption = "South Indian exhibitors have mandated an eight-week gap before films can move to streaming platforms"
-    
-    if not img or not validate_image(img):
-        img = ""
-        img_caption = ""
-        img_attr = ""
-    
-    headline = "South Indian Exhibitors Just Mandated an Eight-Week OTT Window. If You Watch Films on Netflix, This Changes Everything."
-    subheadline = "The new rule forces all South Indian films to stay off streaming platforms for two full months after theatrical release — a direct challenge to the NRI habit of waiting for OTT."
-    
-    body = """Here is what used to happen: a Telugu or Tamil film would open in theaters, run for two or three weeks, and then quietly appear on Netflix or JioHotstar for the rest of us to watch at home. The theatrical-to-OTT pipeline was fast, informal, and — for diaspora audiences who could not always get to an Indian film screening — essential.
+*Desi Bling* premiered on May 20, and within days it had landed on Netflix's global charts alongside *Kartavya* and *Dhurandhar*. But the numbers tell only half the story. The real conversation — happening across Twitter, Instagram, and WhatsApp groups from New Jersey to Southall to Melbourne — is about what this show says about the Indian diaspora's relationship with wealth, identity, and self-representation.
 
-That pipeline just got a wall built across it.
+## The Engagement That Broke the Internet
 
-South Indian exhibitors have formally mandated an eight-week OTT window for all films released across Telugu, Tamil, Malayalam, and Kannada markets. No exceptions. No quiet side deals. Eight full weeks between the day a film opens in theaters and the day it can legally stream on any platform. Alongside this, exhibitors have pushed through a shift from the traditional fixed-rental model to a revenue-sharing arrangement, fundamentally changing how risk and reward are distributed between producers and theater owners.
+The moment everyone's talking about: **Karan Kundrra** going down on one knee and proposing to **Tejasswi Prakash** — the television couple known to fans as "TejRan" — during filming in Dubai. He expressed his feelings in Punjabi through heartfelt verses, then asked, "Yes or a yes?"
 
-## Why This Matters for NRIs
+The clip went instantly viral. Tejasswi was visibly shaking as the ring went on. "You are my everything," she told him through tears. Fans flooded every platform with screenshots, edits, and reaction videos. For the millions who followed their relationship since *Bigg Boss 15*, this was the payoff.
 
-The four-week OTT window that informally governed much of South Indian cinema was a lifeline for diaspora audiences. If you live in Houston or London or Toronto and the nearest theater showing a Kannada film is two hours away, the knowledge that it would land on streaming within a month made the wait bearable. That wait just doubled.
+Netflix knew exactly what it was doing. The engagement wasn't an afterthought — it was the emotional anchor of the entire series.
 
-This is not new territory — Bollywood multiplexes implemented an eight-week window in 2022, and the Hindi film industry has largely operated under this framework since. But South Indian cinema's adoption is significant because it produces the most internationally consumed Indian content right now. Tamil, Telugu, Malayalam, and Kannada films now regularly outperform Bollywood at global box offices. *Kara*, Dhanush's heist thriller which just landed on Netflix on May 28 after roughly four weeks in theaters, might be among the last South Indian films to arrive on streaming this quickly.
+## Guilty Pleasure or Cultural Mirror?
 
-The impact will be felt most sharply by NRI families who subscribe to JioHotstar or Netflix primarily for Indian content. The value proposition of those subscriptions depends on a steady stream of relatively fresh theatrical releases. An eight-week delay does not eliminate the content — it just pushes it into a limbo where films are no longer in theaters and not yet on streaming. For audiences outside India, that limbo can feel permanent.
+*Desi Bling* follows the ultra-rich Indian social circle in Dubai: entrepreneurs, socialites, beauty queens, and television stars navigating luxury lifestyles, shifting alliances, and personal drama. Think *Dubai Bling* — which it spins off from — but specifically focused on the Indian expat community.
 
-## The Revenue-Sharing Shift
+The cast includes **Rizwan Sajan**, **Shilpa Shetty**, and a roster of Dubai-based entrepreneurs like **Satish Sanpal** (founder of ANAX Holding) and **Pamala Serena**, who's become the show's breakout personality. Seven episodes run 40-45 minutes each, shot across beach clubs, wellness sanctuaries, luxury golf spots, and restaurants where cocktails cost more than a weekly grocery bill.
 
-The OTT window change comes bundled with a structural shift in how theaters pay producers. Under the old fixed-rental model, exhibitors paid a guaranteed fee upfront for the right to screen a film, regardless of how many tickets they sold. This protected producers from box office risk but left exhibitors bearing all the downside when a film flopped.
+The internet's response has been predictably divided. Mint called it one of the platform's most-discussed "guilty pleasures," with viewers swinging between "whole vibe" and "second-hand embarrassment." Koimoi's review was harsher, critiquing the scripted-feeling fights and noting that Tejasswi says "shut up" approximately 8,000 times per episode.
 
-The new revenue-sharing model distributes the economics more evenly. Both sides benefit when a film does well and both absorb losses when it does not. This model has long been standard in North America, Europe, and the Hindi-speaking belt, and its adoption in South India aligns the world's most prolific film-producing region with global theatrical norms. The transition has not been seamless — in Telangana, Chiranjeevi personally intervened to broker a deal for Ram Charan's *Peddi* ahead of its June 4 release, suggesting the new model is being negotiated film by film rather than blanket-adopted.
+## What NRIs Are Really Watching
 
-## Who Benefits, Who Loses
+Here's what makes *Desi Bling* more interesting than it might appear: it's the first major global reality show to center the Indian diaspora's wealth and social dynamics in the Gulf.
 
-Theater owners benefit the most. The eight-week window gives films more room to run, boosting second- and third-week footfalls that had been decimated by the rush to OTT. For films with strong word-of-mouth — the kind that South Indian cinema frequently produces — the longer window can translate to significantly higher lifetime collections. *Bhooth Bangla*, Akshay Kumar's horror comedy, is currently in its sixth week and still earning ₹5+ crore net per week. That kind of long-tail performance only happens when OTT is not an option yet.
+The Gulf States — UAE, Qatar, Saudi Arabia, Bahrain — are home to an estimated 9 million Indians, many of whom have built extraordinary wealth in real estate, trading, and finance. This community has been invisible in Western media for decades. *Desi Bling* puts them front and center, penthouses and private jets included.
 
-Producers with big-budget tentpoles benefit too. A film like *Peddi* or *Toxic*, both opening June 4, will have two full months of theatrical exclusivity before any streaming deal kicks in. For films that cost hundreds of crores, that runway can make the difference between a hit and a disaster.
+For NRIs in North America and the UK, the show offers a different kind of mirror. The Dubai Indian community operates with its own rules — more openly opulent than the understated-wealth ethos of Silicon Valley desis, more connected to Bollywood and cricket than the academic-professional networks of the East Coast. Watching it is partly entertainment, partly anthropology.
 
-The losers are mid-budget filmmakers who depend on OTT acquisition deals to recoup costs, and diaspora audiences who will now face a longer wait with fewer options for catching up on films that have already left their nearest theater. The compromise is pragmatic but imperfect. The Indian theatrical ecosystem genuinely needs protection from a streaming industry that was cannibalizing its runway. But the diaspora streaming habit — built over a decade of increasingly fast theatrical-to-OTT pipelines — has been acknowledged as collateral damage rather than a constituency worth protecting."""
-    
-    sources = [
-        {"name": "Sacnilk", "url": "https://sacnilk.com/news/South_Indian_Exhibitors_Mandate_8_Week_OTT_Window_and_Shift_to_Revenue_Sharing_Model_for_All_Films"},
-        {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
-        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"}
-    ]
-    
-    return {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": "south-indian-exhibitors-eight-week-ott-window-revenue-sharing-nri-streaming-impact-20260528",
-        "sources": sources,
-        "image_url": img or "",
-        "image_caption": img_caption,
-        "image_attribution": img_attr,
-        "tags": ["OTT", "streaming", "Netflix", "JioHotstar", "South Indian cinema", "exhibitors", "NRI"]
-    }
+## The Business of Indian Reality
 
+Netflix's bet on Indian reality content has been paying off. *Indian Matchmaking* ran three seasons. *Fabulous Lives of Bollywood Wives* became a franchise. *The Buckingham Murders* documentary cracked global lists. Now *Desi Bling* joins what's becoming a reliable genre: Indian lives, unfiltered (or strategically filtered), for a global audience.
 
-# ─────────────────────────────────────────────
-# ARTICLE 3: Bollywood's 18-Month Commitment Era
-# ─────────────────────────────────────────────
+The engagement between Karan and Tejasswi guarantees that Season 2 conversations are already underway. Whether the show can sustain interest beyond the TejRan moment — whether it can become appointment viewing rather than a one-weekend binge — depends on whether Netflix can find stories in Dubai's Indian elite that go deeper than the surface glamour.
 
-def write_mega_tentpole_article():
-    print("\n📝 Article 3: Bollywood's Mega-Tentpole Era")
-    
-    # Wikipedia images for Vicky Kaushal
-    img = fetch_wikipedia_person_image("Vicky Kaushal")
-    img_caption = "Vicky Kaushal"
-    img_attr = "Wikimedia Commons"
-    
-    if not img or not validate_image(img):
-        img = fetch_wikipedia_person_image("Ranveer Singh")
-        img_caption = "Ranveer Singh"
-        if not img or not validate_image(img):
-            img = ""
-            img_caption = ""
-            img_attr = ""
-    
-    headline = "Vicky Kaushal Has Blocked 18 Months of His Life for One Film. Ranveer Singh Is Spending ₹300 Crore on Zombies. This Is Bollywood Now."
-    subheadline = "Mahavatar and Pralay signal a new era where India's biggest male stars are betting their entire schedules on single, massive, world-building projects — just like Hollywood's franchise actors."
-    
-    body = """There was a time when a Bollywood superstar did four films a year. Two big releases, one multi-starrer, and maybe a cameo somewhere. The math was simple: more films meant more chances at a hit.
+For now, 31 million hours suggest the answer is: people will watch, even if they can't decide whether they're watching ironically.
 
-That math is dead.
+*Desi Bling is streaming on Netflix. Seven episodes available now.*"""
+})
 
-Vicky Kaushal has blocked eighteen months — from June 2026 to December 2027 — exclusively for *Mahavatar*, a mythological epic in which he will play the immortal sage-warrior Parashurama. Six of those months are preparation: physical transformation, intensive workshops, and deep character immersion under the guidance of director Amar Kaushik, who previously directed the blockbuster *Stree* franchise. The remaining twelve months are principal photography. During this entire period, Kaushal will not take on any other film. He wraps Sanjay Leela Bhansali's *Love and War* just in time, and then he disappears into one role. Writer Niren Bhatt, who penned the screenplay, has described the preparation as the most intense he has witnessed for any Indian film.
+# ============================================
+# PUBLISH
+# ============================================
 
-Meanwhile, Ranveer Singh — riding the historic, record-breaking success of the *Dhurandhar* franchise — has locked in *Pralay*, a post-apocalyptic zombie thriller directed by Jai Mehta. The budget: ₹300 crore. The production plan, beginning in August 2026: AI-driven visuals merged with physical sets to create a dystopian India unlike anything the industry has attempted. South Indian actress Kalyani Priyadarshan, daughter of director Priyadarshan (who incidentally just gave Akshay Kumar his biggest hit in years with *Bhooth Bangla*), makes her Hindi debut opposite Singh. Recent rumors about creative differences on the project were shot down by a Variety India report confirming the film is fully on track.
-
-This is not a coincidence. This is a pattern.
-
-## The Tentpole Calendar
-
-Look at the production calendar for India's top male stars and the picture becomes clear. Ranbir Kapoor has been embedded inside *Ramayana* for over a year, a film so large it required AR Rahman and Hans Zimmer to co-compose the score and has its release date preponed to late October — a week before Diwali. Mahesh Babu is locked inside Rajamouli's *SSMB29* for what will likely be a two-year commitment. Aamir Khan just blocked time for an Ashutosh Gowariker cricket biopic about Lala Amarnath starting October 2026, followed by the *3 Idiots* sequel pushed to mid-2027. Yash's *Toxic* alone absorbed over two years of his schedule.
-
-Every major male star in Indian cinema is now operating on the Hollywood tentpole model: one massive project at a time, years of exclusive commitment, budgets that would have funded an entire studio's annual slate a decade ago. The four-films-a-year era produced stars who were constantly visible but rarely transcendent. The new model bets on scarcity and scale.
-
-## What This Means for NRI Audiences
-
-For diaspora viewers, the shift cuts both ways. The upside: the films that do eventually arrive will be genuinely ambitious, globally competitive productions designed to play on IMAX screens in Edison and Brampton, not just in Bandra. The quality ceiling is rising. When Vicky Kaushal emerges from eighteen months of single-minded preparation, the expectation is that what he delivers will justify the wait.
-
-The downside: the pipeline is thinning. With top stars locked into singular mega-projects, the volume of star-driven Hindi films is dropping noticeably. The mid-budget star vehicle — the kind that kept NRI multiplex screens reliably stocked year-round — is becoming genuinely rare. The result is feast-or-famine: months of nothing from your favorite actor, followed by a single massive release that either justifies the wait or makes the gap feel wasted. There is no middle ground anymore.
-
-## The Risk Nobody Talks About
-
-Every one of these bets carries existential risk. *War 2* was supposed to be Hrithik Roshan and Jr NTR's tentpole event. It opened strong and then collapsed, grossing ₹365 crore worldwide against expectations of ₹500+ crore — technically profitable but widely viewed as a disappointment that dented the Spy Universe brand. When your entire multi-year schedule depends on a single film landing, the margin for creative error shrinks to nothing.
-
-Vicky Kaushal's *Mahavatar* is a mythological epic in a market where recent mythological epics — *Adipurush* chief among them — have catastrophically misfired on visual execution. Ranveer Singh's *Pralay* is a zombie film in a country that has never produced a successful zombie franchise. Neither project is a safe bet by any conventional industry calculus.
-
-But safe bets are exactly what these actors are running from. The four-films-a-year model produced forgettable content and exhausted audiences with overexposure. The new model asks a fundamentally different question: what if you gave everything to one film, spent years inside it, and made it impossible to ignore?
-
-We will find out. Just not for another eighteen months."""
-    
-    sources = [
-        {"name": "Sacnilk", "url": "https://sacnilk.com/news/bollywood-buzz-ranveer-singhs-pralay-shoot-begins-in-august-2026-as-vicky-kaushal-blocks-18-months-for-mahavatar"},
-        {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
-        {"name": "Variety India", "url": "https://variety.com"}
-    ]
-    
-    return {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": "vicky-kaushal-mahavatar-ranveer-singh-pralay-bollywood-mega-tentpole-era-nri-20260528",
-        "sources": sources,
-        "image_url": img or "",
-        "image_caption": img_caption,
-        "image_attribution": img_attr,
-        "tags": ["Vicky Kaushal", "Ranveer Singh", "Mahavatar", "Pralay", "Bollywood", "tentpole", "Ranbir Kapoor", "Aamir Khan"]
-    }
-
-
-# ─────────────────────────────────────────────
-# MAIN
-# ─────────────────────────────────────────────
-
-if __name__ == "__main__":
-    print("🎬 The Videshi Entertainment Writer — 2026-05-28 Evening Run")
-    print("=" * 60)
-    
-    articles = []
-    
-    # Write all 3 articles
-    articles.append(write_peddi_article())
-    time.sleep(2)  # Avoid Wikipedia rate limiting
-    articles.append(write_ott_window_article())
-    time.sleep(2)
-    articles.append(write_mega_tentpole_article())
-    
-    # Validate and publish
-    published = 0
-    for i, article in enumerate(articles, 1):
-        print(f"\n{'='*60}")
-        print(f"Publishing article {i}/{len(articles)}: {article['headline'][:60]}...")
-        
-        # Validate
-        h_len = len(article['headline'])
-        sh_len = len(article['subheadline'])
-        body_words = len(article['body'].split())
-        
-        print(f"  Headline: {h_len} chars (20-200 required)")
-        print(f"  Subheadline: {sh_len} chars (15+ required)")
-        print(f"  Body: {body_words} words (600-800+ target, 400 floor)")
-        print(f"  Slug: {article['slug']}")
-        print(f"  Image: {'Yes' if article['image_url'] else 'No'}")
-        
-        if h_len < 20 or h_len > 200:
-            print(f"  ⚠ Headline length out of range!")
-        if sh_len < 15:
-            print(f"  ⚠ Subheadline too short!")
-        if body_words < 400:
-            print(f"  ✗ Body too short! Skipping.")
-            continue
-        
-        if publish_article(article):
-            published += 1
-        
-        time.sleep(1)  # Rate limiting
-    
+def publish_article(article):
+    """Publish a single article to Supabase."""
     print(f"\n{'='*60}")
-    print(f"✅ Published {published}/{len(articles)} articles")
-    print("🎬 Entertainment writer run complete.")
+    print(f"Publishing: {article['headline'][:70]}...")
+    
+    # Source image
+    print("  Sourcing image...")
+    img_url, attribution = source_image(
+        person_name=article.get('person'),
+        topic_query=article.get('topic_query'),
+        fallback_query=article.get('fallback_query')
+    )
+    
+    # If first person didn't work, try alternate
+    if not img_url and article.get('person_alt'):
+        print(f"  Trying alternate person: {article['person_alt']}")
+        img_url, attribution = source_image(person_name=article['person_alt'])
+    
+    if img_url:
+        print(f"  ✓ Image sourced: {img_url[:80]}...")
+    else:
+        print(f"  ⚠ No image found — publishing without image (no image > wrong image)")
+    
+    # Build article data
+    art_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
+    
+    data = {
+        "id": art_id,
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "slug": article["slug"],
+        "body": article["body"],
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "tags": [],
+        "status": "published",
+        "published_at": now,
+        "created_at": now,
+        "updated_at": now,
+        "sources": article.get("sources", ""),
+        "image_url": img_url if img_url else None,
+        "image_attribution": attribution if attribution else None,
+        "image_caption": article.get("person", None),
+    }
+    
+    result = sb_post("p2_articles", data)
+    if result:
+        print(f"  ✓ Published: {article['slug']}")
+        return True
+    else:
+        print(f"  ✗ Failed to publish: {article['slug']}")
+        return False
+
+# Main execution
+print("=" * 60)
+print("The Videshi — Entertainment Writer")
+print(f"Run time: {datetime.now(timezone.utc).isoformat()}")
+print("=" * 60)
+
+published = 0
+failed = 0
+
+for article in articles:
+    if publish_article(article):
+        published += 1
+    else:
+        failed += 1
+    time.sleep(1)  # Small delay between publishes
+
+print(f"\n{'='*60}")
+print(f"DONE: {published} published, {failed} failed")
+print("=" * 60)
