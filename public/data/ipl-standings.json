@@ -1,7 +1,7 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-29T15:00:00Z",
-  "stage": "PLAYOFFS \u2014 Qualifier 2 LIVE. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator: RR beat SRH by 47 runs (May 27, Mullanpur). Qualifier 2: GT vs RR \u2014 LIVE NOW, Narendra Modi Stadium, Ahmedabad. Final: RCB vs Q2 winner (May 31, 7:30 PM IST, Ahmedabad).",
+  "last_updated": "2026-05-29T15:55:52Z",
+  "stage": "PLAYOFFS — Qualifier 2 LIVE. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator: RR beat SRH by 47 runs (May 27, Mullanpur). Qualifier 2: GT vs RR — LIVE NOW, Narendra Modi Stadium, Ahmedabad. Final: RCB vs Q2 winner (May 31, 7:30 PM IST, Ahmedabad).",
   "recent_results": [
     {
       "team1": "RR",
@@ -60,8 +60,8 @@
     }
   ],
   "upcoming": [
-    "Qualifier 2: GT vs RR \u2014 LIVE NOW, Narendra Modi Stadium, Ahmedabad (RR won toss, elected to bat)",
-    "FINAL: RCB vs Q2 winner \u2014 May 31, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad"
+    "Qualifier 2: GT vs RR — LIVE, Narendra Modi Stadium, Ahmedabad. RR 200/6 (19.3 ov), GT to bat.",
+    "FINAL: RCB vs Q2 winner — May 31, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad"
   ],
   "standings": [
     {
@@ -178,8 +178,8 @@
   "playoffs": {
     "qualifier_1": "RCB beat GT by 92 runs (May 26, Dharamsala). Virat Kohli 113(52), Faf du Plessis 78(41). RCB 254/5, GT 162/10.",
     "eliminator": "RR beat SRH by 47 runs (May 27, Mullanpur). RR 243/8, SRH 196/10.",
-    "qualifier_2": "GT vs RR \u2014 TODAY May 29, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad (RR won toss, elected to bat) \u2014 NOT YET PLAYED",
-    "final": "RCB vs Q2 winner (May 31, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad) \u2014 NOT YET PLAYED"
+    "qualifier_2": "GT vs RR — LIVE (May 29, Ahmedabad). RR won toss, elected to bat. RR 200/6 (19.3 ov). GT to chase.",
+    "final": "RCB vs Q2 winner (May 31, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad) — NOT YET PLAYED"
   },
   "next_match": {
     "team1": "GT",

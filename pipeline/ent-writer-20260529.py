@@ -1,39 +1,60 @@
 #!/usr/bin/env python3
-"""Entertainment writer — 2026-05-29 batch"""
+"""Entertainment writer for The Videshi — 2026-05-29 batch."""
 
-import json, os, sys, time, uuid, re
-import requests, urllib.parse
+import json, os, re, sys, time, uuid, urllib.parse, subprocess
 from datetime import datetime, timezone
 
-# ── env ──────────────────────────────────────────────────────────────
-with open(os.path.expanduser("~/.env.supabase")) as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1)
-            os.environ[k] = v
-
-with open(os.path.expanduser("~/workspace/.env.pexels")) as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1)
-            os.environ[k] = v
-
-SB_URL = os.environ["SUPABASE_URL"]
-SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ["PEXELS_API_KEY"]
+# ── Supabase config ──────────────────────────────────────────────────────────
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
-    "apikey": SB_KEY,
-    "Authorization": f"Bearer {SB_KEY}",
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation",
 }
 
-# ── helpers ──────────────────────────────────────────────────────────
+PEXELS_KEY = None
+pexels_env = os.path.expanduser("~/.env.pexels") if os.path.exists(os.path.expanduser("~/.env.pexels")) else os.path.expanduser("~/workspace/.env.pexels")
+if os.path.exists(pexels_env):
+    for line in open(pexels_env):
+        if line.startswith("PEXELS_API_KEY="):
+            PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
+
+# ── Helpers ──────────────────────────────────────────────────────────────────
+import requests
+
+def sb_insert(table, row):
+    """Insert a row into Supabase."""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/{table}",
+        headers=HEADERS,
+        json=row,
+        timeout=30,
+    )
+    if r.status_code not in (200, 201):
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        return None
+    data = r.json()
+    return data[0] if isinstance(data, list) and data else data
+
+
+def sb_patch(table, filters, patch):
+    """Patch rows matching filters."""
+    params = "&".join(f"{k}={v}" for k, v in filters.items())
+    r = requests.patch(
+        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
+        headers=HEADERS,
+        json=patch,
+        timeout=30,
+    )
+    if r.status_code not in (200, 204):
+        print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
+
+
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    encoded = urllib.parse.quote(person_name.replace(" ", "_"))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
@@ -44,344 +65,283 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
+    """Fetch an image from Pexels using curl (urllib gets 403)."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key found")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = requests.get(
-                "https://api.pexels.com/v1/search",
-                params={"query": q, "per_page": 5, "orientation": "landscape"},
-                headers={"Authorization": PEXELS_KEY},
-                timeout=10,
+            result = subprocess.run(
+                [
+                    "curl", "-sS",
+                    f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3",
+                    "-H", f"Authorization: {PEXELS_KEY}",
+                ],
+                capture_output=True, text=True, timeout=15,
             )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for p in photos:
-                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
-                    if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                        return url
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            for p in photos:
+                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase article-images bucket."""
+def validate_image_url(url):
+    """Validate that an image URL returns 200 with image content-type and >5KB."""
+    if not url:
+        return False
     try:
-        r = requests.get(image_url, timeout=15, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
+            return True
+        # Some servers don't support HEAD, try GET
         if r.status_code != 200:
-            print(f"  ⚠ Download failed ({r.status_code}) for {image_url[:60]}")
-            return None
-        content_type = r.headers.get("Content-Type", "image/jpeg")
-        if "image" not in content_type:
-            print(f"  ⚠ Not an image ({content_type})")
-            return None
-        if len(r.content) < 5000:
-            print(f"  ⚠ Image too small ({len(r.content)} bytes)")
-            return None
-
-        upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
-        resp = requests.post(
-            upload_url,
-            headers={
-                "Authorization": f"Bearer {SB_KEY}",
-                "Content-Type": content_type,
-                "x-upsert": "true",
-            },
-            data=r.content,
-            timeout=20,
-        )
-        if resp.status_code in (200, 201):
-            public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed ({resp.status_code}): {resp.text[:100]}")
+            r2 = requests.get(url, timeout=10, stream=True, allow_redirects=True,
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            ct = r2.headers.get("Content-Type", "")
+            cl = int(r2.headers.get("Content-Length", 0))
+            r2.close()
+            if r2.status_code == 200 and "image" in ct:
+                return True
     except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-    return None
+        print(f"  ⚠ Image validation error: {e}")
+    return False
 
 
-def publish_article(article):
-    """Insert article into p2_articles."""
-    article["id"] = str(uuid.uuid4())
-    article["status"] = "published"
-    article["published_at"] = datetime.now(timezone.utc).isoformat()
-    article["category"] = "entertainment"
-    article.setdefault("vertical", "entertainment")
-    article.setdefault("tags", [])
-    article.setdefault("urgency", "medium")
-    article.setdefault("is_featured", False)
-    article.setdefault("score_total", 82)
-    article.setdefault("is_editorial", False)
-
-    r = requests.post(
-        f"{SB_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article,
-        timeout=15,
-    )
-    if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data.get("id", article["id"])
-        print(f"✅ Published: {article['headline'][:60]}... (id={art_id})")
-        return art_id
-    else:
-        print(f"❌ Publish failed ({r.status_code}): {r.text[:200]}")
-        return None
+BANNED_DOMAINS = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com"]
+BANNED_PARAMS = ["_nc_ht=", "_nc_cat=", "ccb="]
 
 
-# ── ARTICLES ─────────────────────────────────────────────────────────
+def is_banned_url(url):
+    if not url:
+        return True
+    for d in BANNED_DOMAINS:
+        if d in url:
+            return True
+    for p in BANNED_PARAMS:
+        if p in url:
+            return True
+    return False
+
+
+# ── Articles ─────────────────────────────────────────────────────────────────
 
 articles = []
 
-# ── Article 1: Ranveer Singh's Pralay ────────────────────────────────
+# ─── ARTICLE 1: Maa Behen ───────────────────────────────────────────────────
 articles.append({
-    "headline": "Ranveer Singh Is Making a ₹300 Crore Zombie Film. The Director Made Scam 1992. The Industry Banned Him Last Week.",
-    "subheadline": "Pralay, a post-apocalyptic thriller directed by Jai Mehta, starts filming in August — even as FWICE's non-cooperation directive over the Don 3 fallout hangs over Ranveer's head.",
-    "slug": "ranveer-singh-pralay-300-crore-zombie-film-jai-mehta-fwice-ban-nri-20260529",
-    "body": """Ranveer Singh's next film is not a sequel. It is not a franchise extension. It is a ₹300 crore zombie thriller set in a post-apocalyptic Mumbai — and it is going ahead despite the most public industry standoff of the year.
-
-## The Project
-
-Pralay is directed by Jai Mehta, whose debut feature as co-director — Scam 1992: The Harshad Mehta Story — swept 11 awards at the 2021 Filmfare OTT Awards and rewired how India consumed long-form storytelling. The series' theme music crossed 7 million streams. Achint Thakkar's score became as recognizable as any Bollywood hit album that year.
-
-Now Jai Mehta is moving from streaming to spectacle. Pralay is based on an original screenplay co-written by Mehta and Vishal Kapoor — not, as earlier rumored, an adaptation of José Saramago's 1995 novel Blindness. The film is produced by Hansal Mehta's True Story Films and Ranveer's own banner, Ma Kasam Films, with backing from Applause Entertainment.
-
-Joining Ranveer in the lead is Kalyani Priyadarshan, making her Bollywood debut. The daughter of veteran director Priyadarshan, she has already established herself in Tamil and Telugu cinema.
-
-## The Controversy
-
-The timing is impossible to ignore. FWICE — the Federation of Western India Cine Employees — issued a non-cooperation directive against Ranveer Singh over the Don 3 fallout, demanding ₹45 crore in compensation after his exit from the franchise. Salman Khan briefly mediated between Ranveer and Farhan Akhtar, but the truce was fragile.
-
-Sources close to the production say the directive does not apply to Pralay because the dispute is between Ranveer and Excel Entertainment, not with the broader industry. Filming is confirmed for August 2026. But the math is not simple — a ₹300 crore production requires hundreds of FWICE members on set, and the directive technically empowers them to refuse work.
-
-## Why This Matters for the Diaspora
-
-For NRIs who grew up on Bollywood's song-and-dance formula, Pralay represents the same tectonic shift that Dhurandhar did — except this time the genre is completely alien to Hindi cinema. India has never mounted a zombie film at this scale. The budget is larger than most Hollywood mid-range genre films. If it works, it opens a door that Indian cinema has been afraid to walk through.
-
-The Don 3 controversy also matters abroad. Ranveer's Dhurandhar 2 just crossed ₹1,000 crore in Hindi net collections alone — the first Bollywood film to do so. His overseas draw is enormous. An industry ban, even a partial one, directly affects release strategies, promotions, and the diaspora screening ecosystem that has become a significant revenue stream.
-
-## What's Next
-
-Pre-production is underway. AI-assisted visual effects are reportedly being developed to depict Mumbai's post-apocalyptic decay. The August start date gives the production team roughly two months to resolve — or work around — the FWICE situation. Ranveer Singh is betting that the film's ambition will outweigh the industry's grievance.
-
-*Sources: Bollywood Hungama, SacNilk, MensXP, Bollywood Bubble*""",
+    "headline": "Madhuri Dixit Finds a Dead Body in Her Kitchen. Netflix's Maa Behen Drops June 4.",
+    "subheadline": "Suresh Triveni's dark comedy pairs Madhuri with Triptii Dimri and digital creator Dharna Durga in a mother-daughters crime cover-up that Netflix is positioning as its next Darlings.",
+    "slug": "madhuri-dixit-maa-behen-netflix-triptii-dimri-dark-comedy-june-4-nri-20260529",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
     "sources": json.dumps([
-        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-        {"name": "SacNilk", "url": "https://www.sacnilk.com"},
-        {"name": "MensXP", "url": "https://www.mensxp.com"},
-        {"name": "Bollywood Bubble", "url": "https://www.bollywoodbubble.com"},
+        {"name": "Netflix India", "url": "https://www.netflix.com"},
+        {"name": "Hollywood Reporter India", "url": "https://hollywoodreporterindia.com"},
+        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
+        {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Maa_Behen"}
     ]),
-    "person_name": "Ranveer Singh",
-    "pexels_fallback": ("zombie apocalypse city ruins", "abandoned city dark"),
+    "image_url": None,
+    "image_attribution": None,
+    "person_image": "Madhuri Dixit",
+    "pexels_query": "Bollywood actress dark comedy",
+    "body": """Rekha has a dead body in her kitchen, two bickering daughters standing over it, and an entire conservative neighbourhood that already thinks the worst of her family. Her plan? Figure it out together — a family that has never agreed on anything, not even what to eat for dinner.
+
+That is the opening gambit of *Maa Behen*, Suresh Triveni's new Netflix India film dropping on June 4. The dark comedy stars Madhuri Dixit as Rekha, Triptii Dimri as older daughter Jaya, and digital creator Dharna Durga — making her feature debut — as the younger, wilder Sushma. Ravi Kishan rounds out the ensemble in a role the makers are keeping deliberately vague.
+
+## A Director With Nerve
+
+Triveni, best known for *Tumhari Sulu* and *Jalsa*, has been quietly building a filmography around women pushed to the edge by circumstances they didn't choose. *Maa Behen* fits that pattern but pushes it further into crime and satire. The screenplay, by Pooja Tolani (who also crafted the story with Triveni), forces a mother and her two daughters into an improbable alliance: dispose of a corpse, maintain the family's already-precarious reputation, and do it all before the neighbours start asking questions.
+
+The trailer, which dropped on May 22 and has already racked up millions of views, shows a family that communicates almost entirely through arguments and eye-rolls — until the crisis forces them into something resembling teamwork. It is being compared to *Darlings* (2022), Alia Bhatt's Netflix hit that blended domestic tension with dark comedy, but the tone here is more satirical and deliberately chaotic.
+
+## Why It Matters for the Diaspora
+
+For NRI audiences, *Maa Behen* lands on the most accessible platform there is. Netflix availability means no geo-restrictions, no hunting for regional OTT apps. Madhuri Dixit, who remains one of the most recognizable faces in Indian cinema worldwide, continues her pivot toward character-driven streaming content after *The Fame Game*. Triptii Dimri, meanwhile, has become Netflix India's most reliable face — *Bulbbul*, *Qala*, and now this.
+
+## The Music Plays a Quiet Hand
+
+The film's full album dropped this week, and it is not what you would expect from a comedy about a kitchen corpse. Akashdeep Sengupta composed the score, with tracks like *Kaari Kaari* (sung by Neelkamal Singh) and *Yeh Kaisi Raat* (Shreya Jain) suggesting a film that leans into its noir instincts. The biggest surprise is *Dhak Dhak Reloaded*, a reimagining of Madhuri's iconic *Beta* track by Akshay & IP — a wink at her legacy that the film appears to use as commentary rather than mere nostalgia.
+
+## What to Expect
+
+Produced by Vikram Malhotra's Abundantia Entertainment and Triveni's Opening Image Films, *Maa Behen* is built for the same audience that turned *Darlings* into a word-of-mouth sensation. It premieres globally on Netflix on June 4. The question for Madhuri Dixit fans in the diaspora is not whether to watch it — it is whether the film can do justice to a cast this stacked and a premise this deliciously absurd.
+
+Dharna Durga, who built a massive following creating digital content, is the wildcard. If her debut lands, *Maa Behen* could become the film that proves social media stars can hold their own alongside Bollywood royalty. If it doesn't, well — there is still a dead body in the kitchen, and Madhuri Dixit is in charge of the cover-up. That alone is worth pressing play."""
 })
 
-
-# ── Article 2: Katrina and Vicky introduce baby Vihaan ──────────────
+# ─── ARTICLE 2: Made in India: A Titan Story ────────────────────────────────
 articles.append({
-    "headline": "Katrina Kaif and Vicky Kaushal Brought Their Baby to the Airport. They Asked Photographers to Put Their Cameras Down.",
-    "subheadline": "Seven months after welcoming son Vihaan, the couple introduced him to Mumbai's paparazzi — with one firm condition attached.",
-    "slug": "katrina-kaif-vicky-kaushal-baby-vihaan-airport-paparazzi-privacy-nri-20260529",
-    "body": """Katrina Kaif and Vicky Kaushal did something at Mumbai airport this week that most Bollywood couples avoid entirely: they walked their baby toward the press pack. And then they asked the press pack to stop shooting.
-
-## The Moment
-
-The couple was spotted leaving Mumbai together when photographers approached. Katrina was carrying their seven-month-old son, Vihaan Kaushal, born on November 7, 2025. Instead of the usual celebrity dodge — car window rolled up, security forming a wall — Katrina and Vicky stopped. They introduced the baby to the photographers present.
-
-Then Katrina made a single request: no photographs of her holding the child.
-
-"She asked not to be photographed with the baby and introduced the baby to the paparazzi," a photographer present at the airport told Pinkvilla. Vicky was photographed, but no images of Katrina with Vihaan were released.
-
-## Why It Matters
-
-This is the Bollywood equivalent of drawing a line in wet cement. The Mumbai paparazzi ecosystem — organized, persistent, commercially driven — operates on implicit agreements. Some celebrities cooperate for coverage; others retreat entirely. What Katrina and Vicky did was neither: they gave the media access to the moment while restricting the images.
-
-It follows a pattern emerging among younger Bollywood parents. Anushka Sharma and Virat Kohli have kept their daughter Vamika almost entirely out of public view. Deepika Padukone and Ranveer Singh have shielded their daughter similarly. Priyanka Chopra and Nick Jonas took a different route, sharing Malti Marie's face on Instagram on their own terms.
-
-Katrina's approach lands somewhere in the middle — acknowledging the public's curiosity while establishing that the terms belong to the parents.
-
-## The Birthday Post
-
-Earlier this month, Katrina shared an emotional birthday post for Vicky as he turned 38. She called him her "pillar of strength" and posted a series of family photographs, including one with Vihaan. In the caption, she joked about the "endless questions" she asks him about "mythology, AI, waterproofing, make up, health, business, all 'What if' situations in general and everything else in between."
-
-The birthday cake in the photo read "happy birthday papa."
-
-## The Diaspora Angle
-
-For NRI fans who have followed Katrina's career from her early days as a British-Indian model through two decades of Hindi cinema, this chapter feels personal. Her marriage to Vicky — the Punjabi outsider who earned his way in — resonated across the diaspora. The baby's introduction, done on their terms, is a small but significant statement about how the next generation of Indian celebrity children might grow up in the public eye.
-
-The couple tied the knot on December 9, 2021, in Rajasthan.
-
-*Sources: Pinkvilla, Bombay Times, Bollywood Bubble, Medium*""",
+    "headline": "Naseeruddin Shah Plays JRD Tata in a Six-Part Series About How Titan Was Built. It Streams Free on June 3.",
+    "subheadline": "Made in India: A Titan Story pairs Naseeruddin Shah and Jim Sarbh to tell the origin of India's most iconic watch brand — a pre-liberalisation startup story about bureaucratic hurdles, impossible deadlines, and a Parsi industrialist who refused to fail.",
+    "slug": "made-in-india-titan-story-naseeruddin-shah-jrd-tata-jim-sarbh-amazon-mx-player-nri-20260529",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
     "sources": json.dumps([
-        {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
-        {"name": "Bombay Times", "url": "https://www.bombaytimes.com"},
-        {"name": "Bollywood Bubble", "url": "https://www.bollywoodbubble.com"},
+        {"name": "Amazon MX Player", "url": "https://www.amazonmxplayer.in"},
+        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
+        {"name": "MensXP", "url": "https://mensxp.com"},
+        {"name": "Brownstone Worldwide", "url": "https://brownstoneworldwide.com"}
     ]),
-    "person_name": "Katrina Kaif",
-    "pexels_fallback": None,
+    "image_url": None,
+    "image_attribution": None,
+    "person_image": "Naseeruddin Shah",
+    "pexels_query": "Indian watch Titan wristwatch",
+    "body": """Every Indian household has a Titan story. The first watch your father wore to work. The Sonata your uncle gave you for passing your board exams. The Titan Edge that felt impossibly thin on your wrist. What most people do not know is the story behind the brand — a pre-liberalisation gamble that almost did not happen, driven by a man who was supposed to save a failing printing press and instead built India's most successful consumer brand.
+
+*Made in India: A Titan Story* tells that story. The six-part biographical drama premieres on Amazon MX Player on June 3, streaming for free. Naseeruddin Shah plays JRD Tata, the legendary chairman of the Tata Group, and Jim Sarbh plays Xerxes Desai, the founding managing director who turned JRD's quiet confidence into a watchmaking revolution.
+
+## The Real Story Is Stranger Than Fiction
+
+The series is adapted from Vinay Kamath's acclaimed book *Titan: Inside India's Most Successful Consumer Brand*, and it is set in an India that most NRIs over 40 will recognize viscerally. Pre-liberalisation India meant that starting a business was an exercise in navigating a bureaucracy designed to say no. Import licenses, government approvals, and a domestic market dominated by state-owned HMT watches — Xerxes Desai walked into all of it with an eight-month deadline and a boss who believed in him more than he believed in himself.
+
+Jim Sarbh, speaking about the role, described Desai as "quietly rebellious — someone unafraid to challenge convention and imagine what didn't yet exist." Naseeruddin Shah called JRD Tata's leadership style "an extraordinary ability to spot potential and nurture it with trust, something that feels increasingly rare."
+
+## Why NRIs Should Pay Attention
+
+For the Indian diaspora, the Titan story hits differently. Many NRIs left India precisely because of the bureaucratic suffocation that Xerxes Desai fought against. The series does not romanticize pre-liberalisation India — it shows the frustration, the impossible odds, and the personal sacrifices required to build something world-class in a system stacked against ambition.
+
+The series also features Vaibhav Tatwawadi, Namita Dubey, Lakshvir Saran, and Kaveri Seth. Karan Vyas wrote the script, with direction by Robbie Grewal. Almighty Motion Pictures and T-Series Films produced the project.
+
+## The Comparisons Are Inevitable
+
+Early reactions to the trailer draw comparisons to *Scam 1992* and *Rocket Boys* — both biographical dramas that found massive audiences by telling distinctly Indian stories with global production values. If *Made in India* can deliver that same combination of nostalgia, ambition, and emotional depth, it could become Amazon MX Player's biggest original series.
+
+The platform has positioned the series as available across mobile, connected TVs, the Amazon shopping app, Prime Video, Fire TV, JioTV, and Airtel Xstream — making it one of the most widely accessible Indian originals at launch.
+
+## What Makes This Different
+
+Unlike most biographical content that leans on hagiography, the Titan story is inherently dramatic because it nearly failed. The company was built by someone who was not supposed to be building watches at all — Desai was tasked with reviving Tata Press, a struggling printing business. The pivot to watches was his own idea, and the series traces how one man's instinct, backed by one chairman's trust, created something that outlasted both of them.
+
+For anyone who has ever worn a Titan, given one as a gift, or seen one on their parent's wrist — this is the origin story you never knew you wanted. It arrives June 3, free to stream."""
 })
 
-
-# ── Article 3: Suriya's Karuppu box office ───────────────────────────
+# ─── ARTICLE 3: Drishyam 3 crosses ₹200 crore ──────────────────────────────
 articles.append({
-    "headline": "Suriya's Karuppu Just Crossed ₹270 Crore Worldwide. He Waited 13 Years for a Hit This Big.",
-    "subheadline": "The Tamil fantasy drama shattered Singam 2's lifetime in four days, became Suriya's biggest film in Kerala, and reunited him with Trisha after 21 years.",
-    "slug": "suriya-karuppu-270-crore-worldwide-tamil-box-office-record-trisha-nri-20260529",
-    "body": """Suriya has spent the better part of a decade watching younger actors claim the box office records that once belonged to him. Singam 2, released in 2013, held as his career-best for thirteen years. That record lasted four days against Karuppu.
-
-## The Numbers
-
-By Day 13, Karuppu had earned approximately ₹163 crore in India net and ₹258 crore worldwide. The film is now pushing past ₹270 crore globally and is closing in on ₹200 crore in Tamil Nadu alone — a milestone only a handful of Tamil films have ever reached. It beat the lifetime collections of Mersal, Petta, and Thunivu within its first eight days.
-
-The opening weekend delivered ₹78.75 crore in India gross. The second week held at ₹28.35 crore, a strong hold for a Tamil film that received mixed critical reviews.
-
-In Kerala, Karuppu became Suriya's highest-grossing film ever — an especially notable achievement given that his earlier films had a modest footprint in the Malayalam market. In the Telugu states, where the film released as Veerabhadrudu, it crossed ₹30 crore with a 211 percent recovery rate for distributors.
-
-## The Film
-
-Karuppu is directed by RJ Balaji, who also acts in the film. The premise is unconventional for a commercial Tamil movie: Suriya plays a guardian deity who assumes the form of a lawyer after a devotee in distress pleads for justice. The film blends mythology, fantasy, and courtroom drama in a way that critics found uneven but audiences embraced completely.
-
-The cast reunites Suriya with Trisha Krishnan for the first time since 2005's Aaru — a 21-year gap. The supporting cast includes Indrans, Swasika, Sshivada, Natty, Supreeth Reddy, and Anagha Maya Ravi.
-
-## What Changed
-
-Suriya's career trajectory has been a study in resilience. After the Singam franchise made him one of Tamil cinema's biggest commercial draws, a series of underperforming films pushed him into a difficult stretch. Etharkkum Thunindhavan (2022) underperformed. Vaadivaasal and other announced projects stalled or changed shape. His collaboration with Vetrimaaran on Vaadivaasal became one of Tamil cinema's most anticipated — and most delayed — projects.
-
-Karuppu was not the expected comeback vehicle. It was an RJ Balaji film, not an auteur project. But that is precisely why the box office response has been so significant: it proved that the audience's relationship with Suriya remains commercially potent, regardless of the director or genre.
-
-## The NRI Market
-
-Karuppu's overseas performance has been solid, contributing significantly to its worldwide total. For the Tamil diaspora — concentrated in Singapore, Malaysia, the Middle East, the US, and the UK — Suriya occupies a specific generational niche. He is not Rajinikanth-era or Vijay-era. He is the actor who bridged the two, and his return to this level of commercial success validates that bridge.
-
-The film is now streaming in select territories, expanding its reach beyond theatrical windows.
-
-*Sources: Cinema Express, Filmibeat, Pinkvilla, SacNilk, TrackTollywood*""",
+    "headline": "Drishyam 3 Just Crossed ₹200 Crore Worldwide in Its First Week. The Hindi Version Arrives in October.",
+    "subheadline": "Mohanlal's final chapter as Georgekutty is the fastest Malayalam film to ₹200 crore. Ajay Devgn's Hindi remake is already confirmed for October 2 — and the ending may be different.",
+    "slug": "drishyam-3-200-crore-first-week-mohanlal-hindi-remake-ajay-devgn-october-nri-20260529",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
     "sources": json.dumps([
-        {"name": "Cinema Express", "url": "https://www.cinemaexpress.com"},
-        {"name": "Filmibeat", "url": "https://www.filmibeat.com"},
-        {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
-        {"name": "SacNilk", "url": "https://www.sacnilk.com"},
+        {"name": "Latestly / ANI", "url": "https://latestly.com"},
+        {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
+        {"name": "Bombay Times", "url": "https://bombaytimes.com"},
+        {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Drishyam_3"}
     ]),
-    "person_name": "Suriya",
-    "person_alt": "Suriya (actor)",
-    "pexels_fallback": ("Tamil cinema movie theater India", "Indian cinema audience"),
-})
+    "image_url": None,
+    "image_attribution": None,
+    "person_image": "Mohanlal",
+    "pexels_query": "Indian cinema thriller suspense",
+    "body": """Georgekutty is back. And this time, the box office numbers suggest that the audience has been waiting with the same patience his character applies to covering his tracks.
 
+*Drishyam 3*, the final chapter of Jeethu Joseph's iconic Malayalam thriller franchise, crossed ₹200 crore worldwide in its first week of release — making it the fastest Malayalam film to reach that milestone. Mohanlal, reprising his career-defining role as the resourceful everyman, thanked fans for turning his 66th birthday release into a box office event. The film opened on May 21 to packed theatres across India and the Middle East, and the momentum has not slowed.
 
-# ── Article 4: Sitaare Zameen Par TV premiere ────────────────────────
-articles.append({
-    "headline": "Aamir Khan's Sitaare Zameen Par Premieres on TV This Saturday. It Made ₹268 Crore. Most NRIs Haven't Seen It.",
-    "subheadline": "The basketball comedy-drama — a spiritual sequel to Taare Zameen Par — hits Sony MAX on May 31, bringing Aamir's quietest box office success to living rooms across India and the diaspora.",
-    "slug": "aamir-khan-sitaare-zameen-par-sony-max-tv-premiere-may-31-nri-20260529",
-    "body": """Aamir Khan's Sitaare Zameen Par made ₹268 crore worldwide during its theatrical run. It opened to a ₹93 crore opening weekend. The cast reacted with visible emotion when they learned it would premiere on Sony MAX this Saturday, May 31.
+## The Story Picks Up Where You Hoped It Wouldn't
 
-And yet, for a film that performed this well, it has an unusual problem: a large portion of its natural diaspora audience has barely heard of it.
+Set roughly four-and-a-half years after the events of *Drishyam 2*, the third instalment finds Georgekutty living a life that looks suspiciously successful. He has become a film producer. The movie inspired by his own hidden past has become a hit. His family has a bigger house, more money, and by all appearances, a comfortable life. But Jeethu Joseph is not interested in comfort.
 
-## The Film
+The film's central tension revolves around Georgekutty's attempt to arrange his elder daughter Anju's marriage — a process repeatedly sabotaged by lingering rumours connected to the Varun case. Meanwhile, Geetha Prabhakar and her husband (Asha Sharath and Siddique) are still seeking revenge, this time allied with former police officer Sahadevan (Kalabhavan Shajohn) and IG Thomas Bastin (Murali Gopy). Their plan is not to arrest Georgekutty — it is to psychologically destroy him by framing Anju.
 
-Sitaare Zameen Par is a spiritual sequel to the 2007 classic Taare Zameen Par, but it is not about dyslexia or childhood learning disabilities. This time, Aamir plays a character who coaches a basketball team made up of individuals with intellectual disabilities. It is an official remake of the 2018 Spanish film Campeones, which itself was a box office hit in Spain.
+## The Ending Changes Everything
 
-The film was directed by R.S. Prasanna (who directed Shubh Mangal Saavdhan) and produced by Aamir Khan Productions and Jio Studios. It features 10 debutant actors — many with actual disabilities — alongside Aamir, marking one of Bollywood's most significant casting decisions in terms of representation.
+Without spoilers, the ending of *Drishyam 3* takes the franchise in a direction that neither the original nor its sequel prepared audiences for. Early reports suggest the conclusion is more psychological than procedural — a shift that director Jeethu Joseph had hinted at in pre-release interviews. He described this instalment as moving away from legal complexities toward examining "the internal cracks within the George family as they buckle under the decade-long weight of their secret."
 
-The Shankar-Ehsaan-Loy score, the trio's first collaboration with Aamir since Taare Zameen Par, was celebrated at a musical gathering at Aamir's home on June 6 before the theatrical release.
+## What the Hindi Version Means for NRIs
 
-## The Diaspora Gap
+Here is where it gets interesting for the diaspora. Ajay Devgn's Hindi remake of *Drishyam 3* is already confirmed with a theatrical release date of October 2, 2026. The Hindi versions have historically followed the Malayalam originals closely — but early reports suggest the Hindi *Drishyam 3* may alter the ending. That means NRIs who watch the Malayalam original now and the Hindi version in October could get two genuinely different conclusions to the same story.
 
-Here is the paradox: Taare Zameen Par is one of the most beloved Indian films in the diaspora. NRI parents, teachers, and community leaders have screened it for years. It is a cultural reference point. But Sitaare Zameen Par, despite strong box office numbers in India, did not replicate that cultural penetration abroad.
+The original Malayalam version features Shriya Saran, Ishita Dutta, and Mrunal Jadhav reprising their roles. Akshaye Khanna, who was initially attached, has exited the project — a casting change that has fuelled speculation about how the Hindi version will handle its antagonists.
 
-Part of the reason is timing. The film released during a packed Hindi calendar. Part of it is marketing — the diaspora never received the same saturation campaign that Dhurandhar or King announcements generate. And part of it is the disability focus itself, which can make international distributors cautious about how they position the film.
+## The Streaming Battle
 
-The Sony MAX premiere changes the equation. Satellite TV premieres in India still reach millions of viewers, and in an era of cord-cutting, they often become the first time diaspora audiences catch a film through family WhatsApp groups, YouTube clips, and social media reactions.
-
-## Why It Matters
-
-Sitaare Zameen Par is not a typical Aamir Khan film in the way the public imagines his work. It is not a three-hour epic with a social message delivered through spectacle. It is warm, small-scale by his standards, and genuinely funny — a basketball comedy-drama where the comedy comes from real chemistry and the drama from real stakes.
-
-The 10 debutant actors have been widely praised. Critics noted that Aamir's performance was less the "Aamir Khan playing a character" mode and more a supporting presence designed to let his co-stars shine. For an actor known for controlling every frame of his films, this was a meaningful creative choice.
+Amazon Prime Video has already claimed post-theatrical streaming rights for the Malayalam version, filing a Delhi High Court petition to prevent the makers from negotiating with other platforms. The court granted interim relief restraining any third-party streaming deals. This legal tussle means the film's OTT premiere could be delayed or complicated — another reason to catch it in theatres if you can.
 
 ## The Numbers in Context
 
-At ₹268 crore worldwide, Sitaare Zameen Par is not in the same commercial stratosphere as Dhurandhar or Dhurandhar 2. But it was profitable, well-received, and represents a creative palette that Aamir had been promising since Dangal — a willingness to make mid-budget, character-driven films alongside the blockbusters.
+At ₹200 crore in week one, *Drishyam 3* has already surpassed the lifetime collections of many Hindi films released in 2026. The franchise, which started as a modest Malayalam thriller in 2013, has now been remade in Hindi, Tamil, Telugu, Kannada, and Chinese — making Georgekutty arguably the most widely adapted character in Indian cinema history. Pre-release distribution sales reportedly closed at ₹350 crore, suggesting the makers expect a total run well beyond that.
 
-The film is also available on Sony LIV for streaming. But for many in the diaspora, the TV premiere this Saturday will be their introduction.
-
-*Sources: Bollywood Hungama, SacNilk, Pinkvilla, Zoom TV*""",
-    "sources": json.dumps([
-        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-        {"name": "SacNilk", "url": "https://www.sacnilk.com"},
-        {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
-        {"name": "Zoom TV", "url": "https://www.zoomtventertainment.com"},
-    ]),
-    "person_name": "Aamir Khan",
-    "pexels_fallback": ("basketball game court indoor", "basketball team"),
+For the Indian diaspora, the message is clear: if you have been following Georgekutty's story, this is the ending — and it is not what you think. The Malayalam original is in theatres now. The Hindi version arrives October 2. The streaming rights are in court. And somewhere in a fictional Kerala town, Georgekutty is still three steps ahead of everyone."""
 })
 
-
-# ── Main execution ───────────────────────────────────────────────────
-def main():
-    published = 0
-    for art in articles:
-        print(f"\n{'='*60}")
-        print(f"Processing: {art['headline'][:60]}...")
-
-        # Extract custom fields not for DB
-        person_name = art.pop("person_name", None)
-        person_alt = art.pop("person_alt", None)
-        pexels_fallback = art.pop("pexels_fallback", None)
-
-        # Image sourcing — Wikipedia first for person articles
-        img_url = None
-        if person_name:
-            img_url = fetch_wikipedia_person_image(person_name)
-            if not img_url and person_alt:
-                img_url = fetch_wikipedia_person_image(person_alt)
-
-        if not img_url and pexels_fallback:
-            if isinstance(pexels_fallback, tuple):
-                img_url = fetch_pexels_image(pexels_fallback[0], pexels_fallback[1])
-            else:
-                img_url = fetch_pexels_image(pexels_fallback)
-
-        # Upload to Supabase storage for permanence
-        if img_url:
-            filename = f"{art['slug']}.jpg"
-            uploaded = upload_to_supabase_storage(img_url, filename)
-            if uploaded:
-                art["image_url"] = uploaded
-                # Set attribution
-                if "wikipedia" in img_url.lower() or "wikimedia" in img_url.lower():
-                    art["image_attribution"] = "Wikimedia Commons"
-                elif "pexels" in img_url.lower():
-                    art["image_attribution"] = "Pexels"
-                else:
-                    art["image_attribution"] = "The Videshi"
-            else:
-                art["image_url"] = img_url
-                art["image_attribution"] = "Wikimedia Commons"
-        else:
-            print("  ⚠ No image found — publishing without image")
-
-        # Publish
-        art_id = publish_article(art)
-        if art_id:
-            published += 1
-
-        time.sleep(1)
+# ── Publish & image sourcing ─────────────────────────────────────────────────
+published = 0
+for art in articles:
+    # Extract image fields
+    person_name = art.pop("person_image", None)
+    pexels_q = art.pop("pexels_query", None)
 
     print(f"\n{'='*60}")
-    print(f"Done. Published {published}/{len(articles)} articles.")
+    print(f"Publishing: {art['headline'][:70]}...")
 
-if __name__ == "__main__":
-    main()
+    # Insert article first
+    result = sb_insert("p2_articles", art)
+    if not result:
+        print("  ✗ Failed to insert article, skipping")
+        continue
+
+    art_id = result.get("id")
+    print(f"  ✓ Article inserted: {art_id}")
+    published += 1
+
+    # Image sourcing
+    img_url = None
+    img_attr = None
+
+    # 1. Try Wikipedia for person articles
+    if person_name:
+        print(f"  → Trying Wikipedia for '{person_name}'...")
+        img_url = fetch_wikipedia_person_image(person_name)
+        if img_url:
+            img_attr = "Wikimedia Commons"
+
+    # 2. Fallback to Pexels
+    if not img_url and pexels_q:
+        print(f"  → Trying Pexels for '{pexels_q}'...")
+        img_url = fetch_pexels_image(pexels_q)
+        if img_url:
+            img_attr = "Pexels"
+
+    # 3. Validate & apply
+    if img_url and not is_banned_url(img_url):
+        if validate_image_url(img_url):
+            sb_patch("p2_articles", {"id": f"eq.{art_id}"}, {
+                "image_url": img_url,
+                "image_attribution": img_attr,
+            })
+            print(f"  ✓ Image applied: {img_url[:80]}...")
+        else:
+            print(f"  ✗ Image validation failed, publishing without image")
+    elif img_url:
+        print(f"  ✗ Image URL is banned, publishing without image")
+    else:
+        print(f"  ⚠ No image found, article published without hero image")
+
+    time.sleep(1)
+
+print(f"\n{'='*60}")
+print(f"Done. Published {published}/{len(articles)} entertainment articles.")

@@ -1,14 +1,6 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi - May 29, 2026 run"""
-
-import json
-import os
-import re
-import sys
-import time
-import uuid
-import requests
-import subprocess
+"""Entertainment writer for The Videshi - May 29, 2026 batch"""
+import os, json, requests, urllib.parse, uuid, time, re
 from datetime import datetime, timezone
 
 # Load env
@@ -17,13 +9,11 @@ with open(env_path) as f:
     for line in f:
         line = line.strip()
         if line and not line.startswith("#") and "=" in line:
-            key, _, val = line.partition("=")
-            val = val.strip().strip('"').strip("'")
-            os.environ[key.strip()] = val
+            key, val = line.split("=", 1)
+            os.environ[key.strip()] = val.strip().strip('"').strip("'")
 
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -39,14 +29,12 @@ if os.path.exists(pexels_env):
         for line in f:
             line = line.strip()
             if line and not line.startswith("#") and "=" in line:
-                key, _, val = line.partition("=")
-                val = val.strip().strip('"').strip("'")
+                key, val = line.split("=", 1)
                 if "PEXELS" in key.upper():
-                    PEXELS_KEY = val
+                    PEXELS_KEY = val.strip().strip('"').strip("'")
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -65,49 +53,69 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels. Use curl approach."""
+    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key found")
         return None
-    try:
-        result = subprocess.run(
-            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page=5",
-             "-H", f"Authorization: {PEXELS_KEY}"],
-            capture_output=True, text=True, timeout=15
-        )
-        data = json.loads(result.stdout)
-        photos = data.get("photos", [])
-        for photo in photos:
-            url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
-            if url:
-                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                return url
-        if fallback_query:
-            return fetch_pexels_image(fallback_query)
-    except Exception as e:
-        print(f"  ⚠ Pexels error for '{query}': {e}")
+    import subprocess
+    for q in [query, fallback_query]:
+        if not q:
+            continue
+        try:
+            result = subprocess.run(
+                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
+                 "-H", f"Authorization: {PEXELS_KEY}"],
+                capture_output=True, text=True, timeout=15
+            )
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            for photo in photos:
+                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
+                if url:
+                    # Verify size
+                    head = requests.head(url, timeout=5)
+                    cl = int(head.headers.get("Content-Length", 0))
+                    if cl > 5000:
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                        return url
+        except Exception as e:
+            print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image(url):
-    """Validate image URL returns HTTP 200 with image content type and reasonable size."""
+def validate_image_url(url):
+    """Verify URL returns valid image."""
+    if not url:
+        return False
     try:
+        # Check for banned sources
+        banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', 'scontent-']
+        if any(b in url for b in banned):
+            print(f"  ❌ Banned image source: {url[:60]}")
+            return False
+        if '_nc_ht=' in url or '_nc_cat=' in url or 'ccb=' in url:
+            print(f"  ❌ Signed Meta URL detected: {url[:60]}")
+            return False
         r = requests.head(url, timeout=10, allow_redirects=True,
                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        content_type = r.headers.get("Content-Type", "")
-        content_length = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in content_type and content_length > 5000:
-            print(f"  ✓ Image validated: {content_type}, {content_length} bytes")
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
+            print(f"  ✓ Image validated: {cl} bytes, {ct}")
             return True
         else:
-            print(f"  ⚠ Image validation failed: status={r.status_code}, type={content_type}, size={content_length}")
+            print(f"  ❌ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
             return False
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
+        print(f"  ❌ Image validation error: {e}")
         return False
 
 def publish_article(article):
-    """Publish article to Supabase."""
+    """Insert article into Supabase."""
+    art_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    
     payload = {
+        "id": art_id,
         "headline": article["headline"],
         "subheadline": article["subheadline"],
         "body": article["body"],
@@ -115,260 +123,231 @@ def publish_article(article):
         "category": "entertainment",
         "vertical": "entertainment",
         "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
+        "published_at": now,
         "sources": json.dumps(article["sources"]),
         "image_url": article.get("image_url"),
-        "image_caption": article.get("image_caption"),
-        "image_attribution": article.get("image_attribution"),
+        "image_attribution": article.get("image_attribution", ""),
     }
-    # Remove None values
-    payload = {k: v for k, v in payload.items() if v is not None}
-
+    
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
         json=payload
     )
     if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data["id"]
-        print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
-        return art_id
-    else:
-        print(f"  ✗ Failed to publish: {r.status_code} - {r.text[:200]}")
-        return None
-
+        result = r.json()
+        if isinstance(result, list) and result:
+            print(f"  ✅ Published: {article['headline'][:60]}... (id: {art_id})")
+            return art_id
+    print(f"  ❌ Publish failed: {r.status_code} — {r.text[:200]}")
+    return None
 
 # ============================================================
-# ARTICLE 1: Jailer 2 - Hrithik Roshan cameo talks
+# ARTICLES
 # ============================================================
-print("\n=== Article 1: Jailer 2 - Hrithik Roshan Cameo ===")
 
-art1_headline = "Hrithik Roshan Is in Talks to Join Rajinikanth's Jailer 2. Shah Rukh Khan Was the First Choice."
-art1_subheadline = "The makers of the most anticipated Tamil sequel of 2026 are reportedly in discussions with Hrithik after SRK stepped away due to King commitments. If confirmed, it would reunite Rajinikanth and Hrithik 40 years after Bhagwaan Dada."
-art1_slug = "hrithik-roshan-jailer-2-cameo-rajinikanth-shah-rukh-khan-nelson-dilipkumar-nri-20260529"
-art1_body = """The biggest casting rumour in Indian cinema this week doesn't involve a lead role. It involves a cameo — and the two names attached to it tell you everything about where the industry is heading.
+articles = []
 
-## SRK Was the Plan. His Calendar Wasn't.
+# --- ARTICLE 1: Anik Dutta ---
+print("\n📰 Article 1: Anik Dutta tribute")
+print("  Sourcing image...")
+img1 = fetch_wikipedia_person_image("Anik Dutta")
+if not img1 or not validate_image_url(img1):
+    img1 = fetch_wikipedia_person_image("Anik Dutta (filmmaker)")
+    if not img1 or not validate_image_url(img1):
+        # Try Bimal Roy since Anik was his grandnephew, or try Satyajit Ray
+        img1 = fetch_pexels_image("Kolkata cinema hall theatre", "Bengali film industry Kolkata")
+        if not validate_image_url(img1):
+            img1 = None
 
-When Nelson Dilipkumar began assembling the sequel to his 2023 blockbuster *Jailer*, the playbook was clear: replicate the formula that turned the original into a ₹600-crore global phenomenon. That meant Rajinikanth as the anchor, Anirudh Ravichander on the score, and a roster of surprise appearances from stars across every Indian film industry.
+articles.append({
+    "headline": "Bengali Filmmaker Anik Dutta Is Dead at 66. He Reinvented Political Satire in Indian Cinema.",
+    "subheadline": "The director of Bhooter Bhabishyat and Aparajito was found after falling from a Kolkata rooftop. Police recovered a suicide note. The Bengali diaspora has lost one of its sharpest voices.",
+    "slug": "anik-dutta-dead-66-bengali-filmmaker-bhooter-bhabishyat-aparajito-nri-20260529",
+    "image_url": img1,
+    "image_attribution": "Wikimedia Commons" if img1 and "wikipedia" in (img1 or "").lower() or "wikimedia" in (img1 or "").lower() else "The Videshi",
+    "sources": [
+        {"name": "Filmfare", "url": "https://www.filmfare.com"},
+        {"name": "LatestLY / ANI", "url": "https://www.latestly.com"},
+        {"name": "BlazesTrends", "url": "https://blazetrends.com"},
+        {"name": "Kolkata Police / DCP Southeast Division", "url": ""}
+    ],
+    "body": """Anik Dutta, the Bengali filmmaker who turned political satire into a commercially viable art form, died on May 27 in Kolkata after falling from the rooftop of a six-storey residential building in the city's Hindustan Park neighbourhood. He was 66.
 
-Shah Rukh Khan was the centrepiece of that plan. According to multiple trade reports, including confirmations from veteran actor Mithun Chakraborty — who is also part of the sequel — both he and SRK were slated for pivotal cameos. The logic was bulletproof: after *Jawan* turned Khan into a mass favourite in the South Indian market, pairing him with Rajinikanth in a Nelson film would have been a theatrical event unto itself.
+Kolkata Police found a handwritten note on the terrace addressed to his daughter, who lives abroad, stating that no one was responsible for his death. A pair of sandals and a copy of *Cinematography Art* magazine were found alongside it. The Deputy Commissioner of Police (Southeast) confirmed the recovery and said an unnatural death case has been initiated. His body was taken to SSKM Hospital for post-mortem examination.
 
-But *King* got in the way. Shah Rukh Khan's own production, which is targeting a Christmas 2026 release, demanded his full attention. Reports from Pinkvilla and Valai Pechu confirm that Khan "politely declined" the cameo, and portions planned with him remain unfilmed.
+## A New Language for Bengali Cinema
 
-## Enter Hrithik Roshan
+Dutta came to filmmaking late, spending two decades in the advertising industry before picking up the director's chair. His debut feature, *Bhooter Bhabishyat* (2012), became an instant cultural phenomenon — a supernatural comedy-satire that mixed ghosts from different eras of Bengali history into a single crumbling mansion. The film earned over ₹10 crore at the box office on a modest budget and created a new template for commercially successful political commentary in Bengali cinema.
 
-The makers have reportedly pivoted to Bollywood's other Greek god. According to reports from Bombay Times, MensXP, and Pinkvilla, the *Jailer 2* team is now in active discussions with Hrithik Roshan for the same high-profile cameo slot.
+What made Dutta distinctive was his refusal to separate entertainment from critique. His ghosts debated colonial history, his comedies contained sharp observations about Bengali cultural anxieties, and his satires landed with the precision of someone who had spent decades studying how people respond to stories in 30-second commercial spots.
 
-No official confirmation has come from Sun Pictures, the production house bankrolling the sequel. But if the talks materialise, the casting would carry emotional weight that goes far beyond box-office strategy.
+## Seven Films, One Uncompromising Voice
 
-## A 40-Year Reunion
+Over 14 years, Dutta directed seven feature films: *Bhooter Bhabishyat* (2012), *Aschorjo Prodip* (2013), *Meghnad Badh Rahasya* (2017), *Bhobishyoter Bhoot* (2019), *Borunbabur Bondhu* (2020), *Aparajito* (2022), and *Joto Kando Kolkatatei* (2025).
 
-Here is where the story gets interesting for anyone who grew up watching Hindi cinema in the 1980s. Hrithik Roshan made his screen debut as a child artist in the 1986 action drama *Bhagwaan Dada* — a film that starred Rajinikanth in the lead role. The seven-year-old Hrithik played Rajinikanth's young foster son on screen.
+*Bhobishyoter Bhoot* — a sharp political satire featuring ghosts who face censorship — was pulled from theatres within days of its 2019 release in a controversy that many saw as politically motivated. The incident became a landmark moment in debates about artistic freedom in West Bengal.
 
-In interviews over the decades, Hrithik has spoken with warmth about what he learned from Rajinikanth on that set. A reunion four decades later, both as superstars in their own right, would be the kind of narrative arc that Bollywood couldn't script better if it tried.
-
-## What Jailer 2 Already Has
-
-Even without the cameo question resolved, the sequel is stacked. Rajinikanth returns as "Tiger" Muthuvel Pandian. The confirmed cast includes Vidya Balan, S.J. Suryah, Ramya Krishnan (reprising her role as Viji Pandian), Suraj Venjaramoodu, Jatin Sarna, and Mithun Chakraborty. Mohanlal and Shiva Rajkumar are expected to reprise their appearances from the first film. Vijay Sethupathi also has a confirmed cameo.
-
-Principal photography wrapped in April 2026 after shoots across Chennai, Goa, and Kerala. Anirudh Ravichander is composing the music. The film is eyeing a June 12 theatrical release — just two weeks away.
-
-## The Diaspora Angle
-
-For NRI audiences, *Jailer* was a cultural event. The original collected over ₹150 crore overseas and became one of the highest-grossing Tamil films in international markets. Advance booking patterns for the sequel are expected to follow a similar trajectory, particularly in the US, UK, Canada, and the Gulf, where Rajinikanth retains a devoted fanbase that spans generations.
-
-Adding Hrithik Roshan — whose *War* and *Fighter* performed strongly in overseas markets — would only amplify that pull. The real question isn't whether Nelson can get Hrithik. It's whether two weeks is enough time to shoot, edit, and integrate a cameo before the June 12 release date. In Kollywood, stranger things have happened."""
-
-art1_sources = [
-    {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
-    {"name": "Bombay Times", "url": "https://www.bombaytimes.com"},
-    {"name": "MensXP", "url": "https://www.mensxp.com"},
-    {"name": "Tupaki English", "url": "https://english.tupaki.com"}
-]
-
-# Image: Try Hrithik Roshan Wikipedia
-img1 = fetch_wikipedia_person_image("Hrithik Roshan")
-if not img1:
-    img1 = fetch_wikipedia_person_image("Rajinikanth")
-img1_valid = img1 and validate_image(img1)
-
-art1 = {
-    "headline": art1_headline,
-    "subheadline": art1_subheadline,
-    "body": art1_body,
-    "slug": art1_slug,
-    "sources": art1_sources,
-    "image_url": img1 if img1_valid else None,
-    "image_caption": "Hrithik Roshan is reportedly in talks for a cameo in Rajinikanth's Jailer 2" if img1_valid else None,
-    "image_attribution": "Wikimedia Commons" if img1_valid else None,
-}
-
-id1 = publish_article(art1)
-
-# ============================================================
-# ARTICLE 2: Pankaj Bhadouria breast cancer diagnosis + surgery
-# ============================================================
-print("\n=== Article 2: Pankaj Bhadouria Cancer Diagnosis ===")
-
-art2_headline = "India's First MasterChef Winner Has Breast Cancer. She Went Into Surgery on Friday Morning."
-art2_subheadline = "Pankaj Bhadouria, who left a 16-year teaching career to win MasterChef India Season 1 in 2010, revealed her diagnosis from a hospital bed on Thursday. By Friday, she was headed for the operating room."
-art2_slug = "pankaj-bhadouria-masterchef-india-breast-cancer-surgery-nri-20260529"
-art2_body = """Pankaj Bhadouria posted a photograph from a hospital bed on Thursday afternoon, medical wires visible, patient gown on, and wrote seven words that stopped her millions of followers mid-scroll: "I have been diagnosed with Breast Cancer."
-
-By Friday morning, she was recording another video — this time to say thank you, and to say she was going in for surgery.
-
-## The Diagnosis
-
-The announcement came on May 28 through Bhadouria's social media accounts. In a video message that followed the initial post, she addressed her audience directly, her voice steady but her eyes betraying the weight of the moment.
-
-"I just wanted to share with you all that I have been diagnosed with breast cancer," she said. "Since all of you are like an extended family to me, I wanted to share this with you personally. Right now, I truly need your prayers and support. As they say, prayers work miracles. So please keep me in your prayers."
-
-A separate Instagram story showed her undergoing a battery of medical tests, with the text overlay reading: "Going for tests and more tests… not a happy place to be."
-
-## "I Know I Will Bounce Back"
-
-On Friday morning — less than 24 hours after going public — Bhadouria shared a brief update confirming she was heading into surgery. "Thank you so much for all the love and support that you have showered on me," she said. "Today I am going for surgery and I know I will bounce back. So, once again keep me in your prayers."
-
-The response from fans, fellow chefs, and the television industry has been immediate and overwhelming.
-
-## From English Teacher to India's First MasterChef
-
-For those who may not remember, Pankaj Bhadouria's story is one of the most remarkable career pivots in Indian television history. Before she ever appeared on camera, she spent 16 years as an English teacher in Lucknow. Cooking was a passion, not a profession — until she decided to audition for the very first season of *MasterChef India* in 2010.
-
-The show, hosted by Akshay Kumar, was attempting to bring a proven international format to Indian television. Bhadouria won the inaugural season and became the country's first-ever MasterChef champion. The victory didn't just change her career. It created one.
-
-What followed was a decade-plus run as one of India's most recognisable celebrity chefs. She hosted *Chef Pankaj Ka Zayka*, *Kifayati Kitchen*, *3 Course with Pankaj*, and *Rasoi Se — Pankaj Bhadouria Ke Saath*, among other shows. Her YouTube channel became a go-to destination for home cooks across India and the diaspora, with recipes that ranged from everyday dal to elaborate festive spreads.
-
-## Why This Matters to the Diaspora
-
-Bhadouria's reach extends well beyond India's borders. Her cooking videos have been a staple for Indian families abroad trying to recreate the flavours of home — particularly first-generation immigrants in the US, UK, and Canada who grew up watching her on Indian television and later followed her to YouTube and social media.
-
-For many NRI households, her recipes became a bridge between homesickness and the kitchen. The news of her diagnosis has resonated deeply in diaspora communities where her face is synonymous with Indian home cooking.
-
-## Breast Cancer in India: The Larger Context
-
-Bhadouria's decision to go public with her diagnosis adds to a growing list of Indian public figures who have chosen transparency over silence when it comes to cancer. Actors Sonali Bendre, Manisha Koirala, Lisa Ray, and Tahira Kashyap have all spoken about their experiences, helping to destigmatise the conversation in a culture where health disclosures — particularly around cancer — have historically been kept private.
-
-Breast cancer is the most common cancer among Indian women, with approximately 180,000 new cases diagnosed annually, according to the Indian Council of Medical Research. Early detection remains a critical challenge, particularly in smaller cities and rural areas.
-
-## What Comes Next
-
-No details about the type or stage of Bhadouria's cancer, or the specifics of her surgical procedure, have been shared publicly. What is clear is that she intends to fight — and that her community, both in India and abroad, is rallying behind her.
-
-For now, she's asked for one thing: prayers. Given the outpouring that has followed, she has them in abundance."""
-
-art2_sources = [
-    {"name": "IANS via The Freedom Press", "url": "https://thefreedompress.in"},
-    {"name": "Filmibeat", "url": "https://filmibeat.com"},
-    {"name": "LatestLY", "url": "https://latestly.com"},
-    {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"}
-]
-
-# Image: Try Wikipedia for Pankaj Bhadouria
-img2 = fetch_wikipedia_person_image("Pankaj Bhadouria")
-if not img2:
-    img2 = fetch_wikipedia_person_image("Pankaj Bhadouria (chef)")
-if not img2:
-    # Try Pexels with a relevant query
-    img2 = fetch_pexels_image("indian cooking kitchen", "chef kitchen india")
-img2_valid = img2 and validate_image(img2)
-
-art2 = {
-    "headline": art2_headline,
-    "subheadline": art2_subheadline,
-    "body": art2_body,
-    "slug": art2_slug,
-    "sources": art2_sources,
-    "image_url": img2 if img2_valid else None,
-    "image_caption": "Pankaj Bhadouria, India's first MasterChef winner, has been diagnosed with breast cancer" if img2_valid else None,
-    "image_attribution": "Wikimedia Commons" if (img2_valid and img2 and "wikimedia" in img2.lower()) else ("Pexels" if img2_valid else None),
-}
-
-id2 = publish_article(art2)
-
-
-# ============================================================
-# ARTICLE 3: Kangana Ranaut's Bharat Bhhagya Viddhaata motion poster + June 12 release
-# ============================================================
-print("\n=== Article 3: Kangana Ranaut Bharat Bhhagya Viddhaata ===")
-
-art3_headline = "Kangana Ranaut's 26/11 Film Just Dropped Its First Motion Poster. It Opens June 12, the Same Day as Jailer 2."
-art3_subheadline = "Bharat Bhhagya Viddhaata tells the story of hospital staff who saved nearly 400 lives during the 2008 Mumbai terror attacks. The motion poster is titled 'The Unseen Heroes.'"
-art3_slug = "kangana-ranaut-bharat-bhhagya-viddhaata-26-11-mumbai-attacks-june-12-nri-20260529"
-art3_body = """There are dozens of films about 26/11. Most of them focus on commandos, politicians, or terrorists. Kangana Ranaut's next film focuses on none of those people. It focuses on nurses.
-
-## The Motion Poster
-
-The makers of *Bharat Bhhagya Viddhaata* unveiled the film's first motion poster on Thursday, titled "The Unseen Heroes." It is not a teaser for an action sequence. It is a tribute to the hospital workers — nurses, ward boys, cleaners, lift operators, security guards, and administrators — who kept Cama and Albless Hospital running while Mumbai burned around them on the night of November 26, 2008.
-
-The poster carries a deliberate stillness. No explosions. No gunfire. Just the faces of people who chose to stay.
-
-## What Kangana Said
-
-In a statement released with the poster, Kangana framed the film's thesis in characteristically blunt terms:
-
-"Bharat Bhhagya Viddhaata is a salutation to those invisible souls who, when pushed into crisis, rise to stand as the ultimate shield of humanity and harmony. When disaster strikes, our collective instinct is to look toward armed uniforms or state authorities for salvation. But this film tributes the uniforms nobody notices until the world is burning — the blood-stained aprons, the sterile hospital scrubs, the frayed civilian clothes. True courage does not wait for a badge, permission, or the promise of a medal."
-
-It is, arguably, the strongest creative statement she has made since *Emergency*.
-
-## The Story Behind the Story
-
-On the night of November 26, 2008, two Lashkar-e-Taiba terrorists — Ajmal Kasab and Abu Ismail — passed through the Cama Hospital compound during their rampage from the Chhatrapati Shivaji Terminus railway station. What happened inside that hospital has been overshadowed by the more widely covered sieges at the Taj Mahal Palace Hotel and the Oberoi Trident.
-
-But the staff at Cama Hospital locked wards, hid patients, guided evacuations, and continued treating the injured even as gunfire echoed through the building. By some accounts, their actions helped save nearly 400 lives that night. Most of them have never been publicly identified or honoured.
-
-*Bharat Bhhagya Viddhaata* wants to change that.
-
-## The Team
-
-The film is written and directed by Manoj Tapadia, making his directorial debut. Tapadia, a veteran of the advertising industry, described his creative ambition in terms that suggest this won't be a typical Bollywood retelling:
-
-"In contemporary cinema, the easiest thing to capture on camera is the explosive loudness of the gunfire, the destruction, and the panic. From day one, I challenged our creative team to capture something infinitely more complex: the silence of bravery. We wanted to document that microscopic, split-second window where a common civilian looks at mortal danger, subdues their own survival instinct, and decides to become a human shield."
-
-Marathi actress Girija Oak, known for her work in *Shor in the City*, *Qala*, and *Jawan*, co-stars. The film is produced by Eunoia Films and Floating Rocks Entertainment.
-
-## June 12: A Loaded Release Date
-
-Here is where the commercial calculus gets complicated. *Bharat Bhhagya Viddhaata* is scheduled for a June 12 theatrical release — the same date as Rajinikanth's *Jailer 2*, which is arriving with the force of a franchise juggernaut backed by Sun Pictures and Anirudh Ravichander's score.
-
-On paper, the two films serve different audiences. *Jailer 2* is a Tamil-language action spectacle with pan-India crossover. *Bharat Bhhagya Viddhaata* is a Hindi-language drama rooted in historical realism. But in practice, they'll be competing for the same screens on the same weekend — and in the current theatrical market, screens are zero-sum.
+*Aparajito*, released in 2022, told the story of the making of Satyajit Ray's iconic *Pather Panchali*. It earned widespread critical acclaim and multiple awards, cementing Dutta's reputation as a filmmaker deeply invested in Bengali cinema's legacy while remaining fiercely contemporary.
 
 ## The Diaspora Connection
 
-For Indians living abroad, the 2008 Mumbai attacks remain one of the most emotionally charged events in modern Indian history. Many NRIs watched the siege unfold in real-time on television, thousands of miles away, unable to do anything but watch. The Taj and the Oberoi became symbols of that helplessness.
+For the Bengali diaspora scattered across the United States, United Kingdom, Canada, and beyond, Dutta's films served as a particular kind of cultural mirror. *Bhooter Bhabishyat* became a staple at NRI film screenings and Bengali community events. His work captured the specific rhythms, humour, and social anxieties of contemporary Kolkata in a way that felt intimate to those who had left the city but never quite stopped belonging to it.
 
-A film that shifts the lens to the people who could do something — and did — may find a particularly receptive audience among diaspora viewers. Especially one that doesn't sensationalise the violence but instead honours the quiet, unglamorous heroism of hospital workers.
+## "A Big Loss"
 
-Whether the film delivers on that promise remains to be seen. But the motion poster, at least, suggests it is trying."""
+West Bengal Chief Minister Suvendu Adhikari called Dutta's contributions to Bengali cinema "priceless" and asked Kolkata Police to investigate the circumstances of his death. Actor and BJP leader Rudranil Ghosh said Dutta "still had so much more to give" and praised his films for being celebrated both domestically and internationally.
 
-art3_sources = [
-    {"name": "Punjab Page", "url": "https://punjabpage.com"},
-    {"name": "Sacnilk", "url": "https://sacnilk.com"},
-    {"name": "KoiMoi", "url": "https://koimoi.com"},
-    {"name": "Peeping Moon", "url": "https://peepingmoon.com"}
-]
+Director Aditya Sarpotdar, Dutta's colleagues across the Tollygunge industry, and figures from the advertising world where he spent his formative years all posted tributes through the evening.
 
-# Image: Try Kangana Ranaut Wikipedia
-img3 = fetch_wikipedia_person_image("Kangana Ranaut")
-img3_valid = img3 and validate_image(img3)
+Dutta was the grandson of Narendra Chandra Dutta, the founder of United Bank of India, and a grandnephew of legendary filmmaker Bimal Roy. He was deeply influenced by Satyajit Ray's filmmaking style and, like Ray, began his creative career in advertising before transitioning to cinema.
 
-art3 = {
-    "headline": art3_headline,
-    "subheadline": art3_subheadline,
-    "body": art3_body,
-    "slug": art3_slug,
-    "sources": art3_sources,
-    "image_url": img3 if img3_valid else None,
-    "image_caption": "Kangana Ranaut stars in Bharat Bhhagya Viddhaata, a film about hospital staff during the 26/11 attacks" if img3_valid else None,
-    "image_attribution": "Wikimedia Commons" if img3_valid else None,
-}
+His last rites are pending the arrival of his daughter from abroad. He is survived by his daughter and estranged wife, Sandhi Dutta.
 
-id3 = publish_article(art3)
+*If you or someone you know is struggling, reach out to a mental health professional. In the US, contact the 988 Suicide and Crisis Lifeline by calling or texting 988. In India, call iCall at 9152987821 or AASRA at 9820466726.*"""
+})
 
-# Summary
-print("\n=== SUMMARY ===")
-print(f"Article 1 (Jailer 2 Hrithik): {'✓ Published' if id1 else '✗ Failed'}")
-print(f"Article 2 (Pankaj Bhadouria): {'✓ Published' if id2 else '✗ Failed'}")
-print(f"Article 3 (Kangana 26/11 film): {'✓ Published' if id3 else '✗ Failed'}")
+# --- ARTICLE 2: Shakti Shalini wraps ---
+print("\n📰 Article 2: Shakti Shalini wraps")
+print("  Sourcing image...")
+img2 = fetch_wikipedia_person_image("Nana Patekar")
+if not img2 or not validate_image_url(img2):
+    img2 = fetch_pexels_image("Rajasthan village India", "Indian film set production")
+    if not validate_image_url(img2):
+        img2 = None
+
+articles.append({
+    "headline": "Maddock's Next Horror Film Just Wrapped. It Has Nana Patekar, a Double Role, and a Rajasthani Village Built From Scratch.",
+    "subheadline": "Shakti Shalini completed filming on May 27 after shoots across Chambal, Rajasthan, and a massive climax set in Mumbai. Aneet Padda plays both the hero and the ghost.",
+    "slug": "shakti-shalini-maddock-horror-comedy-wraps-aneet-padda-nana-patekar-nri-20260529",
+    "image_url": img2,
+    "image_attribution": "Wikimedia Commons" if img2 and ("wikipedia" in (img2 or "").lower() or "wikimedia" in (img2 or "").lower()) else "The Videshi",
+    "sources": [
+        {"name": "Mid-Day", "url": "https://www.mid-day.com"},
+        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+        {"name": "CineTalkers", "url": "https://cinetalkers.com"},
+        {"name": "Box Office Worldwide", "url": "https://boxofficeworldwide.com"}
+    ],
+    "body": """The Maddock Horror Comedy Universe — the franchise machine behind *Stree*, *Bhediya*, *Munjya*, and *Thamma* — has its next film locked and loaded. *Shakti Shalini* officially wrapped production on May 27 at Chitrarth Studio in Powai, Mumbai, after an intensive shooting schedule that stretched across Rajasthan, Madhya Pradesh, and multiple Mumbai sets.
+
+Director Aditya Sarpotdar, who helmed both *Munjya* and the Ayushmann Khurrana-starrer *Thamma*, called wrap on the final schedule — a large-scale climax sequence featuring massive sets depicting a Rajasthani village, complete with detailed house interiors and a scene described as the village's women celebrating the defeat of evil.
+
+## The Boldest Casting Bet in the Universe
+
+At the centre of *Shakti Shalini* is a gamble: newcomer Aneet Padda in a demanding double role. She plays Shakti, an ordinary woman who becomes a protector, and Shalini, a vengeful spirit driven to target men after being betrayed and murdered. The film's central dramatic arc builds toward a confrontation between the two personas — effectively making Padda the hero and the villain of the same story.
+
+Padda, who first gained attention for her performance in Mohit Suri's *Saiyaara* (2025), is stepping into a franchise that has turned relatively unknown actors into household names. Rajkummar Rao became a bigger star after *Stree*. Varun Dhawan found a new audience through *Bhediya*. Sharvari broke out with *Munjya*. The pattern is consistent: Maddock picks actors with range and gives them the kind of roles mainstream Bollywood rarely offers.
+
+## Veterans on the Set
+
+Veteran actor Nana Patekar and acclaimed actress Seema Biswas joined the cast in May, adding considerable weight to an ensemble that also includes Vishal Jethwa and Viineet Kumar Singh. Singh, who plays the film's antagonist, shot crucial scenes with Padda across the outdoor schedules.
+
+According to production insiders, the antagonist's character is described as "dark and gritty" — a departure from the lighter comedic villains the franchise has occasionally deployed.
+
+## A Shoot Across India's Heartland
+
+Production began in March and moved at a rapid pace across some of India's most visually striking and historically layered landscapes. The principal cast filmed key sequences in Chambal, Datia, Antri, Panihar, Gwalior, and Morena in Madhya Pradesh, followed by shoots in Dholpur and Barkhandi in Rajasthan.
+
+The choice of location is deliberate. Where previous Maddock horror films drew from Maharashtra's Konkan region (*Stree*, *Munjya*) or Arunachal Pradesh (*Bhediya*), *Shakti Shalini* is rooted in Rajasthan's folklore traditions — a region rich with stories of women warriors, supernatural protectors, and village-level myths that have been passed down for centuries.
+
+## What It Means for the Franchise
+
+The Maddock Horror Comedy Universe is now Bollywood's most commercially consistent franchise. *Stree 2* crossed ₹600 crore worldwide. *Thamma* was a clean hit for Ayushmann Khurrana. The shared universe model — where characters, supernatural entities, and locations interconnect across films — has given Maddock a Marvel-adjacent blueprint that no other Indian studio has replicated at this scale.
+
+*Shakti Shalini* moves into post-production immediately. While no release date has been announced, industry sources expect a theatrical debut in the first half of 2027. With Maddock's track record of tight turnaround times between wrap and release, a late 2026 surprise isn't entirely off the table either.
+
+For the Indian diaspora, the Maddock horror comedies have become a unique theatrical event — the kind of Hindi films that reliably draw audiences to NRI screenings because they're genuinely entertaining, culturally rooted, and don't require familiarity with the latest Bollywood gossip cycle to enjoy."""
+})
+
+# --- ARTICLE 3: Jee Le Zaraa ---
+print("\n📰 Article 3: Jee Le Zaraa moving forward")
+print("  Sourcing image...")
+img3 = fetch_wikipedia_person_image("Farhan Akhtar")
+if not img3 or not validate_image_url(img3):
+    img3 = fetch_wikipedia_person_image("Priyanka Chopra")
+    if not img3 or not validate_image_url(img3):
+        img3 = fetch_pexels_image("Rajasthan desert road trip India", "women road trip India")
+        if not validate_image_url(img3):
+            img3 = None
+
+articles.append({
+    "headline": "Farhan Akhtar Has Shelved Don 3. He's Scouting Rajasthan for Jee Le Zaraa Instead.",
+    "subheadline": "After Ranveer Singh walked out of Don 3 and got banned by FWICE, Farhan is pivoting to his dream project — a road trip film starring Priyanka Chopra, Alia Bhatt, and Katrina Kaif. The shoot could start in the second half of 2026.",
+    "slug": "farhan-akhtar-jee-le-zaraa-priyanka-alia-katrina-don-3-shelved-nri-20260529",
+    "image_url": img3,
+    "image_attribution": "Wikimedia Commons" if img3 and ("wikipedia" in (img3 or "").lower() or "wikimedia" in (img3 or "").lower()) else "The Videshi",
+    "sources": [
+        {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
+        {"name": "Sacnilk", "url": "https://www.sacnilk.com"},
+        {"name": "Filmfare", "url": "https://www.filmfare.com"},
+        {"name": "Zoom TV Entertainment", "url": "https://www.zoomtventertainment.com"}
+    ],
+    "body": """The Don franchise is officially on hold. Filmmaker Farhan Akhtar has decided to step away from *Don 3* and redirect his energy toward *Jee Le Zaraa*, the long-delayed road trip film starring Priyanka Chopra, Alia Bhatt, and Katrina Kaif.
+
+According to multiple reports, Akhtar shared a photograph on social media from the Rajasthan desert with the caption "Searching for gold" — a clear signal that location scouting for *Jee Le Zaraa* is underway. The script, written by Zoya Akhtar, Farhan Akhtar, and Reema Kagti, has been locked for some time. The only obstacle has been coordinating the schedules of three of Bollywood's biggest female stars.
+
+## Why Don 3 Fell Apart
+
+The *Don 3* implosion has been one of 2026's most dramatic Bollywood stories. Ranveer Singh was announced as the new face of the franchise — stepping into a role previously owned by Shah Rukh Khan — and production was set to begin in early 2026. Then Singh abruptly exited the project, reportedly because he didn't want to do back-to-back gangster films after the massive success of *Dhurandhar*.
+
+The fallout was severe. Excel Entertainment, Farhan's production banner with Ritesh Sidhwani, had already invested heavily in pre-production. The Federation of Western India Cine Employees (FWICE) issued a non-cooperation directive against Singh. Salman Khan personally intervened to broker peace between the actor and filmmaker. Reports suggest producers are seeking damages of ₹40-45 crore.
+
+Rather than rush the casting process to find a replacement for Singh, Akhtar has decided to put *Don 3* on ice entirely and pursue the project he's been trying to make for five years.
+
+## Five Years of "It's Happening Soon"
+
+*Jee Le Zaraa* was first announced in August 2021 with considerable fanfare. Priyanka Chopra, Alia Bhatt, and Katrina Kaif would star in a female-led road trip film — the spiritual successor to *Dil Chahta Hai* (2001) and *Zindagi Na Milegi Dobara* (2011), two of the most beloved Indian films among the global diaspora.
+
+The project was supposed to start filming in 2022. It didn't. Schedule conflicts, life events (Katrina's marriage to Vicky Kaushal, Alia's pregnancy, Priyanka's Hollywood commitments), and shifting industry dynamics kept pushing the start date. Reports periodically surfaced suggesting the film was shelved, only to be contradicted by statements from one of the three leads or the Akhtar family.
+
+Alia Bhatt told *The Lallantop* in late 2024 that aligning dates was "demanding" but that everyone involved was willing to make it happen. Priyanka Chopra, when pressed in a *Hindustan Times* interview, simply said: "You will need to speak to Excel about that." Farhan himself acknowledged the delay created "insecurities" and admitted he worried he was "squandering time."
+
+## Why It Matters Now
+
+The Don 3 disaster may have actually liberated *Jee Le Zaraa*. With the franchise parked indefinitely, Farhan's calendar is clear. More importantly, the film's emotional pitch — three women, one road trip, the freedom of unscripted adventure — has only become more resonant as the stars have aged into the roles.
+
+In 2021, a Priyanka-Alia-Katrina road trip felt like a marketing dream. In 2026, after each has navigated motherhood, career pivots, Hollywood crossovers, and the relentless scrutiny of Indian tabloid culture, the same premise carries genuine emotional weight. These aren't ingenues anymore. They're women with complicated public lives who rarely get to be on screen together.
+
+If dates align, filming could begin in the second half of 2026, with a theatrical release sometime in 2027. The film will be produced by Reema Kagti, Zoya Akhtar, Ritesh Sidhwani, and Farhan Akhtar under their Tiger Baby and Excel Entertainment banners.
+
+## The NRI Factor
+
+For the Indian diaspora, *Jee Le Zaraa* sits in a very specific emotional category. *Dil Chahta Hai* and *ZNMD* are among the most-watched Bollywood films at NRI gatherings, road trip playlists, and nostalgia events. A female-led addition to that lineage — from the same filmmaker — would almost certainly become one of the biggest diaspora theatrical events of whatever year it finally releases.
+
+The key word, as it has been for half a decade, remains "finally.""""
+})
+
+# ============================================================
+# PUBLISH ALL
+# ============================================================
+print("\n" + "="*60)
+print("PUBLISHING ARTICLES")
+print("="*60)
+
+for i, article in enumerate(articles, 1):
+    print(f"\n--- Article {i} ---")
+    word_count = len(article["body"].split())
+    print(f"  Title: {article['headline'][:70]}...")
+    print(f"  Slug: {article['slug']}")
+    print(f"  Words: {word_count}")
+    print(f"  Image: {'✓' if article.get('image_url') else '✗ No image'}")
+    
+    if word_count < 400:
+        print(f"  ❌ SKIPPED: Body too short ({word_count} words, need 400+)")
+        continue
+    
+    if len(article["headline"]) > 200:
+        print(f"  ⚠ Headline too long ({len(article['headline'])} chars), truncating")
+        article["headline"] = article["headline"][:197] + "..."
+    
+    if len(article.get("subheadline", "")) < 15:
+        print(f"  ❌ SKIPPED: Subheadline too short")
+        continue
+    
+    art_id = publish_article(article)
+    if art_id:
+        print(f"  Published with ID: {art_id}")
+    
+    time.sleep(1)  # Brief pause between publishes
+
+print("\n✅ Entertainment writer batch complete!")

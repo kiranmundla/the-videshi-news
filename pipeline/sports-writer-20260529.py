@@ -1,40 +1,40 @@
 #!/usr/bin/env python3
-"""The Videshi Sports Writer — May 29, 2026"""
+"""Sports writer for The Videshi — 2026-05-29 batch."""
 
-import json, os, sys, time, uuid, re, urllib.parse
-import requests
+import json, os, re, sys, time, uuid, subprocess, urllib.parse, traceback
 from datetime import datetime, timezone
 
-# ── Load env ──────────────────────────────────────────
-def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith('#'):
-                continue
-            if line.startswith('export '):
-                line = line[7:]
-            key, _, val = line.partition('=')
-            val = val.strip().strip('"').strip("'")
-            os.environ.setdefault(key.strip(), val)
+import requests
 
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
+# ── Supabase credentials ──
+env_path = os.path.expanduser("~/.env.supabase")
+with open(env_path) as f:
+    for line in f:
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ[k.strip()] = v.strip().strip('"').strip("'")
 
-SB_URL = os.environ['SUPABASE_URL']
-SB_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
-    'apikey': SB_KEY,
-    'Authorization': f'Bearer {SB_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
 }
 
-# ── Wikipedia image ───────────────────────────────────
+# ── Pexels ──
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+PEXELS_KEY = None
+if os.path.exists(pexels_env):
+    with open(pexels_env) as f:
+        for line in f:
+            if line.strip().startswith("PEXELS_API_KEY"):
+                PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"')
+
+# ── Image helpers ──
+
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -54,9 +54,9 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-# ── Pexels fallback ───────────────────────────────────
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels using curl (Python urllib gets 403)."""
+    """Search Pexels for a relevant image. Uses curl (urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
@@ -64,331 +64,293 @@ def fetch_pexels_image(query, fallback_query=None):
         if not q:
             continue
         try:
-            import subprocess
             result = subprocess.run(
-                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
+                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape"],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
+            photos = data.get("photos", [])
             for p in photos:
-                url = p.get('src', {}).get('large2x') or p.get('src', {}).get('large')
+                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
                 if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
                     return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-# ── Image validation ──────────────────────────────────
-def validate_image_url(url):
-    """Check URL returns a valid image >5KB."""
+
+def validate_image(url):
+    """Check image URL returns 200 with image content-type and >5KB."""
     if not url:
         return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
                           headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if 'image' in ct and cl > 5000:
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
             return True
-        # Try GET for servers that don't return Content-Length on HEAD
-        if 'image' in ct:
-            r2 = requests.get(url, timeout=10, stream=True,
+        # Try GET for servers that don't support HEAD well
+        if r.status_code != 200 or "image" not in ct:
+            r2 = requests.get(url, timeout=10, stream=True, allow_redirects=True,
                               headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
+            ct2 = r2.headers.get("Content-Type", "")
+            cl2 = int(r2.headers.get("Content-Length", 0))
+            if r2.status_code == 200 and "image" in ct2:
                 return True
-    except:
-        pass
+    except Exception as e:
+        print(f"  ⚠ Image validation error: {e}")
     return False
 
-# ── Banned URL check ──────────────────────────────────
-def is_banned_url(url):
-    if not url:
-        return True
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
-    banned_params = ['_nc_ht=', '_nc_cat=', 'ccb=']
-    for b in banned:
-        if b in url:
-            return True
-    for p in banned_params:
-        if p in url:
-            return True
-    return False
 
-# ── Supabase insert ───────────────────────────────────
-def sb_insert(data):
+def get_image(person_name=None, pexels_query=None, pexels_fallback=None):
+    """Try Wikipedia first for person, then Pexels, validate result."""
+    url = None
+    attribution = None
+    if person_name:
+        url = fetch_wikipedia_person_image(person_name)
+        if url and validate_image(url):
+            return url, "Wikimedia Commons"
+        # Try disambiguation
+        for suffix in ["(cricketer)", "(sportsperson)"]:
+            url = fetch_wikipedia_person_image(f"{person_name} {suffix}")
+            if url and validate_image(url):
+                return url, "Wikimedia Commons"
+    if pexels_query:
+        url = fetch_pexels_image(pexels_query, pexels_fallback)
+        if url and validate_image(url):
+            return url, "Pexels"
+    return None, None
+
+
+# ── Supabase insert ──
+
+def publish_article(article):
     """Insert article into p2_articles."""
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    payload = {
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": "sports",
+        "vertical": "sports",
+        "status": "published",
+        "published_at": now,
+        "sources": json.dumps(article["sources"]),
+        "image_url": article.get("image_url"),
+        "image_attribution": article.get("image_attribution"),
+    }
+    # Remove None values
+    payload = {k: v for k, v in payload.items() if v is not None}
+
     r = requests.post(
-        f"{SB_URL}/rest/v1/p2_articles",
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=data,
+        json=payload,
         timeout=30
     )
     if r.status_code in (200, 201):
         result = r.json()
-        if isinstance(result, list) and result:
-            return result[0].get('id')
-        return None
-    print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
-    return None
+        aid = result[0]["id"] if isinstance(result, list) and result else "unknown"
+        print(f"  ✅ Published: {article['headline'][:60]}... (id={aid})")
+        return True
+    else:
+        print(f"  ❌ Failed to publish: {r.status_code} - {r.text[:200]}")
+        return False
 
-# ── Articles ──────────────────────────────────────────
+
+# ── Articles ──
 
 articles = []
 
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# ARTICLE 1: Norway Chess — Gukesh Birthday Blues
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# ────────────────────────────────────────────────────
+# ARTICLE 1: Hardik Pandya Quits Mumbai Indians
+# ────────────────────────────────────────────────────
+print("\n📰 Article 1: Hardik Pandya Quits Mumbai Indians")
 
-art1_body = """The last time Magnus Carlsen faced D Gukesh at Norway Chess, the Norwegian slammed the table after blundering a winning position. The clip went viral, played on loop across Indian chess Twitter, and became the defining image of the 2025 tournament. A year later, Carlsen got his revenge — and this time, there was no drama. Only clinical precision.
+img1, attr1 = get_image(person_name="Hardik Pandya")
 
-Carlsen beat the reigning World Classical Champion in 42 moves in Round 4 on Thursday, climbing from last place to sole fourth with 4.5 points. Gukesh, who turned twenty just hours after the defeat, dropped to the bottom of the standings with 3.5 points — the worst position of his career at an elite super-tournament.
+body1 = """Hardik Pandya has decided to leave the Mumbai Indians. The news broke on Friday through PTI, citing a top IPL source who described the 32-year-old all-rounder as "mentally stressed and completely exhausted" after three turbulent seasons at his old franchise.
 
-"I wouldn't say I was super-motivated today," Carlsen told reporters afterward. "I didn't have a lot of expectations, but I was happy with the way things went in the opening."
+Pandya informed the MI management of his decision mid-season, weeks before their 2026 campaign officially ended in ninth place. Once the playoff hopes were extinguished — with quite a few league matches still remaining — both sides reached a mutual understanding to part ways.
 
-The game began with Gukesh choosing an ambitious setup with the white pieces, pushing for an early advantage. But Carlsen, playing black, gradually took control. A key rook manoeuvre gave the five-time world champion a dominant central post, and from there, Gukesh's ambition worked against him.
+## The Weight of the Captaincy
 
-"He sometimes plays a little too ambitiously and I think he did that today as well," Carlsen said. "He wanted to prove a serious advantage, and I'm not sure there was one. Eventually, he played himself into some trouble and I gradually took over."
+The trouble began before the first ball was bowled. When MI brought Pandya back from the Gujarat Titans ahead of IPL 2024, he replaced Rohit Sharma as captain — a move that divided the fanbase in ways the franchise had not anticipated. Fans booed Pandya at the Wankhede, loudly and persistently, through the 2024 and 2026 seasons. MI finished last in 2024 and ninth in 2026, winning just four of fourteen matches this year.
 
-The decisive moment came on move 28, when Carlsen played f4, launching a fierce kingside attack. Gukesh found the best defensive move in Bd3 but faltered one move later, and the game slipped away. After Carlsen's passed a-pawn became unstoppable, Gukesh resigned on move 42. He left the playing hall through a side exit, avoiding scores of young fans waiting for autographs.
+"There is only so much a young man can take," the IPL source told PTI. "The last three years haven't been easy for him. The MI dressing room he left in 2021 wasn't the same when he returned in 2024. Not every senior player was on the same page."
 
-## Pragg's Quiet Ascent
+The source painted a picture of a fractured dressing room — one where Pandya expected the kind of commitment from senior players that they had once demanded of him in India colours. When results failed to follow, his frustration compounded.
 
-While the world champion struggled, his compatriot R Praggnanandhaa continued building an increasingly impressive campaign. A day after beating Carlsen classically in Round 3 — when the Norwegian self-destructed from a winning position in a sequence eerily similar to the 2025 table-slam game — Pragg followed up by defeating Vincent Keymer in Armageddon in Round 4, sealing 1.5 points in just 17 moves.
+## A Back Injury, Then a Breaking Point
 
-"The Armageddon went smooth," Praggnanandhaa said, understating what has been the most composed Indian performance at Norway Chess in years.
+Pandya also battled a back spasm that forced him to miss matches during the season. His bowling economy offered nothing special, and his batting — once MI's most explosive weapon — lacked the sustained impact the five-time champions needed from their leader. The combination of physical strain, persistent fan hostility, and internal friction proved too much.
 
-Pragg now sits in sole second place on 6 points, 2.5 behind tournament leader Alireza Firouzja. The temperamental contrast between India's two top players has become the narrative of the event: Gukesh overreaches, Pragg absorbs pressure and converts.
+"If the results come despite differences of opinion, you still won't feel frustrated," the source explained. "But when everyone is pulling in different directions, after a certain point you don't have the mental bandwidth to continue."
 
-## Firouzja Survives, Barely
+## What It Means for MI — and for NRIs Watching From Abroad
 
-Firouzja maintained his lead despite his first setback of the tournament. Wesley So stopped the French-Iranian's winning streak by drawing the classical game and prevailing in Armageddon. But Firouzja still collected a point to extend his total to 8.5 — a comfortable 2.5-point cushion over Pragg.
+Mumbai Indians now face the most significant leadership transition since the original handover from Rohit to Hardik. The franchise, which has won five IPL titles, must find not just a captain but a cultural reset. Names like Suryakumar Yadav and Jasprit Bumrah — who captained a match for the first time this season — will feature in the conversation.
 
-The standings heading into Friday's rest day: Firouzja 8.5, Praggnanandhaa 6, So 5.5, Carlsen 4.5, Keymer 4, Gukesh 3.5.
+For NRI fans who grew up watching MI as the IPL's most dominant franchise, this is unfamiliar territory. The blue jersey that once meant inevitability now represents a team in genuine flux.
 
-## India's Women Falter
+Former England captain Michael Vaughan has already suggested a swap deal: Pandya to KKR, Cameron Green back to MI. Whether that specific move materialises or not, Pandya's IPL future is now an open question. He remains in India's ODI squad for the Afghanistan series starting June 14 in Dharamshala.
 
-In the women's section, Divya Deshmukh suffered her first Armageddon loss after three consecutive tiebreak wins, going down to defending champion Anna Muzychuk. The defeat dropped the World Cup winner from sole second to a three-way tie for third on 5.5 points. Koneru Humpy continued to struggle at the bottom of the six-player field after another Armageddon loss to Zhu Jiner.
+## The Numbers Tell the Story
 
-## What Comes Next
+Under Pandya's captaincy across three seasons, MI's combined record reads: bottom of the table in 2024, a Qualifier 2 exit in 2025, and ninth in 2026. His personal returns with the bat declined season on season, and his bowling workload was limited by recurring fitness concerns.
 
-After the rest day, Gukesh faces Praggnanandhaa in Round 5 — a head-to-head between India's world champion and the player who has looked sharper in every way at this tournament. For the millions of Indian chess fans across the diaspora who have followed Gukesh's rise since his prodigious teenage years, the question is no longer whether he can win Norway Chess. It is whether he can avoid finishing last.
-
-For NRIs following from the US, the next round begins Saturday. Norway Chess streams on Chess24 and the official tournament channel.
-
-*Sources: Chess.com, Chessbase, PTI via Devdiscourse, Swadesi News*"""
+At 32, Pandya is far from finished as a cricketer. But his MI chapter — one that began with so much promise and ended with boos ringing in his ears — is now closed. The question is which franchise will take the gamble next, and whether a change of scenery can restore the player who once won India a T20 World Cup with a final-over spell in Barbados."""
 
 articles.append({
-    "headline": "Gukesh Turned Twenty Hours After Losing to Carlsen. He Is Last at Norway Chess. Pragg Is Second.",
-    "subheadline": "The world champion's birthday present was a classical defeat in 42 moves. Praggnanandhaa has quietly become India's strongest player in Oslo. Their Round 5 head-to-head is next.",
-    "body": art1_body.strip(),
-    "slug": "gukesh-turns-20-loses-carlsen-last-norway-chess-2026-pragg-second-firouzja-leads-20260529",
-    "category": "sports",
-    "sources": ["Chess.com", "Chessbase", "PTI/Devdiscourse", "Swadesi News"],
-    "person_for_image": "D Gukesh",
-    "image_attribution": "Wikimedia Commons",
-    "diaspora_angle": "Gukesh and Praggnanandhaa are global icons for the Indian chess diaspora. Millions of NRIs follow Norway Chess — the drama between India's two best players defines the narrative.",
-    "vertical": "sports",
-    "tags": ["chess", "norway-chess", "gukesh", "praggnanandhaa", "carlsen", "firouzja", "divya-deshmukh"],
-    "urgency": "medium",
-    "score_total": 82
+    "headline": "Hardik Pandya Has Quit Mumbai Indians. He Was Mentally Stressed, Physically Hurt, and Done With the Boos.",
+    "subheadline": "The all-rounder informed the franchise mid-season that he would not return. Both sides have reached a mutual understanding to part ways after three turbulent years.",
+    "body": body1.strip(),
+    "slug": "hardik-pandya-quits-mumbai-indians-mentally-stressed-three-seasons-mi-ipl-2026-20260529",
+    "sources": [
+        {"name": "PTI via Swadesi", "url": "https://swadesi.com"},
+        {"name": "Livemint", "url": "https://livemint.com"},
+        {"name": "CricTracker", "url": "https://crictracker.com"},
+        {"name": "The Indian Express", "url": "https://indianexpress.com"}
+    ],
+    "image_url": img1,
+    "image_attribution": attr1,
 })
 
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# ARTICLE 2: Singapore Open — Indian Doubles Surge
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-art2_body = """India's best week in international badminton this year entered a new stage on Friday at the Singapore Open, with Satwiksairaj Rankireddy and Chirag Shetty reaching the men's doubles semifinals and the mixed doubles pair of Dhruv Kapila and Tanisha Crasto continuing their remarkable run into the last four.
+# ────────────────────────────────────────────────────
+# ARTICLE 2: Rishabh Pant Steps Down as LSG Captain
+# ────────────────────────────────────────────────────
+print("\n📰 Article 2: Rishabh Pant Steps Down as LSG Captain")
 
-It is a rare achievement for India to have multiple pairs in the semifinal stages of a BWF Super 750 event — the second-highest tier on the World Tour. For a country whose badminton identity has long been defined by singles stars like PV Sindhu and Saina Nehwal, the doubles breakthrough represents something structural. Indian badminton is getting deeper.
+img2, attr2 = get_image(person_name="Rishabh Pant")
 
-## Satwik-Chirag Grind Through a Test
+body2 = """Rishabh Pant has stepped down as captain of the Lucknow Super Giants. The franchise confirmed on Friday that Pant approached the management to be relieved of his captaincy duties, and the request was accepted with immediate effect.
 
-The fourth-seeded Satwik and Chirag advanced to the semifinals after navigating what has been a demanding draw. In the round of 16, they came through a three-game battle against Chinese Taipei's Lee Jhe-huei and Yang Po-hsuan, losing the second game 11-21 before pulling together a tense 21-18 deciding game to win the match. The victory extended their head-to-head record over the Taipei pair to 7-0, but neither the score nor the record reflected how tight the contest was.
+It ends a tenure that lasted twenty-eight matches, produced ten wins and eighteen defeats, and never once reached the IPL playoffs.
 
-Their semifinal opponents are the top seeds, South Korea's Kim Won-ho and Seo Seung-jae — a pair ranked higher than any duo Satwik and Chirag have beaten at this tournament. It will be one of the biggest doubles matches of the year for Indian badminton. A win would put them in a Super 750 final.
+## The ₹27 Crore Experiment
 
-## Dhruv-Tanisha's Run Continues
+When LSG signed Pant for a tournament-record ₹27 crore at the 2025 mega auction, owner Sanjiv Goenka said the wicketkeeper-batter's leadership would "be discussed in the same breath as MS Dhoni and Rohit Sharma." Two seasons later, that comparison looks cruel rather than aspirational.
 
-The story of India's Singapore Open has been Dhruv Kapila and Tanisha Crasto. After their stunning comeback victory over an Olympic medal-winning pair in the second round — losing the first game 8-21 before storming back to win the next two — the mixed doubles duo have continued to advance through the bracket.
+LSG finished seventh in 2025 with six wins and last in 2026 with just four. Pant's individual numbers declined in parallel: 269 runs in his first LSG season — 118 of which came in a single dead-rubber match against RCB — and 312 runs in 2026 at a strike rate of 138.05 with just one half-century and a highest score of 68 not out.
 
-Their semifinal run in a Super 750 event is a career milestone. Indian mixed doubles has traditionally been the weakest of the five disciplines, and seeing Kapila and Crasto deep in the draw of a major tournament signals a shift that the Badminton Association of India and national coaches have long worked toward.
+For a player once considered India's most destructive white-ball batter, those are sobering numbers.
 
-## Sindhu's Eight-Match Hoodoo
+## The Wider Slide
 
-PV Sindhu arrived in the quarterfinals in superb form, dropping just 21 points across her first two matches. The two-time Olympic medallist demolished Japan's Riko Gunji 21-9, 21-12 in just 37 minutes after eliminating Indonesian fifth seed Putri Kusuma Wardani in the opening round.
+The captaincy exit at LSG is not an isolated event. Pant recently lost India's Test vice-captaincy to KL Rahul ahead of the one-off Test against Afghanistan, scheduled for June 6 in New Chandigarh. His Test batting average has also dropped noticeably from its peak, and the aura of invincibility that surrounded him after his heroic Gabba hundred in 2021 and his recovery from the near-fatal car accident in 2022 has quietly dissipated.
 
-But her quarterfinal opponent was the wall she has never scaled: An Se-young, the reigning Olympic champion and world number one. Their head-to-head stood at 0-8 in the South Korean's favour — the most lopsided record of Sindhu's career against any active top player. Breaking that streak at a Super 750 tournament would have been a statement of intent; failing to break it is no surprise, but still painful.
+Tom Moody, LSG's director of cricket, struck a diplomatic tone in the official statement: "Rishabh approached the franchise with this request and we have respectfully accepted it. These decisions are never easy. We are grateful for everything Rishabh has brought to this dressing room as captain. Our focus now is on the collective — rebuilding and restructuring to reach the best standards."
 
-## Lakshya's Quiet Passage
+## Two Captains Gone in One Day
 
-Lakshya Sen advanced to the quarterfinals after Thailand's Kunlavut Vitidsarn retired after just two points of their round-of-16 encounter. The anticlimactic progression meant Sen barely broke a sweat, which could prove a double-edged sword — fresh legs but no match rhythm heading into a quarterfinal against Japan's Koki Watanabe.
+Pant's resignation came on the same day PTI reported that Hardik Pandya has decided to leave Mumbai Indians entirely. Both franchises finished in the bottom two of the IPL 2026 table. Both captains were mega-auction acquisitions expected to transform their teams. Both experiments failed comprehensively.
 
-## Why This Matters for the Diaspora
+The parallel is difficult to ignore: the IPL's reliance on big-money captaincy appointments is being tested, and the evidence from 2026 suggests that leadership cannot be bought at auction.
 
-For the Indian badminton fan base abroad — sizable and growing, especially in the UK and Southeast Asian NRI communities — the Singapore Open results offer a rare moment of depth. It is no longer just one Indian star carrying the flag at international tournaments. Satwik-Chirag are a genuine world-class pair. Dhruv-Tanisha are emerging fast. And Sindhu, even at this stage of her career, keeps reaching deep rounds at major events.
+## What Comes Next for LSG — and for NRI Fans
 
-The Singapore Open semifinals are scheduled for Saturday. The men's doubles semifinal between Satwik-Chirag and Kim-Seo will be one of the most-watched badminton matches by Indian fans this month.
+LSG has not named a successor. The franchise said a new captain "will be named in due course," suggesting internal evaluations are ongoing. Nicholas Pooran, who has captained West Indies in T20Is, and Quinton de Kock, who led South Africa and was previously at LSG, could feature in discussions if they remain on the roster.
 
-*Sources: IANS, MyKhel, BWF Singapore Open official draw*"""
+For NRI fans who followed Pant's remarkable journey — from the car crash recovery to the Test heroics in Australia and England — watching him step down from a captaincy in these circumstances is a deflating moment. He remains contracted to LSG as a player, and at twenty-eight, there is time to rebuild. But the captain's armband is gone, and the burden of that ₹27 crore price tag has never felt heavier."""
 
 articles.append({
-    "headline": "Satwik-Chirag Are in the Singapore Open Semifinals. Dhruv Kapila and Tanisha Crasto Are One Round From the Final.",
-    "subheadline": "India has multiple doubles pairs in the last four of a BWF Super 750 event. Sindhu faced the world number one in the quarterfinals. Lakshya Sen advanced through a walkover.",
-    "body": art2_body.strip(),
-    "slug": "satwik-chirag-singapore-open-semifinals-dhruv-tanisha-mixed-doubles-india-badminton-super750-20260529",
-    "category": "sports",
-    "sources": ["IANS", "MyKhel", "BWF Singapore Open draw"],
-    "person_for_image": "Satwiksairaj Rankireddy",
-    "image_attribution": "Wikimedia Commons",
-    "diaspora_angle": "Indian badminton's depth is a source of diaspora pride. NRIs in the UK and Southeast Asia follow Satwik-Chirag closely. The emergence of multiple Indian pairs in Super 750 semifinals is a generational shift.",
-    "vertical": "sports",
-    "tags": ["badminton", "singapore-open", "satwik-chirag", "dhruv-kapila", "tanisha-crasto", "pv-sindhu", "lakshya-sen"],
-    "urgency": "medium",
-    "score_total": 78
+    "headline": "Rishabh Pant Has Stepped Down as LSG Captain. Ten Wins and Eighteen Defeats in Twenty-Eight Matches.",
+    "subheadline": "The ₹27 crore record signing asked to be relieved of his duties after Lucknow Super Giants finished last in IPL 2026. The franchise accepted immediately.",
+    "body": body2.strip(),
+    "slug": "rishabh-pant-steps-down-lsg-captain-27-crore-record-ipl-2026-last-place-20260529",
+    "sources": [
+        {"name": "Reuters", "url": "https://reuters.com"},
+        {"name": "Livemint", "url": "https://livemint.com"},
+        {"name": "Yardbarker", "url": "https://yardbarker.com"},
+        {"name": "ANI via LatestLY", "url": "https://latestly.com"}
+    ],
+    "image_url": img2,
+    "image_attribution": attr2,
 })
 
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# ARTICLE 3: GT vs RR Qualifier 2 Match-Day Guide
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-art3_body = """Friday night in Mullanpur is the last stop before the IPL 2026 final. Gujarat Titans and Rajasthan Royals meet in Qualifier 2 at the Maharaja Yadavindra Singh International Cricket Stadium, with the winner earning the right to face Royal Challengers Bengaluru in Sunday's title decider in Ahmedabad. The loser goes home.
+# ────────────────────────────────────────────────────
+# ARTICLE 3: India Squads for Afghanistan Series
+# ────────────────────────────────────────────────────
+print("\n📰 Article 3: India vs Afghanistan Series Preview")
 
-Both teams arrive bruised. Gujarat were demolished by RCB in Qualifier 1, conceding 254 and losing by 92 runs in what was the most lopsided playoff result of the season. Rajasthan are riding high after crushing Sunrisers Hyderabad by 47 runs in the Eliminator at this very ground, powered by Vaibhav Sooryavanshi's astonishing 97 off 29 balls. The contrast in momentum could not be sharper.
+img3, attr3 = get_image(person_name="Shubman Gill", pexels_query="cricket stadium India", pexels_fallback="cricket match")
 
-## The Matchup That Decides Everything
+body3 = """The BCCI has announced India's squads for the upcoming home series against Afghanistan, and the selections tell you exactly where Indian cricket's priorities lie as the 2027 World Cup approaches. Players have been asked to assemble in New Chandigarh by June 2 — just two days after Sunday's IPL final in Ahmedabad.
 
-The entire contest distills to two individual battles.
+The tour consists of one Test match from June 6 to 10 at the Maharaja Yadavindra Singh International Cricket Stadium in New Chandigarh, followed by three ODIs in Dharamshala (June 14), Lucknow (June 17), and Chennai (June 20).
 
-**Sooryavanshi vs Rabada.** The fifteen-year-old leads the IPL with 680 runs and 65 sixes this season — both records for a player his age. In the Eliminator, he scored a 16-ball fifty, tying Suresh Raina's record for the fastest half-century in an IPL playoff, and broke Chris Gayle's all-time record for most sixes in a single IPL season. But Kagiso Rabada is the tournament's most lethal powerplay bowler: 26 wickets this season, 18 of them inside the first six overs. How Rabada handles Sooryavanshi with the new ball in the first three overs will likely determine the shape of the match.
+## Shubman Gill Leads Both Squads
 
-**Archer vs Gill.** Jofra Archer's 3-for-58 in the Eliminator was a masterclass of pace bowling — Abhishek Sharma out for a duck on the second ball, Travis Head bowled for 17, Ishan Kishan caught off a top-edge for 33. Archer has 24 wickets this season and bowls with venom that few IPL attacks can match. Shubman Gill, Gujarat's captain, has 618 runs this season and 614 career runs against RR — he knows this opposition intimately. His ability to negotiate Archer's pace and bounce in the powerplay is Gujarat's clearest path to a competitive total.
+The 26-year-old captains India in both formats, cementing his position as the country's long-term leadership choice. KL Rahul serves as vice-captain for the Test and Shreyas Iyer takes the role for the ODI series — a split that reflects the BCCI's ongoing management of workloads and format specialisation.
 
-## Head-to-Head: Gujarat Lead 7-3
+The Test squad features several players fresh from IPL playoff action: Yashasvi Jaiswal, Dhruv Jurel, Sai Sudharsan, Prasidh Krishna, Mohammed Siraj, and Washington Sundar all feature in both the IPL's business end and the Test squad. For Jurel in particular — who has been RR's most reliable performer behind the stumps this IPL — the transition from T20 to five-day cricket will be nearly instantaneous.
 
-Gujarat's historical dominance against Rajasthan is significant. In ten previous meetings, the Titans have won seven. In this season, the teams split their league-phase encounters: RR edged a six-run thriller in Ahmedabad, GT responded with a comprehensive 77-run win in Jaipur. The Titans are the more experienced playoff team, having reached at least the qualifier stage in every season of their existence.
+Devdutt Padikkal, Nitish Kumar Reddy, Gurnoor Brar, Harsh Dubey, and Manav Suthar round out a Test squad that leans heavily on youth. Kuldeep Yadav provides the senior spin option.
 
-## The Venue Favours Runs
+## Kohli and Rohit Return for ODIs
 
-The Mullanpur pitch has been a batting paradise in IPL 2026. The Eliminator between RR and SRH saw 439 runs scored. Rajasthan posted 243-for-8 and still won comfortably. With short square boundaries and a true surface that rewards clean hitting, teams batting first at this venue in the playoffs have found totals of 230-plus defensible — but only with quality bowling. Gujarat's attack of Rabada, Mohammed Siraj, Rashid Khan, and Jason Holder has the diversity to apply pressure, but they leaked 254 against RCB in Dharamsala just days ago.
+The ODI squad is where the star power concentrates. Virat Kohli and Rohit Sharma — both now retired from Tests and T20Is — return to the India setup for the first time since the 2025 Champions Trophy. With the 2027 Cricket World Cup in South Africa less than eighteen months away, these three ODIs against Afghanistan represent the start of India's serious preparation.
 
-## What Gujarat Need
+Hardik Pandya's inclusion in the ODI squad carries particular irony given the morning's news of his departure from Mumbai Indians. He remains a central figure in India's white-ball plans regardless of his franchise situation, and his all-round ability in 50-over cricket is difficult to replace.
 
-Gujarat need Sai Sudharsan to bat deep. The left-hander has accumulated 652 runs this season and is the team's anchor. His ability to rotate strike against Jadeja and Punja in the middle overs — where Rajasthan's spin has been excellent — will determine whether Gujarat can build a competitive total. Washington Sundar's all-round contribution is also critical: his off-spin could be key against Sooryavanshi, who has been less dominant against spinners who bowl into his body.
+Ishan Kishan returns as the ODI wicketkeeper option alongside KL Rahul, while Arshdeep Singh and Prince Yadav provide pace depth.
 
-## What Rajasthan Need
+## The Afghanistan Challenge
 
-Rajasthan need Yashasvi Jaiswal to contribute. In the Eliminator, the opener made 29 off 29 balls while Sooryavanshi blazed at the other end. For RR to win tonight, they need both openers firing — Jaiswal provides the platform, Sooryavanshi provides the acceleration. Ravindra Jadeja's 221 runs and 10 wickets make him the quiet difference-maker: his tight bowling in overs 7-15 strangles opposition scoring rates, and his lower-order hitting has rescued RR multiple times.
+This is Afghanistan's first bilateral series against India since a three-game T20I series in January 2024. The Test will be just Afghanistan's second ever against India — their first, in 2018, ended in a loss by an innings and 262 runs in Bengaluru. The Test does not count towards the World Test Championship cycle.
 
-## NRI Viewing Guide
+Afghanistan arrive with a squad led by Hashmatullah Shahidi and featuring familiar IPL names: Rashid Khan, Rahmanullah Gurbaz, and Allah Ghazanfar (who was Mumbai Indians' leading wicket-taker this IPL). Azmatullah Omarzai, one of the most improved all-rounders in world cricket, will be the key threat with both bat and ball.
 
-The match starts at 7:30 PM IST, which is 10:00 AM Eastern, 7:00 AM Pacific, 3:00 PM BST, and 7:00 PM Dubai time. Live coverage is available on Star Sports and JioHotstar. For NRIs in the US, Willow TV carries the broadcast. The toss is at 7:00 PM IST.
+## A Diaspora Summer of Cricket
 
-If rain forces a washout and no result is possible even with the 120-minute extension, Gujarat advance to the final by virtue of finishing higher in the league standings (second vs fourth).
+For NRIs in India this summer or planning trips, the series offers accessible live cricket across four venues. New Chandigarh's stadium hosted IPL matches this season and is well-served by Chandigarh airport. Dharamshala's HPCA Stadium is one of the most scenic grounds in world cricket. Lucknow and Chennai provide options for fans across north and south India.
 
-*Sources: Cricbuzz, CricTracker, Sporting News, Livemint*"""
+The ODI series at 1:30 PM IST start times also means reasonable morning viewing hours for East Coast NRIs and late-night viewing for those on the West Coast — a consideration that matters as India begins its serious World Cup preparation cycle.
+
+After this series, India heads to Ireland for two T20Is starting June 26, then to England for five T20Is and three ODIs beginning July 1. The summer of Indian cricket has begun, and it starts with Afghanistan in Chandigarh in eight days."""
 
 articles.append({
-    "headline": "Sooryavanshi's 680 Runs Against Rabada's 26 Wickets. Everything About Tonight's Qualifier 2 in Mullanpur.",
-    "subheadline": "Gujarat Titans and Rajasthan Royals meet at 7:30 PM IST for a place in Sunday's IPL final against RCB in Ahmedabad. Here is the match-day guide.",
-    "body": art3_body.strip(),
-    "slug": "gt-vs-rr-qualifier-2-match-day-guide-sooryavanshi-rabada-ipl-2026-mullanpur-20260529",
-    "category": "sports",
-    "sources": ["Cricbuzz", "CricTracker", "Sporting News", "Livemint"],
-    "person_for_image": "Vaibhav Suryavanshi",
-    "image_attribution": "Wikimedia Commons",
-    "diaspora_angle": "The IPL playoffs are appointment viewing for NRIs worldwide. Tonight's Qualifier 2 determines who faces RCB in Sunday's final — the match times and streaming info for US, UK, and Dubai time zones are included.",
-    "vertical": "sports",
-    "tags": ["ipl", "ipl-2026", "gt-vs-rr", "qualifier-2", "sooryavanshi", "rabada", "shubman-gill", "jofra-archer"],
-    "urgency": "high",
-    "score_total": 85
+    "headline": "Kohli and Rohit Return for the ODIs. Gill Captains Both Squads. India's Afghanistan Series Starts in Eight Days.",
+    "subheadline": "The BCCI has named squads for one Test and three ODIs against Afghanistan across New Chandigarh, Dharamshala, Lucknow, and Chennai. Players assemble June 2.",
+    "body": body3.strip(),
+    "slug": "india-afghanistan-series-squads-kohli-rohit-gill-test-odi-june-2026-nri-guide-20260529",
+    "sources": [
+        {"name": "Wikipedia - Afghan cricket team in India in 2026", "url": "https://en.wikipedia.org/wiki/Afghan_cricket_team_in_India_in_2026"},
+        {"name": "IANS", "url": "https://ianslive.in"},
+        {"name": "SportsTiger", "url": "https://sportstiger.com"},
+        {"name": "Cricbuzz", "url": "https://cricbuzz.com"}
+    ],
+    "image_url": img3,
+    "image_attribution": attr3,
 })
 
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# PUBLISH
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-published = 0
-now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+# ── Publish all ──
+print("\n" + "="*60)
+print("Publishing articles...")
+print("="*60)
 
-for i, art in enumerate(articles, 1):
-    print(f"\n{'='*60}")
-    print(f"Article {i}: {art['headline'][:80]}...")
-    print(f"{'='*60}")
-
+success_count = 0
+for i, article in enumerate(articles, 1):
+    print(f"\n[{i}/{len(articles)}] {article['headline'][:70]}...")
     # Word count check
-    wc = len(art['body'].split())
-    print(f"  Word count: {wc}")
-    if wc < 400:
-        print(f"  ✗ SKIPPED — body too short ({wc} words, need 400+)")
+    word_count = len(article["body"].split())
+    print(f"  Word count: {word_count}")
+    if word_count < 400:
+        print(f"  ⚠ SKIPPED: Below 400 word minimum")
         continue
-
-    # Image sourcing
-    img_url = None
-    person = art.get('person_for_image')
-    if person:
-        print(f"  Trying Wikipedia for '{person}'...")
-        img_url = fetch_wikipedia_person_image(person)
-        if not img_url and '(' not in person:
-            # Try with disambiguation
-            for suffix in ['(chess player)', '(cricketer)', '(badminton)']:
-                img_url = fetch_wikipedia_person_image(f"{person} {suffix}")
-                if img_url:
-                    break
-
-    if not img_url:
-        # Pexels fallback with specific terms
-        if 'chess' in art['slug']:
-            img_url = fetch_pexels_image("chess tournament grandmaster", "chess board game competition")
-        elif 'badminton' in art['slug']:
-            img_url = fetch_pexels_image("badminton tournament smash", "badminton court shuttlecock")
-        elif 'ipl' in art['slug'] or 'cricket' in art['slug']:
-            img_url = fetch_pexels_image("cricket stadium T20 match", "cricket batsman hitting six")
-
-    # Validate image
-    if img_url and is_banned_url(img_url):
-        print(f"  ✗ Banned URL detected, skipping: {img_url[:60]}")
-        img_url = None
-    
-    if img_url and not validate_image_url(img_url):
-        print(f"  ✗ Image validation failed: {img_url[:60]}")
-        img_url = None
-
-    if img_url:
-        print(f"  ✓ Final image URL: {img_url[:80]}...")
-    else:
-        print(f"  ⚠ No image — publishing without image (better than wrong image)")
-
-    # Build article record
-    sources_json = json.dumps([{"name": s} for s in art["sources"]])
-    record = {
-        "headline": art["headline"],
-        "subheadline": art["subheadline"],
-        "body": art["body"],
-        "slug": art["slug"],
-        "category": art["category"],
-        "status": "published",
-        "published_at": now,
-        "sources": sources_json,
-        "image_url": img_url,
-        "image_attribution": art.get("image_attribution") if img_url else None,
-        "diaspora_angle": art.get("diaspora_angle", ""),
-        "vertical": art.get("vertical", "sports"),
-        "tags": art.get("tags", []),
-        "urgency": art.get("urgency", "medium"),
-        "score_total": art.get("score_total", 75),
-    }
-
-    art_id = sb_insert(record)
-    if art_id:
-        print(f"  ✓ Published! ID: {art_id}")
-        published += 1
-    else:
-        print(f"  ✗ Failed to publish")
+    if not article.get("image_url"):
+        print(f"  ⚠ No image found — publishing without image (no image > wrong image)")
+    if publish_article(article):
+        success_count += 1
+    time.sleep(1)
 
 print(f"\n{'='*60}")
-print(f"Done. Published {published}/{len(articles)} articles.")
+print(f"Done. Published {success_count}/{len(articles)} articles.")
 print(f"{'='*60}")
