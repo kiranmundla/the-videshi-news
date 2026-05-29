@@ -37,6 +37,18 @@ const DESTINATIONS: Record<string, DestMeta> = {
   switzerland:  { title: "Switzerland",     bestMonths: "Jun – Sep, Dec – Feb",budget: "$100–350/day",flights: "Zürich via Europe",          visa: "Schengen visa required" },
   "new-zealand":{ title: "New Zealand",     bestMonths: "Dec – Feb",          budget: "$80–200/day", flights: "Auckland via Singapore",     visa: "eVisa or NZeTA" },
   mexico:       { title: "Mexico",          bestMonths: "Nov – Apr",          budget: "$40–150/day", flights: "Mexico City direct from US", visa: "Visa-free with US visa" },
+  thailand:     { title: "Thailand",        bestMonths: "Nov – Mar",          budget: "$25–120/day", flights: "Bangkok via Tokyo/Seoul",    visa: "60-day visa-free" },
+  dubai:        { title: "Dubai",           bestMonths: "Nov – Mar",          budget: "$60–300/day", flights: "Emirates nonstop from US",   visa: "14-day VOA or e-visa" },
+  singapore:    { title: "Singapore",       bestMonths: "Year-round",         budget: "$60–200/day", flights: "SQ nonstop from US",         visa: "Indian passport: visa required" },
+  kashmir:      { title: "Kashmir",         bestMonths: "Apr – Oct",          budget: "$25–100/day", flights: "Srinagar via Delhi",         visa: "Indian passport: no visa" },
+  "himachal-pradesh": { title: "Himachal Pradesh", bestMonths: "Mar – Jun, Sep – Nov", budget: "$20–80/day", flights: "Kullu/Kangra via Delhi", visa: "Indian passport: no visa" },
+  vietnam:      { title: "Vietnam",         bestMonths: "Mar – May, Sep – Nov",budget: "$20–80/day", flights: "Hanoi/HCMC via Seoul/Tokyo", visa: "e-Visa ($25, 30 days)" },
+  italy:        { title: "Italy",           bestMonths: "Apr – Jun, Sep – Oct",budget: "$60–200/day", flights: "Rome/Milan direct from US", visa: "Schengen visa required" },
+  greece:       { title: "Greece",          bestMonths: "May – Oct",          budget: "$50–180/day", flights: "Athens via Europe",           visa: "Schengen visa required" },
+  cancun:       { title: "Cancún",          bestMonths: "Dec – Apr",          budget: "$50–200/day", flights: "Direct from most US cities", visa: "Visa-free with US visa" },
+  hawaii:       { title: "Hawaii",          bestMonths: "Apr – Oct",          budget: "$80–300/day", flights: "Direct from West Coast",     visa: "Domestic — no visa" },
+  australia:    { title: "Australia",       bestMonths: "Sep – Nov, Mar – May",budget: "$70–250/day", flights: "Sydney nonstop from US",    visa: "e-Visa required" },
+  france:       { title: "France",          bestMonths: "Apr – Jun, Sep – Oct",budget: "$70–250/day", flights: "Paris direct from US",      visa: "Schengen visa required" },
 };
 
 const DEST_KEYS = Object.keys(DESTINATIONS);

@@ -1,0 +1,31 @@
+## Why Italy?
+
+Italy is the European destination that Indians connect with most instinctively. Both cultures worship food, revere family, argue loudly, and believe their grandmother's cooking is the best in the world. For NRIs planning a first European trip, Italy is the ideal entry point — it has the art, the history, the food, and the glamour without the reserve of northern Europe. Rome's ancient ruins feel appropriately epic for a civilisation that produced the Indus Valley. Florence's artisan tradition mirrors Rajasthan's. And the Amalfi Coast's cliffside villages are the kind of beauty that makes you rethink your entire life.
+
+## Top Experiences
+
+**1. Rome: Colosseum, Vatican & Trastevere** — The Colosseum, Roman Forum, and Palatine Hill are a single ticket. Book skip-the-line at the Vatican — the Sistine Chapel is overwhelming in person. Spend your evening in Trastevere, Rome's most charming neighbourhood, eating cacio e pepe at a sidewalk table.
+
+**2. Florence: Uffizi & Duomo** — The Uffizi Gallery houses Botticelli's Birth of Venus and the greatest collection of Renaissance art on earth. Climb the Duomo for panoramic views. Cross the Arno to Piazzale Michelangelo at sunset — the view over Florence is the best in Italy.
+
+**3. Venice: Grand Canal & St. Mark's** — Take the vaporetto (water bus) down the Grand Canal instead of an overpriced gondola. Visit St. Mark's Basilica early to avoid queues. Get lost in the backstreets of Dorsoduro — Venice rewards wandering.
+
+**4. Amalfi Coast Drive** — Rent a car or take the SITA bus from Sorrento to Amalfi via Positano. The cliffside road is terrifying and magnificent. Stop in Ravello for the gardens and views. Eat fresh seafood in Amalfi town.
+
+**5. Cinque Terre Coastal Walk** — Five colourful fishing villages connected by cliffside hiking trails along the Ligurian coast. The Monterosso-to-Vernazza trail is the best. Take the train between villages when legs give out. Pesto was invented here — eat it on everything.
+
+## Getting There
+
+Direct flights from the US to Rome (FCO) and Milan (MXP) on Alitalia/ITA Airways, United, Delta, and American. Flight time is 8–10 hours from the East Coast, 11–12 from the West Coast. Budget $500–900 round trip. Within Italy, Trenitalia's high-speed Frecciarossa trains connect Rome–Florence in 1.5 hours, Florence–Venice in 2 hours, and Rome–Naples in 70 minutes. Trains are the best way to travel in Italy.
+
+## Where to Stay
+
+Rome: Stay near the Pantheon or Trastevere for walkability. Hotel de Russie and Hotel Eden for luxury, Residenza Maritti for mid-range. Florence: The Oltrarno neighbourhood is quieter and cheaper than the historic centre. Venice: Stay in Dorsoduro or Cannaregio to avoid the San Marco tourist premium. Amalfi Coast: Book months ahead for summer — Hotel Marincanto in Positano is iconic. Italy's agriturismo (farm-stay) system is excellent for families — working farms with pools, homemade meals, and countryside quiet.
+
+## Food & the Desi Connection
+
+Italian food needs no introduction, but eating it in Italy is a different experience entirely. Rules to know: cappuccino only before 11 AM, never put cheese on seafood pasta, and "al dente" means something firmer than you expect. Must-eats: pizza in Naples (the original), carbonara in Rome, bistecca fiorentina in Florence, gelato everywhere. Vegetarians do very well in Italy — pasta, risotto, pizza, and vegetable antipasti are staples. Indian restaurants exist in Rome (Punjab is popular), Milan, and Florence, but you did not fly 5,000 miles to eat dal. Embrace the pasta.
+
+## NRI Tips
+
+Indian passport holders need a Schengen visa — your US visa or Green Card does NOT exempt you. Apply at the Italian consulate through VFS Global 6–8 weeks before travel. US citizens get 90 days visa-free in the Schengen Area. Currency is the Euro. Credit cards are widely accepted but small shops and trattorias may be cash-only — carry €50–100 daily. Pickpocketing is the primary tourist crime in Rome, Florence, and Naples — use a money belt or front-pocket wallet. Italian is helpful but English works in tourist areas. Shops and restaurants close for riposo (afternoon break) from roughly 1–4 PM. The best months are April to June and September to October — July and August are brutally hot and overcrowded.

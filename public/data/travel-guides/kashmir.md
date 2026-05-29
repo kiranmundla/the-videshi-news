@@ -1,0 +1,31 @@
+## Why Kashmir?
+
+There is no landscape in India — and arguably on earth — quite like Kashmir. For NRIs who grew up watching Bollywood films shot against Dal Lake and snow-dusted Himalayan meadows, visiting Kashmir is the fulfilment of a childhood promise. The houseboat stays, the shikaras gliding through lotus-filled lakes, the saffron fields, and the Mughal gardens are not tourist clichés — they are genuinely as beautiful as advertised. After decades of instability, Kashmir has reopened to tourism with improved infrastructure and a growing sense of normalcy. If you have been waiting for the right time, this is it.
+
+## Top Experiences
+
+**1. Dal Lake Houseboat Stay, Srinagar** — Spend at least two nights on a heritage houseboat. The Deluxe and Heritage categories feature carved walnut wood interiors, four-course Wazwan dinners on the boat, and shikara rides to the floating flower and vegetable markets at dawn.
+
+**2. Gulmarg Gondola** — One of the highest cable cars in the world. The first phase takes you to Kongdori, the second to 3,950 metres — where in winter you ski, and in summer you walk through wildflower meadows with Nanga Parbat visible on clear days.
+
+**3. Pahalgam & Betaab Valley** — Named after the Sunny Deol film, Betaab Valley is absurdly photogenic. Pahalgam is also the base camp for the Amarnath Yatra. River rafting on the Lidder River is excellent April through June.
+
+**4. Mughal Gardens, Srinagar** — Shalimar Bagh, Nishat Bagh, and Chashme Shahi are the three great Mughal gardens. Visit all three in a single morning — they are minutes apart. The chinar trees in autumn are among the most beautiful in the world.
+
+**5. Sonamarg & Thajiwas Glacier** — The "Meadow of Gold" sits at 2,740 metres and serves as the gateway to Ladakh via the Zoji La pass. A pony ride to Thajiwas Glacier takes 90 minutes and the glacier is accessible even in summer.
+
+## Getting There
+
+Srinagar has a well-connected airport with direct flights from Delhi (1.5 hours), Mumbai (2.5 hours), Bangalore, and other major cities. From the US, fly into Delhi and connect on IndiGo, Air India, or SpiceJet. Alternatively, the new Udhampur–Srinagar–Baramulla railway line is partially operational. The Srinagar–Jammu highway by road is scenic but long (8–10 hours) and subject to weather closures. Fly in, drive around — that is the NRI playbook.
+
+## Where to Stay
+
+Srinagar: Houseboats on Dal Lake are the signature stay — Sukoon, Young Bombay, and WelcomHeritage Gurkha Houseboats are excellent. The Lalit Grand Palace is the city's finest hotel, set in a former royal palace. Budget options along Boulevard Road start at ₹2,000/night. Gulmarg: Khyber Himalayan Resort is the luxury pick. Pahalgam: Aru Valley has boutique camps and cottages. Book ahead during April–June and September–October peak seasons.
+
+## Food & the Desi Connection
+
+Kashmiri Wazwan is one of India's great culinary traditions — a 36-course ceremonial feast centred on lamb, cooked by master chefs called wazas. Must-try dishes: Rogan Josh, Yakhni, Gushtaba (minced lamb meatballs in yoghurt), and Dum Aloo. Noon chai (pink salt tea with cream) is served everywhere and is an acquired taste that becomes an obsession. The lotus root (nadru) preparations are unique to Kashmir. Saffron — Kashmiri saffron is the world's finest — buy directly from farmers in Pampore for the best price and quality. Vegetarians will rely heavily on Dum Aloo, rajma, and the excellent local breads (sheermal, bakirkhani).
+
+## NRI Tips
+
+Indian passport holders need no visa. OCI cardholders: note that OCI does not permit travel to "protected areas" — most of Kashmir is accessible, but check the latest MHA notifications for restricted zones near the Line of Control. Kashmir is safer for tourists than its reputation suggests — the tourist corridor (Srinagar–Gulmarg–Pahalgam–Sonamarg) is well-policed and incidents involving tourists are extremely rare. Currency is INR. UPI works in Srinagar but connectivity drops in remote areas — carry cash. Weather: April to June and September to November are ideal. July–August brings monsoon. December to February is stunning for snow but houseboats get bitterly cold. Winters require serious layering — temperatures drop to -10°C.
