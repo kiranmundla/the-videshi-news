@@ -1,85 +1,113 @@
 #!/usr/bin/env python3
-"""Upload unuploaded reels to YouTube Shorts for The Videshi."""
+"""Upload unuploaded Instagram Reels as YouTube Shorts for The Videshi."""
 
-import json, os, re, time, sys
-from datetime import datetime
-from pathlib import Path
+import json, os, re, time, glob
+from datetime import datetime, timezone
 
-# Load env files
+import requests as req
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
+
+# --- Load env ---
 def load_env(path):
     env = {}
-    p = os.path.expanduser(path)
-    if os.path.exists(p):
-        for line in open(p):
+    with open(os.path.expanduser(path)) as f:
+        for line in f:
             line = line.strip()
             if line and not line.startswith('#') and '=' in line:
                 k, v = line.split('=', 1)
-                env[k.strip()] = v.strip().strip('"').strip("'")
+                env[k.strip()] = v.strip()
     return env
 
 yt_env = load_env("~/workspace/.env.youtube")
 sb_env = load_env("~/workspace/.env.supabase")
 
-YOUTUBE_CLIENT_ID = yt_env.get("YOUTUBE_CLIENT_ID")
-YOUTUBE_CLIENT_SECRET = yt_env.get("YOUTUBE_CLIENT_SECRET")
-YOUTUBE_REFRESH_TOKEN = yt_env.get("YOUTUBE_REFRESH_TOKEN")
+YOUTUBE_CLIENT_ID = yt_env["YOUTUBE_CLIENT_ID"]
+YOUTUBE_CLIENT_SECRET = yt_env["YOUTUBE_CLIENT_SECRET"]
+YOUTUBE_REFRESH_TOKEN = yt_env["YOUTUBE_REFRESH_TOKEN"]
 SUPABASE_URL = sb_env.get("SUPABASE_URL", "https://lboecaekpynbpyijrbfz.supabase.co")
-SB_KEY = sb_env.get("SUPABASE_SERVICE_ROLE_KEY") or sb_env.get("SUPABASE_KEY") or sb_env.get("SUPABASE_ANON_KEY")
+SB_KEY = sb_env.get("SUPABASE_ANON_KEY", sb_env.get("SUPABASE_KEY", ""))
 
-if not all([YOUTUBE_CLIENT_ID, YOUTUBE_CLIENT_SECRET, YOUTUBE_REFRESH_TOKEN]):
-    print("❌ Missing YouTube credentials in .env.youtube")
-    sys.exit(1)
-if not SB_KEY:
-    print("❌ Missing Supabase key in .env.supabase")
-    sys.exit(1)
-
-print(f"✅ Credentials loaded")
-
-# Load tracking log
 REELS_DIR = os.path.expanduser("~/workspace/the-videshi-news/pipeline/reels")
 LOG_PATH = os.path.expanduser("~/workspace/the-videshi-news/pipeline/youtube-log.json")
+MAX_UPLOADS = 2
 
+# --- Load tracking log ---
 if os.path.exists(LOG_PATH):
-    yt_log = json.load(open(LOG_PATH))
+    with open(LOG_PATH) as f:
+        yt_log = json.load(f)
 else:
     yt_log = {}
-    with open(LOG_PATH, 'w') as f:
-        json.dump(yt_log, f, indent=2)
 
-# Find unuploaded reels (skip test files like reel-v2-final, reel-v2-fixed)
-SKIP_PATTERNS = ['reel-v2-final', 'reel-v2-fixed', 'reel-test', 'reel-v2-']
-reel_files = []
-for f in Path(REELS_DIR).glob("reel-*.mp4"):
-    fname = f.name
+# --- Find unuploaded reels ---
+all_reels = glob.glob(os.path.join(REELS_DIR, "reel-*.mp4"))
+# Skip test/dev files
+skip_patterns = ["reel-v2-final", "reel-v2-fixed", "reel-test"]
+unuploaded = []
+for reel_path in all_reels:
+    fname = os.path.basename(reel_path)
     if fname in yt_log:
         continue
-    if any(pat in fname for pat in SKIP_PATTERNS):
-        print(f"⏭️  Skipping test file: {fname}")
+    if any(pat in fname for pat in skip_patterns):
         continue
-    reel_files.append(f)
+    unuploaded.append(reel_path)
 
-# Sort newest first
-reel_files.sort(key=lambda f: f.stat().st_mtime, reverse=True)
+# Sort by modification time, newest first
+unuploaded.sort(key=lambda p: os.path.getmtime(p), reverse=True)
 
-if not reel_files:
-    print("✅ No new reels to upload. All caught up!")
-    sys.exit(0)
+print(f"Found {len(unuploaded)} unuploaded reel(s)")
+if not unuploaded:
+    print("Nothing to upload. Done.")
+    exit(0)
 
-print(f"📹 Found {len(reel_files)} unuploaded reel(s)")
-to_upload = reel_files[:2]
+to_upload = unuploaded[:MAX_UPLOADS]
+print(f"Will upload {len(to_upload)} reel(s)")
 
-# Fetch recent articles from Supabase
-import requests as req
+# --- Fetch recent articles from Supabase ---
+print("\nFetching recent articles from Supabase...")
+try:
+    r = req.get(
+        f"{SUPABASE_URL}/rest/v1/p2_articles?status=eq.published&order=published_at.desc&limit=50&select=id,slug,headline,subheadline,category,tags",
+        headers={"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"},
+        timeout=15
+    )
+    articles = r.json()
+    print(f"  Got {len(articles)} articles")
+except Exception as e:
+    print(f"  Warning: Could not fetch articles: {e}")
+    articles = []
 
-r = req.get(
-    f"{SUPABASE_URL}/rest/v1/p2_articles?status=eq.published&order=published_at.desc&limit=50&select=id,slug,headline,subheadline,category,tags",
-    headers={"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"},
-    timeout=15
-)
-articles = r.json() if r.status_code == 200 else []
-print(f"📰 Loaded {len(articles)} recent articles for matching")
+def match_article(filename):
+    """Match a reel filename to an article by slug fragments."""
+    # Strip reel- prefix and trailing date + .mp4
+    base = filename.replace(".mp4", "")
+    if base.startswith("reel-"):
+        base = base[5:]
+    # Remove trailing date pattern like -20260529
+    base = re.sub(r'-\d{8}$', '', base)
+    words = set(base.split('-'))
+    
+    best_match = None
+    best_score = 0
+    for art in articles:
+        slug = art.get("slug", "")
+        slug_words = set(slug.split('-'))
+        overlap = len(words & slug_words)
+        if overlap > best_score and overlap >= 3:
+            best_score = overlap
+            best_match = art
+    return best_match
 
-# Category hashtag map
+def title_from_filename(filename):
+    """Construct a title from filename words."""
+    base = filename.replace(".mp4", "")
+    if base.startswith("reel-"):
+        base = base[5:]
+    base = re.sub(r'-\d{8}$', '', base)
+    words = base.split('-')
+    return ' '.join(w.capitalize() for w in words)
+
 CATEGORY_HASHTAGS = {
     "news": "#IndiaNews #BreakingNews #DesiNews #SouthAsian",
     "immigration": "#H1B #H1BVisa #GreenCard #USImmigration #USCIS",
@@ -93,76 +121,52 @@ CATEGORY_HASHTAGS = {
     "food": "#IndianFood #IndianCuisine #DesiFood",
 }
 
-def extract_slug_words(filename):
-    """Extract meaningful words from reel filename for article matching."""
-    name = filename.replace('.mp4', '')
-    name = re.sub(r'^reel-', '', name)
-    # Remove trailing date pattern
-    name = re.sub(r'-\d{8}$', '', name)
-    name = re.sub(r'-\d{4}$', '', name)
-    return name.split('-')
-
-def match_article(filename, articles):
-    """Find the best matching article for a reel filename."""
-    slug_words = extract_slug_words(filename)
-    # Try to match on slug
-    best_match = None
-    best_score = 0
-    for art in articles:
-        slug = art.get('slug', '')
-        if not slug:
-            continue
-        score = sum(1 for w in slug_words if w in slug)
-        # Normalize by total words
-        norm_score = score / max(len(slug_words), 1)
-        if norm_score > best_score and norm_score > 0.4:
-            best_score = norm_score
-            best_match = art
-    return best_match
-
-def make_title_from_filename(filename):
-    """Create a readable title from filename."""
-    words = extract_slug_words(filename)
-    return ' '.join(w.capitalize() for w in words[:12])
-
-def generate_hashtags(category, headline):
-    """Generate 15-20 hashtags."""
+def generate_hashtags(headline, category):
+    """Generate 15-20 hashtags based on category + content."""
     base = "#TheVideshi #Shorts #IndianDiaspora #NRI"
     cat_tags = CATEGORY_HASHTAGS.get(category, "#IndiaNews #DesiNews")
     
     # Extract topic-specific hashtags from headline
     topic_tags = []
-    # Common name patterns
-    headline_words = re.findall(r'[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?', headline or '')
-    for w in headline_words[:5]:
+    # Common person/entity patterns
+    headline_words = re.findall(r'[A-Z][a-z]+(?:\s[A-Z][a-z]+)?', headline or "")
+    seen = set()
+    for w in headline_words:
         tag = '#' + w.replace(' ', '')
-        if len(tag) > 3 and tag not in base and tag not in cat_tags:
+        if tag not in seen and len(tag) > 3:
+            seen.add(tag)
             topic_tags.append(tag)
+            if len(topic_tags) >= 5:
+                break
     
-    topic_str = ' '.join(topic_tags[:5])
-    return f"{base} {cat_tags} {topic_str}".strip()
+    all_tags = f"{base} {cat_tags}"
+    if topic_tags:
+        all_tags += " " + " ".join(topic_tags)
+    
+    # Add India-related if not already present
+    if "#India" not in all_tags:
+        all_tags += " #India"
+    
+    return all_tags
 
-def generate_tags(category, headline):
-    """Generate 8-12 YouTube tags."""
-    tags = ["The Videshi", "Indian Diaspora", "NRI", "India News"]
+def make_tags_list(headline, category):
+    """Generate 8-12 tags for YouTube."""
+    tags = ["The Videshi", "Indian Diaspora", "NRI", "India News", "Shorts"]
     if category:
-        tags.append(category.replace('-', ' ').title())
-    tags.append("Shorts")
-    
-    # Extract meaningful words from headline
+        tags.append(category.replace("-", " ").title())
+    # Extract notable words from headline
     if headline:
-        words = re.findall(r'[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?', headline)
+        words = re.findall(r'[A-Z][a-z]+(?:\s[A-Z][a-z]+)?', headline)
         for w in words[:4]:
-            if w not in tags and len(w) > 2:
+            if w not in tags:
                 tags.append(w)
-    
+    while len(tags) < 8:
+        tags.append("South Asian")
+        break
     return tags[:12]
 
-# YouTube upload setup
-from google.oauth2.credentials import Credentials
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaFileUpload
-
+# --- Set up YouTube client ---
+print("\nAuthenticating with YouTube...")
 creds = Credentials(
     token=None,
     refresh_token=YOUTUBE_REFRESH_TOKEN,
@@ -170,46 +174,50 @@ creds = Credentials(
     client_id=YOUTUBE_CLIENT_ID,
     client_secret=YOUTUBE_CLIENT_SECRET
 )
-
 youtube = build("youtube", "v3", credentials=creds)
+print("  YouTube client ready")
 
-uploaded = []
+# --- Upload loop ---
+uploaded_count = 0
 errors = []
+results = []
 
 for i, reel_path in enumerate(to_upload):
-    fname = reel_path.name
-    print(f"\n{'='*60}")
-    print(f"📹 Processing {i+1}/{len(to_upload)}: {fname}")
+    fname = os.path.basename(reel_path)
+    print(f"\n--- Reel {i+1}/{len(to_upload)}: {fname} ---")
     
     # Match article
-    article = match_article(fname, articles)
-    
+    article = match_article(fname)
     if article:
-        headline = article.get('headline', '')
-        subheadline = article.get('subheadline', '')
-        slug = article.get('slug', '')
-        category = article.get('category', 'news')
-        print(f"  📰 Matched: {headline[:80]}")
+        headline = article.get("headline", "")
+        subheadline = article.get("subheadline", "")
+        slug = article.get("slug", "")
+        category = article.get("category", "news")
+        print(f"  Matched article: {slug}")
     else:
-        headline = make_title_from_filename(fname)
-        subheadline = "News for the global Indian diaspora"
-        slug = re.sub(r'^reel-', '', fname.replace('.mp4', ''))
-        category = 'news'
-        print(f"  ⚠️  No article match, using filename title: {headline}")
+        headline = title_from_filename(fname)
+        subheadline = ""
+        slug = "unknown"
+        category = "news"
+        print(f"  No article match, using filename title: {headline}")
     
-    # Compose title (under 100 chars with " #Shorts" = 8 chars)
+    # Compose title (under 100 chars total, with #Shorts suffix)
+    shorts_suffix = " #Shorts"
+    max_headline_len = 100 - len(shorts_suffix)  # 92 chars for headline
     title = headline
-    max_headline = 100 - len(" #Shorts")  # 92
-    if len(title) > max_headline:
-        title = title[:max_headline - 3].rstrip() + "..."
-    title = f"{title} #Shorts"
-    assert len(title) <= 100, f"Title too long: {len(title)} chars"
+    if len(title) > max_headline_len:
+        title = title[:max_headline_len - 3].rstrip() + "..."
+    title = f"{title}{shorts_suffix}"
+    # Safety check
+    if len(title) > 100:
+        title = title[:100]
     
     # Compose description
-    hashtags = generate_hashtags(category, headline)
+    hashtags = generate_hashtags(headline, category)
+    article_link = f"https://thevideshi.com/articles/{slug}" if slug != "unknown" else "https://thevideshi.com"
     description = f"""{subheadline}
 
-📰 Full story: https://thevideshi.com/articles/{slug}
+📰 Full story: {article_link}
 
 The Videshi — News for the global Indian diaspora
 🌐 thevideshi.com
@@ -220,11 +228,11 @@ Follow us:
 🧵 Threads: https://threads.net/@the.videshi
 
 {hashtags}"""
-
-    tags = generate_tags(category, headline)
     
-    print(f"  📝 Title: {title}")
-    print(f"  🏷️  Tags: {', '.join(tags[:6])}...")
+    tags = make_tags_list(headline, category)
+    
+    print(f"  Title: {title}")
+    print(f"  Tags: {tags}")
     
     # Upload
     try:
@@ -241,8 +249,7 @@ Follow us:
             }
         }
         
-        media = MediaFileUpload(str(reel_path), mimetype="video/mp4", resumable=True)
-        
+        media = MediaFileUpload(reel_path, mimetype="video/mp4", resumable=True)
         request = youtube.videos().insert(
             part="snippet,status",
             body=body,
@@ -256,36 +263,43 @@ Follow us:
                 print(f"  Upload progress: {int(status.progress() * 100)}%")
         
         video_id = response["id"]
-        yt_url = f"https://youtube.com/shorts/{video_id}"
-        print(f"  ✅ Uploaded: {yt_url}")
+        url = f"https://youtube.com/shorts/{video_id}"
+        print(f"  ✅ Uploaded: {url}")
         
         # Log
         yt_log[fname] = {
             "video_id": video_id,
-            "article_slug": slug or "unknown",
-            "uploaded_at": datetime.utcnow().isoformat() + "Z",
-            "url": yt_url
+            "article_slug": slug,
+            "uploaded_at": datetime.now(timezone.utc).isoformat(),
+            "url": url
         }
         with open(LOG_PATH, 'w') as f:
             json.dump(yt_log, f, indent=2)
         
-        uploaded.append({"file": fname, "url": yt_url, "title": title})
+        uploaded_count += 1
+        results.append({"file": fname, "url": url, "slug": slug})
         
-        # Wait between uploads
-        if i < len(to_upload) - 1:
-            print("  ⏳ Waiting 10s before next upload...")
-            time.sleep(10)
-    
     except Exception as e:
-        print(f"  ❌ Error uploading {fname}: {e}")
-        errors.append({"file": fname, "error": str(e)})
+        err_msg = f"Failed to upload {fname}: {e}"
+        print(f"  ❌ {err_msg}")
+        errors.append(err_msg)
+    
+    # Wait between uploads
+    if i < len(to_upload) - 1:
+        print("  Waiting 10 seconds...")
+        time.sleep(10)
 
-# Summary
+# --- Summary ---
 print(f"\n{'='*60}")
-print(f"📊 SUMMARY")
-print(f"  Uploaded: {len(uploaded)}")
-print(f"  Errors: {len(errors)}")
-for u in uploaded:
-    print(f"  ✅ {u['title'][:60]}... → {u['url']}")
-for e in errors:
-    print(f"  ❌ {e['file']}: {e['error']}")
+print(f"SUMMARY")
+print(f"{'='*60}")
+print(f"Uploaded: {uploaded_count}/{len(to_upload)}")
+for r in results:
+    print(f"  • {r['file']}")
+    print(f"    → {r['url']}")
+    print(f"    Article: {r['slug']}")
+if errors:
+    print(f"\nErrors ({len(errors)}):")
+    for e in errors:
+        print(f"  ⚠️ {e}")
+print(f"{'='*60}")

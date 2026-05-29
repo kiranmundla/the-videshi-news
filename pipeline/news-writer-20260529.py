@@ -1,48 +1,26 @@
 #!/usr/bin/env python3
 """
 The Videshi News Writer — 2026-05-29 batch
-Writes 3 fresh news articles with India/diaspora angle.
+Publishes 3 news articles with Wikipedia/Pexels images.
 """
 
-import os, json, sys, time, re, uuid
+import json, os, sys, time, uuid, re
 import requests
 from datetime import datetime, timezone
 
-# Load Supabase credentials
-def load_env(path):
-    env = {}
-    try:
-        with open(os.path.expanduser(path)) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    key, val = line.split('=', 1)
-                    key = key.replace('export ', '').strip()
-                    val = val.strip().strip('"').strip("'")
-                    env[key] = val
-                    os.environ[key] = val
-    except FileNotFoundError:
-        print(f"ERROR: {path} not found")
-        sys.exit(1)
-    return env
+# ─── ENV ────────────────────────────────────────────────────────────
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
 
-load_env('~/.env.supabase')
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
 }
 
-# Load Pexels key
-try:
-    load_env('~/workspace/.env.pexels')
-    PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-except:
-    PEXELS_KEY = ''
-
+# ─── IMAGE HELPERS ──────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     import urllib.parse
@@ -63,390 +41,355 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels. Returns image URL or None."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key available")
+    """Fetch a relevant image from Pexels. Returns URL or None."""
+    if not PEXELS_API_KEY:
+        print("  ⚠ No Pexels API key")
         return None
-    
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             import subprocess
             result = subprocess.run(
-                ['curl', '-sS', f'https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape',
-                 '-H', f'Authorization: {PEXELS_KEY}'],
+                ["curl", "-sS", "-H", f"Authorization: {PEXELS_API_KEY}",
+                 f"https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape"],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            if photos:
-                img_url = photos[0]['src']['large2x']
-                print(f"  ✓ Pexels image found for '{q}': {img_url[:80]}...")
-                return img_url
+            photos = data.get("photos", [])
+            for photo in photos:
+                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("original")
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+
+def upload_image_to_supabase(image_url, filename):
+    """Download an image and upload to Supabase storage. Returns public URL."""
+    try:
+        r = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=15)
+        if r.status_code != 200:
+            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
+            return image_url  # fallback to original
+        content_type = r.headers.get("Content-Type", "image/jpeg")
+        if "image" not in content_type:
+            print(f"  ⚠ Not an image: {content_type}")
+            return image_url
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small: {len(r.content)} bytes")
+            return image_url
+
+        # Upload to Supabase storage
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        resp = requests.post(
+            upload_url,
+            headers={
+                "Authorization": f"Bearer {SUPABASE_KEY}",
+                "Content-Type": content_type,
+                "x-upsert": "true",
+            },
+            data=r.content,
+            timeout=30,
+        )
+        if resp.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Supabase upload failed: {resp.status_code} {resp.text[:200]}")
+            return image_url
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
+        return image_url
+
+
 def validate_image(url):
-    """Validate that image URL returns 200 with image content-type and >5KB."""
+    """Check if an image URL is valid and not a tiny placeholder."""
     if not url:
         return False
+    # Block Meta CDN URLs
+    bad_domains = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com"]
+    bad_params = ["_nc_ht=", "_nc_cat=", "ccb="]
+    for bd in bad_domains:
+        if bd in url:
+            return False
+    for bp in bad_params:
+        if bp in url:
+            return False
     try:
-        r = requests.get(url, timeout=10, stream=True, 
-                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct:
-            if cl > 5000:
-                print(f"  ✓ Image validated: {cl} bytes, {ct}")
-                return True
-            # Read first chunk to verify size
-            chunk = r.raw.read(6000)
-            if len(chunk) > 5000:
-                print(f"  ✓ Image validated via read: {ct}")
-                return True
-        print(f"  ⚠ Image check: status={r.status_code}, ct={ct}, cl={cl}")
-    except Exception as e:
-        print(f"  ⚠ Image validation failed: {e}")
-    return False
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if "image" not in ct:
+            return False
+        if cl > 0 and cl < 5000:
+            return False
+        return r.status_code == 200
+    except:
+        return True  # can't verify, assume OK
 
+
+# ─── ARTICLE PUBLISHER ─────────────────────────────────────────────
 def publish_article(article):
-    """Publish article to Supabase."""
-    print(f"\n📝 Publishing: {article['headline']}")
-    
-    # Check for banned image sources
-    img = article.get('image_url', '')
-    if img:
-        banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
-        if any(b in img for b in banned):
-            print(f"  ❌ BANNED image source detected, removing: {img[:60]}")
-            article['image_url'] = None
-            article['image_caption'] = None
-            article['image_attribution'] = None
-    
-    # Validate required fields
-    hl = article.get('headline', '')
-    if len(hl) < 20 or len(hl) > 200:
-        print(f"  ⚠ Headline length issue: {len(hl)} chars")
-    
-    sub = article.get('subheadline', '')
-    if len(sub) < 15:
-        print(f"  ⚠ Subheadline too short: {len(sub)} chars")
-        return None
-    
-    body = article.get('body', '')
-    word_count = len(body.split())
-    if word_count < 400:
-        print(f"  ❌ Body too short: {word_count} words (minimum 400)")
-        return None
-    
-    slug = article.get('slug', '')
-    if not slug or slug == str(uuid.uuid4()):
-        print(f"  ❌ Invalid slug")
-        return None
-    
-    # Validate image
-    if article.get('image_url') and not validate_image(article['image_url']):
-        print(f"  ⚠ Image failed validation, removing")
-        article['image_url'] = None
-        article['image_caption'] = None
-    
+    """Insert article into Supabase."""
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
     payload = {
-        'headline': article['headline'],
-        'subheadline': article['subheadline'],
-        'body': article['body'],
-        'slug': slug,
-        'category': 'news',
-        'vertical': 'news',
-        'status': 'published',
-        'published_at': datetime.now(timezone.utc).isoformat(),
-        'sources': json.dumps(article.get('sources', [])),
-        'image_url': article.get('image_url'),
-        'image_caption': article.get('image_caption'),
-        'image_attribution': article.get('image_attribution'),
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": article["category"],
+        "vertical": article.get("vertical", "news"),
+        "status": "published",
+        "published_at": now,
+        "sources": json.dumps(article.get("sources", [])),
+        "image_url": article.get("image_url"),
+        "image_caption": article.get("image_caption", ""),
+        "image_attribution": article.get("image_attribution", ""),
     }
-    
-    # Remove None values
-    payload = {k: v for k, v in payload.items() if v is not None}
-    
-    try:
-        r = requests.post(
-            f"{SUPABASE_URL}/rest/v1/p2_articles",
-            headers=HEADERS,
-            json=payload,
-            timeout=15
-        )
-        if r.status_code in (200, 201):
-            result = r.json()
-            if isinstance(result, list) and result:
-                aid = result[0].get('id', 'unknown')
-                print(f"  ✅ Published! ID: {aid}, slug: {slug}, words: {word_count}")
-                return aid
-            else:
-                print(f"  ✅ Published! slug: {slug}, words: {word_count}")
-                return 'ok'
-        else:
-            print(f"  ❌ Publish failed: {r.status_code} {r.text[:200]}")
-            return None
-    except Exception as e:
-        print(f"  ❌ Publish error: {e}")
+
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload,
+        timeout=30,
+    )
+    if r.status_code in (200, 201):
+        result = r.json()
+        art_id = result[0]["id"] if isinstance(result, list) and result else "unknown"
+        print(f"  ✅ Published: {article['headline'][:60]}... [{art_id[:8]}]")
+        return art_id
+    else:
+        print(f"  ❌ Failed to publish: {r.status_code} {r.text[:300]}")
         return None
 
 
-# ============================================================
-# ARTICLE 1: India Sends Medical Supplies to Africa CDC Amid Ebola
-# ============================================================
-print("\n" + "="*60)
-print("ARTICLE 1: India's Ebola Health Diplomacy")
-print("="*60)
+# ─── ARTICLES ───────────────────────────────────────────────────────
+def build_articles():
+    articles = []
 
-# Image: Try Jaishankar on Wikipedia, then Pexels for medical supplies
-img1 = fetch_wikipedia_person_image("S. Jaishankar")
-if not img1:
-    img1 = fetch_pexels_image("medical supplies humanitarian aid", "medical relief packages")
+    # ── ARTICLE 1: Newark Airport International Flights Threat ──
+    articles.append({
+        "headline": "The U.S. Just Threatened to Shut Down International Flights at Newark. The FIFA World Cup Starts in 13 Days.",
+        "subheadline": "DHS Secretary Markwayne Mullin says customs officers could be pulled from sanctuary city airports, stranding millions of travelers — including the diaspora — weeks before the World Cup kicks off in New Jersey.",
+        "slug": "dhs-newark-international-flights-threat-sanctuary-cities-fifa-world-cup-nri-20260529",
+        "category": "news",
+        "sources": [
+            {"name": "Reuters", "url": "https://www.reuters.com"},
+            {"name": "USA Today", "url": "https://www.usatoday.com"},
+            {"name": "U.S. Travel Association", "url": "https://www.ustravel.org"},
+            {"name": "NorthJersey.com", "url": "https://www.northjersey.com"}
+        ],
+        "image_search": {"pexels": "Newark airport terminal international flights", "fallback": "airport departures board"},
+        "image_caption": "Newark Liberty International Airport, a major gateway for international travelers and the Indian diaspora on the U.S. East Coast.",
+        "body": """The Trump administration has escalated a standoff with Democratic-led cities to a point that could paralyse international air travel at some of America's busiest airports — just as the FIFA World Cup is about to begin.
 
-article1 = {
-    'headline': "India Just Sent Its First Medical Shipment to Fight Ebola in Africa. While America Builds Quarantine Camps, India Sends Cures.",
-    'subheadline': "New Delhi dispatched diagnostics, therapeutics, and protective equipment to the Africa CDC in Uganda as the Bundibugyo outbreak tops 900 suspected cases and the US faces a court order blocking its controversial Kenya quarantine facility.",
-    'slug': 'india-medical-supplies-africa-cdc-ebola-outbreak-health-diplomacy-20260529',
-    'image_url': img1,
-    'image_caption': "India's External Affairs Minister S. Jaishankar has championed the country's health diplomacy response to the Ebola crisis" if img1 and 'wikipedia' in str(img1).lower() else "India dispatched its first tranche of medical supplies to the Africa CDC in Uganda this week",
-    'image_attribution': 'Wikimedia Commons' if img1 and 'wikipedia' in str(img1).lower() or img1 and 'wikimedia' in str(img1).lower() else 'Pexels',
-    'sources': ["Nation Press", "Reuters", "World Health Organization", "CNN"],
-    'body': """India confirmed on Friday that it has delivered its first consignment of medical supplies to the Africa Centres for Disease Control and Prevention in Uganda, stepping into a global health emergency that has now killed at least 223 people and infected more than 900 across the Democratic Republic of Congo and Uganda.
+On May 28, Department of Homeland Security Secretary Markwayne Mullin warned on Fox News that the U.S. government could pull Customs and Border Protection officers from Newark Liberty International Airport in New Jersey. Without those officers, no international flight can land and have its passengers processed into the country.
 
-The announcement, made by Ministry of External Affairs spokesperson Randhir Jaiswal at the weekly briefing in New Delhi, marks India's most visible health diplomacy intervention since the COVID-19 pandemic — and it comes at a moment when the world's richest country is drawing fierce criticism for its own Ebola response.
+"If things don't change, we're going to have to make this step pretty quick," Mullin said, referring to what he described as a lack of cooperation from local law enforcement around federal immigration enforcement operations.
 
-## What India Sent
+## What Triggered the Threat
 
-The consignment includes diagnostics, therapeutics, infection prevention and control materials, and case management support. The supplies were handed over by India's High Commissioner in Uganda to the Africa CDC's Eastern Africa Regional Coordinating Centre, and are being routed to affected communities in eastern DRC — the epicentre of the ongoing Bundibugyo Ebola outbreak.
+The immediate trigger is a confrontation at Delaney Hall, an ICE-run detention facility in Newark. Detainees began a hunger strike on May 22 over conditions including alleged food shortages and lack of medical care. Protests outside the facility have grown, drawing Democratic lawmakers and immigration advocacy groups.
 
-"We have sent medical supplies to the Africa CDC," Jaiswal said. "We look forward to further helping in whatever manner we can with the countries and with the Africa CDC in dealing with this public health emergency."
+Senator Andy Kim of New Jersey said he was hit with pepper spray by federal officers outside Delaney Hall earlier this week. New Jersey's governor has resisted calls to deploy state police to assist federal immigration officials at the site.
 
-External Affairs Minister S. Jaishankar had earlier flagged India's commitment on X, signalling that the response carries weight at the highest levels of government.
+Mullin framed the airport threat as a resource question: if federal officers must be diverted to protect ICE agents at detention centres, those officers cannot simultaneously process travellers at airports.
 
-## The Outbreak by the Numbers
+"If Customs isn't there processing international flights, then those individuals when the airlines land won't be permitted into the United States," Mullin told Fox News.
 
-The World Health Organization reported on Friday that suspected cases have risen to 906, with 223 suspected deaths under investigation. The Bundibugyo strain — a rare form of Ebola for which there is no approved vaccine or cure — has a fatality rate of 30 to 50 percent among confirmed cases.
+## The Sanctuary City Dimension
 
-The WHO declared the outbreak a Public Health Emergency of International Concern on May 17, triggering a global response. India immediately issued travel advisories for Congo, Uganda, and South Sudan, and intensified screening at international airports.
+The threat extends well beyond Newark. Acting Attorney General Todd Blanche called halting international flight processing in sanctuary cities an "extreme" option, but one that "needed to be considered." The Department of Justice's sanctuary city list includes New York City, Los Angeles, San Francisco, Chicago, Boston, Seattle, Philadelphia, and Denver — home to some of America's largest airports.
 
-India also quarantined its first suspected Ebola case — a Ugandan woman in Bengaluru — earlier this week, though results are still pending.
+For the Indian American community, concentrated in the New York-New Jersey metropolitan area more than almost anywhere else in the country, the implications are immediate. Newark is a United Airlines hub and a primary gateway for flights from India and the Middle East. JFK and LaGuardia, also potentially affected, handle millions of international arrivals annually.
 
-## The Serum Institute Connection
+## The World Cup Complication
 
-India's response is not limited to government-to-government aid. The Serum Institute of India, the Pune-based vaccine manufacturer that produced over a billion COVID shots, is developing a Bundibugyo-specific vaccine — ChAdOx1 Bundibugyo — in partnership with Oxford University. The WHO said this week that the candidate could be available for clinical trials within two to three months, making it one of the fastest paths to a vaccine.
+The timing could not be worse. The 2026 FIFA World Cup, co-hosted by the United States, Mexico, and Canada, kicks off on June 11 — just 13 days away. MetLife Stadium in East Rutherford, New Jersey, will host the final on July 19. The tournament is expected to bring over one million international visitors to the New York-New Jersey region alone.
 
-The Serum Institute's involvement connects India's pharmaceutical muscle to the frontlines of the crisis. For a country that bills itself as the "pharmacy of the world," the Ebola response is both a humanitarian obligation and a strategic positioning play.
+The U.S. Travel Association warned that removing immigration officials from Newark could cost $8 billion annually in tourist spending. The group noted that the airport processes five million Americans returning home each year, in addition to millions of foreign visitors.
 
-## America's Controversial Alternative
-
-The contrast with Washington's approach could not be sharper. On Thursday, the White House announced it was setting up a 50-bed quarantine facility at Laikipia Air Base in Kenya — not to treat Africans, but to isolate American citizens exposed to Ebola so they would not be brought back to U.S. soil.
-
-"The United States' highest priority remains protecting the health and security of the American people by working to prevent the Ebola outbreak from reaching our shores," a State Department spokesperson said.
-
-The plan sparked immediate outrage in Kenya. The Katiba Institute, a civil society group, filed an emergency lawsuit, and a Kenyan high court on Thursday evening ordered a temporary suspension of the facility. Justice Patricia Nyaundi ruled that no one exposed to or infected with Ebola could be admitted under the arrangement until the case is fully heard. The next hearing is scheduled for June 2.
-
-Kenyan doctors were blunt. "We are utterly disgusted by the government's apparent willingness to trade national biosecurity and the lives of its citizens for foreign aid," the Kenya Medical Practitioners, Pharmacists and Dentists Union said.
+"This could damage America's reputation as a welcoming destination," the association said, calling the potential action "devastating."
 
 ## What It Means for the Diaspora
 
-For the estimated 4.5 million Indian Americans and millions more NRIs worldwide, the Ebola crisis carries both practical and symbolic weight. Practically, India's travel advisory means direct flights to East Africa require additional screening, and Indian workers in the region face heightened health protocols.
+Indian Americans flying in or out of Newark, JFK, or other major East Coast airports would face disruption whether or not they are U.S. citizens. Customs and Border Protection processes all international arrivals, including returning American citizens and green card holders. Without CBP officers, planes cannot deplane international passengers.
 
-Symbolically, India's pivot to health diplomacy — sending cures rather than building camps — reinforces a narrative that New Delhi has cultivated since the pandemic: that India is a net provider of global public health goods, not a gatekeeper.
+For NRIs visiting family in India, the summer travel season is already at its peak. A disruption at Newark would force travellers to reroute through airports in non-sanctuary jurisdictions — assuming those airports have capacity.
 
-The contrast with the American approach will not be lost on diaspora voters, many of whom are watching Washington's handling of the crisis with growing unease.
+Airlines are reportedly making urgent calls to the administration and Congress. United Airlines, the dominant carrier at Newark, declined to comment publicly.
 
-## What Happens Next
+## No Action Yet, but the Threat Is Real
 
-The WHO is prioritising three experimental treatments — Mapp Biopharmaceutical's MBP134, Regeneron's maftivimab, and Gilead's remdesivir — for clinical trials. The most promising vaccine candidate, rVSV Bundibugyo from the International AIDS Vaccine Initiative, is still seven to nine months away from trial readiness.
+As of May 29, no flights have been cancelled or rerouted. The FAA, Port Authority of New York and New Jersey, and airlines have announced no changes. But the administration has made clear the option is on the table.
 
-India has indicated that Friday's delivery is only the "first tranche," suggesting more supplies are forthcoming. With the India-Africa Forum Summit postponed indefinitely due to the outbreak, New Delhi's medical response is now doing the diplomatic heavy lifting that the summit was supposed to accomplish.
+The standoff reflects a broader pattern: immigration enforcement disputes between the federal government and Democratic states are increasingly spilling into domains — air travel, commerce, public safety — that affect everyone, regardless of immigration status. For the 4.8 million Indian Americans in the United States, many of whom live in or travel through the cities on the sanctuary list, this is no longer a political abstraction.""",
+    })
 
-For a country that sent vaccines to 25 African nations during COVID, the playbook is familiar. The stakes, with a 50 percent fatality rate, are considerably higher."""
-}
+    # ── ARTICLE 2: FIFA World Cup India Broadcast Rights Crisis ──
+    articles.append({
+        "headline": "India Still Has No Broadcaster for the FIFA World Cup. The Tournament Starts in 13 Days.",
+        "subheadline": "FIFA initially wanted $100 million for India's broadcast rights. Nobody paid. Now Zee Entertainment is in last-minute talks, an Indian American firm claims it won a secret bid, and a Delhi court is demanding free-to-air coverage. A billion fans are waiting.",
+        "slug": "fifa-world-cup-2026-india-broadcast-rights-crisis-zee-jiohotstar-avni-20260529",
+        "category": "news",
+        "sources": [
+            {"name": "Reuters", "url": "https://www.reuters.com"},
+            {"name": "Exchange4Media", "url": "https://www.exchange4media.com"},
+            {"name": "The Indian Eye", "url": "https://www.theindianeye.com"},
+            {"name": "Business Today Malaysia", "url": "https://www.businesstoday.com.my"}
+        ],
+        "image_search": {"pexels": "FIFA World Cup soccer stadium crowd", "fallback": "football stadium fans cheering"},
+        "image_caption": "The 2026 FIFA World Cup begins June 11, but India's 1.4 billion people still do not have a confirmed broadcaster.",
+        "body": """The biggest sporting event on the planet begins in 13 days. India, a country of 1.4 billion people with a rapidly growing football audience, does not yet have a confirmed broadcaster for the 2026 FIFA World Cup.
 
-result1 = publish_article(article1)
+The situation is unprecedented. FIFA has concluded broadcast agreements in more than 180 territories worldwide. China sealed a deal with state broadcaster CMG on May 15. India, the world's most populous country and a market that accounted for 2.9 percent of the 2022 World Cup's global television reach, remains a blank space on the map.
 
+## How the Price Collapsed
 
-# ============================================================
-# ARTICLE 2: RBI to Hold Rates in June, Hike Expected by Year-End
-# ============================================================
-print("\n" + "="*60)
-print("ARTICLE 2: RBI Rate Decision")
-print("="*60)
+FIFA initially sought approximately $100 million for the combined India broadcasting rights for the 2026 and 2030 World Cups. That figure was based on the assumption that India's growing football culture — catalysed by the Indian Super League, English Premier League fandom, and Lionel Messi's global celebrity — would attract aggressive bidding.
 
-# Image: Try RBI Governor on Wikipedia
-img2 = fetch_wikipedia_person_image("Sanjay Malhotra (banker)")
-if not img2:
-    img2 = fetch_wikipedia_person_image("Reserve Bank of India")
-if not img2:
-    img2 = fetch_pexels_image("Indian currency rupee bank", "central bank interest rates")
+It did not.
 
-article2 = {
-    'headline': "The RBI Will Hold Rates Next Week. But a Majority of Economists Now Expect a Hike Before December.",
-    'subheadline': "With oil prices still 30 percent above pre-war levels and the rupee down 6 percent for the year, the central bank's rate-cut cycle may already be over — and the reversal could reshape everything from home loans to NRI fixed deposits.",
-    'slug': 'rbi-hold-rates-june-hike-expected-year-end-oil-rupee-nri-deposits-20260529',
-    'image_url': img2,
-    'image_caption': "The Reserve Bank of India's Monetary Policy Committee meets June 5 to decide on interest rates",
-    'image_attribution': 'Wikimedia Commons' if img2 and ('wikipedia' in str(img2).lower() or 'wikimedia' in str(img2).lower()) else 'Pexels',
-    'sources': ["Reuters", "STCI Primary Dealer", "IIFL Capital"],
-    'body': """The Reserve Bank of India will almost certainly hold its benchmark repo rate at 5.25 percent when its Monetary Policy Committee meets on June 5, according to a Reuters poll of 56 economists. But the more important signal buried in the survey is this: a majority now expect at least one rate hike before the year is out.
+JioHotstar, the Reliance-Disney joint venture that broadcast the 2022 World Cup in India, offered roughly $20 million. Sony Group explored the rights but decided not to submit an offer at all. FIFA's asking price was last reported at around $60 million — still three times what Reliance-Disney was willing to pay.
 
-That shift — from "how many more cuts?" to "when does the tightening start?" — marks a potential turning point for India's economy, and for every NRI with money parked in Indian banks.
+The standoff exposed an uncomfortable truth for global football's governing body: India's football market, however large in terms of eyeballs, generates a fraction of the advertising revenue that cricket commands. The Board of Control for Cricket in India's media rights for the IPL sold for $6.2 billion over five years. FIFA's entire India World Cup package could not attract a twentieth of that.
 
-## The Numbers
+## The Last-Minute Scramble
 
-Nearly 80 percent of economists — 44 of 56 — expect the MPC to hold rates unchanged next week. But among the rest, 11 forecast a 25-basis-point hike and one predicted a bigger 50-basis-point increase. In the April poll, only one respondent had predicted a June hike.
+Two developments in the past week suggest a resolution may finally be close — though neither is confirmed.
 
-India's headline inflation remains benign at 3.48 percent in April — below the RBI's 4 percent medium-term target for over a year. That is the argument for patience. But the forces pushing the other way are accumulating fast.
+On May 26, Zee Entertainment announced it was in talks with FIFA to stream and broadcast the tournament as part of its new Unite8 Sports channel portfolio. The company disclosed no financial details.
 
-## The Oil Problem
+Separately, an Indian American investment firm from Washington, D.C., named Avni LLC, claimed that an associated partner had won a bid through FIFA's closed tender process, backed by corporate guarantees exceeding $300 million. Avni LLC's CEO, Deelip Mhaske, described a vision built around OTT platforms, AI-powered multilingual broadcasting, and mobile micro-subscriptions.
 
-Crude oil prices have fallen 15 percent in May — the biggest monthly drop since March 2020 — on hopes that a US-Iran ceasefire extension will reopen the Strait of Hormuz. But even after the decline, Brent crude at around $92 a barrel remains roughly 30 percent above pre-war levels.
+The claim is extraordinary and unverified. FIFA has said only that discussions in India "are ongoing and must remain confidential at this stage."
 
-India is the world's third-largest crude importer. Every dollar increase in oil prices costs the Indian economy an estimated $1.5 billion annually. The war premium on oil has already fed into wholesale price inflation, which accelerated sharply in April, and threatens to push consumer prices higher in the months ahead.
+## The Court Steps In
 
-"With growth facing downside risks while inflation faces strong upside pressures, we expect the RBI to hold rates steady in June, as supply shocks perceived as temporary might not warrant an interest rate action immediately," said Aditya Vyas, chief economist at STCI Primary Dealer.
+Meanwhile, a Delhi High Court petition is seeking to force free-to-air broadcast of the World Cup through Doordarshan and DD Sports. Advocate Avdhesh Bairwa, who filed the petition, argues that depriving millions of fans of access to the World Cup violates their fundamental rights. Justice Purushaindra Kumar Kaurav issued notice to the Centre and Prasar Bharati.
 
-The key word is "immediately." The market is no longer debating whether rates will rise — only when.
+The petition points to a precedent: India's Sports Broadcasting Signals (Mandatory Sharing with Prasar Bharati) Act requires that events of national importance be made available on free-to-air television. Whether the FIFA World Cup qualifies under this provision is now a live legal question.
 
-## The Rupee Factor
+## Why the Diaspora Should Care
 
-The Indian rupee has fallen roughly 6 percent against the dollar in 2026, weighed down by foreign capital outflows, elevated oil import bills, and a lack of the AI-related investment flows that have boosted markets in the US, Japan, and South Korea.
+For the estimated 5 million Indian Americans in the United States, the broadcast crisis has a particular edge. Many NRIs follow the World Cup through Indian-language commentary and analysis. Without an Indian broadcaster, Hindi, Tamil, and Bengali commentary — the kind that turns a World Cup match into a cultural event, not just a sporting one — may not exist for this tournament.
 
-A weaker rupee makes imports more expensive, adding to inflationary pressure. It also makes Indian assets cheaper for foreign investors — but only if they believe the currency has found a floor. For now, the outflows continue.
+Moreover, the 2026 World Cup is being co-hosted by the United States. Matches will be played in New York, Los Angeles, Houston, Dallas, San Francisco, Seattle, Boston, and Philadelphia — cities with massive Indian American populations. The possibility that friends and family back in India cannot watch the same matches that NRIs could attend in person is a strange irony.
 
-Foreign investors have been net sellers of Indian equities for much of 2026, and India's weight in the MSCI Emerging Markets index is expected to drop to 11.2 percent after the latest rebalancing — down from a peak of roughly 20 percent in July 2024.
+## The Clock Is Ticking
 
-## What This Means for NRIs
+The group stage begins on June 11 with Mexico versus South Africa at the Azteca Stadium. India's football fans will either have a broadcaster by then, or they will be reduced to searching for illegal streams of the most-watched event in world sport.
 
-For the millions of NRIs with Non-Resident External (NRE) and Non-Resident Ordinary (NRO) fixed deposits in Indian banks, the rate outlook matters directly.
+Industry sources told Exchange4Media that a formal announcement could come as early as next week, with Zee Entertainment the frontrunner. But until pen meets paper, India's World Cup remains in blackout.""",
+    })
 
-If the RBI moves to hike rates later this year, NRE fixed deposit rates — which are already competitive at 6.5 to 7.5 percent for one-year terms — could climb further. That would widen the interest rate differential with US and UK deposits, making Indian FDs more attractive for parking overseas earnings.
+    # ── ARTICLE 3: H-1B Tech Workers Brutal Job Market + AI displacement ──
+    articles.append({
+        "headline": "142,000 Tech Jobs Have Been Cut in 2026. For Indian H-1B Workers, Every Layoff Is a Deportation Clock.",
+        "subheadline": "AI is replacing junior developers at scale, companies are hiring in Bangalore instead of Boston, and H-1B holders who lose their jobs have 60 days before they must leave the country. The American tech dream is fracturing along visa lines.",
+        "slug": "tech-layoffs-2026-h1b-indian-workers-ai-displacement-deportation-risk-20260529",
+        "category": "news",
+        "sources": [
+            {"name": "TechTimes", "url": "https://www.techtimes.com"},
+            {"name": "American Bazaar", "url": "https://www.americanbazaaronline.com"},
+            {"name": "Stanford HAI 2026 AI Index", "url": "https://hai.stanford.edu"},
+            {"name": "TNGlobal", "url": "https://technode.global"}
+        ],
+        "image_search": {"pexels": "software developer office worried stressed", "fallback": "tech worker computer office"},
+        "image_caption": "Indian tech professionals on H-1B visas face a unique double bind: lose your job, and the clock starts ticking on your legal right to stay in the country.",
+        "body": """The numbers are stark. According to tracking data compiled by multiple industry analysts, 142,000 technology workers worldwide have been laid off in 2026. If the pace holds, the year will surpass 2025's brutal toll of 245,000 job cuts. For Indian-origin professionals in the United States — who hold the majority of H-1B work visas — every one of these layoffs carries a consequence that no American citizen faces: a 60-day window to find a new employer or leave the country.
 
-But a weaker rupee partially offsets the higher yields. An NRI earning 7 percent on an Indian FD but losing 6 percent on currency depreciation is netting barely 1 percent in dollar terms. The calculus only works if the rupee stabilises.
+## The AI Displacement Is Real and Targeted
 
-For those with home loans in India — and many NRIs hold property — a rate hike would mean higher EMIs. Most Indian home loans are floating-rate, meaning any increase is passed through automatically.
+A Stanford University study published in April — the HAI 2026 AI Index — found that employment for software developers aged 22 to 25 fell nearly 20 percent since 2024. Developers aged 30 and older at the same companies saw headcount grow during the same period.
 
-## The Bigger Picture
+The mechanism is precise: generative AI tools are not eliminating software engineering as a discipline. They are eliminating the specific tasks that junior developers were hired to perform — boilerplate code, basic operations, scripted testing, and routine bug fixes. The result is that companies need fewer entry-level engineers, which is exactly the rung where many H-1B workers begin their American careers.
 
-The RBI cut rates three times between December 2025 and April 2026, bringing the repo rate down from 6.00 percent to 5.25 percent. That easing cycle was designed to support an economy navigating the fallout from the Iran war, weak capital flows, and sluggish private investment.
+Boston Consulting Group projects that up to 15 percent of U.S. jobs could be eliminated over the next five years. One-third of surveyed organisations told Stanford researchers they expect AI to reduce their workforce within the next year, with the deepest cuts in service operations, supply chain management, and software engineering.
 
-But the war has lasted longer than anyone expected. Oil prices, while down from their March peak, remain elevated. And wholesale inflation is now flashing warning signs that the cost pressures will eventually reach consumers.
+## The H-1B Trap
 
-"Interest rates are not a good tool to counter large supply shocks," Vyas cautioned. "Also, I do not think the RBI MPC will increase rates to defend the rupee since it is beyond the remit of the MPC."
+The structural cruelty of the H-1B system is that it ties a worker's legal presence in the United States to continuous employment. When an H-1B holder is laid off, they have 60 days — recently extended from zero under a Biden-era rule that the Trump administration has not reversed — to find a new sponsor or begin departure proceedings.
 
-Not everyone agrees. Several economists in the Reuters poll argue that the RBI may need to act pre-emptively to anchor inflation expectations — especially if the Iran-US ceasefire talks collapse and oil surges again.
+An anonymous post on a popular professional forum, widely reported by the American Bazaar this week, captured the desperation: one Indian data engineering leader described applying to more than 2,000 positions after being laid off, reaching dozens of recruiter rounds before finally securing an offer at a FAANG company.
 
-## The June 5 Decision
+"The job market is tough for U.S. citizens as it is," one commenter wrote. "H-1Bs have it worse considering companies want nothing to do with the immigration headache."
 
-The MPC's June meeting will almost certainly deliver a hold. Governor Sanjay Malhotra, who took over earlier this year, has signalled a data-dependent approach. The real question is what the post-meeting statement says about the path ahead.
+Others described living in constant fear, unable to leave jobs they disliked because changing employers has become too risky. Rent, healthcare costs, childcare expenses, and immigration legal fees have become overwhelming for families with a single income tied to visa sponsorship.
 
-If the RBI shifts its policy stance from "accommodative" to "neutral," markets will read it as a clear signal that the next move is up, not down. That single word change would ripple through bond markets, bank lending rates, and NRI deposit calculations within hours.
+## Companies Are Hiring in India Instead
 
-For an economy that was enjoying the tailwinds of rate cuts just two months ago, the reversal — if it comes — would be remarkably swift. The Iran war did not just disrupt oil markets. It may have ended India's easing cycle before it was supposed to finish."""
-}
+The displacement is not just about AI. Major U.S. technology companies are accelerating the shift of roles to India, where engineering talent costs a fraction of American salaries. A survey by the anonymous professional network Blind found that 38 percent of respondents anticipated that hiring surges in Bangalore, Hyderabad, and Pune would directly replace existing U.S. roles.
 
-result2 = publish_article(article2)
+This creates a perverse dynamic for the Indian diaspora. The same talent pipeline that once made Indian engineers the backbone of Silicon Valley is now being used to undercut their positions — not by immigrants undercutting American workers, as the political narrative often frames it, but by American companies choosing to hire the same talent pool at home in India, where there are no visa complications and salaries are lower.
 
+Meta laid off nearly 1,400 employees in Washington state alone this week, part of an ongoing restructuring. Cloudflare cut 1,100 jobs in May. TCS announced plans to eliminate 12,000 positions globally. The pattern is consistent: companies that over-hired between 2020 and 2023 are restructuring with AI as both the rationale and the mechanism.
 
-# ============================================================
-# ARTICLE 3: India-South Korea Defense and Cyber Pact
-# ============================================================
-print("\n" + "="*60)
-print("ARTICLE 3: India-South Korea Defense Pact")
-print("="*60)
+## The Skills Divide
 
-# Image: Try Rajnath Singh on Wikipedia
-img3 = fetch_wikipedia_person_image("Rajnath Singh")
-if not img3:
-    img3 = fetch_pexels_image("India military defense cooperation", "India South Korea flags")
+The tech layoff wave is not uniform. Roles in machine learning infrastructure, model evaluation, AI safety, and applied research remain in acute shortage. Traditional software engineering, product management, recruiting, and back-office positions face contraction.
 
-article3 = {
-    'headline': "India and South Korea Just Signed a Defense and Cyber Pact in Seoul. The Indo-Pacific Chessboard Is Getting More Crowded.",
-    'subheadline': "Defence Minister Rajnath Singh's visit produced an MoU on military cyber security, defence information sharing, and joint technology development — deepening a 'Special Strategic Partnership' that both sides are now treating as a pillar of Indo-Pacific stability.",
-    'slug': 'india-south-korea-defense-cyber-mou-rajnath-singh-indo-pacific-20260529',
-    'image_url': img3,
-    'image_caption': "Defence Minister Rajnath Singh signed the new MoU with his South Korean counterpart Ahn Gyu-back in Seoul",
-    'image_attribution': 'Wikimedia Commons' if img3 and ('wikipedia' in str(img3).lower() or 'wikimedia' in str(img3).lower()) else 'Pexels',
-    'sources': ["The Indian Eye", "Ministry of Defence, India", "Reuters"],
-    'body': """India and South Korea have signed a new Memorandum of Understanding on defence, cyber security, and defence information sharing, marking the most significant upgrade to their military relationship since the "Special Strategic Partnership" was established in 2015.
+The skills these growing roles require cannot be quickly acquired by the workers most exposed to the current wave. A mid-career Java developer or QA engineer cannot retrain as an AI safety researcher in 60 days — the same 60 days that an H-1B holder has to find new sponsorship.
 
-The pact was signed in Seoul during Union Defence Minister Rajnath Singh's official visit, in the presence of South Korean Defence Minister Ahn Gyu-back. It formalises cooperation that both countries have been quietly building for years but are now willing to put on paper — and on display.
+## Some Are Choosing to Leave
 
-## What the MoU Covers
+Perhaps the most telling signal is that some Indian tech workers are no longer waiting to be forced out. "I am leaving this country this September and going back home to build there, finally," one commenter wrote on a professional forum. "I want to contribute to India's growth story."
 
-The agreement spans three core areas. First, defence cooperation: expanded joint exercises, defence industry collaboration, and technology transfer. Second, cyber security: shared protocols for countering cyber threats and protecting critical military infrastructure. Third, information sharing: institutional mechanisms for real-time intelligence coordination in the Indo-Pacific.
+For a generation of Indian engineers who moved to the United States chasing the promise of meritocratic opportunity, this represents a quiet but significant reversal. The American dream they pursued has not disappeared, but its terms have changed. The question many are now asking is whether those terms still favour the people who built so much of America's technology industry.
 
-Officials said the pact would help both militaries improve "situational awareness" — the diplomatic way of saying they plan to share intelligence on Chinese naval and cyber activity in the region.
+For the 4.8 million Indian Americans, and particularly for the hundreds of thousands on temporary work visas, the answer is no longer obvious.""",
+    })
 
-## Why Now
+    return articles
 
-The timing is not accidental. South Korean President Lee Jae-myung visited India just a month ago in what both governments described as a milestone. That trip set the stage for Singh's follow-up, which was designed to convert political goodwill into operational defence agreements.
 
-The strategic logic is straightforward. India and South Korea share a growing concern about Chinese assertiveness — India on its Himalayan border and in the Indian Ocean, South Korea on the Korean Peninsula and in its maritime approaches. Both are democracies with advanced defence industries. And both have been quietly building bilateral military ties that neither wants to frame publicly as anti-China, even though the subtext is unmistakable.
+# ─── MAIN ───────────────────────────────────────────────────────────
+if __name__ == "__main__":
+    articles = build_articles()
+    published = []
 
-"India and South Korea are fully poised to take their partnership to new heights," Singh said after the signing ceremony. His counterpart Ahn called the relationship "a crucial pillar for stability in the Indo-Pacific."
+    for i, article in enumerate(articles, 1):
+        print(f"\n{'='*60}")
+        print(f"Article {i}/{len(articles)}: {article['headline'][:60]}...")
+        print(f"{'='*60}")
 
-## The Defence Industry Angle
+        # Image sourcing
+        img_url = None
+        search = article.get("image_search", {})
 
-For India's defence sector, the South Korean connection is increasingly valuable. South Korea is one of the world's top arms exporters, with companies like Hanwha Aerospace, Korea Aerospace Industries, and Hyundai Rotem producing everything from howitzers and fighter jets to submarines and infantry vehicles.
+        # Try Pexels (no person article here)
+        if search.get("pexels"):
+            img_url = fetch_pexels_image(search["pexels"], search.get("fallback"))
 
-India's defence modernisation push — backed by a record ₹7.84 lakh crore budget allocation for 2026-27 — needs partners who can deliver technology transfer, not just finished products. South Korea, unlike some Western suppliers, has shown a willingness to co-develop and co-produce with Indian firms.
+        # Validate and upload
+        if img_url:
+            if validate_image(img_url):
+                filename = f"{article['slug']}.jpg"
+                final_url = upload_image_to_supabase(img_url, filename)
+                article["image_url"] = final_url
+            else:
+                print("  ⚠ Image validation failed, publishing without image")
+                article["image_url"] = None
+        else:
+            print("  ⚠ No image found, publishing without image")
+            article["image_url"] = None
 
-The two sides discussed expanding cooperation in UN peacekeeping operations and defence education exchanges, signalling a desire to institutionalise the relationship beyond equipment deals.
+        # Publish
+        art_id = publish_article(article)
+        if art_id:
+            published.append({"id": art_id, "slug": article["slug"], "headline": article["headline"]})
+        
+        time.sleep(1)  # rate limiting
 
-## The Cyber Dimension
-
-The cyber security component of the MoU may be the most consequential in the long run. India has faced an escalating series of cyber attacks on its military and critical infrastructure — from power grids to defence research labs — that Indian intelligence officials have attributed to state-sponsored actors in China and Pakistan.
-
-South Korea, which faces daily cyber probes from North Korea, has developed sophisticated cyber defence capabilities. The new agreement allows both countries to share best practices, conduct joint cyber exercises, and build stronger institutional mechanisms for threat detection and response.
-
-For India's military, which is still in the early stages of building a dedicated cyber command, the South Korean partnership offers a fast track to capabilities that would take years to develop independently.
-
-## The Quad Connection
-
-India's deepening defence ties with South Korea sit alongside its existing partnerships in the Quad (with the US, Japan, and Australia), the recently activated India-France-Australia trilateral, and expanding defence cooperation with countries like Vietnam, the Philippines, and Indonesia.
-
-The pattern is clear: India is building a web of bilateral and minilateral defence relationships across the Indo-Pacific, each calibrated to avoid provoking China into outright confrontation while steadily constraining Beijing's freedom of action.
-
-South Korea, while not a Quad member, has been moving closer to the grouping's orbit. Its defence industries are already major suppliers to Poland, Australia, and several Southeast Asian nations. A deeper defence-industrial relationship with India would further embed South Korea in the emerging Indo-Pacific security architecture.
-
-## What It Means for the Diaspora
-
-India's defence partnerships rarely make headlines in NRI communities, but they have real consequences. A stronger India-South Korea axis could accelerate technology transfer in areas like shipbuilding, aerospace, and electronics — sectors where both NRI professionals and Indian industry stand to benefit.
-
-South Korea is also home to a small but growing Indian community, particularly in the technology and academic sectors. The defence partnership adds another layer of institutional ties between the two countries, making it easier for Indian professionals to operate in South Korea's heavily networked economy.
-
-For the broader diaspora, the pact is another data point in India's evolution from a non-aligned state to an active security provider in the Indo-Pacific. That shift changes how India is perceived in Washington, London, and Canberra — and how Indian Americans and British Indians can leverage their dual identities in strategic conversations.
-
-## What Happens Next
-
-The two sides agreed to deepen strategic communication through foreign and defence ministerial dialogues, and to support task forces established to fast-track joint initiatives. Singh and Ahn also discussed a potential visit by Singh to observe a South Korean military exercise later this year.
-
-The MoU is a framework, not a procurement deal. The real test will be whether it leads to concrete defence-industrial contracts, joint exercises with operational substance, and genuine intelligence sharing — or whether it remains a diplomatic gesture.
-
-Given the pace of events in the Indo-Pacific, neither country has the luxury of waiting."""
-}
-
-result3 = publish_article(article3)
-
-
-# ============================================================
-# SUMMARY
-# ============================================================
-print("\n" + "="*60)
-print("BATCH SUMMARY")
-print("="*60)
-results = [
-    ("India Ebola Health Diplomacy", result1),
-    ("RBI Rate Decision", result2),
-    ("India-South Korea Defense Pact", result3),
-]
-for title, r in results:
-    status = "✅" if r else "❌"
-    print(f"  {status} {title}: {r}")
-print(f"\nCompleted at {datetime.now(timezone.utc).isoformat()}")
+    print(f"\n{'='*60}")
+    print(f"DONE: Published {len(published)}/{len(articles)} articles")
+    for p in published:
+        print(f"  • {p['headline'][:60]}... [{p['id'][:8]}]")
+    print(f"{'='*60}")
