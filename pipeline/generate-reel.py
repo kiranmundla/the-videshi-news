@@ -727,6 +727,66 @@ def render_takeaways(article, tmp_dir):
     return out
 
 
+def render_bromocriptine(tmp_dir):
+    """Dramatic: Bromocriptine. B-R-O-M-O-C-R-I-P-T-I-N-E. Spell that one out for the history books."""
+    img = Image.new("RGB", (W, H), NAVY)
+    draw = ImageDraw.Draw(img)
+
+    dot_f = ImageFont.truetype(FONT_REGULAR, 14)
+    for dy in range(0, H, 120):
+        for dx in range(0, W, 120):
+            draw.text((dx, dy), "·", font=dot_f, fill=(40, 40, 65))
+
+    cy = H // 2
+    word_f = ImageFont.truetype(FONT_EXTRABOLD, 90)
+    word_txt = "Bromocriptine."
+    wb = draw.textbbox((0, 0), word_txt, font=word_f)
+    ww = wb[2] - wb[0]
+    wh = wb[3] - wb[1]
+    word_y = cy - 180
+
+    glow = (180, 140, 40)
+    for ox, oy in [(-3,-3),(3,-3),(-3,3),(3,3),(0,4),(4,0),(-4,0),(0,-4)]:
+        draw.text(((W-ww)//2+ox, word_y+oy), word_txt, font=word_f, fill=glow)
+    draw.text(((W-ww)//2, word_y), word_txt, font=word_f, fill=GOLD)
+
+    line_y = word_y + wh + 35
+    draw.rectangle([W//2 - 100, line_y, W//2 + 100, line_y + 4], fill=GOLD)
+
+    spell_f = ImageFont.truetype(FONT_BOLD, 52)
+    spell_txt = "B-R-O-M-O-C-R-I-P-T-I-N-E"
+    sb = draw.textbbox((0, 0), spell_txt, font=spell_f)
+    sw = sb[2] - sb[0]
+    spell_y = line_y + 4 + 45
+    if sw > W - 100:
+        spell_f = ImageFont.truetype(FONT_BOLD, 42)
+        sb = draw.textbbox((0, 0), spell_txt, font=spell_f)
+        sw = sb[2] - sb[0]
+    draw.text(((W-sw)//2 + 3, spell_y + 3), spell_txt, font=spell_f, fill=SHADOW)
+    draw.text(((W-sw)//2, spell_y), spell_txt, font=spell_f, fill=WHITE)
+
+    close_f = ImageFont.truetype(FONT_SEMIBOLD, 40)
+    close_y = spell_y + (sb[3]-sb[1]) + 60
+    for txt in ["Spell that one out", "for the history books."]:
+        cb = draw.textbbox((0, 0), txt, font=close_f)
+        cw = cb[2] - cb[0]
+        draw.text(((W-cw)//2, close_y), txt, font=close_f, fill=WHITE_DIM)
+        close_y += (cb[3]-cb[1]) + 15
+
+    brand_f = ImageFont.truetype(FONT_BOLD, 28)
+    brand_txt = "THE VIDESHI"
+    brb = draw.textbbox((0, 0), brand_txt, font=brand_f)
+    brw = brb[2] - brb[0]
+    draw.text(((W-brw)//2, H - 120), brand_txt, font=brand_f, fill=GOLD)
+
+    out = os.path.join(tmp_dir, "scene_bromo.png")
+    img.save(out, quality=95)
+    return out
+
+
+BROMO_DUR = 5.0  # Duration for bromocriptine scene
+
+
 def render_cta(article, tmp_dir):
     """Scene 4: CTA / advertisement card — TheVideshi.com is the star.
     Entire content block is vertically centred on the frame."""
@@ -1222,6 +1282,14 @@ def main():
                 print("  ⚠️  Skipped (empty)")
         else:
             print("📋 Scene 3 — skipped (no subheadline)")
+
+        # Optional: bromocriptine scene for spelling bee article
+        if "bromocriptine" in article.get("headline", "").lower() or "spelling bee" in article.get("headline", "").lower():
+            print("✨ Scene 3.5 (bromocriptine)...")
+            t0 = time.time()
+            bromo_png = render_bromocriptine(tmp_dir)
+            print(f"  ✓ {time.time()-t0:.1f}s")
+            scene_list.append({"type": "static", "path": bromo_png, "dur": BROMO_DUR})
 
         print("✨ Scene 4 (CTA)...")
         t0 = time.time()

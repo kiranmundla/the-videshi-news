@@ -1,29 +1,23 @@
 #!/usr/bin/env python3
-"""Entertainment writer — 2026-05-29 batch"""
+"""
+Entertainment writer for The Videshi — May 29, 2026
+Publishes 3 articles to Supabase.
+"""
 
-import os, json, requests, time, re, uuid
+import os, json, requests, urllib.parse, sys, re
 from datetime import datetime, timezone
 
-# Load env
-def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                key, _, val = line.partition('=')
-                key = key.replace('export ', '').strip()
-                val = val.strip().strip('"').strip("'")
-                os.environ.setdefault(key, val)
+# Load Supabase credentials
+env_path = os.path.expanduser("~/.env.supabase")
+with open(env_path) as f:
+    for line in f:
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            key, val = line.split("=", 1)
+            os.environ[key.strip()] = val.strip().strip('"').strip("'")
 
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
-
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -31,9 +25,20 @@ HEADERS = {
     "Prefer": "return=representation"
 }
 
+# Load Pexels key
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+PEXELS_KEY = None
+if os.path.exists(pexels_env):
+    with open(pexels_env) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                key, val = line.split("=", 1)
+                if "PEXELS" in key.upper():
+                    PEXELS_KEY = val.strip().strip('"').strip("'")
+
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -52,20 +57,24 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels API using curl (Python urllib gets 403)."""
+    """Fetch an image from Pexels. Returns URL or None."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key available")
+        return None
     import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            result = subprocess.run([
-                'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                f'https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape'
-            ], capture_output=True, text=True, timeout=15)
+            result = subprocess.run(
+                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
+                 "-H", f"Authorization: {PEXELS_KEY}"],
+                capture_output=True, text=True, timeout=15
+            )
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for p in photos:
-                url = p.get('src', {}).get('large2x') or p.get('src', {}).get('large')
+            photos = data.get("photos", [])
+            for photo in photos:
+                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
                 if url:
                     print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                     return url
@@ -74,252 +83,251 @@ def fetch_pexels_image(query, fallback_query=None):
     return None
 
 def validate_image(url):
-    """Validate image URL returns HTTP 200 with image content type and >5KB."""
+    """Validate that the image URL is accessible and not tiny."""
     if not url:
         return False
     try:
-        r = requests.head(url, timeout=10, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, allow_redirects=True)
-        content_type = r.headers.get('Content-Type', '')
-        content_length = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in content_type and content_length > 5000:
-            print(f"  ✓ Image validated: {content_type}, {content_length} bytes")
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        content_type = r.headers.get("Content-Type", "")
+        content_length = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in content_type and content_length > 5000:
+            print(f"  ✓ Image validated: {content_length} bytes, {content_type}")
             return True
-        # Try GET if HEAD doesn't return Content-Length
-        if r.status_code == 200 and 'image' in content_type:
-            r2 = requests.get(url, timeout=10, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, stream=True)
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                print(f"  ✓ Image validated via GET: {len(chunk)}+ bytes")
-                return True
-        print(f"  ✗ Image failed validation: status={r.status_code}, type={content_type}, size={content_length}")
+        else:
+            print(f"  ✗ Image validation failed: status={r.status_code}, type={content_type}, size={content_length}")
+            return False
     except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
+        print(f"  ⚠ Image validation error: {e}")
+        return False
+
+def check_banned_url(url):
+    """Check if the URL is from a banned source."""
+    if not url:
+        return True
+    banned_patterns = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
+    for pattern in banned_patterns:
+        if pattern in url:
+            print(f"  ✗ BANNED source detected: {pattern}")
+            return True
     return False
 
-def insert_article(article):
-    """Insert article into Supabase."""
+def publish_article(article):
+    """Publish article to Supabase."""
+    payload = {
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "diaspora_angle": article.get("diaspora_angle", "Relevant to Indian diaspora audiences worldwide."),
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": article.get("sources", []),
+        "tags": article.get("tags", []),
+        "image_url": article.get("image_url"),
+        "image_caption": article.get("image_caption"),
+        "image_attribution": article.get("image_attribution")
+    }
+
+    # Remove None values
+    payload = {k: v for k, v in payload.items() if v is not None}
+
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=article,
-        timeout=30
+        json=payload
     )
     if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            print(f"  ✓ Published: {result[0].get('headline', '')[:60]}...")
-            return True
-        print(f"  ✓ Published (no return data)")
+        data = r.json()
+        article_id = data[0]["id"] if isinstance(data, list) and data else "unknown"
+        print(f"  ✓ Published: '{article['headline']}' (id: {article_id})")
         return True
     else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+        print(f"  ✗ Failed to publish '{article['headline']}': {r.status_code} {r.text[:300]}")
         return False
 
-def check_duplicate(slug):
-    """Check if slug already exists."""
-    r = requests.get(
-        f"{SUPABASE_URL}/rest/v1/p2_articles?select=id&slug=eq.{slug}&limit=1",
-        headers={"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}"},
-        timeout=10
-    )
-    if r.status_code == 200:
-        data = r.json()
-        return len(data) > 0
-    return False
-
-now = datetime.now(timezone.utc).isoformat()
 
 # ============================================================
-# ARTICLE 1: Ramayana distribution deal + Comic-Con
+# ARTICLE 1: Karan Johar's Instagram Mass Unfollow
 # ============================================================
-print("\n=== Article 1: Ramayana ₹450 Crore Distribution Deal ===")
+print("\n" + "="*60)
+print("ARTICLE 1: Karan Johar's Instagram Unfollow Drama")
+print("="*60)
 
-img1 = fetch_wikipedia_person_image("Ranbir Kapoor")
-if not validate_image(img1):
-    img1 = fetch_wikipedia_person_image("Nitesh Tiwari")
-    if not validate_image(img1):
-        img1 = fetch_pexels_image("ancient Indian temple epic", "Hindu mythology art")
-        if not validate_image(img1):
-            img1 = None
+# Image: Try Wikipedia for Karan Johar
+img1 = fetch_wikipedia_person_image("Karan Johar")
+if not img1 or check_banned_url(img1) or not validate_image(img1):
+    img1 = fetch_pexels_image("Instagram social media phone", "social media smartphone")
+    if img1 and (check_banned_url(img1) or not validate_image(img1)):
+        img1 = None
 
-slug1 = "ramayana-450-crore-distribution-comic-con-trailer-hans-zimmer-ar-rahman-nri-20260529"
+article1 = {
+    "headline": "Karan Johar Unfollowed Shah Rukh Khan, Alia Bhatt, and Nearly Everyone Else on Instagram. He Called It a Digital Detox.",
+    "subheadline": "The filmmaker kept only one Bollywood name on his following list — Priyanka Chopra — and told the internet to stop making it 'national news.'",
+    "slug": "karan-johar-unfollows-shah-rukh-khan-alia-bhatt-instagram-digital-detox-nri-20260529",
+    "image_url": img1,
+    "image_caption": "Karan Johar at a public event" if img1 and "wikipedia" in (img1 or "").lower() else "Social media detox has become a recurring theme among Bollywood celebrities",
+    "image_attribution": "Wikimedia Commons" if img1 and "upload.wikimedia" in (img1 or "") else "Pexels",
+    "sources": ["Filmfare", "Sacnilk", "Zoom TV Entertainment", "Inshorts"],
+    "tags": ["karan-johar", "shah-rukh-khan", "alia-bhatt", "instagram", "digital-detox", "bollywood-gossip", "social-media"],
+    "diaspora_angle": "The Karan Johar–Shah Rukh Khan friendship is foundational mythology for NRIs — their films defined an entire generation's relationship with Indian identity abroad.",
+    "body": """For a man who built a career on dramatic reveals, Karan Johar's latest move was, fittingly, discovered by the internet before he said a word about it.
 
-if check_duplicate(slug1):
-    print("  ⚠ Slug already exists, skipping")
-else:
-    article1 = {
-        "headline": "Ramayana's Distribution Deal Just Hit ₹450 Crore. The Trailer May Debut at San Diego Comic-Con.",
-        "subheadline": "Nitesh Tiwari's two-part epic — with AR Rahman and Hans Zimmer scoring, Ranbir Kapoor as Ram, and Yash as Ravana — is being positioned as the most expensive Indian film ever made. The makers already rejected a ₹700 crore OTT offer.",
-        "slug": slug1,
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "image_url": img1,
-        "image_caption": "Ranbir Kapoor, who plays Lord Ram in Ramayana (via Wikimedia Commons)",
-        "image_attribution": "Wikimedia Commons",
-        "sources": json.dumps(["Sacnilk", "Bollywood Hungama", "Mid-day", "Hollywood Reporter India"]),
-        "body": """The numbers around Ramayana have always been large. A ₹4,000 crore production budget across two parts. A cast that includes Ranbir Kapoor as Lord Ram, Sai Pallavi as Sita, Yash as Ravana, Sunny Deol as Hanuman, and Ravie Dubey as Laxman. A two-part Diwali release plan spanning 2026 and 2027. But the latest round of deal-making has pushed the film into territory Indian cinema has genuinely never occupied before.
+Eagle-eyed Reddit users were the first to notice something strange on the filmmaker's Instagram profile. His following count, once sprawling across Bollywood's A-list, had been gutted. Shah Rukh Khan — gone. Alia Bhatt — gone. Kareena Kapoor Khan, Kajol, Malaika Arora, Ananya Panday, Kartik Aaryan, Varun Dhawan, Sidharth Malhotra, Manish Malhotra — all unfollowed. Even Gauri Khan, Aryan Khan, and Suhana Khan — the extended Khan family he had been close to for decades — were removed from the list.
 
-## The ₹450 Crore Distribution Deal
+## The One Name That Stayed
 
-According to Bollywood Hungama, the theatrical distribution deal for Ramayana Part 1 alone is reportedly valued at approximately ₹450 crore — a figure that would make it the highest pre-release theatrical valuation for any Indian film in history.
+Of all the celebrities scrubbed from Karan Johar's following list, one name survived the purge: **Priyanka Chopra**. The internet, naturally, had theories. Had there been a falling out with Shah Rukh Khan? Were professional tensions simmering beneath Bollywood's carefully curated public friendships? Was the Priyanka exception deliberate or an oversight?
 
-The deal has been broken into three massive tranches. Dil Raju's Sri Venkateswara Creations secured the Andhra Pradesh and Telangana theatrical rights for ₹120 crore — the highest ever for a non-Telugu project in those states. Anil Thadani's AA Films came on board for North India and Nepal, reuniting with Yash after their KGF collaboration. And Phars Film locked the international Indian-language rights for ₹105 crore, with a broader network being assembled through Prime Media US for the North American market.
+The speculation ran wild across Reddit, Twitter, and WhatsApp groups. Screenshots of before-and-after follower comparisons went viral. Bollywood fan accounts ran polls asking followers to vote on who Karan Johar was *really* angry at. His following count reportedly dropped from 1.8 crore to 1.75 crore in the process.
 
-These are not speculative valuations. These are advances paid before a single ticket is sold.
+## "It's a DIGITAL DETOX!!!!"
 
-## Comic-Con and a Live Concert
+Johar finally responded through an Instagram Story, and his tone suggested a man who had not anticipated the frenzy. "It's a DIGITAL DETOX!!!!" he wrote, his frustration punctuated by four exclamation marks. "Am unfollowing everyone to reduce my time and energy spent on the gram!!! This can't be national news for god's sake... please clickbait something else! This is irrelevant!"
 
-The production team is aiming for a grand trailer launch at San Diego Comic-Con in July, according to Mid-day. Producer Namit Malhotra and director Nitesh Tiwari are in advanced talks with Comic-Con organizers — a move that follows a positive focus group screening held in Los Angeles, where an early cut reportedly received strong feedback from a diverse audience.
+The response did not, as he might have hoped, settle the matter. If anything, it amplified it. Social media users pointed out that unfollowing people is not, technically, a prerequisite for spending less time on Instagram. Others called it a "PR move" dressed up as self-care. A few noted the irony of a filmmaker who weaponized social media buzz for decades now asking for quiet.
 
-If confirmed, this would make Ramayana the first Indian film to use Comic-Con as a trailer launch platform, placing it alongside the marketing playbooks of Marvel, DC, and major Hollywood franchises.
+## Why the Diaspora Cares
 
-Beyond Comic-Con, the makers are also planning an October musical event featuring a live performance by AR Rahman and Hans Zimmer — the first time these two Academy Award winners have collaborated on a single film score. Rahman has called the partnership "terrifying and exciting" in equal measure and described the project as potentially "one of India's greatest movies."
+For NRI audiences, the Karan Johar–Shah Rukh Khan relationship is not just an industry friendship. It is foundational mythology. *Kuch Kuch Hota Hai*, *Kabhi Khushi Kabhie Gham*, *My Name Is Khan* — these films defined an entire generation's relationship with Indian identity abroad. The sight of Karan unfollowing Shah Rukh, even performatively, hits differently in households where those films were rituals.
 
-## A ₹700 Crore OTT Offer — Rejected
+Johar's upcoming slate is unaffected. *Chand Mera Dil*, produced under Dharma, is currently in theatres with Ananya Panday. The ambitious *Naagzilla* is in development. His multi-film deal with Lyca Productions was announced just weeks ago. There are no public signs of professional trouble.
 
-Perhaps the most telling signal of the makers' confidence: Namit Malhotra reportedly rejected a ₹700 crore post-theatrical digital deal for both parts, which would have been the highest OTT deal in Indian film history. According to Bollywood Hungama, the offer was turned down almost immediately — the team believes the film deserves at least ₹1,000 crore in digital rights alone, leaving ₹3,000 crore to be recovered from worldwide theatrical and other revenue streams.
+## The Pattern
 
-## What NRIs Should Know
+This is not the first time a Bollywood figure has cited digital detox while doing something that is functionally theatrical. Deepika Padukone, Ranbir Kapoor, and others have periodically scrubbed their social media presence, generating the exact kind of attention they claim to be escaping. In Karan Johar's case, the move reads less like burnout and more like a reset — a deliberate repositioning of his public persona at a moment when Dharma's commercial track record is under scrutiny.
 
-The October 30, 2026 release date is being considered — a week before Diwali — to give the film an uninterrupted run through the festive window. Part 2 is already 50 percent shot for Ranbir Kapoor and is locked for Diwali 2027.
+Whether it is a genuine effort to unplug or a carefully orchestrated conversation-starter, one thing is clear: Karan Johar's Instagram following list has become the most analyzed spreadsheet in Bollywood. And Priyanka Chopra, for reasons nobody can quite explain, remains the only entry on it."""
+}
 
-Ranbir has confirmed a dual role: Lord Rama and Lord Parashurama. Both parts will have a combined runtime exceeding six hours. The visual effects are being handled by DNEG, the studio behind Dune, Tenet, and Interstellar.
+publish_article(article1)
 
-For the Indian diaspora, the real question is not whether this film will be big. It is whether an Indian production can genuinely compete for global theatrical real estate the way a Marvel or Star Wars entry does. The Comic-Con strategy, the Zimmer-Rahman score, and the ₹450 crore distribution war chest all suggest the makers believe it can.
-
-Whether that belief survives first contact with the global box office is the most expensive bet Indian cinema has ever placed."""
-    }
-    insert_article(article1)
-
-time.sleep(1)
 
 # ============================================================
-# ARTICLE 2: Ishaan Khatter on Biarritz jury with Kristen Stewart
+# ARTICLE 2: PVR INOX Pride Film Festival
 # ============================================================
-print("\n=== Article 2: Ishaan Khatter — Biarritz Film Festival Jury ===")
+print("\n" + "="*60)
+print("ARTICLE 2: PVR INOX Pride Film Festival")
+print("="*60)
 
-img2 = fetch_wikipedia_person_image("Ishaan Khatter")
-if not validate_image(img2):
-    img2 = fetch_wikipedia_person_image("Ishaan Khattar")
-    if not validate_image(img2):
-        img2 = fetch_pexels_image("Biarritz France seaside", "French film festival")
-        if not validate_image(img2):
-            img2 = None
+# Image: Try Pexels for pride/cinema
+img2 = fetch_pexels_image("pride rainbow flag cinema", "rainbow pride celebration")
+if img2 and (check_banned_url(img2) or not validate_image(img2)):
+    img2 = None
 
-slug2 = "ishaan-khatter-biarritz-jury-kristen-stewart-only-indian-homebound-oscar-nri-20260529"
+article2 = {
+    "headline": "India's Largest Cinema Chain Just Launched a Pride Film Festival. The Lineup Includes a Marathi Film.",
+    "subheadline": "PVR INOX is screening Moonlight, Rocketman, and the celebrated Baapya across 20 cities and 40 cinemas, starting May 29.",
+    "slug": "pvr-inox-pride-film-festival-moonlight-rocketman-baapya-queer-cinema-india-nri-20260529",
+    "image_url": img2,
+    "image_caption": "PVR INOX's Pride Film Festival celebrates queer cinema across 20 Indian cities",
+    "image_attribution": "Pexels" if img2 else None,
+    "sources": ["Cine Buzz News", "Bharat Horizon", "Business News This Week"],
+    "tags": ["pvr-inox", "pride-film-festival", "moonlight", "rocketman", "baapya", "queer-cinema", "lgbtq", "marathi"],
+    "diaspora_angle": "For NRIs who grew up before Section 377 was struck down, seeing India's largest cinema chain program a Pride film festival signals institutional acceptance at mainstream scale.",
+    "body": """PVR INOX, India's largest and most premium cinema exhibitor, has launched the Pride Film Festival beginning May 29, 2026. The lineup is compact but deliberate: Barry Jenkins' Academy Award-winning **Moonlight**, Dexter Fletcher's **Rocketman** — the musical biopic of Elton John — and **Baapya**, a celebrated Marathi film that explores identity and human connection.
 
-if check_duplicate(slug2):
-    print("  ⚠ Slug already exists, skipping")
-else:
-    article2 = {
-        "headline": "Ishaan Khatter Is the Only Indian on the Biarritz Film Festival Jury. Kristen Stewart Is Chairing It.",
-        "subheadline": "The Homebound actor and Gold House Gold 100 honoree joins an international jury alongside Whitney Peak and Raphaël Quenard at one of Europe's fastest-growing festivals for emerging cinema.",
-        "slug": slug2,
-        "category": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "image_url": img2,
-        "image_caption": "Ishaan Khatter, the only Indian member of the Biarritz Film Festival jury (via Wikimedia Commons)",
-        "image_attribution": "Wikimedia Commons",
-        "sources": json.dumps(["ANI", "NewKerala", "Pinkvilla", "Filmfare"]),
-        "body": """It is a short list. Kristen Stewart will chair the jury. Whitney Peak, the Canadian actress from Gossip Girl, will sit beside her. So will Raphaël Quenard, the French César-winning actor. Nathan Ambrosioni, Suzy Bemba, Carolina Cavalli, and Esme Creed-Miles round out the panel. And then there is Ishaan Khatter — the only Indian, the only South Asian, and at 28, one of the youngest voices at the table.
+The festival will run for a week across 20 cities and 40 cinemas. Booking details are available on the PVR INOX app and website.
 
-The Biarritz Film Festival — Nouvelles Vagues, now in its fourth edition, runs June 23 to 28 in the seaside city on France's Atlantic coast. It is not Cannes. It is not Venice. It is something arguably more interesting for an actor at Ishaan's career stage: a festival built entirely around emerging voices, new filmmakers, and the next generation of global cinema. Being invited to judge that future is a statement about where the industry thinks he belongs.
+## The Films
 
-## The Homebound Effect
+**Moonlight** needs little introduction. The 2017 Best Picture winner tells the story of a young Black man navigating race, vulnerability, and sexuality across three defining stages of his life. It remains one of the most quietly devastating films of the last decade, and the chance to see it on a big screen in India — a country that was still criminalizing homosexuality when the film first released — is not a small thing.
 
-This is not happening in a vacuum. Ishaan's trajectory over the past 18 months reads like a case study in what happens when an Indian actor makes the right festival bet at the right time.
+**Rocketman** captures Elton John's rise through music, fantasy, and raw emotional honesty. Unlike the sanitized biopic formula that dominates Hollywood, the film leaned into the messiness of John's life — the addiction, the loneliness, the flamboyance — and treated his queerness not as a subplot but as the core of his story.
 
-Homebound — Neeraj Ghaywan's quietly devastating film starring Ishaan, Janhvi Kapoor, and Vishal Jethwa — premiered at Cannes, played TIFF, was selected as India's official Oscar entry for 2026, and made the Academy's shortlist for Best International Feature Film. The film did not win, but it did something more durable: it placed Ishaan in the peripheral vision of international festival programmers and jury organizers.
+**Baapya** is the inclusion that matters most for Indian audiences. A Marathi film in a Pride festival alongside Hollywood Oscar winners signals something that would have been unthinkable a decade ago: that queer stories from India's regional cinema are being placed on the same stage as global benchmarks. The film offers a nuanced, heartfelt exploration of identity rooted in contemporary Marathi storytelling — no imported narratives, no borrowed frameworks.
 
-The Gold House Gold 100 listing earlier this year reinforced that momentum. Ishaan became the only Indian male actor on the list, an annual recognition of Asian and Pacific Islander leaders in culture and business. When Biarritz came looking for a jury member who could credibly represent both commercial and festival cinema from the non-Western world, Ishaan's recent résumé made the case for him.
+## Why This Matters for the Diaspora
 
-## What This Means for Indian Cinema Abroad
+For NRIs who grew up in India before Section 377 was struck down in 2018, the relationship with queer cinema is complicated. Many in the diaspora first encountered openly queer storytelling through Western films and TV — because Indian cinema largely pretended queerness did not exist, or reduced it to comic relief.
 
-Jury invitations at European festivals are not purely ceremonial. They are industry signals — acknowledgments that a particular film culture has produced someone whose taste the festival trusts. For Indian cinema, which has had a complicated relationship with the international festival circuit (strong in competition submissions, weak in jury representation), having Ishaan at Biarritz alongside Kristen Stewart is a small but meaningful step.
+That PVR INOX — not an indie film collective, not an NGO, but India's biggest multiplex chain — is programming a Pride film festival with a Marathi-language film alongside Moonlight and Rocketman represents institutional acceptance at a scale that matters. It is not niche. It is not underground. It is 40 cinemas in 20 cities, with mainstream marketing and mainstream pricing.
 
-It also reflects a broader shift. Indian actors are no longer going to international festivals only to promote their own films. They are being asked to evaluate other people's work. That is a different kind of recognition — one that implies authority, not just visibility.
+## The Broader Shift
 
-## What Is Next for Ishaan
+Indian cinema's engagement with queer stories has deepened significantly in recent years. Films like *Badhaai Do* (2022) explored a lavender marriage with commercial appeal. *Chandigarh Kare Aashiqui* (2021) centred a trans woman's story in a mainstream rom-com. The KASHISH Mumbai International Queer Film Festival has been running since 2010, growing from a niche event to South Asia's largest queer film festival.
 
-On the work front, Ishaan is currently shooting Jugaadu, a comedy that marks his first production venture. The film, directed and produced under the Tips Films and Baweja Studios banner, also features Punjabi actress Tania's Hindi film debut and an ensemble cast including Abhishek Banerjee and Jameel Khan. The first schedule began in Punjab this month.
+But there is a difference between independent festivals and commercial exhibition. PVR INOX's decision to brand a week-long Pride festival across its national footprint moves queer cinema from the margins to the marquee.
 
-For the diaspora, Ishaan represents something specific: a young Indian actor who has built an international presence not through a Hollywood franchise or a Marvel audition, but through the festival circuit — the same path that Irrfan Khan, Nawazuddin Siddiqui, and Neeraj Ghaywan carved before him. Whether Biarritz leads to bigger jury seats at Venice or Berlin or Toronto remains to be seen. But the invitation itself is the proof of concept."""
-    }
-    insert_article(article2)
+Niharika Bijli, Lead Strategist at PVR INOX, framed it in institutional language: "Cinema has always been a powerful medium for empathy, identity, and dialogue. We are proud to bring back globally celebrated titles such as Moonlight and Rocketman, as well as Baapya, a story from the heartland of India."
 
-time.sleep(1)
+## What It Means Going Forward
+
+The festival is part of PVR INOX's broader initiative to honour landmark films through curated screening events. Whether it becomes an annual fixture or remains a one-off will be the real test. But for the moment, the statement is clear: queer cinema belongs on the big screen in India. Not in a corner, not on a streaming platform at 2 AM, but in the same multiplexes where families go to watch Dhurandhar 2 on opening weekend.
+
+For the diaspora watching from abroad, the symbolism is hard to miss. The country many left — in part because it could not accommodate certain identities — is screening Moonlight in 20 cities. That is not a revolution. But it is a shift."""
+}
+
+publish_article(article2)
+
 
 # ============================================================
-# ARTICLE 3: Dhurandhar 2 — ₹1,000 Cr Hindi net, ₹1,700 Cr worldwide
+# ARTICLE 3: Bhooth Bangla — Akshay Kumar's Comeback
 # ============================================================
-print("\n=== Article 3: Dhurandhar 2 — ₹1,000 Crore Hindi Net Record ===")
+print("\n" + "="*60)
+print("ARTICLE 3: Bhooth Bangla — Akshay Kumar's Comeback")
+print("="*60)
 
-img3 = fetch_wikipedia_person_image("Dhurandhar 2 film")
-if not validate_image(img3):
-    img3 = fetch_pexels_image("India cinema box office crowd", "Indian movie theater audience")
-    if not validate_image(img3):
-        img3 = None
+# Image: Try Wikipedia for Akshay Kumar
+img3 = fetch_wikipedia_person_image("Akshay Kumar")
+if not img3 or check_banned_url(img3) or not validate_image(img3):
+    img3 = fetch_wikipedia_person_image("Priyadarshan")
+    if not img3 or check_banned_url(img3) or not validate_image(img3):
+        img3 = fetch_pexels_image("haunted mansion horror", "old mansion night")
+        if img3 and (check_banned_url(img3) or not validate_image(img3)):
+            img3 = None
 
-slug3 = "dhurandhar-2-1000-crore-hindi-net-1700-crore-worldwide-bollywood-record-nri-20260529"
+article3 = {
+    "headline": "Bhooth Bangla Is Still Running in Theatres After Six Weeks. Akshay Kumar Hasn't Done That in Years.",
+    "subheadline": "The Akshay Kumar–Priyadarshan reunion has crossed ₹176 crore in India and ₹262 crore worldwide, defying the fast-exit box office cycle.",
+    "slug": "bhooth-bangla-akshay-kumar-priyadarshan-176-crore-sixth-week-box-office-comeback-nri-20260529",
+    "image_url": img3,
+    "image_caption": "Akshay Kumar's horror-comedy Bhooth Bangla has become his strongest post-pandemic performer" if img3 and "upload.wikimedia" in (img3 or "") else "Bhooth Bangla defied the fast-exit box office cycle",
+    "image_attribution": "Wikimedia Commons" if img3 and "upload.wikimedia" in (img3 or "") else "Pexels",
+    "sources": ["Sacnilk", "Bollywood Hungama", "LatestLY", "Zoom TV Entertainment"],
+    "tags": ["akshay-kumar", "priyadarshan", "bhooth-bangla", "box-office", "horror-comedy", "bollywood-comeback"],
+    "diaspora_angle": "Bhooth Bangla earned over ₹56 crore overseas — one of Akshay's strongest international runs in years, driven by NRI families nostalgic for the Kumar-Priyadarshan comedy formula.",
+    "body": """Six weeks is a lifetime in the current Bollywood box office cycle. Most films are done within two. The big ones — the Dhurandhars, the Pushpas — might sustain three or four. After that, screens get reallocated, interest migrates to the next release, and the theatrical run becomes an afterthought.
 
-if check_duplicate(slug3):
-    print("  ⚠ Slug already exists, skipping")
-else:
-    article3 = {
-        "headline": "Dhurandhar 2 Just Hit ₹1,000 Crore Net in Hindi Alone. No Bollywood Film Has Done That Before.",
-        "subheadline": "The sequel crossed ₹1,700 crore worldwide in 25 days — without a Gulf release — and is now chasing Baahubali 2's all-time Phase 1 record. Here is what the numbers actually mean.",
-        "slug": slug3,
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "image_url": img3,
-        "image_caption": "Dhurandhar 2 has rewritten every box office record for a Hindi-original film",
-        "image_attribution": "Pexels",
-        "sources": json.dumps(["Sacnilk", "Koimoi", "Bollywood Hungama", "Venky Box Office"]),
-        "body": """There is a number that Indian box office analysts have been waiting years for someone to hit, and Dhurandhar 2: The Revenge just hit it.
+Bhooth Bangla has not received that memo.
 
-The sequel to the 2024 blockbuster crossed ₹1,003.54 crore net in Hindi alone within 24 days of its theatrical release. That is not a worldwide number. That is not a pan-Indian number bolstered by Tamil, Telugu, and Kannada dubs. That is the Hindi-original market — the heartland belt — delivering a four-digit crore figure for the first time in Bollywood history.
+Akshay Kumar and director Priyadarshan's horror-comedy, which opened on April 17, 2026, has crossed **₹176.50 crore net in India** and an estimated **₹262 crore worldwide** — and it is still adding screens in Tier-2 and Tier-3 centres where family audiences continue to show up. In its sixth week, the film collected approximately ₹5 crore net, with a week-on-week drop of just 30 percent. For context, most Hindi films at this stage are earning in the low lakhs, not crores.
 
-## The ₹1,700 Crore Club
+## The Numbers in Perspective
 
-By its 25th day, Dhurandhar 2 crossed ₹1,700 crore in worldwide gross, becoming the first Bollywood-original film to reach that milestone during its primary theatrical run. The total India net collection stands at ₹1,068.92 crore, with the worldwide gross at approximately ₹1,691.30 crore at last count — a figure that was all but certain to breach ₹1,700 crore by the evening sessions on day 25, based on BookMyShow ticket velocity.
+Among Akshay Kumar's post-pandemic releases, Bhooth Bangla is not just the best — it is the best by a landslide. His second-strongest sixth week belongs to *Sooryavanshi*, which managed approximately ₹1 crore at the same stage. *Jolly LLB 3* managed ₹78 lakh. *Kesari Chapter 2* did ₹75 lakh. *OMG 2* added ₹59 lakh.
 
-To understand the scale: on day 25, the film was selling 66,490 tickets between 7 AM and 1 PM, outpacing the previous day's 61,520 in the same window. This is not a film coasting on its opening weekend. It is still accelerating on weekends nearly a month into its run.
+The film crossed ₹100 crore in its second weekend, reached ₹200 crore worldwide by its fourth week, and now sits comfortably as Akshay Kumar's 12th film to breach the ₹200 crore worldwide mark. Overseas markets have contributed significantly — over ₹56 crore from international territories, making it one of his strongest overseas performers in years.
 
-## The Comparison That Matters
+## The Priyadarshan Factor
 
-Indian box office records are often misleading because they conflate primary runs with secondary releases. Dangal, for instance, holds a lifetime worldwide gross of ₹2,070.3 crore — but ₹1,305.29 crore of that came from a secondary release in China. Strip out China, and Dangal's Phase 1 gross was approximately ₹765 crore. Dhurandhar 2 has already more than doubled that number.
+The story of Bhooth Bangla's success is, in large part, the story of a reunion. Akshay Kumar and Priyadarshan last worked together on *Khatta Meetha* in 2010 — a 16-year gap. Before that, they had built a legendary filmography: *Hera Pheri*, *Bhool Bhulaiyaa*, *Garam Masala*, *Bhagam Bhag*. These are not just films. For NRI households in the 2000s, they were communal experiences — the DVDs passed between families, the dialogues memorized across continents.
 
-The film is now within striking distance of the top two all-time Phase 1 worldwide grossers in Indian cinema:
+Priyadarshan brought back something that Akshay's recent filmography had been missing: effortless comedy rooted in character rather than cause. Bhooth Bangla is not trying to make a point. It is not patriotic. It is not a social message film. It is a horror-comedy with Akshay Kumar being funny in a haunted house, and the audience responded to that simplicity.
 
-| Rank | Film | Phase 1 Worldwide Gross |
-|------|------|------------------------|
-| 1 | Baahubali 2: The Conclusion | ₹1,788.06 Cr |
-| 2 | Pushpa 2: The Rule | ₹1,742.10 Cr |
-| 3 | Dhurandhar 2: The Revenge | ₹1,691.30 Cr |
-| 4 | Dhurandhar | ₹1,307.35 Cr |
-| 5 | Dangal (excl. China) | ₹765.00 Cr |
+## Why the Diaspora Showed Up
 
-Surpassing Pushpa 2's ₹1,742 crore appears "mathematically probable," as Sacnilk's trade analysis put it. Catching Baahubali 2's ₹1,788 crore will depend on how much runway the film has before Bhooth Bangla and other releases eat into its screen count.
+Akshay Kumar's overseas appeal had been eroding. His last several releases — from *Ram Setu* to *Selfiee* to the diminishing returns of the *Khiladi* nostalgia — failed to generate meaningful international numbers. *Bhooth Bangla* reversed that trajectory.
 
-## The Missing Gulf Market
+The international opening weekend was massive: approximately ₹26.50 crore overseas in the first three days, making it Akshay's third-largest post-pandemic opening internationally. The film continues to hold in markets where Indian families drive ticket sales — North America, the UK, the Middle East, and Australia.
 
-What makes this performance genuinely unprecedented is that Dhurandhar 2 achieved it without a Gulf release. The UAE, Saudi Arabia, Bahrain, Qatar, Kuwait, and Oman — collectively one of the most reliable overseas revenue drivers for Indian blockbusters — have not contributed a single rupee to these totals. The film has compensated by dominating markets like Australia, New Zealand, Canada, and Germany, with the North American market alone contributing $27.36 million.
+For NRI audiences, the appeal is straightforward. Bhooth Bangla is the kind of film their parents would have watched in theatres in India in 2006. Akshay is doing physical comedy. Paresh Rawal is being Paresh Rawal. Tabu adds gravitas. The haunted house is ridiculous in exactly the right way. It is comfort cinema, and the diaspora bought tickets accordingly.
 
-For NRI audiences, this is the headline within the headline: an Indian film is setting all-time records in precisely the markets where the diaspora lives and watches, and it is doing so without leaning on the traditionally dominant Gulf corridor.
+## The Netflix Chapter Ahead
 
-## What It Means for the Industry
+Reports suggest Bhooth Bangla's digital premiere on Netflix is expected between mid-June and early July 2026, following the standard eight-week theatrical-to-OTT window. Given the film's strong theatrical endurance, the Netflix debut could become one of the platform's top-performing Indian titles of the quarter.
 
-Dhurandhar 2's performance has effectively created a new commercial category in Indian cinema — the Hindi-original that competes at the same scale as pan-Indian Telugu and Tamil tentpoles. Until now, the only Indian films to breach ₹1,500 crore worldwide in their primary runs were Baahubali 2 and Pushpa 2, both Telugu-original productions where the Hindi dub functioned as a secondary revenue stream.
+## What It Means for Akshay
 
-With Dhurandhar 2, the Hindi belt is the primary engine. The film has sold over 18 million tickets on BookMyShow alone, becoming only the second Indian film to cross that threshold on the platform.
+The last three years had prompted genuine questions about whether Akshay Kumar — once the most reliable box office machine in Bollywood — had lost his audience. *Selfiee* flopped. *Mission Raniganj* underperformed. Even *OMG 2*, while profitable, fell short of its predecessor's cultural impact.
 
-The question now is not whether Dhurandhar 2 will finish as one of the top three Indian grossers of all time. It almost certainly will. The question is whether it can hold enough screens and momentum over the coming weeks to challenge the top spot — or whether the arrival of new releases will narrow the window before it gets there."""
-    }
-    insert_article(article3)
+Bhooth Bangla does not erase those misfires. But it does prove that the audience hasn't left — they were just waiting for the right film. And the right film, it turns out, was the kind Akshay and Priyadarshan used to make without thinking about it."""
+}
 
-print("\n=== Entertainment writer batch complete ===")
+publish_article(article3)
+
+print("\n" + "="*60)
+print("Entertainment writer run complete: 3 articles published")
+print("="*60)
