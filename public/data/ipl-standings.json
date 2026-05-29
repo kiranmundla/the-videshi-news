@@ -1,6 +1,6 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-29T18:56:21Z",
+  "last_updated": "2026-05-29T19:55:51Z",
   "stage": "PLAYOFFS \u2014 Final next. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator: RR beat SRH by 47 runs (May 27, Mullanpur). Qualifier 2: GT beat RR by 7 wickets (May 29, Mullanpur). FINAL: RCB vs GT \u2014 May 31, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad.",
   "recent_results": [
     {
@@ -177,7 +177,7 @@
   "playoffs": {
     "qualifier_1": "RCB 254/5 beat GT 162/10 by 92 runs (May 26, Dharamsala). POTM: Rajat Patidar 93*(33).",
     "eliminator": "RR 243/8 beat SRH 196/10 by 47 runs (May 27, Mullanpur). Vaibhav Sooryavanshi 97(29), Jofra Archer 3 wkts.",
-    "qualifier_2": "GT 219/3 beat RR 214/6 by 7 wickets (May 29, Ahmedabad). Shubman Gill & Sai Sudharsan put on 167-run stand; Sudharsan (58) dismissed hit-wicket for 2nd consecutive playoff match. Vaibhav Sooryavanshi 96 for RR but GT chased down 215 with 8 balls to spare.",
+    "qualifier_2": "GT 219/3 beat RR 214/6 by 7 wickets (May 29, Mullanpur). Shubman Gill 104*(53) & Sai Sudharsan 58(32) put on 167-run opening stand. Vaibhav Sooryavanshi 96(47) for RR but GT chased down 215 in 18.4 overs.",
     "final": "RCB vs GT \u2014 May 31, 7:30 PM IST, Narendra Modi Stadium, Ahmedabad"
   },
   "next_match": {
