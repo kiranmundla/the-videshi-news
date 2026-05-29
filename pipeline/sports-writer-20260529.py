@@ -1,40 +1,40 @@
 #!/usr/bin/env python3
-"""
-The Videshi — Sports Writer (2026-05-29)
-Publishes 3 sports articles with proper images.
-"""
+"""The Videshi Sports Writer — May 29, 2026"""
 
-import json, os, sys, time, uuid, re, subprocess
-import requests, urllib.parse
+import json, os, sys, time, uuid, re, urllib.parse
+import requests
 from datetime import datetime, timezone
 
-# ── Env ──────────────────────────────────────────────────────────────────
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
+# ── Load env ──────────────────────────────────────────
+def load_env(path):
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            if line.startswith('export '):
+                line = line[7:]
+            key, _, val = line.partition('=')
+            val = val.strip().strip('"').strip("'")
+            os.environ.setdefault(key.strip(), val)
+
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SB_URL = os.environ['SUPABASE_URL']
+SB_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    'apikey': SB_KEY,
+    'Authorization': f'Bearer {SB_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
 
-# ── Helpers ──────────────────────────────────────────────────────────────
-def sb_post(table, data):
-    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code not in (200, 201):
-        print(f"  ✗ POST {table} failed: {r.status_code} {r.text[:300]}")
-        return None
-    return r.json()
-
-def sb_patch(table, match, data):
-    params = "&".join(f"{k}={v}" for k, v in match.items())
-    url = f"{SUPABASE_URL}/rest/v1/{table}?{params}"
-    r = requests.patch(url, headers=HEADERS, json=data, timeout=30)
-    if r.status_code not in (200, 204):
-        print(f"  ✗ PATCH {table} failed: {r.status_code} {r.text[:300]}")
-    return r
-
+# ── Wikipedia image ───────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -54,8 +54,9 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+# ── Pexels fallback ───────────────────────────────────
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels using curl (urllib gets 403)."""
+    """Fetch image from Pexels using curl (Python urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
@@ -63,15 +64,16 @@ def fetch_pexels_image(query, fallback_query=None):
         if not q:
             continue
         try:
+            import subprocess
             result = subprocess.run(
-                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
-                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape"],
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
+            photos = data.get('photos', [])
             for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+                url = p.get('src', {}).get('large2x') or p.get('src', {}).get('large')
                 if url:
                     print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                     return url
@@ -79,340 +81,314 @@ def fetch_pexels_image(query, fallback_query=None):
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def upload_image_to_supabase(image_url, filename):
-    """Download image and upload to Supabase storage."""
-    try:
-        r = requests.get(image_url, timeout=20, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200:
-            print(f"  ⚠ Failed to download image: {r.status_code}")
-            return image_url  # fall back to original URL if it's permanent
-        content_type = r.headers.get("Content-Type", "image/jpeg")
-        if len(r.content) < 5000:
-            print(f"  ⚠ Image too small ({len(r.content)} bytes), skipping upload")
-            return image_url
-        
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        upload_headers = {
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": content_type,
-            "x-upsert": "true",
-        }
-        ur = requests.post(upload_url, headers=upload_headers, data=r.content, timeout=30)
-        if ur.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed: {ur.status_code} {ur.text[:200]}")
-            # If source is permanent (Wikipedia/Pexels), use it directly
-            if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
-                return image_url
-            return None
-    except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-        if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
-            return image_url
-        return None
-
-def validate_image(url):
-    """Verify image URL returns valid image."""
+# ── Image validation ──────────────────────────────────
+def validate_image_url(url):
+    """Check URL returns a valid image >5KB."""
     if not url:
         return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
                           headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if "image" in ct and cl > 5000:
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if 'image' in ct and cl > 5000:
             return True
-        # Some servers don't return Content-Length on HEAD
-        if "image" in ct:
-            return True
+        # Try GET for servers that don't return Content-Length on HEAD
+        if 'image' in ct:
+            r2 = requests.get(url, timeout=10, stream=True,
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
+                return True
     except:
         pass
     return False
 
-def publish_article(article):
+# ── Banned URL check ──────────────────────────────────
+def is_banned_url(url):
+    if not url:
+        return True
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
+    banned_params = ['_nc_ht=', '_nc_cat=', 'ccb=']
+    for b in banned:
+        if b in url:
+            return True
+    for p in banned_params:
+        if p in url:
+            return True
+    return False
+
+# ── Supabase insert ───────────────────────────────────
+def sb_insert(data):
     """Insert article into p2_articles."""
-    art_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).isoformat()
-    
-    payload = {
-        "id": art_id,
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "body": article["body"],
-        "slug": article["slug"],
-        "category": "sports",
-        "vertical": "sports",
-        "status": "published",
-        "published_at": now,
-        "sources": article["sources"],  # native JSON, NOT stringified
-        "image_url": article.get("image_url"),
-        "image_caption": article.get("image_caption", ""),
-        "image_attribution": article.get("image_attribution", ""),
-        "urgency": "medium",
-        "score_total": 55,
-        "is_featured": False,
-        "is_editorial": False,
-        "tags": [],
-    }
-    
-    result = sb_post("p2_articles", payload)
-    if result:
-        print(f"  ✓ Published: {article['headline'][:60]}... (id={art_id[:8]})")
-        return art_id
+    r = requests.post(
+        f"{SB_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=data,
+        timeout=30
+    )
+    if r.status_code in (200, 201):
+        result = r.json()
+        if isinstance(result, list) and result:
+            return result[0].get('id')
+        return None
+    print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
     return None
 
-
-# ── Articles ─────────────────────────────────────────────────────────────
+# ── Articles ──────────────────────────────────────────
 
 articles = []
 
-# ── ARTICLE 1: FIFA World Cup Broadcast — Zee Deal ──────────────────────
-print("\n═══ Article 1: FIFA World Cup India Broadcast Update ═══")
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# ARTICLE 1: Norway Chess — Gukesh Birthday Blues
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-art1_body = """The largest democracy in the world nearly missed the world's largest football tournament. With the 2026 FIFA World Cup kicking off in Mexico on June 11 — thirteen days from now — India still does not have a confirmed broadcaster. But after weeks of fraught negotiations, a deal appears imminent.
+art1_body = """The last time Magnus Carlsen faced D Gukesh at Norway Chess, the Norwegian slammed the table after blundering a winning position. The clip went viral, played on loop across Indian chess Twitter, and became the defining image of the 2025 tournament. A year later, Carlsen got his revenge — and this time, there was no drama. Only clinical precision.
 
-## Zee Emerges as the Frontrunner
+Carlsen beat the reigning World Classical Champion in 42 moves in Round 4 on Thursday, climbing from last place to sole fourth with 4.5 points. Gukesh, who turned twenty just hours after the defeat, dropped to the bottom of the standings with 3.5 points — the worst position of his career at an elite super-tournament.
 
-Zee Entertainment Enterprises Limited, once India's dominant sports broadcaster before ceding ground to Star and Sony in the 2010s, is in advanced talks with FIFA to secure the combined television and digital rights for both the 2026 and 2030 FIFA World Cups in the Indian subcontinent.
+"I wouldn't say I was super-motivated today," Carlsen told reporters afterward. "I didn't have a lot of expectations, but I was happy with the way things went in the opening."
 
-Multiple reports from industry publications including exchange4media and Storyboard18 indicate that Zee has gained significant momentum in negotiations over the past week. The broadcaster is preparing to launch four new sports channels under its **Unite8 Sports** brand, with the World Cup serving as the flagship property for the relaunch.
+The game began with Gukesh choosing an ambitious setup with the white pieces, pushing for an early advantage. But Carlsen, playing black, gradually took control. A key rook manoeuvre gave the five-time world champion a dominant central post, and from there, Gukesh's ambition worked against him.
 
-## How the Price Collapsed
+"He sometimes plays a little too ambitiously and I think he did that today as well," Carlsen said. "He wanted to prove a serious advantage, and I'm not sure there was one. Eventually, he played himself into some trouble and I gradually took over."
 
-FIFA originally sought approximately **$100 million** for the combined India rights package covering both tournaments. That number proved wildly unrealistic in a market where cricket commands premium rates and football remains a second-tier sport by broadcast revenue.
+The decisive moment came on move 28, when Carlsen played f4, launching a fierce kingside attack. Gukesh found the best defensive move in Bd3 but faltered one move later, and the game slipped away. After Carlsen's passed a-pawn became unstoppable, Gukesh resigned on move 42. He left the playing hall through a side exit, avoiding scores of young fans waiting for autographs.
 
-Reliance-Disney's JioHotstar — which broadcast the 2022 edition from Qatar — reportedly bid around **$20 million**, far below FIFA's expectations. Sony Pictures declined to submit an offer altogether. With limited buyer appetite, FIFA has reportedly revised its expectations down to roughly **$35 million** for both tournaments combined.
+## Pragg's Quiet Ascent
 
-The collapse in price speaks to a fundamental asymmetry: India has 1.4 billion people and a rapidly growing football audience, but the broadcast economics still do not support Western-level rights fees. Cricket's IPL alone generates more domestic broadcast revenue than the entire FIFA World Cup cycle in India.
+While the world champion struggled, his compatriot R Praggnanandhaa continued building an increasingly impressive campaign. A day after beating Carlsen classically in Round 3 — when the Norwegian self-destructed from a winning position in a sequence eerily similar to the 2025 table-slam game — Pragg followed up by defeating Vincent Keymer in Armageddon in Round 4, sealing 1.5 points in just 17 moves.
 
-## What This Means for NRIs
+"The Armageddon went smooth," Praggnanandhaa said, understating what has been the most composed Indian performance at Norway Chess in years.
 
-For the estimated 4.5 million Indian Americans and millions more across the UK, Canada, Australia, and the Gulf states, the India broadcast situation has limited direct impact — you can watch on Fox Sports (US), ITV/BBC (UK), or TSN (Canada). But it matters enormously for three reasons:
+Pragg now sits in sole second place on 6 points, 2.5 behind tournament leader Alireza Firouzja. The temperamental contrast between India's two top players has become the narrative of the event: Gukesh overreaches, Pragg absorbs pressure and converts.
 
-**Family back home.** If you are planning to watch matches with relatives in India over video call, or if your parents and grandparents follow the tournament, the broadcast deal determines whether they can watch at all. Zee's deal would cover both linear television and its Zee5 OTT platform.
+## Firouzja Survives, Barely
 
-**Hindi and regional language commentary.** A Zee broadcast would likely offer commentary in Hindi, Tamil, Telugu, Bengali, and Marathi — languages that the US and UK English-only broadcasts will not provide. For diaspora fans who prefer watching in their mother tongue, this matters.
+Firouzja maintained his lead despite his first setback of the tournament. Wesley So stopped the French-Iranian's winning streak by drawing the classical game and prevailing in Armageddon. But Firouzja still collected a point to extend his total to 8.5 — a comfortable 2.5-point cushion over Pragg.
 
-**The Indian team factor.** India is not in the 2026 World Cup. But the tournament is being held across the United States, Mexico, and Canada — in cities with massive Indian populations. MetLife Stadium in New Jersey, SoFi Stadium in Los Angeles, AT&T Stadium in Dallas, and NRG Stadium in Houston will all host matches. NRIs are buying tickets regardless of whether India is playing. The atmosphere in these stadiums will be shaped by the diaspora.
+The standings heading into Friday's rest day: Firouzja 8.5, Praggnanandhaa 6, So 5.5, Carlsen 4.5, Keymer 4, Gukesh 3.5.
 
-## The Unite8 Sports Gamble
+## India's Women Falter
 
-Zee's play is a calculated bet. The company has been on the defensive since the collapse of its proposed merger with Sony in early 2024. Launching a new sports vertical with the World Cup as its opening act is a high-risk, high-reward move.
+In the women's section, Divya Deshmukh suffered her first Armageddon loss after three consecutive tiebreak wins, going down to defending champion Anna Muzychuk. The defeat dropped the World Cup winner from sole second to a three-way tie for third on 5.5 points. Koneru Humpy continued to struggle at the bottom of the six-player field after another Armageddon loss to Zhu Jiner.
 
-Industry analysts have raised legitimate questions about whether Zee can build the broadcast infrastructure — distribution deals, commentary teams, studio operations, and sales partnerships — in the roughly ten days between a deal closing and the first match. The opening game between Mexico and an opponent yet to be determined is on June 11 at Estadio Azteca in Mexico City.
+## What Comes Next
 
-But Zee has done this before. It built Ten Sports into a credible cricket broadcaster in the mid-2000s before selling it to Sony. The institutional knowledge exists.
+After the rest day, Gukesh faces Praggnanandhaa in Round 5 — a head-to-head between India's world champion and the player who has looked sharper in every way at this tournament. For the millions of Indian chess fans across the diaspora who have followed Gukesh's rise since his prodigious teenage years, the question is no longer whether he can win Norway Chess. It is whether he can avoid finishing last.
 
-## The Clock Is Ticking
+For NRIs following from the US, the next round begins Saturday. Norway Chess streams on Chess24 and the official tournament channel.
 
-As of this writing, no official announcement has been made. FIFA and Zee are still negotiating final terms. The All India Football Federation has urged FIFA to close the deal quickly, and former AIFF General Secretary Shaji Prabhakaran has publicly confirmed that negotiations are near finalization.
+*Sources: Chess.com, Chessbase, PTI via Devdiscourse, Swadesi News*"""
 
-For the 200 million Indians who watched the 2022 World Cup final between Argentina and France — many of them staying up past midnight for the Doha kickoff — a deal cannot come soon enough. And for NRIs planning watch parties across Edison, Fremont, Brampton, and Southall, the question is no longer whether India gets the World Cup. It is whether Zee can pull off the broadcast equivalent of a last-minute equalizer.
+articles.append({
+    "headline": "Gukesh Turned Twenty Hours After Losing to Carlsen. He Is Last at Norway Chess. Pragg Is Second.",
+    "subheadline": "The world champion's birthday present was a classical defeat in 42 moves. Praggnanandhaa has quietly become India's strongest player in Oslo. Their Round 5 head-to-head is next.",
+    "body": art1_body.strip(),
+    "slug": "gukesh-turns-20-loses-carlsen-last-norway-chess-2026-pragg-second-firouzja-leads-20260529",
+    "category": "sports",
+    "sources": ["Chess.com", "Chessbase", "PTI/Devdiscourse", "Swadesi News"],
+    "person_for_image": "D Gukesh",
+    "image_attribution": "Wikimedia Commons",
+    "diaspora_angle": "Gukesh and Praggnanandhaa are global icons for the Indian chess diaspora. Millions of NRIs follow Norway Chess — the drama between India's two best players defines the narrative.",
+    "vertical": "sports",
+    "tags": ["chess", "norway-chess", "gukesh", "praggnanandhaa", "carlsen", "firouzja", "divya-deshmukh"],
+    "urgency": "medium",
+    "score_total": 82
+})
 
-*The 2026 FIFA World Cup runs from June 11 to July 19 across 16 cities in the United States, Mexico, and Canada. The final will be played at MetLife Stadium in East Rutherford, New Jersey.*"""
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# ARTICLE 2: Singapore Open — Indian Doubles Surge
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-art1 = {
-    "headline": "Zee Is Close to Ending India's World Cup Broadcast Crisis. The First Match Is in Thirteen Days.",
-    "subheadline": "FIFA wanted $100 million. The market offered $20 million. Now Zee Entertainment is preparing to launch four new sports channels with the World Cup as its flagship.",
-    "body": art1_body,
-    "slug": "zee-entertainment-fifa-world-cup-2026-india-broadcast-rights-unite8-sports-deal-nri-guide-20260529",
-    "sources": [
-        {"name": "exchange4media", "url": "https://www.exchange4media.com"},
-        {"name": "Storyboard18", "url": "https://www.storyboard18.com"},
-        {"name": "Business Today Malaysia", "url": "https://www.businesstoday.com.my"},
-        {"name": "RevSportz", "url": "https://revsportz.in"}
-    ],
-}
+art2_body = """India's best week in international badminton this year entered a new stage on Friday at the Singapore Open, with Satwiksairaj Rankireddy and Chirag Shetty reaching the men's doubles semifinals and the mixed doubles pair of Dhruv Kapila and Tanisha Crasto continuing their remarkable run into the last four.
 
-# Image: Use Pexels for World Cup / stadium — no specific person
-img1 = fetch_pexels_image("FIFA World Cup football stadium crowd", "football match stadium fans")
-if img1:
-    final_url1 = upload_image_to_supabase(img1, f"zee-world-cup-broadcast-20260529.jpg")
-    if final_url1 and validate_image(final_url1):
-        art1["image_url"] = final_url1
-        art1["image_caption"] = "The 2026 FIFA World Cup kicks off on June 11 across 16 cities in North America. India is racing to secure a broadcast deal."
-        art1["image_attribution"] = "Pexels"
-    else:
-        art1["image_url"] = None
-else:
-    art1["image_url"] = None
+It is a rare achievement for India to have multiple pairs in the semifinal stages of a BWF Super 750 event — the second-highest tier on the World Tour. For a country whose badminton identity has long been defined by singles stars like PV Sindhu and Saina Nehwal, the doubles breakthrough represents something structural. Indian badminton is getting deeper.
 
-articles.append(art1)
+## Satwik-Chirag Grind Through a Test
 
+The fourth-seeded Satwik and Chirag advanced to the semifinals after navigating what has been a demanding draw. In the round of 16, they came through a three-game battle against Chinese Taipei's Lee Jhe-huei and Yang Po-hsuan, losing the second game 11-21 before pulling together a tense 21-18 deciding game to win the match. The victory extended their head-to-head record over the Taipei pair to 7-0, but neither the score nor the record reflected how tight the contest was.
 
-# ── ARTICLE 2: Djokovic vs Fonseca at Roland Garros ─────────────────────
-print("\n═══ Article 2: Djokovic vs Fonseca at Roland Garros ═══")
+Their semifinal opponents are the top seeds, South Korea's Kim Won-ho and Seo Seung-jae — a pair ranked higher than any duo Satwik and Chirag have beaten at this tournament. It will be one of the biggest doubles matches of the year for Indian badminton. A win would put them in a Super 750 final.
 
-art2_body = """The third round of the 2026 French Open begins Friday with a match that distills everything compelling about elite tennis into a single contest on Court Philippe Chatrier. Novak Djokovic, thirty-nine years old and hunting a record twenty-fifth Grand Slam title, faces Joao Fonseca, the nineteen-year-old Brazilian who has called the Serb his idol and the greatest of all time.
+## Dhruv-Tanisha's Run Continues
 
-## The Last Champion Standing
+The story of India's Singapore Open has been Dhruv Kapila and Tanisha Crasto. After their stunning comeback victory over an Olympic medal-winning pair in the second round — losing the first game 8-21 before storming back to win the next two — the mixed doubles duo have continued to advance through the bracket.
 
-The draw at Roland Garros has been shredded by chaos. Carlos Alcaraz, the defending champion, withdrew before the tournament with a wrist injury. Jannik Sinner, the world number one and top seed, suffered one of the most extraordinary collapses in Grand Slam history on Day 5 — leading Juan Manuel Cerundolo 6-3, 6-2, 5-1, one game from victory, before losing eighteen consecutive points and ultimately the match in five sets. The Italian later cited dizziness and exhaustion in ninety-degree Paris heat.
+Their semifinal run in a Super 750 event is a career milestone. Indian mixed doubles has traditionally been the weakest of the five disciplines, and seeing Kapila and Crasto deep in the draw of a major tournament signals a shift that the Badminton Association of India and national coaches have long worked toward.
 
-That leaves Djokovic as the only former French Open champion remaining in the men's draw. At thirty-nine, he is the oldest man in the third round. He arrived in Paris with a 9-3 season record and questions about whether his body — battered by decades of elite competition — could sustain a two-week Grand Slam run on clay.
+## Sindhu's Eight-Match Hoodoo
 
-His second-round match against France's Valentin Royer suggested yes, with caveats. Djokovic won 6-3, 6-2, 6-7(9), 6-3, but needed to save a set point in the third-set tiebreak after the home crowd roared Royer back into the match. It was a reminder that Djokovic's margin for error is narrower than it once was.
+PV Sindhu arrived in the quarterfinals in superb form, dropping just 21 points across her first two matches. The two-time Olympic medallist demolished Japan's Riko Gunji 21-9, 21-12 in just 37 minutes after eliminating Indonesian fifth seed Putri Kusuma Wardani in the opening round.
 
-## Fonseca: The Future Arrives on Schedule
+But her quarterfinal opponent was the wall she has never scaled: An Se-young, the reigning Olympic champion and world number one. Their head-to-head stood at 0-8 in the South Korean's favour — the most lopsided record of Sindhu's career against any active top player. Breaking that streak at a Super 750 tournament would have been a statement of intent; failing to break it is no surprise, but still painful.
 
-Joao Fonseca entered 2026 as one of the most hyped teenagers in tennis. The twenty-eighth seed has justified the hype, reaching the third round at Roland Garros with composed, athletic play that belies his age.
+## Lakshya's Quiet Passage
 
-Born in Rio de Janeiro, Fonseca carries a game built for the modern tour — explosive forehand, improving serve, and the kind of court coverage that exhausts older opponents. He won the Next Gen ATP Finals in 2024 and has risen steadily through the rankings.
+Lakshya Sen advanced to the quarterfinals after Thailand's Kunlavut Vitidsarn retired after just two points of their round-of-16 encounter. The anticlimactic progression meant Sen barely broke a sweat, which could prove a double-edged sword — fresh legs but no match rhythm heading into a quarterfinal against Japan's Koki Watanabe.
 
-Before the match, Fonseca addressed the Djokovic matchup with the reverence of a student and the confidence of a competitor: "He's my idol. He's the GOAT. But I'm here to win, not to take a selfie."
+## Why This Matters for the Diaspora
 
-## What the Sinner Collapse Means for the Draw
+For the Indian badminton fan base abroad — sizable and growing, especially in the UK and Southeast Asian NRI communities — the Singapore Open results offer a rare moment of depth. It is no longer just one Indian star carrying the flag at international tournaments. Satwik-Chirag are a genuine world-class pair. Dhruv-Tanisha are emerging fast. And Sindhu, even at this stage of her career, keeps reaching deep rounds at major events.
 
-Sinner's exit has blown the top half of the draw wide open. The potential semifinal on Djokovic's side now features names like Felix Auger-Aliassime (the fourth seed), Flavio Cobolli, Learner Tien, and the Cerundolo who just toppled the world number one.
+The Singapore Open semifinals are scheduled for Saturday. The men's doubles semifinal between Satwik-Chirag and Kim-Seo will be one of the most-watched badminton matches by Indian fans this month.
 
-For Djokovic, it is an opportunity that may not come again. The two players most capable of beating him on clay — Alcaraz and Sinner — are both gone. Alexander Zverev, the second seed and 2024 finalist, lurks in the other half.
+*Sources: IANS, MyKhel, BWF Singapore Open official draw*"""
 
-The path to a fourth French Open title and a record-extending twenty-fifth Grand Slam is the clearest it has been in years. But Djokovic must first get past a teenager who has spent his entire life watching the Serb win these matches and believes he is ready to do the same.
+articles.append({
+    "headline": "Satwik-Chirag Are in the Singapore Open Semifinals. Dhruv Kapila and Tanisha Crasto Are One Round From the Final.",
+    "subheadline": "India has multiple doubles pairs in the last four of a BWF Super 750 event. Sindhu faced the world number one in the quarterfinals. Lakshya Sen advanced through a walkover.",
+    "body": art2_body.strip(),
+    "slug": "satwik-chirag-singapore-open-semifinals-dhruv-tanisha-mixed-doubles-india-badminton-super750-20260529",
+    "category": "sports",
+    "sources": ["IANS", "MyKhel", "BWF Singapore Open draw"],
+    "person_for_image": "Satwiksairaj Rankireddy",
+    "image_attribution": "Wikimedia Commons",
+    "diaspora_angle": "Indian badminton's depth is a source of diaspora pride. NRIs in the UK and Southeast Asia follow Satwik-Chirag closely. The emergence of multiple Indian pairs in Super 750 semifinals is a generational shift.",
+    "vertical": "sports",
+    "tags": ["badminton", "singapore-open", "satwik-chirag", "dhruv-kapila", "tanisha-crasto", "pv-sindhu", "lakshya-sen"],
+    "urgency": "medium",
+    "score_total": 78
+})
 
-## The NRI Tennis Connection
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# ARTICLE 3: GT vs RR Qualifier 2 Match-Day Guide
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Tennis enjoys devoted following among the Indian diaspora, particularly in the US and UK. Djokovic's disciplined, vegetarian-leaning lifestyle and vocal advocacy for player rights have earned him a significant Indian fan base. His matches at the French Open air early morning in the US (the Fonseca match is scheduled for approximately 9:30 AM ET Friday) — a convenient time for NRI viewers tuning in before work.
+art3_body = """Friday night in Mullanpur is the last stop before the IPL 2026 final. Gujarat Titans and Rajasthan Royals meet in Qualifier 2 at the Maharaja Yadavindra Singh International Cricket Stadium, with the winner earning the right to face Royal Challengers Bengaluru in Sunday's title decider in Ahmedabad. The loser goes home.
 
-The match will be broadcast on TNT, TruTV, and Tennis Channel in the US, with streaming available on Max and DIRECTV. In India, JioHotstar carries the French Open coverage.
+Both teams arrive bruised. Gujarat were demolished by RCB in Qualifier 1, conceding 254 and losing by 92 runs in what was the most lopsided playoff result of the season. Rajasthan are riding high after crushing Sunrisers Hyderabad by 47 runs in the Eliminator at this very ground, powered by Vaibhav Sooryavanshi's astonishing 97 off 29 balls. The contrast in momentum could not be sharper.
 
-## What to Watch For
+## The Matchup That Decides Everything
 
-Djokovic's serving numbers. He landed 73 percent of first serves in the Royer match but was broken twice. Against a returner as aggressive as Fonseca, he cannot afford service lapses.
+The entire contest distills to two individual battles.
 
-Fonseca's forehand under pressure. The Brazilian generates enormous topspin but can become erratic when pinned behind the baseline. Djokovic will aim to extend rallies and force Fonseca into high-backhand positions — the same tactic that has neutralized young power hitters for two decades.
+**Sooryavanshi vs Rabada.** The fifteen-year-old leads the IPL with 680 runs and 65 sixes this season — both records for a player his age. In the Eliminator, he scored a 16-ball fifty, tying Suresh Raina's record for the fastest half-century in an IPL playoff, and broke Chris Gayle's all-time record for most sixes in a single IPL season. But Kagiso Rabada is the tournament's most lethal powerplay bowler: 26 wickets this season, 18 of them inside the first six overs. How Rabada handles Sooryavanshi with the new ball in the first three overs will likely determine the shape of the match.
 
-And the crowd. Philippe Chatrier has a habit of choosing underdogs, and a charismatic Brazilian teenager playing the greatest of all time is precisely the narrative the Parisian crowd will embrace.
+**Archer vs Gill.** Jofra Archer's 3-for-58 in the Eliminator was a masterclass of pace bowling — Abhishek Sharma out for a duck on the second ball, Travis Head bowled for 17, Ishan Kishan caught off a top-edge for 33. Archer has 24 wickets this season and bowls with venom that few IPL attacks can match. Shubman Gill, Gujarat's captain, has 618 runs this season and 614 career runs against RR — he knows this opposition intimately. His ability to negotiate Archer's pace and bounce in the powerplay is Gujarat's clearest path to a competitive total.
 
-*Djokovic vs Fonseca is scheduled as the featured night session match on Court Philippe Chatrier, Friday May 29. Coverage begins at 9:30 AM ET / 7:00 PM IST on TNT and JioHotstar.*"""
+## Head-to-Head: Gujarat Lead 7-3
 
-art2 = {
-    "headline": "Djokovic at Thirty-Nine Is the Last Champion Standing at Roland Garros. Today He Faces a Nineteen-Year-Old Who Calls Him the GOAT.",
-    "subheadline": "With Sinner and Alcaraz both gone, Novak Djokovic has the clearest path to a record 25th Grand Slam. But Joao Fonseca is not here for a history lesson.",
-    "body": art2_body,
-    "slug": "djokovic-fonseca-french-open-2026-round-3-sinner-collapse-roland-garros-25th-grand-slam-20260529",
-    "sources": [
-        {"name": "Reuters", "url": "https://www.reuters.com"},
-        {"name": "Tennis365", "url": "https://www.tennis365.com"},
-        {"name": "Sportskeeda", "url": "https://www.sportskeeda.com"},
-        {"name": "USA Today", "url": "https://www.usatoday.com"}
-    ],
-}
+Gujarat's historical dominance against Rajasthan is significant. In ten previous meetings, the Titans have won seven. In this season, the teams split their league-phase encounters: RR edged a six-run thriller in Ahmedabad, GT responded with a comprehensive 77-run win in Jaipur. The Titans are the more experienced playoff team, having reached at least the qualifier stage in every season of their existence.
 
-# Image: Wikipedia photo of Djokovic
-img2 = fetch_wikipedia_person_image("Novak Djokovic")
-if img2:
-    final_url2 = upload_image_to_supabase(img2, f"djokovic-french-open-2026-20260529.jpg")
-    if final_url2 and validate_image(final_url2):
-        art2["image_url"] = final_url2
-        art2["image_caption"] = "Novak Djokovic is the last former French Open champion remaining in the 2026 draw after Sinner's stunning second-round exit."
-        art2["image_attribution"] = "Wikimedia Commons"
-    else:
-        art2["image_url"] = img2 if "upload.wikimedia.org" in (img2 or "") else None
-        art2["image_attribution"] = "Wikimedia Commons"
-else:
-    # Fallback to Pexels
-    img2_px = fetch_pexels_image("Roland Garros tennis clay court", "French Open tennis")
-    if img2_px:
-        final_url2 = upload_image_to_supabase(img2_px, f"djokovic-french-open-2026-20260529.jpg")
-        art2["image_url"] = final_url2
-        art2["image_caption"] = "The French Open third round begins Friday at Roland Garros with Djokovic facing Fonseca on Philippe Chatrier."
-        art2["image_attribution"] = "Pexels"
-    else:
-        art2["image_url"] = None
+## The Venue Favours Runs
 
-articles.append(art2)
+The Mullanpur pitch has been a batting paradise in IPL 2026. The Eliminator between RR and SRH saw 439 runs scored. Rajasthan posted 243-for-8 and still won comfortably. With short square boundaries and a true surface that rewards clean hitting, teams batting first at this venue in the playoffs have found totals of 230-plus defensible — but only with quality bowling. Gujarat's attack of Rabada, Mohammed Siraj, Rashid Khan, and Jason Holder has the diversity to apply pressure, but they leaked 254 against RCB in Dharamsala just days ago.
 
+## What Gujarat Need
 
-# ── ARTICLE 3: Knicks in the NBA Finals ─────────────────────────────────
-print("\n═══ Article 3: Knicks in NBA Finals — NRI NYC Angle ═══")
+Gujarat need Sai Sudharsan to bat deep. The left-hander has accumulated 652 runs this season and is the team's anchor. His ability to rotate strike against Jadeja and Punja in the middle overs — where Rajasthan's spin has been excellent — will determine whether Gujarat can build a competitive total. Washington Sundar's all-round contribution is also critical: his off-spin could be key against Sooryavanshi, who has been less dominant against spinners who bowl into his body.
 
-art3_body = """Karl-Anthony Towns scored nineteen points and grabbed fourteen rebounds. OG Anunoby added seventeen. The New York Knicks demolished the Cleveland Cavaliers 130-93 on Monday night to complete a four-game sweep of the Eastern Conference Finals and reach the NBA Finals for the first time since 1999.
+## What Rajasthan Need
 
-Twenty-seven years. That is how long New York has waited.
+Rajasthan need Yashasvi Jaiswal to contribute. In the Eliminator, the opener made 29 off 29 balls while Sooryavanshi blazed at the other end. For RR to win tonight, they need both openers firing — Jaiswal provides the platform, Sooryavanshi provides the acceleration. Ravindra Jadeja's 221 runs and 10 wickets make him the quiet difference-maker: his tight bowling in overs 7-15 strangles opposition scoring rates, and his lower-order hitting has rescued RR multiple times.
 
-## The Sweep
+## NRI Viewing Guide
 
-The Knicks did not merely beat the Cavaliers. They embarrassed them. After blowing a twenty-two-point fourth-quarter lead in Game 1 — then winning anyway in overtime — the Knicks won the next three games by an average of twenty-two points. Game 4 in Cleveland was over by halftime, the Cavaliers' home crowd filing out long before the final buzzer.
+The match starts at 7:30 PM IST, which is 10:00 AM Eastern, 7:00 AM Pacific, 3:00 PM BST, and 7:00 PM Dubai time. Live coverage is available on Star Sports and JioHotstar. For NRIs in the US, Willow TV carries the broadcast. The toss is at 7:00 PM IST.
 
-Jalen Brunson was named Eastern Conference Finals MVP after averaging twenty-three points and eight assists across the four games. His steady, cerebral play — more surgeon than showman — has been the defining characteristic of this Knicks run, which now includes an eleven-game playoff winning streak with an average margin of victory exceeding twenty points.
+If rain forces a washout and no result is possible even with the 120-minute extension, Gujarat advance to the final by virtue of finishing higher in the league standings (second vs fourth).
 
-The Cavaliers' star acquisitions — Donovan Mitchell and James Harden — combined for just thirty-seven points in the clinching game. Harden, who arrived in a midseason trade from the Lakers, told reporters afterward that he remains committed to Cleveland. Mitchell echoed the sentiment. Neither sounded convinced.
+*Sources: Cricbuzz, CricTracker, Sporting News, Livemint*"""
 
-## The Western Conference: Game 7 on Saturday
+articles.append({
+    "headline": "Sooryavanshi's 680 Runs Against Rabada's 26 Wickets. Everything About Tonight's Qualifier 2 in Mullanpur.",
+    "subheadline": "Gujarat Titans and Rajasthan Royals meet at 7:30 PM IST for a place in Sunday's IPL final against RCB in Ahmedabad. Here is the match-day guide.",
+    "body": art3_body.strip(),
+    "slug": "gt-vs-rr-qualifier-2-match-day-guide-sooryavanshi-rabada-ipl-2026-mullanpur-20260529",
+    "category": "sports",
+    "sources": ["Cricbuzz", "CricTracker", "Sporting News", "Livemint"],
+    "person_for_image": "Vaibhav Suryavanshi",
+    "image_attribution": "Wikimedia Commons",
+    "diaspora_angle": "The IPL playoffs are appointment viewing for NRIs worldwide. Tonight's Qualifier 2 determines who faces RCB in Sunday's final — the match times and streaming info for US, UK, and Dubai time zones are included.",
+    "vertical": "sports",
+    "tags": ["ipl", "ipl-2026", "gt-vs-rr", "qualifier-2", "sooryavanshi", "rabada", "shubman-gill", "jofra-archer"],
+    "urgency": "high",
+    "score_total": 85
+})
 
-The Knicks now wait for their Finals opponent. On Thursday night, Victor Wembanyama scored twenty-eight points and grabbed ten rebounds as the San Antonio Spurs destroyed the Oklahoma City Thunder 118-91 in Game 6 to force a decisive Game 7 on Saturday night in Oklahoma City.
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# PUBLISH
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-The series has been spectacular. It opened with a double-overtime Spurs victory in OKC, followed by a Thunder win, then alternating blowouts that have made the series feel like two entirely different competitions depending on which team's building the game is in.
-
-Game 7 tips off Saturday at 8:30 PM ET at Paycom Center. The winner faces the Knicks in the NBA Finals beginning Wednesday, June 3.
-
-## Why This Matters to the Indian Diaspora
-
-The New York metropolitan area is home to the largest Indian-American community in the United States. Jackson Heights, Jersey City, Edison, Hicksville — these neighborhoods contain some of the densest concentrations of NRI families anywhere in the world. And they are about to collide with the biggest sports summer New York has seen in a generation.
-
-The Knicks are in the Finals. The FIFA World Cup arrives in New York on June 11, with MetLife Stadium in East Rutherford hosting multiple group-stage matches and a semifinal. The overlap of these two events in a single month — in a city already overwhelmed by cultural and sporting activity — will be unlike anything the tri-state area's Indian community has experienced.
-
-Already, Knicks playoff tickets have become the hottest commodity in the city. Lower-level seats for a potential Game 1 at Madison Square Garden are listed at over $1,500. For NRIs who have adopted basketball as their American sport — and there are more of them every year, particularly among second-generation Indian Americans — this is a milestone.
-
-The NBA has actively courted the Indian market for over a decade, launching NBA India games and signing Bollywood celebrities for promotional events. But nothing drives engagement like a New York team in the Finals. The Knicks' global brand, combined with the city's diaspora density, makes this a singular moment for Indian basketball fans.
-
-## Wembanyama: The Future Is Already Here
-
-Whether the Knicks face the Thunder or the Spurs, the Finals will feature a generational talent. If San Antonio wins Game 7, Victor Wembanyama — the seven-foot-four French phenom in only his second NBA season — will play on the sport's biggest stage. His Game 6 performance was a statement: twenty-eight points, ten rebounds, and defensive presence that made the Thunder's stars look ordinary.
-
-If Oklahoma City wins, the Knicks face Shai Gilgeous-Alexander, the Thunder's elegant, relentless guard who is widely considered the league's best player this season. SGA averaged thirty-one points per game during the regular season and has been even better in the playoffs.
-
-Either matchup promises appointment television. The NBA Finals begin June 3 and will air on NBC and stream on Peacock.
-
-## The Numbers
-
-The Knicks' playoff run by the numbers:
-
-- **15-2** overall playoff record (sweeps of the Hawks, Pistons, and Cavaliers, plus a 3-2 first-round series)
-- **23.7** average margin of victory during the eleven-game winning streak
-- **130** points scored in the clinching Game 4 — the most in a closeout game in franchise history
-- **1999** the last time the Knicks reached the Finals, when they lost to the Spurs in five games as an eighth seed
-
-*The NBA Finals begin Wednesday, June 3. Game 7 of the Western Conference Finals between the Thunder and Spurs tips off Saturday at 8:30 PM ET on NBC and Peacock.*"""
-
-art3 = {
-    "headline": "The Knicks Are in the NBA Finals for the First Time Since 1999. New York's Biggest Sports Summer in a Generation Has Begun.",
-    "subheadline": "A four-game sweep of Cleveland. An eleven-game winning streak. And for the millions of NRIs in the tri-state area, a summer with the Finals and the World Cup in the same city.",
-    "body": art3_body,
-    "slug": "knicks-nba-finals-2026-sweep-cavaliers-brunson-nyc-nri-sports-summer-world-cup-20260529",
-    "sources": [
-        {"name": "Reuters", "url": "https://www.reuters.com"},
-        {"name": "USA Today", "url": "https://www.usatoday.com"},
-        {"name": "CNN", "url": "https://www.cnn.com"},
-        {"name": "Sporting News", "url": "https://www.sportingnews.com"}
-    ],
-}
-
-# Image: Pexels for NBA / Madison Square Garden — no specific person article
-img3 = fetch_pexels_image("NBA basketball game arena crowd", "Madison Square Garden basketball")
-if img3:
-    final_url3 = upload_image_to_supabase(img3, f"knicks-nba-finals-2026-20260529.jpg")
-    if final_url3 and validate_image(final_url3):
-        art3["image_url"] = final_url3
-        art3["image_caption"] = "The New York Knicks swept the Cavaliers to reach the NBA Finals for the first time in 27 years."
-        art3["image_attribution"] = "Pexels"
-    else:
-        art3["image_url"] = None
-else:
-    art3["image_url"] = None
-
-articles.append(art3)
-
-# ── Publish All ──────────────────────────────────────────────────────────
-print("\n═══ Publishing Articles ═══")
 published = 0
-for art in articles:
-    art_id = publish_article(art)
-    if art_id:
-        published += 1
-    time.sleep(1)
+now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
-print(f"\n✅ Done. Published {published}/{len(articles)} articles.")
+for i, art in enumerate(articles, 1):
+    print(f"\n{'='*60}")
+    print(f"Article {i}: {art['headline'][:80]}...")
+    print(f"{'='*60}")
+
+    # Word count check
+    wc = len(art['body'].split())
+    print(f"  Word count: {wc}")
+    if wc < 400:
+        print(f"  ✗ SKIPPED — body too short ({wc} words, need 400+)")
+        continue
+
+    # Image sourcing
+    img_url = None
+    person = art.get('person_for_image')
+    if person:
+        print(f"  Trying Wikipedia for '{person}'...")
+        img_url = fetch_wikipedia_person_image(person)
+        if not img_url and '(' not in person:
+            # Try with disambiguation
+            for suffix in ['(chess player)', '(cricketer)', '(badminton)']:
+                img_url = fetch_wikipedia_person_image(f"{person} {suffix}")
+                if img_url:
+                    break
+
+    if not img_url:
+        # Pexels fallback with specific terms
+        if 'chess' in art['slug']:
+            img_url = fetch_pexels_image("chess tournament grandmaster", "chess board game competition")
+        elif 'badminton' in art['slug']:
+            img_url = fetch_pexels_image("badminton tournament smash", "badminton court shuttlecock")
+        elif 'ipl' in art['slug'] or 'cricket' in art['slug']:
+            img_url = fetch_pexels_image("cricket stadium T20 match", "cricket batsman hitting six")
+
+    # Validate image
+    if img_url and is_banned_url(img_url):
+        print(f"  ✗ Banned URL detected, skipping: {img_url[:60]}")
+        img_url = None
+    
+    if img_url and not validate_image_url(img_url):
+        print(f"  ✗ Image validation failed: {img_url[:60]}")
+        img_url = None
+
+    if img_url:
+        print(f"  ✓ Final image URL: {img_url[:80]}...")
+    else:
+        print(f"  ⚠ No image — publishing without image (better than wrong image)")
+
+    # Build article record
+    sources_json = json.dumps([{"name": s} for s in art["sources"]])
+    record = {
+        "headline": art["headline"],
+        "subheadline": art["subheadline"],
+        "body": art["body"],
+        "slug": art["slug"],
+        "category": art["category"],
+        "status": "published",
+        "published_at": now,
+        "sources": sources_json,
+        "image_url": img_url,
+        "image_attribution": art.get("image_attribution") if img_url else None,
+        "diaspora_angle": art.get("diaspora_angle", ""),
+        "vertical": art.get("vertical", "sports"),
+        "tags": art.get("tags", []),
+        "urgency": art.get("urgency", "medium"),
+        "score_total": art.get("score_total", 75),
+    }
+
+    art_id = sb_insert(record)
+    if art_id:
+        print(f"  ✓ Published! ID: {art_id}")
+        published += 1
+    else:
+        print(f"  ✗ Failed to publish")
+
+print(f"\n{'='*60}")
+print(f"Done. Published {published}/{len(articles)} articles.")
+print(f"{'='*60}")

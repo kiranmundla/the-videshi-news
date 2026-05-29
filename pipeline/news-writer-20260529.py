@@ -1,99 +1,61 @@
 #!/usr/bin/env python3
 """
-The Videshi — News Writer (2026-05-29)
-Publishes 3 fresh news articles with proper image sourcing.
+The Videshi News Writer — 2026-05-29 batch
+Writes 3 fresh news articles with India/diaspora angle.
 """
 
-import json
-import os
-import re
-import sys
-import time
-import uuid
-import urllib.parse
-import subprocess
+import os, json, sys, time, re, uuid
+import requests
 from datetime import datetime, timezone
 
-# Load env
+# Load Supabase credentials
 def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
+    env = {}
+    try:
+        with open(os.path.expanduser(path)) as f:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    os.environ[k.strip()] = v.strip()
+                    key, val = line.split('=', 1)
+                    key = key.replace('export ', '').strip()
+                    val = val.strip().strip('"').strip("'")
+                    env[key] = val
+                    os.environ[key] = val
+    except FileNotFoundError:
+        print(f"ERROR: {path} not found")
+        sys.exit(1)
+    return env
 
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
-
+load_env('~/.env.supabase')
 SUPABASE_URL = os.environ['SUPABASE_URL']
 SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_API_KEY = os.environ.get('PEXELS_API_KEY', '')
-
-HEADERS_SB = {
+HEADERS = {
     'apikey': SUPABASE_KEY,
     'Authorization': f'Bearer {SUPABASE_KEY}',
     'Content-Type': 'application/json',
     'Prefer': 'return=representation'
 }
 
-def sb_post(table, data):
-    """Insert into Supabase via curl (requests can throw IncompleteRead)."""
-    cmd = [
-        'curl', '-sS', '-w', '\n%{http_code}',
-        f'{SUPABASE_URL}/rest/v1/{table}',
-        '-H', f'apikey: {SUPABASE_KEY}',
-        '-H', f'Authorization: Bearer {SUPABASE_KEY}',
-        '-H', 'Content-Type: application/json',
-        '-H', 'Prefer: return=representation',
-        '-d', json.dumps(data)
-    ]
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-    lines = result.stdout.strip().rsplit('\n', 1)
-    body = lines[0] if len(lines) > 1 else result.stdout
-    code = int(lines[1]) if len(lines) > 1 else 0
-    if code >= 400:
-        print(f"  ✗ Supabase POST {table} failed ({code}): {body[:200]}")
-        return None
-    try:
-        parsed = json.loads(body)
-        return parsed[0] if isinstance(parsed, list) and parsed else parsed
-    except:
-        return None
-
-def sb_patch(table, match, data):
-    """Update Supabase row via curl."""
-    url = f'{SUPABASE_URL}/rest/v1/{table}?{match}'
-    cmd = [
-        'curl', '-sS', '-X', 'PATCH', '-w', '\n%{http_code}',
-        url,
-        '-H', f'apikey: {SUPABASE_KEY}',
-        '-H', f'Authorization: Bearer {SUPABASE_KEY}',
-        '-H', 'Content-Type: application/json',
-        '-H', 'Prefer: return=representation',
-        '-d', json.dumps(data)
-    ]
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-    lines = result.stdout.strip().rsplit('\n', 1)
-    code = int(lines[1]) if len(lines) > 1 else 0
-    if code >= 400:
-        print(f"  ✗ Supabase PATCH {table} failed ({code})")
-    return code < 400
+# Load Pexels key
+try:
+    load_env('~/workspace/.env.pexels')
+    PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+except:
+    PEXELS_KEY = ''
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
-        cmd = [
-            'curl', '-sS', '-m', '10',
-            '-H', 'User-Agent: TheVideshi/1.0 (thevideshi.com)',
-            f'https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}'
-        ]
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
-        if result.returncode == 0:
-            data = json.loads(result.stdout)
-            img = data.get('originalimage', {}).get('source') or data.get('thumbnail', {}).get('source')
+        r = requests.get(
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
+        )
+        if r.status_code == 200:
+            data = r.json()
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
@@ -102,360 +64,389 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a specific image from Pexels using curl."""
-    if not PEXELS_API_KEY:
-        print("  ⚠ No Pexels API key")
+    """Fetch a relevant image from Pexels. Returns image URL or None."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key available")
         return None
+    
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            cmd = [
-                'curl', '-sS', '-m', '10',
-                '-H', f'Authorization: {PEXELS_API_KEY}',
-                f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'
-            ]
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
-            if result.returncode == 0:
-                data = json.loads(result.stdout)
-                photos = data.get('photos', [])
-                if photos:
-                    # Pick the first landscape photo with good resolution
-                    for photo in photos:
-                        url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
-                        if url:
-                            print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                            return url
+            import subprocess
+            result = subprocess.run(
+                ['curl', '-sS', f'https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape',
+                 '-H', f'Authorization: {PEXELS_KEY}'],
+                capture_output=True, text=True, timeout=15
+            )
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            if photos:
+                img_url = photos[0]['src']['large2x']
+                print(f"  ✓ Pexels image found for '{q}': {img_url[:80]}...")
+                return img_url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def upload_image_to_supabase(image_url, filename):
-    """Download image and upload to Supabase storage bucket."""
-    tmp_path = f'/tmp/{filename}'
-    try:
-        # Download
-        dl_cmd = ['curl', '-sS', '-L', '-m', '15', '-o', tmp_path, image_url]
-        subprocess.run(dl_cmd, capture_output=True, timeout=20)
-        
-        # Verify file size
-        if not os.path.exists(tmp_path) or os.path.getsize(tmp_path) < 5000:
-            print(f"  ✗ Downloaded image too small or missing: {tmp_path}")
-            return None
-        
-        # Upload to Supabase storage
-        upload_cmd = [
-            'curl', '-sS', '-X', 'POST', '-w', '\n%{http_code}',
-            f'{SUPABASE_URL}/storage/v1/object/article-images/{filename}',
-            '-H', f'apikey: {SUPABASE_KEY}',
-            '-H', f'Authorization: Bearer {SUPABASE_KEY}',
-            '-H', 'Content-Type: image/jpeg',
-            '-H', 'x-upsert: true',
-            '--data-binary', f'@{tmp_path}'
-        ]
-        result = subprocess.run(upload_cmd, capture_output=True, text=True, timeout=30)
-        lines = result.stdout.strip().rsplit('\n', 1)
-        code = int(lines[1]) if len(lines) > 1 else 0
-        
-        if code < 300:
-            public_url = f'{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}'
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ✗ Upload failed ({code}): {lines[0][:200] if lines else 'unknown'}")
-            return None
-    except Exception as e:
-        print(f"  ✗ Upload error: {e}")
-        return None
-    finally:
-        if os.path.exists(tmp_path):
-            os.remove(tmp_path)
-
-def validate_image_url(url):
-    """Check that the URL returns a valid image."""
+def validate_image(url):
+    """Validate that image URL returns 200 with image content-type and >5KB."""
     if not url:
         return False
     try:
-        cmd = ['curl', '-sS', '-I', '-m', '10', '-L', url]
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
-        headers = result.stdout.lower()
-        has_image = 'content-type: image/' in headers
-        # Check content-length
-        cl_match = re.search(r'content-length:\s*(\d+)', headers)
-        size_ok = int(cl_match.group(1)) > 5000 if cl_match else True  # if no CL header, assume OK
-        return has_image and size_ok
-    except:
-        return False
+        r = requests.get(url, timeout=10, stream=True, 
+                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct:
+            if cl > 5000:
+                print(f"  ✓ Image validated: {cl} bytes, {ct}")
+                return True
+            # Read first chunk to verify size
+            chunk = r.raw.read(6000)
+            if len(chunk) > 5000:
+                print(f"  ✓ Image validated via read: {ct}")
+                return True
+        print(f"  ⚠ Image check: status={r.status_code}, ct={ct}, cl={cl}")
+    except Exception as e:
+        print(f"  ⚠ Image validation failed: {e}")
+    return False
 
-# ─── ARTICLE DEFINITIONS ──────────────────────────────────────────────
+def publish_article(article):
+    """Publish article to Supabase."""
+    print(f"\n📝 Publishing: {article['headline']}")
+    
+    # Check for banned image sources
+    img = article.get('image_url', '')
+    if img:
+        banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
+        if any(b in img for b in banned):
+            print(f"  ❌ BANNED image source detected, removing: {img[:60]}")
+            article['image_url'] = None
+            article['image_caption'] = None
+            article['image_attribution'] = None
+    
+    # Validate required fields
+    hl = article.get('headline', '')
+    if len(hl) < 20 or len(hl) > 200:
+        print(f"  ⚠ Headline length issue: {len(hl)} chars")
+    
+    sub = article.get('subheadline', '')
+    if len(sub) < 15:
+        print(f"  ⚠ Subheadline too short: {len(sub)} chars")
+        return None
+    
+    body = article.get('body', '')
+    word_count = len(body.split())
+    if word_count < 400:
+        print(f"  ❌ Body too short: {word_count} words (minimum 400)")
+        return None
+    
+    slug = article.get('slug', '')
+    if not slug or slug == str(uuid.uuid4()):
+        print(f"  ❌ Invalid slug")
+        return None
+    
+    # Validate image
+    if article.get('image_url') and not validate_image(article['image_url']):
+        print(f"  ⚠ Image failed validation, removing")
+        article['image_url'] = None
+        article['image_caption'] = None
+    
+    payload = {
+        'headline': article['headline'],
+        'subheadline': article['subheadline'],
+        'body': article['body'],
+        'slug': slug,
+        'category': 'news',
+        'vertical': 'news',
+        'status': 'published',
+        'published_at': datetime.now(timezone.utc).isoformat(),
+        'sources': json.dumps(article.get('sources', [])),
+        'image_url': article.get('image_url'),
+        'image_caption': article.get('image_caption'),
+        'image_attribution': article.get('image_attribution'),
+    }
+    
+    # Remove None values
+    payload = {k: v for k, v in payload.items() if v is not None}
+    
+    try:
+        r = requests.post(
+            f"{SUPABASE_URL}/rest/v1/p2_articles",
+            headers=HEADERS,
+            json=payload,
+            timeout=15
+        )
+        if r.status_code in (200, 201):
+            result = r.json()
+            if isinstance(result, list) and result:
+                aid = result[0].get('id', 'unknown')
+                print(f"  ✅ Published! ID: {aid}, slug: {slug}, words: {word_count}")
+                return aid
+            else:
+                print(f"  ✅ Published! slug: {slug}, words: {word_count}")
+                return 'ok'
+        else:
+            print(f"  ❌ Publish failed: {r.status_code} {r.text[:200]}")
+            return None
+    except Exception as e:
+        print(f"  ❌ Publish error: {e}")
+        return None
 
-articles = [
-    {
-        "headline": "A Russian Drone Just Hit an Apartment Block in NATO Member Romania. The War in Ukraine Has Crossed a New Line.",
-        "subheadline": "For the first time since Russia's invasion began, a military drone struck a densely populated area in an EU and NATO country — injuring two civilians in the city of Galati and triggering condemnation from every Western capital.",
-        "slug": "russia-drone-hits-romania-apartment-nato-escalation-india-strategic-20260529",
-        "category": "news",
-        "vertical": "global-security",
-        "urgency": "high",
-        "tags": ["russia", "ukraine", "nato", "romania", "drone-strike", "article-5", "india-strategic-autonomy", "eu-sanctions"],
-        "diaspora_angle": "India's strategic balancing act between Russia and the West faces a new stress test. A NATO Article 5 scenario would force every major power to pick a side — and India's 4.5 million diaspora across Europe would be directly affected by any escalation.",
-        "sources": "Reuters, CNN, The Times, Fox News, NATO official statements",
-        "image_search_person": "Mark Rutte",
-        "image_search_pexels": "NATO military alliance",
-        "image_search_pexels_fallback": "European military defense drone",
-        "body": """For four minutes early Friday morning, a Russian military drone flew unchallenged through Romanian airspace before slamming into the roof of a ten-storey apartment block in the city of Galati. The explosion ripped through the top floor, sparked a fire, and sent seventy residents scrambling into the predawn darkness. A woman and her child were hospitalised with injuries. Two others were treated for panic attacks at the scene.
 
-It was, by every measure, a first. Russian drones have breached Romanian airspace 28 times since Moscow began systematically targeting Ukrainian ports along the Danube. Drone fragments have been recovered 47 times. But never before had a wartime drone struck a densely populated area inside a NATO and EU member state and injured civilians.
+# ============================================================
+# ARTICLE 1: India Sends Medical Supplies to Africa CDC Amid Ebola
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 1: India's Ebola Health Diplomacy")
+print("="*60)
 
-## NATO's Response Was Immediate
+# Image: Try Jaishankar on Wikipedia, then Pexels for medical supplies
+img1 = fetch_wikipedia_person_image("S. Jaishankar")
+if not img1:
+    img1 = fetch_pexels_image("medical supplies humanitarian aid", "medical relief packages")
 
-Within hours, the entire Western alliance had lined up behind Bucharest. NATO Secretary General Mark Rutte said the alliance "stands ready to defend every inch of Allied territory." EU Commission President Ursula von der Leyen announced she is preparing a 21st round of sanctions against Moscow. France summoned Russia's ambassador. Romania did the same.
+article1 = {
+    'headline': "India Just Sent Its First Medical Shipment to Fight Ebola in Africa. While America Builds Quarantine Camps, India Sends Cures.",
+    'subheadline': "New Delhi dispatched diagnostics, therapeutics, and protective equipment to the Africa CDC in Uganda as the Bundibugyo outbreak tops 900 suspected cases and the US faces a court order blocking its controversial Kenya quarantine facility.",
+    'slug': 'india-medical-supplies-africa-cdc-ebola-outbreak-health-diplomacy-20260529',
+    'image_url': img1,
+    'image_caption': "India's External Affairs Minister S. Jaishankar has championed the country's health diplomacy response to the Ebola crisis" if img1 and 'wikipedia' in str(img1).lower() else "India dispatched its first tranche of medical supplies to the Africa CDC in Uganda this week",
+    'image_attribution': 'Wikimedia Commons' if img1 and 'wikipedia' in str(img1).lower() or img1 and 'wikimedia' in str(img1).lower() else 'Pexels',
+    'sources': ["Nation Press", "Reuters", "World Health Organization", "CNN"],
+    'body': """India confirmed on Friday that it has delivered its first consignment of medical supplies to the Africa Centres for Disease Control and Prevention in Uganda, stepping into a global health emergency that has now killed at least 223 people and infected more than 900 across the Democratic Republic of Congo and Uganda.
 
-Romanian President Nicusor Dan called it a "systematic disregard for international law" and demanded a "firm, coordinated and proportionate response — at national, allied and international level." Foreign Minister Oana Toiu said Romania has requested accelerated transfers of anti-drone capabilities from NATO.
+The announcement, made by Ministry of External Affairs spokesperson Randhir Jaiswal at the weekly briefing in New Delhi, marks India's most visible health diplomacy intervention since the COVID-19 pandemic — and it comes at a moment when the world's richest country is drawing fierce criticism for its own Ebola response.
 
-The Romanian military scrambled two F-16 fighter jets and a military helicopter to monitor the attack. Under recently enacted Romanian law, pilots were authorised to shoot down any drones threatening lives or property — but no drones were intercepted.
+## What India Sent
 
-## The Escalation Pattern Is Unmistakable
+The consignment includes diagnostics, therapeutics, infection prevention and control materials, and case management support. The supplies were handed over by India's High Commissioner in Uganda to the Africa CDC's Eastern Africa Regional Coordinating Centre, and are being routed to affected communities in eastern DRC — the epicentre of the ongoing Bundibugyo Ebola outbreak.
 
-The Galati strike did not happen in isolation. In recent weeks, drones have strayed into Baltic airspace with increasing frequency. A NATO fighter jet shot down a suspected Ukrainian drone over Estonia days earlier. Lithuania warned citizens to take cover after a drone approached its airspace. Flights were grounded at a major European airport after a drone sighting.
+"We have sent medical supplies to the Africa CDC," Jaiswal said. "We look forward to further helping in whatever manner we can with the countries and with the Africa CDC in dealing with this public health emergency."
 
-Moscow's drone warfare campaign against Ukraine's Danube port infrastructure — Izmail, Reni, and surrounding areas — has been intensifying precisely because these targets sit within kilometres of Romania's border. The closer Russia's targets get to NATO territory, the higher the probability of exactly this kind of incident.
+External Affairs Minister S. Jaishankar had earlier flagged India's commitment on X, signalling that the response carries weight at the highest levels of government.
 
-EU Foreign Policy Chief Kaja Kallas put it bluntly: "Russia has long ago stopped respecting borders. Moscow cannot be allowed to breach European airspace with impunity."
+## The Outbreak by the Numbers
 
-## Why India Is Watching This Closely
+The World Health Organization reported on Friday that suspected cases have risen to 906, with 223 suspected deaths under investigation. The Bundibugyo strain — a rare form of Ebola for which there is no approved vaccine or cure — has a fatality rate of 30 to 50 percent among confirmed cases.
 
-For New Delhi, the Romania strike crystallises a set of calculations that India's foreign policy establishment has been making since Russia invaded Ukraine in February 2022.
+The WHO declared the outbreak a Public Health Emergency of International Concern on May 17, triggering a global response. India immediately issued travel advisories for Congo, Uganda, and South Sudan, and intensified screening at international airports.
 
-India has maintained what it calls strategic autonomy — refusing to join Western sanctions against Russia while simultaneously deepening its security partnerships with the United States and its Quad allies. Prime Minister Modi's government has argued that dialogue, not isolation, is the path to peace. India has continued purchasing discounted Russian crude oil, defended its position in multilateral forums, and avoided directly condemning Moscow.
+India also quarantined its first suspected Ebola case — a Ugandan woman in Bengaluru — earlier this week, though results are still pending.
 
-But the Galati incident tests the limits of that balancing act. If Russia's war physically threatens NATO civilians — and if NATO responds with a harder security posture — India's room to straddle both camps narrows. Any Article 5 invocation, however unlikely at this stage, would force every major power to pick a side.
+## The Serum Institute Connection
 
-India also has a direct interest in the drone warfare dimension. New Delhi has been investing heavily in indigenous drone capabilities and counter-drone systems, particularly after the 2020 Ladakh standoff with China exposed gaps in India's surveillance architecture. The Romania strike demonstrates that even sophisticated NATO air defences — Romania operates US-made Merops anti-drone systems — can struggle against low-flying drones in urban environments.
+India's response is not limited to government-to-government aid. The Serum Institute of India, the Pune-based vaccine manufacturer that produced over a billion COVID shots, is developing a Bundibugyo-specific vaccine — ChAdOx1 Bundibugyo — in partnership with Oxford University. The WHO said this week that the candidate could be available for clinical trials within two to three months, making it one of the fastest paths to a vaccine.
+
+The Serum Institute's involvement connects India's pharmaceutical muscle to the frontlines of the crisis. For a country that bills itself as the "pharmacy of the world," the Ebola response is both a humanitarian obligation and a strategic positioning play.
+
+## America's Controversial Alternative
+
+The contrast with Washington's approach could not be sharper. On Thursday, the White House announced it was setting up a 50-bed quarantine facility at Laikipia Air Base in Kenya — not to treat Africans, but to isolate American citizens exposed to Ebola so they would not be brought back to U.S. soil.
+
+"The United States' highest priority remains protecting the health and security of the American people by working to prevent the Ebola outbreak from reaching our shores," a State Department spokesperson said.
+
+The plan sparked immediate outrage in Kenya. The Katiba Institute, a civil society group, filed an emergency lawsuit, and a Kenyan high court on Thursday evening ordered a temporary suspension of the facility. Justice Patricia Nyaundi ruled that no one exposed to or infected with Ebola could be admitted under the arrangement until the case is fully heard. The next hearing is scheduled for June 2.
+
+Kenyan doctors were blunt. "We are utterly disgusted by the government's apparent willingness to trade national biosecurity and the lives of its citizens for foreign aid," the Kenya Medical Practitioners, Pharmacists and Dentists Union said.
+
+## What It Means for the Diaspora
+
+For the estimated 4.5 million Indian Americans and millions more NRIs worldwide, the Ebola crisis carries both practical and symbolic weight. Practically, India's travel advisory means direct flights to East Africa require additional screening, and Indian workers in the region face heightened health protocols.
+
+Symbolically, India's pivot to health diplomacy — sending cures rather than building camps — reinforces a narrative that New Delhi has cultivated since the pandemic: that India is a net provider of global public health goods, not a gatekeeper.
+
+The contrast with the American approach will not be lost on diaspora voters, many of whom are watching Washington's handling of the crisis with growing unease.
 
 ## What Happens Next
 
-Russia has not commented on the strike. It rarely does when its drones stray across borders, treating each incident as a byproduct of its war against Ukraine rather than an act of aggression against a sovereign state.
+The WHO is prioritising three experimental treatments — Mapp Biopharmaceutical's MBP134, Regeneron's maftivimab, and Gilead's remdesivir — for clinical trials. The most promising vaccine candidate, rVSV Bundibugyo from the International AIDS Vaccine Initiative, is still seven to nine months away from trial readiness.
 
-Romania, however, is not treating it that way. Bucharest has formally requested enhanced NATO anti-drone capabilities and has signalled it will push for stronger collective defence measures at the next alliance summit.
+India has indicated that Friday's delivery is only the "first tranche," suggesting more supplies are forthcoming. With the India-Africa Forum Summit postponed indefinitely due to the outbreak, New Delhi's medical response is now doing the diplomatic heavy lifting that the summit was supposed to accomplish.
 
-The question now is whether Galati becomes the incident that finally forces NATO to establish a permanent drone defence corridor along its eastern border — and whether that, in turn, draws the alliance deeper into the conflict Moscow insists is not Europe's war.
+For a country that sent vaccines to 25 African nations during COVID, the playbook is familiar. The stakes, with a 50 percent fatality rate, are considerably higher."""
+}
 
-For the 70 residents evacuated from their apartment block at 1 a.m. on a Friday morning, the war has already arrived."""
-    },
-    {
-        "headline": "India and China Just Held Their 35th Border Meeting in Beijing. Both Sides Called It 'Constructive.'",
-        "subheadline": "Six years after the Galwan Valley clash killed twenty Indian soldiers, the two Asian giants are methodically rebuilding trust — one working mechanism meeting at a time. The next step is a Special Representatives summit in China.",
-        "slug": "india-china-35th-wmcc-border-talks-beijing-delimitation-lac-20260529",
-        "category": "news",
-        "vertical": "india-diplomacy",
-        "urgency": "medium",
-        "tags": ["india", "china", "lac", "galwan", "border-talks", "wmcc", "jaishankar", "xi-jinping", "ladakh", "quad"],
-        "diaspora_angle": "A stable India-China border means India can redirect defence spending toward modernisation, Indian tech companies can plan without escalation risk, and the Quad framework that NRIs in the US benefit from can function as strategy rather than emergency.",
-        "sources": "Ministry of External Affairs (India), The Hindu BusinessLine, News Dive, The Kashmir Horizon, NewKerala",
-        "image_search_person": "S. Jaishankar",
-        "image_search_pexels": "India China border Ladakh mountains",
-        "image_search_pexels_fallback": "Himalayan mountain border landscape",
-        "body": """India and China held the 35th meeting of the Working Mechanism for Consultation and Coordination on India-China Border Affairs in Beijing on Wednesday, with both sides describing the discussions as "constructive and forward-looking" — diplomatic language that, in the context of a relationship that nearly collapsed into armed conflict six years ago, counts as progress.
+result1 = publish_article(article1)
 
-The Indian delegation was led by Sujit Ghosh, Joint Secretary for East Asia at the Ministry of External Affairs. The Chinese side was led by Hou Yanqi, Director General of the Boundary and Oceanic Affairs Department at China's Ministry of Foreign Affairs. Both are seasoned negotiators — Ghosh served as India's Deputy High Commissioner in the UK and as Director for China; Hou Yanqi was China's Ambassador to Nepal from 2018 to 2022.
 
-## What Was Actually Discussed
+# ============================================================
+# ARTICLE 2: RBI to Hold Rates in June, Hike Expected by Year-End
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 2: RBI Rate Decision")
+print("="*60)
 
-The agenda covered four substantive areas: delimitation of the border, border management protocols, mechanism-building for regular diplomatic and military contacts, and cross-border cooperation — a deliberately broad portfolio that signals both sides are ready to move beyond crisis management toward longer-term institution-building.
+# Image: Try RBI Governor on Wikipedia
+img2 = fetch_wikipedia_person_image("Sanjay Malhotra (banker)")
+if not img2:
+    img2 = fetch_wikipedia_person_image("Reserve Bank of India")
+if not img2:
+    img2 = fetch_pexels_image("Indian currency rupee bank", "central bank interest rates")
 
-India specifically pushed for an early meeting of the Expert Level Mechanism on Trans-border Rivers, a technically unglamorous but strategically critical issue. China's upstream dam-building on rivers that flow into India — the Brahmaputra chief among them — has been a source of deep anxiety in New Delhi for years. Getting Beijing to agree to regular expert-level consultations on water data would be a meaningful confidence-building measure.
+article2 = {
+    'headline': "The RBI Will Hold Rates Next Week. But a Majority of Economists Now Expect a Hike Before December.",
+    'subheadline': "With oil prices still 30 percent above pre-war levels and the rupee down 6 percent for the year, the central bank's rate-cut cycle may already be over — and the reversal could reshape everything from home loans to NRI fixed deposits.",
+    'slug': 'rbi-hold-rates-june-hike-expected-year-end-oil-rupee-nri-deposits-20260529',
+    'image_url': img2,
+    'image_caption': "The Reserve Bank of India's Monetary Policy Committee meets June 5 to decide on interest rates",
+    'image_attribution': 'Wikimedia Commons' if img2 and ('wikipedia' in str(img2).lower() or 'wikimedia' in str(img2).lower()) else 'Pexels',
+    'sources': ["Reuters", "STCI Primary Dealer", "IIFL Capital"],
+    'body': """The Reserve Bank of India will almost certainly hold its benchmark repo rate at 5.25 percent when its Monetary Policy Committee meets on June 5, according to a Reuters poll of 56 economists. But the more important signal buried in the survey is this: a majority now expect at least one rate hike before the year is out.
 
-Both sides agreed to maintain regular exchanges through the diplomatic and military channels established as outcomes of the 24th Special Representatives talks held last year, when National Security Advisor Ajit Doval and Chinese Foreign Minister Wang Yi met in New Delhi and produced a suite of agreements to stabilise the border.
+That shift — from "how many more cuts?" to "when does the tightening start?" — marks a potential turning point for India's economy, and for every NRI with money parked in Indian banks.
 
-## The Long Road From Galwan
+## The Numbers
 
-The trajectory here matters. In June 2020, Indian and Chinese soldiers fought a brutal hand-to-hand battle in the Galwan Valley that killed twenty Indian soldiers and an undisclosed number of Chinese troops. It was the deadliest border clash between the two nations in over four decades and sent bilateral relations to their lowest point since the 1962 war.
+Nearly 80 percent of economists — 44 of 56 — expect the MPC to hold rates unchanged next week. But among the rest, 11 forecast a 25-basis-point hike and one predicted a bigger 50-basis-point increase. In the April poll, only one respondent had predicted a June hike.
 
-What followed was a grinding, multi-year process of disengagement. Approximately 50,000 troops remained deployed on each side of the Line of Actual Control through years of talks. The breakthrough came in October 2024, when Prime Minister Narendra Modi and President Xi Jinping met in Kazan, Russia, and agreed on patrolling arrangements in the contested Depsang and Demchok areas.
+India's headline inflation remains benign at 3.48 percent in April — below the RBI's 4 percent medium-term target for over a year. That is the argument for patience. But the forces pushing the other way are accumulating fast.
 
-Since then, disengagement from all friction points has been completed. Patrolling activities and grazing have resumed along pre-2020 patterns. The Ministry of External Affairs confirmed this week that the Kazan agreement "has been fully implemented according to agreed modalities and timelines."
+## The Oil Problem
 
-## Why the NRI Community Should Pay Attention
+Crude oil prices have fallen 15 percent in May — the biggest monthly drop since March 2020 — on hopes that a US-Iran ceasefire extension will reopen the Strait of Hormuz. But even after the decline, Brent crude at around $92 a barrel remains roughly 30 percent above pre-war levels.
 
-For the Indian diaspora, the India-China relationship is not an abstract geopolitical chess game. It directly shapes India's economic trajectory, its defence spending priorities, and its position in the technology supply chain that Indian-American professionals dominate.
+India is the world's third-largest crude importer. Every dollar increase in oil prices costs the Indian economy an estimated $1.5 billion annually. The war premium on oil has already fed into wholesale price inflation, which accelerated sharply in April, and threatens to push consumer prices higher in the months ahead.
 
-A stable LAC means India can redirect defence spending from emergency border infrastructure toward longer-term modernisation. It means Indian technology companies can plan without the shadow of a sudden escalation disrupting supply chains through Southeast Asia. And it means the Quad — which India has deepened alongside the US, Japan, and Australia — can function as a strategic framework rather than an emergency coalition.
+"With growth facing downside risks while inflation faces strong upside pressures, we expect the RBI to hold rates steady in June, as supply shocks perceived as temporary might not warrant an interest rate action immediately," said Aditya Vyas, chief economist at STCI Primary Dealer.
 
-The next milestone is a meeting of the Special Representatives in China. No date has been announced, but both sides agreed this week to "make substantive preparation" for it — language that suggests the meeting is being treated as a near-term priority, not a distant aspiration.
+The key word is "immediately." The market is no longer debating whether rates will rise — only when.
 
-Chinese Ambassador to India Xu Feihong said on X that Assistant Foreign Minister Hong Lei met with Ghosh during the visit and that both sides "exchanged views on bilateral relations, multilateral cooperation, and boundary issues."
+## The Rupee Factor
 
-## The Bigger Picture
+The Indian rupee has fallen roughly 6 percent against the dollar in 2026, weighed down by foreign capital outflows, elevated oil import bills, and a lack of the AI-related investment flows that have boosted markets in the US, Japan, and South Korea.
 
-India's border diplomacy with China is happening against a backdrop of intensifying strategic competition in Asia. China has been deepening its ties with Pakistan — President Xi Jinping praised "unbreakable" ties with Islamabad during Pakistani Prime Minister Shehbaz Sharif's visit to Beijing this week.
+A weaker rupee makes imports more expensive, adding to inflationary pressure. It also makes Indian assets cheaper for foreign investors — but only if they believe the currency has found a floor. For now, the outflows continue.
 
-India, meanwhile, has been consolidating its partnerships with the US, Japan, and Australia through the Quad, and recently hosted Secretary of State Marco Rubio for discussions on trade, defence, and critical minerals.
-
-The 35th WMCC meeting suggests that despite all this, both New Delhi and Beijing have decided that a stable border serves their respective interests — even if broader strategic competition continues on every other front. Whether that pragmatism holds through the next crisis is the question neither side can answer yet."""
-    },
-    {
-        "headline": "India Just Ordered a 30-Day Strategic Reserve of Cooking Gas. The Iran War Explains Why.",
-        "subheadline": "New Delhi has told state-run fuel companies to build LPG storage for a full month of national demand — a direct response to the Strait of Hormuz crisis that has already choked India's basmati exports and driven up global energy prices.",
-        "slug": "india-lpg-30-day-strategic-reserve-iran-war-hormuz-energy-security-20260529",
-        "category": "news",
-        "vertical": "energy-security",
-        "urgency": "high",
-        "tags": ["india", "lpg", "strategic-reserve", "iran", "hormuz", "energy-security", "oil-ministry", "ujjwala", "crude-oil"],
-        "diaspora_angle": "Energy security is the thread connecting kitchen budgets in Lucknow to remittance values in New Jersey. When LPG prices spike, the rupee weakens, inflation rises, and the purchasing power of dollar-denominated NRI remittances shifts.",
-        "sources": "Reuters, Ministry of Petroleum and Natural Gas (India)",
-        "image_search_person": None,
-        "image_search_pexels": "LPG gas cylinders India cooking gas storage",
-        "image_search_pexels_fallback": "oil refinery India petroleum storage",
-        "body": """India's oil ministry has directed state-run fuel retailers to build liquefied petroleum gas storage capacity sufficient to meet 30 days of national demand — a significant escalation of the country's energy security posture that comes as the Iran-US conflict continues to threaten the Strait of Hormuz, through which roughly 60 percent of India's crude oil imports transit.
-
-Sujata Sharma, a joint secretary in the federal oil ministry, confirmed the directive on Friday, adding that India is also working on expanding its strategic crude oil reserves.
-
-## What 30 Days of LPG Actually Means
-
-India consumes approximately 30 million metric tonnes of LPG annually, making it the world's second-largest consumer after China. Nearly 320 million Indian households — overwhelmingly in rural areas — depend on subsidised LPG cylinders distributed through the Pradhan Mantri Ujjwala Yojana scheme and commercial distribution networks run by Indian Oil Corporation, Bharat Petroleum, and Hindustan Petroleum.
-
-Building a 30-day strategic reserve means storing roughly 2.5 million metric tonnes of LPG at any given time — a logistically enormous undertaking that will require new storage terminals, expanded port infrastructure, and potentially underground cavern storage similar to India's existing Strategic Petroleum Reserves at Visakhapatnam, Mangalore, and Padur.
-
-Currently, India's LPG storage capacity covers approximately 12 to 15 days of demand. Doubling that buffer is not a routine upgrade. It is a wartime measure dressed in peacetime language.
-
-## The Hormuz Factor
-
-The directive's timing is inseparable from the Iran crisis. Since military hostilities resumed between the United States and Iran, the Strait of Hormuz — the 33-kilometre-wide chokepoint connecting the Persian Gulf to the Arabian Sea — has been subject to intermittent disruptions that have sent oil and gas prices spiking globally.
-
-India imports roughly 85 percent of its crude oil and is heavily dependent on Middle Eastern suppliers. The Hormuz bottleneck has already hammered India's export economy: basmati rice exports crashed 27 percent as Gulf trade routes seized up. Cooking oil prices have risen. And the Reserve Bank of India has been forced to recalibrate its inflation forecasts to account for sustained energy price volatility.
-
-A framework deal between Iran and the US is reportedly close, with a 60-day memorandum of understanding that would extend the current ceasefire and reopen Hormuz. But India's oil ministry is clearly not betting on diplomacy alone.
-
-## The Crude Reserve Expansion
-
-Sharma's mention of expanding crude oil storage is equally significant. India currently has Strategic Petroleum Reserves holding approximately 5.33 million metric tonnes of crude — enough for about 9.5 days of imports. The government had already approved a second phase of strategic reserves at Chandikhol in Odisha and Padur Phase II in Karnataka, but construction has been slow.
-
-The Iran crisis appears to have accelerated that timeline. Building LPG and crude reserves simultaneously signals that New Delhi is preparing for a scenario in which Hormuz disruptions last months, not weeks — and that India cannot rely on any single diplomatic outcome to secure its energy supply.
+Foreign investors have been net sellers of Indian equities for much of 2026, and India's weight in the MSCI Emerging Markets index is expected to drop to 11.2 percent after the latest rebalancing — down from a peak of roughly 20 percent in July 2024.
 
 ## What This Means for NRIs
 
-For the Indian diaspora, energy security is the thread that connects kitchen budgets in Lucknow to remittance values in New Jersey. When LPG prices spike in India, the rupee weakens, inflation rises, and the purchasing power of dollar-denominated remittances shifts.
+For the millions of NRIs with Non-Resident External (NRE) and Non-Resident Ordinary (NRO) fixed deposits in Indian banks, the rate outlook matters directly.
 
-The 30-day LPG reserve directive is also a test of India's institutional capacity to execute large-scale infrastructure projects under pressure. The Ujjwala scheme — which connected over 100 million households to LPG for the first time — was a signature achievement of the Modi government. Protecting that achievement from supply disruptions is both an economic necessity and a political imperative ahead of state elections.
+If the RBI moves to hike rates later this year, NRE fixed deposit rates — which are already competitive at 6.5 to 7.5 percent for one-year terms — could climb further. That would widen the interest rate differential with US and UK deposits, making Indian FDs more attractive for parking overseas earnings.
 
-India is also working to diversify its LPG sourcing away from the Middle East. Imports from the United States, Australia, and Qatar have been increasing, and the government has been negotiating long-term supply contracts that reduce dependence on any single geographic corridor.
+But a weaker rupee partially offsets the higher yields. An NRI earning 7 percent on an Indian FD but losing 6 percent on currency depreciation is netting barely 1 percent in dollar terms. The calculus only works if the rupee stabilises.
 
-## The Broader Energy Security Picture
+For those with home loans in India — and many NRIs hold property — a rate hike would mean higher EMIs. Most Indian home loans are floating-rate, meaning any increase is passed through automatically.
 
-The LPG directive sits alongside a series of energy security measures India has taken since the Iran conflict escalated. The government has been accelerating its shift toward renewable energy, with solar and wind capacity additions running ahead of schedule. India's nuclear energy programme received a boost with the enactment of the Sustainable Harnessing and Advancement of Nuclear Energy bill. And discussions with Russia on discounted crude — one of the most diplomatically sensitive aspects of India's energy policy — have continued despite Western pressure.
+## The Bigger Picture
 
-But for 320 million households that cook with LPG every day, the strategic reserve is the measure that matters most. If Hormuz closes for a month, India's kitchens need to keep working.
+The RBI cut rates three times between December 2025 and April 2026, bringing the repo rate down from 6.00 percent to 5.25 percent. That easing cycle was designed to support an economy navigating the fallout from the Iran war, weak capital flows, and sluggish private investment.
 
-The oil ministry's directive makes that calculation explicit: prepare for the worst, negotiate for the best, and store enough gas to bridge the gap between the two."""
-    }
+But the war has lasted longer than anyone expected. Oil prices, while down from their March peak, remain elevated. And wholesale inflation is now flashing warning signs that the cost pressures will eventually reach consumers.
+
+"Interest rates are not a good tool to counter large supply shocks," Vyas cautioned. "Also, I do not think the RBI MPC will increase rates to defend the rupee since it is beyond the remit of the MPC."
+
+Not everyone agrees. Several economists in the Reuters poll argue that the RBI may need to act pre-emptively to anchor inflation expectations — especially if the Iran-US ceasefire talks collapse and oil surges again.
+
+## The June 5 Decision
+
+The MPC's June meeting will almost certainly deliver a hold. Governor Sanjay Malhotra, who took over earlier this year, has signalled a data-dependent approach. The real question is what the post-meeting statement says about the path ahead.
+
+If the RBI shifts its policy stance from "accommodative" to "neutral," markets will read it as a clear signal that the next move is up, not down. That single word change would ripple through bond markets, bank lending rates, and NRI deposit calculations within hours.
+
+For an economy that was enjoying the tailwinds of rate cuts just two months ago, the reversal — if it comes — would be remarkably swift. The Iran war did not just disrupt oil markets. It may have ended India's easing cycle before it was supposed to finish."""
+}
+
+result2 = publish_article(article2)
+
+
+# ============================================================
+# ARTICLE 3: India-South Korea Defense and Cyber Pact
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 3: India-South Korea Defense Pact")
+print("="*60)
+
+# Image: Try Rajnath Singh on Wikipedia
+img3 = fetch_wikipedia_person_image("Rajnath Singh")
+if not img3:
+    img3 = fetch_pexels_image("India military defense cooperation", "India South Korea flags")
+
+article3 = {
+    'headline': "India and South Korea Just Signed a Defense and Cyber Pact in Seoul. The Indo-Pacific Chessboard Is Getting More Crowded.",
+    'subheadline': "Defence Minister Rajnath Singh's visit produced an MoU on military cyber security, defence information sharing, and joint technology development — deepening a 'Special Strategic Partnership' that both sides are now treating as a pillar of Indo-Pacific stability.",
+    'slug': 'india-south-korea-defense-cyber-mou-rajnath-singh-indo-pacific-20260529',
+    'image_url': img3,
+    'image_caption': "Defence Minister Rajnath Singh signed the new MoU with his South Korean counterpart Ahn Gyu-back in Seoul",
+    'image_attribution': 'Wikimedia Commons' if img3 and ('wikipedia' in str(img3).lower() or 'wikimedia' in str(img3).lower()) else 'Pexels',
+    'sources': ["The Indian Eye", "Ministry of Defence, India", "Reuters"],
+    'body': """India and South Korea have signed a new Memorandum of Understanding on defence, cyber security, and defence information sharing, marking the most significant upgrade to their military relationship since the "Special Strategic Partnership" was established in 2015.
+
+The pact was signed in Seoul during Union Defence Minister Rajnath Singh's official visit, in the presence of South Korean Defence Minister Ahn Gyu-back. It formalises cooperation that both countries have been quietly building for years but are now willing to put on paper — and on display.
+
+## What the MoU Covers
+
+The agreement spans three core areas. First, defence cooperation: expanded joint exercises, defence industry collaboration, and technology transfer. Second, cyber security: shared protocols for countering cyber threats and protecting critical military infrastructure. Third, information sharing: institutional mechanisms for real-time intelligence coordination in the Indo-Pacific.
+
+Officials said the pact would help both militaries improve "situational awareness" — the diplomatic way of saying they plan to share intelligence on Chinese naval and cyber activity in the region.
+
+## Why Now
+
+The timing is not accidental. South Korean President Lee Jae-myung visited India just a month ago in what both governments described as a milestone. That trip set the stage for Singh's follow-up, which was designed to convert political goodwill into operational defence agreements.
+
+The strategic logic is straightforward. India and South Korea share a growing concern about Chinese assertiveness — India on its Himalayan border and in the Indian Ocean, South Korea on the Korean Peninsula and in its maritime approaches. Both are democracies with advanced defence industries. And both have been quietly building bilateral military ties that neither wants to frame publicly as anti-China, even though the subtext is unmistakable.
+
+"India and South Korea are fully poised to take their partnership to new heights," Singh said after the signing ceremony. His counterpart Ahn called the relationship "a crucial pillar for stability in the Indo-Pacific."
+
+## The Defence Industry Angle
+
+For India's defence sector, the South Korean connection is increasingly valuable. South Korea is one of the world's top arms exporters, with companies like Hanwha Aerospace, Korea Aerospace Industries, and Hyundai Rotem producing everything from howitzers and fighter jets to submarines and infantry vehicles.
+
+India's defence modernisation push — backed by a record ₹7.84 lakh crore budget allocation for 2026-27 — needs partners who can deliver technology transfer, not just finished products. South Korea, unlike some Western suppliers, has shown a willingness to co-develop and co-produce with Indian firms.
+
+The two sides discussed expanding cooperation in UN peacekeeping operations and defence education exchanges, signalling a desire to institutionalise the relationship beyond equipment deals.
+
+## The Cyber Dimension
+
+The cyber security component of the MoU may be the most consequential in the long run. India has faced an escalating series of cyber attacks on its military and critical infrastructure — from power grids to defence research labs — that Indian intelligence officials have attributed to state-sponsored actors in China and Pakistan.
+
+South Korea, which faces daily cyber probes from North Korea, has developed sophisticated cyber defence capabilities. The new agreement allows both countries to share best practices, conduct joint cyber exercises, and build stronger institutional mechanisms for threat detection and response.
+
+For India's military, which is still in the early stages of building a dedicated cyber command, the South Korean partnership offers a fast track to capabilities that would take years to develop independently.
+
+## The Quad Connection
+
+India's deepening defence ties with South Korea sit alongside its existing partnerships in the Quad (with the US, Japan, and Australia), the recently activated India-France-Australia trilateral, and expanding defence cooperation with countries like Vietnam, the Philippines, and Indonesia.
+
+The pattern is clear: India is building a web of bilateral and minilateral defence relationships across the Indo-Pacific, each calibrated to avoid provoking China into outright confrontation while steadily constraining Beijing's freedom of action.
+
+South Korea, while not a Quad member, has been moving closer to the grouping's orbit. Its defence industries are already major suppliers to Poland, Australia, and several Southeast Asian nations. A deeper defence-industrial relationship with India would further embed South Korea in the emerging Indo-Pacific security architecture.
+
+## What It Means for the Diaspora
+
+India's defence partnerships rarely make headlines in NRI communities, but they have real consequences. A stronger India-South Korea axis could accelerate technology transfer in areas like shipbuilding, aerospace, and electronics — sectors where both NRI professionals and Indian industry stand to benefit.
+
+South Korea is also home to a small but growing Indian community, particularly in the technology and academic sectors. The defence partnership adds another layer of institutional ties between the two countries, making it easier for Indian professionals to operate in South Korea's heavily networked economy.
+
+For the broader diaspora, the pact is another data point in India's evolution from a non-aligned state to an active security provider in the Indo-Pacific. That shift changes how India is perceived in Washington, London, and Canberra — and how Indian Americans and British Indians can leverage their dual identities in strategic conversations.
+
+## What Happens Next
+
+The two sides agreed to deepen strategic communication through foreign and defence ministerial dialogues, and to support task forces established to fast-track joint initiatives. Singh and Ahn also discussed a potential visit by Singh to observe a South Korean military exercise later this year.
+
+The MoU is a framework, not a procurement deal. The real test will be whether it leads to concrete defence-industrial contracts, joint exercises with operational substance, and genuine intelligence sharing — or whether it remains a diplomatic gesture.
+
+Given the pace of events in the Indo-Pacific, neither country has the luxury of waiting."""
+}
+
+result3 = publish_article(article3)
+
+
+# ============================================================
+# SUMMARY
+# ============================================================
+print("\n" + "="*60)
+print("BATCH SUMMARY")
+print("="*60)
+results = [
+    ("India Ebola Health Diplomacy", result1),
+    ("RBI Rate Decision", result2),
+    ("India-South Korea Defense Pact", result3),
 ]
-
-# ─── MAIN ──────────────────────────────────────────────────────────────
-
-def main():
-    print(f"\n{'='*60}")
-    print(f"The Videshi — News Writer")
-    print(f"Run: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    print(f"Articles to write: {len(articles)}")
-    print(f"{'='*60}\n")
-
-    published_count = 0
-
-    for i, article in enumerate(articles, 1):
-        print(f"\n--- Article {i}/{len(articles)}: {article['headline'][:60]}... ---")
-
-        # Image sourcing
-        img_url = None
-        img_attribution = None
-
-        # Step 1: Wikipedia for person articles
-        if article.get('image_search_person'):
-            print(f"  Trying Wikipedia for '{article['image_search_person']}'...")
-            img_url = fetch_wikipedia_person_image(article['image_search_person'])
-            if img_url:
-                img_attribution = "Wikimedia Commons"
-
-        # Step 2: Pexels fallback
-        if not img_url and article.get('image_search_pexels'):
-            print(f"  Trying Pexels for '{article['image_search_pexels']}'...")
-            img_url = fetch_pexels_image(
-                article['image_search_pexels'],
-                article.get('image_search_pexels_fallback')
-            )
-            if img_url:
-                img_attribution = "The Videshi"
-
-        # Validate image
-        if img_url:
-            print(f"  Validating image URL...")
-            if not validate_image_url(img_url):
-                print(f"  ✗ Image validation failed, skipping image")
-                img_url = None
-
-        # Generate article ID
-        art_id = str(uuid.uuid4())
-
-        # Upload image to Supabase for permanence
-        final_img_url = None
-        if img_url:
-            print(f"  Uploading to Supabase storage...")
-            final_img_url = upload_image_to_supabase(img_url, f"{art_id}.jpg")
-
-        # Build article record
-        now_iso = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
-        word_count = len(article["body"].split())
-        record = {
-            "id": art_id,
-            "headline": article["headline"],
-            "subheadline": article["subheadline"],
-            "slug": article["slug"],
-            "body": article["body"].strip(),
-            "category": article["category"],
-            "vertical": article["vertical"],
-            "urgency": article["urgency"],
-            "tags": article["tags"],
-            "diaspora_angle": article["diaspora_angle"],
-            "status": "published",
-            "published_at": now_iso,
-            "created_at": now_iso,
-            "sources": article["sources"],
-            "word_count": word_count,
-            "image_attribution": img_attribution or "The Videshi"
-        }
-
-        if final_img_url:
-            record["image_url"] = final_img_url
-
-        # Validate article quality
-        print(f"  Word count: {word_count}")
-        if word_count < 400:
-            print(f"  ✗ REJECTED: body too short ({word_count} words, need 400+)")
-            continue
-        if len(article["headline"]) > 200:
-            print(f"  ✗ REJECTED: headline too long ({len(article['headline'])} chars)")
-            continue
-        if len(article["subheadline"]) < 15:
-            print(f"  ✗ REJECTED: subheadline too short")
-            continue
-
-        # Publish
-        print(f"  Publishing to Supabase...")
-        result = sb_post("p2_articles", record)
-        if result:
-            print(f"  ✓ Published: {article['slug']}")
-            print(f"    ID: {art_id}")
-            print(f"    Image: {'yes' if final_img_url else 'no'}")
-            published_count += 1
-        else:
-            print(f"  ✗ Failed to publish: {article['slug']}")
-
-        # Small delay between articles
-        time.sleep(1)
-
-    print(f"\n{'='*60}")
-    print(f"Done. Published {published_count}/{len(articles)} articles.")
-    print(f"{'='*60}\n")
-
-if __name__ == '__main__':
-    main()
+for title, r in results:
+    status = "✅" if r else "❌"
+    print(f"  {status} {title}: {r}")
+print(f"\nCompleted at {datetime.now(timezone.utc).isoformat()}")
