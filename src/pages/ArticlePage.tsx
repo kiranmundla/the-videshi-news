@@ -18,6 +18,8 @@ import {
 import HeroMedia from "@/components/HeroMedia";
 import PhotoScrollStrip from "@/components/PhotoScrollStrip";
 import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
+import YouTubeEmbed, { extractYouTubeId } from "@/components/YouTubeEmbed";
+import ChampionsTimeline from "@/components/ChampionsTimeline";
 
 /* ------------------------------------------------------------------ */
 /* Gemini-style compact sources pill                                  */
@@ -166,6 +168,9 @@ function SourcesPill({
 
 /* ── Markdown renderer that auto-detects social embed URLs ── */
 
+const CHAMPIONS_HEADING_RE = /^##\s+Every Indian American Champion.*$/m;
+const YOUTUBE_TAG_RE = /<youtube>(.*?)<\/youtube>/;
+
 function MarkdownWithEmbeds({
   body,
   heroImageUrl,
@@ -175,24 +180,60 @@ function MarkdownWithEmbeds({
   heroImageUrl?: string;
   title: string;
 }) {
+  // Pre-process: strip the champions table section (component renders it)
+  let processedBody = body;
+  if (CHAMPIONS_HEADING_RE.test(processedBody)) {
+    // Remove from the heading through the stat line + footnote
+    processedBody = processedBody.replace(
+      /## Every Indian American Champion[^\n]*\n[\s\S]*?\*\*31 Indian American champions\.[^\n]*\n?/,
+      "<!-- champions-timeline -->\n"
+    );
+    // Also remove the ★ footnote line if still present
+    processedBody = processedBody.replace(
+      /★ = Co-champion[^\n]*\n?/,
+      ""
+    );
+  }
+
   // Split body into chunks: lines that are bare social URLs become embed
-  // blocks; everything else gets passed to ReactMarkdown as one chunk.
-  const lines = body.split("\n");
-  const chunks: { kind: "md"; text: string }[] | { kind: "embed"; platform: "instagram" | "twitter"; url: string }[] = [];
+  // blocks; <youtube> tags become YouTube embeds; the champions-timeline
+  // marker becomes its own chunk; everything else passes to ReactMarkdown.
+  const lines = processedBody.split("\n");
+  const chunks: any[] = [];
   let mdBuf: string[] = [];
 
   const flush = () => {
     if (mdBuf.length) {
-      (chunks as any[]).push({ kind: "md", text: mdBuf.join("\n") });
+      const text = mdBuf.join("\n");
+      // Check for <youtube> tags inside the markdown buffer
+      if (YOUTUBE_TAG_RE.test(text)) {
+        // Split around <youtube> tags
+        const parts = text.split(/(<youtube>.*?<\/youtube>)/g);
+        for (const part of parts) {
+          const ytMatch = part.match(/<youtube>(.*?)<\/youtube>/);
+          if (ytMatch && extractYouTubeId(ytMatch[1])) {
+            chunks.push({ kind: "youtube", url: ytMatch[1] });
+          } else if (part.trim()) {
+            chunks.push({ kind: "md", text: part });
+          }
+        }
+      } else {
+        chunks.push({ kind: "md", text });
+      }
       mdBuf = [];
     }
   };
 
   for (const line of lines) {
+    if (line.trim() === "<!-- champions-timeline -->") {
+      flush();
+      chunks.push({ kind: "champions-timeline" });
+      continue;
+    }
     const embed = detectSocialUrl(line);
     if (embed) {
       flush();
-      (chunks as any[]).push({ kind: "embed", ...embed });
+      chunks.push({ kind: "embed", ...embed });
     } else {
       mdBuf.push(line);
     }
@@ -244,6 +285,10 @@ function MarkdownWithEmbeds({
       {(chunks as any[]).map((chunk, i) =>
         chunk.kind === "embed" ? (
           <SocialEmbed key={i} platform={chunk.platform} url={chunk.url} />
+        ) : chunk.kind === "youtube" ? (
+          <YouTubeEmbed key={i} url={chunk.url} />
+        ) : chunk.kind === "champions-timeline" ? (
+          <ChampionsTimeline key={i} />
         ) : (
           <ReactMarkdown key={i} components={mdComponents}>
             {chunk.text}
