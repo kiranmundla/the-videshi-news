@@ -1,35 +1,44 @@
 #!/usr/bin/env python3
-"""
-The Videshi News Writer — 2026-05-29 batch
-Publishes 3 news articles with Wikipedia/Pexels images.
-"""
+"""News writer for The Videshi — May 29, 2026 evening batch."""
 
-import json, os, sys, time, uuid, re
-import requests
+import json, os, sys, uuid, re, urllib.parse
 from datetime import datetime, timezone
 
-# ─── ENV ────────────────────────────────────────────────────────────
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
+import requests
+
+# ── Load credentials ────────────────────────────────────────────────
+def load_env(path):
+    if not os.path.exists(path):
+        return
+    for line in open(path):
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k, v)
+
+load_env(os.path.expanduser("~/.env.supabase"))
+load_env(os.path.expanduser("~/workspace/.env.pexels"))
+
+SB_URL = os.environ["SUPABASE_URL"]
+SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "apikey": SB_KEY,
+    "Authorization": f"Bearer {SB_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation",
 }
 
-# ─── IMAGE HELPERS ──────────────────────────────────────────────────
+# ── Wikipedia image helper ──────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            timeout=10,
         )
         if r.status_code == 200:
             data = r.json()
@@ -41,355 +50,319 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
+# ── Pexels image helper ─────────────────────────────────────────────
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels. Returns URL or None."""
-    if not PEXELS_API_KEY:
+    """Search Pexels for a relevant image using curl (urllib gets 403)."""
+    if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            import subprocess
-            result = subprocess.run(
-                ["curl", "-sS", "-H", f"Authorization: {PEXELS_API_KEY}",
-                 f"https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape"],
-                capture_output=True, text=True, timeout=15
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                params={"query": q, "per_page": 5, "orientation": "landscape"},
+                headers={"Authorization": PEXELS_KEY},
+                timeout=10,
             )
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for photo in photos:
-                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("original")
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                for p in photos:
+                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+                    if url:
+                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                        return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def upload_image_to_supabase(image_url, filename):
-    """Download an image and upload to Supabase storage. Returns public URL."""
+# ── Image validation ────────────────────────────────────────────────
+def validate_image_url(url):
+    """Check URL returns a real image (HTTP 200, image/*, >5KB)."""
+    if not url:
+        return False
     try:
-        r = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=15)
-        if r.status_code != 200:
-            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
-            return image_url  # fallback to original
-        content_type = r.headers.get("Content-Type", "image/jpeg")
-        if "image" not in content_type:
-            print(f"  ⚠ Not an image: {content_type}")
-            return image_url
-        if len(r.content) < 5000:
-            print(f"  ⚠ Image too small: {len(r.content)} bytes")
-            return image_url
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
+            return True
+        # Try GET if HEAD didn't return Content-Length
+        if r.status_code == 200 and "image" in ct:
+            r2 = requests.get(url, timeout=10, stream=True,
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
+                return True
+    except Exception as e:
+        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
+    return False
 
-        # Upload to Supabase storage
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+# ── Upload to Supabase storage ──────────────────────────────────────
+def upload_image_to_supabase(image_url, filename):
+    """Download image and upload to Supabase article-images bucket."""
+    try:
+        r = requests.get(image_url, timeout=15,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code != 200 or len(r.content) < 5000:
+            print(f"  ⚠ Download failed: status={r.status_code}, size={len(r.content)}")
+            return None
+        
+        ct = r.headers.get("Content-Type", "image/jpeg")
+        upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
         resp = requests.post(
             upload_url,
             headers={
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": content_type,
+                "apikey": SB_KEY,
+                "Authorization": f"Bearer {SB_KEY}",
+                "Content-Type": ct,
                 "x-upsert": "true",
             },
             data=r.content,
             timeout=30,
         )
         if resp.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ⚠ Supabase upload failed: {resp.status_code} {resp.text[:200]}")
-            return image_url
+            print(f"  ⚠ Upload failed: {resp.status_code} {resp.text[:200]}")
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
-        return image_url
+    return None
 
-
-def validate_image(url):
-    """Check if an image URL is valid and not a tiny placeholder."""
-    if not url:
-        return False
-    # Block Meta CDN URLs
-    bad_domains = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com"]
-    bad_params = ["_nc_ht=", "_nc_cat=", "ccb="]
-    for bd in bad_domains:
-        if bd in url:
-            return False
-    for bp in bad_params:
-        if bp in url:
-            return False
-    try:
-        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if "image" not in ct:
-            return False
-        if cl > 0 and cl < 5000:
-            return False
-        return r.status_code == 200
-    except:
-        return True  # can't verify, assume OK
-
-
-# ─── ARTICLE PUBLISHER ─────────────────────────────────────────────
+# ── Publish article ─────────────────────────────────────────────────
 def publish_article(article):
-    """Insert article into Supabase."""
+    """Insert article into p2_articles."""
+    art_id = str(uuid.uuid4())
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
+    
     payload = {
+        "id": art_id,
         "headline": article["headline"],
         "subheadline": article["subheadline"],
         "body": article["body"],
         "slug": article["slug"],
         "category": article["category"],
-        "vertical": article.get("vertical", "news"),
+        "vertical": article["category"],
         "status": "published",
         "published_at": now,
-        "sources": json.dumps(article.get("sources", [])),
+        "sources": json.dumps(article["sources"]),
         "image_url": article.get("image_url"),
-        "image_caption": article.get("image_caption", ""),
         "image_attribution": article.get("image_attribution", ""),
     }
-
+    
     r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        f"{SB_URL}/rest/v1/p2_articles",
         headers=HEADERS,
         json=payload,
-        timeout=30,
+        timeout=15,
     )
     if r.status_code in (200, 201):
         result = r.json()
-        art_id = result[0]["id"] if isinstance(result, list) and result else "unknown"
-        print(f"  ✅ Published: {article['headline'][:60]}... [{art_id[:8]}]")
-        return art_id
+        returned_id = result[0]["id"] if isinstance(result, list) and result else art_id
+        print(f"  ✓ Published: {article['headline'][:60]}... (id={returned_id})")
+        return returned_id
     else:
-        print(f"  ❌ Failed to publish: {r.status_code} {r.text[:300]}")
+        print(f"  ✗ FAILED to publish: {r.status_code} {r.text[:300]}")
         return None
 
 
-# ─── ARTICLES ───────────────────────────────────────────────────────
-def build_articles():
-    articles = []
+# ══════════════════════════════════════════════════════════════════════
+# ARTICLE 1: Intel $3.3B semiconductor plant in Odisha
+# ══════════════════════════════════════════════════════════════════════
 
-    # ── ARTICLE 1: Newark Airport International Flights Threat ──
-    articles.append({
-        "headline": "The U.S. Just Threatened to Shut Down International Flights at Newark. The FIFA World Cup Starts in 13 Days.",
-        "subheadline": "DHS Secretary Markwayne Mullin says customs officers could be pulled from sanctuary city airports, stranding millions of travelers — including the diaspora — weeks before the World Cup kicks off in New Jersey.",
-        "slug": "dhs-newark-international-flights-threat-sanctuary-cities-fifa-world-cup-nri-20260529",
-        "category": "news",
-        "sources": [
-            {"name": "Reuters", "url": "https://www.reuters.com"},
-            {"name": "USA Today", "url": "https://www.usatoday.com"},
-            {"name": "U.S. Travel Association", "url": "https://www.ustravel.org"},
-            {"name": "NorthJersey.com", "url": "https://www.northjersey.com"}
-        ],
-        "image_search": {"pexels": "Newark airport terminal international flights", "fallback": "airport departures board"},
-        "image_caption": "Newark Liberty International Airport, a major gateway for international travelers and the Indian diaspora on the U.S. East Coast.",
-        "body": """The Trump administration has escalated a standoff with Democratic-led cities to a point that could paralyse international air travel at some of America's busiest airports — just as the FIFA World Cup is about to begin.
+article1 = {
+    "headline": "Intel Just Signed a $3.3 Billion Deal to Build a Semiconductor Plant in Odisha. This Is Not a Promise. It Is an MoU.",
+    "subheadline": "The facility will make glass-core substrates for AI and 5G chips. It is the biggest single-site semiconductor investment India has ever landed.",
+    "slug": "intel-3dgs-3-3-billion-semiconductor-substrate-plant-odisha-20260529",
+    "category": "news",
+    "sources": [
+        {"name": "Reuters", "url": "https://www.reuters.com/technology/intel-3dgs-set-up-33-billion-substrate-plant-indias-odisha-state-2026-05-29/"},
+        {"name": "The Tech Portal", "url": "https://thetechportal.com/2026/05/29/intel-set-up-3-3bn-substrate-manufacturing-plant-india/"},
+        {"name": "TechGolly", "url": "https://techgolly.com/intel-india-semiconductor-expansion/"},
+    ],
+    "body": """On Friday morning, the government of Odisha signed a Memorandum of Understanding with Intel Corporation and 3D Glass Solutions, a U.S.-based advanced packaging company, to build a $3.3 billion semiconductor substrate manufacturing facility in the Bhubaneswar-Khurda region.
 
-On May 28, Department of Homeland Security Secretary Markwayne Mullin warned on Fox News that the U.S. government could pull Customs and Border Protection officers from Newark Liberty International Airport in New Jersey. Without those officers, no international flight can land and have its passengers processed into the country.
+The announcement, confirmed by India's IT Minister Ashwini Vaishnaw on social media, marks one of the largest foreign direct investments in India's semiconductor history. It is also the clearest signal yet that Intel — which has spent years circling India without committing to a major manufacturing presence — is ready to put real money on the ground.
 
-"If things don't change, we're going to have to make this step pretty quick," Mullin said, referring to what he described as a lack of cooperation from local law enforcement around federal immigration enforcement operations.
+## What Will the Plant Actually Make?
 
-## What Triggered the Threat
+Not chips. Not the transistor-etched silicon wafers that TSMC and Samsung produce. The Odisha facility will manufacture **advanced packaging glass-core substrates** — the foundational material on which semiconductor components are mounted, connected, and packaged into finished products.
 
-The immediate trigger is a confrontation at Delaney Hall, an ICE-run detention facility in Newark. Detainees began a hunger strike on May 22 over conditions including alleged food shortages and lack of medical care. Protests outside the facility have grown, drawing Democratic lawmakers and immigration advocacy groups.
+Glass substrates are emerging as a critical upgrade over traditional organic substrates. They offer better thermal stability, tighter interconnect density, and more reliable signal transmission — all of which matter enormously for AI accelerators, 5G/6G telecommunications equipment, defense electronics, and high-performance computing systems.
 
-Senator Andy Kim of New Jersey said he was hit with pepper spray by federal officers outside Delaney Hall earlier this week. New Jersey's governor has resisted calls to deploy state police to assist federal immigration officials at the site.
+Intel will act as the technology partner, providing process expertise, technology licensing, quality systems, and workforce training. 3DGS, a specialist in glass-based semiconductor packaging, will co-develop the facility. The plant will be located within Odisha's Info Valley industrial park and will be built in phases over five to six years.
 
-Mullin framed the airport threat as a resource question: if federal officers must be diverted to protect ICE agents at detention centres, those officers cannot simultaneously process travellers at airports.
+## The Jobs and the Ecosystem
 
-"If Customs isn't there processing international flights, then those individuals when the airlines land won't be permitted into the United States," Mullin told Fox News.
+The project is expected to generate more than 1,800 direct high-skilled jobs, plus thousands of indirect positions across electronics manufacturing, logistics, chemicals, precision engineering, and semiconductor supply chains.
 
-## The Sanctuary City Dimension
+For Odisha, a state that has traditionally been associated with mining and steel rather than high technology, the deal represents a potentially transformative pivot. Chief Minister Mohan Charan Majhi presided over the MoU signing and has been aggressively courting semiconductor investments as part of his administration's industrial strategy.
 
-The threat extends well beyond Newark. Acting Attorney General Todd Blanche called halting international flight processing in sanctuary cities an "extreme" option, but one that "needed to be considered." The Department of Justice's sanctuary city list includes New York City, Los Angeles, San Francisco, Chicago, Boston, Seattle, Philadelphia, and Denver — home to some of America's largest airports.
+## Where This Fits in India's Chip Ambitions
 
-For the Indian American community, concentrated in the New York-New Jersey metropolitan area more than almost anywhere else in the country, the implications are immediate. Newark is a United Airlines hub and a primary gateway for flights from India and the Middle East. JFK and LaGuardia, also potentially affected, handle millions of international arrivals annually.
+India has pledged tens of billions of dollars in subsidies to attract semiconductor manufacturing under Prime Minister Narendra Modi's push for domestic production. The Tata Group is already building India's first fabrication facility in Gujarat with Taiwan's Powerchip, and a separate assembly and testing plant in Assam.
 
-## The World Cup Complication
+But substrate manufacturing is a different link in the chain — one that has been almost entirely dominated by Japanese, South Korean, and Taiwanese firms. Landing Intel's involvement in this segment gives India a presence in the advanced packaging layer, which is increasingly important as chipmakers push beyond Moore's Law limitations by stacking and interconnecting chips in novel ways.
 
-The timing could not be worse. The 2026 FIFA World Cup, co-hosted by the United States, Mexico, and Canada, kicks off on June 11 — just 13 days away. MetLife Stadium in East Rutherford, New Jersey, will host the final on July 19. The tournament is expected to bring over one million international visitors to the New York-New Jersey region alone.
+## Why It Matters for the Diaspora
 
-The U.S. Travel Association warned that removing immigration officials from Newark could cost $8 billion annually in tourist spending. The group noted that the airport processes five million Americans returning home each year, in addition to millions of foreign visitors.
+The semiconductor industry employs tens of thousands of Indian engineers in the United States, many of them at Intel, AMD, Nvidia, Qualcomm, and Broadcom. A major Intel-backed facility in India could create a reverse talent pipeline — offering experienced diaspora engineers a reason to return, consult, or lead operations closer to home.
 
-"This could damage America's reputation as a welcoming destination," the association said, calling the potential action "devastating."
+For NRIs in tech, the Odisha announcement is also a signal about the trajectory of India's industrial strategy. The country is no longer just chasing chip fabrication as a nationalist prestige project. It is building out the supply chain piece by piece — packaging, substrates, testing, assembly — in a way that could eventually make India a credible alternative in a global semiconductor ecosystem that remains dangerously concentrated in Taiwan.
 
-## What It Means for the Diaspora
+## The Reality Check
 
-Indian Americans flying in or out of Newark, JFK, or other major East Coast airports would face disruption whether or not they are U.S. citizens. Customs and Border Protection processes all international arrivals, including returning American citizens and green card holders. Without CBP officers, planes cannot deplane international passengers.
+An MoU is not a factory. India has seen semiconductor announcements collapse before — most notably the Foxconn-Vedanta partnership that fell apart in 2023 after months of uncertainty. Implementation timelines, land acquisition, environmental clearances, water supply, and power infrastructure all remain variables that can derail even well-funded projects.
 
-For NRIs visiting family in India, the summer travel season is already at its peak. A disruption at Newark would force travellers to reroute through airports in non-sanctuary jurisdictions — assuming those airports have capacity.
+The five-to-six-year timeline also means the plant will not contribute to India's industrial output until the early 2030s, by which time the global semiconductor landscape could look very different.
 
-Airlines are reportedly making urgent calls to the administration and Congress. United Airlines, the dominant carrier at Newark, declined to comment publicly.
+But the Intel brand carries a weight that previous Indian semiconductor ventures lacked. If this plant moves from MoU to groundbreaking on schedule, it will be the most consequential single investment in India's chip ecosystem to date.""",
+}
 
-## No Action Yet, but the Threat Is Real
+# ══════════════════════════════════════════════════════════════════════
+# ARTICLE 2: Rupee surges to best day in 2 months
+# ══════════════════════════════════════════════════════════════════════
 
-As of May 29, no flights have been cancelled or rerouted. The FAA, Port Authority of New York and New Jersey, and airlines have announced no changes. But the administration has made clear the option is on the table.
+article2 = {
+    "headline": "The Rupee Just Had Its Best Day in Two Months. The Reason: Oil Fell and the RBI Stepped In.",
+    "subheadline": "India's currency jumped 0.7 percent to 95 per dollar as Iran deal hopes collided with central bank intervention. But $24 billion has already left since March.",
+    "slug": "rupee-best-day-two-months-rbi-intervention-oil-iran-deal-20260529",
+    "category": "news",
+    "sources": [
+        {"name": "Reuters", "url": "https://www.reuters.com/markets/currencies/rupee-soars-best-day-nearly-two-months-central-bank-steps-oil-drops-2026-05-29/"},
+        {"name": "Reuters", "url": "https://www.reuters.com/markets/rates-bonds/rbi-hold-rates-june-majority-now-expect-hike-by-year-end-2026-05-29/"},
+        {"name": "Reuters", "url": "https://www.reuters.com/business/energy/oil-prices-fall-market-awaits-possible-us-iran-ceasefire-deal-2026-05-29/"},
+    ],
+    "body": """The Indian rupee surged 0.7 percent on Friday, its sharpest single-day gain since early April, as two forces converged at once: the Reserve Bank of India likely sold dollars into the market, and crude oil prices plunged on reports that the United States and Iran were close to extending their ceasefire for another 60 days.
 
-The standoff reflects a broader pattern: immigration enforcement disputes between the federal government and Democratic states are increasingly spilling into domains — air travel, commerce, public safety — that affect everyone, regardless of immigration status. For the 4.8 million Indian Americans in the United States, many of whom live in or travel through the cities on the sanctuary list, this is no longer a political abstraction.""",
-    })
+The rupee closed at 95 per dollar, briefly breaking below that level during the session. It had been trading weaker earlier in the day before what multiple traders described as central bank intervention reversed the trajectory.
 
-    # ── ARTICLE 2: FIFA World Cup India Broadcast Rights Crisis ──
-    articles.append({
-        "headline": "India Still Has No Broadcaster for the FIFA World Cup. The Tournament Starts in 13 Days.",
-        "subheadline": "FIFA initially wanted $100 million for India's broadcast rights. Nobody paid. Now Zee Entertainment is in last-minute talks, an Indian American firm claims it won a secret bid, and a Delhi court is demanding free-to-air coverage. A billion fans are waiting.",
-        "slug": "fifa-world-cup-2026-india-broadcast-rights-crisis-zee-jiohotstar-avni-20260529",
-        "category": "news",
-        "sources": [
-            {"name": "Reuters", "url": "https://www.reuters.com"},
-            {"name": "Exchange4Media", "url": "https://www.exchange4media.com"},
-            {"name": "The Indian Eye", "url": "https://www.theindianeye.com"},
-            {"name": "Business Today Malaysia", "url": "https://www.businesstoday.com.my"}
-        ],
-        "image_search": {"pexels": "FIFA World Cup soccer stadium crowd", "fallback": "football stadium fans cheering"},
-        "image_caption": "The 2026 FIFA World Cup begins June 11, but India's 1.4 billion people still do not have a confirmed broadcaster.",
-        "body": """The biggest sporting event on the planet begins in 13 days. India, a country of 1.4 billion people with a rapidly growing football audience, does not yet have a confirmed broadcaster for the 2026 FIFA World Cup.
+## Why Oil Is the Rupee's Puppet Master
 
-The situation is unprecedented. FIFA has concluded broadcast agreements in more than 180 territories worldwide. China sealed a deal with state broadcaster CMG on May 15. India, the world's most populous country and a market that accounted for 2.9 percent of the 2022 World Cup's global television reach, remains a blank space on the map.
+India is the world's third-largest oil importer. Every dollar move in Brent crude translates directly into India's import bill, its current account deficit, and ultimately its currency. Since the U.S.-Israeli war with Iran began on February 28, oil has traded in a volatile band between $87 and $114 a barrel, with most of that time spent well above pre-war levels.
 
-## How the Price Collapsed
+On Friday, Brent crude dropped more than 2 percent to around $92 a barrel, on track for its steepest weekly decline in seven weeks. Reports emerged that U.S. and Iranian negotiators had reached a framework to extend the ceasefire for 60 days and begin reopening the Strait of Hormuz to shipping — though President Donald Trump had yet to give final approval.
 
-FIFA initially sought approximately $100 million for the combined India broadcasting rights for the 2026 and 2030 World Cups. That figure was based on the assumption that India's growing football culture — catalysed by the Indian Super League, English Premier League fandom, and Lionel Messi's global celebrity — would attract aggressive bidding.
+The rupee rallied in tandem. But the relief may be temporary. Even under the most optimistic deal scenario, analysts at Société Générale estimate it could take two months from a notional reopening date before oil actually begins flowing at pre-war volumes. Mines must be cleared, insurers reassured, and tankers repositioned.
 
-It did not.
+## The $24 Billion Exodus
 
-JioHotstar, the Reliance-Disney joint venture that broadcast the 2022 World Cup in India, offered roughly $20 million. Sony Group explored the rights but decided not to submit an offer at all. FIFA's asking price was last reported at around $60 million — still three times what Reliance-Disney was willing to pay.
+The single-day gain barely dents a much larger wound. Since the Iran war began in late February, overseas investors have pulled more than $24 billion from Indian debt and equities on a net basis. The outflows reflect a combination of rising global risk aversion, higher U.S. yields, and the direct economic threat to India from elevated oil prices.
 
-The standoff exposed an uncomfortable truth for global football's governing body: India's football market, however large in terms of eyeballs, generates a fraction of the advertising revenue that cricket commands. The Board of Control for Cricket in India's media rights for the IPL sold for $6.2 billion over five years. FIFA's entire India World Cup package could not attract a twentieth of that.
+For NRIs with investments in Indian markets, the capital flight has been particularly painful. The Sensex has lost ground steadily, the rupee has weakened more than 5 percent year-to-date, and the foreign investor exodus has drained liquidity from precisely the mid-cap and growth segments where diaspora portfolios tend to be concentrated.
 
-## The Last-Minute Scramble
+## What Comes Next: The RBI Decision on June 5
 
-Two developments in the past week suggest a resolution may finally be close — though neither is confirmed.
+All eyes now turn to the Reserve Bank of India's monetary policy decision on June 5. A Reuters poll of 56 economists found that nearly 80 percent expect the RBI to hold its repo rate steady at 5.25 percent — but a significant and growing minority now forecast at least one rate hike before the end of 2026.
 
-On May 26, Zee Entertainment announced it was in talks with FIFA to stream and broadcast the tournament as part of its new Unite8 Sports channel portfolio. The company disclosed no financial details.
+India's headline inflation remains relatively benign at 3.48 percent in April, well below the RBI's 4 percent target. But wholesale inflation has accelerated sharply, and with crude prices still roughly 30 percent above pre-war levels, the pass-through to consumer prices is a question of when, not if.
 
-Separately, an Indian American investment firm from Washington, D.C., named Avni LLC, claimed that an associated partner had won a bid through FIFA's closed tender process, backed by corporate guarantees exceeding $300 million. Avni LLC's CEO, Deelip Mhaske, described a vision built around OTT platforms, AI-powered multilingual broadcasting, and mobile micro-subscriptions.
+Capital Economics forecasts the RBI could raise the repo rate to 6.00 percent before year-end — but only if the Iran crisis is resolved and energy prices fall back. If it isn't, the central bank faces an impossible trilemma: defend the currency, support growth, or fight inflation. It cannot do all three.
 
-The claim is extraordinary and unverified. FIFA has said only that discussions in India "are ongoing and must remain confidential at this stage."
+## What NRIs Should Watch
 
-## The Court Steps In
+For the Indian diaspora, three numbers now matter more than any headline:
 
-Meanwhile, a Delhi High Court petition is seeking to force free-to-air broadcast of the World Cup through Doordarshan and DD Sports. Advocate Avdhesh Bairwa, who filed the petition, argues that depriving millions of fans of access to the World Cup violates their fundamental rights. Justice Purushaindra Kumar Kaurav issued notice to the Centre and Prasar Bharati.
+**The rupee at 95.** If it weakens past 97-98, remittances become more attractive but Indian asset values erode further in dollar terms. NRIs considering real estate purchases or equity investments in India are effectively betting on the currency stabilizing before deploying capital.
 
-The petition points to a precedent: India's Sports Broadcasting Signals (Mandatory Sharing with Prasar Bharati) Act requires that events of national importance be made available on free-to-air television. Whether the FIFA World Cup qualifies under this provision is now a live legal question.
+**Brent at $92.** Every sustained $10 drop in oil prices gives the RBI room to hold rates and allows the government to avoid politically painful fuel price hikes. Every $10 rise does the opposite.
 
-## Why the Diaspora Should Care
+**The June 5 RBI decision.** A hold signals confidence that the Iran crisis will pass. A hike signals the central bank has decided the oil shock is not transitory — and that NRI deposit rates, bond yields, and mortgage costs in India are all headed higher.
 
-For the estimated 5 million Indian Americans in the United States, the broadcast crisis has a particular edge. Many NRIs follow the World Cup through Indian-language commentary and analysis. Without an Indian broadcaster, Hindi, Tamil, and Bengali commentary — the kind that turns a World Cup match into a cultural event, not just a sporting one — may not exist for this tournament.
+Friday's rupee rally was a reprieve, not a resolution. The Iran deal is not signed. The oil is not flowing. And $24 billion of foreign capital is already gone.""",
+}
 
-Moreover, the 2026 World Cup is being co-hosted by the United States. Matches will be played in New York, Los Angeles, Houston, Dallas, San Francisco, Seattle, Boston, and Philadelphia — cities with massive Indian American populations. The possibility that friends and family back in India cannot watch the same matches that NRIs could attend in person is a strange irony.
+# ══════════════════════════════════════════════════════════════════════
+# MAIN
+# ══════════════════════════════════════════════════════════════════════
 
-## The Clock Is Ticking
-
-The group stage begins on June 11 with Mexico versus South Africa at the Azteca Stadium. India's football fans will either have a broadcaster by then, or they will be reduced to searching for illegal streams of the most-watched event in world sport.
-
-Industry sources told Exchange4Media that a formal announcement could come as early as next week, with Zee Entertainment the frontrunner. But until pen meets paper, India's World Cup remains in blackout.""",
-    })
-
-    # ── ARTICLE 3: H-1B Tech Workers Brutal Job Market + AI displacement ──
-    articles.append({
-        "headline": "142,000 Tech Jobs Have Been Cut in 2026. For Indian H-1B Workers, Every Layoff Is a Deportation Clock.",
-        "subheadline": "AI is replacing junior developers at scale, companies are hiring in Bangalore instead of Boston, and H-1B holders who lose their jobs have 60 days before they must leave the country. The American tech dream is fracturing along visa lines.",
-        "slug": "tech-layoffs-2026-h1b-indian-workers-ai-displacement-deportation-risk-20260529",
-        "category": "news",
-        "sources": [
-            {"name": "TechTimes", "url": "https://www.techtimes.com"},
-            {"name": "American Bazaar", "url": "https://www.americanbazaaronline.com"},
-            {"name": "Stanford HAI 2026 AI Index", "url": "https://hai.stanford.edu"},
-            {"name": "TNGlobal", "url": "https://technode.global"}
-        ],
-        "image_search": {"pexels": "software developer office worried stressed", "fallback": "tech worker computer office"},
-        "image_caption": "Indian tech professionals on H-1B visas face a unique double bind: lose your job, and the clock starts ticking on your legal right to stay in the country.",
-        "body": """The numbers are stark. According to tracking data compiled by multiple industry analysts, 142,000 technology workers worldwide have been laid off in 2026. If the pace holds, the year will surpass 2025's brutal toll of 245,000 job cuts. For Indian-origin professionals in the United States — who hold the majority of H-1B work visas — every one of these layoffs carries a consequence that no American citizen faces: a 60-day window to find a new employer or leave the country.
-
-## The AI Displacement Is Real and Targeted
-
-A Stanford University study published in April — the HAI 2026 AI Index — found that employment for software developers aged 22 to 25 fell nearly 20 percent since 2024. Developers aged 30 and older at the same companies saw headcount grow during the same period.
-
-The mechanism is precise: generative AI tools are not eliminating software engineering as a discipline. They are eliminating the specific tasks that junior developers were hired to perform — boilerplate code, basic operations, scripted testing, and routine bug fixes. The result is that companies need fewer entry-level engineers, which is exactly the rung where many H-1B workers begin their American careers.
-
-Boston Consulting Group projects that up to 15 percent of U.S. jobs could be eliminated over the next five years. One-third of surveyed organisations told Stanford researchers they expect AI to reduce their workforce within the next year, with the deepest cuts in service operations, supply chain management, and software engineering.
-
-## The H-1B Trap
-
-The structural cruelty of the H-1B system is that it ties a worker's legal presence in the United States to continuous employment. When an H-1B holder is laid off, they have 60 days — recently extended from zero under a Biden-era rule that the Trump administration has not reversed — to find a new sponsor or begin departure proceedings.
-
-An anonymous post on a popular professional forum, widely reported by the American Bazaar this week, captured the desperation: one Indian data engineering leader described applying to more than 2,000 positions after being laid off, reaching dozens of recruiter rounds before finally securing an offer at a FAANG company.
-
-"The job market is tough for U.S. citizens as it is," one commenter wrote. "H-1Bs have it worse considering companies want nothing to do with the immigration headache."
-
-Others described living in constant fear, unable to leave jobs they disliked because changing employers has become too risky. Rent, healthcare costs, childcare expenses, and immigration legal fees have become overwhelming for families with a single income tied to visa sponsorship.
-
-## Companies Are Hiring in India Instead
-
-The displacement is not just about AI. Major U.S. technology companies are accelerating the shift of roles to India, where engineering talent costs a fraction of American salaries. A survey by the anonymous professional network Blind found that 38 percent of respondents anticipated that hiring surges in Bangalore, Hyderabad, and Pune would directly replace existing U.S. roles.
-
-This creates a perverse dynamic for the Indian diaspora. The same talent pipeline that once made Indian engineers the backbone of Silicon Valley is now being used to undercut their positions — not by immigrants undercutting American workers, as the political narrative often frames it, but by American companies choosing to hire the same talent pool at home in India, where there are no visa complications and salaries are lower.
-
-Meta laid off nearly 1,400 employees in Washington state alone this week, part of an ongoing restructuring. Cloudflare cut 1,100 jobs in May. TCS announced plans to eliminate 12,000 positions globally. The pattern is consistent: companies that over-hired between 2020 and 2023 are restructuring with AI as both the rationale and the mechanism.
-
-## The Skills Divide
-
-The tech layoff wave is not uniform. Roles in machine learning infrastructure, model evaluation, AI safety, and applied research remain in acute shortage. Traditional software engineering, product management, recruiting, and back-office positions face contraction.
-
-The skills these growing roles require cannot be quickly acquired by the workers most exposed to the current wave. A mid-career Java developer or QA engineer cannot retrain as an AI safety researcher in 60 days — the same 60 days that an H-1B holder has to find new sponsorship.
-
-## Some Are Choosing to Leave
-
-Perhaps the most telling signal is that some Indian tech workers are no longer waiting to be forced out. "I am leaving this country this September and going back home to build there, finally," one commenter wrote on a professional forum. "I want to contribute to India's growth story."
-
-For a generation of Indian engineers who moved to the United States chasing the promise of meritocratic opportunity, this represents a quiet but significant reversal. The American dream they pursued has not disappeared, but its terms have changed. The question many are now asking is whether those terms still favour the people who built so much of America's technology industry.
-
-For the 4.8 million Indian Americans, and particularly for the hundreds of thousands on temporary work visas, the answer is no longer obvious.""",
-    })
-
-    return articles
-
-
-# ─── MAIN ───────────────────────────────────────────────────────────
-if __name__ == "__main__":
-    articles = build_articles()
-    published = []
-
-    for i, article in enumerate(articles, 1):
-        print(f"\n{'='*60}")
-        print(f"Article {i}/{len(articles)}: {article['headline'][:60]}...")
-        print(f"{'='*60}")
-
-        # Image sourcing
-        img_url = None
-        search = article.get("image_search", {})
-
-        # Try Pexels (no person article here)
-        if search.get("pexels"):
-            img_url = fetch_pexels_image(search["pexels"], search.get("fallback"))
-
-        # Validate and upload
-        if img_url:
-            if validate_image(img_url):
-                filename = f"{article['slug']}.jpg"
-                final_url = upload_image_to_supabase(img_url, filename)
-                article["image_url"] = final_url
-            else:
-                print("  ⚠ Image validation failed, publishing without image")
-                article["image_url"] = None
-        else:
-            print("  ⚠ No image found, publishing without image")
-            article["image_url"] = None
-
-        # Publish
-        art_id = publish_article(article)
-        if art_id:
-            published.append({"id": art_id, "slug": article["slug"], "headline": article["headline"]})
-        
-        time.sleep(1)  # rate limiting
-
+def source_and_publish(article, person_names=None, pexels_query=None, pexels_fallback=None):
+    """Source image, validate, upload, and publish."""
     print(f"\n{'='*60}")
-    print(f"DONE: Published {len(published)}/{len(articles)} articles")
-    for p in published:
-        print(f"  • {p['headline'][:60]}... [{p['id'][:8]}]")
+    print(f"Processing: {article['headline'][:70]}...")
     print(f"{'='*60}")
+    
+    img_url = None
+    attribution = ""
+    
+    # Try Wikipedia for named persons
+    if person_names:
+        for name in person_names:
+            img_url = fetch_wikipedia_person_image(name)
+            if img_url:
+                attribution = "Wikimedia Commons"
+                break
+    
+    # Try Pexels fallback
+    if not img_url and pexels_query:
+        img_url = fetch_pexels_image(pexels_query, pexels_fallback)
+        if img_url:
+            attribution = "Pexels"
+    
+    # Validate
+    if img_url and validate_image_url(img_url):
+        # Upload to Supabase storage
+        ext = "jpg"
+        filename = f"{article['slug']}.{ext}"
+        uploaded_url = upload_image_to_supabase(img_url, filename)
+        if uploaded_url:
+            article["image_url"] = uploaded_url
+            article["image_attribution"] = "The Videshi"
+        else:
+            # Use direct URL only if from permanent source
+            if "upload.wikimedia.org" in img_url or "images.pexels.com" in img_url:
+                article["image_url"] = img_url
+                article["image_attribution"] = attribution
+            else:
+                article["image_url"] = None
+    else:
+        print("  ⚠ No valid image found — publishing without image")
+        article["image_url"] = None
+    
+    # Publish
+    art_id = publish_article(article)
+    
+    # If published and image uploaded, update with image
+    if art_id and article.get("image_url"):
+        print(f"  ✓ Article published with image")
+    elif art_id:
+        print(f"  ✓ Article published without image")
+    
+    return art_id
+
+
+if __name__ == "__main__":
+    results = []
+    
+    # Article 1: Intel semiconductor plant
+    r1 = source_and_publish(
+        article1,
+        person_names=["Intel"],
+        pexels_query="semiconductor chip manufacturing",
+        pexels_fallback="microchip circuit board",
+    )
+    results.append(("Intel semiconductor", r1))
+    
+    # Article 2: Rupee rally
+    r2 = source_and_publish(
+        article2,
+        person_names=["Indian rupee"],
+        pexels_query="Indian currency rupee banknotes",
+        pexels_fallback="stock market trading screen",
+    )
+    results.append(("Rupee rally", r2))
+    
+    print(f"\n{'='*60}")
+    print("SUMMARY")
+    print(f"{'='*60}")
+    for name, rid in results:
+        status = "✓ PUBLISHED" if rid else "✗ FAILED"
+        print(f"  {status}: {name}")
+    
+    # Exit with error if any failed
+    if any(r is None for _, r in results):
+        sys.exit(1)
