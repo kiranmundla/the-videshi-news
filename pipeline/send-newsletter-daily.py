@@ -130,7 +130,7 @@ def fetch_subscribers():
 def fetch_daily_articles(since_iso):
     """Fetch published articles from the last 24 hours, excluding already-newslettered ones."""
     params = {
-        "select": "id,slug,headline,subheadline,category,image_url,body,published_at",
+        "select": "id,slug,headline,subheadline,category,image_url,body,published_at,is_editorial,is_featured",
         "status": "eq.published",
         "published_at": f"gte.{since_iso}",
         "newslettered_at": "is.null",
@@ -203,6 +203,14 @@ def score_article(a):
     if source_mentions >= 2:
         score += 1
 
+    # Editor's Desk editorial — massive boost, these are hand-written
+    if a.get("is_editorial"):
+        score += 50
+
+    # Featured articles get a boost
+    if a.get("is_featured"):
+        score += 5
+
     return score
 
 
@@ -211,12 +219,19 @@ def pick_daily_stories(articles):
     # Sort by score (desc), then recency as tiebreaker
     scored = sorted(articles, key=lambda a: (score_article(a), a.get("published_at", "")), reverse=True)
 
-    # Hero: best-scoring article with an image
+    # Hero: editorial always wins, otherwise best-scoring article with an image
     hero = None
+    # First pass: look for an editorial
     for a in scored:
-        if a.get("image_url") and a.get("slug"):
+        if a.get("is_editorial") and a.get("image_url") and a.get("slug"):
             hero = a
             break
+    # Second pass: fallback to best-scoring with image
+    if not hero:
+        for a in scored:
+            if a.get("image_url") and a.get("slug"):
+                hero = a
+                break
 
     hero_id = hero["id"] if hero else None
     hero_cat = hero.get("category") if hero else None

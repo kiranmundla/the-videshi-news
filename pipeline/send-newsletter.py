@@ -134,7 +134,7 @@ def fetch_subscribers():
 def fetch_weekly_articles(since_iso):
     """Fetch published articles from the last 7 days."""
     params = {
-        "select": "id,slug,headline,subheadline,category,image_url,body,published_at",
+        "select": "id,slug,headline,subheadline,category,image_url,body,published_at,is_editorial,is_featured",
         "status": "eq.published",
         "published_at": f"gte.{since_iso}",
         "order": "published_at.desc",
@@ -196,6 +196,14 @@ def score_article(a):
     if source_mentions >= 2:
         score += 1
 
+    # Editor's Desk editorial — massive boost, these are hand-written
+    if a.get("is_editorial"):
+        score += 50
+
+    # Featured articles get a boost
+    if a.get("is_featured"):
+        score += 5
+
     return score
 
 
@@ -206,11 +214,17 @@ def pick_hero_and_stories(articles):
     scored = sorted(articles, key=lambda a: (score_article(a), a.get("published_at", "")), reverse=True)
 
     hero = None
-    # Hero: best-scoring news article with an image
+    # First: editorial always wins hero spot
     for a in scored:
-        if a.get("category") == "news" and a.get("image_url"):
+        if a.get("is_editorial") and a.get("image_url"):
             hero = a
             break
+    # Second: best-scoring news article with an image
+    if not hero:
+        for a in scored:
+            if a.get("category") == "news" and a.get("image_url"):
+                hero = a
+                break
     # Fallback: best-scoring article with an image
     if not hero:
         for a in scored:
