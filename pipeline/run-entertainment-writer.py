@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — May 27, 2026 batch."""
+"""The Videshi Entertainment Writer — May 29, 2026 batch"""
 
-import json, os, sys, time, uuid, re
-import requests
+import json, os, sys, time, uuid, subprocess, re, textwrap
+import requests, urllib.parse
 from datetime import datetime, timezone
 
-# Load env
+# ── Load env ──────────────────────────────────────────────────────────
 def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            if line.startswith('export '):
+                line = line[7:]
+            if '=' in line:
+                k, v = line.split('=', 1)
+                v = v.strip().strip('"').strip("'")
+                os.environ.setdefault(k.strip(), v)
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
@@ -26,30 +32,12 @@ HEADERS = {
     'apikey': SUPABASE_KEY,
     'Authorization': f'Bearer {SUPABASE_KEY}',
     'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    'Prefer': 'return=representation',
 }
 
-def sb_insert(table, data):
-    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 201):
-        result = r.json()
-        return result[0] if isinstance(result, list) and result else result
-    else:
-        print(f"  ✗ INSERT {table} failed: {r.status_code} {r.text[:300]}")
-        return None
-
-def sb_patch(table, match, data):
-    params = '&'.join(f"{k}={v}" for k, v in match.items())
-    r = requests.patch(f"{SUPABASE_URL}/rest/v1/{table}?{params}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 204):
-        return True
-    else:
-        print(f"  ✗ PATCH {table} failed: {r.status_code} {r.text[:300]}")
-        return False
-
+# ── Wikipedia image fetcher ───────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -67,8 +55,9 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+# ── Pexels fallback ──────────────────────────────────────────────────
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels. Returns URL or None."""
+    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
@@ -76,243 +65,306 @@ def fetch_pexels_image(query, fallback_query=None):
         if not q:
             continue
         try:
-            import subprocess
             result = subprocess.run(
-                ['curl', '-sS', f'https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape',
-                 '-H', f'Authorization: {PEXELS_KEY}'],
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
             photos = data.get('photos', [])
-            for photo in photos:
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('original')
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            if photos:
+                url = photos[0]['src']['large2x']
+                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image_url(url):
-    """Validate image URL returns 200 with image content-type and >5KB."""
-    if not url:
-        return False
+# ── Image upload to Supabase ─────────────────────────────────────────
+def upload_image_to_supabase(image_url, filename):
+    """Download image and upload to Supabase storage bucket."""
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
-            return True
-        # Some servers don't return Content-Length on HEAD
-        if r.status_code == 200 and 'image' in ct:
-            return True
-        print(f"  ⚠ Image validation failed: status={r.status_code} ct={ct} cl={cl}")
+        r = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=15)
+        if r.status_code != 200:
+            print(f"  ⚠ Image download failed: HTTP {r.status_code}")
+            return image_url  # fall back to direct URL for Wikipedia/Pexels
+        content_type = r.headers.get('Content-Type', 'image/jpeg')
+        if not content_type.startswith('image/'):
+            content_type = 'image/jpeg'
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small ({len(r.content)} bytes), skipping upload")
+            return image_url
+
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        upload_r = requests.post(
+            upload_url,
+            headers={
+                'apikey': SUPABASE_KEY,
+                'Authorization': f'Bearer {SUPABASE_KEY}',
+                'Content-Type': content_type,
+                'x-upsert': 'true',
+            },
+            data=r.content,
+            timeout=30
+        )
+        if upload_r.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Supabase upload failed: {upload_r.status_code} {upload_r.text[:200]}")
+            # Fall back to direct URL for Wikipedia/Pexels (permanent)
+            if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
+                return image_url
+            return None
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-    return False
+        print(f"  ⚠ Upload error: {e}")
+        if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
+            return image_url
+        return None
 
-# Check for banned image sources
-def is_banned_source(url):
-    if not url:
-        return True
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
-    return any(b in url for b in banned)
+# ── Supabase insert ──────────────────────────────────────────────────
+def insert_article(article):
+    """Insert article into Supabase."""
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
+    r = requests.post(url, headers=HEADERS, json=article, timeout=30)
+    if r.status_code in (200, 201):
+        data = r.json()
+        art_id = data[0]['id'] if isinstance(data, list) else data.get('id')
+        print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
+        return art_id
+    else:
+        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
+        return None
 
-now_str = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+# ── Articles ─────────────────────────────────────────────────────────
 
-articles = [
-    {
-        "headline": "Sixty-Six Hard Disks Went Missing From Zoya Akhtar's Office. They Had Made In Heaven on Them. A Staffer Allegedly Sold Them for ₹15,000 Each.",
-        "subheadline": "Tiger Baby Films, the production house behind some of the most-watched Indian OTT shows in the diaspora, has filed an FIR after discovering that more than half its hard-drive inventory vanished from its Bandra office over five months.",
-        "slug": "tiger-baby-films-66-hard-disks-stolen-zoya-akhtar-made-in-heaven-bandra-office-fir-20260527",
-        "category": "entertainment",
-        "person_for_image": "Zoya Akhtar",
-        "pexels_query": "film production hard drive storage",
-        "pexels_fallback": "film editing studio",
-        "sources": ["Bollywood Hungama", "Mumbai Mirror"],
-        "body": """Sixty-six hard disks containing raw footage, edited scenes, post-production files, and archival material have allegedly gone missing from the Bandra office of Tiger Baby Digital LLP — the production house founded by filmmakers Zoya Akhtar and Reema Kagti. The company is behind *Made In Heaven*, *Ghost Stories*, and several advertisement campaigns for beauty and digital-content companies. Some of the stolen drives reportedly contained unreleased footage.
+articles = []
 
-## What Happened
+# ═══════════════════════════════════════════════════════════════════════
+# ARTICLE 1: Spider-Noir
+# ═══════════════════════════════════════════════════════════════════════
 
-The theft was discovered on May 21, when staff needed certain hard disks for ongoing work and could not locate them. An internal audit of the office storage area revealed that several hard-disk boxes were empty and damaged. Tiger Baby's records showed an inventory of 119 hard disks. Sixty-six were missing.
+articles.append({
+    "headline": "Nicolas Cage Put On a Trench Coat and Became Spider-Man at 62. Prime Video's Spider-Noir Hit No. 1 Globally in 24 Hours.",
+    "subheadline": "The noir-drenched Marvel series is streaming now on Prime Video — and NRI subscribers in India, Canada, and the UK are already bingeing it alongside the rest of the world.",
+    "slug": "spider-noir-nicolas-cage-prime-video-number-one-global-nri-streaming-20260529",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps(["ScreenRant", "USA Today", "Collider", "Rotten Tomatoes"]),
+    "image_person": "Nicolas Cage",
+    "body": textwrap.dedent("""\
+        Nicolas Cage has done it again — but this time, he did it slowly, deliberately, and in black and white.
 
-The scale is staggering. The drives had storage capacities between 16TB and 72TB. That is potentially petabytes of raw shooting footage, edited scenes, post-production files, ad campaigns, backups, and completed movie-related data — some of it still unreleased.
+        *Spider-Noir*, the live-action Marvel series starring Cage as a 62-year-old retired superhero turned private investigator, premiered on Prime Video on May 27 and climbed to the No. 1 spot globally within 24 hours. The show topped charts in Mexico, Thailand, Poland, and Brazil, reached No. 2 in Canada, Australia, the UK, France, and 15 other countries, and landed at No. 4 in India.
 
-## The Arrests
+        For the Indian diaspora audience — most of whom already subscribe to Prime Video for its robust Indian content library — *Spider-Noir* is an easy add to the queue. It's the kind of prestige genre show that crosses cultural lines: a hardboiled detective mystery set in 1933 New York, dressed in the visual grammar of classic noir, with a superhero skeleton underneath.
 
-Mehjabeen Mushtaq Shaikh, Tiger Baby's executive assistant and HR administrator, filed the complaint. Bandra police registered an FIR against Mohammad Shahid Azim Khan, a staffer, and Ritesh Suresh Shah, a 44-year-old Borivali resident. Both have been arrested and sent to police custody until May 29.
+        ## The Setup
 
-Khan allegedly admitted during internal questioning that he stole 24 hard disks over the past five months, selling them to Shah for ₹15,000 to ₹20,000 each. The police suspect some of the drives may have entered the grey market.
+        Cage plays Ben Reilly, a former costumed vigilante known as The Spider, who hung up his mask years ago and now works as a private eye in Depression-era Manhattan. A new case drags him back into the world he thought he'd left behind — one filled with superpowered crime bosses, old grudges, and the kind of moral ambiguity that noir does better than any other genre.
 
-## Why This Matters for the Diaspora
+        Brendan Gleeson plays Silvermane, the show's primary antagonist, and Lamorne Morris rounds out the cast as Robbie Robertson. The series is showrun by Oren Uziel and Steve Lightfoot, with Phil Lord and Christopher Miller — the duo behind *Into the Spider-Verse* — serving as executive producers. That's the same team that cast Cage as Spider-Man Noir in the 2018 animated film, making this a long-awaited reunion.
 
-For NRIs, this story hits differently. *Made In Heaven* is not just another Indian OTT show — it is the series that explained Indian weddings to people who had stopped attending them. It is the show that every desi WhatsApp group in New Jersey, London, and Toronto debated for weeks. The idea that raw footage, unreleased material, and production files from that world are floating around on grey-market hard drives is genuinely unsettling.
+        ## Critical Reception
 
-The police are now investigating whether any data was copied, accessed, transferred, or leaked before the drives disappeared. Cyber experts may be brought in to check if material has been circulated online.
+        The reception has been emphatic. *Spider-Noir* holds a 91% score on Rotten Tomatoes, with critics singling out Cage's performance as the best thing he's done in years. ScreenRant's review called his turn as The Spider "fantastic," praising the show for being "an intriguing superhero series that offers plenty of excitement through its binge-worthy crime story with nuanced characters."
 
-## The Bigger Picture
+        USA Today described Cage as "a Spider-Man for aging adults," noting the actor's willingness to lean into the physicality of the role — wirework and all — at 62.
 
-Tiger Baby is one of a handful of Indian production houses that has built a genuinely global audience. Akhtar and Kagti's work has consistently found viewers among the Indian diaspora who have limited patience for conventional Bollywood but will binge-watch ten episodes of something that feels real.
+        The show offers two viewing modes: a classic black-and-white presentation that honours the noir genre, and a "True-Hue" colour version for viewers who prefer a more conventional look. Critics have been divided on which is superior, though the consensus is that the black-and-white version delivers the more immersive experience.
 
-This theft raises uncomfortable questions about data security in Indian production houses — many of which still rely on physical hard drives for archival storage rather than cloud-based systems. When a single staffer can walk out with 24 drives over five months without anyone noticing, the problem is not just theft. It is infrastructure.
+        ## The Diaspora Angle
 
-Investigators are also checking whether any other employee was involved. No conclusion has been reached on that front yet."""
-    },
-    {
-        "headline": "Ramayana Is Coming a Week Early. Namit Malhotra Wants It in Theatres on October 30, Before Diwali Even Starts.",
-        "subheadline": "The ₹4,000-crore epic starring Ranbir Kapoor, Sai Pallavi, and Yash is eyeing a San Diego Comic-Con trailer debut in July, a Hans Zimmer–AR Rahman concert in October, and a distribution deal worth ₹450 crore. Part Two follows on Diwali 2027.",
-        "slug": "ramayana-part-one-october-30-release-ranbir-kapoor-sai-pallavi-yash-diwali-strategy-20260527",
-        "category": "entertainment",
-        "person_for_image": "Ranbir Kapoor",
-        "pexels_query": None,
-        "pexels_fallback": None,
-        "sources": ["Bollywood Hungama", "Sacnilk", "Mid-Day"],
-        "body": """Nitesh Tiwari's *Ramayana: Part One* was supposed to release on Diwali. It still will — sort of. Producer Namit Malhotra is now contemplating what the trade is calling a masterstroke: releasing the film on October 30, 2026, a full week before Diwali begins.
+        For NRI audiences, the appeal is twofold. First, Prime Video is already the most widely subscribed international streaming platform in Indian diaspora households across North America, the UK, and the Gulf — making *Spider-Noir* instantly accessible. Second, the show represents a shift in what superhero television can be: slower, more character-driven, more interested in atmosphere than action set pieces. It's closer to a Coen brothers film than a Marvel origin story.
 
-## The Strategy
+        India's No. 4 ranking on launch day is notable. Indian Prime Video subscribers typically gravitate toward local-language content, so a live-action English-language Marvel show breaking into the top five within hours signals genuine cross-demographic pull.
 
-The logic is counterintuitive but calculated. Rather than dropping the film into the Diwali weekend and competing with the holiday chaos of travel, family gatherings, and fireworks, Malhotra wants *Ramayana* to establish itself before the festivities begin. The idea is to generate strong word of mouth in Week 1, then let the Diwali holiday period drive an even bigger Week 2.
+        ## What's Next
 
-"He is here to redefine business by not just bringing a pre-Diwali release, but also a film that scores a bigger second week than the first due to the festive period," a source told Bollywood Hungama.
+        Season 2 has not yet been confirmed, though Cage and Uziel have both publicly discussed where the story could go. Uziel told ScreenRant that a second season would be "increasingly chaotic and conflict-heavy," suggesting a darker trajectory for Ben Reilly.
 
-The final release date will be announced once the distribution deal is locked. And that deal is reportedly worth ₹450 crore — one of the largest theatrical distribution negotiations in Indian cinema history.
+        In the meantime, Spider-Man returns to the big screen on July 31 with *Spider-Man: Brand New Day*, starring Tom Holland. The two properties aren't connected, but the proximity means Marvel's spider franchise will dominate both streaming and theatrical conversations through the summer.
 
-## The Numbers Behind the Epic
+        All eight episodes of *Spider-Noir* season 1 are streaming now on Prime Video worldwide.
+    """).strip(),
+})
 
-Both parts of *Ramayana* have reportedly cost ₹4,000 crore to make. The makers have already rejected a ₹700 crore post-theatrical digital deal for both parts, calling it insufficient for a "legacy film that will speak to generations." They are holding out for at least ₹1,000 crore in digital rights, leaving ₹3,000 crore to recover from worldwide theatrical and other revenue streams.
+# ═══════════════════════════════════════════════════════════════════════
+# ARTICLE 2: Shah Rukh Khan's King — Christmas 2026
+# ═══════════════════════════════════════════════════════════════════════
 
-Ranbir Kapoor plays Lord Ram and Lord Parashurama in a confirmed dual role. Sai Pallavi is Sita. Yash, the KGF star, is Ravana. Sunny Deol plays Hanuman. Ravie Dubey is Laxman. The combined runtime across both parts is expected to exceed six hours.
+articles.append({
+    "headline": "Shah Rukh Khan's King Opens Christmas Day. Standing in His Way: Avengers, Dune, and Jumanji.",
+    "subheadline": "The ₹350-crore action thriller locks December 24, 2026 — one week after Marvel's Avengers: Doomsday, Dune 3, and the same day as Jumanji: Open World. For NRIs, it's the ultimate holiday dilemma.",
+    "slug": "shah-rukh-khan-king-christmas-2026-avengers-dune-jumanji-clash-nri-20260529",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps(["Sacnilk", "Wikipedia", "The Hollywood Reporter India"]),
+    "image_person": "Shah Rukh Khan",
+    "body": textwrap.dedent("""\
+        Shah Rukh Khan has never been afraid of a fight at the box office. But the one he's walking into this December might be the biggest of his career — and it's entirely by choice.
 
-## Comic-Con and a Concert
+        *King*, the Siddharth Anand-directed action thriller starring Khan alongside his daughter Suhana Khan, Deepika Padukone, and Abhishek Bachchan, has officially locked December 24, 2026 as its worldwide release date. It's a Christmas Day opening — the kind of prime real estate that guarantees massive footfalls from holiday crowds and family audiences.
 
-The marketing rollout is designed to position *Ramayana* as a global event, not just a Bollywood release. The team is in advanced talks for a trailer debut at San Diego Comic-Con in July — following a successful focus group screening in Los Angeles that received highly positive feedback from a diverse audience.
+        The problem? The neighbourhood is crowded.
 
-In October, before the theatrical release, the makers are planning a live musical event featuring a historic collaboration between Hans Zimmer and AR Rahman. An Academy Award winner composing alongside India's most decorated film musician, performing the *Ramayana* soundtrack live. That is not a film launch. That is a cultural event.
+        ## The Collision Course
 
-## What This Means for NRIs
+        Marvel's *Avengers: Doomsday* and Warner Bros.' *Dune 3* are both scheduled for December 18, exactly one week before *King* arrives. Dwayne Johnson's *Jumanji: Open World* opens on December 25. That's three Hollywood tentpoles — two of them franchise juggernauts — bookending SRK's biggest film in years.
 
-For the Indian diaspora, *Ramayana* represents something that Bollywood has never quite delivered: an Indian mythological epic produced at a scale that can sit alongside anything from Hollywood or Weta Workshop. The Comic-Con strategy makes the intention explicit — this film is being marketed to the global audience, not just the domestic one.
+        For Indian exhibitors, this creates a screen allocation nightmare. The Christmas corridor is traditionally the most lucrative window in Indian theatrical distribution, but it's also the period when Hollywood dominates multiplex screens, especially in metros and overseas markets. *King* will need to hold its own against films that will command IMAX, 3D, and premium large-format screens across North America, the UK, the Middle East, and Australia — the same markets where the Indian diaspora drives SRK's overseas numbers.
 
-The first teaser, released in early April, crossed 18 million YouTube views in 24 hours. Dipika Chikhlia, the original Sita from Ramanand Sagar's television *Ramayana*, called it "very grand" and "very beautiful."
+        ## The Stakes
 
-Part Two releases on Diwali 2027. The shooting for Ranbir's portions in Part Two is already 50 percent complete.
+        *King* is reportedly budgeted between ₹350 and ₹400 crore, making it one of the most expensive Indian productions ever. The film has already secured a distribution deal worth approximately ₹250 crore for the Indian market alone, signalling strong confidence from exhibitors and distributors who have seen early material.
 
-The question is no longer whether *Ramayana* will be big. The question is whether Indian cinema has ever seen anything like the scale Malhotra is attempting. The answer, by every available metric, is no."""
-    },
-    {
-        "headline": "Karisma Kapoor Just Dropped the Teaser for Brown. She Plays an Alcoholic, Pill-Popping Kolkata Cop. The 90s Are Officially Over.",
-        "subheadline": "ZEE5's neo-noir psychological crime thriller marks Karisma's most transformative role in three decades. Directed by Abhinay Deo, it is the kind of show that will make every NRI who grew up on Dil To Pagal Hai deeply uncomfortable — and that is the point.",
-        "slug": "karisma-kapoor-brown-zee5-neo-noir-kolkata-cop-abhinay-deo-teaser-ott-comeback-20260527",
-        "category": "entertainment",
-        "person_for_image": "Karisma Kapoor",
-        "pexels_query": "kolkata city night moody",
-        "pexels_fallback": "detective noir city dark",
-        "sources": ["Bollywood Hungama", "ZEE5"],
-        "body": """ZEE5 has released the teaser for *Brown*, a neo-noir psychological crime thriller starring Karisma Kapoor as Rita Brown — a fiercely resilient but deeply troubled officer in the Kolkata Police Force. The teaser is dark. The visuals are gritty. The Karisma Kapoor you remember from *Dil To Pagal Hai* is nowhere in sight. That is entirely the point.
+        The cast is stacked. Suhana Khan makes her big-screen debut (she appeared in Netflix's *The Archies* in 2023). Deepika Padukone reunites with Shah Rukh after their triple-blockbuster run (*Pathaan*, *Jawan*, *Dunki* in 2023). Abhishek Bachchan plays the antagonist. The supporting cast includes Arshad Warsi, Anil Kapoor, Jackie Shroff, Rani Mukerji, and Abhay Varma.
 
-## The Role
+        Siddharth Anand, who directed *Pathaan* and *War*, brings his signature large-scale action sensibility. Shooting has taken place across Mumbai, Warsaw, Gdansk, and Cape Town. The soundtrack is composed by Sachin–Jigar.
 
-Rita Brown is an alcoholic. She pops pills. She has deep-seated personal demons that the teaser does not bother to explain — it simply shows them, etched into the character's face and posture. Set against a morally fractured Kolkata, the series extends far beyond a conventional murder mystery into something more psychologically complex.
+        ## The NRI Calculus
 
-Karisma has traded her familiar expressive style for a rugged, stripped-down look. The first glimpse promises a fearless, unfiltered performance from an actress who spent the 1990s being one of the most bankable stars in Hindi cinema.
+        For diaspora audiences, Christmas week is when families go to the movies together. In past years, SRK has owned this slot — *Dilwale* (2015), *Zero* (2018), and *Dunki* (2023) all opened during the Christmas-New Year corridor. But those films never had to share the week with both Marvel and Dune simultaneously.
 
-## The Director
+        The calculus for NRI families is straightforward but brutal: *Avengers: Doomsday* on Thursday, *King* on Wednesday, *Jumanji* on Thursday. Three films in eight days, all competing for the same discretionary holiday spending.
 
-Abhinay Deo, who directed *Delhi Belly* and *Force 2*, brings a suspenseful, hard-boiled atmosphere to the series. The teaser suggests *Brown* will lean heavily into its neo-noir credentials — moody lighting, morally ambiguous characters, and a Kolkata that feels less like a tourist destination and more like a place where bad things happen to people who cannot leave.
+        SRK's advantage is cultural loyalty. No Hollywood franchise can replicate the emotional pull that a Shah Rukh Khan film has on Indian households during the holidays. But cultural loyalty has limits when the alternative is the biggest Marvel event since *Endgame*.
 
-## The Comeback That Nobody Expected
+        ## The Strategic Logic
 
-Karisma Kapoor's first OTT outing was *Mentalhood* in 2020 — a lighter, more conventional series. *Brown* is a different animal entirely. This is a leading lady from the 90s who is not doing a nostalgic victory lap. She is doing the kind of role that younger actresses campaign for.
+        The 45-day gap between *Ramayana Part 1* (releasing November 6, 2026) and *King* is deliberate. The two films share no overlap in audience or genre, but their producers clearly coordinated to avoid cannibalising each other's runs. *Ramayana* gets the Diwali-to-Thanksgiving window; *King* gets Christmas.
 
-For NRIs who grew up on *Hero No. 1*, *Raja Hindustani*, and *Dil To Pagal Hai*, watching Karisma play a damaged Kolkata cop is going to be jarring. That disjunction — between the Karisma of memory and the Karisma on screen — is what makes the casting genuinely interesting.
+        If *King* delivers — and the early confidence from distributors suggests it will — it could cap 2026 as the year Indian cinema proved it can go toe-to-toe with Hollywood's biggest franchises in the same release window, on the same screens, in the same markets.
 
-## Why ZEE5
+        December 24, 2026. Mark it.
+    """).strip(),
+})
 
-ZEE5 has been quietly building a roster of darker, more experimental Indian content. While Netflix and JioHotstar dominate the conversation among NRI audiences, ZEE5 has carved out space with shows that take bigger narrative risks. *Brown* fits that pattern — it is not designed to be the most-watched show on the platform. It is designed to be the best.
+# ═══════════════════════════════════════════════════════════════════════
+# ARTICLE 3: Ishaan Khatter — Biarritz Film Festival
+# ═══════════════════════════════════════════════════════════════════════
 
-## The Bigger Pattern
+articles.append({
+    "headline": "Ishaan Khatter Is the Only Indian on the Biarritz Film Festival Jury. Kristen Stewart Is Chairing It.",
+    "subheadline": "The Homebound actor joins an international panel in France next month — a quiet milestone in Indian cinema's growing presence at European festivals.",
+    "slug": "ishaan-khatter-biarritz-film-festival-jury-kristen-stewart-indian-cinema-global-nri-20260529",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps(["NewKerala", "Pinkvilla", "ANI", "Gold House"]),
+    "image_person": "Ishaan Khatter",
+    "body": textwrap.dedent("""\
+        There's a particular kind of recognition that doesn't come with a box office number or a streaming chart. It comes with a phone call, a plane ticket, and a seat next to people who take cinema seriously.
 
-Karisma is not the only 90s star pivoting hard into OTT. Madhuri Dixit has *Maa Behen* dropping on Netflix on June 4. Meenakshi Seshadri just returned to Mumbai after 30 years in America, looking for work without an agent. The generation of actresses who defined Bollywood's commercial peak is now finding that the most interesting roles are on streaming platforms, not in theatres.
+        Ishaan Khatter has received that call. The 27-year-old Bollywood actor has been invited to serve on the jury of the Biarritz Film Festival — Nouvelles Vagues 2026, a prestigious European festival dedicated to emerging voices in global cinema. The festival runs from June 23 to 28 in the seaside city of Biarritz in southern France.
 
-For an entire generation of NRIs, these are not just actresses. They are the soundtracks of Saturday-night VHS rentals, of Doordarshan broadcasts watched on grandparents' televisions, of the songs that still play at every wedding. Watching them do genuinely challenging work — not cameos, not reality shows, but lead roles in dark thrillers — is the kind of thing that makes you recalibrate what Indian entertainment can be.
+        He is the only Indian on the jury. The panel is chaired by Kristen Stewart.
 
-*Brown* does not have an official release date yet. But based on the teaser, this is one to watch."""
-    }
-]
+        ## The Jury
 
-print(f"=== Entertainment Writer — {datetime.now().strftime('%Y-%m-%d %H:%M')} ===")
-print(f"Publishing {len(articles)} articles\n")
+        The full jury lineup includes Stewart (who won the César Award for Best Actress and has directed two short films), Canadian actress Whitney Peak (*Gossip Girl*), French actor-director Raphaël Quenard, French filmmaker Nathan Ambrosioni, French actress Suzy Bemba, Italian director Carolina Cavalli, and British actress Esme Creed-Miles (*Hanna*).
 
-published = 0
-for i, art in enumerate(articles):
-    print(f"\n--- Article {i+1}: {art['headline'][:80]}... ---")
+        It's a deliberately international panel assembled to evaluate films from emerging directors — the kind of work that doesn't yet have a marketing budget or a release date, but might reshape the medium in five years. The Biarritz Film Festival, now in its fourth edition, has quickly become one of Europe's most closely watched platforms for spotlighting the future of storytelling.
 
+        For Ishaan, the invitation is a direct consequence of a year that has fundamentally repositioned him in the global film conversation.
+
+        ## The Homebound Effect
+
+        In 2025, Neeraj Ghaywan's *Homebound* — starring Ishaan alongside Janhvi Kapoor and Vishal Jethwa, executive-produced by Martin Scorsese — premiered at the Cannes Film Festival to a standing ovation. It was subsequently selected as India's official entry for the Best International Feature Film category at the 2026 Academy Awards, where it was shortlisted among 15 films from 86 countries.
+
+        That trajectory — Cannes premiere, Oscar submission, Academy shortlist — is the kind of career sequence that opens doors at European festivals. Jury invitations at festivals like Biarritz don't come from audition tapes. They come from curators who have watched your work, tracked your choices, and decided you have the taste and perspective to evaluate other people's films.
+
+        Ishaan was also recently named to the Gold House Gold 100 list, becoming the only Indian male actor on the 2026 roster — a recognition of his cultural impact across the Asian diaspora.
+
+        ## What It Means for Indian Cinema
+
+        India's presence at European film festivals has historically been sporadic and often confined to the competition or market sections. Having an Indian actor on the jury — not just attending, not just premiering a film, but actively judging the work of international filmmakers — represents a different kind of visibility.
+
+        It's the kind of soft power that doesn't register on box office trackers but matters enormously for how Indian cinema is perceived by the global industry. When a festival like Biarritz invites an Indian artist to evaluate its competition, it signals that Indian cinema is no longer a curiosity or a niche category — it's part of the mainstream conversation.
+
+        This is especially significant for the diaspora. NRI audiences have long had to explain the depth and range of Indian cinema to friends and colleagues who associate it only with song-and-dance spectacles. Every Indian artist who sits on a European jury, who walks a red carpet as a peer rather than a guest, makes that conversation a little easier.
+
+        ## What's Next for Ishaan
+
+        Beyond the festival circuit, Ishaan is gearing up for *Jugaadu*, a comic caper that also marks his first production venture. The film, which held its mahurat ceremony on April 30 in Mumbai, stars Abhishek Banerjee, Jameel Khan, and marks the Hindi debut of popular Punjabi actress Tania. The first schedule is being shot in Punjab.
+
+        It's a deliberate contrast to the festival-circuit gravitas of *Homebound* — a commercial entertainer designed for theatrical audiences. The ability to toggle between both worlds is exactly what makes Ishaan's jury invitation feel earned rather than ceremonial.
+
+        He'll be in Biarritz from June 23. Kristen Stewart will be sitting next to him. The films will be projected. The conversations will happen in French, English, and the universal language of people who care about what cinema can be.
+    """).strip(),
+})
+
+# ── Publish ──────────────────────────────────────────────────────────
+
+print(f"\n{'='*60}")
+print(f"The Videshi Entertainment Writer — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+print(f"{'='*60}\n")
+
+for i, article in enumerate(articles, 1):
+    print(f"\n[{i}/{len(articles)}] {article['headline'][:70]}...")
+    
     # Image sourcing
+    person = article.pop('image_person', None)
     img_url = None
     img_attribution = None
-
-    # Try Wikipedia first for person articles
-    if art.get('person_for_image'):
-        img_url = fetch_wikipedia_person_image(art['person_for_image'])
+    
+    if person:
+        print(f"  → Sourcing image for: {person}")
+        img_url = fetch_wikipedia_person_image(person)
         if img_url:
             img_attribution = "Wikimedia Commons"
-
-    # Fallback to Pexels
-    if not img_url and art.get('pexels_query'):
-        img_url = fetch_pexels_image(art['pexels_query'], art.get('pexels_fallback'))
+    
+    if not img_url:
+        # Fallback to Pexels with specific query
+        fallback_queries = {
+            "Nicolas Cage": ("noir detective trench coat", "private detective noir"),
+            "Shah Rukh Khan": ("Bollywood movie premiere", "Indian cinema"),
+            "Ishaan Khatter": ("film festival France", "cinema jury panel"),
+        }
+        q1, q2 = fallback_queries.get(person, ("cinema", "film"))
+        img_url = fetch_pexels_image(q1, q2)
         if img_url:
             img_attribution = "Pexels"
-
-    # Validate
+    
+    # Upload to Supabase if we have an image
     if img_url:
-        if is_banned_source(img_url):
-            print(f"  ✗ Banned source detected, skipping image")
-            img_url = None
-        elif not validate_image_url(img_url):
-            print(f"  ⚠ Image validation failed, proceeding without image")
-            img_url = None
+        filename = f"{article['slug']}.jpg"
+        final_url = upload_image_to_supabase(img_url, filename)
+        if final_url:
+            article['image_url'] = final_url
+            article['image_attribution'] = img_attribution
+            article['image_caption'] = f"{person}" if person else ""
+    
+    # Validate
+    body = article.get('body', '')
+    word_count = len(body.split())
+    print(f"  Word count: {word_count}")
+    if word_count < 400:
+        print(f"  ⚠ BELOW 400 WORD MINIMUM — skipping")
+        continue
+    if not article.get('subheadline') or len(article['subheadline']) < 15:
+        print(f"  ⚠ Missing/short subheadline — skipping")
+        continue
+    if article.get('category') != 'entertainment':
+        print(f"  ⚠ Wrong category — skipping")
+        continue
 
-    # Build article payload
-    art_id = str(uuid.uuid4())
-    payload = {
-        "id": art_id,
-        "headline": art['headline'],
-        "subheadline": art['subheadline'],
-        "slug": art['slug'],
-        "category": art['category'],
-        "body": art['body'],
-        "sources": json.dumps(art['sources']),
-        "status": "published",
-        "published_at": now_str,
-        "image_url": img_url,
-        "image_attribution": img_attribution,
-        "image_caption": art.get('person_for_image', ''),
-        "vertical": "entertainment",
-        "tags": art.get('tags', [])
-    }
-
-    # Validate before insert
-    assert len(payload['headline']) >= 20, f"Headline too short: {len(payload['headline'])}"
-    assert len(payload['headline']) <= 200 or True, f"Headline long but OK for style"
-    assert len(payload['subheadline']) >= 15, f"Subheadline too short"
-    assert len(payload['body'].split()) >= 400, f"Body too short: {len(payload['body'].split())} words"
-    assert payload['category'] == 'entertainment', f"Wrong category: {payload['category']}"
-    assert not payload['slug'].startswith('http'), f"Slug looks like URL"
-    assert len(payload['sources']) >= 2, f"Need at least 2 sources"
-
-    word_count = len(payload['body'].split())
-    print(f"  Words: {word_count}")
-    print(f"  Image: {img_url[:80] if img_url else 'None'}...")
-    print(f"  Slug: {payload['slug']}")
-
-    result = sb_insert('p2_articles', payload)
-    if result:
-        print(f"  ✓ Published: {result.get('id', art_id)}")
-        published += 1
-    else:
-        print(f"  ✗ Failed to publish")
-
+    # Insert
+    art_id = insert_article(article)
+    
+    if art_id and article.get('image_url'):
+        print(f"  ✓ Image: {article['image_url'][:60]}...")
+    elif art_id:
+        print(f"  ⚠ No image — article published without image")
+    
     time.sleep(1)
 
-print(f"\n=== Done: {published}/{len(articles)} articles published ===")
+print(f"\n{'='*60}")
+print(f"Done. {len(articles)} articles processed.")
+print(f"{'='*60}")
