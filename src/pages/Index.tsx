@@ -25,8 +25,8 @@ const INDIA_NEWS = { slug: "news", label: "INDIA NEWS", limit: 18 };
 const WORLD_NEWS = { slug: "nri-world", label: "WORLD NEWS", limit: 12 };
 
 const CATEGORY_SECTIONS = [
-  { slug: "markets-finance", label: "MARKETS & FINANCE", limit: 12 },
   { slug: "technology", label: "TECHNOLOGY", limit: 12 },
+  { slug: "markets-finance", label: "MARKETS & FINANCE", limit: 12 },
   { slug: "sports", label: "SPORTS", limit: 12 },
   { slug: "entertainment", label: "ENTERTAINMENT", limit: 12 },
   { slug: "lifestyle-health", label: "LIFESTYLE & HEALTH", limit: 12 },
