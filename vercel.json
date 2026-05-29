@@ -14,6 +14,11 @@
     { "source": "/api/subscribe", "destination": "/api/subscribe" },
     { "source": "/api/instagram-thumb", "destination": "/api/instagram-thumb" },
     { "source": "/api/verify-turnstile", "destination": "/api/verify-turnstile" },
+    {
+      "source": "/articles/:slug",
+      "has": [{ "type": "header", "key": "user-agent", "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*" }],
+      "destination": "/api/prerender?slug=:slug"
+    },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
