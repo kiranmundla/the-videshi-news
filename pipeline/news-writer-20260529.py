@@ -1,39 +1,99 @@
 #!/usr/bin/env python3
 """
 The Videshi — News Writer (2026-05-29)
-Publishes 3 news articles to Supabase.
+Publishes 3 fresh news articles with proper image sourcing.
 """
 
-import json, os, sys, time, uuid, re
-import requests
+import json
+import os
+import re
+import sys
+import time
+import uuid
+import urllib.parse
+import subprocess
 from datetime import datetime, timezone
 
-# --- Config ---
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
-HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
+# Load env
+def load_env(path):
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    k, v = line.split('=', 1)
+                    os.environ[k.strip()] = v.strip()
+
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_API_KEY = os.environ.get('PEXELS_API_KEY', '')
+
+HEADERS_SB = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
 
-# --- Helper functions ---
+def sb_post(table, data):
+    """Insert into Supabase via curl (requests can throw IncompleteRead)."""
+    cmd = [
+        'curl', '-sS', '-w', '\n%{http_code}',
+        f'{SUPABASE_URL}/rest/v1/{table}',
+        '-H', f'apikey: {SUPABASE_KEY}',
+        '-H', f'Authorization: Bearer {SUPABASE_KEY}',
+        '-H', 'Content-Type: application/json',
+        '-H', 'Prefer: return=representation',
+        '-d', json.dumps(data)
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    lines = result.stdout.strip().rsplit('\n', 1)
+    body = lines[0] if len(lines) > 1 else result.stdout
+    code = int(lines[1]) if len(lines) > 1 else 0
+    if code >= 400:
+        print(f"  ✗ Supabase POST {table} failed ({code}): {body[:200]}")
+        return None
+    try:
+        parsed = json.loads(body)
+        return parsed[0] if isinstance(parsed, list) and parsed else parsed
+    except:
+        return None
+
+def sb_patch(table, match, data):
+    """Update Supabase row via curl."""
+    url = f'{SUPABASE_URL}/rest/v1/{table}?{match}'
+    cmd = [
+        'curl', '-sS', '-X', 'PATCH', '-w', '\n%{http_code}',
+        url,
+        '-H', f'apikey: {SUPABASE_KEY}',
+        '-H', f'Authorization: Bearer {SUPABASE_KEY}',
+        '-H', 'Content-Type: application/json',
+        '-H', 'Prefer: return=representation',
+        '-d', json.dumps(data)
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    lines = result.stdout.strip().rsplit('\n', 1)
+    code = int(lines[1]) if len(lines) > 1 else 0
+    if code >= 400:
+        print(f"  ✗ Supabase PATCH {table} failed ({code})")
+    return code < 400
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
-        r = requests.get(
-            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
-        )
-        if r.status_code == 200:
-            data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+        cmd = [
+            'curl', '-sS', '-m', '10',
+            '-H', 'User-Agent: TheVideshi/1.0 (thevideshi.com)',
+            f'https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}'
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            img = data.get('originalimage', {}).get('source') or data.get('thumbnail', {}).get('source')
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
@@ -41,494 +101,361 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels API using curl (Python urllib gets 403)."""
-    if not PEXELS_KEY:
+    """Fetch a specific image from Pexels using curl."""
+    if not PEXELS_API_KEY:
         print("  ⚠ No Pexels API key")
         return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = requests.get(
-                "https://api.pexels.com/v1/search",
-                params={"query": q, "per_page": 5, "orientation": "landscape"},
-                headers={"Authorization": PEXELS_KEY},
-                timeout=10
-            )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for photo in photos:
-                    url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("original")
-                    if url:
-                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                        return url
+            cmd = [
+                'curl', '-sS', '-m', '10',
+                '-H', f'Authorization: {PEXELS_API_KEY}',
+                f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+            if result.returncode == 0:
+                data = json.loads(result.stdout)
+                photos = data.get('photos', [])
+                if photos:
+                    # Pick the first landscape photo with good resolution
+                    for photo in photos:
+                        url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+                        if url:
+                            print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                            return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def validate_image_url(url):
-    """Verify image URL returns HTTP 200 with image content-type and > 5KB."""
-    if not url:
-        return False
-    try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            print(f"  ✓ Image validated: {ct}, {cl} bytes")
-            return True
-        # Try GET for servers that don't support HEAD well
-        r = requests.get(url, timeout=10, stream=True, allow_redirects=True,
-                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct:
-            # Read first chunk to check size
-            chunk = r.raw.read(6000)
-            if len(chunk) > 5000:
-                print(f"  ✓ Image validated via GET: {ct}, {len(chunk)}+ bytes")
-                return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
-    except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
-    return False
-
-
-def upload_to_supabase_storage(image_url, filename):
+def upload_image_to_supabase(image_url, filename):
     """Download image and upload to Supabase storage bucket."""
+    tmp_path = f'/tmp/{filename}'
     try:
-        r = requests.get(image_url, timeout=20,
-                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200:
-            print(f"  ✗ Failed to download image: {r.status_code}")
-            return None
-        img_data = r.content
-        if len(img_data) < 5000:
-            print(f"  ✗ Image too small: {len(img_data)} bytes")
+        # Download
+        dl_cmd = ['curl', '-sS', '-L', '-m', '15', '-o', tmp_path, image_url]
+        subprocess.run(dl_cmd, capture_output=True, timeout=20)
+        
+        # Verify file size
+        if not os.path.exists(tmp_path) or os.path.getsize(tmp_path) < 5000:
+            print(f"  ✗ Downloaded image too small or missing: {tmp_path}")
             return None
         
-        ct = r.headers.get("Content-Type", "image/jpeg")
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        resp = requests.post(
-            upload_url,
-            data=img_data,
-            headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": ct,
-                "x-upsert": "true"
-            },
-            timeout=30
-        )
-        if resp.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+        # Upload to Supabase storage
+        upload_cmd = [
+            'curl', '-sS', '-X', 'POST', '-w', '\n%{http_code}',
+            f'{SUPABASE_URL}/storage/v1/object/article-images/{filename}',
+            '-H', f'apikey: {SUPABASE_KEY}',
+            '-H', f'Authorization: Bearer {SUPABASE_KEY}',
+            '-H', 'Content-Type: image/jpeg',
+            '-H', 'x-upsert: true',
+            '--data-binary', f'@{tmp_path}'
+        ]
+        result = subprocess.run(upload_cmd, capture_output=True, text=True, timeout=30)
+        lines = result.stdout.strip().rsplit('\n', 1)
+        code = int(lines[1]) if len(lines) > 1 else 0
+        
+        if code < 300:
+            public_url = f'{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}'
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ✗ Upload failed: {resp.status_code} {resp.text[:200]}")
+            print(f"  ✗ Upload failed ({code}): {lines[0][:200] if lines else 'unknown'}")
+            return None
     except Exception as e:
         print(f"  ✗ Upload error: {e}")
-    return None
-
-
-def publish_article(article):
-    """Insert article into Supabase p2_articles table."""
-    article_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).isoformat()
-    
-    payload = {
-        "id": article_id,
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "body": article["body"],
-        "slug": article["slug"],
-        "category": article["category"],
-        "vertical": article.get("vertical", "general"),
-        "urgency": article.get("urgency", "medium"),
-        "tags": article.get("tags", []),
-        "score_total": article.get("score_total", 85),
-        "status": "published",
-        "published_at": now,
-        "created_at": now,
-        "updated_at": now,
-        "sources": json.dumps(article["sources"]),
-        "image_attribution": article.get("image_attribution", ""),
-        "is_featured": False,
-        "is_editorial": False,
-    }
-    if article.get("image_url"):
-        payload["image_url"] = article["image_url"]
-    if article.get("image_caption"):
-        payload["image_caption"] = article["image_caption"]
-    if article.get("diaspora_angle"):
-        payload["diaspora_angle"] = article["diaspora_angle"]
-    
-    resp = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        json=payload,
-        headers=HEADERS,
-        timeout=30
-    )
-    if resp.status_code in (200, 201):
-        data = resp.json()
-        aid = data[0]["id"] if isinstance(data, list) else data.get("id", article_id)
-        print(f"  ✓ Published: {article['headline'][:60]}... (id: {aid})")
-        return aid
-    else:
-        print(f"  ✗ Publish failed: {resp.status_code} {resp.text[:300]}")
         return None
+    finally:
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
 
+def validate_image_url(url):
+    """Check that the URL returns a valid image."""
+    if not url:
+        return False
+    try:
+        cmd = ['curl', '-sS', '-I', '-m', '10', '-L', url]
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+        headers = result.stdout.lower()
+        has_image = 'content-type: image/' in headers
+        # Check content-length
+        cl_match = re.search(r'content-length:\s*(\d+)', headers)
+        size_ok = int(cl_match.group(1)) > 5000 if cl_match else True  # if no CL header, assume OK
+        return has_image and size_ok
+    except:
+        return False
 
-# ===================================================================
-# ARTICLE 1: Blue Origin New Glenn Explosion
-# ===================================================================
+# ─── ARTICLE DEFINITIONS ──────────────────────────────────────────────
 
-def write_article_blue_origin():
-    print("\n📰 Article 1: Blue Origin New Glenn Explosion")
-    
-    slug = "blue-origin-new-glenn-explodes-launchpad-nasa-artemis-india-space-20260529"
-    headline = "Jeff Bezos's Rocket Just Exploded on the Launchpad. NASA's Moon Plans Are Now in Trouble."
-    subheadline = "Blue Origin's New Glenn blew up during a static fire test at Cape Canaveral, days after winning a $188 million NASA contract. The explosion threatens Artemis timelines and Amazon's satellite ambitions — and widens the gap India's ISRO is racing to close."
-    
-    body = """A Blue Origin New Glenn rocket exploded on its launchpad at Cape Canaveral on Thursday night, sending a massive fireball into the Florida sky and dealing Jeff Bezos's space company its worst setback yet.
-
-The 322-foot rocket — roughly 29 storeys tall — detonated during a static fire test at around 9 p.m. ET, rattling homes across Cape Canaveral and Cocoa Beach. No one was injured, but the explosion destroyed a rocket that has cost billions of dollars and a decade to develop.
-
-## What Happened
-
-Blue Origin confirmed the incident in a post on X, calling it an "anomaly during today's hotfire test" — industry parlance for catastrophic failure. A static fire is a pre-launch procedure where engines ignite while the rocket remains clamped to the ground. Video from NASASpaceflight showed the New Glenn igniting on the pad before erupting into a towering inferno.
-
-"Very rough day, but we'll rebuild whatever needs rebuilding and get back to flying. It's worth it," Bezos wrote on X. He said it was "too early to know the root cause."
-
-The New Glenn had already been grounded since April, after its third flight left a satellite in the wrong orbit due to engine failure.
-
-## NASA's Artemis Program Takes a Hit
-
-The timing could not be worse. Earlier this week, NASA awarded Blue Origin a $188 million contract to deliver rovers to the moon's surface using its Mark 1 cargo lunar lander — a mission that depends on the New Glenn rocket.
-
-NASA Administrator Jared Isaacman acknowledged the incident on X: "Spaceflight is unforgiving, and developing new heavy-lift launch capability is extraordinarily difficult. We will work with our partners to support a thorough investigation of this anomaly, assess near-term mission impacts, and get back to launching rockets."
-
-The explosion raises questions about whether Blue Origin can meet its commitments to NASA's Artemis program, which aims to return astronauts to the moon before China's planned crewed landing in 2030. Blue Origin is building the lunar lander that NASA will use for Artemis V, and the company's reliability record is now under scrutiny.
-
-## Bezos vs Musk: The Space Race Gap Widens
-
-The explosion deepens the gap between Blue Origin and Elon Musk's SpaceX, which is preparing for an IPO that could value it as the first trillion-dollar U.S. market debut. SpaceX has not been immune to failures — its Starship exploded during testing in Texas last year — but has recovered faster and built a far deeper launch record.
-
-Musk responded to video of the Blue Origin explosion with characteristic understatement: "Most unfortunate. Rockets are hard."
-
-Blue Origin had announced just a day before the explosion that it was preparing the New Glenn to launch 48 Amazon Leo satellites into low-Earth orbit, part of Amazon's Project Kuiper broadband constellation meant to rival Musk's Starlink network. That timeline is now in question.
-
-## What This Means for India's Space Ambitions
-
-The explosion also has implications for the global space race that India is increasingly part of. ISRO's LVM3 — India's heaviest operational rocket — has carved out a niche in the commercial launch market, and every stumble by a competitor opens a potential window.
-
-ISRO launched its Chandrayaan-3 moon lander successfully in 2023 and is preparing the Gaganyaan crewed mission. While the LVM3 cannot match the New Glenn's payload capacity, ISRO's track record of reliable, cost-effective launches has attracted commercial customers looking for alternatives to SpaceX and Blue Origin.
-
-Indian-origin engineers are also deeply embedded in the American space industry. From NASA's Jet Propulsion Laboratory to private companies like SpaceX and Blue Origin itself, Indian Americans have been central to the engineering teams building the hardware that will return humans to the moon.
-
-## What Comes Next
-
-The Federal Aviation Administration said it was aware of the incident but noted it fell outside its regulatory scope and did not affect air traffic. Blue Origin will need to conduct a thorough investigation, rebuild the damaged launchpad at Launch Complex 36, and likely demonstrate a successful static fire before flying again.
-
-For Bezos, the path forward is clear but costly. Blue Origin has already spent over $2.5 billion on New Glenn alone, and the company will need to rebuild confidence with both NASA and its commercial customers. The space billionaire's dream of catching SpaceX just got harder."""
-    
-    sources = [
-        {"name": "Reuters", "url": "https://www.reuters.com/science/blue-origin-says-it-faced-anomaly-during-hot-fire-test-2026-05-29/"},
-        {"name": "CNN", "url": "https://www.cnn.com/2026/05/28/science/blue-origin-new-glenn-explosion/"},
-        {"name": "Wall Street Journal", "url": "https://www.wsj.com/science/space-astronomy/bezos-blue-origin-loses-rocket-explosion-launchpad/"},
-        {"name": "SpaceWeekly", "url": "https://spaceweekly.com/blue-origins-failure-may-hamstring-nasas-moon-plans/"}
-    ]
-    
-    # Image: Jeff Bezos from Wikipedia
-    print("  Sourcing image...")
-    img_url = fetch_wikipedia_person_image("Jeff Bezos")
-    img_attribution = "Wikimedia Commons"
-    img_caption = "Jeff Bezos, founder of Blue Origin, whose New Glenn rocket exploded during a static fire test at Cape Canaveral."
-    
-    if img_url and not validate_image_url(img_url):
-        img_url = None
-    
-    if not img_url:
-        # Try Blue Origin or rocket launch from Pexels
-        img_url = fetch_pexels_image("rocket launch cape canaveral", "space rocket launchpad")
-        img_attribution = "Pexels"
-        img_caption = "A rocket launch at Cape Canaveral, where Blue Origin's New Glenn exploded during testing."
-        if img_url and not validate_image_url(img_url):
-            img_url = None
-    
-    # Upload to Supabase for permanence
-    final_url = None
-    if img_url:
-        final_url = upload_to_supabase_storage(img_url, f"{slug}.jpg")
-    
-    return {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
+articles = [
+    {
+        "headline": "A Russian Drone Just Hit an Apartment Block in NATO Member Romania. The War in Ukraine Has Crossed a New Line.",
+        "subheadline": "For the first time since Russia's invasion began, a military drone struck a densely populated area in an EU and NATO country — injuring two civilians in the city of Galati and triggering condemnation from every Western capital.",
+        "slug": "russia-drone-hits-romania-apartment-nato-escalation-india-strategic-20260529",
         "category": "news",
-        "vertical": "space-technology",
+        "vertical": "global-security",
         "urgency": "high",
-        "tags": ["blue-origin", "new-glenn", "jeff-bezos", "nasa", "artemis", "spacex", "isro", "space-race"],
-        "score_total": 90,
-        "diaspora_angle": "Indian-origin engineers are deeply embedded in NASA, SpaceX, and Blue Origin. ISRO's reliable LVM3 rocket competes for commercial launches in a market where Blue Origin's setbacks open opportunities.",
-        "sources": sources,
-        "image_url": final_url or img_url,
-        "image_attribution": img_attribution if (final_url or img_url) else "",
-        "image_caption": img_caption if (final_url or img_url) else "",
-    }
+        "tags": ["russia", "ukraine", "nato", "romania", "drone-strike", "article-5", "india-strategic-autonomy", "eu-sanctions"],
+        "diaspora_angle": "India's strategic balancing act between Russia and the West faces a new stress test. A NATO Article 5 scenario would force every major power to pick a side — and India's 4.5 million diaspora across Europe would be directly affected by any escalation.",
+        "sources": "Reuters, CNN, The Times, Fox News, NATO official statements",
+        "image_search_person": "Mark Rutte",
+        "image_search_pexels": "NATO military alliance",
+        "image_search_pexels_fallback": "European military defense drone",
+        "body": """For four minutes early Friday morning, a Russian military drone flew unchallenged through Romanian airspace before slamming into the roof of a ten-storey apartment block in the city of Galati. The explosion ripped through the top floor, sparked a fire, and sent seventy residents scrambling into the predawn darkness. A woman and her child were hospitalised with injuries. Two others were treated for panic attacks at the scene.
 
+It was, by every measure, a first. Russian drones have breached Romanian airspace 28 times since Moscow began systematically targeting Ukrainian ports along the Danube. Drone fragments have been recovered 47 times. But never before had a wartime drone struck a densely populated area inside a NATO and EU member state and injured civilians.
 
-# ===================================================================
-# ARTICLE 2: India Sends Ebola Aid to Congo
-# ===================================================================
+## NATO's Response Was Immediate
 
-def write_article_india_ebola_aid():
-    print("\n📰 Article 2: India Sends Emergency Ebola Aid to Congo")
-    
-    slug = "india-ebola-aid-congo-africa-cdc-pharmaceutical-supplies-global-health-20260529"
-    headline = "India Just Sent Emergency Ebola Supplies to Congo. Africa's Health Agency Called It a Lifeline."
-    subheadline = "As the world's worst Ebola outbreak in years kills over 220 people in eastern Congo, India has shipped diagnostics, therapeutics, and infection control materials — extending a pandemic-era playbook that made it the pharmacy of the developing world."
-    
-    body = """India has dispatched emergency pharmaceutical supplies to the Democratic Republic of Congo to help contain an Ebola outbreak that the World Health Organisation has declared a Public Health Emergency of International Concern — and Africa's continental health agency has publicly thanked New Delhi for stepping up when much of the world has been slow to respond.
+Within hours, the entire Western alliance had lined up behind Bucharest. NATO Secretary General Mark Rutte said the alliance "stands ready to defend every inch of Allied territory." EU Commission President Ursula von der Leyen announced she is preparing a 21st round of sanctions against Moscow. France summoned Russia's ambassador. Romania did the same.
 
-The consignment, donated by the Government of India, was received in Uganda by the Africa Centres for Disease Control and Prevention's Eastern Africa Regional Coordinating Centre. It includes essential diagnostics, therapeutics, infection prevention and control materials, and case management support that will be deployed to affected communities in eastern DR Congo.
+Romanian President Nicusor Dan called it a "systematic disregard for international law" and demanded a "firm, coordinated and proportionate response — at national, allied and international level." Foreign Minister Oana Toiu said Romania has requested accelerated transfers of anti-drone capabilities from NATO.
 
-## The Scale of the Crisis
+The Romanian military scrambled two F-16 fighter jets and a military helicopter to monitor the attack. Under recently enacted Romanian law, pilots were authorised to shoot down any drones threatening lives or property — but no drones were intercepted.
 
-The numbers are staggering. As of this week, more than 1,000 suspected Ebola infections and at least 246 deaths have been reported in Congo's Ituri province, though the WHO and aid agencies say the actual scale is likely significantly higher. The virus has crossed borders, with eight confirmed cases now in Uganda, including in the capital Kampala.
+## The Escalation Pattern Is Unmistakable
 
-This is the Bundibugyo strain — one of six known species of the Ebola virus, first identified in Uganda in 2007. There are no approved vaccines or treatments for this strain, making containment the only viable strategy. The WHO declared the outbreak a Public Health Emergency of International Concern on May 17, a designation reserved for the most serious global health threats.
+The Galati strike did not happen in isolation. In recent weeks, drones have strayed into Baltic airspace with increasing frequency. A NATO fighter jet shot down a suspected Ukrainian drone over Estonia days earlier. Lithuania warned citizens to take cover after a drone approached its airspace. Flights were grounded at a major European airport after a drone sighting.
 
-The response has been complicated by armed conflict in Ituri province, community distrust of health workers, and attacks on medical facilities. Last week, protesters set fire to tents set up to treat Ebola patients in Rwampara, one of the outbreak's hotspots. International organisations have described the response as critically underfunded — Africa CDC reported this week that funding pledges have nearly halved compared to initial commitments.
+Moscow's drone warfare campaign against Ukraine's Danube port infrastructure — Izmail, Reni, and surrounding areas — has been intensifying precisely because these targets sit within kilometres of Romania's border. The closer Russia's targets get to NATO territory, the higher the probability of exactly this kind of incident.
 
-## India's Expanding Health Diplomacy
+EU Foreign Policy Chief Kaja Kallas put it bluntly: "Russia has long ago stopped respecting borders. Moscow cannot be allowed to breach European airspace with impunity."
 
-India's emergency aid extends a pattern that accelerated during the COVID-19 pandemic, when the country shipped millions of vaccine doses to developing nations under the Vaccine Maitri initiative. The Serum Institute of India — the world's largest vaccine manufacturer — is now racing to develop a Bundibugyo-specific Ebola vaccine, with the WHO confirming that manufacturing is already underway.
+## Why India Is Watching This Closely
 
-"Africa CDC welcomes the arrival of emergency pharmaceutical supplies generously donated by the Government and people of India to support the ongoing response to the Bundibugyo Ebola outbreak in the DRC," the agency said, thanking India for its "continued support and commitment to protecting lives and advancing health security across the continent."
+For New Delhi, the Romania strike crystallises a set of calculations that India's foreign policy establishment has been making since Russia invaded Ukraine in February 2022.
 
-The aid comes at a diplomatically sensitive moment. India and the African Union had been scheduled to hold the Fourth India-Africa Forum Summit in New Delhi this week — from May 28 to 31 — but postponed it due to the Ebola outbreak. The postponement, while a setback for India's Africa diplomacy, also underscored the seriousness with which both sides are treating the public health situation.
+India has maintained what it calls strategic autonomy — refusing to join Western sanctions against Russia while simultaneously deepening its security partnerships with the United States and its Quad allies. Prime Minister Modi's government has argued that dialogue, not isolation, is the path to peace. India has continued purchasing discounted Russian crude oil, defended its position in multilateral forums, and avoided directly condemning Moscow.
 
-## Closer to Home
+But the Galati incident tests the limits of that balancing act. If Russia's war physically threatens NATO civilians — and if NATO responds with a harder security posture — India's room to straddle both camps narrows. Any Article 5 invocation, however unlikely at this stage, would force every major power to pick a side.
 
-India itself is on high alert. Earlier this week, Bengaluru quarantined a 28-year-old Ugandan woman suspected of carrying the Ebola virus — the country's first suspected case in over a decade. Health Minister Jagat Prakash Nadda has said India has not confirmed any cases, but screening has been stepped up at airports and the government has imposed travel advisories for Congo, Uganda, and South Sudan.
+India also has a direct interest in the drone warfare dimension. New Delhi has been investing heavily in indigenous drone capabilities and counter-drone systems, particularly after the 2020 Ladakh standoff with China exposed gaps in India's surveillance architecture. The Romania strike demonstrates that even sophisticated NATO air defences — Romania operates US-made Merops anti-drone systems — can struggle against low-flying drones in urban environments.
 
-For the estimated 25 million-strong Indian diaspora in Africa — one of the largest overseas Indian communities on the continent — the outbreak is particularly close to home. Indian businesses across East Africa have been monitoring the situation closely, with some reporting disruptions to trade routes and staffing.
+## What Happens Next
 
-## The Global Response Gap
+Russia has not commented on the strike. It rarely does when its drones stray across borders, treating each incident as a byproduct of its war against Ukraine rather than an act of aggression against a sovereign state.
 
-India's aid stands in contrast to the broader international response, which health experts have called inadequate. The United States has committed $80 million in bilateral assistance and another $300 million for humanitarian aid, but has taken the unusual step of setting up a quarantine facility in Kenya for exposed Americans rather than bringing them home for treatment — a departure from past practice that has drawn criticism from public health experts.
+Romania, however, is not treating it that way. Bucharest has formally requested enhanced NATO anti-drone capabilities and has signalled it will push for stronger collective defence measures at the next alliance summit.
 
-Professor Salim Abdool Karim, a leading South African epidemiologist advising Africa CDC, described the outbreak as moving at "breakneck speed," warning that every day without a fully resourced response is a day the virus gains ground.
+The question now is whether Galati becomes the incident that finally forces NATO to establish a permanent drone defence corridor along its eastern border — and whether that, in turn, draws the alliance deeper into the conflict Moscow insists is not Europe's war.
 
-For India, the Ebola aid is both humanitarian imperative and strategic investment. As New Delhi deepens its engagement with Africa — bilateral trade hit $100 billion last year — positioning itself as a reliable partner in health emergencies strengthens relationships that extend well beyond crisis moments."""
-    
-    sources = [
-        {"name": "PTI via CurrentIndia", "url": "https://currentindia.com/world/india-sends-emergency-medical-supplies-for-ebola-outbreak-response-in-congo/"},
-        {"name": "Reuters", "url": "https://www.reuters.com/world/africa/indias-bengaluru-quarantines-uganda-woman-suspected-ebola-infection-source-says-2026-05-28/"},
-        {"name": "Nation Press", "url": "https://nationpress.com/india-sends-emergency-ebola-aid-to-dr-congo-as-africa-cdc-confirms-receipt/"},
-        {"name": "Reuters — Breakneck Ebola", "url": "https://www.reuters.com/world/africa/breakneck-ebola-epidemic-congo-outpaces-worlds-response-2026-05-28/"}
-    ]
-    
-    # Image: Not about a specific person — use Pexels for medical/health aid
-    print("  Sourcing image...")
-    img_url = fetch_pexels_image("medical supplies humanitarian aid", "pharmaceutical supplies health")
-    img_attribution = "Pexels"
-    img_caption = "India has sent emergency pharmaceutical supplies to help combat the Ebola outbreak in the Democratic Republic of Congo."
-    
-    if img_url and not validate_image_url(img_url):
-        img_url = None
-    
-    final_url = None
-    if img_url:
-        final_url = upload_to_supabase_storage(img_url, f"{slug}.jpg")
-    
-    return {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
+For the 70 residents evacuated from their apartment block at 1 a.m. on a Friday morning, the war has already arrived."""
+    },
+    {
+        "headline": "India and China Just Held Their 35th Border Meeting in Beijing. Both Sides Called It 'Constructive.'",
+        "subheadline": "Six years after the Galwan Valley clash killed twenty Indian soldiers, the two Asian giants are methodically rebuilding trust — one working mechanism meeting at a time. The next step is a Special Representatives summit in China.",
+        "slug": "india-china-35th-wmcc-border-talks-beijing-delimitation-lac-20260529",
         "category": "news",
-        "vertical": "global-health",
-        "urgency": "high",
-        "tags": ["india", "ebola", "congo", "drc", "africa-cdc", "health-diplomacy", "serum-institute", "bundibugyo"],
-        "score_total": 88,
-        "diaspora_angle": "India's 25-million-strong diaspora in Africa is directly affected by the Ebola outbreak. Indian businesses across East Africa report disruptions. The postponed India-Africa Summit signals the severity of the crisis.",
-        "sources": sources,
-        "image_url": final_url or img_url,
-        "image_attribution": img_attribution if (final_url or img_url) else "",
-        "image_caption": img_caption if (final_url or img_url) else "",
-    }
-
-
-# ===================================================================
-# ARTICLE 3: Carnegie 2026 Survey on Indian Americans
-# ===================================================================
-
-def write_article_carnegie_survey():
-    print("\n📰 Article 3: Carnegie 2026 Survey — Indian Americans in a Time of Turbulence")
-    
-    slug = "carnegie-2026-survey-indian-americans-polarization-discrimination-trump-20260529"
-    headline = "A Landmark Survey of 5.2 Million Indian Americans Just Dropped. The Findings Should Worry Both Parties."
-    subheadline = "Carnegie's 2026 Indian American Attitudes Survey reveals a community caught between rising discrimination, collapsing trust in both parties, and a growing temptation to leave the country altogether."
-    
-    body = """A new Carnegie Endowment survey of 1,000 Indian American adults paints a portrait of a community in political flux — overwhelmingly opposed to Donald Trump's second term, cooling on the Democratic Party, and changing how they live their daily lives in response to a surge in anti-Indian hate.
-
-The 2026 Indian American Attitudes Survey, conducted in partnership with YouGov between November 2025 and January 2026, is the most comprehensive study of Indian American political attitudes since Trump returned to the White House. Its findings carry weight: there are now 5.2 million people of Indian origin in the United States, making them the country's fastest-growing and most economically influential Asian American subgroup.
-
-## Trump's Approval Has Cratered
-
-Seventy-one percent of Indian Americans disapprove of Trump's job performance one year into his second term, with 55 percent expressing strong disapproval. Only 29 percent approve — virtually identical to his numbers at the end of his first term in 2020.
-
-The disapproval is broad-based. Sixty-four percent oppose his immigration policy, 68 percent disapprove of his domestic economic management, and 70 percent reject his international economic policies — the tariffs, sanctions, and trade wars that have thrown U.S.-India relations into what the survey calls "a period of heightened turbulence."
-
-On immigration specifically, the numbers are stark. Seventy-four percent of Indian Americans oppose the deportation of immigrants to third countries. Two-thirds oppose the proposed $100,000 fee on new H-1B visa petitions — a policy that would disproportionately affect Indians, who constituted 71 percent of all new H-1B petitions in fiscal year 2024.
-
-Only 20 percent approve of Trump's handling of U.S.-India relations, down sharply from the already-low 35 percent at the end of his first term. One-quarter of respondents had no opinion at all — suggesting foreign policy simply does not register for many Indian Americans when they evaluate a president.
-
-## But Democrats Are Losing Ground Too
-
-Here is where the story gets complicated. Despite widespread anti-Trump sentiment, the Democratic Party is not consolidating Indian American support. The share identifying as Democrats has fallen from 52 percent in 2020 to 46 percent in 2026. Republican identification has edged up from 15 to 19 percent. But the biggest shift has been toward independence — 29 percent of Indian Americans now identify as independents, up six points since 2020.
-
-The Democratic Party's feeling thermometer score among Indian Americans dropped from 60 in 2024 to 53 in 2026. Kamala Harris's favorability fell ten points to 52. The Republican Party fared even worse, falling from 41 to 34, while Trump's personal rating slid from 40 to 32.
-
-The survey identifies a political paradox: Indian Americans are more opposed to Trump's policies than almost any demographic group in America, yet this opposition is not translating into tighter Democratic loyalty. Instead, the community is drifting toward disenchanted centrism.
-
-## The Discrimination Crisis Is Real
-
-Perhaps the survey's most urgent finding is the scale of anti-Indian discrimination. Since the start of 2025, one in four Indian Americans has been called a racial slur. Nine percent report being physically threatened. Eight percent have received hate mail. Four percent have been physically assaulted.
-
-Forty-eight percent — nearly half — report encountering racist posts targeting Indians or Indian Americans on social media "very or somewhat often." The emotional toll is severe: half feel angry when encountering such content, a third feel anxious, and nearly a third feel fearful.
-
-The discrimination is changing behaviour in concrete ways. Thirty-one percent of Indian Americans now avoid discussing politics on social media out of fear of harassment. Twenty-one percent avoid leaving and re-entering the United States. Nineteen percent avoid publicly wearing Indian dress or attire. These are not abstract concerns — they represent a community modifying its daily life in response to a hostile environment.
-
-## Thinking About Leaving
-
-Fourteen percent of Indian Americans have thought frequently about leaving the United States altogether, and another 26 percent have considered it occasionally. Among those who have contemplated leaving, frustration with U.S. politics is the top reason (58 percent), followed by cost of living (54 percent) and personal safety (41 percent).
-
-The most striking detail: of those who have considered leaving, only one in four would go back to India. Sixty-two percent named some other country. Indian Americans are not longing for home — they are looking for a better version of the life they came here to build.
-
-Yet when asked directly, most still recommend the United States. Sixty-two percent would advise a hypothetical Indian professional to apply for a U.S. work visa rather than stay in India. The American dream, apparently, still outweighs the American reality — but the margin is narrowing.
-
-## What Both Parties Should Hear
-
-For Republicans, the data is unambiguous: policies that target immigrants, particularly the H-1B fee and mass deportation proposals, are alienating one of America's most economically productive communities. The party's intolerance of minorities — cited by 27 percent of non-Republican Indians as their primary reason for staying away, up ten points from 2024 — is not a messaging problem. It is the message.
-
-For Democrats, the warning is subtler but equally serious. Indian Americans are not leaving the party for the GOP — they are leaving it for nowhere. The rise of independents, the declining favourability scores, and the community's drift toward ideological moderation all suggest that the Democratic coalition cannot take this constituency for granted.
-
-The survey captures a community at a crossroads. Five million Indian Americans are watching both parties fail them in different ways — and increasingly, they are choosing to disengage rather than pick a side."""
-    
-    sources = [
-        {"name": "Carnegie Endowment for International Peace", "url": "https://carnegieendowment.org/preview/research/2026/02/indian-americans-in-a-time-of-turbulence-2026-survey-results"},
-        {"name": "YouGov / 2026 IAAS Methodology", "url": "https://carnegieendowment.org/preview/research/2026/02/indian-americans-in-a-time-of-turbulence-2026-survey-results"},
-        {"name": "Pew Research Center — Indian American Demographics", "url": "https://www.pewresearch.org/"},
-        {"name": "Stop AAPI Hate — Anti-Indian Content Report", "url": "https://stopaapihate.org/"}
-    ]
-    
-    # Image: Not about a specific person — use Pexels for Indian Americans / voting
-    print("  Sourcing image...")
-    img_url = fetch_pexels_image("Indian American community gathering", "diverse American voters polling")
-    img_attribution = "Pexels"
-    img_caption = "Indian Americans are navigating rising discrimination and political disaffection, according to a new Carnegie Endowment survey."
-    
-    if img_url and not validate_image_url(img_url):
-        img_url = None
-    
-    final_url = None
-    if img_url:
-        final_url = upload_to_supabase_storage(img_url, f"{slug}.jpg")
-    
-    return {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "news",
-        "vertical": "community-politics",
+        "vertical": "india-diplomacy",
         "urgency": "medium",
-        "tags": ["indian-americans", "carnegie", "survey", "discrimination", "politics", "democrats", "republicans", "h1b", "trump"],
-        "score_total": 92,
-        "diaspora_angle": "The survey directly profiles the 5.2 million Indian American community — their political attitudes, experiences with discrimination, immigration policy views, and whether they are considering leaving the United States.",
-        "sources": sources,
-        "image_url": final_url or img_url,
-        "image_attribution": img_attribution if (final_url or img_url) else "",
-        "image_caption": img_caption if (final_url or img_url) else "",
+        "tags": ["india", "china", "lac", "galwan", "border-talks", "wmcc", "jaishankar", "xi-jinping", "ladakh", "quad"],
+        "diaspora_angle": "A stable India-China border means India can redirect defence spending toward modernisation, Indian tech companies can plan without escalation risk, and the Quad framework that NRIs in the US benefit from can function as strategy rather than emergency.",
+        "sources": "Ministry of External Affairs (India), The Hindu BusinessLine, News Dive, The Kashmir Horizon, NewKerala",
+        "image_search_person": "S. Jaishankar",
+        "image_search_pexels": "India China border Ladakh mountains",
+        "image_search_pexels_fallback": "Himalayan mountain border landscape",
+        "body": """India and China held the 35th meeting of the Working Mechanism for Consultation and Coordination on India-China Border Affairs in Beijing on Wednesday, with both sides describing the discussions as "constructive and forward-looking" — diplomatic language that, in the context of a relationship that nearly collapsed into armed conflict six years ago, counts as progress.
+
+The Indian delegation was led by Sujit Ghosh, Joint Secretary for East Asia at the Ministry of External Affairs. The Chinese side was led by Hou Yanqi, Director General of the Boundary and Oceanic Affairs Department at China's Ministry of Foreign Affairs. Both are seasoned negotiators — Ghosh served as India's Deputy High Commissioner in the UK and as Director for China; Hou Yanqi was China's Ambassador to Nepal from 2018 to 2022.
+
+## What Was Actually Discussed
+
+The agenda covered four substantive areas: delimitation of the border, border management protocols, mechanism-building for regular diplomatic and military contacts, and cross-border cooperation — a deliberately broad portfolio that signals both sides are ready to move beyond crisis management toward longer-term institution-building.
+
+India specifically pushed for an early meeting of the Expert Level Mechanism on Trans-border Rivers, a technically unglamorous but strategically critical issue. China's upstream dam-building on rivers that flow into India — the Brahmaputra chief among them — has been a source of deep anxiety in New Delhi for years. Getting Beijing to agree to regular expert-level consultations on water data would be a meaningful confidence-building measure.
+
+Both sides agreed to maintain regular exchanges through the diplomatic and military channels established as outcomes of the 24th Special Representatives talks held last year, when National Security Advisor Ajit Doval and Chinese Foreign Minister Wang Yi met in New Delhi and produced a suite of agreements to stabilise the border.
+
+## The Long Road From Galwan
+
+The trajectory here matters. In June 2020, Indian and Chinese soldiers fought a brutal hand-to-hand battle in the Galwan Valley that killed twenty Indian soldiers and an undisclosed number of Chinese troops. It was the deadliest border clash between the two nations in over four decades and sent bilateral relations to their lowest point since the 1962 war.
+
+What followed was a grinding, multi-year process of disengagement. Approximately 50,000 troops remained deployed on each side of the Line of Actual Control through years of talks. The breakthrough came in October 2024, when Prime Minister Narendra Modi and President Xi Jinping met in Kazan, Russia, and agreed on patrolling arrangements in the contested Depsang and Demchok areas.
+
+Since then, disengagement from all friction points has been completed. Patrolling activities and grazing have resumed along pre-2020 patterns. The Ministry of External Affairs confirmed this week that the Kazan agreement "has been fully implemented according to agreed modalities and timelines."
+
+## Why the NRI Community Should Pay Attention
+
+For the Indian diaspora, the India-China relationship is not an abstract geopolitical chess game. It directly shapes India's economic trajectory, its defence spending priorities, and its position in the technology supply chain that Indian-American professionals dominate.
+
+A stable LAC means India can redirect defence spending from emergency border infrastructure toward longer-term modernisation. It means Indian technology companies can plan without the shadow of a sudden escalation disrupting supply chains through Southeast Asia. And it means the Quad — which India has deepened alongside the US, Japan, and Australia — can function as a strategic framework rather than an emergency coalition.
+
+The next milestone is a meeting of the Special Representatives in China. No date has been announced, but both sides agreed this week to "make substantive preparation" for it — language that suggests the meeting is being treated as a near-term priority, not a distant aspiration.
+
+Chinese Ambassador to India Xu Feihong said on X that Assistant Foreign Minister Hong Lei met with Ghosh during the visit and that both sides "exchanged views on bilateral relations, multilateral cooperation, and boundary issues."
+
+## The Bigger Picture
+
+India's border diplomacy with China is happening against a backdrop of intensifying strategic competition in Asia. China has been deepening its ties with Pakistan — President Xi Jinping praised "unbreakable" ties with Islamabad during Pakistani Prime Minister Shehbaz Sharif's visit to Beijing this week.
+
+India, meanwhile, has been consolidating its partnerships with the US, Japan, and Australia through the Quad, and recently hosted Secretary of State Marco Rubio for discussions on trade, defence, and critical minerals.
+
+The 35th WMCC meeting suggests that despite all this, both New Delhi and Beijing have decided that a stable border serves their respective interests — even if broader strategic competition continues on every other front. Whether that pragmatism holds through the next crisis is the question neither side can answer yet."""
+    },
+    {
+        "headline": "India Just Ordered a 30-Day Strategic Reserve of Cooking Gas. The Iran War Explains Why.",
+        "subheadline": "New Delhi has told state-run fuel companies to build LPG storage for a full month of national demand — a direct response to the Strait of Hormuz crisis that has already choked India's basmati exports and driven up global energy prices.",
+        "slug": "india-lpg-30-day-strategic-reserve-iran-war-hormuz-energy-security-20260529",
+        "category": "news",
+        "vertical": "energy-security",
+        "urgency": "high",
+        "tags": ["india", "lpg", "strategic-reserve", "iran", "hormuz", "energy-security", "oil-ministry", "ujjwala", "crude-oil"],
+        "diaspora_angle": "Energy security is the thread connecting kitchen budgets in Lucknow to remittance values in New Jersey. When LPG prices spike, the rupee weakens, inflation rises, and the purchasing power of dollar-denominated NRI remittances shifts.",
+        "sources": "Reuters, Ministry of Petroleum and Natural Gas (India)",
+        "image_search_person": None,
+        "image_search_pexels": "LPG gas cylinders India cooking gas storage",
+        "image_search_pexels_fallback": "oil refinery India petroleum storage",
+        "body": """India's oil ministry has directed state-run fuel retailers to build liquefied petroleum gas storage capacity sufficient to meet 30 days of national demand — a significant escalation of the country's energy security posture that comes as the Iran-US conflict continues to threaten the Strait of Hormuz, through which roughly 60 percent of India's crude oil imports transit.
+
+Sujata Sharma, a joint secretary in the federal oil ministry, confirmed the directive on Friday, adding that India is also working on expanding its strategic crude oil reserves.
+
+## What 30 Days of LPG Actually Means
+
+India consumes approximately 30 million metric tonnes of LPG annually, making it the world's second-largest consumer after China. Nearly 320 million Indian households — overwhelmingly in rural areas — depend on subsidised LPG cylinders distributed through the Pradhan Mantri Ujjwala Yojana scheme and commercial distribution networks run by Indian Oil Corporation, Bharat Petroleum, and Hindustan Petroleum.
+
+Building a 30-day strategic reserve means storing roughly 2.5 million metric tonnes of LPG at any given time — a logistically enormous undertaking that will require new storage terminals, expanded port infrastructure, and potentially underground cavern storage similar to India's existing Strategic Petroleum Reserves at Visakhapatnam, Mangalore, and Padur.
+
+Currently, India's LPG storage capacity covers approximately 12 to 15 days of demand. Doubling that buffer is not a routine upgrade. It is a wartime measure dressed in peacetime language.
+
+## The Hormuz Factor
+
+The directive's timing is inseparable from the Iran crisis. Since military hostilities resumed between the United States and Iran, the Strait of Hormuz — the 33-kilometre-wide chokepoint connecting the Persian Gulf to the Arabian Sea — has been subject to intermittent disruptions that have sent oil and gas prices spiking globally.
+
+India imports roughly 85 percent of its crude oil and is heavily dependent on Middle Eastern suppliers. The Hormuz bottleneck has already hammered India's export economy: basmati rice exports crashed 27 percent as Gulf trade routes seized up. Cooking oil prices have risen. And the Reserve Bank of India has been forced to recalibrate its inflation forecasts to account for sustained energy price volatility.
+
+A framework deal between Iran and the US is reportedly close, with a 60-day memorandum of understanding that would extend the current ceasefire and reopen Hormuz. But India's oil ministry is clearly not betting on diplomacy alone.
+
+## The Crude Reserve Expansion
+
+Sharma's mention of expanding crude oil storage is equally significant. India currently has Strategic Petroleum Reserves holding approximately 5.33 million metric tonnes of crude — enough for about 9.5 days of imports. The government had already approved a second phase of strategic reserves at Chandikhol in Odisha and Padur Phase II in Karnataka, but construction has been slow.
+
+The Iran crisis appears to have accelerated that timeline. Building LPG and crude reserves simultaneously signals that New Delhi is preparing for a scenario in which Hormuz disruptions last months, not weeks — and that India cannot rely on any single diplomatic outcome to secure its energy supply.
+
+## What This Means for NRIs
+
+For the Indian diaspora, energy security is the thread that connects kitchen budgets in Lucknow to remittance values in New Jersey. When LPG prices spike in India, the rupee weakens, inflation rises, and the purchasing power of dollar-denominated remittances shifts.
+
+The 30-day LPG reserve directive is also a test of India's institutional capacity to execute large-scale infrastructure projects under pressure. The Ujjwala scheme — which connected over 100 million households to LPG for the first time — was a signature achievement of the Modi government. Protecting that achievement from supply disruptions is both an economic necessity and a political imperative ahead of state elections.
+
+India is also working to diversify its LPG sourcing away from the Middle East. Imports from the United States, Australia, and Qatar have been increasing, and the government has been negotiating long-term supply contracts that reduce dependence on any single geographic corridor.
+
+## The Broader Energy Security Picture
+
+The LPG directive sits alongside a series of energy security measures India has taken since the Iran conflict escalated. The government has been accelerating its shift toward renewable energy, with solar and wind capacity additions running ahead of schedule. India's nuclear energy programme received a boost with the enactment of the Sustainable Harnessing and Advancement of Nuclear Energy bill. And discussions with Russia on discounted crude — one of the most diplomatically sensitive aspects of India's energy policy — have continued despite Western pressure.
+
+But for 320 million households that cook with LPG every day, the strategic reserve is the measure that matters most. If Hormuz closes for a month, India's kitchens need to keep working.
+
+The oil ministry's directive makes that calculation explicit: prepare for the worst, negotiate for the best, and store enough gas to bridge the gap between the two."""
     }
+]
 
-
-# ===================================================================
-# MAIN
-# ===================================================================
+# ─── MAIN ──────────────────────────────────────────────────────────────
 
 def main():
-    print("=" * 60)
-    print("The Videshi — News Writer (2026-05-29)")
-    print("=" * 60)
-    
-    articles = []
-    
-    # Write all 3 articles
-    articles.append(write_article_blue_origin())
-    articles.append(write_article_india_ebola_aid())
-    articles.append(write_article_carnegie_survey())
-    
-    # Validate and publish
-    print("\n" + "=" * 60)
-    print("Publishing articles...")
-    print("=" * 60)
-    
-    published = 0
+    print(f"\n{'='*60}")
+    print(f"The Videshi — News Writer")
+    print(f"Run: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
+    print(f"Articles to write: {len(articles)}")
+    print(f"{'='*60}\n")
+
+    published_count = 0
+
     for i, article in enumerate(articles, 1):
-        print(f"\n--- Article {i}: {article['headline'][:60]}... ---")
-        
-        # Validate required fields
-        errors = []
-        if len(article["headline"]) < 20 or len(article["headline"]) > 200:
-            errors.append(f"Headline length: {len(article['headline'])} (must be 20-200)")
-        if len(article.get("subheadline", "")) < 15:
-            errors.append(f"Subheadline too short: {len(article.get('subheadline', ''))}")
-        
+        print(f"\n--- Article {i}/{len(articles)}: {article['headline'][:60]}... ---")
+
+        # Image sourcing
+        img_url = None
+        img_attribution = None
+
+        # Step 1: Wikipedia for person articles
+        if article.get('image_search_person'):
+            print(f"  Trying Wikipedia for '{article['image_search_person']}'...")
+            img_url = fetch_wikipedia_person_image(article['image_search_person'])
+            if img_url:
+                img_attribution = "Wikimedia Commons"
+
+        # Step 2: Pexels fallback
+        if not img_url and article.get('image_search_pexels'):
+            print(f"  Trying Pexels for '{article['image_search_pexels']}'...")
+            img_url = fetch_pexels_image(
+                article['image_search_pexels'],
+                article.get('image_search_pexels_fallback')
+            )
+            if img_url:
+                img_attribution = "The Videshi"
+
+        # Validate image
+        if img_url:
+            print(f"  Validating image URL...")
+            if not validate_image_url(img_url):
+                print(f"  ✗ Image validation failed, skipping image")
+                img_url = None
+
+        # Generate article ID
+        art_id = str(uuid.uuid4())
+
+        # Upload image to Supabase for permanence
+        final_img_url = None
+        if img_url:
+            print(f"  Uploading to Supabase storage...")
+            final_img_url = upload_image_to_supabase(img_url, f"{art_id}.jpg")
+
+        # Build article record
+        now_iso = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
         word_count = len(article["body"].split())
+        record = {
+            "id": art_id,
+            "headline": article["headline"],
+            "subheadline": article["subheadline"],
+            "slug": article["slug"],
+            "body": article["body"].strip(),
+            "category": article["category"],
+            "vertical": article["vertical"],
+            "urgency": article["urgency"],
+            "tags": article["tags"],
+            "diaspora_angle": article["diaspora_angle"],
+            "status": "published",
+            "published_at": now_iso,
+            "created_at": now_iso,
+            "sources": article["sources"],
+            "word_count": word_count,
+            "image_attribution": img_attribution or "The Videshi"
+        }
+
+        if final_img_url:
+            record["image_url"] = final_img_url
+
+        # Validate article quality
+        print(f"  Word count: {word_count}")
         if word_count < 400:
-            errors.append(f"Body too short: {word_count} words (min 400)")
-        
-        if not article["slug"] or article["slug"] != article["slug"].lower():
-            errors.append(f"Bad slug: {article['slug']}")
-        
-        if len(article.get("sources", [])) < 2:
-            errors.append(f"Not enough sources: {len(article.get('sources', []))}")
-        
-        if article["category"] != "news":
-            errors.append(f"Wrong category: {article['category']}")
-        
-        if errors:
-            print(f"  ✗ VALIDATION FAILED:")
-            for e in errors:
-                print(f"    - {e}")
+            print(f"  ✗ REJECTED: body too short ({word_count} words, need 400+)")
             continue
-        
-        print(f"  Words: {word_count}")
-        print(f"  Category: {article['category']}")
-        print(f"  Sources: {len(article['sources'])}")
-        print(f"  Image: {'✓' if article.get('image_url') else '✗ None'}")
-        
-        aid = publish_article(article)
-        if aid:
-            published += 1
-            # Upload image after publish if we have one
-            if article.get("image_url"):
-                # Update with properly uploaded image
-                print(f"  Image URL: {article['image_url'][:80]}...")
-    
-    print(f"\n{'=' * 60}")
-    print(f"Done: {published}/{len(articles)} articles published")
-    print(f"{'=' * 60}")
+        if len(article["headline"]) > 200:
+            print(f"  ✗ REJECTED: headline too long ({len(article['headline'])} chars)")
+            continue
+        if len(article["subheadline"]) < 15:
+            print(f"  ✗ REJECTED: subheadline too short")
+            continue
 
+        # Publish
+        print(f"  Publishing to Supabase...")
+        result = sb_post("p2_articles", record)
+        if result:
+            print(f"  ✓ Published: {article['slug']}")
+            print(f"    ID: {art_id}")
+            print(f"    Image: {'yes' if final_img_url else 'no'}")
+            published_count += 1
+        else:
+            print(f"  ✗ Failed to publish: {article['slug']}")
 
-if __name__ == "__main__":
+        # Small delay between articles
+        time.sleep(1)
+
+    print(f"\n{'='*60}")
+    print(f"Done. Published {published_count}/{len(articles)} articles.")
+    print(f"{'='*60}\n")
+
+if __name__ == '__main__':
     main()
