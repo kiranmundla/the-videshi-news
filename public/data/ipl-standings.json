@@ -1,7 +1,7 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-29T05:55:29Z",
-  "stage": "PLAYOFFS. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1 done: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator done: RR beat SRH by 47 runs (May 27, Hyderabad). Qualifier 2: GT vs RR (May 29, Ahmedabad). Final: RCB vs Q2 winner (May 31, Ahmedabad).",
+  "last_updated": "2026-05-29T07:00:00Z",
+  "stage": "PLAYOFFS. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1 done: RCB beat GT by 92 runs (May 26, Dharamsala). Eliminator done: RR beat SRH by 47 runs (May 27, Hyderabad). Qualifier 2: GT vs RR (May 29, New Chandigarh). Final: RCB vs Q2 winner (May 31, Ahmedabad).",
   "recent_results": [
     {
       "team1": "RR",
@@ -60,8 +60,8 @@
     }
   ],
   "upcoming": [
-    "Qualifier 2: GT vs RR (May 29, Ahmedabad)",
-    "FINAL: RCB vs Q2 winner (May 31, Ahmedabad)"
+    "Qualifier 2: GT vs RR (May 29, 7:30 PM IST, New Chandigarh)",
+    "FINAL: RCB vs Q2 winner (May 31, 7:30 PM IST, Ahmedabad)"
   ],
   "standings": [
     {
@@ -190,7 +190,7 @@
     },
     "qualifier2": {
       "date": "May 29",
-      "venue": "Ahmedabad (Narendra Modi Stadium)",
+      "venue": "Maharaja Yadavindra Singh Stadium, New Chandigarh",
       "teams": "GT vs RR"
     },
     "final": {
@@ -204,6 +204,6 @@
     "team2": "RR",
     "date": "May 29",
     "time": "7:30 PM IST",
-    "venue": "Ahmedabad"
+    "venue": "New Chandigarh"
   }
 }

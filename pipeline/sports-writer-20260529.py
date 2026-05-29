@@ -1,35 +1,51 @@
 #!/usr/bin/env python3
-"""Sports writer for The Videshi — 2026-05-29 batch."""
+"""Sports writer for The Videshi — 2026-05-29 batch"""
 
-import json, os, sys, time, uuid, re
+import json, os, re, sys, time, uuid, requests, urllib.parse
 from datetime import datetime, timezone
-import requests, urllib.parse
 
-# ── Supabase config ──────────────────────────────────────────────
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+# Load env
+def load_env(path):
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    k, v = line.split('=', 1)
+                    v = v.strip().strip('"').strip("'")
+                    os.environ.setdefault(k, v)
+
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
 
-PEXELS_KEY = None
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-if os.path.exists(pexels_env):
-    for line in open(pexels_env):
-        if line.startswith("PEXELS_API_KEY="):
-            PEXELS_KEY = line.strip().split("=", 1)[1].strip('"').strip("'")
-if not PEXELS_KEY:
-    pexels_env2 = os.path.expanduser("~/.env.pexels")
-    if os.path.exists(pexels_env2):
-        for line in open(pexels_env2):
-            if line.startswith("PEXELS_API_KEY="):
-                PEXELS_KEY = line.strip().split("=", 1)[1].strip('"').strip("'")
-print(f"Pexels key loaded: {'yes' if PEXELS_KEY else 'no'}")
+def sb_insert(table, data):
+    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
+    if r.status_code in (200, 201):
+        result = r.json()
+        return result[0] if isinstance(result, list) else result
+    print(f"  ✗ Insert error ({r.status_code}): {r.text[:300]}")
+    return None
 
-# ── Image helpers ────────────────────────────────────────────────
+def sb_patch(table, filters, data):
+    params = '&'.join(f"{k}={v}" for k, v in filters.items())
+    url = f"{SUPABASE_URL}/rest/v1/{table}?{params}"
+    r = requests.patch(url, headers=HEADERS, json=data, timeout=30)
+    if r.status_code in (200, 204):
+        return True
+    print(f"  ✗ Patch error ({r.status_code}): {r.text[:300]}")
+    return False
+
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -37,7 +53,7 @@ def fetch_wikipedia_person_image(person_name):
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10,
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
@@ -49,319 +65,397 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels. Returns URL or None."""
+    """Fetch an image from Pexels API. Returns URL or None."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
+    
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             import subprocess
-            cmd = [
-                "curl", "-sS",
-                f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
-                "-H", f"Authorization: {PEXELS_KEY}",
-            ]
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+            result = subprocess.run(
+                ['curl', '-sS', f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape',
+                 '-H', f'Authorization: {PEXELS_KEY}'],
+                capture_output=True, text=True, timeout=15
+            )
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+            photos = data.get('photos', [])
+            for photo in photos:
+                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
                 if url:
-                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                    return url
+                    # Validate
+                    hr = requests.head(url, timeout=10)
+                    cl = int(hr.headers.get('Content-Length', 0))
+                    ct = hr.headers.get('Content-Type', '')
+                    if cl > 5000 and 'image' in ct:
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                        return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def validate_image(url):
-    """Check that image URL returns HTTP 200 and is > 5KB."""
-    if not url:
-        return False
-    try:
-        # Use GET with stream to get actual headers; Wikimedia sometimes 429s on HEAD
-        r = requests.get(url, timeout=10, stream=True, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        r.close()
-        if r.status_code == 200 and "image" in ct:
-            return True
-        print(f"  ⚠ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
-    except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-    return False
-
-
 def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase article-images bucket. Returns public URL or None."""
+    """Download image and upload to Supabase storage bucket."""
     try:
-        r = requests.get(image_url, timeout=15,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200 or len(r.content) < 5000:
-            print(f"  ⚠ Download failed: status={r.status_code}, size={len(r.content)}")
-            return None
-
-        ct = r.headers.get("Content-Type", "image/jpeg")
+        r = requests.get(image_url, timeout=30, headers={"User-Agent": "TheVideshi/1.0"})
+        if r.status_code != 200:
+            print(f"  ⚠ Download failed: {r.status_code}")
+            return image_url  # fallback to original
+        
+        content_type = r.headers.get('Content-Type', 'image/jpeg')
+        if 'image' not in content_type:
+            content_type = 'image/jpeg'
+        
+        upload_headers = {
+            'apikey': SUPABASE_KEY,
+            'Authorization': f'Bearer {SUPABASE_KEY}',
+            'Content-Type': content_type,
+            'x-upsert': 'true'
+        }
+        
         upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        resp = requests.post(
-            upload_url,
-            headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": ct,
-                "x-upsert": "true",
-            },
-            data=r.content,
-            timeout=30,
-        )
-        if resp.status_code in (200, 201):
+        ur = requests.post(upload_url, headers=upload_headers, data=r.content, timeout=30)
+        
+        if ur.status_code in (200, 201):
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ⚠ Upload failed: {resp.status_code} {resp.text[:200]}")
+            print(f"  ⚠ Upload failed ({ur.status_code}): {ur.text[:200]}")
+            # If it's a Wikimedia/Pexels URL, it's permanent - OK to use directly
+            if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
+                return image_url
+            return None
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
-    return None
-
-
-# ── Supabase insert ──────────────────────────────────────────────
-def publish_article(article):
-    """Insert article into p2_articles."""
-    article["id"] = str(uuid.uuid4())
-    article["status"] = "published"
-    article["published_at"] = datetime.now(timezone.utc).isoformat()
-    article["category"] = "sports"
-    article["vertical"] = "sports"
-    article["urgency"] = "medium"
-    # source_pipeline column doesn't exist, skip it
-
-    resp = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article,
-        timeout=20,
-    )
-    if resp.status_code in (200, 201):
-        result = resp.json()
-        art_id = result[0]["id"] if isinstance(result, list) else result.get("id", article["id"])
-        print(f"  ✓ Published: {article['headline'][:60]}... (id={art_id})")
-        return art_id
-    else:
-        print(f"  ✗ Publish failed ({resp.status_code}): {resp.text[:300]}")
+        if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
+            return image_url
         return None
 
-
-# ── Articles ─────────────────────────────────────────────────────
-
-articles = []
-
-# ─── ARTICLE 1: Sumit Antil World Record ──────────────────────────
-print("\n=== Article 1: Sumit Antil World Record ===")
-
-antil_body = """Sumit Antil threw the javelin 74.82 metres at the Indian Open International Para Athletics Championships in Bengaluru this week, breaking his own world record in the F64 category by more than a metre and a half.
-
-## The Throw That Rewrote the Record Books
-
-The distance itself tells only part of the story. Antil's previous world record of 73.29 metres, set at the 2022 Asian Para Games in Hangzhou, had seemed like a ceiling for the F64 classification. Athletes in this category compete with below-knee amputations or equivalent impairments. For an athlete who lost his left leg below the knee in a motorcycle accident at seventeen, every centimetre of improvement requires recalibrating mechanics that able-bodied throwers take for granted.
-
-At the Kanteerava Stadium, Antil's winning margin was staggering. The silver medallist, Maharashtra's Sandip Sargar, finished at 61.88 metres — nearly thirteen metres behind. Rajasthan's Sandeep took bronze. It was not a competition so much as a demonstration.
-
-## A Career Built on Defying Limits
-
-Antil's trajectory since his accident in 2015 reads like a masterclass in reinvention. Within three years of taking up para-javelin, he was competing internationally. By 2021, he had won Paralympic gold at Tokyo with a then-world-record 68.55 metres, breaking his own record three times during the competition itself. At the 2024 Paris Paralympics, he defended his title. He now holds two Paralympic gold medals, three World Para Athletics Championship golds, and the Asian Para Games record.
-
-What makes his latest throw remarkable is timing. At twenty-eight, Antil is in his physical prime but also at the stage where incremental gains become harder. To add 1.53 metres to a world record at this level is the equivalent of a sprinter dropping half a second from a world-record hundred metres. It does not happen through minor adjustments.
-
-## What It Means for Indian Para-Athletics
-
-India's para-athletics programme has quietly become one of the country's most consistent medal factories. At the Paris 2024 Paralympics, India won seven athletics medals. Avani Lekhara, Mariyappan Thangavelu, and Antil himself have become household names in a country where the word "para" was once an afterthought appended to sports coverage.
-
-The Indian Open International Para Athletics Championships, now in its eighth edition, has grown from a domestic meet into a genuinely competitive international event. Athletes from several countries participated in Bengaluru this week, though Antil's dominance made the F64 javelin feel like a solo exhibition.
-
-## The Diaspora Angle
-
-For NRIs who grew up watching Neeraj Chopra transform India's relationship with javelin, Antil's story offers a parallel that is in some ways more profound. Chopra made India believe an Indian could be the best javelin thrower in the world. Antil has been the best in his classification for half a decade, with less fanfare and fewer endorsement deals.
-
-The gap between para-sport and mainstream sport in Indian media remains wide. Antil does not trend on social media after every competition. He does not feature in IPL ads. But his record — two Paralympic golds, three World golds, and now a world record that may stand for years — places him among the most decorated Indian athletes of any generation.
-
-## What Comes Next
-
-The 2028 Los Angeles Paralympics is the obvious target. Antil would be thirty and likely still improving. More immediately, the Asian Para Games and World Para Athletics Championships in the coming cycle will give him chances to compete against whatever field the world assembles.
-
-At 74.82 metres, the question is no longer whether anyone in F64 can challenge Sumit Antil. It is whether Sumit Antil has found his ceiling, or whether Bengaluru was just another checkpoint on the way to something even more extraordinary.
-
-*Sources: Livemint, The Bridge, DevDiscourse, LatestLY*"""
-
-antil_img = fetch_wikipedia_person_image("Sumit Antil")
-if not antil_img:
-    antil_img = fetch_wikipedia_person_image("Sumit Antil (athlete)")
-# If Wikipedia is rate-limiting, use the known image URL directly
-if antil_img and not validate_image(antil_img):
-    print("  Retrying Sumit Antil image after delay...")
-    time.sleep(3)
-    if not validate_image(antil_img):
-        # Use a specific Pexels image for javelin
-        antil_img = fetch_pexels_image("javelin throw athletics stadium", "para athletics javelin")
-if not antil_img:
-    antil_img = fetch_pexels_image("javelin throw athletics stadium", "para athletics javelin")
-
-antil_slug = "sumit-antil-74-82m-javelin-world-record-f64-bengaluru-indian-open-para-athletics-20260529"
-antil_final_img = None
-if antil_img and validate_image(antil_img):
-    antil_final_img = upload_to_supabase_storage(antil_img, f"{antil_slug}.jpg")
-
-articles.append({
-    "headline": "Sumit Antil Threw 74.82 Metres in Bengaluru. That Is a World Record by a Metre and a Half.",
-    "subheadline": "The two-time Paralympic champion broke his own F64 javelin mark at the Indian Open Para Athletics Championships. The silver medallist finished nearly thirteen metres behind.",
-    "body": antil_body,
-    "slug": antil_slug,
-    "image_url": antil_final_img,
-    "image_attribution": "Wikimedia Commons" if antil_img and "wiki" in (antil_img or "").lower() else "The Videshi",
-    "sources": json.dumps(["Livemint", "The Bridge", "DevDiscourse", "LatestLY"]),
-})
-
-
-# ─── ARTICLE 2: Randhir Singh Obituary ──────────────────────────
-print("\n=== Article 2: Randhir Singh Tribute ===")
-
-randhir_body = """Raja Randhir Singh, the five-time Olympian, Asian Games gold medallist, and one of the most influential figures in Indian and Asian sports administration, has died at seventy-nine. The International Olympic Committee ordered its flag lowered to half-mast at its Lausanne headquarters for three days.
-
-## The Shooter Who Became the Architect
-
-Randhir Singh's biography spans two distinct careers, both exceptional. As a competitive shooter, he represented India at five consecutive Olympic Games — a feat that remains nearly unmatched in Indian sport. At the 1978 Asian Games in Bangkok, he won India's first-ever shooting gold medal, a breakthrough that helped establish the discipline as a legitimate pathway to medals for Indian athletes.
-
-But it was his second career, in sports administration, that would define his lasting legacy. Singh served as Secretary General of the Indian Olympic Association for over three decades. He was India's representative on the International Olympic Committee. And in 2024, he became the first Indian to be elected President of the Olympic Council of Asia, the continental body that oversees the Asian Games.
-
-## Building the Machine
-
-The Indian sports system that exists today — imperfect, occasionally dysfunctional, but vastly more professional than what existed forty years ago — owes a significant debt to administrators like Randhir Singh. He was instrumental in India's bid to host the 2010 Commonwealth Games in Delhi, a project that was marred by corruption scandals and construction delays but ultimately delivered an event that India hosted on the world stage.
-
-His defenders argue that Singh understood a truth about Indian sport that idealists often missed: infrastructure precedes performance. Without stadiums, training centres, and institutional credibility, talent alone cannot produce sustained medal counts. His critics counter that decades of administrative continuity without reform enabled the very governance problems that have plagued Indian sport.
-
-The truth, as with most institution-builders, is probably both.
-
-## The Royal and the Republican
-
-Singh was born into the Patiala royal family, descendants of the Maharajas who were among India's earliest patrons of sport. His grandfather, Maharaja Bhupinder Singh, captained India's cricket team and built what was then one of Asia's finest cricket grounds. The family's relationship with sport was not casual — it was constitutional.
-
-That lineage gave Randhir Singh access and influence from the start. It also exposed him to criticism that his administrative career was a product of privilege rather than merit. But five Olympic appearances suggest the privilege came with genuine competence, at least on the shooting range.
-
-## What NRIs Should Know
-
-For the Indian diaspora, Randhir Singh represents a generation of sports administrators who operated in a world that no longer exists — one where Olympic committee elections were decided in smoke-filled rooms and continental sports politics ran on personal relationships rather than broadcast deals.
-
-That world produced some of India's most important sporting infrastructure. It also produced some of its most persistent governance failures. Singh navigated both with a skill that earned him IOC Honorary Member status and the respect of administrators across Asia.
-
-His death comes at a moment when Indian sport is undergoing its most significant generational transition. The IPL has professionalised cricket economics. Olympic sports have produced genuine world champions in javelin, wrestling, and shooting — the very discipline Singh once dominated. The question for the next generation of administrators is whether they can build on what Singh's generation created without inheriting its limitations.
-
-## The IOC's Tribute
-
-In its statement, the IOC described Singh as a man who "dedicated his life to the Olympic Movement and the advancement of sport in Asia." The three-day half-mast protocol is reserved for members who made sustained contributions to the Olympic system. Singh's inclusion in that category is not a courtesy — it reflects decades of institutional engagement that few Indian administrators have matched.
-
-He is survived by his family, including members who continue to be involved in Indian shooting and sports governance. The dynasty continues, even as the founder exits.
-
-*Sources: International Olympic Committee, LatestLY, The Daily Jagran, Swadesi, ChessBase India (via EIN Presswire)*"""
-
-randhir_img = fetch_wikipedia_person_image("Randhir Singh (sports administrator)")
-if not randhir_img:
-    randhir_img = fetch_wikipedia_person_image("Raja Randhir Singh")
-
-randhir_slug = "randhir-singh-dies-79-five-time-olympian-ioc-oca-president-shooting-gold-india-20260529"
-randhir_final_img = None
-if randhir_img and validate_image(randhir_img):
-    randhir_final_img = upload_to_supabase_storage(randhir_img, f"{randhir_slug}.jpg")
-
-articles.append({
-    "headline": "Randhir Singh Is Dead at Seventy-Nine. The IOC Flag Flew at Half-Mast for Three Days.",
-    "subheadline": "India's first Asian Games shooting gold medallist, five-time Olympian, and longtime Olympic Council of Asia president shaped Indian sport for four decades. The institution he built will outlast the man.",
-    "body": randhir_body,
-    "slug": randhir_slug,
-    "image_url": randhir_final_img,
-    "image_attribution": "Wikimedia Commons" if randhir_img and "wiki" in (randhir_img or "").lower() else "The Videshi",
-    "sources": json.dumps(["International Olympic Committee", "LatestLY", "The Daily Jagran", "Swadesi"]),
-})
-
-
-# ─── ARTICLE 3: IPL to India — UK Summer Tour Selection ──────────
-print("\n=== Article 3: IPL to India T20I UK Tour ===")
-
-uk_tour_body = """The IPL 2026 final is on Sunday. India's next assignment is a fortnight away: two T20Is in Ireland on June 26 and 28, followed by five T20Is in England from July 1 to 11. The selectors will meet within days of the final, and for the first time in years, the IPL has produced a cluster of uncapped players who are genuinely difficult to ignore.
-
-## The Names That Changed
-
-Every IPL season produces highlights. Not every season produces selection-grade evidence. The difference this year is that several breakout performers have done it consistently, across enough matches, against enough quality bowling, to shift the conversation from "impressive cameo" to "serious India contender."
-
-**Kartik Tyagi** is the most compelling comeback story. The fast bowler went unsold in the 2025 auction. Kolkata Knight Riders picked him up for thirty lakh rupees — a base-price afterthought. He has repaid them with eighteen wickets in thirteen matches, including best figures of three for twenty-two against Rajasthan Royals. His average of 24.61 and strike rate of 15.67 would be respectable in any season. In a campaign where batting totals have routinely crossed two hundred, they represent genuine wicket-taking impact.
-
-What changed was not Tyagi's pace — he still touches the high 140s — but his control. He has hit better lengths this season, attacked the pitch harder, and looked physically sharper than at any point since his early promise with Rajasthan Royals in 2020-21. England's responsive surfaces would suit his skillset.
-
-**Ayush Mhatre** batted like a player who did not know he was supposed to be nervous. The eighteen-year-old Chennai Super Kings opener scored 201 runs in six innings at a strike rate of 177.87 before a hamstring injury ended his season. For context, his powerplay scoring rate was higher than any CSK opener since the franchise's inception. If he is fit, the selectors will find it hard to leave him out of the touring party. If he is not, the England series gives him a clear next target.
-
-**Kartik Sharma** filled a profile India's selectors have been hunting for years: a left-handed wicketkeeper-batter who can play in the middle order and attack spin. His 295 runs for CSK included a composed fifty-four not out against Mumbai Indians and a valuable seventy-one against Lucknow. He is not a finished international product, but the Ireland leg — where India traditionally tests unproven names — is exactly where such players earn their chance.
-
-**Prince Yadav** had the misfortune of bowling for a poor Lucknow Super Giants side. He had the talent to look like the one bowler with rhythm and clarity regardless. Sixteen wickets in thirteen matches, hitting hard lengths, operating effectively in the middle and death overs. India's pace stocks are deep, but discipline like Yadav's has a way of finding its level.
-
-## The Sooryavanshi Question
-
-And then there is Vaibhav Sooryavanshi, who is simultaneously the most talented and the most complicated selection case of the lot. The fifteen-year-old Rajasthan Royals opener has 680 runs and sixty-five sixes in IPL 2026, both numbers that exist in territory no Indian has previously occupied.
-
-He has already been named in the India A squad for the Sri Lanka tri-series in June, which suggests the selectors are channeling him through the development pathway. That is probably correct. But the England series in July is a different question. If Sooryavanshi finishes the IPL final — should Rajasthan get there — with numbers that would embarrass most international careers, the selectors will face an uncomfortable choice between protocol and evidence.
-
-## The Diaspora Calendar
-
-For NRIs in the UK, the timing is perfect. India will be in Dublin on June 26 and 28, then in England for five T20Is from July 1 to 11, with matches likely at venues including The Oval, Edgbaston, and Old Trafford. This is the summer India tour that British-Indians mark on their calendars months in advance.
-
-The added intrigue this year is that several of the players who could make the squad are completely new names. NRIs who have been watching the IPL will know Sooryavanshi and Mhatre. Those who have not will be introduced to a generation of Indian cricketers who play T20 cricket with an aggression and clarity that previous generations did not possess.
-
-## What the Selectors Will Weigh
-
-India's selection committee, chaired by Ajit Agarkar, faces the perennial IPL problem: distinguishing tournament form from international readiness. Tyagi's case is strongest because pace bowlers with his trajectory tend to translate directly. Mhatre's is strongest in terms of pure ceiling. Sooryavanshi's is strongest in terms of public excitement, which the selectors will try to resist but cannot entirely ignore.
-
-The squad announcement is expected within a week of the IPL final. For at least three of these five players, the summer of 2026 will mark the beginning of their India careers. For NRIs planning their summer viewing, that makes the Ireland and England series appointment television.
-
-*Sources: Sports Yaari, CricTracker, Reuters, Cricbuzz*"""
-
-# For this article, use a cricket-specific Pexels image since it's about multiple players
-uk_tour_img = fetch_pexels_image("cricket batsman T20 stadium India", "cricket fast bowler stadium")
-
-uk_tour_slug = "ipl-2026-breakout-stars-india-t20i-squad-uk-tour-ireland-england-tyagi-mhatre-sooryavanshi-20260529"
-uk_tour_final_img = None
-if uk_tour_img and validate_image(uk_tour_img):
-    uk_tour_final_img = upload_to_supabase_storage(uk_tour_img, f"{uk_tour_slug}.jpg")
-
-articles.append({
-    "headline": "Five IPL Performers Are Knocking on India's Door. The UK Summer Tour Starts in Four Weeks.",
-    "subheadline": "Kartik Tyagi went unsold last year. Ayush Mhatre is eighteen. Sooryavanshi is fifteen. The selectors meet after the final, and this time the evidence is hard to argue with.",
-    "body": uk_tour_body,
-    "slug": uk_tour_slug,
-    "image_url": uk_tour_final_img,
-    "image_attribution": "The Videshi",
-    "sources": json.dumps(["Sports Yaari", "CricTracker", "Reuters", "Cricbuzz"]),
-})
-
-
-# ── Publish all ──────────────────────────────────────────────────
-print(f"\n{'='*60}")
-print(f"Publishing {len(articles)} articles...")
-print(f"{'='*60}")
-
-published = 0
-for i, art in enumerate(articles, 1):
-    print(f"\n--- Article {i}/{len(articles)} ---")
-    art_id = publish_article(art)
-    if art_id:
-        published += 1
-        # If we uploaded an image, patch the article
-        if art.get("image_url"):
-            print(f"  Image: {art['image_url'][:60]}...")
-    time.sleep(1)
-
-print(f"\n{'='*60}")
-print(f"Done. Published {published}/{len(articles)} articles.")
-print(f"{'='*60}")
+def validate_image_url(url):
+    """Validate that URL returns a real image."""
+    if not url:
+        return False
+    # Block banned sources
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
+    if any(b in url for b in banned):
+        return False
+    banned_params = ['_nc_ht=', '_nc_cat=', 'ccb=']
+    if any(p in url for p in banned_params):
+        return False
+    try:
+        r = requests.head(url, timeout=10, headers={"User-Agent": "TheVideshi/1.0"}, allow_redirects=True)
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if 'image' in ct and cl > 5000:
+            return True
+        # Some servers don't return Content-Length on HEAD
+        if 'image' in ct:
+            return True
+    except:
+        pass
+    return False
+
+# ========================================================================
+# ARTICLE 1: Wembanyama Forces Game 7 — Spurs Crush Thunder 118-91
+# ========================================================================
+def write_article_1():
+    print("\n=== Article 1: Wembanyama Forces Game 7 ===")
+    
+    slug = "wembanyama-28-points-spurs-118-91-thunder-game-7-western-conference-finals-nba-20260529"
+    headline = "Victor Wembanyama Scored Twenty-Eight Points and Ten Rebounds. The Spurs Won by Twenty-Seven. Game 7 Is Saturday in Oklahoma City."
+    subheadline = "San Antonio's third-quarter avalanche buried the Thunder 118-91, tying the Western Conference finals at three games apiece. Shai Gilgeous-Alexander scored a season-low fifteen points. The winner on Saturday faces the New York Knicks for the NBA title."
+    
+    body = """The San Antonio Spurs were facing elimination on Thursday night. By the third quarter, they were playing like it was the Oklahoma City Thunder's season on the line.
+
+Victor Wembanyama scored twenty-eight points and pulled down ten rebounds as the Spurs demolished the Thunder 118-91 in Game 6 of the Western Conference finals, forcing a decisive Game 7 on Saturday in Oklahoma City. The winner advances to face the New York Knicks in the NBA Finals.
+
+## The Third-Quarter Avalanche
+
+The game was competitive through halftime. San Antonio led 60-53, with Wembanyama already on twenty-two points — but the Thunder had been in bigger holes this series and climbed out. Then the third quarter happened.
+
+The Spurs went on a devastating 20-0 run that broke the game open. Their defence suffocated Oklahoma City's offence, holding the Thunder to just twenty-eight points in the second half. By the time the fourth quarter began, the outcome was beyond doubt.
+
+Dylan Harper added eighteen points and six rebounds. Stephon Castle posted seventeen points with nine assists and five rebounds — flirting with a triple-double in the biggest game of his young career. The Spurs outrebounded the Thunder 52-43 and shot 41 percent from three-point range while holding Oklahoma City to 25 percent.
+
+## SGA's Worst Night
+
+Shai Gilgeous-Alexander, the two-time consecutive MVP, had the worst game of his postseason. He finished with fifteen points on 33 percent shooting — a season low that left the Thunder without their primary engine when they needed him most.
+
+Jalen Williams made a surprise return from injury but managed just one point. Chet Holmgren contributed ten points and eleven rebounds, and Cason Wallace had eleven points and three steals, but the Thunder's supporting cast could not compensate for their superstar's disappearance.
+
+The series has been defined by lopsided margins — the average victory margin across six games is 18.3 points. The home team has won every game. That pattern gives Oklahoma City reason for optimism heading into Game 7 at Paycom Center, but the Spurs have already stolen a game on the road in this series, winning Game 1 in double overtime.
+
+## Wembanyama Makes His Case
+
+At twenty years old, Wembanyama is delivering in the highest-pressure moments the NBA offers. His Game 6 performance — twenty-eight points, ten rebounds, three blocks — was the kind of dominant two-way display that has league observers drawing comparisons to the all-time greats.
+
+Coach Mitch Johnson had publicly said after Game 5 that the Spurs needed more from their franchise player. Wembanyama answered with perhaps his finest playoff performance, controlling the game from the opening minutes and never letting the Thunder establish any rhythm.
+
+## What It Means for NRI Fans
+
+The NBA has invested heavily in the Indian market in recent years. The league staged preseason games in Mumbai, has a growing streaming presence on Indian platforms, and counts millions of fans across the subcontinent. Saturday's Game 7 — Wembanyama versus Gilgeous-Alexander, with a trip to the Finals on the line — is the kind of event that transcends time zones.
+
+For the growing Indian American basketball community, particularly the thousands who play in recreational leagues across the Bay Area, Houston, and the Northeast, the stakes are simple: the next NBA champion will be decided starting Saturday night.
+
+Game 7 tips off Saturday evening at Paycom Center in Oklahoma City. The game will air on NBC and stream on Peacock. The winner faces the New York Knicks, who are already waiting for the Finals to begin.
+
+The series asked one question all along: is Wembanyama ready to be the best player in the world? On Thursday, for forty-eight minutes, the answer was yes. On Saturday, against a hostile crowd and a wounded but desperate Thunder team, he will have to prove it one more time.
+
+*Sources: Reuters, USA Today, NBC Sports, The Score*"""
+
+    # Image sourcing — Wikipedia for Wembanyama
+    print("  Sourcing image...")
+    img_url = fetch_wikipedia_person_image("Victor Wembanyama")
+    img_attribution = "Wikimedia Commons"
+    
+    if not img_url:
+        img_url = fetch_pexels_image("NBA basketball game arena", "basketball court game")
+        img_attribution = "The Videshi"
+    
+    final_img = None
+    if img_url:
+        art_id = str(uuid.uuid4())
+        final_img = upload_to_supabase_storage(img_url, f"{art_id}.jpg")
+        if not validate_image_url(final_img):
+            final_img = None
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "sports",
+        "vertical": "sports",
+        "urgency": "medium",
+        "tags": [],
+        "score_total": 55,
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        
+        "image_url": final_img or "",
+        "image_caption": "Victor Wembanyama dominated Game 6 with twenty-eight points and ten rebounds as the Spurs forced a decisive Game 7",
+        "image_attribution": img_attribution if final_img else "",
+        "sources": json.dumps(["Reuters", "USA Today", "NBC Sports", "The Score"])
+    }
+    
+    result = sb_insert("p2_articles", article)
+    if result:
+        art_id_db = result.get('id', 'unknown')
+        print(f"  ✓ Published: {headline[:60]}... (id: {art_id_db})")
+        # Upload image with article ID if we used a UUID
+        if final_img and art_id_db != 'unknown' and img_url:
+            new_img = upload_to_supabase_storage(img_url, f"{art_id_db}.jpg")
+            if new_img and validate_image_url(new_img):
+                sb_patch("p2_articles", {"id": f"eq.{art_id_db}"}, {"image_url": new_img})
+                print(f"  ✓ Updated image with article ID")
+    else:
+        print(f"  ✗ Failed to publish article 1")
+    return result
+
+# ========================================================================
+# ARTICLE 2: Indian Open of Surfing — Asian Games Selection Trials
+# ========================================================================
+def write_article_2():
+    print("\n=== Article 2: Indian Open of Surfing ===")
+    
+    slug = "indian-open-surfing-2026-mangalore-asian-games-selection-trial-80-surfers-six-states-20260529"
+    headline = "Eighty Surfers From Six States Are in Mangalore This Week. India's First Asian Games Surfing Squad Will Be Chosen From Among Them."
+    subheadline = "The seventh Indian Open of Surfing, which begins Thursday in Mangalore, doubles as the final domestic selection trial before surfing's debut at the Aichi-Nagoya Asian Games. India has never competed in international surfing at the continental level."
+    
+    body = """The waves off Mangalore's Panambur Beach are not Banzai Pipeline. They are not Teahupo'o. On most days, they are modest, warm, and forgiving — the kind of breaks that taught a generation of Indian surfers how to ride before they ever heard the word "competitive."
+
+But starting Thursday, those waves will carry the weight of history. Over eighty surfers from six Indian states have converged on the Karnataka coast for the seventh Indian Open of Surfing, a three-day event that will serve as the final and most decisive domestic selection trial before surfing's debut at the Aichi-Nagoya Asian Games later this year.
+
+India has never sent a surfing team to the Asian Games. This week, the country will choose who goes first.
+
+## The Selection Stakes
+
+The Indian Open is the second stop on the National Championship Series, and the Surfing Federation of India has positioned it as the single most important event in the selection calendar. Performances here will carry significant weight when the continental squad is finalised.
+
+The field includes Ramesh Budihal, one of India's most experienced competitive surfers, and Kamali P, the young woman from Mahabalipuram whose story — a fisherman's daughter who learned to surf on a borrowed board — has become one of Indian sport's most compelling narratives. Both are expected to contend for Asian Games berths.
+
+The event runs across six categories: Men's Open, Women's Open, Men's Longboard, Women's Longboard, Groms Boys, and Groms Girls. For the senior categories, every heat is essentially an audition for the national team.
+
+## A Sport Growing From the Margins
+
+Indian surfing has no IPL. It has no billion-dollar broadcast deal. Its athletes train on beaches that double as fishing villages, and its competitions draw crowds measured in hundreds, not thousands. But the sport has grown steadily over the past decade, driven by small surf schools along the coasts of Karnataka, Tamil Nadu, Kerala, and Goa.
+
+Mangalore — or Mangaluru, as the city is officially known — sits at the centre of India's west-coast surf culture. The Panambur and Sasihitlu breaks are well-mapped by the domestic surfing community, and the city's surf schools have produced several national-level competitors.
+
+For the NRI community, the Asian Games debut carries particular resonance. Many Indian Americans with roots in coastal Karnataka and Kerala grew up near these waters without ever associating them with competitive sport. The idea that India's beaches could produce athletes who compete against Japan, Australia, and Indonesia — nations with deep surfing traditions — would have seemed far-fetched a decade ago.
+
+## What the Asian Games Mean
+
+Surfing's inclusion in the Asian Games is part of a broader push by international sporting bodies to bring the discipline into the multi-sport fold. The sport debuted at the Olympics in Tokyo 2021 and returned in Paris 2024, where wave quality at Teahupo'o produced some of the most dramatic competition in Olympic history.
+
+At the Asian level, Japan and Indonesia are expected to dominate. Australia competes under Oceania, not Asia, removing one powerhouse from the field. But nations like the Philippines, Sri Lanka, and the Maldives have growing surf scenes, and India's entry adds another emerging nation to the mix.
+
+The realistic expectation for India's first Asian Games surfing team is not a medal. It is presence — the act of showing up, competing, and establishing that Indian surfing exists on the continental stage. What comes after that depends on investment, infrastructure, and whether the next generation of coastal Indian kids sees surfing as a viable path.
+
+## Three Days in Mangalore
+
+The competition runs from May 29 through May 31, with heats scheduled across both morning and afternoon sessions to take advantage of tidal patterns. The Surfing Federation of India will use the results, combined with earlier National Championship Series performances, to finalise its Asian Games recommendations.
+
+For the eighty-plus athletes paddling out this week, Mangalore is more than a surf break. It is the place where Indian surfing stops being a curiosity and starts becoming a competitive reality.
+
+*Sources: LatestLY, Nation Press, IndiaSportsHub, Surfing Federation of India*"""
+
+    # Image sourcing — Pexels for surfing
+    print("  Sourcing image...")
+    img_url = fetch_pexels_image("competitive surfing ocean wave", "surfer riding wave tropical")
+    img_attribution = "The Videshi"
+    
+    final_img = None
+    if img_url:
+        art_id = str(uuid.uuid4())
+        final_img = upload_to_supabase_storage(img_url, f"{art_id}.jpg")
+        if not validate_image_url(final_img):
+            final_img = None
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "sports",
+        "vertical": "sports",
+        "urgency": "medium",
+        "tags": [],
+        "score_total": 55,
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        
+        "image_url": final_img or "",
+        "image_caption": "India's best surfers gather in Mangalore for the selection trials that will determine the country's first Asian Games surfing team",
+        "image_attribution": img_attribution if final_img else "",
+        "sources": json.dumps(["LatestLY", "Nation Press", "IndiaSportsHub", "Surfing Federation of India"])
+    }
+    
+    result = sb_insert("p2_articles", article)
+    if result:
+        art_id_db = result.get('id', 'unknown')
+        print(f"  ✓ Published: {headline[:60]}... (id: {art_id_db})")
+        if final_img and art_id_db != 'unknown' and img_url:
+            new_img = upload_to_supabase_storage(img_url, f"{art_id_db}.jpg")
+            if new_img and validate_image_url(new_img):
+                sb_patch("p2_articles", {"id": f"eq.{art_id_db}"}, {"image_url": new_img})
+                print(f"  ✓ Updated image with article ID")
+    else:
+        print(f"  ✗ Failed to publish article 2")
+    return result
+
+# ========================================================================
+# ARTICLE 3: India U-18 Hockey Teams Begin Asia Cup in Japan
+# ========================================================================
+def write_article_3():
+    print("\n=== Article 3: India U-18 Hockey Asia Cup ===")
+    
+    slug = "india-u18-hockey-asia-cup-2026-japan-kakamigahara-men-women-campaign-begins-20260529"
+    headline = "India's Under-18 Hockey Teams Start Their Asia Cup Campaign in Japan Today. The Senior Pipeline Depends on What Happens Next."
+    subheadline = "The men's and women's U-18 squads open their tournament in Kakamigahara against some of Asia's strongest junior programmes. For India's hockey establishment, this is where the next Olympic generation is identified."
+    
+    body = """When the Indian men's hockey team won bronze at the Tokyo Olympics in 2021, it ended a forty-one-year medal drought and set off a wave of investment in the sport's development pathways. Five years later, the dividends of that investment are about to be tested in Kakamigahara, Japan.
+
+India's under-18 men's and women's hockey teams begin their Asia Cup campaigns on Thursday, facing established Asian powers in a tournament that runs through June 6. For India's hockey establishment — Hockey India, the Sports Authority of India, and the network of state academies that feed the national programme — this is where the next generation proves itself.
+
+## The Men's Challenge
+
+The men's squad, captained by Ketan Kushwaha, has been placed in Pool A alongside Japan, South Korea, Kazakhstan, and Chinese Taipei. The top two teams from each pool advance to the semi-finals on June 5, with the final scheduled for June 6.
+
+Japan and South Korea present the toughest obstacles. Both nations have invested heavily in junior hockey development, and Japan's home advantage adds another layer of difficulty. India's junior programmes have historically performed well at the Asian level — the country has won the Junior Asia Cup multiple times — but consistency against East Asian opponents on their home turf has been a persistent challenge.
+
+The squad was assembled after a national camp at the Sports Authority of India's Bhopal centre, followed by an exposure tour to Australia. That Australian trip was designed to stress-test the squad against physical, fast-paced opposition — a deliberate effort to prepare the players for the tempo they will face against Japan and Korea.
+
+## The Women's Path
+
+The women's team, led by captain Sweety Kujur, competes in Pool B against Malaysia, South Korea, and Singapore. India's women's hockey programme has undergone a transformation since the senior team's fourth-place finish at the Tokyo Olympics, and the under-18 pathway has benefited from that momentum.
+
+Unlike the men's draw, the women's pool does not include a host-nation opponent, which slightly eases the challenge. But South Korea remains formidable at every age level, and Malaysia's women's programme has shown improvement in recent years.
+
+The women's semi-finals and final follow the same June 5-6 schedule as the men's, meaning India could be competing for two continental titles on the same weekend.
+
+## Why It Matters Beyond the Scoreboard
+
+For NRI hockey fans — and there are more than many casual observers realise, particularly in the diaspora communities of the UK, Canada, and the Gulf states — junior tournaments are where names first surface. Several members of India's 2024 Paris Olympics squad were identified through Asia Cup performances at the under-18 and under-21 levels.
+
+Hockey India has made the development pipeline a strategic priority since the Tokyo bronze. The formula is straightforward: identify talent early, expose it to international competition, and integrate the best performers into the senior programme before they are twenty. The Asia Cup is the primary testing ground for that formula.
+
+Beyond the medals, the tournament serves a structural purpose. It reveals which state academies are producing the best players, which coaching methods are working, and where India's junior hockey sits relative to the rest of Asia. Those data points shape funding decisions, coaching appointments, and selection policies for years to come.
+
+## The Week Ahead
+
+India's men open against Kazakhstan — a manageable first assignment — before facing the stiffer tests of Japan and South Korea later in the pool stage. The women begin against Singapore, with Malaysia and South Korea to follow.
+
+For the young athletes who have spent months at the Bhopal camp and survived the Australian tour, this is the beginning of a path that could lead to the Asian Games, the World Cup, and eventually the Olympics. That path starts in a mid-sized Japanese city that most Indian sports fans have never heard of. But the players boarding the plane to Kakamigahara know exactly what is at stake.
+
+*Sources: Hockey India, LatestLY, Nation Press, IndiaSportsHub*"""
+
+    # Image sourcing — Wikipedia for field hockey India or Pexels
+    print("  Sourcing image...")
+    img_url = fetch_pexels_image("field hockey game players", "hockey players turf stadium")
+    img_attribution = "The Videshi"
+    
+    final_img = None
+    if img_url:
+        art_id = str(uuid.uuid4())
+        final_img = upload_to_supabase_storage(img_url, f"{art_id}.jpg")
+        if not validate_image_url(final_img):
+            final_img = None
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "sports",
+        "vertical": "sports",
+        "urgency": "medium",
+        "tags": [],
+        "score_total": 55,
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        
+        "image_url": final_img or "",
+        "image_caption": "India's under-18 hockey squads open their Asia Cup campaign in Japan with senior team aspirations at stake",
+        "image_attribution": img_attribution if final_img else "",
+        "sources": json.dumps(["Hockey India", "LatestLY", "Nation Press", "IndiaSportsHub"])
+    }
+    
+    result = sb_insert("p2_articles", article)
+    if result:
+        art_id_db = result.get('id', 'unknown')
+        print(f"  ✓ Published: {headline[:60]}... (id: {art_id_db})")
+        if final_img and art_id_db != 'unknown' and img_url:
+            new_img = upload_to_supabase_storage(img_url, f"{art_id_db}.jpg")
+            if new_img and validate_image_url(new_img):
+                sb_patch("p2_articles", {"id": f"eq.{art_id_db}"}, {"image_url": new_img})
+                print(f"  ✓ Updated image with article ID")
+    else:
+        print(f"  ✗ Failed to publish article 3")
+    return result
+
+# ========================================================================
+# MAIN
+# ========================================================================
+if __name__ == '__main__':
+    print(f"Sports Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
+    print("=" * 60)
+    
+    results = []
+    
+    r1 = write_article_1()
+    results.append(r1)
+    
+    r2 = write_article_2()
+    results.append(r2)
+    
+    r3 = write_article_3()
+    results.append(r3)
+    
+    published = sum(1 for r in results if r)
+    print(f"\n{'=' * 60}")
+    print(f"Done. {published}/{len(results)} articles published.")
