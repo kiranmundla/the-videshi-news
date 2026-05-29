@@ -1,46 +1,52 @@
 #!/usr/bin/env python3
-"""Entertainment writer — 2026-05-29 batch"""
+"""Entertainment writer for The Videshi - May 29, 2026 run"""
 
-import json, os, re, sys, time, uuid, urllib.parse
+import json
+import os
+import re
+import sys
+import time
+import uuid
 import requests
+import subprocess
 from datetime import datetime, timezone
 
-# ── Load .env.supabase ───────────────────────────────────────────────
-def load_env(path):
-    try:
-        with open(os.path.expanduser(path)) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith("#") and "=" in line:
-                    k, v = line.split("=", 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
-    except FileNotFoundError:
-        pass
+# Load env
+env_path = os.path.expanduser("~/.env.supabase")
+with open(env_path) as f:
+    for line in f:
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            key, _, val = line.partition("=")
+            val = val.strip().strip('"').strip("'")
+            os.environ[key.strip()] = val
 
-load_env("~/.env.supabase")
-load_env("~/.env.pexels")
-
-# ── Supabase config ──────────────────────────────────────────────────
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    "Prefer": "return=representation"
 }
-PEXELS_KEY = None
-try:
-    with open(os.path.expanduser("~/.env.pexels")) as f:
-        for line in f:
-            if line.startswith("PEXELS_API_KEY="):
-                PEXELS_KEY = line.strip().split("=", 1)[1].strip('"').strip("'")
-except Exception:
-    pass
 
-# ── Image helpers ────────────────────────────────────────────────────
+# Load Pexels key
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+PEXELS_KEY = None
+if os.path.exists(pexels_env):
+    with open(pexels_env) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                key, _, val = line.partition("=")
+                val = val.strip().strip('"').strip("'")
+                if "PEXELS" in key.upper():
+                    PEXELS_KEY = val
+
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -58,298 +64,311 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels. Returns URL or None."""
+    """Fetch image from Pexels. Use curl approach."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key available")
+        print("  ⚠ No Pexels API key found")
         return None
-    for q in [query, fallback_query]:
-        if not q:
-            continue
-        try:
-            r = requests.get(
-                "https://api.pexels.com/v1/search",
-                headers={"Authorization": PEXELS_KEY},
-                params={"query": q, "per_page": 5, "orientation": "landscape"},
-                timeout=10,
-            )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for p in photos:
-                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
-                    if url:
-                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                        return url
-        except Exception as e:
-            print(f"  ⚠ Pexels error for '{q}': {e}")
+    try:
+        result = subprocess.run(
+            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page=5",
+             "-H", f"Authorization: {PEXELS_KEY}"],
+            capture_output=True, text=True, timeout=15
+        )
+        data = json.loads(result.stdout)
+        photos = data.get("photos", [])
+        for photo in photos:
+            url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
+            if url:
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                return url
+        if fallback_query:
+            return fetch_pexels_image(fallback_query)
+    except Exception as e:
+        print(f"  ⚠ Pexels error for '{query}': {e}")
     return None
-
 
 def validate_image(url):
-    """Check image URL is valid (HTTP 200, image/*, >5KB)."""
+    """Validate image URL returns HTTP 200 with image content type and reasonable size."""
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            print(f"  ✓ Image validated: {ct}, {cl} bytes")
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        content_type = r.headers.get("Content-Type", "")
+        content_length = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in content_type and content_length > 5000:
+            print(f"  ✓ Image validated: {content_type}, {content_length} bytes")
             return True
-        # Try GET if HEAD didn't provide content-length
-        if r.status_code == 200 and "image" in ct and cl == 0:
-            r2 = requests.get(url, timeout=10, stream=True,
-                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                print(f"  ✓ Image validated via GET: {ct}, >{len(chunk)} bytes")
-                return True
-        print(f"  ✗ Image failed: status={r.status_code}, ct={ct}, cl={cl}")
+        else:
+            print(f"  ⚠ Image validation failed: status={r.status_code}, type={content_type}, size={content_length}")
+            return False
     except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
-    return False
+        print(f"  ⚠ Image validation error: {e}")
+        return False
 
+def publish_article(article):
+    """Publish article to Supabase."""
+    payload = {
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": json.dumps(article["sources"]),
+        "image_url": article.get("image_url"),
+        "image_caption": article.get("image_caption"),
+        "image_attribution": article.get("image_attribution"),
+    }
+    # Remove None values
+    payload = {k: v for k, v in payload.items() if v is not None}
 
-def sb_insert(table, data):
-    """Insert a row into Supabase and return the response data."""
     r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=data,
-        timeout=30,
+        json=payload
     )
     if r.status_code in (200, 201):
-        result = r.json()
-        return result[0] if isinstance(result, list) and result else result
-    print(f"  ✗ Insert into {table} failed: {r.status_code} — {r.text[:300]}")
-    return None
+        data = r.json()
+        art_id = data[0]["id"] if isinstance(data, list) else data["id"]
+        print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
+        return art_id
+    else:
+        print(f"  ✗ Failed to publish: {r.status_code} - {r.text[:200]}")
+        return None
 
 
-def sb_patch(table, match, data):
-    """Patch a row in Supabase."""
-    params = "&".join(f"{k}={v}" for k, v in match.items())
-    r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
-        headers=HEADERS,
-        json=data,
-        timeout=30,
-    )
-    if r.status_code in (200, 204):
-        print(f"  ✓ Patched {table} where {match}")
-        return True
-    print(f"  ✗ Patch {table} failed: {r.status_code} — {r.text[:300]}")
-    return False
+# ============================================================
+# ARTICLE 1: Jailer 2 - Hrithik Roshan cameo talks
+# ============================================================
+print("\n=== Article 1: Jailer 2 - Hrithik Roshan Cameo ===")
 
+art1_headline = "Hrithik Roshan Is in Talks to Join Rajinikanth's Jailer 2. Shah Rukh Khan Was the First Choice."
+art1_subheadline = "The makers of the most anticipated Tamil sequel of 2026 are reportedly in discussions with Hrithik after SRK stepped away due to King commitments. If confirmed, it would reunite Rajinikanth and Hrithik 40 years after Bhagwaan Dada."
+art1_slug = "hrithik-roshan-jailer-2-cameo-rajinikanth-shah-rukh-khan-nelson-dilipkumar-nri-20260529"
+art1_body = """The biggest casting rumour in Indian cinema this week doesn't involve a lead role. It involves a cameo — and the two names attached to it tell you everything about where the industry is heading.
 
-# ── Articles ─────────────────────────────────────────────────────────
-now_iso = datetime.now(timezone.utc).isoformat()
+## SRK Was the Plan. His Calendar Wasn't.
 
-articles = [
-    # ── Article 1: Akshay Kumar's Samuk ──
-    {
-        "headline": "Akshay Kumar Is Making India's First Alien Survival Thriller. The Predator's Creature Designer Is Building the Monster.",
-        "subheadline": "Samuk brings together Hollywood's top practical-effects talent with Bollywood's biggest action star for a 2027 sci-fi spectacle that could redefine the genre in Indian cinema.",
-        "slug": "akshay-kumar-samuk-alien-thriller-alec-gillis-predator-hollywood-nri-20260529",
-        "category": "entertainment",
-        "status": "published",
-        "published_at": now_iso,
-        "person": "Akshay Kumar",
-        "sources_json": json.dumps([
-            {"name": "Variety India", "url": "https://variety.com"},
-            {"name": "Sacnilk", "url": "https://sacnilk.com"},
-            {"name": "Filmy Khabri", "url": "https://filmykhabri.com"},
-            {"name": "Asian Reels", "url": "https://asianreels.com"}
-        ]),
-        "body": """Bollywood has flirted with science fiction before — from *Koi… Mil Gaya*'s friendly alien to *Brahmastra*'s mythological VFX — but never quite attempted what Akshay Kumar and producer Vipul Amrutlal Shah are planning with **Samuk**. The film, announced this week through a wide-ranging Variety India interview, is being positioned as India's first large-scale alien survival thriller, and it's bringing Hollywood's most decorated creature designers along for the ride.
+When Nelson Dilipkumar began assembling the sequel to his 2023 blockbuster *Jailer*, the playbook was clear: replicate the formula that turned the original into a ₹600-crore global phenomenon. That meant Rajinikanth as the anchor, Anirudh Ravichander on the score, and a roster of surprise appearances from stars across every Indian film industry.
 
-## The Predator's Guy Is Building the Monster
+Shah Rukh Khan was the centrepiece of that plan. According to multiple trade reports, including confirmations from veteran actor Mithun Chakraborty — who is also part of the sequel — both he and SRK were slated for pivotal cameos. The logic was bulletproof: after *Jawan* turned Khan into a mass favourite in the South Indian market, pairing him with Rajinikanth in a Nelson film would have been a theatrical event unto itself.
 
-The headline hire is **Alec Gillis**, the Academy Award-nominated creature effects designer whose resume includes the *Alien*, *Predator*, and *Tremors* franchises. Gillis will design and physically construct the extraterrestrial creature for *Samuk* — and the emphasis on "physically" is deliberate. The filmmakers have committed to practical creature effects over CGI, an approach that's rare even in Hollywood blockbusters these days and virtually unheard of in Indian cinema.
+But *King* got in the way. Shah Rukh Khan's own production, which is targeting a Christmas 2026 release, demanded his full attention. Reports from Pinkvilla and Valai Pechu confirm that Khan "politely declined" the cameo, and portions planned with him remain unfilmed.
 
-Joining the production is **Luke Tumber**, the British stunt coordinator whose credits span *Mission: Impossible — The Final Reckoning*, the *Venom* films, *Star Wars*, *No Time To Die*, and Marvel's *Vision Quest*. Tumber will oversee the action choreography, blending military realism with high-intensity survival sequences.
+## Enter Hrithik Roshan
 
-## Why This Matters for Indian Cinema
+The makers have reportedly pivoted to Bollywood's other Greek god. According to reports from Bombay Times, MensXP, and Pinkvilla, the *Jailer 2* team is now in active discussions with Hrithik Roshan for the same high-profile cameo slot.
 
-Indian filmmakers have historically outsourced VFX to post-production studios, often with mixed results. *Samuk*'s decision to invest in on-set practical effects represents a philosophical shift — the creature will physically exist on set, interacting with actors in real time, making the horror and suspense feel grounded rather than synthetic.
+No official confirmation has come from Sun Pictures, the production house bankrolling the sequel. But if the talks materialise, the casting would carry emotional weight that goes far beyond box-office strategy.
 
-Director **Kanishk Varma**, who reportedly spent over two years developing the film's concept and visual world, drew inspiration from iconic alien survival films but wanted *Samuk* to have its own identity rooted in Indian storytelling sensibilities. The producers describe it as blending survival horror, intense action, and extraterrestrial suspense in a "grounded yet cinematic manner."
+## A 40-Year Reunion
 
-## The Akshay-Vipul Reunion
+Here is where the story gets interesting for anyone who grew up watching Hindi cinema in the 1980s. Hrithik Roshan made his screen debut as a child artist in the 1986 action drama *Bhagwaan Dada* — a film that starred Rajinikanth in the lead role. The seven-year-old Hrithik played Rajinikanth's young foster son on screen.
 
-The project marks a reunion between Akshay Kumar and Vipul Shah, a partnership that has delivered multiple commercial entertainers over the years. But *Samuk* is a departure from their comedy-action formula. Speaking to Variety India, Akshay called it "never-seen-before cinema" — a description he doesn't deploy lightly, given his prolific output of 3-4 films annually.
+In interviews over the decades, Hrithik has spoken with warmth about what he learned from Rajinikanth on that set. A reunion four decades later, both as superstars in their own right, would be the kind of narrative arc that Bollywood couldn't script better if it tried.
+
+## What Jailer 2 Already Has
+
+Even without the cameo question resolved, the sequel is stacked. Rajinikanth returns as "Tiger" Muthuvel Pandian. The confirmed cast includes Vidya Balan, S.J. Suryah, Ramya Krishnan (reprising her role as Viji Pandian), Suraj Venjaramoodu, Jatin Sarna, and Mithun Chakraborty. Mohanlal and Shiva Rajkumar are expected to reprise their appearances from the first film. Vijay Sethupathi also has a confirmed cameo.
+
+Principal photography wrapped in April 2026 after shoots across Chennai, Goa, and Kerala. Anirudh Ravichander is composing the music. The film is eyeing a June 12 theatrical release — just two weeks away.
 
 ## The Diaspora Angle
 
-For NRIs who grew up watching Bollywood but switched to Hollywood for their sci-fi fix, *Samuk* represents a tantalizing proposition: a big-budget Indian film that doesn't just compete with Hollywood on spectacle but actively imports Hollywood's best technical minds to achieve it. If the practical creature effects land, this could open an entirely new genre lane for Indian cinema.
+For NRI audiences, *Jailer* was a cultural event. The original collected over ₹150 crore overseas and became one of the highest-grossing Tamil films in international markets. Advance booking patterns for the sequel are expected to follow a similar trajectory, particularly in the US, UK, Canada, and the Gulf, where Rajinikanth retains a devoted fanbase that spans generations.
 
-**Samuk** begins shooting in August 2026 for a grand theatrical release in 2027. Co-produced by Aashin A Shah, it's being planned as a pan-Indian theatrical event.""",
-    },
-    # ── Article 2: Anupam Kher ──
-    {
-        "headline": "Anupam Kher Just Started Filming His 552nd Movie. He Has Two More Lined Up. At 71, He's Never Been Busier.",
-        "subheadline": "Between Shri Ram Bhoomi, Khosla Ka Ghosla 2, and a mystery project with Sooraj Barjatya, the veteran actor's 2026 is shaping up to be the most prolific year of a 42-year career.",
-        "slug": "anupam-kher-552-films-shri-ram-bhoomi-khosla-ka-ghosla-2-barjatya-nri-20260529",
-        "category": "entertainment",
-        "status": "published",
-        "published_at": now_iso,
-        "person": "Anupam Kher",
-        "sources_json": json.dumps([
-            {"name": "IANS", "url": "https://ianslive.in"},
-            {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-            {"name": "Blaze Trends", "url": "https://blazetrends.com"},
-            {"name": "CineTalkers", "url": "https://cinetalkers.com"}
-        ]),
-        "body": """Most actors slow down in their seventies. Anupam Kher appears to be speeding up.
+Adding Hrithik Roshan — whose *War* and *Fighter* performed strongly in overseas markets — would only amplify that pull. The real question isn't whether Nelson can get Hrithik. It's whether two weeks is enough time to shoot, edit, and integrate a cameo before the June 12 release date. In Kollywood, stranger things have happened."""
 
-On Thursday, the 71-year-old began filming **Shri Ram Bhoomi** — his 552nd film — in a *mahurat* ceremony attended by co-stars Ritwik Bhowmik and Amruta Khanvilkar. The project, directed by National Award-winning filmmaker **Kamakhaya Narayan Singh** (who just completed *The Kerala Story 2*), is backed by Zee Studios, Dancing Shiva Films, and Cinekorn Entertainment. And it's just one of three major projects on Kher's 2026 slate.
-
-## Shri Ram Bhoomi: Faith, Sacrifice, and Ayodhya
-
-The makers are keeping specific plot details tightly under wraps, but the title alone has set social media buzzing. Kher described the script as "a story rooted in truth, faith, and the concept of returning home" — language that strongly suggests an Ayodhya-centric narrative exploring one of the most consequential chapters in modern Indian history.
-
-The timing isn't accidental. Indian cinema is experiencing a wave of culturally rooted storytelling, with Nitesh Tiwari's ₹4,000-crore *Ramayana* adaptation generating massive anticipation. Zee Studios appears to be positioning *Shri Ram Bhoomi* to ride that cultural momentum, pairing a veteran actor with deep emotional credibility with a director known for handling politically charged material.
-
-Ritwik Bhowmik, who rose to prominence through the OTT series *Bandish Bandits*, represents the cross-generational appeal the project is targeting — heritage audiences through Kher, younger digital-native viewers through Bhowmik.
-
-## Khosla Ka Ghosla 2: The Sequel Every NRI Has Been Waiting For
-
-If there's one Bollywood film that resonated universally with the Indian middle class — and particularly with NRIs who watched their parents navigate property disputes from 10,000 miles away — it's *Khosla Ka Ghosla*. The 2006 cult classic about a retired Delhi man fighting to reclaim his land from a smooth-talking builder became a touchstone for anyone who's ever dealt with Indian real estate.
-
-The sequel, releasing **August 28, 2026** (Raksha Bandhan weekend), brings back Kher as Kamal Kishore Khosla alongside **Boman Irani**, **Parvin Dabas**, **Ranvir Shorey**, **Kiran Juneja**, and **Tara Sharma**. New addition **Ravi Kishan** joins the ensemble. The film is directed by **Umesh Bisht** (*Pagglait*, *Gyaarah Gyaarah*), taking over from original director Dibakar Banerjee.
-
-Kher wrapped 90% of his work on the sequel earlier this year, calling it "an EPIC sequel to an OG cult classic" and promising that "this time the con is bigger than the biggest."
-
-## The Sooraj Barjatya Mystery
-
-As if two major productions weren't enough, Kher has also confirmed an untitled project with **Sooraj Barjatya** — the filmmaker behind *Maine Pyar Kiya*, *Hum Aapke Hain Koun*, and *Hum Saath-Saath Hain*. The pair share a 42-year history: Barjatya was the fifth assistant director on Kher's debut film *Saaransh* (1984). Every detail about this collaboration is under wraps, but a Kher-Barjatya reunion after four decades carries significant emotional weight for audiences who grew up on Rajshri Productions' family dramas.
-
-## 552 Films and Counting
-
-The sheer number is staggering. Kher has now appeared in more films than almost any other working actor in world cinema. That he's delivering this volume while maintaining quality — *The Kashmir Files* and *Uunchai* both landed in the last few years — makes his late-career productivity all the more remarkable.
-
-For the diaspora, Kher has always occupied a unique position: equally at home in a Marvel series (*New Amsterdam*), a Robert De Niro film (*Silver Linings Playbook*), or a Dharma family drama. His 2026 slate, spanning a spiritual epic, a beloved comedy franchise, and a Barjatya reunion, is essentially a cross-section of everything Indian cinema does best.""",
-    },
-    # ── Article 3: Jio ₹200 OTT Pass ──
-    {
-        "headline": "Jio Just Bundled 15 Streaming Platforms Into One ₹200 Pass. Here's What That Means for How India Watches Content.",
-        "subheadline": "YouTube Premium, JioHotstar, Prime Video, and 12 more OTT apps — all for roughly $2.40 a month. India's streaming wars just entered a new phase.",
-        "slug": "jio-200-ott-pass-15-platforms-youtube-premium-streaming-india-nri-20260529",
-        "category": "entertainment",
-        "status": "published",
-        "published_at": now_iso,
-        "person": None,
-        "sources_json": json.dumps([
-            {"name": "Gadgets 360", "url": "https://gadgets360.com"},
-            {"name": "LatestLY", "url": "https://latestly.com"},
-            {"name": "Digit.in", "url": "https://digit.in"},
-            {"name": "Gizbot", "url": "https://gizbot.com"}
-        ]),
-        "body": """Reliance Jio launched a new ₹200 OTT Pass on May 27 that bundles access to 15 premium streaming platforms, over 1,000 live TV channels, 30 GB of high-speed data, and unlimited 5G connectivity into a single 28-day pack. The company claims the bundled services are worth approximately ₹1,500 per month.
-
-For ₹200 — roughly $2.40 — Indian consumers now get what most Americans pay $50+ to assemble across separate subscriptions. That price gap tells you everything about where India's streaming wars are headed.
-
-## What's in the Box
-
-The headline inclusions are **YouTube Premium** (ad-free viewing, background play, offline downloads), **JioHotstar Mobile + Hollywood** (live sports, Hotstar Originals, Hollywood content), and **Prime Video Mobile Edition**. Beyond the big three, the pack adds 12 more platforms accessible through the JioTV app: **SonyLiv**, **ZEE5**, **Lionsgate Play**, **Discovery+**, **Sun NXT**, **FanCode**, **Kanccha Lannka**, **Planet Marathi**, **Chaupal**, **Hoichoi**, **TimesPlay**, and **Tarang Plus**.
-
-On the live TV side, JioTV provides access to over 1,000 channels including 150+ paid channels from broadcasters like JioStar (Star Plus HD, Colors HD), Sony Entertainment (SET HD, Sony SAB HD), Sun TV Network (Sun TV HD, KTV HD), Warner Bros. Discovery (Discovery Channel, Animal Planet), and ETV regional channels.
-
-## The YouTube Premium Play
-
-The real headline isn't the OTT platforms — most Indian users with any streaming subscription already have access to some combination of these. It's **YouTube Premium**. For a generation of Indian consumers — particularly the under-30 demographic — YouTube is the primary entertainment platform. They watch more YouTube than Netflix, Prime, and Hotstar combined.
-
-By making YouTube Premium the anchor of a ₹200 bundle, Jio is effectively saying: we'll give you the platform you actually use every day, and throw in everything else as a bonus. The psychology is inverted from how American bundling works, where the premium service (say, Max or Disney+) leads and lesser-known platforms ride along.
-
-## What This Means for NRIs
-
-If you're in the diaspora and your parents, siblings, or extended family back home are on Jio — which, given Jio's 470+ million subscribers, they probably are — this changes how your family consumes content. For the cost of a single Starbucks latte, your parents now have ad-free YouTube, live cricket on Hotstar, Bollywood on Prime, regional content across a dozen platforms, and 30 GB of data to watch it all.
-
-The practical impact: fewer "can you share your Netflix password?" conversations during family WhatsApp calls. The strategic impact: Jio is training an entire generation of Indian consumers to expect everything for almost nothing, which makes life extremely difficult for standalone streaming platforms trying to charge ₹499 or ₹999 per month.
-
-## The Bundling Endgame
-
-India's streaming market has been moving toward this consolidation for years. JioHotstar's merger, Amazon's mobile-first pricing, and now this 15-in-1 bundle all point toward the same conclusion: in a price-sensitive market of 1.4 billion people, the winner isn't the platform with the best content library — it's the one that can bundle the most value at a price point that feels like rounding error.
-
-At ₹200 for 15 platforms, Jio isn't just competing with other telecom providers. It's making the case that streaming, like mobile data before it, should be essentially free — just a value-add that keeps you loyal to the Jio ecosystem.
-
-The ₹200 Jio OTT Pass is available now across MyJio, Jio.com, retail stores, and third-party recharge apps for all Jio users with an active base plan.""",
-    },
+art1_sources = [
+    {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
+    {"name": "Bombay Times", "url": "https://www.bombaytimes.com"},
+    {"name": "MensXP", "url": "https://www.mensxp.com"},
+    {"name": "Tupaki English", "url": "https://english.tupaki.com"}
 ]
 
-# ── Publish each article ─────────────────────────────────────────────
-published_count = 0
-for art in articles:
-    print(f"\n{'='*60}")
-    print(f"Publishing: {art['headline'][:70]}...")
+# Image: Try Hrithik Roshan Wikipedia
+img1 = fetch_wikipedia_person_image("Hrithik Roshan")
+if not img1:
+    img1 = fetch_wikipedia_person_image("Rajinikanth")
+img1_valid = img1 and validate_image(img1)
 
-    # Source image
-    img_url = None
-    img_attribution = None
-    person = art.pop("person", None)
+art1 = {
+    "headline": art1_headline,
+    "subheadline": art1_subheadline,
+    "body": art1_body,
+    "slug": art1_slug,
+    "sources": art1_sources,
+    "image_url": img1 if img1_valid else None,
+    "image_caption": "Hrithik Roshan is reportedly in talks for a cameo in Rajinikanth's Jailer 2" if img1_valid else None,
+    "image_attribution": "Wikimedia Commons" if img1_valid else None,
+}
 
-    if person:
-        print(f"  Sourcing Wikipedia image for '{person}'...")
-        img_url = fetch_wikipedia_person_image(person)
-        if img_url:
-            img_attribution = "Wikimedia Commons"
+id1 = publish_article(art1)
 
-    if not img_url and not person:
-        # For non-person articles, try Pexels with specific terms
-        if "jio" in art["slug"] or "streaming" in art["slug"]:
-            print("  Sourcing Pexels image for streaming/OTT...")
-            img_url = fetch_pexels_image("smartphone streaming video app", "mobile entertainment India")
-            if img_url:
-                img_attribution = "Pexels"
+# ============================================================
+# ARTICLE 2: Pankaj Bhadouria breast cancer diagnosis + surgery
+# ============================================================
+print("\n=== Article 2: Pankaj Bhadouria Cancer Diagnosis ===")
 
-    if not img_url and person:
-        # Fallback to Pexels for person articles with specific terms
-        print(f"  Wikipedia failed, trying Pexels for '{person}'...")
-        if "akshay" in person.lower():
-            img_url = fetch_pexels_image("Bollywood sci-fi film set", "movie production set")
-        elif "anupam" in person.lower():
-            img_url = fetch_pexels_image("Bollywood veteran actor filming", "Indian cinema production")
-        if img_url:
-            img_attribution = "Pexels"
+art2_headline = "India's First MasterChef Winner Has Breast Cancer. She Went Into Surgery on Friday Morning."
+art2_subheadline = "Pankaj Bhadouria, who left a 16-year teaching career to win MasterChef India Season 1 in 2010, revealed her diagnosis from a hospital bed on Thursday. By Friday, she was headed for the operating room."
+art2_slug = "pankaj-bhadouria-masterchef-india-breast-cancer-surgery-nri-20260529"
+art2_body = """Pankaj Bhadouria posted a photograph from a hospital bed on Thursday afternoon, medical wires visible, patient gown on, and wrote seven words that stopped her millions of followers mid-scroll: "I have been diagnosed with Breast Cancer."
 
-    # Validate image
-    if img_url:
-        if not validate_image(img_url):
-            print("  ✗ Image validation failed, proceeding without image")
-            img_url = None
-            img_attribution = None
+By Friday morning, she was recording another video — this time to say thank you, and to say she was going in for surgery.
 
-    # Build insert payload
-    sources = art.pop("sources_json")
-    body_text = art["body"]
-    word_count = len(body_text.split())
-    payload = {
-        "headline": art["headline"],
-        "subheadline": art["subheadline"],
-        "slug": art["slug"],
-        "category": art["category"],
-        "vertical": art["category"],
-        "status": art["status"],
-        "published_at": art["published_at"],
-        "body": body_text,
-        "sources": sources,
-        "image_url": img_url,
-        "image_attribution": img_attribution,
-        "urgency": "medium",
-        "tags": [],
-        "is_featured": False,
-        "score_total": 55,
-        "word_count": word_count,
-    }
+## The Diagnosis
 
-    result = sb_insert("p2_articles", payload)
-    if result:
-        art_id = result.get("id")
-        print(f"  ✓ Published! ID: {art_id}")
-        published_count += 1
-    else:
-        print(f"  ✗ Failed to publish: {art['slug']}")
+The announcement came on May 28 through Bhadouria's social media accounts. In a video message that followed the initial post, she addressed her audience directly, her voice steady but her eyes betraying the weight of the moment.
 
-    time.sleep(1)
+"I just wanted to share with you all that I have been diagnosed with breast cancer," she said. "Since all of you are like an extended family to me, I wanted to share this with you personally. Right now, I truly need your prayers and support. As they say, prayers work miracles. So please keep me in your prayers."
 
-print(f"\n{'='*60}")
-print(f"Done. Published {published_count}/{len(articles)} articles.")
+A separate Instagram story showed her undergoing a battery of medical tests, with the text overlay reading: "Going for tests and more tests… not a happy place to be."
+
+## "I Know I Will Bounce Back"
+
+On Friday morning — less than 24 hours after going public — Bhadouria shared a brief update confirming she was heading into surgery. "Thank you so much for all the love and support that you have showered on me," she said. "Today I am going for surgery and I know I will bounce back. So, once again keep me in your prayers."
+
+The response from fans, fellow chefs, and the television industry has been immediate and overwhelming.
+
+## From English Teacher to India's First MasterChef
+
+For those who may not remember, Pankaj Bhadouria's story is one of the most remarkable career pivots in Indian television history. Before she ever appeared on camera, she spent 16 years as an English teacher in Lucknow. Cooking was a passion, not a profession — until she decided to audition for the very first season of *MasterChef India* in 2010.
+
+The show, hosted by Akshay Kumar, was attempting to bring a proven international format to Indian television. Bhadouria won the inaugural season and became the country's first-ever MasterChef champion. The victory didn't just change her career. It created one.
+
+What followed was a decade-plus run as one of India's most recognisable celebrity chefs. She hosted *Chef Pankaj Ka Zayka*, *Kifayati Kitchen*, *3 Course with Pankaj*, and *Rasoi Se — Pankaj Bhadouria Ke Saath*, among other shows. Her YouTube channel became a go-to destination for home cooks across India and the diaspora, with recipes that ranged from everyday dal to elaborate festive spreads.
+
+## Why This Matters to the Diaspora
+
+Bhadouria's reach extends well beyond India's borders. Her cooking videos have been a staple for Indian families abroad trying to recreate the flavours of home — particularly first-generation immigrants in the US, UK, and Canada who grew up watching her on Indian television and later followed her to YouTube and social media.
+
+For many NRI households, her recipes became a bridge between homesickness and the kitchen. The news of her diagnosis has resonated deeply in diaspora communities where her face is synonymous with Indian home cooking.
+
+## Breast Cancer in India: The Larger Context
+
+Bhadouria's decision to go public with her diagnosis adds to a growing list of Indian public figures who have chosen transparency over silence when it comes to cancer. Actors Sonali Bendre, Manisha Koirala, Lisa Ray, and Tahira Kashyap have all spoken about their experiences, helping to destigmatise the conversation in a culture where health disclosures — particularly around cancer — have historically been kept private.
+
+Breast cancer is the most common cancer among Indian women, with approximately 180,000 new cases diagnosed annually, according to the Indian Council of Medical Research. Early detection remains a critical challenge, particularly in smaller cities and rural areas.
+
+## What Comes Next
+
+No details about the type or stage of Bhadouria's cancer, or the specifics of her surgical procedure, have been shared publicly. What is clear is that she intends to fight — and that her community, both in India and abroad, is rallying behind her.
+
+For now, she's asked for one thing: prayers. Given the outpouring that has followed, she has them in abundance."""
+
+art2_sources = [
+    {"name": "IANS via The Freedom Press", "url": "https://thefreedompress.in"},
+    {"name": "Filmibeat", "url": "https://filmibeat.com"},
+    {"name": "LatestLY", "url": "https://latestly.com"},
+    {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"}
+]
+
+# Image: Try Wikipedia for Pankaj Bhadouria
+img2 = fetch_wikipedia_person_image("Pankaj Bhadouria")
+if not img2:
+    img2 = fetch_wikipedia_person_image("Pankaj Bhadouria (chef)")
+if not img2:
+    # Try Pexels with a relevant query
+    img2 = fetch_pexels_image("indian cooking kitchen", "chef kitchen india")
+img2_valid = img2 and validate_image(img2)
+
+art2 = {
+    "headline": art2_headline,
+    "subheadline": art2_subheadline,
+    "body": art2_body,
+    "slug": art2_slug,
+    "sources": art2_sources,
+    "image_url": img2 if img2_valid else None,
+    "image_caption": "Pankaj Bhadouria, India's first MasterChef winner, has been diagnosed with breast cancer" if img2_valid else None,
+    "image_attribution": "Wikimedia Commons" if (img2_valid and img2 and "wikimedia" in img2.lower()) else ("Pexels" if img2_valid else None),
+}
+
+id2 = publish_article(art2)
+
+
+# ============================================================
+# ARTICLE 3: Kangana Ranaut's Bharat Bhhagya Viddhaata motion poster + June 12 release
+# ============================================================
+print("\n=== Article 3: Kangana Ranaut Bharat Bhhagya Viddhaata ===")
+
+art3_headline = "Kangana Ranaut's 26/11 Film Just Dropped Its First Motion Poster. It Opens June 12, the Same Day as Jailer 2."
+art3_subheadline = "Bharat Bhhagya Viddhaata tells the story of hospital staff who saved nearly 400 lives during the 2008 Mumbai terror attacks. The motion poster is titled 'The Unseen Heroes.'"
+art3_slug = "kangana-ranaut-bharat-bhhagya-viddhaata-26-11-mumbai-attacks-june-12-nri-20260529"
+art3_body = """There are dozens of films about 26/11. Most of them focus on commandos, politicians, or terrorists. Kangana Ranaut's next film focuses on none of those people. It focuses on nurses.
+
+## The Motion Poster
+
+The makers of *Bharat Bhhagya Viddhaata* unveiled the film's first motion poster on Thursday, titled "The Unseen Heroes." It is not a teaser for an action sequence. It is a tribute to the hospital workers — nurses, ward boys, cleaners, lift operators, security guards, and administrators — who kept Cama and Albless Hospital running while Mumbai burned around them on the night of November 26, 2008.
+
+The poster carries a deliberate stillness. No explosions. No gunfire. Just the faces of people who chose to stay.
+
+## What Kangana Said
+
+In a statement released with the poster, Kangana framed the film's thesis in characteristically blunt terms:
+
+"Bharat Bhhagya Viddhaata is a salutation to those invisible souls who, when pushed into crisis, rise to stand as the ultimate shield of humanity and harmony. When disaster strikes, our collective instinct is to look toward armed uniforms or state authorities for salvation. But this film tributes the uniforms nobody notices until the world is burning — the blood-stained aprons, the sterile hospital scrubs, the frayed civilian clothes. True courage does not wait for a badge, permission, or the promise of a medal."
+
+It is, arguably, the strongest creative statement she has made since *Emergency*.
+
+## The Story Behind the Story
+
+On the night of November 26, 2008, two Lashkar-e-Taiba terrorists — Ajmal Kasab and Abu Ismail — passed through the Cama Hospital compound during their rampage from the Chhatrapati Shivaji Terminus railway station. What happened inside that hospital has been overshadowed by the more widely covered sieges at the Taj Mahal Palace Hotel and the Oberoi Trident.
+
+But the staff at Cama Hospital locked wards, hid patients, guided evacuations, and continued treating the injured even as gunfire echoed through the building. By some accounts, their actions helped save nearly 400 lives that night. Most of them have never been publicly identified or honoured.
+
+*Bharat Bhhagya Viddhaata* wants to change that.
+
+## The Team
+
+The film is written and directed by Manoj Tapadia, making his directorial debut. Tapadia, a veteran of the advertising industry, described his creative ambition in terms that suggest this won't be a typical Bollywood retelling:
+
+"In contemporary cinema, the easiest thing to capture on camera is the explosive loudness of the gunfire, the destruction, and the panic. From day one, I challenged our creative team to capture something infinitely more complex: the silence of bravery. We wanted to document that microscopic, split-second window where a common civilian looks at mortal danger, subdues their own survival instinct, and decides to become a human shield."
+
+Marathi actress Girija Oak, known for her work in *Shor in the City*, *Qala*, and *Jawan*, co-stars. The film is produced by Eunoia Films and Floating Rocks Entertainment.
+
+## June 12: A Loaded Release Date
+
+Here is where the commercial calculus gets complicated. *Bharat Bhhagya Viddhaata* is scheduled for a June 12 theatrical release — the same date as Rajinikanth's *Jailer 2*, which is arriving with the force of a franchise juggernaut backed by Sun Pictures and Anirudh Ravichander's score.
+
+On paper, the two films serve different audiences. *Jailer 2* is a Tamil-language action spectacle with pan-India crossover. *Bharat Bhhagya Viddhaata* is a Hindi-language drama rooted in historical realism. But in practice, they'll be competing for the same screens on the same weekend — and in the current theatrical market, screens are zero-sum.
+
+## The Diaspora Connection
+
+For Indians living abroad, the 2008 Mumbai attacks remain one of the most emotionally charged events in modern Indian history. Many NRIs watched the siege unfold in real-time on television, thousands of miles away, unable to do anything but watch. The Taj and the Oberoi became symbols of that helplessness.
+
+A film that shifts the lens to the people who could do something — and did — may find a particularly receptive audience among diaspora viewers. Especially one that doesn't sensationalise the violence but instead honours the quiet, unglamorous heroism of hospital workers.
+
+Whether the film delivers on that promise remains to be seen. But the motion poster, at least, suggests it is trying."""
+
+art3_sources = [
+    {"name": "Punjab Page", "url": "https://punjabpage.com"},
+    {"name": "Sacnilk", "url": "https://sacnilk.com"},
+    {"name": "KoiMoi", "url": "https://koimoi.com"},
+    {"name": "Peeping Moon", "url": "https://peepingmoon.com"}
+]
+
+# Image: Try Kangana Ranaut Wikipedia
+img3 = fetch_wikipedia_person_image("Kangana Ranaut")
+img3_valid = img3 and validate_image(img3)
+
+art3 = {
+    "headline": art3_headline,
+    "subheadline": art3_subheadline,
+    "body": art3_body,
+    "slug": art3_slug,
+    "sources": art3_sources,
+    "image_url": img3 if img3_valid else None,
+    "image_caption": "Kangana Ranaut stars in Bharat Bhhagya Viddhaata, a film about hospital staff during the 26/11 attacks" if img3_valid else None,
+    "image_attribution": "Wikimedia Commons" if img3_valid else None,
+}
+
+id3 = publish_article(art3)
+
+# Summary
+print("\n=== SUMMARY ===")
+print(f"Article 1 (Jailer 2 Hrithik): {'✓ Published' if id1 else '✗ Failed'}")
+print(f"Article 2 (Pankaj Bhadouria): {'✓ Published' if id2 else '✗ Failed'}")
+print(f"Article 3 (Kangana 26/11 film): {'✓ Published' if id3 else '✗ Failed'}")
