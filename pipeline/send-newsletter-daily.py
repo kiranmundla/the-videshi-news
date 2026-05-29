@@ -268,6 +268,12 @@ def build_daily_html(hero, stories, date_label, unsub_url):
         hero_cat = hero.get("category", "news")
         hero_emoji = CATEGORY_EMOJI.get(hero_cat, "📰")
         hero_label = CATEGORY_LABEL.get(hero_cat, hero_cat.upper())
+
+        # Editorial gets "EDITOR'S DESK" label instead of category
+        if hero.get("is_editorial"):
+            hero_emoji = "✍️"
+            hero_label = "EDITOR'S DESK"
+
         hero_url = f"{SITE_URL}/articles/{hero['slug']}"
         hero_img = hero.get("image_url", "")
 

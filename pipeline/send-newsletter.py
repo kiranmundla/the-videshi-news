@@ -284,6 +284,11 @@ def build_email_html(hero, stories, events, week_start, week_end, unsub_url):
         hero_url = f"{SITE_URL}/articles/{hero['slug']}"
         hero_img = hero.get("image_url", "")
 
+        # Editorial gets "EDITOR'S DESK" label instead of category
+        if hero.get("is_editorial"):
+            hero_emoji = "✍️"
+            hero_label = "EDITOR'S DESK"
+
         hero_html = f"""
         <tr>
           <td style="padding: 0 24px 24px 24px;">
