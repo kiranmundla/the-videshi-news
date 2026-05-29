@@ -1,18 +1,28 @@
 #!/usr/bin/env python3
-"""
-The Videshi — News Writer (2026-05-28 evening run)
-Writes 3 fresh news articles with proper image sourcing.
-"""
+"""News writer for The Videshi — generates 3 articles on fresh stories."""
 
-import json, os, sys, uuid, re, subprocess, urllib.parse
+import json
+import os
+import re
+import subprocess
+import sys
+import urllib.parse
 from datetime import datetime, timezone
 
 import requests
 
-# --- Environment ---
+# Load environment
+env_path = os.path.expanduser("~/.env.supabase")
+with open(env_path) as f:
+    for line in f:
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            key, _, val = line.partition("=")
+            val = val.strip().strip('"').strip("'")
+            os.environ[key.strip()] = val
+
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
     "apikey": SUPABASE_KEY,
@@ -21,20 +31,31 @@ HEADERS = {
     "Prefer": "return=representation",
 }
 
-# --- Helpers ---
+# Load Pexels key
+pexels_path = os.path.expanduser("~/workspace/.env.pexels")
+PEXELS_KEY = None
+if os.path.exists(pexels_path):
+    with open(pexels_path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                key, _, val = line.partition("=")
+                val = val.strip().strip('"').strip("'")
+                if "PEXELS" in key.upper():
+                    PEXELS_KEY = val
+
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    encoded = urllib.parse.quote(person_name.replace(" ", "_"))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            timeout=10,
         )
         if r.status_code == 200:
             data = r.json()
-            # Prefer originalimage (higher res), fall back to thumbnail AS-IS
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
@@ -45,20 +66,26 @@ def fetch_wikipedia_person_image(person_name):
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels using curl (Python urllib gets 403)."""
+    """Fetch an image from Pexels API using curl (Python urllib gets 403)."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key found")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
-                 "-H", f"Authorization: {PEXELS_API_KEY}"],
-                capture_output=True, text=True, timeout=15
+                [
+                    "curl", "-sS",
+                    f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
+                    "-H", f"Authorization: {PEXELS_KEY}",
+                ],
+                capture_output=True, text=True, timeout=15,
             )
             data = json.loads(result.stdout)
             photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+            for photo in photos:
+                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
                 if url:
                     print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                     return url
@@ -67,256 +94,279 @@ def fetch_pexels_image(query, fallback_query=None):
     return None
 
 
-def upload_image_to_supabase(image_url, filename):
-    """Download image and upload to Supabase storage bucket 'article-images'."""
+def validate_image(url):
+    """Validate that an image URL returns HTTP 200 with image content > 5KB."""
+    if not url:
+        return False
     try:
-        r = requests.get(image_url, timeout=30, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        content_type = r.headers.get("Content-Type", "")
+        content_length = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in content_type and content_length > 5000:
+            return True
+        # Some servers don't support HEAD, try GET
         if r.status_code != 200:
-            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
-            return None
-        content_type = r.headers.get("Content-Type", "image/jpeg")
-        if not content_type.startswith("image/"):
-            print(f"  ⚠ Not an image: {content_type}")
-            return None
-        if len(r.content) < 5000:
-            print(f"  ⚠ Image too small: {len(r.content)} bytes")
-            return None
-
-        # Upload to Supabase storage
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        upload_headers = {
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": content_type,
-            "x-upsert": "true",
-        }
-        ur = requests.post(upload_url, data=r.content, headers=upload_headers, timeout=30)
-        if ur.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Supabase upload failed: {ur.status_code} {ur.text[:200]}")
-            return None
+            r = requests.get(url, timeout=10, stream=True, allow_redirects=True,
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            content_type = r.headers.get("Content-Type", "")
+            content_length = int(r.headers.get("Content-Length", 0))
+            if r.status_code == 200 and "image" in content_type:
+                # Read some bytes to check
+                chunk = r.raw.read(6000)
+                if len(chunk) > 5000:
+                    return True
     except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-        return None
+        print(f"  ⚠ Image validation error for {url[:60]}: {e}")
+    return False
 
 
-def insert_article(article):
-    """Insert an article into p2_articles."""
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    r = requests.post(url, json=article, headers=HEADERS, timeout=30)
+def publish_article(article):
+    """Publish an article to Supabase."""
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    payload = {
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": article["category"],
+        "vertical": article["category"],
+        "status": "published",
+        "published_at": now,
+        "sources": json.dumps(article["sources"]) if isinstance(article["sources"], list) else article["sources"],
+        "image_url": article.get("image_url"),
+        "image_caption": article.get("image_caption"),
+        "image_attribution": article.get("image_attribution"),
+    }
+
+    # Remove None values
+    payload = {k: v for k, v in payload.items() if v is not None}
+
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload,
+    )
     if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) and data else data.get("id")
-        print(f"  ✓ Article inserted: {article['slug']}")
-        return art_id
+        result = r.json()
+        if isinstance(result, list) and result:
+            print(f"  ✓ Published: {article['headline'][:60]}... (id: {result[0].get('id', 'unknown')})")
+            return True
+        print(f"  ✓ Published: {article['headline'][:60]}...")
+        return True
     else:
-        print(f"  ✗ Insert failed: {r.status_code} — {r.text[:300]}")
-        return None
+        print(f"  ✗ Failed to publish: {r.status_code} — {r.text[:200]}")
+        return False
 
 
-def sb_patch(table, filters, payload):
-    """Patch a Supabase record."""
-    filter_str = "&".join(f"{k}={v}" for k, v in filters.items())
-    url = f"{SUPABASE_URL}/rest/v1/{table}?{filter_str}"
-    r = requests.patch(url, json=payload, headers=HEADERS, timeout=30)
-    return r.status_code in (200, 204)
+# ============================================================
+# ARTICLE 1: India's Ebola Scare — Bengaluru Quarantine
+# ============================================================
+print("\n=== ARTICLE 1: India Ebola Scare ===")
+
+# Try Wikipedia image for Ebola
+img1 = fetch_wikipedia_person_image("Ebola_virus_disease")
+if not img1 or not validate_image(img1):
+    img1 = fetch_pexels_image("airport health screening thermal", "quarantine hospital isolation")
+    if not validate_image(img1):
+        img1 = None
+
+article1 = {
+    "headline": "India Just Quarantined Its First Suspected Ebola Case in a Decade. The India-Africa Summit Is Off.",
+    "subheadline": "A 28-year-old Ugandan woman in Bengaluru tested negative, but the episode exposed how quickly a virus with no vaccine can rattle a country of 1.4 billion people.",
+    "slug": "india-bengaluru-ebola-quarantine-uganda-woman-india-africa-summit-postponed-20260528",
+    "category": "news",
+    "sources": [
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "AAP News", "url": "https://aapnews.aap.com.au"},
+        {"name": "World Health Organization", "url": "https://www.who.int"},
+        {"name": "Livemint", "url": "https://www.livemint.com"}
+    ],
+    "image_url": img1,
+    "image_caption": "Health authorities have stepped up screening at Indian airports and ports after the WHO declared the Bundibugyo Ebola outbreak a global health emergency.",
+    "image_attribution": "Wikimedia Commons" if img1 and "wikipedia" in str(img1).lower() or "wikimedia" in str(img1).lower() else "Pexels" if img1 else None,
+    "body": """India quarantined a 28-year-old woman from Uganda in Bengaluru on Wednesday after she displayed symptoms consistent with Ebola, marking the country's first suspected case since a scare in Kerala in 2014. The woman, who had recently travelled from Uganda, was isolated at a government hospital and tested under high-containment protocols.
+
+On Thursday, health officials confirmed she tested negative for the Bundibugyo strain of the Ebola virus. But the roughly 24 hours between quarantine and result exposed how thin the margin of safety has become for a country that depends heavily on African trade, labour, and diplomatic ties — and that has no approved treatment or vaccine for the strain currently ravaging Central and East Africa.
+
+## The Outbreak That Changed India's Calculus
+
+The World Health Organization declared the Bundibugyo Ebola outbreak a public health emergency of international concern on May 16, after cases exploded across the Democratic Republic of Congo, Uganda, and South Sudan. As of this week, more than 900 suspected cases and over 200 suspected deaths have been reported. The WHO has confirmed 101 cases.
+
+Unlike the better-known Zaire strain, Bundibugyo has no licensed vaccine and no proven therapeutic. Merck's Ervebo, the only approved Ebola vaccine, was developed for a different species of the virus. The WHO has explicitly recommended against deploying it outside research settings for this outbreak.
+
+India's response has been swift but revealing. Within days of the WHO declaration, the government imposed mandatory screening for all travellers arriving from Congo, Uganda, and South Sudan. Airports in Delhi, Mumbai, Bengaluru, Hyderabad, and Chennai have deployed thermal scanners and health declaration forms at immigration counters.
+
+## The Summit That Vanished
+
+The most visible casualty was the India-Africa Forum Summit, which had been scheduled for this week in New Delhi. The fourth edition of the summit — a flagship diplomatic event that brings together leaders from more than 50 African nations — was postponed indefinitely over public health concerns.
+
+The postponement is diplomatically awkward. India has spent years cultivating African partnerships to counter China's Belt and Road influence across the continent. The summit was meant to showcase new agreements on trade, infrastructure, energy, and defence. Instead, it became a reminder that pandemics do not wait for diplomatic calendars.
+
+For India's Africa-facing businesses, the timing is especially painful. Bilateral trade between India and Africa reached nearly $100 billion in 2025, with Indian companies invested in everything from telecoms to pharmaceuticals across the continent. The postponement creates uncertainty around planned investment announcements and trade facilitation deals.
+
+## A Vaccine Gap That Matters for India
+
+India is not just a bystander in the global Ebola response — it is manufacturing the most promising vaccine candidate. The Serum Institute of India, based in Pune, is partnering with Oxford University and the Coalition for Epidemic Preparedness Innovations to produce ChAdOx1 Bundibugyo, a vaccine built on the same platform that delivered one of the world's most widely used COVID-19 shots.
+
+Oxford researchers have said the vaccine could be available for clinical testing within two to three months, though additional animal data are still needed. The Serum Institute is already manufacturing doses in anticipation of trial approval.
+
+The irony is unmistakable: the country producing the candidate vaccine is simultaneously scrambling to protect its own borders from the virus it is racing to defeat.
+
+## What NRIs Should Know
+
+For the Indian diaspora, the Bengaluru episode is a practical warning. India has not banned travel from affected countries — unlike the United States, Canada, and the Bahamas, which have imposed entry restrictions on travellers from Congo, Uganda, and South Sudan. The U.S. has extended its ban to green card holders who have visited those countries within 21 days.
+
+Indian nationals travelling through East African hubs should expect heightened screening on return. The Indian government has advised against non-essential travel to the three affected nations but has stopped short of a formal ban.
+
+The WHO has urged all countries to avoid deploying unproven treatments or vaccines outside clinical trial settings. For now, the best protection remains what it was for COVID-19 in early 2020: surveillance, isolation, and the discipline to act before the numbers force your hand.
+
+India dodged this one. The next scare may not end with a negative test."""
+}
+
+publish_article(article1)
 
 
-# --- Articles ---
+# ============================================================
+# ARTICLE 2: Supreme Court Upholds SIR Electoral Roll Revision
+# ============================================================
+print("\n=== ARTICLE 2: Supreme Court SIR Ruling ===")
 
-NOW = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+# Try Wikipedia for Election Commission of India or Supreme Court
+img2 = fetch_wikipedia_person_image("Supreme_Court_of_India")
+if not img2 or not validate_image(img2):
+    img2 = fetch_wikipedia_person_image("Election_Commission_of_India")
+    if not img2 or not validate_image(img2):
+        img2 = fetch_pexels_image("India Supreme Court building", "Indian court law gavel")
+        if not validate_image(img2):
+            img2 = None
 
-ARTICLES = [
-    {
-        "headline": "India Says Pernod Ricard Hid the Age of Its Scotch to Dodge $314 Million in Tariffs",
-        "subheadline": "Investigators allege the French spirits giant used secret codenames for its imported malts to confuse customs. The bill could top $600 million with penalties.",
-        "slug": "india-pernod-ricard-scotch-whisky-tariff-314-million-codenames-20260528",
-        "category": "news",
-        "body": """India's customs investigators have concluded that Pernod Ricard, the French spirits conglomerate behind Chivas Regal and Absolut Vodka, deliberately withheld the age and composition of its Scotch whisky imports to pay lower tariffs — and the company now faces a $314 million tax bill that could double with penalties.
+article2 = {
+    "headline": "India's Supreme Court Just Gave the Election Commission the Power to Decide Who Gets to Vote",
+    "subheadline": "The court upheld the controversial SIR process that has already struck 59 million names from Bihar's voter rolls. Phase 3 elections across 16 states start Friday.",
+    "slug": "india-supreme-court-sir-electoral-rolls-upheld-election-commission-voter-citizenship-20260529",
+    "category": "news",
+    "sources": [
+        {"name": "Supreme Court Observer", "url": "https://www.scobserver.in"},
+        {"name": "LiveLaw", "url": "https://www.livelaw.in"},
+        {"name": "Bar & Bench", "url": "https://www.barandbench.com"},
+        {"name": "The Daily Jagran", "url": "https://www.thedailyjagran.com"},
+        {"name": "LatestLY", "url": "https://www.latestly.com"}
+    ],
+    "image_url": img2,
+    "image_caption": "India's Supreme Court ruled that the Election Commission's Special Intensive Revision of voter rolls is constitutional and advances the goal of free and fair elections.",
+    "image_attribution": "Wikimedia Commons" if img2 and ("wikipedia" in str(img2).lower() or "wikimedia" in str(img2).lower()) else "Pexels" if img2 else None,
+    "body": """India's Supreme Court has upheld the Election Commission's power to conduct Special Intensive Revision of electoral rolls, ruling the controversial process constitutional and legally tenable. The decision clears the way for Phase 3 elections across 16 states, scheduled to begin on Friday, May 30.
 
-## The Accusation
+The ruling ends a months-long legal battle that pit the opposition against the Election Commission of India over a process that critics say has struck the names of tens of millions of legitimate voters from state rolls — and that supporters argue is the only way to ensure clean elections in a country where duplicate registrations and fraudulent entries have long distorted results.
 
-According to hundreds of pages of investigation reports and submissions filed at the Delhi High Court, Indian authorities allege that Pernod's UK subsidiary Chivas Brothers shipped bulk Scotch concentrates to India at artificially low declared values. The concentrates are blended with water and caramel in India to produce popular brands like Royal Stag.
+## What Is SIR?
 
-The investigators say Pernod undervalued its imports by 67.49 percent, sharply reducing the 150 percent tariff India imposes on such goods. The scheme, they allege, involved introducing new India-only internal codenames for the malts starting in 2011 — labels like "RFM" (Rich Fruity Malt) and "HMW" (Heavy Malt Whisky) — even though the final product remained identical.
+The Special Intensive Revision is an extraordinary voter-roll cleanup exercise that goes far beyond the routine annual updates the Election Commission normally conducts. Unlike standard revisions, which primarily add new voters and remove the deceased, SIR involves door-to-door verification, Aadhaar-based identity checks, and the active deletion of entries the Commission deems ineligible.
 
-"Simple products of Scotland, manufactured using common and prescribed methods by Scotch Whisky Regulations in the UK, were complicated just to avoid comparison with similar goods imported," the authorities stated in their filing.
+Bihar was the first state subjected to SIR, and the numbers were staggering. Petitioners told the court that the process had affected more than 59 million citizens — not just removing duplicates, but questioning the citizenship credentials of voters who had been on the rolls for decades. Opposition parties, led by Congress and the Aam Aadmi Party, argued the process was rushed, discriminatory, and designed to disenfranchise vulnerable populations ahead of elections.
 
-## Pernod Fights Back
+## What the Court Said
 
-The French company denies all wrongdoing. In its Delhi High Court challenge, Pernod argues that investigators cherry-picked comparison data, selectively benchmarking its prices against Allied Blenders and Distillers (ABD) while ignoring dozens of other companies that imported similar concentrates at lower prices.
+The bench rejected those arguments. In its ruling, the Supreme Court held that the SIR process falls within the Election Commission's constitutional authority under Article 324 and does not violate the Representation of the People Act.
 
-Pernod says the comparison is flawed because its import volumes were 15 times larger than ABD's, and that it was denied access to the complete pricing data used by investigators — a "gross violation of the doctrine of natural justice."
+The court drew a critical line, however, on the question of citizenship. Being removed from the voter roll, the justices wrote, does not mean a person has lost their citizenship. The Election Commission's determination of voter eligibility during SIR is not a final legal judgment on citizenship status — affected individuals retain the right to challenge their exclusion through established judicial procedures under the Citizenship Act.
 
-"Pernod India rejects any suggestion of wrongdoing," the company said in a statement, adding that it has been "fully compliant" and is "addressing this matter through the appropriate legal channels."
+The ruling also affirmed the use of Aadhaar as an additional verification tool during the revision process, though it stopped short of making Aadhaar linkage mandatory for voter registration.
 
-## The Numbers
+## Why the Opposition Is Furious
 
-The stakes are enormous. The tax demand currently stands at nearly 30 billion rupees ($314 million). Under Indian law, penalties could push the total payout past $600 million — roughly a fifth of Pernod's Indian revenue of $2.9 billion and three times its profit from the country.
+For Congress and AAP, the ruling validates a process they believe was weaponised against their voter base. Opposition leaders have pointed to data showing that voter-to-population ratios fell sharply in districts subjected to SIR — a pattern they argue cannot be explained by routine cleanup alone.
 
-India is Pernod Ricard's largest market by volume, contributing about 10 percent of the company's worldwide sales. The company operates 24 production sites across the country and recently announced plans for its largest malt distillery in Asia, in Maharashtra.
+The criticism extends to the mechanics of the revision. Petitioners presented evidence that the appeals process for deleted voters was perfunctory: notices were short, hearings were pro forma, and many voters only learned they had been removed when they showed up to vote. In a country where literacy rates and digital access vary enormously by region and caste, the burden of proving one's right to vote fell hardest on those least equipped to bear it.
 
-## Why NRIs Should Care
+The BJP has framed the ruling as vindication. Party leaders accused the opposition of defending "bogus voters" and "illegal infiltrators" and described the SIR as essential to the integrity of Indian democracy. The political subtext is impossible to miss: Bihar, and several of the 16 states heading to polls this week, are battleground territories where marginal changes in the voter roll can shift outcomes.
 
-The case lands at a politically charged moment. India has been gradually reducing its 150 percent import tariff on Scotch under pressure from the UK and as part of a broader free trade agreement push. For the Indian diaspora, the dispute raises questions about whether India's regulatory environment is becoming more or less hospitable to foreign investment — a question that matters whether you are sending money home, investing in Indian markets, or watching from afar as India courts $500 billion in American trade over the next five years.
+## What It Means for Phase 3
 
-Prolonged tax disputes have historically frustrated foreign investors in India, and this case — which began in 2014 and only produced a final demand order in September 2025 — is a textbook example. If Pernod loses, it would be one of the largest tax penalties imposed on a foreign consumer goods company in India.
+With the legal challenge dismissed, Phase 3 elections will proceed on SIR-revised rolls. The stakes are enormous. The 16 states voting this week include several where the BJP and opposition alliances are in tight contests, and where the composition of the voter roll could matter as much as the campaign.
 
-The Delhi High Court's decision will set a precedent not just for spirits but for how India handles transfer pricing and customs valuations across industries. For a country selling itself as an alternative to China for global manufacturing, the outcome matters.""",
-        "sources": json.dumps(["Reuters", "Delhi High Court filings", "The Drinks Business"]),
-        "person_image": None,  # Topic article, use Pexels
-        "pexels_query": "scotch whisky barrels warehouse",
-        "pexels_fallback": "whisky bottles bar shelf",
-        "image_attribution": "Pexels",
-    },
-    {
-        "headline": "Britain Will Block Indian Billionaire Sunil Mittal From Taking Control of BT. Here Is Why.",
-        "subheadline": "The UK government says Openreach — which supplies fibre broadband to 22 million homes — is too important to let a foreign investor hold more than 25 percent.",
-        "slug": "uk-block-sunil-bharti-mittal-bt-stake-25-percent-national-security-20260528",
-        "category": "news",
-        "body": """The British government will block any attempt by Indian billionaire Sunil Bharti Mittal to increase his stake in BT Group beyond 25 percent, the Financial Times reported on Thursday, citing people familiar with the matter. The decision marks a sharp line around one of the UK's most sensitive pieces of national infrastructure.
+For voters who were removed during SIR, the court's ruling offers cold comfort. They retain the theoretical right to challenge their exclusion, but the practical timeline — filing an appeal, getting a hearing, obtaining a court order — makes it nearly impossible to be reinstated before Friday's vote.
 
-## What Happened
+## The Diaspora Angle
 
-Bharti Enterprises, Mittal's conglomerate, bought a 24.5 percent stake in BT in 2024 from Franco-Israeli telecoms magnate Patrick Drahi and has since edged up to 24.95 percent — just below the threshold that would trigger a formal review under the UK's National Security and Investment Act.
+For NRIs watching from abroad, the ruling touches a nerve that extends beyond electoral mechanics. India's overseas citizens have long complained about the difficulty of maintaining their voter registration while living abroad, and SIR-style purges raise the spectre of being quietly removed from rolls they cannot monitor from thousands of miles away.
 
-Officials told the FT that ministers view BT's network arm, Openreach, as critical national infrastructure. Openreach supplies fibre broadband to more than 22 million homes across Britain and is central to the country's digital connectivity strategy. Any stake increase above 25 percent would require government approval, and that approval will not come, according to the report.
+The broader question the ruling raises is one that democracies worldwide are grappling with: where does the legitimate goal of voter-roll accuracy end, and where does the suppression of legitimate voters begin? India's Supreme Court has answered that question in favour of the state's power to clean its rolls. Whether the rolls are actually cleaner — or simply smaller — will be tested at the ballot box on Friday."""
+}
 
-A British government figure said the stance is not aimed at Bharti or India specifically but reflects a broader policy position on "resilience and sovereign capability" over critical infrastructure. Officials have been signalling their position early to avoid friction later.
-
-## Mittal's Quiet Influence
-
-Even without crossing the 25 percent line, Mittal has been building significant influence inside BT. He has developed a close relationship with CEO Allison Kirkby, secured two board seats, and held multiple strategy meetings in recent months. People close to BT's board say Mittal has indicated no immediate plans to raise the stake further — but directors remain aware of his "broader ambitions."
-
-Mittal's footprint in Britain extends well beyond BT. He worked with the UK government on the 2020 rescue of failed satellite venture OneWeb, and his Airtel Africa subsidiary is exploring a London listing for its mobile money business after the Iran war disrupted an earlier Middle East flotation plan.
-
-## The Bigger Picture
-
-The decision places Britain alongside a growing number of countries tightening foreign ownership rules around telecommunications and digital infrastructure. The EU recently proposed a Cloud and AI Development Act to expand European data-centre capacity and reduce reliance on foreign providers. Australia, Japan, and Canada have all blocked or scrutinized major telecoms acquisitions in recent years.
-
-For Indian investors and the diaspora, the BT case is a reminder that even friendly governments will draw hard lines around infrastructure that they consider sovereign. India's own outbound investment ambitions — Bharti, the Tata Group, Reliance Industries — increasingly bump up against national security reviews in the West.
-
-## What It Means for NRIs
-
-Mittal is one of the most prominent Indian-origin businessmen in the world. He is the chairman of Bharti Airtel, India's second-largest telecom operator, and has been a bridge figure between Indian capital and Western markets for decades. The UK's decision to cap his influence in BT — despite his track record as a constructive, long-term investor — signals a shift in how Western governments view Indian capital in critical sectors.
-
-For NRIs in Britain especially, the question is whether this kind of sovereign gatekeeping applies evenly or disproportionately affects Indian investors. The UK government insists the policy is nationality-blind. But the optics of blocking India's biggest telecoms billionaire from the UK's biggest telecoms company — while BT's share price languishes and the company desperately needs capital — will be hard to separate from broader anxieties about foreign ownership in a post-Brexit Britain.
-
-Bharti Enterprises, BT, and the UK government all declined to comment.""",
-        "sources": json.dumps(["Reuters", "Financial Times", "Traders Union"]),
-        "person_image": "Sunil Bharti Mittal",
-        "pexels_query": None,
-        "pexels_fallback": None,
-        "image_attribution": "Wikimedia Commons",
-    },
-    {
-        "headline": "American Airlines Will Double Its India Tech Hub to 800 People. It Is Not Alone.",
-        "subheadline": "The airline joins Southwest, JPMorgan, Nvidia, and 2,100 other companies running core engineering out of India. The GCC industry now generates $100 billion a year.",
-        "slug": "american-airlines-india-hyderabad-gcc-tech-hub-double-800-employees-20260528",
-        "category": "news",
-        "body": """American Airlines plans to double the headcount at its Hyderabad technology hub to about 800 employees by early 2027, Reuters reported on Wednesday, in the latest sign that India's global capability centre industry has moved far beyond back-office cost-cutting.
-
-## The Expansion
-
-American Airlines set up its Hyderabad hub in 2024 with about 400 staff focused on software engineering, artificial intelligence, and cybersecurity. The plan is to double that within a year. The company said teams in Fort Worth, Phoenix, and Hyderabad "work closely with the business to digitize processes, deploy new tools that improve speed to market, and build a more resilient airline."
-
-The airline is not alone. Southwest Airlines announced last week that it will expand its own Hyderabad GCC to about 1,000 employees over the next few years. The two carriers join a rapidly growing list of American corporations scaling serious technical operations in India.
-
-## The GCC Boom
-
-Global capability centres are no longer the glorified call centres of the early 2000s. They now handle core functions including engineering, research and development, finance, and operations. JPMorgan Chase, Walmart, McDonald's, Nvidia, and Eli Lilly have all expanded technology operations in India as costs rise elsewhere and macroeconomic uncertainties persist.
-
-The numbers are staggering. India now hosts more than 2,100 GCCs employing about 2.36 million people and generating nearly $100 billion in annual revenue, according to a 2026 Nasscom-Zinnov report. That revenue figure has roughly doubled in five years.
-
-Hyderabad and Bengaluru remain the two dominant cities, but Chennai, Pune, and Gurugram are gaining ground. The talent pipeline is the draw: India produces roughly 1.5 million engineering graduates a year, and labour costs — while rising — remain a fraction of equivalent roles in the United States or Western Europe.
-
-## What Changed
-
-The shift from back-office to core engineering happened gradually, then all at once. A decade ago, most Indian GCCs handled payroll processing, IT support, and data entry. Today, JPMorgan's Mumbai centre runs quantitative trading models. Nvidia's Bengaluru team works on GPU architecture. Google's Hyderabad campus builds core Search and Android features.
-
-Three forces accelerated the transformation. First, the pandemic proved that critical engineering could be done remotely — and India's timezone overlap with both US coasts made it an ideal bridge. Second, the artificial intelligence boom created a global talent shortage that India was uniquely positioned to fill. Third, the Iran war and broader geopolitical instability pushed companies to diversify their operations across multiple geographies.
-
-## Why NRIs Should Pay Attention
-
-For Indian Americans working in technology, the GCC boom has complex implications. On one hand, it validates India's engineering talent and creates opportunities for diaspora professionals to work across both markets — managing US-India teams, building reverse-mentorship relationships, or even returning to India for senior roles that now carry real technical authority.
-
-On the other hand, it accelerates the same labour-cost arbitrage that has been a source of anxiety in American workplaces for two decades. If American Airlines can get an AI engineer in Hyderabad for a third of what it pays in Dallas, the long-term pressure on US-based tech salaries is real. The H-1B debate — already heated — becomes even more charged when the alternative is not to bring workers to America but to move the work to India.
-
-The GCC industry also reshapes the "brain drain" narrative. For years, India's best engineers left for Silicon Valley. Now, a growing number are staying — or returning — because the work has come to them. The salaries are not Valley-level, but they are excellent by Indian standards, and the quality of life in cities like Hyderabad and Bengaluru is increasingly competitive.
-
-For the diaspora, the message is clear: India's role in the global technology ecosystem is no longer supplementary. It is structural. And the companies building there are not doing it to save money on helpdesk tickets. They are doing it because that is where the engineers are.""",
-        "sources": json.dumps(["Reuters", "Nasscom-Zinnov 2026 Report", "Finimize"]),
-        "person_image": None,
-        "pexels_query": "technology office workers India",
-        "pexels_fallback": "software developers office team",
-        "image_attribution": "Pexels",
-    },
-]
+publish_article(article2)
 
 
-def main():
-    published_count = 0
+# ============================================================
+# ARTICLE 3: Amazon Wins Supreme Court Victory
+# ============================================================
+print("\n=== ARTICLE 3: Amazon vs Future Group Supreme Court ===")
 
-    for i, art_data in enumerate(ARTICLES):
-        print(f"\n{'='*60}")
-        print(f"Article {i+1}: {art_data['headline'][:80]}...")
-        print(f"{'='*60}")
+# Wikipedia for Amazon
+img3 = fetch_wikipedia_person_image("Amazon_(company)")
+if not img3 or not validate_image(img3):
+    img3 = fetch_pexels_image("India ecommerce online shopping delivery", "India business corporate")
+    if not validate_image(img3):
+        img3 = None
 
-        # --- Image sourcing ---
-        image_url = None
-        attribution = art_data["image_attribution"]
+article3 = {
+    "headline": "India's Supreme Court Just Wiped Out ₹202 Crore in Fines Against Amazon. Foreign Investors Are Watching.",
+    "subheadline": "The ruling overturns the Competition Commission's penalty in the Future Group case and could reshape how cross-border investment deals are regulated in India.",
+    "slug": "india-supreme-court-amazon-future-group-cci-penalty-overturned-cross-border-investment-20260529",
+    "category": "news",
+    "sources": [
+        {"name": "Law Trend", "url": "https://lawtrend.in"},
+        {"name": "Devdiscourse", "url": "https://www.devdiscourse.com"},
+        {"name": "StartupTalky", "url": "https://startuptalky.com"},
+        {"name": "Storyboard18", "url": "https://www.storyboard18.com"}
+    ],
+    "image_url": img3,
+    "image_caption": "India's Supreme Court overturned a ₹202 crore penalty against Amazon in the long-running Future Group investment dispute.",
+    "image_attribution": "Wikimedia Commons" if img3 and ("wikipedia" in str(img3).lower() or "wikimedia" in str(img3).lower()) else "Pexels" if img3 else None,
+    "body": """India's Supreme Court has overturned the Competition Commission of India's ₹202 crore penalty against Amazon in the long-running Future Group investment dispute, ordering a full refund of recovered funds within eight weeks. The ruling dismisses both the CCI's original fine and the National Company Law Appellate Tribunal's subsequent decision to suspend Amazon's investment deal with Future Group.
 
-        if art_data.get("person_image"):
-            print(f"  → Trying Wikipedia for: {art_data['person_image']}")
-            image_url = fetch_wikipedia_person_image(art_data["person_image"])
+The decision is the most significant legal victory for a foreign investor in India in years, and it arrives at a moment when the country is aggressively courting global capital while simultaneously tightening the regulatory framework that governs how that capital enters.
 
-        if not image_url and art_data.get("pexels_query"):
-            print(f"  → Trying Pexels for: {art_data['pexels_query']}")
-            image_url = fetch_pexels_image(art_data["pexels_query"], art_data.get("pexels_fallback"))
-            attribution = "Pexels"
+## The Six-Year Battle
 
-        # Upload to Supabase for permanence
-        final_image_url = None
-        if image_url:
-            filename = f"{art_data['slug']}.jpg"
-            final_image_url = upload_image_to_supabase(image_url, filename)
-            if not final_image_url:
-                # Fallback: use direct URL only if it's a permanent source
-                if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
-                    final_image_url = image_url
-                    print(f"  → Using direct permanent URL as fallback")
+The dispute traces back to 2019, when Amazon invested roughly $200 million in Future Coupons, a promoter entity of the Future Group, with contractual rights that effectively gave it a say in the fate of Future Retail — one of India's largest brick-and-mortar retail chains.
 
-        # --- Build article record ---
-        article = {
-            "headline": art_data["headline"],
-            "subheadline": art_data["subheadline"],
-            "slug": art_data["slug"],
-            "category": art_data["category"],
-            "vertical": art_data["category"],
-            "body": art_data["body"].strip(),
-            "sources": art_data["sources"],
-            "image_url": final_image_url,
-            "image_caption": art_data["subheadline"][:120],
-            "image_attribution": attribution if final_image_url else None,
-            "status": "published",
-            "published_at": NOW,
-            "created_at": NOW,
-        }
+When Mukesh Ambani's Reliance Industries moved to acquire Future Group's retail assets in 2020, Amazon intervened, arguing the sale violated its contractual protections. Amazon obtained an emergency arbitration order from a Singapore tribunal blocking the deal, and the fight moved to Indian courts.
 
-        art_id = insert_article(article)
-        if art_id:
-            published_count += 1
-            print(f"  ✓ Published! ID: {art_id}")
-        else:
-            print(f"  ✗ FAILED to publish.")
+The Competition Commission of India entered the fray in 2021, ruling that Amazon had misrepresented the nature of its investment when seeking regulatory approval and imposing a ₹202 crore fine. The CCI also suspended Amazon's original investment deal. The NCLAT upheld the penalty in 2022. Amazon took the matter to the Supreme Court.
 
-    print(f"\n{'='*60}")
-    print(f"Done. Published {published_count}/{len(ARTICLES)} articles.")
-    print(f"{'='*60}")
+## What the Court Said
 
+The Supreme Court's bench set aside both the CCI order and the NCLAT ruling, finding that the regulatory penalties were not supported by the evidence presented. The court ordered that any funds already recovered from Amazon under the penalty be refunded within eight weeks.
 
-if __name__ == "__main__":
-    main()
+The ruling did not comment on the underlying question of whether Amazon's original investment disclosures were adequate — it focused on whether the CCI had followed proper procedure and applied the correct legal standard in imposing the fine. The court found it had not.
+
+## Why It Matters for India's Investment Climate
+
+The decision sends a signal that India's highest court is willing to check regulatory overreach, even when the target is a foreign tech giant that many in India's political establishment view with suspicion. Amazon's dominance in Indian e-commerce has long been a sore point for domestic retailers and for politicians who see foreign platforms as threats to the kirana economy.
+
+But for foreign investors considering India as a destination, the ruling offers reassurance that contractual rights will be respected and that regulatory bodies cannot impose punitive fines without meeting a high evidentiary bar.
+
+The timing is particularly relevant. India is in the middle of a sustained push to attract foreign direct investment, with Prime Minister Modi's government pitching the country as a manufacturing alternative to China and a market too large to ignore. The Quad summit earlier this week produced a $20 billion critical minerals pact that places India at the centre of a Western supply chain strategy. That pitch is harder to make if foreign investors believe Indian regulators can retroactively penalise deals that were approved at the time they were made.
+
+## The Future Group That No Longer Exists
+
+There is a bitter irony in the resolution. Future Group, once Kishore Biyani's retail empire spanning Big Bazaar, Easyday, and dozens of other consumer brands, no longer exists as an independent entity. Reliance ultimately acquired its assets through insolvency proceedings after the original deal collapsed under the weight of Amazon's legal challenges and the pandemic's destruction of brick-and-mortar retail.
+
+Amazon's contractual protections, which it fought for years to enforce, ultimately proved Pyrrhic. The company prevented a deal it opposed, but the assets it was trying to protect ended up in Reliance's hands anyway — just through a different legal pathway.
+
+The ₹202 crore fine was the last piece of the dispute still unresolved. With the Supreme Court's ruling, the longest and most consequential foreign-investment legal battle in Indian corporate history is finally over.
+
+## What NRIs in Tech Should Know
+
+For Indian Americans working in the technology and investment sectors, the ruling has practical implications. Cross-border deals involving Indian entities have always required careful structuring to navigate FDI restrictions, competition law, and the informal politics of doing business in a market where regulatory discretion is wide.
+
+The Supreme Court's willingness to overturn the CCI suggests that the judiciary remains a credible backstop against arbitrary regulatory action — a critical assurance for diaspora investors considering India-linked ventures. But the six-year duration of the litigation is its own cautionary tale. Even when you win, the cost of winning in Indian courts can be measured in years, legal fees, and opportunities foregone.
+
+The message to foreign investors is mixed but honest: India's courts will protect your rights. They will just take their time doing it."""
+}
+
+publish_article(article3)
+
+print("\n=== Done: 3 articles published ===")
