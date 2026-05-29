@@ -128,15 +128,43 @@ def fetch_subscribers():
 
 
 def fetch_daily_articles(since_iso):
-    """Fetch published articles from the last 24 hours."""
+    """Fetch published articles from the last 24 hours, excluding already-newslettered ones."""
     params = {
         "select": "id,slug,headline,subheadline,category,image_url,body,published_at",
         "status": "eq.published",
         "published_at": f"gte.{since_iso}",
+        "newslettered_at": "is.null",
         "order": "published_at.desc",
         "limit": "30",
     }
-    return supabase_get("p2_articles", params)
+    result = supabase_get("p2_articles", params)
+    # Fallback: if newslettered_at column doesn't exist yet, retry without the filter
+    if isinstance(result, dict) and result.get("code") == "42703":
+        print("  ⚠ newslettered_at column not found — fetching without dedup filter")
+        params.pop("newslettered_at", None)
+        result = supabase_get("p2_articles", params)
+    return result
+
+
+def mark_newslettered(article_ids):
+    """Mark articles as sent in newsletter so they aren't repeated."""
+    from datetime import datetime, timezone
+    now_iso = datetime.now(timezone.utc).isoformat()
+    for aid in article_ids:
+        try:
+            requests.patch(
+                f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{aid}",
+                headers={
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": f"Bearer {SUPABASE_KEY}",
+                    "Content-Type": "application/json",
+                    "Prefer": "return=minimal",
+                },
+                json={"newslettered_at": now_iso},
+                timeout=10,
+            )
+        except Exception:
+            pass  # non-fatal — dedup is best-effort
 
 
 def score_article(a):
@@ -595,6 +623,14 @@ def main():
         log = json.loads(log_path.read_text()) if log_path.exists() else []
     except:
         log = []
+
+    # Mark articles as newslettered so they don't repeat in future sends
+    if sent > 0:
+        sent_ids = [hero["id"]] if hero else []
+        sent_ids.extend(s["id"] for s in stories)
+        mark_newslettered(sent_ids)
+        print(f"   📌 Marked {len(sent_ids)} articles as newslettered")
+
     log.append({
         "type": "daily",
         "sent_at": now.isoformat() + "Z",
