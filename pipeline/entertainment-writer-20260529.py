@@ -1,45 +1,51 @@
 #!/usr/bin/env python3
-"""Entertainment writer — 2026-05-29 run
-3 articles:
-1. May 2026 Box Office Report: Regional cinema dominated while Bollywood struggled
-2. Ranveer Singh visits Chamundeshwari Temple after Karnataka HC court order
-3. FWICE's Non-Cooperation Directive against Ranveer Singh is splitting Bollywood
-"""
+"""Entertainment writer for The Videshi — 2026-05-29 batch"""
 
-import json, os, sys, time, uuid, re
-import requests
+import json, os, sys, time, uuid, re, requests, urllib.parse
 from datetime import datetime, timezone
 
-# ── Load env files ────────────────────────────────────────────────
-def load_env_file(path):
-    """Load KEY=VALUE env file into os.environ."""
+# Load env
+def load_env(path):
     if os.path.exists(path):
-        for line in open(path):
-            line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                key, val = line.split('=', 1)
-                os.environ[key.strip()] = val.strip()
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    k, v = line.split('=', 1)
+                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
-load_env_file(os.path.expanduser("~/.env.supabase"))
-load_env_file(os.path.expanduser("~/workspace/.env.pexels"))
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-# ── Supabase config ───────────────────────────────────────────────
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    "Prefer": "return=representation"
 }
 
-# ── Pexels config ─────────────────────────────────────────────────
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY")
+def sb_insert(table, data):
+    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
+    if r.status_code in (200, 201):
+        return r.json()
+    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+    return None
 
-# ── Image helpers ─────────────────────────────────────────────────
+def sb_patch(table, match, data):
+    params = "&".join(f"{k}={v}" for k, v in match.items())
+    url = f"{SUPABASE_URL}/rest/v1/{table}?{params}"
+    r = requests.patch(url, headers=HEADERS, json=data, timeout=30)
+    if r.status_code in (200, 204):
+        return True
+    print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
+    return False
+
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -57,393 +63,363 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Search Pexels for a relevant image. Returns URL or None."""
+    """Fetch image from Pexels using curl (urllib gets 403)."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key available")
+        print("  ⚠ No Pexels API key")
         return None
     import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = subprocess.run(
-                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
-                 f"https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape"],
+            result = subprocess.run(
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
                 capture_output=True, text=True, timeout=15
             )
-            data = json.loads(r.stdout)
-            photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            if photos:
+                url = photos[0]['src']['large2x']
+                print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def validate_image_url(url):
-    """Verify image URL returns 200 with image content-type and decent size."""
-    if not url:
-        return False
-    try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            print(f"  ✓ Image validated: {ct}, {cl} bytes")
-            return True
-        # Try GET if HEAD doesn't give Content-Length
-        if r.status_code == 200 and "image" in ct:
-            r2 = requests.get(url, timeout=10, stream=True,
-                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            r2.close()
-            if len(chunk) > 5000:
-                print(f"  ✓ Image validated via GET: {ct}, {len(chunk)}+ bytes")
-                return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
-    except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
-    return False
-
-
 def upload_to_supabase_storage(image_url, filename):
     """Download image and upload to Supabase storage bucket."""
     try:
-        r = requests.get(image_url, timeout=20,
-                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200 or len(r.content) < 5000:
-            print(f"  ✗ Download failed: status={r.status_code}, size={len(r.content)}")
+        r = requests.get(image_url, timeout=15, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code != 200:
+            print(f"  ⚠ Download failed ({r.status_code}) for {image_url[:80]}")
             return None
-
-        ct = r.headers.get("Content-Type", "image/jpeg")
+        content_type = r.headers.get('Content-Type', 'image/jpeg')
+        if not content_type.startswith('image/'):
+            print(f"  ⚠ Not an image: {content_type}")
+            return None
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small ({len(r.content)} bytes)")
+            return None
+        
+        upload_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": content_type,
+            "x-upsert": "true"
+        }
         upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        resp = requests.post(
-            upload_url,
-            headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": ct,
-                "x-upsert": "true",
-            },
-            data=r.content,
-            timeout=30
-        )
-        if resp.status_code in (200, 201):
+        ur = requests.post(upload_url, headers=upload_headers, data=r.content, timeout=30)
+        if ur.status_code in (200, 201):
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            print(f"  ✓ Uploaded to Supabase: {filename}")
             return public_url
         else:
-            print(f"  ✗ Supabase upload failed: {resp.status_code} {resp.text[:200]}")
+            print(f"  ⚠ Upload failed ({ur.status_code}): {ur.text[:200]}")
     except Exception as e:
-        print(f"  ✗ Upload error: {e}")
+        print(f"  ⚠ Upload error: {e}")
     return None
 
-
-def is_banned_url(url):
-    """Check if URL is from a banned source."""
+def validate_image_url(url):
+    """Verify URL returns a valid image."""
     if not url:
-        return True
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "scontent-"]
-    banned_params = ["_nc_ht=", "_nc_cat=", "ccb="]
-    for b in banned:
-        if b in url:
+        return False
+    # Check for banned sources
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
+    if any(b in url for b in banned):
+        print(f"  ✗ Banned source: {url[:60]}")
+        return False
+    banned_params = ['_nc_ht=', '_nc_cat=', 'ccb=']
+    if any(p in url for p in banned_params):
+        print(f"  ✗ Banned params in URL: {url[:60]}")
+        return False
+    try:
+        r = requests.head(url, timeout=10, allow_redirects=True, headers={"User-Agent": "TheVideshi/1.0"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if 'image' in ct and cl > 5000:
             return True
-    for p in banned_params:
-        if p in url:
+        # HEAD might not return Content-Length, try GET
+        if 'image' in ct:
             return True
+        print(f"  ⚠ Validation failed: CT={ct}, CL={cl}")
+    except Exception as e:
+        print(f"  ⚠ Validation error: {e}")
     return False
 
-
-def source_image(person_name=None, pexels_query=None, pexels_fallback=None, article_id=None):
-    """Source an image following the hierarchy. Returns final URL or None."""
+def source_image(person_name=None, pexels_query=None, pexels_fallback=None, slug=""):
+    """Source image following the hierarchy: Wikipedia -> Pexels -> None"""
     img_url = None
-    attribution = None
-
-    # 1. Try Wikipedia for person articles
+    attribution = "The Videshi"
+    
+    # Try Wikipedia first for person articles
     if person_name:
         img_url = fetch_wikipedia_person_image(person_name)
-        if img_url and not is_banned_url(img_url):
+        if img_url:
             attribution = "Wikimedia Commons"
-
-    # 2. Fall back to Pexels
-    if not img_url and pexels_query:
+            # Upload to Supabase for permanence
+            filename = f"{slug}.jpg"
+            uploaded = upload_to_supabase_storage(img_url, filename)
+            if uploaded:
+                return uploaded, attribution
+            # If upload fails, use direct Wikipedia URL (permanent)
+            if 'upload.wikimedia.org' in img_url:
+                return img_url, attribution
+    
+    # Try Pexels
+    if pexels_query:
         img_url = fetch_pexels_image(pexels_query, pexels_fallback)
         if img_url:
-            attribution = "Pexels"
-
-    # 3. Validate and upload
-    if img_url and not is_banned_url(img_url):
-        if validate_image_url(img_url):
-            # Upload to Supabase for permanence
-            if article_id:
-                final_url = upload_to_supabase_storage(img_url, f"{article_id}.jpg")
-                if final_url:
-                    return final_url, attribution
+            attribution = "The Videshi"
+            # Pexels URLs are permanent, can use directly
             return img_url, attribution
-
-    print("  ✗ No valid image found")
+    
     return None, None
 
+# ============================================================
+# ARTICLES
+# ============================================================
 
-# ── Article publishing ────────────────────────────────────────────
-def publish_article(article):
-    """Insert article into Supabase."""
-    art_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).isoformat()
+articles = []
 
-    # Source image
-    img_url, img_attr = source_image(
-        person_name=article.get("image_person"),
-        pexels_query=article.get("image_pexels_query"),
-        pexels_fallback=article.get("image_pexels_fallback"),
-        article_id=art_id,
-    )
+# ------------------------------------------------------------------
+# Article 1: Vashu Bhagnani ₹400 Crore Lawsuit
+# ------------------------------------------------------------------
+articles.append({
+    "headline": "Vashu Bhagnani Just Filed a ₹400 Crore Lawsuit to Stop Varun Dhawan's Next Film From Releasing",
+    "subheadline": "Puja Entertainment claims Tips Industries used iconic 'Chunari Chunari' and 'Ishq Sona Hai' from Biwi No.1 without permission. The Bombay High Court hearing could decide if Hai Jawani Toh Ishq Hona Hai opens on June 5.",
+    "slug": "vashu-bhagnani-400-crore-lawsuit-tips-hai-jawani-varun-dhawan-biwi-no-1-songs-nri-20260529",
+    "category": "entertainment",
+    "image_person": "Varun Dhawan",
+    "pexels_query": "Bollywood movie courtroom",
+    "sources": json.dumps(["Bollywood Hungama", "IANS", "ANI", "Zoom TV"]),
+    "body": """The biggest copyright battle in recent Bollywood memory just landed on the Bombay High Court's docket.
 
-    payload = {
-        "id": art_id,
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "body": article["body"],
-        "slug": article["slug"],
-        "category": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "created_at": now,
-        "sources": json.dumps(article["sources"]),
-        "image_url": img_url,
-        "image_attribution": img_attr,
-        "image_caption": article.get("image_caption"),
-        "tags": [],
-        "is_featured": False,
-        "is_editorial": False,
-    }
+Producer **Vashu Bhagnani's Puja Entertainment** has filed a staggering ₹400 crore lawsuit against **Tips Industries Limited**, producers **Ramesh Taurani** and **Kumar S Taurani**, and filmmaker **David Dhawan** — alleging that the iconic songs *Chunari Chunari* and *Ishq Sona Hai* from the 1999 blockbuster **Biwi No.1** were used without authorization in the upcoming Varun Dhawan-starrer **Hai Jawani Toh Ishq Hona Hai**.
 
-    # Remove None values
-    payload = {k: v for k, v in payload.items() if v is not None}
+The stakes could not be higher. The film, which also stars **Mrunal Thakur** and **Pooja Hegde**, is set for a worldwide theatrical release on **June 5, 2026** — barely a week away. Puja Entertainment is seeking an emergency injunction to halt the release entirely.
 
-    resp = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=payload,
-        timeout=30
-    )
+## What the Lawsuit Claims
 
-    if resp.status_code in (200, 201):
-        print(f"✅ Published: {article['headline'][:60]}... → {article['slug']}")
-        return art_id
-    else:
-        print(f"❌ Failed to publish: {resp.status_code} {resp.text[:300]}")
-        return None
+According to the press statement filed through Counsels V K Dubey Associates, Puja Entertainment is demanding:
 
+- An **immediate halt** on the release, distribution, exhibition, streaming, and commercial exploitation of the film
+- A **ban on all promotional material** containing the disputed songs
+- **₹400 crore in damages** from Tips Industries
+- An **additional ₹100 crore** if the defendants continue using the disputed works
+- A **title change** — Puja Entertainment is also demanding that the film's name be altered
 
-# ── Articles ──────────────────────────────────────────────────────
+The legal filing has been described as potentially "one of the most explosive copyright battles in recent Bollywood history."
 
-articles = [
-    # ─── Article 1: May 2026 Box Office Report ───
-    {
-        "headline": "May 2026 Belonged to Regional Cinema. Bollywood Barely Showed Up.",
-        "subheadline": "Suriya, Mohanlal, and Riteish Deshmukh broke records in their languages. Hindi cinema's two big May releases combined for less than half of what Karuppu earned alone.",
-        "slug": "may-2026-box-office-regional-cinema-dominates-bollywood-struggles-nri-20260529",
-        "image_person": None,
-        "image_pexels_query": "Indian cinema audience theater crowd",
-        "image_pexels_fallback": "movie theater India",
-        "image_caption": "May 2026 saw regional Indian cinema outpace Bollywood at the box office",
-        "sources": [
-            {"name": "Sacnilk", "url": "https://www.sacnilk.com"},
-            {"name": "Koimoi", "url": "https://www.koimoi.com"},
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"}
-        ],
-        "body": """May 2026 just ended, and it settled an argument the Indian film industry has been having for years. Regional cinema isn't the underdog anymore. It's the main event.
+## The Back Story: Audio Rights vs. Visual Rights
 
-## The Numbers Don't Lie
+The dispute traces back decades. When *Biwi No.1* was made in 1999, the agreements between the producers and Tips covered only audio rights. According to Bhagnani's lawyer, the arrangement never extended to visual or synchronization rights — a distinction that matters enormously when songs are recreated for new films.
 
-Three films from three different languages outperformed everything Bollywood put out this month — combined. Here's the May 2026 scorecard:
+"In 2018, Tips emailed us requesting visual rights," advocate Dubey told ANI. "Vashu Bhagnani had replied to them, but their conversation did not settle." The lawyer further claimed that Puja Entertainment subsequently sent a notice to Tips **cancelling the audio rights** previously granted, which would mean Tips has no valid license to use the songs in any form.
 
-**Suriya's Karuppu** led the charge. The Tamil action drama, directed by RJ Balaji, crossed ₹253 crore worldwide in just 12 days after its May 15 release. In Tamil Nadu alone, it earned over ₹120 crore gross — shattering every career record Suriya has held, including more than doubling his previous biggest grosser, Singam 2. The film has performed strongly with overseas Tamil audiences too, continuing a pattern that NRIs in the US and UK have been driving for years.
+"If they are the lawful owners of the music rights, they must show their documents," Dubey said. "Justice will prevail, and the truth will come out."
 
-**Mohanlal's Drishyam 3** proved the franchise is bulletproof. Despite mixed reviews — critics felt the third instalment couldn't match the first two — audiences showed up anyway. In just six days, the film crossed ₹170 crore worldwide. The overseas number is the real story: roughly ₹90 crore of that total came from international markets, making it the first South Indian film of 2026 to cross $10 million overseas. Kerala led domestically, but the Gulf, North America, UK, and Australia all contributed significantly.
+## Why NRIs Should Pay Attention
 
-**Raja Shivaji** rewrote Marathi cinema history. Riteish Deshmukh directed and starred in this historical epic, which crossed ₹114 crore worldwide in 26 days — dethroning Sairat's ₹110 crore record that had stood for nearly a decade. And it wasn't alone: Deool Band 2, a devotional drama, opened to ₹2.9 crore and then just kept climbing on word of mouth, reaching ₹26.5 crore in six days and marching toward ₹50 crore.
+This case is bigger than one film. It cuts to the heart of how Bollywood handles music rights — a system built on handshake deals and loosely worded agreements from the 1990s that is now colliding with modern copyright law. The outcome could set a precedent for dozens of planned remakes and song recreations currently in development across the industry.
 
-## Bollywood's Quiet Struggle
+For diaspora audiences who grew up with the *Biwi No.1* soundtrack — and who now represent a significant chunk of Bollywood's overseas box office — the case raises uncomfortable questions about who actually owns the songs they love.
 
-Meanwhile, Hindi cinema's May releases landed with a thud. Pati Patni Aur Woh Do — a sequel that the industry had positioned as a safe commercial bet — opened to weak occupancies and never recovered. It managed ₹53.85 crore worldwide, a number that looks even smaller next to what the regional films delivered.
+The Bombay High Court has permitted the filing and a hearing is expected soon. Whether *Hai Jawani Toh Ishq Hona Hai* makes its June 5 date may depend entirely on what happens in that courtroom."""
+})
 
-Chand Mera Dil, a romantic drama banking on urban appeal and music-driven promotions, fared worse. It earned roughly ₹21 crore in five days — a number the trade calls "poor" for a film of its scale and marketing spend.
+# ------------------------------------------------------------------
+# Article 2: Patriot hitting OTT
+# ------------------------------------------------------------------
+articles.append({
+    "headline": "Mammootty and Mohanlal's Patriot Hits ZEE5 on June 5. It Cost ₹140 Crore. The Theatres Couldn't Save It.",
+    "subheadline": "Malayalam cinema's most anticipated reunion in two decades underperformed at the box office. Now NRIs who missed it get a second chance — in five languages.",
+    "slug": "patriot-mammootty-mohanlal-zee5-ott-june-5-five-languages-nri-20260529",
+    "category": "entertainment",
+    "image_person": "Mammootty",
+    "pexels_query": "Indian spy thriller cinema",
+    "sources": json.dumps(["SacNilk", "ZEE5", "The Indian Express", "The Hindu", "India Today"]),
+    "body": """The most hyped Malayalam film of 2026 is coming to your living room — and that is both good news and a quiet admission of defeat.
 
-## What the Diaspora Should Know
+**Patriot**, the political-espionage thriller that brought **Mammootty** and **Mohanlal** together on screen for the first time in nearly two decades, will begin streaming on **ZEE5 on June 5, 2026** — in Malayalam, Tamil, Telugu, Kannada, and Hindi.
 
-For NRIs who grew up on Bollywood as India's cultural default, this shift is worth paying attention to. The films drawing the biggest audiences back home aren't Hindi anymore — they're Tamil, Malayalam, and Marathi. Streaming platforms have accelerated this. When Drishyam 3 drops on OTT in a few weeks, it'll be available dubbed and subtitled in multiple languages, reaching audiences who might never have watched a Malayalam film five years ago.
+The film, directed by **Mahesh Narayanan** and featuring an ensemble that also includes **Fahadh Faasil**, **Kunchacko Boban**, **Nayanthara**, and **Revathy**, arrived in theatres with expectations that bordered on the unreasonable. It had a reported budget of **₹125 to ₹140 crore**, making it one of the most expensive Malayalam films ever produced.
 
-The theatrical ecosystem has also changed. South Indian films now command premium distribution deals in North America and the Gulf — territories that were once considered Hindi-film country. Suriya's Karuppu earned significantly from overseas, a market that Tamil films have been steadily claiming since the Vijay and Rajinikanth blockbusters showed the way.
+## What Went Wrong at the Box Office
 
-## The Bigger Picture
+The numbers told an uncomfortable story. Despite a strong opening weekend fueled by the sheer novelty of seeing Malayalam cinema's two biggest stars share the screen, *Patriot* could not sustain momentum. The film went into free fall on weekdays, and the theatrical window closed far sooner than anyone expected.
 
-May 2026 isn't an anomaly. It's a confirmation. The top-grossing Hindi film this year remains Dhurandhar 2, a sequel that succeeded partly because Ranveer Singh's star power transcends language barriers. Beyond that, Bollywood's 2026 has been inconsistent: Bhooth Bangla (₹193 crore) and Border 2 (₹362 crore) performed, but the mid-range — the ₹50-100 crore tier that used to be Bollywood's bread and butter — has been unreliable.
+For a film of this budget, breaking even required a worldwide gross that the ticket counters simply could not deliver. The quick pivot to OTT — barely six weeks after its theatrical release — confirms what the numbers already suggested.
 
-Regional cinema, by contrast, has been methodical. Tamil, Telugu, Malayalam, Kannada, and now Marathi industries are producing films that work locally and travel globally. They're spending less, earning more, and building franchises that audiences actually want to return to.
+## But the Film Itself Is Good
 
-The second half of 2026 brings Ram Charan's Peddi, Shah Rukh Khan's King, and the Ramayana adaptation — all massive Hindi releases. But May's numbers suggest that the audience isn't waiting for Bollywood to show up anymore. They've already found what they're watching."""
-    },
+Here is what makes this story more complicated than a straightforward flop narrative: *Patriot* is actually well-made.
 
-    # ─── Article 2: Ranveer Singh Chamundeshwari Temple ───
-    {
-        "headline": "Ranveer Singh Visited Chamundeshwari Temple This Week. A Karnataka Court Made Him Do It.",
-        "subheadline": "The actor complied with a High Court directive after his Kantara mimicry controversy sparked an FIR, a public backlash, and an apology that wasn't enough.",
-        "slug": "ranveer-singh-chamundeshwari-temple-karnataka-hc-kantara-mimicry-court-order-nri-20260529",
-        "image_person": "Ranveer Singh",
-        "image_pexels_query": None,
-        "image_pexels_fallback": None,
-        "image_caption": "Ranveer Singh complied with a Karnataka High Court order to visit the Chamundeshwari Temple",
-        "sources": [
-            {"name": "Filmfare", "url": "https://www.filmfare.com/news/south/ranveer-singh-makes-vows-at-chamundeshwari-temple-after-kantara-controversy-and-court-directive-84135.html"},
-            {"name": "Storyboard18", "url": "https://www.storyboard18.com"},
-            {"name": "Zoom TV Entertainment", "url": "https://www.zoomtventertainment.com"}
-        ],
-        "body": """Ranveer Singh climbed the Chamundi Hills in Karnataka this week, walked into the Chamundeshwari Temple, and participated in religious ceremonies. He reportedly made personal vows. It wasn't a pilgrimage. It was a court order.
+**The Indian Express** gave it 3 out of 5 stars, praising Narayanan for "not being intimidated by Mammootty and Mohanlal's superstardom" and the two legends for "simply trusting the director's vision." **India Today** went higher at 3.5 out of 5, calling it "spy cinema done right" with "unforgettable whistle-worthy moments."
 
-## How It Started
-
-The controversy traces back to the closing ceremony of the International Film Festival of India in Goa last December. Ranveer was on stage when he launched into an imitation of a sacred Daiva sequence from Rishab Shetty's Kantara franchise — the films that turned Bhoota Kola rituals into a cinematic phenomenon. The crowd reacted. Then the internet reacted harder.
-
-During the performance, Ranveer referred to the sacred Daivas as ghosts. In the coastal Karnataka tradition, Daivas — spirit worship deities central to Tulu culture — are not entertainment. They are living religious practice. A video of the moment went viral, and the backlash was immediate.
-
-Rishab Shetty himself weighed in. "That makes me uncomfortable," the Kantara director said. "While much of the film is cinema and performance, the Daiva element is sensitive and sacred."
-
-## The Legal Fallout
-
-An FIR was filed. The case made its way to the Karnataka High Court. In April, Ranveer submitted a revised affidavit to the court, and the proceedings moved toward resolution. The court accepted what it termed an "unconditional apology" — but with conditions attached. Ranveer was ordered to visit the Chamundeshwari Temple within four weeks and offer prayers there.
-
-This week, he complied.
-
-## The Apology Before the Court
-
-Before the legal proceedings escalated, Ranveer had tried to contain the damage through social media. "I have always deeply respected every culture, tradition, and belief in our country," he wrote on Instagram. "If I've hurt anyone's sentiments, I sincerely apologise."
-
-For many in Karnataka and the Tulu-speaking community, the Instagram post wasn't enough. The complaint argued that a public figure with Ranveer's reach had a responsibility to understand what he was performing before performing it — particularly when it involved sacred rituals that communities still actively practice.
+**The Hollywood Reporter India** noted that the film "does a lot of things right" and "comes close to achieving the sky-high expectations." The consensus: a competent, ambitious thriller that stumbled commercially under the weight of its own hype.
 
 ## Why This Matters for the Diaspora
 
-The Kantara mimicry incident sits at the intersection of several tensions that the Indian diaspora knows well: the line between appreciation and appropriation, the distance between Bollywood's Mumbai bubble and the regional cultures it borrows from, and the question of who gets to represent whose traditions on a national stage.
+For NRIs, the June 5 ZEE5 premiere is arguably the best way to experience *Patriot*. Here is why:
 
-Kantara became a pan-Indian hit precisely because it treated Bhoota Kola with reverence. Millions of Indians — including NRIs who packed North American theatres for the film — responded to that authenticity. When a Bollywood star appeared to reduce the same tradition to a party trick, the reaction wasn't just about hurt sentiments. It was about a pattern.
+**Language accessibility**: The film will be available in five languages simultaneously, meaning Tamil, Telugu, and Hindi-speaking diaspora audiences who might not have sought it out in Malayalam-only theatrical runs now have easy access.
 
-Bollywood has a long history of flattening regional cultures into content — turning classical dances into item numbers, sacred rituals into comedy bits, regional accents into punchlines. The backlash against Ranveer's IFFI performance was, in part, an assertion that the audience has changed. They know what they're watching. They know what's being mocked.
+**No spoilers yet**: Unlike many theatrical releases that get dissected on social media within hours, *Patriot's* relatively muted theatrical run means most international audiences are coming in fresh.
 
-## What Happens Next
+**The star power**: Watching Mammootty and Mohanlal share a frame is a once-in-a-generation experience. Their last meaningful collaboration was over 15 years ago. Regardless of what the box office said, this alone makes it essential viewing.
 
-The Karnataka High Court has signalled that the matter is nearing resolution. With the temple visit completed and the apology on record, the legal case is expected to close in the coming weeks.
+With **Sushin Shyam's** score and **Manush Nandan's** cinematography, *Patriot* is the kind of film that was perhaps always destined to find its real audience on streaming — where a ₹125 crore budget matters less than whether the story holds you for two and a half hours."""
+})
 
-For Ranveer, the timing is complicated. He's simultaneously navigating the FWICE non-cooperation directive over the Don 3 dispute, preparing for his ₹300 crore zombie thriller Pralay (shooting begins in August), and managing a public image that has taken hits from multiple directions in 2026.
+# ------------------------------------------------------------------
+# Article 3: Salman Khan's Maatrubhumi screening
+# ------------------------------------------------------------------
+articles.append({
+    "headline": "Salman Khan Screened Maatrubhumi for Bollywood's Biggest Directors. Subhash Ghai Called It a 'Must-Watch.'",
+    "subheadline": "Sooraj Barjatya, Kabir Khan, David Dhawan, and Riteish Deshmukh watched the rough cut of the Galwan Valley-inspired war drama. A release date still hasn't been announced.",
+    "slug": "salman-khan-maatrubhumi-rough-cut-screening-subhash-ghai-must-watch-galwan-nri-20260529",
+    "category": "entertainment",
+    "image_person": "Salman Khan",
+    "pexels_query": None,
+    "sources": json.dumps(["Bollywood Hungama", "IANS", "Subhash Ghai (social media post)"]),
+    "body": """Salman Khan's most politically sensitive film just passed its first industry test.
 
-The temple visit was a quiet affair — no cameras, no social media posts from his team. Whether that restraint was strategic or sincere, only Ranveer knows. But the image of one of Bollywood's biggest stars walking into a Karnataka temple because a court told him to is, at minimum, a reminder that stardom doesn't insulate you from accountability."""
-    },
+On the evening of May 28, **Salman Khan** hosted a private screening of the rough cut of **Maatrubhumi: May War Rest in Peace** — the Galwan Valley-inspired war drama that has been delayed, retitled, and caught in geopolitical crossfire for months. The guest list read like a who's who of Bollywood's directorial establishment.
 
-    # ─── Article 3: FWICE Ban Splitting Bollywood ───
-    {
-        "headline": "FWICE Issued a Non-Cooperation Directive Against Ranveer Singh. Now the Rest of Bollywood Has to Pick a Side.",
-        "subheadline": "Manoj Bajpayee wants clarity. CINTAA's president says nobody called her. A Gangs of Wasseypur editor wants to know why workers' issues don't get this energy. And Rakhi Sawant dared them to ban Salman Khan.",
-        "slug": "fwice-ranveer-singh-non-cooperation-ban-bollywood-divided-manoj-bajpayee-cintaa-nri-20260529",
-        "image_person": "Manoj Bajpayee",
-        "image_pexels_query": None,
-        "image_pexels_fallback": None,
-        "image_caption": "Manoj Bajpayee called for clarity amid the FWICE non-cooperation directive against Ranveer Singh",
-        "sources": [
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-            {"name": "Zoom TV Entertainment", "url": "https://www.zoomtventertainment.com"},
-            {"name": "The Daily Jagran", "url": "https://www.thedailyjagran.com"},
-            {"name": "Cinema Express", "url": "https://www.cinemaexpress.com"}
-        ],
-        "body": """The Federation of Western India Cine Employees doesn't technically have the power to "ban" anyone. What it can do is issue a Non-Cooperation Declaration — an NCD — which instructs its 32 member craft associations, covering everyone from camera operators to carpenters, not to work with a named individual. In practical terms, it means no crew will show up on your set.
+**Subhash Ghai**, **Sooraj Barjatya**, **David Dhawan**, **Kabir Khan**, **Riteish Deshmukh**, and producer **Siddharth Roy Kapur** watched the early cut alongside Salman and co-star **Chitrangda Singh**. Director **Apoorva Lakhia** was also present.
 
-FWICE issued one against Ranveer Singh. And now everyone in Bollywood has an opinion about it.
+## The Verdict from the Room
 
-## The Origin
+Ghai, never one to hold back, went straight to social media afterward. "It was so beautiful to see my favourite directors together at Food Square today to watch a rough cut of Apoorva Lakhia's film MAATRUBHUMI," he wrote, describing it as "a touching story of soldiers of India and China with their respective emotions for their nations and their families with a theme of mutual peace and respect."
 
-The NCD stems from Ranveer's exit from Don 3. Excel Entertainment — the production company run by Farhan Akhtar and Ritesh Sidhwani — claims pre-production losses of ₹40-45 crore after Ranveer walked away from the project. The details of why he left remain disputed: creative differences, scheduling conflicts, and contract terms have all been cited. What isn't disputed is the money. Excel wants it back, and FWICE decided to enforce.
+He called it "truly a must-watch."
 
-The directive effectively freezes Ranveer's ability to start new productions in India. His upcoming films — including the ₹300 crore zombie thriller Pralay — will need the NCD resolved before cameras roll.
+Coming from the man who directed *Taal*, *Pardes*, and *Karma*, that is not a casual endorsement.
 
-## The Industry Reacts
+## The Troubled Journey
 
-**Manoj Bajpayee** was among the first senior actors to speak publicly. The Governor star didn't take a side, but he made it clear the situation was untenable. "We don't have clarity," he said, noting that the NCD affects 30 different film crafts and creates uncertainty across productions. He urged a resolution, saying the longer this drags, the more it hurts everyone — workers especially.
+The film's road to this point has been anything but smooth. Originally titled **Battle of Galwan**, the project was directly inspired by the **2020 Galwan Valley clash** between Indian and Chinese troops — a border confrontation that left 20 Indian soldiers dead and remains a deeply sensitive geopolitical flashpoint.
 
-**Poonam Dhillon**, president of the Cine and TV Artistes Association (CINTAA), was more pointed. She expressed "disappointment" that neither Ranveer nor FWICE had involved her organization in the dispute. "He could have approached us," she said, adding that CINTAA exists precisely to mediate actor-producer conflicts. She described the situation as "very strange" and urged Ranveer to honour his professional commitments.
+After the teaser dropped in December 2025 (timed to Salman's birthday), Chinese state-backed media outlet **Global Times** published critical coverage. Reports then surfaced that the filmmakers were urged to soften the political tone and reduce direct references that could escalate diplomatic tensions.
 
-**Shweta Venkat**, the editor of Gangs of Wasseypur, went further. She publicly criticised FWICE for what she called selective enforcement. Film editors, she said, have been raising concerns about delayed payments and poor working conditions for three years with no response. "Maybe we weren't cool enough," she wrote — a cutting observation that the federation moves fast when a superstar's money is involved but goes quiet when below-the-line workers need help.
+What followed was a 40-day reshoot period, a title change from *Battle of Galwan* to the more diplomatic *Maatrubhumi: May War Rest in Peace*, and an indefinite postponement of the April 17 release date. The film continues to navigate defence-related clearances and CBFC certification.
 
-And then there was **Rakhi Sawant**, who did what Rakhi Sawant does: she challenged FWICE to apply the same standard to Salman Khan. "Ban Salman Khan and show me," she said, alleging double standards in how the federation treats different stars. It was tabloid bait, but it echoed a real question about power dynamics in the industry.
+## Why the Industry Screening Matters
 
-## What the NCD Actually Means
+Salman Khan does not show rough cuts to friends unless he is confident in the product — and unless he needs allies. By assembling Bollywood's most respected names and getting their public endorsement on record, he is doing two things: building advance word-of-mouth and creating an industry consensus that the film deserves a fair release.
 
-An NCD is not a legal instrument. It doesn't have the force of a court order. But it has enormous practical power because FWICE's member associations represent the vast majority of below-the-line film workers in western India. If they refuse to work with an actor, that actor's productions stall.
+The directors in that room — Sooraj Barjatya (*Maine Pyar Kiya*), Kabir Khan (*Bajrangi Bhaijaan*), David Dhawan (*Judwaa*) — represent decades of Salman Khan collaborations. Their presence is strategic.
 
-For producers, it creates a chilling effect. Signing Ranveer for a film now means risking a crew walkout. For Ranveer's team, it means either resolving the financial dispute with Excel Entertainment or finding a way to get the NCD lifted through negotiation.
+## The Diaspora Angle
 
-Reports indicate that Salman Khan personally intervened to broker talks between Ranveer and Farhan Akhtar. Ranveer's team reportedly offered ₹10 crore upfront and a ₹25 crore discount on future projects — a total concession of ₹35 crore. Excel rejected the offer.
+For NRIs, *Maatrubhumi* sits at the intersection of patriotism and pragmatism. The Galwan Valley clash resonated deeply with the Indian diaspora — vigils were held in multiple US and UK cities, and the story of the 20 fallen soldiers was widely shared across WhatsApp groups and community forums.
 
-## The Bigger Question for the Industry
+A release date has not been announced, but reports suggest an **Independence Day weekend** window could be in play. For a film about soldiers defending a border, the timing would be poetic — if the clearances come through."""
+})
 
-The Ranveer-FWICE situation has surfaced a question the Hindi film industry has avoided for decades: who actually has power in Bollywood disputes?
+# ------------------------------------------------------------------
+# Article 4: Anushka Sharma Yoga Wear
+# ------------------------------------------------------------------
+articles.append({
+    "headline": "Anushka Sharma Invested in Virat Kohli's Sportswear Company. Now She's Building a Yoga Line Under His Brand.",
+    "subheadline": "The actress picked up a minority stake in Agilitas Sports and will co-develop One8 Yoga — launching on International Yoga Day, June 21. Her last film was six years ago.",
+    "slug": "anushka-sharma-agilitas-sports-one8-yoga-virat-kohli-investment-nri-20260529",
+    "category": "entertainment",
+    "image_person": "Anushka Sharma",
+    "pexels_query": "yoga activewear fashion",
+    "sources": json.dumps(["Economic Times", "Bollywood Hungama", "Franchise India", "Apparel Resources"]),
+    "body": """Anushka Sharma has not made a film since 2018. She has, however, been quietly building something else.
 
-FWICE's critics argue that the federation oversteps when it punishes individual actors for contract disputes that should be settled in civil court. Its supporters counter that without the NCD mechanism, producers have no leverage against stars who walk away from commitments — and the workers who already spent months in pre-production absorb the losses.
+The actress has acquired a **minority stake in Agilitas Sports**, the Indian sportswear company co-founded by former **Puma India** executives — and the same company where her husband **Virat Kohli** is already an investor and co-founder. As part of the deal, Sharma will co-develop a new **yoga wear range** under Kohli's **One8** sportswear brand, with a launch planned for **June 21 — International Yoga Day**.
 
-Shweta Venkat's complaint cuts deepest. If FWICE can mobilise within days when a producer loses ₹45 crore, why can't it mobilise when editors, assistants, and crew members wait months for payment? The answer — that big-money disputes get big-money attention — is one the federation hasn't addressed.
+"Anushka is partnering with Agilitas by investing capital in the company and building yoga-wear," confirmed **Abhishek Ganguly**, Agilitas Sports' co-founder and CEO, though he declined to share the deal's financial details.
 
-## What the Diaspora Is Watching
+## The Business Behind It
 
-For NRIs following Bollywood, the FWICE-Ranveer dispute is a window into how the industry actually functions behind the trailer launches and PR-managed Instagram stories. It reveals a system where a handshake deal can cost someone ₹45 crore, where a federation of workers can effectively sideline a top-three star, and where the resolution depends not on courts but on phone calls between powerful men.
+The numbers give context. In 2025, Kohli had acquired his own minority stake in Agilitas for approximately **₹40 crore** after ending his eight-year, **₹110 crore** association with German sportswear giant Puma. As part of that deal, Agilitas also acquired the **One8 brand** — Kohli's personal sportswear franchise that has become one of India's most recognized athleisure labels.
 
-Ranveer Singh remains one of Indian cinema's most bankable actors. Dhurandhar 2 just crossed ₹1,000 crore. His next film has a ₹300 crore budget. But until the NCD lifts, none of that matters on a film set.
+Agilitas itself is no scrappy startup. Founded by **Abhishek Ganguly**, **Atul Bajaj**, and **Amit Prabhu** — all former Puma India executives — the company runs a vertically integrated operation spanning manufacturing, branding, retail, and distribution. It is backed by **Convergent Finance** and **Nexus Venture Partners**, has acquired long-term Lotto licensing rights across multiple markets, and purchased footwear manufacturer **Mochiko Shoes**.
 
-The dispute continues."""
-    },
-]
+Adding Anushka Sharma to this mix is not just celebrity endorsement — it is a strategic expansion into the women's activewear category, specifically yoga and wellness apparel, one of the fastest-growing segments in Indian sportswear.
 
-# ── Main ──────────────────────────────────────────────────────────
-if __name__ == "__main__":
-    print("=" * 60)
-    print(f"Entertainment Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    print(f"Publishing {len(articles)} articles")
-    print("=" * 60)
+## The Bollywood Parallel
 
-    success = 0
-    for i, art in enumerate(articles, 1):
-        print(f"\n{'─' * 40}")
-        print(f"Article {i}/{len(articles)}: {art['headline'][:60]}...")
-        
-        # Validate article quality
-        body_words = len(art["body"].split())
-        headline_len = len(art["headline"])
-        subheadline_len = len(art["subheadline"])
-        
-        print(f"  Body: {body_words} words | Headline: {headline_len} chars | Subheadline: {subheadline_len} chars")
-        
-        if body_words < 400:
-            print(f"  ⚠ Body too short ({body_words} words), skipping")
-            continue
-        if headline_len > 200:
-            print(f"  ⚠ Headline too long ({headline_len} chars), skipping")
-            continue
-        if subheadline_len < 15:
-            print(f"  ⚠ Subheadline too short ({subheadline_len} chars), skipping")
-            continue
-        if len(art["sources"]) < 2:
-            print(f"  ⚠ Too few sources ({len(art['sources'])}), skipping")
-            continue
-        
-        result = publish_article(art)
-        if result:
-            success += 1
-        
-        time.sleep(1)  # Be gentle with APIs
+There is something quietly significant about this announcement coming from Anushka Sharma specifically.
 
-    print(f"\n{'=' * 60}")
-    print(f"Done: {success}/{len(articles)} articles published")
-    print("=" * 60)
+Her last theatrical release was **Zero** in 2018 alongside Shah Rukh Khan and Katrina Kaif. In the seven years since, she has stayed almost entirely out of the public eye — no comeback announcements, no Netflix shows, no buzzy Instagram campaigns. While peers like Deepika Padukone, Alia Bhatt, and Priyanka Chopra have juggled acting careers with brand empires, Anushka has taken the opposite approach: step back from acting entirely, focus on family, and build businesses.
+
+She previously founded the production house **Clean Slate Filmz** (which produced *Paatal Lok* and *Bulbbul* for Amazon Prime) and the clothing brand **Nush**. The Agilitas investment represents her most significant business move since.
+
+## Why NRIs Should Watch This
+
+For diaspora audiences, the Kohli-Sharma business play reflects a broader shift in how Indian celebrity power is being deployed.
+
+The global yoga and wellness market is projected to be worth over **$87 billion by 2027**, and Indian diaspora communities in the US, UK, and Canada are among the most enthusiastic yoga practitioners worldwide. A premium Indian yoga wear brand with Anushka Sharma's name attached — launching on International Yoga Day — is positioned squarely at that intersection.
+
+**One8 Yoga** could become the first Indian-origin activewear brand to meaningfully compete in yoga-specific apparel internationally. Whether it gets there depends on product quality more than star power — but the foundation is serious."""
+})
+
+# ============================================================
+# PUBLISH
+# ============================================================
+
+now = datetime.now(timezone.utc).isoformat()
+
+for i, art in enumerate(articles):
+    print(f"\n{'='*60}")
+    print(f"Article {i+1}: {art['headline'][:70]}...")
+    
+    # Source image
+    img_url, img_attr = source_image(
+        person_name=art.get('image_person'),
+        pexels_query=art.get('pexels_query'),
+        slug=art['slug']
+    )
+    
+    # Validate
+    body = art['body'].strip()
+    word_count = len(body.split())
+    print(f"  Word count: {word_count}")
+    
+    if word_count < 400:
+        print(f"  ✗ REJECTED — body too short ({word_count} words)")
+        continue
+    
+    if len(art['headline']) > 200:
+        print(f"  ⚠ Headline too long ({len(art['headline'])} chars), truncating")
+        art['headline'] = art['headline'][:197] + "..."
+    
+    if len(art.get('subheadline', '')) < 15:
+        print(f"  ✗ REJECTED — subheadline too short")
+        continue
+    
+    # Build record
+    record = {
+        "headline": art['headline'],
+        "subheadline": art['subheadline'],
+        "slug": art['slug'],
+        "body": body,
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": now,
+        "sources": art.get('sources', '[]'),
+        "image_url": img_url if img_url else None,
+        "image_attribution": img_attr if img_attr else None,
+        "urgency": "medium",
+        "tags": [],
+        "score_total": 60,
+        "is_featured": False,
+        "is_editorial": False,
+    }
+    
+    result = sb_insert("p2_articles", record)
+    if result:
+        art_id = result[0]['id'] if isinstance(result, list) else result.get('id')
+        print(f"  ✓ Published: {art['slug']} (id: {art_id})")
+    else:
+        print(f"  ✗ Failed to publish: {art['slug']}")
+
+print("\n✅ Entertainment writer batch complete.")

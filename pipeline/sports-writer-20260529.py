@@ -1,50 +1,39 @@
 #!/usr/bin/env python3
-"""Sports writer for The Videshi — 2026-05-29 batch"""
+"""
+The Videshi — Sports Writer (2026-05-29)
+Publishes 3 sports articles with proper images.
+"""
 
-import json, os, re, sys, time, uuid, requests, urllib.parse
+import json, os, sys, time, uuid, re, subprocess
+import requests, urllib.parse
 from datetime import datetime, timezone
 
-# Load env
-def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    v = v.strip().strip('"').strip("'")
-                    os.environ.setdefault(k, v)
-
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
-
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
+# ── Env ──────────────────────────────────────────────────────────────────
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
 }
 
-def sb_insert(table, data):
+# ── Helpers ──────────────────────────────────────────────────────────────
+def sb_post(table, data):
     r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 201):
-        result = r.json()
-        return result[0] if isinstance(result, list) else result
-    print(f"  ✗ Insert error ({r.status_code}): {r.text[:300]}")
-    return None
+    if r.status_code not in (200, 201):
+        print(f"  ✗ POST {table} failed: {r.status_code} {r.text[:300]}")
+        return None
+    return r.json()
 
-def sb_patch(table, filters, data):
-    params = '&'.join(f"{k}={v}" for k, v in filters.items())
+def sb_patch(table, match, data):
+    params = "&".join(f"{k}={v}" for k, v in match.items())
     url = f"{SUPABASE_URL}/rest/v1/{table}?{params}"
     r = requests.patch(url, headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 204):
-        return True
-    print(f"  ✗ Patch error ({r.status_code}): {r.text[:300]}")
-    return False
+    if r.status_code not in (200, 204):
+        print(f"  ✗ PATCH {table} failed: {r.status_code} {r.text[:300]}")
+    return r
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -66,396 +55,364 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels API. Returns URL or None."""
+    """Fetch image from Pexels using curl (urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
-    
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            import subprocess
             result = subprocess.run(
-                ['curl', '-sS', f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape',
-                 '-H', f'Authorization: {PEXELS_KEY}'],
+                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape"],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for photo in photos:
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+            photos = data.get("photos", [])
+            for p in photos:
+                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
                 if url:
-                    # Validate
-                    hr = requests.head(url, timeout=10)
-                    cl = int(hr.headers.get('Content-Length', 0))
-                    ct = hr.headers.get('Content-Type', '')
-                    if cl > 5000 and 'image' in ct:
-                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                        return url
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase storage bucket."""
+def upload_image_to_supabase(image_url, filename):
+    """Download image and upload to Supabase storage."""
     try:
-        r = requests.get(image_url, timeout=30, headers={"User-Agent": "TheVideshi/1.0"})
+        r = requests.get(image_url, timeout=20, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         if r.status_code != 200:
-            print(f"  ⚠ Download failed: {r.status_code}")
-            return image_url  # fallback to original
-        
-        content_type = r.headers.get('Content-Type', 'image/jpeg')
-        if 'image' not in content_type:
-            content_type = 'image/jpeg'
-        
-        upload_headers = {
-            'apikey': SUPABASE_KEY,
-            'Authorization': f'Bearer {SUPABASE_KEY}',
-            'Content-Type': content_type,
-            'x-upsert': 'true'
-        }
+            print(f"  ⚠ Failed to download image: {r.status_code}")
+            return image_url  # fall back to original URL if it's permanent
+        content_type = r.headers.get("Content-Type", "image/jpeg")
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small ({len(r.content)} bytes), skipping upload")
+            return image_url
         
         upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        upload_headers = {
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": content_type,
+            "x-upsert": "true",
+        }
         ur = requests.post(upload_url, headers=upload_headers, data=r.content, timeout=30)
-        
         if ur.status_code in (200, 201):
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ⚠ Upload failed ({ur.status_code}): {ur.text[:200]}")
-            # If it's a Wikimedia/Pexels URL, it's permanent - OK to use directly
-            if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
+            print(f"  ⚠ Upload failed: {ur.status_code} {ur.text[:200]}")
+            # If source is permanent (Wikipedia/Pexels), use it directly
+            if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
                 return image_url
             return None
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
-        if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
+        if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
             return image_url
         return None
 
-def validate_image_url(url):
-    """Validate that URL returns a real image."""
+def validate_image(url):
+    """Verify image URL returns valid image."""
     if not url:
         return False
-    # Block banned sources
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
-    if any(b in url for b in banned):
-        return False
-    banned_params = ['_nc_ht=', '_nc_cat=', 'ccb=']
-    if any(p in url for p in banned_params):
-        return False
     try:
-        r = requests.head(url, timeout=10, headers={"User-Agent": "TheVideshi/1.0"}, allow_redirects=True)
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if 'image' in ct and cl > 5000:
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if "image" in ct and cl > 5000:
             return True
         # Some servers don't return Content-Length on HEAD
-        if 'image' in ct:
+        if "image" in ct:
             return True
     except:
         pass
     return False
 
-# ========================================================================
-# ARTICLE 1: Wembanyama Forces Game 7 — Spurs Crush Thunder 118-91
-# ========================================================================
-def write_article_1():
-    print("\n=== Article 1: Wembanyama Forces Game 7 ===")
+def publish_article(article):
+    """Insert article into p2_articles."""
+    art_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
     
-    slug = "wembanyama-28-points-spurs-118-91-thunder-game-7-western-conference-finals-nba-20260529"
-    headline = "Victor Wembanyama Scored Twenty-Eight Points and Ten Rebounds. The Spurs Won by Twenty-Seven. Game 7 Is Saturday in Oklahoma City."
-    subheadline = "San Antonio's third-quarter avalanche buried the Thunder 118-91, tying the Western Conference finals at three games apiece. Shai Gilgeous-Alexander scored a season-low fifteen points. The winner on Saturday faces the New York Knicks for the NBA title."
-    
-    body = """The San Antonio Spurs were facing elimination on Thursday night. By the third quarter, they were playing like it was the Oklahoma City Thunder's season on the line.
-
-Victor Wembanyama scored twenty-eight points and pulled down ten rebounds as the Spurs demolished the Thunder 118-91 in Game 6 of the Western Conference finals, forcing a decisive Game 7 on Saturday in Oklahoma City. The winner advances to face the New York Knicks in the NBA Finals.
-
-## The Third-Quarter Avalanche
-
-The game was competitive through halftime. San Antonio led 60-53, with Wembanyama already on twenty-two points — but the Thunder had been in bigger holes this series and climbed out. Then the third quarter happened.
-
-The Spurs went on a devastating 20-0 run that broke the game open. Their defence suffocated Oklahoma City's offence, holding the Thunder to just twenty-eight points in the second half. By the time the fourth quarter began, the outcome was beyond doubt.
-
-Dylan Harper added eighteen points and six rebounds. Stephon Castle posted seventeen points with nine assists and five rebounds — flirting with a triple-double in the biggest game of his young career. The Spurs outrebounded the Thunder 52-43 and shot 41 percent from three-point range while holding Oklahoma City to 25 percent.
-
-## SGA's Worst Night
-
-Shai Gilgeous-Alexander, the two-time consecutive MVP, had the worst game of his postseason. He finished with fifteen points on 33 percent shooting — a season low that left the Thunder without their primary engine when they needed him most.
-
-Jalen Williams made a surprise return from injury but managed just one point. Chet Holmgren contributed ten points and eleven rebounds, and Cason Wallace had eleven points and three steals, but the Thunder's supporting cast could not compensate for their superstar's disappearance.
-
-The series has been defined by lopsided margins — the average victory margin across six games is 18.3 points. The home team has won every game. That pattern gives Oklahoma City reason for optimism heading into Game 7 at Paycom Center, but the Spurs have already stolen a game on the road in this series, winning Game 1 in double overtime.
-
-## Wembanyama Makes His Case
-
-At twenty years old, Wembanyama is delivering in the highest-pressure moments the NBA offers. His Game 6 performance — twenty-eight points, ten rebounds, three blocks — was the kind of dominant two-way display that has league observers drawing comparisons to the all-time greats.
-
-Coach Mitch Johnson had publicly said after Game 5 that the Spurs needed more from their franchise player. Wembanyama answered with perhaps his finest playoff performance, controlling the game from the opening minutes and never letting the Thunder establish any rhythm.
-
-## What It Means for NRI Fans
-
-The NBA has invested heavily in the Indian market in recent years. The league staged preseason games in Mumbai, has a growing streaming presence on Indian platforms, and counts millions of fans across the subcontinent. Saturday's Game 7 — Wembanyama versus Gilgeous-Alexander, with a trip to the Finals on the line — is the kind of event that transcends time zones.
-
-For the growing Indian American basketball community, particularly the thousands who play in recreational leagues across the Bay Area, Houston, and the Northeast, the stakes are simple: the next NBA champion will be decided starting Saturday night.
-
-Game 7 tips off Saturday evening at Paycom Center in Oklahoma City. The game will air on NBC and stream on Peacock. The winner faces the New York Knicks, who are already waiting for the Finals to begin.
-
-The series asked one question all along: is Wembanyama ready to be the best player in the world? On Thursday, for forty-eight minutes, the answer was yes. On Saturday, against a hostile crowd and a wounded but desperate Thunder team, he will have to prove it one more time.
-
-*Sources: Reuters, USA Today, NBC Sports, The Score*"""
-
-    # Image sourcing — Wikipedia for Wembanyama
-    print("  Sourcing image...")
-    img_url = fetch_wikipedia_person_image("Victor Wembanyama")
-    img_attribution = "Wikimedia Commons"
-    
-    if not img_url:
-        img_url = fetch_pexels_image("NBA basketball game arena", "basketball court game")
-        img_attribution = "The Videshi"
-    
-    final_img = None
-    if img_url:
-        art_id = str(uuid.uuid4())
-        final_img = upload_to_supabase_storage(img_url, f"{art_id}.jpg")
-        if not validate_image_url(final_img):
-            final_img = None
-    
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
+    payload = {
+        "id": art_id,
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
         "category": "sports",
         "vertical": "sports",
-        "urgency": "medium",
-        "tags": [],
-        "score_total": 55,
         "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        
-        "image_url": final_img or "",
-        "image_caption": "Victor Wembanyama dominated Game 6 with twenty-eight points and ten rebounds as the Spurs forced a decisive Game 7",
-        "image_attribution": img_attribution if final_img else "",
-        "sources": json.dumps(["Reuters", "USA Today", "NBC Sports", "The Score"])
+        "published_at": now,
+        "sources": article["sources"],  # native JSON, NOT stringified
+        "image_url": article.get("image_url"),
+        "image_caption": article.get("image_caption", ""),
+        "image_attribution": article.get("image_attribution", ""),
+        "urgency": "medium",
+        "score_total": 55,
+        "is_featured": False,
+        "is_editorial": False,
+        "tags": [],
     }
     
-    result = sb_insert("p2_articles", article)
+    result = sb_post("p2_articles", payload)
     if result:
-        art_id_db = result.get('id', 'unknown')
-        print(f"  ✓ Published: {headline[:60]}... (id: {art_id_db})")
-        # Upload image with article ID if we used a UUID
-        if final_img and art_id_db != 'unknown' and img_url:
-            new_img = upload_to_supabase_storage(img_url, f"{art_id_db}.jpg")
-            if new_img and validate_image_url(new_img):
-                sb_patch("p2_articles", {"id": f"eq.{art_id_db}"}, {"image_url": new_img})
-                print(f"  ✓ Updated image with article ID")
+        print(f"  ✓ Published: {article['headline'][:60]}... (id={art_id[:8]})")
+        return art_id
+    return None
+
+
+# ── Articles ─────────────────────────────────────────────────────────────
+
+articles = []
+
+# ── ARTICLE 1: FIFA World Cup Broadcast — Zee Deal ──────────────────────
+print("\n═══ Article 1: FIFA World Cup India Broadcast Update ═══")
+
+art1_body = """The largest democracy in the world nearly missed the world's largest football tournament. With the 2026 FIFA World Cup kicking off in Mexico on June 11 — thirteen days from now — India still does not have a confirmed broadcaster. But after weeks of fraught negotiations, a deal appears imminent.
+
+## Zee Emerges as the Frontrunner
+
+Zee Entertainment Enterprises Limited, once India's dominant sports broadcaster before ceding ground to Star and Sony in the 2010s, is in advanced talks with FIFA to secure the combined television and digital rights for both the 2026 and 2030 FIFA World Cups in the Indian subcontinent.
+
+Multiple reports from industry publications including exchange4media and Storyboard18 indicate that Zee has gained significant momentum in negotiations over the past week. The broadcaster is preparing to launch four new sports channels under its **Unite8 Sports** brand, with the World Cup serving as the flagship property for the relaunch.
+
+## How the Price Collapsed
+
+FIFA originally sought approximately **$100 million** for the combined India rights package covering both tournaments. That number proved wildly unrealistic in a market where cricket commands premium rates and football remains a second-tier sport by broadcast revenue.
+
+Reliance-Disney's JioHotstar — which broadcast the 2022 edition from Qatar — reportedly bid around **$20 million**, far below FIFA's expectations. Sony Pictures declined to submit an offer altogether. With limited buyer appetite, FIFA has reportedly revised its expectations down to roughly **$35 million** for both tournaments combined.
+
+The collapse in price speaks to a fundamental asymmetry: India has 1.4 billion people and a rapidly growing football audience, but the broadcast economics still do not support Western-level rights fees. Cricket's IPL alone generates more domestic broadcast revenue than the entire FIFA World Cup cycle in India.
+
+## What This Means for NRIs
+
+For the estimated 4.5 million Indian Americans and millions more across the UK, Canada, Australia, and the Gulf states, the India broadcast situation has limited direct impact — you can watch on Fox Sports (US), ITV/BBC (UK), or TSN (Canada). But it matters enormously for three reasons:
+
+**Family back home.** If you are planning to watch matches with relatives in India over video call, or if your parents and grandparents follow the tournament, the broadcast deal determines whether they can watch at all. Zee's deal would cover both linear television and its Zee5 OTT platform.
+
+**Hindi and regional language commentary.** A Zee broadcast would likely offer commentary in Hindi, Tamil, Telugu, Bengali, and Marathi — languages that the US and UK English-only broadcasts will not provide. For diaspora fans who prefer watching in their mother tongue, this matters.
+
+**The Indian team factor.** India is not in the 2026 World Cup. But the tournament is being held across the United States, Mexico, and Canada — in cities with massive Indian populations. MetLife Stadium in New Jersey, SoFi Stadium in Los Angeles, AT&T Stadium in Dallas, and NRG Stadium in Houston will all host matches. NRIs are buying tickets regardless of whether India is playing. The atmosphere in these stadiums will be shaped by the diaspora.
+
+## The Unite8 Sports Gamble
+
+Zee's play is a calculated bet. The company has been on the defensive since the collapse of its proposed merger with Sony in early 2024. Launching a new sports vertical with the World Cup as its opening act is a high-risk, high-reward move.
+
+Industry analysts have raised legitimate questions about whether Zee can build the broadcast infrastructure — distribution deals, commentary teams, studio operations, and sales partnerships — in the roughly ten days between a deal closing and the first match. The opening game between Mexico and an opponent yet to be determined is on June 11 at Estadio Azteca in Mexico City.
+
+But Zee has done this before. It built Ten Sports into a credible cricket broadcaster in the mid-2000s before selling it to Sony. The institutional knowledge exists.
+
+## The Clock Is Ticking
+
+As of this writing, no official announcement has been made. FIFA and Zee are still negotiating final terms. The All India Football Federation has urged FIFA to close the deal quickly, and former AIFF General Secretary Shaji Prabhakaran has publicly confirmed that negotiations are near finalization.
+
+For the 200 million Indians who watched the 2022 World Cup final between Argentina and France — many of them staying up past midnight for the Doha kickoff — a deal cannot come soon enough. And for NRIs planning watch parties across Edison, Fremont, Brampton, and Southall, the question is no longer whether India gets the World Cup. It is whether Zee can pull off the broadcast equivalent of a last-minute equalizer.
+
+*The 2026 FIFA World Cup runs from June 11 to July 19 across 16 cities in the United States, Mexico, and Canada. The final will be played at MetLife Stadium in East Rutherford, New Jersey.*"""
+
+art1 = {
+    "headline": "Zee Is Close to Ending India's World Cup Broadcast Crisis. The First Match Is in Thirteen Days.",
+    "subheadline": "FIFA wanted $100 million. The market offered $20 million. Now Zee Entertainment is preparing to launch four new sports channels with the World Cup as its flagship.",
+    "body": art1_body,
+    "slug": "zee-entertainment-fifa-world-cup-2026-india-broadcast-rights-unite8-sports-deal-nri-guide-20260529",
+    "sources": [
+        {"name": "exchange4media", "url": "https://www.exchange4media.com"},
+        {"name": "Storyboard18", "url": "https://www.storyboard18.com"},
+        {"name": "Business Today Malaysia", "url": "https://www.businesstoday.com.my"},
+        {"name": "RevSportz", "url": "https://revsportz.in"}
+    ],
+}
+
+# Image: Use Pexels for World Cup / stadium — no specific person
+img1 = fetch_pexels_image("FIFA World Cup football stadium crowd", "football match stadium fans")
+if img1:
+    final_url1 = upload_image_to_supabase(img1, f"zee-world-cup-broadcast-20260529.jpg")
+    if final_url1 and validate_image(final_url1):
+        art1["image_url"] = final_url1
+        art1["image_caption"] = "The 2026 FIFA World Cup kicks off on June 11 across 16 cities in North America. India is racing to secure a broadcast deal."
+        art1["image_attribution"] = "Pexels"
     else:
-        print(f"  ✗ Failed to publish article 1")
-    return result
+        art1["image_url"] = None
+else:
+    art1["image_url"] = None
 
-# ========================================================================
-# ARTICLE 2: Indian Open of Surfing — Asian Games Selection Trials
-# ========================================================================
-def write_article_2():
-    print("\n=== Article 2: Indian Open of Surfing ===")
-    
-    slug = "indian-open-surfing-2026-mangalore-asian-games-selection-trial-80-surfers-six-states-20260529"
-    headline = "Eighty Surfers From Six States Are in Mangalore This Week. India's First Asian Games Surfing Squad Will Be Chosen From Among Them."
-    subheadline = "The seventh Indian Open of Surfing, which begins Thursday in Mangalore, doubles as the final domestic selection trial before surfing's debut at the Aichi-Nagoya Asian Games. India has never competed in international surfing at the continental level."
-    
-    body = """The waves off Mangalore's Panambur Beach are not Banzai Pipeline. They are not Teahupo'o. On most days, they are modest, warm, and forgiving — the kind of breaks that taught a generation of Indian surfers how to ride before they ever heard the word "competitive."
+articles.append(art1)
 
-But starting Thursday, those waves will carry the weight of history. Over eighty surfers from six Indian states have converged on the Karnataka coast for the seventh Indian Open of Surfing, a three-day event that will serve as the final and most decisive domestic selection trial before surfing's debut at the Aichi-Nagoya Asian Games later this year.
 
-India has never sent a surfing team to the Asian Games. This week, the country will choose who goes first.
+# ── ARTICLE 2: Djokovic vs Fonseca at Roland Garros ─────────────────────
+print("\n═══ Article 2: Djokovic vs Fonseca at Roland Garros ═══")
 
-## The Selection Stakes
+art2_body = """The third round of the 2026 French Open begins Friday with a match that distills everything compelling about elite tennis into a single contest on Court Philippe Chatrier. Novak Djokovic, thirty-nine years old and hunting a record twenty-fifth Grand Slam title, faces Joao Fonseca, the nineteen-year-old Brazilian who has called the Serb his idol and the greatest of all time.
 
-The Indian Open is the second stop on the National Championship Series, and the Surfing Federation of India has positioned it as the single most important event in the selection calendar. Performances here will carry significant weight when the continental squad is finalised.
+## The Last Champion Standing
 
-The field includes Ramesh Budihal, one of India's most experienced competitive surfers, and Kamali P, the young woman from Mahabalipuram whose story — a fisherman's daughter who learned to surf on a borrowed board — has become one of Indian sport's most compelling narratives. Both are expected to contend for Asian Games berths.
+The draw at Roland Garros has been shredded by chaos. Carlos Alcaraz, the defending champion, withdrew before the tournament with a wrist injury. Jannik Sinner, the world number one and top seed, suffered one of the most extraordinary collapses in Grand Slam history on Day 5 — leading Juan Manuel Cerundolo 6-3, 6-2, 5-1, one game from victory, before losing eighteen consecutive points and ultimately the match in five sets. The Italian later cited dizziness and exhaustion in ninety-degree Paris heat.
 
-The event runs across six categories: Men's Open, Women's Open, Men's Longboard, Women's Longboard, Groms Boys, and Groms Girls. For the senior categories, every heat is essentially an audition for the national team.
+That leaves Djokovic as the only former French Open champion remaining in the men's draw. At thirty-nine, he is the oldest man in the third round. He arrived in Paris with a 9-3 season record and questions about whether his body — battered by decades of elite competition — could sustain a two-week Grand Slam run on clay.
 
-## A Sport Growing From the Margins
+His second-round match against France's Valentin Royer suggested yes, with caveats. Djokovic won 6-3, 6-2, 6-7(9), 6-3, but needed to save a set point in the third-set tiebreak after the home crowd roared Royer back into the match. It was a reminder that Djokovic's margin for error is narrower than it once was.
 
-Indian surfing has no IPL. It has no billion-dollar broadcast deal. Its athletes train on beaches that double as fishing villages, and its competitions draw crowds measured in hundreds, not thousands. But the sport has grown steadily over the past decade, driven by small surf schools along the coasts of Karnataka, Tamil Nadu, Kerala, and Goa.
+## Fonseca: The Future Arrives on Schedule
 
-Mangalore — or Mangaluru, as the city is officially known — sits at the centre of India's west-coast surf culture. The Panambur and Sasihitlu breaks are well-mapped by the domestic surfing community, and the city's surf schools have produced several national-level competitors.
+Joao Fonseca entered 2026 as one of the most hyped teenagers in tennis. The twenty-eighth seed has justified the hype, reaching the third round at Roland Garros with composed, athletic play that belies his age.
 
-For the NRI community, the Asian Games debut carries particular resonance. Many Indian Americans with roots in coastal Karnataka and Kerala grew up near these waters without ever associating them with competitive sport. The idea that India's beaches could produce athletes who compete against Japan, Australia, and Indonesia — nations with deep surfing traditions — would have seemed far-fetched a decade ago.
+Born in Rio de Janeiro, Fonseca carries a game built for the modern tour — explosive forehand, improving serve, and the kind of court coverage that exhausts older opponents. He won the Next Gen ATP Finals in 2024 and has risen steadily through the rankings.
 
-## What the Asian Games Mean
+Before the match, Fonseca addressed the Djokovic matchup with the reverence of a student and the confidence of a competitor: "He's my idol. He's the GOAT. But I'm here to win, not to take a selfie."
 
-Surfing's inclusion in the Asian Games is part of a broader push by international sporting bodies to bring the discipline into the multi-sport fold. The sport debuted at the Olympics in Tokyo 2021 and returned in Paris 2024, where wave quality at Teahupo'o produced some of the most dramatic competition in Olympic history.
+## What the Sinner Collapse Means for the Draw
 
-At the Asian level, Japan and Indonesia are expected to dominate. Australia competes under Oceania, not Asia, removing one powerhouse from the field. But nations like the Philippines, Sri Lanka, and the Maldives have growing surf scenes, and India's entry adds another emerging nation to the mix.
+Sinner's exit has blown the top half of the draw wide open. The potential semifinal on Djokovic's side now features names like Felix Auger-Aliassime (the fourth seed), Flavio Cobolli, Learner Tien, and the Cerundolo who just toppled the world number one.
 
-The realistic expectation for India's first Asian Games surfing team is not a medal. It is presence — the act of showing up, competing, and establishing that Indian surfing exists on the continental stage. What comes after that depends on investment, infrastructure, and whether the next generation of coastal Indian kids sees surfing as a viable path.
+For Djokovic, it is an opportunity that may not come again. The two players most capable of beating him on clay — Alcaraz and Sinner — are both gone. Alexander Zverev, the second seed and 2024 finalist, lurks in the other half.
 
-## Three Days in Mangalore
+The path to a fourth French Open title and a record-extending twenty-fifth Grand Slam is the clearest it has been in years. But Djokovic must first get past a teenager who has spent his entire life watching the Serb win these matches and believes he is ready to do the same.
 
-The competition runs from May 29 through May 31, with heats scheduled across both morning and afternoon sessions to take advantage of tidal patterns. The Surfing Federation of India will use the results, combined with earlier National Championship Series performances, to finalise its Asian Games recommendations.
+## The NRI Tennis Connection
 
-For the eighty-plus athletes paddling out this week, Mangalore is more than a surf break. It is the place where Indian surfing stops being a curiosity and starts becoming a competitive reality.
+Tennis enjoys devoted following among the Indian diaspora, particularly in the US and UK. Djokovic's disciplined, vegetarian-leaning lifestyle and vocal advocacy for player rights have earned him a significant Indian fan base. His matches at the French Open air early morning in the US (the Fonseca match is scheduled for approximately 9:30 AM ET Friday) — a convenient time for NRI viewers tuning in before work.
 
-*Sources: LatestLY, Nation Press, IndiaSportsHub, Surfing Federation of India*"""
+The match will be broadcast on TNT, TruTV, and Tennis Channel in the US, with streaming available on Max and DIRECTV. In India, JioHotstar carries the French Open coverage.
 
-    # Image sourcing — Pexels for surfing
-    print("  Sourcing image...")
-    img_url = fetch_pexels_image("competitive surfing ocean wave", "surfer riding wave tropical")
-    img_attribution = "The Videshi"
-    
-    final_img = None
-    if img_url:
-        art_id = str(uuid.uuid4())
-        final_img = upload_to_supabase_storage(img_url, f"{art_id}.jpg")
-        if not validate_image_url(final_img):
-            final_img = None
-    
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "sports",
-        "vertical": "sports",
-        "urgency": "medium",
-        "tags": [],
-        "score_total": 55,
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        
-        "image_url": final_img or "",
-        "image_caption": "India's best surfers gather in Mangalore for the selection trials that will determine the country's first Asian Games surfing team",
-        "image_attribution": img_attribution if final_img else "",
-        "sources": json.dumps(["LatestLY", "Nation Press", "IndiaSportsHub", "Surfing Federation of India"])
-    }
-    
-    result = sb_insert("p2_articles", article)
-    if result:
-        art_id_db = result.get('id', 'unknown')
-        print(f"  ✓ Published: {headline[:60]}... (id: {art_id_db})")
-        if final_img and art_id_db != 'unknown' and img_url:
-            new_img = upload_to_supabase_storage(img_url, f"{art_id_db}.jpg")
-            if new_img and validate_image_url(new_img):
-                sb_patch("p2_articles", {"id": f"eq.{art_id_db}"}, {"image_url": new_img})
-                print(f"  ✓ Updated image with article ID")
+## What to Watch For
+
+Djokovic's serving numbers. He landed 73 percent of first serves in the Royer match but was broken twice. Against a returner as aggressive as Fonseca, he cannot afford service lapses.
+
+Fonseca's forehand under pressure. The Brazilian generates enormous topspin but can become erratic when pinned behind the baseline. Djokovic will aim to extend rallies and force Fonseca into high-backhand positions — the same tactic that has neutralized young power hitters for two decades.
+
+And the crowd. Philippe Chatrier has a habit of choosing underdogs, and a charismatic Brazilian teenager playing the greatest of all time is precisely the narrative the Parisian crowd will embrace.
+
+*Djokovic vs Fonseca is scheduled as the featured night session match on Court Philippe Chatrier, Friday May 29. Coverage begins at 9:30 AM ET / 7:00 PM IST on TNT and JioHotstar.*"""
+
+art2 = {
+    "headline": "Djokovic at Thirty-Nine Is the Last Champion Standing at Roland Garros. Today He Faces a Nineteen-Year-Old Who Calls Him the GOAT.",
+    "subheadline": "With Sinner and Alcaraz both gone, Novak Djokovic has the clearest path to a record 25th Grand Slam. But Joao Fonseca is not here for a history lesson.",
+    "body": art2_body,
+    "slug": "djokovic-fonseca-french-open-2026-round-3-sinner-collapse-roland-garros-25th-grand-slam-20260529",
+    "sources": [
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "Tennis365", "url": "https://www.tennis365.com"},
+        {"name": "Sportskeeda", "url": "https://www.sportskeeda.com"},
+        {"name": "USA Today", "url": "https://www.usatoday.com"}
+    ],
+}
+
+# Image: Wikipedia photo of Djokovic
+img2 = fetch_wikipedia_person_image("Novak Djokovic")
+if img2:
+    final_url2 = upload_image_to_supabase(img2, f"djokovic-french-open-2026-20260529.jpg")
+    if final_url2 and validate_image(final_url2):
+        art2["image_url"] = final_url2
+        art2["image_caption"] = "Novak Djokovic is the last former French Open champion remaining in the 2026 draw after Sinner's stunning second-round exit."
+        art2["image_attribution"] = "Wikimedia Commons"
     else:
-        print(f"  ✗ Failed to publish article 2")
-    return result
-
-# ========================================================================
-# ARTICLE 3: India U-18 Hockey Teams Begin Asia Cup in Japan
-# ========================================================================
-def write_article_3():
-    print("\n=== Article 3: India U-18 Hockey Asia Cup ===")
-    
-    slug = "india-u18-hockey-asia-cup-2026-japan-kakamigahara-men-women-campaign-begins-20260529"
-    headline = "India's Under-18 Hockey Teams Start Their Asia Cup Campaign in Japan Today. The Senior Pipeline Depends on What Happens Next."
-    subheadline = "The men's and women's U-18 squads open their tournament in Kakamigahara against some of Asia's strongest junior programmes. For India's hockey establishment, this is where the next Olympic generation is identified."
-    
-    body = """When the Indian men's hockey team won bronze at the Tokyo Olympics in 2021, it ended a forty-one-year medal drought and set off a wave of investment in the sport's development pathways. Five years later, the dividends of that investment are about to be tested in Kakamigahara, Japan.
-
-India's under-18 men's and women's hockey teams begin their Asia Cup campaigns on Thursday, facing established Asian powers in a tournament that runs through June 6. For India's hockey establishment — Hockey India, the Sports Authority of India, and the network of state academies that feed the national programme — this is where the next generation proves itself.
-
-## The Men's Challenge
-
-The men's squad, captained by Ketan Kushwaha, has been placed in Pool A alongside Japan, South Korea, Kazakhstan, and Chinese Taipei. The top two teams from each pool advance to the semi-finals on June 5, with the final scheduled for June 6.
-
-Japan and South Korea present the toughest obstacles. Both nations have invested heavily in junior hockey development, and Japan's home advantage adds another layer of difficulty. India's junior programmes have historically performed well at the Asian level — the country has won the Junior Asia Cup multiple times — but consistency against East Asian opponents on their home turf has been a persistent challenge.
-
-The squad was assembled after a national camp at the Sports Authority of India's Bhopal centre, followed by an exposure tour to Australia. That Australian trip was designed to stress-test the squad against physical, fast-paced opposition — a deliberate effort to prepare the players for the tempo they will face against Japan and Korea.
-
-## The Women's Path
-
-The women's team, led by captain Sweety Kujur, competes in Pool B against Malaysia, South Korea, and Singapore. India's women's hockey programme has undergone a transformation since the senior team's fourth-place finish at the Tokyo Olympics, and the under-18 pathway has benefited from that momentum.
-
-Unlike the men's draw, the women's pool does not include a host-nation opponent, which slightly eases the challenge. But South Korea remains formidable at every age level, and Malaysia's women's programme has shown improvement in recent years.
-
-The women's semi-finals and final follow the same June 5-6 schedule as the men's, meaning India could be competing for two continental titles on the same weekend.
-
-## Why It Matters Beyond the Scoreboard
-
-For NRI hockey fans — and there are more than many casual observers realise, particularly in the diaspora communities of the UK, Canada, and the Gulf states — junior tournaments are where names first surface. Several members of India's 2024 Paris Olympics squad were identified through Asia Cup performances at the under-18 and under-21 levels.
-
-Hockey India has made the development pipeline a strategic priority since the Tokyo bronze. The formula is straightforward: identify talent early, expose it to international competition, and integrate the best performers into the senior programme before they are twenty. The Asia Cup is the primary testing ground for that formula.
-
-Beyond the medals, the tournament serves a structural purpose. It reveals which state academies are producing the best players, which coaching methods are working, and where India's junior hockey sits relative to the rest of Asia. Those data points shape funding decisions, coaching appointments, and selection policies for years to come.
-
-## The Week Ahead
-
-India's men open against Kazakhstan — a manageable first assignment — before facing the stiffer tests of Japan and South Korea later in the pool stage. The women begin against Singapore, with Malaysia and South Korea to follow.
-
-For the young athletes who have spent months at the Bhopal camp and survived the Australian tour, this is the beginning of a path that could lead to the Asian Games, the World Cup, and eventually the Olympics. That path starts in a mid-sized Japanese city that most Indian sports fans have never heard of. But the players boarding the plane to Kakamigahara know exactly what is at stake.
-
-*Sources: Hockey India, LatestLY, Nation Press, IndiaSportsHub*"""
-
-    # Image sourcing — Wikipedia for field hockey India or Pexels
-    print("  Sourcing image...")
-    img_url = fetch_pexels_image("field hockey game players", "hockey players turf stadium")
-    img_attribution = "The Videshi"
-    
-    final_img = None
-    if img_url:
-        art_id = str(uuid.uuid4())
-        final_img = upload_to_supabase_storage(img_url, f"{art_id}.jpg")
-        if not validate_image_url(final_img):
-            final_img = None
-    
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "sports",
-        "vertical": "sports",
-        "urgency": "medium",
-        "tags": [],
-        "score_total": 55,
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        
-        "image_url": final_img or "",
-        "image_caption": "India's under-18 hockey squads open their Asia Cup campaign in Japan with senior team aspirations at stake",
-        "image_attribution": img_attribution if final_img else "",
-        "sources": json.dumps(["Hockey India", "LatestLY", "Nation Press", "IndiaSportsHub"])
-    }
-    
-    result = sb_insert("p2_articles", article)
-    if result:
-        art_id_db = result.get('id', 'unknown')
-        print(f"  ✓ Published: {headline[:60]}... (id: {art_id_db})")
-        if final_img and art_id_db != 'unknown' and img_url:
-            new_img = upload_to_supabase_storage(img_url, f"{art_id_db}.jpg")
-            if new_img and validate_image_url(new_img):
-                sb_patch("p2_articles", {"id": f"eq.{art_id_db}"}, {"image_url": new_img})
-                print(f"  ✓ Updated image with article ID")
+        art2["image_url"] = img2 if "upload.wikimedia.org" in (img2 or "") else None
+        art2["image_attribution"] = "Wikimedia Commons"
+else:
+    # Fallback to Pexels
+    img2_px = fetch_pexels_image("Roland Garros tennis clay court", "French Open tennis")
+    if img2_px:
+        final_url2 = upload_image_to_supabase(img2_px, f"djokovic-french-open-2026-20260529.jpg")
+        art2["image_url"] = final_url2
+        art2["image_caption"] = "The French Open third round begins Friday at Roland Garros with Djokovic facing Fonseca on Philippe Chatrier."
+        art2["image_attribution"] = "Pexels"
     else:
-        print(f"  ✗ Failed to publish article 3")
-    return result
+        art2["image_url"] = None
 
-# ========================================================================
-# MAIN
-# ========================================================================
-if __name__ == '__main__':
-    print(f"Sports Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    print("=" * 60)
-    
-    results = []
-    
-    r1 = write_article_1()
-    results.append(r1)
-    
-    r2 = write_article_2()
-    results.append(r2)
-    
-    r3 = write_article_3()
-    results.append(r3)
-    
-    published = sum(1 for r in results if r)
-    print(f"\n{'=' * 60}")
-    print(f"Done. {published}/{len(results)} articles published.")
+articles.append(art2)
+
+
+# ── ARTICLE 3: Knicks in the NBA Finals ─────────────────────────────────
+print("\n═══ Article 3: Knicks in NBA Finals — NRI NYC Angle ═══")
+
+art3_body = """Karl-Anthony Towns scored nineteen points and grabbed fourteen rebounds. OG Anunoby added seventeen. The New York Knicks demolished the Cleveland Cavaliers 130-93 on Monday night to complete a four-game sweep of the Eastern Conference Finals and reach the NBA Finals for the first time since 1999.
+
+Twenty-seven years. That is how long New York has waited.
+
+## The Sweep
+
+The Knicks did not merely beat the Cavaliers. They embarrassed them. After blowing a twenty-two-point fourth-quarter lead in Game 1 — then winning anyway in overtime — the Knicks won the next three games by an average of twenty-two points. Game 4 in Cleveland was over by halftime, the Cavaliers' home crowd filing out long before the final buzzer.
+
+Jalen Brunson was named Eastern Conference Finals MVP after averaging twenty-three points and eight assists across the four games. His steady, cerebral play — more surgeon than showman — has been the defining characteristic of this Knicks run, which now includes an eleven-game playoff winning streak with an average margin of victory exceeding twenty points.
+
+The Cavaliers' star acquisitions — Donovan Mitchell and James Harden — combined for just thirty-seven points in the clinching game. Harden, who arrived in a midseason trade from the Lakers, told reporters afterward that he remains committed to Cleveland. Mitchell echoed the sentiment. Neither sounded convinced.
+
+## The Western Conference: Game 7 on Saturday
+
+The Knicks now wait for their Finals opponent. On Thursday night, Victor Wembanyama scored twenty-eight points and grabbed ten rebounds as the San Antonio Spurs destroyed the Oklahoma City Thunder 118-91 in Game 6 to force a decisive Game 7 on Saturday night in Oklahoma City.
+
+The series has been spectacular. It opened with a double-overtime Spurs victory in OKC, followed by a Thunder win, then alternating blowouts that have made the series feel like two entirely different competitions depending on which team's building the game is in.
+
+Game 7 tips off Saturday at 8:30 PM ET at Paycom Center. The winner faces the Knicks in the NBA Finals beginning Wednesday, June 3.
+
+## Why This Matters to the Indian Diaspora
+
+The New York metropolitan area is home to the largest Indian-American community in the United States. Jackson Heights, Jersey City, Edison, Hicksville — these neighborhoods contain some of the densest concentrations of NRI families anywhere in the world. And they are about to collide with the biggest sports summer New York has seen in a generation.
+
+The Knicks are in the Finals. The FIFA World Cup arrives in New York on June 11, with MetLife Stadium in East Rutherford hosting multiple group-stage matches and a semifinal. The overlap of these two events in a single month — in a city already overwhelmed by cultural and sporting activity — will be unlike anything the tri-state area's Indian community has experienced.
+
+Already, Knicks playoff tickets have become the hottest commodity in the city. Lower-level seats for a potential Game 1 at Madison Square Garden are listed at over $1,500. For NRIs who have adopted basketball as their American sport — and there are more of them every year, particularly among second-generation Indian Americans — this is a milestone.
+
+The NBA has actively courted the Indian market for over a decade, launching NBA India games and signing Bollywood celebrities for promotional events. But nothing drives engagement like a New York team in the Finals. The Knicks' global brand, combined with the city's diaspora density, makes this a singular moment for Indian basketball fans.
+
+## Wembanyama: The Future Is Already Here
+
+Whether the Knicks face the Thunder or the Spurs, the Finals will feature a generational talent. If San Antonio wins Game 7, Victor Wembanyama — the seven-foot-four French phenom in only his second NBA season — will play on the sport's biggest stage. His Game 6 performance was a statement: twenty-eight points, ten rebounds, and defensive presence that made the Thunder's stars look ordinary.
+
+If Oklahoma City wins, the Knicks face Shai Gilgeous-Alexander, the Thunder's elegant, relentless guard who is widely considered the league's best player this season. SGA averaged thirty-one points per game during the regular season and has been even better in the playoffs.
+
+Either matchup promises appointment television. The NBA Finals begin June 3 and will air on NBC and stream on Peacock.
+
+## The Numbers
+
+The Knicks' playoff run by the numbers:
+
+- **15-2** overall playoff record (sweeps of the Hawks, Pistons, and Cavaliers, plus a 3-2 first-round series)
+- **23.7** average margin of victory during the eleven-game winning streak
+- **130** points scored in the clinching Game 4 — the most in a closeout game in franchise history
+- **1999** the last time the Knicks reached the Finals, when they lost to the Spurs in five games as an eighth seed
+
+*The NBA Finals begin Wednesday, June 3. Game 7 of the Western Conference Finals between the Thunder and Spurs tips off Saturday at 8:30 PM ET on NBC and Peacock.*"""
+
+art3 = {
+    "headline": "The Knicks Are in the NBA Finals for the First Time Since 1999. New York's Biggest Sports Summer in a Generation Has Begun.",
+    "subheadline": "A four-game sweep of Cleveland. An eleven-game winning streak. And for the millions of NRIs in the tri-state area, a summer with the Finals and the World Cup in the same city.",
+    "body": art3_body,
+    "slug": "knicks-nba-finals-2026-sweep-cavaliers-brunson-nyc-nri-sports-summer-world-cup-20260529",
+    "sources": [
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "USA Today", "url": "https://www.usatoday.com"},
+        {"name": "CNN", "url": "https://www.cnn.com"},
+        {"name": "Sporting News", "url": "https://www.sportingnews.com"}
+    ],
+}
+
+# Image: Pexels for NBA / Madison Square Garden — no specific person article
+img3 = fetch_pexels_image("NBA basketball game arena crowd", "Madison Square Garden basketball")
+if img3:
+    final_url3 = upload_image_to_supabase(img3, f"knicks-nba-finals-2026-20260529.jpg")
+    if final_url3 and validate_image(final_url3):
+        art3["image_url"] = final_url3
+        art3["image_caption"] = "The New York Knicks swept the Cavaliers to reach the NBA Finals for the first time in 27 years."
+        art3["image_attribution"] = "Pexels"
+    else:
+        art3["image_url"] = None
+else:
+    art3["image_url"] = None
+
+articles.append(art3)
+
+# ── Publish All ──────────────────────────────────────────────────────────
+print("\n═══ Publishing Articles ═══")
+published = 0
+for art in articles:
+    art_id = publish_article(art)
+    if art_id:
+        published += 1
+    time.sleep(1)
+
+print(f"\n✅ Done. Published {published}/{len(articles)} articles.")
