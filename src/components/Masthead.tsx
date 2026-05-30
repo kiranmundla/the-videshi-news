@@ -10,7 +10,7 @@ import { CATEGORIES } from "@/lib/categories";
 const NAV_CATEGORIES = [
   { slug: "", label: "Home", path: "/" },
   { slug: "news", label: "News", path: "/news" },
-  { slug: "nri-world", label: "Indians Abroad", path: "/nri-world" },
+  { slug: "nri-world", label: "World", path: "/nri-world" },
   { slug: "sports", label: "Sports", path: "/sports" },
   { slug: "entertainment", label: "Entertainment", path: "/entertainment" },
   { slug: "technology", label: "Technology", path: "/technology" },
