@@ -323,19 +323,54 @@ def main():
         now = datetime.now(timezone.utc).isoformat()
         article_id = str(uuid.uuid4())
         
+        # Create topic first
+        topic_id = str(uuid.uuid4())
+        topic_data = {
+            "id": topic_id,
+            "canonical_title": art["headline"][:200],
+            "vertical": "culture",
+            "urgency": "daily",
+            "score_diaspora": 70,
+            "score_significance": 65,
+            "score_recency": 80,
+            "score_source_avail": 75,
+            "score_total": 72,
+            "signal_count": 1,
+            "status": "published",
+            "keywords": [],
+            "category": art["category"],
+            "created_at": now,
+            "updated_at": now,
+        }
+        topic_result = sb_insert("p2_topics", topic_data)
+        if not topic_result:
+            print(f"  ✗ Failed to create topic, skipping article")
+            continue
+
+        # Calculate word count
+        word_count = len(art["body"].split())
+
         insert_data = {
             "id": article_id,
+            "topic_id": topic_id,
             "headline": art["headline"],
             "subheadline": art["subheadline"],
             "slug": art["slug"],
             "category": art["category"],
             "body": art["body"],
+            "diaspora_angle": "Diaspora-relevant coverage of Indian entertainment industry developments.",
+            "vertical": "culture",
+            "tags": [],
+            "urgency": "daily",
             "sources": json.dumps(art["sources"]) if isinstance(art["sources"], list) else art["sources"],
+            "word_count": word_count,
             "status": "published",
+            "is_featured": False,
             "published_at": now,
             "created_at": now,
             "image_url": img_url,
             "image_attribution": img_attribution,
+            "score_total": 0,
         }
 
         result = sb_insert("p2_articles", insert_data)
