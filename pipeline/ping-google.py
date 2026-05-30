@@ -25,7 +25,7 @@ SITEMAP_URL = f"{SITE}/sitemap.xml"
 GOOGLE_HUB = "https://pubsubhubbub.appspot.com/"
 
 # IndexNow endpoint (Bing, Yandex, etc.)
-INDEXNOW_KEY = "videshi2026indexnow"
+INDEXNOW_KEY = "e47f3c0bb278aa31c2aa883b57fac5ba"
 INDEXNOW_ENDPOINTS = [
     "https://api.indexnow.org/indexnow",
     "https://www.bing.com/indexnow",
@@ -58,6 +58,7 @@ def ping_indexnow(urls):
     body = {
         "host": "www.thevideshi.com",
         "key": INDEXNOW_KEY,
+        "keyLocation": f"{SITE}/{INDEXNOW_KEY}.txt",
         "urlList": urls,
     }
     

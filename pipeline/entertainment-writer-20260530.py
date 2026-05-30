@@ -1,37 +1,48 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-05-30 evening batch"""
+"""
+Entertainment writer for The Videshi — 2026-05-30 batch
+Articles:
+1. Jackie Shroff's The Great Grand Superhero - rave reviews
+2. Bollywood Q1 2026 Box Office Report - the sequel era
+3. Shakti Shalini wraps shoot - Maddock Horror Comedy Universe
+"""
 
-import json, os, sys, time, uuid, re, urllib.parse
-import requests
+import os, json, requests, urllib.parse, uuid, re
 from datetime import datetime, timezone
 
-# ── Supabase config ──────────────────────────────────────────────────
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+# Load env
+def load_env(path):
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, _, val = line.partition('=')
+                    val = val.strip().strip('"').strip("'")
+                    os.environ.setdefault(key.strip(), val)
+
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
-
-# ── Pexels config ────────────────────────────────────────────────────
-PEXELS_KEY = None
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-if os.path.exists(pexels_env):
-    for line in open(pexels_env):
-        if line.startswith("PEXELS_API_KEY="):
-            PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
-
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(" ", "_"))
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10,
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
@@ -43,344 +54,344 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels API using curl (urllib gets 403)."""
+    """Fetch image from Pexels API using curl (not urllib to avoid 403)."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key found")
+        print("  ⚠ No Pexels API key")
         return None
     import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
+        cmd = [
+            'curl', '-sS',
+            f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5',
+            '-H', f'Authorization: {PEXELS_KEY}'
+        ]
         try:
-            result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3",
-                 "-H", f"Authorization: {PEXELS_KEY}"],
-                capture_output=True, text=True, timeout=15
-            )
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
+            photos = data.get('photos', [])
             for p in photos:
-                src = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
-                if src:
-                    print(f"  ✓ Pexels image found for '{q}': {src[:80]}...")
-                    return src
+                url = p.get('src', {}).get('large2x') or p.get('src', {}).get('large')
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def validate_image_url(url):
-    """Validate that image URL returns HTTP 200 with image content > 5KB."""
+def validate_image(url):
+    """Validate image URL returns 200 with image content type and >5KB."""
     if not url:
         return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
             return True
-        # Some servers don't support HEAD, try GET with range
-        if r.status_code in (200, 405, 403):
+        # Try GET if HEAD doesn't return Content-Length
+        if r.status_code == 200 and 'image' in ct and cl == 0:
             r2 = requests.get(url, timeout=10, stream=True,
-                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            ct2 = r2.headers.get("Content-Type", "")
-            # Read first chunk to estimate size
-            chunk = next(r2.iter_content(8192), b"")
-            r2.close()
-            if r2.status_code == 200 and "image" in ct2 and len(chunk) > 5000:
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
                 return True
     except Exception as e:
         print(f"  ⚠ Image validation error: {e}")
     return False
 
-
-def sb_insert(table, row):
-    """Insert a row into Supabase and return it."""
+def insert_article(article):
+    """Insert article into Supabase."""
     r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=row,
+        json=article
     )
     if r.status_code in (200, 201):
         data = r.json()
-        return data[0] if isinstance(data, list) else data
+        if isinstance(data, list) and data:
+            return data[0].get('id')
+        return None
     else:
-        print(f"  ✗ Insert {table} failed: {r.status_code} {r.text[:300]}")
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
         return None
 
-
-def create_topic(title, category):
-    """Create a topic in p2_topics and return its ID."""
-    topic_id = str(uuid.uuid4())
-    row = {
-        "id": topic_id,
-        "canonical_title": title[:200],
-        "vertical": category,
-        "urgency": "daily",
-        "score_diaspora": 70,
-        "score_significance": 65,
-        "score_recency": 80,
-        "score_source_avail": 60,
-        "score_total": 70,
-        "signal_count": 1,
-        "status": "published",
-        "keywords": title.split()[:5],
-        "category": category,
-    }
-    result = sb_insert("p2_topics", row)
-    if result:
-        return topic_id
-    return None
-
-
-def sb_patch(table, match, patch):
-    """Update rows in Supabase matching filter."""
-    params = "&".join(f"{k}={v}" for k, v in match.items())
-    r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
-        headers=HEADERS,
-        json=patch,
-    )
-    if r.status_code in (200, 204):
-        print(f"  ✓ Patched {table}")
-    else:
-        print(f"  ✗ Patch {table} failed: {r.status_code} {r.text[:300]}")
-
-
-# ── Articles ─────────────────────────────────────────────────────────
-articles = [
-    {
-        "headline": "Vashu Bhagnani Just Filed a ₹400 Crore Lawsuit Over Two Songs. David Dhawan's Final Film Could Be Collateral Damage.",
-        "subheadline": "The fight over 'Chunnari Chunnari' and 'Ishq Sona Hai' from Biwi No. 1 has escalated into one of Bollywood's biggest copyright battles — and it could delay the June 5 release of Hai Jawani Toh Ishq Hona Hai.",
-        "slug": "vashu-bhagnani-400-crore-lawsuit-chunnari-chunnari-david-dhawan-hai-jawani-nri-20260530",
-        "category": "entertainment",
-        "person": "Vashu Bhagnani",
-        "pexels_query": "Bollywood film courtroom legal",
-        "pexels_fallback": "Indian court gavel law",
-        "sources": json.dumps([
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-            {"name": "ANI", "url": "https://aninews.in"},
-            {"name": "Zoom TV", "url": "https://www.zoomtventertainment.com"}
-        ]),
-        "body": """Bollywood's biggest copyright war just got a price tag.
-
-Vashu Bhagnani's production company, Puja Entertainment, has filed a **₹400 crore lawsuit** in the Bombay High Court against Tips Industries Limited, its founders Ramesh and Kumar Taurani, and filmmaker David Dhawan. The suit alleges unauthorized use of two iconic songs — *Chunnari Chunnari* and *Ishq Sona Hai* — from Bhagnani's 1999 hit *Biwi No. 1* in the upcoming Varun Dhawan-starrer *Hai Jawani Toh Ishq Hona Hai*, which is set to release on June 5.
-
-## What's Actually Being Fought Over
-
-The dispute centers on the difference between audio rights and visual rights — a distinction that didn't matter much when Bollywood deals were handshake affairs in the 1990s, but now carries hundreds of crores in commercial value.
-
-According to Bhagnani's legal counsel, V.K. Dubey Associates, the original agreement with Tips covered only audio rights. In 2018, Tips reportedly emailed Bhagnani requesting visual rights — the kind you'd need to, say, shoot a new movie sequence around an old song. Bhagnani responded, but the two sides never reached an agreement. Puja Entertainment has since sent a formal notice cancelling the audio rights previously granted to Tips, which the lawsuit argues means the songs cannot legally appear in the new film.
-
-"If they are the lawful owners of the music rights, they must show their documents," Bhagnani's lawyer told ANI. "This is why we have filed a claim against Tips. Justice will prevail."
-
-The suit seeks an immediate injunction to halt the release, distribution, streaming, and all commercial exploitation of *Hai Jawani Toh Ishq Hona Hai* — including any promotional material featuring the disputed songs.
-
-## Why This Matters Beyond the Courtroom
-
-This isn't just about two songs or one film. It's about how Bollywood's relationship with its own musical catalogue is being rewritten in real time.
-
-For decades, song rights in Indian cinema existed in a grey zone. Producers sold audio rights to labels, which then controlled distribution on cassettes, CDs, and eventually streaming platforms. But those deals were drafted in an era when nobody could imagine a song being used to sell a *different* film two decades later. Now, with remixes and nostalgia-driven marketing becoming Bollywood's go-to playbook, the question of who actually owns what — and for what purpose — has become a multi-crore legal minefield.
-
-The timing makes this even more significant. *Hai Jawani Toh Ishq Hona Hai* is David Dhawan's self-declared final film. The veteran comedy director, who gave Hindi cinema *Coolie No. 1*, *Hero No. 1*, and the original *Biwi No. 1*, is closing his career with a film starring his son Varun alongside Mrunal Thakur and Pooja Hegde. A court-ordered delay or injunction would cast a shadow over what was meant to be a celebratory farewell.
-
-## The Diaspora Angle
-
-For NRIs who grew up on *Chunnari Chunnari* — hearing it at every garba, every sangeet, every Indo-Canadian wedding reception — this lawsuit is a reminder of how the music that formed the soundtrack of diaspora childhoods is now a contested commodity. The songs may live rent-free in your head, but in a Bombay High Court filing, someone is putting a very precise number on their value.
-
-Tips Industries has previously maintained that it holds lawful ownership of the songs. The court has accepted the filing and is expected to hear the case shortly. Whether it moves fast enough to impact the June 5 release remains the ₹400 crore question.
-
-*The film is slated for a global theatrical release. A hearing date has not been publicly confirmed.*"""
-    },
-    {
-        "headline": "Kirti Kulhari Questioned Paying ₹10,000 to Her Maid. The Internet Had Thoughts.",
-        "subheadline": "A viral clip of the actress questioning her domestic worker's monthly salary triggered a nationwide debate on fair wages, class privilege, and what household labor is actually worth in urban India.",
-        "slug": "kirti-kulhari-domestic-worker-salary-debate-mini-mathur-class-divide-nri-20260530",
-        "category": "entertainment",
-        "person": "Kirti Kulhari",
-        "pexels_query": "Indian domestic worker household cleaning",
-        "pexels_fallback": "cleaning home domestic help",
-        "sources": json.dumps([
-            {"name": "India Forums", "url": "https://www.indiaforums.com"},
-            {"name": "Hauterrfly", "url": "https://hauterrfly.com"},
-            {"name": "Jobaaj News", "url": "https://news.jobaaj.com"}
-        ]),
-        "body": """Kirti Kulhari didn't set out to start a national conversation about domestic labor. But that's exactly what happened.
-
-In a recent interview with Bollywood Bubble, the *Pink* and *Four More Shots Please!* actress talked about moving to a new apartment on Yaari Road in Mumbai and being surprised by the salary quoted by a cook and maid. "For two hours of work — which includes sweeping, mopping, doing the dishes — I wanted that whatever could be done within those two hours, like dusting, laundry, all of it, would be taken care of," she explained. "She was charging me ₹10,000."
-
-Kulhari went further: "I was like, you're coming in for two hours and only doing as much work as you feel like… and then you're charging me ₹10,000 for what? At that point, we were thinking, are they looking at us and assuming we must have money, so they might as well ask for more?"
-
-The clip went viral. And then the rebuttals arrived.
-
-## Mini Mathur Fires Back
-
-Television host and actress Mini Mathur didn't mince words. In an Instagram Story response that was widely shared, Mathur argued that the domestic worker's two hours are what *enable* the employer's own productive hours — and that ₹10,000 is "below minimum wage anywhere in the world."
-
-The math, Mathur and other commenters pointed out, isn't hard: a domestic worker earning ₹10,000 from one household while working two-hour shifts can serve maybe five homes. That's ₹50,000 a month for 10 hours of physically demanding daily labor — in a city where even a small room in a shared chawl can cost ₹15,000-20,000.
-
-"Even if she works in 5 houses, she will be able to earn ₹50,000 per month by working 10 hours," one Instagram user wrote. "In a city like Mumbai, one needs at least ₹50,000 to live a respectable life. I don't think this is a wrong demand."
-
-## The Bigger Picture
-
-India has an estimated **50 million domestic workers**, the vast majority of whom are women from marginalized communities. They have no nationally binding minimum wage, no standardized working hours, and limited access to social security. The Domestic Workers (Regulation of Work and Social Security) Bill has been discussed since 2008 but remains unlegislated.
-
-In this context, the question isn't really whether ₹10,000 for two hours of daily work is a lot. It's about who gets to define "a lot."
-
-Kulhari's comment revealed a blind spot that isn't uniquely hers — it's embedded in the way urban, upper-middle-class India has historically valued household labor. The work is essential enough that most dual-income households can't function without it, yet it's consistently undervalued in compensation and social status.
-
-## Why the Diaspora Is Watching
-
-For NRIs, this debate hits differently. Many grew up in homes where domestic help was a given — the *bai* or *didi* who was part of the household fabric. Moving abroad, they discovered that the same services — cleaning, cooking, childcare — cost $25-$50 per hour in North America, often more.
-
-The dissonance is real: paying ₹10,000 per month for daily household work that would cost $3,000-$4,000 monthly in the US or Canada feels, from a diaspora vantage point, not expensive but extraordinarily cheap.
-
-This isn't about shaming Kulhari specifically. It's about a broader reckoning with the class assumptions baked into everyday life in India — assumptions that become visible precisely when someone says the quiet part out loud.
-
-The debate, predictably, has already moved on to the next viral moment. But the 50 million workers at the center of it are still waiting for a law that recognizes their labor as work worthy of legal protection.
-
-*Kulhari has not publicly responded to the backlash at the time of writing.*"""
-    },
-    {
-        "headline": "Pooja Bhatt Called Bobby Deol 'A Magical Human Being.' Then She Said Why She'll Never Tell You What Went Wrong.",
-        "subheadline": "In a rare and graceful interview, Pooja Bhatt revisited her 1990s romance with Bobby Deol — praising his Animal comeback while drawing a firm line on privacy that Bollywood could learn from.",
-        "slug": "pooja-bhatt-bobby-deol-relationship-90s-breakup-dignity-animal-bollywood-nri-20260530",
-        "category": "entertainment",
-        "person": "Pooja Bhatt",
-        "person_alt": "Bobby Deol",
-        "pexels_query": None,
-        "pexels_fallback": None,
-        "sources": json.dumps([
-            {"name": "MensXP", "url": "https://www.mensxp.com"},
-            {"name": "BollywoodShaadis", "url": "https://www.bollywoodshaadis.com"},
-            {"name": "Zoom TV", "url": "https://www.zoomtventertainment.com"}
-        ]),
-        "body": """In an industry that treats ex-relationships like content, Pooja Bhatt just delivered a masterclass in grace.
-
-In a candid conversation with journalist Vickey Lalwani, the actress-producer opened up about her relationship with Bobby Deol — a romance that unfolded in the 1990s, when both were young, famous, and very much in the public eye. What she said was warm, generous, and unflinchingly private all at once.
-
-"Of course," she said, when asked if she was deeply in love with him. "What's not to fall in love with? It was a magical time of my life, and he was a magical human being to be with."
-
-Then came the line that set the tone for the entire exchange: "But I don't think it is in good taste to sit down today and talk about why my relationship with him ended."
-
-## What She Said — and What She Didn't
-
-Bhatt acknowledged the relationship openly, calling their time together "magical" and Bobby "a magical human being." But she refused to narrate the ending. "It worked till it didn't work. That's it."
-
-She offered no blame, no veiled accusations, no coded references. Instead, she centered something Bollywood gossip culture rarely allows for: the dignity of the other person's present life.
-
-"He is a married man today, father of grown-up children, and is enjoying a wonderful new surge in his career," she said. "I loved him in *Animal*. For me, he made the film. I'm so happy for him."
-
-That last line carried weight. Bobby Deol's performance as Abrar in Sandeep Reddy Vanga's *Animal* (2023) was widely considered his career-defining comeback — a menacing, electrifying turn that reminded audiences why he was always more than just a Deol. To hear his ex-partner praise that work publicly, without agenda or ambiguity, was quietly remarkable.
-
-## The Aashiqui Clarification
-
-The interview also untangled an old rumor. When Bhatt mentioned that a boyfriend early in her career was unsupportive of her film ambitions — the reason she turned down the lead role in her father Mahesh Bhatt's *Aashiqui* — speculation naturally pointed to Deol. She corrected it directly: that partner was someone else entirely. She met Bobby later.
-
-This matters because it separates the professional frustration from the romantic memory. The relationship with Bobby, in Bhatt's telling, was untainted by career resentment. It was simply a chapter that ended when two people grew in different directions.
-
-## Why This Resonates
-
-Bollywood ex-couples rarely get to exist in public with this much peace. The standard script is either dramatic denial, pointed silence, or weaponized memoir. Bhatt chose a fourth option: warmth without exposition. Acknowledgment without detail.
-
-"Dignity and grace for the present, for not only your own life but for the people who have been in your life, and the people who they have in their life, is a very important thing to maintain," she said.
-
-It's a sentence that could function as a personal philosophy — and one that stands out sharply against the current Bollywood landscape, where PR-managed narratives and social media subtweets have replaced actual communication.
-
-## The Diaspora Connection
-
-For Indians abroad, the Deol-Bhatt era represents a very specific Bollywood. It was the decade of *Gupt*, *Soldier*, *Barsaat*, and the Deol brothers' rise — the same era many NRI families were taping Zee TV on VHS and sending cassettes to relatives. Pooja Bhatt, as Mahesh Bhatt's daughter and a star in her own right, was inescapable in that ecosystem.
-
-To hear her speak about that time with tenderness rather than regret feels like the kind of emotional maturity that the nostalgia machine rarely allows for. The 1990s weren't perfect. The relationships weren't fairy tales. But they were real — and Bhatt's refusal to perform the narrative for an audience is, in its own quiet way, the most interesting Bollywood interview of the week.
-
-*Bobby Deol has not publicly commented on the interview.*"""
-    },
-]
-
-
-# ── Publish loop ─────────────────────────────────────────────────────
-def main():
-    published = 0
-    for art in articles:
-        print(f"\n{'='*60}")
-        print(f"Publishing: {art['headline'][:70]}...")
-
-        # Image sourcing
-        img_url = None
-        img_attribution = None
-
-        # Try Wikipedia for person articles
-        person = art.get("person")
-        if person:
-            img_url = fetch_wikipedia_person_image(person)
-            if img_url:
-                img_attribution = "Wikimedia Commons"
-
-        # Try alternate person name
-        if not img_url and art.get("person_alt"):
-            img_url = fetch_wikipedia_person_image(art["person_alt"])
-            if img_url:
-                img_attribution = "Wikimedia Commons"
-
-        # Fall back to Pexels
-        if not img_url and art.get("pexels_query"):
-            img_url = fetch_pexels_image(art["pexels_query"], art.get("pexels_fallback"))
-            if img_url:
-                img_attribution = "The Videshi"
-
-        # Validate image
-        if img_url and not validate_image_url(img_url):
-            print(f"  ⚠ Image validation failed, skipping image")
-            img_url = None
-            img_attribution = None
-
-        if img_url:
-            print(f"  ✓ Using image: {img_url[:80]}...")
-        else:
-            print(f"  ⚠ No valid image found — publishing without image")
-
-        # Create topic first
-        topic_id = create_topic(art["headline"], art["category"])
-        if not topic_id:
-            print(f"  ✗ Failed to create topic, skipping article")
-            continue
-
-        # Build article row
-        article_id = str(uuid.uuid4())
-        word_count = len(art["body"].split())
-        row = {
-            "id": article_id,
-            "topic_id": topic_id,
-            "headline": art["headline"],
-            "subheadline": art["subheadline"],
-            "slug": art["slug"],
-            "category": art["category"],
-            "body": art["body"],
-            "sources": art["sources"],
-            "image_url": img_url,
-            "image_attribution": img_attribution,
-            "vertical": art["category"],
-            "word_count": word_count,
-            "status": "published",
-            "published_at": datetime.now(timezone.utc).isoformat(),
-            "created_at": datetime.now(timezone.utc).isoformat(),
+def check_duplicate(slug_fragment):
+    """Check if an article with similar slug exists in last 3 days."""
+    r = requests.get(
+        f"{SUPABASE_URL}/rest/v1/p2_articles?select=slug&status=eq.published&slug=like.*{slug_fragment}*&published_at=gte.{(datetime.now(timezone.utc)).strftime('%Y-%m-%dT00:00:00Z')}&limit=1",
+        headers={
+            'apikey': SUPABASE_KEY,
+            'Authorization': f'Bearer {SUPABASE_KEY}'
         }
+    )
+    if r.status_code == 200:
+        return len(r.json()) > 0
+    return False
 
-        result = sb_insert("p2_articles", row)
-        if result:
-            print(f"  ✓ Published: {art['slug']}")
-            published += 1
-        else:
-            print(f"  ✗ Failed to publish: {art['slug']}")
+# ============================================================
+# ARTICLE 1: Jackie Shroff's The Great Grand Superhero
+# ============================================================
+def write_article_1():
+    print("\n=== Article 1: Jackie Shroff's The Great Grand Superhero ===")
 
-        time.sleep(1)
+    if check_duplicate('great-grand-superhero'):
+        print("  ⚠ Duplicate detected, skipping")
+        return
 
-    print(f"\n{'='*60}")
-    print(f"Done: {published}/{len(articles)} articles published")
+    slug = "jackie-shroff-great-grand-superhero-india-first-grandfather-superhero-review-nri-20260530"
+    headline = "Jackie Shroff Just Made a Superhero Film for Kids and Grandparents. Bollywood Critics Say It's the Year's Biggest Surprise."
+    subheadline = "The Great Grand Superhero is a rare children's film in a Bollywood calendar dominated by sequels and action blockbusters — and early reviews call it the most heartfelt Hindi film of 2026."
 
+    body = """It takes a particular kind of confidence to release a children's film in a Bollywood landscape that has spent 2026 chasing sequels, spectacles, and star-vehicle franchises. Jackie Shroff, at 70, apparently has exactly that kind of confidence — and *The Great Grand Superhero*, which opened on May 29 to some of the warmest reviews of the year, might just validate the gamble.
 
-if __name__ == "__main__":
-    main()
+Directed by three-time National Award winner Manish Saini and produced by Zee Studios and Amdavad Films, the film casts Shroff as a creaky, lizard-fearing pensioner who grows plants and shuffles through retirement. His grandson Deepu — played by a pitch-perfect Mihir Godbole — tells his new classmates at school that grandpa is secretly a superhero. There's a catch: only people under 18 can know, or the old man loses his powers.
+
+## A Genre Bollywood Forgot
+
+What makes the film remarkable isn't the premise — it's the fact that it exists at all. Bollywood has essentially abandoned the children's genre. Hundreds of films release every year, but genuinely good family films aimed at young audiences have become almost extinct. *The Great Grand Superhero* fills a vacuum that most studios don't even acknowledge.
+
+*The Hollywood Reporter India* called the first half "funny, poignant, satirical and very inventive" and compared the child performances to *Stanley Ka Dabba*, which was made 15 years ago — itself an indicator of how long this gap has persisted. The two films even share an editor, Deepa Bhatia, and a narrative spirit built around a child using imagination as a survival tool.
+
+## Reviews Are Raving
+
+Audience reception has been overwhelmingly positive. Social media reactions have ranged from "the most entertaining superhero mission" to "a comfort movie" to "Jackie Dada is the Baap of all superheroes." Critics gave it between 3.5 and 4 stars, praising its balance of fantasy, emotion, and environmental messaging.
+
+One reviewer noted that the film "brings back a long-lost genre of earnest, sweet films catered to children" while acknowledging that the CGI and fight sequences don't land. But nobody seems to mind — the film's power comes from its storytelling, not its VFX budget.
+
+Jackie Shroff's performance has drawn particular praise. The man who defined 1980s machismo with *Hero* is now being celebrated for playing a fragile, endearing grandparent. It's a full-circle moment that diaspora audiences — many of whom grew up watching him as the definitive Bollywood action hero — will appreciate deeply.
+
+## Why NRIs Should Pay Attention
+
+For the Indian diaspora, *The Great Grand Superhero* hits a specific nerve. Many NRI families navigate the gap between grandparents in India and grandchildren abroad, between stories told over video calls and the visceral experience of actually spending time together. The film's central dynamic — a grandfather's worth measured not in power but in presence — is the kind of emotional territory that transcends geography.
+
+It's also a reminder of the kind of Hindi cinema that shaped so many childhoods in the diaspora: unpretentious, warm, and built on character rather than spectacle. Before the franchise era, Bollywood made films like *Hum Hain Rahi Pyar Ke*, *Kuch Kuch Hota Hai*, and yes, even the endearingly chaotic David Dhawan comedies. *The Great Grand Superhero* doesn't try to be any of those films. But it comes from the same impulse — the belief that cinema can be gentle and still matter.
+
+## The Box Office Question
+
+Whether the film can translate critical goodwill into ticket sales remains the open question. Children's films in India rarely get the marketing muscle of tentpole releases, and *The Great Grand Superhero* is competing for screens against Drishyam 3, Karuppu, and the week's other releases. But its word-of-mouth trajectory suggests it may have legs — the kind of film that builds through weekend family audiences rather than opening-day frenzy.
+
+In a year where Bollywood's box office has been defined by the colossal shadow of *Dhurandhar 2* and the sequel industrial complex, Jackie Shroff's quiet little superhero film feels almost radical. Sometimes the bravest thing a 70-year-old actor can do isn't punch a villain. It's sit in a garden, be afraid of lizards, and let a child believe he can fly.
+
+*The Great Grand Superhero is now playing in cinemas across India.*"""
+
+    # Image sourcing - Jackie Shroff from Wikipedia
+    img_url = fetch_wikipedia_person_image("Jackie Shroff")
+    if not img_url or not validate_image(img_url):
+        img_url = fetch_pexels_image("grandfather superhero costume", "Indian elderly man smiling")
+    if img_url and not validate_image(img_url):
+        img_url = None
+
+    attribution = "Wikimedia Commons" if img_url and "wikimedia" in img_url else "The Videshi"
+
+    article = {
+        'headline': headline,
+        'subheadline': subheadline,
+        'body': body,
+        'slug': slug,
+        'category': 'entertainment',
+        'status': 'published',
+        'published_at': datetime.now(timezone.utc).isoformat(),
+        'source': 'The Videshi Entertainment Desk',
+        'sources': json.dumps([
+            'The Hollywood Reporter India',
+            'Koimoi',
+            'Bollywood Bubble',
+            'MensXP'
+        ]),
+        'image_url': img_url,
+        'image_attribution': attribution
+    }
+
+    art_id = insert_article(article)
+    if art_id:
+        print(f"  ✓ Published: {headline} (id: {art_id})")
+    return art_id
+
+# ============================================================
+# ARTICLE 2: Bollywood Q1 2026 Box Office - The Sequel Era
+# ============================================================
+def write_article_2():
+    print("\n=== Article 2: Bollywood Q1 2026 Box Office Report ===")
+
+    if check_duplicate('bollywood-q1-2026-box-office'):
+        print("  ⚠ Duplicate detected, skipping")
+        return
+
+    slug = "bollywood-q1-2026-box-office-sequel-era-dhurandhar-analysis-nri-20260530"
+    headline = "Bollywood's First Quarter Was a ₹2,500 Crore Sequel Machine. Here's What That Means for Everyone Else."
+    subheadline = "Dhurandhar 2 alone crossed ₹1,400 crore worldwide. The rest of Q1's top five were all sequels or franchise entries. Has Bollywood become a sequel-or-nothing industry?"
+
+    body = """The numbers from Bollywood's first quarter of 2026 are in, and they tell a story that is simultaneously thrilling and deeply concerning. The Hindi film industry has just had one of its most commercially successful three-month stretches in history. It has also, almost entirely, been driven by films that audiences had already seen some version of before.
+
+*Dhurandhar: The Revenge*, directed by Aditya Dhar and starring Ranveer Singh, didn't just top the chart — it created an entirely new one. With over ₹1,400 crore worldwide, the film sits in a stratosphere that only a handful of Indian films have ever reached. Behind it, *Border 2* rode patriotic sentiment and brand nostalgia to ₹450 crore. Then came *Mardaani 3* and *The Kerala Story 2*, both sequels trading on pre-existing audience investments. The only standalone film in the top five, *O'Romeo*, barely crossed ₹100 crore.
+
+## The Sequel Security Blanket
+
+What's striking isn't that sequels performed well — sequels have always performed well, in Bollywood and everywhere else. What's striking is the scale of the gap. When the top film earns 14 times what the best original film earns, the industry isn't merely favouring sequels. It's structurally dependent on them.
+
+This dependency has cascading effects. Studios allocate their biggest budgets, their most coveted release windows, and their heaviest marketing spends to franchise properties. Original films are left to fight for whatever screens and attention remain. The result is a self-reinforcing cycle: sequels succeed because they receive resources, and they receive resources because they succeed.
+
+For Indian audiences at home, this might feel like a temporary phase — a market correction that will sort itself out. For the diaspora, the calculus is different. NRI audiences have fewer opportunities to watch Hindi films theatrically. When they do go to the cinema, they're choosing between three or four titles at most. If all of those are sequels to films they may or may not have seen, the barrier to entry goes up.
+
+## The Dhurandhar Effect
+
+The Dhurandhar franchise deserves separate examination. Its ₹1,400 crore haul didn't come from nowhere — it came from the intersection of spectacle, nationalism, and event-cinema marketing that made theatrical viewing feel obligatory. You weren't just watching a movie. You were participating in a cultural moment.
+
+That strategy works brilliantly for one film. But it creates a problem for every film that follows it. If the benchmark for "success" has been reset to ₹1,400 crore, then a solid ₹100 crore performance suddenly looks like a disappointment. The goalposts don't just move — they disappear over the horizon.
+
+The propaganda controversy that dogged *Dhurandhar 2* — accusations of hyper-nationalism, the Sikh sentiment row, Dia Mirza's critique about "celebrating jingoism" — didn't dent its commercial performance in any measurable way. If anything, the controversy amplified its visibility. For the diaspora, which is often more politically divided about these films than domestic audiences, the discourse has become as much a part of the experience as the film itself.
+
+## Where the Romance Went
+
+Meanwhile, the romantic genre — once Bollywood's bread and butter — has been reduced to a footnote. *Chand Mera Dil*, starring Lakshya and Ananya Panday, is currently the second-highest opening romantic film of 2026. Its opening day was ₹3.31 crore. For context, a decade ago, a Bollywood romance that opened to ₹3 crore would have been considered a disaster.
+
+The genre hasn't disappeared because audiences stopped believing in love stories. It's disappeared because studios stopped believing in them. The budgets have shrunk, the marketing has withered, and the release windows have been conceded to bigger, louder films. Romantic films now exist in the cracks between franchises — and their numbers reflect it.
+
+## What's Left of the Original
+
+Amid this franchise dominance, there are quiet counter-signals. Jackie Shroff's *The Great Grand Superhero*, a children's film released last week, has earned rave reviews despite zero franchise backing. Manoj Bajpayee's upcoming *Governor* — a drama about the 1991 economic crisis — represents the kind of original, issue-driven storytelling that once defined Bollywood's middle class.
+
+These films may never compete with franchise tentpoles at the box office. But their existence matters. They're the proof that Hindi cinema can still produce stories that aren't prequels, sequels, or reboots — even if the market doesn't always reward them.
+
+For the diaspora, which often discovers Bollywood films through streaming rather than theatrical release, the sequel dominance of Q1 2026 may matter less than it seems. The best Indian films of any given year frequently aren't the biggest. They're the ones that show up on Netflix or Prime three months later, recommended by a friend or a family WhatsApp group, watched late at night when the spectacle fades and the storytelling is all that's left.
+
+The question for the rest of 2026 is whether Bollywood can produce enough of those films to sustain the audience that still wants them — or whether the sequel machine has become the only machine left.
+
+*Source: SacNilk Box Office Data, Bollywood Hungama*"""
+
+    # Image sourcing - use Pexels for movie theater/cinema
+    img_url = fetch_pexels_image("Indian cinema theater audience", "movie theater crowd Bollywood")
+    if img_url and not validate_image(img_url):
+        img_url = None
+
+    article = {
+        'headline': headline,
+        'subheadline': subheadline,
+        'body': body,
+        'slug': slug,
+        'category': 'entertainment',
+        'status': 'published',
+        'published_at': datetime.now(timezone.utc).isoformat(),
+        'sources': json.dumps([
+            'SacNilk',
+            'Bollywood Hungama',
+            'Koimoi',
+            'B4U Entertainment'
+        ]),
+        'image_url': img_url,
+        'image_attribution': 'The Videshi'
+    }
+
+    art_id = insert_article(article)
+    if art_id:
+        print(f"  ✓ Published: {headline} (id: {art_id})")
+    return art_id
+
+# ============================================================
+# ARTICLE 3: Shakti Shalini Wraps - Maddock Horror Universe
+# ============================================================
+def write_article_3():
+    print("\n=== Article 3: Shakti Shalini Wraps Shoot ===")
+
+    if check_duplicate('shakti-shalini'):
+        print("  ⚠ Duplicate detected, skipping")
+        return
+
+    slug = "shakti-shalini-maddock-horror-universe-aneet-padda-wraps-christmas-2026-nri-20260530"
+    headline = "Maddock's Horror Universe Just Wrapped Its Sixth Film. Shakti Shalini Is Coming for Christmas."
+    subheadline = "Aneet Padda plays a double role — one divine protector, one vengeful spirit — in the franchise's most folklore-heavy entry yet. Nana Patekar and Seema Biswas round out the cast."
+
+    body = """The Maddock Horror Comedy Universe is now six films deep, and its latest entry — *Shakti Shalini* — has officially wrapped production. Director Aditya Sarpotdar called the final shot on May 27 at Chitrarth Studio in Powai, Mumbai, closing out a shoot that spanned months across Rajasthan and Madhya Pradesh. The film is locked for a Christmas Day 2026 release.
+
+For the Indian diaspora, the Maddock horror franchise occupies a specific cultural niche. These aren't the jump-scare horror films that Hollywood mass-produces. They're supernatural comedies rooted in Indian folklore — the kind of stories that your grandmother might have told you, except with better production values and a sense of humour about themselves. *Stree*, *Bhediya*, *Munjya*, *Stree 2*, and *Thamma* have collectively built an audience that knows what it's getting: village mythology, vengeful spirits, and protagonists who are simultaneously terrified and hilarious.
+
+## The Double Role
+
+*Shakti Shalini* adds a darker dimension. Aneet Padda, who broke out with last year's ₹570 crore hit *Saiyaara*, plays two entirely contrasting characters. Shakti is an ordinary woman who becomes a protector. Shalini is a spirit driven by betrayal and a brutal death, returning to exact revenge on men. The film's dramatic core is the confrontation between these two personas — one representing divine goodness, the other embodying vengeful rage.
+
+It's a structurally ambitious move for a franchise that has typically played its supernatural elements for laughs. Early reports suggest that *Shakti Shalini* will lean harder into genuine horror than its predecessors, while still maintaining the comedic DNA that defines the universe. Sarpotdar, who directed both *Munjya* and *Thamma*, has earned the trust to push that boundary.
+
+## A Cast That Means Business
+
+The supporting cast signals that Maddock is treating this as an event film, not a mid-budget genre entry. Nana Patekar and Seema Biswas — two of Indian cinema's most decorated actors — joined the production in May for key sequences. Viineet Kumar Singh, fresh off *Chhaava*, plays the antagonist. Vishal Jethwa rounds out the ensemble.
+
+For NRI audiences who grew up watching Patekar in *Krantiveer* and Biswas in *Bandit Queen*, their presence in a horror comedy franchise is both surprising and deeply reassuring. These are actors who don't take roles lightly. Their involvement suggests that *Shakti Shalini*'s script offered something beyond the genre's usual formula.
+
+## The Folklore Connection
+
+The film draws from Bengali folklore and supernatural traditions, a departure from the North Indian mythology that anchored earlier entries. The climax, which was shot across massive sets depicting a Rajasthani village, reportedly features a celebration of evil's defeat — with the village's women at the centre of the triumph.
+
+That detail matters. The Maddock horror universe has always had women at its narrative centre — from *Stree*'s vengeful spirit to *Thamma*'s grandmother figure. *Shakti Shalini* appears to continue that tradition, but with a more explicitly feminist framing. The protector is a woman. The avenger is a woman. The celebration of victory belongs to the village's women. In a franchise built on folklore, the politics of who gets to be powerful — and who gets to be monstrous — are never accidental.
+
+## The Franchise Machine
+
+The Maddock Horror Comedy Universe has become Bollywood's most reliable franchise engine outside of the Rohit Shetty cop universe. Its films consistently open well, play for weeks, and generate the kind of fan culture — theories, connections, post-credit teases — that Hollywood's MCU pioneered. *Shakti Shalini* was first teased through a post-credit scene in *Thamma*, a strategy that has become the franchise's signature marketing tool.
+
+For Aneet Padda, the teaser described her character as "the creator, the destroyer, and the mother of all" — a tagline that positions her as the franchise's most powerful figure yet. The role was reportedly first written for Kiara Advani before going to Padda, making this not just a career breakthrough but a statement: the franchise is bigger than any single star.
+
+The shoot covered an extraordinary geographic range — Chambal, Datia, Antri, Panihar, Gwalior, and Morena in Madhya Pradesh, plus Dholpur and Barkhandi in Rajasthan. That's the kind of location diversity that gives Indian horror films their texture. The landscapes aren't just backdrops. They're characters — ancient, sun-bleached, carrying their own mythologies.
+
+*Shakti Shalini* arrives in theatres on December 24, 2026. For NRI families looking for their annual Christmas-week Bollywood outing, the timing is no accident.
+
+*Sources: Bollywood Hungama, Mid-Day, SacNilk, Box Office Worldwide*"""
+
+    # Image sourcing - Aneet Padda from Wikipedia
+    img_url = fetch_wikipedia_person_image("Aneet Padda")
+    if not img_url or not validate_image(img_url):
+        # Try Nana Patekar as backup since he's well-known
+        img_url = fetch_wikipedia_person_image("Nana Patekar")
+    if not img_url or not validate_image(img_url):
+        img_url = fetch_pexels_image("Indian horror film dark forest", "supernatural Indian folklore")
+    if img_url and not validate_image(img_url):
+        img_url = None
+
+    attribution = "Wikimedia Commons" if img_url and "wikimedia" in img_url else "The Videshi"
+
+    article = {
+        'headline': headline,
+        'subheadline': subheadline,
+        'body': body,
+        'slug': slug,
+        'category': 'entertainment',
+        'status': 'published',
+        'published_at': datetime.now(timezone.utc).isoformat(),
+        'sources': json.dumps([
+            'Bollywood Hungama',
+            'Mid-Day',
+            'SacNilk',
+            'Box Office Worldwide'
+        ]),
+        'image_url': img_url,
+        'image_attribution': attribution
+    }
+
+    art_id = insert_article(article)
+    if art_id:
+        print(f"  ✓ Published: {headline} (id: {art_id})")
+    return art_id
+
+# ============================================================
+# Main
+# ============================================================
+if __name__ == '__main__':
+    print(f"Entertainment writer starting at {datetime.now(timezone.utc).isoformat()}")
+    print("=" * 60)
+
+    results = []
+    for fn in [write_article_1, write_article_2, write_article_3]:
+        try:
+            r = fn()
+            results.append(r)
+        except Exception as e:
+            print(f"  ✗ Error: {e}")
+            import traceback
+            traceback.print_exc()
+            results.append(None)
+
+    successes = sum(1 for r in results if r)
+    print(f"\n{'=' * 60}")
+    print(f"Done. {successes}/{len(results)} articles published.")
