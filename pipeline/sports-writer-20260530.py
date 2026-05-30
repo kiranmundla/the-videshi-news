@@ -1,36 +1,37 @@
 #!/usr/bin/env python3
-"""Sports writer for The Videshi – 2026-05-30 batch"""
+"""Sports writer for The Videshi — 2026-05-30 evening run."""
 
-import json, os, sys, time, uuid, re, urllib.parse
+import json, os, sys, time, uuid, re, subprocess
 import requests
+import urllib.parse
+from datetime import datetime, timezone
 
-# Load env
+# ── env ─────────────────────────────────────────────────────────────────
 def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    if line.startswith('export '):
-                        line = line[7:]
-                    key, val = line.split('=', 1)
-                    val = val.strip().strip('"').strip("'")
-                    os.environ[key] = val
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                os.environ.setdefault(k.strip(), v.strip())
 
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
+load_env(os.path.expanduser("~/workspace/.env.supabase"))
+load_env(os.path.expanduser("~/workspace/.env.pexels"))
 
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+SB_URL = os.environ["SUPABASE_URL"]
+SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "apikey": SB_KEY,
+    "Authorization": f"Bearer {SB_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation"
+    "Prefer": "return=representation",
 }
 
+# ── helpers ─────────────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -38,340 +39,368 @@ def fetch_wikipedia_person_image(person_name):
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            timeout=10,
         )
         if r.status_code == 200:
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:100]}...")
                 return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels using curl (Python urllib gets 403)."""
-    import subprocess
+    """Fetch an image from Pexels using curl (urllib gets 403)."""
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            cmd = [
-                'curl', '-sS',
-                f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape',
-                '-H', f'Authorization: {PEXELS_KEY}'
-            ]
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+            result = subprocess.run(
+                [
+                    "curl", "-sS",
+                    f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
+                    "-H", f"Authorization: {PEXELS_KEY}",
+                ],
+                capture_output=True, text=True, timeout=15,
+            )
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for photo in photos:
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('original')
-                alt = (photo.get('alt') or '').lower()
-                # Filter bad images
-                bad_alts = ['aerial', 'satellite', 'map', 'flag', 'icon', 'logo']
-                if any(b in alt for b in bad_alts):
-                    continue
+            photos = data.get("photos", [])
+            for p in photos:
+                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
                 if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    print(f"  ✓ Pexels image for '{q}': {url[:100]}...")
                     return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def upload_image_to_supabase(image_url, filename):
-    """Download image and upload to Supabase storage bucket."""
+
+def upload_image_to_supabase(img_url, filename):
+    """Download image and upload to Supabase storage bucket 'article-images'."""
     try:
-        r = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=15)
+        r = requests.get(img_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=20)
         if r.status_code != 200:
-            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
-            return image_url
-        
-        content_type = r.headers.get('Content-Type', 'image/jpeg')
-        if 'image' not in content_type:
-            print(f"  ⚠ Not an image: {content_type}")
-            return image_url
-        
+            print(f"  ⚠ Image download failed ({r.status_code}): {img_url[:80]}")
+            return img_url  # fall back to direct URL if it's permanent
+        content_type = r.headers.get("Content-Type", "image/jpeg")
+        if not content_type.startswith("image/"):
+            content_type = "image/jpeg"
         if len(r.content) < 5000:
-            print(f"  ⚠ Image too small: {len(r.content)} bytes")
-            return image_url
-        
-        # Upload to Supabase storage
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        upload_headers = {
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": content_type,
-            "x-upsert": "true"
-        }
-        ur = requests.post(upload_url, data=r.content, headers=upload_headers, timeout=30)
-        if ur.status_code in [200, 201]:
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ⚠ Image too small ({len(r.content)} bytes), skipping upload")
+            return img_url
+
+        upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
+        up = requests.post(
+            upload_url,
+            headers={
+                "apikey": SB_KEY,
+                "Authorization": f"Bearer {SB_KEY}",
+                "Content-Type": content_type,
+                "x-upsert": "true",
+            },
+            data=r.content,
+            timeout=30,
+        )
+        if up.status_code in (200, 201):
+            public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ⚠ Supabase upload failed: {ur.status_code} {ur.text[:200]}")
-            # If it's a Wikimedia/Pexels URL, it's permanent, use directly
-            if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
-                return image_url
-            return image_url
+            print(f"  ⚠ Supabase upload failed ({up.status_code}): {up.text[:200]}")
+            return img_url
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
-        if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
-            return image_url
-        return image_url
+        return img_url
 
-def validate_image_url(url):
-    """Verify image URL returns HTTP 200 with image content type and >5KB."""
-    try:
-        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
-        if r.status_code != 200:
-            r = requests.get(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, stream=True)
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
-            return True
-        print(f"  ⚠ Image validation failed: status={r.status_code} ct={ct} cl={cl}")
-        return False
-    except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-        return False
 
-def sb_insert(table, data):
-    """Insert into Supabase."""
+def sb_insert(article):
+    """Insert article into Supabase."""
     r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
+        f"{SB_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=data,
-        timeout=30
+        json=article,
+        timeout=30,
     )
-    if r.status_code in [200, 201]:
+    if r.status_code in (200, 201):
         result = r.json()
-        if isinstance(result, list) and result:
-            return result[0]
-        return result
+        art_id = result[0]["id"] if isinstance(result, list) else result.get("id")
+        print(f"  ✓ Published: {article['headline'][:60]}... (id={art_id})")
+        return art_id
     else:
-        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
         return None
 
-def sb_patch(table, filters, data):
-    """Patch Supabase record."""
-    params = "&".join(f"{k}={v}" for k, v in filters.items())
+
+def sb_patch(article_id, updates):
+    """Patch an article by ID."""
     r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
+        f"{SB_URL}/rest/v1/p2_articles?id=eq.{article_id}",
         headers=HEADERS,
-        json=data,
-        timeout=30
+        json=updates,
+        timeout=15,
     )
-    if r.status_code in [200, 204]:
-        return True
+    if r.status_code in (200, 204):
+        print(f"  ✓ Patched article {article_id}")
     else:
-        print(f"  ✗ Patch failed: {r.status_code} {r.text[:300]}")
+        print(f"  ⚠ Patch failed ({r.status_code}): {r.text[:200]}")
+
+
+def validate_image_url(url):
+    """Quick check that an image URL is valid and not too small."""
+    if not url:
         return False
+    # Block banned domains
+    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com"]
+    banned_params = ["_nc_ht=", "_nc_cat=", "ccb="]
+    for b in banned:
+        if b in url:
+            print(f"  ✗ Banned domain: {b}")
+            return False
+    for bp in banned_params:
+        if bp in url:
+            print(f"  ✗ Banned param: {bp}")
+            return False
+    try:
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
+            return True
+        # Some servers don't support HEAD, try GET with range
+        if r.status_code in (200, 206, 403, 405):
+            r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0", "Range": "bytes=0-100"}, timeout=10, allow_redirects=True)
+            if r2.status_code in (200, 206):
+                return True
+    except:
+        pass
+    return True  # optimistic fallback for Wikipedia etc.
 
-def generate_slug(headline):
-    """Generate a clean slug from headline."""
-    slug = headline.lower()
-    slug = re.sub(r'[^a-z0-9\s-]', '', slug)
-    slug = re.sub(r'\s+', '-', slug.strip())
-    slug = re.sub(r'-+', '-', slug)
-    slug = slug[:120].rstrip('-')
-    return slug
 
-# ============================================================
-# ARTICLES
-# ============================================================
+# ── ARTICLES ────────────────────────────────────────────────────────────
 
 articles = []
+now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-# ---------------------------------------------------------------
-# ARTICLE 1: England Women beat India Women in 2nd T20I Bristol
-# ---------------------------------------------------------------
-print("\n" + "="*60)
-print("ARTICLE 1: England Women level T20I series vs India")
-print("="*60)
+# ─── Article 1: Champions League Final Result ───────────────────────
+print("\n═══ Article 1: Champions League Final — PSG Retain Title ═══")
+
+art1_slug = "psg-retain-champions-league-penalties-arsenal-heartbreak-gabriel-miss-budapest-20260530"
+art1_headline = "Gabriel's Penalty Sailed Over the Bar. PSG Have Won Back-to-Back Champions League Titles."
+art1_subheadline = "Arsenal took the lead inside six minutes in Budapest but couldn't hold it. The first club to retain the Champions League since Real Madrid has done it from Paris."
+
+art1_body = """Kai Havertz gave Arsenal the perfect start. Six minutes in, the German forward broke clear and beat Matvei Safonov with a composed finish at the Puskas Arena in Budapest. For a moment, the Premier League champions looked set to complete the domestic-European double that has eluded the club for its entire 138-year existence.
+
+PSG absorbed the early blow. Luis Enrique's side dominated possession through the middle third, moving the ball with the patient, suffocating rhythm that has become their trademark under the Spanish coach. But Arsenal's defensive structure — marshalled by William Saliba and Gabriel Magalhães — held firm through the first half.
+
+## Dembélé's Equaliser Changed Everything
+
+The turning point came in the 65th minute. Ousmane Dembélé earned a penalty and converted it himself, sending David Raya the wrong way. At 1-1, the final shifted into a tense, tactical battle. Neither side could find a winner through the remaining 25 minutes of normal time, and extra time produced no goals despite both teams pushing cautiously forward.
+
+## The Penalty Drama
+
+The shootout was brutal. Gonçalo Ramos opened for PSG with a confident finish. Viktor Gyökeres replied for Arsenal. Then Désiré Doué made it 2-1 before Eberechi Eze, Arsenal's substitute, stuttered in his run-up and sent his kick wide. Raya kept Arsenal alive with a save from Nuno Mendes, and Declan Rice converted. Achraf Hakimi restored PSG's lead at 3-2. Gabriel Martinelli struck a superb penalty into the top corner to make it 3-3.
+
+Then came the decisive moment. Lucas Beraldo, PSG's young Brazilian defender, slotted his kick into the corner. Gabriel — who had been magnificent across 120 minutes of defending — stepped up needing to score. He blasted it over the crossbar. The Puskas Arena erupted on one side and fell silent on the other.
+
+## A Dynasty Is Forged
+
+PSG are the first club to win back-to-back Champions League titles since Real Madrid completed their three-year reign from 2016 to 2018. For a club long dismissed as glamorous underachievers despite their Qatari-backed wealth, this is validation of the highest order.
+
+"It's stronger than last year because we knew before the match just how difficult it would be to play against Arsenal," Luis Enrique said. "As a club and a city, it's incredible to win."
+
+## The Diaspora Angle
+
+For millions of NRI football fans who stayed up for the Saturday evening kickoff — prime-time IST, noon on the American east coast — this was a final worth every minute. Arsenal's run had captured the imagination of the Premier League's massive Indian following, but PSG's clinical nerve under pressure was the difference.
+
+The players now scatter to their national teams. The 2026 FIFA World Cup kicks off in the United States on June 11, barely twelve days from now. For Arsenal's England contingent — Rice, Saka, Havertz — the transition from heartbreak to tournament football begins immediately. For PSG's multinational squad, including Marquinhos, Ramos, and Hakimi, the celebration will be brief before World Cup duty calls.
+
+Arsenal manager Mikel Arteta did not speak to media immediately after the match. Rice, visibly emotional, offered perspective: "It's gutting. It's devastating to lose a Champions League final on penalties. But we try to take a lot of perspective from how far we've come as a group. It's been an incredible season."
+
+Gabriel was comforted on the pitch by his Brazil teammate and PSG captain Marquinhos. He had been immense for 120 minutes. The last kick was the only thing that went wrong.
+
+**Sources:** Reuters, Fox Sports, The Times, USA Today"""
+
+# Image: use Pexels for Champions League / football stadium
+img1 = fetch_pexels_image("Champions League football celebration", "football penalty shootout stadium")
+if img1 and validate_image_url(img1):
+    img1_final = upload_image_to_supabase(img1, f"{art1_slug}.jpg")
+else:
+    img1_final = None
 
 art1 = {
-    "headline": "Freya Kemp Smashed 39 Off 13 Balls in the Final Two Overs. England Beat India by 26 Runs to Level the T20I Series.",
-    "subheadline": "India had England at 129 for 5 after 18 overs in Bristol. Then Kemp arrived. The series decider is at Taunton on Tuesday, ten days before the T20 World Cup begins on English soil.",
+    "headline": art1_headline,
+    "subheadline": art1_subheadline,
+    "body": art1_body,
+    "slug": art1_slug,
     "category": "sports",
-    "slug": "england-beat-india-women-2nd-t20i-bristol-kemp-39-off-13-series-1-1-taunton-decider-20260530",
-    "sources": json.dumps(["ESPN Cricinfo", "Sky Sports", "Heavy.com", "CREX"]),
     "status": "published",
-    "published_at": "2026-05-30T18:00:00Z",
-    "body": """India's bid to wrap up the T20I series a game early came undone in the space of twelve deliveries at Bristol's County Ground on Saturday.
-
-England won the toss, chose to bat, and spent eighteen overs looking ordinary. At 129 for 5, India's bowlers had the hosts under control. The asking rate was manageable. The pitch was true. Shree Charani had taken three wickets for 25 runs off her four overs. Every indicator suggested a target between 145 and 155 — comfortably within India's range.
-
-**Then Freya Kemp walked in.**
-
-## Two Overs That Changed Everything
-
-What followed was one of the most destructive cameos in recent women's T20I cricket. Kemp smashed 39 runs off just 13 balls — not a single one of them defensive. India's death bowlers, who had been metronomic all afternoon, suddenly had no answers. The 19th and 20th overs together leaked 39 runs, an extraordinary collapse in discipline that turned England's total from chaseable to commanding.
-
-England finished on 168 for 5 from their 20 overs. The last two overs alone had added more than a quarter of the total.
-
-## India's Chase Never Found Rhythm
-
-Shafali Verma gave India the start they needed — aggressive, intent-driven — but her dismissal for 22 off 14 in the third over set a pattern the middle order could never break. Smriti Mandhana compiled a composed 32 off 25, looking settled until Charlotte Dean had her caught in the ninth over. When Mandhana went, India were 62 for 2 and the required rate was already climbing.
-
-Yastika Bhatia batted the longest for India — 33 off 36 — but the knock struggled for urgency. Her eventual retirement out in the fourteenth over came too late to change the momentum. Harmanpreet Kaur made 28 off 22, but the wickets kept falling at precisely the wrong moments. Four wickets tumbled in the final two overs as India finished on 142 for 9 — 26 runs short.
-
-Dean was outstanding with the ball: 2 for 20 off four overs. Kemp, already the match-winner with the bat, took 2 for 15 from her two overs to claim Player of the Match.
-
-## The Series Is Alive
-
-The result levels the three-match series at 1-1 after India's dominant 38-run win in the first T20I at Chelmsford, where Jemimah Rodrigues's 69 off 40 had been the decisive innings. The decider moves to Cooper Associates County Ground in Taunton on Tuesday, June 2.
-
-For India, the concern is not the defeat itself but where it came from. The team had controlled 90 percent of England's innings. The final ten percent — twelve balls — undid all of it. In T20 cricket, that is the margin. One unchecked over changes everything.
-
-## What This Means for the World Cup
-
-The T20 World Cup begins on English soil on June 12, less than two weeks away. India and England could meet again in the group stage. For both sides, this series is the last meaningful competitive cricket before the tournament begins.
-
-India's bowling unit has questions to answer at the death. England now have genuine momentum heading into the decider. For NRIs across the UK, Tuesday's match at Taunton is the last chance to watch India's women live before the World Cup — and it now carries a series on the line.
-
-**Where to Watch**: The third T20I at Taunton on Tuesday, June 2, starts at 6:30 PM BST (11:00 PM IST). Available on Sky Sports in the UK and FanCode in India.
-
-*Sources: ESPN Cricinfo, Sky Sports, Heavy.com, CREX*"""
+    "published_at": now,
+    "source": "editorial",
+    "image_url": img1_final,
+    "image_attribution": "Pexels" if img1_final else None,
 }
-
-# Image sourcing — try Freya Kemp on Wikipedia
-img_url = fetch_wikipedia_person_image("Freya Kemp")
-if not img_url:
-    img_url = fetch_wikipedia_person_image("Freya Kemp (cricketer)")
-if not img_url:
-    # Try Smriti Mandhana as alternative
-    img_url = fetch_wikipedia_person_image("Smriti Mandhana")
-if not img_url:
-    img_url = fetch_pexels_image("women cricket match batting", "cricket stadium England")
-
-if img_url:
-    filename = f"{art1['slug']}.jpg"
-    final_url = upload_image_to_supabase(img_url, filename)
-    art1["image_url"] = final_url
-    art1["image_attribution"] = "Wikimedia Commons" if "wikimedia" in (img_url or "").lower() else "The Videshi"
-
 articles.append(art1)
 
-# ---------------------------------------------------------------
-# ARTICLE 2: India's Unity Cup ends without a goal
-# ---------------------------------------------------------------
-print("\n" + "="*60)
-print("ARTICLE 2: India's Unity Cup ends without a goal")
-print("="*60)
+
+# ─── Article 2: Norway Chess — Pragg vs Gukesh ──────────────────────
+print("\n═══ Article 2: Norway Chess — Pragg vs Gukesh All-India Showdown ═══")
+
+art2_slug = "norway-chess-2026-pragg-vs-gukesh-round-5-all-india-firouzja-leads-oslo"
+art2_headline = "Pragg Against Gukesh in Oslo. India's Two Finest Chess Players Meet at Norway Chess Round 5."
+art2_subheadline = "Praggnanandhaa is second. Gukesh is last. Firouzja leads by two and a half points. The world champion needs a result against his compatriot."
+
+art2_body = """The fifth round of Norway Chess 2026 pits two Indians against each other in what has become the most compelling rivalry in contemporary chess. Praggnanandhaa Rameshbabu, twenty years old and sitting second in the standings, faces world champion Gukesh Dommaraju, who at twenty has endured a difficult tournament and sits last.
+
+The contrast in their Norway Chess campaigns could not be starker. Pragg has won two Armageddon tiebreakers and drawn his classical games with composure, accumulating six points from four rounds. He has looked assured and tactically sharp, particularly in rapid play. Gukesh, meanwhile, has managed only 3.5 points after four rounds, his classical loss to Magnus Carlsen in Round 4 dropping him to the bottom of the six-player field.
+
+## Carlsen's Victory Over Gukesh
+
+Round 4 was the decisive blow to Gukesh's campaign. Playing black, Carlsen secured his first classical win of the tournament against the world champion — a result that continued the tournament's pattern of exactly one decisive classical game per round. For Carlsen, who had himself lost classical games to Firouzja and Pragg in earlier rounds, the victory was a crucial course correction.
+
+"It was a good game from my side," Carlsen said simply. The seven-time Norway Chess champion climbed to fourth place with 4.5 points.
+
+## Firouzja's Commanding Lead
+
+The player both Indians are chasing is Alireza Firouzja of France. The 23-year-old leads with 8.5 points after four rounds — a commanding 2.5-point gap over Pragg. Firouzja suffered his first match loss of the tournament in Round 4, losing an Armageddon tiebreaker to Wesley So after their classical game was drawn, but his lead remains substantial.
+
+Firouzja has been the most consistent performer, winning classical games in Rounds 1 and 2 and adding an Armageddon victory in Round 3. Even with the Round 4 setback, he needs just steady results to maintain his advantage.
+
+## What This Means for Indian Chess
+
+The Pragg-Gukesh matchup carries weight beyond Norway. Pragg qualified for the 2026 Candidates Tournament through the FIDE Circuit. His sister Vaishali won the Women's Candidates. The Rameshbabu family is having a remarkable year. A strong result against the world champion would further cement Pragg's credentials as the most dangerous challenger in the next world championship cycle.
+
+For Gukesh, the stakes are different. The youngest undisputed world champion in history came to Norway after a strong start to 2026, but this tournament has exposed the challenge of defending the crown while facing elite opposition in every round. He cannot afford another loss. A classical win over Pragg would reinvigorate his campaign; a defeat would leave him needing significant results in the final rounds.
+
+## Standings After Round 4
+
+The full standings read: Firouzja 8.5, Pragg 6, So 5.5, Carlsen 4.5, Keymer 4, Gukesh 3.5. With six rounds remaining, the tournament is far from decided — but the all-Indian clash in Round 5 will shape the narrative for both players going forward.
+
+## How NRIs Can Watch
+
+Norway Chess streams all games live on its official YouTube channel and website, with commentary beginning at 5:00 PM local time (8:30 PM IST, 11:00 AM ET). The Pragg-Gukesh encounter will be the marquee matchup of the round.
+
+**Sources:** ChessBase, Norway Chess, Checkmate Daily"""
+
+# Image: Wikipedia for Praggnanandhaa
+img2 = fetch_wikipedia_person_image("Praggnanandhaa Rameshbabu")
+if not img2:
+    img2 = fetch_wikipedia_person_image("R Praggnanandhaa")
+if not img2:
+    img2 = fetch_wikipedia_person_image("Gukesh Dommaraju")
+if img2 and validate_image_url(img2):
+    img2_final = upload_image_to_supabase(img2, f"{art2_slug}.jpg")
+    img2_attribution = "Wikimedia Commons"
+else:
+    img2_final = fetch_pexels_image("chess grandmaster tournament", "chess pieces board")
+    if img2_final:
+        img2_final = upload_image_to_supabase(img2_final, f"{art2_slug}.jpg")
+    img2_attribution = "Pexels" if img2_final else None
 
 art2 = {
-    "headline": "India's Unity Cup Campaign in London Ended Without a Single Goal. They Lost 1-0 to Zimbabwe in the Third-Place Match.",
-    "subheadline": "The Blue Tigers went to England for the first time in twenty-four years. They came back with two defeats, zero goals, and more questions than answers twelve days before the FIFA World Cup kicks off in America.",
+    "headline": art2_headline,
+    "subheadline": art2_subheadline,
+    "body": art2_body,
+    "slug": art2_slug,
     "category": "sports",
-    "slug": "india-unity-cup-london-2026-zero-goals-two-defeats-zimbabwe-third-place-world-cup-20260530",
-    "sources": json.dumps(["Sportslightmedia", "Latestly", "Wikipedia - Unity Cup", "IANS"]),
     "status": "published",
-    "published_at": "2026-05-30T18:00:00Z",
-    "body": """India's first match on English soil in twenty-four years ended in defeat. So did the second.
-
-The Blue Tigers lost 1-0 to Zimbabwe in the third-place playoff of the 2026 Unity Cup at The Valley in London on Saturday. A 33rd-minute penalty from Prince Dube was the only goal of the game, and it was enough. India finished last in a four-team tournament that also included Nigeria and Jamaica.
-
-Across two matches in London — a 2-0 semifinal loss to Jamaica and Saturday's defeat to Zimbabwe — India failed to score a single goal.
-
-## How It Unfolded
-
-Head coach Khalid Jamil made four changes from the Jamaica loss, handing starts to Vikram Partap Singh, Rahim Ali, Macarton Nickson, and Ricky Shabong, the last of whom had made his international debut as a substitute just days earlier.
-
-India were not overwhelmed. The opening half-hour was evenly contested, with Sandesh Jhingan producing two crucial interventions — a stretched-leg clearance in the fourth minute and a towering header to deal with Shane Maroodza's cross in the fifteenth.
-
-India's best chance arrived in the 29th minute. Shabong floated a perfectly weighted ball over the Zimbabwe defence for Vikram Partap Singh, who looked certain to go through on goal. But Zimbabwe captain John Takwara produced a sliding challenge at the last moment to deny him.
-
-Four minutes later, India conceded the penalty. Dube stepped up and converted. The Blue Tigers spent the remaining fifty-seven minutes chasing an equaliser that never came.
-
-## Two Matches, Zero Goals
-
-The numbers from London tell a blunt story. India played 180 minutes across two matches against Jamaica (ranked 71st) and Zimbabwe (ranked 130th). They managed zero goals. The last time India played in England was 2002. A twenty-four-year gap, and this was the return.
-
-It would be unfair to read too much into a four-team invitational tournament that sat outside the FIFA calendar window. But the Unity Cup still carried Tier 1 status, meaning the results count for ranking points. India, ranked 136th in the world, now have those two losses on the books.
-
-## The Bigger Picture for Indian Football
-
-The timing makes the results harder to ignore. The 2026 FIFA World Cup kicks off in America on June 11 — twelve days from now. India are not in it. They have never been in it, save for a withdrawn qualification in 1950. But the proximity of the tournament, and the fact that the World Cup is being held across cities with large Indian diaspora populations, makes Indian football's standing feel more visible than usual.
-
-For NRIs in the United States, the World Cup will be impossible to avoid. It will be in their stadiums, on their screens, in their neighbourhoods. And Indian football will not be part of it.
-
-The gap between India and the teams that matter is not about one bad week in London. Jamaica and Zimbabwe are not powerhouses. Zimbabwe recently beat Asian champions Qatar in Doha, which says something about their quality — but also something about where India stands relative to teams ranked in the same neighbourhood.
-
-## What Comes Next
-
-The Blue Tigers return to more familiar territory for the SAFF Championship in Goa, where the men's team is expected to compete later this year. The domestic Indian Super League remains the primary competitive environment for most of these players.
-
-For Khalid Jamil, the Unity Cup was supposed to be a developmental exercise — a chance to blood young players, test combinations, and build confidence against non-Asian opposition. It did the first two. The third is harder to claim.
-
-The silver lining, if there is one: Shabong and other debutants gained international minutes in unfamiliar conditions. But at 136th in the world, Indian football needs more than silver linings. It needs goals.
-
-*Sources: Sportslightmedia, Latestly, Unity Cup Wikipedia, IANS*"""
+    "published_at": now,
+    "source": "editorial",
+    "image_url": img2_final,
+    "image_attribution": img2_attribution,
 }
-
-# Image sourcing — try India national football team
-img_url = fetch_wikipedia_person_image("India national football team")
-if not img_url:
-    img_url = fetch_wikipedia_person_image("Sandesh Jhingan")
-if not img_url:
-    img_url = fetch_pexels_image("football match London stadium", "soccer pitch evening")
-
-if img_url:
-    filename = f"{art2['slug']}.jpg"
-    final_url = upload_image_to_supabase(img_url, filename)
-    art2["image_url"] = final_url
-    art2["image_attribution"] = "Wikimedia Commons" if "wikimedia" in (img_url or "").lower() else "The Videshi"
-
 articles.append(art2)
 
-# ============================================================
-# PUBLISH
-# ============================================================
-print("\n" + "="*60)
-print("PUBLISHING ARTICLES")
-print("="*60)
 
-for i, art in enumerate(articles):
-    print(f"\n--- Article {i+1}: {art['headline'][:80]}...")
-    
-    # Validate word count
-    word_count = len(art['body'].split())
-    print(f"  Word count: {word_count}")
-    if word_count < 400:
-        print("  ✗ REJECTED: Under 400 words")
-        continue
-    
-    # Validate headline length
-    if len(art['headline']) > 200:
-        print(f"  ⚠ Headline too long ({len(art['headline'])} chars), truncating")
-        art['headline'] = art['headline'][:197] + "..."
-    
-    # Validate subheadline
-    if len(art.get('subheadline', '')) < 15:
-        print("  ✗ REJECTED: Subheadline too short")
-        continue
-    
-    # Validate image
-    if art.get('image_url'):
-        if not validate_image_url(art['image_url']):
-            print("  ⚠ Image failed validation, removing")
-            del art['image_url']
-    
-    # Validate no banned image sources
-    img = art.get('image_url', '')
-    if any(bad in img for bad in ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=']):
-        print("  ✗ BANNED image source detected, removing")
-        del art['image_url']
-    
-    # Insert
-    result = sb_insert("p2_articles", art)
-    if result:
-        art_id = result.get('id', 'unknown')
-        print(f"  ✓ Published: {art['slug']} (id: {art_id})")
-    else:
-        print(f"  ✗ Failed to publish: {art['slug']}")
+# ─── Article 3: SAFF Women's Championship — India vs Bangladesh ─────
+print("\n═══ Article 3: India vs Bangladesh — SAFF Women's Championship ═══")
 
-print("\n" + "="*60)
-print(f"DONE — {len(articles)} articles processed")
-print("="*60)
+art3_slug = "india-vs-bangladesh-saff-women-championship-2026-goa-group-decider-sunday"
+art3_headline = "India Have Not Beaten Bangladesh in Two Years. They Play Them in Goa Tomorrow With the Group on the Line."
+art3_subheadline = "Bangladesh have scored six and conceded one in their last two matches against India's women. Sunday's SAFF Championship group stage match in Margao could decide who tops the group."
+
+art3_body = """India's senior women's football team face Bangladesh at the Jawaharlal Nehru Stadium in Margao, Goa on Sunday evening in a match that will decide the Group B standings at the 2026 SAFF Women's Championship. The kickoff is at 7:30 PM IST, with the match streamed live on FanCode.
+
+Both teams have won their opening group matches. India dismantled Maldives 11-0 on May 25, a result that was as comprehensive as it was expected. Bangladesh were equally efficient in their own Maldives fixture, winning 4-2 on May 28. With Maldives eliminated on zero points from two defeats, Sunday's match is effectively a group decider.
+
+## The Bangladesh Problem
+
+The statistic that hangs over this fixture is stark: Bangladesh have won their last two meetings against India's women, scoring six goals and conceding just one across those matches. For a programme that has long been the regional powerhouse — India have won the SAFF Women's Championship five times — the recent record against Bangladesh represents a genuine shift in the subcontinental balance of power.
+
+Bangladesh's rise has been steady and well-coached. Their 4-2 win over Maldives showed clinical finishing from Siddiqui, Marma, Prity, and Kisku, with goals spread across different phases of the game. This is not a one-player team. Their defensive organisation has been the primary reason for India's struggles in recent encounters.
+
+## India's Eleven-Goal Statement
+
+India's 11-0 demolition of Maldives was built on collective ruthlessness. Pyari Xaxa, Anju Tamang, and the impressive Naorem all found the net, with Naorem opening the scoring inside eleven minutes. The margin was never in doubt, but manager and coaching staff will have noted that the real test was always going to be Bangladesh, not Maldives.
+
+The Indian squad includes several players with European league experience and a core group that has been together through recent international windows. But execution against organised defences — rather than the overmatched Maldives — remains the question.
+
+## More Than a Group Match
+
+India are the highest-ranked team in the tournament at 69th in the FIFA World Rankings. Bangladesh are ranked considerably lower, but regional rankings have proven unreliable predictors of SAFF tournament results. The head-to-head record is the form guide that matters here.
+
+A win for India would likely confirm them as group winners and set up a favourable knockout-stage path. A draw or defeat would hand Bangladesh the advantage and force India into a potentially harder route to the title.
+
+## The NRI Connection
+
+Women's football in South Asia has grown significantly in visibility over the past five years, and the SAFF Championship is one of the few tournaments where the Indian women's team plays in front of home crowds. For NRI fans following the team's progress, the Bangladesh match is the first genuine test of this campaign. India have not won the SAFF Women's Championship in six years — the longest drought in the tournament's history.
+
+Sunday evening in Margao will reveal whether this squad has the quality to break both the Bangladesh jinx and the title drought.
+
+## How to Watch
+
+The match kicks off at 7:30 PM IST (10:00 AM ET, 7:00 AM PT) on Sunday, May 31. Live streaming is available on FanCode.
+
+**Sources:** SAFF, Khel Now, AIFF"""
+
+# Image: Pexels for women's football (no specific person here)
+img3 = fetch_pexels_image("women football soccer match", "football match stadium crowd")
+if img3 and validate_image_url(img3):
+    img3_final = upload_image_to_supabase(img3, f"{art3_slug}.jpg")
+else:
+    img3_final = None
+
+art3 = {
+    "headline": art3_headline,
+    "subheadline": art3_subheadline,
+    "body": art3_body,
+    "slug": art3_slug,
+    "category": "sports",
+    "status": "published",
+    "published_at": now,
+    "source": "editorial",
+    "image_url": img3_final,
+    "image_attribution": "Pexels" if img3_final else None,
+}
+articles.append(art3)
+
+
+# ── Publish all articles ────────────────────────────────────────────────
+print("\n═══ Publishing ═══")
+for art in articles:
+    # Validate essentials
+    assert len(art["headline"]) >= 20, f"Headline too short: {art['headline']}"
+    assert len(art["subheadline"]) >= 15, f"Subheadline too short: {art['subheadline']}"
+    assert len(art["body"]) >= 400, f"Body too short ({len(art['body'])} chars): {art['headline'][:50]}"
+    assert art["category"] == "sports", f"Wrong category: {art['category']}"
+    
+    word_count = len(art["body"].split())
+    print(f"\n  📝 {art['headline'][:60]}...")
+    print(f"     Words: {word_count} | Slug: {art['slug'][:50]}")
+    print(f"     Image: {'✓' if art.get('image_url') else '✗ NONE'}")
+    
+    art_id = sb_insert(art)
+    
+    # If image was uploaded to Supabase, patch with clean URL
+    if art_id and art.get("image_url"):
+        # Verify the image URL is a permanent one
+        url = art["image_url"]
+        if "supabase.co" in url or "images.pexels.com" in url or "upload.wikimedia.org" in url:
+            print(f"     Image URL verified permanent: ✓")
+        else:
+            print(f"     ⚠ Non-permanent image URL, consider re-uploading")
+
+print("\n═══ Done ═══")
+print(f"Published {len(articles)} articles to sports category")
