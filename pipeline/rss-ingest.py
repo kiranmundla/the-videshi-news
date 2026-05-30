@@ -65,10 +65,21 @@ existing = set()
 offset = 0
 PAGE = 1000
 while True:
-    r = requests.get(f"{SB_URL}/rest/v1/p2_signals",
-        headers={**HEADERS, "Range": f"{offset}-{offset+PAGE-1}", "Prefer": "count=none"},
-        params={"select": "url_hash"}, timeout=30)
-    data = r.json()
+    data = None
+    for attempt in range(3):
+        try:
+            r = requests.get(f"{SB_URL}/rest/v1/p2_signals",
+                headers={**HEADERS, "Range": f"{offset}-{offset+PAGE-1}", "Prefer": "count=none"},
+                params={"select": "url_hash"}, timeout=30)
+            data = r.json()
+            break
+        except (requests.exceptions.ChunkedEncodingError, requests.exceptions.ConnectionError) as e:
+            print(f"    ⚠ Hash fetch attempt {attempt+1} failed at offset {offset}: {e}")
+            time.sleep(2)
+    if data is None:
+        print(f"    ⚠ Skipping offset {offset} after 3 retries")
+        offset += PAGE
+        continue
     if not data or isinstance(data, dict):
         break
     for row in data:
@@ -239,9 +250,16 @@ else:
             "updated_at": NOW_ISO,
         }
 
-        r = requests.post(f"{SB_URL}/rest/v1/p2_topics",
-            headers={**HEADERS, "Prefer": "return=representation"}, json=topic)
-        if r.status_code in (200, 201):
+        r = None
+        for attempt in range(3):
+            try:
+                r = requests.post(f"{SB_URL}/rest/v1/p2_topics",
+                    headers={**HEADERS, "Prefer": "return=representation"}, json=topic, timeout=30)
+                break
+            except (requests.exceptions.ConnectionError, requests.exceptions.ChunkedEncodingError) as e:
+                print(f"    ⚠ Topic insert attempt {attempt+1} failed: {e}")
+                time.sleep(2)
+        if r is not None and r.status_code in (200, 201):
             topics_created += 1
             td = r.json()
             tid = td[0]["id"] if isinstance(td, list) else td["id"]
@@ -255,9 +273,15 @@ else:
     # Mark processed
     for i in range(0, len(ids_to_mark), 50):
         batch_ids = ",".join(ids_to_mark[i:i+50])
-        requests.patch(f"{SB_URL}/rest/v1/p2_signals?id=in.({batch_ids})",
-            headers={**HEADERS, "Prefer": "return=minimal"},
-            json={"is_processed": True})
+        for attempt in range(3):
+            try:
+                requests.patch(f"{SB_URL}/rest/v1/p2_signals?id=in.({batch_ids})",
+                    headers={**HEADERS, "Prefer": "return=minimal"},
+                    json={"is_processed": True}, timeout=30)
+                break
+            except (requests.exceptions.ConnectionError, requests.exceptions.ChunkedEncodingError) as e:
+                print(f"    ⚠ Mark-processed attempt {attempt+1} failed: {e}")
+                time.sleep(2)
 
     print(f"  ✅ Created {topics_created} topics from {len(signals)} signals")
 

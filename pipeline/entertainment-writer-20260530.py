@@ -1,27 +1,49 @@
 #!/usr/bin/env python3
 """Entertainment writer for The Videshi — 2026-05-30 batch"""
 
-import json, os, re, sys, time, uuid, requests, urllib.parse
-from datetime import datetime, timezone
+import json, os, re, sys, time, uuid, urllib.parse
+import requests
 
-# ── Supabase config ─────────────────────────────────────────────
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+# Load env
+def load_env(path):
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    k, v = line.split('=', 1)
+                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SB_URL = os.environ['SUPABASE_URL']
+SB_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    'apikey': SB_KEY,
+    'Authorization': f'Bearer {SB_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
 
-PEXELS_KEY = None
-pexels_env = os.path.expanduser("~/.env.pexels")
-if os.path.exists(pexels_env):
-    for line in open(pexels_env):
-        if line.startswith("PEXELS_API_KEY="):
-            PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
+def sb_insert(table, data):
+    r = requests.post(f"{SB_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
+    if r.status_code in (200, 201):
+        result = r.json()
+        return result[0] if isinstance(result, list) else result
+    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:800]}")
+    return None
 
-# ── Helpers ─────────────────────────────────────────────────────
+def sb_patch(table, match, data):
+    params = '&'.join(f"{k}={v}" for k, v in match.items())
+    r = requests.patch(f"{SB_URL}/rest/v1/{table}?{params}", headers=HEADERS, json=data, timeout=30)
+    if r.status_code in (200, 204):
+        return True
+    print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
+    return False
+
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -41,270 +63,340 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels API. Returns URL or None."""
+    """Fetch an image from Pexels using curl (urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
+    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = requests.get(
-                "https://api.pexels.com/v1/search",
-                headers={"Authorization": PEXELS_KEY},
-                params={"query": q, "per_page": 5, "orientation": "landscape"},
-                timeout=10,
+            result = subprocess.run(
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5'],
+                capture_output=True, text=True, timeout=15
             )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for p in photos:
-                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
-                    if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                        return url
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            for photo in photos:
+                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def validate_image_url(url):
-    """Return True if URL returns an image with Content-Length > 5000."""
+def validate_image(url):
+    """Check image URL returns valid image with sufficient size."""
     if not url:
         return False
-    # Reject Meta CDN URLs
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com"]
-    if any(b in url for b in banned):
-        print(f"  ✗ Banned CDN URL: {url[:60]}")
-        return False
-    if any(p in url for p in ["_nc_ht=", "_nc_cat=", "ccb="]):
-        print(f"  ✗ Signed Meta URL: {url[:60]}")
-        return False
+    # Block banned sources
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
+    for b in banned:
+        if b in url:
+            print(f"  ✗ Banned image source: {b}")
+            return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
                           headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if "image" in ct and cl > 5000:
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
             return True
-        # Some servers don't return Content-Length on HEAD
-        if "image" in ct and cl == 0:
-            return True
-        print(f"  ✗ Image validation failed: CT={ct}, CL={cl}")
+        # Try GET for servers that don't support HEAD well
+        if r.status_code != 200:
+            r2 = requests.get(url, timeout=10, stream=True,
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            ct = r2.headers.get('Content-Type', '')
+            cl = int(r2.headers.get('Content-Length', 0))
+            if r2.status_code == 200 and 'image' in ct:
+                return True
+        print(f"  ✗ Image validation failed: status={r.status_code}, type={ct}, size={cl}")
     except Exception as e:
         print(f"  ⚠ Image validation error: {e}")
     return False
 
+def make_slug(text, date_suffix="20260530"):
+    """Create a URL-friendly slug."""
+    slug = re.sub(r'[^a-z0-9\s-]', '', text.lower())
+    slug = re.sub(r'[\s]+', '-', slug).strip('-')
+    slug = re.sub(r'-+', '-', slug)
+    return f"{slug[:80]}-nri-{date_suffix}"
 
-def sb_insert(table, payload):
-    """Insert a row and return the response JSON (list)."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
-        headers=HEADERS,
-        json=payload,
-        timeout=30,
-    )
-    if r.status_code not in (200, 201):
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
-        return None
-    return r.json()
+# ─────────────────────────────────────────────────────────
+# ARTICLES
+# ─────────────────────────────────────────────────────────
 
+articles = []
 
-# ── Articles ────────────────────────────────────────────────────
-articles = [
-    {
-        "headline": "Aamir Khan Has Three Films Lined Up Back-to-Back. A Cricket Epic, a 3 Idiots Sequel, and a Superhero Movie With Lokesh Kanagaraj.",
-        "subheadline": "The actor will shoot Ashutosh Gowariker's Lala Amarnath biopic from October, then roll straight into 3 Idiots 2 with Vicky Kaushal joining the original trio, and a superhero film with the Kaithi director after that.",
-        "slug": "aamir-khan-three-films-lala-amarnath-3-idiots-sequel-lokesh-kanagaraj-superhero-nri-20260530",
-        "image_people": ["Aamir Khan"],
-        "pexels_fallback": ("Bollywood actor on set", "Indian cinema filming"),
-        "body": """Aamir Khan is doing something he almost never does: stacking his calendar.
+# ──────────────────────────────
+# Article 1: Vashu Bhagnani ₹400 Crore Lawsuit
+# ──────────────────────────────
 
-The actor who built a career on obsessive single-film focus — one release every two to three years, each meticulously prepared — has locked dates for three consecutive projects. For a generation of NRI moviegoers who grew up timing their India trips around Aamir releases, this is genuinely unprecedented.
+articles.append({
+    "headline": "Vashu Bhagnani Just Filed a ₹400 Crore Lawsuit to Block Varun Dhawan's Next Film. The Songs in Question Are From 1999.",
+    "subheadline": "The producer behind Biwi No 1 says Tips Industries and David Dhawan used 'Chunari Chunari' and 'Ishq Sona Hai' without permission. The film is five days from release.",
+    "slug": "vashu-bhagnani-400-crore-lawsuit-tips-david-dhawan-hai-jawani-biwi-no-1-songs-nri-20260530",
+    "category": "entertainment",
+    "body": """Bollywood's biggest copyright fight in years just got filed in the Bombay High Court, and it could derail a major June release.
 
-## The Cricket Film Comes First
+Producer Vashu Bhagnani's Puja Entertainment has slapped a ₹400 crore lawsuit against Tips Industries, Ramesh Taurani, Kumar S Taurani, and director David Dhawan over two songs from the 1999 hit *Biwi No 1* — 'Chunari Chunari' and 'Ishq Sona Hai.' The allegation: the defendants used the iconic tracks in the upcoming Varun Dhawan-starrer *Hai Jawani Toh Ishq Hona Hai* without valid rights.
 
-Starting October 2026, Aamir will shoot Ashutosh Gowariker's ambitious period sports drama based on the historic 1952 India-Pakistan Test series. The film centres on legendary cricketer Lala Amarnath and his friendship with Pakistan captain Abdul Hafeez Kardar during the partition era.
+## The Core Dispute
 
-This isn't just a cricket film. It's a partition story told through sport — the kind of emotionally loaded, historically rooted narrative that plays differently when you're watching it 8,000 miles from home. For the Indian diaspora, partition narratives carry a particular weight; many NRI families trace their own migration stories back to exactly this period.
+The lawsuit, filed through advocates V K Dubey Associates, seeks an immediate injunction to halt the release, distribution, streaming, and commercial exploitation of the film and any promotional material featuring the two disputed songs. The film is currently scheduled to hit theatres worldwide on June 5.
 
-Interestingly, Rajkumar Hirani and his longtime writing partner Abhijat Joshi are believed to be creatively involved with the screenplay, despite Hirani not directing. That's a significant detail — it means the film is getting the same level of script attention that produced 3 Idiots and PK.
+According to Bhagnani's legal team, the original agreements between Puja Entertainment and Tips Industries covered only audio rights. In 2018, Tips reportedly emailed Bhagnani requesting visual rights — but the negotiations never reached a conclusion. Puja Entertainment subsequently sent a notice cancelling even the previously granted audio rights, which, their lawyers argue, means Tips cannot legally license the songs for use in a new film.
 
-## Then, the Sequel Everyone Wanted
+"If they are the lawful owners of the music rights, they must show their documents," advocate Dubey told news agency ANI. "Justice will prevail, and the truth will come out."
 
-The 3 Idiots sequel will go on floors in mid-2027, after the Gowariker film wraps. Reports suggest the film will feature a significant time jump and reunite the original trio of Aamir Khan, R. Madhavan, and Sharman Joshi.
+## Why This Matters Beyond Bollywood
 
-But the real headline is the casting addition: Vicky Kaushal is reportedly in talks for a prominent role — being described informally as the "fourth idiot." If confirmed, this is a collision of generations that could define the film's appeal for younger audiences who've grown up with both Aamir's legacy and Vicky's rise.
+The lawsuit touches a nerve that runs deep in Indian cinema's commercial infrastructure. For decades, music rights agreements in Bollywood operated on handshake deals and loosely worded contracts. The distinction between audio rights, visual rights, and synchronization rights — standard categories in Western music licensing — was often blurred or ignored entirely.
 
-For NRIs, 3 Idiots holds a special place. It's the film that crossed language barriers at diaspora dinner parties, that became shorthand for conversations about the Indian education system, that every second-generation kid has been told to watch. A sequel doesn't just carry commercial weight — it carries cultural expectation.
+The *Biwi No 1* songs are not obscure catalogue tracks. 'Chunari Chunari' remains one of the most recognizable Bollywood dance numbers of the 1990s, a staple at every Indian wedding DJ's playlist from New Jersey to London to Sydney. For the diaspora, these aren't just songs — they're cultural bookmarks of a specific era of growing up Indian abroad.
 
-## And Then, Something Entirely New
+## The Bigger Picture
 
-Aamir has also confirmed a superhero film with Tamil director Lokesh Kanagaraj, creator of the Kaithi universe and one of South Indian cinema's most commercially potent filmmakers. During a recent press interaction, Aamir said plainly: "It belongs to the superhero genre. It's a big-scale action film and will go on floors in the second half of 2026."
+The timing is brutal. *Hai Jawani Toh Ishq Hona Hai* has been through a carousel of release date changes — originally June 5, then June 12, then May 22, and back to June 5 after Yash's *Toxic* vacated the slot. The film was already surrounded by noise: Mouni Roy playing mother to 39-year-old Varun Dhawan drew social media criticism, and influencer-review controversies added more turbulence.
 
-This is Aamir's first superhero project and his first collaboration with a South Indian director. It signals something broader about where Bollywood's biggest names are looking for creative partnerships — increasingly southward.
+David Dhawan has positioned this as his final film. Vashu Bhagnani was the producer behind the original *Biwi No 1*, the very film whose songs are now at the centre of this dispute. There's an irony in the fact that a filmmaker's swan song could be derailed by the music from his own earlier success.
 
-## What It Means for the Diaspora
+Puja Entertainment is also seeking an additional ₹100 crore in damages if the defendants fail to comply. The court has permitted the filing and will hear the matter soon. Whether it results in a stay order before June 5 remains the ₹400-crore question.
 
-The practical upside: NRI audiences who typically get one Aamir Khan theatrical event every few years may see three in relatively quick succession. The first could land in late 2027 or early 2028, with the other two following within 18 months.
+## What the Diaspora Should Know
 
-The deeper signal: India's most deliberate actor has decided that the current moment — with mythological epics, franchise sequels, and cross-industry collaborations redefining the market — requires him to move faster than his instincts usually allow.
+For NRIs who grew up with Govinda-Karisma dance numbers and David Dhawan comedies, this lawsuit is a reminder that the songs you carry in your head are also assets on somebody's balance sheet. As Bollywood's remake and remix culture accelerates, the legal scaffolding underneath it is finally being stress-tested in court.
 
-Whether all three land with the impact of his best work remains an open question. What's not in question is that Aamir Khan, at 61, is betting bigger on his next chapter than he has on any chapter before.""",
-        "sources": json.dumps([
-            {"name": "Sacnilk", "url": "https://sacnilk.com/articles/bollywood/aamir-khan-shoots-timeline-ashutosh-gowarikar-3-idiots-sequel"},
-            {"name": "Sacnilk", "url": "https://sacnilk.com/articles/bollywood/aamir-khan-lokesh-kanagaraj-superhero-film-confirmed"},
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com/news/bollywood/aamir-khan-rajkumar-hirani-dadasaheb-phalke-biopic/"}
-        ]),
-    },
-    {
-        "headline": "David Dhawan Says Hai Jawani Toh Ishq Hona Hai Will Be His Last Film. Bollywood's Comedy King Just Got a Film Festival in His Honour.",
-        "subheadline": "The veteran director behind Coolie No 1, Hero No 1, and Biwi No 1 hints at retirement due to health. PVR INOX launched a David Dhawan Film Festival. Salman Khan showed up. The film opens June 5.",
-        "slug": "david-dhawan-retirement-hai-jawani-film-festival-pvr-salman-khan-varun-dhawan-nri-20260530",
-        "image_people": ["David Dhawan"],
-        "pexels_fallback": ("Bollywood comedy film set", "Indian cinema director"),
-        "body": """David Dhawan's retirement announcement didn't arrive in a dramatic press conference. It came the way most real things do in Bollywood — in a quiet aside during a promotional interaction.
+*Sources: Bollywood Hungama, ANI, Zoom TV Entertainment*""",
+    "sources": ["Bollywood Hungama", "ANI", "Zoom TV Entertainment"],
+    "person": "Vashu Bhagnani"
+})
 
-"I don't think I should do more," the 69-year-old director said recently. "This might be my last film. After this, I'll just be Varun's father."
+# ──────────────────────────────
+# Article 2: Alpha Preponed to July 3
+# ──────────────────────────────
 
-The film in question is Hai Jawani Toh Ishq Hona Hai, a comedy starring his son Varun Dhawan alongside Mrunal Thakur and Pooja Hegde. It releases on June 5 — and if Dhawan means what he says, it closes a career that defined what mainstream Bollywood comedy looked and sounded like for an entire generation.
+articles.append({
+    "headline": "Alpha Just Got Preponed to July 3. Alia Bhatt's Spy Thriller Will Now Have Two Weeks of Open Road.",
+    "subheadline": "With Dhamaal 4 and Christopher Nolan's The Odyssey both landing on July 17, Aditya Chopra moved the YRF Spy Universe's first female-led film up by a week.",
+    "slug": "alpha-preponed-july-3-alia-bhatt-sharvari-yrf-spy-universe-nri-20260530",
+    "category": "entertainment",
+    "body": """The Bollywood release calendar just shifted again, and this time it's in a film's favour.
 
-## The No. 1 Legacy
+Yash Raj Films has reportedly preponed the release of *Alpha* — the YRF Spy Universe's first female-led instalment — from July 10 to July 3, 2026. The move comes after Ajay Devgn's *Dhamaal 4* vacated the July 3 slot, pushing to July 17 instead. That same week also brings Christopher Nolan's *The Odyssey*, creating a potential traffic jam that *Alpha* now sidesteps entirely.
 
-For NRIs of a certain vintage, David Dhawan's filmography isn't a list of movies — it's a soundtrack to childhood weekends. Coolie No 1. Hero No 1. Biwi No 1. Judwaa. Haseena Maan Jaayegi. These were the films that played on rented VHS tapes and pirated DVDs in living rooms from Edison to Southall to Brampton.
+## The Calendar Chess
 
-His formula was simple and unashamed: mistaken identities, family chaos, catchy songs, and Govinda. The Govinda-David Dhawan partnership alone produced 17 films — a run of mass comedy that has no parallel in Hindi cinema. When Karisma Kapoor joined the equation, the results were even more electric.
+The logic is straightforward: with no major Bollywood release planned for July 3, producer Aditya Chopra saw a window and took it. By opening a week earlier, *Alpha* gets a clear two-week theatrical run before the July 17 double punch of *Dhamaal 4* and Nolan's latest.
 
-Modern sensibilities might question some of the humour. That's fair. But what's harder to argue with is Dhawan's instinct for what the broadest possible audience wanted to feel when they sat down in a theatre: entertained, relaxed, unburdened. In an industry now obsessed with looking premium and curated, that instinct has become alarmingly rare.
+A trade source told Bollywood Hungama: "July 3 has emerged as an apt date to bring Alpha to cinemas since Dhamaal 4, which was scheduled to release on the same day, has now been pushed to July 17. With no major release planned for July 3, producer Aditya Chopra felt it was the right date to bring Alpha to theatres."
 
-## The Film Festival Farewell
+This is not the first date change for *Alpha*. The film was initially planned for Christmas 2025, then shifted to April 2026, then July 10. The latest move, however, is a prepone — a rarity in an industry where delays are the norm.
 
-PVR INOX hosted a David Dhawan Film Festival in Mumbai ahead of the release, screening his classics across multiplexes. Salman Khan attended the launch event, where he and Varun Dhawan shared a stage celebrating the director's legacy.
+## What Makes Alpha Different
 
-The evening produced a perfectly Bollywood moment: Salman joked that Varun had "picked up another one" of his songs — a reference to the recreated version of Chunari Chunari from Biwi No 1 that features in the new film. Original composer Anu Malik gave his public blessing, calling Varun's performance outstanding.
+Directed by Shiv Rawail, who helmed the critically acclaimed series *The Railway Men*, *Alpha* puts Alia Bhatt and Sharvari at the centre of a globe-trotting espionage narrative. Unlike the stylised action of *Pathaan* or *War 2*, the film is described as raw and grounded — closer to field intelligence than franchise spectacle.
 
-The film itself is classic David Dhawan territory: a chaotic love triangle with Varun, Mrunal, and Pooja, supported by Jimmy Shergill, Mouni Roy, Chunky Panday, and Maniesh Paul. It's the fourth collaboration between father and son, after Main Tera Hero, Judwaa 2, and the 2020 Coolie No 1 reboot.
+Bobby Deol plays the primary antagonist, teased through a post-credits appearance in *War 2*. Anil Kapoor returns as Vikrant Kaul, a senior intelligence official. And Hrithik Roshan is expected to make a special appearance reprising Major Kabir Dhaliwal, tying the film into the broader Spy Universe timeline.
 
-## A Diaspora Goodbye
+For Alia Bhatt, this is her first theatrical release since *Jigra* in 2024. For Sharvari, who has been steadily building momentum through OTT projects and *Munjya*, it's a chance to cement her position in mainstream cinema.
 
-For the diaspora, Dhawan's retirement means something specific. His films were gateway Bollywood — the ones you could show anyone without explanation, the ones that needed no subtitles beyond laughter. They were the films that made uncles quote dialogue at family gatherings and aunties hum songs while cooking.
+## The Diaspora Angle
 
-Whether Hai Jawani Toh Ishq Hona Hai genuinely marks the end or becomes one of Bollywood's many "last films" that aren't, the acknowledgment matters. The industry is losing one of the last directors who truly understood that sometimes, the audience just wants to laugh for three hours and walk out feeling lighter.
+The YRF Spy Universe has always performed well internationally, with *Pathaan* crossing ₹300 crore overseas. Indian audiences in North America, the UK, and the Middle East have driven significant opening-weekend numbers for the franchise. An earlier release means advance booking windows in international markets open sooner — and for a franchise with built-in awareness, that matters.
 
-Health concerns are reportedly a factor in the decision. Dhawan hasn't elaborated publicly, but his candour about stepping back — "I'll just be Varun's father" — suggests a man who has made his peace with the transition.
+Sharvari is also currently promoting *Main Vaapas Aaunga*, keeping her visibility high across platforms where diaspora audiences are already engaged. The one-two punch of marketing momentum plus a cleaner release window makes July 3 a calculated bet.
 
-The film opens June 5. For fans who grew up on the No. 1 series, that's worth marking on the calendar.""",
-        "sources": json.dumps([
-            {"name": "Filmfare", "url": "https://www.filmfare.com/news/bollywood/david-dhawan-to-retire-post-hai-jawani-toh-ishq-hona-hai"},
-            {"name": "Mirchi", "url": "https://www.mirchi.in/bollywood/salman-khan-varun-dhawan-david-dhawan-film-festival"},
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com/news/bollywood/david-dhawan-retirement-bollywood-comedy/"}
-        ]),
-    },
-    {
-        "headline": "Ranveer Singh's Pralay Will Start Filming in August. The FWICE Ban Doesn't Seem to Be Stopping Anything.",
-        "subheadline": "While the Don 3 dispute rages on — with Salman Khan now playing peacemaker — Ranveer's next project, a survival drama, is moving forward on schedule. The actor isn't sitting still.",
-        "slug": "ranveer-singh-pralay-august-filming-fwice-ban-don-3-salman-khan-peace-nri-20260530",
-        "image_people": ["Ranveer Singh"],
-        "pexels_fallback": ("Bollywood actor press conference", "Indian film industry"),
-        "body": """The Federation of Western India Cine Employees issued a non-cooperation directive against Ranveer Singh on May 25. Five days later, his next film has locked a shooting start date.
+## What's at Stake
 
-Pralay, described as a survival drama, is set to begin filming in August 2026 — directly defying the implicit threat of industry isolation that the FWICE directive carries. If there was any ambiguity about whether the Don 3 fallout would derail Ranveer's career momentum, the answer appears to be: not yet.
+The YRF Spy Universe is Bollywood's most ambitious franchise experiment. After the commercial disappointment of *War 2* and *Tiger 3*, the franchise needs a course correction. *Alpha* — with its female leads, its grounded tone, and its leaner storytelling promise — could be exactly that. Or it could confirm that the franchise fatigue is real.
 
-## How We Got Here
+Either way, July 3 is now circled on the calendar.
 
-The sequence of events is worth understanding, because it tells a story about how Bollywood's power structures work — and don't.
+*Sources: Bollywood Hungama, Filmfare, Sacnilk*""",
+    "sources": ["Bollywood Hungama", "Filmfare", "Sacnilk"],
+    "person": "Alia Bhatt"
+})
 
-Ranveer was attached to Don 3, Farhan Akhtar's franchise reboot, since its announcement in August 2023. Reports indicate he exited just weeks before shooting was set to begin. His side says the script was never finalized and he had fundamental creative differences — he wanted a darker, more aggressive Don. Farhan's side says the script was shared in stages and approved by the actor, and that Excel Entertainment had already incurred massive pre-production costs.
+# ──────────────────────────────
+# Article 3: Divyanka Tripathi & Vivek Dahiya Twins
+# ──────────────────────────────
 
-Farhan's production house filed a formal complaint. FWICE issued its non-cooperation directive after claiming Ranveer failed to attend multiple meetings. Then CINTAA — a separate industry body — came out in Ranveer's support. Padmini Kolhapure, the CINTAA president, publicly backed his position.
+articles.append({
+    "headline": "Divyanka Tripathi and Vivek Dahiya Brought Their Twin Boys Home From Hospital. 'Mere Karan Arjun Aa Gaye,' He Said.",
+    "subheadline": "After 10 years of marriage, Indian television's most-loved couple stepped out as a family of four — with one request for the paparazzi.",
+    "slug": "divyanka-tripathi-vivek-dahiya-twin-boys-karan-arjun-hospital-nri-20260530",
+    "category": "entertainment",
+    "body": """There are celebrity baby announcements, and then there is Vivek Dahiya quoting *Karan Arjun* while bringing his twin sons home from the hospital.
 
-So now there are two industry bodies on opposite sides of the same dispute. That kind of institutional split is rare and revealing.
+Television actors Divyanka Tripathi and Vivek Dahiya made their first public appearance with their newborn twin boys on Friday, leaving a Mumbai hospital with their babies in their arms and their extended family in tow. A black car decorated with blue and white balloons pulled up outside the hospital, and Vivek — grinning — introduced himself and Divyanka to the waiting media: "Presenting the new mother and father in town."
 
-## Salman Khan, Playing Cupid
+## The Announcement
 
-In the middle of all this, Salman Khan stepped in as mediator. According to multiple reports confirmed by Bollywood Hungama, Salman personally called both Ranveer and Farhan.
+The couple had announced the birth on May 26 through an Instagram post featuring an animated image of two baby boys on clouds. The caption read: "We asked for happiness... God said, 'Take double.' Blessed with twin baby boys."
 
-The message was characteristically direct: resolve it between yourselves, don't involve third parties, don't let it damage the industry. A source quoted Salman as saying he explained to Farhan that creative differences are "a common thing in the industry for decades" while also having "a long chat with Ranveer, understanding his stance."
+Vivek's follow-up was pure Bollywood: "The wait is finally over... 'The Boys' are here and life already feels more beautiful than we ever imagined. Mere Karan Arjun aa gaye!" — a reference to the iconic 1995 Salman Khan-Shah Rukh Khan film that every Indian household, across continents, can quote from memory.
 
-Both parties have reportedly taken the words seriously. There's talk of eventually working together again once tensions cool.
+## A Decade Together
 
-The mediation is significant beyond the gossip value. In an industry that's becoming increasingly corporatized and contract-driven, Salman's intervention represents the older power model — where relationships and personal authority matter more than legal frameworks. Whether that's a good or bad thing depends on your perspective. But it's clearly still effective.
+Divyanka and Vivek met on the sets of *Yeh Hai Mohabbatein* and married in 2016. Over the past decade, they have remained one of Indian television's most recognisable couples — their journey documented across reality shows like *Nach Baliye 8* and *Khatron Ke Khiladi 11*.
 
-## What Pralay Means
+Divyanka rose to national fame with *Banoo Main Teri Dulhann* and later became a household name through *Yeh Hai Mohabbatein*, one of the longest-running Indian television serials. Vivek, who started as an outsider in the industry, carved his own space through consistent television work and the couple's joint public presence.
 
-Pralay itself is a new genre territory for Ranveer. Details are thin, but it's described as a survival drama — a departure from the franchise action and historical epics that have defined his recent career. The fact that it's moving forward suggests that producers are willing to work with Ranveer despite the FWICE directive, which is technically a recommendation to its member technicians not to work with him.
+The arrival of their twins after 10 years of marriage drew particularly emotional responses from fans. "Who can refuse such a sweet smiling request from Divyanka," wrote one user. "She is always so polite and courteous. No attitude, always kind."
 
-The practical reality: FWICE directives carry weight with below-the-line crew but don't have legal enforcement power. Major producers with established relationships can work around them, especially when a competing industry body is publicly supporting the actor.
+## One Rule for the Cameras
 
-## The Diaspora Perspective
+In the video that went viral across social media, Divyanka thanked the photographers for their well-wishes — and then made one clear request: please don't show the babies' faces. The paparazzi agreed. After a brief introduction of the newborns, the family posed together, distributed sweets, and headed home.
 
-For NRI audiences, the Don 3 saga is one of those inside-Bollywood dramas that sounds exotic until you realize it's just a contract dispute dressed in celebrity clothing. But the underlying tensions — creative control versus producer investment, actor autonomy versus institutional power, the old handshake model versus Hollywood-style contracts — are genuinely interesting.
+It was a small moment, but fans noticed. Several comments praised the couple for handling the public moment with warmth while drawing a firm line around their children's privacy — a balance that feels increasingly rare in Indian celebrity culture.
 
-What matters commercially is simpler: Ranveer Singh, coming off the historic ₹1,800-crore worldwide success of Dhurandhar 2, is still making movies. The FWICE ban has not created the career crisis it might have in a less fragmented industry. And Pralay, whatever it turns out to be, will have one of the biggest stars in Indian cinema at its centre when cameras roll in August.""",
-        "sources": json.dumps([
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com/news/bollywood/ranveer-singh-pralay-filming-august-fwice/"},
-            {"name": "Filmfare", "url": "https://www.filmfare.com/news/bollywood/salman-khan-intervenes-don-3-ranveer-singh-farhan-akhtar"},
-            {"name": "LatestLY", "url": "https://www.latestly.com/entertainment/bollywood/don-3-salman-khan-ranveer-singh-farhan-akhtar-dispute.html"},
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com/news/bollywood/cintaa-padmini-kolhapure-ranveer-singh-fwice/"}
-        ]),
-    },
-]
+## Why the Diaspora Cares
 
-# ── Publish ─────────────────────────────────────────────────────
-now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+Divyanka Tripathi's fanbase extends well beyond India. Indian television serials, particularly Star Plus and Zee shows, have massive viewership across the US, UK, Canada, and the Middle East through OTT platforms and satellite channels. *Yeh Hai Mohabbatein* ran for six years and built a loyal global following.
 
-for i, art in enumerate(articles, 1):
+For diaspora audiences who grew up watching these serials with their families, the couple's milestone feels personal. The *Karan Arjun* reference is the cherry on top — a line that transcends generations and geographies, instantly recognisable whether you're in Mumbai or Michigan.
+
+A traditional aarti was performed by Divyanka's mother-in-law as the family arrived home, marking the beginning of a new chapter that their fans have waited a decade to celebrate.
+
+*Sources: ANI, LatestLY, Zoom TV Entertainment, India Forums*""",
+    "sources": ["ANI", "LatestLY", "Zoom TV Entertainment", "India Forums"],
+    "person": "Divyanka Tripathi"
+})
+
+# ──────────────────────────────
+# Article 4: Anupam Kher's Shri Ram Bhoomi — 552nd Film
+# ──────────────────────────────
+
+articles.append({
+    "headline": "Anupam Kher Just Started His 552nd Film. It's Called Shri Ram Bhoomi and It's About Ayodhya.",
+    "subheadline": "Zee Studios brings in The Kerala Story 2 director Kamakhya Narayan Singh for a drama rooted in faith, sacrifice, and 'one of the most consequential chapters in modern Indian history.'",
+    "slug": "anupam-kher-shri-ram-bhoomi-552nd-film-zee-studios-ayodhya-nri-20260530",
+    "category": "entertainment",
+    "body": """At 71, Anupam Kher is not slowing down. He is, in fact, accelerating.
+
+The veteran actor has commenced shooting for *Shri Ram Bhoomi*, a new drama from Zee Studios that marks his 552nd film — a number that defies easy comprehension in any film industry, anywhere in the world. Directed by National Award-winning filmmaker Kamakhya Narayan Singh, who last helmed *The Kerala Story 2*, the film is positioned as an emotionally charged narrative centred on Ayodhya and the cultural history of Lord Ram's birthplace.
+
+## What We Know
+
+Zee Studios launched the project with a mahurat ceremony and an official announcement across social media: "A title that echoes emotion. A story shrouded in intrigue. The journey of Shri Ram Bhoomi officially begins."
+
+The cast brings together a cross-generational lineup. Kher leads alongside Ritwik Bhowmik — a rising star best known for his OTT work in shows like *Bandish Bandits* — and Amruta Khanvilkar, the versatile actress who has built a reputation across Marathi and Hindi cinema. The production is a collaboration between Zee Studios, Dancing Shiva Films, and Cinekorn Entertainment.
+
+Plot details remain tightly guarded, but the film is described as a story rooted in faith, sacrifice, truth, and homecoming. Given the title and the director's previous work on culturally charged material, the Ayodhya connection is unmistakable.
+
+## The 552-Film Man
+
+Anupam Kher's filmography is its own kind of monument. From *Saaransh* in 1984 — where a 28-year-old Kher played a retired man mourning his son — to Hollywood roles in *Silver Linings Playbook* and *The Big Sick*, his career spans four decades, multiple languages, and virtually every genre Indian cinema has attempted.
+
+His upcoming slate alone reads like a small studio's annual output: *Khosla Ka Ghosla 2* with Dibakar Banerjee (reuniting the original cast including Boman Irani, Parvin Dabas, and Ranvir Shorey), an untitled project with Sooraj Barjatya, and now *Shri Ram Bhoomi*. The man does not have an off switch.
+
+## The Director's Track Record
+
+Kamakhya Narayan Singh's involvement signals the kind of film Zee Studios is aiming for. *The Kerala Story* was one of the most commercially successful — and politically polarising — Indian films in recent years, crossing ₹300 crore worldwide. The sequel continued the franchise's formula of cultural confrontation wrapped in mainstream thriller packaging.
+
+With *Shri Ram Bhoomi*, Singh shifts from religious conversion narratives to the cultural and spiritual history of Ayodhya itself. The timing is not accidental. The ₹4,000-crore *Ramayana* adaptation starring Ranbir Kapoor and Sai Pallavi has dominated industry conversation for months, and Ayodhya-centric stories have become prime real estate for major studios.
+
+## The Diaspora Connection
+
+For NRIs, the Ayodhya Ram Mandir has been a landmark moment of cultural identity — the consecration ceremony in January 2024 was watched by millions of Indians abroad. A cinematic exploration of Ayodhya's significance, led by an actor who has become a fixture of diaspora cultural life (Kher's one-man shows regularly sell out in the US and UK), carries a built-in audience.
+
+Ritwik Bhowmik's presence also signals a generational bridge. His OTT following skews younger and more globally distributed — the kind of audience that discovers Indian content through Netflix and Prime rather than theatrical releases.
+
+Whether *Shri Ram Bhoomi* will aim for theatrical spectacle or a more intimate dramatic register remains to be seen. But with Anupam Kher at 552 and counting, the film already has something most productions lack: the gravitational pull of a performer who has never stopped working.
+
+*Sources: IANS, Bollywood Hungama, Sacnilk, CineTalkers*""",
+    "sources": ["IANS", "Bollywood Hungama", "Sacnilk", "CineTalkers"],
+    "person": "Anupam Kher"
+})
+
+# ─────────────────────────────────────────────────────────
+# PUBLISH
+# ─────────────────────────────────────────────────────────
+
+published = 0
+failed = 0
+
+for i, art in enumerate(articles):
     print(f"\n{'='*60}")
-    print(f"Article {i}/{len(articles)}: {art['headline'][:70]}...")
+    print(f"Article {i+1}: {art['headline'][:70]}...")
+    
+    # Validate article
+    if len(art['headline']) < 20 or len(art['headline']) > 200:
+        print(f"  ✗ Headline length issue: {len(art['headline'])} chars")
+    if len(art['subheadline']) < 15:
+        print(f"  ✗ Subheadline too short: {len(art['subheadline'])} chars")
+    
+    word_count = len(art['body'].split())
+    if word_count < 400:
+        print(f"  ✗ Body too short: {word_count} words (minimum 400)")
+        failed += 1
+        continue
+    print(f"  ✓ Word count: {word_count}")
+    
+    # Image sourcing — Wikipedia first for person articles
+    img_url = None
+    person = art.get('person')
+    if person:
+        img_url = fetch_wikipedia_person_image(person)
+        if not img_url and person == "Divyanka Tripathi":
+            img_url = fetch_wikipedia_person_image("Divyanka Tripathi Dahiya")
+        if not img_url and person == "Vashu Bhagnani":
+            img_url = fetch_wikipedia_person_image("Vashu Bhagnani (producer)")
+    
+    if not img_url:
+        # Specific Pexels fallback
+        pexels_queries = {
+            "Vashu Bhagnani": ("Bombay High Court building", "Indian courthouse"),
+            "Alia Bhatt": ("Bollywood spy movie action", "Indian cinema action"),
+            "Divyanka Tripathi": ("Indian couple newborn baby celebration", "Indian family celebration"),
+            "Anupam Kher": ("Ayodhya temple", "Indian cinema veteran actor")
+        }
+        if person and person in pexels_queries:
+            q1, q2 = pexels_queries[person]
+            img_url = fetch_pexels_image(q1, q2)
+    
+    img_attribution = "Wikimedia Commons"
+    if img_url and 'pexels.com' in img_url:
+        img_attribution = "The Videshi"
+    
+    if img_url and validate_image(img_url):
+        print(f"  ✓ Image validated")
+    elif img_url:
+        print(f"  ⚠ Image validation failed, proceeding without image")
+        img_url = None
+    else:
+        print(f"  ⚠ No image found")
 
-    # ── Image sourcing ──
-    image_url = None
-    image_attribution = None
-
-    # Try Wikipedia for person articles
-    for person in art.get("image_people", []):
-        image_url = fetch_wikipedia_person_image(person)
-        if image_url and validate_image_url(image_url):
-            image_attribution = "Wikimedia Commons"
-            break
-        image_url = None
-
-    # Pexels fallback
-    if not image_url and art.get("pexels_fallback"):
-        q1, q2 = art["pexels_fallback"]
-        image_url = fetch_pexels_image(q1, q2)
-        if image_url and validate_image_url(image_url):
-            image_attribution = "Pexels"
-        else:
-            image_url = None
-
-    if not image_url:
-        print("  ⚠ No image found — publishing without image")
-
-    # ── Insert article ──
-    payload = {
-        "headline": art["headline"],
-        "subheadline": art["subheadline"],
-        "slug": art["slug"],
-        "body": art["body"],
-        "category": "entertainment",
-        "vertical": "entertainment",
+    # Insert article
+    article_data = {
+        "headline": art['headline'],
+        "subheadline": art['subheadline'],
+        "slug": art['slug'],
+        "category": art['category'],
+        "body": art['body'],
+        "vertical": art['category'],
         "status": "published",
-        "published_at": now,
-        "sources": json.loads(art["sources"]),
-        "image_url": image_url,
-        "image_attribution": image_attribution,
+        "published_at": f"2026-05-30T15:32:{30+i:02d}+00:00",
+        "sources": ", ".join(art['sources']),
     }
+    
+    if img_url:
+        article_data['image_url'] = img_url
+        article_data['image_attribution'] = img_attribution
 
-    result = sb_insert("p2_articles", payload)
+    result = sb_insert('p2_articles', article_data)
     if result:
-        art_id = result[0].get("id") if isinstance(result, list) else result.get("id")
+        art_id = result.get('id')
         print(f"  ✓ Published: {art['slug']} (id: {art_id})")
+        published += 1
     else:
         print(f"  ✗ Failed to publish: {art['slug']}")
-
-    time.sleep(1)
+        failed += 1
 
 print(f"\n{'='*60}")
-print(f"Done. Published {len(articles)} entertainment articles.")
+print(f"DONE: {published} published, {failed} failed")
