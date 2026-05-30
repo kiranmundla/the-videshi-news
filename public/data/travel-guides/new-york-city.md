@@ -1,0 +1,37 @@
+## Why New York City?
+
+For the Indian diaspora, New York is not just a city — it is the place where the American dream and the desi experience collide most spectacularly. Jackson Heights in Queens has the densest concentration of Indian life outside the subcontinent — sari shops next to Nepali momos next to a Sikh gurdwara next to a Colombian bakery, all within two blocks of the 7 train. If you have lived in a smaller American city or suburb for years, a weekend in New York reminds you that the country you immigrated to is far wilder and more diverse than your daily commute suggests. You can eat Hyderabadi biryani at 2 AM, watch a Bollywood film at a cinema in Murray Hill, buy fresh curry leaves at Patel Brothers, and catch a Broadway show — all in one city, all in one day.
+
+But New York is also the ultimate NRI flex destination. Your relatives back home have seen it in a thousand Bollywood films — the Statue of Liberty in Kal Ho Naa Ho, Central Park in every rom-com, Times Square in everything. Taking your visiting parents here is a rite of passage. And beyond the tourist highlights, the city rewards depth — the Met Museum alone could occupy three full days, the food scene makes every other American city look like a college cafeteria, and the energy of walking through Midtown at rush hour is addictive in a way that is hard to explain to anyone who has not felt it.
+
+## Top Experiences
+
+**1. Jackson Heights Food Crawl, Queens** — Start at 74th Street and Roosevelt Avenue and eat your way through the subcontinent. Samosas at Raja Sweets, chaat at Kabab King, dosas at Chennai Garden, and momos at Lhasa Fast Food. End with mango lassi at any of the dozen juice bars. This is the real New York. Take the 7 train from Midtown — 20 minutes.
+
+**2. Statue of Liberty & Ellis Island** — Reserve pedestal or crown access tickets well in advance at statuecruises.com ($24 for pedestal, $24.50 for crown). The crown only admits about 240 people per day — book 2–3 months ahead for summer dates. The Ellis Island immigration museum is profoundly moving, especially for a community that understands what it means to leave home. Free with the ferry ticket.
+
+**3. Central Park** — The park is 843 acres and deserves more than a quick walk-through. Rent a rowboat at the Loeb Boathouse ($20/hour), visit the Bethesda Fountain, walk through the Ramble (the forested section), and catch a free Shakespeare in the Park performance in summer (lottery tickets at publictheater.org). The park is spectacular in autumn — mid-October to early November — when the foliage peaks.
+
+**4. The Metropolitan Museum of Art** — One of the greatest museums on Earth. The admission is technically "suggested" ($30) but you can pay what you wish if you are a New York State resident. The Temple of Dendur, the American Wing, and the Islamic Art galleries alone are worth half a day. The rooftop garden (open spring through fall) has views of Central Park and the skyline. Closed on Wednesdays.
+
+**5. Broadway Show** — A quintessential New York experience. Full-price tickets run $100–300, but the TKTS booth in Times Square sells same-day tickets at 20–50% off — arrive by 2 PM for matinee shows or 6 PM for evening. The TodayTix app also offers lottery and rush tickets for popular shows at $30–50. Current long-runners like Hamilton, Wicked, and The Lion King are safe bets for first-timers.
+
+**6. Brooklyn Bridge Walk & DUMBO** — Walk from Manhattan to Brooklyn across the bridge at sunset — one of the great free experiences in America. On the Brooklyn side, walk down to the DUMBO waterfront for the iconic Manhattan Bridge framing shot and Jane's Carousel ($2). Time Out Market in DUMBO has excellent food vendors. The whole walk takes about 2 hours at a relaxed pace.
+
+**7. Top of the Rock or The Edge** — For skyline views, Top of the Rock at Rockefeller Center ($44) offers the classic view that includes the Empire State Building. The Edge at Hudson Yards ($38) is newer and has a terrifying glass floor 100 stories up. Go at sunset for the golden-hour-to-city-lights transition. Skip the Empire State Building observation deck — the lines are brutal and you cannot see the building itself from the top.
+
+## Getting There
+
+New York has three major airports. JFK International (JFK) is the primary international gateway with nonstop flights from virtually everywhere. Newark Liberty (EWR) in New Jersey is often cheaper and better connected to Manhattan via NJ Transit ($15.25) or the AirTrain+PATH combination ($13). LaGuardia (LGA) is the closest but mainly domestic. From JFK, the AirTrain to Jamaica station + LIRR to Penn Station takes about 50 minutes ($12 total) and is far better than sitting in taxi traffic. Uber and Lyft from JFK to Manhattan run $50–80 depending on time and traffic. A yellow taxi charges a flat rate of $70 plus tolls and tip.
+
+## Where to Stay
+
+**Luxury:** The Plaza ($600–1,200/night) is the classic choice — overlooking Central Park, dripping in Gilded Age glamour. The Aman New York on 57th Street is the newest ultra-luxury option ($1,500–3,000/night). The Bowery Hotel in NoHo blends downtown cool with boutique luxury ($400–700/night).
+
+**Mid-range:** The Pod Hotels (Pod 39, Pod 51) are compact but perfectly located in Midtown ($120–200/night). citizenM New York Times Square is a Dutch-design hotel with smart rooms and a great rooftop bar ($180–280/night). The Arlo Midtown is a stylish micro-hotel with a rooftop pool ($150–250/night).
+
+**Budget:** HI New York on the Upper West Side is a well-maintained hostel with a garden and communal kitchen ($40–70/night for private rooms). Airbnbs in Brooklyn (Williamsburg, Park Slope) or Queens (Astoria, Long Island City) offer entire apartments for $80–140/night with easy subway access to Manhattan. Extended-stay hotels in New Jersey (Jersey City, Weehawken) are 10–15 minutes from Manhattan by PATH train and significantly cheaper at $100–160/night.
+
+## NRI Tips
+
+New York is a domestic destination — no visa considerations. But if you are hosting visiting parents from India on a B1/B2 visa, New York is the most practical and entertaining city to bring them to. The subway is the best way to get around — a single ride is $2.90, or get a 7-day unlimited MetroCard for $34. OMNY tap-to-pay works with any contactless card or phone — fares are capped at $34/week. Uber and Lyft are everywhere but expensive in Manhattan — use them for late nights or outer-borough trips. Tipping is non-negotiable in New York: 20% at restaurants, $1–2 per drink at bars, $2–5 for hotel housekeeping. Sales tax is 8.875% on most purchases but clothing and footwear under $110 is tax-free. New York is safe by any global standard but use common sense — keep your phone secure on the subway, avoid empty subway cars late at night, and ignore anyone who approaches you with a "charity" clipboard in Times Square. The city is extremely walkable — wear comfortable shoes and expect to log 15,000–25,000 steps per day. Indian groceries are everywhere — Patel Brothers in Jackson Heights, Dual Specialty Store on 1st Avenue, and Kalustyan's in Murray Hill (the finest spice shop in America). Best times to visit are April–June and September–November. Summer (July–August) is brutally hot and humid. Winter (December–February) is bitter cold but magical during the holidays — the Rockefeller Christmas tree, Saks light show, and Union Square Holiday Market make December worth the frostbite.

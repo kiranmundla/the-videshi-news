@@ -1,0 +1,37 @@
+## Why Kenya Safari?
+
+If there is one trip that belongs on every NRI family's bucket list, it is the African safari — and Kenya is where the safari was invented. The word "safari" itself is Swahili for "journey," and Kenya delivers the journey in its most primal, spine-tingling form: a million wildebeest thundering across the Mara River, a lioness stalking through golden grass at sunset, a lone elephant silhouetted against the blazing orange of an East African sky. Nothing you have seen on National Geographic prepares you for the scale of it in person. The Masai Mara during the Great Migration (July–October) is widely considered the greatest wildlife spectacle on earth.
+
+For the Indian diaspora, Kenya holds an additional connection. The Indian community in East Africa — particularly Kenya and Uganda — has deep historical roots going back to the construction of the Uganda Railway in the 1890s. Nairobi has a thriving Indian community, excellent Indian restaurants, Hindu temples, and a Swaminarayan mandir. The Aga Khan community has been in Kenya for over a century. When you land in Nairobi, the Indian influence is immediately visible — in the food, the fabric shops, the Bollywood music drifting from matatu minibuses. Kenya is not a foreign country for Indians; it is a distant relative.
+
+## Top Experiences
+
+**1. Masai Mara National Reserve (Great Migration)** — The centerpiece of any Kenya safari. From July to October, over 1.5 million wildebeest and 200,000 zebra cross from Tanzania's Serengeti into the Mara, facing crocodile-infested river crossings that are among the most dramatic scenes in nature. Even outside migration season, the Mara has the highest density of big cats in Africa — lion, leopard, and cheetah sightings are almost guaranteed on a 3-day visit. Game drives start at dawn (6 AM) and late afternoon (4 PM). Most lodges charge $300–800/person/night all-inclusive with game drives.
+
+**2. Amboseli National Park** — Famous for its iconic view of elephants with Mount Kilimanjaro as a backdrop. Amboseli has the largest free-ranging elephant herds in Kenya — families of 50+ elephants moving through the savanna are common. The park is smaller than the Mara, making it easier to cover in 2 days. Observation Hill offers panoramic views of the entire park and Kilimanjaro. Entry fee: $60/adult/day.
+
+**3. Nairobi National Park** — The only national park in the world inside a capital city. Lions, rhinos, giraffes, and buffalo roam against the backdrop of Nairobi's skyline — a surreal juxtaposition. A morning game drive (3–4 hours, $50–80 with guide) is perfect if you have a long layover or an extra day in Nairobi. The park is just 7 km from the city center.
+
+**4. David Sheldrick Wildlife Trust, Nairobi** — Visit the world's most successful orphan elephant rescue program. Every morning at 11 AM, baby elephants are brought out for feeding and mud-bathing while keepers explain each orphan's rescue story. Entry is $15/person. Adopt an elephant for $50/year and receive monthly updates. This is an unforgettable experience for children and adults alike.
+
+**5. Lake Nakuru National Park** — Once famous for its millions of flamingos (numbers have fluctuated due to water levels), Lake Nakuru remains excellent for rhino sightings — both black and white rhino are protected here. The park also hosts waterbuck, baboons, and tree-climbing lions. A day trip from Nairobi (2.5 hours drive) is feasible, but an overnight at Lake Nakuru Lodge ($150–250) is better.
+
+**6. Masai Village Visit** — A guided visit to a traditional Masai manyatta (homestead) is a standard offering from most Mara lodges ($25–40/person). You will see the mud-and-dung huts, watch the jumping dance (adumu), learn about Masai herding culture, and browse beaded jewelry made by the women. Negotiate politely and buy directly from the artisans — it is their primary income.
+
+**7. Hot Air Balloon Over the Mara** — Sunrise balloon flights over the Masai Mara ($450–500/person) are a once-in-a-lifetime experience. Float silently over herds of wildebeest, hippo pools, and meandering rivers as the sun rises. The flight lasts about an hour, followed by a champagne bush breakfast. Book with Governors' Balloon Safaris — they are the original operator and the most experienced.
+
+## Getting There
+
+No direct flights operate between the US and Nairobi. The best connections route through Europe or the Gulf: Emirates via Dubai (popular with NRIs — you can add a Dubai stopover), Qatar Airways via Doha, Turkish Airlines via Istanbul, KLM via Amsterdam, or British Airways via London. Total travel time is 18–22 hours. Round-trip fares from the East Coast run $800–1,400. Jomo Kenyatta International Airport (NBO) in Nairobi is the gateway. For the Masai Mara, you can either drive (5–6 hours on rough roads) or take a bush flight from Nairobi's Wilson Airport (45 minutes, $150–250 one-way on SafariLink or AirKenya). Bush flights are worth the money — they save a full day of driving and the aerial views are spectacular.
+
+## Where to Stay
+
+**Luxury:** Angama Mara ($1,200–2,000/night all-inclusive) is perched on the rim of the Great Rift Valley overlooking the Mara — the views are unreal. Governors' Il Moran Camp ($800–1,400) is an intimate 10-tent camp on the Mara River where hippos grunt outside your tent. &Beyond Kichwa Tembo ($500–900) offers classic tented safari luxury.
+
+**Mid-Range:** Mara Serena Safari Lodge ($200–350 all-inclusive) has a hilltop setting with views across the Mara. Keekorok Lodge ($180–300) is one of the oldest lodges in the Mara and centrally located for game drives. Amboseli Serena Lodge ($150–250) has Kilimanjaro views from every room.
+
+**Budget:** Budget safaris from Nairobi are available through operators like Intrepid Travel or G Adventures ($150–200/person/day for group camping safaris including meals and game drives). Wildebeest Eco Camp at the Mara gate ($80–120/person) offers permanent tents with en-suite bathrooms. In Nairobi, the Nairobi Safari Club ($80–120) or Fairview Hotel ($70–100) are solid mid-city options.
+
+## NRI Tips
+
+US passport holders receive a visa on arrival or can apply through the Kenya eTA (Electronic Travel Authorization) system at etakenya.go.ke ($30, processed in 48–72 hours). Indian passport holders must apply for an eTA in advance ($30). OCI card holders follow their passport country's rules. Currency is the Kenyan Shilling (KES); 1 USD ≈ 150–155 KES. US dollars are widely accepted at lodges and for park fees — bring clean, recent bills ($50 and $100 denominations preferred). Credit cards work at lodges but not in rural areas. Malaria is a serious risk in safari areas — take prophylaxis (Malarone or doxycycline), use DEET repellent, and sleep under treated mosquito nets. Yellow fever vaccination is required if arriving from an endemic country (carry your yellow card). Kenya is generally safe for tourists, but exercise caution in Nairobi — do not walk with valuables and use registered taxis or Uber. Safari clothing should be neutral colors (khaki, olive, brown) — avoid bright colors and blue (attracts tsetse flies). Pack binoculars, a good zoom camera lens (200mm minimum), a headlamp, and a warm fleece for dawn game drives (temperatures drop to 10°C in the Mara). The Indian community in Nairobi means excellent vegetarian options — try Anghiti or Diamond Plaza food court. Best time: July–October for the Great Migration; January–February for calving season in the Serengeti (combine with Tanzania).
