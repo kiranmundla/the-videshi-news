@@ -381,25 +381,39 @@ export default function ArticlePage() {
       window.scrollTo(0, 0);
     };
 
-    // Fast path: load static JSON from CDN instantly, then silently
-    // refresh from Supabase to catch any admin edits (image changes, etc.)
-    fetch(`/data/articles/${slug}.json`)
+    // Race static JSON vs Supabase — show whichever arrives first,
+    // but always prefer Supabase data (always fresh after admin edits)
+    let shown = false;
+
+    const fromStatic = fetch(`/data/articles/${slug}.json`)
       .then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
       .then(async (a) => {
-        if (cancelled) return;
+        if (cancelled || shown) return;
+        shown = true;
         setArticle(a);
         try {
           const rel = await getRelatedArticles(a.slug, a.category, 3);
           if (!cancelled) setRelated(rel);
-        } catch { /* related articles are non-critical */ }
+        } catch {}
         window.scrollTo(0, 0);
-        // Background refresh: update with live data if different
-        const fresh = await getArticleBySlug(slug);
-        if (!cancelled && fresh) setArticle(fresh);
       })
-      .catch(() => {
-        if (!cancelled) fetchFromSupabase();
-      });
+      .catch(() => {});
+
+    const fromLive = getArticleBySlug(slug).then(async (a) => {
+      if (cancelled || !a) return;
+      shown = true;
+      setArticle(a);
+      try {
+        const rel = await getRelatedArticles(a.slug, a.category, 3);
+        if (!cancelled) setRelated(rel);
+      } catch {}
+      window.scrollTo(0, 0);
+    });
+
+    // If both fail, fall back
+    Promise.allSettled([fromStatic, fromLive]).then(() => {
+      if (!shown && !cancelled) fetchFromSupabase();
+    });
 
     return () => {
       cancelled = true;
