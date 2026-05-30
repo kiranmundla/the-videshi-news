@@ -1,55 +1,42 @@
 #!/usr/bin/env python3
-"""News writer for The Videshi — 2026-05-30 batch"""
+"""News writer for The Videshi - 2026-05-30 batch"""
 
-import json
-import os
-import subprocess
-import urllib.parse
-import urllib.request
-from datetime import datetime, timezone
+import json, os, re, sys, time, uuid, urllib.parse
+import requests
 
-# Load Supabase config
-env_vars = {}
-with open(os.path.expanduser("~/.env.supabase")) as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            if line.startswith("export "):
-                line = line[7:]
-            key, val = line.split("=", 1)
-            val = val.strip().strip("'").strip('"')
-            env_vars[key] = val
+# Load Supabase credentials
+from dotenv import load_dotenv
+load_dotenv(os.path.expanduser("~/.env.supabase"))
 
-SUPABASE_URL = env_vars["SUPABASE_URL"]
-SUPABASE_KEY = env_vars["SUPABASE_SERVICE_ROLE_KEY"]
-
-# Load Pexels key
-pexels_key = ""
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-if os.path.exists(pexels_env):
-    with open(pexels_env) as f:
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+PEXELS_KEY = None
+try:
+    with open(os.path.expanduser("~/workspace/.env.pexels")) as f:
         for line in f:
-            line = line.strip()
-            if line and not line.startswith("#") and "=" in line:
-                if line.startswith("export "):
-                    line = line[7:]
-                key, val = line.split("=", 1)
-                val = val.strip().strip("'").strip('"')
-                if "PEXELS" in key.upper():
-                    pexels_key = val
-                    break
+            if line.startswith("PEXELS_API_KEY="):
+                PEXELS_KEY = line.strip().split("=", 1)[1]
+except:
+    pass
 
+HEADERS = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
+}
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
-        req = urllib.request.Request(
+        r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
         )
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            data = json.loads(resp.read().decode())
+        if r.status_code == 200:
+            data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
@@ -58,371 +45,297 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels API using curl (urllib gets 403)."""
-    if not pexels_key:
-        print("  ⚠ No Pexels API key found")
+    """Fetch image from Pexels using curl (urllib gets 403)."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key available")
         return None
-
+    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
-                 "-H", f"Authorization: {pexels_key}"],
+                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
+                 "-H", f"Authorization: {PEXELS_KEY}"],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
             photos = data.get("photos", [])
-            for photo in photos:
-                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            if photos:
+                img_url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels image found for '{q}': {img_url[:80]}...")
+                return img_url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def validate_image(url):
-    """Validate image URL returns HTTP 200 with image content type and reasonable size."""
-    if not url:
-        return False
+def upload_image_to_supabase(img_url, filename):
+    """Download image and upload to Supabase storage bucket."""
     try:
-        req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            content_type = resp.headers.get("Content-Type", "")
-            content_length = int(resp.headers.get("Content-Length", "0"))
-            if "image" in content_type and content_length > 5000:
-                print(f"  ✓ Image validated: {content_type}, {content_length} bytes")
-                return True
-            else:
-                print(f"  ⚠ Image validation failed: type={content_type}, size={content_length}")
-                return False
-    except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-        # For Wikipedia/Pexels, assume valid if HEAD fails (some servers block HEAD)
-        if "upload.wikimedia.org" in url or "images.pexels.com" in url:
-            return True
-        return False
+        r = requests.get(img_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=15)
+        if r.status_code != 200:
+            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
+            return img_url  # Fall back to direct URL
+        content_type = r.headers.get("Content-Type", "image/jpeg")
+        if not content_type.startswith("image/"):
+            print(f"  ⚠ Not an image: {content_type}")
+            return img_url
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small: {len(r.content)} bytes")
+            return img_url
 
+        # Upload to Supabase storage
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        upload_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": content_type,
+            "x-upsert": "true"
+        }
+        ur = requests.post(upload_url, headers=upload_headers, data=r.content, timeout=30)
+        if ur.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Upload failed: {ur.status_code} {ur.text[:200]}")
+            # If it's a wikimedia or pexels URL, those are permanent - use directly
+            if "upload.wikimedia.org" in img_url or "images.pexels.com" in img_url:
+                return img_url
+            return img_url
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
+        return img_url
 
 def publish_article(article):
     """Publish article to Supabase."""
-    payload = json.dumps(article)
-    try:
-        result = subprocess.run(
-            ["curl", "-sS", "-X", "POST",
-             f"{SUPABASE_URL}/rest/v1/p2_articles",
-             "-H", f"apikey: {SUPABASE_KEY}",
-             "-H", f"Authorization: Bearer {SUPABASE_KEY}",
-             "-H", "Content-Type: application/json",
-             "-H", "Prefer: return=representation",
-             "-d", payload],
-            capture_output=True, text=True, timeout=30
-        )
-        if result.returncode == 0 and ('"id"' in result.stdout or '"headline"' in result.stdout):
-            print(f"  ✓ Published: {article['headline'][:60]}...")
-            return True
+    article_id = str(uuid.uuid4())
+    
+    # Source image
+    print(f"\n📰 Publishing: {article['headline']}")
+    img_url = None
+    
+    if article.get("person_name"):
+        img_url = fetch_wikipedia_person_image(article["person_name"])
+        if not img_url and article.get("person_alt"):
+            img_url = fetch_wikipedia_person_image(article["person_alt"])
+    
+    if not img_url and article.get("pexels_query"):
+        img_url = fetch_pexels_image(article["pexels_query"], article.get("pexels_fallback"))
+    
+    if img_url:
+        filename = f"{article_id}.jpg"
+        final_url = upload_image_to_supabase(img_url, filename)
+        article["image_url"] = final_url
+        if "upload.wikimedia.org" in (img_url or ""):
+            article["image_attribution"] = "Wikimedia Commons"
         else:
-            print(f"  ✗ Publish failed: {result.stdout[:200]}")
-            print(f"    stderr: {result.stderr[:200]}")
-            return False
-    except Exception as e:
-        print(f"  ✗ Publish error: {e}")
+            article["image_attribution"] = "The Videshi"
+    
+    payload = {
+        "id": article_id,
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": "news",
+        "vertical": "news",
+        "status": "published",
+        "published_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "sources": json.dumps(article["sources"]),
+        "image_url": article.get("image_url"),
+        "image_attribution": article.get("image_attribution"),
+    }
+    
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload,
+        timeout=30
+    )
+    if r.status_code in (200, 201):
+        print(f"  ✓ Published: {article['slug']}")
+        return True
+    else:
+        print(f"  ✗ Failed: {r.status_code} {r.text[:300]}")
         return False
 
 
 # ============================================================
-# ARTICLES
+# ARTICLE 1: CUET-UG 2026 Technical Glitch
 # ============================================================
 
-now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+article_1 = {
+    "headline": "CUET-UG 2026 Delayed Across India After TCS Technical Glitch. The Timing Could Not Be Worse.",
+    "subheadline": "The Common University Entrance Test was delayed by two hours at centres in Delhi, Noida, Bangalore, and Varanasi — the fourth national exam controversy in two months.",
+    "slug": "cuet-ug-2026-tcs-technical-glitch-exam-delay-nta-neet-education-crisis-20260530",
+    "person_name": None,
+    "pexels_query": "students examination hall India",
+    "pexels_fallback": "university entrance exam students",
+    "sources": [
+        {"name": "Livemint", "url": "https://www.livemint.com"},
+        {"name": "The Hindu BusinessLine", "url": "https://www.thehindubusinessline.com"},
+        {"name": "IANS", "url": "https://ianslive.in"},
+        {"name": "Careers360", "url": "https://news.careers360.com"}
+    ],
+    "body": """The Common University Entrance Test for undergraduate admissions — CUET-UG 2026 — was delayed by approximately two hours at examination centres across India on Saturday after a technical glitch at Tata Consultancy Services, the National Testing Agency's technology partner.
 
-articles = []
+The disruption affected centres in Delhi, Noida, Ambala, Varanasi, Bangalore, Kanpur, and other cities. Candidates who arrived for the morning session at 8:15 AM found themselves waiting past 10:30 AM before the exam could begin. The afternoon session was pushed back from 3:00 PM to 4:00 PM, with revised reporting from 2:30 PM.
 
-# ------------------------------------------------------------------
-# Article 1: Vinesh Phogat — Supreme Court allows Asian Games trials
-# ------------------------------------------------------------------
-print("\n=== Article 1: Vinesh Phogat SC ruling ===")
-vinesh_image = fetch_wikipedia_person_image("Vinesh Phogat")
-if not vinesh_image:
-    vinesh_image = fetch_wikipedia_person_image("Vinesh Phogat (wrestler)")
-if vinesh_image and not validate_image(vinesh_image):
-    vinesh_image = None
-if not vinesh_image:
-    vinesh_image = fetch_pexels_image("wrestling competition mat", "Indian wrestler Olympic")
-    if vinesh_image and not validate_image(vinesh_image):
-        vinesh_image = None
+## TCS Took the Blame
 
-articles.append({
-    "headline": "Supreme Court Allows Vinesh Phogat to Compete in Asian Games Trials. Then It Warned Courts to Stay Out of Sports.",
-    "subheadline": "The apex court cleared the wrestler for selection trials beginning May 30 but delivered a pointed rebuke about judicial overreach in sporting events",
-    "body": """The Supreme Court on Friday cleared the way for star wrestler Vinesh Phogat to participate in the selection trials for the 2026 Asian Games, ending weeks of legal uncertainty — but not before delivering a sharp warning about courts involving themselves in competitive sports.
+The NTA issued a statement on X attributing the failure entirely to TCS. "M/s TCS has reported that a technical glitch at their end delayed the commencement of CUET (UG) 2026 at some centres on 30.05.2026," it read. The agency said the issue had been resolved and that affected candidates would receive "full compensatory time so that no candidate is disadvantaged."
 
-## 'She Has Made the Country Proud'
+TCS separately confirmed the disruption, calling the two-hour delay a problem that was "promptly identified and resolved." The company said its teams were "actively monitoring all systems" and reaffirmed its "commitment to working closely with NTA to ensure seamless conduct of computer-based tests."
 
-A bench hearing the case acknowledged Phogat's stature as one of India's most decorated wrestlers. "Had it been someone else, the matter would have been different. She has made the country proud," the court observed during the hearing.
+But the assurances did little to stem the criticism.
 
-The ruling overturned a challenge by the Wrestling Federation of India, which had contested a Delhi High Court order permitting Phogat to take part in the trials. With the Supreme Court's blessing, Phogat became eligible to compete in the selection process that begins on May 30.
+## The Fourth Crisis in Two Months
 
-But the bench made clear this was not an invitation for litigants to drag every sporting dispute into the judiciary. Justice PS Narasimha delivered some of the most pointed remarks. "This is not a medical college admission matter. These are national and international sporting events. Courts should not intervene in such cases in a manner that disrupts the entire schedule," he said.
+The CUET-UG delay is now the fourth major examination controversy to hit the NTA since late March. The NEET-UG 2026 paper leak, which the Supreme Court has publicly excoriated the agency for, remains unresolved. The CBSE's On-Screen Marking system has produced scoring discrepancies that parents and students have challenged in court. And SSC examinations have drawn their own complaints about irregularities.
 
-The court told Phogat directly: "You are a brilliant athlete, but the nation comes first."
+AAP leader Saurabh Bharadwaj pointed to a structural risk in Saturday's failure. "If some students get access to the exam paper at 9:30 AM while others get at 11:30 AM, does it not mean a major breach?" he asked on X.
 
-## A Career Defined by Controversy and Triumph
+## Opposition Called It a Pattern
 
-Phogat's career has been a study in extremes. She won gold at the 2018 Asian Games in Jakarta, became the first Indian woman wrestler to reach an Olympic final at the Paris 2024 Games, and has been a consistent medal contender at the World Championships.
+Congress leader Rahul Gandhi connected the CUET glitch to the broader pattern. "NEET. CBSE. SSC. And today CUET. Four exams. One crore children. Not a single one conducted with honesty," he posted. "Claims of 'vishwa guru,' but can't conduct even one exam in the country."
 
-But Paris ended in heartbreak. Phogat was disqualified from the gold medal match after missing weight by a reported 100 grams — a decision that triggered a prolonged legal battle at the Court of Arbitration for Sport and became a national talking point for weeks. The CAS ultimately rejected her appeal, and the saga left deep scars on her relationship with wrestling's governing bodies.
+AAP national convenor Arvind Kejriwal took a similar line, framing Saturday's disruption as evidence of systemic failure under the current administration. The Congress party shared video footage showing large crowds of students stranded outside examination centres, describing the situation as "beyond the Modi government's capability."
 
-Since then, Phogat briefly entered politics, winning a seat in the Haryana state assembly as a Congress candidate in the October 2024 elections. She resigned to return to competitive wrestling in early 2026, setting the stage for the latest confrontation with the federation.
+## What This Means for Diaspora Families
 
-## The Federation's Objection
+CUET-UG is the gateway to admission at 261 universities, including all 45 central universities. For NRI families with children applying to Indian institutions — whether for undergraduate degrees or as a backup to Western admissions — the test's integrity matters directly. A compromised or chaotic examination process makes Indian university admissions less attractive at precisely the moment when several central universities have been expanding their international outreach.
 
-The Wrestling Federation of India had argued that Phogat had not met the eligibility criteria for the Asian Games selection trials, citing her period away from competitive wrestling and questions about her compliance with anti-doping testing requirements during her time in politics.
+The NTA had already postponed CUET-UG exams originally scheduled for May 28 in view of the revised Bakrid holiday date. Saturday's disruption compounds the scheduling chaos.
 
-The Delhi High Court had sided with Phogat, ruling that excluding a decorated athlete from trials without clear procedural grounds would be unjust. The federation then appealed to the Supreme Court.
+## The Bigger Question
 
-By clearing Phogat's participation while simultaneously cautioning against judicial intervention in sports, the Supreme Court effectively split the difference — allowing the wrestler her shot while signaling that the judiciary would not become a permanent referee in federation disputes.
+India's national examination infrastructure is now a political liability. The NTA was created in 2018 specifically to professionalise the conduct of entrance exams. Seven years later, it faces credible accusations of paper leaks, vendor failures, and administrative incompetence across multiple exams in a single testing cycle.
 
-## What the Asian Games Trials Mean
-
-The 2026 Asian Games are scheduled for Aichi-Nagoya, Japan, in September. Wrestling is one of India's strongest medal sports at the continental level, and selection trials are fiercely contested. Phogat, who competes in the 50 kg category, will face a field of younger challengers who have risen in her absence.
-
-For the Indian diaspora, Phogat's story resonates beyond the mat. She was one of the faces of the wrestlers' protest movement in 2023, when athletes accused the then-federation chief of sexual harassment — a movement that drew global attention and led to significant changes in Indian sports governance.
-
-Whether she makes the team or not, the Supreme Court has ensured she gets her chance. The larger question it raised — how much the judiciary should insert itself into sport — will linger far longer than any trial result.
-
-*The Asian Games trials begin May 30 at the KD Jadhav Wrestling Hall in New Delhi.*""",
-    "slug": "supreme-court-vinesh-phogat-asian-games-2026-trials-sports-judiciary-warning-20260530",
-    "category": "news",
-    "vertical": "news",
-    "status": "published",
-    "published_at": now,
-    "image_url": vinesh_image,
-    "image_attribution": "Wikimedia Commons" if vinesh_image and "wikimedia" in (vinesh_image or "").lower() else "Pexels",
-    "sources": json.dumps([
-        {"name": "Punjab Newsline", "url": "https://www.punjabnewsline.com/supreme-court-allows-vinesh-phogat-asian-games-2026-trials"},
-        {"name": "Reuters", "url": "https://www.reuters.com/sports/"},
-        {"name": "LiveLaw", "url": "https://www.livelaw.in/"}
-    ])
-})
-
-
-# ------------------------------------------------------------------
-# Article 2: India defense diplomacy at Shangri-La
-# ------------------------------------------------------------------
-print("\n=== Article 2: India at Shangri-La ===")
-shangri_image = fetch_pexels_image("Singapore defense military meeting", "international diplomacy summit")
-if shangri_image and not validate_image(shangri_image):
-    shangri_image = None
-
-articles.append({
-    "headline": "India's Defence Secretary Held Five Bilateral Meetings in One Day at Shangri-La. Here Is What Each One Was About.",
-    "subheadline": "Rajesh Kumar Singh met counterparts from the Netherlands, Australia, the EU, and key Indo-Pacific partners on the sidelines of Asia's biggest defense forum",
-    "body": """India used the sidelines of the 2026 Shangri-La Dialogue in Singapore to run an intensive round of defense diplomacy, with Defence Secretary Rajesh Kumar Singh holding separate bilateral meetings with counterparts from the Netherlands, Australia, the European Union, and other Indo-Pacific partners on Saturday.
-
-The engagements, announced by India's Ministry of Defence on X, underscored New Delhi's push to deepen military partnerships beyond its traditional strategic circle — at a moment when China's defence minister was conspicuously absent from the forum for the second consecutive year.
-
-## Netherlands: Defence Industrial Collaboration
-
-Singh's meeting with Dutch Defence Minister Dilan Yeşilgöz-Zegerius focused on expanding bilateral defence cooperation. Both sides discussed "strengthening military-to-military ties" and explored "opportunities for defence industrial collaboration," according to the defence ministry.
-
-The India-Netherlands defence relationship has been growing quietly. The Netherlands is home to major defence technology firms, and India has been courting European partners as it diversifies its arms supply chains away from heavy dependence on Russia. Dutch expertise in naval systems, submarine technology, and cybersecurity aligns with India's modernisation priorities.
-
-## Australia: Reviewing the Comprehensive Strategic Partnership
-
-The Defence Secretary also met Australian Defence Secretary Meghan Quinn. The two reviewed progress under the India-Australia Comprehensive Strategic Partnership, assessed upcoming high-level exchanges, and identified new areas for deeper cooperation.
-
-Australia and India have significantly expanded their defence relationship in recent years, particularly through the Quad framework and bilateral exercises like AUSINDEX and Malabar. Australian Deputy Prime Minister and Defence Minister Richard Marles, who is also at the Shangri-La Dialogue, is scheduled to visit India next — a sign of the accelerating tempo of engagement.
-
-## EU: Military Interoperability
-
-Singh held discussions with senior EU defence officials, focusing on military interoperability and defence industrial collaboration. The EU has been building its own defence identity independent of NATO, and India's interest in European defence technology — from fighter jets to secure communications — makes it a natural partner.
-
-## India's Broader Indo-Pacific Pitch
-
-Earlier on Friday, Singh had addressed think tanks and academics in Singapore on "India's Defence Diplomacy for a Stable, Secure and Inclusive Indo-Pacific." The session, attended by Indian High Commissioner to Singapore Shilpak Ambule, laid out New Delhi's vision for the region's security architecture.
-
-The timing was deliberate. With US Defence Secretary Pete Hegseth using his keynote address to demand that Asian allies spend 3.5 percent of GDP on defence, India positioned itself as a partner that brings strategic depth without the transactional edge. New Delhi's defence spending hovers around 2.4 percent of GDP — high by Asian standards but below the threshold Hegseth laid out.
-
-## China's Absence Amplified India's Presence
-
-The biggest talking point at this year's dialogue was who was not there. Chinese Defence Minister Dong Jun skipped the forum for the second year running, sending only a delegation of PLA "experts and scholars." Even Hegseth took note: "I wish my counterpart was here at this conference."
-
-Beijing's absence created a vacuum that India and other mid-tier powers were happy to fill. By running five bilateral meetings in a single day, Singh's team signaled that India sees itself as a hub in the Indo-Pacific security network — not just a spoke.
-
-Zhou Bo, a retired PLA senior colonel attending as part of China's delegation, downplayed the absence but acknowledged the optics: "The level of the delegation is relatively low this time."
-
-## What This Means for the Diaspora
-
-India's expanding defence partnerships have implications beyond the military. Defence industrial collaboration often opens doors for technology transfer, joint ventures, and professional opportunities — areas where the Indian diaspora in Europe, Australia, and Southeast Asia is already deeply embedded. As India's defence economy grows toward its target of $25 billion in annual production, the commercial ecosystem around it will grow too.
-
-*The Shangri-La Dialogue continues through May 31 in Singapore.*""",
-    "slug": "india-defence-secretary-shangri-la-bilateral-netherlands-australia-eu-indo-pacific-20260530",
-    "category": "news",
-    "vertical": "news",
-    "status": "published",
-    "published_at": now,
-    "image_url": shangri_image,
-    "image_attribution": "Pexels",
-    "sources": json.dumps([
-        {"name": "ANI / Daily Prabhat", "url": "https://www.dailyprabhat.com/india-expands-defence-diplomacy-with-netherlands-australia-and-eu-on-sidelines-of-shangri-la-dialogue/"},
-        {"name": "NewKerala", "url": "https://www.newkerala.com/news/2026/india-indo-pacific-vision-shangri-la-dialogue.html"},
-        {"name": "Reuters", "url": "https://www.reuters.com/world/asia-pacific/where-is-china-ask-delegates-asian-defence-forum-2026-05-30/"}
-    ])
-})
-
-
-# ------------------------------------------------------------------
-# Article 3: SEBI fines Suzlon Energy
-# ------------------------------------------------------------------
-print("\n=== Article 3: SEBI fines Suzlon ===")
-suzlon_image = fetch_pexels_image("wind turbines India", "wind energy farm turbines")
-if suzlon_image and not validate_image(suzlon_image):
-    suzlon_image = None
-
-articles.append({
-    "headline": "SEBI Has Fined Suzlon Energy ₹15.95 Crore for Inflating Its Books. The Chairman and Vice-Chairman Got Personal Penalties Too.",
-    "subheadline": "The markets regulator said Suzlon's disclosures 'created a false picture of financial strength' and misled investors through transactions with subsidiaries",
-    "body": """India's Securities and Exchange Board of India on Friday imposed a penalty of ₹15.95 crore ($1.68 million) on Suzlon Energy for what it called serious lapses in the company's financial statements and disclosures — a ruling that adds to a difficult stretch for one of India's most prominent renewable energy companies.
-
-SEBI did not stop at the corporate entity. The regulator also slapped personal monetary penalties on Suzlon's chairman and vice-chairman — ₹5.75 crore and ₹5.45 crore respectively — on charges that they were at the helm when the misreporting occurred.
-
-## What SEBI Found
-
-The order centers on Suzlon's transactions with its subsidiaries and associates. SEBI said these transactions resulted in the misstatement of financials and inflated the company's net worth, creating what the regulator described as "a false picture of financial strength affecting market integrity."
-
-In plain terms: the disclosures Suzlon made to the stock exchanges about key material transactions did not reflect reality, and investors who relied on those disclosures to make decisions were misled.
-
-Suzlon did not immediately respond to media requests for comment on the order.
-
-## The Context: A Company That Has Reinvented Itself — Twice
-
-The penalty lands at an awkward moment. Suzlon has spent the better part of a decade rehabilitating itself after a near-death experience. The company, once India's largest wind turbine manufacturer, defaulted on foreign currency convertible bonds in 2012 and spent years mired in debt restructuring, management upheaval, and shrinking market share.
-
-By 2023, the tide appeared to turn. India's aggressive renewable energy targets — 500 GW of non-fossil fuel capacity by 2030 — gave Suzlon a tailwind. The company won large orders, posted its first profitable year in nearly a decade, and its stock price surged more than fivefold from its 2020 lows.
-
-But the SEBI order reopens questions about the quality of the financial reporting that underpinned that recovery. If the disclosures during the period under review were unreliable, investors will want to know whether the more recent numbers can be trusted.
-
-## A Pattern of Regulatory Scrutiny
-
-SEBI's action against Suzlon is part of a broader wave of enforcement. On the same day, the regulator also disposed of a long-running disclosure case against NDTV, ruling that the broadcaster had not violated any rules — a contrasting outcome that highlights the case-by-case nature of securities enforcement.
-
-The Suzlon order is also notable for targeting individual executives. Indian securities law gives SEBI broad powers to impose personal liability on directors and officers who presided over financial irregularities, but the regulator has traditionally been cautious about using this power. Naming the chairman and vice-chairman sends a signal that passive oversight is not a defense.
-
-## What It Means for India's Green Energy Push
-
-Suzlon operates in a sector that India desperately needs to succeed. The country has committed to having 50 percent of its energy come from renewable sources by 2030, and wind energy is a critical part of that equation. India's installed wind capacity stands at roughly 47 GW, but the government wants to reach 140 GW by the end of the decade.
-
-To get there, India needs companies like Suzlon to be credible counterparties for banks, international investors, and development finance institutions. A SEBI enforcement action for financial misreporting — particularly one that questions the integrity of subsidiary transactions — could complicate Suzlon's access to capital at exactly the moment it needs to scale.
-
-For NRI investors who have bet on India's green transition, the order is a reminder that corporate governance risk remains a live variable. India's renewable energy story is real, but the companies driving it are not immune to the accounting and governance issues that have plagued Indian corporates across sectors.
-
-## The Numbers
-
-The total penalty across the company and its executives comes to ₹27.15 crore — not a crippling sum for a company with a market capitalisation of over ₹70,000 crore, but significant as a regulatory marker. SEBI's order also opens the door for civil suits from investors who can demonstrate they relied on the misleading disclosures to their detriment.
-
-Suzlon's stock closed flat on Friday, suggesting the market had either priced in the risk or had not yet fully digested the implications. Monday's trading session will be the real test.
-
-*SEBI's full order is available on its website at sebi.gov.in.*""",
-    "slug": "sebi-fines-suzlon-energy-15-crore-financial-misreporting-chairman-penalty-20260530",
-    "category": "news",
-    "vertical": "news",
-    "status": "published",
-    "published_at": now,
-    "image_url": suzlon_image,
-    "image_attribution": "Pexels",
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com/business/finance/india-markets-regulator-fines-suzlon-energy-17-million-lapses-financial-2026-05-30/"},
-        {"name": "SEBI Order", "url": "https://www.sebi.gov.in/enforcement/orders.html"}
-    ])
-})
-
-
-# ------------------------------------------------------------------
-# Article 4: Newark Delaney Hall standoff — immigration climate
-# ------------------------------------------------------------------
-print("\n=== Article 4: Newark Delaney Hall ===")
-newark_image = fetch_pexels_image("protest demonstration police barrier", "immigration protest United States")
-if newark_image and not validate_image(newark_image):
-    newark_image = None
-
-articles.append({
-    "headline": "A Weeklong Standoff at a Newark Detention Center Is Rewriting the Rules of Immigration Enforcement. Legal Immigrants Are Watching.",
-    "subheadline": "New Jersey's governor ordered state police to create protest zones outside Delaney Hall as dueling demonstrations, pepper spray, and an FBI arrest intensified the confrontation",
-    "body": """What began as a hunger strike by detained immigrants at a private facility in Newark, New Jersey, has escalated into one of the most significant confrontations between state and federal authorities over immigration enforcement in the Trump era — with implications that extend far beyond the undocumented population it directly affects.
-
-## The Basics
-
-Delaney Hall is a 1,000-bed detention center in Newark operated by the GEO Group, a private prison company, on behalf of U.S. Immigration and Customs Enforcement. On May 22, detainees launched a hunger and labour strike, alleging inadequate medical care, insufficient food, and detention without due process. They published an open letter detailing their grievances.
-
-The Department of Homeland Security has denied the allegations, calling the facility well-maintained and properly audited.
-
-But the situation outside the facility has become its own crisis. Protesters began gathering in large numbers, confrontations with ICE agents turned physical, pepper spray was deployed, and a protester's foot was reportedly caught under a truck wheel. The FBI arrested one individual for allegedly threatening to kill an ICE officer's family.
-
-## The Governor Steps In
-
-On Friday, New Jersey Governor Mikie Sherrill ordered state police to assume control of the area outside Delaney Hall. State troopers set up "protected protest zones" and vehicle checkpoints, while ICE agents agreed to withdraw from the immediate perimeter.
-
-"We've seen increasing violence, arrests, and pepper spray at Delaney Hall, as well as public threats from the Trump administration," Sherrill said. "It has grown unsafe and that is completely unacceptable."
-
-Sherrill explicitly invoked the spectre of fatal outcomes: "We know what ICE has done in other states and that American citizens have lost their lives." She reiterated her demand to close the facility entirely.
-
-DHS Secretary Markwayne Mullin pushed back. "All detainees are provided with proper meals, quality water, blankets, medical treatment, and have opportunities to communicate with their family members and lawyers," he posted on X.
-
-## Dueling Protests Expected
-
-Saturday is expected to be the most volatile day yet. Both pro-ICE and anti-ICE demonstrators have announced rallies outside the facility. State police have established separate assembly zones for each group.
-
-The pro-ICE rally gained momentum after former Border Patrol commander-at-large Gregory Bovino arrived in Newark on Thursday, telling ICE agents to "hang in there." Bovino retired in March after controversy over his approach to immigration enforcement.
-
-## Why Legal Immigrants Should Care
-
-The Delaney Hall standoff is not directly about legal immigration. The detainees are individuals held on immigration violations, not H-1B workers or green card holders. But the broader dynamics it illustrates — the expansion of ICE operations, the use of private detention facilities, the political weaponisation of immigration enforcement — shape the environment every immigrant in America inhabits.
-
-When ICE operations intensify, the knock-on effects ripple outward. Workplace raids increase scrutiny on all foreign-born employees. Political rhetoric around immigration hardens. And administrative decisions — visa processing speeds, green card adjudications, naturalization timelines — are made within an ecosystem influenced by enforcement priorities.
-
-For the Indian diaspora specifically, the picture is complex. NRIs on H-1B and L-1 visas are legally present, but the hostile immigration climate creates anxiety about interactions with federal authorities, complicates travel, and affects the willingness of employers to sponsor future visas. With 142,000 tech jobs already cut in 2026 and each layoff starting a 60-day deportation clock for visa holders, the gap between "legal" and "secure" has never felt wider.
-
-## The Larger Pattern
-
-Delaney Hall is not an isolated incident. It sits within a pattern that includes the Texas SB4 law (now enforceable, allowing state-level arrests and deportation orders), the $100,000 H-1B fee whose legality a federal judge questioned just this week, and DHS threats to shut down international flights at Newark Airport over the city's sanctuary policies.
-
-Each of these developments is distinct. Together, they describe a federal approach to immigration that is simultaneously expanding enforcement powers, raising barriers to legal entry, and creating confrontations with state and local authorities who resist.
-
-The detainees at Delaney Hall are at the sharp end of this system. But everyone navigating American immigration — from an undocumented worker in Newark to an Indian software engineer in San Jose renewing their H-1B — is operating within its gravitational field.
-
-*A Saturday rally outside Delaney Hall is scheduled for 11 AM EST. State police will maintain a presence through the weekend.*""",
-    "slug": "newark-delaney-hall-ice-detention-standoff-nj-state-police-immigration-enforcement-nri-20260530",
-    "category": "news",
-    "vertical": "news",
-    "status": "published",
-    "published_at": now,
-    "image_url": newark_image,
-    "image_attribution": "Pexels",
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com/world/us/new-jersey-state-police-assert-control-outside-migrant-detention-center-2026-05-30/"},
-        {"name": "CNN", "url": "https://www.cnn.com/2026/05/30/us/newark-delaney-hall-detention-center-protests/"},
-        {"name": "NorthJersey.com", "url": "https://www.northjersey.com/story/news/new-jersey/2026/05/30/sherrill-nj-state-police-delaney-hall/"}
-    ])
-})
-
+The Supreme Court has already told the NTA to "learn from UPSC" — a pointed rebuke comparing the agency unfavourably to an institution that has conducted examinations without comparable controversy for decades. Whether Saturday's TCS glitch was a one-off technical failure or a symptom of deeper procurement and oversight problems, the cumulative damage to public trust is real and growing."""
+}
 
 # ============================================================
-# PUBLISH
+# ARTICLE 2: Abhishek Banerjee Attacked in Sonarpur
 # ============================================================
-print("\n=== Publishing articles ===")
+
+article_2 = {
+    "headline": "Abhishek Banerjee Was Pelted With Eggs, Stones, and Shoes in Sonarpur. He Wore a Cricket Helmet.",
+    "subheadline": "The TMC general secretary visited families of party workers killed in post-poll violence. Protesters with black flags, eggs, and bricks met him at every stop.",
+    "slug": "abhishek-banerjee-attacked-sonarpur-eggs-stones-post-poll-violence-bengal-20260530",
+    "person_name": "Abhishek Banerjee (politician)",
+    "person_alt": "Abhishek Banerjee",
+    "pexels_query": None,
+    "pexels_fallback": None,
+    "sources": [
+        {"name": "PTI", "url": "https://www.ptinews.com"},
+        {"name": "Dainik Bhaskar English", "url": "https://bhaskarenglish.in"},
+        {"name": "CNBC TV18", "url": "https://www.cnbctv18.com"},
+        {"name": "India Today", "url": "https://www.indiatoday.in"}
+    ],
+    "body": """Trinamool Congress national general secretary Abhishek Banerjee was attacked with eggs, stones, shoes, and bricks during a visit to Sonarpur in West Bengal's South 24 Parganas district on Saturday. The Diamond Harbour MP donned a cricket helmet for protection as he navigated through crowds of hostile protesters who had gathered at multiple points along his route.
+
+The visit — Banerjee's first major political outing since the West Bengal assembly election results were announced nearly three weeks ago — was intended as a show of solidarity with TMC workers and their families who had been targeted in post-poll violence.
+
+## Black Flags, Eggs, and "Chor Chor" Chants
+
+Before Banerjee even arrived in Sonarpur, groups of women were positioned along the route carrying eggs. BJP supporters had assembled with black flags and chanted "Go Back" slogans. His convoy encountered protests at multiple locations — near Patuli's Dhalai Bridge, in Kamrabad, and at several other points across Sonarpur.
+
+As Banerjee entered the area on a motorcycle, protesters attempted to physically stop him. Despite the hostile reception, he pressed forward wearing the helmet. Videos circulating on social media showed security personnel surrounding and shielding the TMC leader as eggs and stones rained down.
+
+Locals allegedly raised "chor chor" (thief, thief) slogans against him throughout the visit.
+
+## "They Want to Kill Me"
+
+Banerjee was unequivocal about who he held responsible. "It's all BJP-sponsored. Look what they have done. This is their example of democracy. It hasn't even been a month, and the police are nowhere to be seen," he told reporters from behind the security cordon.
+
+"I will not move out from here till police and forces ensure security here. They are trying to break the house and they want to kill me," he added, claiming that adequate security had not been provided despite prior intimation to authorities.
+
+## Post-Poll Violence: The Context
+
+The attack occurred against the backdrop of post-election violence that has convulsed parts of Bengal since the assembly results were declared. A TMC worker named Sanju Karmakar was allegedly killed in post-poll violence in Beliaghata. Banerjee had visited Karmakar's family at the residence of TMC leader Kunal Ghosh before heading to Sonarpur to meet other affected families.
+
+Post-poll violence is a recurring feature of Bengal's electoral cycles, but the scale and openness of the assault on a sitting MP — who is also the nephew of former Chief Minister Mamata Banerjee — marks an escalation. The TMC has been the ruling party in West Bengal for over a decade, but the recent assembly elections appear to have emboldened its opponents.
+
+## CID Visit the Same Morning
+
+Adding to the political charge of the day, a team from the state Criminal Investigation Department visited Banerjee's residence "Shantiniketan" on Harish Mukherjee Road earlier on Saturday in connection with an assembly signature forgery investigation. Staff and security personnel reportedly informed officers that neither Banerjee nor his family members were present.
+
+## The Diaspora Dimension
+
+West Bengal's political turbulence has long been of interest to the Bangladeshi and Bengali diaspora communities. The post-poll violence and Banerjee's dramatic confrontation come at a time when the TMC's political position in the state is being openly contested in ways that were rare during Mamata Banerjee's dominant years.
+
+For NRIs from Bengal or with family connections to the state, the images from Sonarpur — a sitting MP in a cricket helmet, pelted with eggs and stones by people he came to represent — capture a political reality that is shifting faster than many expected."""
+}
+
+# ============================================================
+# ARTICLE 3: Finance Ministry Inflation Warning
+# ============================================================
+
+article_3 = {
+    "headline": "India's Finance Ministry Has Named the Single Biggest Risk to the Economy. It Is the Strait of Hormuz.",
+    "subheadline": "The ministry's monthly economic report warns that fuel price hikes, a weak monsoon, and the Middle East conflict will push retail inflation higher in the coming months.",
+    "slug": "india-finance-ministry-inflation-warning-hormuz-monsoon-fuel-prices-iran-war-20260530",
+    "person_name": None,
+    "pexels_query": "crude oil tanker shipping",
+    "pexels_fallback": "India fuel petrol station",
+    "sources": [
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "Finance Ministry of India", "url": "https://www.finmin.nic.in"}
+    ],
+    "body": """India's finance ministry released its monthly economic report on Saturday with a warning that landed harder than the usual hedged language of government documents. The "single most consequential variable" for the Indian economy, it said, is the duration of the Strait of Hormuz disruption.
+
+That sentence — buried in a document that otherwise described India's near-term outlook as one of "cautious resilience" — is the clearest official acknowledgement yet that the Iran war has become the central risk to India's economic trajectory.
+
+## What the Report Actually Says
+
+The ministry laid out a chain of pressures that it expects to push retail inflation higher in the coming months:
+
+**Fuel prices have already risen.** Recent hikes in petrol and diesel prices — driven by India's dependence on imported crude — are now in the system. The report says "a sharp rise in upstream price pressures, along with recent increases in fuel prices, suggests a gradual pass-through to retail inflation through higher transport, energy, and food-related costs."
+
+**The monsoon is expected to be weak.** India's weather department downgraded its monsoon forecast to 90% of the long-period average earlier this week — the weakest since 2015. An El Niño is expected to develop during the season, with moderate-to-strong intensity in the second half. "A significant rainfall deficit coupled with current geopolitical conditions could translate into food inflation, weakening rural demand and aggregate growth," the ministry warned.
+
+**The rupee is under pressure.** The Indian currency has lost roughly 6% this year, driven by steep capital outflows. Overseas investors have pulled over $24 billion from Indian debt and equities between March and May alone. A weaker rupee makes imports more expensive, compounding the oil price effect.
+
+## The Numbers Right Now
+
+India's retail inflation was 3.48% in April — still comfortably below the Reserve Bank of India's 4% target. But the ministry's report makes clear that this headline number understates the building pressure.
+
+Wholesale price inflation has already accelerated sharply. Brent crude remains roughly 27% above pre-war levels despite a 19% drop in May. And food prices, which account for nearly half the consumer price index basket, are vulnerable to a poor monsoon.
+
+Some economists are projecting inflation could reach 5.5% if food prices spike during a deficient monsoon, according to IDFC First Bank's chief economist Gaura Sengupta. That would be well above the RBI's comfort zone and would complicate the central bank's June 5 policy decision.
+
+## The RBI's Dilemma
+
+The Reserve Bank has kept its key interest rate at 5.25% since its last cut in April. A Reuters poll of 56 economists showed that while 80% expect the RBI to hold in June, 11 now forecast a 25-basis-point hike — up from just one respondent in April's survey.
+
+Capital Economics expects the RBI to raise rates to 6.00% before the end of the year, "contingent on the crisis coming to an end soon and energy prices dropping back." But others argue that rate hikes are the wrong tool for supply-side shocks.
+
+"Interest rates are not a good tool to counter large supply shocks. Also, I do not think the RBI MPC will increase rates to defend the rupee since it is beyond the remit of the MPC," said Aditya Vyas, chief economist at STCI Primary Dealer.
+
+## What NRIs Should Watch
+
+For the Indian diaspora, the finance ministry's warning matters in three direct ways.
+
+**Remittances lose value.** A weakening rupee means each dollar or pound sent home converts to more rupees — good news for recipients. But if inflation erodes that purchasing power, the benefit is illusory.
+
+**Investment returns are at risk.** Indian equities posted monthly losses in May, with the Nifty 50 dropping 1.9% and the Sensex falling 2.8%. The combination of high oil prices, weak capital inflows, and a potential rate hike creates headwinds for anyone with India-linked portfolios.
+
+**Property and consumption costs rise.** NRIs planning visits, purchases, or family support in India will face higher costs across transport, food, and services if the inflation pass-through plays out as the ministry expects.
+
+The finance ministry releases its economic report monthly. This one reads less like a status update and more like a warning."""
+}
+
+# ============================================================
+# PUBLISH ALL ARTICLES
+# ============================================================
+
+articles = [article_1, article_2, article_3]
 success_count = 0
-for i, article in enumerate(articles, 1):
-    print(f"\nArticle {i}: {article['headline'][:60]}...")
-    if not article.get("image_url"):
-        print("  ⚠ No image found — publishing without image")
-    result = publish_article(article)
-    if result:
+for article in articles:
+    if publish_article(article):
         success_count += 1
+    time.sleep(1)
 
-print(f"\n=== Done: {success_count}/{len(articles)} articles published ===")
+print(f"\n✅ Published {success_count}/{len(articles)} articles")
