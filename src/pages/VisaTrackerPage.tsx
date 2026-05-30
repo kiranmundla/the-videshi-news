@@ -624,6 +624,71 @@ export default function VisaTrackerPage() {
                   </p>
                 </Link>
 
+                {/* Visa Alerts Signup */}
+                <div className="bg-gradient-to-b from-green-500/10 to-emerald-500/5 border border-green-500/20 rounded-xl p-5">
+                  <h4 className="font-serif font-bold text-sm mb-1 flex items-center gap-2">
+                    🔔 Visa Slot Alerts
+                  </h4>
+                  <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-500/15 text-green-700 text-[10px] font-bold uppercase tracking-wider mb-2">
+                    Free during launch
+                  </div>
+                  <p className="text-xs text-foreground/60 leading-relaxed mb-3">
+                    Get notified instantly when new appointment slots open or when policy changes affect your visa type. Choose how you want to hear from us.
+                  </p>
+                  <form
+                    onSubmit={async (e) => {
+                      e.preventDefault();
+                      const form = e.target as HTMLFormElement;
+                      const emailEl = form.elements.namedItem("alert_email") as HTMLInputElement;
+                      const waEl = form.elements.namedItem("alert_whatsapp") as HTMLInputElement;
+                      const typeEl = form.elements.namedItem("alert_type") as HTMLSelectElement;
+                      if (!emailEl.value && !waEl.value) { alert("Please enter at least an email or WhatsApp number."); return; }
+                      try {
+                        const { createClient } = await import("@supabase/supabase-js");
+                        const sb = createClient(
+                          import.meta.env.VITE_SUPABASE_URL,
+                          import.meta.env.VITE_SUPABASE_ANON_KEY
+                        );
+                        const channels: string[] = [];
+                        if (emailEl.value) channels.push("email");
+                        if (waEl.value) channels.push("whatsapp");
+                        await sb.from("visa_alert_subscribers").upsert({
+                          email: emailEl.value || `wa-${waEl.value}@placeholder.local`,
+                          whatsapp: waEl.value || null,
+                          visa_type: typeEl.value || "all",
+                          channel: channels.join(","),
+                          subscribed_at: new Date().toISOString(),
+                          active: true,
+                        }, { onConflict: "email" });
+                        emailEl.value = "";
+                        waEl.value = "";
+                        alert("You're in! We'll notify you when slots open. 🎉");
+                      } catch {
+                        alert("Something went wrong — try again.");
+                      }
+                    }}
+                    className="space-y-2"
+                  >
+                    <input name="alert_email" type="email" placeholder="your@email.com" className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors" />
+                    <input name="alert_whatsapp" type="tel" placeholder="WhatsApp number (e.g. +91 98765 43210)" className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors" />
+                    <select name="alert_type" className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground/70 focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors">
+                      <option value="all">All visa types</option>
+                      <option value="B1B2">B1/B2 (Visitor)</option>
+                      <option value="H-1B">H-1B</option>
+                      <option value="H-4">H-4</option>
+                      <option value="F-1">F-1 (Student)</option>
+                      <option value="L-1">L-1</option>
+                      <option value="O-1">O-1</option>
+                    </select>
+                    <button type="submit" className="w-full bg-green-600 text-white text-xs font-semibold py-2 rounded-lg hover:bg-green-500 transition-colors">
+                      Get Free Alerts
+                    </button>
+                  </form>
+                  <p className="text-[10px] text-foreground/40 mt-2 leading-relaxed">
+                    This is a premium service offered free during our launch period. No credit card needed. WhatsApp alerts are fastest — you'll hear within minutes of a slot drop.
+                  </p>
+                </div>
+
                 {/* Disclaimer */}
                 <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
                   <p className="text-[11px] text-foreground/50 leading-relaxed">

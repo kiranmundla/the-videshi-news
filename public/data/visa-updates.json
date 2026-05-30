@@ -1,0 +1,47 @@
+[
+  {
+    "id": "appus-launch",
+    "date": "2026-05-24",
+    "label": "May 24, 2026",
+    "headline": "Rubio launches \"AppUS\" — new America First visa scheduling tool",
+    "summary": "Prioritises business professionals who strengthen US-India commercial ties. Announced during Rubio's first India visit as Secretary of State.",
+    "severity": "high",
+    "source": "US State Department"
+  },
+  {
+    "id": "gc-return-home",
+    "date": "2026-05-23",
+    "label": "May 23, 2026",
+    "headline": "Green Card applicants must return to home country to apply",
+    "summary": "US government announces that those seeking a Green Card must now return to their home countries to file — a major shift affecting thousands of Indian applicants.",
+    "severity": "high",
+    "source": "US State Department"
+  },
+  {
+    "id": "kolkata-priority-50",
+    "date": "2026-01-01",
+    "label": "2026",
+    "headline": "Kolkata launches priority B1/B2 slots for parents 50+",
+    "summary": "US Consulate Kolkata now offers priority visitor visa appointments for eligible Indian parents aged 50 and above visiting children in the US.",
+    "severity": "medium",
+    "source": "US Consulate Kolkata"
+  },
+  {
+    "id": "interview-waiver-eliminated",
+    "date": "2025-09-02",
+    "label": "Sep 2025",
+    "headline": "Interview waiver eliminated for work & student visas",
+    "summary": "H-1B, H-4, L-1, F-1, J-1, O-1 applicants no longer qualify for interview waiver. All must attend in-person interviews.",
+    "severity": "high",
+    "source": "US State Department"
+  },
+  {
+    "id": "social-media-screening",
+    "date": "2025-12-15",
+    "label": "Dec 2025",
+    "headline": "Social media screening expanded to employment visas",
+    "summary": "Adds ~30 min per case, slashing daily appointment capacity by nearly half. Backlogs expected through Q2 2026.",
+    "severity": "medium",
+    "source": "US Embassy India"
+  }
+]
