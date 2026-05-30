@@ -15,15 +15,33 @@ import { supabase } from "@/integrations/supabase/client";
 
 const sb = supabase as any;
 
-/* Simple markdown → HTML (paragraphs, bold, italic) */
+/* Enhanced markdown → HTML for personal essays */
 function renderMarkdown(md: string): string {
-  return md
-    .split(/\n\n+/)
-    .map((p) => {
+  const paragraphs = md.split(/\n\n+/);
+  return paragraphs
+    .map((p, i) => {
       let html = p
         .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
         .replace(/\*(.+?)\*/g, "<em>$1</em>")
         .replace(/\n/g, "<br />");
+
+      // First paragraph gets a drop cap
+      if (i === 0 && html.length > 20) {
+        const first = html.charAt(0);
+        const rest = html.slice(1);
+        return `<p class="story-first-p"><span class="story-dropcap">${first}</span>${rest}</p>`;
+      }
+
+      // Short paragraphs (< 80 chars, no HTML tags) become pull quotes
+      const stripped = html.replace(/<[^>]+>/g, "");
+      if (stripped.length < 80 && stripped.length > 15 && !html.includes("<strong") && !html.includes("<em") && (stripped.endsWith(".") || stripped.endsWith("?"))) {
+        // Only do this occasionally — check if it feels like a standalone thought
+        const words = stripped.split(" ");
+        if (words.length >= 4 && words.length <= 18 && i > 2 && i < paragraphs.length - 2) {
+          return `<blockquote class="story-pullquote">${stripped}</blockquote>`;
+        }
+      }
+
       return `<p>${html}</p>`;
     })
     .join("");
@@ -189,16 +207,21 @@ export default function StoryDetailPage() {
           </div>
 
           {/* Headline */}
-          <h1 className="text-2xl md:text-3xl font-bold leading-snug mb-3 tracking-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+          <h1 className="text-2xl md:text-[1.75rem] font-bold leading-snug mb-4 tracking-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
             {story.headline}
           </h1>
 
           {/* Subheadline */}
           {story.subheadline && (
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+            <p className="text-base md:text-[1.05rem] text-muted-foreground leading-relaxed mb-6" style={{ fontFamily: "'Newsreader', Georgia, serif", fontStyle: "italic" }}>
               {story.subheadline}
             </p>
           )}
+
+          {/* Reading time */}
+          <p className="text-xs text-muted-foreground uppercase tracking-widest mb-6">
+            {Math.max(3, Math.ceil((story.body || "").split(/\s+/).length / 230))} min read
+          </p>
 
           {/* Author bar */}
           <div className="flex items-center gap-3 mb-8 pb-6 border-b border-border">
@@ -346,10 +369,65 @@ export default function StoryDetailPage() {
       <SiteFooter />
 
       <style>{`
-        .story-body p { margin-bottom: 1.5rem; line-height: 1.85; font-size: 1.05rem; color: rgba(var(--foreground), 0.88); }
+        /* Story body — editorial essay feel */
+        .story-body {
+          font-family: 'Newsreader', 'Source Serif 4', Georgia, serif;
+          font-size: 1.1rem;
+          line-height: 1.9;
+          color: hsl(var(--foreground) / 0.88);
+        }
+        .story-body p {
+          margin-bottom: 1.6rem;
+        }
         .story-body p:last-child { margin-bottom: 0; }
-        .story-body p:first-child::first-line { font-weight: 500; }
-        @media (min-width: 768px) { .story-body p { font-size: 1.08rem; } }
+
+        /* Drop cap on first paragraph */
+        .story-body .story-first-p {
+          margin-bottom: 1.6rem;
+        }
+        .story-body .story-dropcap {
+          float: left;
+          font-family: 'Playfair Display', Georgia, serif;
+          font-size: 3.8rem;
+          line-height: 0.75;
+          font-weight: 700;
+          padding-right: 0.12em;
+          padding-top: 0.08em;
+          color: hsl(var(--foreground));
+        }
+
+        /* Pull quotes — standout single-line thoughts */
+        .story-body .story-pullquote {
+          border-left: none;
+          border-top: 1px solid hsl(var(--foreground) / 0.12);
+          border-bottom: 1px solid hsl(var(--foreground) / 0.12);
+          margin: 2.5rem auto;
+          padding: 1.5rem 0;
+          font-family: 'Playfair Display', Georgia, serif;
+          font-style: italic;
+          font-size: 1.35rem;
+          line-height: 1.5;
+          text-align: center;
+          color: hsl(var(--foreground) / 0.75);
+          max-width: 85%;
+        }
+
+        /* Bold text stands out */
+        .story-body strong {
+          font-weight: 600;
+          color: hsl(var(--foreground));
+        }
+
+        /* Italic for internal thoughts */
+        .story-body em {
+          font-style: italic;
+          color: hsl(var(--foreground) / 0.8);
+        }
+
+        @media (min-width: 768px) {
+          .story-body { font-size: 1.15rem; }
+          .story-body .story-dropcap { font-size: 4.5rem; }
+        }
       `}</style>
     </>
   );
