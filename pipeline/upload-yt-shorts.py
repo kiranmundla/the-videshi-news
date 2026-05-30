@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Upload unuploaded reels to YouTube Shorts for The Videshi."""
 
-import json, os, time, re, requests
-from datetime import datetime
+import json, os, time, re, requests, httplib2
+from datetime import datetime, timezone
 from dotenv import load_dotenv
 from google.oauth2.credentials import Credentials
+from google_auth_httplib2 import AuthorizedHttp
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
@@ -16,7 +17,7 @@ YOUTUBE_CLIENT_ID = os.environ["YOUTUBE_CLIENT_ID"]
 YOUTUBE_CLIENT_SECRET = os.environ["YOUTUBE_CLIENT_SECRET"]
 YOUTUBE_REFRESH_TOKEN = os.environ["YOUTUBE_REFRESH_TOKEN"]
 SUPABASE_URL = "https://lboecaekpynbpyijrbfz.supabase.co"
-SB_KEY = os.environ.get("SUPABASE_SERVICE_KEY") or os.environ.get("SUPABASE_KEY") or os.environ.get("SB_KEY", "")
+SB_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or os.environ.get("SUPABASE_SERVICE_KEY") or os.environ.get("SB_KEY", "")
 
 REELS_DIR = os.path.expanduser("~/workspace/the-videshi-news/pipeline/reels")
 LOG_PATH = os.path.expanduser("~/workspace/the-videshi-news/pipeline/youtube-log.json")
@@ -179,7 +180,9 @@ def upload_to_youtube(reel_path, title, description, tags):
         client_secret=YOUTUBE_CLIENT_SECRET
     )
 
-    youtube = build("youtube", "v3", credentials=creds)
+    http = httplib2.Http(timeout=300)
+    authed_http = AuthorizedHttp(creds, http=http)
+    youtube = build("youtube", "v3", http=authed_http)
 
     body = {
         "snippet": {
@@ -194,7 +197,7 @@ def upload_to_youtube(reel_path, title, description, tags):
         }
     }
 
-    media = MediaFileUpload(reel_path, mimetype="video/mp4", resumable=True)
+    media = MediaFileUpload(reel_path, mimetype="video/mp4", resumable=True, chunksize=5*1024*1024)
 
     request = youtube.videos().insert(
         part="snippet,status",
@@ -204,7 +207,7 @@ def upload_to_youtube(reel_path, title, description, tags):
 
     response = None
     while response is None:
-        status, response = request.next_chunk()
+        status, response = request.next_chunk(num_retries=5)
         if status:
             print(f"  Upload progress: {int(status.progress() * 100)}%")
 
@@ -249,7 +252,7 @@ def main():
             yt_log[filename] = {
                 "video_id": video_id,
                 "article_slug": slug or "unknown",
-                "uploaded_at": datetime.utcnow().isoformat() + "Z",
+                "uploaded_at": datetime.now(timezone.utc).isoformat(),
                 "url": url
             }
             save_log(yt_log)
