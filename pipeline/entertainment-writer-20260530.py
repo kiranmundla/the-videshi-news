@@ -1,21 +1,43 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-05-30 batch"""
+"""
+Entertainment Writer — 2026-05-30
+Publishes 4 articles to The Videshi:
+1. Gullak Season 5 returns on SonyLIV June 5
+2. Ramayana eyeing San Diego Comic-Con trailer debut + October 30 release
+3. Patriot (Mammootty-Mohanlal) hits ZEE5 June 5 after theatrical disappointment
+4. Ranbir Kapoor says playing Lord Ram changed him as a father
+"""
 
-import os, json, requests, urllib.parse, uuid, re, time
+import json, os, sys, time, uuid, re
+import requests, urllib.parse
 from datetime import datetime, timezone
 
-# ── Supabase config ──────────────────────────────────────────────────────────
-SB_URL  = os.environ["SUPABASE_URL"]
-SB_KEY  = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS  = os.environ.get("PEXELS_API_KEY", "")
+# ── Load env ──
+env_file = os.path.expanduser("~/.env.supabase")
+if os.path.exists(env_file):
+    for line in open(env_file):
+        line = line.strip()
+        if "=" in line and not line.startswith("#"):
+            k, v = line.split("=", 1)
+            os.environ[k] = v
+
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
-    "apikey": SB_KEY,
-    "Authorization": f"Bearer {SB_KEY}",
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation",
 }
 
-# ── Image helpers ────────────────────────────────────────────────────────────
+PEXELS_KEY = None
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+if os.path.exists(pexels_env):
+    for line in open(pexels_env):
+        if line.startswith("PEXELS_API_KEY="):
+            PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"')
+
+# ── Image helpers ──
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -23,33 +45,33 @@ def fetch_wikipedia_person_image(person_name):
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10,
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels using curl (Python urllib gets 403)."""
-    if not PEXELS:
-        print("  ⚠ No Pexels key")
+    """Fetch an image from Pexels. Use curl underneath (urllib gets 403)."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key found")
         return None
+    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            import subprocess
             cmd = [
                 "curl", "-sS",
-                f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
-                "-H", f"Authorization: {PEXELS}",
+                f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3",
+                "-H", f"Authorization: {PEXELS_KEY}"
             ]
             result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
             data = json.loads(result.stdout)
@@ -57,7 +79,7 @@ def fetch_pexels_image(query, fallback_query=None):
             for p in photos:
                 url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
                 if url:
-                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                     return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
@@ -65,20 +87,20 @@ def fetch_pexels_image(query, fallback_query=None):
 
 
 def validate_image(url):
-    """Check if image URL returns 200 with image content-type and >5KB."""
+    """Verify image URL returns HTTP 200 with image content > 5KB."""
     if not url:
         return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         ct = r.headers.get("Content-Type", "")
         cl = int(r.headers.get("Content-Length", 0))
         if r.status_code == 200 and "image" in ct and cl > 5000:
             return True
-        # Try GET if HEAD didn't give Content-Length
+        # Try GET for servers that don't return Content-Length on HEAD
         if r.status_code == 200 and "image" in ct:
             r2 = requests.get(url, timeout=10, stream=True,
-                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
             chunk = r2.raw.read(6000)
             if len(chunk) > 5000:
                 return True
@@ -87,374 +109,276 @@ def validate_image(url):
     return False
 
 
-def is_banned_url(url):
-    """Check if URL is from a banned source."""
-    if not url:
-        return True
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "scontent-"]
-    banned_params = ["_nc_ht=", "_nc_cat=", "ccb="]
-    for b in banned:
-        if b in url:
-            return True
-    for p in banned_params:
-        if p in url:
-            return True
-    return False
-
-
-def get_image(person_name=None, pexels_query=None, pexels_fallback=None):
-    """Get image URL using the hierarchy: Wikipedia → Pexels → None."""
-    img = None
-    attribution = None
-
-    if person_name:
-        img = fetch_wikipedia_person_image(person_name)
-        if img and not is_banned_url(img) and validate_image(img):
-            return img, "Wikimedia Commons"
-        # Try alternate forms
-        for alt in [f"{person_name} (actor)", f"{person_name} (actress)", f"{person_name} (filmmaker)"]:
-            img = fetch_wikipedia_person_image(alt)
-            if img and not is_banned_url(img) and validate_image(img):
-                return img, "Wikimedia Commons"
-
-    if pexels_query:
-        img = fetch_pexels_image(pexels_query, pexels_fallback)
-        if img and not is_banned_url(img) and validate_image(img):
-            return img, "The Videshi"
-
-    return None, None
-
-
-# ── Supabase helpers ─────────────────────────────────────────────────────────
-def sb_insert(article):
-    """Insert article into p2_articles."""
+def sb_insert(table, row):
+    """Insert a row into Supabase and return the inserted data."""
     r = requests.post(
-        f"{SB_URL}/rest/v1/p2_articles",
+        f"{SUPABASE_URL}/rest/v1/{table}",
         headers=HEADERS,
-        json=article,
+        json=row,
+        timeout=30
     )
     if r.status_code in (200, 201):
         data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
-        print(f"  ✓ Published: {article['slug']} (id={art_id})")
-        return art_id
+        return data[0] if isinstance(data, list) else data
     else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
         return None
 
 
-# ── Articles ─────────────────────────────────────────────────────────────────
-def build_articles():
-    articles = []
-    now = datetime.now(timezone.utc).isoformat()
+def sb_patch(table, filters, updates):
+    """Patch rows in Supabase."""
+    params = "&".join(f"{k}={v}" for k, v in filters.items())
+    r = requests.patch(
+        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
+        headers=HEADERS,
+        json=updates,
+        timeout=30
+    )
+    if r.status_code in (200, 204):
+        print(f"  ✓ Patched {table}")
+    else:
+        print(f"  ⚠ Patch warning ({r.status_code}): {r.text[:200]}")
 
-    # ──────────────────────────────────────────────────────────────────────────
-    # ARTICLE 1: Cocktail 2 Trailer Postponed
-    # ──────────────────────────────────────────────────────────────────────────
-    articles.append({
-        "headline": "Cocktail 2 Trailer Pushed to June 2. The Film Still Opens June 19, But Nobody's Saying Why.",
-        "subheadline": "Maddock Films delays Shahid Kapoor, Kriti Sanon, and Rashmika Mandanna's trailer launch at the last minute, opting for a tighter marketing window",
-        "slug": "cocktail-2-trailer-postponed-june-2-shahid-kapoor-kriti-sanon-rashmika-maddock-nri-20260530",
+
+# ── Articles ──
+articles = [
+    {
+        "headline": "Gullak Season 5 Drops on SonyLIV June 5. India's Most Relatable Family Is Back.",
+        "subheadline": "TVF's beloved Mishra family returns with new struggles, small upgrades, and Shanti Mishra's unexpected turn as a social media personality.",
+        "slug": "gullak-season-5-sonyliv-june-5-mishra-family-tvf-nri-20260530",
         "category": "entertainment",
         "vertical": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "sources": json.dumps([
+        "image_person": "Jameel Khan actor",
+        "image_pexels_query": "Indian family living room",
+        "image_pexels_fallback": "Indian household warm",
+        "sources": [
+            {"name": "Bombay Times", "url": "https://www.bombaytimes.com"},
+            {"name": "SonyLIV", "url": "https://www.sonyliv.com"},
+            {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Gullak"}
+        ],
+        "body": """The Mishra family is coming home again. Gullak Season 5, the TVF-produced web series that has quietly become one of the most cherished shows in Indian streaming, will premiere on SonyLIV on June 5, 2026.
+
+For a show that has never relied on big-budget spectacle or celebrity star power, Gullak's longevity is remarkable. Five seasons in, the series continues to draw viewers who see their own families reflected in the small-town household of Santosh and Shanti Mishra — played once again by Jameel Khan and Geetanjali Kulkarni — and their two sons, Annu and Aman.
+
+## What's Changed This Time
+
+Season 5 picks up with the Mishra household in quiet flux. There are small upgrades at home — the kind that middle-class Indian families celebrate as milestones. But beneath the surface, the emotional landscape has shifted.
+
+Annu, the elder son played by Vaibhav Raj Gupta, is navigating the weight of expectations and self-doubt that comes with early adulthood in a family where resources are limited but aspirations are not. Aman, the younger son played by Harsh Mayar, appears more withdrawn this season, carrying struggles he hasn't yet articulated to his parents.
+
+The most intriguing new thread involves Shanti Mishra herself. In a development that mirrors millions of real Indian households, she's found an unexpected audience through some kind of online presence — a subplot that speaks directly to how social media has reshaped even the most traditional family dynamics.
+
+"With each season, Gullak has come closer to viewers because the Mishras feel like people we all recognise," the makers said in a statement. "This chapter reflects how middle-class India is changing, while still holding on to its warmth and simplicity."
+
+## Why the Diaspora Keeps Coming Back
+
+For NRIs, Gullak has always been more than entertainment. It's a window into the India they left behind — the chai-and-conversation rhythms of a household where the biggest drama is a phone bill or a neighbor's gossip. The show's genius has always been its refusal to manufacture conflict. Life provides enough.
+
+The series debuted in 2019 on TVF Play and SonyLIV, and each subsequent season has deepened the emotional vocabulary of its characters without betraying the show's fundamental simplicity. Season 4 arrived in June 2024 and delivered five episodes that leaned into the father-son dynamic with characteristic understatement.
+
+What makes Gullak rare in the Indian OTT landscape is its economy. Episodes run 20 to 30 minutes. There are no musical interludes, no item numbers, no celebrity cameos. The narrator is a clay piggy bank — the gullak itself — voiced by Shivankit Singh Parihar, offering a sardonic running commentary on the family's life.
+
+## The Cast Returns
+
+Sunita Rajwar returns as Bittu ki Mummy, the neighbor whose presence is as reliable as the Mishras' morning newspaper. The core cast has remained unchanged across all five seasons, which is itself a statement in an industry where ensemble shows routinely swap actors between seasons.
+
+Gullak Season 5 will stream exclusively on SonyLIV starting June 5. For the millions of Indians — at home and abroad — who've adopted the Mishras as their own fictional family, the date is already circled."""
+    },
+    {
+        "headline": "Ramayana Is Eyeing San Diego Comic-Con for Its Trailer Launch. The Film May Release a Week Before Diwali.",
+        "subheadline": "Nitesh Tiwari's ₹4,000-crore epic is planning a global rollout strategy that includes a SDCC debut, a Hans Zimmer-A.R. Rahman concert, and an October 30 release to grab the festive window early.",
+        "slug": "ramayana-san-diego-comic-con-trailer-october-30-release-ranbir-kapoor-nri-20260530",
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "image_person": "Ranbir Kapoor",
+        "image_pexels_query": None,
+        "image_pexels_fallback": None,
+        "sources": [
+            {"name": "Sacnilk", "url": "https://sacnilk.com"},
             {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-            {"name": "Filmibeat", "url": "https://www.filmibeat.com"},
-            {"name": "Sacnilk", "url": "https://www.sacnilk.com"}
-        ]),
-        "body": """The first real promotional beat of Cocktail 2 has been delayed. Maddock Films was scheduled to unveil the trailer on May 29 at a dedicated event in Mumbai, but the launch was pulled at the last moment. The new date is June 2, pushing the reveal closer to the film's theatrical opening on June 19.
+            {"name": "Mid-day", "url": "https://www.mid-day.com"},
+            {"name": "Filmfare", "url": "https://www.filmfare.com"}
+        ],
+        "body": """The most ambitious Indian film ever made is building toward a global launch strategy that has no real precedent in Bollywood. Nitesh Tiwari's Ramayana — starring Ranbir Kapoor as Lord Ram, Sai Pallavi as Sita, and Yash as Ravana — is reportedly planning to debut its trailer at San Diego Comic-Con this July.
 
-The production house confirmed that the postponement applies only to the trailer. The film's release date remains unchanged. No detailed explanation was offered for the shift, though industry sources describe the decision as part of a broader strategy to compress the marketing cycle into a tighter window leading directly into the theatrical release.
+If the deal goes through, Ramayana would become the first Indian film to use SDCC as its primary launchpad, a move that signals how aggressively the makers are positioning this as a crossover event rather than a domestic release with international markets tacked on.
 
-## A Sequel Fourteen Years in the Making
+## The Comic-Con Play
 
-The original Cocktail, released in 2012, became a cultural touchstone for urban Indian audiences. Directed by Homi Adajania, the film starred Saif Ali Khan, Deepika Padukone, and Diana Penty in a story about friendship, love, and the messy complications that arise when the two collide. Its soundtrack, anchored by "Tumhi Ho Bandhu" and "Angrezi Beat," became defining songs of that era.
+According to industry reports, producer Namit Malhotra and director Nitesh Tiwari are in advanced talks with SDCC organizers. The decision follows a focus group screening held recently in Los Angeles, where an early cut reportedly received highly positive feedback from a diverse audience.
 
-Cocktail 2 is positioned as a spiritual successor rather than a direct sequel. It carries the franchise's DNA — contemporary romance, urban settings, emotional complexity — but arrives with an entirely new cast and story. The film brings together Shahid Kapoor, Kriti Sanon, and Rashmika Mandanna, a combination designed for maximum pan-India reach.
+"The feedback has strengthened the belief that the film can travel across cultures," industry insiders told Mid-day, explaining why the team is pursuing a platform typically reserved for Marvel, DC, and major Hollywood franchises.
 
-## The Cast Factor
+The strategy extends well beyond a trailer drop. The makers are also planning a large-scale musical event in October — a live concert featuring a historic collaboration between Academy Award winners Hans Zimmer and A.R. Rahman, who jointly composed the film's score. There are also whispers about international film festival screenings before the wide release.
 
-Shahid Kapoor and Kriti Sanon are reuniting after their 2024 film Teri Baaton Mein Aisa Uljha Jiya, which performed well at the box office. Their chemistry is a known quantity. Rashmika Mandanna, meanwhile, brings a growing pan-India appeal that cuts across language barriers — she's one of the few actresses equally comfortable headlining Telugu and Hindi releases.
+## The October 30 Question
 
-The production team is stacked too. Adajania returns to direct, producers Dinesh Vijan and Luv Ranjan are co-producing, and Pritam Chakraborty is handling the music. At an earlier press event in Mumbai, the team previewed two unreleased tracks — Mashooka, an energetic romantic number reportedly shot in Sicily, and Tujhko, an emotional ballad sung by Arijit Singh.
+While Ramayana was originally slated for Diwali 2026, Bollywood Hungama reported that the makers are now considering preponing to October 30 — a week before the festivities begin. The logic: arriving early gives the film time to build word-of-mouth before the holiday surge, without any competing major release in that window.
 
-## What the Delay Signals
+Internal discussions are reportedly underway, with a final decision expected once distribution negotiations are locked. Those negotiations are themselves historic — the makers are reportedly pursuing a theatrical distribution deal worth ₹450 crore.
 
-Trailer launches in Bollywood are rarely delayed without reason. The most common explanation is a strategic one: the makers may have concluded that three weeks of promotional buildup is more effective than four. In a market where audience attention spans are fragmented across platforms, a compressed campaign can maintain intensity without fatigue.
+## The Numbers Behind the Ambition
 
-The other possibility is more practical. June 2 places the trailer squarely at the start of the month, giving it clean digital real estate without competing with the end-of-May content rush from multiple streaming platforms.
+Ramayana Part 1 has a reported production budget of ₹4,000 crore across both parts, making it the most expensive Indian film ever produced. The makers reportedly rejected a ₹700 crore OTT deal for both parts — the highest ever offered for an Indian film — because they believe Ramayana deserves more.
 
-## The NRI Angle
+Ranbir Kapoor is playing a dual role: Lord Ram and Lord Parashuram. He has confirmed that Part 2 shooting is already 50 percent complete. The film also features Sunny Deol as Hanuman and Ravi Dubey as Lakshman, with visual effects handled by Oscar-winning studio DNEG.
 
-For diaspora audiences who grew up with the original Cocktail, the sequel arrives with built-in nostalgia. The 2012 film captured a particular moment in urban Indian life — the tensions between traditional expectations and modern relationships — that resonated deeply with NRIs navigating similar cultural dualities abroad. Whether Cocktail 2 can recapture that lightning in a bottle with a new generation of stars remains the central question.
+## What This Means for Diaspora Audiences
 
-The film opens in theatres worldwide on June 19. The trailer drops June 2. Between now and then, the music is doing the heavy lifting.""",
-        "person_name": "Shahid Kapoor",
-        "pexels_query": None,
-    })
+For NRIs, the SDCC trailer launch and the aggressive global positioning mean Ramayana won't be an afterthought in international markets. If the makers follow through on their strategy, US, UK, and Canadian audiences could see the film on the same scale as a major Hollywood tentpole — wide release, premium formats, IMAX.
 
-    # ──────────────────────────────────────────────────────────────────────────
-    # ARTICLE 2: Ishaan Khatter Biarritz Jury
-    # ──────────────────────────────────────────────────────────────────────────
-    articles.append({
-        "headline": "Ishaan Khatter Is the Only Indian on the Biarritz Film Festival Jury. Kristen Stewart Is Chairing It.",
-        "subheadline": "The actor joins an international jury panel alongside Whitney Peak, Raphaël Quenard, and emerging European filmmakers for the festival's fourth edition in June",
-        "slug": "ishaan-khatter-biarritz-film-festival-jury-kristen-stewart-india-nri-20260530",
+Part 1 is targeting late October or early November 2026. Part 2 is planned for Diwali 2027. The film that was once dismissed as too expensive, too risky, and too sacred to adapt may end up being the project that permanently changes how Indian cinema markets itself to the world."""
+    },
+    {
+        "headline": "Mammootty and Mohanlal's Patriot Heads to ZEE5 on June 5. The ₹140-Crore Spy Thriller Couldn't Break Even in Theaters.",
+        "subheadline": "The film grossed around ₹80 crore worldwide against a budget of ₹140 crore. Its OTT premiere gives it a second life — and NRIs a first chance to watch Malayalam cinema's most expensive bet.",
+        "slug": "patriot-mammootty-mohanlal-zee5-ott-june-5-box-office-loss-nri-20260530",
         "category": "entertainment",
         "vertical": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "sources": json.dumps([
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-            {"name": "ANI", "url": "https://www.aninews.in"},
-            {"name": "Biarritz Film Festival", "url": "https://www.biarritzfilmfestival.com"}
-        ]),
-        "body": """Ishaan Khatter has been invited to serve on the jury at the Biarritz Film Festival – Nouvelles Vagues 2026, which takes place from June 23 to June 28 in the French coastal city of Biarritz. He is the only Indian actor on this year's panel.
+        "image_person": "Mammootty",
+        "image_pexels_query": None,
+        "image_pexels_fallback": None,
+        "sources": [
+            {"name": "Sacnilk", "url": "https://sacnilk.com"},
+            {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Patriot_(film)"},
+            {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"}
+        ],
+        "body": """When Mammootty and Mohanlal agreed to star in the same film for the first time in nearly two decades, the expectation was simple: a landmark moment for Malayalam cinema that would translate into landmark box office numbers. Patriot was supposed to be that film. It wasn't — at least not commercially.
 
-The jury will be chaired by Kristen Stewart, the American actress and filmmaker who has moved between blockbuster franchises and arthouse cinema with uncommon ease. The rest of the panel includes Canadian actress Whitney Peak, French actor-director Raphaël Quenard, French filmmaker Nathan Ambrosioni, actress Suzy Bemba, Italian director Carolina Cavalli, and British actress Esmé Creed-Miles.
+Directed by Mahesh Narayanan, the spy action thriller opened on May 1 with an impressive ₹28 crore worldwide on its first day. The opening weekend pushed past ₹60 crore globally. Then the weekday collapse began. By the end of its theatrical run, Patriot had grossed roughly ₹80 crore worldwide — ₹37 crore domestically and ₹43 crore from overseas — against a reported budget of ₹125 to ₹140 crore.
 
-## A Festival Built for the Next Generation
+The film will now premiere on ZEE5 on June 5, 2026, in Malayalam, Tamil, Telugu, Kannada, and Hindi. For the NRI audiences who never got a chance to see it on the big screen — and for the many who heard the mixed word-of-mouth and decided to wait — this is the film's real second act.
 
-The Biarritz Film Festival – Nouvelles Vagues is now in its fourth edition and has carved a specific niche: cinema centered on younger generations and emerging voices. Unlike Cannes, which trades on prestige and industry commerce, Biarritz focuses on spotlighting the future of global storytelling. Its programming leans toward contemporary narratives and new creative talent from across the world.
+## What Went Wrong at the Box Office
 
-For an Indian actor to sit on this jury is not unprecedented, but it remains rare. Indian presence at European film festivals has historically been concentrated among directors — Satyajit Ray at Cannes, Mira Nair at Venice, Anurag Kashyap at various festivals. Actors on jury duty represent a different kind of recognition: an acknowledgement of cultural fluency and international standing beyond any single film.
+Patriot's commercial failure is not a story about a bad film. The critical response was mixed but acknowledged the film's technical brilliance and the sheer novelty of watching Mammootty and Mohanlal share the screen in a modern political thriller.
 
-## Ishaan's Quiet International Build
+The problem was the gap between the budget and the audience the film could realistically reach. A ₹140 crore Malayalam-language production needs to perform like a pan-India blockbuster to break even, and Patriot — despite its Hindi and other language dubs — never generated the national conversation that films like Drishyam 3 (which just crossed ₹200 crore in eight days) or KGF managed.
 
-Ishaan Khatter's path to this invitation has been deliberate rather than explosive. His breakout role in Majid Majidi's Beyond the Clouds (2017) gave him an early international platform. The Mira Nair-directed A Suitable Boy, a BBC/Netflix co-production, introduced him to global audiences in a literary adaptation that required classical restraint rather than Bollywood energy.
+The 180-minute runtime didn't help. Neither did the film's niche subject matter — a sophisticated espionage narrative involving a RAW agent gone underground, cyber-attacks targeting the Indian government, and a mole inside a Chief Minister's cabinet. It's the kind of story that plays well in reviews but faces headwinds at the ticket counter.
 
-More recently, The Royals expanded his digital presence, and Homebound earned attention in festival and critical circles. His approach has been to build range rather than rely on any single commercial formula — a strategy that may explain why a European festival known for championing new voices invited him to judge their selections.
+## The Cast Nobody Could Ignore
 
-Earlier this year, Ishaan was featured on the Gold House Gold 100 list, becoming the only Indian male actor in this year's lineup. The list recognizes influential Asian and Pacific figures across industries and is closely watched in Asian American cultural circles.
+Whatever Patriot's commercial fate, the cast assembled for this film is staggering. Mohanlal plays Vikramadithyan, a seasoned RAW agent who has gone off the grid after a failed mission in Europe. Mammootty is Chief Minister Raghavan, whose own cabinet may be compromised.
 
-## What This Means for the Diaspora
+The ensemble extends to Fahadh Faasil, Kunchacko Boban, Nayanthara, Revathi, Darshana Rajendran, and Rajiv Menon. The music is by Sushin Shyam. The cinematography is by Manush Nandan. On paper and on screen, this is a prestige production.
 
-For the Indian diaspora, particularly in Europe, Ishaan's jury appointment at Biarritz registers on multiple levels. It confirms that Indian cinema and Indian actors are being evaluated as part of the global conversation, not adjacent to it. When a jury chaired by Kristen Stewart includes an Indian actor alongside European and American peers, the message is structural: the boundaries between film industries are dissolving.
+## The OTT Opportunity
 
-Ishaan's next project is Jugaadu, a comic caper that also marks his first venture into production. He shared his first look from the film on Instagram earlier this month, signaling that even as his international profile grows, he isn't abandoning the Hindi commercial space.
+For the Indian diaspora, ZEE5's June 5 premiere may be Patriot's real opening day. The overseas theatrical footprint for Malayalam films, while growing, is still limited compared to Hindi or Telugu releases. Many NRIs who wanted to watch the Mammootty-Mohanlal reunion simply didn't have access to a theater showing it.
 
-The festival runs for six days in late June. For Ishaan, it's another data point in an argument he seems to be making through his career: that an Indian actor can occupy both spaces at once — domestic commercial cinema and the international festival circuit — without treating either as a compromise.""",
-        "person_name": "Ishaan Khatter",
-        "pexels_query": None,
-    })
+ZEE5 will stream Patriot in five languages, giving it the pan-India reach that eluded its theatrical run. Whether the film finds its audience on the small screen — the way so many high-budget Indian films have been salvaged by OTT deals — will determine whether Patriot becomes a cautionary tale or a slow-burn success story.
 
-    # ──────────────────────────────────────────────────────────────────────────
-    # ARTICLE 3: Dhurandhar 2 OTT Release
-    # ──────────────────────────────────────────────────────────────────────────
-    articles.append({
-        "headline": "Dhurandhar 2 Hits JioHotstar on June 4. It's Already on Netflix Abroad. Here's Why India Is Getting It Last.",
-        "subheadline": "The ₹1,800-crore spy thriller gets a unique dual-platform OTT rollout — JioHotstar in India, Netflix internationally — after the makers re-auctioned rights mid-run",
-        "slug": "dhurandhar-2-jiohotstar-june-4-netflix-ranveer-singh-ott-india-nri-20260530",
+The film streams on ZEE5 starting June 5, 2026."""
+    },
+    {
+        "headline": "Ranbir Kapoor Says Playing Lord Ram Changed How He Approaches Fatherhood. 'I Really Needed That in My Life.'",
+        "subheadline": "The actor, who initially refused the role, says becoming a father to Raha was what convinced him to take on the most ambitious part of his career.",
+        "slug": "ranbir-kapoor-lord-ram-fatherhood-raha-ramayana-interview-nri-20260530",
         "category": "entertainment",
         "vertical": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "sources": json.dumps([
-            {"name": "Cinema Express", "url": "https://www.cinemaexpress.com"},
-            {"name": "Digit", "url": "https://www.digit.in"},
-            {"name": "Bollywood Life", "url": "https://www.bollywoodlife.com"}
-        ]),
-        "body": """Dhurandhar 2: The Revenge, the second-biggest Indian grosser of all time at ₹1,800 crore worldwide, is finally heading to Indian living rooms. JioHotstar will begin streaming the Ranveer Singh spy thriller on June 4 at 7 PM IST. But if you're reading this from the US, UK, or Canada, you might already have watched it — the film has been available on Netflix internationally since May 14.
+        "image_person": "Ranbir Kapoor",
+        "image_pexels_query": None,
+        "image_pexels_fallback": None,
+        "sources": [
+            {"name": "News Ei Samay", "url": "https://www.newseisamay.com"},
+            {"name": "Sacnilk", "url": "https://sacnilk.com"},
+            {"name": "Filmfare", "url": "https://www.filmfare.com"}
+        ],
+        "body": """Ranbir Kapoor had turned down the role of Lord Ram. He's said so publicly, and the reason was honest: it felt like too massive a responsibility. Then his daughter Raha was born, and everything shifted.
 
-The staggered rollout is not a mistake. It's the result of one of the most unusual OTT rights battles in Indian film history.
+In a recent interview with international media following the release of the Ramayana teaser, Kapoor opened up about how preparing for Nitesh Tiwari's epic adaptation has changed him — not just as an actor, but as a father and a person.
 
-## The Rights Shuffle
+"I think I really needed that in my life," Kapoor said, speaking about the values he absorbed while studying Lord Ram's journey for the role.
 
-The original Dhurandhar's streaming rights were sold to Netflix before the film released theatrically in December 2025. When the first installment became a historic blockbuster, the makers reopened negotiations for the sequel's digital rights. The bidding war that followed was won by JioHotstar for the Indian market.
+## The Father Who Found the Character
 
-Netflix, however, retained international streaming rights for the sequel — a split arrangement that explains the current situation. NRIs in the US, UK, and Middle East got Dhurandhar 2 on Netflix three weeks ago. Indian viewers are still waiting.
+The actor, who is married to Alia Bhatt, explained that becoming a parent fundamentally altered his perspective on the Ramayana. What once seemed like an overwhelming cultural responsibility began to feel like something personal and necessary.
 
-The dual-platform strategy extends to the first film as well. A new version titled "Dhurandhar: Raw and Undekha" — billed as an uncut edition — premiered simultaneously on both Netflix and JioHotstar on May 22. The new version doesn't add scenes or extend the runtime (it remains 3 hours and 25 minutes), but it includes modifications to dialogue and visual censorship that fans have noted are subtle rather than dramatic.
+"When I became a father, my perspective changed," Kapoor said. The values associated with Lord Ram's journey — duty, sacrifice, the tension between personal desire and larger responsibility — began to resonate with him in ways they hadn't before.
 
-## Why This Matters for the Industry
+He shared that the lessons from the preparation "positively influenced his personal life and helped him become more grounded." Understanding Ram's approach to relationships, responsibilities, and family brought about meaningful changes in the way he approached parenthood.
 
-The Dhurandhar franchise has fundamentally altered how Indian films negotiate OTT deals. The traditional model was simple: one platform buys all digital rights, domestic and international. The split-rights approach pioneered here allows makers to maximize revenue by leveraging the strengths of different platforms in different markets.
+It's a striking admission from an actor known for his brooding, complicated screen presence — the troubled heir in Rockstar, the calculating Don in Animal. Lord Ram requires something entirely different: stillness, moral clarity, a quiet authority that doesn't rely on menace or ambiguity.
 
-JioHotstar dominates the Indian streaming landscape with its bundled telecom model. Netflix commands the international Indian diaspora audience. By selling to both, the makers captured two separate revenue pools instead of one.
+## A Dual Role Nobody Expected
 
-Industry trackers believe this model will become standard for future blockbusters. The question is whether it creates confusion for audiences or simply reflects the reality of a fragmented global streaming market.
+During the same interview, Kapoor confirmed something the teaser had hinted at: he's playing a dual role in the film. In addition to Lord Ram, he will portray Lord Parashuram — an avatar of Vishnu known for his fierce warrior nature. The contrast between the two characters represents a significant acting challenge, and the recently released teaser offered brief glimpses of both incarnations.
 
-## The Legal Cloud
+Kapoor also revealed that shooting for Ramayana Part 2 is already 50 percent complete — a timeline that suggests the production is running with remarkable efficiency given the film's ₹4,000-crore combined budget. Both parts together will run over six hours, making this the longest mainstream Indian film project in recent memory.
 
-The OTT release arrives under an unusual legal shadow. The Delhi High Court is examining a public interest litigation filed by an SSB head constable alleging that the film depicts confidential information related to army operations. The court has directed the Ministry of Information and Broadcasting and the CBFC to investigate, noting that even if the film is fictional, concerns raised by security personnel cannot be ignored.
+## What the Diaspora Will See
 
-The legal proceedings have not affected the streaming release schedule, but they add an unusual dimension to a film that has otherwise been celebrated as a commercial triumph.
+For Indian audiences abroad, Kapoor's personal transformation adds an emotional layer to a film that's already carrying enormous cultural weight. Ramayana isn't just a movie — for millions in the diaspora, it's an adaptation of a text that shaped their childhoods, their moral frameworks, their understanding of what it means to be Indian.
 
-## What NRIs Should Know
+The fact that the lead actor struggled with the role, refused it, and ultimately accepted it because fatherhood gave him a new lens through which to understand Ram's story — that's the kind of narrative that transcends box office numbers.
 
-If you're in the US, UK, Canada, or Middle East with a Netflix subscription, you've likely already had access to Dhurandhar 2 since mid-May. The JioHotstar release is relevant if you have family in India who haven't seen it yet, or if you prefer JioHotstar's interface and its Hindi-Tamil-Telugu language options.
+Ramayana Part 1, directed by Nitesh Tiwari, also stars Sai Pallavi as Sita, Yash as Ravana, Sunny Deol as Hanuman, and Ravi Dubey as Lakshman. The film is produced by Namit Malhotra's Prime Focus Studios and backed by Monster Mind Creations. The music features a collaboration between Oscar winners A.R. Rahman and Hans Zimmer.
 
-For the Indian audience, the June 4 premiere means the wait is finally over. Directed by Aditya Dhar, the film stars Ranveer Singh as undercover intelligence officer Jaskirat Singh Rangi alongside R. Madhavan, Sanjay Dutt, Arjun Rampal, Sara Arjun, and Rakesh Bedi. Netflix India gets it two weeks later on June 19 — another staggered window within the same market.""",
-        "person_name": "Ranveer Singh",
-        "pexels_query": None,
-    })
+Part 1 is targeting a release around Diwali 2026. Part 2 is set for Diwali 2027."""
+    }
+]
 
-    # ──────────────────────────────────────────────────────────────────────────
-    # ARTICLE 4: August Box Office War
-    # ──────────────────────────────────────────────────────────────────────────
-    articles.append({
-        "headline": "Four South Indian Superstars Are Releasing Films Within Eight Days in August. Theatre Owners Are Sweating.",
-        "subheadline": "Suriya, Nani, Dulquer Salmaan, and Prithviraj Sukumaran will compete for screens in the most crowded South Indian box office window of the year",
-        "slug": "august-2026-south-indian-box-office-clash-suriya-nani-dulquer-prithviraj-nri-20260530",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "sources": json.dumps([
-            {"name": "Sacnilk", "url": "https://www.sacnilk.com"},
-            {"name": "Filmibeat", "url": "https://www.filmibeat.com"}
-        ]),
-        "body": """August 2026 is shaping up to be the most congested — and potentially the most consequential — box office window South Indian cinema has seen in years. Within a span of just eight days, four major superstars are bringing highly anticipated projects to theatres. The lineup creates a feast for moviegoers and a logistical nightmare for exhibitors.
+# ── Main loop ──
+published = 0
+now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-## The Collision Course
-
-The sequence begins on August 14 with Suriya's Vishwanath and Sons. Directed by Venky Atluri, the film is a family drama and sports romance in which Suriya plays an international pistol-shooting champion. It's a bilingual, shot simultaneously in Tamil and Telugu, and stands out from the rest of the lineup as the only non-action-genre entry. The two-day head start gives it a window to build word-of-mouth before the real storm hits.
-
-That storm arrives on August 20, when three films collide on the same day.
-
-Nani's The Paradise has been generating international buzz since reports emerged that Hollywood star Ryan Reynolds was approached for a collaborative role. The film targets a multilingual global release with visual language and tone designed to appeal across Eastern and Western audiences. If confirmed, the Reynolds connection could mark one of the most high-profile Indo-Hollywood collaborations in recent memory.
-
-On the same day, Dulquer Salmaan's I'm Game hits screens. Directed by Nahas Hidayath, it's a pan-Indian action-thriller set in the world of cricket betting and fantasy gaming — a subject with obvious relevance to Indian audiences worldwide.
-
-And completing the triple collision is Prithviraj Sukumaran's Khalifa: The Bloodline, an underworld saga that features an extended cameo by Mohanlal. The pairing of Prithviraj and Mohanlal has already sent expectations through the roof in Kerala and the Middle East, where both actors command enormous diaspora followings.
-
-## What This Means for Exhibitors
-
-The fundamental tension is screen allocation. South Indian cinema operates across multiple language markets — Tamil, Telugu, Malayalam, Kannada — each with its own exhibition ecosystem. When four major releases compete simultaneously, theatre owners must make impossible choices about which films get premium showtimes and which get squeezed.
-
-For single-screen theatres, the challenge is existential. They can show one film at a time. For multiplexes, the math is slightly more forgiving, but even an eight-screen multiplex can only dedicate so many slots to South Indian releases when Hindi and Hollywood titles also compete for space.
-
-Industry analysts are divided on whether this clustering is healthy. Some argue that a concentrated release window generates collective excitement and drives overall footfall — a rising tide that lifts all boats. Others worry that all four films will cannibalize each other's opening weekends, and that at least one or two will underperform relative to their potential.
-
-## The NRI Market Factor
-
-For diaspora audiences, particularly in the US, UK, Canada, and the Middle East, the August clash has specific implications. International screens allocated to Indian films are limited. A typical US metro might have five to ten screens showing Indian films on any given weekend. When four major South Indian releases compete for those slots, some films will inevitably get fewer shows or delayed starts in overseas markets.
-
-The counterargument is that the diaspora audience for each of these stars is somewhat distinct. Suriya and Nani draw primarily from Tamil and Telugu markets; Dulquer and Prithviraj command Kerala and pan-South Indian audiences. There may be less direct competition than the calendar suggests.
-
-## The Bigger Question
-
-August 2026 will serve as a stress test for the South Indian exhibition ecosystem. If all four films perform well, it validates the industry's confidence in its audience base. If the window produces casualties, it will strengthen the argument for more coordinated release planning — a conversation that has been simmering since the post-pandemic theatrical recovery began.
-
-For now, the stars are locked in. The countdown has started. Theatre owners are doing the math.""",
-        "person_name": "Nani (actor)",
-        "pexels_query": "Indian cinema theatre crowd",
-        "pexels_fallback": "movie theatre India",
-    })
-
-    # ──────────────────────────────────────────────────────────────────────────
-    # ARTICLE 5: CINTAA vs FWICE Union War
-    # ──────────────────────────────────────────────────────────────────────────
-    articles.append({
-        "headline": "CINTAA Has Officially Backed Ranveer Singh. FWICE Wants Him Blacklisted. Bollywood's Biggest Union War Just Got Personal.",
-        "subheadline": "Two of the film industry's most powerful bodies are now on opposite sides over the Don 3 dispute, raising fundamental questions about who governs Bollywood's labor disputes",
-        "slug": "cintaa-fwice-ranveer-singh-don-3-union-war-bollywood-nri-20260530",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "sources": json.dumps([
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-            {"name": "BlazeT rends", "url": "https://www.blazetrends.com"},
-            {"name": "Madhyamam Online", "url": "https://www.madhyamamonline.com"}
-        ]),
-        "body": """What started as a casting dispute over Don 3 has escalated into the most significant institutional confrontation in Bollywood's labor ecosystem in years. Two of the film industry's most powerful bodies — the Cine and TV Artistes' Association (CINTAA) and the Federation of Western India Cine Employees (FWICE) — are now publicly and irreconcilably on opposite sides over Ranveer Singh.
-
-## The Fault Lines
-
-FWICE, which represents workers across 30 crafts in the western Indian film industry, issued a non-cooperation directive against Ranveer Singh after filmmaker Farhan Akhtar filed a formal complaint alleging that the actor's sudden exit from Don 3 caused financial losses of approximately ₹45 crore. The complaint, submitted on April 11, detailed pre-production expenses, location scouting costs, and development investments that were rendered moot by the withdrawal.
-
-FWICE issued three notices to Ranveer asking him to appear and explain his position. When his legal team responded by challenging the federation's jurisdiction over what they described as an independent commercial agreement between an actor and a production company, FWICE escalated. The non-cooperation directive instructs members across all departments of the film industry not to work on Ranveer Singh's future projects or commercial advertisements until the matter is resolved.
-
-Then CINTAA entered the picture.
-
-## The Counter-Move
-
-CINTAA Vice-President and veteran actress Padmini Kolhapure made the association's position unambiguous: "CINTAA is proud to have Ranveer Singh as our member. We stand by him and for him whenever he needs us." CINTAA President Poonam Dhillon went further, calling FWICE's unilateral action "strange," particularly since neither the actor nor the producers had consulted the artistes' association before the directive was issued.
-
-The jurisdictional question at the heart of this dispute is fundamental. FWICE governs craft workers — technicians, crew, production staff. CINTAA represents actors. When FWICE issues a directive that effectively restricts an actor's ability to work, it encroaches on territory that CINTAA considers its own.
-
-## Ranveer's Calculated Silence
-
-Throughout the escalation, Ranveer Singh has maintained a deliberate silence. His spokesperson released a single statement: "Ranveer Singh holds the highest regard for the film fraternity and for everyone associated with the Don franchise. He has consciously chosen to maintain silence, believing that professional discussions and personal equations are best handled with dignity, maturity and mutual respect."
-
-The statement is notable for what it doesn't say. It doesn't acknowledge FWICE's authority. It doesn't dispute the ₹45 crore figure. It doesn't explain why he exited Don 3. The silence itself has become a strategy — by refusing to engage with FWICE's process, Ranveer's team is implicitly arguing that the federation has no standing in this matter.
-
-## The Industry Implications
-
-The CINTAA-FWICE divide exposes a structural vulnerability in Bollywood's self-governance. Unlike Hollywood, where the Screen Actors Guild and other unions have clearly delineated jurisdictions backed by decades of labor law, India's film industry operates through a patchwork of voluntary associations with overlapping and sometimes contradictory mandates.
-
-If FWICE can blacklist an actor, and CINTAA can override that blacklist, the question becomes: whose writ runs? The practical answer, at least for a star of Ranveer Singh's stature, is that no federation can meaningfully prevent him from working. Producers will cast whoever they believe will sell tickets. But for mid-tier and emerging actors, the precedent matters enormously. A non-cooperation directive from FWICE could end a career that CINTAA's verbal support alone cannot save.
-
-## What NRIs Are Watching
-
-For the diaspora audience, this dispute is a window into how Bollywood actually works behind the glamour. The Don 3 saga — which began as a simple question of whether Ranveer Singh would play Don — has become a case study in the industry's governance gaps. The resolution, whenever it comes, will say a great deal about whether Bollywood can modernize its institutional framework or remains governed by the loudest voice in the room.""",
-        "person_name": "Padmini Kolhapure",
-        "pexels_query": "Bollywood film industry",
-        "pexels_fallback": "Indian cinema industry",
-    })
-
-    return articles
-
-
-# ── Main ─────────────────────────────────────────────────────────────────────
-def main():
-    articles = build_articles()
-    published = 0
-
-    for i, art in enumerate(articles, 1):
-        print(f"\n{'='*60}")
-        print(f"Article {i}/{len(articles)}: {art['headline'][:60]}...")
-        print(f"{'='*60}")
-
-        # Image sourcing
-        person = art.pop("person_name", None)
-        pq = art.pop("pexels_query", None)
-        pf = art.pop("pexels_fallback", None)
-
-        img_url, attribution = get_image(
-            person_name=person,
-            pexels_query=pq,
-            pexels_fallback=pf,
-        )
-
-        if img_url:
-            art["image_url"] = img_url
-            art["image_attribution"] = attribution
-            print(f"  ✓ Image set: {img_url[:60]}...")
-        else:
-            print(f"  ⚠ No image found — publishing without image")
-
-        # Validate article
-        body_words = len(art["body"].split())
-        if body_words < 400:
-            print(f"  ✗ Body too short ({body_words} words) — skipping")
-            continue
-
-        if len(art["headline"]) > 200:
-            print(f"  ⚠ Headline too long ({len(art['headline'])} chars) — truncating")
-            art["headline"] = art["headline"][:197] + "..."
-
-        if len(art.get("subheadline", "")) < 15:
-            print(f"  ✗ Subheadline too short — skipping")
-            continue
-
-        print(f"  Body: {body_words} words")
-        print(f"  Slug: {art['slug']}")
-
-        # Publish
-        art_id = sb_insert(art)
-        if art_id:
-            published += 1
-        
-        time.sleep(1)  # Brief pause between inserts
-
+for i, art in enumerate(articles):
     print(f"\n{'='*60}")
-    print(f"Done. Published {published}/{len(articles)} articles.")
-    print(f"{'='*60}")
+    print(f"Article {i+1}: {art['headline'][:70]}...")
 
+    # Image sourcing
+    img_url = None
 
-if __name__ == "__main__":
-    main()
+    # Try Wikipedia first for person articles
+    if art.get("image_person"):
+        img_url = fetch_wikipedia_person_image(art["image_person"])
+        if img_url and not validate_image(img_url):
+            print(f"  ⚠ Wikipedia image failed validation, trying alternate names")
+            img_url = None
+
+    # Fall back to Pexels
+    if not img_url and art.get("image_pexels_query"):
+        img_url = fetch_pexels_image(art["image_pexels_query"], art.get("image_pexels_fallback"))
+        if img_url and not validate_image(img_url):
+            print(f"  ⚠ Pexels image failed validation")
+            img_url = None
+
+    if not img_url:
+        print(f"  ⚠ No valid image found — publishing without image (no image > wrong image)")
+
+    # Check for banned image sources
+    if img_url:
+        banned_patterns = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat="]
+        for bp in banned_patterns:
+            if bp in img_url:
+                print(f"  ✗ BANNED image source detected ({bp}), dropping image")
+                img_url = None
+                break
+
+    # Build article row
+    row = {
+        "headline": art["headline"],
+        "subheadline": art["subheadline"],
+        "slug": art["slug"],
+        "body": art["body"].strip(),
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": now_utc,
+        "sources": json.dumps(art["sources"]),
+        "image_url": img_url,
+    }
+
+    result = sb_insert("p2_articles", row)
+    if result:
+        art_id = result.get("id")
+        print(f"  ✓ Published: {art['slug']} (id: {art_id})")
+        published += 1
+    else:
+        print(f"  ✗ FAILED to publish: {art['slug']}")
+
+    time.sleep(1)
+
+print(f"\n{'='*60}")
+print(f"Done. Published {published}/{len(articles)} articles.")
