@@ -7,8 +7,10 @@ Visa Alert Sender
 """
 import json
 import os
+import subprocess
 import sys
 import time
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone, timedelta
 
@@ -27,12 +29,15 @@ def load_env(path):
 
 def supabase_get(table, params=""):
     url = f"{os.environ['SUPABASE_URL']}/rest/v1/{table}?{params}"
-    req = urllib.request.Request(url, headers={
-        "apikey": os.environ["SUPABASE_SERVICE_ROLE_KEY"],
-        "Authorization": f"Bearer {os.environ['SUPABASE_SERVICE_ROLE_KEY']}",
-    })
-    with urllib.request.urlopen(req) as resp:
-        return json.loads(resp.read())
+    result = subprocess.run(
+        ["curl", "-s", "-f", url,
+         "-H", f"apikey: {os.environ['SUPABASE_SERVICE_ROLE_KEY']}",
+         "-H", f"Authorization: Bearer {os.environ['SUPABASE_SERVICE_ROLE_KEY']}"],
+        capture_output=True, text=True, timeout=30
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"Supabase GET failed: {result.stderr}")
+    return json.loads(result.stdout)
 
 def load_state():
     if os.path.exists(STATE_FILE):
@@ -177,10 +182,11 @@ def main():
     
     print(f"Checking for new sightings since {last_sent}...")
     
-    # Get new sightings
+    # Get new sightings (normalize +00:00 → Z to avoid URL encoding issues)
+    last_sent_clean = last_sent.replace("+00:00", "Z")
     new_sightings = supabase_get(
         "visa_sightings",
-        f"created_at=gt.{last_sent}&order=created_at.desc&limit=20"
+        f"created_at=gt.{last_sent_clean}&order=created_at.desc&limit=20"
     )
     
     if not new_sightings:
