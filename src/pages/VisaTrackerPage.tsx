@@ -873,8 +873,6 @@ export default function VisaTrackerPage() {
                   </p>
                 </div>
 
-                <ThankYouWall sightings={sightings} />
-
                 {/* Latest Updates */}
                 {updates.length > 0 && (
                 <div className="bg-card border border-border rounded-xl p-5">
@@ -885,13 +883,21 @@ export default function VisaTrackerPage() {
                     {updates.map((u, i) => (
                       <li key={u.id} className={i < updates.length - 1 ? "border-b border-border pb-2.5" : ""}>
                         <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">{u.label}</span>
-                        <p className="mt-0.5 font-medium text-foreground/90">{u.headline}</p>
+                        {u.url ? (
+                          <Link to={u.url} className="block mt-0.5 font-medium text-foreground/90 hover:text-primary transition-colors">
+                            {u.headline} →
+                          </Link>
+                        ) : (
+                          <p className="mt-0.5 font-medium text-foreground/90">{u.headline}</p>
+                        )}
                         <p className="mt-0.5">{u.summary}</p>
                       </li>
                     ))}
                   </ul>
                 </div>
                 )}
+
+                <ThankYouWall sightings={sightings} />
 
                 {/* How it works */}
                 <div className="bg-card border border-border rounded-xl p-5">

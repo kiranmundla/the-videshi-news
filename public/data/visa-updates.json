@@ -6,7 +6,8 @@
     "headline": "Rubio launches \"AppUS\" — new America First visa scheduling tool",
     "summary": "Prioritises business professionals who strengthen US-India commercial ties. Announced during Rubio's first India visit as Secretary of State.",
     "severity": "high",
-    "source": "US State Department"
+    "source": "US State Department",
+    "url": "/articles/rubio-america-first-visa-scheduling-india-business-travel-20260525"
   },
   {
     "id": "gc-return-home",
@@ -15,7 +16,8 @@
     "headline": "Green Card applicants must return to home country to apply",
     "summary": "US government announces that those seeking a Green Card must now return to their home countries to file — a major shift affecting thousands of Indian applicants.",
     "severity": "high",
-    "source": "US State Department"
+    "source": "US State Department",
+    "url": "/immigration"
   },
   {
     "id": "kolkata-priority-50",
@@ -24,7 +26,8 @@
     "headline": "Kolkata launches priority B1/B2 slots for parents 50+",
     "summary": "US Consulate Kolkata now offers priority visitor visa appointments for eligible Indian parents aged 50 and above visiting children in the US.",
     "severity": "medium",
-    "source": "US Consulate Kolkata"
+    "source": "US Consulate Kolkata",
+    "url": "/articles/kolkata-us-consulate-b1b2-visa-pilot-parents-priority-20260529"
   },
   {
     "id": "interview-waiver-eliminated",
@@ -33,7 +36,8 @@
     "headline": "Interview waiver eliminated for work & student visas",
     "summary": "H-1B, H-4, L-1, F-1, J-1, O-1 applicants no longer qualify for interview waiver. All must attend in-person interviews.",
     "severity": "high",
-    "source": "US State Department"
+    "source": "US State Department",
+    "url": "/immigration/guides/visa-interview-prep"
   },
   {
     "id": "social-media-screening",
@@ -42,6 +46,17 @@
     "headline": "Social media screening expanded to employment visas",
     "summary": "Adds ~30 min per case, slashing daily appointment capacity by nearly half. Backlogs expected through Q2 2026.",
     "severity": "medium",
-    "source": "US Embassy India"
+    "source": "US Embassy India",
+    "url": "/immigration/guides/social-media-screening"
+  },
+  {
+    "id": "rubio-freezes-student-visas",
+    "date": "2026-05-26",
+    "label": "May 26, 2026",
+    "headline": "Rubio freezes student visa appointments worldwide",
+    "summary": "US State Department halts all new F-1 visa appointments. Indian fall enrollments already in freefall.",
+    "severity": "high",
+    "source": "US State Department",
+    "url": "/articles/rubio-freezes-student-visa-appointments-india-fall-enrollment-20260526"
   }
 ]
