@@ -7,7 +7,7 @@ export type CategoryDef = {
 
 export const CATEGORIES: CategoryDef[] = [
   { slug: "news", label: "News", path: "/news", hasPipeline: true },
-  { slug: "nri-world", label: "Indians Abroad", path: "/nri-world", hasPipeline: true },
+  { slug: "nri-world", label: "World", path: "/nri-world", hasPipeline: true },
   { slug: "lifestyle-health", label: "Lifestyle & Health", path: "/lifestyle-health", hasPipeline: true },
   { slug: "markets-finance", label: "Markets & Finance", path: "/markets-finance", hasPipeline: true },
   { slug: "technology", label: "Technology", path: "/technology", hasPipeline: true },

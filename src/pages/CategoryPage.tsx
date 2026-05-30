@@ -33,20 +33,30 @@ export default function CategoryPage() {
     setLoading(true);
     setHasMore(true);
     setFadeFrom(0);
-    getArticlesByCategory(def.slug, PAGE_SIZE, 0).then((a) => {
-      setArticles(a);
-      setHasMore(a.length === PAGE_SIZE);
-      setLoading(false);
-    });
+    getArticlesByCategory(def.slug, PAGE_SIZE, 0)
+      .then((a) => {
+        setArticles(a);
+        setHasMore(a.length === PAGE_SIZE);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("[CategoryPage] fetch failed", err);
+        setArticles([]);
+        setLoading(false);
+      });
   }, [def?.slug, def?.hasPipeline]);
 
   const loadMore = async () => {
     if (!def?.hasPipeline || loadingMore || !hasMore) return;
     setLoadingMore(true);
-    const next = await getArticlesByCategory(def.slug, PAGE_SIZE, articles.length);
-    if (next.length < PAGE_SIZE) setHasMore(false);
-    setFadeFrom(articles.length);
-    setArticles((prev) => [...prev, ...next]);
+    try {
+      const next = await getArticlesByCategory(def.slug, PAGE_SIZE, articles.length);
+      if (next.length < PAGE_SIZE) setHasMore(false);
+      setFadeFrom(articles.length);
+      setArticles((prev) => [...prev, ...next]);
+    } catch (err) {
+      console.error("[CategoryPage] loadMore failed", err);
+    }
     setLoadingMore(false);
   };
 
