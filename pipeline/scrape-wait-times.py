@@ -84,9 +84,11 @@ def fetch_wait_times():
         
         # Check if this city is one we care about
         slug = None
-        for target_name, target_slug in TARGETS.items():
+        display = None
+        for target_name, (target_slug, target_display) in TARGETS.items():
             if target_name.lower() in city_raw.lower():
                 slug = target_slug
+                display = target_display
                 break
         
         if not slug:
@@ -107,7 +109,9 @@ def fetch_wait_times():
         ]:
             results.append({
                 "consulate": slug,
+                "consulate_display": display,
                 "visa_type": visa_type,
+                "visa_type_display": VISA_TYPE_DISPLAY.get(visa_type, visa_type),
                 "avg_wait_months": avg_b1b2 if visa_type == "B1B2" else None,
                 "next_available_months": val,
                 "scraped_at": now,
