@@ -381,9 +381,25 @@ export default function ArticlePage() {
       window.scrollTo(0, 0);
     };
 
-    // Always fetch live from Supabase for article detail pages
-    // (static JSON can be stale after admin edits)
-    fetchFromSupabase();
+    // Fast path: load static JSON from CDN instantly, then silently
+    // refresh from Supabase to catch any admin edits (image changes, etc.)
+    fetch(`/data/articles/${slug}.json`)
+      .then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
+      .then(async (a) => {
+        if (cancelled) return;
+        setArticle(a);
+        try {
+          const rel = await getRelatedArticles(a.slug, a.category, 3);
+          if (!cancelled) setRelated(rel);
+        } catch { /* related articles are non-critical */ }
+        window.scrollTo(0, 0);
+        // Background refresh: update with live data if different
+        const fresh = await getArticleBySlug(slug);
+        if (!cancelled && fresh) setArticle(fresh);
+      })
+      .catch(() => {
+        if (!cancelled) fetchFromSupabase();
+      });
 
     return () => {
       cancelled = true;
