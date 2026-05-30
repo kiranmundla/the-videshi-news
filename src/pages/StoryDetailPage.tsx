@@ -177,8 +177,8 @@ export default function StoryDetailPage() {
           </div>
 
           {/* Category badge */}
-          <div className="flex items-center gap-2 mb-4 flex-wrap">
-            <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full">
+          <div className="flex items-center gap-2 mb-5 flex-wrap">
+            <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full tracking-wide uppercase">
               {getCategoryEmoji(story.category)} {getCategoryLabel(story.category)}
             </span>
             {story.author_linkedin && (
@@ -189,33 +189,33 @@ export default function StoryDetailPage() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-serif text-3xl md:text-4xl font-bold leading-tight mb-3">
+          <h1 className="text-2xl md:text-3xl font-bold leading-snug mb-3 tracking-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
             {story.headline}
           </h1>
 
           {/* Subheadline */}
           {story.subheadline && (
-            <p className="text-lg text-muted-foreground italic mb-6">
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
               {story.subheadline}
             </p>
           )}
 
           {/* Author bar */}
-          <div className="flex items-center gap-4 mb-8 pb-6 border-b border-border">
+          <div className="flex items-center gap-3 mb-8 pb-6 border-b border-border">
             {story.author_photo_url ? (
               <img
                 src={story.author_photo_url}
                 alt={story.author_name}
-                className="w-14 h-14 rounded-full object-cover"
+                className="w-11 h-11 rounded-full object-cover"
               />
             ) : (
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-xl font-bold text-primary">
+              <div className="w-11 h-11 rounded-full bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center text-base font-semibold text-amber-800">
                 {(story.author_name || "?")[0].toUpperCase()}
               </div>
             )}
             <div>
-              <p className="font-medium text-base">{story.author_name}</p>
-              <p className="text-sm text-muted-foreground">
+              <p className="font-semibold text-sm">{story.author_name}</p>
+              <p className="text-xs text-muted-foreground">
                 {story.author_city && `${story.author_city} · `}
                 {story.published_at && formatStoryDate(story.published_at)}
               </p>
@@ -328,20 +328,16 @@ export default function StoryDetailPage() {
           </div>
 
           {/* CTA */}
-          <div className="text-center py-10 px-6 bg-muted/30 rounded-2xl border border-border">
-            <p className="text-3xl mb-3">🤝</p>
-            <h2 className="font-serif text-xl font-bold mb-3">Your experience is someone else's roadmap</h2>
-            <p className="text-muted-foreground mb-3 max-w-md mx-auto text-sm leading-relaxed">
-              Whether it's a visa hack, a career win, a culture shock, or how you found community — your story could be exactly what someone needs to hear right now.
-            </p>
-            <p className="text-xs text-muted-foreground mb-5 max-w-sm mx-auto italic">
-              Include your LinkedIn — the community might reach out with a referral or introduction.
+          <div className="text-center py-8 px-6 bg-gradient-to-b from-amber-50/50 to-orange-50/50 rounded-2xl border border-amber-100">
+            <h2 className="text-lg font-semibold mb-2 tracking-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>Your story could be next</h2>
+            <p className="text-muted-foreground mb-5 max-w-md mx-auto text-sm leading-relaxed">
+              Whether it's a visa struggle, a career breakthrough, or finding home in a new country — the diaspora learns from each other.
             </p>
             <Link
               to="/stories/submit"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors text-sm"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors text-sm"
             >
-              Share Your Story
+              Share Your Story →
             </Link>
           </div>
         </article>
@@ -350,8 +346,10 @@ export default function StoryDetailPage() {
       <SiteFooter />
 
       <style>{`
-        .story-body p { margin-bottom: 1.25rem; line-height: 1.8; }
+        .story-body p { margin-bottom: 1.5rem; line-height: 1.85; font-size: 1.05rem; color: rgba(var(--foreground), 0.88); }
         .story-body p:last-child { margin-bottom: 0; }
+        .story-body p:first-child::first-line { font-weight: 500; }
+        @media (min-width: 768px) { .story-body p { font-size: 1.08rem; } }
       `}</style>
     </>
   );
