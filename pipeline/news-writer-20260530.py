@@ -1,341 +1,434 @@
 #!/usr/bin/env python3
-"""News writer for The Videshi - 2026-05-30 batch"""
+"""
+News writer for The Videshi — 2026-05-30 evening batch
+Three articles:
+1. India-Vietnam BrahMos missile deal ($629M), Indonesia next
+2. Chandrayaan-3 wins Goddard Astronautics Award from AIAA
+3. India-US trade deal down to 'last 1%' — Ambassador Gor
+"""
 
-import json, os, re, sys, time, uuid, urllib.parse
+import json, os, sys, time, uuid, re
 import requests
+from datetime import datetime, timezone
 
-# Load Supabase credentials
-from dotenv import load_dotenv
-load_dotenv(os.path.expanduser("~/.env.supabase"))
-
+# ── Env ──────────────────────────────────────────────────────────────────
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = None
-try:
-    with open(os.path.expanduser("~/workspace/.env.pexels")) as f:
-        for line in f:
-            if line.startswith("PEXELS_API_KEY="):
-                PEXELS_KEY = line.strip().split("=", 1)[1]
-except:
-    pass
+PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation"
+    "Prefer": "return=representation",
 }
+
+# ── Helpers ──────────────────────────────────────────────────────────────
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    encoded = requests.utils.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com; contact@thevideshi.com)"},
+            timeout=10,
         )
         if r.status_code == 200:
             data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            # Use thumbnail (330px) which is more reliably cached; originalimage can 429
+            img = data.get("thumbnail", {}).get("source")
+            if not img:
+                img = data.get("originalimage", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
+        elif r.status_code == 429:
+            print(f"  ⚠ Wikipedia rate limited for '{person_name}', waiting 5s...")
+            time.sleep(5)
+            r2 = requests.get(
+                f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+                headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com; contact@thevideshi.com)"},
+                timeout=10,
+            )
+            if r2.status_code == 200:
+                data = r2.json()
+                img = data.get("thumbnail", {}).get("source")
+                if not img:
+                    img = data.get("originalimage", {}).get("source")
+                if img:
+                    print(f"  ✓ Wikipedia image found (retry) for '{person_name}': {img[:80]}...")
+                    return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels using curl (urllib gets 403)."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key available")
+    """Fetch image from Pexels API using curl (urllib gets 403)."""
+    if not PEXELS_API_KEY:
+        print("  ⚠ No Pexels API key")
         return None
-    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
+            import subprocess
             result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
-                 "-H", f"Authorization: {PEXELS_KEY}"],
-                capture_output=True, text=True, timeout=15
+                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=3",
+                 "-H", f"Authorization: {PEXELS_API_KEY}"],
+                capture_output=True, text=True, timeout=15,
             )
             data = json.loads(result.stdout)
             photos = data.get("photos", [])
-            if photos:
-                img_url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image found for '{q}': {img_url[:80]}...")
-                return img_url
+            for p in photos:
+                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def upload_image_to_supabase(img_url, filename):
-    """Download image and upload to Supabase storage bucket."""
+
+def upload_image_to_supabase(image_url, filename):
+    """Download image and upload to Supabase storage bucket 'article-images'."""
     try:
-        r = requests.get(img_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=15)
-        if r.status_code != 200:
-            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
-            return img_url  # Fall back to direct URL
-        content_type = r.headers.get("Content-Type", "image/jpeg")
+        resp = requests.get(image_url, timeout=20, headers={
+            "User-Agent": "TheVideshi/1.0 (thevideshi.com; contact@thevideshi.com)"
+        })
+        if resp.status_code == 429:
+            print(f"  ⚠ Rate limited downloading image, waiting 5s...")
+            time.sleep(5)
+            resp = requests.get(image_url, timeout=20, headers={
+                "User-Agent": "TheVideshi/1.0 (thevideshi.com; contact@thevideshi.com)"
+            })
+        if resp.status_code != 200:
+            print(f"  ⚠ Failed to download image: HTTP {resp.status_code}")
+            return None
+        content_type = resp.headers.get("Content-Type", "image/jpeg")
         if not content_type.startswith("image/"):
             print(f"  ⚠ Not an image: {content_type}")
-            return img_url
-        if len(r.content) < 5000:
-            print(f"  ⚠ Image too small: {len(r.content)} bytes")
-            return img_url
+            return None
+        if len(resp.content) < 5000:
+            print(f"  ⚠ Image too small: {len(resp.content)} bytes")
+            return None
 
-        # Upload to Supabase storage
         upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        upload_headers = {
+        up_headers = {
             "apikey": SUPABASE_KEY,
             "Authorization": f"Bearer {SUPABASE_KEY}",
             "Content-Type": content_type,
-            "x-upsert": "true"
+            "x-upsert": "true",
         }
-        ur = requests.post(upload_url, headers=upload_headers, data=r.content, timeout=30)
-        if ur.status_code in (200, 201):
+        up_resp = requests.post(upload_url, data=resp.content, headers=up_headers, timeout=30)
+        if up_resp.status_code in (200, 201):
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ⚠ Upload failed: {ur.status_code} {ur.text[:200]}")
-            # If it's a wikimedia or pexels URL, those are permanent - use directly
-            if "upload.wikimedia.org" in img_url or "images.pexels.com" in img_url:
-                return img_url
-            return img_url
+            print(f"  ⚠ Upload failed: {up_resp.status_code} {up_resp.text[:200]}")
+            return None
     except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-        return img_url
+        print(f"  ⚠ Upload exception: {e}")
+        return None
 
-def publish_article(article):
-    """Publish article to Supabase."""
-    article_id = str(uuid.uuid4())
-    
-    # Source image
-    print(f"\n📰 Publishing: {article['headline']}")
-    img_url = None
-    
-    if article.get("person_name"):
-        img_url = fetch_wikipedia_person_image(article["person_name"])
-        if not img_url and article.get("person_alt"):
-            img_url = fetch_wikipedia_person_image(article["person_alt"])
-    
-    if not img_url and article.get("pexels_query"):
-        img_url = fetch_pexels_image(article["pexels_query"], article.get("pexels_fallback"))
-    
+
+def validate_image_url(url):
+    """Verify URL returns HTTP 200 with image content > 5KB."""
+    if not url:
+        return False
+    # Check for banned sources
+    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com"]
+    if any(b in url for b in banned):
+        print(f"  ✗ Banned source: {url[:60]}")
+        return False
+    banned_params = ["_nc_ht=", "_nc_cat=", "ccb="]
+    if any(p in url for p in banned_params):
+        print(f"  ✗ Signed Meta URL: {url[:60]}")
+        return False
+    try:
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
+            return True
+        # Some servers don't support HEAD, try GET
+        r2 = requests.get(url, timeout=10, stream=True,
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct2 = r2.headers.get("Content-Type", "")
+        if r2.status_code == 200 and "image" in ct2:
+            chunk = r2.raw.read(6000)
+            if len(chunk) >= 5000:
+                return True
+    except Exception as e:
+        print(f"  ⚠ Validation error: {e}")
+    return False
+
+
+def insert_article(article):
+    """Insert article into p2_articles table."""
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
+    resp = requests.post(url, json=article, headers=HEADERS, timeout=30)
+    if resp.status_code in (200, 201):
+        data = resp.json()
+        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
+        print(f"  ✓ Inserted: {article['slug']} (id: {art_id})")
+        return art_id
+    else:
+        print(f"  ✗ Insert failed: {resp.status_code} {resp.text[:300]}")
+        return None
+
+
+# ── Articles ─────────────────────────────────────────────────────────────
+
+def article_brahmos():
+    """Article 1: India-Vietnam BrahMos missile deal."""
+    print("\n═══ Article 1: India-Vietnam BrahMos Deal ═══")
+
+    slug = "india-signs-brahmos-missile-deal-vietnam-629-million-indonesia-next-20260530"
+    headline = "India Has Signed a $629 Million BrahMos Missile Deal With Vietnam. Indonesia Is Next."
+    subheadline = "The defence secretary confirmed the deal at the Shangri-La Dialogue — making Vietnam India's second export customer for the supersonic cruise missile after the Philippines."
+
+    body = """India has signed a deal to supply BrahMos supersonic cruise missiles to Vietnam, Defence Secretary Rajesh Kumar Singh confirmed on Saturday at the Shangri-La Dialogue in Singapore. A similar deal with Indonesia is in its "final stages," Singh said, marking a significant expansion of India's defence export ambitions in Southeast Asia.
+
+The Vietnam contract is estimated to be worth approximately 60 billion rupees ($629 million), including training and logistical support, according to earlier Reuters reporting. Singh did not disclose specific financial terms but made clear that the agreement has been signed, even if it has not yet been publicly announced by either government.
+
+"My understanding is that with both Indonesia and with Vietnam, the deal is in the final stages. In fact, for Vietnam, I understand that it has already been signed, probably not publicly announced," Singh told a media event on the sidelines of the Shangri-La Dialogue. "You are in the category of friendly foreign countries with whom we would be happy to share this kind of advanced technology."
+
+## What the BrahMos Is — and Why It Matters
+
+The BrahMos is a supersonic cruise missile jointly developed by India and Russia through a joint venture established in 1998. It can travel at speeds up to Mach 2.8 — nearly three times the speed of sound — and can be launched from ships, submarines, aircraft, and land-based platforms. Its speed and low-altitude flight path make it extremely difficult to intercept.
+
+For India, the BrahMos has become the flagship product of its growing defence export portfolio. The country has been steadily building up domestic defence manufacturing capacity, driven by Prime Minister Narendra Modi's push for self-reliance in defence production under the "Make in India" initiative.
+
+## The Philippines Set the Template
+
+The Philippines became India's first BrahMos export customer, receiving its first batch of the missiles in 2024. A second batch was delivered in April 2025. The deal demonstrated that India could successfully execute a complex weapons export involving training, logistics, and long-term support — a capability that was previously limited to a small number of arms-exporting nations.
+
+The Vietnam deal now makes Hanoi India's second BrahMos customer and significantly deepens the defence relationship between the two countries. Earlier this month, Defence Minister Rajnath Singh travelled to Hanoi for extensive discussions with his Vietnamese counterpart, General Phan Van Giang, covering maritime security, defence industry cooperation, and regional stability.
+
+## Indonesia Could Be Third
+
+Singh's confirmation that Indonesia is in the "final stages" of a similar deal suggests India may soon have three Southeast Asian countries operating the BrahMos — a strategic corridor that runs through some of the most contested waters in the Indo-Pacific.
+
+The timing is notable. The deals come as China continues to expand its military presence in the South China Sea, a region where Vietnam, Indonesia, and the Philippines all have competing territorial claims with Beijing. For these countries, the BrahMos offers a credible deterrent at a price point significantly lower than comparable Western missile systems.
+
+## The Diaspora Angle
+
+For the Indian diaspora, the BrahMos deals represent something beyond defence strategy. They signal India's emergence as a serious player in the global arms market — a shift from being the world's largest arms importer to becoming an increasingly capable exporter. India's defence exports have risen sharply in recent years, crossing $2.8 billion in FY2024, and the government has set a target of $5 billion annually by 2025.
+
+The broader message from Singh at the Shangri-La Dialogue was unmistakable: India is positioning itself as a defence partner of choice for Southeast Asian nations, offering advanced technology with fewer strings attached than Western suppliers typically impose.
+
+"We treat you all as friendly foreign countries with whom we can share advanced defence technology," Singh told the gathering in Singapore.
+
+*Sources: Reuters, IANS, The Business Standard*"""
+
+    # Image: Try Wikipedia for BrahMos
+    print("  Sourcing image...")
+    img_url = fetch_wikipedia_person_image("BrahMos")
+    if not img_url:
+        img_url = fetch_pexels_image("missile defense military", "cruise missile launch")
+
+    final_image = None
+    image_attribution = None
     if img_url:
-        filename = f"{article_id}.jpg"
-        final_url = upload_image_to_supabase(img_url, filename)
-        article["image_url"] = final_url
-        if "upload.wikimedia.org" in (img_url or ""):
-            article["image_attribution"] = "Wikimedia Commons"
-        else:
-            article["image_attribution"] = "The Videshi"
-    
-    payload = {
-        "id": article_id,
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "body": article["body"],
-        "slug": article["slug"],
+        final_image = upload_image_to_supabase(img_url, f"{slug}.jpg")
+        if final_image:
+            if "upload.wikimedia.org" in img_url:
+                image_attribution = "Wikimedia Commons"
+            else:
+                image_attribution = "The Videshi"
+
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
         "category": "news",
         "vertical": "news",
         "status": "published",
-        "published_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "sources": json.dumps(article["sources"]),
-        "image_url": article.get("image_url"),
-        "image_attribution": article.get("image_attribution"),
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": "Reuters, IANS",
+        "image_url": final_image,
+        "image_attribution": image_attribution,
     }
-    
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=payload,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        print(f"  ✓ Published: {article['slug']}")
-        return True
-    else:
-        print(f"  ✗ Failed: {r.status_code} {r.text[:300]}")
-        return False
+    return insert_article(article)
 
 
-# ============================================================
-# ARTICLE 1: CUET-UG 2026 Technical Glitch
-# ============================================================
+def article_chandrayaan():
+    """Article 2: Chandrayaan-3 Goddard Award."""
+    print("\n═══ Article 2: Chandrayaan-3 Goddard Award ═══")
 
-article_1 = {
-    "headline": "CUET-UG 2026 Delayed Across India After TCS Technical Glitch. The Timing Could Not Be Worse.",
-    "subheadline": "The Common University Entrance Test was delayed by two hours at centres in Delhi, Noida, Bangalore, and Varanasi — the fourth national exam controversy in two months.",
-    "slug": "cuet-ug-2026-tcs-technical-glitch-exam-delay-nta-neet-education-crisis-20260530",
-    "person_name": None,
-    "pexels_query": "students examination hall India",
-    "pexels_fallback": "university entrance exam students",
-    "sources": [
-        {"name": "Livemint", "url": "https://www.livemint.com"},
-        {"name": "The Hindu BusinessLine", "url": "https://www.thehindubusinessline.com"},
-        {"name": "IANS", "url": "https://ianslive.in"},
-        {"name": "Careers360", "url": "https://news.careers360.com"}
-    ],
-    "body": """The Common University Entrance Test for undergraduate admissions — CUET-UG 2026 — was delayed by approximately two hours at examination centres across India on Saturday after a technical glitch at Tata Consultancy Services, the National Testing Agency's technology partner.
+    slug = "chandrayaan-3-wins-goddard-astronautics-award-aiaa-highest-honor-20260530"
+    headline = "Chandrayaan-3 Has Won America's Highest Honor in Astronautics. ISRO Joins Jeff Bezos on the List."
+    subheadline = "The AIAA Goddard Astronautics Award recognizes the 2023 moon landing that made India the first nation to reach the lunar south pole. India's ambassador accepted it in Washington."
 
-The disruption affected centres in Delhi, Noida, Ambala, Varanasi, Bangalore, Kanpur, and other cities. Candidates who arrived for the morning session at 8:15 AM found themselves waiting past 10:30 AM before the exam could begin. The afternoon session was pushed back from 3:00 PM to 4:00 PM, with revised reporting from 2:30 PM.
+    body = """India's Chandrayaan-3 lunar mission has been awarded the 2026 Goddard Astronautics Award by the American Institute of Aeronautics and Astronautics — the highest honor the organization bestows for achievements in astronautics. The award was presented at the AIAA ASCEND 2026 Conference in Washington, D.C., on May 21.
 
-## TCS Took the Blame
+India's Ambassador to the United States, Vinay Kwatra, accepted the award on behalf of the Indian Space Research Organisation (ISRO). The citation recognized "the groundbreaking landing of ISRO's Chandrayaan-3 near the lunar south pole region, to deepen our understanding of the moon and beyond."
 
-The NTA issued a statement on X attributing the failure entirely to TCS. "M/s TCS has reported that a technical glitch at their end delayed the commencement of CUET (UG) 2026 at some centres on 30.05.2026," it read. The agency said the issue had been resolved and that affected candidates would receive "full compensatory time so that no candidate is disadvantaged."
+## What the Award Means
 
-TCS separately confirmed the disruption, calling the two-hour delay a problem that was "promptly identified and resolved." The company said its teams were "actively monitoring all systems" and reaffirmed its "commitment to working closely with NTA to ensure seamless conduct of computer-based tests."
+The Goddard Astronautics Award is not a routine recognition. Named after Robert H. Goddard — the American physicist who built and launched the world's first liquid-fueled rocket in 1926 — the award has been given to a small number of individuals and organizations who have pushed the boundaries of space exploration.
 
-But the assurances did little to stem the criticism.
+Previous recipients include Jeff Bezos, founder of Blue Origin, and Michael Hawes, a veteran NASA engineer who contributed to the design and operation of human spaceflight programs. ISRO's addition to this list places India's space agency alongside the most elite names in global astronautics.
 
-## The Fourth Crisis in Two Months
+## The Mission That Changed India's Space Story
 
-The CUET-UG delay is now the fourth major examination controversy to hit the NTA since late March. The NEET-UG 2026 paper leak, which the Supreme Court has publicly excoriated the agency for, remains unresolved. The CBSE's On-Screen Marking system has produced scoring discrepancies that parents and students have challenged in court. And SSC examinations have drawn their own complaints about irregularities.
+On August 23, 2023, Chandrayaan-3's Vikram lander touched down near the Moon's south pole — a region of immense scientific and strategic importance that no spacecraft from any nation had previously reached at the surface level. The landing made India only the fourth country to successfully soft-land on the Moon, after the United States, the Soviet Union, and China.
 
-AAP leader Saurabh Bharadwaj pointed to a structural risk in Saturday's failure. "If some students get access to the exam paper at 9:30 AM while others get at 11:30 AM, does it not mean a major breach?" he asked on X.
+But it was the location that made the achievement extraordinary. The lunar south pole is believed to contain deposits of water ice in permanently shadowed craters — a resource that could one day support human habitation and fuel production for deeper space missions. Chandrayaan-3's Pragyan rover confirmed the presence of key chemical elements in the south polar soil, including sulfur, sodium, and iron, providing data that will inform every future mission to the region.
 
-## Opposition Called It a Pattern
+The mission also demonstrated India's ability to achieve complex space objectives at a fraction of the cost of comparable programs elsewhere. Chandrayaan-3's total budget was approximately $75 million — less than the production budget of many Hollywood films and a fraction of what NASA or ESA typically spend on lunar missions.
 
-Congress leader Rahul Gandhi connected the CUET glitch to the broader pattern. "NEET. CBSE. SSC. And today CUET. Four exams. One crore children. Not a single one conducted with honesty," he posted. "Claims of 'vishwa guru,' but can't conduct even one exam in the country."
+## Space Vision 2047
 
-AAP national convenor Arvind Kejriwal took a similar line, framing Saturday's disruption as evidence of systemic failure under the current administration. The Congress party shared video footage showing large crowds of students stranded outside examination centres, describing the situation as "beyond the Modi government's capability."
+In his remarks at the ASCEND conference, Ambassador Kwatra used the award presentation to outline Prime Minister Narendra Modi's Space Vision 2047 — India's ambitious roadmap for the next two decades of space exploration.
 
-## What This Means for Diaspora Families
+The plan includes India's first human spaceflight under the Gaganyaan program, now scheduled for 2027. It also envisions the Chandrayaan-4 mission, a mission to Venus, and the establishment of the Bharat Antariksh Station — India's own space station — by 2035. The most ambitious goal: placing an Indian astronaut on the Moon by 2040.
 
-CUET-UG is the gateway to admission at 261 universities, including all 45 central universities. For NRI families with children applying to Indian institutions — whether for undergraduate degrees or as a backup to Western admissions — the test's integrity matters directly. A compromised or chaotic examination process makes Indian university admissions less attractive at precisely the moment when several central universities have been expanding their international outreach.
+Kwatra called for strengthened collaboration between the governments, industries, and research institutions of India and the United States, underscoring the deepening partnership between the two nations in space exploration.
 
-The NTA had already postponed CUET-UG exams originally scheduled for May 28 in view of the revised Bakrid holiday date. Saturday's disruption compounds the scheduling chaos.
+## Why It Matters for the Diaspora
 
-## The Bigger Question
+For the millions of Indians and Indian-Americans in the United States, the Goddard Award carries a particular resonance. It is one thing for India's space achievements to be celebrated domestically; it is another for America's premier aerospace engineering organization to formally recognize them as the year's most significant contribution to astronautics.
 
-India's national examination infrastructure is now a political liability. The NTA was created in 2018 specifically to professionalise the conduct of entrance exams. Seven years later, it faces credible accusations of paper leaks, vendor failures, and administrative incompetence across multiple exams in a single testing cycle.
+The award also comes at a moment when the US-India space partnership is accelerating. NASA and ISRO signed the Artemis Accords in 2023, and discussions are underway for joint lunar and deep space missions. India's commercial space sector — now home to over 200 startups — is increasingly integrated with the global space economy.
 
-The Supreme Court has already told the NTA to "learn from UPSC" — a pointed rebuke comparing the agency unfavourably to an institution that has conducted examinations without comparable controversy for decades. Whether Saturday's TCS glitch was a one-off technical failure or a symptom of deeper procurement and oversight problems, the cumulative damage to public trust is real and growing."""
-}
+The Goddard Award is a trophy, but it is also a signal. India's space program is no longer an underdog story. It is, by the formal reckoning of America's own space community, world-class.
 
-# ============================================================
-# ARTICLE 2: Abhishek Banerjee Attacked in Sonarpur
-# ============================================================
+*Sources: AIAA, ANI, PTI, Storyboard18*"""
 
-article_2 = {
-    "headline": "Abhishek Banerjee Was Pelted With Eggs, Stones, and Shoes in Sonarpur. He Wore a Cricket Helmet.",
-    "subheadline": "The TMC general secretary visited families of party workers killed in post-poll violence. Protesters with black flags, eggs, and bricks met him at every stop.",
-    "slug": "abhishek-banerjee-attacked-sonarpur-eggs-stones-post-poll-violence-bengal-20260530",
-    "person_name": "Abhishek Banerjee (politician)",
-    "person_alt": "Abhishek Banerjee",
-    "pexels_query": None,
-    "pexels_fallback": None,
-    "sources": [
-        {"name": "PTI", "url": "https://www.ptinews.com"},
-        {"name": "Dainik Bhaskar English", "url": "https://bhaskarenglish.in"},
-        {"name": "CNBC TV18", "url": "https://www.cnbctv18.com"},
-        {"name": "India Today", "url": "https://www.indiatoday.in"}
-    ],
-    "body": """Trinamool Congress national general secretary Abhishek Banerjee was attacked with eggs, stones, shoes, and bricks during a visit to Sonarpur in West Bengal's South 24 Parganas district on Saturday. The Diamond Harbour MP donned a cricket helmet for protection as he navigated through crowds of hostile protesters who had gathered at multiple points along his route.
+    # Image: ISRO / Chandrayaan-3
+    print("  Sourcing image...")
+    img_url = fetch_wikipedia_person_image("Chandrayaan-3")
+    if not img_url:
+        img_url = fetch_wikipedia_person_image("Indian Space Research Organisation")
+    if not img_url:
+        img_url = fetch_pexels_image("moon landing spacecraft", "lunar surface space mission")
 
-The visit — Banerjee's first major political outing since the West Bengal assembly election results were announced nearly three weeks ago — was intended as a show of solidarity with TMC workers and their families who had been targeted in post-poll violence.
+    final_image = None
+    image_attribution = None
+    if img_url:
+        final_image = upload_image_to_supabase(img_url, f"{slug}.jpg")
+        if final_image:
+            if "upload.wikimedia.org" in img_url:
+                image_attribution = "Wikimedia Commons"
+            else:
+                image_attribution = "The Videshi"
 
-## Black Flags, Eggs, and "Chor Chor" Chants
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "news",
+        "vertical": "news",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": "AIAA, ANI, PTI",
+        "image_url": final_image,
+        "image_attribution": image_attribution,
+    }
+    return insert_article(article)
 
-Before Banerjee even arrived in Sonarpur, groups of women were positioned along the route carrying eggs. BJP supporters had assembled with black flags and chanted "Go Back" slogans. His convoy encountered protests at multiple locations — near Patuli's Dhalai Bridge, in Kamrabad, and at several other points across Sonarpur.
 
-As Banerjee entered the area on a motorcycle, protesters attempted to physically stop him. Despite the hostile reception, he pressed forward wearing the helmet. Videos circulating on social media showed security personnel surrounding and shielding the TMC leader as eggs and stones rained down.
+def article_trade_deal():
+    """Article 3: India-US trade deal 'last 1%'."""
+    print("\n═══ Article 3: India-US Trade Deal ═══")
 
-Locals allegedly raised "chor chor" (thief, thief) slogans against him throughout the visit.
+    slug = "india-us-trade-deal-last-one-percent-ambassador-gor-delegation-june-20260530"
+    headline = "The India-US Trade Deal Is Down to the Last 1 Percent. A Delegation Arrives in Delhi Next Week."
+    subheadline = "Ambassador Sergio Gor says the deal could be signed within weeks. But the 'last 1 percent' is the hardest part — and the legal landscape under it has shifted."
 
-## "They Want to Kill Me"
+    body = """India and the United States are closer than ever to finalizing an interim trade agreement, with US Ambassador to India Sergio Gor revealing that only "the last 1 percent" of the deal remains unresolved. A US trade delegation is scheduled to arrive in New Delhi from June 1-4 to work through the final clauses.
 
-Banerjee was unequivocal about who he held responsible. "It's all BJP-sponsored. Look what they have done. This is their example of democracy. It hasn't even been a month, and the police are nowhere to be seen," he told reporters from behind the security cordon.
+"Just last week, India had sent a team to Washington DC to finalize the last 1 percent of that trade deal. Next week we will welcome a US delegation here to continue those talks," Gor said on Friday at the US-India TRUST Initiative event at IIT Delhi. "We fully expect that the trade deal will be signed over the next few weeks and months."
 
-"I will not move out from here till police and forces ensure security here. They are trying to break the house and they want to kill me," he added, claiming that adequate security had not been provided despite prior intimation to authorities.
+## What Changed the Game
 
-## Post-Poll Violence: The Context
+The path to this moment has been anything but smooth. The foundational framework for the interim trade arrangement was finalized through a joint statement on February 7. But the negotiation landscape was upended shortly after when the US Supreme Court struck down all reciprocal tariffs — effectively dismantling the primary leverage the Trump administration had been using to negotiate trade concessions with global partners.
 
-The attack occurred against the backdrop of post-election violence that has convulsed parts of Bengal since the assembly results were declared. A TMC worker named Sanju Karmakar was allegedly killed in post-poll violence in Beliaghata. Banerjee had visited Karmakar's family at the residence of TMC leader Kunal Ghosh before heading to Sonarpur to meet other affected families.
+Washington pivoted quickly, imposing a 10 percent auxiliary duty on all incoming goods under Section 122 of the Trade Act for a 150-day window beginning February 24. Simultaneously, US authorities launched dual investigations under Section 301, scrutinizing major exporters over alleged excess industrial capacity and domestic labor practices.
 
-Post-poll violence is a recurring feature of Bengal's electoral cycles, but the scale and openness of the assault on a sitting MP — who is also the nephew of former Chief Minister Mamata Banerjee — marks an escalation. The TMC has been the ruling party in West Bengal for over a decade, but the recent assembly elections appear to have emboldened its opponents.
+The legal distinction matters. Section 122 caps emergency tariffs at 15 percent for a maximum of 150 days. Section 301, by contrast, gives Washington uncapped authority to levy duties if an investigation finds that a trading partner's policies are damaging American commercial interests. India has already submitted comprehensive responses to both active federal probes.
 
-## CID Visit the Same Morning
+## The Numbers Tell the Story
 
-Adding to the political charge of the day, a team from the state Criminal Investigation Department visited Banerjee's residence "Shantiniketan" on Harish Mukherjee Road earlier on Saturday in connection with an assembly signature forgery investigation. Staff and security personnel reportedly informed officers that neither Banerjee nor his family members were present.
+Ambassador Gor highlighted the extraordinary growth in bilateral economic ties. Trade in goods and services between India and the US has grown from $20 billion to over $220 billion over the past two decades — a more than tenfold increase that makes the relationship one of the most commercially significant in the world.
+
+The deal under negotiation covers multiple sectors: trade in goods, defence procurement, energy, AI and semiconductors, pharmaceuticals, critical minerals, and digital trade rules. For India, the agreement could open new export corridors and reduce tariff barriers on key products. For the US, it could deepen access to India's massive consumer market — 1.4 billion people with rising purchasing power.
+
+## Why the Last 1 Percent Is the Hardest
+
+Trade negotiators have a saying: the first 90 percent of a deal takes 10 percent of the time, and the last 10 percent takes 90 percent of the time. The final clauses typically involve the most politically sensitive issues — market access in protected sectors, compliance standards, agricultural subsidies, and intellectual property protections.
+
+"When you reach the last 1 percent, you are dealing with the core protectionist interests that both governments have been shielding throughout the process," noted analysts tracking the negotiations. Data from the US Trade Representative's office confirms that India remains central to the administration's "friend-shoring" strategy of diversifying supply chains away from over-reliance on China.
 
 ## The Diaspora Dimension
 
-West Bengal's political turbulence has long been of interest to the Bangladeshi and Bengali diaspora communities. The post-poll violence and Banerjee's dramatic confrontation come at a time when the TMC's political position in the state is being openly contested in ways that were rare during Mamata Banerjee's dominant years.
+For the estimated 4.4 million Indian-Americans in the United States, the trade deal carries implications that go beyond tariff schedules. A formal bilateral trade framework would provide regulatory certainty for the growing number of Indian-American entrepreneurs and professionals who operate across both economies.
 
-For NRIs from Bengal or with family connections to the state, the images from Sonarpur — a sitting MP in a cricket helmet, pelted with eggs and stones by people he came to represent — capture a political reality that is shifting faster than many expected."""
-}
+It would also strengthen the strategic alignment between the two democracies at a moment when the relationship faces competing pressures — from the Iran war's impact on oil prices and supply chains, to the competition for semiconductor manufacturing capacity, to the ongoing immigration policy debates that directly affect Indian professionals.
 
-# ============================================================
-# ARTICLE 3: Finance Ministry Inflation Warning
-# ============================================================
+The June 1-4 delegation visit will be watched closely. If negotiators can close the remaining gap, the deal would be the most significant bilateral trade agreement India has concluded with the United States in decades — and a concrete deliverable for a relationship that both governments have described as the defining partnership of the 21st century.
 
-article_3 = {
-    "headline": "India's Finance Ministry Has Named the Single Biggest Risk to the Economy. It Is the Strait of Hormuz.",
-    "subheadline": "The ministry's monthly economic report warns that fuel price hikes, a weak monsoon, and the Middle East conflict will push retail inflation higher in the coming months.",
-    "slug": "india-finance-ministry-inflation-warning-hormuz-monsoon-fuel-prices-iran-war-20260530",
-    "person_name": None,
-    "pexels_query": "crude oil tanker shipping",
-    "pexels_fallback": "India fuel petrol station",
-    "sources": [
-        {"name": "Reuters", "url": "https://www.reuters.com"},
-        {"name": "Finance Ministry of India", "url": "https://www.finmin.nic.in"}
-    ],
-    "body": """India's finance ministry released its monthly economic report on Saturday with a warning that landed harder than the usual hedged language of government documents. The "single most consequential variable" for the Indian economy, it said, is the duration of the Strait of Hormuz disruption.
+*Sources: ANI, Reuters, The Indian Eye, LatestLY*"""
 
-That sentence — buried in a document that otherwise described India's near-term outlook as one of "cautious resilience" — is the clearest official acknowledgement yet that the Iran war has become the central risk to India's economic trajectory.
+    # Image: Ambassador Sergio Gor or US-India trade
+    print("  Sourcing image...")
+    img_url = fetch_wikipedia_person_image("Sergio Gor")
+    if not img_url:
+        img_url = fetch_pexels_image("US India trade business handshake", "diplomatic trade agreement")
 
-## What the Report Actually Says
+    final_image = None
+    image_attribution = None
+    if img_url:
+        final_image = upload_image_to_supabase(img_url, f"{slug}.jpg")
+        if final_image:
+            if "upload.wikimedia.org" in img_url:
+                image_attribution = "Wikimedia Commons"
+            else:
+                image_attribution = "The Videshi"
 
-The ministry laid out a chain of pressures that it expects to push retail inflation higher in the coming months:
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "news",
+        "vertical": "news",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": "ANI, Reuters",
+        "image_url": final_image,
+        "image_attribution": image_attribution,
+    }
+    return insert_article(article)
 
-**Fuel prices have already risen.** Recent hikes in petrol and diesel prices — driven by India's dependence on imported crude — are now in the system. The report says "a sharp rise in upstream price pressures, along with recent increases in fuel prices, suggests a gradual pass-through to retail inflation through higher transport, energy, and food-related costs."
 
-**The monsoon is expected to be weak.** India's weather department downgraded its monsoon forecast to 90% of the long-period average earlier this week — the weakest since 2015. An El Niño is expected to develop during the season, with moderate-to-strong intensity in the second half. "A significant rainfall deficit coupled with current geopolitical conditions could translate into food inflation, weakening rural demand and aggregate growth," the ministry warned.
+# ── Main ─────────────────────────────────────────────────────────────────
 
-**The rupee is under pressure.** The Indian currency has lost roughly 6% this year, driven by steep capital outflows. Overseas investors have pulled over $24 billion from Indian debt and equities between March and May alone. A weaker rupee makes imports more expensive, compounding the oil price effect.
+if __name__ == "__main__":
+    print("═══════════════════════════════════════════════")
+    print("  The Videshi — News Writer — 2026-05-30 PM")
+    print("═══════════════════════════════════════════════")
 
-## The Numbers Right Now
+    results = []
+    for i, fn in enumerate([article_brahmos, article_chandrayaan, article_trade_deal]):
+        if i > 0:
+            print("  (waiting 3s to avoid rate limits...)")
+            time.sleep(3)
+        try:
+            art_id = fn()
+            results.append(("✓" if art_id else "✗", fn.__doc__.strip()))
+        except Exception as e:
+            print(f"  ✗ Exception: {e}")
+            results.append(("✗", f"{fn.__doc__.strip()}: {e}"))
 
-India's retail inflation was 3.48% in April — still comfortably below the Reserve Bank of India's 4% target. But the ministry's report makes clear that this headline number understates the building pressure.
-
-Wholesale price inflation has already accelerated sharply. Brent crude remains roughly 27% above pre-war levels despite a 19% drop in May. And food prices, which account for nearly half the consumer price index basket, are vulnerable to a poor monsoon.
-
-Some economists are projecting inflation could reach 5.5% if food prices spike during a deficient monsoon, according to IDFC First Bank's chief economist Gaura Sengupta. That would be well above the RBI's comfort zone and would complicate the central bank's June 5 policy decision.
-
-## The RBI's Dilemma
-
-The Reserve Bank has kept its key interest rate at 5.25% since its last cut in April. A Reuters poll of 56 economists showed that while 80% expect the RBI to hold in June, 11 now forecast a 25-basis-point hike — up from just one respondent in April's survey.
-
-Capital Economics expects the RBI to raise rates to 6.00% before the end of the year, "contingent on the crisis coming to an end soon and energy prices dropping back." But others argue that rate hikes are the wrong tool for supply-side shocks.
-
-"Interest rates are not a good tool to counter large supply shocks. Also, I do not think the RBI MPC will increase rates to defend the rupee since it is beyond the remit of the MPC," said Aditya Vyas, chief economist at STCI Primary Dealer.
-
-## What NRIs Should Watch
-
-For the Indian diaspora, the finance ministry's warning matters in three direct ways.
-
-**Remittances lose value.** A weakening rupee means each dollar or pound sent home converts to more rupees — good news for recipients. But if inflation erodes that purchasing power, the benefit is illusory.
-
-**Investment returns are at risk.** Indian equities posted monthly losses in May, with the Nifty 50 dropping 1.9% and the Sensex falling 2.8%. The combination of high oil prices, weak capital inflows, and a potential rate hike creates headwinds for anyone with India-linked portfolios.
-
-**Property and consumption costs rise.** NRIs planning visits, purchases, or family support in India will face higher costs across transport, food, and services if the inflation pass-through plays out as the ministry expects.
-
-The finance ministry releases its economic report monthly. This one reads less like a status update and more like a warning."""
-}
-
-# ============================================================
-# PUBLISH ALL ARTICLES
-# ============================================================
-
-articles = [article_1, article_2, article_3]
-success_count = 0
-for article in articles:
-    if publish_article(article):
-        success_count += 1
-    time.sleep(1)
-
-print(f"\n✅ Published {success_count}/{len(articles)} articles")
+    print("\n═══ Summary ═══")
+    for status, desc in results:
+        print(f"  {status} {desc}")
+    print("═══════════════════════════════════════════════")
