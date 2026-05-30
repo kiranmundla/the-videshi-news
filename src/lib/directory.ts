@@ -283,7 +283,7 @@ export function sortListingsByDistance(
   withDist.sort((a, b) => {
     const da = a.distanceMiles ?? 9999;
     const db = b.distanceMiles ?? 9999;
-    if (Math.abs(da - db) < 5) {
+    if (Math.abs(da - db) < 1) {
       return (b.rating ?? 0) - (a.rating ?? 0);
     }
     return da - db;

@@ -498,7 +498,7 @@ export function sortEventsByDistance(
     const da = a.distanceMiles ?? 9999;
     const db = b.distanceMiles ?? 9999;
     // If both within 20 miles of each other, sort by date first
-    if (Math.abs(da - db) < 20) {
+    if (Math.abs(da - db) < 3) {
       const dateComp = a.date.localeCompare(b.date);
       if (dateComp !== 0) return dateComp;
     }
