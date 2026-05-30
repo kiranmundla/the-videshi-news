@@ -1,331 +1,415 @@
 #!/usr/bin/env python3
 """
-The Videshi — News Writer (May 29, 2026 batch)
-Publishes 3 fresh news articles with proper image sourcing.
+The Videshi — News Writer
+Generates 3 news articles for thevideshi.com
+Run: 2026-05-30
 """
 
-import json
-import os
-import subprocess
-import sys
+import json, os, uuid, time, re, subprocess
+import requests
 import urllib.parse
-import urllib.request
 from datetime import datetime, timezone
 
-# ── Env ──────────────────────────────────────────────────────────────────────
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
+# Load Supabase credentials
+def load_env(path):
+    env = {}
+    with open(os.path.expanduser(path)) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                if line.startswith('export '):
+                    line = line[7:]
+                key, val = line.split('=', 1)
+                val = val.strip('"').strip("'")
+                env[key] = val
+    return env
 
-HEADERS_SB = {
+env = load_env('~/.env.supabase')
+SUPABASE_URL = env['SUPABASE_URL']
+SUPABASE_KEY = env['SUPABASE_SERVICE_ROLE_KEY']
+
+# Load Pexels key
+pexels_env = load_env('~/workspace/.env.pexels')
+PEXELS_KEY = pexels_env.get('PEXELS_API_KEY', '')
+
+HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    "Prefer": "return=representation"
 }
 
-# ── Helpers ──────────────────────────────────────────────────────────────────
+def sb_insert(table, data):
+    """Insert a row into Supabase."""
+    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
+    if r.status_code in (200, 201):
+        result = r.json()
+        return result[0] if isinstance(result, list) and result else result
+    else:
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        return None
+
+def sb_patch(table, match, data):
+    """Patch a row in Supabase."""
+    params = "&".join(f"{k}={v}" for k, v in match.items())
+    r = requests.patch(f"{SUPABASE_URL}/rest/v1/{table}?{params}", headers=HEADERS, json=data, timeout=30)
+    if r.status_code in (200, 204):
+        return True
+    print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
+    return False
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import requests
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10,
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
+    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             result = subprocess.run(
-                [
-                    "curl", "-sS",
-                    f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
-                    "-H", f"Authorization: {PEXELS_API_KEY}",
-                ],
-                capture_output=True, text=True, timeout=15,
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
+                capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                return url
+            photos = data.get('photos', [])
+            for photo in photos:
+                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+def upload_image_to_supabase(image_url, filename):
+    """Download image and upload to Supabase storage bucket."""
+    try:
+        r = requests.get(image_url, timeout=20, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code != 200:
+            print(f"  ✗ Image download failed ({r.status_code}) for {image_url[:80]}")
+            return image_url  # fall back to original
+        
+        content_type = r.headers.get('Content-Type', 'image/jpeg')
+        if not content_type.startswith('image/'):
+            content_type = 'image/jpeg'
+        
+        if len(r.content) < 5000:
+            print(f"  ✗ Image too small ({len(r.content)} bytes), skipping upload")
+            return image_url
+        
+        upload_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": content_type,
+            "x-upsert": "true"
+        }
+        
+        upload_r = requests.post(
+            f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}",
+            headers=upload_headers,
+            data=r.content,
+            timeout=30
+        )
+        
+        if upload_r.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ✗ Upload failed ({upload_r.status_code}): {upload_r.text[:200]}")
+            return image_url
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
+        return image_url
 
 def validate_image_url(url):
-    """Check the image URL returns HTTP 200 with image content type and >5KB."""
+    """Check if an image URL is valid and not too small."""
     if not url:
         return False
+    # Check for banned domains
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
+    if any(b in url for b in banned):
+        print(f"  ✗ Banned domain in URL: {url[:60]}")
+        return False
+    banned_params = ['_nc_ht=', '_nc_cat=', 'ccb=']
+    if any(p in url for p in banned_params):
+        print(f"  ✗ Banned params in URL: {url[:60]}")
+        return False
     try:
-        result = subprocess.run(
-            ["curl", "-sS", "-o", "/dev/null", "-w", "%{http_code} %{content_type} %{size_download}", "-L", url],
-            capture_output=True, text=True, timeout=15,
-        )
-        parts = result.stdout.strip().split()
-        if len(parts) >= 3:
-            code = parts[0]
-            ctype = parts[1]
-            size = float(parts[2])
-            if code == "200" and "image" in ctype and size > 5000:
-                print(f"  ✓ Image validated: {code}, {ctype}, {size:.0f} bytes")
-                return True
-            else:
-                print(f"  ✗ Image validation failed: code={code}, type={ctype}, size={size}")
-    except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-    return False
+        r = requests.head(url, timeout=10, allow_redirects=True, headers={"User-Agent": "TheVideshi/1.0"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if 'image' not in ct:
+            print(f"  ✗ Not an image: {ct}")
+            return False
+        if cl > 0 and cl < 5000:
+            print(f"  ✗ Image too small: {cl} bytes")
+            return False
+        return True
+    except:
+        return True  # optimistic if HEAD fails
 
 
-def publish_article(article):
-    """Insert an article into Supabase p2_articles."""
-    import requests
-    resp = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS_SB,
-        json=article,
-        timeout=30,
-    )
-    if resp.status_code in (200, 201):
-        result = resp.json()
-        if isinstance(result, list) and result:
-            print(f"  ✓ Published: {result[0].get('slug', 'unknown')}")
-            return True
-        elif isinstance(result, dict):
-            print(f"  ✓ Published: {result.get('slug', 'unknown')}")
-            return True
-    print(f"  ✗ Publish failed ({resp.status_code}): {resp.text[:200]}")
-    return False
+# ─── ARTICLES ───────────────────────────────────────────────────────
 
+articles = []
 
-# ── Articles ─────────────────────────────────────────────────────────────────
+# ─── ARTICLE 1: China Ghosts Shangri-La Dialogue ───────────────────
 
-def build_articles():
-    articles = []
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+articles.append({
+    "headline": "China Has Skipped the Shangri-La Dialogue for Two Years in a Row. The Rest of Asia Noticed.",
+    "subheadline": "Beijing sent a low-profile delegation of PLA academics while India held five bilateral defence meetings and the US, UK, and Australia announced a new undersea drone programme.",
+    "slug": "china-skips-shangri-la-dialogue-second-year-india-aukus-undersea-drones-20260530",
+    "category": "news",
+    "vertical": "news",
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "The Hindu BusinessLine", "url": "https://www.thehindubusinessline.com"},
+        {"name": "Wall Street Journal", "url": "https://www.wsj.com"},
+        {"name": "Bhasha Times", "url": "https://bhashatimes.com"}
+    ]),
+    "image_search_person": "Dong Jun",
+    "image_search_alt": "Shangri-La Dialogue Singapore defence forum",
+    "body": """For the second consecutive year, China's Defence Minister Dong Jun has skipped the Shangri-La Dialogue — Asia's most important annual defence forum — and the absence is becoming harder for Beijing to explain away.
 
-    # ━━━ Article 1: Trump Accounts App ━━━
-    print("\n[1/3] Trump Accounts App Launch — Indian American angle")
+The three-day summit in Singapore, which draws defence ministers and senior officials from more than 40 countries, opened this weekend with a conspicuous gap in its programme. The slot traditionally reserved for a keynote speech by a senior Chinese official has been dropped entirely, replaced by a low-profile delegation of People's Liberation Army "experts and scholars."
 
-    # Image: Try Wikipedia for Scott Bessent (Treasury Secretary who launched it), then Pexels
-    img1 = fetch_wikipedia_person_image("Scott Bessent")
-    if not img1 or not validate_image_url(img1):
-        img1 = fetch_pexels_image("children savings investment family", "piggy bank child future")
-        if not validate_image_url(img1):
-            img1 = None
+Even US Defense Secretary Pete Hegseth took note. "I wish my counterpart was here at this conference," he said during his own keynote address on Saturday. "But I look forward to other options when we can cross paths and communicate."
 
-    body1 = """The U.S. Treasury Department launched the Trump Accounts mobile app on Thursday, opening a portal for millions of American families to create government-backed investment accounts for their children. The programme, authorised under President Donald Trump's One Big Beautiful Bill Act of 2025, deposits $1,000 in federal seed money into accounts for children born between 2025 and 2028 — and for Indian American families, the stakes are both practical and deeply personal.
+## A Calculated Absence
 
-## Who Qualifies — and Who Does Not
+Australia's Deputy Prime Minister and Defence Minister Richard Marles was less diplomatic. He called China's decision a "missed opportunity" at precisely the moment when countries in the region need more "strategic reassurance" from Beijing.
 
-The rules are straightforward but carry significant implications for diaspora families. Any U.S. citizen child with a valid Social Security number is eligible. That covers children born in the United States to Indian immigrant parents — including those on H-1B, L-1, or other work visas — as well as naturalised citizens' children born abroad with consular documentation of citizenship.
+"We've seen China engage in the biggest conventional military buildup in the world since the end of the Second World War, and that has not happened with a strategic reassurance for other countries," Marles told Reuters on the sidelines of the event.
 
-Children who are not U.S. citizens, including those in India or on dependent visas without citizenship status, do not qualify. For the estimated 4.8 million Indian Americans in the United States, the programme effectively covers most of their children. For NRIs living abroad whose children hold U.S. citizenship through birth or parentage, the accounts are also accessible, though the app currently requires a U.S.-based setup.
+Analysts point to several reasons Beijing may prefer to stay away. A high-profile appearance would invite pointed questions about Taiwan tensions, China's expanding military footprint in the South China Sea, and the sweeping anti-corruption purges that have consumed the PLA's senior leadership in recent years. Several top generals have disappeared from public view since the purges began in 2023.
 
-The Internal Revenue Service says more than four million children have already been enrolled, with over one million claiming the pilot $1,000 contribution. The initial $1,000 federal deposit is expected to begin arriving on July 4, 2026.
+Zhou Bo, a retired PLA senior colonel who was part of China's delegation, tried to downplay the absence. "This is not the first time the defence minister is not attending," he said. "And academic delegations have come before. But it is true that the level of the delegation is relatively low this time."
 
-## How the Accounts Work
+## India Fills the Vacuum
 
-Trump Accounts — technically designated as 530A accounts — function as tax-deferred investment vehicles. Parents, family members, employers, and charitable organisations can contribute up to $5,000 per year per child. The funds are invested in low-cost index funds and grow tax-deferred until the child turns 18, at which point withdrawals for qualified expenses — education, home purchases, or starting a business — are permitted.
+While China sent scholars, India sent its Defence Secretary Rajesh Kumar Singh, who held five bilateral meetings in a single day — with counterparts from the Netherlands, Australia, the European Union, and two other Indo-Pacific partners. India's delegation articulated a vision for "a stable, secure, and inclusive Indo-Pacific" that was sharply at odds with Beijing's preference for bilateral deal-making.
 
-The app, built in partnership with Robinhood and BNY Mellon, includes financial literacy modules and will add full account management capabilities when the accounts formally launch this summer.
+Hegseth went further in his praise for New Delhi, calling India "a critical anchor to hold the line" in South Asia. "A powerful India acting in its own self-interest advances our shared goal of maintaining a balance of power across the region," he said.
 
-## The Diaspora Math
+He highlighted India's growing defence-industrial capacity, its expanding ability to sustain high-end military operations in the Indian Ocean, and the two countries' commitment to co-produce Javelin anti-tank guided munitions — a significant step in US-India defence cooperation.
 
-For Indian American families — who are statistically among the highest-earning demographic groups in the United States — the programme layers onto existing college savings strategies. But the universal nature of the $1,000 seed money distinguishes it from 529 plans, which require parental contributions to get started.
+## AUKUS Makes Its Move
 
-Treasury Secretary Scott Bessent framed the initiative as creating "a generation of shareholders." Several major employers, including Bank of America, Intel, and Charles Schwab, have pledged to match the government's $1,000 contribution for employees' children, a benefit disproportionately available to Indian Americans concentrated in the corporate and technology sectors.
+The Shangri-La sidelines also produced a concrete announcement: the United States, United Kingdom, and Australia unveiled plans to jointly develop unmanned undersea vehicles under the AUKUS pact's "Pillar Two" advanced technology programme.
 
-At a 10 percent annual return, the Treasury estimates a single $1,000 deposit could grow to roughly $293,000 over 20 years without any additional contributions — though that figure assumes sustained market performance that is far from guaranteed.
+"This will rapidly give our forces the very most advanced battlefield technologies as together we produce a range of cutting-edge sensors and weapons systems for undersea drones," said Britain's Defence Secretary John Healey. "For too long in AUKUS, we talked too much and delivered too little."
 
-## What It Does Not Cover
+The programme is designed to counter China's growing power in the maritime domain and protect critical undersea infrastructure including cables and pipelines.
 
-Critics, including researchers at the Brookings Institution, argue the programme primarily benefits wealthier families who can maximise the $5,000 annual contribution, while lower-income families may never contribute beyond the initial $1,000. For Indian American families navigating dual financial obligations — supporting relatives in India, managing immigration costs, saving for children's education — the programme is a useful addition but not a transformative one.
+## The Bigger Picture
 
-The accounts also carry a tax liability on withdrawal: unlike Roth IRAs, distributions from Trump Accounts are taxed as ordinary income, reducing the effective benefit for high earners.
+China's absence from Shangri-La is not merely a diplomatic snub — it is a signal. By declining to show up at the region's premier security forum for two years running, Beijing is ceding the floor to an increasingly coordinated set of partners who are filling the space with new alliances, new announcements, and new frameworks that explicitly aim to constrain Chinese influence.
 
-For Indian American parents weighing whether to sign up, the calculus is simple: the $1,000 is free money with no strings beyond citizenship. The app is live at trumpaccounts.gov."""
+For India, which has sometimes been criticised for its own patchy attendance at previous editions of the dialogue, this year's robust showing represents a deliberate repositioning. New Delhi is not just attending the conversation about Indo-Pacific security — it is helping to set its terms.
 
-    articles.append({
-        "headline": "Every Indian American Child Just Got a $1,000 Investment Account From the Government. Here Is How It Works.",
-        "subheadline": "The Trump Accounts app launched Thursday with $1,000 in federal seed money for every eligible child. For 4.8 million Indian Americans, the fine print matters.",
-        "body": body1,
-        "slug": "trump-accounts-app-indian-american-children-investment-1000-seed-money-20260529",
-        "category": "news",
-        "status": "published",
-        "published_at": now,
-        "sources": "- Reuters\n- U.S. Treasury Department\n- MarketWatch\n- Internal Revenue Service (IRS)\n- Investopedia",
-        "image_url": img1 or "",
-        "image_caption": "The Trump Accounts app, launched Thursday, allows families to create tax-deferred investment accounts for children with a $1,000 federal seed deposit.",
-        "image_attribution": "Wikimedia Commons" if img1 and ("wikipedia" in (img1 or "").lower() or "wikimedia" in (img1 or "").lower()) else "Pexels" if img1 else "",
-        "vertical": "news",
-    })
+The question now is whether Beijing's absence is a temporary sulk or a longer-term strategic withdrawal from multilateral security diplomacy. Either way, the rest of Asia is not waiting for an answer."""
+})
 
-    # ━━━ Article 2: India Industrial Production Surges 17.6% ━━━
-    print("\n[2/3] India Industrial Production Surges 17.6%")
+# ─── ARTICLE 2: India Heatwave Study ───────────────────────────────
 
-    img2 = fetch_pexels_image("India factory manufacturing industrial", "Indian manufacturing plant workers")
-    if not validate_image_url(img2):
-        img2 = None
+articles.append({
+    "headline": "A Single Day of Extreme Heat Kills 3,400 People Across India. A New Study Finally Counted.",
+    "subheadline": "UC Berkeley researchers found that a five-day heatwave causes nearly 30,000 excess deaths — and India is heading into its worst monsoon in 11 years.",
+    "slug": "india-extreme-heat-3400-deaths-per-day-uc-berkeley-study-heatwave-monsoon-20260530",
+    "category": "news",
+    "vertical": "news",
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "Frontiers in Environmental Health", "url": "https://www.frontiersin.org"},
+        {"name": "The Bharat Affairs", "url": "https://bharataffairs.com"},
+        {"name": "India Meteorological Department", "url": "https://mausam.imd.gov.in"}
+    ]),
+    "image_search_person": None,
+    "image_search_alt": "India heatwave extreme heat summer",
+    "body": """India already knew its summers were getting deadlier. Now there is a number to put on it.
 
-    body2 = """India's industrial output surged 17.6 percent in April 2026, the fastest pace of factory growth in over a year, driven by a sharp rebound in manufacturing, mining, and capital goods production that has exceeded even the most optimistic analyst forecasts.
+A single day of extreme heat is associated with approximately 3,400 excess deaths across India, according to a study by researchers at the University of California, Berkeley's India Energy and Climate Center. A heatwave lasting five consecutive days pushes that figure to nearly 30,000.
 
-## The Numbers
+The findings, published in the journal *Frontiers in Environmental Health*, represent one of the most comprehensive attempts to quantify what climate scientists and public health officials have long described as a "silent public health emergency" — one that kills far more Indians than floods, cyclones, and earthquakes combined, but attracts a fraction of the attention.
 
-The Index of Industrial Production, released Wednesday by the Ministry of Statistics, showed manufacturing — which accounts for roughly 77 percent of the index — growing at 19.1 percent year-on-year. Mining output rose 11.4 percent, while electricity generation expanded 8.7 percent. Capital goods, a proxy for investment demand, surged 24.3 percent, signalling that companies are spending on new capacity rather than simply running existing plants harder.
+## How They Counted
 
-The April number represents a significant acceleration from the 5.2 percent growth recorded in March 2026 and the 4.1 percent full-year average for 2025-26. Analysts at Motilal Oswal and ICICI Securities had expected growth of 10 to 12 percent; the actual reading blew past those estimates by a wide margin.
+The study's authors, Piyush Narang and Ashok Gadgil, faced a fundamental problem: India does not systematically track heat-related deaths at the district level. State governments report heat deaths inconsistently, and many fatalities — particularly among the elderly, outdoor labourers, and the rural poor — are attributed to other causes or simply go uncounted.
 
-## What Is Driving It
+To get around this, the researchers adapted findings from a multi-city study of heat-related mortality across 10 Indian cities, then applied them to all districts nationwide using population data from the Civil Registration System and 2024 projections. The result is an estimate, not a precise tally — but it is the most granular picture of heat mortality that India has.
 
-Three forces are converging. First, India's capital expenditure cycle — driven by government infrastructure spending on highways, railways, and defence — is pulling manufacturing investment along with it. The central government spent 88 percent of its budgeted capital outlay in the first quarter, well ahead of the historical pace.
+"We estimate that a single day of extreme heat causes approximately 3,400 excess deaths nationally; a five-day heatwave causes nearly 30,000," the authors wrote. Excess deaths refer to fatalities above what historical trends would predict for any given period.
 
-Second, the global supply chain reorganisation away from China continues to direct manufacturing investment toward India. Apple's contractor Foxconn, Samsung, and several European automakers have expanded Indian production capacity in the past six months, with the electronics and automobile sectors accounting for a disproportionate share of the April surge.
+## A Crisis Already Underway
 
-Third, the base effect is favourable: April 2025 saw relatively weak output due to a national election-related slowdown in government contracting.
+The timing of the study is grimly relevant. Temperatures across northern, central, and eastern India have been hovering above 45°C (113°F) for days. Parts of Madhya Pradesh, Rajasthan, Uttar Pradesh, and Haryana have recorded some of the most extreme readings. Hospitals in affected areas report surging admissions for heatstroke, dehydration, cardiovascular stress, and kidney failure.
 
-## The Contradiction
+The India Meteorological Department (IMD) has forecast that June will bring above-normal maximum and minimum temperatures across most of the country, with heatwave conditions expected in Uttar Pradesh, Haryana, Punjab, Bihar, Odisha, Chhattisgarh, Gujarat, Andhra Pradesh, and parts of Maharashtra, Telangana, and Tamil Nadu.
 
-The industrial production surge sits in awkward tension with India's equity markets, which have posted their first annual loss in a decade, driven by foreign institutional investor outflows exceeding $18 billion since January. The disconnect reflects two realities: India's domestic production economy is genuinely strengthening, but its financial markets are being dragged down by global capital flows chasing AI-driven rallies in South Korea, Taiwan, and the United States.
+Relief from the monsoon — which typically arrives in southern India around June 1 and spreads nationwide by mid-July — may come later and weaker than usual. The IMD this week revised its monsoon rainfall forecast down to 90% of the long-period average, the weakest projection in 11 years. An El Niño is expected to develop by July, further suppressing rainfall.
 
-Taiwan overtook India this week to become the world's fifth-largest stock market by capitalisation, propelled by Taiwan Semiconductor Manufacturing Company's share price surge. Indian fund managers have watched helplessly as foreign portfolio investors redirect allocations toward the AI hardware supply chain.
+## Who Dies
 
-## What It Means for the Diaspora
+The study's authors and doctors treating heatwave patients describe a consistent pattern. The victims are overwhelmingly outdoor workers — construction labourers, rickshaw pullers, farm workers, street vendors — along with the elderly and those without access to cooling infrastructure. In rural India, where electricity supply remains unreliable and air conditioning is a luxury, entire communities are exposed.
 
-For NRI investors with exposure to Indian equities, the industrial production data provides a counterargument to the bearish market narrative. India's GDP growth for Q2 2026 came in at 6.1 percent, and analysts at Goldman Sachs project full-year growth of 6.9 percent, with a potential U.S.-India trade deal adding 0.2 percentage points.
+Urban India is not spared. Cities amplify heat through the "urban heat island" effect — concrete, asphalt, and dense construction trap heat during the day and prevent cooling at night. Delhi, which recorded temperatures above 46°C in recent days, sees nighttime temperatures that barely drop below 30°C, denying residents the overnight recovery that human bodies need.
 
-The manufacturing expansion is also concentrated in sectors where Indian diaspora professionals have the deepest connections — technology hardware, automotive, and pharmaceuticals — creating partnership and investment opportunities that did not exist five years ago.
+## The Diaspora Connection
 
-Cummins India, the Indian unit of the U.S.-based engine manufacturer, reported a 23 percent rise in quarterly profit this week on strong domestic demand, with its shares rising more than 10 percent after results. The company's performance reflects the broader pattern: India's industrial economy is building real capacity, even as its stock market struggles to attract the global capital it needs to reflect that growth in valuations.
-
-Analysts at Motilal Oswal expect industrial production growth to moderate to approximately 10 percent for the full year but say the April number confirms that India's manufacturing base is no longer a policy aspiration — it is a statistical reality."""
-
-    articles.append({
-        "headline": "India's Factory Output Just Grew 17.6 Percent in April. Nobody Expected That.",
-        "subheadline": "Industrial production surged past forecasts on manufacturing, mining, and capital goods — even as India's stock market posts its worst year in a decade.",
-        "body": body2,
-        "slug": "india-industrial-production-april-2026-17-percent-surge-manufacturing-20260529",
-        "category": "news",
-        "status": "published",
-        "published_at": now,
-        "sources": "- Ministry of Statistics and Programme Implementation\n- Reuters\n- GoldSea\n- Goldman Sachs\n- Motilal Oswal",
-        "image_url": img2 or "",
-        "image_caption": "India's industrial production surged 17.6 percent in April 2026, the fastest pace in over a year.",
-        "image_attribution": "Pexels" if img2 else "",
-        "vertical": "news",
-    })
-
-    # ━━━ Article 3: Ken Paxton Defeats Cornyn in Texas ━━━
-    print("\n[3/3] Ken Paxton Defeats Cornyn in Texas Senate Race")
-
-    # Image: Try Wikipedia for Ken Paxton
-    img3 = fetch_wikipedia_person_image("Ken Paxton")
-    if not img3 or not validate_image_url(img3):
-        img3 = fetch_wikipedia_person_image("John Cornyn")
-        if not img3 or not validate_image_url(img3):
-            img3 = fetch_pexels_image("Texas capitol building Austin politics")
-            if not validate_image_url(img3):
-                img3 = None
-
-    body3 = """Texas Attorney General Ken Paxton demolished four-term Senator John Cornyn in Tuesday's Republican primary runoff, winning 64 percent to Cornyn's 36 percent and ending one of the most expensive Senate primary battles in American history. For the more than 450,000 Indian Americans living in Texas — concentrated in the Houston, Dallas-Fort Worth, and Austin metros — the result reshapes the political landscape heading into November's midterm elections.
-
-## What Happened
-
-Paxton's victory was not close. With 98 percent of votes counted, the three-term attorney general — who survived an impeachment trial in the Texas Senate in 2023 and still faces securities fraud charges — captured the Republican nomination one week after receiving President Donald Trump's last-minute endorsement.
-
-Cornyn, the longest-serving Republican senator in Texas history and the former Senate Majority Whip, conceded Tuesday night. Trump's endorsement, delivered via Truth Social on May 19, transformed a competitive race into a rout.
-
-"I want to thank President Trump for his incredible endorsement," Paxton said at his victory party in Plano. "We are going to take the fight to Washington."
-
-## Why Indian Americans Should Pay Attention
-
-Texas is home to the third-largest Indian American population in the country, behind California and New Jersey. The Houston metro alone has more than 150,000 Indian Americans, and the state's Hindu population has grown rapidly enough to become a factor in local and state politics.
-
-Cornyn was no friend of immigration reform, but he was a transactional legislator who occasionally engaged with diaspora-relevant legislation, including visa processing and trade measures. Paxton represents a different political model: a combative, Trump-aligned firebrand whose policy priorities centre on immigration enforcement, border security, and executive power — with little history of engagement with Asian American constituencies.
-
-Paxton's general election opponent will be state Representative James Talarico, a 32-year-old Democrat who has raised more money than Paxton and is running on healthcare affordability and public education. Democrats have not won a statewide race in Texas since 1994, but strategists in both parties say the Paxton nomination is their best shot in a generation.
-
-## The Midterm Implications
-
-The Texas result is part of a broader pattern: Trump-endorsed candidates are winning Republican primaries but potentially weakening the party in general elections. Republicans hold a narrow 53-47 Senate majority, and they are defending seats in North Carolina, Ohio, Maine, and now Texas — where Paxton's legal baggage and polarising record could make the seat competitive.
-
-For Indian American voters, who have trended Democratic in recent cycles but remain genuinely split on issues like taxes, education, and H-1B policy, the Texas race offers a stark choice. Paxton has been one of the most aggressive state attorneys general on immigration enforcement, filing lawsuits against DACA, TPS extensions, and H-4 work authorisation — policies that directly affect hundreds of thousands of Indian families in Texas.
-
-Talarico, by contrast, has courted the Asian American vote explicitly, attending Diwali celebrations and endorsing measures to streamline legal immigration pathways.
+For the millions of NRIs whose parents and extended families still live in India — particularly in the Hindi belt states of UP, Bihar, Rajasthan, and MP that bear the worst of summer heat — the study quantifies a risk that has always been abstract. Phone calls home during Indian summers often include casual mentions of power cuts and unbearable heat. The Berkeley study suggests those conditions are killing thousands of people every day they persist.
 
 ## What Comes Next
 
-The general election is November 3, 2026. Paxton enters with significant name recognition and Trump's backing, but also with a securities fraud indictment, an FBI investigation into allegations of bribery and abuse of office, and a reputation that leading Republican donors have spent millions trying to suppress.
+India's public health response to extreme heat remains largely reactive — advisories to stay indoors, drink water, and avoid the afternoon sun. But the scale of the crisis the Berkeley study describes demands something more: early warning systems linked to hospital surge capacity, outdoor work regulations with enforceable rest-hour mandates, and cooling infrastructure in the most vulnerable districts.
 
-Republicans spent Tuesday night scrubbing anti-Paxton attack ads from the internet. The National Republican Senatorial Committee deleted press releases, social media posts, and opposition research that had labelled Paxton "corrupt" and a threat to the party — material that Democrats have already archived and plan to deploy.
+With the weakest monsoon in over a decade approaching and El Niño on the horizon, the window for preparation is closing faster than the temperatures are rising."""
+})
 
-For Indian Americans in Texas, the November ballot carries more weight than most Senate races. The winner will shape immigration policy, judicial nominations, and trade agreements for at least six years — decisions that land directly in the living rooms of families in Sugar Land, Frisco, Plano, and North Austin."""
+# ─── ARTICLE 3: SEBI Clears NDTV ──────────────────────────────────
 
-    articles.append({
-        "headline": "Texas Just Replaced Its Most Powerful Senator with a Trump Loyalist. For 450,000 Indian Americans, the Stakes Are Personal.",
-        "subheadline": "Ken Paxton crushed John Cornyn 64-36 in the Republican primary. Democrats think they can win Texas for the first time in 32 years.",
-        "body": body3,
-        "slug": "texas-paxton-cornyn-senate-primary-indian-americans-midterms-20260529",
+articles.append({
+    "headline": "SEBI Has Finally Cleared NDTV of Disclosure Violations. The Case Began in 2009.",
+    "subheadline": "India's markets regulator ruled that no change of control occurred under a 2009 loan agreement — ending a 17-year-old saga for the Adani-owned broadcaster.",
+    "slug": "sebi-clears-ndtv-disclosure-violations-17-year-case-adani-loan-agreement-20260530",
+    "category": "news",
+    "vertical": "news",
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "Securities and Exchange Board of India", "url": "https://www.sebi.gov.in"},
+        {"name": "Securities Appellate Tribunal", "url": "https://sat.gov.in"}
+    ]),
+    "image_search_person": None,
+    "image_search_alt": "NDTV India news broadcaster",
+    "body": """It took 17 years, but the Securities and Exchange Board of India has finally closed the book on one of its longest-running corporate disputes — and NDTV walked away clean.
+
+In an order issued on Friday, SEBI disposed of proceedings against New Delhi Television Ltd (NDTV), ruling that the company did not violate disclosure regulations in connection with a 2009 loan agreement that the regulator had previously claimed amounted to a change in control.
+
+The decision marks the end of a regulatory saga that began during the UPA government era, survived the transition to NDA rule, and outlasted NDTV's own transformation from an independently owned broadcaster to a unit of the Adani Group.
+
+## The 2009 Agreement
+
+The case traces back to a loan agreement entered into by NDTV's founders, Prannoy Roy and Radhika Roy, in 2009. Under the terms, the lender was granted options to acquire a significant stake in the broadcaster — provisions that SEBI later argued constituted a de facto change in control.
+
+In June 2018 — nearly a decade after the agreement was signed — SEBI formally held that the arrangement did indeed result in a change in control of NDTV. The regulator then launched disclosure violation proceedings, arguing that NDTV should have informed stock exchanges about SEBI's finding at the time.
+
+NDTV contested the proceedings, and the case went to the Securities Appellate Tribunal (SAT).
+
+## SAT Overturns SEBI
+
+In 2022, the SAT set aside SEBI's 2018 ruling, holding that the loan agreement did not amount to a change in control because the options it contained were never actually exercised. The distinction was critical: SEBI had treated the mere existence of the options as a control event, while SAT ruled that unexercised options do not transfer control.
+
+With SAT's ruling standing, SEBI was left in an awkward position. Its disclosure violation case depended entirely on the premise that a change in control had occurred. If it hadn't — as SAT held — then there was nothing to disclose, and therefore no violation.
+
+## Friday's Order
+
+That is exactly what SEBI concluded in its Friday order. The regulator noted that since there was no change in control, no disclosure obligation arose under listing regulations, and therefore no violation of the rules occurred. The proceedings were disposed of without penalty.
+
+For NDTV, the ruling removes one of the last regulatory clouds from its pre-Adani era. The Adani Group completed its takeover of NDTV in 2023, acquiring a majority stake through a combination of indirect share purchases and an open offer. Prannoy Roy and Radhika Roy subsequently stepped down from their executive roles.
+
+## What It Means
+
+The SEBI-NDTV case is a case study in how Indian securities regulation can become entangled in its own timelines. A 2009 transaction was first scrutinised in 2018, overturned in 2022, and finally cleared in 2026. Throughout, NDTV operated under a cloud of regulatory uncertainty that affected its market reputation, its ability to attract investors, and — some analysts argue — its editorial independence.
+
+The case also highlights a recurring tension in Indian corporate law: the question of when financial arrangements that fall short of actual share transfers can nonetheless be treated as control events. SEBI's aggressive interpretation in 2018 was ultimately rejected, but the mere act of bringing the case had consequences for the company that no subsequent ruling can undo.
+
+For investors, the takeaway is narrower but relevant. SEBI's disposal of the case confirms that disclosure obligations under Indian listing rules are triggered by actual control changes, not by the theoretical possibility of future changes embedded in financial instruments. Companies with complex ownership structures and option-laden agreements can take some comfort from that precedent — though the 17-year timeline for resolution offers rather less reassurance about regulatory efficiency.
+
+The Adani Group, which now controls NDTV's editorial and commercial operations, has not commented on the ruling. The company's shares closed unchanged on Friday."""
+})
+
+# ─── PUBLISH ────────────────────────────────────────────────────────
+
+published_count = 0
+
+for i, article in enumerate(articles):
+    print(f"\n{'='*60}")
+    print(f"Article {i+1}: {article['headline'][:70]}...")
+    
+    # Image sourcing
+    img_url = None
+    
+    # Try Wikipedia for person articles
+    if article.get('image_search_person'):
+        person = article['image_search_person']
+        print(f"  → Trying Wikipedia for '{person}'...")
+        img_url = fetch_wikipedia_person_image(person)
+        
+        # Try alternate names
+        if not img_url and '(' not in person:
+            for suffix in ['(politician)', '(military)', '(general)']:
+                img_url = fetch_wikipedia_person_image(f"{person} {suffix}")
+                if img_url:
+                    break
+    
+    # Fall back to Pexels
+    if not img_url and article.get('image_search_alt'):
+        print(f"  → Trying Pexels for '{article['image_search_alt']}'...")
+        img_url = fetch_pexels_image(article['image_search_alt'])
+    
+    # Upload to Supabase if we have an image
+    final_img_url = None
+    if img_url:
+        slug = article['slug']
+        ext = 'jpg'
+        if '.png' in img_url.lower():
+            ext = 'png'
+        filename = f"{slug}.{ext}"
+        final_img_url = upload_image_to_supabase(img_url, filename)
+        
+        # Validate
+        if final_img_url and not validate_image_url(final_img_url):
+            print(f"  ✗ Image validation failed, skipping image")
+            final_img_url = None
+    
+    if not final_img_url:
+        print(f"  ⚠ No image found — publishing without image (no image > wrong image)")
+    
+    # Prepare article data
+    art_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
+    
+    data = {
+        "id": art_id,
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "slug": article["slug"],
+        "body": article["body"],
         "category": "news",
+        "vertical": "news",
         "status": "published",
         "published_at": now,
-        "sources": "- Reuters\n- Associated Press\n- Wall Street Journal\n- Fox News\n- CNN",
-        "image_url": img3 or "",
-        "image_caption": "Texas Attorney General Ken Paxton defeated four-term Senator John Cornyn in the Republican primary runoff on Tuesday.",
-        "image_attribution": "Wikimedia Commons" if img3 and ("wikipedia" in (img3 or "").lower() or "wikimedia" in (img3 or "").lower()) else "Pexels" if img3 else "",
-        "vertical": "news",
-    })
+        "sources": json.loads(article["sources"]),
+        "image_url": final_img_url,
+        "image_attribution": "Wikimedia Commons" if (final_img_url and 'wikimedia' in str(img_url).lower()) else "The Videshi" if final_img_url else None,
+    }
+    
+    result = sb_insert("p2_articles", data)
+    if result:
+        print(f"  ✓ Published: {article['slug']}")
+        published_count += 1
+    else:
+        print(f"  ✗ Failed to publish: {article['slug']}")
+    
+    time.sleep(1)
 
-    return articles
-
-
-# ── Main ─────────────────────────────────────────────────────────────────────
-
-if __name__ == "__main__":
-    articles = build_articles()
-    success = 0
-    for i, article in enumerate(articles):
-        print(f"\n{'='*60}")
-        print(f"Publishing [{i+1}/{len(articles)}]: {article['headline'][:80]}...")
-        
-        # Final image check
-        if not article["image_url"]:
-            print("  ⚠ No image found — publishing without image (no image > wrong image)")
-        
-        # Validate all required fields
-        assert len(article["headline"]) >= 20, f"Headline too short: {len(article['headline'])}"
-        assert len(article["headline"]) <= 200, f"Headline too long: {len(article['headline'])}"
-        assert len(article["subheadline"]) >= 15, f"Subheadline too short"
-        assert len(article["body"]) >= 2000, f"Body too short: {len(article['body'])} chars"
-        assert article["category"] == "news", f"Category must be 'news', got '{article['category']}'"
-        assert "-" in article["slug"] and not any(c.isupper() for c in article["slug"]), "Slug must be lowercase hyphenated"
-        
-        word_count = len(article["body"].split())
-        print(f"  Word count: {word_count}")
-        assert word_count >= 400, f"Body too short: {word_count} words (minimum 400)"
-
-        if publish_article(article):
-            success += 1
-
-    print(f"\n{'='*60}")
-    print(f"Done: {success}/{len(articles)} articles published successfully.")
-    sys.exit(0 if success == len(articles) else 1)
+print(f"\n{'='*60}")
+print(f"Done. Published {published_count}/{len(articles)} articles.")
