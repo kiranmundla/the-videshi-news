@@ -1,0 +1,184 @@
+#!/usr/bin/env python3
+"""
+Scrape US State Dept Global Visa Wait Times for India + third-country consulates.
+Updates consulate_wait_times table in Supabase.
+Source: travel.state.gov/content/travel/en/us-visas/visa-information-resources/global-visa-wait-times.html
+This page is public, no authentication needed, updated monthly by State Dept.
+"""
+import json
+import os
+import re
+import urllib.request
+from datetime import datetime, timezone
+
+TARGETS = {
+    # India consulates
+    "Chennai (Madras)": ("chennai", "Chennai"),
+    "Hyderabad": ("hyderabad", "Hyderabad"),
+    "Kolkata": ("kolkata", "Kolkata"),
+    "Mumbai (Bombay)": ("mumbai", "Mumbai"),
+    "New Delhi": ("new_delhi", "New Delhi"),
+    # Third-country options for Indian H-1B holders
+    "Dubai": ("dubai", "Dubai (UAE)"),
+    "Singapore": ("singapore", "Singapore"),
+    "Toronto": ("toronto", "Toronto (Canada)"),
+    "Calgary": ("calgary", "Calgary (Canada)"),
+    "London": ("london", "London (UK)"),
+}
+
+VISA_TYPE_DISPLAY = {
+    "B1B2": "Visitor (B1/B2)",
+    "F_M_J": "Student (F/M/J)",
+    "H_L_O_P_Q": "Work (H/L/O/P/Q)",
+    "C_D": "Crew/Transit (C/D)",
+}
+
+VISA_COLS = ["B1B2", "B1B2_next", "F_M_J", "H_L_O_P_Q", "C_D"]
+
+def load_env(path):
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                key, _, val = line.partition("=")
+                os.environ[key.strip()] = val.strip().strip('"').strip("'")
+
+def parse_months(text):
+    """Convert '7.5 Months' or '< 0.5 Month' to float, or None for NA."""
+    text = text.strip()
+    if text == "NA" or not text:
+        return None
+    m = re.search(r'([\d.]+)\s*Month', text)
+    if m:
+        return float(m.group(1))
+    return None
+
+def fetch_wait_times():
+    """Fetch and parse the State Dept wait times page."""
+    url = "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/global-visa-wait-times.html"
+    req = urllib.request.Request(url, headers={"User-Agent": "TheVideshi/1.0 (immigration news)"})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        html = resp.read().decode("utf-8")
+    
+    results = []
+    now = datetime.now(timezone.utc).isoformat()
+    
+    # Parse table rows - look for target cities
+    # The page has a big HTML table; we extract rows matching our target cities
+    # Simple regex approach since the table structure is consistent
+    
+    # Find all table rows
+    row_pattern = re.compile(r'<tr[^>]*>(.*?)</tr>', re.DOTALL)
+    cell_pattern = re.compile(r'<td[^>]*>(.*?)</td>', re.DOTALL)
+    
+    for row_match in row_pattern.finditer(html):
+        row_html = row_match.group(1)
+        cells = cell_pattern.findall(row_html)
+        if len(cells) < 6:
+            continue
+        
+        # Clean HTML from cells
+        city_raw = re.sub(r'<[^>]+>', '', cells[0]).strip()
+        
+        # Check if this city is one we care about
+        slug = None
+        for target_name, target_slug in TARGETS.items():
+            if target_name.lower() in city_raw.lower():
+                slug = target_slug
+                break
+        
+        if not slug:
+            continue
+        
+        avg_b1b2 = parse_months(re.sub(r'<[^>]+>', '', cells[1]).strip())
+        next_b1b2 = parse_months(re.sub(r'<[^>]+>', '', cells[2]).strip())
+        next_fmj = parse_months(re.sub(r'<[^>]+>', '', cells[3]).strip())
+        next_hlop = parse_months(re.sub(r'<[^>]+>', '', cells[4]).strip())
+        next_cd = parse_months(re.sub(r'<[^>]+>', '', cells[5]).strip())
+        
+        # Insert one row per visa type
+        for visa_type, val in [
+            ("B1B2", next_b1b2),
+            ("F_M_J", next_fmj),
+            ("H_L_O_P_Q", next_hlop),
+            ("C_D", next_cd),
+        ]:
+            results.append({
+                "consulate": slug,
+                "visa_type": visa_type,
+                "avg_wait_months": avg_b1b2 if visa_type == "B1B2" else None,
+                "next_available_months": val,
+                "scraped_at": now,
+            })
+        
+        print(f"  {slug}: B1/B2={next_b1b2}mo, F/M/J={next_fmj}mo, H/L/O/P={next_hlop}mo, C/D={next_cd}mo")
+    
+    return results
+
+def upsert_to_supabase(rows):
+    """Insert new wait time rows into Supabase."""
+    url = f"{os.environ['SUPABASE_URL']}/rest/v1/consulate_wait_times"
+    payload = json.dumps(rows).encode()
+    req = urllib.request.Request(url, data=payload, method="POST", headers={
+        "apikey": os.environ["SUPABASE_SERVICE_ROLE_KEY"],
+        "Authorization": f"Bearer {os.environ['SUPABASE_SERVICE_ROLE_KEY']}",
+        "Content-Type": "application/json",
+        "Prefer": "resolution=merge-duplicates",
+    })
+    try:
+        with urllib.request.urlopen(req) as resp:
+            print(f"Inserted {len(rows)} wait time rows")
+            return True
+    except Exception as e:
+        print(f"Supabase insert error: {e}")
+        # Try reading the error body
+        if hasattr(e, 'read'):
+            print(f"  Response: {e.read().decode()}")
+        return False
+
+def update_static_json(rows):
+    """Write latest wait times to static JSON for frontend."""
+    repo = os.path.expanduser("~/workspace/the-videshi-news")
+    out = os.path.join(repo, "public/data/visa-wait-times.json")
+    with open(out, "w") as f:
+        json.dump(rows, f, indent=2)
+        f.write("\n")
+    print(f"Wrote {len(rows)} rows to visa-wait-times.json")
+
+def main():
+    load_env(os.path.expanduser("~/workspace/.env.supabase"))
+    
+    print("Fetching State Dept wait times...")
+    rows = fetch_wait_times()
+    
+    if not rows:
+        print("ERROR: No rows parsed. Page structure may have changed.")
+        return
+    
+    print(f"\nParsed {len(rows)} wait time entries for {len(set(r['consulate'] for r in rows))} consulates")
+    
+    # Upsert to Supabase
+    upsert_to_supabase(rows)
+    
+    # Update static JSON
+    update_static_json(rows)
+    
+    # Git push
+    load_env(os.path.expanduser("~/workspace/.env.github"))
+    repo = os.path.expanduser("~/workspace/the-videshi-news")
+    os.chdir(repo)
+    import subprocess
+    result = subprocess.run(["git", "diff", "--name-only", "public/data/visa-wait-times.json"],
+                          capture_output=True, text=True)
+    if "visa-wait-times.json" in result.stdout:
+        subprocess.run(["git", "add", "public/data/visa-wait-times.json"], check=True)
+        subprocess.run(["git", "commit", "-m", f"update wait times {datetime.now().strftime('%Y-%m-%d')}"], check=True)
+        subprocess.run(["git", "push", "origin", "main"], check=True)
+        print("Pushed updated wait times")
+    else:
+        print("No changes to wait times")
+
+if __name__ == "__main__":
+    main()
