@@ -400,12 +400,31 @@ export default function ImmigrationPage() {
             </Link>
 
             {/* ── Data Trackers ────────────────────────────────── */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
               <GreenCardCard data={bulletin} />
               <ConsulateCard data={waits} />
               <H1BCard data={h1b} />
               <ProcessingCard data={processing} />
             </div>
+
+            {/* ── Visa Guides Banner ──────────────────────────── */}
+            <Link
+              to="/immigration/guides"
+              className="block mb-12 rounded-xl overflow-hidden border border-amber-500/20 bg-gradient-to-r from-[#1a1a2e] to-[#2e1a1a] hover:from-[#1e1e35] hover:to-[#351e1e] transition-all duration-300 shadow-lg shadow-amber-500/5 hover:shadow-amber-500/10 group"
+            >
+              <div className="flex items-center gap-4 px-5 py-5">
+                <span className="text-3xl flex-shrink-0">📚</span>
+                <div className="flex-1 min-w-0">
+                  <p className="font-serif text-lg md:text-xl font-bold text-white leading-tight">
+                    Visa Interview Guides
+                  </p>
+                  <p className="text-sm text-white/60 mt-1">
+                    Interview prep, social media screening, what NOT to say to the officer, third-country stamping, and more
+                  </p>
+                </div>
+                <span className="text-white/40 text-2xl shrink-0 group-hover:text-amber-400 group-hover:translate-x-1 transition-all">→</span>
+              </div>
+            </Link>
 
             {/* ── Quick Links: Guides ─────────────────────────── */}
             <section className="mb-12">

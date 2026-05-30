@@ -317,6 +317,7 @@ export async function getImmigrationNews(limit: number = 6): Promise<any[]> {
 /* ------------------------------------------------------------------ */
 
 export const GUIDE_CATEGORIES = [
+  { key: "consular", label: "Consulate & Interview", emoji: "🏛️" },
   { key: "work-visas", label: "Work Visas", emoji: "💼" },
   { key: "green-card", label: "Green Card", emoji: "🟢" },
   { key: "citizenship", label: "Citizenship", emoji: "🇺🇸" },
@@ -327,6 +328,11 @@ export const GUIDE_CATEGORIES = [
 ] as const;
 
 export const GUIDE_PLACEHOLDERS = [
+  { slug: "visa-interview-prep", title: "How to Prepare for Your US Visa Interview", category: "consular", emoji: "🏛️" },
+  { slug: "social-media-screening", title: "Social Media Screening: What You Need to Know", category: "consular", emoji: "📱" },
+  { slug: "visa-interview-mistakes", title: "What NOT to Say to the Consular Officer", category: "consular", emoji: "🚫" },
+  { slug: "after-visa-interview", title: "After Your Visa Interview: What to Expect", category: "consular", emoji: "📬" },
+  { slug: "third-country-stamping", title: "Third-Country Visa Stamping for Indian H-1B Holders", category: "consular", emoji: "🌍" },
   { slug: "h1b-visa-complete-guide", title: "H-1B Visa: Complete Guide", category: "work-visas", emoji: "💼" },
   { slug: "h4-ead-work-authorization", title: "H-4 EAD: Work Authorization for Spouses", category: "work-visas", emoji: "👩‍💼" },
   { slug: "l1-visa-intracompany-transfers", title: "L-1 Visa: Intracompany Transfers", category: "work-visas", emoji: "🏢" },
