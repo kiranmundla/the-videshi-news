@@ -1,38 +1,34 @@
 #!/usr/bin/env python3
-"""
-The Videshi — News Writer (scheduled run)
-Generates 3 news articles with India/NRI diaspora angles.
-"""
+"""News writer — publishes 4 fresh articles to Supabase."""
 
-import json, os, re, sys, uuid, requests, urllib.parse, time
+import json, os, sys, uuid, re, time
 from datetime import datetime, timezone
 
-# ── env ──
-with open(os.path.expanduser("~/.env.supabase")) as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1)
-            os.environ[k] = v
+# Load env
+def load_env(path):
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                if line.startswith('export '):
+                    line = line[7:]
+                key, _, val = line.partition('=')
+                val = val.strip().strip('"').strip("'")
+                os.environ[key.strip()] = val
 
-with open(os.path.expanduser("~/workspace/.env.pexels")) as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1)
-            os.environ[k] = v
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/.env.pexels'))
 
-SB_URL = os.environ["SUPABASE_URL"]
-SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
-HEADERS = {
-    "apikey": SB_KEY,
-    "Authorization": f"Bearer {SB_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
-}
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-# ── helpers ──
+import requests
+import urllib.parse
+
+# ─── Image sourcing ───
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -41,7 +37,7 @@ def fetch_wikipedia_person_image(person_name):
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10,
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
@@ -53,342 +49,377 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels. Returns URL or None."""
+    """Fetch a relevant image from Pexels. Returns URL or None."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
+    
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = requests.get(
-                "https://api.pexels.com/v1/search",
-                headers={"Authorization": PEXELS_KEY},
-                params={"query": q, "per_page": 5, "orientation": "landscape"},
-                timeout=10,
+            import subprocess
+            result = subprocess.run(
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
+                capture_output=True, text=True, timeout=15
             )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for p in photos:
-                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
-                    if url:
-                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                        return url
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            if photos:
+                url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('large')
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
 def validate_image(url):
-    """Check that image URL returns HTTP 200 with image content-type > 5KB."""
+    """Validate image URL returns a real image > 5KB."""
+    if not url:
+        return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if 'image' in ct and cl > 5000:
             return True
-        # Try GET if HEAD didn't give content-length
-        if r.status_code == 200 and "image" in ct:
-            r2 = requests.get(url, timeout=10, stream=True,
-                             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            r2.close()
-            if len(chunk) > 5000:
-                return True
+        # Try GET for servers that don't support HEAD well
+        r = requests.get(url, timeout=10, stream=True,
+                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if 'image' in ct and cl > 5000:
+            return True
+        # Check first chunk
+        chunk = next(r.iter_content(8192), b'')
+        if len(chunk) > 5000 and 'image' in ct:
+            return True
     except Exception as e:
-        print(f"  ⚠ Image validation failed: {e}")
+        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
     return False
 
+def is_banned_url(url):
+    """Check if URL is from a banned source."""
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
+    banned_params = ['_nc_ht=', '_nc_cat=', 'ccb=']
+    for b in banned:
+        if b in url:
+            return True
+    for p in banned_params:
+        if p in url:
+            return True
+    return False
 
-def sb_insert(table, row):
-    """Insert a row into Supabase and return the response."""
+def get_image(person_name=None, pexels_query=None, pexels_fallback=None):
+    """Get best available image. Wikipedia first for people, then Pexels."""
+    if person_name:
+        url = fetch_wikipedia_person_image(person_name)
+        if url and not is_banned_url(url) and validate_image(url):
+            return url, "Wikimedia Commons"
+    
+    if pexels_query:
+        url = fetch_pexels_image(pexels_query, pexels_fallback)
+        if url and not is_banned_url(url) and validate_image(url):
+            return url, "Pexels"
+    
+    return None, None
+
+# ─── Supabase helpers ───
+
+def sb_insert(table, data):
+    """Insert a row into Supabase."""
     r = requests.post(
-        f"{SB_URL}/rest/v1/{table}",
-        headers=HEADERS,
-        json=row,
+        f"{SUPABASE_URL}/rest/v1/{table}",
+        headers={
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": "application/json",
+            "Prefer": "return=representation"
+        },
+        json=data,
+        timeout=30
     )
     if r.status_code in (200, 201):
-        data = r.json()
-        if isinstance(data, list) and data:
-            return data[0]
-        return data
-    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
-    return None
+        result = r.json()
+        if isinstance(result, list) and result:
+            return result[0]
+        return result
+    else:
+        print(f"  ✗ Insert error {r.status_code}: {r.text[:200]}")
+        return None
 
-
-def make_slug(headline):
-    """Generate a clean slug from headline."""
-    slug = re.sub(r'[^a-z0-9\s-]', '', headline.lower())
-    slug = re.sub(r'\s+', '-', slug.strip())
-    slug = re.sub(r'-+', '-', slug)
-    slug = slug[:80].rstrip('-')
-    date_suffix = datetime.now(timezone.utc).strftime("%Y%m%d")
-    return f"{slug}-{date_suffix}"
-
-
-def publish_article(article):
-    """Publish an article to Supabase."""
-    art_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).isoformat()
-
-    row = {
-        "id": art_id,
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "slug": article["slug"],
-        "body": article["body"],
-        "category": "news",
-        "vertical": article.get("vertical", "politics"),
-        "status": "published",
-        "published_at": now,
-        "created_at": now,
-        "updated_at": now,
-        "image_url": article.get("image_url", ""),
-        "image_caption": article.get("image_caption", ""),
-        "image_attribution": article.get("image_attribution", ""),
-        "sources": json.dumps(article.get("sources", [])),
-    }
-
-    result = sb_insert("p2_articles", row)
-    if result:
-        print(f"  ✓ Published: {article['headline'][:70]}... (id: {art_id[:8]})")
-        return art_id
-    return None
-
-
-# ═══════════════════════════════════════════
-# ARTICLES
-# ═══════════════════════════════════════════
+# ─── Articles ───
 
 articles = []
 
-# ── Article 1: Iran Ends 88-Day Internet Shutdown ──
-print("\n── Article 1: Iran Internet Shutdown Ends ──")
+# ── Article 1: Supreme Court Reliance ₹447 Crore ──
+articles.append({
+    "headline": "Supreme Court Overturns ₹447 Crore Fraud Order Against Reliance. SEBI Must Return ₹250 Crore.",
+    "subheadline": "India's apex court ruled that breaching position limits is not the same as committing fraud — a distinction that could reshape how SEBI pursues market manipulation cases for years to come.",
+    "slug": "supreme-court-reliance-industries-sebi-447-crore-fraud-overturned-rpl-20260530",
+    "category": "news",
+    "vertical": "news",
+    "person": "Mukesh Ambani",
+    "pexels_query": "India Supreme Court building",
+    "pexels_fallback": "India stock market trading",
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com/world/india/"},
+        {"name": "LiveMint", "url": "https://www.livemint.com/"},
+        {"name": "Bar and Bench", "url": "https://www.barandbench.com/"},
+        {"name": "LiveLaw", "url": "https://www.livelaw.in/"}
+    ]),
+    "body": """India's Supreme Court on Friday handed Reliance Industries a major legal victory, overturning a ₹447.27 crore disgorgement order imposed by the Securities and Exchange Board of India in a case that has wound through the Indian legal system for nearly two decades.
 
-art1_headline = "Iran Just Restored Internet Access After 88 Days. India Knows Exactly What That Silence Feels Like."
-art1_subheadline = "Tehran lifted the blackout to ease economic pain. India leads the world in internet shutdowns — and its diaspora has been watching both countries closely."
-art1_slug = make_slug("iran-restores-internet-88-days-india-shutdowns")
+A bench comprising Justices J.B. Pardiwala and R. Mahadevan set aside findings of fraud and market manipulation that SEBI had recorded against Mukesh Ambani's conglomerate in connection with trading in shares and derivatives of Reliance Petroleum Ltd during November 2007. The court directed SEBI to refund ₹250 crore that Reliance had deposited in the Investor Protection Fund during the pendency of the appeal.
 
-art1_body = """Iran has restored internet access to its citizens after an 88-day blackout — the longest continuous internet shutdown in the country's history. The decision, announced Wednesday, immediately reconnected millions of Iranians who had been cut off from the outside world since late February.
+## What the Case Was About
 
-The shutdown was initially imposed in January 2026 to suppress anti-government protests that had erupted across several major cities. It was briefly lifted before being reimposed in February following U.S. and Israeli military strikes on Iranian territory, as Tehran sought to control the flow of information during the conflict.
+The dispute dates back to November 2007, when Reliance Industries — then holding roughly 75 percent of Reliance Petroleum — decided to sell about 5 percent of its stake, amounting to approximately 22.5 crore shares. Ahead of the sale, RIL had entered into arrangements with 12 entities that took short positions in RPL futures contracts. The profits and losses from those trades ultimately flowed back to the parent company.
 
-## What Forced Tehran's Hand
+SEBI investigated the transactions and, in a 2020 order, ruled that the arrangement amounted to fraud and market manipulation. The regulator said RIL had circumvented position limits in derivatives, cornered the market, and influenced settlement prices. SEBI directed the company to repay ₹447.27 crore — plus 12 percent annual interest — to investors.
 
-The decision to restore connectivity was not a concession to civil liberties. It was economics. Iran's digital economy — e-commerce platforms, ride-hailing services, freelance tech workers — had been hemorrhaging revenue for nearly three months. Small businesses that depended on Instagram and Telegram for customer acquisition were shuttered. International remittances, many of which flow through digital channels, had slowed to a trickle.
+Reliance challenged the order before the Securities Appellate Tribunal, which upheld SEBI's findings in a majority decision. The company then approached the Supreme Court.
 
-Analysts say the economic pressure, combined with the prospect of a framework deal with the United States over the Strait of Hormuz, gave Tehran the political cover it needed to flip the switch back on.
+## The Court's Reasoning
 
-"The government is trying to signal normalcy ahead of any potential deal," said Amir Rashidi, a digital rights researcher at the Miaan Group. "But everyone knows the internet can be shut down again in hours if negotiations collapse."
+The Supreme Court held that the SAT had committed an "egregious error" in sustaining SEBI's fraud findings. In a 136-page judgment, the court drew a critical distinction between regulatory violations and fraud.
 
-## India Leads the World in Internet Shutdowns
+"There is no legal requirement to ensure a perfect hedge with a 1:1 ratio," the court observed, adding that hedging is a legitimate risk-management tool. The bench ruled that a breach of position limits is a regulatory violation but does not, by itself, establish the higher threshold of fraud required under the SEBI (Prohibition of Fraudulent and Unfair Trade Practices) Regulations.
 
-The Iran story resonates uncomfortably in India, which has imposed more internet shutdowns than any other country in the world. According to Access Now's annual report, India accounted for over 60 percent of all documented internet shutdowns globally between 2016 and 2025 — a total exceeding 900 separate incidents.
+SEBI, the court said, had failed to meet the burden of proof required to establish that Reliance had engaged in deliberate manipulation.
 
-The shutdowns have disproportionately affected Kashmir, where residents experienced a continuous blackout lasting 552 days between August 2019 and February 2021 — far longer than Iran's 88-day cutoff. Shutdowns have also been imposed in Manipur, Rajasthan, Haryana, and parts of Uttar Pradesh during periods of communal tension, protests, or examinations.
+## What Survived
 
-For India's diaspora, the parallel is personal. NRIs with family in affected regions have experienced the same helpless silence — unable to reach parents, unable to confirm safety, unable to conduct business. WhatsApp groups that serve as lifelines for transnational families go dark without warning.
+The ruling was not a complete exoneration. The Supreme Court upheld a separate ₹25 crore penalty imposed on RIL for violating disclosure requirements under SEBI's 2001 derivatives position-limit framework. The company's breach of position limits was acknowledged as a regulatory failure — just not fraud.
 
-## The Economic Cost Is Staggering
+## Why This Matters for NRIs and Indian Markets
 
-A 2025 report by Top10VPN estimated that internet shutdowns cost India over $4 billion in economic losses between 2019 and 2025. Iran's 88-day blackout is estimated to have cost the country upward of $1.5 billion, though independent verification is difficult given Tehran's opacity on economic data.
+The judgment is likely to have significant implications for how India's capital markets regulator pursues market manipulation cases going forward. By raising the evidentiary bar for fraud findings, the court has effectively limited SEBI's ability to treat every position-limit violation as evidence of manipulative intent.
 
-The Indian government has defended shutdowns as necessary for maintaining public order and preventing the spread of disinformation. Critics, including the Internet Freedom Foundation and several Indian-origin technologists in Silicon Valley, argue that blanket shutdowns are a disproportionate response that punishes entire populations for the actions of a few.
+For NRI investors with exposure to Indian equities — and particularly to Reliance, which is one of the most widely held stocks among diaspora investors — the ruling removes a long-standing legal overhang. Reliance Industries, which recently became the first Indian company to cross $120 billion in annual revenue, has been carrying this case on its books for years.
+
+Legal experts say the judgment could also encourage more aggressive legal challenges to SEBI enforcement actions, particularly in cases where the regulator has relied on circumstantial evidence to establish fraud.
+
+Neither Reliance Industries nor SEBI immediately responded to requests for comment on the ruling."""
+})
+
+# ── Article 2: Fed Rate Hike Signals ──
+articles.append({
+    "headline": "The Fed Is Now Openly Talking About Raising Interest Rates. NRIs With American Mortgages Should Pay Attention.",
+    "subheadline": "Multiple Federal Reserve officials said on Friday they may need to hike rates if the Iran war keeps pushing inflation higher. The PCE index just hit 3.8 percent.",
+    "slug": "fed-rate-hike-signals-iran-war-inflation-nri-mortgages-remittances-20260530",
+    "category": "news",
+    "vertical": "news",
+    "person": None,
+    "pexels_query": "Federal Reserve building Washington DC",
+    "pexels_fallback": "US dollar bills currency finance",
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com/markets/us/"},
+        {"name": "Federal Reserve", "url": "https://www.federalreserve.gov/"},
+        {"name": "Bureau of Economic Analysis", "url": "https://www.bea.gov/"}
+    ]),
+    "body": """For months, the Federal Reserve held the line. Interest rates were in a good place. Patience was the right posture. The Iran war would be temporary. The energy shock would pass.
+
+On Friday, that posture cracked.
+
+Multiple Fed officials — including some of the central bank's most dovish voices — publicly acknowledged that interest rates may need to go up, not down, if the war-driven inflation surge proves more persistent than initially expected. For the estimated 4.4 million Indian Americans in the United States, many of whom hold variable-rate mortgages, auto loans, and credit card debt, the shift matters.
+
+## What Changed
+
+The Personal Consumption Expenditures Price Index — the Fed's preferred inflation gauge — climbed to 3.8 percent year-over-year in April, up from 3.5 percent in March. A separate New York Fed measure of underlying inflation dynamics jumped to 4 percent from 3.5 percent. Both readings are well above the Fed's 2 percent target, which has now been exceeded for years running.
+
+The culprit is energy. The three-month war between the United States and Iran has effectively closed the Strait of Hormuz, through which roughly one-fifth of the world's oil and gas supply normally flows. Brent crude, though it fell to $92 on Friday amid ceasefire hopes, remains sharply above pre-war levels.
+
+## What Fed Officials Are Saying
+
+Fed Vice Chair for Supervision Michelle Bowman, speaking at a conference in Iceland, said that if energy disruptions persist into the second half of the year, she would "consider shifting my approach to thinking about the balance of risks" — a carefully worded nod toward supporting a rate hike.
+
+Minneapolis Fed President Neel Kashkari, one of three hawkish dissenters at last month's policy meeting, said the risk of unanchored inflation expectations was real. "I think it is premature for me to conclude we need to be raising rates right away," he said, "but it makes me further pay attention to the risk that inflation could continue to climb."
+
+Kansas City Fed President Jeffrey Schmid was more direct: "My primary concern is inflation, which is too hot and has been above target for too long." He dismissed the textbook approach of treating energy shocks as transitory, saying it is "not viable right now."
+
+Even San Francisco Fed President Mary Daly, who said policy was "in a good place," acknowledged that a persistent rise in oil prices would change her outlook.
+
+## The NRI Impact
+
+Financial markets are now pricing in a rate hike by year's end, likely lifting the federal funds rate above the current 3.50-3.75 percent range. For NRIs, the implications run across multiple channels.
+
+**Mortgages and loans.** Anyone with an adjustable-rate mortgage, a home equity line of credit, or a variable-rate auto loan will see payments increase if the Fed raises rates. With Indian Americans disproportionately concentrated in high-cost housing markets like the Bay Area, New Jersey, and the New York metro, even a 25-basis-point hike translates into meaningful monthly increases.
+
+**Remittances.** Higher US rates tend to strengthen the dollar against the rupee, which makes remittances cheaper in dollar terms but more valuable in rupee terms. Families sending money home may see more rupees per dollar — a modest silver lining.
+
+**Savings and deposits.** NRI fixed deposits and savings accounts at US banks could see improved rates. But the flip side is higher borrowing costs for anyone leveraged.
+
+**Indian markets.** A Fed hike would likely trigger capital outflows from emerging markets, including India. The rupee, which has already been under pressure from elevated oil import bills, could face further depreciation.
 
 ## What Comes Next
 
-Iran's internet restoration is fragile. Analysts warn that connectivity could be severed again if the U.S.-Iran negotiations over the Strait of Hormuz collapse or if domestic unrest flares. The Iranian government continues to block major platforms including Twitter, Facebook, and YouTube, routing users through state-monitored alternatives.
+The Fed's next policy meeting is in June. Most officials signaled they would hold rates steady at that meeting while monitoring incoming data. But the door to a hike is now explicitly open — a shift from even a month ago, when the dominant expectation was for the next move to be a cut.
 
-For India, the question is whether the global attention on Iran's blackout will renew pressure on New Delhi to adopt more targeted approaches to information control. The Supreme Court of India ruled in 2020 that internet access is a fundamental right under Article 19 of the Constitution — but enforcement has been inconsistent, and state governments continue to order shutdowns with little accountability.
+The key variable remains the Iran war. If a ceasefire deal holds and the Strait of Hormuz reopens in the coming weeks, oil prices could fall sharply, easing inflationary pressure and removing the case for tighter policy. If the ceasefire collapses — as the brief April truce did — the Fed may have no choice but to act.
 
-The 88 days of Iranian silence are over. For millions of Indians who have lived through their own blackouts, the lesson is familiar: the switch that turns the internet off is always easier to flip than the one that turns it back on."""
-
-# Image: Try Wikipedia for Iran internet / use Pexels
-art1_img = fetch_pexels_image("Iran Tehran city street people smartphones", "people using smartphones crowd")
-art1_img_attr = "Pexels"
-art1_img_caption = "Iranians reconnecting after 88 days of internet blackout"
-if not art1_img or not validate_image(art1_img):
-    art1_img = ""
-    art1_img_attr = ""
-    art1_img_caption = ""
-    print("  ⚠ No valid image found for article 1")
-
-articles.append({
-    "headline": art1_headline,
-    "subheadline": art1_subheadline,
-    "slug": art1_slug,
-    "body": art1_body,
-    "image_url": art1_img,
-    "image_caption": art1_img_caption,
-    "image_attribution": art1_img_attr,
-    "sources": [
-        {"name": "Reuters", "url": "https://www.reuters.com"},
-        {"name": "Access Now", "url": "https://www.accessnow.org"},
-        {"name": "Top10VPN", "url": "https://www.top10vpn.com"},
-    ],
-    "vertical": "geopolitics",
+For NRIs, the message is straightforward: lock in fixed rates where possible, review variable-rate exposures, and prepare for a monetary policy environment that may tighten further before it eases."""
 })
 
-
-# ── Article 2: US Mortgage Rates Hit 9-Month High ──
-print("\n── Article 2: US Mortgage Rates 9-Month High ──")
-
-art2_headline = "US Mortgage Rates Just Hit a Nine-Month High. Indian Americans Are the Fastest-Growing Homebuyer Group in the Country."
-art2_subheadline = "The average 30-year rate climbed to 6.65 percent as oil-driven inflation and Fed uncertainty squeeze the housing market. For NRI families saving for their first American home, the math just got harder."
-art2_slug = make_slug("us-mortgage-rates-nine-month-high-indian-american-homebuyers")
-
-art2_body = """The average 30-year fixed mortgage rate in the United States climbed to 6.65 percent in the week ending May 22 — the highest level in nine months — as inflation concerns driven by elevated oil prices and the ongoing Iran conflict continue to ripple through financial markets.
-
-The Mortgage Bankers Association reported that mortgage applications dropped 8.5 percent from the previous week, with overall application volumes at their lowest since last summer. The combination of rising rates, limited housing supply, and what economists call the "rate lock-in phenomenon" — where existing homeowners refuse to sell because they'd lose their sub-4-percent pandemic-era rates — has created a housing market that is increasingly inhospitable to first-time buyers.
-
-## Why This Hits Indian Americans Harder
-
-Indian Americans are among the fastest-growing homebuyer demographics in the United States. According to the National Association of Realtors' 2025 Profile of International Transactions, buyers from India accounted for the third-largest share of international home purchases in the U.S., behind only buyers from China and Canada.
-
-But the story is bigger than international buyers. Second-generation Indian Americans and H-1B visa holders who have transitioned to green cards or citizenship represent a massive domestic buying cohort. Many are dual-income tech professionals concentrated in the most expensive housing markets in the country — the San Francisco Bay Area, Seattle, New Jersey's Edison-Brunswick corridor, and the Dallas-Fort Worth metroplex.
-
-A rate increase from 6 percent to 6.65 percent on a $700,000 home — a median price point in many of these markets — adds roughly $300 per month to mortgage payments, or $108,000 over the life of a 30-year loan.
-
-## The Oil-Inflation Feedback Loop
-
-The rate spike is directly tied to the Iran conflict. The Strait of Hormuz crisis, which has disrupted roughly 20 percent of global oil and LNG shipments, pushed U.S. gasoline prices above $4.50 per gallon in most states. That energy inflation has leaked into core consumer prices, making the Federal Reserve reluctant to cut rates.
-
-Kevin Warsh, who took over as Fed Chair earlier this year, has signaled that the central bank may need to raise rates if inflation persists — a stark reversal from the rate-cutting cycle markets had anticipated at the start of 2026. Financial markets are now pricing in the possibility of a Fed rate hike by year's end.
-
-For Indian American families, the oil-inflation-mortgage chain is a triple squeeze: higher gas prices for the daily commute, higher grocery bills driven by transportation costs, and now higher borrowing costs for the single largest purchase most families will ever make.
-
-## The Rate Lock-In Trap
-
-The housing supply crisis has a uniquely American dimension that compounds the rate problem. An estimated 60 percent of existing mortgages in the U.S. carry rates below 4 percent, locked in during the pandemic-era refinancing boom. Those homeowners have no financial incentive to sell — doing so would mean trading a 3.2 percent mortgage for a 6.65 percent one.
-
-The result is an artificial housing shortage that keeps prices elevated even as demand softens. New construction has not kept pace, particularly in the high-density urban and suburban markets where Indian American families tend to cluster.
-
-## What NRI Families Are Doing
-
-Real estate agents serving Indian American communities in the Bay Area and New Jersey report a shift in strategy. Some buyers are turning to adjustable-rate mortgages (ARMs), betting that rates will eventually decline. Others are pooling family resources across generations — a common practice in Indian households — to make larger down payments and reduce the loan principal.
-
-A growing number of NRI families are also redirecting their property investment toward India, where mortgage rates are lower and the rupee's depreciation against the dollar has made Indian real estate relatively affordable for dollar earners. But that trade-off comes with its own complications: long-distance property management, regulatory complexity, and the challenge of building equity in a country where you don't live.
-
-## The Bigger Picture
-
-The 6.65 percent rate is not the highest in recent memory — rates briefly touched 7.5 percent in late 2023 — but it arrives in a different economic context. The Iran war has injected a level of geopolitical uncertainty into energy markets that did not exist two years ago. The Fed is led by a new chair whose instincts lean hawkish. And the housing market, already strained by a decade of underbuilding, has no relief valve.
-
-For the Indian American community — one of the highest-earning and fastest-growing demographic groups in the country — the dream of homeownership hasn't changed. The price of that dream just went up again."""
-
-art2_img = fetch_pexels_image("house for sale sign suburban America", "American suburb homes residential street")
-art2_img_attr = "Pexels"
-art2_img_caption = "US mortgage rates hit a nine-month high, squeezing homebuyers"
-if not art2_img or not validate_image(art2_img):
-    art2_img = ""
-    art2_img_attr = ""
-    art2_img_caption = ""
-    print("  ⚠ No valid image found for article 2")
-
+# ── Article 3: Pentagon Chief Praises India at Shangri-La ──
 articles.append({
-    "headline": art2_headline,
-    "subheadline": art2_subheadline,
-    "slug": art2_slug,
-    "body": art2_body,
-    "image_url": art2_img,
-    "image_caption": art2_img_caption,
-    "image_attribution": art2_img_attr,
-    "sources": [
-        {"name": "Reuters", "url": "https://www.reuters.com"},
-        {"name": "Mortgage Bankers Association", "url": "https://www.mba.org"},
-        {"name": "National Association of Realtors", "url": "https://www.nar.realtor"},
-    ],
-    "vertical": "economy",
+    "headline": "Pentagon Chief Praises India's Military Readiness at Shangri-La. Then He Told Asian Allies to Spend 3.5% of GDP on Defense.",
+    "subheadline": "US Defense Secretary Pete Hegseth singled out India as a partner that is 'improving military readiness' — while warning that freeloading allies will be pushed to the back of the line.",
+    "slug": "hegseth-shangri-la-india-military-readiness-defense-spending-china-20260530",
+    "category": "news",
+    "vertical": "news",
+    "person": "Pete Hegseth",
+    "pexels_query": "military defense aircraft carrier navy",
+    "pexels_fallback": "Singapore skyline Asia",
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com/world/asia-pacific/"},
+        {"name": "LiveMint", "url": "https://www.livemint.com/"},
+        {"name": "The Times", "url": "https://www.thetimes.com/"},
+        {"name": "US Department of Defense", "url": "https://www.defense.gov/"}
+    ]),
+    "body": """US Defense Secretary Pete Hegseth on Saturday used Asia's most important security forum to deliver a blunt message to the region: China's military buildup is real, potentially imminent, and the era of American security subsidies is over.
+
+Speaking at the Shangri-La Dialogue in Singapore, Hegseth singled out India as a model partner that is actively improving its military readiness — a notable endorsement at a moment when New Delhi is navigating complex relationships with both Washington and Beijing.
+
+## The India Mention
+
+In a speech that covered the full sweep of Indo-Pacific strategy, Hegseth praised India for investing in its own defense capabilities and improving military readiness. The comment, while brief, is significant in context. India has been steadily increasing its defense budget — it stood at roughly $75 billion in the 2025-26 fiscal year — and has accelerated purchases of American military hardware, including MQ-9B drones, MH-60R helicopters, and C-130J transport aircraft.
+
+The endorsement also comes weeks after the India-South Korea defense and cyber pact signed in Seoul and just days after Commerce Minister Piyush Goyal's 10-day trade sprint across North America. Washington is clearly signaling that India is a preferred partner — one that is spending, modernizing, and aligning without needing to be coerced.
+
+## The Demand: 3.5% of GDP
+
+But the larger message was aimed at the room. Hegseth told assembled defense ministers, military chiefs, and diplomats that the United States expects its Asian allies and partners to raise defense spending to 3.5 percent of GDP — a target that most Asian nations currently fall far short of.
+
+"Deterrence doesn't come on the cheap," Hegseth said. "The era of the United States subsidizing the defence of wealthy nations is over."
+
+He outlined a carrot-and-stick framework: allies that meet the spending threshold will be "moved to the front of the line" for expedited arms sales, deeper industrial collaboration, and expanded intelligence sharing. Those that don't will "face a clear shift in how we do business."
+
+The 3.5 percent target is aggressive. India currently spends roughly 2.4 percent of GDP on defense. Japan, which has been rapidly rearming, recently hit 2 percent. Most ASEAN nations hover around 1 to 2 percent. Meeting the target would require transformative budget reallocations across the region.
+
+## The China Warning
+
+Hegseth delivered his sharpest public comments yet on China's military posture, saying there is "rightful alarm" over Beijing's rapid buildup and the expansion of its military activities.
+
+"A Pacific dominated by any hegemon would unravel the regional balance of power," he said. "No state, including China, can impose its hegemony and hold the security or prosperity of our nation and our allies in question."
+
+But he also struck a measured tone on the state of the US-China relationship, saying ties are "better than they have been in many years" following the Trump-Xi summit in Beijing earlier this month. Military-to-military communication has increased, he noted, and meetings between US and Chinese counterparts are happening more frequently.
+
+## Why This Matters for the Diaspora
+
+For India and its diaspora, the Shangri-La speech reinforces a pattern. The US-India defense partnership has deepened significantly since the early 2020s, with bilateral military exercises, technology transfers, and intelligence-sharing agreements all expanding. India's participation in the Quad — alongside the US, Japan, and Australia — has become a cornerstone of the Indo-Pacific architecture.
+
+The 3.5 percent GDP target, however, could create friction. India's defense budget is large in absolute terms but constrained as a share of GDP by competing demands — infrastructure, social spending, and debt servicing. If Washington begins using spending levels as a filter for partnership quality, New Delhi may face pressure to accelerate defense procurement, potentially at the expense of other priorities.
+
+The speech also carried an implicit message about Taiwan. Hegseth, who last year suggested a Chinese invasion could be imminent, was more restrained this time but made clear that the US views its Pacific military presence as non-negotiable.
+
+For Indian Americans working in defense, aerospace, and technology sectors — and for NRI investors exposed to Indian defense stocks like HAL, BEL, and Bharat Dynamics — the strategic alignment between Washington and New Delhi continues to create opportunities. The question is whether India can meet the spending expectations that come with being called a model ally."""
 })
 
-
-# ── Article 3: Carney's Government Shrinks After Environment Minister Quits ──
-print("\n── Article 3: Carney Government Shrinks ──")
-
-art3_headline = "Canada's Government Just Shrank to a One-Seat Majority. The India Trade Deal Could Be the First Casualty."
-art3_subheadline = "Former environment minister Steven Guilbeault quit over climate rollbacks. For 1.8 million Indian Canadians watching the CEPA negotiations, political instability in Ottawa is the last thing they needed."
-art3_slug = make_slug("canada-carney-one-seat-majority-india-cepa-trade-deal")
-
-art3_body = """Canadian Prime Minister Mark Carney's government has been reduced to a single-seat parliamentary majority after former environment minister Steven Guilbeault announced he will resign his seat, citing irreconcilable differences over the government's decision to roll back climate regulations to attract energy investment.
-
-Guilbeault, who left Carney's cabinet weeks ago over the same dispute, said Wednesday that he could no longer serve in a parliament that was "trading the planet for pipelines." His departure drops the Liberal Party from 173 seats to 172 — exactly the bare minimum needed for a majority in the 343-seat House of Commons.
-
-## Why It Matters for India
-
-The timing could not be worse for the Canada-India Comprehensive Economic Partnership Agreement, or CEPA, which both countries announced last week as a potential "game changer" in bilateral trade. Commerce Minister Piyush Goyal led the largest Indian business delegation ever sent abroad to Ottawa, and Carney personally committed to tripling bilateral commerce to $50 billion.
-
-A one-seat majority means every single Liberal member of parliament must show up for every vote. One absence, one defection, one illness — and the government loses the ability to pass legislation, including the trade deal's enabling framework.
-
-More concerning for Indian negotiators: Guilbeault's resignation has exposed deep fractures within the Liberal caucus over the direction of economic policy. At least two other Liberal members have publicly questioned Carney's pivot toward energy deregulation, raising the specter that further defections could topple the majority entirely and force a snap election.
-
-## Canada's Indian Diaspora Is Watching
-
-Canada is home to approximately 1.8 million people of Indian origin — the largest Indian diaspora community in any country relative to population. The community has grown rapidly since 2015, driven by international students, skilled worker programs, and family reunification visas.
-
-For Indian Canadians, the CEPA deal represents more than trade statistics. It would ease barriers for Indian professionals seeking Canadian credentials, streamline goods imports that serve the community's cultural and culinary needs, and create new business corridors between Indian cities and Canadian hubs like Brampton, Surrey, and Mississauga.
-
-The bilateral relationship has endured a turbulent two years. The diplomatic crisis triggered by allegations of Indian government involvement in the killing of Sikh separatist leader Hardeep Singh Nijjar in British Columbia in June 2023 led to mutual expulsions of diplomats and a deep freeze in relations that lasted through much of 2024 and 2025.
-
-The CEPA announcement signaled that both governments were ready to move past the crisis. Carney's political vulnerability puts that reset at risk.
-
-## The Climate-Trade Tension
-
-Guilbeault's grievance is specific but consequential. Carney's government struck a deal to relax environmental regulations on energy production — including oil sands expansion and LNG export terminals — in exchange for industry commitments on carbon capture and methane reduction. The move was designed to position Canada as a reliable energy supplier to allies affected by the Strait of Hormuz disruption.
-
-For India, which is scrambling to diversify its oil imports away from the Middle East, Canadian energy exports are strategically attractive. India has already increased crude purchases from Latin America and Africa since the Hormuz crisis began, and a Canadian pipeline would add another non-Gulf option.
-
-But Guilbeault's resignation — and the broader environmental backlash within the Liberal Party — suggests that the political consensus behind Canada's energy pivot is fragile. If the Liberals lose their majority and the opposition Conservatives under Pierre Poilievre gain power, the CEPA deal's terms could change entirely.
-
-## What Happens Next
-
-Carney has thanked Guilbeault for his service and indicated the government intends to press forward with its legislative agenda. The prime minister's office has downplayed the significance of the one-seat margin, noting that previous Canadian governments have governed effectively with slim majorities.
-
-But parliamentary math is unforgiving. The next confidence vote — likely on a budget measure later this summer — will be the first real test. If a single Liberal member breaks ranks, Carney faces either a parliamentary crisis or a deal with the New Democratic Party (NDP) for informal support, which would come with its own policy concessions.
-
-For the 1.8 million Indian Canadians who have built lives, businesses, and families in a country they chose precisely because of its stability, the message is unsettling: the political ground in Ottawa is shifting, and the India relationship that took years to repair now depends on the attendance record of 172 parliamentarians."""
-
-# Image: Try Wikipedia for Mark Carney
-art3_img = fetch_wikipedia_person_image("Mark Carney")
-art3_img_attr = "Wikimedia Commons"
-art3_img_caption = "Canadian Prime Minister Mark Carney's government reduced to a one-seat majority"
-if not art3_img or not validate_image(art3_img):
-    art3_img = fetch_pexels_image("Canadian parliament building Ottawa", "Canada parliament exterior")
-    art3_img_attr = "Pexels"
-    if not art3_img or not validate_image(art3_img):
-        art3_img = ""
-        art3_img_attr = ""
-        art3_img_caption = ""
-        print("  ⚠ No valid image found for article 3")
-
+# ── Article 4: Texas SB4 Migrant Arrest Law ──
 articles.append({
-    "headline": art3_headline,
-    "subheadline": art3_subheadline,
-    "slug": art3_slug,
-    "body": art3_body,
-    "image_url": art3_img,
-    "image_caption": art3_img_caption,
-    "image_attribution": art3_img_attr,
-    "sources": [
-        {"name": "Reuters", "url": "https://www.reuters.com"},
-        {"name": "Government of Canada", "url": "https://www.canada.ca"},
-        {"name": "Statistics Canada", "url": "https://www.statcan.gc.ca"},
-    ],
-    "vertical": "politics",
+    "headline": "Texas Can Now Arrest and Deport People Suspected of Crossing Illegally. The Law Is in Effect as of Friday.",
+    "subheadline": "A federal appeals court lifted an injunction against SB4, a law that makes unauthorized border crossing a state crime and lets Texas judges — not federal ones — issue deportation orders.",
+    "slug": "texas-sb4-migrant-arrest-law-enforceable-fifth-circuit-immigration-nri-20260530",
+    "category": "news",
+    "vertical": "news",
+    "person": None,
+    "pexels_query": "Texas US Mexico border wall fence",
+    "pexels_fallback": "immigration US passport visa",
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com/world/us/"},
+        {"name": "Fox 7 Austin", "url": "https://www.fox7austin.com/"},
+        {"name": "ACLU of Texas", "url": "https://www.aclutx.org/"}
+    ]),
+    "body": """A federal appeals court on Friday cleared the way for Texas to enforce one of the most aggressive state-level immigration laws in American history, allowing local police officers to arrest people suspected of having crossed the US-Mexico border illegally and state judges to issue deportation orders.
+
+The 2-1 ruling by the New Orleans-based 5th US Circuit Court of Appeals lifted a preliminary injunction that a federal judge had imposed on May 14, making key provisions of Senate Bill 4 enforceable immediately. The ACLU and Texas Civil Rights Project, which represent thousands of non-citizens who could be subject to the law, called the decision "disappointing" and vowed to continue fighting.
+
+## What SB4 Does
+
+The law, originally passed in 2023 during a special Texas legislative session, creates a parallel state-level immigration enforcement system that operates alongside — and in some cases in place of — the federal immigration apparatus.
+
+Under SB4, state and local police officers in Texas are authorized to detain anyone they suspect of being a non-US citizen who entered the state from Mexico or another country without authorization. The law creates a new state crime of "illegal entry" into Texas, punishable by up to six months in jail. For individuals who have previously been deported or denied admission, the charge escalates to "illegal re-entry," carrying a sentence of 10 to 20 years.
+
+Most controversially, the law empowers Texas state judges — who are not trained in immigration law and have no federal authority over immigration matters — to issue deportation orders. Individuals who refuse to comply with a state deportation order face an additional charge punishable by 2 to 20 years in prison.
+
+## The Legal Battle
+
+SB4 has been the subject of intense litigation since its passage. The Biden administration initially challenged the law, arguing it unconstitutionally usurped the federal government's exclusive authority over immigration enforcement. A federal judge agreed and blocked the law from taking effect.
+
+After the Trump administration took office, it dropped the federal government's challenge. But immigrant-rights organizations pressed on, filing a new class-action lawsuit on behalf of non-citizens directly affected by the law's provisions.
+
+On May 14, US District Judge David Ezra issued a fresh injunction, ruling that SB4 improperly encroached on federal authority. Texas Attorney General Ken Paxton — who is running for a US Senate seat — immediately appealed. The 5th Circuit stayed the injunction on Friday, with Judge Leslie Southwick dissenting.
+
+## Why NRIs and Indian Immigrants Should Care
+
+While SB4 is aimed primarily at the US-Mexico border, its provisions are not limited to any specific nationality. The law applies to anyone suspected of unauthorized entry into Texas, regardless of origin.
+
+Indian nationals represent one of the fastest-growing groups of unauthorized border crossers. In fiscal year 2024, US Customs and Border Protection encountered over 90,000 Indian nationals at the southern border — many of whom had traveled through Central America after flying to countries like Nicaragua or Ecuador. The numbers have remained elevated in 2025 and 2026.
+
+For Indian immigrants in Texas — including those on expired visas, in pending immigration proceedings, or in gray-area situations — the law introduces a new layer of risk. Unlike federal immigration enforcement, which is handled by trained ICE agents and immigration judges, SB4 puts enforcement power in the hands of local police officers and state magistrates who may have limited understanding of the complexities of immigration status.
+
+Immigration attorneys have flagged concerns that the law could lead to racial profiling, particularly in communities with large South Asian, Latino, and Middle Eastern populations. The ACLU has warned that even legal residents and US citizens could be swept up in enforcement actions based on appearance or accent.
+
+Texas Governor Greg Abbott celebrated the ruling on Friday. "We will keep fighting in the courts, working with President Trump, and doing everything necessary to secure our border and protect Texans," he posted on X.
+
+For the Indian American community in Texas — which is concentrated in the Houston, Dallas-Fort Worth, and Austin metros — the immediate advice from immigration lawyers is clear: carry documentation at all times, know your rights under the Fourth Amendment, and consult an attorney if approached by law enforcement about immigration status.
+
+The ACLU of Texas has published a "Know Your Rights" guide specific to SB4, updated as of May 29, 2026. The organization maintains that the law remains unconstitutional and expects the litigation to continue through federal courts."""
 })
 
+# ─── Publish ───
 
-# ═══════════════════════════════════════════
-# PUBLISH ALL
-# ═══════════════════════════════════════════
+published_count = 0
+now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
-print("\n═══ Publishing articles ═══")
-published = 0
 for art in articles:
-    result = publish_article(art)
+    print(f"\n{'='*60}")
+    print(f"Publishing: {art['headline'][:80]}...")
+    
+    # Get image
+    img_url, img_attr = get_image(
+        person_name=art.get('person'),
+        pexels_query=art.get('pexels_query'),
+        pexels_fallback=art.get('pexels_fallback')
+    )
+    
+    if img_url:
+        print(f"  ✓ Image: {img_url[:80]}...")
+    else:
+        print(f"  ⚠ No image found — publishing without image")
+    
+    # Build record
+    record = {
+        "headline": art["headline"],
+        "subheadline": art["subheadline"],
+        "slug": art["slug"],
+        "body": art["body"],
+        "category": art["category"],
+        "vertical": art["vertical"],
+        "status": "published",
+        "published_at": now,
+        "sources": art["sources"],
+        "image_url": img_url,
+        "image_attribution": img_attr,
+    }
+    
+    # Remove None values
+    record = {k: v for k, v in record.items() if v is not None}
+    
+    result = sb_insert("p2_articles", record)
     if result:
-        published += 1
+        art_id = result.get('id', 'unknown')
+        print(f"  ✓ Published! ID: {art_id}")
+        published_count += 1
+    else:
+        print(f"  ✗ Failed to publish")
+    
     time.sleep(1)
 
-print(f"\n✅ Done. Published {published}/{len(articles)} articles.")
+print(f"\n{'='*60}")
+print(f"Done. Published {published_count}/{len(articles)} articles.")
