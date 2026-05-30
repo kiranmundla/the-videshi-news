@@ -15,12 +15,12 @@ export const CATEGORIES: CategoryDef[] = [
   { slug: "entertainment", label: "Entertainment", path: "/entertainment", hasPipeline: true },
   { slug: "food", label: "Food", path: "/food", hasPipeline: true },
   { slug: "immigration", label: "Immigration", path: "/immigration", hasPipeline: false },
+  { slug: "stories", label: "Voices", path: "/stories", hasPipeline: false },
   { slug: "travel", label: "Travel", path: "/travel", hasPipeline: false },
   { slug: "cars", label: "Cars", path: "/cars", hasPipeline: false },
   { slug: "events", label: "Events", path: "/events", hasPipeline: false },
   { slug: "directory", label: "Directory", path: "/directory", hasPipeline: false },
   { slug: "classifieds", label: "Classifieds", path: "/classifieds", hasPipeline: false },
-  { slug: "stories", label: "Voices", path: "/stories", hasPipeline: false },
 
 ];
 
