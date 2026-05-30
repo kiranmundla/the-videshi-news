@@ -630,11 +630,9 @@ export default function ArticlePage() {
               className="block rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 p-6 text-center transition hover:shadow-md hover:border-amber-300"
             >
               <p className="text-2xl mb-2">✍️</p>
-              <p className="font-semibold text-gray-900 text-lg">Have a story like this?</p>
+              <p className="font-semibold text-gray-900 text-lg">Your Diaspora Story Matters</p>
               <p className="text-gray-600 mt-1 text-sm leading-relaxed">
-                {article.category === "immigration"
-                  ? "Won the H-1B lottery? Lost it three times? Moved countries? Share your journey — it could help thousands going through the same thing."
-                  : "Your diaspora experience matters. Share your story with the community — from career moves to culture clashes, we want to hear it."}
+                From visa struggles to career wins, culture clashes to finding home abroad — the diaspora community learns from each other. Share your experience.
               </p>
               <span className="inline-block mt-3 text-sm font-medium text-amber-700 hover:text-amber-900">
                 Share Your Story on Voices →
