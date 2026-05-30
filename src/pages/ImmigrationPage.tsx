@@ -375,6 +375,30 @@ export default function ImmigrationPage() {
               </section>
             )}
 
+            {/* ── Visa Appointment Tracker Banner ────────────── */}
+            <Link
+              to="/immigration/visas"
+              className="block mb-8 rounded-xl overflow-hidden border border-green-500/20 bg-gradient-to-r from-[#1a1a2e] to-[#1a2e1a] hover:from-[#1e1e35] hover:to-[#1e351e] transition-all duration-300 shadow-lg shadow-green-500/5 hover:shadow-green-500/10 group"
+            >
+              <div className="flex items-center gap-4 px-5 py-5">
+                <span className="text-3xl flex-shrink-0">🛂</span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-green-400 bg-green-500/15 px-2 py-0.5 rounded-full">
+                      New
+                    </span>
+                  </div>
+                  <p className="font-serif text-lg md:text-xl font-bold text-white leading-tight">
+                    US Visa Appointment Tracker
+                  </p>
+                  <p className="text-sm text-white/60 mt-1">
+                    Community-powered slot intelligence for India's 5 consulates — see sightings, report open slots, help each other
+                  </p>
+                </div>
+                <span className="text-white/40 text-2xl shrink-0 group-hover:text-green-400 group-hover:translate-x-1 transition-all">→</span>
+              </div>
+            </Link>
+
             {/* ── Data Trackers ────────────────────────────────── */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-12">
               <GreenCardCard data={bulletin} />

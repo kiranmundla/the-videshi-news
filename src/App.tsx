@@ -67,6 +67,7 @@ const ProcessingTimesPage = React.lazy(() => import("./pages/ProcessingTimesPage
 const H1BHubPage = React.lazy(() => import("./pages/H1BHubPage.tsx"));
 const ImmigrationGuidesPage = React.lazy(() => import("./pages/ImmigrationGuidesPage.tsx"));
 const ImmigrationGuidePage = React.lazy(() => import("./pages/ImmigrationGuidePage.tsx"));
+const VisaTrackerPage = React.lazy(() => import("./pages/VisaTrackerPage.tsx"));
 
 // Stories (Diaspora Voices)
 const StoriesPage = React.lazy(() => import("./pages/StoriesPage.tsx"));
@@ -152,6 +153,7 @@ const App = () => (
               <Route path="/immigration/h1b" element={<H1BHubPage />} />
               <Route path="/immigration/guides" element={<ImmigrationGuidesPage />} />
               <Route path="/immigration/guides/:slug" element={<ImmigrationGuidePage />} />
+              <Route path="/immigration/visas" element={<VisaTrackerPage />} />
               <Route path="/stories" element={<StoriesPage />} />
               <Route path="/stories/submit" element={<SubmitStoryPage />} />
               <Route path="/stories/:slug" element={<StoryDetailPage />} />

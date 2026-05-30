@@ -385,6 +385,24 @@ def main():
     classifieds_path.write_text(json.dumps(classifieds, ensure_ascii=False, separators=(",", ":")))
     print(f"  ✓ classifieds.json ({len(classifieds)} classifieds)")
 
+    # 8. Build visa-sightings.json (community-reported appointment sightings)
+    print("  Building visa-sightings.json...")
+    sightings = fetch_table(url, key, "visa_sightings",
+                            order="created_at.desc",
+                            filters={"status": "eq.published"})
+    sightings = sightings[:100]  # cap at most recent 100
+    sightings_path = DATA_DIR / "visa-sightings.json"
+    sightings_path.write_text(json.dumps(sightings, ensure_ascii=False, separators=(",", ":")))
+    print(f"  ✓ visa-sightings.json ({len(sightings)} sightings)")
+
+    # 9. Build visa-wait-times.json (official consulate wait times)
+    print("  Building visa-wait-times.json...")
+    wait_times = fetch_table(url, key, "consulate_wait_times",
+                             order="scraped_at.desc")
+    wait_times_path = DATA_DIR / "visa-wait-times.json"
+    wait_times_path.write_text(json.dumps(wait_times, ensure_ascii=False, separators=(",", ":")))
+    print(f"  ✓ visa-wait-times.json ({len(wait_times)} rows)")
+
     print("=== Done ===")
 
 
