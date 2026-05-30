@@ -21,6 +21,9 @@ const NAV_CATEGORIES = [
   { slug: "travel", label: "Travel", path: "/travel" },
   { slug: "events", label: "Events", path: "/events" },
   { slug: "stories", label: "Voices", path: "/stories" },
+  { slug: "cars", label: "Cars", path: "/cars" },
+  { slug: "directory", label: "Directory", path: "/directory" },
+  { slug: "classifieds", label: "Classifieds", path: "/classifieds" },
 ];
 
 function CategoryNavBar() {
