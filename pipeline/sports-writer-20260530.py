@@ -1,28 +1,40 @@
 #!/usr/bin/env python3
-"""Sports writer for The Videshi — 2026-05-30 batch."""
+"""
+The Videshi — Sports Writer (2026-05-30 afternoon run)
+Articles:
+1. Vaibhav Sooryavanshi's record-breaking IPL 2026 season + India call-up talk
+2. BCCI bans smart goggles in IPL — tech meets cricket integrity
+3. India Women's T20 World Cup 2026 preview — NRI diaspora watch guide
+"""
 
-import json, os, sys, time, uuid, urllib.parse, re
+import json, os, sys, uuid, re, time
 from datetime import datetime, timezone
 
-import requests
+# --- env ---
+env_path = os.path.expanduser("~/workspace/.env.supabase")
+with open(env_path) as f:
+    for line in f:
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ[k] = v
 
-# ── env ──────────────────────────────────────────────────────────────────
-def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+PEXELS_KEY = None
+if os.path.exists(pexels_env):
+    with open(pexels_env) as f:
         for line in f:
             line = line.strip()
             if line and not line.startswith("#") and "=" in line:
                 k, v = line.split("=", 1)
-                os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+                if k.strip() == "PEXELS_API_KEY":
+                    PEXELS_KEY = v.strip()
 
-load_env(os.path.expanduser("~/.env.supabase"))
-load_env(os.path.expanduser("~/.env.pexels"))
+import requests, urllib.parse
 
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY   = os.environ.get("PEXELS_API_KEY", "")
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -30,337 +42,425 @@ HEADERS = {
     "Prefer": "return=representation",
 }
 
-# ── Wikipedia image ──────────────────────────────────────────────────────
+# --- image helpers ---
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(" ", "_"))
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10,
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
 
-# ── Pexels image ─────────────────────────────────────────────────────────
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels as fallback. Uses curl (Python urllib gets 403)."""
+    """Fetch a specific image from Pexels using curl (urllib gets 403)."""
     if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key found")
         return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             import subprocess
-            result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3",
-                 "-H", f"Authorization: {PEXELS_KEY}"],
-                capture_output=True, text=True, timeout=15,
-            )
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
-                if url:
-                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                    return url
+            cmd = [
+                "curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+                f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape"
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+            if result.returncode == 0:
+                data = json.loads(result.stdout)
+                photos = data.get("photos", [])
+                for photo in photos:
+                    url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
+                    if url:
+                        # Verify size
+                        head = requests.head(url, timeout=10)
+                        cl = int(head.headers.get("Content-Length", 0))
+                        ct = head.headers.get("Content-Type", "")
+                        if cl > 5000 and "image" in ct:
+                            print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                            return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 
-# ── Image upload to Supabase storage ─────────────────────────────────────
-def upload_image_to_supabase(image_url, filename):
-    """Download image and upload to Supabase storage bucket 'article-images'."""
+def upload_to_supabase_storage(image_url, filename):
+    """Download image and upload to Supabase article-images bucket."""
     try:
-        resp = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=15)
-        if resp.status_code != 200:
-            print(f"  ⚠ Image download failed ({resp.status_code}): {image_url[:80]}")
-            return image_url  # fallback to original
-        content_type = resp.headers.get("Content-Type", "image/jpeg")
-        if not content_type.startswith("image/"):
-            print(f"  ⚠ Not an image ({content_type}): {image_url[:80]}")
-            return image_url
-        if len(resp.content) < 5000:
-            print(f"  ⚠ Image too small ({len(resp.content)} bytes)")
-            return image_url
-
+        r = requests.get(image_url, timeout=15, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code != 200 or len(r.content) < 5000:
+            print(f"  ⚠ Download failed or too small: {r.status_code}, {len(r.content)} bytes")
+            return None
+        ct = r.headers.get("Content-Type", "image/jpeg")
         upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        upload_resp = requests.post(
-            upload_url,
-            headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": content_type,
-                "x-upsert": "true",
-            },
-            data=resp.content,
-            timeout=30,
-        )
-        if upload_resp.status_code in (200, 201):
+        upload_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": ct,
+            "x-upsert": "true",
+        }
+        resp = requests.post(upload_url, data=r.content, headers=upload_headers, timeout=15)
+        if resp.status_code in (200, 201):
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ⚠ Upload failed ({upload_resp.status_code}): {upload_resp.text[:200]}")
-            return image_url
+            print(f"  ⚠ Upload failed: {resp.status_code} {resp.text[:200]}")
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
-        return image_url
+    return None
 
 
-# ── Image validation ─────────────────────────────────────────────────────
 def validate_image_url(url):
-    """Ensure image URL is valid, permanent, and not from banned sources."""
+    """Validate that a URL returns a real image."""
     if not url:
-        return None
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "scontent-"]
-    banned_params = ["_nc_ht=", "_nc_cat=", "ccb="]
+        return False
+    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
     for b in banned:
         if b in url:
-            print(f"  ✗ BANNED source: {url[:80]}")
-            return None
-    for p in banned_params:
-        if p in url:
-            print(f"  ✗ BANNED param: {url[:80]}")
-            return None
+            print(f"  ❌ Banned source detected: {b}")
+            return False
     try:
-        resp = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
-        if resp.status_code != 200:
-            print(f"  ⚠ Image HEAD returned {resp.status_code}")
-            return None
-        ct = resp.headers.get("Content-Type", "")
-        if not ct.startswith("image/"):
-            print(f"  ⚠ Not image content-type: {ct}")
-            return None
-        cl = int(resp.headers.get("Content-Length", 0))
-        if 0 < cl < 5000:
-            print(f"  ⚠ Image too small: {cl} bytes")
-            return None
+        r = requests.head(url, timeout=10, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, allow_redirects=True)
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if "image" in ct and cl > 5000:
+            return True
+        # Some servers don't return Content-Length on HEAD; try GET with range
+        if "image" in ct and cl == 0:
+            r2 = requests.get(url, timeout=10, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)", "Range": "bytes=0-10000"}, stream=True)
+            chunk = r2.content
+            if len(chunk) > 5000:
+                return True
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-    return url
+        print(f"  ⚠ Validation error: {e}")
+    return False
 
 
-# ── Supabase insert ──────────────────────────────────────────────────────
 def insert_article(article):
-    """Insert article into Supabase p2_articles."""
+    """Insert an article into Supabase."""
     url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    resp = requests.post(url, headers=HEADERS, json=article, timeout=30)
-    if resp.status_code in (200, 201):
-        data = resp.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
-        print(f"  ✓ Published: {article['headline'][:60]}... (id={art_id})")
-        return art_id
+    r = requests.post(url, json=article, headers=HEADERS, timeout=15)
+    if r.status_code in (200, 201):
+        data = r.json()
+        if isinstance(data, list) and data:
+            return data[0].get("id")
+        return data.get("id") if isinstance(data, dict) else None
     else:
-        print(f"  ✗ Insert failed ({resp.status_code}): {resp.text[:300]}")
+        print(f"  ❌ Insert failed: {r.status_code} {r.text[:300]}")
         return None
 
 
-# ── Articles ─────────────────────────────────────────────────────────────
+def patch_article(article_id, updates):
+    """Patch an existing article."""
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}"
+    r = requests.patch(url, json=updates, headers=HEADERS, timeout=15)
+    if r.status_code in (200, 204):
+        print(f"  ✓ Patched article {article_id}")
+    else:
+        print(f"  ⚠ Patch failed: {r.status_code} {r.text[:200]}")
 
-articles = []
 
-# ── Article 1: Satwik-Chirag beat World No. 1 to reach Singapore Open final ──
-articles.append({
-    "headline": "Satwik and Chirag Beat the World's Best Doubles Pair to Reach the Singapore Open Final.",
-    "subheadline": "India's top men's doubles duo knocked out top seeds Kim Won-ho and Seo Seung-jae 21-19, 21-18 in a controlled semifinal display. They will play for the title on Sunday.",
-    "slug": "satwik-chirag-beat-world-no-1-singapore-open-final-2026-kim-seo-semifinal",
-    "category": "sports",
-    "vertical": "sports",
-    "body": """Satwiksairaj Rankireddy and Chirag Shetty are through to the Singapore Open final after beating top seeds Kim Won-ho and Seo Seung-jae 21-19, 21-18 in the men's doubles semifinals on Saturday.
+# ========== ARTICLE 1: Sooryavanshi Season Retrospective ==========
+print("\n=== Article 1: Sooryavanshi Season Retrospective ===")
 
-The Indian fourth seeds took on the reigning World Champions and current World No. 1 pair from South Korea — a combination that has dominated the circuit for the past two years — and won in straight games, controlling the tempo from the opening rally to the final point.
+art1_slug = "vaibhav-sooryavanshi-776-runs-orange-cap-india-call-up-ipl-2026-season-record"
+art1_headline = "Seven Hundred and Seventy-Six Runs at Fifteen. Vaibhav Sooryavanshi's IPL 2026 Season Was Unlike Anything Cricket Has Seen."
+art1_subheadline = "The Rajasthan Royals opener broke Chris Gayle's all-time sixes record, became the joint second-fastest to 1,000 IPL runs, and now Sangakkara says he is ready for India."
 
-## A Statement Win Against the Best
+art1_body = """Vaibhav Sooryavanshi is fifteen years old. He finishes this IPL season with 776 runs from 16 innings at a strike rate of 237.30, the Orange Cap around his neck and Chris Gayle's record for most sixes in a single IPL season in the bin.
 
-The scoreline reads straight games, but the match was anything but comfortable. Both games were tight deep into the stretch. At 18-18 in the first game, Satwik unleashed a steep crosscourt smash that left Kim stranded at the net, and Chirag followed with a clinical net kill to take a mini-break. The Indians closed out the game 21-19 with a sharp flat serve down the middle.
+The numbers are absurd. Sixty-five sixes. One century. Five half-centuries. A batting average of 48.50. The joint second-fastest player in IPL history to reach 1,000 career runs, alongside Lendl Simmons in 23 innings — only Shaun Marsh, in 21, got there quicker.
 
-The second game followed a similar pattern. The Korean pair led 12-10 at the interval, but Satwik and Chirag shifted gears after the break, stringing together five consecutive points with a mix of deceptive pushes and powerful drives. At 19-18, Chirag produced the shot of the match — a backhand intercept at the net that clipped the tape and fell on the Korean side. A Satwik serve sealed it 21-18.
+## The Season in Full
 
-## The Route to the Final
+It started early. Sooryavanshi had announced himself last year by hitting the first ball he faced in the IPL for six, aged fourteen, before becoming the youngest player to score a Twenty20 hundred. But IPL 2025 was a trailer. IPL 2026 was the film.
 
-Satwik and Chirag arrived at the semifinal through a series of increasingly difficult three-game battles. They dropped their opening game in both the second round and the quarterfinals before recovering composure. Against Malaysia's Kang Khai Xing and Aaron Tai in the quarterfinals, they fell behind 19-21 in the opener before surging back to win 21-17, 21-13 — the kind of resilience that has defined their partnership.
+He opened every match for Rajasthan Royals and set about tormenting some of the best bowlers alive. When the Orange Cap first sat on his head — after a 36-ball century against Sunrisers Hyderabad in which he hit five fours and twelve sixes — he had 357 runs from eight matches, level with KL Rahul, who had just scored 152 not out to claim it hours earlier. Sooryavanshi snatched it straight back.
 
-The semifinal against Kim and Seo, however, required no such comeback. The Indians were ahead or level throughout, a sign that they have developed the big-match poise necessary to beat the very best when it matters.
+He never let go.
 
-## What the NRI Audience Should Know
+## The Records
 
-For the Indian diaspora, Satwik and Chirag are now the most consistent medal contenders India has in any racquet sport. Since their historic 2022 World Championship bronze, they have reached six semifinals in Super 750-level events this year alone. A title here would be their first at this level in 2026 and a major confidence boost heading into the second half of the Olympic qualifying cycle.
+The big one came in the Eliminator against Sunrisers Hyderabad. Sooryavanshi smashed 97 off 29 balls — twelve sixes in a single innings — and in doing so surpassed Gayle's 59 sixes from the 2012 season. James Franklin, the Hyderabad assistant coach, watched it happen from the other dugout and said what everybody was thinking.
 
-They will face either Indonesia's Fajar Alfian and Muhammad Shohibul Fikri or China's Liang Weikeng and Wang Chang in Sunday's final. Either matchup would test different dimensions of the Indian pair's game — Indonesia's flat drives or China's aerial power.
+"I don't think anyone's ever seen a talent like this. It's freakish what he's doing at the moment. To think that he's potentially got 25 years left in the career, it's quite scary. He's only going to get better, stronger and more mature with how he bats."
 
-## India's Singles Challenge Ends
+In the Qualifier 2 against Gujarat Titans, Sooryavanshi made 96 off 47 balls — including being hit on the head by a Kagiso Rabada bouncer before racing from 50 to 96 in sixteen deliveries. Rajasthan lost that match. Gujarat chased 210-plus with Shubman Gill and Sai Sudharsan putting on a record-breaking 167-run stand. Sooryavanshi's campaign was over.
 
-While Satwik and Chirag advanced, both of India's singles hopes ended in the quarterfinals on Friday. PV Sindhu lost to world No. 1 An Se Young 17-21, 14-21, extending her winless streak against the Korean to nine consecutive matches. Lakshya Sen also fell, beaten 19-21, 21-15, 15-21 by Japan's Koki Watanabe. The mixed doubles pair of Dhruv Kapila and Tanisha Crasto also reached the semifinals, giving India two shots at the title.
+But the statement had been made.
 
-The Singapore Open final is scheduled for Sunday, May 31. For NRIs in the United States and Canada, the match will be available on BWF TV, with the men's doubles final expected in the late morning IST slot — which translates to the early morning hours in North American time zones.""",
-    "sources": json.dumps([
-        {"name": "BWF / Wikipedia Singapore Open 2026 bracket", "url": "https://en.wikipedia.org/wiki/2026_Singapore_Open_(badminton)"},
-        {"name": "IndiaSportsHub", "url": "https://indiasportshub.com"},
-        {"name": "Newzly", "url": "https://newzly.co.in"}
-    ]),
-    "image_person": "Satwiksairaj Rankireddy",
-    "image_fallback_query": "badminton doubles match tournament",
-    "image_fallback_query2": "badminton court competition",
-})
+## The India Question
 
-# ── Article 2: Avni LLC Indian-American firm claims FIFA India broadcast rights ──
-articles.append({
-    "headline": "A Washington DC Investment Firm Run by an Indian American Says It Has the FIFA World Cup Broadcast Rights for India.",
-    "subheadline": "Avni LLC claims a $300 million corporate guarantee and a winning bid through FIFA's closed tender. India still has no confirmed broadcaster twelve days before kickoff.",
-    "slug": "avni-llc-indian-american-firm-fifa-world-cup-2026-india-broadcast-rights-nri",
-    "category": "sports",
-    "vertical": "sports",
-    "body": """With the FIFA World Cup 2026 set to kick off on June 11, India remains without a confirmed broadcaster for the tournament — and the latest twist involves an Indian-American investment firm from Washington DC that claims it holds the winning bid.
+Kumar Sangakkara, the Rajasthan head coach and Sri Lankan great, left no ambiguity after the Qualifier 2 defeat.
 
-Avni LLC, led by President and CEO Deelip Mhaske, says it submitted a corporate guarantee backed by financial commitments exceeding $300 million in February 2026 as part of FIFA's closed tender process for the Indian subcontinent. The firm claims an associated partner secured the winning bid after competing against several major Indian broadcasters.
+"The guy, at fifteen years old, he's very mature, he reads the game really well, he reads situations well, and he's got no fear," Sangakkara said. "We are very, very proud of the season that he's had. I think he's going to be even better as the years go by."
 
-## A Vision Beyond Traditional Television
+Asked directly whether Sooryavanshi was ready for India, Sangakkara was unequivocal: "With everything Vaibhav has shown against some of the best bowlers in the world, I think he's more than ready to take on any challenge that you throw at him. And I'm sure that he'll get that call-up very, very soon."
 
-What makes Avni's claim notable is its ambition. The firm is not pitching a conventional television deal. Instead, it envisions a distribution model built around OTT platforms, AI-powered multilingual broadcasting in multiple Indian languages, mobile micro-subscriptions for the price-sensitive Indian market, and esports integrations across Asia.
+Sooryavanshi has already been called up to the India A developmental squad. The noise around a senior T20I call-up — potentially for the England tour later this summer — grows louder by the day.
 
-"The Indian subcontinent alone has the ability to exceed initial valuation expectations," Mhaske said in a statement.
+## The Diaspora Angle
 
-The pitch reflects a broader bet — that India's football market, while dwarfed by cricket in traditional advertising terms, has untapped potential in digital consumption. With over 700 million smartphone users and growing football fandom among younger demographics, the logic is not unreasonable.
+For NRI cricket fans, Sooryavanshi represents something remarkable: the possibility that the next great Indian batting prodigy is already here, already delivering, and doing it at an age when most academy players are still learning to deal with pace. He has been compared to Sachin Tendulkar's debut at sixteen, to Shahid Afridi's explosive arrival, to Gayle's six-hitting supremacy. None of the comparisons quite capture what he is.
 
-## The Broadcast Crisis in Context
-
-The contrast with other markets is stark. China's state broadcaster CMG sealed a comprehensive deal with FIFA on May 15. Japan, South Korea, the UK, Brazil, and virtually every major football market has confirmed arrangements. India, one of the world's largest and fastest-growing football markets by population, stands as a conspicuous exception.
-
-The reasons are well-documented. Cricket commands India's advertising rupees with a grip football cannot match. Worse, the tournament is hosted across the United States, Canada, and Mexico, meaning most matches will kick off late at night or in the early hours for Indian viewers — precisely the slots that make advertisers nervous and audiences thin.
-
-JioStar and Sony, the two broadcasters who have historically written the biggest cheques for global sports events in India, have not bitten at FIFA's asking price. Reports suggest Reliance offered just $20 million — a fraction of what FIFA sought.
-
-## The Public Interest Angle
-
-Into this vacuum has stepped the Indian government. The Delhi High Court has issued notices to Prasar Bharati following a petition seeking mandatory free-to-air broadcast on DD Sports and Doordarshan. Justice Purushaindra Kumar Kaurav issued the notices after hearing a writ petition filed under Article 226 of the Constitution.
-
-For NRIs, the question is both practical and emotional. Those in the United States and Canada will be able to watch the World Cup on Fox, Telemundo, and other local networks. But for family back home, and for the principle of access in the world's most populous country, the India broadcast situation has become an embarrassment.
+Devdutt Padikkal, his RCB counterpart, put it simply: "What Vaibhav Suryavanshi does is truly unique. At his age, to have that kind of power and explosiveness in his batting is special. Honestly, it would be foolish for anyone to try to copy him."
 
 ## What Comes Next
 
-FIFA has maintained only that discussions in India "are ongoing and must remain confidential at this stage." Whether Avni LLC's claim translates into actual broadcast delivery remains to be seen. The firm is not a household name in media, and a $300 million guarantee from a Washington DC LLC would need substantial verification.
+The IPL Final takes place on Sunday in Ahmedabad — RCB against GT, Kohli against Gill — and Sooryavanshi will not be in it. But his season will be remembered long after the trophy is lifted. Seven hundred and seventy-six runs. Sixty-five sixes. The Orange Cap. And he turns sixteen in December.
 
-But the very fact that an Indian-American entrepreneur from the diaspora is positioning himself at the center of India's World Cup broadcast crisis speaks to how unusual the situation has become. Twelve days remain before the first match. The clock is running.""",
-    "sources": json.dumps([
-        {"name": "The Indian Eye", "url": "https://theindianeye.com"},
-        {"name": "Reuters via FIFA broadcast crisis report", "url": "https://reuters.com"},
-        {"name": "Indian Television Dot Com", "url": "https://indiantelevision.com"}
-    ]),
-    "image_person": None,
-    "image_fallback_query": "FIFA World Cup 2026 stadium",
-    "image_fallback_query2": "football soccer world cup stadium",
-})
+Cricket's next chapter is being written by a teenager. The question is not whether he will play for India. It is when.
 
-# ── Article 3: Nousheen Naz 15-year-old scores both goals for India Women U18 Hockey ──
-articles.append({
-    "headline": "A Fifteen-Year-Old Scored Both Goals. India's Women Beat Malaysia 2-1 in Their Asia Cup Opener.",
-    "subheadline": "Nousheen Naz converted a penalty corner and a field goal as India held off a late Malaysian fightback in Kakamigahara. South Korea, who thrashed Singapore 8-0, are next.",
-    "slug": "nousheen-naz-india-women-u18-hockey-asia-cup-2026-malaysia-opener-kakamigahara",
+---
+
+*Sources: Reuters, Cricbuzz, The Times, Wisden, Sporting News*"""
+
+# Image: try Wikipedia for Sooryavanshi
+print("  Sourcing image for Sooryavanshi...")
+img1 = fetch_wikipedia_person_image("Vaibhav Suryavanshi")
+if not img1:
+    img1 = fetch_wikipedia_person_image("Vaibhav Sooryavanshi")
+if not img1:
+    img1 = fetch_wikipedia_person_image("Vaibhav Suryavanshi (cricketer)")
+
+img1_final = None
+img1_attr = None
+if img1:
+    fname1 = f"{art1_slug}.jpg"
+    img1_final = upload_to_supabase_storage(img1, fname1)
+    img1_attr = "Wikimedia Commons"
+
+if not img1_final:
+    # Fallback to Pexels — specific cricket image
+    img1 = fetch_pexels_image("cricket batsman six hitting IPL", "cricket stadium India T20")
+    if img1:
+        fname1 = f"{art1_slug}.jpg"
+        img1_final = upload_to_supabase_storage(img1, fname1)
+        img1_attr = "The Videshi"
+
+art1 = {
+    "headline": art1_headline,
+    "subheadline": art1_subheadline,
+    "body": art1_body,
+    "slug": art1_slug,
     "category": "sports",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": "Reuters, Cricbuzz, Wisden, The Times",
     "vertical": "sports",
-    "body": """Nousheen Naz, a fifteen-year-old forward, scored both goals as India's Women's U18 hockey team opened their Asia Cup 2026 campaign with a hard-fought 2-1 victory over Malaysia in Kakamigahara, Japan, on Saturday.
+    "image_url": img1_final,
+    "image_attribution": img1_attr,
+}
 
-Naz was named Player of the Match after converting a penalty corner in the 19th minute and adding a field goal in the 28th, giving India a 2-0 lead at halftime before Malaysia pulled one back through Nur Azli in the 41st minute.
-
-## A Teenager Sets the Tone
-
-The opening quarter was cagey, with both sides probing each other's defences without finding a breakthrough. India had the greater share of possession and created several half-chances, but the Malaysian defence held firm through the first fifteen minutes.
-
-India's patience paid off early in the second quarter. A well-worked penalty corner routine found Naz positioned inside the circle, and the teenager made no mistake — slotting the ball past the Malaysian goalkeeper with a decisive strike to open the scoring.
-
-Nine minutes later, Naz doubled the lead with a clinical field goal from inside the 'D'. The finish was sharp and demonstrated the kind of composure that belies her age. India went into halftime with a comfortable 2-0 cushion and complete control of the contest.
-
-## Malaysia Fight Back
-
-The third quarter brought a different energy from the Malaysian side. Sensing they had nothing to lose, Malaysia committed more players forward and began to trouble the Indian backline. The pressure told in the 41st minute when Nur Azli found space inside the circle and beat the Indian goalkeeper to make it 2-1.
-
-The goal injected genuine tension into the final quarter. Malaysia pushed hard for the equaliser, creating several opportunities and forcing the Indian defence into sustained stretches of concentration. But the backline held firm, with organized defending and composure under pressure ensuring the lead was preserved.
-
-## Both India Teams Win Their Openers
-
-The women's win mirrors the men's U18 team's dominant 13-0 demolition of Kazakhstan on the previous day, when captain Ketan Kushwaha scored a hat-trick. Together, India's junior hockey teams have started the continental tournament with maximum points in both pools.
-
-For the women, however, the path gets significantly harder. South Korea demolished Singapore 8-0 in the other Pool A match, with Kwon scoring four times from penalty corners. India face the Koreans on Sunday, May 31, in a match that will likely determine the pool winner and the semifinal seeding.
-
-## Why It Matters for the Pipeline
-
-The U18 Asia Cup is not just another age-group tournament. It feeds directly into the senior national team pipeline — a pipeline that has produced results at the Asian Games and the Olympic level. India's senior women's team, led by Savita Punia, has benefited from strong youth development in recent years, and tournaments like this one identify the next generation of international-level players.
-
-Nousheen Naz, at fifteen, has announced herself as one to watch. Her composure under pressure, combined with clinical finishing from both open play and set pieces, suggests a player with the temperament for bigger stages.
-
-The men's U18 team plays hosts Japan on Saturday, May 31, while the women face South Korea on the same day. Both matches will be available on FIH streaming platforms.""",
-    "sources": json.dumps([
-        {"name": "ANI via The Freedom Press", "url": "https://thefreedompress.in"},
-        {"name": "FIH / Wikipedia U18 Asia Cup 2026", "url": "https://en.wikipedia.org/wiki/2026_Women%27s_Hockey_U18_Asia_Cup"},
-        {"name": "India Sports Hub", "url": "https://indiasportshub.com"}
-    ]),
-    "image_person": None,
-    "image_fallback_query": "field hockey women India match",
-    "image_fallback_query2": "field hockey stick ball turf",
-})
+art1_id = insert_article(art1)
+if art1_id:
+    print(f"  ✅ Article 1 published: {art1_id}")
+else:
+    print("  ❌ Article 1 failed to publish")
 
 
-# ── Process and publish ──────────────────────────────────────────────────
-print(f"\n{'='*60}")
-print(f"Sports Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-print(f"{'='*60}\n")
+# ========== ARTICLE 2: BCCI Smart Goggles Ban ==========
+print("\n=== Article 2: BCCI Smart Goggles Ban ===")
 
-published = 0
-for i, art in enumerate(articles, 1):
-    print(f"\n── Article {i}/{len(articles)}: {art['headline'][:60]}...")
+art2_slug = "bcci-bans-smart-goggles-ipl-2026-meta-ray-bans-anti-corruption-pmoa-nri"
+art2_headline = "The BCCI Has Banned Smart Glasses From IPL Dugouts. Here Is Why It Matters Beyond Cricket."
+art2_subheadline = "Meta Ray-Bans, live-streaming eyewear, and the growing tension between wearable technology and sports integrity — the IPL's anti-corruption unit draws a hard line."
 
-    # Image sourcing
-    img_url = None
-    if art.get("image_person"):
-        img_url = fetch_wikipedia_person_image(art["image_person"])
-        # Try disambiguation
-        if not img_url:
-            img_url = fetch_wikipedia_person_image(f"{art['image_person']} (badminton)")
+art2_body = """The BCCI's Anti-Corruption and Security Unit has issued a directive that no player or match official may possess or use smart sunglasses inside the Players and Match Officials Area during IPL matches. The ban, issued to all ten franchises this week, treats smart eyewear the same as mobile phones and smartwatches: devices that must be surrendered to the Security Liaison Officer before entering the dugout.
 
-    if not img_url:
-        img_url = fetch_pexels_image(art.get("image_fallback_query"), art.get("image_fallback_query2"))
+The timing is deliberate. The IPL Final between Royal Challengers Bengaluru and Gujarat Titans is on Sunday.
 
-    img_url = validate_image_url(img_url)
+## What Prompted the Ban
 
-    # Upload to Supabase if it's a Wikipedia/Pexels image
-    if img_url and ("upload.wikimedia.org" in img_url or "images.pexels.com" in img_url):
-        img_url = upload_image_to_supabase(img_url, f"{art['slug']}.jpg")
+The ACSU said it had "observed companies marketing and selling smart sunglasses to players and support staff." The advisory named no specific brand, but the products in question — smart glasses with live-streaming, text messaging, and audio and video calling capabilities over mobile data or Wi-Fi — describe consumer wearables already popular with tech-savvy consumers. Products like Meta Ray-Bans, which look identical to ordinary sunglasses but can stream live to Instagram, are exactly the kind of device the BCCI is worried about.
 
-    # Build article record
-    record = {
-        "headline": art["headline"],
-        "subheadline": art["subheadline"],
-        "slug": art["slug"],
-        "category": "sports",
-        "vertical": "sports",
-        "body": art["body"].strip(),
-        "sources": json.loads(art["sources"]),
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "image_url": img_url,
-        "image_attribution": "Wikimedia Commons" if img_url and "wikimedia" in (img_url or "") else "The Videshi",
-    }
+"These devices are equipped with advanced communication features, including live streaming, sending and receiving text messages, as well as audio and video calling capabilities through mobile data or Wi-Fi networks," the advisory stated. "Accordingly, under the PMOA Minimum Standards, such goggles/glasses are classified both as an 'Audio/Video Recording Device' and a 'Communication Device'."
 
-    art_id = insert_article(record)
-    if art_id:
-        published += 1
-        # If we uploaded to Supabase, update image with article ID
-        if img_url and art_id and SUPABASE_URL in str(img_url):
-            pass  # already using slug-based naming
+Players and support staff must now deposit smart eyewear with the Security Liaison Officer alongside their phones and smartwatches. Failure to comply "shall be deemed a breach of the PMOA protocols and may result in penalties under the PMOA Minimum Standards for IPL 2026."
 
-    time.sleep(1)  # brief pause between inserts
+## A Season of Crackdowns
 
-print(f"\n{'='*60}")
-print(f"Done. Published {published}/{len(articles)} articles.")
-print(f"{'='*60}")
+This is not the BCCI's first intervention on technology this season. Earlier in IPL 2026, Rajasthan Royals team manager Romi Bhinder was fined Rs 1 lakh — roughly $1,200 — and issued a formal warning after CCTV footage showed him using a mobile phone in the team dugout during a live match.
+
+The board has also tightened off-field regulations, including restrictions on late-night outings without security clearance and limitations on visitors in team hotels. The smart goggles ban is part of a broader pattern: the IPL's anti-corruption framework is updating itself in real time as wearable technology evolves faster than most regulatory bodies can keep up.
+
+## The NRI Tech Angle
+
+The ban sits at an interesting intersection for the Indian diaspora. Many NRIs working in Silicon Valley, Seattle, London, and Toronto are early adopters of exactly the kind of wearable technology the BCCI is now banning. Meta Ray-Bans are commonplace in the Bay Area. Google's smart glasses are in development. Apple's Vision Pro ecosystem is expanding.
+
+The concern is not about fans — spectators in the stands can still wear whatever they want. But the BCCI's worry about covert communication channels inside restricted areas reflects a broader anxiety that is spreading across professional sports worldwide. The NFL, Premier League, and Olympic movement have all grappled with similar questions about how to regulate wearable tech in competition environments.
+
+For cricket specifically, the stakes are high. Match-fixing and spot-fixing remain existential threats to the sport's credibility, particularly in franchise T20 leagues where the volume of betting is enormous. A pair of glasses that can live-stream footage from the dressing room to an outside party, invisibly and in real time, represents exactly the kind of technology that anti-corruption units were designed to prevent — before those units knew the technology would exist.
+
+## What Happens Next
+
+The ban applies strictly to the PMOA — dressing rooms, dugouts, player viewing areas, and warm-up zones — on match days. It does not extend to practice sessions, travel, or personal time. And it does not apply to fans, creating what one technology journalist called "an interesting gap" between who is regulated and who is not.
+
+For now, the message from the BCCI is clear: cricket's most lucrative league is not ready to let technology blur the line between fair competition and potential corruption. The glasses come off before you walk into the dugout. No exceptions.
+
+---
+
+*Sources: BCCI ACSU advisory, Best Media Info, Digit.in, Yardbarker, The Sports 247*"""
+
+# Image: Pexels for smart glasses/cricket intersection
+print("  Sourcing image for smart goggles article...")
+img2 = fetch_pexels_image("smart glasses technology wearable", "cricket sunglasses sport")
+img2_final = None
+img2_attr = None
+if img2:
+    fname2 = f"{art2_slug}.jpg"
+    img2_final = upload_to_supabase_storage(img2, fname2)
+    img2_attr = "The Videshi"
+
+art2 = {
+    "headline": art2_headline,
+    "subheadline": art2_subheadline,
+    "body": art2_body,
+    "slug": art2_slug,
+    "category": "sports",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": "BCCI ACSU, Best Media Info, Digit.in, Yardbarker",
+    "vertical": "sports",
+    "image_url": img2_final,
+    "image_attribution": img2_attr,
+}
+
+art2_id = insert_article(art2)
+if art2_id:
+    print(f"  ✅ Article 2 published: {art2_id}")
+else:
+    print("  ❌ Article 2 failed to publish")
+
+
+# ========== ARTICLE 3: India Women T20 World Cup Preview ==========
+print("\n=== Article 3: India Women T20 World Cup Preview ===")
+
+art3_slug = "india-women-t20-world-cup-2026-england-nri-watch-guide-schedule-squad-mandhana-harmanpreet"
+art3_headline = "India Women Play Their T20 World Cup Opener in Three Weeks. The NRI's Complete Guide to the Tournament in England."
+art3_subheadline = "Schedule, squad, match times for every US and UK timezone, how to watch on Willow TV, and why this Indian team might be the most complete women's side the country has ever produced."
+
+art3_body = """The ICC Women's T20 World Cup 2026 begins on June 12 in England. India's first match is on June 21 against South Africa at Old Trafford in Manchester. For a generation of Indian women's cricket fans — many of them now watching from living rooms in New Jersey, Dallas, the Bay Area, and Toronto — this tournament arrives at a moment of genuine hope.
+
+India won the ODI World Cup last year. Harmanpreet Kaur's team is now ranked among the top three T20I sides in the world. The squad that will walk out at Old Trafford has experience, depth, and a teenager named Nandni Sharma who takes wickets for fun.
+
+## The Squad
+
+India's T20 World Cup squad is built around a core that has been playing together for years. Smriti Mandhana opens. Shafali Verma opens alongside her. Jemimah Rodrigues bats at three or four. Harmanpreet Kaur anchors the middle order. Richa Ghosh keeps wicket and finishes innings. Deepti Sharma controls the middle overs with off-spin.
+
+The new faces — Yastika Bhatia, who returned from an eight-month injury layoff to hit a fifty in the first T20I against England; Nandni Sharma, who took three wickets in that same match; Kranti Gaud — add depth that previous Indian squads lacked. This is not a two-player team.
+
+**Key players:**
+- **Smriti Mandhana** — India's most elegant batter, now the senior opening partner
+- **Harmanpreet Kaur** — Captain, middle-order power hitter, rested for the series opener but expected back for the World Cup
+- **Jemimah Rodrigues** — The glue at No. 3, consistent and unflappable
+- **Deepti Sharma** — All-rounder who controls the middle overs
+- **Shafali Verma** — Explosive opener who can change matches in the powerplay
+- **Richa Ghosh** — Wicketkeeper-batter who has matured into a genuine finisher
+- **Yastika Bhatia** — The comeback story; returned from ACL rehab to immediate impact
+
+## The Schedule — India's Group Matches
+
+India are in Group A alongside South Africa, Bangladesh, and the Netherlands.
+
+| Date | Match | Venue | IST | US Eastern | US Pacific | UK |
+|------|-------|-------|-----|------------|------------|-----|
+| June 21 | India vs South Africa | Old Trafford, Manchester | 6:00 PM | 8:30 AM | 5:30 AM | 1:30 PM |
+| June 25 | India vs Bangladesh | Old Trafford, Manchester | 6:00 PM | 8:30 AM | 5:30 AM | 1:30 PM |
+| June 28 | India vs Australia | Lord's, London | 6:00 PM | 8:30 AM | 5:30 AM | 1:30 PM |
+
+The semi-finals are on June 30 and July 2 at The Oval. The timing works well for NRIs on the East Coast — most matches start at 8:30 AM ET, meaning you can catch the first innings before heading to work.
+
+## How to Watch from the US, UK, and Canada
+
+- **United States and Canada:** Willow TV has the live broadcast rights. Available on cable, the Willow TV app, and streaming packages.
+- **United Kingdom:** Sky Sports Cricket will carry all matches live, with streaming on Sky Go and NOW TV.
+- **India:** Sony Sports Network (Sony Sports Ten 1, Ten 3, Ten 4) on TV, Sony LIV for streaming. Free-to-air coverage on DD Sports.
+- **Australia:** Fox Cricket and Kayo Sports.
+
+## The Current Form — England Tour
+
+India arrived in England on a high. In the first T20I at Chelmsford, they posted 188/7 — powered by fifties from Yastika Bhatia and Jemimah Rodrigues — and then bowled England out for 150 to win by 38 runs. Nandni Sharma, a teenager who bowls with genuine fire, took three wickets.
+
+The second T20I is being played today in Bristol. The third is on June 2 in Taunton. These matches serve as direct preparation for the World Cup — same conditions, same opponents, same grounds. India will also have warm-up fixtures before the tournament begins on June 12.
+
+## Why This Team Is Different
+
+Previous Indian women's teams have arrived at World Cups with talent but without the depth to sustain a tournament run. This side is different. The ODI World Cup victory last year gave the squad a champion's mentality. The batting lineup is six-deep. The bowling attack has pace (Renuka Singh, Arundhati Reddy), spin variety (Deepti Sharma, Radha Yadav, Shreyanka Patil), and genuine all-round options.
+
+The selection dilemma — where to bat Yastika Bhatia without displacing Jemimah Rodrigues — is a good problem to have. It speaks to the embarrassment of riches that India women's cricket now enjoys.
+
+## The Diaspora Connection
+
+For NRI women and girls who grew up watching cricket but rarely saw women play it on a major stage, this tournament matters. The Women's T20 World Cup is hosted in England — accessible, well-broadcast, and in a timezone that works for viewers in North America. India vs Australia at Lord's on June 28 has the potential to be one of the biggest women's cricket matches ever played.
+
+The Indian women's team has earned this moment. Three weeks from now, they walk out at Old Trafford to begin their campaign. If you have Willow TV, set your alarm for 5:30 AM Pacific on June 21. It will be worth the early morning.
+
+---
+
+*Sources: SportsCafe, ICC, Cricbuzz, Latestly, RevSportz*"""
+
+# Image: try Wikipedia for Smriti Mandhana or Harmanpreet Kaur
+print("  Sourcing image for India Women T20 WC article...")
+img3 = fetch_wikipedia_person_image("Smriti Mandhana")
+if not img3:
+    img3 = fetch_wikipedia_person_image("Harmanpreet Kaur")
+
+img3_final = None
+img3_attr = None
+if img3:
+    fname3 = f"{art3_slug}.jpg"
+    img3_final = upload_to_supabase_storage(img3, fname3)
+    img3_attr = "Wikimedia Commons"
+
+if not img3_final:
+    img3 = fetch_pexels_image("women cricket match India", "cricket women sport")
+    if img3:
+        fname3 = f"{art3_slug}.jpg"
+        img3_final = upload_to_supabase_storage(img3, fname3)
+        img3_attr = "The Videshi"
+
+art3 = {
+    "headline": art3_headline,
+    "subheadline": art3_subheadline,
+    "body": art3_body,
+    "slug": art3_slug,
+    "category": "sports",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": "SportsCafe, ICC, Cricbuzz, Latestly, RevSportz",
+    "vertical": "sports",
+    "image_url": img3_final,
+    "image_attribution": img3_attr,
+}
+
+art3_id = insert_article(art3)
+if art3_id:
+    print(f"  ✅ Article 3 published: {art3_id}")
+else:
+    print("  ❌ Article 3 failed to publish")
+
+
+# --- Summary ---
+print("\n=== Summary ===")
+published = sum(1 for x in [art1_id, art2_id, art3_id] if x)
+print(f"Published: {published}/3 articles")
+if art1_id:
+    print(f"  1. {art1_headline[:80]}...")
+if art2_id:
+    print(f"  2. {art2_headline[:80]}...")
+if art3_id:
+    print(f"  3. {art3_headline[:80]}...")
