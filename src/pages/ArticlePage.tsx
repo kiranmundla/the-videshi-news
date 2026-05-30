@@ -299,7 +299,9 @@ function MarkdownWithEmbeds({
   );
 }
 
+/* ── Known travel-guide article slugs → /travel/:destination ────── */
 const TRAVEL_GUIDE_REDIRECTS: Record<string, string> = {
+  // Original guides
   "rajasthan-travel-guide-diaspora": "rajasthan",
   "kerala-travel-guide-diaspora": "kerala",
   "goa-travel-guide-diaspora": "goa",
@@ -311,6 +313,20 @@ const TRAVEL_GUIDE_REDIRECTS: Record<string, string> = {
   "switzerland-travel-guide-diaspora": "switzerland",
   "new-zealand-travel-guide-diaspora": "new-zealand",
   "mexico-travel-guide-diaspora": "mexico",
+  // Added May 2026
+  "thailand-travel-guide-diaspora": "thailand",
+  "dubai-travel-guide-diaspora": "dubai",
+  "singapore-travel-guide-diaspora": "singapore",
+  "kashmir-travel-guide-diaspora": "kashmir",
+  "himachal-pradesh-travel-guide-diaspora": "himachal-pradesh",
+  "vietnam-travel-guide-diaspora": "vietnam",
+  "italy-travel-guide-diaspora": "italy",
+  "greece-travel-guide-diaspora": "greece",
+  "cancun-travel-guide-diaspora": "cancun",
+  "hawaii-travel-guide-diaspora": "hawaii",
+  "australia-travel-guide-diaspora": "australia",
+  "france-travel-guide-diaspora": "france",
+  "japan-travel-guide-diaspora": "japan",
 };
 
 export default function ArticlePage() {

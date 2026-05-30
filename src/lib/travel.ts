@@ -109,6 +109,8 @@ export const DESTINATIONS: Destination[] = [
     visa: v(["voa","Free 30-day VOA for all"],["voa","Free 30-day VOA"],["voa","Free 30-day VOA"]), hasGuide: true },
   { key: "singapore", label: "Singapore", region: "southeast-asia", description: "Gardens, hawker food & futurism", bestMonths: "Year-round", budget: "$60–200/day",
     visa: v(["visa-required","Visa required (96h transit w/ US visa)"],["visa-free","90-day visa-free"],["visa-required","Visa required; GC doesn't help"]), hasGuide: true },
+  { key: "japan", label: "Japan", region: "southeast-asia", description: "Cherry blossoms, sushi & ancient temples", bestMonths: "Mar – May, Oct – Nov", budget: "$70–200/day",
+    visa: v(["visa-required","Visa required (US visa doesn't help)"],["visa-free","90-day visa-free"],["visa-required","Visa required; GC doesn't help"]), hasGuide: true },
 
   // ── Mexico & Caribbean ─────────────────────────────────────────────
   { key: "cancun", label: "Cancún", region: "mexico-caribbean", description: "Turquoise water & Mayan ruins", bestMonths: "Dec – Apr", budget: "$50–200/day",

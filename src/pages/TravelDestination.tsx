@@ -49,6 +49,7 @@ const DESTINATIONS: Record<string, DestMeta> = {
   hawaii:       { title: "Hawaii",          bestMonths: "Apr – Oct",          budget: "$80–300/day", flights: "Direct from West Coast",     visa: "Domestic — no visa" },
   australia:    { title: "Australia",       bestMonths: "Sep – Nov, Mar – May",budget: "$70–250/day", flights: "Sydney nonstop from US",    visa: "e-Visa required" },
   france:       { title: "France",          bestMonths: "Apr – Jun, Sep – Oct",budget: "$70–250/day", flights: "Paris direct from US",      visa: "Schengen visa required" },
+  japan:        { title: "Japan",           bestMonths: "Mar – May, Oct – Nov",budget: "$70–200/day", flights: "Tokyo nonstop from US",     visa: "Visa-free (90 days)" },
 };
 
 const DEST_KEYS = Object.keys(DESTINATIONS);
