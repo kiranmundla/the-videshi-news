@@ -496,6 +496,11 @@ export default function VisaTrackerPage() {
           </div>
         ) : (
           <>
+            {/* ── Trust note ────────────────────────────────── */}
+            <p className="text-xs text-foreground/50 text-center mb-6 max-w-xl mx-auto leading-relaxed">
+              US consulates prohibit automated scraping of their booking systems. This tracker relies entirely on community members voluntarily sharing what they see — helping each other, the only legal way.
+            </p>
+
             {/* ── Official Wait Times ──────────────────────────── */}
             <section className="mb-10">
               <WaitTimeStrip data={waitTimes} />
