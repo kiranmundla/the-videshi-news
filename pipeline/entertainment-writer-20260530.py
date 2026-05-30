@@ -1,57 +1,37 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-05-30 batch"""
+"""Entertainment writer for The Videshi — 2026-05-30 evening batch"""
 
-import json, os, re, sys, time, uuid, urllib.parse
+import json, os, sys, time, uuid, re, urllib.parse
 import requests
+from datetime import datetime, timezone
 
-# Load env
-def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
-
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
-
-SB_URL = os.environ['SUPABASE_URL']
-SB_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
+# ── Supabase config ──────────────────────────────────────────────────
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
-    'apikey': SB_KEY,
-    'Authorization': f'Bearer {SB_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
 }
 
-def sb_insert(table, data):
-    r = requests.post(f"{SB_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 201):
-        result = r.json()
-        return result[0] if isinstance(result, list) else result
-    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:800]}")
-    return None
+# ── Pexels config ────────────────────────────────────────────────────
+PEXELS_KEY = None
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+if os.path.exists(pexels_env):
+    for line in open(pexels_env):
+        if line.startswith("PEXELS_API_KEY="):
+            PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
 
-def sb_patch(table, match, data):
-    params = '&'.join(f"{k}={v}" for k, v in match.items())
-    r = requests.patch(f"{SB_URL}/rest/v1/{table}?{params}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 204):
-        return True
-    print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
-    return False
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    encoded = urllib.parse.quote(person_name.replace(" ", "_"))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            timeout=10,
         )
         if r.status_code == 200:
             data = r.json()
@@ -63,10 +43,11 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (urllib gets 403)."""
+    """Fetch an image from Pexels API using curl (urllib gets 403)."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
+        print("  ⚠ No Pexels API key found")
         return None
     import subprocess
     for q in [query, fallback_query]:
@@ -74,329 +55,332 @@ def fetch_pexels_image(query, fallback_query=None):
             continue
         try:
             result = subprocess.run(
-                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5'],
+                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3",
+                 "-H", f"Authorization: {PEXELS_KEY}"],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for photo in photos:
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            photos = data.get("photos", [])
+            for p in photos:
+                src = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+                if src:
+                    print(f"  ✓ Pexels image found for '{q}': {src[:80]}...")
+                    return src
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image(url):
-    """Check image URL returns valid image with sufficient size."""
+
+def validate_image_url(url):
+    """Validate that image URL returns HTTP 200 with image content > 5KB."""
     if not url:
         return False
-    # Block banned sources
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
-    for b in banned:
-        if b in url:
-            print(f"  ✗ Banned image source: {b}")
-            return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
             return True
-        # Try GET for servers that don't support HEAD well
-        if r.status_code != 200:
+        # Some servers don't support HEAD, try GET with range
+        if r.status_code in (200, 405, 403):
             r2 = requests.get(url, timeout=10, stream=True,
-                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            ct = r2.headers.get('Content-Type', '')
-            cl = int(r2.headers.get('Content-Length', 0))
-            if r2.status_code == 200 and 'image' in ct:
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            ct2 = r2.headers.get("Content-Type", "")
+            # Read first chunk to estimate size
+            chunk = next(r2.iter_content(8192), b"")
+            r2.close()
+            if r2.status_code == 200 and "image" in ct2 and len(chunk) > 5000:
                 return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, type={ct}, size={cl}")
     except Exception as e:
         print(f"  ⚠ Image validation error: {e}")
     return False
 
-def make_slug(text, date_suffix="20260530"):
-    """Create a URL-friendly slug."""
-    slug = re.sub(r'[^a-z0-9\s-]', '', text.lower())
-    slug = re.sub(r'[\s]+', '-', slug).strip('-')
-    slug = re.sub(r'-+', '-', slug)
-    return f"{slug[:80]}-nri-{date_suffix}"
 
-# ─────────────────────────────────────────────────────────
-# ARTICLES
-# ─────────────────────────────────────────────────────────
+def sb_insert(table, row):
+    """Insert a row into Supabase and return it."""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/{table}",
+        headers=HEADERS,
+        json=row,
+    )
+    if r.status_code in (200, 201):
+        data = r.json()
+        return data[0] if isinstance(data, list) else data
+    else:
+        print(f"  ✗ Insert {table} failed: {r.status_code} {r.text[:300]}")
+        return None
 
-articles = []
 
-# ──────────────────────────────
-# Article 1: Vashu Bhagnani ₹400 Crore Lawsuit
-# ──────────────────────────────
+def create_topic(title, category):
+    """Create a topic in p2_topics and return its ID."""
+    topic_id = str(uuid.uuid4())
+    row = {
+        "id": topic_id,
+        "canonical_title": title[:200],
+        "vertical": category,
+        "urgency": "daily",
+        "score_diaspora": 70,
+        "score_significance": 65,
+        "score_recency": 80,
+        "score_source_avail": 60,
+        "score_total": 70,
+        "signal_count": 1,
+        "status": "published",
+        "keywords": title.split()[:5],
+        "category": category,
+    }
+    result = sb_insert("p2_topics", row)
+    if result:
+        return topic_id
+    return None
 
-articles.append({
-    "headline": "Vashu Bhagnani Just Filed a ₹400 Crore Lawsuit to Block Varun Dhawan's Next Film. The Songs in Question Are From 1999.",
-    "subheadline": "The producer behind Biwi No 1 says Tips Industries and David Dhawan used 'Chunari Chunari' and 'Ishq Sona Hai' without permission. The film is five days from release.",
-    "slug": "vashu-bhagnani-400-crore-lawsuit-tips-david-dhawan-hai-jawani-biwi-no-1-songs-nri-20260530",
-    "category": "entertainment",
-    "body": """Bollywood's biggest copyright fight in years just got filed in the Bombay High Court, and it could derail a major June release.
 
-Producer Vashu Bhagnani's Puja Entertainment has slapped a ₹400 crore lawsuit against Tips Industries, Ramesh Taurani, Kumar S Taurani, and director David Dhawan over two songs from the 1999 hit *Biwi No 1* — 'Chunari Chunari' and 'Ishq Sona Hai.' The allegation: the defendants used the iconic tracks in the upcoming Varun Dhawan-starrer *Hai Jawani Toh Ishq Hona Hai* without valid rights.
+def sb_patch(table, match, patch):
+    """Update rows in Supabase matching filter."""
+    params = "&".join(f"{k}={v}" for k, v in match.items())
+    r = requests.patch(
+        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
+        headers=HEADERS,
+        json=patch,
+    )
+    if r.status_code in (200, 204):
+        print(f"  ✓ Patched {table}")
+    else:
+        print(f"  ✗ Patch {table} failed: {r.status_code} {r.text[:300]}")
 
-## The Core Dispute
 
-The lawsuit, filed through advocates V K Dubey Associates, seeks an immediate injunction to halt the release, distribution, streaming, and commercial exploitation of the film and any promotional material featuring the two disputed songs. The film is currently scheduled to hit theatres worldwide on June 5.
+# ── Articles ─────────────────────────────────────────────────────────
+articles = [
+    {
+        "headline": "Vashu Bhagnani Just Filed a ₹400 Crore Lawsuit Over Two Songs. David Dhawan's Final Film Could Be Collateral Damage.",
+        "subheadline": "The fight over 'Chunnari Chunnari' and 'Ishq Sona Hai' from Biwi No. 1 has escalated into one of Bollywood's biggest copyright battles — and it could delay the June 5 release of Hai Jawani Toh Ishq Hona Hai.",
+        "slug": "vashu-bhagnani-400-crore-lawsuit-chunnari-chunnari-david-dhawan-hai-jawani-nri-20260530",
+        "category": "entertainment",
+        "person": "Vashu Bhagnani",
+        "pexels_query": "Bollywood film courtroom legal",
+        "pexels_fallback": "Indian court gavel law",
+        "sources": json.dumps([
+            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+            {"name": "ANI", "url": "https://aninews.in"},
+            {"name": "Zoom TV", "url": "https://www.zoomtventertainment.com"}
+        ]),
+        "body": """Bollywood's biggest copyright war just got a price tag.
 
-According to Bhagnani's legal team, the original agreements between Puja Entertainment and Tips Industries covered only audio rights. In 2018, Tips reportedly emailed Bhagnani requesting visual rights — but the negotiations never reached a conclusion. Puja Entertainment subsequently sent a notice cancelling even the previously granted audio rights, which, their lawyers argue, means Tips cannot legally license the songs for use in a new film.
+Vashu Bhagnani's production company, Puja Entertainment, has filed a **₹400 crore lawsuit** in the Bombay High Court against Tips Industries Limited, its founders Ramesh and Kumar Taurani, and filmmaker David Dhawan. The suit alleges unauthorized use of two iconic songs — *Chunnari Chunnari* and *Ishq Sona Hai* — from Bhagnani's 1999 hit *Biwi No. 1* in the upcoming Varun Dhawan-starrer *Hai Jawani Toh Ishq Hona Hai*, which is set to release on June 5.
 
-"If they are the lawful owners of the music rights, they must show their documents," advocate Dubey told news agency ANI. "Justice will prevail, and the truth will come out."
+## What's Actually Being Fought Over
 
-## Why This Matters Beyond Bollywood
+The dispute centers on the difference between audio rights and visual rights — a distinction that didn't matter much when Bollywood deals were handshake affairs in the 1990s, but now carries hundreds of crores in commercial value.
 
-The lawsuit touches a nerve that runs deep in Indian cinema's commercial infrastructure. For decades, music rights agreements in Bollywood operated on handshake deals and loosely worded contracts. The distinction between audio rights, visual rights, and synchronization rights — standard categories in Western music licensing — was often blurred or ignored entirely.
+According to Bhagnani's legal counsel, V.K. Dubey Associates, the original agreement with Tips covered only audio rights. In 2018, Tips reportedly emailed Bhagnani requesting visual rights — the kind you'd need to, say, shoot a new movie sequence around an old song. Bhagnani responded, but the two sides never reached an agreement. Puja Entertainment has since sent a formal notice cancelling the audio rights previously granted to Tips, which the lawsuit argues means the songs cannot legally appear in the new film.
 
-The *Biwi No 1* songs are not obscure catalogue tracks. 'Chunari Chunari' remains one of the most recognizable Bollywood dance numbers of the 1990s, a staple at every Indian wedding DJ's playlist from New Jersey to London to Sydney. For the diaspora, these aren't just songs — they're cultural bookmarks of a specific era of growing up Indian abroad.
+"If they are the lawful owners of the music rights, they must show their documents," Bhagnani's lawyer told ANI. "This is why we have filed a claim against Tips. Justice will prevail."
 
-## The Bigger Picture
+The suit seeks an immediate injunction to halt the release, distribution, streaming, and all commercial exploitation of *Hai Jawani Toh Ishq Hona Hai* — including any promotional material featuring the disputed songs.
 
-The timing is brutal. *Hai Jawani Toh Ishq Hona Hai* has been through a carousel of release date changes — originally June 5, then June 12, then May 22, and back to June 5 after Yash's *Toxic* vacated the slot. The film was already surrounded by noise: Mouni Roy playing mother to 39-year-old Varun Dhawan drew social media criticism, and influencer-review controversies added more turbulence.
+## Why This Matters Beyond the Courtroom
 
-David Dhawan has positioned this as his final film. Vashu Bhagnani was the producer behind the original *Biwi No 1*, the very film whose songs are now at the centre of this dispute. There's an irony in the fact that a filmmaker's swan song could be derailed by the music from his own earlier success.
+This isn't just about two songs or one film. It's about how Bollywood's relationship with its own musical catalogue is being rewritten in real time.
 
-Puja Entertainment is also seeking an additional ₹100 crore in damages if the defendants fail to comply. The court has permitted the filing and will hear the matter soon. Whether it results in a stay order before June 5 remains the ₹400-crore question.
+For decades, song rights in Indian cinema existed in a grey zone. Producers sold audio rights to labels, which then controlled distribution on cassettes, CDs, and eventually streaming platforms. But those deals were drafted in an era when nobody could imagine a song being used to sell a *different* film two decades later. Now, with remixes and nostalgia-driven marketing becoming Bollywood's go-to playbook, the question of who actually owns what — and for what purpose — has become a multi-crore legal minefield.
 
-## What the Diaspora Should Know
-
-For NRIs who grew up with Govinda-Karisma dance numbers and David Dhawan comedies, this lawsuit is a reminder that the songs you carry in your head are also assets on somebody's balance sheet. As Bollywood's remake and remix culture accelerates, the legal scaffolding underneath it is finally being stress-tested in court.
-
-*Sources: Bollywood Hungama, ANI, Zoom TV Entertainment*""",
-    "sources": ["Bollywood Hungama", "ANI", "Zoom TV Entertainment"],
-    "person": "Vashu Bhagnani"
-})
-
-# ──────────────────────────────
-# Article 2: Alpha Preponed to July 3
-# ──────────────────────────────
-
-articles.append({
-    "headline": "Alpha Just Got Preponed to July 3. Alia Bhatt's Spy Thriller Will Now Have Two Weeks of Open Road.",
-    "subheadline": "With Dhamaal 4 and Christopher Nolan's The Odyssey both landing on July 17, Aditya Chopra moved the YRF Spy Universe's first female-led film up by a week.",
-    "slug": "alpha-preponed-july-3-alia-bhatt-sharvari-yrf-spy-universe-nri-20260530",
-    "category": "entertainment",
-    "body": """The Bollywood release calendar just shifted again, and this time it's in a film's favour.
-
-Yash Raj Films has reportedly preponed the release of *Alpha* — the YRF Spy Universe's first female-led instalment — from July 10 to July 3, 2026. The move comes after Ajay Devgn's *Dhamaal 4* vacated the July 3 slot, pushing to July 17 instead. That same week also brings Christopher Nolan's *The Odyssey*, creating a potential traffic jam that *Alpha* now sidesteps entirely.
-
-## The Calendar Chess
-
-The logic is straightforward: with no major Bollywood release planned for July 3, producer Aditya Chopra saw a window and took it. By opening a week earlier, *Alpha* gets a clear two-week theatrical run before the July 17 double punch of *Dhamaal 4* and Nolan's latest.
-
-A trade source told Bollywood Hungama: "July 3 has emerged as an apt date to bring Alpha to cinemas since Dhamaal 4, which was scheduled to release on the same day, has now been pushed to July 17. With no major release planned for July 3, producer Aditya Chopra felt it was the right date to bring Alpha to theatres."
-
-This is not the first date change for *Alpha*. The film was initially planned for Christmas 2025, then shifted to April 2026, then July 10. The latest move, however, is a prepone — a rarity in an industry where delays are the norm.
-
-## What Makes Alpha Different
-
-Directed by Shiv Rawail, who helmed the critically acclaimed series *The Railway Men*, *Alpha* puts Alia Bhatt and Sharvari at the centre of a globe-trotting espionage narrative. Unlike the stylised action of *Pathaan* or *War 2*, the film is described as raw and grounded — closer to field intelligence than franchise spectacle.
-
-Bobby Deol plays the primary antagonist, teased through a post-credits appearance in *War 2*. Anil Kapoor returns as Vikrant Kaul, a senior intelligence official. And Hrithik Roshan is expected to make a special appearance reprising Major Kabir Dhaliwal, tying the film into the broader Spy Universe timeline.
-
-For Alia Bhatt, this is her first theatrical release since *Jigra* in 2024. For Sharvari, who has been steadily building momentum through OTT projects and *Munjya*, it's a chance to cement her position in mainstream cinema.
+The timing makes this even more significant. *Hai Jawani Toh Ishq Hona Hai* is David Dhawan's self-declared final film. The veteran comedy director, who gave Hindi cinema *Coolie No. 1*, *Hero No. 1*, and the original *Biwi No. 1*, is closing his career with a film starring his son Varun alongside Mrunal Thakur and Pooja Hegde. A court-ordered delay or injunction would cast a shadow over what was meant to be a celebratory farewell.
 
 ## The Diaspora Angle
 
-The YRF Spy Universe has always performed well internationally, with *Pathaan* crossing ₹300 crore overseas. Indian audiences in North America, the UK, and the Middle East have driven significant opening-weekend numbers for the franchise. An earlier release means advance booking windows in international markets open sooner — and for a franchise with built-in awareness, that matters.
+For NRIs who grew up on *Chunnari Chunnari* — hearing it at every garba, every sangeet, every Indo-Canadian wedding reception — this lawsuit is a reminder of how the music that formed the soundtrack of diaspora childhoods is now a contested commodity. The songs may live rent-free in your head, but in a Bombay High Court filing, someone is putting a very precise number on their value.
 
-Sharvari is also currently promoting *Main Vaapas Aaunga*, keeping her visibility high across platforms where diaspora audiences are already engaged. The one-two punch of marketing momentum plus a cleaner release window makes July 3 a calculated bet.
+Tips Industries has previously maintained that it holds lawful ownership of the songs. The court has accepted the filing and is expected to hear the case shortly. Whether it moves fast enough to impact the June 5 release remains the ₹400 crore question.
 
-## What's at Stake
+*The film is slated for a global theatrical release. A hearing date has not been publicly confirmed.*"""
+    },
+    {
+        "headline": "Kirti Kulhari Questioned Paying ₹10,000 to Her Maid. The Internet Had Thoughts.",
+        "subheadline": "A viral clip of the actress questioning her domestic worker's monthly salary triggered a nationwide debate on fair wages, class privilege, and what household labor is actually worth in urban India.",
+        "slug": "kirti-kulhari-domestic-worker-salary-debate-mini-mathur-class-divide-nri-20260530",
+        "category": "entertainment",
+        "person": "Kirti Kulhari",
+        "pexels_query": "Indian domestic worker household cleaning",
+        "pexels_fallback": "cleaning home domestic help",
+        "sources": json.dumps([
+            {"name": "India Forums", "url": "https://www.indiaforums.com"},
+            {"name": "Hauterrfly", "url": "https://hauterrfly.com"},
+            {"name": "Jobaaj News", "url": "https://news.jobaaj.com"}
+        ]),
+        "body": """Kirti Kulhari didn't set out to start a national conversation about domestic labor. But that's exactly what happened.
 
-The YRF Spy Universe is Bollywood's most ambitious franchise experiment. After the commercial disappointment of *War 2* and *Tiger 3*, the franchise needs a course correction. *Alpha* — with its female leads, its grounded tone, and its leaner storytelling promise — could be exactly that. Or it could confirm that the franchise fatigue is real.
+In a recent interview with Bollywood Bubble, the *Pink* and *Four More Shots Please!* actress talked about moving to a new apartment on Yaari Road in Mumbai and being surprised by the salary quoted by a cook and maid. "For two hours of work — which includes sweeping, mopping, doing the dishes — I wanted that whatever could be done within those two hours, like dusting, laundry, all of it, would be taken care of," she explained. "She was charging me ₹10,000."
 
-Either way, July 3 is now circled on the calendar.
+Kulhari went further: "I was like, you're coming in for two hours and only doing as much work as you feel like… and then you're charging me ₹10,000 for what? At that point, we were thinking, are they looking at us and assuming we must have money, so they might as well ask for more?"
 
-*Sources: Bollywood Hungama, Filmfare, Sacnilk*""",
-    "sources": ["Bollywood Hungama", "Filmfare", "Sacnilk"],
-    "person": "Alia Bhatt"
-})
+The clip went viral. And then the rebuttals arrived.
 
-# ──────────────────────────────
-# Article 3: Divyanka Tripathi & Vivek Dahiya Twins
-# ──────────────────────────────
+## Mini Mathur Fires Back
 
-articles.append({
-    "headline": "Divyanka Tripathi and Vivek Dahiya Brought Their Twin Boys Home From Hospital. 'Mere Karan Arjun Aa Gaye,' He Said.",
-    "subheadline": "After 10 years of marriage, Indian television's most-loved couple stepped out as a family of four — with one request for the paparazzi.",
-    "slug": "divyanka-tripathi-vivek-dahiya-twin-boys-karan-arjun-hospital-nri-20260530",
-    "category": "entertainment",
-    "body": """There are celebrity baby announcements, and then there is Vivek Dahiya quoting *Karan Arjun* while bringing his twin sons home from the hospital.
+Television host and actress Mini Mathur didn't mince words. In an Instagram Story response that was widely shared, Mathur argued that the domestic worker's two hours are what *enable* the employer's own productive hours — and that ₹10,000 is "below minimum wage anywhere in the world."
 
-Television actors Divyanka Tripathi and Vivek Dahiya made their first public appearance with their newborn twin boys on Friday, leaving a Mumbai hospital with their babies in their arms and their extended family in tow. A black car decorated with blue and white balloons pulled up outside the hospital, and Vivek — grinning — introduced himself and Divyanka to the waiting media: "Presenting the new mother and father in town."
+The math, Mathur and other commenters pointed out, isn't hard: a domestic worker earning ₹10,000 from one household while working two-hour shifts can serve maybe five homes. That's ₹50,000 a month for 10 hours of physically demanding daily labor — in a city where even a small room in a shared chawl can cost ₹15,000-20,000.
 
-## The Announcement
+"Even if she works in 5 houses, she will be able to earn ₹50,000 per month by working 10 hours," one Instagram user wrote. "In a city like Mumbai, one needs at least ₹50,000 to live a respectable life. I don't think this is a wrong demand."
 
-The couple had announced the birth on May 26 through an Instagram post featuring an animated image of two baby boys on clouds. The caption read: "We asked for happiness... God said, 'Take double.' Blessed with twin baby boys."
+## The Bigger Picture
 
-Vivek's follow-up was pure Bollywood: "The wait is finally over... 'The Boys' are here and life already feels more beautiful than we ever imagined. Mere Karan Arjun aa gaye!" — a reference to the iconic 1995 Salman Khan-Shah Rukh Khan film that every Indian household, across continents, can quote from memory.
+India has an estimated **50 million domestic workers**, the vast majority of whom are women from marginalized communities. They have no nationally binding minimum wage, no standardized working hours, and limited access to social security. The Domestic Workers (Regulation of Work and Social Security) Bill has been discussed since 2008 but remains unlegislated.
 
-## A Decade Together
+In this context, the question isn't really whether ₹10,000 for two hours of daily work is a lot. It's about who gets to define "a lot."
 
-Divyanka and Vivek met on the sets of *Yeh Hai Mohabbatein* and married in 2016. Over the past decade, they have remained one of Indian television's most recognisable couples — their journey documented across reality shows like *Nach Baliye 8* and *Khatron Ke Khiladi 11*.
+Kulhari's comment revealed a blind spot that isn't uniquely hers — it's embedded in the way urban, upper-middle-class India has historically valued household labor. The work is essential enough that most dual-income households can't function without it, yet it's consistently undervalued in compensation and social status.
 
-Divyanka rose to national fame with *Banoo Main Teri Dulhann* and later became a household name through *Yeh Hai Mohabbatein*, one of the longest-running Indian television serials. Vivek, who started as an outsider in the industry, carved his own space through consistent television work and the couple's joint public presence.
+## Why the Diaspora Is Watching
 
-The arrival of their twins after 10 years of marriage drew particularly emotional responses from fans. "Who can refuse such a sweet smiling request from Divyanka," wrote one user. "She is always so polite and courteous. No attitude, always kind."
+For NRIs, this debate hits differently. Many grew up in homes where domestic help was a given — the *bai* or *didi* who was part of the household fabric. Moving abroad, they discovered that the same services — cleaning, cooking, childcare — cost $25-$50 per hour in North America, often more.
 
-## One Rule for the Cameras
+The dissonance is real: paying ₹10,000 per month for daily household work that would cost $3,000-$4,000 monthly in the US or Canada feels, from a diaspora vantage point, not expensive but extraordinarily cheap.
 
-In the video that went viral across social media, Divyanka thanked the photographers for their well-wishes — and then made one clear request: please don't show the babies' faces. The paparazzi agreed. After a brief introduction of the newborns, the family posed together, distributed sweets, and headed home.
+This isn't about shaming Kulhari specifically. It's about a broader reckoning with the class assumptions baked into everyday life in India — assumptions that become visible precisely when someone says the quiet part out loud.
 
-It was a small moment, but fans noticed. Several comments praised the couple for handling the public moment with warmth while drawing a firm line around their children's privacy — a balance that feels increasingly rare in Indian celebrity culture.
+The debate, predictably, has already moved on to the next viral moment. But the 50 million workers at the center of it are still waiting for a law that recognizes their labor as work worthy of legal protection.
 
-## Why the Diaspora Cares
+*Kulhari has not publicly responded to the backlash at the time of writing.*"""
+    },
+    {
+        "headline": "Pooja Bhatt Called Bobby Deol 'A Magical Human Being.' Then She Said Why She'll Never Tell You What Went Wrong.",
+        "subheadline": "In a rare and graceful interview, Pooja Bhatt revisited her 1990s romance with Bobby Deol — praising his Animal comeback while drawing a firm line on privacy that Bollywood could learn from.",
+        "slug": "pooja-bhatt-bobby-deol-relationship-90s-breakup-dignity-animal-bollywood-nri-20260530",
+        "category": "entertainment",
+        "person": "Pooja Bhatt",
+        "person_alt": "Bobby Deol",
+        "pexels_query": None,
+        "pexels_fallback": None,
+        "sources": json.dumps([
+            {"name": "MensXP", "url": "https://www.mensxp.com"},
+            {"name": "BollywoodShaadis", "url": "https://www.bollywoodshaadis.com"},
+            {"name": "Zoom TV", "url": "https://www.zoomtventertainment.com"}
+        ]),
+        "body": """In an industry that treats ex-relationships like content, Pooja Bhatt just delivered a masterclass in grace.
 
-Divyanka Tripathi's fanbase extends well beyond India. Indian television serials, particularly Star Plus and Zee shows, have massive viewership across the US, UK, Canada, and the Middle East through OTT platforms and satellite channels. *Yeh Hai Mohabbatein* ran for six years and built a loyal global following.
+In a candid conversation with journalist Vickey Lalwani, the actress-producer opened up about her relationship with Bobby Deol — a romance that unfolded in the 1990s, when both were young, famous, and very much in the public eye. What she said was warm, generous, and unflinchingly private all at once.
 
-For diaspora audiences who grew up watching these serials with their families, the couple's milestone feels personal. The *Karan Arjun* reference is the cherry on top — a line that transcends generations and geographies, instantly recognisable whether you're in Mumbai or Michigan.
+"Of course," she said, when asked if she was deeply in love with him. "What's not to fall in love with? It was a magical time of my life, and he was a magical human being to be with."
 
-A traditional aarti was performed by Divyanka's mother-in-law as the family arrived home, marking the beginning of a new chapter that their fans have waited a decade to celebrate.
+Then came the line that set the tone for the entire exchange: "But I don't think it is in good taste to sit down today and talk about why my relationship with him ended."
 
-*Sources: ANI, LatestLY, Zoom TV Entertainment, India Forums*""",
-    "sources": ["ANI", "LatestLY", "Zoom TV Entertainment", "India Forums"],
-    "person": "Divyanka Tripathi"
-})
+## What She Said — and What She Didn't
 
-# ──────────────────────────────
-# Article 4: Anupam Kher's Shri Ram Bhoomi — 552nd Film
-# ──────────────────────────────
+Bhatt acknowledged the relationship openly, calling their time together "magical" and Bobby "a magical human being." But she refused to narrate the ending. "It worked till it didn't work. That's it."
 
-articles.append({
-    "headline": "Anupam Kher Just Started His 552nd Film. It's Called Shri Ram Bhoomi and It's About Ayodhya.",
-    "subheadline": "Zee Studios brings in The Kerala Story 2 director Kamakhya Narayan Singh for a drama rooted in faith, sacrifice, and 'one of the most consequential chapters in modern Indian history.'",
-    "slug": "anupam-kher-shri-ram-bhoomi-552nd-film-zee-studios-ayodhya-nri-20260530",
-    "category": "entertainment",
-    "body": """At 71, Anupam Kher is not slowing down. He is, in fact, accelerating.
+She offered no blame, no veiled accusations, no coded references. Instead, she centered something Bollywood gossip culture rarely allows for: the dignity of the other person's present life.
 
-The veteran actor has commenced shooting for *Shri Ram Bhoomi*, a new drama from Zee Studios that marks his 552nd film — a number that defies easy comprehension in any film industry, anywhere in the world. Directed by National Award-winning filmmaker Kamakhya Narayan Singh, who last helmed *The Kerala Story 2*, the film is positioned as an emotionally charged narrative centred on Ayodhya and the cultural history of Lord Ram's birthplace.
+"He is a married man today, father of grown-up children, and is enjoying a wonderful new surge in his career," she said. "I loved him in *Animal*. For me, he made the film. I'm so happy for him."
 
-## What We Know
+That last line carried weight. Bobby Deol's performance as Abrar in Sandeep Reddy Vanga's *Animal* (2023) was widely considered his career-defining comeback — a menacing, electrifying turn that reminded audiences why he was always more than just a Deol. To hear his ex-partner praise that work publicly, without agenda or ambiguity, was quietly remarkable.
 
-Zee Studios launched the project with a mahurat ceremony and an official announcement across social media: "A title that echoes emotion. A story shrouded in intrigue. The journey of Shri Ram Bhoomi officially begins."
+## The Aashiqui Clarification
 
-The cast brings together a cross-generational lineup. Kher leads alongside Ritwik Bhowmik — a rising star best known for his OTT work in shows like *Bandish Bandits* — and Amruta Khanvilkar, the versatile actress who has built a reputation across Marathi and Hindi cinema. The production is a collaboration between Zee Studios, Dancing Shiva Films, and Cinekorn Entertainment.
+The interview also untangled an old rumor. When Bhatt mentioned that a boyfriend early in her career was unsupportive of her film ambitions — the reason she turned down the lead role in her father Mahesh Bhatt's *Aashiqui* — speculation naturally pointed to Deol. She corrected it directly: that partner was someone else entirely. She met Bobby later.
 
-Plot details remain tightly guarded, but the film is described as a story rooted in faith, sacrifice, truth, and homecoming. Given the title and the director's previous work on culturally charged material, the Ayodhya connection is unmistakable.
+This matters because it separates the professional frustration from the romantic memory. The relationship with Bobby, in Bhatt's telling, was untainted by career resentment. It was simply a chapter that ended when two people grew in different directions.
 
-## The 552-Film Man
+## Why This Resonates
 
-Anupam Kher's filmography is its own kind of monument. From *Saaransh* in 1984 — where a 28-year-old Kher played a retired man mourning his son — to Hollywood roles in *Silver Linings Playbook* and *The Big Sick*, his career spans four decades, multiple languages, and virtually every genre Indian cinema has attempted.
+Bollywood ex-couples rarely get to exist in public with this much peace. The standard script is either dramatic denial, pointed silence, or weaponized memoir. Bhatt chose a fourth option: warmth without exposition. Acknowledgment without detail.
 
-His upcoming slate alone reads like a small studio's annual output: *Khosla Ka Ghosla 2* with Dibakar Banerjee (reuniting the original cast including Boman Irani, Parvin Dabas, and Ranvir Shorey), an untitled project with Sooraj Barjatya, and now *Shri Ram Bhoomi*. The man does not have an off switch.
+"Dignity and grace for the present, for not only your own life but for the people who have been in your life, and the people who they have in their life, is a very important thing to maintain," she said.
 
-## The Director's Track Record
-
-Kamakhya Narayan Singh's involvement signals the kind of film Zee Studios is aiming for. *The Kerala Story* was one of the most commercially successful — and politically polarising — Indian films in recent years, crossing ₹300 crore worldwide. The sequel continued the franchise's formula of cultural confrontation wrapped in mainstream thriller packaging.
-
-With *Shri Ram Bhoomi*, Singh shifts from religious conversion narratives to the cultural and spiritual history of Ayodhya itself. The timing is not accidental. The ₹4,000-crore *Ramayana* adaptation starring Ranbir Kapoor and Sai Pallavi has dominated industry conversation for months, and Ayodhya-centric stories have become prime real estate for major studios.
+It's a sentence that could function as a personal philosophy — and one that stands out sharply against the current Bollywood landscape, where PR-managed narratives and social media subtweets have replaced actual communication.
 
 ## The Diaspora Connection
 
-For NRIs, the Ayodhya Ram Mandir has been a landmark moment of cultural identity — the consecration ceremony in January 2024 was watched by millions of Indians abroad. A cinematic exploration of Ayodhya's significance, led by an actor who has become a fixture of diaspora cultural life (Kher's one-man shows regularly sell out in the US and UK), carries a built-in audience.
+For Indians abroad, the Deol-Bhatt era represents a very specific Bollywood. It was the decade of *Gupt*, *Soldier*, *Barsaat*, and the Deol brothers' rise — the same era many NRI families were taping Zee TV on VHS and sending cassettes to relatives. Pooja Bhatt, as Mahesh Bhatt's daughter and a star in her own right, was inescapable in that ecosystem.
 
-Ritwik Bhowmik's presence also signals a generational bridge. His OTT following skews younger and more globally distributed — the kind of audience that discovers Indian content through Netflix and Prime rather than theatrical releases.
+To hear her speak about that time with tenderness rather than regret feels like the kind of emotional maturity that the nostalgia machine rarely allows for. The 1990s weren't perfect. The relationships weren't fairy tales. But they were real — and Bhatt's refusal to perform the narrative for an audience is, in its own quiet way, the most interesting Bollywood interview of the week.
 
-Whether *Shri Ram Bhoomi* will aim for theatrical spectacle or a more intimate dramatic register remains to be seen. But with Anupam Kher at 552 and counting, the film already has something most productions lack: the gravitational pull of a performer who has never stopped working.
+*Bobby Deol has not publicly commented on the interview.*"""
+    },
+]
 
-*Sources: IANS, Bollywood Hungama, Sacnilk, CineTalkers*""",
-    "sources": ["IANS", "Bollywood Hungama", "Sacnilk", "CineTalkers"],
-    "person": "Anupam Kher"
-})
 
-# ─────────────────────────────────────────────────────────
-# PUBLISH
-# ─────────────────────────────────────────────────────────
+# ── Publish loop ─────────────────────────────────────────────────────
+def main():
+    published = 0
+    for art in articles:
+        print(f"\n{'='*60}")
+        print(f"Publishing: {art['headline'][:70]}...")
 
-published = 0
-failed = 0
-
-for i, art in enumerate(articles):
-    print(f"\n{'='*60}")
-    print(f"Article {i+1}: {art['headline'][:70]}...")
-    
-    # Validate article
-    if len(art['headline']) < 20 or len(art['headline']) > 200:
-        print(f"  ✗ Headline length issue: {len(art['headline'])} chars")
-    if len(art['subheadline']) < 15:
-        print(f"  ✗ Subheadline too short: {len(art['subheadline'])} chars")
-    
-    word_count = len(art['body'].split())
-    if word_count < 400:
-        print(f"  ✗ Body too short: {word_count} words (minimum 400)")
-        failed += 1
-        continue
-    print(f"  ✓ Word count: {word_count}")
-    
-    # Image sourcing — Wikipedia first for person articles
-    img_url = None
-    person = art.get('person')
-    if person:
-        img_url = fetch_wikipedia_person_image(person)
-        if not img_url and person == "Divyanka Tripathi":
-            img_url = fetch_wikipedia_person_image("Divyanka Tripathi Dahiya")
-        if not img_url and person == "Vashu Bhagnani":
-            img_url = fetch_wikipedia_person_image("Vashu Bhagnani (producer)")
-    
-    if not img_url:
-        # Specific Pexels fallback
-        pexels_queries = {
-            "Vashu Bhagnani": ("Bombay High Court building", "Indian courthouse"),
-            "Alia Bhatt": ("Bollywood spy movie action", "Indian cinema action"),
-            "Divyanka Tripathi": ("Indian couple newborn baby celebration", "Indian family celebration"),
-            "Anupam Kher": ("Ayodhya temple", "Indian cinema veteran actor")
-        }
-        if person and person in pexels_queries:
-            q1, q2 = pexels_queries[person]
-            img_url = fetch_pexels_image(q1, q2)
-    
-    img_attribution = "Wikimedia Commons"
-    if img_url and 'pexels.com' in img_url:
-        img_attribution = "The Videshi"
-    
-    if img_url and validate_image(img_url):
-        print(f"  ✓ Image validated")
-    elif img_url:
-        print(f"  ⚠ Image validation failed, proceeding without image")
+        # Image sourcing
         img_url = None
-    else:
-        print(f"  ⚠ No image found")
+        img_attribution = None
 
-    # Insert article
-    article_data = {
-        "headline": art['headline'],
-        "subheadline": art['subheadline'],
-        "slug": art['slug'],
-        "category": art['category'],
-        "body": art['body'],
-        "vertical": art['category'],
-        "status": "published",
-        "published_at": f"2026-05-30T15:32:{30+i:02d}+00:00",
-        "sources": ", ".join(art['sources']),
-    }
-    
-    if img_url:
-        article_data['image_url'] = img_url
-        article_data['image_attribution'] = img_attribution
+        # Try Wikipedia for person articles
+        person = art.get("person")
+        if person:
+            img_url = fetch_wikipedia_person_image(person)
+            if img_url:
+                img_attribution = "Wikimedia Commons"
 
-    result = sb_insert('p2_articles', article_data)
-    if result:
-        art_id = result.get('id')
-        print(f"  ✓ Published: {art['slug']} (id: {art_id})")
-        published += 1
-    else:
-        print(f"  ✗ Failed to publish: {art['slug']}")
-        failed += 1
+        # Try alternate person name
+        if not img_url and art.get("person_alt"):
+            img_url = fetch_wikipedia_person_image(art["person_alt"])
+            if img_url:
+                img_attribution = "Wikimedia Commons"
 
-print(f"\n{'='*60}")
-print(f"DONE: {published} published, {failed} failed")
+        # Fall back to Pexels
+        if not img_url and art.get("pexels_query"):
+            img_url = fetch_pexels_image(art["pexels_query"], art.get("pexels_fallback"))
+            if img_url:
+                img_attribution = "The Videshi"
+
+        # Validate image
+        if img_url and not validate_image_url(img_url):
+            print(f"  ⚠ Image validation failed, skipping image")
+            img_url = None
+            img_attribution = None
+
+        if img_url:
+            print(f"  ✓ Using image: {img_url[:80]}...")
+        else:
+            print(f"  ⚠ No valid image found — publishing without image")
+
+        # Create topic first
+        topic_id = create_topic(art["headline"], art["category"])
+        if not topic_id:
+            print(f"  ✗ Failed to create topic, skipping article")
+            continue
+
+        # Build article row
+        article_id = str(uuid.uuid4())
+        word_count = len(art["body"].split())
+        row = {
+            "id": article_id,
+            "topic_id": topic_id,
+            "headline": art["headline"],
+            "subheadline": art["subheadline"],
+            "slug": art["slug"],
+            "category": art["category"],
+            "body": art["body"],
+            "sources": art["sources"],
+            "image_url": img_url,
+            "image_attribution": img_attribution,
+            "vertical": art["category"],
+            "word_count": word_count,
+            "status": "published",
+            "published_at": datetime.now(timezone.utc).isoformat(),
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        }
+
+        result = sb_insert("p2_articles", row)
+        if result:
+            print(f"  ✓ Published: {art['slug']}")
+            published += 1
+        else:
+            print(f"  ✗ Failed to publish: {art['slug']}")
+
+        time.sleep(1)
+
+    print(f"\n{'='*60}")
+    print(f"Done: {published}/{len(articles)} articles published")
+
+
+if __name__ == "__main__":
+    main()
