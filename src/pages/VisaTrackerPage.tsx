@@ -570,6 +570,40 @@ export default function VisaTrackerPage() {
               <aside className="space-y-6">
                 <ThankYouWall sightings={sightings} />
 
+                {/* Latest Updates */}
+                <div className="bg-card border border-border rounded-xl p-5">
+                  <h4 className="font-serif font-bold text-sm mb-3 flex items-center gap-2">
+                    📰 Latest Updates
+                  </h4>
+                  <ul className="text-xs text-foreground/70 space-y-3 leading-relaxed">
+                    <li className="border-b border-border pb-2.5">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">May 24, 2026</span>
+                      <p className="mt-0.5 font-medium text-foreground/90">Rubio launches "AppUS" — new America First visa scheduling tool</p>
+                      <p className="mt-0.5">Prioritises business professionals who strengthen US-India commercial ties. Announced during Rubio's first India visit as Secretary of State.</p>
+                    </li>
+                    <li className="border-b border-border pb-2.5">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">May 23, 2026</span>
+                      <p className="mt-0.5 font-medium text-foreground/90">Green Card applicants must return to home country to apply</p>
+                      <p className="mt-0.5">US government announces that those seeking a Green Card must now return to their home countries to file — a major shift affecting thousands of Indian applicants.</p>
+                    </li>
+                    <li className="border-b border-border pb-2.5">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">2026</span>
+                      <p className="mt-0.5 font-medium text-foreground/90">Kolkata launches priority B1/B2 slots for parents 50+</p>
+                      <p className="mt-0.5">US Consulate Kolkata now offers priority visitor visa appointments for eligible Indian parents aged 50 and above visiting children in the US.</p>
+                    </li>
+                    <li className="border-b border-border pb-2.5">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">Sep 2025</span>
+                      <p className="mt-0.5 font-medium text-foreground/90">Interview waiver eliminated for work & student visas</p>
+                      <p className="mt-0.5">H-1B, H-4, L-1, F-1, J-1, O-1 applicants no longer qualify for interview waiver. All must attend in-person interviews.</p>
+                    </li>
+                    <li>
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">Dec 2025</span>
+                      <p className="mt-0.5 font-medium text-foreground/90">Social media screening expanded to employment visas</p>
+                      <p className="mt-0.5">Adds ~30 min per case, slashing daily appointment capacity by nearly half. Backlogs expected through Q2 2026.</p>
+                    </li>
+                  </ul>
+                </div>
+
                 {/* How it works */}
                 <div className="bg-card border border-border rounded-xl p-5">
                   <h4 className="font-serif font-bold text-sm mb-3 flex items-center gap-2">
