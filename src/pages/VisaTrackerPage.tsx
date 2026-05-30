@@ -572,59 +572,9 @@ export default function VisaTrackerPage() {
                 </div>
               </div>
 
-              {/* ── Right Sidebar: Thank-You Wall ────────────── */}
+              {/* ── Right Sidebar ────────────────────────────── */}
               <aside className="space-y-6">
-                <ThankYouWall sightings={sightings} />
-
-                {/* Latest Updates */}
-                {updates.length > 0 && (
-                <div className="bg-card border border-border rounded-xl p-5">
-                  <h4 className="font-serif font-bold text-sm mb-3 flex items-center gap-2">
-                    📰 Latest Updates
-                  </h4>
-                  <ul className="text-xs text-foreground/70 space-y-3 leading-relaxed">
-                    {updates.map((u, i) => (
-                      <li key={u.id} className={i < updates.length - 1 ? "border-b border-border pb-2.5" : ""}>
-                        <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">{u.label}</span>
-                        <p className="mt-0.5 font-medium text-foreground/90">{u.headline}</p>
-                        <p className="mt-0.5">{u.summary}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                )}
-
-                {/* How it works */}
-                <div className="bg-card border border-border rounded-xl p-5">
-                  <h4 className="font-serif font-bold text-sm mb-3 flex items-center gap-2">
-                    💡 How This Works
-                  </h4>
-                  <ol className="text-xs text-foreground/60 space-y-2 list-decimal list-inside leading-relaxed">
-                    <li>Check <a href="https://www.ustraveldocs.com/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">ustraveldocs.com</a> for open slots</li>
-                    <li>Spot available dates? Report them here</li>
-                    <li>Others see your sighting and can book their slot</li>
-                    <li>You appear on the Community Spotters wall 🙏</li>
-                  </ol>
-                </div>
-
-                {/* Visa Guides */}
-                <Link to="/immigration/guides" className="block bg-card border border-border rounded-xl p-5 hover:border-primary/40 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5 group">
-                  <h4 className="font-serif font-bold text-sm mb-2 flex items-center gap-2 group-hover:text-primary transition-colors">
-                    📚 Visa Guides
-                  </h4>
-                  <ul className="text-xs text-foreground/60 space-y-1.5 leading-relaxed">
-                    <li className="flex items-center gap-1.5">🏛️ <span>Interview prep & document checklist</span></li>
-                    <li className="flex items-center gap-1.5">🚫 <span>What NOT to say to the officer</span></li>
-                    <li className="flex items-center gap-1.5">📱 <span>Social media screening guide</span></li>
-                    <li className="flex items-center gap-1.5">📬 <span>After your interview — what to expect</span></li>
-                    <li className="flex items-center gap-1.5">🌍 <span>Third-country stamping guide</span></li>
-                  </ul>
-                  <p className="text-xs text-primary font-medium mt-3 flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Read all guides <ChevronRight className="h-3 w-3" />
-                  </p>
-                </Link>
-
-                {/* Visa Alerts Signup */}
+                {/* Visa Alerts Signup — top of sidebar */}
                 <div className="bg-gradient-to-b from-green-500/10 to-emerald-500/5 border border-green-500/20 rounded-xl p-5">
                   <h4 className="font-serif font-bold text-sm mb-1 flex items-center gap-2">
                     🔔 Visa Slot Alerts
@@ -633,7 +583,7 @@ export default function VisaTrackerPage() {
                     Free during launch
                   </div>
                   <p className="text-xs text-foreground/60 leading-relaxed mb-3">
-                    Get notified instantly when new appointment slots open or when policy changes affect your visa type. Choose how you want to hear from us.
+                    Get notified instantly when new appointment slots open or when policy changes affect your visa type.
                   </p>
                   <form
                     onSubmit={async (e) => {
@@ -691,6 +641,56 @@ export default function VisaTrackerPage() {
                     This is a premium service offered free during our launch period. No credit card needed.
                   </p>
                 </div>
+
+                <ThankYouWall sightings={sightings} />
+
+                {/* Latest Updates */}
+                {updates.length > 0 && (
+                <div className="bg-card border border-border rounded-xl p-5">
+                  <h4 className="font-serif font-bold text-sm mb-3 flex items-center gap-2">
+                    📰 Latest Updates
+                  </h4>
+                  <ul className="text-xs text-foreground/70 space-y-3 leading-relaxed">
+                    {updates.map((u, i) => (
+                      <li key={u.id} className={i < updates.length - 1 ? "border-b border-border pb-2.5" : ""}>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">{u.label}</span>
+                        <p className="mt-0.5 font-medium text-foreground/90">{u.headline}</p>
+                        <p className="mt-0.5">{u.summary}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                )}
+
+                {/* How it works */}
+                <div className="bg-card border border-border rounded-xl p-5">
+                  <h4 className="font-serif font-bold text-sm mb-3 flex items-center gap-2">
+                    💡 How This Works
+                  </h4>
+                  <ol className="text-xs text-foreground/60 space-y-2 list-decimal list-inside leading-relaxed">
+                    <li>Check <a href="https://www.ustraveldocs.com/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">ustraveldocs.com</a> for open slots</li>
+                    <li>Spot available dates? Report them here</li>
+                    <li>Others see your sighting and can book their slot</li>
+                    <li>You appear on the Community Spotters wall 🙏</li>
+                  </ol>
+                </div>
+
+                {/* Visa Guides */}
+                <Link to="/immigration/guides" className="block bg-card border border-border rounded-xl p-5 hover:border-primary/40 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5 group">
+                  <h4 className="font-serif font-bold text-sm mb-2 flex items-center gap-2 group-hover:text-primary transition-colors">
+                    📚 Visa Guides
+                  </h4>
+                  <ul className="text-xs text-foreground/60 space-y-1.5 leading-relaxed">
+                    <li className="flex items-center gap-1.5">🏛️ <span>Interview prep & document checklist</span></li>
+                    <li className="flex items-center gap-1.5">🚫 <span>What NOT to say to the officer</span></li>
+                    <li className="flex items-center gap-1.5">📱 <span>Social media screening guide</span></li>
+                    <li className="flex items-center gap-1.5">📬 <span>After your interview — what to expect</span></li>
+                    <li className="flex items-center gap-1.5">🌍 <span>Third-country stamping guide</span></li>
+                  </ul>
+                  <p className="text-xs text-primary font-medium mt-3 flex items-center gap-1 group-hover:gap-2 transition-all">
+                    Read all guides <ChevronRight className="h-3 w-3" />
+                  </p>
+                </Link>
 
                 {/* Disclaimer */}
                 <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
