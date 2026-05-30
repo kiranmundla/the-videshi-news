@@ -142,7 +142,7 @@ export default function CategoryPage() {
           </p>
         ) : (
           <>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-12 md:gap-y-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-8 md:gap-y-16">
               {articles.map((a, i) => (
                 <div key={a.id} className={i >= fadeFrom ? "animate-fade-in" : ""}>
                   <ArticleCard article={a} variant="card" hideCategory />
