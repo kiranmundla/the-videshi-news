@@ -1,21 +1,18 @@
 #!/usr/bin/env python3
 """
-News writer for The Videshi — 2026-05-30 evening batch
+The Videshi — News Writer (2026-05-30 evening batch)
 Three articles:
-1. India-Vietnam BrahMos missile deal ($629M), Indonesia next
-2. Chandrayaan-3 wins Goddard Astronautics Award from AIAA
-3. India-US trade deal down to 'last 1%' — Ambassador Gor
+  1. EB-2 Green Card freeze for India FY2026
+  2. Karachi water crisis and Indus Waters Treaty suspension
+  3. US GDP revised down to 1.6% — NRI impact
 """
 
-import json, os, sys, time, uuid, re
-import requests
+import json, os, re, sys, uuid, requests, urllib.parse
 from datetime import datetime, timezone
 
-# ── Env ──────────────────────────────────────────────────────────────────
+# ── Supabase config ─────────────────────────────────────────────
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
-
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -23,51 +20,45 @@ HEADERS = {
     "Prefer": "return=representation",
 }
 
-# ── Helpers ──────────────────────────────────────────────────────────────
+# ── Pexels config ───────────────────────────────────────────────
+PEXELS_KEY = None
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+if os.path.exists(pexels_env):
+    for line in open(pexels_env):
+        if line.startswith("PEXELS_API_KEY="):
+            PEXELS_KEY = line.strip().split("=", 1)[1].strip('"').strip("'")
+
+# ── Image skip list ─────────────────────────────────────────────
+SKIP_LIST = set()
+skip_path = os.path.join(os.path.dirname(__file__), "image-skip-list.json")
+if os.path.exists(skip_path):
+    SKIP_LIST = set(json.load(open(skip_path)))
+
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = requests.utils.quote(person_name.replace(' ', '_'))
+    encoded = urllib.parse.quote(person_name.replace(" ", "_"))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com; contact@thevideshi.com)"},
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
             timeout=10,
         )
         if r.status_code == 200:
             data = r.json()
-            # Use thumbnail (330px) which is more reliably cached; originalimage can 429
-            img = data.get("thumbnail", {}).get("source")
-            if not img:
-                img = data.get("originalimage", {}).get("source")
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
-        elif r.status_code == 429:
-            print(f"  ⚠ Wikipedia rate limited for '{person_name}', waiting 5s...")
-            time.sleep(5)
-            r2 = requests.get(
-                f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-                headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com; contact@thevideshi.com)"},
-                timeout=10,
-            )
-            if r2.status_code == 200:
-                data = r2.json()
-                img = data.get("thumbnail", {}).get("source")
-                if not img:
-                    img = data.get("originalimage", {}).get("source")
-                if img:
-                    print(f"  ✓ Wikipedia image found (retry) for '{person_name}': {img[:80]}...")
-                    return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels API using curl (urllib gets 403)."""
-    if not PEXELS_API_KEY:
-        print("  ⚠ No Pexels API key")
+    """Fetch an image from Pexels using curl (urllib gets 403)."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key found")
         return None
     for q in [query, fallback_query]:
         if not q:
@@ -75,14 +66,14 @@ def fetch_pexels_image(query, fallback_query=None):
         try:
             import subprocess
             result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=3",
-                 "-H", f"Authorization: {PEXELS_API_KEY}"],
+                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
+                 "-H", f"Authorization: {PEXELS_KEY}"],
                 capture_output=True, text=True, timeout=15,
             )
             data = json.loads(result.stdout)
             photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+            for photo in photos:
+                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
                 if url:
                     print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                     return url
@@ -91,344 +82,340 @@ def fetch_pexels_image(query, fallback_query=None):
     return None
 
 
-def upload_image_to_supabase(image_url, filename):
-    """Download image and upload to Supabase storage bucket 'article-images'."""
-    try:
-        resp = requests.get(image_url, timeout=20, headers={
-            "User-Agent": "TheVideshi/1.0 (thevideshi.com; contact@thevideshi.com)"
-        })
-        if resp.status_code == 429:
-            print(f"  ⚠ Rate limited downloading image, waiting 5s...")
-            time.sleep(5)
-            resp = requests.get(image_url, timeout=20, headers={
-                "User-Agent": "TheVideshi/1.0 (thevideshi.com; contact@thevideshi.com)"
-            })
-        if resp.status_code != 200:
-            print(f"  ⚠ Failed to download image: HTTP {resp.status_code}")
-            return None
-        content_type = resp.headers.get("Content-Type", "image/jpeg")
-        if not content_type.startswith("image/"):
-            print(f"  ⚠ Not an image: {content_type}")
-            return None
-        if len(resp.content) < 5000:
-            print(f"  ⚠ Image too small: {len(resp.content)} bytes")
-            return None
-
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        up_headers = {
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": content_type,
-            "x-upsert": "true",
-        }
-        up_resp = requests.post(upload_url, data=resp.content, headers=up_headers, timeout=30)
-        if up_resp.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed: {up_resp.status_code} {up_resp.text[:200]}")
-            return None
-    except Exception as e:
-        print(f"  ⚠ Upload exception: {e}")
-        return None
-
-
 def validate_image_url(url):
-    """Verify URL returns HTTP 200 with image content > 5KB."""
+    """Validate that the URL returns a real image > 5KB."""
     if not url:
-        return False
-    # Check for banned sources
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com"]
-    if any(b in url for b in banned):
-        print(f"  ✗ Banned source: {url[:60]}")
-        return False
-    banned_params = ["_nc_ht=", "_nc_cat=", "ccb="]
-    if any(p in url for p in banned_params):
-        print(f"  ✗ Signed Meta URL: {url[:60]}")
         return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
                           headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
+        content_type = r.headers.get("Content-Type", "")
+        content_length = int(r.headers.get("Content-Length", 0))
+        if "image" in content_type and content_length > 5000:
             return True
-        # Some servers don't support HEAD, try GET
-        r2 = requests.get(url, timeout=10, stream=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct2 = r2.headers.get("Content-Type", "")
-        if r2.status_code == 200 and "image" in ct2:
+        # Some servers don't return Content-Length on HEAD, try GET
+        if "image" in content_type and content_length == 0:
+            r2 = requests.get(url, timeout=10, stream=True,
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
             chunk = r2.raw.read(6000)
-            if len(chunk) >= 5000:
+            if len(chunk) > 5000:
                 return True
     except Exception as e:
-        print(f"  ⚠ Validation error: {e}")
+        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
     return False
 
 
-def insert_article(article):
-    """Insert article into p2_articles table."""
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    resp = requests.post(url, json=article, headers=HEADERS, timeout=30)
-    if resp.status_code in (200, 201):
-        data = resp.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
-        print(f"  ✓ Inserted: {article['slug']} (id: {art_id})")
-        return art_id
+def sb_insert(table, row):
+    """Insert a row into Supabase and return the response."""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/{table}",
+        headers=HEADERS,
+        json=row,
+    )
+    if r.status_code not in (200, 201):
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        return None
+    data = r.json()
+    return data[0] if isinstance(data, list) else data
+
+
+def sb_patch(table, match, updates):
+    """Patch a row in Supabase."""
+    url = f"{SUPABASE_URL}/rest/v1/{table}?{match}"
+    r = requests.patch(url, headers=HEADERS, json=updates)
+    if r.status_code not in (200, 204):
+        print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
+
+
+# ═══════════════════════════════════════════════════════════════
+# ARTICLE 1: EB-2 Green Card Freeze
+# ═══════════════════════════════════════════════════════════════
+
+article1 = {
+    "headline": "The US Has Run Out of EB-2 Green Cards for Indians This Year. No More Approvals Until October.",
+    "subheadline": "The State Department confirmed that all EB-2 immigrant visa numbers for India-born applicants have been exhausted for FY2026, freezing final residency approvals for thousands of skilled professionals.",
+    "slug": "eb2-green-card-india-quota-exhausted-fy2026-freeze-october-reset-20260530",
+    "category": "news",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        {"name": "US Department of State / USCIS Joint Notification", "url": "https://travel.state.gov/"},
+        {"name": "Murthy Law Firm", "url": "https://www.murthy.com/"},
+        {"name": "VisaVerge", "url": "https://www.visaverge.com/"},
+        {"name": "Reuters", "url": "https://www.reuters.com/"}
+    ]),
+    "body": """The pipeline for Indian professionals seeking permanent residency in the United States through the EB-2 visa category has hit a hard wall. In a joint notification released this week, the US Department of State and US Citizenship and Immigration Services confirmed that all available immigrant visa numbers in the Employment-Based Second Preference category for India-born applicants have been completely exhausted for fiscal year 2026.
+
+The freeze is immediate and absolute. No new EB-2 green cards can be issued to Indian nationals — whether through consular processing abroad or adjustment of status within the United States — until the annual quota resets on October 1, 2026, the start of the new fiscal year.
+
+## What the Numbers Show
+
+The EB-2 category covers professionals with advanced degrees and individuals with exceptional ability — the backbone of the Indian tech workforce in America. The Final Action Date for EB-2 India has retrogressed sharply to September 2013, meaning even applicants who filed their petitions more than 12 years ago are now stuck in the queue.
+
+This is not a new phenomenon. The EB-2 India category has hit its annual ceiling in previous fiscal years as well, most recently in FY2024 when the quota was exhausted in September. But the FY2026 exhaustion coming in late May — four full months before the fiscal year ends — signals accelerating demand pressure against a statutory cap that has remained unchanged for decades.
+
+The per-country limit, which caps any single nation at roughly 7% of the total 140,000 employment-based green cards issued annually, has long been the structural bottleneck for Indian and Chinese applicants. With Indian nationals consistently representing the largest share of EB-2 petitions, the math simply does not work.
+
+## The Human Cost
+
+For the tens of thousands of Indian professionals affected, the freeze means another period of limbo. Many have been living in the United States for years — sometimes more than a decade — on H-1B work visas, paying taxes, buying homes, raising American-born children, and contributing to the economy while waiting for a green card that remains perpetually out of reach.
+
+The practical consequences are significant. Without permanent residency, these professionals cannot freely change employers without risking their place in the queue. Their spouses on H-4 dependent visas face restrictions on employment. Their children, who may have grown up entirely in America, risk "aging out" of their parents' green card applications when they turn 21, potentially losing their immigration status in the only country they have known.
+
+Immigration attorneys have confirmed that there is no workaround. Murthy Law Firm, one of the most prominent firms serving Indian immigrants, noted that affected applicants "must wait until the new fiscal year" — full stop. No priority bumping, no emergency provisions, no administrative discretion.
+
+## The Broader Immigration Picture
+
+The EB-2 freeze arrives at a particularly fraught moment for legal immigration in the United States. The $100,000 H-1B fee introduced by the Trump administration in September 2025 has already reshaped employer calculations around sponsoring Indian workers. US consulates across India have been canceling and rescheduling H-1B visa appointments, sometimes pushing them out by 90 to 120 days.
+
+Meanwhile, the EB-2 for countries other than India and China remains current — meaning applicants from virtually every other nation face no such backlog. The disparity has fueled years of legislative advocacy by Indian-American groups pushing for the elimination of per-country caps, but no bill has cleared both chambers of Congress.
+
+The Fairness for High-Skilled Immigrants Act and similar proposals have repeatedly stalled, caught between competing interests: tech companies that want faster green cards for their workers, labor groups that worry about wage depression, and lawmakers who see immigration reform as politically radioactive.
+
+## What Comes Next
+
+When the new fiscal year begins on October 1, fresh EB-2 visa numbers will be allocated, and USCIS will resume adjudicating pending I-485 adjustment applications. How quickly the dates advance will depend on actual demand and whether any spillover from unused EB-1 numbers flows into the EB-2 category.
+
+For now, the message to the hundreds of thousands of Indian professionals in the American immigration pipeline is familiar: wait. Again.
+
+The EB-2 freeze is not a policy choice that anyone voted for. It is the mechanical result of a statutory framework designed in 1990, applied to a 2026 labor market that bears no resemblance to the one Congress envisioned. Every year the system runs to exhaustion. Every year, the same professionals absorb the consequences. And every year, the reset button is hit on October 1 — not to fix the problem, but to restart the clock on the same one.""",
+    "image_url": None,
+    "image_attribution": None,
+    "diaspora_angle": "The EB-2 freeze directly affects hundreds of thousands of Indian professionals in the US on H-1B visas waiting for permanent residency. Many have lived in America for over a decade, paid taxes, raised children, and built careers while stuck in a queue that resets annually.",
+    "vertical": "immigration",
+    "tags": ["eb-2", "green-card", "visa-freeze", "uscis", "immigration-backlog", "indian-professionals"],
+    "urgency": "high",
+    "score_total": 90,
+    "is_featured": False,
+    "is_editorial": False,
+}
+
+
+# ═══════════════════════════════════════════════════════════════
+# ARTICLE 2: Karachi Water Crisis / Indus Waters Treaty
+# ═══════════════════════════════════════════════════════════════
+
+article2 = {
+    "headline": "Seventy Percent of Karachi Has No Reliable Water. India's Indus Treaty Suspension Is Only Part of the Story.",
+    "subheadline": "Pakistan's financial capital faces a severe water crisis as the Indus Waters Treaty remains in abeyance. But the real causes run deeper than geopolitics.",
+    "slug": "karachi-water-crisis-indus-waters-treaty-suspension-india-pakistan-20260530",
+    "category": "news",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        "Times of India",
+        "The Daily Jagran",
+        "ARY News (Pakistan)",
+        "Archynetys / ANI News",
+        "India Tribune / MEA briefing"
+    ]),
+    "body": """Nearly 70 percent of Karachi's 30 million residents are facing a severe water crisis as of late May 2026, forcing millions to rely on expensive private tankers during the scorching pre-monsoon heat. The shortage, now in its second month, has become a flashpoint in the ongoing standoff between India and Pakistan over the Indus Waters Treaty — though the reality on the ground is considerably more complicated than either government acknowledges.
+
+## The Scale of the Crisis
+
+The numbers are staggering. Karachi requires over 1,080 million gallons of water daily for its population, but faces a shortfall of more than 400 million gallons every day. Some estimates put the gap even wider, with demand exceeding 1,250 million gallons against a daily supply of only around 650 million gallons.
+
+The worst-hit neighborhoods — Gulistan-e-Jauhar, Gulshan-e-Iqbal, Azizabad, Liaquatabad, North Nazimabad, and North Karachi — have been without consistent municipal water supply for weeks. Residents report waiting days for a single tanker delivery, with prices that can consume a significant share of a working family's income. The crisis coincides with Eid al-Adha preparations, compounding the hardship.
+
+The city depends on a precarious mix of sources: Keenjhar Lake, Haleji Lake, Hub Dam, and Dumlottee wells. But the delivery infrastructure — more than 10,000 kilometers of pipelines — is riddled with leaks and suffers from decades of poor maintenance. When the official system fails, a thriving water tanker mafia steps in, operating what some estimates value as a $500 million annual industry in stolen and resold public water.
+
+## The Treaty Connection
+
+The crisis has reignited debate about India's suspension of the Indus Waters Treaty, the 1960 agreement that divided six Himalayan rivers between the two countries. Under the treaty, Pakistan received the western rivers — the Indus, Jhelum, and Chenab — while India received the eastern rivers — the Ravi, Beas, and Sutlej.
+
+India declared the treaty in abeyance on April 23, 2025, one day after the Pahalgam terror attack that killed 26 civilians. The suspension gave India greater latitude over the western rivers, allowing it to halt mandatory site visits by Pakistani officials, stop sharing certain flow data, and accelerate long-delayed hydroelectric projects.
+
+At an international water conference in Tajikistan's capital Dushanbe this week, Pakistan's Climate Change Minister Musadik Malik warned that India was attempting to "politicize shared water resources" and urged adherence to international mediation mechanisms. Pakistan has rejected India's suspension as illegal and is pursuing the matter through the Permanent Court of Arbitration, which has continued to assert jurisdiction despite India's boycott of the proceedings.
+
+India's response has been blunt. Foreign Secretary Vikram Misri said India adhered to the treaty for 65 years "despite so many provocations from Pakistan" and that Islamabad repeatedly rejected calls for renegotiation. "The conditions have now changed. This treaty was based on the engineering techniques of the 50s and 60s," Misri said. "Technological changes and advancements have to be taken into account."
+
+## The Real Problem Is Closer to Home
+
+But experts caution against drawing a straight line between the treaty suspension and Karachi's water woes. India currently lacks the storage and diversion infrastructure to significantly hold back the massive flows of the western rivers. The immediate physical impact of the abeyance on Pakistan's actual water supply has been limited.
+
+Karachi's crisis is fundamentally a story of domestic failure. The city's population has roughly tripled in three decades, but its water infrastructure has barely expanded. Decades of underinvestment, unchecked urbanization, political patronage networks that control water distribution, and a tanker mafia that profits from scarcity have created a system that was already failing before the treaty suspension.
+
+The Indus basin itself is under strain from forces larger than any treaty. Climate change is accelerating glacial melt in the Karakoram and Hindu Kush ranges that feed the Indus system. Monsoon patterns are becoming more erratic. And both India and Pakistan face growing water demands from populations that have multiplied far beyond what the 1960 agreement envisioned.
+
+## A Water Weapon — or a Structural Collapse?
+
+For India, the treaty suspension is leverage — a tool to pressure Pakistan on terrorism. For Pakistan, it is an existential threat that validates every fear about upstream control. For Karachi's residents, it is a convenient scapegoat for a crisis that would exist with or without the treaty dispute.
+
+The truth sits uncomfortably between these narratives. India's suspension does add strategic uncertainty to Pakistan's water planning. But Karachi's crisis is the product of governance failures that no treaty — in force or suspended — can fix.
+
+What both countries cannot ignore is the trajectory. The Indus basin serves over 300 million people across both nations. Climate projections suggest water availability could decline by 30 to 40 percent in coming decades. The treaty, designed for a world of stable glaciers and predictable monsoons, may need to be rethought regardless of who attacked whom in Pahalgam.
+
+Until then, Karachi waits for tankers.""",
+    "image_url": None,
+    "image_attribution": None,
+    "diaspora_angle": "The Indus Waters Treaty was a cornerstone of India-Pakistan relations that the diaspora followed closely. Its suspension signals a new phase in India's strategic posture, while the Karachi crisis exposes how infrastructure failures — not just geopolitics — drive water scarcity in the subcontinent.",
+    "vertical": "geopolitics",
+    "tags": ["indus-waters-treaty", "karachi", "water-crisis", "india-pakistan", "pahalgam", "climate-change"],
+    "urgency": "medium",
+    "score_total": 82,
+    "is_featured": False,
+    "is_editorial": False,
+}
+
+
+# ═══════════════════════════════════════════════════════════════
+# ARTICLE 3: US GDP Revised Down — NRI Impact
+# ═══════════════════════════════════════════════════════════════
+
+article3 = {
+    "headline": "The US Economy Grew Just 1.6 Percent Last Quarter. That Is Worse Than Anyone Expected.",
+    "subheadline": "A sharp downward revision to first-quarter GDP, driven by weaker consumer spending and the Iran war's inflationary toll, signals trouble ahead for hiring, mortgages, and the Indian professionals who depend on both.",
+    "slug": "us-gdp-revised-down-1-6-percent-q1-2026-iran-war-nri-impact-20260530",
+    "category": "news",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        {"name": "US Bureau of Economic Analysis", "url": "https://www.bea.gov/"},
+        {"name": "Reuters", "url": "https://www.reuters.com/"},
+        {"name": "Wall Street Journal", "url": "https://www.wsj.com/"},
+        {"name": "MarketWatch", "url": "https://www.marketwatch.com/"},
+        {"name": "Gallup", "url": "https://www.gallup.com/"}
+    ]),
+    "body": """The US economy grew considerably less than previously estimated in the first quarter of 2026, a revision that landed with a thud on Thursday and confirmed what many Americans — including the roughly 4.8 million Indian-origin residents navigating the job market, mortgage rates, and immigration queues — already sensed: the economic ground is shifting beneath their feet.
+
+Gross domestic product increased at an annualized rate of just 1.6 percent in the January-March quarter, the Commerce Department's Bureau of Economic Analysis reported in its second estimate. That is a significant downgrade from the 2.0 percent pace initially reported a month ago, and well below what economists had expected.
+
+## What Changed
+
+The revision was driven by two factors. Consumer spending, which accounts for more than two-thirds of the US economy, grew at only 1.4 percent — down from the previously reported 1.6 percent. Spending on services like healthcare was revised lower, though durable goods spending was nudged slightly higher.
+
+Business investment in equipment remained robust at 17.2 percent growth, reflecting the AI infrastructure boom that continues to pour capital into data centers and chips. But the headline GDP figure tells the story of an economy where a narrow band of AI-driven spending is masking weakness almost everywhere else.
+
+Corporate profits grew at a $40.4 billion rate in the first quarter — a dramatic slowdown from the $246.9 billion pace in the previous quarter. Gross domestic income, an alternative measure of economic activity, grew at just 0.9 percent.
+
+"The expansion continues to rest on affluent consumers, AI-driven investment and asset price appreciation," said Gregory Daco, chief economist at EY-Parthenon. "These pillars are masking an increasingly uneven economic foundation."
+
+## The Iran War Factor
+
+The revision captures the economy before the full inflationary impact of the Iran war. The conflict, which began with US and Israeli strikes on February 28, has effectively choked the Strait of Hormuz — the passage through which roughly one-fifth of global oil trade flows. Brent crude has traded around $90-100 per barrel for months, a level that translates directly into higher gasoline, food, and transportation costs for American households.
+
+The war's economic toll is now showing up across multiple indicators. The Gallup Economic Confidence Index plunged to -45 in May, the lowest since October 2022. Only 16 percent of Americans describe economic conditions as "excellent or good." Seventy-six percent say conditions are getting worse — the highest reading since May 2023.
+
+Consumer sentiment has fallen to record lows. Inflation has returned as the second most-cited national problem, with 15 percent of Americans naming it their top concern, up from 8 percent in February.
+
+## What This Means for NRIs
+
+For the Indian diaspora in the United States, the GDP revision carries specific implications across several fronts.
+
+**Hiring and H-1B decisions.** Slowing growth reduces the urgency for companies to hire — and by extension, to sponsor expensive H-1B visas. The $100,000 fee introduced in September 2025 already raised the bar for employers. Weaker growth gives companies another reason to pause, defer, or downsize their foreign worker pipelines. Tech layoffs, which have been a persistent feature since 2023, may not be over.
+
+**Mortgage rates.** The Federal Reserve's next move is now a genuine coin flip. The central bank has signaled it may need to raise rates to combat the Iran-war-driven inflation, which would push mortgage rates higher. For Indian-American families — disproportionately concentrated in expensive housing markets like the Bay Area, Seattle, and the Northeast corridor — higher rates mean higher monthly payments on already stretched budgets.
+
+**Remittances.** India received $129 billion in remittances in the 2025 fiscal year, more than any other country. A slowdown in US wage growth and employment, combined with a stronger dollar, could reduce the purchasing power of dollars sent home. For families in India who depend on these transfers, the impact compounds.
+
+**Green card timing.** The EB-2 visa quota for India was exhausted this week, freezing final approvals until October. A weaker economy does not directly affect the immigration backlog, but it shapes the political environment. Anti-immigration rhetoric intensifies when jobs feel scarce, and congressional appetite for reforms like eliminating per-country caps shrinks when voters are anxious about their own employment.
+
+## The Second Quarter Will Be Worse
+
+Economists broadly expect the second quarter — April through June — to show even weaker growth as the full impact of higher energy prices works through the economy. The Iran war ceasefire negotiations, which appeared close to producing a 60-day extension this week, could provide relief if the Strait of Hormuz reopens. But even optimistic scenarios project months before shipping normalizes and energy prices meaningfully decline.
+
+The Federal Reserve, caught between slowing growth and rising inflation, faces its own version of the immigrant's dilemma: no good options, only trade-offs.
+
+For the millions of Indian professionals who built their American lives on the assumption of a growing, dynamic economy — an economy that rewards skill, creates opportunity, and eventually, grudgingly, offers a path to permanence — the 1.6 percent figure is a reminder that the ground they stand on was never as solid as it appeared.""",
+    "image_url": None,
+    "image_attribution": None,
+    "diaspora_angle": "A slowing US economy directly impacts the 4.8 million Indian-origin Americans through hiring freezes, H-1B sponsorship pullbacks, higher mortgage rates, reduced remittance purchasing power, and a political environment less receptive to immigration reform. India received $129B in remittances in FY2025 — any US economic slowdown ripples directly to families back home.",
+    "vertical": "economy",
+    "tags": ["us-gdp", "economy", "iran-war", "inflation", "nri-mortgages", "remittances", "h1b-hiring"],
+    "urgency": "high",
+    "score_total": 85,
+    "is_featured": False,
+    "is_editorial": False,
+}
+
+
+# ═══════════════════════════════════════════════════════════════
+# IMAGE SOURCING
+# ═══════════════════════════════════════════════════════════════
+
+def source_images():
+    """Source images for all three articles."""
+    # Article 1: EB-2 — try Pexels with specific terms
+    print("\n📸 Sourcing image for Article 1 (EB-2 Green Card)...")
+    img1 = fetch_pexels_image("US visa passport stamp", "immigration documents passport")
+    if img1 and validate_image_url(img1):
+        article1["image_url"] = img1
+        article1["image_attribution"] = "Pexels"
+        print(f"  ✓ Article 1 image set")
     else:
-        print(f"  ✗ Insert failed: {resp.status_code} {resp.text[:300]}")
+        print(f"  ⚠ No valid image for Article 1, publishing without image")
+
+    # Article 2: Karachi water crisis — try Pexels
+    print("\n📸 Sourcing image for Article 2 (Karachi Water Crisis)...")
+    img2 = fetch_pexels_image("water tanker truck city", "water crisis urban dry tap")
+    if img2 and validate_image_url(img2):
+        article2["image_url"] = img2
+        article2["image_attribution"] = "Pexels"
+        print(f"  ✓ Article 2 image set")
+    else:
+        print(f"  ⚠ No valid image for Article 2, publishing without image")
+
+    # Article 3: US GDP — try Pexels
+    print("\n📸 Sourcing image for Article 3 (US GDP)...")
+    img3 = fetch_pexels_image("wall street stock market trading floor", "US economy financial district")
+    if img3 and validate_image_url(img3):
+        article3["image_url"] = img3
+        article3["image_attribution"] = "Pexels"
+        print(f"  ✓ Article 3 image set")
+    else:
+        print(f"  ⚠ No valid image for Article 3, publishing without image")
+
+
+# ═══════════════════════════════════════════════════════════════
+# PUBLISH
+# ═══════════════════════════════════════════════════════════════
+
+def publish_article(article, label):
+    """Insert an article into Supabase."""
+    print(f"\n📝 Publishing: {label}")
+    print(f"   Headline: {article['headline'][:80]}...")
+    print(f"   Slug: {article['slug']}")
+    print(f"   Category: {article['category']}")
+    print(f"   Image: {'Yes' if article.get('image_url') else 'No'}")
+
+    # Word count check
+    word_count = len(article["body"].split())
+    print(f"   Word count: {word_count}")
+    if word_count < 400:
+        print(f"   ✗ REJECTED: Article under 400 words ({word_count})")
         return None
 
+    result = sb_insert("p2_articles", article)
+    if result:
+        art_id = result.get("id")
+        print(f"   ✓ Published with ID: {art_id}")
+        return art_id
+    return None
+
+
+def main():
+    print("=" * 60)
+    print("The Videshi — News Writer (2026-05-30 evening)")
+    print("=" * 60)
+
+    # Source images
+    source_images()
+
+    # Publish
+    ids = []
+    for article, label in [
+        (article1, "Article 1: EB-2 Green Card Freeze"),
+        (article2, "Article 2: Karachi Water Crisis"),
+        (article3, "Article 3: US GDP Revised Down"),
+    ]:
+        art_id = publish_article(article, label)
+        if art_id:
+            ids.append(art_id)
+
+    print(f"\n{'=' * 60}")
+    print(f"✓ Published {len(ids)}/{3} articles")
+    print(f"{'=' * 60}")
 
-# ── Articles ─────────────────────────────────────────────────────────────
-
-def article_brahmos():
-    """Article 1: India-Vietnam BrahMos missile deal."""
-    print("\n═══ Article 1: India-Vietnam BrahMos Deal ═══")
-
-    slug = "india-signs-brahmos-missile-deal-vietnam-629-million-indonesia-next-20260530"
-    headline = "India Has Signed a $629 Million BrahMos Missile Deal With Vietnam. Indonesia Is Next."
-    subheadline = "The defence secretary confirmed the deal at the Shangri-La Dialogue — making Vietnam India's second export customer for the supersonic cruise missile after the Philippines."
-
-    body = """India has signed a deal to supply BrahMos supersonic cruise missiles to Vietnam, Defence Secretary Rajesh Kumar Singh confirmed on Saturday at the Shangri-La Dialogue in Singapore. A similar deal with Indonesia is in its "final stages," Singh said, marking a significant expansion of India's defence export ambitions in Southeast Asia.
-
-The Vietnam contract is estimated to be worth approximately 60 billion rupees ($629 million), including training and logistical support, according to earlier Reuters reporting. Singh did not disclose specific financial terms but made clear that the agreement has been signed, even if it has not yet been publicly announced by either government.
-
-"My understanding is that with both Indonesia and with Vietnam, the deal is in the final stages. In fact, for Vietnam, I understand that it has already been signed, probably not publicly announced," Singh told a media event on the sidelines of the Shangri-La Dialogue. "You are in the category of friendly foreign countries with whom we would be happy to share this kind of advanced technology."
-
-## What the BrahMos Is — and Why It Matters
-
-The BrahMos is a supersonic cruise missile jointly developed by India and Russia through a joint venture established in 1998. It can travel at speeds up to Mach 2.8 — nearly three times the speed of sound — and can be launched from ships, submarines, aircraft, and land-based platforms. Its speed and low-altitude flight path make it extremely difficult to intercept.
-
-For India, the BrahMos has become the flagship product of its growing defence export portfolio. The country has been steadily building up domestic defence manufacturing capacity, driven by Prime Minister Narendra Modi's push for self-reliance in defence production under the "Make in India" initiative.
-
-## The Philippines Set the Template
-
-The Philippines became India's first BrahMos export customer, receiving its first batch of the missiles in 2024. A second batch was delivered in April 2025. The deal demonstrated that India could successfully execute a complex weapons export involving training, logistics, and long-term support — a capability that was previously limited to a small number of arms-exporting nations.
-
-The Vietnam deal now makes Hanoi India's second BrahMos customer and significantly deepens the defence relationship between the two countries. Earlier this month, Defence Minister Rajnath Singh travelled to Hanoi for extensive discussions with his Vietnamese counterpart, General Phan Van Giang, covering maritime security, defence industry cooperation, and regional stability.
-
-## Indonesia Could Be Third
-
-Singh's confirmation that Indonesia is in the "final stages" of a similar deal suggests India may soon have three Southeast Asian countries operating the BrahMos — a strategic corridor that runs through some of the most contested waters in the Indo-Pacific.
-
-The timing is notable. The deals come as China continues to expand its military presence in the South China Sea, a region where Vietnam, Indonesia, and the Philippines all have competing territorial claims with Beijing. For these countries, the BrahMos offers a credible deterrent at a price point significantly lower than comparable Western missile systems.
-
-## The Diaspora Angle
-
-For the Indian diaspora, the BrahMos deals represent something beyond defence strategy. They signal India's emergence as a serious player in the global arms market — a shift from being the world's largest arms importer to becoming an increasingly capable exporter. India's defence exports have risen sharply in recent years, crossing $2.8 billion in FY2024, and the government has set a target of $5 billion annually by 2025.
-
-The broader message from Singh at the Shangri-La Dialogue was unmistakable: India is positioning itself as a defence partner of choice for Southeast Asian nations, offering advanced technology with fewer strings attached than Western suppliers typically impose.
-
-"We treat you all as friendly foreign countries with whom we can share advanced defence technology," Singh told the gathering in Singapore.
-
-*Sources: Reuters, IANS, The Business Standard*"""
-
-    # Image: Try Wikipedia for BrahMos
-    print("  Sourcing image...")
-    img_url = fetch_wikipedia_person_image("BrahMos")
-    if not img_url:
-        img_url = fetch_pexels_image("missile defense military", "cruise missile launch")
-
-    final_image = None
-    image_attribution = None
-    if img_url:
-        final_image = upload_image_to_supabase(img_url, f"{slug}.jpg")
-        if final_image:
-            if "upload.wikimedia.org" in img_url:
-                image_attribution = "Wikimedia Commons"
-            else:
-                image_attribution = "The Videshi"
-
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "news",
-        "vertical": "news",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": "Reuters, IANS",
-        "image_url": final_image,
-        "image_attribution": image_attribution,
-    }
-    return insert_article(article)
-
-
-def article_chandrayaan():
-    """Article 2: Chandrayaan-3 Goddard Award."""
-    print("\n═══ Article 2: Chandrayaan-3 Goddard Award ═══")
-
-    slug = "chandrayaan-3-wins-goddard-astronautics-award-aiaa-highest-honor-20260530"
-    headline = "Chandrayaan-3 Has Won America's Highest Honor in Astronautics. ISRO Joins Jeff Bezos on the List."
-    subheadline = "The AIAA Goddard Astronautics Award recognizes the 2023 moon landing that made India the first nation to reach the lunar south pole. India's ambassador accepted it in Washington."
-
-    body = """India's Chandrayaan-3 lunar mission has been awarded the 2026 Goddard Astronautics Award by the American Institute of Aeronautics and Astronautics — the highest honor the organization bestows for achievements in astronautics. The award was presented at the AIAA ASCEND 2026 Conference in Washington, D.C., on May 21.
-
-India's Ambassador to the United States, Vinay Kwatra, accepted the award on behalf of the Indian Space Research Organisation (ISRO). The citation recognized "the groundbreaking landing of ISRO's Chandrayaan-3 near the lunar south pole region, to deepen our understanding of the moon and beyond."
-
-## What the Award Means
-
-The Goddard Astronautics Award is not a routine recognition. Named after Robert H. Goddard — the American physicist who built and launched the world's first liquid-fueled rocket in 1926 — the award has been given to a small number of individuals and organizations who have pushed the boundaries of space exploration.
-
-Previous recipients include Jeff Bezos, founder of Blue Origin, and Michael Hawes, a veteran NASA engineer who contributed to the design and operation of human spaceflight programs. ISRO's addition to this list places India's space agency alongside the most elite names in global astronautics.
-
-## The Mission That Changed India's Space Story
-
-On August 23, 2023, Chandrayaan-3's Vikram lander touched down near the Moon's south pole — a region of immense scientific and strategic importance that no spacecraft from any nation had previously reached at the surface level. The landing made India only the fourth country to successfully soft-land on the Moon, after the United States, the Soviet Union, and China.
-
-But it was the location that made the achievement extraordinary. The lunar south pole is believed to contain deposits of water ice in permanently shadowed craters — a resource that could one day support human habitation and fuel production for deeper space missions. Chandrayaan-3's Pragyan rover confirmed the presence of key chemical elements in the south polar soil, including sulfur, sodium, and iron, providing data that will inform every future mission to the region.
-
-The mission also demonstrated India's ability to achieve complex space objectives at a fraction of the cost of comparable programs elsewhere. Chandrayaan-3's total budget was approximately $75 million — less than the production budget of many Hollywood films and a fraction of what NASA or ESA typically spend on lunar missions.
-
-## Space Vision 2047
-
-In his remarks at the ASCEND conference, Ambassador Kwatra used the award presentation to outline Prime Minister Narendra Modi's Space Vision 2047 — India's ambitious roadmap for the next two decades of space exploration.
-
-The plan includes India's first human spaceflight under the Gaganyaan program, now scheduled for 2027. It also envisions the Chandrayaan-4 mission, a mission to Venus, and the establishment of the Bharat Antariksh Station — India's own space station — by 2035. The most ambitious goal: placing an Indian astronaut on the Moon by 2040.
-
-Kwatra called for strengthened collaboration between the governments, industries, and research institutions of India and the United States, underscoring the deepening partnership between the two nations in space exploration.
-
-## Why It Matters for the Diaspora
-
-For the millions of Indians and Indian-Americans in the United States, the Goddard Award carries a particular resonance. It is one thing for India's space achievements to be celebrated domestically; it is another for America's premier aerospace engineering organization to formally recognize them as the year's most significant contribution to astronautics.
-
-The award also comes at a moment when the US-India space partnership is accelerating. NASA and ISRO signed the Artemis Accords in 2023, and discussions are underway for joint lunar and deep space missions. India's commercial space sector — now home to over 200 startups — is increasingly integrated with the global space economy.
-
-The Goddard Award is a trophy, but it is also a signal. India's space program is no longer an underdog story. It is, by the formal reckoning of America's own space community, world-class.
-
-*Sources: AIAA, ANI, PTI, Storyboard18*"""
-
-    # Image: ISRO / Chandrayaan-3
-    print("  Sourcing image...")
-    img_url = fetch_wikipedia_person_image("Chandrayaan-3")
-    if not img_url:
-        img_url = fetch_wikipedia_person_image("Indian Space Research Organisation")
-    if not img_url:
-        img_url = fetch_pexels_image("moon landing spacecraft", "lunar surface space mission")
-
-    final_image = None
-    image_attribution = None
-    if img_url:
-        final_image = upload_image_to_supabase(img_url, f"{slug}.jpg")
-        if final_image:
-            if "upload.wikimedia.org" in img_url:
-                image_attribution = "Wikimedia Commons"
-            else:
-                image_attribution = "The Videshi"
-
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "news",
-        "vertical": "news",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": "AIAA, ANI, PTI",
-        "image_url": final_image,
-        "image_attribution": image_attribution,
-    }
-    return insert_article(article)
-
-
-def article_trade_deal():
-    """Article 3: India-US trade deal 'last 1%'."""
-    print("\n═══ Article 3: India-US Trade Deal ═══")
-
-    slug = "india-us-trade-deal-last-one-percent-ambassador-gor-delegation-june-20260530"
-    headline = "The India-US Trade Deal Is Down to the Last 1 Percent. A Delegation Arrives in Delhi Next Week."
-    subheadline = "Ambassador Sergio Gor says the deal could be signed within weeks. But the 'last 1 percent' is the hardest part — and the legal landscape under it has shifted."
-
-    body = """India and the United States are closer than ever to finalizing an interim trade agreement, with US Ambassador to India Sergio Gor revealing that only "the last 1 percent" of the deal remains unresolved. A US trade delegation is scheduled to arrive in New Delhi from June 1-4 to work through the final clauses.
-
-"Just last week, India had sent a team to Washington DC to finalize the last 1 percent of that trade deal. Next week we will welcome a US delegation here to continue those talks," Gor said on Friday at the US-India TRUST Initiative event at IIT Delhi. "We fully expect that the trade deal will be signed over the next few weeks and months."
-
-## What Changed the Game
-
-The path to this moment has been anything but smooth. The foundational framework for the interim trade arrangement was finalized through a joint statement on February 7. But the negotiation landscape was upended shortly after when the US Supreme Court struck down all reciprocal tariffs — effectively dismantling the primary leverage the Trump administration had been using to negotiate trade concessions with global partners.
-
-Washington pivoted quickly, imposing a 10 percent auxiliary duty on all incoming goods under Section 122 of the Trade Act for a 150-day window beginning February 24. Simultaneously, US authorities launched dual investigations under Section 301, scrutinizing major exporters over alleged excess industrial capacity and domestic labor practices.
-
-The legal distinction matters. Section 122 caps emergency tariffs at 15 percent for a maximum of 150 days. Section 301, by contrast, gives Washington uncapped authority to levy duties if an investigation finds that a trading partner's policies are damaging American commercial interests. India has already submitted comprehensive responses to both active federal probes.
-
-## The Numbers Tell the Story
-
-Ambassador Gor highlighted the extraordinary growth in bilateral economic ties. Trade in goods and services between India and the US has grown from $20 billion to over $220 billion over the past two decades — a more than tenfold increase that makes the relationship one of the most commercially significant in the world.
-
-The deal under negotiation covers multiple sectors: trade in goods, defence procurement, energy, AI and semiconductors, pharmaceuticals, critical minerals, and digital trade rules. For India, the agreement could open new export corridors and reduce tariff barriers on key products. For the US, it could deepen access to India's massive consumer market — 1.4 billion people with rising purchasing power.
-
-## Why the Last 1 Percent Is the Hardest
-
-Trade negotiators have a saying: the first 90 percent of a deal takes 10 percent of the time, and the last 10 percent takes 90 percent of the time. The final clauses typically involve the most politically sensitive issues — market access in protected sectors, compliance standards, agricultural subsidies, and intellectual property protections.
-
-"When you reach the last 1 percent, you are dealing with the core protectionist interests that both governments have been shielding throughout the process," noted analysts tracking the negotiations. Data from the US Trade Representative's office confirms that India remains central to the administration's "friend-shoring" strategy of diversifying supply chains away from over-reliance on China.
-
-## The Diaspora Dimension
-
-For the estimated 4.4 million Indian-Americans in the United States, the trade deal carries implications that go beyond tariff schedules. A formal bilateral trade framework would provide regulatory certainty for the growing number of Indian-American entrepreneurs and professionals who operate across both economies.
-
-It would also strengthen the strategic alignment between the two democracies at a moment when the relationship faces competing pressures — from the Iran war's impact on oil prices and supply chains, to the competition for semiconductor manufacturing capacity, to the ongoing immigration policy debates that directly affect Indian professionals.
-
-The June 1-4 delegation visit will be watched closely. If negotiators can close the remaining gap, the deal would be the most significant bilateral trade agreement India has concluded with the United States in decades — and a concrete deliverable for a relationship that both governments have described as the defining partnership of the 21st century.
-
-*Sources: ANI, Reuters, The Indian Eye, LatestLY*"""
-
-    # Image: Ambassador Sergio Gor or US-India trade
-    print("  Sourcing image...")
-    img_url = fetch_wikipedia_person_image("Sergio Gor")
-    if not img_url:
-        img_url = fetch_pexels_image("US India trade business handshake", "diplomatic trade agreement")
-
-    final_image = None
-    image_attribution = None
-    if img_url:
-        final_image = upload_image_to_supabase(img_url, f"{slug}.jpg")
-        if final_image:
-            if "upload.wikimedia.org" in img_url:
-                image_attribution = "Wikimedia Commons"
-            else:
-                image_attribution = "The Videshi"
-
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "news",
-        "vertical": "news",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": "ANI, Reuters",
-        "image_url": final_image,
-        "image_attribution": image_attribution,
-    }
-    return insert_article(article)
-
-
-# ── Main ─────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    print("═══════════════════════════════════════════════")
-    print("  The Videshi — News Writer — 2026-05-30 PM")
-    print("═══════════════════════════════════════════════")
-
-    results = []
-    for i, fn in enumerate([article_brahmos, article_chandrayaan, article_trade_deal]):
-        if i > 0:
-            print("  (waiting 3s to avoid rate limits...)")
-            time.sleep(3)
-        try:
-            art_id = fn()
-            results.append(("✓" if art_id else "✗", fn.__doc__.strip()))
-        except Exception as e:
-            print(f"  ✗ Exception: {e}")
-            results.append(("✗", f"{fn.__doc__.strip()}: {e}"))
-
-    print("\n═══ Summary ═══")
-    for status, desc in results:
-        print(f"  {status} {desc}")
-    print("═══════════════════════════════════════════════")
+    main()
