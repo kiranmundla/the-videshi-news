@@ -1,7 +1,102 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { formatLongDate } from "@/lib/articles";
 import { CATEGORIES } from "@/lib/categories";
+
+/* ── Category Nav Bar ─────────────────────────────────────── */
+/* Persistent nav shown below the masthead on every page.
+   Becomes sticky when user scrolls past it. */
+
+const NAV_CATEGORIES = [
+  { slug: "", label: "Home", path: "/" },
+  { slug: "news", label: "News", path: "/news" },
+  { slug: "nri-world", label: "Indians Abroad", path: "/nri-world" },
+  { slug: "sports", label: "Sports", path: "/sports" },
+  { slug: "entertainment", label: "Entertainment", path: "/entertainment" },
+  { slug: "technology", label: "Technology", path: "/technology" },
+  { slug: "markets-finance", label: "Markets", path: "/markets-finance" },
+  { slug: "lifestyle-health", label: "Lifestyle", path: "/lifestyle-health" },
+  { slug: "food", label: "Food", path: "/food" },
+  { slug: "immigration", label: "Immigration", path: "/immigration" },
+  { slug: "travel", label: "Travel", path: "/travel" },
+  { slug: "events", label: "Events", path: "/events" },
+  { slug: "stories", label: "Voices", path: "/stories" },
+];
+
+function CategoryNavBar() {
+  const { pathname } = useLocation();
+  const navRef = useRef<HTMLDivElement>(null);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const [stuck, setStuck] = useState(false);
+  const activeRef = useRef<HTMLAnchorElement>(null);
+
+  // Determine active slug from path
+  const routeSlug = pathname === "/" ? "" : pathname.replace(/^\//, "").split("/")[0];
+
+  // Intersection observer for sticky state
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const obs = new IntersectionObserver(
+      ([e]) => setStuck(!e.isIntersecting),
+      { threshold: 0 }
+    );
+    obs.observe(sentinel);
+    return () => obs.disconnect();
+  }, []);
+
+  // Auto-scroll to active pill on mount / route change
+  useEffect(() => {
+    if (activeRef.current) {
+      activeRef.current.scrollIntoView({
+        inline: "center",
+        block: "nearest",
+        behavior: "instant",
+      });
+    }
+  }, [routeSlug]);
+
+  return (
+    <>
+      {/* Sentinel — when it scrolls out of view, nav becomes sticky */}
+      <div ref={sentinelRef} className="h-0" />
+      <nav
+        ref={navRef}
+        className={`bg-background/95 backdrop-blur-sm border-b transition-shadow z-30 ${
+          stuck ? "fixed top-0 left-0 right-0 shadow-sm" : ""
+        }`}
+        style={{ borderColor: "hsl(var(--rule))" }}
+      >
+        <div className="container">
+          <div className="flex items-center overflow-x-auto scrollbar-none -mx-1 px-1 gap-0">
+            {NAV_CATEGORIES.map((cat) => {
+              const isActive = routeSlug === cat.slug;
+              return (
+                <Link
+                  key={cat.slug}
+                  to={cat.path}
+                  ref={isActive ? activeRef : undefined}
+                  className={`smallcaps shrink-0 px-3 py-2.5 text-[0.7rem] tracking-[0.12em] transition-colors relative whitespace-nowrap ${
+                    isActive
+                      ? "text-primary font-semibold"
+                      : "text-foreground/65 hover:text-foreground"
+                  }`}
+                >
+                  {cat.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-primary rounded-full" />
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </nav>
+      {/* Spacer when stuck to prevent content jump */}
+      {stuck && <div style={{ height: navRef.current?.offsetHeight || 40 }} />}
+    </>
+  );
+}
 
 function SearchBar({ onClose }: { onClose?: () => void }) {
   const [query, setQuery] = useState("");
@@ -58,6 +153,7 @@ export default function Masthead() {
   }, [menuOpen]);
 
   return (
+    <>
     <header className="bg-background relative">
       <div className="container">
         <div className="flex items-end justify-between pt-8 pb-4 md:pt-10 md:pb-5">
@@ -255,5 +351,7 @@ export default function Masthead() {
         </>
       )}
     </header>
+    <CategoryNavBar />
+    </>
   );
 }
