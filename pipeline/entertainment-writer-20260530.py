@@ -1,37 +1,27 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi – 2026-05-30 batch"""
+"""Entertainment writer for The Videshi — 2026-05-30 batch"""
 
-import os, json, requests, urllib.parse, uuid, time
+import json, os, re, sys, time, uuid, requests, urllib.parse
 from datetime import datetime, timezone
 
-# Load env
-def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                if line.startswith('export '):
-                    line = line[7:]
-                key, val = line.split('=', 1)
-                val = val.strip().strip('"').strip("'")
-                os.environ[key] = val
-
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
-
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
+# ── Supabase config ─────────────────────────────────────────────
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
 }
 
+PEXELS_KEY = None
+pexels_env = os.path.expanduser("~/.env.pexels")
+if os.path.exists(pexels_env):
+    for line in open(pexels_env):
+        if line.startswith("PEXELS_API_KEY="):
+            PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
+
+# ── Helpers ─────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -51,349 +41,270 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels API using curl (Python urllib gets 403)."""
-    import subprocess
+    """Fetch an image from Pexels API. Returns URL or None."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            cmd = [
-                'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'
-            ]
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
-            if result.returncode == 0:
-                data = json.loads(result.stdout)
-                photos = data.get('photos', [])
-                if photos:
-                    url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('large')
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                headers={"Authorization": PEXELS_KEY},
+                params={"query": q, "per_page": 5, "orientation": "landscape"},
+                timeout=10,
+            )
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                for p in photos:
+                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
                     if url:
-                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
                         return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+
 def validate_image_url(url):
-    """Validate that image URL returns HTTP 200 with image content > 5KB."""
+    """Return True if URL returns an image with Content-Length > 5000."""
     if not url:
+        return False
+    # Reject Meta CDN URLs
+    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com"]
+    if any(b in url for b in banned):
+        print(f"  ✗ Banned CDN URL: {url[:60]}")
+        return False
+    if any(p in url for p in ["_nc_ht=", "_nc_cat=", "ccb="]):
+        print(f"  ✗ Signed Meta URL: {url[:60]}")
         return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        content_type = r.headers.get('Content-Type', '')
-        content_length = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in content_type and content_length > 5000:
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if "image" in ct and cl > 5000:
             return True
         # Some servers don't return Content-Length on HEAD
-        if r.status_code == 200 and 'image' in content_type:
+        if "image" in ct and cl == 0:
             return True
-    except:
-        pass
+        print(f"  ✗ Image validation failed: CT={ct}, CL={cl}")
+    except Exception as e:
+        print(f"  ⚠ Image validation error: {e}")
     return False
 
-def publish_article(article):
-    """Publish article to Supabase."""
-    art_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).isoformat()
-    
-    payload = {
-        'id': art_id,
-        'headline': article['headline'],
-        'subheadline': article['subheadline'],
-        'body': article['body'],
-        'slug': article['slug'],
-        'category': 'entertainment',
-        'vertical': 'entertainment',
-        'status': 'published',
-        'published_at': now,
-        'sources': json.dumps(article['sources']),
-        'image_url': article.get('image_url', ''),
-        'image_attribution': article.get('image_attribution', ''),
-    }
 
+def sb_insert(table, payload):
+    """Insert a row and return the response JSON (list)."""
     r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        f"{SUPABASE_URL}/rest/v1/{table}",
         headers=HEADERS,
         json=payload,
-        timeout=30
+        timeout=30,
     )
-    if r.status_code in (200, 201):
-        print(f"  ✅ Published: {article['headline'][:60]}...")
-        return art_id
-    else:
-        print(f"  ❌ Failed to publish: {r.status_code} {r.text[:200]}")
+    if r.status_code not in (200, 201):
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
         return None
+    return r.json()
 
 
-# ===================== ARTICLES =====================
+# ── Articles ────────────────────────────────────────────────────
+articles = [
+    {
+        "headline": "Aamir Khan Has Three Films Lined Up Back-to-Back. A Cricket Epic, a 3 Idiots Sequel, and a Superhero Movie With Lokesh Kanagaraj.",
+        "subheadline": "The actor will shoot Ashutosh Gowariker's Lala Amarnath biopic from October, then roll straight into 3 Idiots 2 with Vicky Kaushal joining the original trio, and a superhero film with the Kaithi director after that.",
+        "slug": "aamir-khan-three-films-lala-amarnath-3-idiots-sequel-lokesh-kanagaraj-superhero-nri-20260530",
+        "image_people": ["Aamir Khan"],
+        "pexels_fallback": ("Bollywood actor on set", "Indian cinema filming"),
+        "body": """Aamir Khan is doing something he almost never does: stacking his calendar.
 
-articles = []
+The actor who built a career on obsessive single-film focus — one release every two to three years, each meticulously prepared — has locked dates for three consecutive projects. For a generation of NRI moviegoers who grew up timing their India trips around Aamir releases, this is genuinely unprecedented.
 
-# --- ARTICLE 1: Karan Johar Instagram mass unfollow ---
-print("\n📝 Article 1: Karan Johar Instagram unfollow...")
-img1 = fetch_wikipedia_person_image("Karan Johar")
-if not validate_image_url(img1):
-    img1 = fetch_pexels_image("Instagram social media phone")
-    
-articles.append({
-    'headline': "Karan Johar Unfollowed Shah Rukh Khan, Alia Bhatt, and Nearly Everyone on Instagram. Then He Told India to Calm Down.",
-    'subheadline': "The filmmaker's mass unfollow triggered a national meltdown. His explanation was three sentences long.",
-    'slug': 'karan-johar-unfollows-srk-alia-kareena-instagram-digital-detox-nri-20260530',
-    'image_url': img1 or '',
-    'image_attribution': 'Wikimedia Commons' if img1 and 'wikipedia' in str(img1).lower() or 'wikimedia' in str(img1).lower() else '',
-    'sources': [
-        {"name": "Filmfare", "url": "https://filmfare.com"},
-        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-        {"name": "Zoom TV", "url": "https://zoomtventertainment.com"}
-    ],
-    'body': """On Thursday night, eagle-eyed Instagram users noticed something strange on Karan Johar's profile. The filmmaker — who follows over 17 million people but more importantly, *is* followed by the entirety of Bollywood's inner circle — had quietly unfollowed nearly everyone.
+## The Cricket Film Comes First
 
-Shah Rukh Khan: gone. Alia Bhatt: gone. Kareena Kapoor Khan, Varun Dhawan, Sidharth Malhotra, Manish Malhotra, Gauri Khan, Aryan Khan, Suhana Khan, Ananya Panday, Malaika Arora, Kartik Aaryan — all vanished from his following list. By Friday morning, Karan was following just 74 accounts out of a previous count that stretched well into the hundreds.
+Starting October 2026, Aamir will shoot Ashutosh Gowariker's ambitious period sports drama based on the historic 1952 India-Pakistan Test series. The film centres on legendary cricketer Lala Amarnath and his friendship with Pakistan captain Abdul Hafeez Kardar during the partition era.
 
-Naturally, India lost its mind.
+This isn't just a cricket film. It's a partition story told through sport — the kind of emotionally loaded, historically rooted narrative that plays differently when you're watching it 8,000 miles from home. For the Indian diaspora, partition narratives carry a particular weight; many NRI families trace their own migration stories back to exactly this period.
 
-## The Internet Wrote the Script Before Karan Could
+Interestingly, Rajkumar Hirani and his longtime writing partner Abhijat Joshi are believed to be creatively involved with the screenplay, despite Hirani not directing. That's a significant detail — it means the film is getting the same level of script attention that produced 3 Idiots and PK.
 
-Within hours, Reddit threads were dissecting screenshots. Twitter was awash with theories — professional fallouts, personal feuds, a secret rift with SRK stretching back decades. The fact that Priyanka Chopra Jonas remained on the list while virtually every other A-lister was removed only added fuel. Why *her*? What did she know? Was this a coded message?
+## Then, the Sequel Everyone Wanted
 
-Entertainment portals ran it as breaking news. Fan armies mobilized. "KARAN JOHAR UNFOLLOWS SRK" trended nationally.
+The 3 Idiots sequel will go on floors in mid-2027, after the Gowariker film wraps. Reports suggest the film will feature a significant time jump and reunite the original trio of Aamir Khan, R. Madhavan, and Sharman Joshi.
 
-## Three Sentences. That's All He Needed.
+But the real headline is the casting addition: Vicky Kaushal is reportedly in talks for a prominent role — being described informally as the "fourth idiot." If confirmed, this is a collision of generations that could define the film's appeal for younger audiences who've grown up with both Aamir's legacy and Vicky's rise.
 
-Karan, to his credit, moved fast. He posted an Instagram Story that read: "It's a DIGITAL DETOX!!!! Am unfollowing everyone to reduce my time and energy spent on the gram!!! This can't be national news for gods sake... please clickbait something else! This is irrelevant!"
+For NRIs, 3 Idiots holds a special place. It's the film that crossed language barriers at diaspora dinner parties, that became shorthand for conversations about the Indian education system, that every second-generation kid has been told to watch. A sequel doesn't just carry commercial weight — it carries cultural expectation.
 
-A source close to the filmmaker confirmed to Filmfare that the mass unfollow was a social media strategy, not a personal statement. "It has nothing to do with any particular star, page, or person," the source said.
+## And Then, Something Entirely New
 
-## The Man Who Made Instagram Into a Career Move
+Aamir has also confirmed a superhero film with Tamil director Lokesh Kanagaraj, creator of the Kaithi universe and one of South Indian cinema's most commercially potent filmmakers. During a recent press interaction, Aamir said plainly: "It belongs to the superhero genre. It's a big-scale action film and will go on floors in the second half of 2026."
 
-For a filmmaker who has turned social media into a second career — his *Koffee with Karan* franchise is essentially a curated Instagram feed brought to life — the move is both ironic and oddly fitting. Karan Johar has spent years cultivating the most visible social circle in Indian entertainment. His following list was practically a cast sheet for Dharma Productions.
+This is Aamir's first superhero project and his first collaboration with a South Indian director. It signals something broader about where Bollywood's biggest names are looking for creative partnerships — increasingly southward.
 
-But even by Bollywood standards, the idea that a man unfollowing accounts on Instagram could dominate a national news cycle for 12 hours says something about the parasocial relationship between India and its film industry. The "who follows whom" metric has become its own gossip column, and KJo's list was the most-read one in the business.
+## What It Means for the Diaspora
 
-## Why This Matters to the Diaspora
+The practical upside: NRI audiences who typically get one Aamir Khan theatrical event every few years may see three in relatively quick succession. The first could land in late 2027 or early 2028, with the other two following within 18 months.
 
-For NRIs who grew up on *Kuch Kuch Hota Hai* and *Kabhi Khushi Kabhie Gham*, the KJo-SRK friendship is practically cultural infrastructure. The idea that it might be in trouble — even for a few hours — felt destabilizing in a way that says more about our emotional investment in Bollywood's inner circle than about any actual relationship dynamics.
+The deeper signal: India's most deliberate actor has decided that the current moment — with mythological epics, franchise sequels, and cross-industry collaborations redefining the market — requires him to move faster than his instincts usually allow.
 
-Karan, meanwhile, is back to posting Stories. His latest film, *Chand Mera Dil*, is navigating a modest box office run. And Instagram's algorithm, one suspects, will not miss the 400-odd accounts he just shed.
+Whether all three land with the impact of his best work remains an open question. What's not in question is that Aamir Khan, at 61, is betting bigger on his next chapter than he has on any chapter before.""",
+        "sources": json.dumps([
+            {"name": "Sacnilk", "url": "https://sacnilk.com/articles/bollywood/aamir-khan-shoots-timeline-ashutosh-gowarikar-3-idiots-sequel"},
+            {"name": "Sacnilk", "url": "https://sacnilk.com/articles/bollywood/aamir-khan-lokesh-kanagaraj-superhero-film-confirmed"},
+            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com/news/bollywood/aamir-khan-rajkumar-hirani-dadasaheb-phalke-biopic/"}
+        ]),
+    },
+    {
+        "headline": "David Dhawan Says Hai Jawani Toh Ishq Hona Hai Will Be His Last Film. Bollywood's Comedy King Just Got a Film Festival in His Honour.",
+        "subheadline": "The veteran director behind Coolie No 1, Hero No 1, and Biwi No 1 hints at retirement due to health. PVR INOX launched a David Dhawan Film Festival. Salman Khan showed up. The film opens June 5.",
+        "slug": "david-dhawan-retirement-hai-jawani-film-festival-pvr-salman-khan-varun-dhawan-nri-20260530",
+        "image_people": ["David Dhawan"],
+        "pexels_fallback": ("Bollywood comedy film set", "Indian cinema director"),
+        "body": """David Dhawan's retirement announcement didn't arrive in a dramatic press conference. It came the way most real things do in Bollywood — in a quiet aside during a promotional interaction.
 
-The friendships, by all accounts, remain intact. The follow button, apparently, was the only casualty.
+"I don't think I should do more," the 69-year-old director said recently. "This might be my last film. After this, I'll just be Varun's father."
 
-*Karan Johar recently became India's first filmmaker to attend the Met Gala, wearing a custom Manish Malhotra ensemble inspired by Raja Ravi Varma's paintings.*"""
-})
+The film in question is Hai Jawani Toh Ishq Hona Hai, a comedy starring his son Varun Dhawan alongside Mrunal Thakur and Pooja Hegde. It releases on June 5 — and if Dhawan means what he says, it closes a career that defined what mainstream Bollywood comedy looked and sounded like for an entire generation.
 
-# --- ARTICLE 2: Ishaan Khatter Biarritz Film Festival jury ---
-print("\n📝 Article 2: Ishaan Khatter Biarritz jury...")
-img2 = fetch_wikipedia_person_image("Ishaan Khatter")
-if not validate_image_url(img2):
-    img2 = fetch_wikipedia_person_image("Ishaan Khattar")
-if not validate_image_url(img2):
-    img2 = fetch_pexels_image("film festival red carpet")
+## The No. 1 Legacy
 
-articles.append({
-    'headline': "Ishaan Khatter Is the Only Indian on a Film Festival Jury Led by Kristen Stewart. The Festival Is in France.",
-    'subheadline': "The Biarritz Film Festival's jury panel places the Dhadak star alongside filmmakers from five countries. He also just made the Gold House 100 list.",
-    'slug': 'ishaan-khatter-biarritz-film-festival-jury-kristen-stewart-france-nri-20260530',
-    'image_url': img2 or '',
-    'image_attribution': 'Wikimedia Commons' if img2 and ('wikipedia' in str(img2).lower() or 'wikimedia' in str(img2).lower()) else '',
-    'sources': [
-        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-        {"name": "ANI", "url": "https://aninews.in"}
-    ],
-    'body': """Ishaan Khatter has been invited to serve on the jury of the Biarritz Film Festival — Nouvelles Vagues 2026, scheduled for June 23–28 in the French coastal city. He is the only Indian on the panel, which will be chaired by American actress and filmmaker Kristen Stewart.
+For NRIs of a certain vintage, David Dhawan's filmography isn't a list of movies — it's a soundtrack to childhood weekends. Coolie No 1. Hero No 1. Biwi No 1. Judwaa. Haseena Maan Jaayegi. These were the films that played on rented VHS tapes and pirated DVDs in living rooms from Edison to Southall to Brampton.
 
-The rest of the jury reads like a casting call for global independent cinema: Canadian actress Whitney Peak, French actor-director Raphaël Quenard, French filmmaker Nathan Ambrosioni, actress Suzy Bemba, Italian director Carolina Cavalli, and British actress Esmé Creed-Miles.
+His formula was simple and unashamed: mistaken identities, family chaos, catchy songs, and Govinda. The Govinda-David Dhawan partnership alone produced 17 films — a run of mass comedy that has no parallel in Hindi cinema. When Karisma Kapoor joined the equation, the results were even more electric.
 
-## A Festival Built for the Next Generation
+Modern sensibilities might question some of the humour. That's fair. But what's harder to argue with is Dhawan's instinct for what the broadest possible audience wanted to feel when they sat down in a theatre: entertained, relaxed, unburdened. In an industry now obsessed with looking premium and curated, that instinct has become alarmingly rare.
 
-The Biarritz Film Festival isn't Cannes. It doesn't have 70 years of old-guard tradition or red carpets that require three hours of fashion diplomacy. What it does have is a sharp editorial eye for cinema centered around younger generations and emerging voices — exactly the kind of platform that's starting to matter more than legacy festivals for artists building international careers in real time.
+## The Film Festival Farewell
 
-Now in its fourth edition, the festival has quietly become one of Europe's most closely watched incubators for contemporary storytelling. Having an Indian voice at the juror's table — particularly one who has straddled both Bollywood spectacle and international prestige — is a statement about where Indian cinema sits in the global conversation right now.
+PVR INOX hosted a David Dhawan Film Festival in Mumbai ahead of the release, screening his classics across multiplexes. Salman Khan attended the launch event, where he and Varun Dhawan shared a stage celebrating the director's legacy.
 
-## Ishaan's International Trajectory
+The evening produced a perfectly Bollywood moment: Salman joked that Varun had "picked up another one" of his songs — a reference to the recreated version of Chunari Chunari from Biwi No 1 that features in the new film. Original composer Anu Malik gave his public blessing, calling Varun's performance outstanding.
 
-The invitation arrives during what is turning into a breakout international phase for Ishaan. His trajectory has been deliberate: *A Suitable Boy* for Mira Nair opened BBC doors; *The Royals* expanded his streaming footprint; and *Homebound* earned festival circuit appreciation. Each project has extended his visibility beyond the traditional Bollywood audience.
+The film itself is classic David Dhawan territory: a chaotic love triangle with Varun, Mrunal, and Pooja, supported by Jimmy Shergill, Mouni Roy, Chunky Panday, and Maniesh Paul. It's the fourth collaboration between father and son, after Main Tera Hero, Judwaa 2, and the 2020 Coolie No 1 reboot.
 
-Earlier this year, Ishaan became the only Indian male actor featured on the Gold House Gold 100 list, an annual recognition of influential Asian and Pacific figures across industries. That kind of cross-industry visibility — where you're not just "Bollywood actor in an international project" but genuinely part of the global cultural conversation — is rare for Indian actors who didn't come through Hollywood first.
+## A Diaspora Goodbye
 
-## What This Means for Indian Representation
+For the diaspora, Dhawan's retirement means something specific. His films were gateway Bollywood — the ones you could show anyone without explanation, the ones that needed no subtitles beyond laughter. They were the films that made uncles quote dialogue at family gatherings and aunties hum songs while cooking.
 
-For the diaspora, Ishaan's jury appointment signals something that goes beyond one actor's career milestone. Indian actors have historically appeared at international festivals as guests, presenters, or red-carpet ornaments. Being asked to judge — to have a say in which films win, which voices get elevated — is fundamentally different. It implies curatorial authority, not just star power.
+Whether Hai Jawani Toh Ishq Hona Hai genuinely marks the end or becomes one of Bollywood's many "last films" that aren't, the acknowledgment matters. The industry is losing one of the last directors who truly understood that sometimes, the audience just wants to laugh for three hours and walk out feeling lighter.
 
-The last few years have seen a slow but significant shift: Deepika Padukone at Cannes as a jury member, AR Rahman's continued global presence, and now Ishaan at Biarritz. The pattern suggests Indian talent is being integrated into the infrastructure of global cinema, not just invited to its parties.
+Health concerns are reportedly a factor in the decision. Dhawan hasn't elaborated publicly, but his candour about stepping back — "I'll just be Varun's father" — suggests a man who has made his peace with the transition.
 
-## What's Next
+The film opens June 5. For fans who grew up on the No. 1 series, that's worth marking on the calendar.""",
+        "sources": json.dumps([
+            {"name": "Filmfare", "url": "https://www.filmfare.com/news/bollywood/david-dhawan-to-retire-post-hai-jawani-toh-ishq-hona-hai"},
+            {"name": "Mirchi", "url": "https://www.mirchi.in/bollywood/salman-khan-varun-dhawan-david-dhawan-film-festival"},
+            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com/news/bollywood/david-dhawan-retirement-bollywood-comedy/"}
+        ]),
+    },
+    {
+        "headline": "Ranveer Singh's Pralay Will Start Filming in August. The FWICE Ban Doesn't Seem to Be Stopping Anything.",
+        "subheadline": "While the Don 3 dispute rages on — with Salman Khan now playing peacemaker — Ranveer's next project, a survival drama, is moving forward on schedule. The actor isn't sitting still.",
+        "slug": "ranveer-singh-pralay-august-filming-fwice-ban-don-3-salman-khan-peace-nri-20260530",
+        "image_people": ["Ranveer Singh"],
+        "pexels_fallback": ("Bollywood actor press conference", "Indian film industry"),
+        "body": """The Federation of Western India Cine Employees issued a non-cooperation directive against Ranveer Singh on May 25. Five days later, his next film has locked a shooting start date.
 
-On the work front, Ishaan will next be seen in *Jugaadu*, a comic caper that marks his first production venture. He shared the first look from the film on Instagram earlier this month.
+Pralay, described as a survival drama, is set to begin filming in August 2026 — directly defying the implicit threat of industry isolation that the FWICE directive carries. If there was any ambiguity about whether the Don 3 fallout would derail Ranveer's career momentum, the answer appears to be: not yet.
 
-The Biarritz Film Festival runs from June 23 to 28, bringing together filmmakers and emerging creative voices from across the world. Ishaan will be the one deciding which of them deserves the spotlight.
+## How We Got Here
 
-*Not bad for a kid from Mumbai who made his debut dancing on the streets in a Majid Majidi film.*"""
-})
+The sequence of events is worth understanding, because it tells a story about how Bollywood's power structures work — and don't.
 
-# --- ARTICLE 3: Anushka Sharma + One8 Yoga ---
-print("\n📝 Article 3: Anushka Sharma + One8 Yoga...")
-img3 = fetch_wikipedia_person_image("Anushka Sharma")
-if not validate_image_url(img3):
-    img3 = fetch_pexels_image("yoga activewear fashion")
+Ranveer was attached to Don 3, Farhan Akhtar's franchise reboot, since its announcement in August 2023. Reports indicate he exited just weeks before shooting was set to begin. His side says the script was never finalized and he had fundamental creative differences — he wanted a darker, more aggressive Don. Farhan's side says the script was shared in stages and approved by the actor, and that Excel Entertainment had already incurred massive pre-production costs.
 
-articles.append({
-    'headline': "Anushka Sharma Just Joined Virat Kohli's Sportswear Company. Together They're Launching a Yoga Line on International Yoga Day.",
-    'subheadline': "The actor has acquired a minority stake in Agilitas Sports and will co-create the One8 Yoga activewear line. The June 21 launch targets a $22 billion market.",
-    'slug': 'anushka-sharma-agilitas-sports-one8-yoga-virat-kohli-activewear-nri-20260530',
-    'image_url': img3 or '',
-    'image_attribution': 'Wikimedia Commons' if img3 and ('wikipedia' in str(img3).lower() or 'wikimedia' in str(img3).lower()) else '',
-    'sources': [
-        {"name": "Inc42", "url": "https://inc42.com"},
-        {"name": "Economic Times", "url": "https://economictimes.indiatimes.com"},
-        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"}
-    ],
-    'body': """Anushka Sharma has acquired a minority stake in Agilitas Sports, the startup that owns Virat Kohli's One8 sportswear brand. As part of the deal, she will co-create One8 Yoga — a yoga-focused activewear line set to launch on June 21, International Day of Yoga.
+Farhan's production house filed a formal complaint. FWICE issued its non-cooperation directive after claiming Ranveer failed to attend multiple meetings. Then CINTAA — a separate industry body — came out in Ranveer's support. Padmini Kolhapure, the CINTAA president, publicly backed his position.
 
-The financial details of Sharma's investment remain undisclosed, but the strategic move is anything but quiet. It places cricket's most prominent power couple at the center of India's booming athleisure market, projected to reach $22.4 billion by 2034.
+So now there are two industry bodies on opposite sides of the same dispute. That kind of institutional split is rare and revealing.
 
-## The Agilitas Story
+## Salman Khan, Playing Cupid
 
-Agilitas Sports was founded in 2023 by former Puma India managing director Abhishek Ganguly, along with ex-Puma executives Atul Bajaj and Amit Prabhu. The company is vertically integrated — spanning product design, manufacturing, distribution, and retail — a rarity in India's sportswear landscape, where most brands rely on third-party sourcing.
+In the middle of all this, Salman Khan stepped in as mediator. According to multiple reports confirmed by Bollywood Hungama, Salman personally called both Ranveer and Farhan.
 
-Kohli joined Agilitas in 2025 after ending his eight-year, ₹110-crore partnership with Puma. He invested approximately ₹40 crore and brought the One8 brand into Agilitas's portfolio. Now, with Anushka on board, the company is expanding from performance sportswear into the wellness and lifestyle segment.
+The message was characteristically direct: resolve it between yourselves, don't involve third parties, don't let it damage the industry. A source quoted Salman as saying he explained to Farhan that creative differences are "a common thing in the industry for decades" while also having "a long chat with Ranveer, understanding his stance."
 
-"By building the category thoughtfully from the ground up, the focus will remain on comfort, movement, functionality, and versatility, while ensuring the products seamlessly integrate into daily routines," Sharma said in a statement.
+Both parties have reportedly taken the words seriously. There's talk of eventually working together again once tensions cool.
 
-## Why Yoga Wear, and Why Now
+The mediation is significant beyond the gossip value. In an industry that's becoming increasingly corporatized and contract-driven, Salman's intervention represents the older power model — where relationships and personal authority matter more than legal frameworks. Whether that's a good or bad thing depends on your perspective. But it's clearly still effective.
 
-India's relationship with yoga apparel is paradoxical. The country invented yoga but imports most of its premium yoga wear — Lululemon, Alo Yoga, Nike — from brands that learned about downward dog from a studio in Santa Monica. A homegrown line backed by two of India's most recognized global faces fills a gap that's been oddly overlooked.
+## What Pralay Means
 
-For the Indian diaspora, this is particularly interesting. NRIs have been disproportionate consumers of Western athleisure brands, partly because quality Indian alternatives simply didn't exist in the premium segment. One8 Yoga could change that calculus, especially if it can nail the fit-and-fabric equation that Western brands have dominated.
+Pralay itself is a new genre territory for Ranveer. Details are thin, but it's described as a survival drama — a departure from the franchise action and historical epics that have defined his recent career. The fact that it's moving forward suggests that producers are willing to work with Ranveer despite the FWICE directive, which is technically a recommendation to its member technicians not to work with him.
 
-The June 21 launch date is deliberately symbolic — International Yoga Day draws global attention to India's wellness heritage, and attaching a product launch to it signals that One8 Yoga is positioning itself as more than athleisure. It's a cultural statement.
+The practical reality: FWICE directives carry weight with below-the-line crew but don't have legal enforcement power. Major producers with established relationships can work around them, especially when a competing industry body is publicly supporting the actor.
 
-## Anushka's Quiet Pivot
+## The Diaspora Perspective
 
-For those tracking Anushka Sharma's career, the Agilitas investment is the latest in a deliberate pivot away from acting and toward entrepreneurship. Her last theatrical release was *Zero* alongside Shah Rukh Khan. While fans have speculated endlessly about her return to the screen, Sharma has focused on her production company Clean Slate Filmz and, increasingly, business investments that align with the lifestyle she's been building publicly — wellness, fitness, mindful living.
+For NRI audiences, the Don 3 saga is one of those inside-Bollywood dramas that sounds exotic until you realize it's just a contract dispute dressed in celebrity clothing. But the underlying tensions — creative control versus producer investment, actor autonomy versus institutional power, the old handshake model versus Hollywood-style contracts — are genuinely interesting.
 
-The fact that she's not just endorsing a brand but investing capital and co-creating a product line suggests this isn't a celebrity endorsement dressed up as a partnership. She has skin in the game.
+What matters commercially is simpler: Ranveer Singh, coming off the historic ₹1,800-crore worldwide success of Dhurandhar 2, is still making movies. The FWICE ban has not created the career crisis it might have in a less fragmented industry. And Pralay, whatever it turns out to be, will have one of the biggest stars in Indian cinema at its centre when cameras roll in August.""",
+        "sources": json.dumps([
+            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com/news/bollywood/ranveer-singh-pralay-filming-august-fwice/"},
+            {"name": "Filmfare", "url": "https://www.filmfare.com/news/bollywood/salman-khan-intervenes-don-3-ranveer-singh-farhan-akhtar"},
+            {"name": "LatestLY", "url": "https://www.latestly.com/entertainment/bollywood/don-3-salman-khan-ranveer-singh-farhan-akhtar-dispute.html"},
+            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com/news/bollywood/cintaa-padmini-kolhapure-ranveer-singh-fwice/"}
+        ]),
+    },
+]
 
-## The Business Case
+# ── Publish ─────────────────────────────────────────────────────
+now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-Agilitas is backed by Convergent Finance and Nexus Venture Partners. The company has also acquired long-term Lotto licensing rights across several markets and purchased footwear manufacturer Mochiko Shoes. With the Virat-Anushka one-two punch, Agilitas now has arguably the strongest celebrity co-founder bench in Indian sportswear.
+for i, art in enumerate(articles, 1):
+    print(f"\n{'='*60}")
+    print(f"Article {i}/{len(articles)}: {art['headline'][:70]}...")
 
-The athleisure market in India is no longer niche. It's being driven by the same forces that made it massive in the West: remote work, fitness culture, and a generation that refuses to dress differently for the gym and the grocery store. Whether One8 Yoga can compete with established global players will depend on product quality, pricing, and distribution — but the launch story writes itself.
+    # ── Image sourcing ──
+    image_url = None
+    image_attribution = None
 
-*One8 Yoga drops on June 21. Set a reminder.*"""
-})
+    # Try Wikipedia for person articles
+    for person in art.get("image_people", []):
+        image_url = fetch_wikipedia_person_image(person)
+        if image_url and validate_image_url(image_url):
+            image_attribution = "Wikimedia Commons"
+            break
+        image_url = None
 
-# --- ARTICLE 4: Salman Khan Maatrubhumi screening ---
-print("\n📝 Article 4: Salman Khan Maatrubhumi screening...")
-img4 = fetch_wikipedia_person_image("Salman Khan")
-if not validate_image_url(img4):
-    img4 = fetch_pexels_image("Indian soldiers border patrol")
+    # Pexels fallback
+    if not image_url and art.get("pexels_fallback"):
+        q1, q2 = art["pexels_fallback"]
+        image_url = fetch_pexels_image(q1, q2)
+        if image_url and validate_image_url(image_url):
+            image_attribution = "Pexels"
+        else:
+            image_url = None
 
-articles.append({
-    'headline': "Salman Khan Screened Maatrubhumi for Bollywood's Most Powerful Directors. Subhash Ghai Called It a 'Must-Watch.'",
-    'subheadline': "Sooraj Barjatya, Kabir Khan, David Dhawan, and Riteish Deshmukh were among those who watched the rough cut of the Galwan Valley war drama. The film still has no release date.",
-    'slug': 'salman-khan-maatrubhumi-rough-cut-screening-subhash-ghai-kabir-khan-nri-20260530',
-    'image_url': img4 or '',
-    'image_attribution': 'Wikimedia Commons' if img4 and ('wikipedia' in str(img4).lower() or 'wikimedia' in str(img4).lower()) else '',
-    'sources': [
-        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-        {"name": "IANS", "url": "https://ianslive.in"},
-        {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Maatrubhumi:_May_War_Rest_in_Peace"}
-    ],
-    'body': """Salman Khan hosted a private screening of the rough cut of *Maatrubhumi: May War Rest in Peace* on May 28, inviting a room full of filmmakers who collectively account for some of the biggest box office hits in Hindi cinema history. The verdict, at least from the room, appears to be strongly positive.
+    if not image_url:
+        print("  ⚠ No image found — publishing without image")
 
-Veteran filmmaker Subhash Ghai shared a group photograph from the screening that read like a Bollywood power summit: Salman Khan, Chitrangda Singh, director Apoorva Lakhia, Sooraj Barjatya, Kabir Khan, David Dhawan, Riteish Deshmukh, Rumy Jafry, and producer Siddharth Roy Kapur — all gathered at what Ghai described as "food square."
+    # ── Insert article ──
+    payload = {
+        "headline": art["headline"],
+        "subheadline": art["subheadline"],
+        "slug": art["slug"],
+        "body": art["body"],
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": now,
+        "sources": json.loads(art["sources"]),
+        "image_url": image_url,
+        "image_attribution": image_attribution,
+    }
 
-## Ghai's Verdict
-
-"It was so beautiful to see my favourite directors together at food square today to watch a rough cut of Apoorva Lakhia's film Maatrubhumi with lead stars Salman Khan and Chitrangda, based on a touching story of soldiers of India and China with their respective emotions for their nations and their families with a theme of mutual peace and respect," Ghai wrote on social media. He added that the film was "truly a must-watch."
-
-Coming from a filmmaker who has directed some of Hindi cinema's most commercially successful dramas — *Taal*, *Pardes*, *Ram Lakhan* — the endorsement carries weight, even if private screenings for friends are not exactly known for producing scathing reviews.
-
-## The Film That Changed Its Name and Lost Its Date
-
-*Maatrubhumi* has had one of the more complicated journeys to the screen in recent Bollywood memory. Originally titled *Battle of Galwan*, the film is reportedly inspired by the 2020 Galwan Valley clash between Indian and Chinese troops — an incident that left 20 Indian soldiers dead and remains one of the most sensitive military confrontations in recent India-China relations.
-
-The teaser, released on Salman's birthday in December 2025, drew immediate backlash from Chinese state-backed media, including the *Global Times*, which characterized the film as provocative. Reports subsequently suggested that the filmmakers were advised to soften the political tone and reduce direct references that could escalate diplomatic sensitivities.
-
-The result: a title change from *Battle of Galwan* to the broader *Maatrubhumi: May War Rest in Peace*, approximately 40 days of reshoots to revise certain portions, and an indefinite postponement of the original April 17, 2026 release date. The film is now reportedly targeting an Independence Day weekend release, though nothing has been officially confirmed.
-
-## Why Salman Screened It for This Specific Group
-
-The guest list wasn't random. Sooraj Barjatya directed Salman in *Maine Pyar Kiya*, *Hum Aapke Hain Koun*, and *Prem Ratan Dhan Payo*. Kabir Khan gave him *Bajrangi Bhaijaan* and *Ek Tha Tiger*. David Dhawan directed *Judwaa*, *Biwi No. 1*, and *Partner*. These are the directors who know what works for Salman on screen — and their collective nod carries more industry credibility than any marketing campaign.
-
-Siddharth Roy Kapur's presence is also notable. The former head of UTV and current independent producer is one of the sharpest distribution minds in the business. If he's in the room watching the rough cut, the business side of the release is likely being planned in parallel.
-
-## The Diaspora Angle
-
-For NRIs, *Maatrubhumi* sits at the intersection of nationalism, geopolitics, and Bollywood spectacle — three things that reliably generate strong opinions in the diaspora. The Galwan Valley incident resonated deeply with Indians abroad, many of whom followed the crisis through WhatsApp forwards and news alerts in real time. A Salman Khan blockbuster built around that moment — repackaged now as a peace-themed narrative — will inevitably be one of the most-discussed films of the year in Indian communities worldwide.
-
-Whether the tonal shift from "Battle" to "May War Rest in Peace" satisfies audiences who wanted a more assertive narrative remains to be seen. But Subhash Ghai's "must-watch" verdict and the caliber of the room that witnessed the rough cut suggest the film has substance behind the spectacle.
-
-*No release date has been announced. The wait continues.*"""
-})
-
-# --- ARTICLE 5: Aditya Seal & Anushka Ranjan pregnancy ---
-print("\n📝 Article 5: Aditya Seal & Anushka Ranjan pregnancy...")
-img5 = fetch_pexels_image("baby shoes maternity pregnancy announcement", "maternity photoshoot sunset")
-
-articles.append({
-    'headline': "Aditya Seal Wore a T-Shirt That Said 'Baap' in Hindi. That's How He Announced He's Going to Be a Father.",
-    'subheadline': "The Student of the Year 2 actor and actress Anushka Ranjan are expecting their first child, four years after their star-studded Mumbai wedding.",
-    'slug': 'aditya-seal-anushka-ranjan-pregnancy-announcement-first-child-bollywood-nri-20260530',
-    'image_url': img5 or '',
-    'image_attribution': 'Pexels' if img5 and 'pexels' in str(img5).lower() else '',
-    'sources': [
-        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-        {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
-        {"name": "ANI", "url": "https://aninews.in"}
-    ],
-    'body': """Actor Aditya Seal and actress-producer Anushka Ranjan have announced they are expecting their first child together. The couple shared the news on May 28 through a joint Instagram post featuring maternity photographs that managed to be both tender and perfectly on-brand.
-
-In the photos, Anushka wears a fitted black outfit while Aditya twins in a matching black ensemble — except for one detail that became the most talked-about element of the announcement. His T-shirt had the word "Baap" printed in Hindi across the chest.
-
-No elaborate gender reveal party. No drone show. Just the Hindi word for "dad" on a T-shirt, and the internet understood.
-
-## The Caption That Hit Different
-
-The couple's shared caption read: "I've waited a hundred years, But I'd wait a million more for you. Nothing prepared me for, What the privilege of being yours would do."
-
-The sunset-lit maternity shoot, captured against a natural backdrop, showed Aditya holding Anushka close — the kind of intimate, warm imagery that felt deliberately personal rather than produced for maximum virality. Which, ironically, made it go more viral.
-
-## Bollywood's Response
-
-The congratulations poured in fast. Ananya Panday wrote, "Aw yay! Congratulations." Sonakshi Sinha dropped an "Omgggggg congratulationsssss guyyyysss." Bhumi Pednekar delivered a message that was essentially one long "OMG" with heart emojis. Rakul Preet Singh, Mouni Roy, Vaani Kapoor, Manish Malhotra, Neil Nitin Mukesh, Sonal Chauhan, Huma Qureshi, Pulkit Samrat, and Kushal Tandon all added their wishes.
-
-The industry support reflects the couple's well-liked status within Bollywood circles. Anushka Ranjan's family has deep industry ties — her father, Shashi Ranjan, is a prominent producer and entertainment industry figure — and the couple's 2021 wedding was itself a Bollywood event, attended by Alia Bhatt, Vaani Kapoor, and Athiya Shetty, among others.
-
-## From On-Screen Villainy to Real-Life Romance
-
-Aditya Seal entered the public consciousness as Manav, the slick antagonist in *Student of the Year 2*. Since then, he has built a steady career across both theatrical and streaming projects, including *Tum Bin II*, *The Empire*, and *Khel Khel Mein*. His upcoming slate includes *Sundar Poonam* alongside Sanya Malhotra.
-
-Anushka Ranjan's credits include *Wedding Pullav* and *Batti Gul Meter Chalu*, though she has increasingly focused on production. The couple first met at a family event, dated for four years, and Aditya proposed in Paris on Anushka's birthday — a detail that would be too scripted for a Bollywood film but works perfectly in real life.
-
-## Why Bollywood Baby Announcements Matter to the Diaspora
-
-There's a specific genre of joy that NRIs experience when Bollywood couples announce pregnancies. It's the same parasocial warmth that drives people to forward wedding photos in family WhatsApp groups and send congratulatory messages to strangers on Instagram. Bollywood's couples aren't just celebrities — for the diaspora, they're proxies for cultural continuity, markers of "our people" doing well and building families.
-
-The "Baap" T-shirt, in particular, hits a chord. In a world of elaborate English-language pregnancy announcements designed for global consumption, there's something satisfying about a Hindi word on a T-shirt doing all the heavy lifting. No translation needed.
-
-*Congratulations to the couple. The countdown to the "Mini Seal" Instagram account begins.*"""
-})
-
-
-# ===================== PUBLISH ALL =====================
-
-print("\n" + "="*60)
-print("Publishing articles...")
-print("="*60)
-
-for i, article in enumerate(articles, 1):
-    print(f"\n--- Article {i}/{len(articles)} ---")
-    result = publish_article(article)
+    result = sb_insert("p2_articles", payload)
     if result:
-        print(f"  ID: {result}")
+        art_id = result[0].get("id") if isinstance(result, list) else result.get("id")
+        print(f"  ✓ Published: {art['slug']} (id: {art_id})")
+    else:
+        print(f"  ✗ Failed to publish: {art['slug']}")
+
     time.sleep(1)
 
-print("\n✅ Entertainment writer batch complete!")
+print(f"\n{'='*60}")
+print(f"Done. Published {len(articles)} entertainment articles.")
