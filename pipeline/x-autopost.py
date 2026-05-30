@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-"""Post Videshi articles to X as long-form Premium posts with images."""
+"""Post recently published Videshi articles to X with long-form formatting and images."""
 
-import tweepy
-import requests
 import json
 import os
-import time
+import re
+import requests
 import tempfile
+import time
+import tweepy
 from datetime import datetime
 
 # --- Config ---
 SUPABASE_URL = "https://lboecaekpynbpyijrbfz.supabase.co"
 
-# Load env files
 def load_env(path):
     env = {}
     with open(os.path.expanduser(path)) as f:
@@ -32,236 +32,391 @@ ACCESS_TOKEN = twitter_env["TWITTER_ACCESS_TOKEN"]
 ACCESS_TOKEN_SECRET = twitter_env["TWITTER_ACCESS_TOKEN_SECRET"]
 SUPABASE_KEY = supabase_env["SUPABASE_SERVICE_ROLE_KEY"]
 
+CATEGORY_EMOJI = {
+    "news": "🇮🇳",
+    "immigration": "🛂",
+    "nri-world": "🌏",
+    "travel": "✈️",
+    "lifestyle-health": "🧘",
+    "lifestyle": "🧘",
+    "markets-finance": "📈",
+    "markets": "📈",
+    "technology": "💻",
+    "sports": "🏏",
+    "entertainment": "🎬",
+    "food": "🍛",
+}
+
+CATEGORY_LABEL = {
+    "news": "NEWS",
+    "immigration": "IMMIGRATION",
+    "nri-world": "NRI WORLD",
+    "travel": "TRAVEL",
+    "lifestyle-health": "LIFESTYLE & HEALTH",
+    "lifestyle": "LIFESTYLE",
+    "markets-finance": "MARKETS & FINANCE",
+    "markets": "MARKETS",
+    "technology": "TECHNOLOGY",
+    "sports": "SPORTS",
+    "entertainment": "ENTERTAINMENT",
+    "food": "FOOD",
+}
+
 sb_headers = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
 }
 
-# --- Tweepy clients ---
-client = tweepy.Client(
-    consumer_key=CONSUMER_KEY,
-    consumer_secret=CONSUMER_SECRET,
-    access_token=ACCESS_TOKEN,
-    access_token_secret=ACCESS_TOKEN_SECRET,
-)
 
-auth = tweepy.OAuth1UserHandler(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
-api_v1 = tweepy.API(auth)
+def fetch_articles():
+    r = requests.get(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=sb_headers,
+        params={
+            "status": "eq.published",
+            "tweeted_at": "is.null",
+            "order": "published_at.desc",
+            "limit": "20",
+            "select": "id,slug,headline,subheadline,category,tags,image_url,body",
+        },
+    )
+    r.raise_for_status()
+    return r.json()
 
-# --- Composed posts ---
-posts = [
-    {
-        "article_id": "7c2b6722-102d-4d7b-8c59-edb8fe860046",
-        "slug": "india-defence-secretary-shangri-la-bilateral-netherlands-australia-eu-indo-pacific-20260530",
-        "image_url": "https://images.pexels.com/photos/36228703/pexels-photo-36228703.jpeg?auto=compress&cs=tinysrgb&w=1200",
-        "text": """🇮🇳 NEWS | The Videshi
 
-━━━━━━━━━━━━━━━━━━━━━━━━
+def strip_markdown(text):
+    """Strip markdown formatting for plain text extraction."""
+    if not text:
+        return ""
+    # Remove images
+    text = re.sub(r'!\[.*?\]\(.*?\)', '', text)
+    # Remove links but keep text
+    text = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', text)
+    # Remove headers
+    text = re.sub(r'^#{1,6}\s+', '', text, flags=re.MULTILINE)
+    # Remove bold/italic markers
+    text = re.sub(r'\*{1,3}(.*?)\*{1,3}', r'\1', text)
+    text = re.sub(r'_{1,3}(.*?)_{1,3}', r'\1', text)
+    # Remove blockquotes
+    text = re.sub(r'^>\s*', '', text, flags=re.MULTILINE)
+    # Remove horizontal rules
+    text = re.sub(r'^[-*_]{3,}\s*$', '', text, flags=re.MULTILINE)
+    # Remove HTML tags
+    text = re.sub(r'<[^>]+>', '', text)
+    # Collapse whitespace
+    text = re.sub(r'\n{3,}', '\n\n', text)
+    return text.strip()
 
-India Ran Five Back-to-Back Defence Bilaterals at Shangri-La — Here's What Each One Delivered
 
-India's Defence Secretary Rajesh Kumar Singh turned the sidelines of the 2026 Shangri-La Dialogue in Singapore into a full diplomatic sprint, holding five separate bilateral meetings in a single day with counterparts from the Netherlands, Australia, the EU, and other Indo-Pacific partners.
-
-The engagements signal New Delhi's push to deepen military ties well beyond its traditional strategic circle — and they come at a moment when China's defence minister was conspicuously absent from the forum for the second consecutive year. With the Netherlands, Singh explored defence industrial collaboration, particularly around naval systems and cybersecurity. With Australia, both sides reviewed the Comprehensive Strategic Partnership and identified new areas for cooperation under the Quad framework.
-
-The EU discussions focused on military interoperability — a natural fit as India courts European defence technology from fighter jets to secure communications. Earlier on Friday, Singh had addressed think tanks on India's defence innovation push, positioning the country as both a security provider and a manufacturing partner in the Indo-Pacific.
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-Key Takeaways:
-
-▸ 5 bilateral meetings in one day at Asia's biggest defence forum
-▸ Netherlands talks focused on naval systems and cybersecurity collaboration
-▸ Australia's Defence Minister Richard Marles scheduled to visit India next
-▸ China's defence minister absent from Shangri-La for the second straight year
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-📰 Full story: thevideshi.com/articles/india-defence-secretary-shangri-la-bilateral-netherlands-australia-eu-indo-pacific-20260530
-
-The Videshi — Your daily source for Indian diaspora news
-🌐 thevideshi.com"""
-    },
-    {
-        "article_id": "11fba57b-8da0-41ab-a0ed-3a79fa655f35",
-        "slug": "newark-delaney-hall-ice-detention-standoff-nj-state-police-immigration-enforcement-nri-20260530",
-        "image_url": "https://images.pexels.com/photos/35108457/pexels-photo-35108457.jpeg?auto=compress&cs=tinysrgb&w=1200",
-        "text": """🇮🇳 NEWS | The Videshi
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-A Newark Detention Standoff Is Rewriting Immigration Enforcement Rules — And Legal Immigrants Are Paying Attention
-
-A hunger strike by detained immigrants at Newark's Delaney Hall has escalated into one of the most significant state-vs-federal confrontations over immigration enforcement in the Trump era. New Jersey Governor Mikie Sherrill ordered state police to take control of the area outside the 1,000-bed GEO Group facility after confrontations between protesters and ICE agents turned violent — pepper spray deployed, one protester's foot caught under a truck wheel, and the FBI arresting an individual for threatening an ICE officer's family.
-
-State troopers have now set up protected protest zones and vehicle checkpoints, with ICE agents withdrawing from the immediate perimeter. "We know what ICE has done in other states and that American citizens have lost their lives," Sherrill said, demanding the facility's closure entirely. DHS Secretary Markwayne Mullin pushed back, insisting conditions meet standards.
-
-For the Indian diaspora — particularly those on H-1B, L-1, and other legal pathways — the standoff is a bellwether. When enforcement infrastructure expands and due process questions multiply at facilities holding people without clear legal resolution, the anxiety ripples well beyond the undocumented population.
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-Key Takeaways:
-
-▸ NJ governor deployed state police after escalating violence outside the facility
-▸ FBI arrested one protester for threats against an ICE officer's family
-▸ Dueling pro-ICE and anti-ICE rallies expected Saturday — state police managing both
-▸ Legal immigrants on work visas watching closely as enforcement debates intensify
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-📰 Full story: thevideshi.com/articles/newark-delaney-hall-ice-detention-standoff-nj-state-police-immigration-enforcement-nri-20260530
-
-The Videshi — Your daily source for Indian diaspora news
-🌐 thevideshi.com"""
-    },
-    {
-        "article_id": "5c057290-44a3-4275-ba8b-73914c9b02a9",
-        "slug": "sebi-fines-suzlon-energy-15-crore-financial-misreporting-chairman-penalty-20260530",
-        "image_url": "https://images.pexels.com/photos/14902194/pexels-photo-14902194.jpeg?auto=compress&cs=tinysrgb&w=1200",
-        "text": """🇮🇳 NEWS | The Videshi
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-SEBI Slaps Suzlon Energy with ₹15.95 Crore Penalty — Chairman and Vice-Chairman Hit with Personal Fines Too
-
-India's market regulator has dropped the hammer on Suzlon Energy. SEBI imposed a ₹15.95 crore ($1.68 million) penalty on the renewable energy giant for what it called serious lapses in financial disclosures — transactions with subsidiaries that inflated the company's net worth and "created a false picture of financial strength affecting market integrity."
-
-But the regulator didn't stop at the corporate entity. Suzlon's chairman received a personal penalty of ₹5.75 crore and the vice-chairman ₹5.45 crore, on charges that they presided over the misreporting. The timing is awkward: Suzlon had spent years rehabilitating itself after defaulting on bonds in 2012, and its stock surged fivefold from 2020 lows as India's 500 GW renewable energy target gave the company a second life.
-
-Now the SEBI order reopens uncomfortable questions. If the disclosures during the period under review were unreliable, investors will want to know whether the more recent numbers — the ones that powered that stock rally — can be trusted either.
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-Key Takeaways:
-
-▸ ₹15.95 crore corporate penalty + personal fines for chairman (₹5.75 Cr) and vice-chairman (₹5.45 Cr)
-▸ SEBI found subsidiary transactions inflated net worth, misleading investors
-▸ Suzlon stock had surged 5x from 2020 lows during its recovery — now under fresh scrutiny
-▸ Part of a broader SEBI enforcement wave (NDTV cleared in a separate case same day)
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-📰 Full story: thevideshi.com/articles/sebi-fines-suzlon-energy-15-crore-financial-misreporting-chairman-penalty-20260530
-
-The Videshi — Your daily source for Indian diaspora news
-🌐 thevideshi.com"""
-    },
-    {
-        "article_id": "39713256-77dc-4df9-a29d-42fc4f37e975",
-        "slug": "supreme-court-vinesh-phogat-asian-games-2026-trials-sports-judiciary-warning-20260530",
-        "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Vinesh_Phogat.jpg",
-        "text": """🇮🇳 NEWS | The Videshi
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-Supreme Court Clears Vinesh Phogat for Asian Games Trials — Then Tells All Courts to Stay Out of Sports
-
-The Supreme Court on Friday gave Vinesh Phogat the green light to compete in the 2026 Asian Games selection trials, ending weeks of legal limbo — but the bench wasn't done. In some of the sharpest judicial commentary on sports governance in recent memory, Justice PS Narasimha warned that courts should not be dragged into competitive sporting decisions.
-
-"This is not a medical college admission matter. These are national and international sporting events. Courts should not intervene in such cases in a manner that disrupts the entire schedule," the bench said. It told Phogat directly: "You are a brilliant athlete, but the nation comes first."
-
-The ruling overturned a challenge by the Wrestling Federation of India, which had contested a Delhi High Court order permitting Phogat to enter the trials beginning May 30. For Phogat, it's the latest chapter in a career defined by extremes — Asian Games gold in 2018, the heartbreak of a 100-gram weight disqualification at the Paris 2024 Olympics, a brief stint in Haryana state politics, and now a return to the mat.
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-Key Takeaways:
-
-▸ Vinesh Phogat cleared to compete in Asian Games 2026 selection trials starting May 30
-▸ Supreme Court warned courts against "disrupting" sporting event schedules
-▸ Wrestling Federation of India's challenge overturned
-▸ Phogat returned to wrestling in early 2026 after resigning from Haryana state assembly
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-📰 Full story: thevideshi.com/articles/supreme-court-vinesh-phogat-asian-games-2026-trials-sports-judiciary-warning-20260530
-
-The Videshi — Your daily source for Indian diaspora news
-🌐 thevideshi.com"""
-    },
-]
-
-# --- Post loop ---
-results = []
-log_path = os.path.expanduser("~/workspace/the-videshi-news/pipeline/tweet-log.json")
-
-for i, post in enumerate(posts):
-    print(f"\n{'='*60}")
-    print(f"Posting {i+1}/4: {post['slug'][:60]}...")
+def extract_key_points(body_text, subheadline):
+    """Extract key factual points from the article body."""
+    points = []
+    sentences = re.split(r'(?<=[.!?])\s+', body_text)
     
-    # Download image
-    media_id = None
-    tmp_path = None
+    # Look for sentences with numbers, percentages, names, dates
+    priority_patterns = [
+        r'\d+[\.,]?\d*\s*(?:per\s*cent|percent|%)',
+        r'\$\d+',
+        r'₹\d+',
+        r'\d+\s*(?:billion|million|crore|lakh)',
+        r'\d{4}',  # years
+    ]
+    
+    scored = []
+    for s in sentences:
+        s = s.strip()
+        if len(s) < 30 or len(s) > 200:
+            continue
+        score = 0
+        for pat in priority_patterns:
+            if re.search(pat, s, re.IGNORECASE):
+                score += 1
+        if score > 0:
+            scored.append((score, s))
+    
+    scored.sort(key=lambda x: -x[0])
+    
+    for _, s in scored[:4]:
+        points.append(s)
+    
+    # If we don't have enough, pull from subheadline
+    if len(points) < 3 and subheadline:
+        sub_parts = re.split(r'[.;]', subheadline)
+        for part in sub_parts:
+            part = part.strip()
+            if part and len(part) > 20 and part not in points:
+                points.append(part)
+                if len(points) >= 4:
+                    break
+    
+    # Still not enough? Take first substantive sentences
+    if len(points) < 3:
+        for s in sentences:
+            s = s.strip()
+            if len(s) > 40 and s not in points:
+                points.append(s)
+                if len(points) >= 4:
+                    break
+    
+    return points[:4]
+
+
+def compose_post(article):
+    """Compose a long-form X post from an article."""
+    cat = article.get("category", "news")
+    emoji = CATEGORY_EMOJI.get(cat, "📰")
+    label = CATEGORY_LABEL.get(cat, cat.upper())
+    headline = article["headline"]
+    subheadline = article.get("subheadline", "")
+    slug = article["slug"]
+    body = strip_markdown(article.get("body", ""))
+    
+    # Build the summary — extract the most interesting parts from body
+    paragraphs = [p.strip() for p in body.split('\n\n') if p.strip() and len(p.strip()) > 50]
+    
+    # Take the first 2-3 substantive paragraphs as the summary
+    summary_parts = []
+    total_words = 0
+    for p in paragraphs[:6]:
+        # Skip very short paragraphs or ones that look like section headers
+        if len(p) < 60:
+            continue
+        words = len(p.split())
+        if total_words + words > 250:
+            if total_words < 100:
+                # Need at least some content
+                summary_parts.append(p)
+                total_words += words
+            break
+        summary_parts.append(p)
+        total_words += words
+        if len(summary_parts) >= 3:
+            break
+    
+    summary = "\n\n".join(summary_parts)
+    
+    # If summary is too long, trim it
+    if len(summary) > 1200:
+        summary = summary[:1200].rsplit('.', 1)[0] + '.'
+    
+    # Extract key takeaways
+    key_points = extract_key_points(body, subheadline)
+    
+    takeaways = ""
+    if key_points:
+        takeaways_lines = [f"▸ {p}" for p in key_points]
+        takeaways = "\n".join(takeaways_lines)
+    
+    # Rewrite headline - make it punchier
+    display_headline = headline.upper() if len(headline) < 80 else headline
+    
+    post = f"""{emoji} {label} | The Videshi
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+{display_headline}
+
+{summary}
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Key Takeaways:
+
+{takeaways}
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+📰 Full story: thevideshi.com/articles/{slug}
+
+The Videshi — Your daily source for Indian diaspora news
+🌐 thevideshi.com"""
+    
+    # Ensure we're under 4000 chars
+    if len(post) > 3900:
+        # Trim summary
+        while len(post) > 3900 and len(summary_parts) > 1:
+            summary_parts.pop()
+            summary = "\n\n".join(summary_parts)
+            post = f"""{emoji} {label} | The Videshi
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+{display_headline}
+
+{summary}
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Key Takeaways:
+
+{takeaways}
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+📰 Full story: thevideshi.com/articles/{slug}
+
+The Videshi — Your daily source for Indian diaspora news
+🌐 thevideshi.com"""
+    
+    return post
+
+
+def download_image(url):
+    """Download image to temp file, return path or None."""
     try:
-        img_resp = requests.get(post["image_url"], timeout=15)
-        if img_resp.status_code == 200:
-            suffix = ".jpg"
-            if ".png" in post["image_url"]:
-                suffix = ".png"
-            tmp_fd, tmp_path = tempfile.mkstemp(suffix=suffix)
-            with os.fdopen(tmp_fd, 'wb') as f:
-                f.write(img_resp.content)
-            media = api_v1.media_upload(filename=tmp_path)
-            media_id = media.media_id
-            print(f"  Image uploaded: media_id={media_id}")
-        else:
-            print(f"  Image download failed: {img_resp.status_code}")
+        r = requests.get(url, timeout=15)
+        r.raise_for_status()
+        # Determine extension
+        ct = r.headers.get("Content-Type", "")
+        ext = ".jpg"
+        if "png" in ct:
+            ext = ".png"
+        elif "webp" in ct:
+            ext = ".webp"
+        elif "gif" in ct:
+            ext = ".gif"
+        
+        tmp = tempfile.NamedTemporaryFile(suffix=ext, delete=False)
+        tmp.write(r.content)
+        tmp.close()
+        return tmp.name
     except Exception as e:
-        print(f"  Image error (posting without): {e}")
+        print(f"  ⚠ Image download failed: {e}")
+        return None
 
-    # Post tweet
-    try:
-        kwargs = {"text": post["text"]}
-        if media_id:
-            kwargs["media_ids"] = [media_id]
-        response = client.create_tweet(**kwargs)
-        tweet_id = response.data["id"]
-        tweet_url = f"https://x.com/thevideshi/status/{tweet_id}"
-        print(f"  ✅ Posted: {tweet_url}")
 
-        # Update Supabase
-        now_utc = datetime.utcnow().isoformat() + "Z"
-        patch_resp = requests.patch(
-            f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{post['article_id']}",
-            headers=sb_headers,
-            json={"tweeted_at": now_utc},
-        )
-        print(f"  Supabase update: {patch_resp.status_code}")
+def main():
+    print("=" * 60)
+    print("The Videshi → X Auto-Poster")
+    print(f"Run time: {datetime.utcnow().isoformat()}Z")
+    print("=" * 60)
+    
+    # Fetch articles
+    articles = fetch_articles()
+    print(f"\nFound {len(articles)} untweeted articles")
+    
+    if not articles:
+        print("No articles to post. Done.")
+        return
+    
+    # Filter to those with images, take up to 4
+    candidates = [a for a in articles if a.get("image_url")]
+    if not candidates:
+        print("No articles with images found. Done.")
+        return
+    
+    to_post = candidates[:4]
+    print(f"Selected {len(to_post)} articles to post:\n")
+    for a in to_post:
+        print(f"  • [{a['category']}] {a['headline'][:70]}...")
+    
+    # Init tweepy
+    client = tweepy.Client(
+        consumer_key=CONSUMER_KEY,
+        consumer_secret=CONSUMER_SECRET,
+        access_token=ACCESS_TOKEN,
+        access_token_secret=ACCESS_TOKEN_SECRET,
+    )
+    
+    auth = tweepy.OAuth1UserHandler(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+    api_v1 = tweepy.API(auth)
+    
+    # Post loop
+    posted = 0
+    errors = []
+    tweet_urls = []
+    
+    log_path = os.path.expanduser("~/workspace/the-videshi-news/pipeline/tweet-log.json")
+    tweet_log = {}
+    if os.path.exists(log_path):
+        with open(log_path) as f:
+            tweet_log = json.load(f)
+    
+    for i, article in enumerate(to_post):
+        print(f"\n--- Posting {i+1}/{len(to_post)}: {article['headline'][:60]}... ---")
+        
+        try:
+            # Compose post
+            post_text = compose_post(article)
+            print(f"  Post length: {len(post_text)} chars")
+            
+            # Download and upload image
+            media_ids = None
+            img_path = None
+            if article.get("image_url"):
+                img_path = download_image(article["image_url"])
+                if img_path:
+                    try:
+                        media = api_v1.media_upload(filename=img_path)
+                        media_ids = [media.media_id]
+                        print(f"  ✓ Image uploaded (media_id: {media.media_id})")
+                    except Exception as e:
+                        print(f"  ⚠ Image upload failed: {e}")
+                        media_ids = None
+            
+            # Post tweet
+            kwargs = {"text": post_text}
+            if media_ids:
+                kwargs["media_ids"] = media_ids
+            
+            response = client.create_tweet(**kwargs)
+            tweet_id = response.data["id"]
+            tweet_url = f"https://x.com/thevideshi/status/{tweet_id}"
+            tweet_urls.append(tweet_url)
+            print(f"  ✓ Posted! {tweet_url}")
+            
+            # Clean up temp image
+            if img_path and os.path.exists(img_path):
+                os.unlink(img_path)
+            
+            # Update Supabase
+            patch_r = requests.patch(
+                f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article['id']}",
+                headers=sb_headers,
+                json={"tweeted_at": datetime.utcnow().isoformat() + "Z"},
+            )
+            if patch_r.status_code < 300:
+                print(f"  ✓ Supabase updated (tweeted_at set)")
+            else:
+                print(f"  ⚠ Supabase update failed: {patch_r.status_code} {patch_r.text}")
+            
+            # Log tweet
+            tweet_log[str(tweet_id)] = {
+                "article_id": article["id"],
+                "slug": article["slug"],
+                "posted_at": datetime.utcnow().isoformat() + "Z",
+            }
+            with open(log_path, "w") as f:
+                json.dump(tweet_log, f, indent=2)
+            
+            posted += 1
+            
+            # Wait between posts
+            if i < len(to_post) - 1:
+                print("  ⏳ Waiting 30s before next post...")
+                time.sleep(30)
+                
+        except Exception as e:
+            errors.append({"article": article["headline"][:60], "error": str(e)})
+            print(f"  ✗ ERROR: {e}")
+            # Clean up temp image on error
+            if img_path and os.path.exists(img_path):
+                os.unlink(img_path)
+    
+    # Summary
+    print("\n" + "=" * 60)
+    print(f"SUMMARY: {posted}/{len(to_post)} articles posted to X")
+    if tweet_urls:
+        print("\nTweet URLs:")
+        for url in tweet_urls:
+            print(f"  {url}")
+    if errors:
+        print(f"\nErrors ({len(errors)}):")
+        for e in errors:
+            print(f"  • {e['article']}: {e['error']}")
+    print("=" * 60)
 
-        # Log tweet
-        tweet_log = {}
-        if os.path.exists(log_path):
-            with open(log_path) as f:
-                tweet_log = json.load(f)
-        tweet_log[str(tweet_id)] = {
-            "article_id": post["article_id"],
-            "slug": post["slug"],
-            "posted_at": now_utc,
-        }
-        with open(log_path, "w") as f:
-            json.dump(tweet_log, f, indent=2)
 
-        results.append({"slug": post["slug"], "tweet_url": tweet_url, "status": "ok"})
-    except Exception as e:
-        print(f"  ❌ Failed: {e}")
-        results.append({"slug": post["slug"], "status": "error", "error": str(e)})
-    finally:
-        if tmp_path and os.path.exists(tmp_path):
-            os.remove(tmp_path)
-
-    # Wait between posts
-    if i < len(posts) - 1:
-        print("  Waiting 30s...")
-        time.sleep(30)
-
-# --- Summary ---
-print(f"\n{'='*60}")
-print("SUMMARY")
-print(f"{'='*60}")
-ok = [r for r in results if r["status"] == "ok"]
-err = [r for r in results if r["status"] == "error"]
-print(f"Posted: {len(ok)}/{len(results)}")
-for r in ok:
-    print(f"  ✅ {r['tweet_url']}")
-for r in err:
-    print(f"  ❌ {r['slug']}: {r['error']}")
+if __name__ == "__main__":
+    main()
