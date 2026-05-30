@@ -1,32 +1,31 @@
 #!/usr/bin/env python3
-"""Entertainment writer — 2026-05-29 evening batch (3 articles)"""
+"""Entertainment writer for The Videshi — batch run."""
 
-import json, os, re, time, subprocess, urllib.parse, uuid
-from datetime import datetime, timezone
+import json, os, re, sys, uuid, datetime, requests, urllib.parse, time
 
-# --- Supabase config (load from .env file) ---
+# Load env
 def load_env(path):
-    with open(os.path.expanduser(path)) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith("#") and "=" in line:
-                k, v = line.split("=", 1)
-                os.environ[k.strip()] = v.strip().strip('"').strip("'")
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    k, v = line.split('=', 1)
+                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
-load_env("~/.env.supabase")
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-PEXELS_API_KEY = None
-try:
-    with open(os.path.expanduser("~/.env.pexels")) as f:
-        for line in f:
-            if "PEXELS_API_KEY" in line:
-                PEXELS_API_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
-except Exception:
-    pass
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-import requests
+HEADERS = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
+}
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -41,295 +40,314 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:100]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels as fallback. Returns URL or None."""
-    if not PEXELS_API_KEY:
+    """Fetch a relevant image from Pexels. Returns URL or None."""
+    if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
+    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             result = subprocess.run(
-                ["curl", "-sS", "-H", f"Authorization: {PEXELS_API_KEY}",
-                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape"],
+                ['curl', '-sS', f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5',
+                 '-H', f'Authorization: {PEXELS_KEY}'],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                return url
+            photos = data.get('photos', [])
+            for photo in photos:
+                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 def validate_image(url):
-    """Validate image URL returns 200 with image content-type and >5KB."""
+    """Validate image URL returns 200 with image content type and >5KB."""
     if not url:
         return False
-    # Block banned sources
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
-    for b in banned:
-        if b in url:
-            print(f"  ✗ Banned source detected: {b}")
-            return False
     try:
-        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, allow_redirects=True)
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            print(f"  ✓ Image validated: {ct}, {cl} bytes")
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
             return True
-        # Some servers don't return Content-Length on HEAD, try GET
-        if r.status_code == 200 and "image" in ct:
-            r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, stream=True)
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                print(f"  ✓ Image validated via GET: {len(chunk)}+ bytes")
-                return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
+        # Some servers don't support HEAD, try GET with range
+        if r.status_code != 200:
+            r2 = requests.get(url, timeout=10, stream=True,
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            ct2 = r2.headers.get('Content-Type', '')
+            if r2.status_code == 200 and 'image' in ct2:
+                chunk = r2.raw.read(6000)
+                if len(chunk) > 5000:
+                    return True
     except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
+        print(f"  ⚠ Image validation error: {e}")
     return False
 
 def publish_article(article):
-    """Insert article into Supabase."""
-    headers = {
-        "apikey": SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Content-Type": "application/json",
-        "Prefer": "return=representation"
+    """Publish article to Supabase."""
+    now = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
+    payload = {
+        'headline': article['headline'],
+        'subheadline': article['subheadline'],
+        'body': article['body'],
+        'slug': article['slug'],
+        'category': 'entertainment',
+        'vertical': 'entertainment',
+        'status': 'published',
+        'published_at': now,
+        'sources': json.dumps(article['sources']),
+        'image_url': article.get('image_url', ''),
     }
+    
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=headers,
-        json=article,
-        timeout=30
+        headers=HEADERS,
+        json=payload,
+        timeout=15
     )
     if r.status_code in (200, 201):
-        result = r.json()
-        title = article["headline"][:60]
-        print(f"  ✓ Published: {title}...")
+        print(f"  ✓ Published: {article['headline'][:60]}...")
         return True
     else:
-        print(f"  ✗ Publish failed ({r.status_code}): {r.text[:200]}")
+        print(f"  ✗ Failed ({r.status_code}): {r.text[:200]}")
         return False
 
-# ==========================================
+
+# ============================================================
 # ARTICLES
-# ==========================================
+# ============================================================
 
 articles = []
 
-# --- ARTICLE 1: Peddi (Ram Charan) ---
-print("\n=== Article 1: Peddi ===")
-
-# Image sourcing: Ram Charan from Wikipedia
-img1 = fetch_wikipedia_person_image("Ram Charan")
-if not validate_image(img1):
-    img1 = fetch_wikipedia_person_image("Ram Charan (actor)")
-    if not validate_image(img1):
-        img1 = fetch_pexels_image("Indian cricket wrestling sport rural", "Indian village sports")
-        if not validate_image(img1):
-            img1 = None
+# --- ARTICLE 1: Vicky Kaushal & Katrina Kaif introduce baby Vihaan ---
+print("\n📰 Article 1: Vicky-Katrina introduce baby Vihaan")
+img1 = fetch_wikipedia_person_image("Vicky Kaushal")
+if not img1 or not validate_image(img1):
+    img1 = fetch_wikipedia_person_image("Katrina Kaif")
+if not img1 or not validate_image(img1):
+    img1 = fetch_pexels_image("Mumbai airport celebrities")
 
 articles.append({
-    "headline": "Ram Charan's ₹350 Crore Telugu Epic Peddi Opens June 4. It Has A.R. Rahman, a 189-Minute Runtime, and the Widest Indian Release of the Year.",
-    "subheadline": "Set in 1980s Andhra Pradesh, the sports action drama reunites the RRR star with A.R. Rahman and releases across IMAX, Dolby, 4DX, and 3D formats in 50+ countries — making it the most anticipated Indian theatrical event of early summer.",
-    "slug": "ram-charan-peddi-350-crore-ar-rahman-june-4-release-imax-telugu-nri-20260529",
-    "category": "entertainment",
-    "vertical": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img1,
-    "sources": json.dumps([
-        {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Peddi"},
-        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com/news/features/ram-charan-opens-up-about-getting-into-the-skin-of-peddi/"},
-        {"name": "Sacnilk", "url": "https://sacnilk.com/movies/Peddi"}
-    ]),
-    "body": """Ram Charan has not had a solo theatrical release since RRR turned him into a global name in 2022. That four-year wait ends on June 4, when Peddi — a Telugu-language sports action drama budgeted at ₹350 crore — arrives in cinemas worldwide.
+    'headline': "Vicky Kaushal and Katrina Kaif Introduced Baby Vihaan to Paparazzi at Mumbai Airport. No Photos Were Allowed.",
+    'subheadline': "The couple let photographers meet their seven-month-old son in person but drew a firm line on cameras — a boundary more Bollywood parents are now choosing to set.",
+    'slug': 'vicky-kaushal-katrina-kaif-baby-vihaan-airport-no-photos-privacy-nri-20260530',
+    'sources': [
+        {"name": "Bombay Times", "url": "https://bombaytimes.com"},
+        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
+        {"name": "Radio City India", "url": "https://radiocity.in"}
+    ],
+    'image_url': img1 or '',
+    'body': """Bollywood's most private power couple just set a new template for celebrity parenthood in India.
 
-## The Biggest Indian Release Window of Early Summer
+Vicky Kaushal and Katrina Kaif were spotted at Mumbai International Airport earlier this week, boarding a flight out of the city with their infant son, Vihaan Kaushal. What made the outing unusual wasn't the sighting itself — it was what happened next. The couple walked up to the press pool stationed at the airport and introduced seven-month-old Vihaan to the photographers in person. Then they asked them not to take a single photograph.
 
-Peddi will open across IMAX, Dolby Cinema, 4DX, ScreenX, D-Box, MX4D, and standard 3D and 2D formats. That premium-format footprint is wider than any Indian film has managed in 2026 so far. The Hindi-dubbed version will run simultaneously, targeting the north Indian market that embraced Ram Charan after RRR's crossover success.
+## A Boundary Set With Grace
 
-The film's theatrical rollout covers over 50 countries, with significant advance booking activity already visible in the United States, United Kingdom, Australia, Canada, and the Gulf states — the core NRI markets.
+According to photojournalists present at the airport, Katrina stepped forward carrying Vihaan in her arms and politely but firmly requested that no pictures or videos be captured. "Katrina was with Vicky, but she asked not to be photographed with the baby and introduced the baby to the paparazzi," one photographer confirmed to media outlets. Vicky posed solo for a few frames, then the couple spent several minutes in conversation with the press pool before heading to their gate.
 
-## A Story Rooted in Rural Andhra Pradesh
+The interaction earned praise across social media for its unusual blend of warmth and firmness. Rather than dodging cameras or covering the child's face — the usual celebrity playbook — Vicky and Katrina chose to acknowledge the photographers' professional presence while drawing an explicit line around their son's image rights.
 
-Directed by Buchi Babu Sana, Peddi is set in 1980s rural Andhra Pradesh. Ram Charan plays the titular character — a spirited villager who rallies his community through sport to stand up against a powerful local rival. The film blends cricket, wrestling, and village politics into an action drama that the director has described as deeply personal.
+## The Name That Connects Two Worlds
 
-The supporting cast is stacked. Kannada superstar Shiva Rajkumar plays a key role, making this a cross-industry event. Janhvi Kapoor stars opposite Ram Charan. Jagapathi Babu, Divyenndu (of Mirzapur fame), and Boman Irani round out the ensemble. Shruti Haasan appears in a special song sequence.
+Vihaan Kaushal was born in November 2025, though the couple waited until January 7 to publicly reveal his name. The name carries a quiet significance: Vihaan was the character name Vicky Kaushal played in *Uri: The Surgical Strike*, the 2019 blockbuster that cemented his status as a leading man in Hindi cinema. The film grossed over ₹340 crore worldwide and turned "How's the Josh?" into a national catchphrase.
 
-## A.R. Rahman Returns to the Big Screen
+Katrina, who was last seen in Sriram Raghavan's *Merry Christmas* alongside Vijay Sethupathi, has been largely away from the spotlight since becoming a mother. Vicky, meanwhile, delivered one of India's highest-grossing films of 2025 with *Chhaava*, his historical drama about Chhatrapati Sambhaji Maharaj.
 
-The original score and soundtrack are composed by A.R. Rahman — his first major Telugu film collaboration in years. The music has already made an impact: the first single, Chikiri Chikiri, has crossed 200 million views across platforms, while the second track, Rai Rai Raa Raa, has surpassed 47 million views on YouTube. A promotional musical event held on May 23 in Bhopal, attended by the full cast and Rahman himself, drew massive crowds.
+## A Growing Trend Among Bollywood Parents
 
-The Budapest Scoring Orchestra recorded the film's orchestral arrangements — the kind of international production scale that was once reserved for Bollywood's biggest tentpoles.
+The Kaushal approach mirrors a broader shift in how Indian celebrities are managing their children's exposure to media. Virat Kohli and Anushka Sharma have been similarly protective of daughter Vamika and son Akaay, requesting that media outlets not publish their children's photos. Priyanka Chopra and Nick Jonas have shared only selective, carefully controlled images of daughter Malti Marie. Alia Bhatt and Ranbir Kapoor have taken a similar stance with daughter Raha, though they eventually shared her face publicly on their own terms.
 
-## What NRIs Should Know
+For diaspora audiences watching from overseas, the conversation resonates differently. Many NRI parents navigate similar boundaries around their children's digital footprint — deciding what to post, what to share, and how much of their kids' lives belongs on the internet. The difference is scale: when your airport outing involves a hundred camera lenses, the stakes of those decisions are exponentially higher.
 
-At 189 minutes, Peddi is a full-scale theatrical experience. For the diaspora, the film carries extra weight: Ram Charan is one of the few Indian actors with genuine global recognition after RRR's Oscar-adjacent success, and this is his first chance to prove that audience wasn't a one-time phenomenon.
+## What It Signals
 
-Advance ticket sales in the US are already running ahead of projections. The June 4 date puts Peddi in a relatively clear window, arriving a week before the Jailer 2 and Bharat Bhhagya Viddhaata releases crowd the market on June 12.
+The airport introduction was ultimately a brief moment — a few minutes of conversation, a request, and a departure gate. But it communicated something larger about how Bollywood's newest generation of parents is redefining the rules of engagement with India's aggressive paparazzi culture.
 
-## The Telangana Theater Deal
+Vicky and Katrina didn't hide. They didn't run. They didn't issue a statement through a publicist. They showed up, said hello, set a boundary, and left. In an industry where baby reveals are often elaborately staged social media events timed for maximum engagement, the simplicity of the gesture was its own kind of statement.
 
-In a separate development that affects the film's domestic economics, a new agreement between producers and exhibitors in Telangana has cleared the way for Peddi's release under the existing rental model. Starting July 3, Telangana will shift permanently to a percentage-sharing system for all films. Peddi will be among the last major releases under the old structure — a detail that matters for its box office tracking.
-
-The production is backed by Mythri Movie Makers and Sukumar Writings, two of the most powerful production houses in Telugu cinema. Vriddhi Cinemas and IVY Entertainment co-produce."""
+Vihaan Kaushal's face remains unphotographed. His name is public. His parents are famous. And for now, that's all the world gets to know."""
 })
 
-# --- ARTICLE 2: Shakti Shalini Wrap ---
-print("\n=== Article 2: Shakti Shalini ===")
 
-# Image sourcing: Aneet Padda from Wikipedia
-img2 = fetch_wikipedia_person_image("Aneet Padda")
-if not validate_image(img2):
-    img2 = fetch_pexels_image("Indian temple ancient mystical", "Rajasthan village celebration")
-    if not validate_image(img2):
-        img2 = None
+# --- ARTICLE 2: Governor — Manoj Bajpayee's 1991 Economic Crisis Film ---
+print("\n📰 Article 2: Governor trailer — Manoj Bajpayee")
+img2 = fetch_wikipedia_person_image("Manoj Bajpayee")
+if not img2 or not validate_image(img2):
+    img2 = fetch_pexels_image("Reserve Bank India building", "Indian economy gold")
 
 articles.append({
-    "headline": "Maddock's Shakti Shalini Has Wrapped Filming. Aneet Padda Plays Both the Goddess and the Ghost.",
-    "subheadline": "The sixth entry in India's most profitable horror-comedy franchise finished shooting across Madhya Pradesh, Rajasthan, and Mumbai — with Nana Patekar and Seema Biswas joining for the climax. Christmas 2026 release confirmed.",
-    "slug": "shakti-shalini-wrapped-aneet-padda-double-role-maddock-horror-universe-christmas-2026-nri-20260529",
-    "category": "entertainment",
-    "vertical": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img2,
-    "sources": json.dumps([
-        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com/news/bollywood/aneet-padda-starrer-shakti-shalini-wrapped-up-in-mumbai-report/"},
-        {"name": "Filmfare", "url": "https://www.filmfare.com/news/bollywood/report-aneet-padda-to-play-double-role-in-shakti-shalini"},
-        {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Aneet_Padda"}
-    ]),
-    "body": """The Maddock Horror Comedy Universe — the franchise that turned Stree, Bhediya, and Munjya into some of Bollywood's most reliable box office properties — has quietly wrapped production on its sixth installment.
+    'headline': "Manoj Bajpayee Is Playing the RBI Governor Who Secretly Airlifted 60 Tonnes of Gold to Save India From Bankruptcy. The Film Opens June 12.",
+    'subheadline': "Governor revisits the terrifying summer of 1991, when India had two weeks of foreign exchange left and pawned its gold reserves to avoid sovereign default. Every NRI who lived through it remembers.",
+    'slug': 'governor-manoj-bajpayee-1991-economic-crisis-rbi-gold-airlift-june-12-nri-20260530',
+    'sources': [
+        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
+        {"name": "Bollywood Life", "url": "https://bollywoodlife.com"},
+        {"name": "YouTube (Official Trailer)", "url": "https://youtube.com"}
+    ],
+    'image_url': img2 or '',
+    'body': """There is a chapter in India's modern history that every Indian who was alive in 1991 remembers with a visceral clarity — the summer the country nearly went bankrupt. Now Manoj Bajpayee is bringing that chapter to the big screen.
 
-## Shakti Shalini: From March to May
+*Governor*, directed by Chinmay Mandlekar and produced by Vipul Amrutlal Shah, tells the story of the RBI Governor who orchestrated the secret airlift of 60 tonnes of India's gold reserves to the Bank of England and the Union Bank of Switzerland as collateral for emergency loans. The film opens in Indian cinemas on June 12, 2026.
 
-Shakti Shalini finished filming on May 27 at Chitrath Studio in Powai, Mumbai, according to a report by Mid-Day. The shoot began in March 2026 and spanned locations across Madhya Pradesh (Chambal, Datia, Antri, Panihar, Gwalior, Morena), Rajasthan (Dholpur, Barkhandi), and Mumbai.
+## The Real Crisis Behind the Film
 
-The production's final stretch involved elaborate sets depicting a Rajasthani village and house interiors, built for a large-scale climax sequence. A source close to the production described the sequence as showing "village people, especially women, celebrating the defeat of evil."
+In the summer of 1991, India's foreign exchange reserves had plummeted to under $1 billion — barely enough to cover two weeks of imports. The Gulf War had sent oil prices soaring. Remittances from Indian workers in the Middle East had dried up. The country was days away from defaulting on its international obligations.
 
-## The Double Role That Could Define the Film
+What happened next was one of the most dramatic financial operations in post-independence Indian history. Under the supervision of RBI Governor S. Venkitaramanan, India secretly pledged 46.91 tonnes of gold to the Bank of England, physically airlifting the bullion out of the country in a covert operation. A separate tranche of 20 tonnes was pledged to the Union Bank of Switzerland. The gold-backed loans bought India the breathing room it needed to avoid a sovereign default and eventually paved the way for the economic liberalisation of 1991 under Finance Minister Manmohan Singh.
 
-Aneet Padda, who broke out with the 2025 blockbuster Saiyaara (₹5.79 billion worldwide), plays both lead roles. Director Aditya Sarpotdar has crafted two opposing characters for her: Shakti, the divine protector inspired by Goddess Kali, and Shalini, a vengeful female ghost who punishes men after being betrayed and killed.
+## Bajpayee's Most Consequential Role
 
-The narrative is rooted in Bengali folklore and mythology. The story revolves around the eternal battle between these two forces — good and evil occupying the same screen, played by the same actor. It is an ambitious structural gamble for a franchise that has typically relied on ensemble comedy with horror elements.
+At the trailer launch, Manoj Bajpayee spoke about how long the project had been in development. "4.5 years back, Vipul got in touch with me for this film," he said. "I found the first drafts so exciting and kept talking after that." The trailer shows Bajpayee in a restrained, pressure-cooker performance — a bureaucrat carrying the weight of a nation's survival on his shoulders, with a single line that lands like a punch: "If I fail… India fails."
 
-Padda was confirmed as the lead through a post-credit reveal in Thamma (Diwali 2025), where her character was introduced as "the creator, the destroyer, and the mother of all." She replaced Kiara Advani, who was initially attached to the project.
+The film also stars Adah Sharma as a journalist and features music by Amit Trivedi with lyrics by the legendary Javed Akhtar. The direction is handled by Chinmay Mandlekar, the Marathi filmmaker best known for *Dharmaveer* and its sequel, who is making his Hindi directorial debut with *Governor*.
 
-## A Heavyweight Supporting Cast
+## Why This Story Matters to the Diaspora
 
-The film has quietly assembled a cast that goes beyond the franchise's usual formula. Viineet Kumar Singh — who earned acclaim in Chhaava alongside Vicky Kaushal — plays the main antagonist. Vishal Jethwa takes a lead role. And in a significant addition, veteran actors Nana Patekar and Seema Biswas joined the unit in May for the climax portions.
+For the Indian diaspora — particularly those who emigrated during the 1980s and 1990s — the 1991 crisis is not abstract history. It was the moment that reshaped the India they had left behind. The liberalisation that followed the crisis opened India's economy to the world, creating the IT boom, the outsourcing revolution, and the infrastructure expansion that transformed the country.
 
-Nana Patekar's involvement, in particular, signals that the film may have dramatic ambitions beyond the horror-comedy template. Patekar has not appeared in a major franchise film in years.
+Many first-generation NRIs remember the crisis in deeply personal terms: the panic over family finances back home, the uncertainty about whether India could sustain itself, and the eventual relief when the liberalisation reforms began to take hold. For their children — the second generation who grew up hearing about "the India that was" — the story is foundational to understanding why their parents left and why the India of today looks nothing like the India of 1990.
 
-## Where Shakti Shalini Sits in the Universe
+*Governor* is not an action film or a political thriller in the conventional Bollywood sense. It's a story about a bureaucrat with a briefcase making decisions in conference rooms that determined whether 850 million people would wake up to a functioning economy or a collapsed one. That's a different kind of tension — quieter, more cerebral, and for the right audience, far more gripping than any car chase.
 
-The Maddock Horror Comedy Universe launched with Stree (2018) and has since expanded through Bhediya (2022), Munjya (2024), Stree 2 (2024 — the highest-grossing Bollywood film ever), and Thamma (2025). The franchise has collectively grossed well over ₹2,000 crore.
+## The June 12 Battlefield
 
-Shakti Shalini is the sixth film. Three more are confirmed in the pipeline: Chamunda, Bhediya 2, and eventually Stree 3 in 2027. The saga is planned to culminate in 2028 with Maha Munjya, Pehla Mahayudh, and Doosara Mahayudh — a multi-film crossover event that Maddock has been seeding since Munjya.
+*Governor* faces serious competition on its release date. June 12 also sees the release of Kangana Ranaut's *Bharat Bhhagya Viddhaata*, a 26/11 Mumbai attacks film, and Rajinikanth's *Jailer 2*. When asked about the crowded release window, producer Vipul Shah joked at the trailer launch, "Main boxing gloves pehen ke baitha hoon!" (I'm sitting here with boxing gloves on.)
 
-## The Diaspora Calendar
-
-Shakti Shalini is locked for December 24, 2026 — a Christmas release that will compete for the holiday audience. For NRI moviegoers, the date matters: it falls right before the year-end break, when Indian theatrical releases in the US, UK, and Canada historically perform well.
-
-Director Aditya Sarpotdar, who previously helmed Munjya and Thamma, has now directed three films in this universe. With production wrapped and seven months until release, the post-production runway is unusually generous for a Bollywood film — a sign that the VFX-heavy double-role work will get the time it needs."""
+The competition is fierce, but Bajpayee has a track record of finding audiences for intelligent, story-driven cinema. *Governor* may not need a ₹200 crore opening weekend to succeed — it needs the right audience to find it. And for millions of Indians at home and abroad who lived through 1991, the right audience already knows this story by heart."""
 })
 
-# --- ARTICLE 3: Salman Khan Mediates Don 3 ---
-print("\n=== Article 3: Don 3 Salman Mediation ===")
 
-# Image sourcing: Salman Khan from Wikipedia
-img3 = fetch_wikipedia_person_image("Salman Khan")
-if not validate_image(img3):
-    img3 = fetch_wikipedia_person_image("Salman Khan (actor)")
-    if not validate_image(img3):
-        img3 = fetch_pexels_image("Bollywood film production set", "Indian movie industry")
-        if not validate_image(img3):
-            img3 = None
+# --- ARTICLE 3: Dhurandhar Production Designer POSH Verdict ---
+print("\n📰 Article 3: Dhurandhar POSH verdict")
+img3 = fetch_pexels_image("Bollywood film production set", "Indian film set crew")
 
 articles.append({
-    "headline": "Salman Khan Called Both Ranveer Singh and Farhan Akhtar. He Wants the Don 3 War Settled Without Lawyers.",
-    "subheadline": "With FWICE's non-cooperation directive still active and ₹45 crore in claimed losses, Salman has stepped in as an unofficial mediator — urging both sides to think as one industry and resolve the dispute privately.",
-    "slug": "salman-khan-mediates-don-3-ranveer-singh-farhan-akhtar-fwice-ban-peace-nri-20260529",
-    "category": "entertainment",
-    "vertical": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img3,
-    "sources": json.dumps([
-        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com/news/bollywood/scoop-salman-khan-turns-cupid-ranveer-singh-farhan-akhtar-don-3-war/"},
-        {"name": "Filmfare", "url": "https://www.filmfare.com/news/bollywood/salman-khan-intervenes-in-don-3-fallout"},
-        {"name": "Mint", "url": "https://www.livemint.com/entertainment/bollywood/salman-khan-steps-up-to-mediate-between-ranveer-singh-and-farhan-akhtar"}
-    ]),
-    "body": """The Don 3 dispute between Ranveer Singh and Farhan Akhtar has consumed Bollywood's attention for two weeks. Now Salman Khan has inserted himself into the middle of it — not with a public statement, but with private phone calls to both parties.
+    'headline': "Dhurandhar's Production Designer Was Found Guilty of Sexual Harassment by the Film's Own POSH Committee. His Credit Has Been Removed.",
+    'subheadline': "A six-month internal investigation by B62 Studios concluded Saini S Johray was guilty on two counts — sexual molestation and tampering of evidence. His name no longer appears on the franchise.",
+    'slug': 'dhurandhar-posh-committee-saini-johray-guilty-sexual-harassment-credit-removed-nri-20260530',
+    'sources': [
+        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
+        {"name": "Mid-Day (via Zoom TV)", "url": "https://zoomtventertainment.com"},
+        {"name": "The Times of Bengal", "url": "https://thetimesofbengal.com"}
+    ],
+    'image_url': img3 or '',
+    'body': """The production designer of *Dhurandhar* — the Ranveer Singh-led two-part blockbuster that has grossed over ₹1,850 crore worldwide — has been found guilty of sexual harassment by the film's own internal committee.
 
-## What Salman Actually Said
+Saini S Johray, who designed the visual world of both *Dhurandhar* and its sequel *Dhurandhar: The Revenge*, was the subject of a six-month investigation by B62 Studios' Prevention of Sexual Harassment (POSH) Committee. According to a report first published by Mid-Day, the committee found Johray guilty on two separate counts: sexual molestation and tampering of evidence.
 
-According to Bollywood Hungama, Salman reached out to both Ranveer and Farhan separately. The message to each was the same: resolve this without hurting each other's careers, without involving film bodies, and without lawyers.
+## How It Unfolded
 
-A source told the publication: "Salman Khan is fond of Ranveer Singh, and is equally fond of the Akhtars too. He picked up the call on both the stakeholders, and has asked them to resolve their issues without hurting the future of their respective projects. He explained to Farhan about creative differences being a common thing in the industry for decades, and he also had a long chat with Ranveer, understanding his stance."
+The complaint was filed with B62 Studios — the production house founded by filmmaker Aditya Dhar and producer Lokesh Dhar — in October 2025. The studio activated its POSH Committee immediately. "The POSH committee did a thorough investigation, given the sensitivity of the matter and the production house's no-tolerance policy towards harassment," a source told Mid-Day.
 
-The source added that Salman explicitly told both parties to "think as one industry" — and suggested they work together on a different project once the tensions cool down. Notably, Salman asked to be kept out of the formal mediation process himself. He does not want to be a third-party arbitrator. He wants them to talk directly.
+The investigation ran for approximately six months, concluding around March-April 2026. "He was found guilty on two counts — sexual molestation and tampering of evidence. The committee communicated the findings to the complainant," the source added.
 
-## The Dispute: A Quick Recap
+Separately, an FIR was registered against Johray at Chandigarh's Sector-17 police station on April 20, 2026. According to India Today, the complainant — a woman from New Delhi — alleged that Johray summoned her to a room at the Taj Hotel in Chandigarh, where she claimed he sexually harassed her, physically assaulted her, and wrongfully confined her. The complainant also alleged that an intoxicating substance had been mixed into her drink.
 
-The conflict started when Ranveer Singh exited Don 3 — reportedly just three weeks before shooting was scheduled to begin. The reasons, according to multiple reports, were creative differences: Ranveer wanted a darker, more violent version of the Don character with stronger language, while Farhan preferred to stay closer to his original vision for the franchise.
+## The Credit Erasure
 
-There were also reports that Ranveer was frustrated by repeated production delays and the absence of a locked final script.
+The most visible consequence of the POSH findings has been the removal of Johray's name from the *Dhurandhar* franchise. While his credit appeared in the original OTT version of *Dhurandhar* that released on January 30, 2026, it was reportedly scrubbed from the "Raw and Undekha" extended version that debuted on May 22. His name is also absent from *Dhurandhar: The Revenge*'s IMDb page, though it remains unclear whether he was credited in its theatrical release.
 
-Farhan and his production partner Ritesh Sidhwani (Excel Entertainment) claimed ₹45 crore in pre-production losses and took the complaint to the Indian Film & Television Director's Association, which referred it to FWICE.
+The decision to remove a crew member's credit is rare in Indian cinema and signals a meaningful shift in how production houses are responding to harassment findings. Historically, Indian film industry responses to such allegations have been inconsistent at best — public statements of concern followed by quiet reinstatement once the news cycle moves on.
 
-On May 25, FWICE issued a non-cooperation directive against Ranveer — essentially an industry-wide recommendation that producers and filmmakers refuse to work with the actor. The federation said Ranveer had ignored multiple invitations to present his version of events.
+## The Broader Pattern
 
-## Why This Matters Beyond Gossip
+The Johray case has emerged alongside another crediting controversy in Bollywood. YRF cinematographer Pratik Shah, who faced accusations from filmmaker Abhinav Singh of being "highly manipulative" and "emotionally abusive" toward women, was reportedly removed from the Sourav Ganguly biopic earlier this year. Several crew members on Shah's subsequent projects have reportedly raised concerns about his continued presence on sets.
 
-The Don 3 situation is not just celebrity drama. It has surfaced a real structural tension in the Indian film industry: what happens when a top-tier actor exits a major production at the last minute, and what enforcement mechanisms actually exist?
+These cases arrive years after the initial #MeToo wave hit Bollywood in 2018, when allegations against prominent figures like director Vikas Bahl, actor Alok Nath, and filmmaker Sajid Khan generated headlines but produced limited institutional change. What is different now is the mechanism: a formal POSH Committee investigation with documented findings, conducted by the production house itself, resulting in concrete professional consequences.
 
-FWICE's non-cooperation directive is technically a recommendation, not a binding legal order. Its real power is reputational. For Ranveer — fresh off the historic success of Dhurandhar (₹1,800 crore worldwide) — the timing is especially awkward. He is currently the industry's biggest commercial draw, and any prolonged dispute could disrupt his ability to capitalize on that momentum.
+## What This Means for the Industry
 
-Salman's intervention is significant precisely because of who he is in the industry's informal hierarchy. He has long played the role of peacemaker in Bollywood disputes, and both Ranveer and Farhan are said to have taken his words seriously.
+For diaspora audiences who follow Bollywood from afar, the *Dhurandhar* POSH case offers a complicated picture. The franchise itself remains one of the most successful in Indian cinema history. Ranveer Singh's star turn is untouched by the controversy. But the visual world that audiences consumed — the sets, the production design, the physical environment of the film — was created by someone who has now been found guilty of workplace sexual harassment by his own employer.
 
-## What Happens Next
+B62 Studios' decision to investigate, find guilty, and remove credit sets a precedent. Whether other production houses follow that precedent when their own POSH findings are inconvenient will determine whether this moment represents genuine institutional change or another exception that proves the rule.
 
-Reports suggest both parties are now open to an amicable resolution. Ranveer's team released a statement saying the actor "believes that professional discussions and personal equations are best handled with dignity, maturity and mutual respect" — careful language that stops short of an apology but signals willingness to de-escalate.
-
-Meanwhile, AI-generated photos of a supposed "airport meeting" between Ranveer and Farhan went viral, but were quickly debunked. No in-person meeting has taken place yet.
-
-For the diaspora audience watching this unfold, the practical question is whether Don 3 will ever get made — and if so, with whom. The franchise, which began with Shah Rukh Khan in 2006, has been through multiple iterations. Whether Ranveer returns to the role or Farhan recasts entirely may depend on what happens in the next few weeks.
-
-## The Bigger Picture
-
-Salman Khan pushing Ranveer to "start a new project to capitalize on Dhurandhar's success" is pragmatic advice. Dhurandhar 2 just crossed ₹1,000 crore net in Hindi alone — a number no Bollywood film had achieved before. The window to leverage that goodwill is finite.
-
-The Don 3 dispute will eventually be resolved, one way or another. The more interesting question is whether Bollywood's informal mediation culture — where a phone call from Salman Khan carries more weight than a federation directive — is sustainable as the industry grows into a corporate, multi-billion-dollar business."""
+*Dhurandhar 2: The Revenge* arrives on JioHotstar on June 4 for Indian audiences. International viewers can find it on Netflix. Johray's name will not appear in the credits of either version."""
 })
 
-# ==========================================
-# PUBLISH ALL ARTICLES
-# ==========================================
-print("\n=== Publishing ===")
+
+# --- ARTICLE 4: KD: The Devil hits ZEE5 ---
+print("\n📰 Article 4: KD: The Devil OTT release")
+img4 = fetch_wikipedia_person_image("Dhruva Sarja")
+if not img4 or not validate_image(img4):
+    img4 = fetch_wikipedia_person_image("Sanjay Dutt")
+if not img4 or not validate_image(img4):
+    img4 = fetch_pexels_image("Kannada cinema gangster", "Indian action movie")
+
+articles.append({
+    'headline': "Kannada Gangster Epic KD: The Devil Hits ZEE5 on June 5. It Has Sanjay Dutt, Shilpa Shetty, and a Sudeepa Cameo.",
+    'subheadline': "The Dhruva Sarja-led action thriller flopped in theatres but arrives on streaming in five languages — just in time for a diaspora audience that might give it a second life.",
+    'slug': 'kd-the-devil-zee5-june-5-ott-dhruva-sarja-sanjay-dutt-shilpa-shetty-nri-20260530',
+    'sources': [
+        {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
+        {"name": "Zoom TV Entertainment", "url": "https://zoomtventertainment.com"},
+        {"name": "The Cinema Post", "url": "https://thecinemapost.com"}
+    ],
+    'image_url': img4 or '',
+    'body': """*KD: The Devil* had everything a Kannada blockbuster is supposed to have — a massive star in Dhruva Sarja, a Bollywood crossover cast led by Sanjay Dutt and Shilpa Shetty, a cameo from Sudeepa, and a period gangster storyline dripping with style. What it didn't have was a box office audience willing to show up.
+
+Now the film gets a second chance. ZEE5 has confirmed that *KD: The Devil* will begin streaming on June 5, 2026, available in Kannada, Tamil, Telugu, Malayalam, and Hindi. For a film that struggled to find its footing in single-screen theatres, the multi-language OTT premiere may reach the wider audience it was always designed for.
+
+## A Film Built for Scale
+
+Directed by Prem and produced by Venkat K. Narayana under the KVN Productions banner, *KD: The Devil* follows Kaalidasa — a carefree, uneducated young man whose blind admiration for a feared underworld don named Dhak Deva (Sanjay Dutt) pulls him into a dangerous web of betrayal, violence, and reckoning. When Kali discovers that the man he idolised has been destroying innocent lives, he transforms from a wide-eyed follower into an unlikely warrior.
+
+The cast is stacked. Dhruva Sarja anchors the film as Kali. Sanjay Dutt plays the menacing Dhak Deva. Shilpa Shetty appears in a key role. V. Ravichandran and Ramesh Aravind add veteran gravitas. Reeshma Nanaiah plays Kali's love interest, Macchu Lakshmi. Nora Fatehi makes a special appearance, and Sudeepa delivers a cameo that the film's marketing leaned on heavily.
+
+The technical team matches the ambition: William David handled cinematography, Arjun Janya composed the music (the soundtrack generated significant buzz before release), and Sanketh Achar edited the 141-minute film. Visual effects were managed by Phoenix Prem Studio.
+
+## Why Theatres Didn't Work
+
+Despite the star power and production scale, *KD: The Devil* received largely negative reviews during its theatrical run, which began on April 30. Critics pointed to pacing issues, an overstuffed narrative, and a disconnect between the film's sweeping visual ambitions and its storytelling execution. The box office numbers reflected the reception — disappointing against what was clearly a significant production budget.
+
+The theatrical failure wasn't for lack of trying. The film had been in development for years, surviving multiple production delays before finally reaching screens. But in a year where Kannada cinema has produced genuine theatrical hits, *KD: The Devil* couldn't compete on word-of-mouth.
+
+## June 5: A Crowded Streaming Day
+
+The ZEE5 premiere lands on an unusually busy day in Indian OTT. The same platform is also releasing *Patriot* — the Mammootty-Mohanlal spy thriller that cost ₹140 crore and is available in five languages. Over on JioHotstar, *Dhurandhar 2: The Revenge* arrives for Indian audiences after its international Netflix debut.
+
+For diaspora viewers juggling multiple streaming subscriptions, June 5 presents a genuine embarrassment of riches. *KD: The Devil*'s best chance may be its availability across five languages — a Tamil-speaking viewer in Toronto or a Telugu-speaking family in Dallas can access it without waiting for a dubbed release.
+
+## The OTT Second Life
+
+South Indian cinema has repeatedly proven that theatrical performance doesn't determine streaming success. Films that struggled in cinemas have found massive audiences on platforms, where the pressure of a ₹200 ticket and a three-hour time commitment is replaced by the low-friction convenience of a couch and a remote.
+
+*KD: The Devil* has the ingredients for an OTT hit: a recognisable Bollywood cast that extends its reach beyond the Kannada market, a gangster genre that plays well on streaming, and a runtime that's manageable for home viewing. Whether the storytelling issues that sank its theatrical run will matter less on a small screen remains to be seen.
+
+The devil, as they say, is in the details. And starting June 5, those details will be available to judge from home."""
+})
+
+
+# ============================================================
+# PUBLISH
+# ============================================================
+
+print("\n" + "="*60)
+print("Publishing articles...")
+print("="*60)
+
 success = 0
 for i, article in enumerate(articles):
-    print(f"\nArticle {i+1}: {article['headline'][:60]}...")
-    if article.get("image_url"):
-        print(f"  Image: {article['image_url'][:80]}...")
-    else:
-        print("  ⚠ No image — publishing without image")
-    
+    print(f"\n[{i+1}/{len(articles)}] {article['headline'][:70]}...")
+    if article.get('image_url') and not validate_image(article['image_url']):
+        print(f"  ⚠ Image failed validation, clearing: {article['image_url'][:60]}")
+        article['image_url'] = ''
     if publish_article(article):
         success += 1
     time.sleep(1)
 
-print(f"\n=== Done: {success}/{len(articles)} articles published ===")
+print(f"\n{'='*60}")
+print(f"Done. Published {success}/{len(articles)} articles.")
+print(f"{'='*60}")
