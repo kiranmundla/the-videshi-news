@@ -55,16 +55,39 @@ export default function StoryDetailPage() {
     if (!story || hasReacted || reacting) return;
     setReacting(true);
 
-    const newCount = reactionCount + 1;
+    const oldCount = reactionCount;
+    const newCount = oldCount + 1;
     setReactionCount(newCount);
     setHasReacted(true);
     localStorage.setItem(`story-reacted-${story.id}`, "1");
 
     try {
-      await sb
+      // Optimistic locking: only update if reaction_count hasn't changed
+      const { data, error } = await sb
         .from("stories")
         .update({ reaction_count: newCount })
-        .eq("id", story.id);
+        .eq("id", story.id)
+        .eq("reaction_count", oldCount)
+        .select("reaction_count")
+        .single();
+
+      if (error || !data) {
+        // Conflict — re-read and retry once
+        const { data: fresh } = await sb
+          .from("stories")
+          .select("reaction_count")
+          .eq("id", story.id)
+          .single();
+        if (fresh) {
+          const retryCount = (fresh.reaction_count || 0) + 1;
+          await sb
+            .from("stories")
+            .update({ reaction_count: retryCount })
+            .eq("id", story.id)
+            .eq("reaction_count", fresh.reaction_count);
+          setReactionCount(retryCount);
+        }
+      }
     } catch {
       // Optimistic — don't revert
     }
@@ -154,9 +177,16 @@ export default function StoryDetailPage() {
           </div>
 
           {/* Category badge */}
-          <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-4">
-            {getCategoryEmoji(story.category)} {getCategoryLabel(story.category)}
-          </span>
+          <div className="flex items-center gap-2 mb-4 flex-wrap">
+            <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full">
+              {getCategoryEmoji(story.category)} {getCategoryLabel(story.category)}
+            </span>
+            {story.author_linkedin && (
+              <span className="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full">
+                🤝 Open to connect
+              </span>
+            )}
+          </div>
 
           {/* Headline */}
           <h1 className="font-serif text-3xl md:text-4xl font-bold leading-tight mb-3">
@@ -197,6 +227,46 @@ export default function StoryDetailPage() {
             className="prose prose-lg dark:prose-invert max-w-none mb-10 story-body"
             dangerouslySetInnerHTML={{ __html: renderMarkdown(story.body || "") }}
           />
+
+          {/* ============================================================ */}
+          {/* LinkedIn connect CTA (if author shared their LinkedIn)       */}
+          {/* ============================================================ */}
+          {story.author_linkedin && (
+            <div className="mb-10 p-6 bg-blue-50 dark:bg-blue-950/20 rounded-2xl border border-blue-200 dark:border-blue-800">
+              <div className="flex items-start gap-4">
+                {story.author_photo_url ? (
+                  <img
+                    src={story.author_photo_url}
+                    alt={story.author_name}
+                    className="w-12 h-12 rounded-full object-cover flex-shrink-0"
+                  />
+                ) : (
+                  <div className="w-12 h-12 rounded-full bg-blue-200 dark:bg-blue-800 flex items-center justify-center text-lg font-bold text-blue-700 dark:text-blue-300 flex-shrink-0">
+                    {(story.author_name || "?")[0].toUpperCase()}
+                  </div>
+                )}
+                <div className="flex-1">
+                  <h3 className="font-semibold text-base mb-1">
+                    Connect with {story.author_name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                    {story.author_name} shared their story to help the community. If you can help with a referral, advice, or just want to connect — reach out.
+                  </p>
+                  <a
+                    href={story.author_linkedin.startsWith("http") ? story.author_linkedin : `https://linkedin.com/in/${story.author_linkedin}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors"
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    View LinkedIn Profile →
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Reaction + Share bar */}
           <div className="flex items-center justify-between py-6 border-t border-b border-border mb-10">
@@ -258,11 +328,14 @@ export default function StoryDetailPage() {
           </div>
 
           {/* CTA */}
-          <div className="text-center py-10 bg-muted/30 rounded-2xl border border-border">
-            <p className="text-3xl mb-3">✍️</p>
-            <h2 className="font-serif text-xl font-bold mb-2">Have a story to tell?</h2>
-            <p className="text-muted-foreground mb-5 max-w-sm mx-auto text-sm">
-              We'll help you write it. Your voice, polished into a story the whole diaspora can connect with.
+          <div className="text-center py-10 px-6 bg-muted/30 rounded-2xl border border-border">
+            <p className="text-3xl mb-3">🤝</p>
+            <h2 className="font-serif text-xl font-bold mb-3">Your experience is someone else's roadmap</h2>
+            <p className="text-muted-foreground mb-3 max-w-md mx-auto text-sm leading-relaxed">
+              Whether it's a visa hack, a career win, a culture shock, or how you found community — your story could be exactly what someone needs to hear right now.
+            </p>
+            <p className="text-xs text-muted-foreground mb-5 max-w-sm mx-auto italic">
+              Include your LinkedIn — the community might reach out with a referral or introduction.
             </p>
             <Link
               to="/stories/submit"

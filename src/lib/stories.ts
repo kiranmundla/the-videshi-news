@@ -42,11 +42,15 @@ export type Story = {
 export const STORY_CATEGORIES = [
   { value: "immigration", label: "Immigration & Visa", emoji: "🗽" },
   { value: "career", label: "Career & Work", emoji: "💼" },
+  { value: "job-struggles", label: "Job Struggles", emoji: "💪" },
   { value: "family", label: "Family & Identity", emoji: "👨‍👩‍👧‍👦" },
+  { value: "education", label: "Education", emoji: "🎓" },
   { value: "culture", label: "Culture & Belonging", emoji: "🪔" },
   { value: "food", label: "Food & Home", emoji: "🍛" },
   { value: "return-home", label: "Return to India", emoji: "✈️" },
   { value: "raising-kids", label: "Raising Kids Abroad", emoji: "👶" },
+  { value: "starting-over", label: "Starting Over", emoji: "🌱" },
+  { value: "health", label: "Health & Wellness", emoji: "🏥" },
   { value: "general", label: "General", emoji: "📝" },
 ] as const;
 
@@ -60,13 +64,14 @@ export const YEARS_OPTIONS = [
   "Returned home",
 ];
 
-const PUBLISHED_COLS = "id,author_name,author_photo_url,author_city,category,headline,subheadline,body,slug,reaction_count,view_count,published_at,featured";
+const PUBLISHED_COLS = "id,author_name,author_photo_url,author_city,author_linkedin,category,headline,subheadline,body,slug,reaction_count,view_count,published_at,featured";
 
 /* ------------------------------------------------------------------ */
-/* Fetch published stories                                            */
+/* Fetch published stories (with optional search)                     */
 /* ------------------------------------------------------------------ */
 export async function fetchStories(opts?: {
   category?: string;
+  search?: string;
   limit?: number;
   offset?: number;
 }): Promise<{ stories: Story[]; total: number }> {
@@ -82,6 +87,13 @@ export async function fetchStories(opts?: {
 
   if (opts?.category && opts.category !== "all") {
     q = q.eq("category", opts.category);
+  }
+
+  if (opts?.search && opts.search.trim()) {
+    const term = `%${opts.search.trim()}%`;
+    q = q.or(
+      `headline.ilike.${term},subheadline.ilike.${term},body.ilike.${term},author_name.ilike.${term},author_city.ilike.${term}`
+    );
   }
 
   const { data, count, error } = await q;
@@ -168,10 +180,10 @@ export async function updateStoryContent(
 }
 
 /* ------------------------------------------------------------------ */
-/* Increment reaction count (love)                                    */
+/* Increment reaction count (love) — optimistic locking               */
 /* ------------------------------------------------------------------ */
 export async function reactToStory(id: string): Promise<number | null> {
-  // Use RPC or raw update — increment by 1
+  // Read current count
   const { data, error } = await supabase
     .from("stories")
     .select("reaction_count")
@@ -180,14 +192,36 @@ export async function reactToStory(id: string): Promise<number | null> {
 
   if (error || !data) return null;
 
-  const newCount = (data.reaction_count || 0) + 1;
-  const { error: updateErr } = await supabase
+  const currentCount = data.reaction_count || 0;
+  const newCount = currentCount + 1;
+
+  // Optimistic locking: only update if reaction_count hasn't changed
+  const { data: updated, error: updateErr } = await supabase
     .from("stories")
     .update({ reaction_count: newCount })
-    .eq("id", id);
+    .eq("id", id)
+    .eq("reaction_count", currentCount)
+    .select("reaction_count")
+    .single();
 
-  if (updateErr) return null;
-  return newCount;
+  if (updateErr || !updated) {
+    // Someone else incremented — retry once
+    const { data: retryData } = await supabase
+      .from("stories")
+      .select("reaction_count")
+      .eq("id", id)
+      .single();
+    if (!retryData) return null;
+    const retryCount = (retryData.reaction_count || 0) + 1;
+    const { error: retryErr } = await supabase
+      .from("stories")
+      .update({ reaction_count: retryCount })
+      .eq("id", id)
+      .eq("reaction_count", retryData.reaction_count);
+    return retryErr ? null : retryCount;
+  }
+
+  return updated.reaction_count;
 }
 
 /* ------------------------------------------------------------------ */

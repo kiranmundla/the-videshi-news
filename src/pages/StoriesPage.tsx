@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Masthead from "@/components/Masthead";
@@ -20,6 +20,27 @@ const FILTER_CATS = [
   ...STORY_CATEGORIES.map((c) => ({ value: c.value, label: c.label })),
 ];
 
+/* ------------------------------------------------------------------ */
+/* Example story prompts — inspiration cards                          */
+/* ------------------------------------------------------------------ */
+const EXAMPLE_PROMPTS = [
+  { emoji: "🗽", text: "How I survived my H-1B transfer nightmare" },
+  { emoji: "💼", text: "How I landed my first job with zero connections" },
+  { emoji: "🤝", text: "The referral that changed my career — paying it forward" },
+  { emoji: "🎓", text: "How I got into a top college from a small town in India" },
+  { emoji: "🏠", text: "Buying our first home — what nobody tells you" },
+  { emoji: "👨‍👩‍👧", text: "Raising kids who speak Telugu at home and English everywhere else" },
+  { emoji: "🍛", text: "My grandmother's sambar recipe kept me sane in grad school" },
+  { emoji: "✈️", text: "Why I moved back after 12 years — and what surprised me" },
+  { emoji: "💪", text: "Laid off during H-1B — here's how I bounced back in 30 days" },
+  { emoji: "🌱", text: "Starting a business with $500 and a prayer" },
+  { emoji: "🤷", text: "The culture shock nobody warned me about" },
+  { emoji: "🏥", text: "Navigating the US healthcare system as a new immigrant" },
+];
+
+/* ------------------------------------------------------------------ */
+/* Story Card                                                         */
+/* ------------------------------------------------------------------ */
 function StoryCard({ story }: { story: Story }) {
   return (
     <Link
@@ -44,6 +65,12 @@ function StoryCard({ story }: { story: Story }) {
         <span className="absolute top-3 left-3 px-2.5 py-1 bg-background/90 backdrop-blur-sm text-xs font-medium rounded-full border border-border">
           {getCategoryEmoji(story.category)} {getCategoryLabel(story.category)}
         </span>
+        {/* Open to connect badge */}
+        {story.author_linkedin && (
+          <span className="absolute top-3 right-3 px-2 py-1 bg-blue-600/90 backdrop-blur-sm text-white text-[10px] font-semibold rounded-full flex items-center gap-1">
+            🤝 Open to connect
+          </span>
+        )}
       </div>
 
       {/* Content */}
@@ -95,12 +122,28 @@ function StoryCard({ story }: { story: Story }) {
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* Main Page                                                          */
+/* ------------------------------------------------------------------ */
 export default function StoriesPage() {
   const [stories, setStories] = useState<Story[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState("all");
   const [page, setPage] = useState(0);
+  const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Debounce search input
+  const handleSearchChange = useCallback((value: string) => {
+    setSearch(value);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      setDebouncedSearch(value);
+      setPage(0);
+    }, 300);
+  }, []);
 
   useEffect(() => {
     setPage(0);
@@ -111,6 +154,7 @@ export default function StoriesPage() {
     setLoading(true);
     fetchStories({
       category: category === "all" ? undefined : category,
+      search: debouncedSearch || undefined,
       limit: PAGE_SIZE,
       offset: page * PAGE_SIZE,
     }).then(({ stories: s, total: t }) => {
@@ -120,7 +164,7 @@ export default function StoriesPage() {
       setLoading(false);
     });
     return () => { cancelled = true; };
-  }, [category, page]);
+  }, [category, page, debouncedSearch]);
 
   const totalPages = Math.ceil(total / PAGE_SIZE);
 
@@ -130,7 +174,7 @@ export default function StoriesPage() {
         <title>Diaspora Voices — Real Stories from the Indian Diaspora | The Videshi</title>
         <meta
           name="description"
-          content="Real stories from the Indian diaspora, in their own words. Immigration journeys, career wins, family moments, and the shared experience of building a life abroad."
+          content="Community stories from the Indian diaspora. Share your journey, help someone a few steps behind you, and learn from those who've been there. Immigration, careers, family, food, and everything in between."
         />
       </Helmet>
 
@@ -138,13 +182,21 @@ export default function StoriesPage() {
       <CategoryPills />
 
       <main className="container py-8 md:py-12">
-        {/* Hero */}
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <h1 className="font-serif text-3xl md:text-4xl font-bold mb-3">
+        {/* ============================================================ */}
+        {/* Hero — Community framing                                     */}
+        {/* ============================================================ */}
+        <div className="text-center max-w-3xl mx-auto mb-6">
+          <h1 className="font-serif text-3xl md:text-4xl font-bold mb-4">
             Diaspora Voices
           </h1>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            Real stories from the Indian diaspora, in their own words. Immigration journeys, career pivots, family moments, and everything in between.
+          <p className="text-muted-foreground text-lg leading-relaxed mb-3">
+            Every diaspora journey has a story worth sharing. A visa nightmare someone else is going through right now. A career hack that could change someone's trajectory. A recipe that tastes like home.
+          </p>
+          <p className="text-foreground font-medium text-base leading-relaxed">
+            Share yours — help someone who's a few steps behind you on the same path.
+          </p>
+          <p className="text-sm text-muted-foreground mt-3 italic">
+            Include your LinkedIn — the community might just reach out with a referral, an introduction, or advice.
           </p>
           <Link
             to="/stories/submit"
@@ -157,7 +209,77 @@ export default function StoriesPage() {
           </Link>
         </div>
 
-        {/* Category filter */}
+        {/* ============================================================ */}
+        {/* Example story prompts — inspiration scroll                   */}
+        {/* ============================================================ */}
+        <div className="mb-10">
+          <p className="text-center text-sm text-muted-foreground mb-4 font-medium">
+            Not sure what to write about? Here are some ideas from people like you:
+          </p>
+          <div className="relative">
+            <div className="flex gap-3 overflow-x-auto pb-3 scrollbar-hide snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap md:justify-center">
+              {EXAMPLE_PROMPTS.map((p, i) => (
+                <Link
+                  key={i}
+                  to="/stories/submit"
+                  className="snap-start flex-shrink-0 flex items-start gap-2.5 px-4 py-3 bg-muted/60 hover:bg-muted rounded-xl border border-border hover:border-primary/30 transition-all duration-200 max-w-[260px] md:max-w-[280px] group"
+                >
+                  <span className="text-lg flex-shrink-0 mt-0.5">{p.emoji}</span>
+                  <span className="text-sm text-foreground/80 group-hover:text-foreground leading-snug">
+                    "{p.text}"
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ============================================================ */}
+        {/* Search bar                                                   */}
+        {/* ============================================================ */}
+        <div className="max-w-xl mx-auto mb-6">
+          <div className="relative">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.35-4.35" />
+            </svg>
+            <input
+              type="text"
+              placeholder="Search stories — try 'H-1B', 'referral', 'Bay Area', 'food'..."
+              value={search}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              className="w-full pl-10 pr-10 py-3 rounded-xl border border-border bg-background text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+            />
+            {search && (
+              <button
+                onClick={() => { setSearch(""); setDebouncedSearch(""); setPage(0); }}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Clear search"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
+          {debouncedSearch && !loading && (
+            <p className="text-xs text-muted-foreground mt-2 text-center">
+              {total === 0
+                ? `No stories found for "${debouncedSearch}"`
+                : `${total} ${total === 1 ? "story" : "stories"} found for "${debouncedSearch}"`}
+            </p>
+          )}
+        </div>
+
+        {/* ============================================================ */}
+        {/* Category filter pills                                        */}
+        {/* ============================================================ */}
         <div className="flex flex-wrap gap-2 justify-center mb-8">
           {FILTER_CATS.map((c) => (
             <button
@@ -174,23 +296,42 @@ export default function StoriesPage() {
           ))}
         </div>
 
-        {/* Stories grid */}
+        {/* ============================================================ */}
+        {/* Stories grid                                                  */}
+        {/* ============================================================ */}
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="bg-muted rounded-xl animate-pulse aspect-[3/4]" />
             ))}
           </div>
-        ) : stories.length === 0 ? (
+        ) : stories.length === 0 && !debouncedSearch ? (
           <div className="text-center py-20">
             <p className="text-5xl mb-4">📝</p>
             <h2 className="font-serif text-xl font-bold mb-2">No stories yet</h2>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-muted-foreground mb-2">
               Be the first to share your story with the diaspora community.
+            </p>
+            <p className="text-sm text-muted-foreground mb-6">
+              Your experience could be the exact thing someone else needs to hear right now.
             </p>
             <Link
               to="/stories/submit"
               className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors text-sm"
+            >
+              Share Your Story
+            </Link>
+          </div>
+        ) : stories.length === 0 && debouncedSearch ? (
+          <div className="text-center py-16">
+            <p className="text-4xl mb-3">🔍</p>
+            <h2 className="font-serif text-lg font-bold mb-2">No matches for "{debouncedSearch}"</h2>
+            <p className="text-muted-foreground text-sm mb-4">
+              Try different keywords, or be the first to share a story about this topic.
+            </p>
+            <Link
+              to="/stories/submit"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors text-sm"
             >
               Share Your Story
             </Link>
@@ -228,25 +369,36 @@ export default function StoriesPage() {
           </>
         )}
 
-        {/* Bottom CTA */}
-        {stories.length > 0 && (
-          <div className="mt-16 text-center py-12 bg-muted/30 rounded-2xl border border-border">
-            <p className="text-3xl mb-3">✍️</p>
-            <h2 className="font-serif text-xl font-bold mb-2">Your story matters</h2>
-            <p className="text-muted-foreground mb-5 max-w-md mx-auto">
-              Whether it's about immigration, career, family, or finding home — we want to hear it. We'll help you tell it beautifully.
-            </p>
-            <Link
-              to="/stories/submit"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors text-sm"
-            >
-              Share Your Story
-            </Link>
-          </div>
-        )}
+        {/* ============================================================ */}
+        {/* Bottom CTA — Community framing                               */}
+        {/* ============================================================ */}
+        <div className="mt-16 text-center py-12 px-6 bg-muted/30 rounded-2xl border border-border">
+          <p className="text-3xl mb-3">🤝</p>
+          <h2 className="font-serif text-xl md:text-2xl font-bold mb-4">Your experience is someone else's roadmap</h2>
+          <p className="text-muted-foreground mb-3 max-w-lg mx-auto leading-relaxed">
+            Every story you share helps someone who's a few steps behind you. A first-gen student figuring out college apps. A new H-1B holder who doesn't know what to expect. A parent wondering if anyone else is raising kids between two cultures.
+          </p>
+          <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto italic">
+            Include your LinkedIn — you never know who might reach out with the exact opportunity or advice you need.
+          </p>
+          <Link
+            to="/stories/submit"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors text-sm"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+              <path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z" />
+            </svg>
+            Share Your Story
+          </Link>
+        </div>
       </main>
 
       <SiteFooter />
+
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
     </>
   );
 }
