@@ -186,7 +186,7 @@ export const DESTINATIONS: Destination[] = [
   { key: "australia", label: "Australia", region: "oceania", description: "Great Barrier Reef, outback & opera", bestMonths: "Sep – Nov, Mar – May", budget: "$70–250/day",
     visa: v(["e-visa","e-Visa (subclass 600)"],["e-visa","ETA (subclass 601) — quick online"],["e-visa","e-Visa (subclass 600)"]), hasGuide: true },
   { key: "fiji", label: "Fiji", region: "oceania", description: "Coral reefs, bure stays & island time", bestMonths: "May – Oct", budget: "$50–250/day",
-    visa: v(["visa-free","4-month visa-free on arrival"],["visa-free","4-month visa-free"],["visa-free","4-month visa-free"]), hasGuide: false },
+    visa: v(["visa-free","4-month visa-free on arrival"],["visa-free","4-month visa-free"],["visa-free","4-month visa-free"]), hasGuide: true },
 ];
 
 /* ------------------------------------------------------------------ */
