@@ -57,24 +57,33 @@ const P2_COLS =
   "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images";
 
 function parseSources(raw: unknown): Article["sources"] {
-  if (!raw || !Array.isArray(raw)) return undefined;
-  return raw
-    .map((s) => {
-      if (typeof s === "string") return { label: s };
-      if (s && typeof s === "object") {
-        const o = s as Record<string, unknown>;
-        const url = o.url ? String(o.url) : undefined;
-        const label =
-          (o.name as string) ||
-          (o.label as string) ||
-          (o.title as string) ||
-          url ||
-          "Source";
-        return { label, url };
-      }
-      return null;
-    })
-    .filter(Boolean) as Article["sources"];
+  // Handle JSON array format
+  if (raw && Array.isArray(raw)) {
+    return raw
+      .map((s) => {
+        if (typeof s === "string") return { label: s };
+        if (s && typeof s === "object") {
+          const o = s as Record<string, unknown>;
+          const url = o.url ? String(o.url) : undefined;
+          const label =
+            (o.name as string) ||
+            (o.label as string) ||
+            (o.title as string) ||
+            url ||
+            "Source";
+          return { label, url };
+        }
+        return null;
+      })
+      .filter(Boolean) as Article["sources"];
+  }
+  // Handle comma-separated string format: "Reuters, Cricbuzz, The Times"
+  if (raw && typeof raw === "string") {
+    const cleaned = raw.replace(/^\*?Sources?:\s*/i, "").replace(/\*$/,"").trim();
+    if (!cleaned) return undefined;
+    return cleaned.split(/,\s*/).map((s) => ({ label: s.trim() })).filter((s) => s.label);
+  }
+  return undefined;
 }
 
 function parseGalleryImages(raw: unknown): GalleryImage[] | null {
@@ -85,6 +94,13 @@ function parseGalleryImages(raw: unknown): GalleryImage[] | null {
 }
 
 function deriveExcerpt(subheadline: string | null, body: string): string {
+
+/* Strip trailing *Sources: ...* line baked into article body markdown */
+function stripInlineSources(body: string): string {
+  return body.replace(/\n*\*?Sources?:\s*[^*\n]+\*?\s*$/i, "").trim();
+}
+
+
   if (subheadline && subheadline.trim()) return subheadline.trim();
   const plain = (body ?? "").replace(/[#*_>`~\-]+/g, "").trim();
   if (!plain) return "";
@@ -97,7 +113,7 @@ function mapRow(row: P2Row): Article {
     slug: row.slug ?? row.id,
     title: row.headline,
     excerpt: deriveExcerpt(row.subheadline, row.body),
-    body: row.body ?? "",
+    body: stripInlineSources(row.body ?? ""),
     category: row.category ?? row.vertical ?? "",
     hero_image_url: row.image_url ?? "",
     image_caption: row.image_caption ?? null,
