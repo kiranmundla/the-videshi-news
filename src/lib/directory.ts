@@ -111,6 +111,17 @@ export const DOCTOR_SUBCATEGORIES = [
   "General / Other",
 ];
 
+export const FOOD_SUBCATEGORIES = [
+  "Michelin Star",
+  "Upscale",
+  "Catering",
+];
+
+export const SUBCATEGORIES_BY_CATEGORY: Record<string, string[]> = {
+  "Doctors & Healthcare": DOCTOR_SUBCATEGORIES,
+  "Catering & Food": FOOD_SUBCATEGORIES,
+};
+
 export const SUBCATEGORY_ICONS: Record<string, string> = {
   "Dentist": "🦷",
   "Pediatrician": "👶",
@@ -125,6 +136,9 @@ export const SUBCATEGORY_ICONS: Record<string, string> = {
   "Ayurveda & Holistic": "🌿",
   "Surgeon": "🔪",
   "General / Other": "👨‍⚕️",
+  "Michelin Star": "⭐",
+  "Upscale": "🍽️",
+  "Catering": "🍛",
 };
 
 /* ------------------------------------------------------------------ */

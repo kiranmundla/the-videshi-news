@@ -12,7 +12,7 @@ import {
   DIRECTORY_CATEGORIES,
   CATEGORY_ICONS,
   CATEGORY_COLORS,
-  DOCTOR_SUBCATEGORIES,
+  SUBCATEGORIES_BY_CATEGORY,
   SUBCATEGORY_ICONS,
 } from "@/lib/directory";
 import { CITY_GROUPS } from "@/lib/events";
@@ -208,9 +208,11 @@ function CategoryTabBar({
 function SubcategoryTabBar({
   selected,
   onSelect,
+  subcategories,
 }: {
   selected: string | null;
   onSelect: (v: string | null) => void;
+  subcategories: string[];
 }) {
   return (
     <div className="overflow-x-auto scrollbar-none -mx-4 px-4 mt-1">
@@ -223,9 +225,9 @@ function SubcategoryTabBar({
               : "text-muted-foreground hover:text-foreground/70 bg-muted/30"
           }`}
         >
-          All Specialties
+          All
         </button>
-        {DOCTOR_SUBCATEGORIES.map((sub) => (
+        {subcategories.map((sub) => (
           <button
             key={sub}
             onClick={() => onSelect(sub)}
@@ -551,10 +553,14 @@ export default function DirectoryPage() {
           <CategoryTabBar selected={categoryFilter} onSelect={setCategoryFilter} />
         </div>
 
-        {/* Subcategory tabs (shown for Doctors & Healthcare) */}
-        {categoryFilter === "Doctors & Healthcare" && (
+        {/* Subcategory tabs (shown for categories with subcategories) */}
+        {categoryFilter && SUBCATEGORIES_BY_CATEGORY[categoryFilter] && (
           <div className="mb-4">
-            <SubcategoryTabBar selected={subcategoryFilter} onSelect={setSubcategoryFilter} />
+            <SubcategoryTabBar
+              selected={subcategoryFilter}
+              onSelect={setSubcategoryFilter}
+              subcategories={SUBCATEGORIES_BY_CATEGORY[categoryFilter]}
+            />
           </div>
         )}
 
