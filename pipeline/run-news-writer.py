@@ -1,62 +1,55 @@
 #!/usr/bin/env python3
-"""
-The Videshi — News Writer
-Generates 3 news articles for thevideshi.com
-Run: 2026-05-30
-"""
+"""The Videshi — News Writer (2026-05-30 evening batch)"""
 
-import json, os, uuid, time, re, subprocess
-import requests
-import urllib.parse
+import json, os, re, sys, time, uuid, urllib.parse, subprocess, hashlib
 from datetime import datetime, timezone
 
-# Load Supabase credentials
+# ── env ──────────────────────────────────────────────────────────────────
 def load_env(path):
-    env = {}
-    with open(os.path.expanduser(path)) as f:
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
         for line in f:
             line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                if line.startswith('export '):
-                    line = line[7:]
-                key, val = line.split('=', 1)
-                val = val.strip('"').strip("'")
-                env[key] = val
-    return env
+            if not line or line.startswith('#'):
+                continue
+            if line.startswith('export '):
+                line = line[7:]
+            k, _, v = line.partition('=')
+            v = v.strip().strip('"').strip("'")
+            os.environ[k.strip()] = v
 
-env = load_env('~/.env.supabase')
-SUPABASE_URL = env['SUPABASE_URL']
-SUPABASE_KEY = env['SUPABASE_SERVICE_ROLE_KEY']
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-# Load Pexels key
-pexels_env = load_env('~/workspace/.env.pexels')
-PEXELS_KEY = pexels_env.get('PEXELS_API_KEY', '')
+SB_URL = os.environ['SUPABASE_URL']
+SB_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
-}
+import requests
 
-def sb_insert(table, data):
-    """Insert a row into Supabase."""
-    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 201):
-        result = r.json()
-        return result[0] if isinstance(result, list) and result else result
-    else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+# ── helpers ──────────────────────────────────────────────────────────────
+def sb_headers():
+    return {
+        'apikey': SB_KEY,
+        'Authorization': f'Bearer {SB_KEY}',
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+    }
+
+def sb_insert(table, row):
+    r = requests.post(f'{SB_URL}/rest/v1/{table}', headers=sb_headers(), json=row, timeout=30)
+    if r.status_code not in (200, 201):
+        print(f'  ✗ Insert {table} failed: {r.status_code} {r.text[:300]}')
         return None
+    data = r.json()
+    return data[0] if isinstance(data, list) and data else data
 
-def sb_patch(table, match, data):
-    """Patch a row in Supabase."""
-    params = "&".join(f"{k}={v}" for k, v in match.items())
-    r = requests.patch(f"{SUPABASE_URL}/rest/v1/{table}?{params}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 204):
-        return True
-    print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
-    return False
+def sb_patch(table, match, patch):
+    params = '&'.join(f'{k}={v}' for k, v in match.items())
+    r = requests.patch(f'{SB_URL}/rest/v1/{table}?{params}', headers=sb_headers(), json=patch, timeout=30)
+    if r.status_code not in (200, 204):
+        print(f'  ✗ Patch {table} failed: {r.status_code} {r.text[:300]}')
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -78,338 +71,308 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
+    """Fetch a relevant image from Pexels via curl (Python urllib gets 403)."""
+    if not PEXELS_KEY:
+        print('  ⚠ No Pexels API key')
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             result = subprocess.run(
-                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
+                ['curl', '-sS', f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape',
+                 '-H', f'Authorization: {PEXELS_KEY}'],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
             photos = data.get('photos', [])
             for photo in photos:
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+                src = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('original')
+                alt = (photo.get('alt') or '').lower()
+                # Filter out generics
+                bad_alts = ['aerial', 'satellite', 'map', 'flag', 'icon', 'logo']
+                if any(b in alt for b in bad_alts):
+                    continue
+                if src:
+                    print(f"  ✓ Pexels image for '{q}': {src[:80]}...")
+                    return src
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def upload_image_to_supabase(image_url, filename):
-    """Download image and upload to Supabase storage bucket."""
+def upload_image_to_supabase(img_url, filename):
+    """Download image and upload to Supabase storage bucket 'article-images'."""
     try:
-        r = requests.get(image_url, timeout=20, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        r = requests.get(img_url, timeout=20, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         if r.status_code != 200:
-            print(f"  ✗ Image download failed ({r.status_code}) for {image_url[:80]}")
-            return image_url  # fall back to original
-        
+            print(f"  ✗ Image download failed: {r.status_code}")
+            return img_url  # Fall back to original URL if it's from a permanent source
         content_type = r.headers.get('Content-Type', 'image/jpeg')
-        if not content_type.startswith('image/'):
-            content_type = 'image/jpeg'
-        
+        if 'image' not in content_type:
+            print(f"  ✗ Not an image: {content_type}")
+            return img_url
         if len(r.content) < 5000:
-            print(f"  ✗ Image too small ({len(r.content)} bytes), skipping upload")
-            return image_url
-        
+            print(f"  ✗ Image too small: {len(r.content)} bytes")
+            return img_url
+
         upload_headers = {
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": content_type,
-            "x-upsert": "true"
+            'apikey': SB_KEY,
+            'Authorization': f'Bearer {SB_KEY}',
+            'Content-Type': content_type,
+            'x-upsert': 'true'
         }
-        
-        upload_r = requests.post(
-            f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}",
+        up = requests.post(
+            f'{SB_URL}/storage/v1/object/article-images/{filename}',
             headers=upload_headers,
             data=r.content,
             timeout=30
         )
-        
-        if upload_r.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+        if up.status_code in (200, 201):
+            public_url = f'{SB_URL}/storage/v1/object/public/article-images/{filename}'
+            print(f"  ✓ Uploaded to Supabase: {filename}")
             return public_url
         else:
-            print(f"  ✗ Upload failed ({upload_r.status_code}): {upload_r.text[:200]}")
-            return image_url
+            print(f"  ⚠ Upload failed ({up.status_code}), using original URL")
+            return img_url
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
-        return image_url
+        return img_url
 
 def validate_image_url(url):
-    """Check if an image URL is valid and not too small."""
+    """Check that an image URL returns HTTP 200 with image content > 5KB."""
     if not url:
         return False
-    # Check for banned domains
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
-    if any(b in url for b in banned):
-        print(f"  ✗ Banned domain in URL: {url[:60]}")
-        return False
-    banned_params = ['_nc_ht=', '_nc_cat=', 'ccb=']
-    if any(p in url for p in banned_params):
-        print(f"  ✗ Banned params in URL: {url[:60]}")
-        return False
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True, headers={"User-Agent": "TheVideshi/1.0"})
+        r = requests.head(url, timeout=10, headers={"User-Agent": "TheVideshi/1.0"}, allow_redirects=True)
         ct = r.headers.get('Content-Type', '')
         cl = int(r.headers.get('Content-Length', 0))
-        if 'image' not in ct:
-            print(f"  ✗ Not an image: {ct}")
-            return False
-        if cl > 0 and cl < 5000:
-            print(f"  ✗ Image too small: {cl} bytes")
-            return False
-        return True
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
+            return True
+        # Some servers don't support HEAD — try GET
+        r = requests.get(url, timeout=10, headers={"User-Agent": "TheVideshi/1.0"}, stream=True)
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        return r.status_code == 200 and 'image' in ct
     except:
-        return True  # optimistic if HEAD fails
+        return False
 
-
-# ─── ARTICLES ───────────────────────────────────────────────────────
-
+# ── articles ─────────────────────────────────────────────────────────────
 articles = []
 
-# ─── ARTICLE 1: China Ghosts Shangri-La Dialogue ───────────────────
-
+# ═══════════════════════════════════════════════════════════════════════════
+# ARTICLE 1: India Monsoon Forecast — Weakest in 11 Years
+# ═══════════════════════════════════════════════════════════════════════════
 articles.append({
-    "headline": "China Has Skipped the Shangri-La Dialogue for Two Years in a Row. The Rest of Asia Noticed.",
-    "subheadline": "Beijing sent a low-profile delegation of PLA academics while India held five bilateral defence meetings and the US, UK, and Australia announced a new undersea drone programme.",
-    "slug": "china-skips-shangri-la-dialogue-second-year-india-aukus-undersea-drones-20260530",
+    "headline": "India Braces for Its Weakest Monsoon in 11 Years. El Niño, the Iran War, and a Food Price Crisis Are Converging.",
+    "subheadline": "The India Meteorological Department has revised its monsoon forecast downward to 90 percent of normal. With half of India's farmland unirrigated and fuel prices already elevated, the compounding risks are hard to overstate.",
+    "slug": "india-weakest-monsoon-11-years-el-nino-2026-food-inflation-crisis-20260530",
     "category": "news",
-    "vertical": "news",
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com"},
-        {"name": "The Hindu BusinessLine", "url": "https://www.thehindubusinessline.com"},
-        {"name": "Wall Street Journal", "url": "https://www.wsj.com"},
-        {"name": "Bhasha Times", "url": "https://bhashatimes.com"}
-    ]),
-    "image_search_person": "Dong Jun",
-    "image_search_alt": "Shangri-La Dialogue Singapore defence forum",
-    "body": """For the second consecutive year, China's Defence Minister Dong Jun has skipped the Shangri-La Dialogue — Asia's most important annual defence forum — and the absence is becoming harder for Beijing to explain away.
+    "body": """India's monsoon season is about to begin, and the forecast is not reassuring. The India Meteorological Department on Friday revised its projection for the June-to-September southwest monsoon downward to 90 percent of the long-period average — the weakest outlook since 2015, when El Niño reduced rainfall to 87 percent and triggered a nationwide agricultural crisis.
 
-The three-day summit in Singapore, which draws defence ministers and senior officials from more than 40 countries, opened this weekend with a conspicuous gap in its programme. The slot traditionally reserved for a keynote speech by a senior Chinese official has been dropped entirely, replaced by a low-profile delegation of People's Liberation Army "experts and scholars."
+The revision marks a further deterioration from IMD's first-stage forecast in April, which had pegged rainfall at 92 percent. The culprit is a developing El Niño — a warming of central and eastern Pacific Ocean temperatures that historically suppresses the Indian monsoon. IMD now assigns an 84 percent probability that total seasonal rainfall will come in below normal, with the emerging El Niño expected to intensify to moderate or strong levels during the critical July-August period.
 
-Even US Defense Secretary Pete Hegseth took note. "I wish my counterpart was here at this conference," he said during his own keynote address on Saturday. "But I look forward to other options when we can cross paths and communicate."
+## Why This Matters Beyond the Weather Map
 
-## A Calculated Absence
+The monsoon delivers roughly 70 percent of India's annual rainfall, replenishing reservoirs, groundwater, and rivers that sustain a $4-trillion economy. Nearly half of India's farmland lacks irrigation, meaning rain-fed agriculture — on which some 600 million people depend — is entirely at the monsoon's mercy.
 
-Australia's Deputy Prime Minister and Defence Minister Richard Marles was less diplomatic. He called China's decision a "missed opportunity" at precisely the moment when countries in the region need more "strategic reassurance" from Beijing.
+A weak monsoon does not just mean dry fields. It cascades through the economy in predictable and painful ways: lower crop yields push up food prices, which feed into retail inflation, which constrains the Reserve Bank of India's ability to cut interest rates. Rural incomes fall, dampening demand for everything from motorcycles to consumer goods.
 
-"We've seen China engage in the biggest conventional military buildup in the world since the end of the Second World War, and that has not happened with a strategic reassurance for other countries," Marles told Reuters on the sidelines of the event.
+M. Ravichandran, secretary of the Earth Sciences Ministry, told reporters in New Delhi that June rainfall is expected to come in below 92 percent of the long-period average. Several states — including Uttar Pradesh, Haryana, Punjab, Bihar, Odisha, Chhattisgarh, Gujarat, and Andhra Pradesh — are also forecast to experience above-normal heatwave days in June.
 
-Analysts point to several reasons Beijing may prefer to stay away. A high-profile appearance would invite pointed questions about Taiwan tensions, China's expanding military footprint in the South China Sea, and the sweeping anti-corruption purges that have consumed the PLA's senior leadership in recent years. Several top generals have disappeared from public view since the purges began in 2023.
+## The Double Squeeze: El Niño Meets the Iran War
 
-Zhou Bo, a retired PLA senior colonel who was part of China's delegation, tried to downplay the absence. "This is not the first time the defence minister is not attending," he said. "And academic delegations have come before. But it is true that the level of the delegation is relatively low this time."
+What makes 2026 particularly dangerous is the convergence of a weak monsoon with the economic fallout from the ongoing Iran conflict. India's finance ministry, in its monthly economic report released Saturday, identified the Strait of Hormuz disruption as the "single most consequential variable" for the country's external and price outlook.
 
-## India Fills the Vacuum
+India is the world's third-largest crude importer. Brent crude, while down 19 percent in May from its wartime peak, remains 27 percent above pre-war levels. Recent fuel price hikes — necessitated by the elevated global oil market — are already feeding into transport, energy, and food-related costs.
 
-While China sent scholars, India sent its Defence Secretary Rajesh Kumar Singh, who held five bilateral meetings in a single day — with counterparts from the Netherlands, Australia, the European Union, and two other Indo-Pacific partners. India's delegation articulated a vision for "a stable, secure, and inclusive Indo-Pacific" that was sharply at odds with Beijing's preference for bilateral deal-making.
+"A deficient monsoon, particularly in the crucial July-August months, can add to the pressure and push up inflation closer to an average of 5.5 percent if food inflation spikes," said Gaura Sengupta, chief economist at IDFC First Bank. India's retail inflation stood at 3.48 percent in April — below the RBI's target — but the trajectory now looks distinctly unfavorable.
 
-Hegseth went further in his praise for New Delhi, calling India "a critical anchor to hold the line" in South Asia. "A powerful India acting in its own self-interest advances our shared goal of maintaining a balance of power across the region," he said.
+## What NRIs Should Watch
 
-He highlighted India's growing defence-industrial capacity, its expanding ability to sustain high-end military operations in the Indian Ocean, and the two countries' commitment to co-produce Javelin anti-tank guided munitions — a significant step in US-India defence cooperation.
+For the Indian diaspora, the monsoon is not an abstraction. Many NRI families maintain agricultural land, have relatives in farming communities, or send remittances that partially offset rural income shortfalls. A weak monsoon year typically means increased financial pressure on families back home.
 
-## AUKUS Makes Its Move
+The finance ministry's warning of a "significant rainfall deficit" translating into weaker rural demand and slower aggregate growth is also a signal for NRI investors. Indian equity markets, already down 1.9 to 2.8 percent in May on Iran war jitters, face an additional headwind if agricultural distress materializes.
 
-The Shangri-La sidelines also produced a concrete announcement: the United States, United Kingdom, and Australia unveiled plans to jointly develop unmanned undersea vehicles under the AUKUS pact's "Pillar Two" advanced technology programme.
+The monsoon's advance into central and northern India — typically June through early July — will be the next critical data point. IMD has said it will issue state-level forecasts and shorter-range updates as the season progresses.
 
-"This will rapidly give our forces the very most advanced battlefield technologies as together we produce a range of cutting-edge sensors and weapons systems for undersea drones," said Britain's Defence Secretary John Healey. "For too long in AUKUS, we talked too much and delivered too little."
-
-The programme is designed to counter China's growing power in the maritime domain and protect critical undersea infrastructure including cables and pipelines.
-
-## The Bigger Picture
-
-China's absence from Shangri-La is not merely a diplomatic snub — it is a signal. By declining to show up at the region's premier security forum for two years running, Beijing is ceding the floor to an increasingly coordinated set of partners who are filling the space with new alliances, new announcements, and new frameworks that explicitly aim to constrain Chinese influence.
-
-For India, which has sometimes been criticised for its own patchy attendance at previous editions of the dialogue, this year's robust showing represents a deliberate repositioning. New Delhi is not just attending the conversation about Indo-Pacific security — it is helping to set its terms.
-
-The question now is whether Beijing's absence is a temporary sulk or a longer-term strategic withdrawal from multilateral security diplomacy. Either way, the rest of Asia is not waiting for an answer."""
+For now, the headline number is sobering: 90 percent of normal, with an El Niño gathering strength. The last time these conditions converged, in 2015, India declared drought in 11 states.""",
+    "sources": "Reuters, India Meteorological Department, IDFC First Bank, India Finance Ministry Monthly Report, The Business Standard",
+    "image_query": "Indian monsoon rain farm agriculture",
+    "image_fallback_query": "monsoon rain India field",
+    "person_name": None
 })
 
-# ─── ARTICLE 2: India Heatwave Study ───────────────────────────────
-
+# ═══════════════════════════════════════════════════════════════════════════
+# ARTICLE 2: Delhi HC Google Keyword Ads Ruling
+# ═══════════════════════════════════════════════════════════════════════════
 articles.append({
-    "headline": "A Single Day of Extreme Heat Kills 3,400 People Across India. A New Study Finally Counted.",
-    "subheadline": "UC Berkeley researchers found that a five-day heatwave causes nearly 30,000 excess deaths — and India is heading into its worst monsoon in 11 years.",
-    "slug": "india-extreme-heat-3400-deaths-per-day-uc-berkeley-study-heatwave-monsoon-20260530",
+    "headline": "A Delhi Court Just Told Google It Cannot Auction Off Someone Else's Brand Name. Indian Businesses Are Cheering.",
+    "subheadline": "The Delhi High Court ruled that Google's keyword advertising practice amounts to trademark infringement. Zerodha, Shaadi.com, and marketing experts say the decision could reshape a Rs 2.7-lakh-crore industry.",
+    "slug": "delhi-hc-google-keyword-advertising-trademark-hindware-ruling-20260530",
     "category": "news",
-    "vertical": "news",
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com"},
-        {"name": "Frontiers in Environmental Health", "url": "https://www.frontiersin.org"},
-        {"name": "The Bharat Affairs", "url": "https://bharataffairs.com"},
-        {"name": "India Meteorological Department", "url": "https://mausam.imd.gov.in"}
-    ]),
-    "image_search_person": None,
-    "image_search_alt": "India heatwave extreme heat summer",
-    "body": """India already knew its summers were getting deadlier. Now there is a number to put on it.
+    "body": """For over a decade, one of the most common tactics in Indian digital marketing has been to bid on a competitor's brand name in Google Ads. Search for "Hindware" and you might see a rival's advertisement at the top of the results. Google facilitates the auction, collects the fee, and points to the advertiser when questions arise.
 
-A single day of extreme heat is associated with approximately 3,400 excess deaths across India, according to a study by researchers at the University of California, Berkeley's India Energy and Climate Center. A heatwave lasting five consecutive days pushes that figure to nearly 30,000.
+On May 22, the Delhi High Court told Google that this argument no longer holds. In a ruling that Indian businesses, lawyers, and brand managers have since rallied around, Justice Mini Pushkarna permanently restrained Google LLC and Google India from using the registered trademark "Hindware" as an advertising keyword. The court ordered Google to pay Rs 30 lakh (approximately $31,600) in damages.
 
-The findings, published in the journal *Frontiers in Environmental Health*, represent one of the most comprehensive attempts to quantify what climate scientists and public health officials have long described as a "silent public health emergency" — one that kills far more Indians than floods, cyclones, and earthquakes combined, but attracts a fraction of the attention.
+## What the Court Actually Said
 
-## How They Counted
+The ruling went further than most legal observers expected. Justice Pushkarna held that Google's AdWords program is not a passive platform service — it is an active commercial venture that monetizes brand names without the trademark owner's permission.
 
-The study's authors, Piyush Narang and Ashok Gadgil, faced a fundamental problem: India does not systematically track heat-related deaths at the district level. State governments report heat deaths inconsistently, and many fatalities — particularly among the elderly, outdoor labourers, and the rural poor — are attributed to other causes or simply go uncounted.
+"The manner in which Google operates its AdWords Policy makes it clear that Google sells or auctions the use of the trademark without any authorisation from the proprietor of the trademark," the court stated.
 
-To get around this, the researchers adapted findings from a multi-city study of heat-related mortality across 10 Indian cities, then applied them to all districts nationwide using population data from the Civil Registration System and 2024 projections. The result is an estimate, not a precise tally — but it is the most granular picture of heat mortality that India has.
+The judgment found that by enabling direct competitors to intercept users who specifically searched for Hindware, Google engaged in an "unfair practice" and exploited the distinctive character of a well-known trademark to benefit its own advertising business. The court explicitly rejected the notion that Google was a mere intermediary in the transaction.
 
-"We estimate that a single day of extreme heat causes approximately 3,400 excess deaths nationally; a five-day heatwave causes nearly 30,000," the authors wrote. Excess deaths refer to fatalities above what historical trends would predict for any given period.
+## The Industry Reaction
 
-## A Crisis Already Underway
+The response from India's business community has been swift and enthusiastic.
 
-The timing of the study is grimly relevant. Temperatures across northern, central, and eastern India have been hovering above 45°C (113°F) for days. Parts of Madhya Pradesh, Rajasthan, Uttar Pradesh, and Haryana have recorded some of the most extreme readings. Hospitals in affected areas report surging admissions for heatstroke, dehydration, cardiovascular stress, and kidney failure.
+Nithin Kamath, founder of the brokerage firm Zerodha, said his brand had suffered from competitor keyword bidding for years. The ruling "now opens up a route for legal recourse," he wrote on social media.
 
-The India Meteorological Department (IMD) has forecast that June will bring above-normal maximum and minimum temperatures across most of the country, with heatwave conditions expected in Uttar Pradesh, Haryana, Punjab, Bihar, Odisha, Chhattisgarh, Gujarat, Andhra Pradesh, and parts of Maharashtra, Telangana, and Tamil Nadu.
+Anupam Mittal, founder of Shaadi.com, was more blunt: "You create the brand. Someone else bids on it. Google takes the fee." The ruling, he said, "could change the economics of online advertising for millions of businesses."
 
-Relief from the monsoon — which typically arrives in southern India around June 1 and spreads nationwide by mid-July — may come later and weaker than usual. The IMD this week revised its monsoon rainfall forecast down to 90% of the long-period average, the weakest projection in 11 years. An El Niño is expected to develop by July, further suppressing rainfall.
+Marketing experts have warned that the implications extend beyond Google. Prashant Puri, CEO of AdLift, pointed out that Amazon's sponsored product placements — where competitor listings appear on a brand's own product page — and LinkedIn's B2B targeting tools could face similar legal scrutiny.
 
-## Who Dies
+## Why This Matters at Scale
 
-The study's authors and doctors treating heatwave patients describe a consistent pattern. The victims are overwhelmingly outdoor workers — construction labourers, rickshaw pullers, farm workers, street vendors — along with the elderly and those without access to cooling infrastructure. In rural India, where electricity supply remains unreliable and air conditioning is a luxury, entire communities are exposed.
+India's digital advertising market generated over Rs 1.36 lakh crore ($16 billion) in revenue in 2024 and is projected to reach Rs 2.7 lakh crore ($32 billion) by 2030. Keyword bidding is the backbone of this ecosystem. If brands can now legally prevent competitors from bidding on their names, the economics of customer acquisition change dramatically.
 
-Urban India is not spared. Cities amplify heat through the "urban heat island" effect — concrete, asphalt, and dense construction trap heat during the day and prevent cooling at night. Delhi, which recorded temperatures above 46°C in recent days, sees nighttime temperatures that barely drop below 30°C, denying residents the overnight recovery that human bodies need.
+For startups, D2C brands, fintech companies, and SaaS businesses that depend heavily on search-driven customer acquisition, the ruling introduces a new variable. Companies that previously relied on intercepting competitor traffic may need to invest more in building their own brand recognition — or accept higher costs for generic keywords.
+
+Sajal Gupta, CEO of Kiaos Marketing, believes the immediate financial impact on Google will be limited. But the structural implications — fewer bidders per auction, lower per-click prices, and a potential compliance burden if Google must build systems to verify trademark claims at scale — could reshape the market over time.
+
+## The Diaspora Angle
+
+For NRI entrepreneurs and investors with stakes in Indian tech and e-commerce, the ruling is a reminder that India's regulatory environment is evolving in ways that can reshape business models. Google, which counts India as one of its most critical global markets, will likely appeal. But in the meantime, trademark holders across the country are reviewing their options.
+
+The ruling is not yet binding on courts outside Delhi. But as a Delhi High Court decision on a practice that is uniform across India, its persuasive value is substantial. The case that ran for over a decade has, in a single judgment, placed a legal cloud over one of digital advertising's most fundamental assumptions.""",
+    "sources": "Reuters, Delhi High Court judgment (May 22, 2026), Storyboard18, Outlook Business, Exchange4Media, Devdiscourse",
+    "image_query": "Google office building India",
+    "image_fallback_query": "digital advertising computer screen search",
+    "person_name": None
+})
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ARTICLE 3: Supreme Court Anti-Trafficking Protection Plan
+# ═══════════════════════════════════════════════════════════════════════════
+articles.append({
+    "headline": "The Supreme Court Just Issued India's First Nationwide Plan to Protect Trafficking Survivors. It Took 200 Pages.",
+    "subheadline": "Justice Pardiwala's bench created a binding framework for rescue, rehabilitation, and prosecution that no government had managed to produce. The ruling also clarified that voluntary adult sex work cannot be criminalized.",
+    "slug": "supreme-court-india-first-nationwide-anti-trafficking-victim-protection-plan-20260530",
+    "category": "news",
+    "body": """The Supreme Court of India has issued what may be its most comprehensive human rights ruling of the year — a binding, nationwide Victim Protection Plan for survivors of trafficking for commercial sexual exploitation. The judgment, delivered by a bench of Justices J.B. Pardiwala and R. Mahadevan, runs to some 200 pages and covers rescue operations, victim identification, rehabilitation, prosecution mechanisms, and institutional coordination.
+
+"It took a pretty long time to prepare this judgment, but we are sure you won't have to refer to any books henceforth on the subject," Justice Pardiwala observed at the time of pronouncement. "This will remain very close to our hearts because it will go a long way in protecting vulnerable young girls and women."
+
+## What the Court Found
+
+The bench identified a gap that successive governments had failed to close. Despite the existence of multiple laws dealing with trafficking and sexual exploitation — including the Immoral Traffic (Prevention) Act, the Protection of Children from Sexual Offences Act, and provisions under the Indian Penal Code — India lacked a comprehensive framework governing the rescue, protection, rehabilitation, and reintegration of trafficking victims.
+
+The court held that this absence had resulted in "arbitrary and non-uniform treatment of survivors across the country," impairing their fundamental rights under Articles 21 (right to life and personal liberty) and 23 (prohibition of human trafficking and forced labor) of the Constitution.
+
+The Union Government had previously acknowledged the need for such a plan and had undertaken efforts to formulate one. But no framework had been finalized, leaving the court to step in under its extraordinary powers under Articles 32 and 142 of the Constitution.
+
+## The Framework
+
+The Victim Protection Plan issued by the court is binding on all states and union territories. It mandates standardized protocols across several critical areas.
+
+On **rescue operations**, the court directed that raids and rescue missions must be conducted with trained social workers present, not just law enforcement. Rescued individuals must be treated as potential victims, not as accused persons — a distinction that advocacy groups have demanded for years, pointing to widespread instances of trafficking survivors being arrested and prosecuted rather than assisted.
+
+On **victim identification**, the ruling establishes criteria for distinguishing between victims of trafficking and individuals who may be engaged in voluntary sex work. The court was explicit that "voluntary adult sex work cannot be criminalised if based on consent" — a clarification that builds on earlier Supreme Court observations but now carries the weight of a detailed, reasoned judgment.
+
+On **rehabilitation**, the court ordered the creation of shelters, vocational training programs, and mental health services for survivors. It directed states to ensure that survivors are not housed in conditions that amount to further detention — a persistent problem in government-run homes.
+
+On **prosecution**, the judgment directed that charges must focus on traffickers, pimps, and customers who exploit minors or coerced adults, rather than on the victims themselves.
+
+## Why It Matters
+
+India is one of the countries most affected by human trafficking, with the National Crime Records Bureau recording thousands of cases annually — a figure that anti-trafficking organizations say vastly underestimates the true scale.
+
+The gap between the law on paper and its implementation has been enormous. Without standardized procedures, survivors' experiences varied dramatically depending on which state they were rescued in, which police station handled their case, and whether any trained personnel were available.
+
+The Supreme Court's intervention is unusual in its level of operational detail. Courts typically issue directives and leave implementation to the executive branch. Here, the bench essentially wrote the policy framework that government agencies had not produced, then made it legally binding.
 
 ## The Diaspora Connection
 
-For the millions of NRIs whose parents and extended families still live in India — particularly in the Hindi belt states of UP, Bihar, Rajasthan, and MP that bear the worst of summer heat — the study quantifies a risk that has always been abstract. Phone calls home during Indian summers often include casual mentions of power cuts and unbearable heat. The Berkeley study suggests those conditions are killing thousands of people every day they persist.
+For the Indian diaspora, trafficking is often a hidden issue — distant from the professional and economic concerns that dominate NRI conversations about India. But the ruling intersects with broader questions about India's governance capacity and its willingness to protect its most vulnerable citizens.
 
-## What Comes Next
+Several diaspora-backed NGOs work on anti-trafficking efforts in India, and the Supreme Court's framework gives them a legal benchmark to hold state governments accountable. The judgment also addresses cross-border trafficking, noting that India shares porous borders with Nepal and Bangladesh — countries from which significant numbers of women and girls are trafficked into India.
 
-India's public health response to extreme heat remains largely reactive — advisories to stay indoors, drink water, and avoid the afternoon sun. But the scale of the crisis the Berkeley study describes demands something more: early warning systems linked to hospital surge capacity, outdoor work regulations with enforceable rest-hour mandates, and cooling infrastructure in the most vulnerable districts.
-
-With the weakest monsoon in over a decade approaching and El Niño on the horizon, the window for preparation is closing faster than the temperatures are rising."""
+Justice Pardiwala acknowledged the research assistance of legal scholars who contributed to the judgment, describing the matter as "deeply significant to the protection of vulnerable women and children." The ruling now becomes the binding standard against which every state's anti-trafficking efforts will be measured.""",
+    "sources": "LiveLaw, Supreme Court of India judgment (May 2026), National Crime Records Bureau",
+    "image_query": "Supreme Court of India building",
+    "image_fallback_query": "Indian court justice gavel",
+    "person_name": "Supreme Court of India"
 })
 
-# ─── ARTICLE 3: SEBI Clears NDTV ──────────────────────────────────
+# ── main loop ────────────────────────────────────────────────────────────
+print(f"\n{'='*60}")
+print(f"The Videshi — News Writer")
+print(f"Batch: {datetime.now(timezone.utc).isoformat()}")
+print(f"Articles to write: {len(articles)}")
+print(f"{'='*60}\n")
 
-articles.append({
-    "headline": "SEBI Has Finally Cleared NDTV of Disclosure Violations. The Case Began in 2009.",
-    "subheadline": "India's markets regulator ruled that no change of control occurred under a 2009 loan agreement — ending a 17-year-old saga for the Adani-owned broadcaster.",
-    "slug": "sebi-clears-ndtv-disclosure-violations-17-year-case-adani-loan-agreement-20260530",
-    "category": "news",
-    "vertical": "news",
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com"},
-        {"name": "Securities and Exchange Board of India", "url": "https://www.sebi.gov.in"},
-        {"name": "Securities Appellate Tribunal", "url": "https://sat.gov.in"}
-    ]),
-    "image_search_person": None,
-    "image_search_alt": "NDTV India news broadcaster",
-    "body": """It took 17 years, but the Securities and Exchange Board of India has finally closed the book on one of its longest-running corporate disputes — and NDTV walked away clean.
+published = 0
 
-In an order issued on Friday, SEBI disposed of proceedings against New Delhi Television Ltd (NDTV), ruling that the company did not violate disclosure regulations in connection with a 2009 loan agreement that the regulator had previously claimed amounted to a change in control.
+for i, art in enumerate(articles, 1):
+    print(f"\n── Article {i}/{len(articles)}: {art['headline'][:60]}...")
 
-The decision marks the end of a regulatory saga that began during the UPA government era, survived the transition to NDA rule, and outlasted NDTV's own transformation from an independently owned broadcaster to a unit of the Adani Group.
+    # Validate article quality
+    word_count = len(art['body'].split())
+    if word_count < 400:
+        print(f"  ✗ REJECTED: Only {word_count} words (minimum 400)")
+        continue
+    if len(art['headline']) < 20 or len(art['headline']) > 200:
+        print(f"  ✗ REJECTED: Headline length {len(art['headline'])} out of range")
+        continue
+    if len(art['subheadline']) < 15:
+        print(f"  ✗ REJECTED: Subheadline too short")
+        continue
 
-## The 2009 Agreement
+    print(f"  Word count: {word_count} ✓")
+    print(f"  Headline: {len(art['headline'])} chars ✓")
+    print(f"  Category: {art['category']} ✓")
 
-The case traces back to a loan agreement entered into by NDTV's founders, Prannoy Roy and Radhika Roy, in 2009. Under the terms, the lender was granted options to acquire a significant stake in the broadcaster — provisions that SEBI later argued constituted a de facto change in control.
-
-In June 2018 — nearly a decade after the agreement was signed — SEBI formally held that the arrangement did indeed result in a change in control of NDTV. The regulator then launched disclosure violation proceedings, arguing that NDTV should have informed stock exchanges about SEBI's finding at the time.
-
-NDTV contested the proceedings, and the case went to the Securities Appellate Tribunal (SAT).
-
-## SAT Overturns SEBI
-
-In 2022, the SAT set aside SEBI's 2018 ruling, holding that the loan agreement did not amount to a change in control because the options it contained were never actually exercised. The distinction was critical: SEBI had treated the mere existence of the options as a control event, while SAT ruled that unexercised options do not transfer control.
-
-With SAT's ruling standing, SEBI was left in an awkward position. Its disclosure violation case depended entirely on the premise that a change in control had occurred. If it hadn't — as SAT held — then there was nothing to disclose, and therefore no violation.
-
-## Friday's Order
-
-That is exactly what SEBI concluded in its Friday order. The regulator noted that since there was no change in control, no disclosure obligation arose under listing regulations, and therefore no violation of the rules occurred. The proceedings were disposed of without penalty.
-
-For NDTV, the ruling removes one of the last regulatory clouds from its pre-Adani era. The Adani Group completed its takeover of NDTV in 2023, acquiring a majority stake through a combination of indirect share purchases and an open offer. Prannoy Roy and Radhika Roy subsequently stepped down from their executive roles.
-
-## What It Means
-
-The SEBI-NDTV case is a case study in how Indian securities regulation can become entangled in its own timelines. A 2009 transaction was first scrutinised in 2018, overturned in 2022, and finally cleared in 2026. Throughout, NDTV operated under a cloud of regulatory uncertainty that affected its market reputation, its ability to attract investors, and — some analysts argue — its editorial independence.
-
-The case also highlights a recurring tension in Indian corporate law: the question of when financial arrangements that fall short of actual share transfers can nonetheless be treated as control events. SEBI's aggressive interpretation in 2018 was ultimately rejected, but the mere act of bringing the case had consequences for the company that no subsequent ruling can undo.
-
-For investors, the takeaway is narrower but relevant. SEBI's disposal of the case confirms that disclosure obligations under Indian listing rules are triggered by actual control changes, not by the theoretical possibility of future changes embedded in financial instruments. Companies with complex ownership structures and option-laden agreements can take some comfort from that precedent — though the 17-year timeline for resolution offers rather less reassurance about regulatory efficiency.
-
-The Adani Group, which now controls NDTV's editorial and commercial operations, has not commented on the ruling. The company's shares closed unchanged on Friday."""
-})
-
-# ─── PUBLISH ────────────────────────────────────────────────────────
-
-published_count = 0
-
-for i, article in enumerate(articles):
-    print(f"\n{'='*60}")
-    print(f"Article {i+1}: {article['headline'][:70]}...")
-    
     # Image sourcing
     img_url = None
-    
-    # Try Wikipedia for person articles
-    if article.get('image_search_person'):
-        person = article['image_search_person']
-        print(f"  → Trying Wikipedia for '{person}'...")
-        img_url = fetch_wikipedia_person_image(person)
-        
-        # Try alternate names
-        if not img_url and '(' not in person:
-            for suffix in ['(politician)', '(military)', '(general)']:
-                img_url = fetch_wikipedia_person_image(f"{person} {suffix}")
-                if img_url:
-                    break
-    
-    # Fall back to Pexels
-    if not img_url and article.get('image_search_alt'):
-        print(f"  → Trying Pexels for '{article['image_search_alt']}'...")
-        img_url = fetch_pexels_image(article['image_search_alt'])
-    
-    # Upload to Supabase if we have an image
+
+    # Step 1: Wikipedia if it's a person article
+    if art.get('person_name'):
+        img_url = fetch_wikipedia_person_image(art['person_name'])
+
+    # Step 2: Pexels fallback
+    if not img_url:
+        img_url = fetch_pexels_image(art['image_query'], art.get('image_fallback_query'))
+
+    # Step 3: Upload to Supabase storage
     final_img_url = None
     if img_url:
-        slug = article['slug']
-        ext = 'jpg'
-        if '.png' in img_url.lower():
-            ext = 'png'
-        filename = f"{slug}.{ext}"
+        filename = f"{art['slug']}.jpg"
         final_img_url = upload_image_to_supabase(img_url, filename)
-        
-        # Validate
-        if final_img_url and not validate_image_url(final_img_url):
-            print(f"  ✗ Image validation failed, skipping image")
-            final_img_url = None
-    
-    if not final_img_url:
-        print(f"  ⚠ No image found — publishing without image (no image > wrong image)")
-    
-    # Prepare article data
-    art_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
-    
-    data = {
-        "id": art_id,
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "slug": article["slug"],
-        "body": article["body"],
-        "category": "news",
-        "vertical": "news",
-        "status": "published",
-        "published_at": now,
-        "sources": json.loads(article["sources"]),
-        "image_url": final_img_url,
-        "image_attribution": "Wikimedia Commons" if (final_img_url and 'wikimedia' in str(img_url).lower()) else "The Videshi" if final_img_url else None,
-    }
-    
-    result = sb_insert("p2_articles", data)
-    if result:
-        print(f"  ✓ Published: {article['slug']}")
-        published_count += 1
     else:
-        print(f"  ✗ Failed to publish: {article['slug']}")
-    
-    time.sleep(1)
+        print("  ⚠ No image found — publishing without image (no image > wrong image)")
+
+    # Insert article
+    row = {
+        'headline': art['headline'],
+        'subheadline': art['subheadline'],
+        'slug': art['slug'],
+        'category': art['category'],
+        'body': art['body'],
+        'sources': art['sources'],
+        'image_url': final_img_url,
+        'image_attribution': 'The Videshi' if final_img_url and 'supabase' in (final_img_url or '') else ('Wikimedia Commons' if final_img_url and 'wiki' in (final_img_url or '').lower() else None),
+        'status': 'published',
+        'published_at': datetime.now(timezone.utc).isoformat(),
+    }
+
+    result = sb_insert('p2_articles', row)
+    if result:
+        art_id = result.get('id', 'unknown')
+        print(f"  ✓ Published: {art['slug']} (id: {art_id})")
+        published += 1
+    else:
+        print(f"  ✗ Failed to insert article")
 
 print(f"\n{'='*60}")
-print(f"Done. Published {published_count}/{len(articles)} articles.")
+print(f"Batch complete: {published}/{len(articles)} articles published")
+print(f"{'='*60}\n")
