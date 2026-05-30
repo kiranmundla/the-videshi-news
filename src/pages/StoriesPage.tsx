@@ -186,7 +186,7 @@ export default function StoriesPage() {
         {/* Hero — Community framing                                     */}
         {/* ============================================================ */}
         <div className="text-center max-w-3xl mx-auto mb-6">
-          <h1 className="font-serif text-3xl md:text-4xl font-bold mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-4">
             Diaspora Voices
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed mb-3">
@@ -225,7 +225,7 @@ export default function StoriesPage() {
                   className="snap-start flex-shrink-0 flex items-start gap-2.5 px-4 py-3 bg-muted/60 hover:bg-muted rounded-xl border border-border hover:border-primary/30 transition-all duration-200 max-w-[260px] md:max-w-[280px] group"
                 >
                   <span className="text-lg flex-shrink-0 mt-0.5">{p.emoji}</span>
-                  <span className="text-sm text-foreground/80 group-hover:text-foreground leading-snug">
+                  <span className="text-sm text-foreground/80 group-hover:text-foreground leading-snug" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                     "{p.text}"
                   </span>
                 </Link>
@@ -308,7 +308,7 @@ export default function StoriesPage() {
         ) : stories.length === 0 && !debouncedSearch ? (
           <div className="text-center py-20">
             <p className="text-5xl mb-4">📝</p>
-            <h2 className="font-serif text-xl font-bold mb-2">No stories yet</h2>
+            <h2 className="text-lg font-semibold tracking-tight mb-2">No stories yet</h2>
             <p className="text-muted-foreground mb-2">
               Be the first to share your story with the diaspora community.
             </p>
@@ -325,7 +325,7 @@ export default function StoriesPage() {
         ) : stories.length === 0 && debouncedSearch ? (
           <div className="text-center py-16">
             <p className="text-4xl mb-3">🔍</p>
-            <h2 className="font-serif text-lg font-bold mb-2">No matches for "{debouncedSearch}"</h2>
+            <h2 className="text-base font-semibold tracking-tight mb-2">No matches for "{debouncedSearch}"</h2>
             <p className="text-muted-foreground text-sm mb-4">
               Try different keywords, or be the first to share a story about this topic.
             </p>
@@ -374,7 +374,7 @@ export default function StoriesPage() {
         {/* ============================================================ */}
         <div className="mt-16 text-center py-12 px-6 bg-muted/30 rounded-2xl border border-border">
           <p className="text-3xl mb-3">🤝</p>
-          <h2 className="font-serif text-xl md:text-2xl font-bold mb-4">Your experience is someone else's roadmap</h2>
+          <h2 className="text-lg md:text-xl font-semibold tracking-tight mb-4">Your experience is someone else's roadmap</h2>
           <p className="text-muted-foreground mb-3 max-w-lg mx-auto leading-relaxed">
             Every story you share helps someone who's a few steps behind you. A first-gen student figuring out college apps. A new H-1B holder who doesn't know what to expect. A parent wondering if anyone else is raising kids between two cultures.
           </p>

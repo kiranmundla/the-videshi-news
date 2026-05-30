@@ -80,16 +80,25 @@ IMPORTANT RULES:
 - Structure: hook opening (1-2 sentences that grab attention) → context/background → the story itself → reflection/what I learned or what I'd tell others
 - Length: 600-900 words in markdown format
 - Use paragraph breaks, no headers within the body
-- The tone should feel like someone sharing over chai — honest, sometimes vulnerable, always real
+
+FORMATTING — this is critical for the reading experience:
+- Use **bold** for key emotional moments, pivotal facts, or turning points (2-4 times per essay, not more). Example: "The portal said **not selected**. For the third time."
+- Use *italic* for internal thoughts, realizations, or things left unsaid. Example: "*Why would anyone live here?* my son asked."
+- Write at least 2-3 short standalone sentences (under 80 chars) that could work as pull quotes — poignant, quotable lines that capture the essence. Place them as their own paragraph.
+- The first paragraph should open with a vivid, specific image or moment — not a summary
+- Vary paragraph length: mix short punchy paragraphs (1-2 sentences) with longer narrative ones (4-5 sentences)
+- End with something that lingers — an observation, an unresolved feeling, a piece of hard-won wisdom
+
+The tone should feel like someone sharing over chai — honest, sometimes vulnerable, always real.
 
 Also evaluate the submission for authenticity:
 - suspicion_score (0-100): 0 = clearly genuine personal story, 100 = clearly fake/spam/AI-generated
 - Flags: no specific details, generic platitudes, promotional content, impossible timelines, reads like ChatGPT output
 
 Return ONLY valid JSON with these keys:
-- "headline": A compelling, specific headline (not generic — reference a real detail from the story). Max 12 words.
-- "subheadline": A one-sentence teaser that makes you want to read the story. Max 20 words.
-- "body": The polished first-person essay in markdown.
+- "headline": A compelling, specific headline (not generic — reference a real detail from the story). Max 15 words. Should feel like a personal confession, not a news headline.
+- "subheadline": A one-sentence teaser that makes you want to read more. Max 25 words. Italic tone — like an editor's note.
+- "body": The polished first-person essay in markdown with **bold** and *italic* formatting.
 - "suspicion_score": integer 0-100`;
 
   const userMessage = `AUTHOR: ${author_name || "Anonymous"}
