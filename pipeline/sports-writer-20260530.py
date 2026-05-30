@@ -1,390 +1,323 @@
 #!/usr/bin/env python3
-"""
-Sports Writer for The Videshi - 2026-05-30
-Writes 3 sports articles with diaspora angle.
-"""
+"""Sports writer for The Videshi — May 30, 2026"""
 
-import os, json, uuid, re, time, subprocess
-import requests
-import urllib.parse
+import requests, json, os, sys, urllib.parse, uuid, re, subprocess
 from datetime import datetime, timezone
 
-# Load environment
-def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip())
+# ── Load env ──────────────────────────────────────────────────────────────
+env_path = os.path.expanduser("~/.env.supabase")
+if os.path.exists(env_path):
+    with open(env_path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
-
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_API_KEY = os.environ.get('PEXELS_API_KEY', '')
-
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation"
+    "Prefer": "return=representation",
 }
 
-# ---------- Image Sourcing ----------
+# Load Pexels key
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+PEXELS_KEY = None
+if os.path.exists(pexels_env):
+    with open(pexels_env) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                if "PEXELS" in k.upper():
+                    PEXELS_KEY = v.strip().strip('"').strip("'")
 
-def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+# ── Image helpers ─────────────────────────────────────────────────────────
+def fetch_wikipedia_image(topic):
+    """Fetch image from Wikipedia REST API. Returns URL or None."""
+    encoded = urllib.parse.quote(topic.replace(" ", "_"))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            timeout=10,
         )
         if r.status_code == 200:
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{topic}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia API error for '{topic}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels API using curl (urllib gets 403)."""
-    if not PEXELS_API_KEY:
-        print("  ⚠ No Pexels API key")
+    """Fetch a relevant image from Pexels using curl (Python urllib gets 403)."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key available")
         return None
-    
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             result = subprocess.run(
-                ['curl', '-sS', '-H', f'Authorization: {PEXELS_API_KEY}',
-                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'],
-                capture_output=True, text=True, timeout=15
+                [
+                    "curl", "-sS",
+                    f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
+                    "-H", f"Authorization: {PEXELS_KEY}",
+                ],
+                capture_output=True, text=True, timeout=15,
             )
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for photo in photos:
-                src = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
-                if src:
-                    print(f"  ✓ Pexels image found for '{q}': {src[:80]}...")
-                    return src
+            photos = data.get("photos", [])
+            for p in photos:
+                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+                if url:
+                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image_url(url):
-    """Check image URL returns 200 with image content-type and >5KB."""
+
+def validate_image(url):
+    """Verify image URL returns 200 with image/* content type and >5KB."""
     if not url:
-        return False
-    # Ban Meta CDN URLs
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
-    if any(b in url for b in banned):
-        print(f"  ✗ Banned CDN URL: {url[:60]}")
-        return False
-    banned_params = ['_nc_ht=', '_nc_cat=', 'ccb=']
-    if any(p in url for p in banned_params):
-        print(f"  ✗ Signed Meta URL: {url[:60]}")
         return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
-            print(f"  ✓ Image validated: {cl} bytes, {ct}")
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
             return True
-        # Some servers don't support HEAD, try GET
-        r2 = requests.get(url, timeout=10, stream=True, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct2 = r2.headers.get('Content-Type', '')
-        cl2 = int(r2.headers.get('Content-Length', 0))
-        if r2.status_code == 200 and 'image' in ct2 and cl2 > 5000:
-            print(f"  ✓ Image validated (GET): {cl2} bytes, {ct2}")
+        # Sometimes HEAD doesn't return Content-Length, try GET with range
+        if r.status_code == 200 and "image" in ct:
             return True
-        print(f"  ✗ Image validation failed: status={r2.status_code}, ct={ct2}, cl={cl2}")
+        print(f"  ⚠ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
         print(f"  ⚠ Image validation error: {e}")
     return False
 
-# ---------- Supabase helpers ----------
 
-def sb_insert(table, data):
-    """Insert a record into Supabase."""
+# ── Check for banned image sources ────────────────────────────────────────
+def is_banned_source(url):
+    if not url:
+        return True
+    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
+    return any(b in url for b in banned)
+
+
+# ── Article insertion ─────────────────────────────────────────────────────
+def insert_article(article):
+    """Insert article into p2_articles."""
     r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=data
+        json=article,
     )
     if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            return result[0]
-        return result
+        data = r.json()
+        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
+        print(f"  ✓ Published: {article['headline'][:60]}... (id={art_id})")
+        return art_id
     else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+        print(f"  ✗ Failed to publish: {r.status_code} {r.text[:200]}")
         return None
 
-def sb_update(table, match_field, match_value, data):
-    """Update a record in Supabase."""
-    r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/{table}?{match_field}=eq.{match_value}",
-        headers=HEADERS,
-        json=data
-    )
-    if r.status_code in (200, 204):
-        return True
-    else:
-        print(f"  ✗ Update failed ({r.status_code}): {r.text[:200]}")
-        return False
 
-# ---------- Articles ----------
+# ── Check skip list ───────────────────────────────────────────────────────
+skip_list_path = os.path.expanduser("~/workspace/the-videshi-news/pipeline/image-skip-list.json")
+skip_list = []
+if os.path.exists(skip_list_path):
+    with open(skip_list_path) as f:
+        skip_list = json.load(f)
 
-articles = []
+# ══════════════════════════════════════════════════════════════════════════
+# ARTICLE 1: Champions League Final
+# ══════════════════════════════════════════════════════════════════════════
 
-# ============================================================
-# ARTICLE 1: Fonseca shocks Djokovic at French Open
-# ============================================================
-articles.append({
-    "headline": "Fonseca Beat Djokovic From Two Sets Down. The French Open Has No Major Champion Left in the Men's Draw.",
-    "subheadline": "The 19-year-old Brazilian became the first teenager to beat Novak Djokovic in a Grand Slam match. With Sinner and Alcaraz also gone, Roland Garros will crown a first-time men's singles champion.",
-    "slug": "fonseca-beats-djokovic-two-sets-down-french-open-2026-no-major-champion-left-mens-draw",
-    "category": "sports",
-    "vertical": "sports",
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com/sports/tennis/"},
-        {"name": "USA Today", "url": "https://www.usatoday.com/sports/tennis/"},
-        {"name": "People", "url": "https://people.com/sports/"},
-        {"name": "Sportradar", "url": "https://sportradar.com/"}
-    ]),
-    "body": """It took four hours and fifty-three minutes. It took a heat wave in Paris, a cameraman who got too close, and a nineteen-year-old Brazilian who refused to believe the scoreboard.
+print("\n═══ Article 1: Champions League Final ═══")
 
-João Fonseca beat Novak Djokovic 4-6, 4-6, 6-3, 7-5, 7-5 in the third round of the 2026 French Open on Friday — the longest match of Djokovic's career at Roland Garros, and one that may define the tournament's future more than any result this decade.
+cl_headline = "No Team Has Defended the Champions League Since Real Madrid. PSG Will Try Tonight in Budapest Against an Arsenal Side That Has Never Won It."
+cl_subheadline = "The final kicks off at 9:30 PM IST on Saturday — prime-time viewing for what might be the biggest club match of the year."
+cl_slug = "champions-league-final-2026-arsenal-psg-budapest-nri-watch-guide-prime-time-ist"
 
-## The First Teenager to Beat Djokovic in a Slam
+cl_body = """The biggest match in club football this season happens tonight at the Puskás Arena in Budapest. Arsenal, the newly crowned Premier League champions, face Paris Saint-Germain, the defending Champions League holders, in a final that pits tactical discipline against devastating attacking flair.
 
-Djokovic had been 289-1 in Grand Slam matches when leading two sets to love. The only other man to come back from that deficit against him was Jürgen Melzer, on this same Parisian clay, in 2010. Fonseca, ranked 30th in the world and seeded 28th in the draw, became the second — and the first teenager ever to defeat Djokovic in a Grand Slam event.
+For Arsenal, this is uncharted territory. The club has never won the Champions League. Their only previous appearance in the final was in 2006, when a red card to goalkeeper Jens Lehmann after eighteen minutes derailed their challenge against Barcelona. Two decades later, under Mikel Arteta, they return to Europe's biggest stage with the confidence of a side that just ended a twenty-two-year wait for the Premier League title.
 
-"I actually didn't believe I could win the match," Fonseca said afterward, grinning. "I just played and enjoyed being on the court. What an idol we have and what a pleasure it was to step on the court against him."
+For PSG, this is about legacy. No club has successfully defended the Champions League trophy since Real Madrid's three consecutive titles between 2016 and 2018. Luis Enrique's side dismantled Inter Milan 5-0 in last year's final and have the tactical sophistication and squad depth to make history again.
 
-## Two Sets Up, Then the Heat Takes Over
+## The Tactical Battle
 
-Djokovic started crisply. He broke Fonseca's serve in each of the first two sets, looking every bit the three-time French Open champion chasing a record 25th major title. But temperatures at Roland Garros hovered around 90 degrees Fahrenheit all week, and as the third set wore on, the 39-year-old Serb began to wilt.
+This final has been framed — somewhat provocatively — as Beauty and the Beast. PSG's front line is packed with the kind of talent that makes defenders lose sleep. Ballon d'Or winner Ousmane Dembélé leads a forward trio that includes Khvicha Kvaratskhelia and either Désiré Doué or Bradley Barcola. Behind them, a midfield anchored by João Neves, Vitinha, and Fabián Ruiz blends control with creative menace.
 
-Early in the fifth set, Djokovic vomited into a trash can at courtside. He had already snapped at a cameraman earlier — "Can you come more in my face? For God's sake, make some space" — after the second set.
+Arsenal's response is a defence that has been the foundation of everything they have achieved this season. Goalkeeper David Raya has kept nine clean sheets in the club's fourteen-game unbeaten run to the final. In front of him, William Saliba and Gabriel Magalhães form one of the most formidable centre-back partnerships in European football. Declan Rice, who has played over 4,300 minutes across all competitions this season — more than double Dembélé's total — anchors the midfield with relentless energy.
 
-Fonseca, meanwhile, found another gear. He broke Djokovic's serve at 5-5 in both the fourth and fifth sets, then closed the match with three consecutive aces. The Brazilian pointed to the stands where his mother sat beaming — it was her birthday.
+Arteta's Arsenal are not merely defensive, though. Their set-piece routines, particularly from corners, have become a defining weapon. Gabriel, in particular, has a knack for scoring decisive headers in the biggest moments — including a last-ditch intervention against Atlético Madrid in the semifinal.
 
-"I was just trying to hit the ball as fast as I could," Fonseca said. "Djokovic doesn't miss and we still think he's 20. At the end of the match he was more fit than me, which is crazy."
+## The Road to Budapest
 
-## The Draw Is Wide Open
+Arsenal were the only team to win all eight of their league phase matches, finishing top of the thirty-six-team table. Their knockout path saw them dispatch opponents with the kind of controlled, low-scoring wins that have become their trademark — they scored just six goals across the entire knockout rounds while conceding only two.
 
-Fonseca's win comes less than 24 hours after world number one Jannik Sinner lost to Argentina's Juan Manuel Cerundolo in the second round. Two-time defending champion Carlos Alcaraz withdrew from the tournament entirely with a wrist injury. Sixth-seeded Daniil Medvedev fell in the first round to Australia's Adam Walton. Stan Wawrinka and Gaël Monfils, playing their final seasons, both lost their opening matches.
-
-There is no former Grand Slam champion left in the men's draw. Roland Garros will crown a first-time major winner.
-
-The remaining contenders include second-seeded Alexander Zverev, 15th-seeded Casper Ruud, 11th-seeded Andrey Rublev, and Fonseca himself. For the diaspora watching from North America, there is also Nishesh Basavareddy — the Indian-American wildcard from Andhra Pradesh roots who stunned seventh-seeded Taylor Fritz in the second round, the biggest win by an Indian-heritage player at a Grand Slam in years.
-
-## What It Means for Djokovic
-
-When asked whether he would return to Roland Garros next year, Djokovic did not commit. "I don't know," he said. The 24-time Grand Slam winner, who turned 39 last week, said he felt he had played "really good tennis" but was physically spent.
-
-"A couple of times I felt like I was barely standing on my legs towards the end," Djokovic said. "Incredible match to be part of. Obviously a tough one for me to lose, being two sets to love up, but huge credit to Joao for really deserving to win."
-
-If Djokovic does return next year, he would join a short list of players who competed at Roland Garros at age 40 — a feat achieved by very few in the Open Era.
-
-The 15,000 fans at Court Philippe Chatrier gave him a standing ovation as he walked off. For a man who spent two decades rewriting records on every surface, it was the kind of farewell that may or may not be a farewell at all.
+PSG's route was more dramatic. They finished eleventh in the league phase and had to navigate the playoff round before finding their stride. In the semifinals, they beat Bayern Munich 6-5 on aggregate in a breathless two-legged affair that included a 5-4 first-leg win.
 
 ## The NRI Watch Guide
 
-Fonseca will face either 15th-seeded Casper Ruud or 24th-seeded Tommy Paul in the fourth round. Basavareddy's next match has not been scheduled yet. For viewers in North America, French Open matches air on TNT, and the schedule typically begins at 5 AM Eastern on weekdays, with night sessions on Court Chatrier starting around 3 PM Eastern. The men's final is on June 8.""",
-    "image_person": "Novak Djokovic",
-    "image_pexels_query": "tennis Roland Garros clay court",
-    "image_pexels_fallback": "professional tennis match",
-})
+For viewers in India, the final kicks off at **9:30 PM IST on Saturday** — prime-time viewing for a weekend night. The match will be broadcast on Sony Sports Network and streamed on SonyLIV.
 
-# ============================================================
-# ARTICLE 2: India's historic U23 Asian Wrestling haul
-# ============================================================
-articles.append({
-    "headline": "Twenty-Seven Medals in Da Nang. India's Wrestlers Just Delivered Their Best U23 Asian Championships in History.",
-    "subheadline": "The men's freestyle team won the championship trophy. The women won six golds out of ten medals. PM Modi called it 'an outstanding performance.' The 2028 Olympics pipeline has never looked stronger.",
-    "slug": "india-u23-asian-wrestling-championships-2026-27-medals-da-nang-historic-freestyle-women-20260530",
+For the diaspora in the United States, kickoff is at **12:00 PM ET / 9:00 AM PT**, broadcast on CBS and streamed on Paramount+.
+
+In the United Kingdom, kickoff is at **5:00 PM BST** on TNT Sports.
+
+## Why It Matters for the Diaspora
+
+This final arrives at a moment when the Premier League's dominance in Europe is at its peak. Aston Villa won the Europa League and Crystal Palace took the Conference League — if Arsenal win tonight, English clubs will hold all three European trophies for the first time in history.
+
+For the Indian diaspora, the Premier League is the most-watched football league by a significant margin. Arsenal's global fan base extends deep into India, where weekend viewing parties for Premier League matches are a fixture of urban life in Delhi, Mumbai, and Bangalore. An Arsenal victory would be celebrated across WhatsApp groups and sports bars from Edison, New Jersey, to Southall, London.
+
+But PSG are formidable. Luis Enrique's record in one-off finals — eleven wins from twelve — is the statistic that should concern every Arsenal supporter. The Spaniard knows how to prepare a team for the occasion, and his squad has the individual brilliance to punish even the slightest defensive lapse.
+
+"We have raised different standards now, and we have to go to the next level," Arteta said this week.
+
+He has. Tonight, Budapest will determine whether it is enough."""
+
+cl_sources = json.dumps([
+    {"name": "Reuters", "url": "https://www.reuters.com/sports/soccer/rock-solid-arsenal-ready-psg-test-champions-league-final-2026-05-29/"},
+    {"name": "USA Today", "url": "https://www.usatoday.com/story/sports/soccer/2026/05/29/champions-league-final-time-arsenal-psg/"},
+    {"name": "CNN Sports", "url": "https://www.cnn.com/sport/arsenal-psg-champions-league-final-budapest-2026"},
+])
+
+# Source image — try Puskás Arena from Wikipedia
+cl_image = fetch_wikipedia_image("Puskás Arena")
+if not cl_image or not validate_image(cl_image):
+    cl_image = fetch_wikipedia_image("Arsenal F.C.")
+if not cl_image or not validate_image(cl_image):
+    cl_image = fetch_pexels_image("football stadium night match", "soccer champions league")
+if cl_image and is_banned_source(cl_image):
+    cl_image = None
+
+cl_article = {
+    "headline": cl_headline,
+    "subheadline": cl_subheadline,
+    "slug": cl_slug,
+    "body": cl_body,
     "category": "sports",
     "vertical": "sports",
-    "sources": json.dumps([
-        {"name": "Wrestling Federation of India", "url": "https://wrestlingfederationofindia.com/"},
-        {"name": "IANS / HI India", "url": "https://hiindia.com/"},
-        {"name": "PTI / Freedom Press", "url": "https://thefreedompress.in/"},
-        {"name": "PM Modi on X", "url": "https://x.com/naaborendramodi"}
-    ]),
-    "body": """The numbers tell the story before a single name does. Eleven gold medals. Seven silver. Nine bronze. Twenty-seven medals total across three disciplines — freestyle, women's wrestling, and Greco-Roman. India's highest-ever haul at the U23 Asian Wrestling Championships. The men's freestyle team was crowned undisputed champion, finishing ahead of Kyrgyzstan and Kazakhstan. The women won the team title too.
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": cl_sources,
+    "image_url": cl_image,
+    "image_attribution": "Wikimedia Commons" if cl_image and "wikimedia" in (cl_image or "").lower() else "Pexels",
+}
 
-This happened in Da Nang, Vietnam, over the last week of May 2026, and it happened mostly in silence. No prime-time broadcasts. No hashtags trending. Just a generation of Indian wrestlers aged twenty-three and under, beating Central Asian powerhouses on their mats.
+cl_id = insert_article(cl_article)
 
-## The Freestyle Domination
 
-The men's freestyle squad alone accounted for nine medals — four golds, three silvers, and two bronzes. Akshay T Dhere at 57kg and Vicky at 97kg set the tone with gold medals early in the competition. Kumar Mohit at 65kg and Chandermohan at 79kg followed with golds of their own, each winning multiple bouts decisively.
+# ══════════════════════════════════════════════════════════════════════════
+# ARTICLE 2: India U18 Hockey Asia Cup
+# ══════════════════════════════════════════════════════════════════════════
 
-Deepak Rathi (61kg), Punit Kumar (92kg), and Lacky at 125kg — a heavyweight category where India has historically struggled — all won silver. Deepak Berwal (74kg) and Mor Sachin (82kg) added bronze medals that padded India's final tally into historic territory.
+print("\n═══ Article 2: India U18 Hockey Asia Cup Results ═══")
 
-India finished first in the freestyle team standings, ahead of Kyrgyzstan in second and Kazakhstan in third. These are nations where wrestling is a cultural cornerstone, where U23 programs receive state funding and media attention. India beat them all.
+hockey_headline = "A Hat-Trick From the Captain and Both Goals From a Fifteen-Year-Old. India's U18 Hockey Teams Have Opened the Asia Cup With Two Wins in Japan."
+hockey_subheadline = "The men demolished Kazakhstan 13-0 in Kakamigahara while the women edged Malaysia 2-1 — setting up decisive pool matches against Korea."
+hockey_slug = "india-u18-hockey-asia-cup-2026-men-13-0-kazakhstan-women-2-1-malaysia-kushwaha-naz-kakamigahara"
 
-## The Women Were Even More Dominant
+hockey_body = """India's Under-18 hockey teams have opened their Asia Cup campaign in Kakamigahara, Japan, with two victories that set starkly different tones — and both point to a pipeline that is very much alive.
 
-If the freestyle haul was impressive, the women's team was extraordinary. Six gold medals out of ten total medals — a conversion rate that would make any national federation proud. Muskan, Tapasya, Bhagyashree, Pulkit, Mansi, and Kajal all stood on the top step of the podium. These are names that most sports fans outside the wrestling community would not recognise today. That will change.
+## The Men: Thirteen Goals, Zero Resistance
 
-The women's team also won the team championship, mirroring the men's freestyle achievement. Combined with the Greco-Roman squad's eight medals — its own highest-ever tally at a U23 Asian Championships — the Indian contingent's overall dominance was complete.
+Captain Ketan Kushwaha scored a hat-trick as India crushed Kazakhstan 13-0 in their Pool A opener on Thursday, recording the most emphatic result of the tournament's opening day.
 
-## PM Modi Noticed
+Shahrukh Ali struck first in the twelfth minute with a thunderous shot from inside the circle. Prahalad Rajbhar doubled the lead two minutes later. From there, India never looked back.
 
-Prime Minister Narendra Modi congratulated the team on X, calling it "an outstanding performance."
+Kushwaha, leading by example, scored in the eighteenth minute after India won possession high up the pitch. Gazee Khan added a fourth in the twentieth. By halftime, India had six goals — Shahrukh completing his brace in the twenty-ninth minute and Ashish Tani Purti converting a penalty corner on the stroke of the interval.
 
-"The Men's Freestyle Wrestling team secured 9 medals, including 4 Golds, thus registering India's highest-ever overall medal haul at the U23 Asian Championships in history," Modi wrote. "The women's wrestling contingent won 10 medals, including 6 Golds. The Greco-Roman team also recorded its highest-ever overall medal count with 8 medals."
+The third quarter was the most devastating stretch of the match. Ansh Bahutra converted two penalty corners in the thirty-first and forty-fourth minutes. Purti added another from a set piece. Kushwaha then scored twice in quick succession — including a penalty corner — to complete his hat-trick and push India to an 11-0 lead.
 
-Wrestling Federation of India President Sanjay Singh was more expansive. "Lifting the U23 Asian Championship Trophy is a monumental achievement for Indian wrestling and a moment of immense pride for the entire country," he said. "Our freestyle grapplers have shown unparalleled determination and technical superiority."
+Akash Deep and Rajbhar rounded off the scoring in the fourth quarter to seal a 13-0 rout that announced India's intentions for the tournament in unmistakable terms.
 
-## Why the Diaspora Should Pay Attention
+The scoresheet tells its own story: seven different goalscorers, five penalty corner conversions, and a captain who led with three goals and a relentless attacking tempo.
 
-For the millions of Indian-Americans, Indian-Canadians, and Indian-Brits who watched Bajrang Punia, Ravi Dahiya, and Neeraj Chopra at the Tokyo and Paris Olympics, this is the incoming wave. The 2028 Los Angeles Games are two years away. The wrestlers who dominated in Da Nang are the ones who will be fighting for Olympic berths in the qualifying tournaments next year.
+## The Women: Naz Makes Her Mark
 
-India has medalled in wrestling at three consecutive Olympics — Sushil Kumar in 2012, Sakshi Malik in 2016, Ravi Dahiya and Bajrang Punia in 2020, Aman Sehrawat in 2024. Each cycle has produced at least one moment that brought the diaspora to its feet. The 27-medal haul in Da Nang suggests that the 2028 cycle could be the richest yet.
+The women's side had a tighter assignment — and delivered under pressure. India beat Malaysia 2-1 on Friday, with fifteen-year-old forward Nousheen Naz scoring both goals.
 
-What makes this result especially promising is the depth. This is not a single superstar carrying a team. This is eleven gold medallists across three disciplines, spread across weight categories from 50kg to 125kg. It is a system producing results, not just individuals.
+After a goalless first quarter, Naz broke the deadlock in the nineteenth minute, capitalising on a penalty corner to give India the lead. She struck again in the twenty-eighth minute with a sharp shot that beat the Malaysian goalkeeper, sending India into halftime with a 2-0 cushion.
 
-The competition received almost no coverage outside specialist wrestling media. That is, in some ways, the point. The work is being done. The medals are being won. The pipeline is filling. By the time Los Angeles arrives, these names — Dhere, Vicky, Mohit, Chandermohan, Muskan, Tapasya — will be familiar. This week in Da Nang was where it started.""",
-    "image_person": None,
-    "image_pexels_query": "wrestling competition mat athlete",
-    "image_pexels_fallback": "Indian wrestling sport",
-})
+Malaysia fought back. Nur Azli pulled one back in the forty-first minute, cutting the deficit to a single goal and setting up a tense final quarter. But the Indian defence held firm. Naz earned the Player of the Match award for her decisive contribution — a remarkable performance for a player who turned fifteen earlier this year.
 
-# ============================================================
-# ARTICLE 3: Anushka Sharma invests in Agilitas / One8 Yoga
-# ============================================================
-articles.append({
-    "headline": "Anushka Sharma Has Invested in Virat Kohli's Sportswear Company. They Are Launching a Yoga Line on June 21.",
-    "subheadline": "Sharma acquired a minority stake in Agilitas Sports and will co-develop One8 Yoga, set to debut on International Day of Yoga. It is the latest move by cricket's most powerful couple to build beyond the pitch.",
-    "slug": "anushka-sharma-agilitas-sports-virat-kohli-one8-yoga-june-21-investment-nri-20260530",
+India earned sixteen penalty corners across the match, a dominance in set-piece opportunities that they will need to convert more efficiently when the competition stiffens.
+
+## The Pipeline
+
+These age-group tournaments are where India's next generation of senior internationals are identified. The men's senior team has been a consistent force at the continental level, and the depth of talent on display in Kakamigahara suggests the pathway from junior to senior hockey is functioning well.
+
+Kushwaha's hat-trick was notable for its variety — goals from open play, set pieces, and opportunistic positioning. At the U18 level, this kind of all-round finishing is exactly what national selectors look for when projecting players into the senior setup.
+
+For the women's programme, Naz's emergence is a significant development. Indian women's hockey has made strides in recent years — the senior team reached the semifinals at the Tokyo Olympics — and identifying talent this early is crucial for sustained competitiveness.
+
+## What Comes Next
+
+The men face hosts Japan on Saturday — a far sterner test that will determine whether India's quality extends beyond dominance over weaker opposition. A pool match against South Korea follows on June 1.
+
+The women face South Korea on Sunday in what should be the decisive pool encounter. Korea demolished Singapore 8-0 in their opener and sit level with India on three points, separated only by goal difference.
+
+Both teams are well-positioned for the semifinals. The tests that matter begin now."""
+
+hockey_sources = json.dumps([
+    {"name": "ANI via LatestLY", "url": "https://www.latestly.com/agency-news/sports-news-captain-ketan-kushwahas-hat-trick-leads-indias-dominating-13-0-win-in-mens-u-18-asia-cup-opener.html"},
+    {"name": "RevSportz", "url": "https://revsportz.in/indian-u18-womens-hockey-team-holds-nerve-to-beat-malaysia-2-1/"},
+    {"name": "FIH via Wikipedia", "url": "https://en.wikipedia.org/wiki/2026_Men%27s_Hockey_U18_Asia_Cup"},
+])
+
+# Source image — try Pexels for field hockey
+hockey_image = fetch_pexels_image("field hockey game players", "hockey sport field")
+if hockey_image and is_banned_source(hockey_image):
+    hockey_image = None
+if not hockey_image or not validate_image(hockey_image):
+    hockey_image = fetch_wikipedia_image("Field hockey at the Summer Olympics")
+    if hockey_image and is_banned_source(hockey_image):
+        hockey_image = None
+
+hockey_article = {
+    "headline": hockey_headline,
+    "subheadline": hockey_subheadline,
+    "slug": hockey_slug,
+    "body": hockey_body,
     "category": "sports",
     "vertical": "sports",
-    "sources": json.dumps([
-        {"name": "Economic Times", "url": "https://economictimes.indiatimes.com/"},
-        {"name": "Apparel Resources", "url": "https://apparelresources.com/"},
-        {"name": "Franchise India", "url": "https://franchiseindia.com/"},
-        {"name": "IPO Scanner", "url": "https://iposcanner.ai/"}
-    ]),
-    "body": """Anushka Sharma has acquired a minority stake in Agilitas Sports, the Indian sportswear company co-founded by former Puma executives and already backed by her husband, Virat Kohli. As part of the deal, Sharma will lead the development of One8 Yoga, a new activewear category under the One8 sportswear brand. The line is set to launch on June 21 — International Day of Yoga.
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": hockey_sources,
+    "image_url": hockey_image,
+    "image_attribution": "Pexels" if hockey_image and "pexels" in (hockey_image or "").lower() else "Wikimedia Commons",
+}
 
-It is a quiet, strategic move that says more about where Indian sport-as-business is heading than any IPL auction number.
+hockey_id = insert_article(hockey_article)
 
-## The Agilitas Story
 
-Agilitas Sports was founded in 2023 by Abhishek Ganguly, Atul Bajaj, and Amit Prabhu — all former Puma India executives. The company built a vertically integrated model spanning manufacturing, brand development, and direct-to-consumer retail. Backed by Convergent Finance and Nexus Venture Partners, Agilitas has steadily acquired assets, including long-term Lotto licensing rights and footwear manufacturer Mochiko Shoes.
+# ── Summary ───────────────────────────────────────────────────────────────
+print("\n═══ Summary ═══")
+results = []
+if cl_id:
+    results.append(f"✓ Champions League Final: {cl_slug}")
+if hockey_id:
+    results.append(f"✓ India U18 Hockey: {hockey_slug}")
 
-The company's biggest move came in 2025, when Kohli ended his eight-year, ₹110-crore endorsement deal with Puma and invested approximately ₹40 crore for a minority stake in Agilitas. That deal also transferred One8 — Kohli's personal sportswear and lifestyle brand — into the Agilitas portfolio. It was a shift from endorsement to ownership, from face of a brand to builder of one.
+if results:
+    print(f"Published {len(results)} article(s):")
+    for r in results:
+        print(f"  {r}")
+else:
+    print("✗ No articles published")
+    sys.exit(1)
 
-Now Sharma has joined the same cap table. Agilitas CEO Ganguly confirmed the partnership but declined to disclose financial details. "Anushka is partnering with Agilitas by investing capital in the company and building yoga-wear," he said.
-
-## Why Yoga, Why Now
-
-India's athleisure and wellness market is growing at double-digit rates. Yoga apparel is one of its fastest-expanding segments, driven by rising fitness consciousness across Indian metros and — critically for Agilitas — among the global Indian diaspora.
-
-For NRIs in the United States, Canada, and the UK, yoga is both cultural inheritance and modern lifestyle. The market already includes established players like Lululemon, Alo Yoga, and Nike's yoga line. What it lacks is an Indian-rooted brand with genuine cultural authority.
-
-That is the gap Sharma and Agilitas are aiming at. One8 Yoga launching on June 21 is not a coincidence — International Day of Yoga, established at India's initiative at the United Nations in 2015, has become a global event with particular resonance in the diaspora.
-
-Ganguly framed the partnership as deeper than a celebrity endorsement. "Anushka joining goes much deeper than an investment," he said. "With One8 Yoga, we are extending that idea into a larger movement around wellness, mindfulness, and everyday fitness."
-
-## Cricket's Most Powerful Couple, Off the Pitch
-
-Kohli and Sharma are arguably the most recognisable couple in Indian public life. Kohli's One8 brand — spanning restaurants, fragrances, and sportswear — has long been a case study in how Indian athletes can build commercial empires beyond endorsements. Sharma, despite being on an indefinite sabbatical from films since 2018's *Zero*, has invested in multiple startups including clean beauty brand Nush.
-
-Their joint involvement in Agilitas is notable for what it represents: a shift from separate business portfolios to a shared platform. Kohli brings performance sport credibility. Sharma brings lifestyle and wellness positioning. Together, they give One8 a reach that few Indian brands can match.
-
-## What NRIs Should Know
-
-One8 Yoga products are expected to launch online and through select retail channels starting June 21. Pricing and availability in North American and UK markets have not been announced, but Agilitas has indicated plans for international expansion.
-
-For the diaspora, the brand's appeal will likely hinge on whether One8 Yoga can compete on quality and design with established Western activewear while offering an Indian identity that resonates with consumers who already practice yoga as both fitness and cultural connection.
-
-The sportswear market globally is worth over $400 billion. India's share is growing but still small. What Kohli and Sharma are building at Agilitas — an Indian-owned, vertically integrated sportswear platform with global ambitions — is an attempt to change that. The yoga line is the first chapter of that story aimed squarely at the world.""",
-    "image_person": "Anushka Sharma",
-    "image_pexels_query": "yoga activewear fashion",
-    "image_pexels_fallback": "yoga practice studio",
-})
-
-# ---------- Main execution ----------
-
-def process_articles():
-    published = 0
-    for i, art in enumerate(articles):
-        print(f"\n{'='*60}")
-        print(f"Article {i+1}: {art['headline'][:70]}...")
-        print(f"{'='*60}")
-        
-        # Image sourcing
-        image_url = None
-        
-        # Try Wikipedia first for person articles
-        if art.get('image_person'):
-            print(f"  → Trying Wikipedia for '{art['image_person']}'...")
-            image_url = fetch_wikipedia_person_image(art['image_person'])
-            if image_url and not validate_image_url(image_url):
-                image_url = None
-        
-        # Fall back to Pexels
-        if not image_url:
-            print(f"  → Trying Pexels for '{art.get('image_pexels_query', '')}'...")
-            image_url = fetch_pexels_image(
-                art.get('image_pexels_query', ''),
-                art.get('image_pexels_fallback', '')
-            )
-            if image_url and not validate_image_url(image_url):
-                image_url = None
-        
-        if not image_url:
-            print("  ⚠ No valid image found - publishing without image")
-        
-        # Prepare article record
-        article_id = str(uuid.uuid4())
-        now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-        
-        record = {
-            "id": article_id,
-            "headline": art["headline"],
-            "subheadline": art["subheadline"],
-            "slug": art["slug"],
-            "body": art["body"],
-            "category": "sports",
-            "vertical": "sports",
-            "status": "published",
-            "published_at": now,
-            "sources": json.loads(art["sources"]),
-            "image_url": image_url,
-            "image_attribution": "Wikimedia Commons" if image_url and "wikimedia" in (image_url or "").lower() else "The Videshi" if image_url else None,
-        }
-        
-        print(f"  → Publishing: {art['slug']}")
-        result = sb_insert("p2_articles", record)
-        
-        if result:
-            print(f"  ✓ Published successfully: {article_id}")
-            published += 1
-        else:
-            print(f"  ✗ Failed to publish")
-        
-        time.sleep(1)
-    
-    print(f"\n{'='*60}")
-    print(f"Done: {published}/{len(articles)} articles published")
-    print(f"{'='*60}")
-
-if __name__ == "__main__":
-    process_articles()
+print("\nDone.")
