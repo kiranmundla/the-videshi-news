@@ -1,45 +1,41 @@
 #!/usr/bin/env python3
-"""
-Entertainment Writer — 2026-05-30
-Publishes 4 articles to The Videshi:
-1. Gullak Season 5 returns on SonyLIV June 5
-2. Ramayana eyeing San Diego Comic-Con trailer debut + October 30 release
-3. Patriot (Mammootty-Mohanlal) hits ZEE5 June 5 after theatrical disappointment
-4. Ranbir Kapoor says playing Lord Ram changed him as a father
-"""
+"""Entertainment writer for The Videshi — 2026-05-30 batch"""
 
-import json, os, sys, time, uuid, re
-import requests, urllib.parse
+import json, os, requests, time, uuid, re
 from datetime import datetime, timezone
 
-# ── Load env ──
-env_file = os.path.expanduser("~/.env.supabase")
-if os.path.exists(env_file):
-    for line in open(env_file):
-        line = line.strip()
-        if "=" in line and not line.startswith("#"):
-            k, v = line.split("=", 1)
-            os.environ[k] = v
+# Load Supabase config
+def load_env(path):
+    env = {}
+    with open(os.path.expanduser(path)) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                if line.startswith('export '):
+                    line = line[7:]
+                key, _, val = line.partition('=')
+                val = val.strip('"').strip("'")
+                env[key.strip()] = val
+    return env
 
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+env = load_env('~/.env.supabase')
+SUPABASE_URL = env['SUPABASE_URL']
+SUPABASE_KEY = env['SUPABASE_SERVICE_ROLE_KEY']
+
+# Load Pexels key
+pexels_env = load_env('~/workspace/.env.pexels')
+PEXELS_KEY = pexels_env.get('PEXELS_API_KEY', '')
+
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    "Prefer": "return=representation"
 }
 
-PEXELS_KEY = None
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-if os.path.exists(pexels_env):
-    for line in open(pexels_env):
-        if line.startswith("PEXELS_API_KEY="):
-            PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"')
-
-# ── Image helpers ──
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -57,328 +53,386 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels. Use curl underneath (urllib gets 403)."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key found")
-        return None
+    """Fetch image from Pexels using curl (urllib gets 403)."""
     import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            cmd = [
-                "curl", "-sS",
-                f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3",
-                "-H", f"Authorization: {PEXELS_KEY}"
-            ]
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+            result = subprocess.run(
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=3&orientation=landscape'],
+                capture_output=True, text=True, timeout=15
+            )
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            photos = data.get('photos', [])
+            if photos:
+                url = photos[0]['src']['large2x']
+                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def validate_image(url):
-    """Verify image URL returns HTTP 200 with image content > 5KB."""
+def validate_image_url(url):
+    """Check image URL returns 200 with image content-type and reasonable size."""
     if not url:
+        return False
+    # Block Meta CDN
+    blocked = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
+    if any(b in url for b in blocked):
+        print(f"  ✗ Blocked Meta CDN URL: {url[:60]}")
         return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
             return True
-        # Try GET for servers that don't return Content-Length on HEAD
-        if r.status_code == 200 and "image" in ct:
+        # Some servers don't support HEAD, try GET
+        if r.status_code in (405, 403):
             r2 = requests.get(url, timeout=10, stream=True,
-                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                return True
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            ct2 = r2.headers.get('Content-Type', '')
+            if r2.status_code == 200 and 'image' in ct2:
+                chunk = r2.raw.read(6000)
+                if len(chunk) > 5000:
+                    return True
+        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
+        print(f"  ✗ Image validation error: {e}")
     return False
 
-
-def sb_insert(table, row):
-    """Insert a row into Supabase and return the inserted data."""
+def sb_insert(table, record):
+    """Insert a record into Supabase."""
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/{table}",
         headers=HEADERS,
-        json=row,
-        timeout=30
+        json=record
     )
     if r.status_code in (200, 201):
         data = r.json()
-        return data[0] if isinstance(data, list) else data
-    else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        if isinstance(data, list) and data:
+            return data[0].get('id')
         return None
-
+    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+    return None
 
 def sb_patch(table, filters, updates):
-    """Patch rows in Supabase."""
-    params = "&".join(f"{k}={v}" for k, v in filters.items())
-    r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
-        headers=HEADERS,
-        json=updates,
-        timeout=30
-    )
+    """Patch a record in Supabase."""
+    url = f"{SUPABASE_URL}/rest/v1/{table}?{filters}"
+    r = requests.patch(url, headers=HEADERS, json=updates)
     if r.status_code in (200, 204):
-        print(f"  ✓ Patched {table}")
-    else:
-        print(f"  ⚠ Patch warning ({r.status_code}): {r.text[:200]}")
+        return True
+    print(f"  ✗ Patch failed ({r.status_code}): {r.text[:200]}")
+    return False
 
+# ─── Articles ───
 
-# ── Articles ──
-articles = [
-    {
-        "headline": "Gullak Season 5 Drops on SonyLIV June 5. India's Most Relatable Family Is Back.",
-        "subheadline": "TVF's beloved Mishra family returns with new struggles, small upgrades, and Shanti Mishra's unexpected turn as a social media personality.",
-        "slug": "gullak-season-5-sonyliv-june-5-mishra-family-tvf-nri-20260530",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "image_person": "Jameel Khan actor",
-        "image_pexels_query": "Indian family living room",
-        "image_pexels_fallback": "Indian household warm",
-        "sources": [
-            {"name": "Bombay Times", "url": "https://www.bombaytimes.com"},
-            {"name": "SonyLIV", "url": "https://www.sonyliv.com"},
-            {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Gullak"}
-        ],
-        "body": """The Mishra family is coming home again. Gullak Season 5, the TVF-produced web series that has quietly become one of the most cherished shows in Indian streaming, will premiere on SonyLIV on June 5, 2026.
+articles = []
 
-For a show that has never relied on big-budget spectacle or celebrity star power, Gullak's longevity is remarkable. Five seasons in, the series continues to draw viewers who see their own families reflected in the small-town household of Santosh and Shanti Mishra — played once again by Jameel Khan and Geetanjali Kulkarni — and their two sons, Annu and Aman.
+# ── Article 1: ₹400 Crore Song Rights War ──
+articles.append({
+    "headline": "Vashu Bhagnani Just Filed a ₹400 Crore Lawsuit to Stop Varun Dhawan's New Film From Releasing. It's Over Two Songs From 1999.",
+    "subheadline": "The fight over 'Chunari Chunari' and 'Ishq Sona Hai' from Biwi No 1 has exploded into one of Bollywood's biggest copyright battles — and it could delay a June 5 release.",
+    "slug": "vashu-bhagnani-400-crore-lawsuit-biwi-no-1-songs-hai-jawani-varun-dhawan-nri-20260530",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "topic_id": None,
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+        {"name": "The CSR Journal", "url": "https://thecsrjournal.in"},
+        {"name": "Dainik Bhaskar English", "url": "https://bhaskarenglish.in"}
+    ]),
+    "image_url": None,
+    "image_attribution": None,
+    "person_image": "Vashu Bhagnani",
+    "pexels_query": "Bollywood film court legal dispute",
+    "pexels_fallback": "Mumbai film industry",
+    "body": """If you grew up rewinding the cassette tape to hear 'Chunari Chunari' one more time, this story is about to hit differently.
 
-## What's Changed This Time
+Vashu Bhagnani's production house, Puja Entertainment, has filed a ₹400 crore lawsuit before the Bombay High Court against Tips Industries Limited, producers Ramesh and Kumar S. Taurani, and filmmaker David Dhawan. The allegation: they used two iconic songs from the 1999 blockbuster *Biwi No 1* in the upcoming Varun Dhawan-starrer *Hai Jawani Toh Ishq Hona Hai* without permission.
 
-Season 5 picks up with the Mishra household in quiet flux. There are small upgrades at home — the kind that middle-class Indian families celebrate as milestones. But beneath the surface, the emotional landscape has shifted.
+The songs in question — 'Chunari Chunari' and 'Ishq Sona Hai' — are two of the most recognizable tracks of late-90s Bollywood. For millions of NRIs, they are the soundtrack of wedding sangeets, college farewells, and childhood living rooms. The fact that they are now at the center of a legal war worth ₹400 crore tells you exactly how valuable Bollywood's musical nostalgia has become.
 
-Annu, the elder son played by Vaibhav Raj Gupta, is navigating the weight of expectations and self-doubt that comes with early adulthood in a family where resources are limited but aspirations are not. Aman, the younger son played by Harsh Mayar, appears more withdrawn this season, carrying struggles he hasn't yet articulated to his parents.
+## What Bhagnani Is Claiming
 
-The most intriguing new thread involves Shanti Mishra herself. In a development that mirrors millions of real Indian households, she's found an unexpected audience through some kind of online presence — a subplot that speaks directly to how social media has reshaped even the most traditional family dynamics.
+According to Puja Entertainment's legal filing, Tips Industries only ever held audio rights to the songs from *Biwi No 1*. The visual rights — the ability to use the songs in a film — were never formally transferred. Bhagnani's lawyer told ANI that in 2018, Tips sent an email requesting visual rights, but no agreement was ever reached between the two parties.
 
-"With each season, Gullak has come closer to viewers because the Mishras feel like people we all recognise," the makers said in a statement. "This chapter reflects how middle-class India is changing, while still holding on to its warmth and simplicity."
+Puja Entertainment is now seeking an urgent injunction to restrain the release, distribution, exhibition, and streaming of *Hai Jawani Toh Ishq Hona Hai* and all its promotional material containing the disputed songs. They also want the film's title changed, arguing it derives directly from the song lyrics. And if Tips and the makers proceed regardless, Bhagnani is demanding an additional ₹100 crore in damages.
 
-## Why the Diaspora Keeps Coming Back
+The Bombay High Court has accepted the filing and is expected to schedule a hearing soon. The film, starring Varun Dhawan alongside Pooja Hegde and Mrunal Thakur, is directed by David Dhawan and currently slated for a June 5 release.
 
-For NRIs, Gullak has always been more than entertainment. It's a window into the India they left behind — the chai-and-conversation rhythms of a household where the biggest drama is a phone bill or a neighbor's gossip. The show's genius has always been its refusal to manufacture conflict. Life provides enough.
+## Why This Matters Beyond the Courtroom
 
-The series debuted in 2019 on TVF Play and SonyLIV, and each subsequent season has deepened the emotional vocabulary of its characters without betraying the show's fundamental simplicity. Season 4 arrived in June 2024 and delivered five episodes that leaned into the father-son dynamic with characteristic understatement.
+This case could set a significant precedent for how Bollywood song rights are handled going forward. In the 1990s and early 2000s, song rights deals were often structured through informal agreements and handshakes. Audio rights and visual rights were treated as separate categories, but the boundaries were rarely tested in court because remakes and recreations weren't the dominant creative strategy they are today.
 
-What makes Gullak rare in the Indian OTT landscape is its economy. Episodes run 20 to 30 minutes. There are no musical interludes, no item numbers, no celebrity cameos. The narrator is a clay piggy bank — the gullak itself — voiced by Shivankit Singh Parihar, offering a sardonic running commentary on the family's life.
+Now they are. Bollywood's reliance on recreated songs — from 'Masakali 2.0' to 'Saki Saki' — has turned every old hit into a potential goldmine. And with that value comes the question: who actually owns what?
 
-## The Cast Returns
+## The Diaspora Angle
 
-Sunita Rajwar returns as Bittu ki Mummy, the neighbor whose presence is as reliable as the Mishras' morning newspaper. The core cast has remained unchanged across all five seasons, which is itself a statement in an industry where ensemble shows routinely swap actors between seasons.
+For NRIs who grew up in the Govinda-David Dhawan comedy era, 'Chunari Chunari' isn't just a song. It's a cultural artifact. The recreation trend has been a source of both nostalgia and frustration for the diaspora — there's a thrill in hearing a familiar beat in a new film, but a growing sense that studios are strip-mining the catalogue of a generation's childhood.
 
-Gullak Season 5 will stream exclusively on SonyLIV starting June 5. For the millions of Indians — at home and abroad — who've adopted the Mishras as their own fictional family, the date is already circled."""
-    },
-    {
-        "headline": "Ramayana Is Eyeing San Diego Comic-Con for Its Trailer Launch. The Film May Release a Week Before Diwali.",
-        "subheadline": "Nitesh Tiwari's ₹4,000-crore epic is planning a global rollout strategy that includes a SDCC debut, a Hans Zimmer-A.R. Rahman concert, and an October 30 release to grab the festive window early.",
-        "slug": "ramayana-san-diego-comic-con-trailer-october-30-release-ranbir-kapoor-nri-20260530",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "image_person": "Ranbir Kapoor",
-        "image_pexels_query": None,
-        "image_pexels_fallback": None,
-        "sources": [
-            {"name": "Sacnilk", "url": "https://sacnilk.com"},
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-            {"name": "Mid-day", "url": "https://www.mid-day.com"},
-            {"name": "Filmfare", "url": "https://www.filmfare.com"}
-        ],
-        "body": """The most ambitious Indian film ever made is building toward a global launch strategy that has no real precedent in Bollywood. Nitesh Tiwari's Ramayana — starring Ranbir Kapoor as Lord Ram, Sai Pallavi as Sita, and Yash as Ravana — is reportedly planning to debut its trailer at San Diego Comic-Con this July.
+This lawsuit, regardless of its outcome, is forcing the industry to put a price tag on that nostalgia. And ₹400 crore says it's not cheap.
 
-If the deal goes through, Ramayana would become the first Indian film to use SDCC as its primary launchpad, a move that signals how aggressively the makers are positioning this as a crossover event rather than a domestic release with international markets tacked on.
+Tips Industries has called the allegations baseless, but with a June 5 release date looming and the court moving to hear the case, the next few days will determine whether *Hai Jawani Toh Ishq Hona Hai* makes it to theaters on time — or becomes the most expensive song dispute in Indian entertainment history.
 
-## The Comic-Con Play
+*The court hearing date has not yet been publicly confirmed. The Videshi will update this story as proceedings develop.*"""
+})
 
-According to industry reports, producer Namit Malhotra and director Nitesh Tiwari are in advanced talks with SDCC organizers. The decision follows a focus group screening held recently in Los Angeles, where an early cut reportedly received highly positive feedback from a diverse audience.
+# ── Article 2: Desi Bling + TejRan Engagement ──
+articles.append({
+    "headline": "Netflix's Desi Bling Is the Guilty Pleasure the Indian Diaspora Didn't Know It Needed. And Yes, TejRan Are Officially Engaged.",
+    "subheadline": "Dubai's ultra-rich Indian social scene gets its own reality show — and Karan Kundrra's proposal to Tejasswi Prakash in Punjabi became the internet's most-watched desi moment this week.",
+    "slug": "desi-bling-netflix-tejran-engaged-karan-kundrra-tejasswi-dubai-nri-20260530",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "topic_id": None,
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+        {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
+        {"name": "Livemint", "url": "https://www.livemint.com"},
+        {"name": "The Tab", "url": "https://thetab.com"}
+    ]),
+    "image_url": None,
+    "image_attribution": None,
+    "person_image": "Karan Kundrra",
+    "pexels_query": "Dubai luxury lifestyle Indian",
+    "pexels_fallback": "Dubai skyline night luxury",
+    "body": """Netflix looked at *Dubai Bling*, looked at the Indian diaspora, and decided: why not both?
 
-"The feedback has strengthened the belief that the film can travel across cultures," industry insiders told Mid-day, explaining why the team is pursuing a platform typically reserved for Marvel, DC, and major Hollywood franchises.
+*Desi Bling*, which premiered on May 20, follows Dubai's ultra-rich Indian socialites as they navigate beach clubs, wellness sanctuaries, luxury golf spots, and the kind of interpersonal drama that makes WhatsApp groups look tame. The cast includes television stars Karan Kundrra and Tejasswi Prakash, real estate mogul Satish Sanpal and his wife Tabinda, former beauty queen Pamala Serena, and entrepreneur Rizwan Sajan, among others. Shilpa Shetty rounds out the ensemble.
 
-The strategy extends well beyond a trailer drop. The makers are also planning a large-scale musical event in October — a live concert featuring a historic collaboration between Academy Award winners Hans Zimmer and A.R. Rahman, who jointly composed the film's score. There are also whispers about international film festival screenings before the wide release.
+The internet's verdict has been polarized — and perfectly predictable. On X and Reddit, reactions range from "the whole vibe" to "second-hand embarrassment," which, if we're being honest, is exactly where a good reality show should live. You don't watch people argue at J1 Beach over AED 120 salads for the intellectual nourishment. You watch it because you can't stop.
 
-## The October 30 Question
+## The TejRan Engagement
 
-While Ramayana was originally slated for Diwali 2026, Bollywood Hungama reported that the makers are now considering preponing to October 30 — a week before the festivities begin. The logic: arriving early gives the film time to build word-of-mouth before the holiday surge, without any competing major release in that window.
+But the undeniable highlight of the first season has nothing to do with Dubai's property market or luxury cooking classes. In one of the most viral scenes from the show, Karan Kundrra went down on one knee, delivered a heartfelt speech in Punjabi, and proposed to Tejasswi Prakash with a "Yes or a Yes?" line that broke the internet.
 
-Internal discussions are reportedly underway, with a final decision expected once distribution negotiations are locked. Those negotiations are themselves historic — the makers are reportedly pursuing a theatrical distribution deal worth ₹450 crore.
+Tejasswi was visibly overwhelmed. "You are my everything to me. I love you so much," she told him, hands shaking as he slipped the ring on her finger. The clip racked up millions of views within hours.
 
-## The Numbers Behind the Ambition
+For TejRan fans — the massive fandom born from their relationship on *Bigg Boss 15* in 2021 — this was the payoff after four years of dating rumors, wedding speculation, and fan edits. Former Bigg Boss contestant Rajiv Adatia confirmed the engagement was real, sharing a screenshot from a video call with the couple where Tejasswi showed off her diamond ring. "The love story that drove me crazy in BB is finally leading to marriage!" he wrote. He also predicted twins.
 
-Ramayana Part 1 has a reported production budget of ₹4,000 crore across both parts, making it the most expensive Indian film ever produced. The makers reportedly rejected a ₹700 crore OTT deal for both parts — the highest ever offered for an Indian film — because they believe Ramayana deserves more.
+## Why NRIs Are Watching
 
-Ranbir Kapoor is playing a dual role: Lord Ram and Lord Parashuram. He has confirmed that Part 2 shooting is already 50 percent complete. The film also features Sunny Deol as Hanuman and Ravi Dubey as Lakshman, with visual effects handled by Oscar-winning studio DNEG.
+What makes *Desi Bling* genuinely interesting for the diaspora isn't the lifestyle porn — though there's plenty of it. It's the mirror. Dubai's Indian community is one of the most visible, affluent, and culturally distinct diasporic populations in the world. The show captures the specific social dynamics of Indians abroad: the code-switching between Indian and Western sensibilities, the pressure to perform success, the layered relationships between business, family, and social status.
 
-## What This Means for Diaspora Audiences
+It also doesn't shy away from the uncomfortable parts. Karan's candid admission that he felt like he was "parenting" Tejasswi sparked genuine debate online. His parents' on-camera concerns about the relationship's balance gave the show a rawness that most Indian reality television avoids.
 
-For NRIs, the SDCC trailer launch and the aggressive global positioning mean Ramayana won't be an afterthought in international markets. If the makers follow through on their strategy, US, UK, and Canadian audiences could see the film on the same scale as a major Hollywood tentpole — wide release, premium formats, IMAX.
+The show films at locations including J1 Beach, Top Chef Dubai, Sohum Wellness Sanctuary, and the kind of restaurants where cocktails cost more than a family dinner in Chandni Chowk. For Indian viewers in the Gulf, it's local. For NRIs in the US, UK, and Canada, it's aspirational voyeurism with a familiar accent.
 
-Part 1 is targeting late October or early November 2026. Part 2 is planned for Diwali 2027. The film that was once dismissed as too expensive, too risky, and too sacred to adapt may end up being the project that permanently changes how Indian cinema markets itself to the world."""
-    },
-    {
-        "headline": "Mammootty and Mohanlal's Patriot Heads to ZEE5 on June 5. The ₹140-Crore Spy Thriller Couldn't Break Even in Theaters.",
-        "subheadline": "The film grossed around ₹80 crore worldwide against a budget of ₹140 crore. Its OTT premiere gives it a second life — and NRIs a first chance to watch Malayalam cinema's most expensive bet.",
-        "slug": "patriot-mammootty-mohanlal-zee5-ott-june-5-box-office-loss-nri-20260530",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "image_person": "Mammootty",
-        "image_pexels_query": None,
-        "image_pexels_fallback": None,
-        "sources": [
-            {"name": "Sacnilk", "url": "https://sacnilk.com"},
-            {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Patriot_(film)"},
-            {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"}
-        ],
-        "body": """When Mammootty and Mohanlal agreed to star in the same film for the first time in nearly two decades, the expectation was simple: a landmark moment for Malayalam cinema that would translate into landmark box office numbers. Patriot was supposed to be that film. It wasn't — at least not commercially.
+Seven episodes. One season. One engagement. And enough drama to sustain the group chat until Season 2."""
+})
 
-Directed by Mahesh Narayanan, the spy action thriller opened on May 1 with an impressive ₹28 crore worldwide on its first day. The opening weekend pushed past ₹60 crore globally. Then the weekday collapse began. By the end of its theatrical run, Patriot had grossed roughly ₹80 crore worldwide — ₹37 crore domestically and ₹43 crore from overseas — against a reported budget of ₹125 to ₹140 crore.
+# ── Article 3: Jolly LLB 3 Hits OTT ──
+articles.append({
+    "headline": "Jolly LLB 3 Is Now Streaming on JioHotstar. Here's Why the Diaspora Should Care About This One.",
+    "subheadline": "Akshay Kumar and Arshad Warsi finally share a courtroom — and a cause — in a franchise film that's smarter than it has any right to be.",
+    "slug": "jolly-llb-3-jiohotstar-ott-release-akshay-kumar-arshad-warsi-diaspora-nri-20260530",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "topic_id": None,
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        {"name": "Livemint", "url": "https://www.livemint.com"},
+        {"name": "Bombay Times", "url": "https://www.bombaytimes.com"},
+        {"name": "Bollywood Life", "url": "https://www.bollywoodlife.com"}
+    ]),
+    "image_url": None,
+    "image_attribution": None,
+    "person_image": "Akshay Kumar",
+    "pexels_query": None,
+    "pexels_fallback": None,
+    "body": """The courtroom drama that Indian cinema does better than anyone else is back — and this time, both Jollys are in the same room.
 
-The film will now premiere on ZEE5 on June 5, 2026, in Malayalam, Tamil, Telugu, Kannada, and Hindi. For the NRI audiences who never got a chance to see it on the big screen — and for the many who heard the mixed word-of-mouth and decided to wait — this is the film's real second act.
+*Jolly LLB 3*, which completed a strong theatrical run earning over ₹170 crore worldwide, is now streaming on JioHotstar as of May 29. For NRIs who couldn't catch it in theaters during its original run, this is the version that's been worth waiting for.
 
-## What Went Wrong at the Box Office
+## The Setup
 
-Patriot's commercial failure is not a story about a bad film. The critical response was mixed but acknowledged the film's technical brilliance and the sheer novelty of watching Mammootty and Mohanlal share the screen in a modern political thriller.
+The third installment in the *Jolly LLB* franchise does something its predecessors didn't: it brings together Arshad Warsi's Jagdish "Jolly" Tyagi from the original 2013 film and Akshay Kumar's Jagdishwar "Jolly" Mishra from the 2017 sequel. Both actors reprise their roles, joined by the irreplaceable Saurabh Shukla as the presiding judge, alongside Amrita Rao and Huma Qureshi.
 
-The problem was the gap between the budget and the audience the film could realistically reach. A ₹140 crore Malayalam-language production needs to perform like a pan-India blockbuster to break even, and Patriot — despite its Hindi and other language dubs — never generated the national conversation that films like Drishyam 3 (which just crossed ₹200 crore in eight days) or KGF managed.
+The plot is inspired by the 2011 Bhatta-Parsaul land protests — a real-life case of farmers being displaced from their land by development projects. Warsi's Jolly takes up the case of a grieving widow whose father-in-law died by suicide after a land scam destroyed his family. Kumar's Jolly, a mercenary lawyer who defends whoever pays, is initially hired by the industrialist on the other side — the powerful Haribhai Khaitan, played by Gajraj Rao.
 
-The 180-minute runtime didn't help. Neither did the film's niche subject matter — a sophisticated espionage narrative involving a RAW agent gone underground, cyber-attacks targeting the Indian government, and a mole inside a Chief Minister's cabinet. It's the kind of story that plays well in reviews but faces headwinds at the ticket counter.
+The twist: when Kumar's Jolly realizes the extent of the injustice, he switches sides. The two Jollys — rivals by temperament, allies by conscience — unite to expose the fraud.
 
-## The Cast Nobody Could Ignore
+## Why It Works
 
-Whatever Patriot's commercial fate, the cast assembled for this film is staggering. Mohanlal plays Vikramadithyan, a seasoned RAW agent who has gone off the grid after a failed mission in Europe. Mammootty is Chief Minister Raghavan, whose own cabinet may be compromised.
+Director Subhash Kapoor has always understood that the *Jolly LLB* franchise works because it sits at the intersection of entertainment and outrage. Indian courtroom dramas aren't just procedurals — they're about the gap between the law as it's written and the law as it's experienced by ordinary people. The franchise has consistently used humor to make that gap bearable, and genuine anger to make it feel urgent.
 
-The ensemble extends to Fahadh Faasil, Kunchacko Boban, Nayanthara, Revathi, Darshana Rajendran, and Rajiv Menon. The music is by Sushin Shyam. The cinematography is by Manush Nandan. On paper and on screen, this is a prestige production.
+*Jolly LLB 3* raises the stakes by grounding its fictional case in a real historical wound. The Bhatta-Parsaul protests were one of the defining land rights conflicts of the early 2010s, and the film doesn't flinch from showing how development can become a euphemism for displacement.
 
-## The OTT Opportunity
+## The Diaspora Connection
 
-For the Indian diaspora, ZEE5's June 5 premiere may be Patriot's real opening day. The overseas theatrical footprint for Malayalam films, while growing, is still limited compared to Hindi or Telugu releases. Many NRIs who wanted to watch the Mammootty-Mohanlal reunion simply didn't have access to a theater showing it.
+For NRIs, the *Jolly LLB* films have always been a particular kind of comfort — the fantasy that somewhere in India's vast, creaking legal system, a scrappy lawyer with bad suits and good instincts is fighting the good fight. It's aspirational not in the lifestyle sense but in the moral one.
 
-ZEE5 will stream Patriot in five languages, giving it the pan-India reach that eluded its theatrical run. Whether the film finds its audience on the small screen — the way so many high-budget Indian films have been salvaged by OTT deals — will determine whether Patriot becomes a cautionary tale or a slow-burn success story.
+The film's arrival on JioHotstar also makes it accessible to diaspora viewers who may have missed its theatrical run or who live in markets where Hindi films get limited screen time. JioHotstar's international availability means this one is now a weekend plan away.
 
-The film streams on ZEE5 starting June 5, 2026."""
-    },
-    {
-        "headline": "Ranbir Kapoor Says Playing Lord Ram Changed How He Approaches Fatherhood. 'I Really Needed That in My Life.'",
-        "subheadline": "The actor, who initially refused the role, says becoming a father to Raha was what convinced him to take on the most ambitious part of his career.",
-        "slug": "ranbir-kapoor-lord-ram-fatherhood-raha-ramayana-interview-nri-20260530",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "image_person": "Ranbir Kapoor",
-        "image_pexels_query": None,
-        "image_pexels_fallback": None,
-        "sources": [
-            {"name": "News Ei Samay", "url": "https://www.newseisamay.com"},
-            {"name": "Sacnilk", "url": "https://sacnilk.com"},
-            {"name": "Filmfare", "url": "https://www.filmfare.com"}
-        ],
-        "body": """Ranbir Kapoor had turned down the role of Lord Ram. He's said so publicly, and the reason was honest: it felt like too massive a responsibility. Then his daughter Raha was born, and everything shifted.
+Saurabh Shukla's judge, as always, steals every scene he's in. The two Jollys sparring — and then collaborating — gives the film an energy that neither previous installment had alone. And Gajraj Rao, playing a villain who is menacing precisely because he's polite, is a reminder that Bollywood's best antagonists are the ones who never raise their voices.
 
-In a recent interview with international media following the release of the Ramayana teaser, Kapoor opened up about how preparing for Nitesh Tiwari's epic adaptation has changed him — not just as an actor, but as a father and a person.
+If you've been following the franchise, this is the one that ties it together. If you haven't, JioHotstar just made it easy to start."""
+})
 
-"I think I really needed that in my life," Kapoor said, speaking about the values he absorbed while studying Lord Ram's journey for the role.
+# ── Article 4: Spider-Noir on Prime Video ──
+articles.append({
+    "headline": "Nicolas Cage Is a 62-Year-Old Spider-Man in 1930s New York. Spider-Noir Is Exactly as Weird and Wonderful as That Sounds.",
+    "subheadline": "Prime Video's noir-flavored Marvel series can be watched in black and white or color — and Nicolas Cage wants you to start with the black and white.",
+    "slug": "spider-noir-nicolas-cage-prime-video-marvel-1930s-noir-review-nri-20260530",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "topic_id": None,
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "USA Today", "url": "https://www.usatoday.com"},
+        {"name": "Decider", "url": "https://www.decider.com"},
+        {"name": "People", "url": "https://www.people.com"}
+    ]),
+    "image_url": None,
+    "image_attribution": None,
+    "person_image": "Nicolas Cage",
+    "pexels_query": "1930s noir detective city",
+    "pexels_fallback": "vintage noir film",
+    "body": """Nicolas Cage, at 62, has finally become Spider-Man. But not the Spider-Man you're thinking of.
 
-## The Father Who Found the Character
+*Spider-Noir*, now streaming all eight episodes on Prime Video, is a live-action Marvel series set in 1930s New York that casts Cage as Ben Reilly — an aging private investigator who gave up his superhero identity as "The Spider" five years ago. When a new case pulls him back into the orbit of crime boss Silvermane (Brendan Gleeson), a nightclub singer with secrets (Li Jun Li), and a group of ex-soldiers with superpowers, Ben has to dust off the mask and fedora one more time.
 
-The actor, who is married to Alia Bhatt, explained that becoming a parent fundamentally altered his perspective on the Ramayana. What once seemed like an overwhelming cultural responsibility began to feel like something personal and necessary.
+The twist that makes this show genuinely distinctive: you can watch it in either "True-Hue Full Color" or "Authentic Black & White." Cage himself recommends starting with black and white, calling the dual-format release "a little revolutionary."
 
-"When I became a father, my perspective changed," Kapoor said. The values associated with Lord Ram's journey — duty, sacrifice, the tension between personal desire and larger responsibility — began to resonate with him in ways they hadn't before.
+## The Noir That Bites
 
-He shared that the lessons from the preparation "positively influenced his personal life and helped him become more grounded." Understanding Ram's approach to relationships, responsibilities, and family brought about meaningful changes in the way he approached parenthood.
+Created by Oren Uziel and produced by Phil Lord and Christopher Miller — the team behind Sony's animated *Spider-Verse* films — *Spider-Noir* isn't an action spectacle. It's a detective show that happens to feature a protagonist who can climb walls. The 1930s setting is meticulously realized: filmed on soundstages in LA, the backlots of Warner Bros. and Universal Studios, and in LA's historic old bank district, the show's cinematographer Sean Bobbitt drew inspiration from Australian-born artist Martin Lewis's charcoal drawings of 1920s and '30s Manhattan street scenes.
 
-It's a striking admission from an actor known for his brooding, complicated screen presence — the troubled heir in Rockstar, the calculating Don in Animal. Lord Ram requires something entirely different: stillness, moral clarity, a quiet authority that doesn't rely on menace or ambiguity.
+"Even though we're portraying a comic book character, we wanted to be set in a bit more realism," Bobbitt said, noting that Warren Beatty's *Dick Tracy* was explicitly not an influence.
 
-## A Dual Role Nobody Expected
+Cage, meanwhile, is doing what Cage does best: being simultaneously funny, crusty, and unexpectedly moving. His Ben Reilly is bruised, bitter, and getting his butt handed to him in fights more often than he'd like. "There's a lot of us getting older here, and we're not moving the same way we were when we were 18," Cage said. "He's a Spider-Man for aging adults."
 
-During the same interview, Kapoor confirmed something the teaser had hinted at: he's playing a dual role in the film. In addition to Lord Ram, he will portray Lord Parashuram — an avatar of Vishnu known for his fierce warrior nature. The contrast between the two characters represents a significant acting challenge, and the recently released teaser offered brief glimpses of both incarnations.
+## The Supporting Cast
 
-Kapoor also revealed that shooting for Ramayana Part 2 is already 50 percent complete — a timeline that suggests the production is running with remarkable efficiency given the film's ₹4,000-crore combined budget. Both parts together will run over six hours, making this the longest mainstream Indian film project in recent memory.
+Brendan Gleeson's Silvermane is a sharp-tongued Irish mob boss who treats his rivalry with Ben Reilly like a chess match. "Even if I had to kill you, I love you to bits," is how Gleeson describes the dynamic. Lamorne Morris plays newspaper editor Robbie Robertson, one of the few who knows Ben's secret identity, serving as both conscience and comedic foil.
 
-## What the Diaspora Will See
+Li Jun Li's nightclub singer Cat Hardy is the show's wild card — a character whose loyalties shift with every episode, keeping both Ben and the audience guessing.
 
-For Indian audiences abroad, Kapoor's personal transformation adds an emotional layer to a film that's already carrying enormous cultural weight. Ramayana isn't just a movie — for millions in the diaspora, it's an adaptation of a text that shaped their childhoods, their moral frameworks, their understanding of what it means to be Indian.
+## Should You Watch It?
 
-The fact that the lead actor struggled with the role, refused it, and ultimately accepted it because fatherhood gave him a new lens through which to understand Ram's story — that's the kind of narrative that transcends box office numbers.
+If you're tired of Marvel's formula — if you find the CGI spectacles exhausting and the quippy heroes interchangeable — *Spider-Noir* is the antidote. It moves slowly, it rewards patience, and it trusts its audience to care about character more than action sequences. The black-and-white version, in particular, feels like a genuine experiment in superhero television — not a gimmick, but a creative choice that changes how you experience the story.
 
-Ramayana Part 1, directed by Nitesh Tiwari, also stars Sai Pallavi as Sita, Yash as Ravana, Sunny Deol as Hanuman, and Ravi Dubey as Lakshman. The film is produced by Namit Malhotra's Prime Focus Studios and backed by Monster Mind Creations. The music features a collaboration between Oscar winners A.R. Rahman and Hans Zimmer.
+Cage almost played the Green Goblin in Sam Raimi's original 2002 *Spider-Man*. He passed, and Willem Dafoe got the role. Twenty-four years later, he's finally in the Spider-Man universe, just not in any way anyone could have predicted. That feels exactly right for Nicolas Cage."""
+})
 
-Part 1 is targeting a release around Diwali 2026. Part 2 is set for Diwali 2027."""
-    }
-]
+# ── Article 5: Rajamouli's Varanasi Update ──
+articles.append({
+    "headline": "Rajamouli's ₹1,400 Crore Varanasi Is Nearing Completion. Priyanka Chopra Is in Hyderabad Eating Mangoes Between Takes.",
+    "subheadline": "The most expensive Indian film ever made features IMAX Ramayana battle sequences, Antarctic footage, and a globetrotting adventure set to release April 2027. Here's everything we know.",
+    "slug": "rajamouli-varanasi-update-priyanka-chopra-mahesh-babu-imax-1400-crore-nri-20260530",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "topic_id": None,
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
+        {"name": "IANS via Bollywood Bubble", "url": "https://www.bollywoodbubble.com"},
+        {"name": "Filmfare", "url": "https://www.filmfare.com"},
+        {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Varanasi_(film)"}
+    ]),
+    "image_url": None,
+    "image_attribution": None,
+    "person_image": "S. S. Rajamouli",
+    "pexels_query": "Varanasi India ancient city temple",
+    "pexels_fallback": "Indian epic cinema filmmaking",
+    "body": """S.S. Rajamouli doesn't make films. He makes events. And *Varanasi* might be his most ambitious one yet.
 
-# ── Main loop ──
-published = 0
-now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+The Telugu-language epic action-adventure — starring Mahesh Babu, Priyanka Chopra Jonas, and Prithviraj Sukumaran — is now deep into its final stretch of filming, with Rajamouli reportedly aiming to wrap principal photography by August 2026. Priyanka, who plays a character named Mandakini, is currently shooting in Hyderabad, where she recently shared Instagram stories of herself eating Himayat mangoes between takes. "Mango love," she wrote, in what might be the most relatable content to come out of a ₹1,400 crore production.
 
-for i, art in enumerate(articles):
-    print(f"\n{'='*60}")
-    print(f"Article {i+1}: {art['headline'][:70]}...")
+## The Scale
+
+Let's talk numbers, because the numbers are staggering.
+
+*Varanasi* carries an estimated budget of ₹1,400 crore (approximately $165 million), making it the most expensive Indian film ever produced. It is the first Indian film — and only the fourth film globally — to shoot in Antarctica. It is the first Indian film to be shot in the 1.43:1 IMAX format. And it will run over three hours.
+
+The plot follows Rudhra (Mahesh Babu), a Shiva devotee who embarks on a mission to retrieve an ancient cosmic artefact, traveling across continents and timelines as the city of Varanasi faces the arrival of an asteroid. Along the way, he discovers that the person who sent him on this quest is an evil mastermind. The narrative spans multiple historical eras, featuring Ramayana battle sequences filmed in IMAX.
+
+Rajamouli has confirmed that Mahesh Babu will also appear as Lord Rama in one of the film's episodes, in addition to his primary role as Rudhra. Prithviraj Sukumaran plays the primary antagonist, Kumbha — described as a vicious supervillain shown in a futuristic wheelchair in the first-look poster.
+
+## One Film, Not Two
+
+Putting an end to months of speculation, Rajamouli has clarified that *Varanasi* will be a single film, not a two-part release. "We briefly considered it, but dropped the idea," he said. The film is written by Rajamouli along with his father V. Vijayendra Prasad and S.S. Kanchi, with music by M.M. Keeravani, cinematography by P.S. Vinod, and visual effects by V. Srinivas Mohan.
+
+## Priyanka's Return to Indian Cinema
+
+For the diaspora, the most compelling subplot of *Varanasi* is what it represents for Priyanka Chopra Jonas. This is her return to a major Indian theatrical release after years in Hollywood — from *Citadel* on Prime Video (Season 2 just premiered in May) to *Judgment Day* opposite Will Ferrell and Zac Efron. She's also attached to *Krrish 4*, marking Hrithik Roshan's directorial debut, and a survival thriller called *Reset* alongside Orlando Bloom.
+
+But *Varanasi* is the one she's talked about with the most personal investment. "This is unlike anything I've ever done," she told Variety, describing it as a time-traveling epic and her first Telugu-language film in over a decade. She specifically requested a dance number — "I have to do a dance song. We haven't shot it yet. That's one of the last things I'm really looking forward to."
+
+## The Release
+
+*Varanasi* is scheduled for theatrical release on April 7, 2027, coinciding with the Telugu festival of Ugadi. Given Rajamouli's track record — *Baahubali* redefined Indian box office economics, and *RRR* won an Oscar — this is one of the most anticipated film releases in global cinema, not just Indian cinema.
+
+For NRIs, Rajamouli films have become appointment viewing — the kind of event that fills up IMAX screens in New Jersey, the Bay Area, Dallas, and London on opening weekend. *Varanasi* is shaping up to be the biggest one yet. And Priyanka eating mangoes in Hyderabad means we're closer than ever."""
+})
+
+# ─── Publish articles ───
+
+print(f"\n{'='*60}")
+print(f"Entertainment Writer — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+print(f"{'='*60}")
+
+published_count = 0
+
+for i, article in enumerate(articles):
+    print(f"\n--- Article {i+1}/{len(articles)} ---")
+    print(f"  Headline: {article['headline'][:80]}...")
 
     # Image sourcing
     img_url = None
+    person = article.pop('person_image', None)
+    pexels_q = article.pop('pexels_query', None)
+    pexels_fb = article.pop('pexels_fallback', None)
 
-    # Try Wikipedia first for person articles
-    if art.get("image_person"):
-        img_url = fetch_wikipedia_person_image(art["image_person"])
-        if img_url and not validate_image(img_url):
-            print(f"  ⚠ Wikipedia image failed validation, trying alternate names")
+    if person:
+        print(f"  Looking up Wikipedia image for: {person}")
+        img_url = fetch_wikipedia_person_image(person)
+        if img_url and not validate_image_url(img_url):
+            print(f"  ⚠ Wikipedia image failed validation, clearing")
             img_url = None
 
-    # Fall back to Pexels
-    if not img_url and art.get("image_pexels_query"):
-        img_url = fetch_pexels_image(art["image_pexels_query"], art.get("image_pexels_fallback"))
-        if img_url and not validate_image(img_url):
-            print(f"  ⚠ Pexels image failed validation")
+    if not img_url and pexels_q:
+        print(f"  Falling back to Pexels: {pexels_q}")
+        img_url = fetch_pexels_image(pexels_q, pexels_fb)
+        if img_url and not validate_image_url(img_url):
+            print(f"  ⚠ Pexels image failed validation, clearing")
             img_url = None
 
-    if not img_url:
-        print(f"  ⚠ No valid image found — publishing without image (no image > wrong image)")
-
-    # Check for banned image sources
     if img_url:
-        banned_patterns = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat="]
-        for bp in banned_patterns:
-            if bp in img_url:
-                print(f"  ✗ BANNED image source detected ({bp}), dropping image")
-                img_url = None
-                break
-
-    # Build article row
-    row = {
-        "headline": art["headline"],
-        "subheadline": art["subheadline"],
-        "slug": art["slug"],
-        "body": art["body"].strip(),
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "published_at": now_utc,
-        "sources": json.dumps(art["sources"]),
-        "image_url": img_url,
-    }
-
-    result = sb_insert("p2_articles", row)
-    if result:
-        art_id = result.get("id")
-        print(f"  ✓ Published: {art['slug']} (id: {art_id})")
-        published += 1
+        article['image_url'] = img_url
+        if 'wikipedia' in img_url or 'wikimedia' in img_url or 'upload.wikimedia' in img_url:
+            article['image_attribution'] = 'Wikimedia Commons'
+        else:
+            article['image_attribution'] = 'The Videshi'
+        print(f"  ✓ Image set: {img_url[:80]}...")
     else:
-        print(f"  ✗ FAILED to publish: {art['slug']}")
+        print(f"  ⚠ No image found — publishing without image")
+        article.pop('image_url', None)
+        article.pop('image_attribution', None)
 
-    time.sleep(1)
+    # Insert
+    art_id = sb_insert('p2_articles', article)
+    if art_id:
+        print(f"  ✓ Published: {article['slug']} (id: {art_id})")
+        published_count += 1
+    else:
+        print(f"  ✗ FAILED to publish: {article['slug']}")
+
+    time.sleep(0.5)
 
 print(f"\n{'='*60}")
-print(f"Done. Published {published}/{len(articles)} articles.")
+print(f"Done. Published {published_count}/{len(articles)} articles.")
+print(f"{'='*60}")
