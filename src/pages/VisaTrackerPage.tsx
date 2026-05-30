@@ -670,7 +670,10 @@ export default function VisaTrackerPage() {
                     className="space-y-2"
                   >
                     <input name="alert_email" type="email" placeholder="your@email.com" className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors" />
-                    <input name="alert_whatsapp" type="tel" placeholder="WhatsApp number (e.g. +91 98765 43210)" className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors" />
+                    <div className="relative">
+                      <input name="alert_whatsapp" type="tel" disabled placeholder="WhatsApp — coming soon" className="w-full rounded-lg border border-border bg-foreground/[0.03] px-3 py-2 text-xs text-foreground/30 cursor-not-allowed" />
+                      <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] font-semibold uppercase tracking-wider text-foreground/30">Soon</span>
+                    </div>
                     <select name="alert_type" className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground/70 focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors">
                       <option value="all">All visa types</option>
                       <option value="B1B2">B1/B2 (Visitor)</option>
@@ -685,7 +688,7 @@ export default function VisaTrackerPage() {
                     </button>
                   </form>
                   <p className="text-[10px] text-foreground/40 mt-2 leading-relaxed">
-                    This is a premium service offered free during our launch period. No credit card needed. WhatsApp alerts are fastest — you'll hear within minutes of a slot drop.
+                    This is a premium service offered free during our launch period. No credit card needed.
                   </p>
                 </div>
 
