@@ -1,5 +1,3 @@
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
-
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -59,6 +57,7 @@ Deno.serve(async (req) => {
     food: "Food & Home",
     "return-home": "Return to India",
     "raising-kids": "Raising Kids Abroad",
+    "starting-over": "Starting Over",
     general: "Diaspora Life",
   };
 
@@ -119,6 +118,7 @@ Please craft this into a polished first-person essay.`;
         ],
         temperature: 0.7,
         max_tokens: 2000,
+        response_format: { type: "json_object" },
       }),
     });
 

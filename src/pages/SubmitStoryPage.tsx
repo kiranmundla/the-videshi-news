@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Masthead from "@/components/Masthead";
@@ -18,6 +18,57 @@ const MAX_PHOTO_SIZE = 5 * 1024 * 1024; // 5 MB
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
 type Step = "about" | "story" | "synthesizing" | "preview" | "verify" | "done";
+
+const SESSION_KEY = "videshi-story-draft";
+
+/* ── Category-specific guided prompts ── */
+const CATEGORY_PROMPTS: Record<string, { p1: string; p2: string; p3: string }> = {
+  immigration: {
+    p1: "What's your visa situation and what happened?",
+    p2: "How has it affected your life and plans?",
+    p3: "What would you tell someone navigating the same process?",
+  },
+  career: {
+    p1: "What was the pivotal moment in your career journey?",
+    p2: "How did being an immigrant shape your professional life?",
+    p3: "What do you wish you'd known when starting out?",
+  },
+  family: {
+    p1: "What's the story you want to share about your family or identity?",
+    p2: "How has living abroad changed your sense of self?",
+    p3: "What traditions or values do you hold onto?",
+  },
+  culture: {
+    p1: "What cultural moment or experience left a lasting mark on you?",
+    p2: "How do you navigate belonging to two cultures at once?",
+    p3: "What does home mean to you now?",
+  },
+  food: {
+    p1: "What dish or food memory connects you most to home?",
+    p2: "Who taught you to make it, and what does it mean to you?",
+    p3: "What's the story behind this food in your family?",
+  },
+  "return-home": {
+    p1: "What made you decide to go back?",
+    p2: "What surprised you most about returning?",
+    p3: "What would you tell someone thinking about making the move?",
+  },
+  "raising-kids": {
+    p1: "What's it like raising your kids between two cultures?",
+    p2: "What's the hardest part, and what brings you joy?",
+    p3: "What do you want your kids to know about where you come from?",
+  },
+  "starting-over": {
+    p1: "What did you leave behind, and what did you build?",
+    p2: "What was the turning point when things started to feel right?",
+    p3: "What keeps you going on the hard days?",
+  },
+  general: {
+    p1: "What's the story you want to share?",
+    p2: "How has it shaped who you are today?",
+    p3: "What would you tell someone going through the same thing?",
+  },
+};
 
 function generateSlug(name: string): string {
   const base = name
@@ -70,6 +121,46 @@ export default function SubmitStoryPage() {
   const [otpChecking, setOtpChecking] = useState(false);
   const [otpError, setOtpError] = useState<string | null>(null);
 
+  /* ── Session storage: restore on mount ── */
+  useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem(SESSION_KEY);
+      if (!saved) return;
+      const d = JSON.parse(saved);
+      if (d.name) setName(d.name);
+      if (d.email) setEmail(d.email);
+      if (d.city) setCity(d.city);
+      if (d.linkedin) setLinkedin(d.linkedin);
+      if (d.category) setCategory(d.category);
+      if (d.yearsInUs) setYearsInUs(d.yearsInUs);
+      if (d.originCity) setOriginCity(d.originCity);
+      if (d.whatHappened) setWhatHappened(d.whatHappened);
+      if (d.howAffected) setHowAffected(d.howAffected);
+      if (d.advice) setAdvice(d.advice);
+      if (d.rawStory) setRawStory(d.rawStory);
+      if (d.step === "about" || d.step === "story") setStep(d.step);
+    } catch { /* ignore corrupt data */ }
+  }, []);
+
+  /* ── Session storage: save on change ── */
+  const saveToSession = useCallback(() => {
+    try {
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({
+        step: step === "about" || step === "story" ? step : undefined,
+        name, email, city, linkedin, category, yearsInUs, originCity,
+        whatHappened, howAffected, advice, rawStory,
+      }));
+    } catch { /* quota exceeded — ignore */ }
+  }, [step, name, email, city, linkedin, category, yearsInUs, originCity, whatHappened, howAffected, advice, rawStory]);
+
+  useEffect(() => { saveToSession(); }, [saveToSession]);
+
+  /* ── Clear session on successful submission ── */
+  function clearSession() { sessionStorage.removeItem(SESSION_KEY); }
+
+  /* ── Get dynamic prompts for selected category ── */
+  const prompts = CATEGORY_PROMPTS[category] || CATEGORY_PROMPTS.general;
+
   /* ── Photo handling ── */
   function handlePhoto(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -87,15 +178,26 @@ export default function SubmitStoryPage() {
     setPhotoPreview(URL.createObjectURL(file));
   }
 
-  /* ── Upload photo as base64 data URL (simple, no storage bucket needed) ── */
-  async function uploadPhotoAsDataUrl(): Promise<string | null> {
+  /* ── Upload photo to Supabase Storage ── */
+  async function uploadPhotoToStorage(): Promise<string | null> {
     if (!photo) return null;
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.onerror = () => resolve(null);
-      reader.readAsDataURL(photo);
-    });
+    const ext = photo.name.split(".").pop() || "jpg";
+    const filePath = `${crypto.randomUUID()}.${ext}`;
+
+    const { error: uploadErr } = await sb.storage
+      .from("story-photos")
+      .upload(filePath, photo, { contentType: photo.type, upsert: false });
+
+    if (uploadErr) {
+      console.error("Photo upload error:", uploadErr);
+      return null;
+    }
+
+    const { data: urlData } = sb.storage
+      .from("story-photos")
+      .getPublicUrl(filePath);
+
+    return urlData?.publicUrl ?? null;
   }
 
   /* ── Step 1 → Step 2 ── */
@@ -125,8 +227,8 @@ export default function SubmitStoryPage() {
     setStep("synthesizing");
 
     try {
-      // 1. Upload photo
-      const photoUrl = await uploadPhotoAsDataUrl();
+      // 1. Upload photo to Supabase Storage
+      const photoUrl = await uploadPhotoToStorage();
 
       // 2. Create draft story in DB
       const slug = generateSlug(name);
@@ -251,6 +353,7 @@ export default function SubmitStoryPage() {
       if (verifyErr) throw new Error(verifyErr.message);
       if (data?.error) throw new Error(data.error);
 
+      clearSession();
       setStep("done");
     } catch (err: any) {
       setOtpError(err.message || "Invalid or expired code.");
@@ -457,7 +560,7 @@ export default function SubmitStoryPage() {
 
             {/* Years in US */}
             <div>
-              <label className="block text-sm font-medium mb-1.5">How long have you been in the US?</label>
+              <label className="block text-sm font-medium mb-1.5">How long have you lived abroad?</label>
               <select
                 value={yearsInUs}
                 onChange={(e) => setYearsInUs(e.target.value)}
@@ -482,9 +585,9 @@ export default function SubmitStoryPage() {
               />
             </div>
 
-            {/* What happened */}
+            {/* Dynamic Prompt 1 */}
             <div>
-              <label className="block text-sm font-medium mb-1.5">What happened?</label>
+              <label className="block text-sm font-medium mb-1.5">{prompts.p1}</label>
               <p className="text-xs text-muted-foreground mb-1.5">2-3 sentences. The key event or experience at the heart of your story.</p>
               <textarea
                 value={whatHappened}
@@ -495,9 +598,9 @@ export default function SubmitStoryPage() {
               />
             </div>
 
-            {/* How affected */}
+            {/* Dynamic Prompt 2 */}
             <div>
-              <label className="block text-sm font-medium mb-1.5">How did it affect you or your family?</label>
+              <label className="block text-sm font-medium mb-1.5">{prompts.p2}</label>
               <textarea
                 value={howAffected}
                 onChange={(e) => setHowAffected(e.target.value)}
@@ -507,9 +610,9 @@ export default function SubmitStoryPage() {
               />
             </div>
 
-            {/* Advice */}
+            {/* Dynamic Prompt 3 */}
             <div>
-              <label className="block text-sm font-medium mb-1.5">What would you tell someone going through the same thing?</label>
+              <label className="block text-sm font-medium mb-1.5">{prompts.p3}</label>
               <textarea
                 value={advice}
                 onChange={(e) => setAdvice(e.target.value)}
@@ -535,7 +638,14 @@ export default function SubmitStoryPage() {
                 placeholder="Write freely here... your experience, your feelings, what you went through. It can be rough — we'll help make it shine."
               />
               <p className="text-xs text-muted-foreground mt-1 text-right">
-                {rawStory.length} characters
+                {(() => {
+                  const wc = rawStory.trim() ? rawStory.trim().split(/\s+/).length : 0;
+                  if (wc === 0) return "0 words";
+                  if (wc < 20) return `${wc} words — tell us a bit more so we can help shape your story`;
+                  if (wc < 100) return `${wc} words — keep going, most great stories are 100–500 words`;
+                  if (wc <= 500) return `${wc} words — looking good! 👍`;
+                  return `${wc} words — great detail! 🎉`;
+                })()}
               </p>
             </div>
 
