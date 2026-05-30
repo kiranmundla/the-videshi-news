@@ -95,6 +95,25 @@ function parseListing(row: any): DirectoryListing {
   };
 }
 
+/* ------------------------------------------------------------------ */
+/* Static JSON cache                                                  */
+/* ------------------------------------------------------------------ */
+
+let _directoryCache: DirectoryListing[] | null = null;
+
+async function loadDirectoryCache(): Promise<DirectoryListing[] | null> {
+  if (_directoryCache) return _directoryCache;
+  try {
+    const res = await fetch("/data/directory.json");
+    if (!res.ok) return null;
+    const raw = (await res.json()) as any[];
+    _directoryCache = raw.map(parseListing);
+    return _directoryCache;
+  } catch {
+    return null;
+  }
+}
+
 export const DOCTOR_SUBCATEGORIES = [
   "Dentist",
   "Pediatrician",
@@ -153,6 +172,38 @@ export async function getDirectoryListings(
   offset = 0,
   subcategory: string | null = null,
 ): Promise<DirectoryListing[]> {
+  // Try static JSON first
+  const cached = await loadDirectoryCache();
+  if (cached) {
+    let filtered = [...cached];
+    if (category) {
+      filtered = filtered.filter((l) => l.category === category);
+    }
+    if (subcategory) {
+      filtered = filtered.filter((l) => l.subcategory === subcategory);
+    }
+    if (city) {
+      const { CITY_GROUPS } = await import("./events");
+      const group = CITY_GROUPS.find((g) => g.label === city);
+      if (group) {
+        const cities = new Set([...group.cities, group.label]);
+        filtered = filtered.filter((l) => l.city && cities.has(l.city));
+      }
+    }
+    if (search) {
+      const q = search.toLowerCase();
+      filtered = filtered.filter((l) =>
+        l.name?.toLowerCase().includes(q) ||
+        l.description?.toLowerCase().includes(q) ||
+        l.category?.toLowerCase().includes(q) ||
+        l.city?.toLowerCase().includes(q) ||
+        l.subcategory?.toLowerCase().includes(q)
+      );
+    }
+    return filtered.slice(offset, offset + limit);
+  }
+
+  // Fallback: Supabase
   let query = supabase
     .from("directory_listings")
     .select(LISTING_COLS)
@@ -169,7 +220,6 @@ export async function getDirectoryListings(
   }
 
   if (city) {
-    // Import CITY_GROUPS from events
     const { CITY_GROUPS } = await import("./events");
     const group = CITY_GROUPS.find((g) => g.label === city);
     if (group) {
@@ -193,6 +243,14 @@ export async function getDirectoryListings(
 }
 
 export async function getDirectoryListing(slug: string): Promise<DirectoryListing | null> {
+  // Try static JSON first
+  const cached = await loadDirectoryCache();
+  if (cached) {
+    const found = cached.find((l) => l.slug === slug);
+    if (found) return found;
+  }
+
+  // Fallback: Supabase
   const { data, error } = await supabase
     .from("directory_listings")
     .select(LISTING_COLS)
@@ -204,6 +262,13 @@ export async function getDirectoryListing(slug: string): Promise<DirectoryListin
 }
 
 export async function getFeaturedListings(): Promise<DirectoryListing[]> {
+  // Try static JSON first
+  const cached = await loadDirectoryCache();
+  if (cached) {
+    return cached.filter((l) => l.featured).slice(0, 10);
+  }
+
+  // Fallback: Supabase
   const { data, error } = await supabase
     .from("directory_listings")
     .select(LISTING_COLS)
@@ -219,6 +284,26 @@ export async function getFeaturedListings(): Promise<DirectoryListing[]> {
 }
 
 export async function getDirectoryCityCounts(): Promise<Record<string, number>> {
+  // Try static JSON first
+  const cached = await loadDirectoryCache();
+  if (cached) {
+    const { CITY_GROUPS } = await import("./events");
+    const counts: Record<string, number> = {};
+    for (const group of CITY_GROUPS) {
+      counts[group.label] = 0;
+    }
+    for (const row of cached) {
+      for (const group of CITY_GROUPS) {
+        if (row.city && group.cities.includes(row.city)) {
+          counts[group.label] = (counts[group.label] || 0) + 1;
+          break;
+        }
+      }
+    }
+    return counts;
+  }
+
+  // Fallback: Supabase
   const { data, error } = await supabase
     .from("directory_listings")
     .select("city");
@@ -244,6 +329,17 @@ export async function getDirectoryCityCounts(): Promise<Record<string, number>> 
 }
 
 export async function getDirectoryCategoryCounts(): Promise<Record<string, number>> {
+  // Try static JSON first
+  const cached = await loadDirectoryCache();
+  if (cached) {
+    const counts: Record<string, number> = {};
+    for (const row of cached) {
+      counts[row.category] = (counts[row.category] || 0) + 1;
+    }
+    return counts;
+  }
+
+  // Fallback: Supabase
   const { data, error } = await supabase
     .from("directory_listings")
     .select("category");

@@ -67,6 +67,24 @@ const COLS =
   "id,name,brand,model,slug,category,body_type,fuel_type,year,msrp_low,msrp_high,mpg,seating,cargo_cu_ft,safety_rating,nri_take,pros,cons,image_url,images,lease_monthly,lease_due_at_signing,lease_term,lease_miles_per_year,lease_source,lease_expires,purchase_apr,affiliate_url,is_our_pick,sort_order,created_at,updated_at";
 
 /* ------------------------------------------------------------------ */
+/* Static JSON cache                                                  */
+/* ------------------------------------------------------------------ */
+
+let _carsCache: Car[] | null = null;
+
+async function loadCarsCache(): Promise<Car[] | null> {
+  if (_carsCache) return _carsCache;
+  try {
+    const res = await fetch("/data/cars.json");
+    if (!res.ok) return null;
+    _carsCache = (await res.json()) as Car[];
+    return _carsCache;
+  } catch {
+    return null;
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /* Queries                                                            */
 /* ------------------------------------------------------------------ */
 
@@ -74,6 +92,28 @@ export async function getCars(opts?: {
   category?: string;
   search?: string;
 }): Promise<Car[]> {
+  // Try static JSON first
+  const cached = await loadCarsCache();
+  if (cached) {
+    let cars = [...cached];
+    if (opts?.category === "EV") {
+      cars = cars.filter((c) => c.fuel_type === "Electric");
+    } else if (opts?.category && opts.category !== "All") {
+      cars = cars.filter((c) => c.category === opts.category);
+    }
+    if (opts?.search) {
+      const s = opts.search.toLowerCase();
+      cars = cars.filter(
+        (c) =>
+          c.name?.toLowerCase().includes(s) ||
+          c.brand?.toLowerCase().includes(s) ||
+          c.model?.toLowerCase().includes(s)
+      );
+    }
+    return cars;
+  }
+
+  // Fallback: Supabase
   let q = supabase
     .from("cars")
     .select(COLS)
@@ -98,6 +138,14 @@ export async function getCars(opts?: {
 }
 
 export async function getCarBySlug(slug: string): Promise<Car | null> {
+  // Try static JSON first
+  const cached = await loadCarsCache();
+  if (cached) {
+    const found = cached.find((c) => c.slug === slug);
+    if (found) return found;
+  }
+
+  // Fallback: Supabase
   const { data, error } = await supabase
     .from("cars")
     .select(COLS)
@@ -109,6 +157,13 @@ export async function getCarBySlug(slug: string): Promise<Car | null> {
 }
 
 export async function getCarsByCategory(category: string): Promise<Car[]> {
+  // Try static JSON first
+  const cached = await loadCarsCache();
+  if (cached) {
+    return cached.filter((c) => c.category === category).slice(0, 6);
+  }
+
+  // Fallback: Supabase
   const { data, error } = await supabase
     .from("cars")
     .select(COLS)
@@ -121,6 +176,15 @@ export async function getCarsByCategory(category: string): Promise<Car[]> {
 
 export async function getCarsByIds(ids: string[]): Promise<Car[]> {
   if (ids.length === 0) return [];
+
+  // Try static JSON first
+  const cached = await loadCarsCache();
+  if (cached) {
+    const idSet = new Set(ids);
+    return cached.filter((c) => idSet.has(c.id));
+  }
+
+  // Fallback: Supabase
   const { data, error } = await supabase
     .from("cars")
     .select(COLS)

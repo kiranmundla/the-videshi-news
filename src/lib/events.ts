@@ -70,6 +70,27 @@ async function queryWithFallback(buildQuery: (cols: string) => any): Promise<any
   return data || [];
 }
 
+/* ------------------------------------------------------------------ */
+/* Static JSON cache                                                  */
+/* ------------------------------------------------------------------ */
+
+let _eventsCache: EventItem[] | null = null;
+let _eventsCacheTime = 0;
+const EVENTS_CACHE_TTL = 5 * 60 * 1000; // 5 min
+
+async function loadEventsCache(): Promise<EventItem[] | null> {
+  if (_eventsCache && Date.now() - _eventsCacheTime < EVENTS_CACHE_TTL) return _eventsCache;
+  try {
+    const res = await fetch("/data/events.json");
+    if (!res.ok) return null;
+    _eventsCache = (await res.json()) as EventItem[];
+    _eventsCacheTime = Date.now();
+    return _eventsCache;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Generate a deterministic slug from title + date.
  * Used both for URL generation and lookup matching.
@@ -176,6 +197,15 @@ export function getDateRange(timeRange: TimeRange): { from: string; to: string }
 export async function getFeaturedEvents(): Promise<EventItem[]> {
   const today = new Date().toISOString().slice(0, 10);
 
+  // Try static JSON first
+  const cached = await loadEventsCache();
+  if (cached) {
+    return cached
+      .filter((e) => e.is_featured && e.date >= today)
+      .slice(0, 8);
+  }
+
+  // Fallback: Supabase
   const data = await queryWithFallback((cols: string) => {
     return supabase
       .from("events")
@@ -203,6 +233,27 @@ export async function getEvents(
   const dateRange = getDateRange(timeRange);
   const today = new Date().toISOString().slice(0, 10);
 
+  // Try static JSON first
+  const cached = await loadEventsCache();
+  if (cached) {
+    let filtered = cached.filter((e) => e.date >= (dateRange ? dateRange.from : today));
+    if (dateRange) {
+      filtered = filtered.filter((e) => e.date <= dateRange.to);
+    }
+    if (cityFilter) {
+      const group = CITY_GROUPS.find((g) => g.label === cityFilter);
+      if (group) {
+        const cities = new Set([...group.cities, group.label]);
+        filtered = filtered.filter((e) => cities.has(e.city));
+      }
+    }
+    if (categoryFilter) {
+      filtered = filtered.filter((e) => e.category === categoryFilter);
+    }
+    return filtered.slice(offset, offset + limit);
+  }
+
+  // Fallback: Supabase
   const data = await queryWithFallback((cols: string) => {
     let query = supabase
       .from("events")
@@ -237,7 +288,18 @@ export async function getEvents(
  * Tries DB slug column first, then falls back to computing slug from title+date.
  */
 export async function getEventBySlug(slug: string): Promise<EventItem | null> {
-  // Try direct slug lookup first (if the DB column is populated)
+  // Try static JSON first
+  const cached = await loadEventsCache();
+  if (cached) {
+    // Direct slug match
+    const direct = cached.find((e) => e.slug === slug);
+    if (direct) return direct;
+    // Computed slug fallback
+    const computed = cached.find((e) => generateSlug(e.title, e.date) === slug);
+    if (computed) return computed;
+  }
+
+  // Fallback: Supabase — try direct slug lookup first
   const { data: directMatch } = await supabase
     .from("events")
     .select(EVENT_COLS)
@@ -269,6 +331,26 @@ export async function getEventBySlug(slug: string): Promise<EventItem | null> {
 export async function getCityCounts(): Promise<Record<string, number>> {
   const today = new Date().toISOString().slice(0, 10);
 
+  // Try static JSON first
+  const cached = await loadEventsCache();
+  if (cached) {
+    const upcoming = cached.filter((e) => e.date >= today);
+    const counts: Record<string, number> = {};
+    for (const group of CITY_GROUPS) {
+      counts[group.label] = 0;
+    }
+    for (const row of upcoming) {
+      for (const group of CITY_GROUPS) {
+        if (group.cities.includes(row.city)) {
+          counts[group.label] = (counts[group.label] || 0) + 1;
+          break;
+        }
+      }
+    }
+    return counts;
+  }
+
+  // Fallback: Supabase
   const { data, error } = await supabase
     .from("events")
     .select("city")
@@ -518,6 +600,30 @@ export async function getAllUpcomingEvents(
 ): Promise<EventItem[]> {
   const today = new Date().toISOString().slice(0, 10);
 
+  // Try static JSON first
+  const cached = await loadEventsCache();
+  if (cached) {
+    let filtered = cached.filter((e) => e.date >= today);
+    if (categories && categories.length > 0) {
+      const catSet = new Set(categories);
+      filtered = filtered.filter((e) => e.category && catSet.has(e.category));
+    }
+    if (search) {
+      const q = search.toLowerCase();
+      filtered = filtered.filter((e) =>
+        e.title?.toLowerCase().includes(q) ||
+        e.description?.toLowerCase().includes(q) ||
+        e.long_description?.toLowerCase().includes(q) ||
+        e.artist_info?.toLowerCase().includes(q) ||
+        e.venue_name?.toLowerCase().includes(q) ||
+        e.city?.toLowerCase().includes(q) ||
+        e.organizer?.toLowerCase().includes(q)
+      );
+    }
+    return filtered.slice(0, 500);
+  }
+
+  // Fallback: Supabase
   const data = await queryWithFallback((cols: string) => {
     let query = supabase
       .from("events")

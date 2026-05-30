@@ -149,6 +149,25 @@ function parseClassified(row: any): Classified {
   };
 }
 
+/* ------------------------------------------------------------------ */
+/* Static JSON cache                                                  */
+/* ------------------------------------------------------------------ */
+
+let _classifiedsCache: Classified[] | null = null;
+
+async function loadClassifiedsCache(): Promise<Classified[] | null> {
+  if (_classifiedsCache) return _classifiedsCache;
+  try {
+    const res = await fetch("/data/classifieds.json");
+    if (!res.ok) return null;
+    const raw = (await res.json()) as any[];
+    _classifiedsCache = raw.map(parseClassified);
+    return _classifiedsCache;
+  } catch {
+    return null;
+  }
+}
+
 export function generateClassifiedSlug(title: string): string {
   const cleaned = title
     .toLowerCase()
@@ -189,6 +208,39 @@ export async function getClassifieds(
   limit = 50,
   offset = 0,
 ): Promise<Classified[]> {
+  // Try static JSON first
+  const cached = await loadClassifiedsCache();
+  if (cached) {
+    const now = new Date().toISOString();
+    let filtered = cached.filter((c) => c.status === "active" && (!c.expires_at || c.expires_at > now));
+    if (category) {
+      filtered = filtered.filter((c) => c.category === category);
+    }
+    if (subcategory) {
+      filtered = filtered.filter((c) => c.subcategory === subcategory);
+    }
+    if (city) {
+      const { CITY_GROUPS } = await import("./events");
+      const group = CITY_GROUPS.find((g) => g.label === city);
+      if (group) {
+        const cities = new Set([...group.cities, group.label]);
+        filtered = filtered.filter((c) => c.city && cities.has(c.city));
+      }
+    }
+    if (search) {
+      const q = search.toLowerCase();
+      filtered = filtered.filter((c) =>
+        c.title?.toLowerCase().includes(q) ||
+        c.description?.toLowerCase().includes(q) ||
+        c.category?.toLowerCase().includes(q) ||
+        c.city?.toLowerCase().includes(q) ||
+        c.subcategory?.toLowerCase().includes(q)
+      );
+    }
+    return filtered.slice(offset, offset + limit);
+  }
+
+  // Fallback: Supabase
   let query = supabase
     .from("classifieds")
     .select(COLS)
@@ -234,6 +286,27 @@ export async function getAllClassifieds(
   search: string | null = null,
   subcategory: string | null = null,
 ): Promise<Classified[]> {
+  // Try static JSON first
+  const cached = await loadClassifiedsCache();
+  if (cached) {
+    const now = new Date().toISOString();
+    let filtered = cached.filter((c) => c.status === "active" && (!c.expires_at || c.expires_at > now));
+    if (category) filtered = filtered.filter((c) => c.category === category);
+    if (subcategory) filtered = filtered.filter((c) => c.subcategory === subcategory);
+    if (search) {
+      const q = search.toLowerCase();
+      filtered = filtered.filter((c) =>
+        c.title?.toLowerCase().includes(q) ||
+        c.description?.toLowerCase().includes(q) ||
+        c.category?.toLowerCase().includes(q) ||
+        c.city?.toLowerCase().includes(q) ||
+        c.subcategory?.toLowerCase().includes(q)
+      );
+    }
+    return filtered.slice(0, 500);
+  }
+
+  // Fallback: Supabase
   let query = supabase
     .from("classifieds")
     .select(COLS)
@@ -260,6 +333,14 @@ export async function getAllClassifieds(
 export async function getClassifiedBySlug(
   slug: string,
 ): Promise<Classified | null> {
+  // Try static JSON first
+  const cached = await loadClassifiedsCache();
+  if (cached) {
+    const found = cached.find((c) => c.slug === slug);
+    if (found) return found;
+  }
+
+  // Fallback: Supabase
   const { data, error } = await supabase
     .from("classifieds")
     .select(COLS)

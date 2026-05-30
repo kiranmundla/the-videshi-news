@@ -100,6 +100,36 @@ def fetch_all_published(url: str, key: str) -> list[dict]:
     return all_rows
 
 
+def fetch_table(url: str, key: str, table: str, order: str = "id.asc",
+                filters: dict | None = None, select: str = "*") -> list[dict]:
+    """Generic paginated fetch from any Supabase table."""
+    headers = {"apikey": key, "Authorization": f"Bearer {key}"}
+    all_rows = []
+    offset = 0
+    batch = 500
+
+    while True:
+        params: dict = {
+            "select": select,
+            "order": order,
+            "offset": str(offset),
+            "limit": str(batch),
+        }
+        if filters:
+            params.update(filters)
+        resp = requests.get(f"{url}/rest/v1/{table}", headers=headers, params=params)
+        resp.raise_for_status()
+        rows = resp.json()
+        if not rows:
+            break
+        all_rows.extend(rows)
+        if len(rows) < batch:
+            break
+        offset += batch
+
+    return all_rows
+
+
 # ── Transform (mirrors mapRow in articles.ts) ────────────────────────
 
 def parse_sources(raw) -> list | None:
@@ -322,6 +352,39 @@ def main():
             removed += 1
 
     print(f"  ✓ {written} article JSONs written, {removed} stale removed")
+
+    # 4. Build cars.json
+    print("  Building cars.json...")
+    cars = fetch_table(url, key, "cars", order="sort_order.asc,name.asc")
+    cars_path = DATA_DIR / "cars.json"
+    cars_path.write_text(json.dumps(cars, ensure_ascii=False, separators=(",", ":")))
+    print(f"  ✓ cars.json ({len(cars)} vehicles)")
+
+    # 5. Build events.json (upcoming + recently past)
+    print("  Building events.json...")
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%d")
+    events = fetch_table(url, key, "events", order="date.asc",
+                         filters={"date": f"gte.{cutoff}"})
+    events_path = DATA_DIR / "events.json"
+    events_path.write_text(json.dumps(events, ensure_ascii=False, separators=(",", ":")))
+    print(f"  ✓ events.json ({len(events)} events)")
+
+    # 6. Build directory.json
+    print("  Building directory.json...")
+    directory = fetch_table(url, key, "directory_listings",
+                            order="featured.desc,rating.desc.nullslast")
+    directory_path = DATA_DIR / "directory.json"
+    directory_path.write_text(json.dumps(directory, ensure_ascii=False, separators=(",", ":")))
+    print(f"  ✓ directory.json ({len(directory)} listings)")
+
+    # 7. Build classifieds.json
+    print("  Building classifieds.json...")
+    classifieds = fetch_table(url, key, "classifieds", order="created_at.desc",
+                              filters={"status": "eq.active"})
+    classifieds_path = DATA_DIR / "classifieds.json"
+    classifieds_path.write_text(json.dumps(classifieds, ensure_ascii=False, separators=(",", ":")))
+    print(f"  ✓ classifieds.json ({len(classifieds)} classifieds)")
+
     print("=== Done ===")
 
 
