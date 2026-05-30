@@ -408,11 +408,13 @@ export default function ArticlePage() {
         if (!cancelled) setRelated(rel);
       } catch {}
       window.scrollTo(0, 0);
-    });
+    }).catch(() => {});
 
     // If both fail, fall back
     Promise.allSettled([fromStatic, fromLive]).then(() => {
-      if (!shown && !cancelled) fetchFromSupabase();
+      if (!shown && !cancelled) fetchFromSupabase().catch(() => {
+        if (!cancelled) setArticle(null);
+      });
     });
 
     return () => {

@@ -104,6 +104,26 @@ export default function CategoryPage() {
         {/* {def.slug === "entertainment" && <CelebrityBuzz />} */}
         {def.slug === "sports" && <TechBuzz category="sports" />}
 
+        {def.slug === "food" && (
+          <Link
+            to="/directory?category=Catering+%26+Food&subcategory=Michelin+Star"
+            className="block mb-8 rounded-xl overflow-hidden border border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 hover:from-amber-100 hover:to-orange-100 transition-colors"
+          >
+            <div className="flex items-center gap-3 px-5 py-4">
+              <span className="text-2xl">⭐</span>
+              <div className="flex-1 min-w-0">
+                <p className="font-serif text-lg font-semibold text-foreground leading-tight">
+                  Michelin-Starred Indian Restaurants
+                </p>
+                <p className="text-sm text-muted-foreground mt-0.5">
+                  Discover the finest Indian dining across America
+                </p>
+              </div>
+              <span className="text-muted-foreground text-xl shrink-0">→</span>
+            </div>
+          </Link>
+        )}
+
         {def.slug === "travel" && (
           <div style={{ display: "flex", gap: 8, overflowX: "auto", paddingBottom: 20, marginBottom: 8, WebkitOverflowScrolling: "touch" as any }}>
             {[
