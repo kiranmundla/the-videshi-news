@@ -48,7 +48,7 @@ CATEGORY_SECTIONS = [
 ]
 CAROUSEL_CATEGORIES = ["news", "entertainment", "sports", "technology", "markets-finance"]
 
-MAX_ARTICLE_PAGES = 200  # Only pre-build this many individual article JSONs
+MAX_ARTICLE_PAGES = 5000  # Pre-build individual article JSONs for all published articles
 
 
 # ── Supabase helpers ──────────────────────────────────────────────────
