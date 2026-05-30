@@ -2,7 +2,7 @@ import { useState, useEffect, type ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard, Newspaper, Car, Calendar, Tag, Building2,
-  LogOut, ChevronLeft, Menu, X,
+  LogOut, ChevronLeft, Menu, X, BookOpen,
 } from "lucide-react";
 import { isAdminAuthenticated, adminLogin, adminLogout } from "@/lib/adminAuth";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ const NAV_ITEMS = [
   { to: "/admin/events", icon: Calendar, label: "Events" },
   { to: "/admin/classifieds", icon: Tag, label: "Classifieds" },
   { to: "/admin/directory", icon: Building2, label: "Directory" },
+  { to: "/admin/stories", icon: BookOpen, label: "Stories" },
 ];
 
 function LoginGate({ onLogin }: { onLogin: () => void }) {

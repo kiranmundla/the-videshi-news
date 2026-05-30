@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 """Instagram auto-poster for The Videshi — posts Reels + Stories."""
 
-import os, sys, re, json, time, subprocess, datetime, requests
+import os
+import re
+import sys
+import json
+import time
+import subprocess
+import requests
+from datetime import datetime, timezone
 
-# ── Load credentials ──────────────────────────────────────────────
+# --- Load credentials ---
 def load_env_file(path):
     env = {}
     with open(os.path.expanduser(path)) as f:
@@ -18,57 +25,58 @@ def load_env_file(path):
 
 ig_env = load_env_file('~/workspace/.env.instagram')
 sb_env = load_env_file('~/workspace/.env.supabase')
-app_env = load_env_file('~/workspace/the-videshi-news/.env')
 
 IG_USER_ID = ig_env['INSTAGRAM_USER_ID']
-IG_TOKEN = ig_env['INSTAGRAM_ACCESS_TOKEN']
-IG_APP_SECRET = ig_env['INSTAGRAM_APP_SECRET']
-SB_URL = 'https://lboecaekpynbpyijrbfz.supabase.co'
-SB_SERVICE_KEY = sb_env['SUPABASE_SERVICE_ROLE_KEY']
+TOKEN = ig_env['INSTAGRAM_ACCESS_TOKEN']
+IG_APP_SECRET = ig_env.get('INSTAGRAM_APP_SECRET', '')
+SB_KEY = sb_env['SUPABASE_SERVICE_ROLE_KEY']
+SUPABASE_URL = "https://lboecaekpynbpyijrbfz.supabase.co"
 
-print(f"[INFO] IG User ID: {IG_USER_ID}")
-print(f"[INFO] Token length: {len(IG_TOKEN)}")
+print(f"IG User ID: {IG_USER_ID}")
+print(f"Token length: {len(TOKEN)}")
 
-# ── Step 1: Refresh token ─────────────────────────────────────────
-print("\n[STEP 1] Refreshing Instagram token...")
+# --- Step 1: Refresh token ---
+print("\n=== Refreshing Instagram token ===")
 try:
     r = requests.get("https://graph.instagram.com/refresh_access_token", params={
         "grant_type": "ig_refresh_token",
-        "access_token": IG_TOKEN
-    }, timeout=15)
+        "access_token": TOKEN
+    }, timeout=30)
     rj = r.json()
     if 'access_token' in rj:
         new_token = rj['access_token']
-        if new_token != IG_TOKEN:
+        if new_token != TOKEN:
+            TOKEN = new_token
             # Update .env.instagram
             env_path = os.path.expanduser('~/workspace/.env.instagram')
             with open(env_path) as f:
                 content = f.read()
             content = re.sub(
                 r'INSTAGRAM_ACCESS_TOKEN=.*',
-                f'INSTAGRAM_ACCESS_TOKEN={new_token}',
+                f'INSTAGRAM_ACCESS_TOKEN={TOKEN}',
                 content
             )
             with open(env_path, 'w') as f:
                 f.write(content)
-            IG_TOKEN = new_token
-            print(f"[OK] Token refreshed and saved (expires_in={rj.get('expires_in', '?')}s)")
+            print("Token refreshed and saved!")
         else:
-            print(f"[OK] Token still valid (expires_in={rj.get('expires_in', '?')}s)")
+            print("Token unchanged after refresh.")
+        print(f"Expires in: {rj.get('expires_in', 'unknown')} seconds")
     else:
-        print(f"[WARN] Token refresh response: {rj}")
+        print(f"Token refresh warning: {rj}")
 except Exception as e:
-    print(f"[WARN] Token refresh failed: {e} — continuing with existing token")
+    print(f"Token refresh error (non-fatal): {e}")
 
-# ── Step 2: Fetch unposted articles ──────────────────────────────
-print("\n[STEP 2] Fetching unposted articles...")
+# --- Step 2: Fetch articles not yet posted to Instagram ---
+print("\n=== Fetching unposted articles ===")
 headers = {
-    "apikey": SB_SERVICE_KEY,
-    "Authorization": f"Bearer {SB_SERVICE_KEY}",
+    "apikey": SB_KEY,
+    "Authorization": f"Bearer {SB_KEY}",
     "Content-Type": "application/json"
 }
+
 r = requests.get(
-    f"{SB_URL}/rest/v1/p2_articles",
+    f"{SUPABASE_URL}/rest/v1/p2_articles",
     params={
         "status": "eq.published",
         "instagrammed_at": "is.null",
@@ -78,305 +86,324 @@ r = requests.get(
         "select": "id,slug,headline,subheadline,category,image_url"
     },
     headers=headers,
-    timeout=15
+    timeout=30
 )
-articles = r.json()
-if not isinstance(articles, list):
-    print(f"[ERROR] Unexpected response: {articles}")
+
+if r.status_code != 200:
+    print(f"ERROR fetching articles: {r.status_code} {r.text}")
     sys.exit(1)
 
-# Filter out articles with empty image_url
-articles = [a for a in articles if a.get('image_url') and a['image_url'].strip()]
-print(f"[INFO] Found {len(articles)} unposted articles with images")
+articles = r.json()
+print(f"Found {len(articles)} unposted articles with images")
 
 if not articles:
-    print("[DONE] No articles to post. Exiting.")
+    print("No articles to post. Exiting.")
     sys.exit(0)
 
-# Pick up to 2
+# Pick up to 2 articles
 batch = articles[:2]
 for i, a in enumerate(batch):
-    print(f"  [{i+1}] {a['headline'][:80]}... (cat={a.get('category','?')}, slug={a['slug'][:50]})")
+    print(f"  [{i+1}] {a['headline'][:80]}... ({a['category']})")
 
-# ── Hashtag builder ──────────────────────────────────────────────
-CATEGORY_TAGS = {
+# --- Hashtag mapping ---
+CATEGORY_HASHTAGS = {
     "news": ["#India", "#NRI", "#IndiaNews", "#IndianDiaspora", "#BreakingNews", "#DesiNews", "#SouthAsian", "#IndianAmerican", "#NRINews"],
-    "immigration": ["#Immigration", "#H1B", "#H1BVisa", "#NRI", "#GreenCard", "#IndianAmerican", "#USImmigration", "#VisaUpdate", "#USCIS", "#Desi"],
-    "nri-world": ["#NRI", "#IndianDiaspora", "#NRILife", "#Desi", "#IndianAmerican", "#SouthAsian", "#DesiAbroad", "#NRICommunity"],
-    "travel": ["#Travel", "#India", "#IndiaTravel", "#IncredibleIndia", "#TravelIndia", "#DesiTravel", "#Wanderlust"],
-    "lifestyle-health": ["#Lifestyle", "#Desi", "#NRILife", "#IndianAmerican", "#DesiLifestyle", "#Wellness", "#Health", "#SouthAsian"],
-    "markets-finance": ["#Markets", "#India", "#NRI", "#Nifty", "#Sensex", "#IndianMarkets", "#StockMarket", "#Finance", "#NRIInvesting"],
-    "technology": ["#Tech", "#India", "#IndianTech", "#Startup", "#AI", "#TechNews", "#IndianEngineers", "#IndiansinTech"],
+    "immigration": ["#Immigration", "#H1B", "#H1BVisa", "#NRI", "#GreenCard", "#IndianAmerican", "#USImmigration", "#VisaUpdate", "#OPT", "#USCIS", "#Desi"],
+    "nri-world": ["#NRI", "#IndianDiaspora", "#NRILife", "#Desi", "#IndianAmerican", "#SouthAsian", "#DesiAbroad", "#IndianImmigrant", "#NRICommunity"],
+    "travel": ["#Travel", "#India", "#IndiaTravel", "#IncredibleIndia", "#TravelIndia", "#DesiTravel", "#IndianDestinations", "#TravelDiaries", "#Wanderlust"],
+    "lifestyle-health": ["#Lifestyle", "#Desi", "#NRILife", "#IndianAmerican", "#DesiLifestyle", "#Wellness", "#Health", "#SouthAsian", "#DesiCulture"],
+    "markets-finance": ["#Markets", "#India", "#NRI", "#Nifty", "#Sensex", "#BSE", "#NSE", "#IndianMarkets", "#StockMarket", "#Finance", "#NRIInvesting"],
+    "technology": ["#Tech", "#India", "#IndianTech", "#Startup", "#H1B", "#SiliconValley", "#AI", "#TechNews", "#IndianEngineers", "#FAANG", "#IndiansinTech"],
     "sports": ["#Cricket", "#India", "#IPL", "#IPL2026", "#IndianCricket", "#BCCI", "#CricketNews", "#Desi", "#TeamIndia"],
-    "entertainment": ["#Bollywood", "#Entertainment", "#IndianCinema", "#Desi", "#BollywoodNews", "#DesiEntertainment"],
-    "food": ["#IndianFood", "#Desi", "#IndianCuisine", "#NRIFood", "#DesiFood", "#IndianCooking", "#Foodie"],
+    "entertainment": ["#Bollywood", "#Entertainment", "#IndianCinema", "#Desi", "#BollywoodNews", "#Tollywood", "#IndianMovies", "#DesiEntertainment"],
+    "food": ["#IndianFood", "#Desi", "#IndianCuisine", "#NRIFood", "#DesiFood", "#IndianCooking", "#Foodie", "#IndianRecipes", "#DesiChef"],
 }
 
-def extract_topic_tags(headline):
-    """Extract person/company/event/place hashtags from headline."""
+def extract_topic_hashtags(headline, max_tags=4):
+    """Extract person/company/event names from headline as hashtags."""
     tags = []
-    # Common patterns - person names (2+ capitalized words)
-    words = headline.split()
-    i = 0
-    while i < len(words) - 1:
-        w1 = re.sub(r'[^A-Za-z]', '', words[i])
-        w2 = re.sub(r'[^A-Za-z]', '', words[i+1])
-        if w1 and w2 and w1[0].isupper() and w2[0].isupper() and len(w1) > 1 and len(w2) > 1:
-            tag = f"#{w1}{w2}"
-            if len(tag) <= 30 and tag not in tags:
-                tags.append(tag)
-            i += 2
-            continue
-        i += 1
-    # Single notable words
-    notable = re.findall(r'\b([A-Z][a-z]{2,}(?:[A-Z][a-z]+)*)\b', headline)
-    for w in notable:
-        tag = f"#{w}"
-        if tag not in tags and len(tag) > 4 and w.lower() not in ('the', 'for', 'and', 'with', 'from', 'into', 'over', 'after', 'what', 'how', 'why', 'new', 'says', 'could', 'will', 'has', 'have', 'been', 'more', 'most', 'about', 'like', 'than', 'just', 'also', 'back', 'year', 'years', 'first', 'last', 'next', 'here', 'there', 'where', 'when', 'then', 'this', 'that', 'these', 'those', 'some', 'other', 'many', 'much', 'every', 'still', 'only', 'even', 'well', 'very', 'real', 'now', 'out', 'way', 'big', 'top', 'best', 'key', 'set', 'gets', 'got', 'makes', 'made', 'take', 'takes', 'amid', 'amid', 'report', 'reports', 'global'):
+    # Common patterns
+    patterns = [
+        # Indian political figures
+        (r'\bModi\b', '#Modi'), (r'\bNarendra Modi\b', '#NarendraModi'),
+        (r'\bRahul Gandhi\b', '#RahulGandhi'), (r'\bAmit Shah\b', '#AmitShah'),
+        (r'\bYogi\b', '#YogiAdityanath'), (r'\bKejriwal\b', '#Kejriwal'),
+        (r'\bJaishankar\b', '#Jaishankar'),
+        # Cricket
+        (r'\bKohli\b', '#ViratKohli'), (r'\bVirat\b', '#ViratKohli'),
+        (r'\bRohit\b', '#RohitSharma'), (r'\bDhoni\b', '#MSDhoni'),
+        (r'\bBumrah\b', '#JaspritBumrah'), (r'\bHardik\b', '#HardikPandya'),
+        (r'\bSachin\b', '#Sachin'),
+        # Bollywood
+        (r'\bShah Rukh Khan\b', '#ShahRukhKhan'), (r'\bSRK\b', '#SRK'),
+        (r'\bAamir Khan\b', '#AamirKhan'), (r'\bSalman Khan\b', '#SalmanKhan'),
+        (r'\bDeepika\b', '#DeepikaPadukone'), (r'\bRanveer\b', '#RanveerSingh'),
+        (r'\bAlia\b', '#AliaBhatt'), (r'\bPriyanka\b', '#PriyankaChopra'),
+        (r'\bAnushka\b', '#AnushkaSharma'),
+        # Tech
+        (r'\bInfosys\b', '#Infosys'), (r'\bTCS\b', '#TCS'), (r'\bWipro\b', '#Wipro'),
+        (r'\bGoogle\b', '#Google'), (r'\bApple\b', '#Apple'), (r'\bMicrosoft\b', '#Microsoft'),
+        (r'\bTesla\b', '#Tesla'), (r'\bNvidia\b', '#Nvidia'),
+        (r'\bSundar\b', '#SundarPichai'), (r'\bSatya\b', '#SatyaNadella'),
+        (r'\bElon Musk\b', '#ElonMusk'), (r'\bSam Altman\b', '#SamAltman'),
+        # Events / places
+        (r'\bIPL\b', '#IPL2026'), (r'\bT20\b', '#T20WorldCup'),
+        (r'\bMumbai\b', '#Mumbai'), (r'\bDelhi\b', '#Delhi'), (r'\bBengaluru\b', '#Bengaluru'),
+        (r'\bHyderabad\b', '#Hyderabad'), (r'\bChennai\b', '#Chennai'),
+        (r'\bNew York\b', '#NewYork'), (r'\bSilicon Valley\b', '#SiliconValley'),
+        # Misc
+        (r'\bTrump\b', '#Trump'), (r'\bH[- ]?1B\b', '#H1BVisa'),
+        (r'\bAdani\b', '#Adani'), (r'\bAmbani\b', '#Ambani'),
+        (r'\bRishi Sunak\b', '#RishiSunak'),
+    ]
+    seen = set()
+    for pattern, tag in patterns:
+        if re.search(pattern, headline, re.IGNORECASE) and tag.lower() not in seen:
             tags.append(tag)
-    return tags[:4]
+            seen.add(tag.lower())
+            if len(tags) >= max_tags:
+                break
+    return tags
 
-def build_caption(article):
-    cat = (article.get('category') or 'news').lower()
-    cat_tags = CATEGORY_TAGS.get(cat, CATEGORY_TAGS['news'])
-    topic_tags = extract_topic_tags(article['headline'])
-    
-    all_tags = list(cat_tags)
-    for t in topic_tags:
-        if t not in all_tags:
+def build_caption(article, is_reel=True):
+    headline = article['headline']
+    slug = article['slug']
+    cat = article.get('category', 'news')
+
+    cat_tags = CATEGORY_HASHTAGS.get(cat, CATEGORY_HASHTAGS['news'])
+    topic_tags = extract_topic_hashtags(headline)
+    suffix_tags = ["#TheVideshi"]
+    if is_reel:
+        suffix_tags.append("#Reels")
+
+    # Combine, dedup, max 20
+    all_tags = []
+    seen = set()
+    for t in topic_tags + cat_tags + suffix_tags:
+        if t.lower() not in seen:
             all_tags.append(t)
-    all_tags.append("#TheVideshi")
-    all_tags.append("#Reels")
-    # Cap at 20
+            seen.add(t.lower())
     all_tags = all_tags[:20]
-    
-    caption = f"""{article['headline']}
 
-📰 Read more: https://thevideshi.com/articles/{article['slug']}
+    caption = f"""{headline}
+
+📰 Read more: https://thevideshi.com/articles/{slug}
 
 {' '.join(all_tags)}"""
     return caption
 
-# ── Step 3: Generate and post Reel for first article ─────────────
+def mark_instagrammed(article_id):
+    now = datetime.now(timezone.utc).isoformat()
+    r = requests.patch(
+        f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}",
+        headers={
+            "apikey": SB_KEY,
+            "Authorization": f"Bearer {SB_KEY}",
+            "Content-Type": "application/json",
+            "Prefer": "return=minimal"
+        },
+        json={"instagrammed_at": now},
+        timeout=30
+    )
+    print(f"  Mark instagrammed: {r.status_code}")
+
+# --- Post Reel (first article) ---
 reel_article = batch[0]
 reel_posted = False
-reel_error = None
+story_posted = False
 
-print(f"\n[STEP 3] Generating reel for: {reel_article['headline'][:60]}...")
+print(f"\n=== Generating Reel for: {reel_article['headline'][:60]}... ===")
 try:
     result = subprocess.run(
         ["python3", "generate-reel.py", "--slug", reel_article['slug'], "--upload"],
         cwd=os.path.expanduser("~/workspace/the-videshi-news/pipeline"),
         capture_output=True, text=True, timeout=180
     )
-    print(f"[REEL GEN] exit={result.returncode}")
-    stdout_lines = result.stdout.strip().split('\n') if result.stdout else []
-    for line in stdout_lines[-20:]:
-        print(f"  > {line}")
+    print(f"Reel generator exit code: {result.returncode}")
+    if result.stdout:
+        print(f"STDOUT (last 500 chars):\n{result.stdout[-500:]}")
     if result.stderr:
-        for line in result.stderr.strip().split('\n')[-10:]:
-            print(f"  [err] {line}")
-    
-    # Find the Supabase public URL
-    reel_url = None
-    for line in stdout_lines:
-        m = re.search(r'(https://[^\s]*supabase\.co/storage/[^\s]+\.mp4)', line)
-        if m:
-            reel_url = m.group(1)
-            break
-    
-    if not reel_url:
-        # Try broader URL match
-        for line in stdout_lines:
-            if 'supabase' in line and '.mp4' in line:
-                m = re.search(r'(https://[^\s]+\.mp4)', line)
-                if m:
-                    reel_url = m.group(1)
-                    break
-    
-    if not reel_url:
-        raise Exception(f"No reel URL found in output. Last lines: {stdout_lines[-5:]}")
-    
-    print(f"[OK] Reel URL: {reel_url}")
+        print(f"STDERR (last 300 chars):\n{result.stderr[-300:]}")
 
-    # Upload cover image
-    slug_trunc = reel_article['slug'][:80]
-    cover_local = os.path.expanduser(f"~/workspace/the-videshi-news/pipeline/reels/reel-{slug_trunc}-cover.jpg")
-    cover_public_url = None
-    if os.path.exists(cover_local):
-        cover_filename = f"reels/{slug_trunc}-cover.jpg"
-        with open(cover_local, 'rb') as cf:
-            cr = requests.post(
-                f"{SB_URL}/storage/v1/object/article-images/{cover_filename}",
-                headers={
-                    "apikey": SB_SERVICE_KEY,
-                    "Authorization": f"Bearer {SB_SERVICE_KEY}",
-                    "Content-Type": "image/jpeg",
-                    "x-upsert": "true"
+    # Parse Supabase URL from output
+    reel_url = None
+    for line in result.stdout.split('\n'):
+        if 'supabase.co/storage' in line:
+            match = re.search(r'(https://[^\s]+supabase\.co/storage/[^\s]+)', line)
+            if match:
+                reel_url = match.group(1)
+                break
+
+    if not reel_url:
+        print("ERROR: Could not find reel URL in generator output")
+        # Try to find any URL
+        for line in result.stdout.split('\n'):
+            if 'http' in line.lower():
+                print(f"  Found line with URL: {line.strip()}")
+    else:
+        print(f"Reel URL: {reel_url}")
+
+        # Upload cover image
+        cover_slug = reel_article['slug'][:80]
+        cover_local = os.path.expanduser(f"~/workspace/the-videshi-news/pipeline/reels/reel-{cover_slug}-cover.jpg")
+        cover_public_url = None
+        if os.path.exists(cover_local):
+            cover_filename = f"reels/{cover_slug}-cover.jpg"
+            with open(cover_local, 'rb') as cf:
+                cr = requests.post(
+                    f"{SUPABASE_URL}/storage/v1/object/article-images/{cover_filename}",
+                    headers={
+                        "apikey": SB_KEY,
+                        "Authorization": f"Bearer {SB_KEY}",
+                        "Content-Type": "image/jpeg",
+                        "x-upsert": "true"
+                    },
+                    data=cf.read(),
+                    timeout=60
+                )
+            if cr.status_code in (200, 201):
+                cover_public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{cover_filename}"
+                print(f"Cover uploaded: {cover_public_url}")
+            else:
+                print(f"Cover upload failed: {cr.status_code} {cr.text[:200]}")
+        else:
+            print(f"No cover image found at {cover_local}")
+
+        # Create Reel container
+        caption = build_caption(reel_article, is_reel=True)
+        print(f"\nCaption:\n{caption[:200]}...")
+
+        container_data = {
+            "video_url": reel_url,
+            "media_type": "REELS",
+            "caption": caption,
+            "access_token": TOKEN
+        }
+        if cover_public_url:
+            container_data["cover_url"] = cover_public_url
+
+        print("\nCreating Reel container...")
+        r = requests.post(
+            f"https://graph.instagram.com/v25.0/{IG_USER_ID}/media",
+            data=container_data,
+            timeout=30
+        )
+        rj = r.json()
+        print(f"Container response: {rj}")
+
+        if 'id' in rj:
+            container_id = rj['id']
+
+            # Poll for FINISHED
+            print("Waiting for video processing...")
+            finished = False
+            for i in range(18):
+                time.sleep(5)
+                r_status = requests.get(
+                    f"https://graph.instagram.com/v25.0/{container_id}",
+                    params={"fields": "status_code", "access_token": TOKEN},
+                    timeout=15
+                )
+                status = r_status.json().get('status_code', 'UNKNOWN')
+                print(f"  Poll {i+1}/18: {status}")
+                if status == 'FINISHED':
+                    finished = True
+                    break
+                elif status == 'ERROR':
+                    print(f"  ERROR in processing: {r_status.json()}")
+                    break
+
+            if finished:
+                # Publish
+                print("Publishing Reel...")
+                r2 = requests.post(
+                    f"https://graph.instagram.com/v25.0/{IG_USER_ID}/media_publish",
+                    data={
+                        "creation_id": container_id,
+                        "access_token": TOKEN
+                    },
+                    timeout=30
+                )
+                r2j = r2.json()
+                print(f"Publish response: {r2j}")
+                if 'id' in r2j:
+                    reel_posted = True
+                    mark_instagrammed(reel_article['id'])
+                    print(f"✅ Reel posted successfully! Media ID: {r2j['id']}")
+                else:
+                    print(f"❌ Reel publish failed: {r2j}")
+            else:
+                print("❌ Video processing did not finish in time")
+        else:
+            print(f"❌ Container creation failed: {rj}")
+
+except subprocess.TimeoutExpired:
+    print("❌ Reel generator timed out (180s)")
+except Exception as e:
+    print(f"❌ Reel error: {e}")
+
+# --- Wait between posts ---
+if reel_posted:
+    print("\nWaiting 30 seconds before story...")
+    time.sleep(30)
+
+# --- Post Story (second article if available, else first) ---
+story_article = batch[1] if len(batch) > 1 else batch[0]
+# Don't post story of same article as reel unless it's the only one
+if len(batch) == 1 and reel_posted:
+    print("\nOnly 1 article available — skipping story (already posted as Reel)")
+else:
+    print(f"\n=== Posting Story for: {story_article['headline'][:60]}... ===")
+    try:
+        print(f"Story image URL: {story_article['image_url']}")
+        r = requests.post(
+            f"https://graph.instagram.com/v25.0/{IG_USER_ID}/media",
+            data={
+                "image_url": story_article['image_url'],
+                "media_type": "STORIES",
+                "access_token": TOKEN
+            },
+            timeout=30
+        )
+        rj = r.json()
+        print(f"Story container response: {rj}")
+
+        if 'id' in rj:
+            container_id = rj['id']
+            print("Waiting 8 seconds for story processing...")
+            time.sleep(8)
+
+            r2 = requests.post(
+                f"https://graph.instagram.com/v25.0/{IG_USER_ID}/media_publish",
+                data={
+                    "creation_id": container_id,
+                    "access_token": TOKEN
                 },
-                data=cf.read(),
                 timeout=30
             )
-        if cr.status_code in (200, 201):
-            cover_public_url = f"{SB_URL}/storage/v1/object/public/article-images/{cover_filename}"
-            print(f"[OK] Cover uploaded: {cover_public_url}")
+            r2j = r2.json()
+            print(f"Story publish response: {r2j}")
+            if 'id' in r2j:
+                story_posted = True
+                # Mark story article as instagrammed too
+                if story_article['id'] != reel_article.get('id'):
+                    mark_instagrammed(story_article['id'])
+                print(f"✅ Story posted successfully! Media ID: {r2j['id']}")
+            else:
+                print(f"⚠️ Story publish failed: {r2j}")
         else:
-            print(f"[WARN] Cover upload failed: {cr.status_code} {cr.text[:200]}")
-    else:
-        print(f"[INFO] No cover image found at {cover_local}")
+            print(f"⚠️ Story container failed: {rj}")
+    except Exception as e:
+        print(f"⚠️ Story error (non-fatal): {e}")
 
-    # Create reel container
-    caption = build_caption(reel_article)
-    container_data = {
-        "video_url": reel_url,
-        "media_type": "REELS",
-        "caption": caption,
-        "access_token": IG_TOKEN
-    }
-    if cover_public_url:
-        container_data["cover_url"] = cover_public_url
-    
-    print(f"\n[STEP 3B] Creating reel container...")
-    r = requests.post(
-        f"https://graph.instagram.com/v25.0/{IG_USER_ID}/media",
-        data=container_data,
-        timeout=30
-    )
-    rj = r.json()
-    print(f"[API] Container response: {rj}")
-    
-    if 'id' not in rj:
-        raise Exception(f"Container creation failed: {rj}")
-    
-    container_id = rj['id']
-    
-    # Poll for processing
-    print(f"[STEP 3C] Waiting for video processing (container={container_id})...")
-    finished = False
-    for i in range(18):
-        time.sleep(5)
-        r_status = requests.get(
-            f"https://graph.instagram.com/v25.0/{container_id}",
-            params={"fields": "status_code", "access_token": IG_TOKEN},
-            timeout=15
-        )
-        status = r_status.json().get('status_code', '?')
-        print(f"  Poll {i+1}/18: {status}")
-        if status == 'FINISHED':
-            finished = True
-            break
-        elif status == 'ERROR':
-            raise Exception(f"Video processing error: {r_status.json()}")
-    
-    if not finished:
-        raise Exception("Video processing timed out (90s)")
-    
-    # Publish
-    print(f"[STEP 3D] Publishing reel...")
-    r2 = requests.post(
-        f"https://graph.instagram.com/v25.0/{IG_USER_ID}/media_publish",
-        data={"creation_id": container_id, "access_token": IG_TOKEN},
-        timeout=30
-    )
-    r2j = r2.json()
-    print(f"[API] Publish response: {r2j}")
-    
-    if 'id' in r2j:
-        reel_posted = True
-        print(f"[OK] Reel published! Media ID: {r2j['id']}")
-        
-        # Mark as instagrammed
-        now_utc = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
-        pr = requests.patch(
-            f"{SB_URL}/rest/v1/p2_articles?id=eq.{reel_article['id']}",
-            headers={**headers, "Prefer": "return=minimal"},
-            json={"instagrammed_at": now_utc},
-            timeout=15
-        )
-        print(f"[OK] Marked instagrammed_at for {reel_article['id']} (status={pr.status_code})")
-    else:
-        raise Exception(f"Publish failed: {r2j}")
-
-except Exception as e:
-    reel_error = str(e)
-    print(f"[ERROR] Reel posting failed: {e}")
-
-# ── Step 4: Post Story for second article ────────────────────────
-story_posted = False
-story_error = None
-story_article = batch[1] if len(batch) > 1 else batch[0]
-
-# Use a different article for story if possible
-if len(batch) > 1:
-    story_article = batch[1]
-else:
-    story_article = batch[0]
-
-print(f"\n[STEP 4] Posting story for: {story_article['headline'][:60]}...")
-time.sleep(30)  # Rate limit buffer
-
-try:
-    # Create story container
-    r = requests.post(
-        f"https://graph.instagram.com/v25.0/{IG_USER_ID}/media",
-        data={
-            "image_url": story_article['image_url'],
-            "media_type": "STORIES",
-            "access_token": IG_TOKEN
-        },
-        timeout=30
-    )
-    rj = r.json()
-    print(f"[API] Story container response: {rj}")
-    
-    if 'id' not in rj:
-        raise Exception(f"Story container failed: {rj}")
-    
-    container_id = rj['id']
-    time.sleep(8)
-    
-    # Publish story
-    r2 = requests.post(
-        f"https://graph.instagram.com/v25.0/{IG_USER_ID}/media_publish",
-        data={"creation_id": container_id, "access_token": IG_TOKEN},
-        timeout=30
-    )
-    r2j = r2.json()
-    print(f"[API] Story publish response: {r2j}")
-    
-    if 'id' in r2j:
-        story_posted = True
-        print(f"[OK] Story published! Media ID: {r2j['id']}")
-        
-        # Mark instagrammed if different from reel article
-        if story_article['id'] != reel_article['id']:
-            now_utc = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
-            pr = requests.patch(
-                f"{SB_URL}/rest/v1/p2_articles?id=eq.{story_article['id']}",
-                headers={**headers, "Prefer": "return=minimal"},
-                json={"instagrammed_at": now_utc},
-                timeout=15
-            )
-            print(f"[OK] Marked instagrammed_at for {story_article['id']} (status={pr.status_code})")
-    else:
-        raise Exception(f"Story publish failed: {r2j}")
-
-except Exception as e:
-    story_error = str(e)
-    print(f"[WARN] Story posting failed: {e}")
-
-# ── Summary ──────────────────────────────────────────────────────
-print(f"\n{'='*50}")
-print(f"INSTAGRAM AUTO-POST SUMMARY")
-print(f"{'='*50}")
-print(f"Reel posted:  {'✅ YES' if reel_posted else '❌ NO'}")
+# --- Summary ---
+print("\n" + "="*50)
+print("SUMMARY")
+print("="*50)
+print(f"Reel posted:  {'✅ Yes' if reel_posted else '❌ No'}")
 if reel_posted:
     print(f"  Article: {reel_article['headline'][:70]}")
-if reel_error:
-    print(f"  Error: {reel_error[:200]}")
-print(f"Story posted: {'✅ YES' if story_posted else '❌ NO'}")
+print(f"Story posted: {'✅ Yes' if story_posted else '❌ No'}")
 if story_posted:
     print(f"  Article: {story_article['headline'][:70]}")
-if story_error:
-    print(f"  Error: {story_error[:200]}")
-print(f"{'='*50}")
+print(f"Total articles processed: {1 if reel_posted else 0} reel + {1 if story_posted else 0} story")

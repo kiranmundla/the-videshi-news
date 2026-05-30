@@ -68,6 +68,11 @@ const H1BHubPage = React.lazy(() => import("./pages/H1BHubPage.tsx"));
 const ImmigrationGuidesPage = React.lazy(() => import("./pages/ImmigrationGuidesPage.tsx"));
 const ImmigrationGuidePage = React.lazy(() => import("./pages/ImmigrationGuidePage.tsx"));
 
+// Stories (Diaspora Voices)
+const StoriesPage = React.lazy(() => import("./pages/StoriesPage.tsx"));
+const SubmitStoryPage = React.lazy(() => import("./pages/SubmitStoryPage.tsx"));
+const StoryDetailPage = React.lazy(() => import("./pages/StoryDetailPage.tsx"));
+
 // Admin (rarely visited — always lazy)
 const Admin = React.lazy(() => import("./pages/Admin.tsx"));
 const AdminDashboard = React.lazy(() => import("./pages/admin/AdminDashboard.tsx"));
@@ -76,6 +81,7 @@ const AdminCars = React.lazy(() => import("./pages/admin/AdminCars.tsx"));
 const AdminEvents = React.lazy(() => import("./pages/admin/AdminEvents.tsx"));
 const AdminClassifieds = React.lazy(() => import("./pages/admin/AdminClassifieds.tsx"));
 const AdminDirectory = React.lazy(() => import("./pages/admin/AdminDirectory.tsx"));
+const AdminStories = React.lazy(() => import("./pages/admin/AdminStories.tsx"));
 const SourcesPage = React.lazy(() => import("./pages/admin/SourcesPage.tsx"));
 const PipelineLayout = React.lazy(() => import("./pages/pipeline/PipelineLayout.tsx"));
 const FeedSourcesPage = React.lazy(() => import("./pages/pipeline/FeedSourcesPage.tsx"));
@@ -146,12 +152,16 @@ const App = () => (
               <Route path="/immigration/h1b" element={<H1BHubPage />} />
               <Route path="/immigration/guides" element={<ImmigrationGuidesPage />} />
               <Route path="/immigration/guides/:slug" element={<ImmigrationGuidePage />} />
+              <Route path="/stories" element={<StoriesPage />} />
+              <Route path="/stories/submit" element={<SubmitStoryPage />} />
+              <Route path="/stories/:slug" element={<StoryDetailPage />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/admin/articles" element={<AdminArticles />} />
               <Route path="/admin/cars" element={<AdminCars />} />
               <Route path="/admin/events" element={<AdminEvents />} />
               <Route path="/admin/classifieds" element={<AdminClassifieds />} />
               <Route path="/admin/directory" element={<AdminDirectory />} />
+              <Route path="/admin/stories" element={<AdminStories />} />
               <Route path="/admin/featured" element={<Admin />} />
               <Route path="/admin/sources" element={<SourcesPage />} />
               <Route path="/admin/p2" element={<PipelineLayout />}>

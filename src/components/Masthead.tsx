@@ -203,6 +203,9 @@ export default function Masthead() {
               <Link to="/events" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
                 🎪 Events
               </Link>
+              <Link to="/stories" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
+                ✍️ Diaspora Voices
+              </Link>
               <Link to="/directory" className="block px-5 py-3 text-sm hover:bg-foreground/5 transition-colors">
                 📍 Directory
               </Link>
