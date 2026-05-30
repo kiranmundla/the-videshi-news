@@ -25,6 +25,7 @@ import requests
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / "public" / "data"
 ARTICLES_DIR = DATA_DIR / "articles"
+CATEGORY_DIR = DATA_DIR / "category"
 HOMEPAGE_FEED = DATA_DIR / "homepage-feed.json"
 
 # Supabase columns to fetch (mirrors P2_COLS in articles.ts)
@@ -260,7 +261,44 @@ def main():
     feed_size = HOMEPAGE_FEED.stat().st_size
     print(f"  ✓ homepage-feed.json ({feed_size:,} bytes, {len(feed['sections'])} sections, carousel: {len(feed['carousel'])})")
 
-    # 2. Build individual article pages
+    # 2. Build per-category feeds
+    print("  Building category feeds...")
+    CATEGORY_DIR.mkdir(parents=True, exist_ok=True)
+    all_category_slugs = [
+        "news", "nri-world", "sports", "entertainment", "technology",
+        "markets-finance", "lifestyle-health", "food",
+    ]
+    now = datetime.now(timezone.utc)
+    since_72h = (now - timedelta(hours=72)).isoformat()
+    since_7d = (now - timedelta(days=7)).isoformat()
+
+    by_cat: dict[str, list[dict]] = {}
+    for a in articles:
+        by_cat.setdefault(a["category"], []).append(a)
+
+    cat_count = 0
+    for slug in all_category_slugs:
+        pool = by_cat.get(slug, [])
+        # Same logic as getArticlesByCategory: 72h first, fallback to 7d
+        recent = [a for a in pool if a["published_at"] >= since_72h]
+        if len(recent) < 3:
+            wider = [a for a in pool if a["published_at"] >= since_7d]
+            if len(wider) > len(recent):
+                recent = wider
+        # Include body=false for listing, keep up to 50 articles per category
+        cat_feed = {
+            "generated_at": now.isoformat(),
+            "category": slug,
+            "articles": [article_without_body(a) for a in recent[:50]],
+        }
+        path = CATEGORY_DIR / f"{slug}.json"
+        path.write_text(json.dumps(cat_feed, ensure_ascii=False, separators=(",", ":")))
+        cat_count += 1
+        print(f"    {slug}: {len(cat_feed['articles'])} articles")
+
+    print(f"  ✓ {cat_count} category feeds written")
+
+    # 3. Build individual article pages
     print(f"  Building article JSONs (up to {MAX_ARTICLE_PAGES})...")
     ARTICLES_DIR.mkdir(parents=True, exist_ok=True)
 

@@ -33,16 +33,33 @@ export default function CategoryPage() {
     setLoading(true);
     setHasMore(true);
     setFadeFrom(0);
-    getArticlesByCategory(def.slug, PAGE_SIZE, 0)
-      .then((a) => {
-        setArticles(a);
-        setHasMore(a.length === PAGE_SIZE);
-        setLoading(false);
+
+    const applyArticles = (a: Article[]) => {
+      setArticles(a);
+      setHasMore(a.length >= PAGE_SIZE);
+      setLoading(false);
+    };
+
+    // Fast path: try pre-built static JSON (same pattern as homepage)
+    fetch(`/data/category/${def.slug}.json`)
+      .then((r) => {
+        if (!r.ok) throw new Error(r.statusText);
+        return r.json();
       })
-      .catch((err) => {
-        console.error("[CategoryPage] fetch failed", err);
-        setArticles([]);
-        setLoading(false);
+      .then((data) => {
+        const items: Article[] = data.articles ?? [];
+        applyArticles(items.slice(0, PAGE_SIZE));
+        // Store full list for loadMore without hitting Supabase
+        (window as any).__categoryPool = { slug: def.slug, articles: items };
+      })
+      .catch(() => {
+        // Static feed unavailable — fall back to Supabase
+        getArticlesByCategory(def.slug, PAGE_SIZE, 0)
+          .then(applyArticles)
+          .catch((err) => {
+            console.error("[CategoryPage] fetch failed", err);
+            applyArticles([]);
+          });
       });
   }, [def?.slug, def?.hasPipeline]);
 
@@ -50,7 +67,14 @@ export default function CategoryPage() {
     if (!def?.hasPipeline || loadingMore || !hasMore) return;
     setLoadingMore(true);
     try {
-      const next = await getArticlesByCategory(def.slug, PAGE_SIZE, articles.length);
+      // Try loading more from cached static pool first
+      const pool = (window as any).__categoryPool;
+      let next: Article[];
+      if (pool?.slug === def.slug && pool.articles.length > articles.length) {
+        next = pool.articles.slice(articles.length, articles.length + PAGE_SIZE);
+      } else {
+        next = await getArticlesByCategory(def.slug, PAGE_SIZE, articles.length);
+      }
       if (next.length < PAGE_SIZE) setHasMore(false);
       setFadeFrom(articles.length);
       setArticles((prev) => [...prev, ...next]);
