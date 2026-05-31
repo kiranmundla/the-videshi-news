@@ -522,7 +522,7 @@ function SlotPatterns({ sightings, filterConsulate }: { sightings: VisaSighting[
   };
 
   return (
-    <section className="mb-10">
+    <section className="mb-6">
       <div className="bg-card border border-border rounded-xl overflow-hidden">
         {/* Header */}
         <div className="px-5 py-4 border-b border-border bg-[#1a1a2e]/[0.03]">
@@ -718,7 +718,7 @@ export default function VisaTrackerPage() {
 
       <main className="container py-8">
         {/* ── Hero ─────────────────────────────────────────── */}
-        <section className="relative mb-10 -mx-4 px-6 py-12 md:py-16 rounded-2xl overflow-hidden bg-[#1a1a2e] border border-[#2a2a4a]/40">
+        <section className="relative mb-6 -mx-4 px-6 py-12 md:py-16 rounded-2xl overflow-hidden bg-[#1a1a2e] border border-[#2a2a4a]/40">
           <div
             className="absolute inset-0 opacity-[0.06]"
             style={{
@@ -767,14 +767,12 @@ export default function VisaTrackerPage() {
           </div>
         ) : (
           <>
-            {/* ── Trust note ────────────────────────────────── */}
-            <p className="text-xs text-foreground/50 text-center mb-6 max-w-xl mx-auto leading-relaxed">
-              US consulates prohibit automated scraping of their booking systems. This tracker relies entirely on community members voluntarily sharing what they see — helping each other, the only legal way.
-            </p>
-
             {/* ── Official Wait Times ──────────────────────────── */}
-            <section className="mb-10">
+            <section className="mb-6">
               <WaitTimeStrip data={waitTimes} />
+              <p className="text-[10px] text-foreground/40 text-center mt-2 leading-relaxed">
+                Source: US State Department · This tracker relies on community sightings, not automated scraping
+              </p>
             </section>
 
             {/* ── Slot Drop Patterns ──────────────────────────── */}
@@ -782,23 +780,29 @@ export default function VisaTrackerPage() {
 
             {/* ── Latest Updates ──────────────────────────────── */}
             {updates.length > 0 && (
-            <section className="mb-10">
-              <div className="bg-card border border-border rounded-xl p-6">
-                <h3 className="font-serif font-bold text-lg mb-4 flex items-center gap-2">
-                  📰 Latest Updates
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <section className="mb-6">
+              <div className="bg-card border border-border rounded-xl overflow-hidden">
+                <div className="px-5 py-3 border-b border-border">
+                  <h3 className="font-serif font-bold text-base flex items-center gap-2">
+                    📰 Latest Updates
+                  </h3>
+                </div>
+                <div className="divide-y divide-border">
                   {updates.map((u) => (
-                    <div key={u.id} className="border border-border rounded-lg p-4 hover:border-primary/30 transition-colors">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">{u.label}</span>
-                      {u.url ? (
-                        <Link to={u.url} className="block mt-1 font-medium text-sm text-foreground/90 hover:text-primary transition-colors leading-snug">
-                          {u.headline} →
-                        </Link>
-                      ) : (
-                        <p className="mt-1 font-medium text-sm text-foreground/90 leading-snug">{u.headline}</p>
-                      )}
-                      <p className="mt-1.5 text-xs text-foreground/60 leading-relaxed">{u.summary}</p>
+                    <div key={u.id} className="px-5 py-3 hover:bg-foreground/[0.02] transition-colors">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1 min-w-0">
+                          {u.url ? (
+                            <Link to={u.url} className="font-medium text-sm text-foreground/90 hover:text-primary transition-colors leading-snug line-clamp-2">
+                              {u.headline} →
+                            </Link>
+                          ) : (
+                            <p className="font-medium text-sm text-foreground/90 leading-snug line-clamp-2">{u.headline}</p>
+                          )}
+                          <p className="text-xs text-foreground/50 mt-0.5 line-clamp-1">{u.summary}</p>
+                        </div>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/60 whitespace-nowrap pt-0.5">{u.label}</span>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -807,7 +811,7 @@ export default function VisaTrackerPage() {
             )}
 
             {/* ── Notification + Guides Row ──────────────────── */}
-            <section className="mb-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <section className="mb-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Visa Slot Alerts */}
               <div className="bg-gradient-to-b from-green-500/10 to-emerald-500/5 border border-green-500/20 rounded-xl p-6">
                 <h3 className="font-serif font-bold text-lg mb-1 flex items-center gap-2">
@@ -895,12 +899,12 @@ export default function VisaTrackerPage() {
             </section>
 
             {/* ── Report a Sighting ──────────────────────────── */}
-            <section className="mb-10" id="report">
+            <section className="mb-6" id="report">
               <ReportForm onSubmitted={load} />
             </section>
 
             {/* ── Community Sightings Feed ────────────────────── */}
-            <section className="mb-10">
+            <section className="mb-6">
               <div className="flex items-center justify-between mb-5">
                 <h2 className="font-serif text-xl font-bold flex items-center gap-2">
                   📡 Community Sightings
@@ -953,7 +957,7 @@ export default function VisaTrackerPage() {
             </section>
 
             {/* ── Disclaimer ─────────────────────────────────── */}
-            <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4 mb-10">
+            <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4 mb-6">
               <p className="text-[11px] text-foreground/50 leading-relaxed">
                 <span className="font-semibold text-foreground/70">Data Source Note:</span>{" "}
                 Official wait times are from the US State Department. Community sightings are
