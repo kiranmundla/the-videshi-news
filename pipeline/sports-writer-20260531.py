@@ -244,10 +244,14 @@ art1_id = str(uuid.uuid4())
 img1_attribution = "Wikimedia Commons"
 
 if img1_url:
+    # Try upload, but if rate limited, use direct Wikimedia URL (permanent)
     final_img1 = upload_to_supabase_storage(img1_url, f"{art1_id}.jpg")
-    if not final_img1 or not validate_image_url(final_img1):
-        # Try direct Wikipedia URL
-        if validate_image_url(img1_url):
+    if not final_img1:
+        # Wikimedia URLs are permanent, safe to use directly
+        if "upload.wikimedia.org" in img1_url:
+            print(f"  ℹ Using direct Wikimedia URL")
+            final_img1 = img1_url
+        elif validate_image_url(img1_url):
             final_img1 = img1_url
         else:
             final_img1 = None
@@ -266,6 +270,10 @@ article1 = {
     "slug": art1_slug,
     "body": art1_body,
     "category": "sports",
+    "vertical": "sport",
+    "urgency": "daily",
+    "diaspora_angle": "Three Indian players — Gukesh, Pragg, and Divya Deshmukh — are competing at the highest level of classical chess simultaneously at Norway Chess 2026. Gukesh, 20, is the youngest world champion in history. Pragg sits second in the standings. Divya, 19, has taken the lead in the women's event. For NRI chess fans, this depth of Indian talent at the elite level is unprecedented.",
+    "word_count": len(art1_body.split()),
     "status": "published",
     "published_at": datetime.datetime.utcnow().isoformat() + "Z",
     "sources": json.dumps([
@@ -361,6 +369,10 @@ article2 = {
     "slug": art2_slug,
     "body": art2_body,
     "category": "sports",
+    "vertical": "sport",
+    "urgency": "high",
+    "diaspora_angle": "NRIs in the US will watch the World Cup live at local venues across 16 American cities. For fans back home in India, weeks of uncertainty about whether the tournament would even be broadcast have finally ended with Zee's deal. The 2022 Qatar World Cup generated record late-night viewership in India. Indian-American firm Avni LLC also emerged as an unlikely broadcast contender. The time-zone disadvantage for IST audiences makes streaming on Zee5 essential for diaspora fans in India-friendly time zones.",
+    "word_count": len(art2_body.split()),
     "status": "published",
     "published_at": datetime.datetime.utcnow().isoformat() + "Z",
     "sources": json.dumps([

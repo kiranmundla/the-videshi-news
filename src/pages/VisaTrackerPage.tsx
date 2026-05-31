@@ -154,57 +154,9 @@ function SightingCard({ s }: { s: VisaSighting }) {
       <p className="text-sm text-foreground/80 leading-relaxed">{s.description}</p>
 
       <p className="text-xs text-foreground/40 mt-2">
-        Reported by <span className="font-medium text-foreground/60">{s.reporter_name}</span>
+        🙏 <span className="font-medium text-foreground/60">{s.reporter_name}</span> · Thank you for spotting
       </p>
     </article>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Thank-You Wall                                                     */
-/* ------------------------------------------------------------------ */
-function ThankYouWall({ sightings }: { sightings: VisaSighting[] }) {
-  // Newest first
-  const sorted = useMemo(
-    () => [...sightings].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()),
-    [sightings],
-  );
-
-  return (
-    <div className="bg-card border border-border rounded-xl overflow-hidden">
-      <div className="px-4 py-3 border-b border-border bg-amber-500/5">
-        <h3 className="font-serif font-bold text-[15px] flex items-center gap-2">
-          🙏 Community Spotters
-        </h3>
-        <p className="text-[11px] text-foreground/50 mt-0.5">
-          Thank you for keeping slots visible for everyone
-        </p>
-      </div>
-      <div className="max-h-[420px] overflow-y-auto divide-y divide-border">
-        {sorted.map((s) => {
-          const colors = CONSULATE_COLORS[s.consulate] ?? { bg: "bg-gray-500/10", text: "text-gray-600", border: "border-gray-500/20" };
-          return (
-            <div key={s.id} className="px-4 py-2.5 hover:bg-foreground/[0.02] transition-colors">
-              <div className="flex items-center justify-between gap-2">
-                <span className="font-semibold text-sm text-foreground/80 truncate">{s.reporter_name}</span>
-                <span className="text-[10px] text-foreground/40 whitespace-nowrap">{relativeTime(s.created_at)}</span>
-              </div>
-              <p className="text-[11px] text-foreground/50 mt-0.5 leading-tight">
-                <span className={`${colors.text} font-medium`}>{CONSULATE_LABELS[s.consulate]}</span>
-                {" · "}
-                {s.visa_type}
-                {s.verified && " ✓"}
-              </p>
-            </div>
-          );
-        })}
-        {sorted.length === 0 && (
-          <div className="px-4 py-6 text-center text-sm text-foreground/40">
-            No sightings yet — be the first!
-          </div>
-        )}
-      </div>
-    </div>
   );
 }
 
@@ -998,11 +950,6 @@ export default function VisaTrackerPage() {
                   filtered.map((s) => <SightingCard key={s.id} s={s} />)
                 )}
               </div>
-            </section>
-
-            {/* ── Thank You Wall ──────────────────────────────── */}
-            <section className="mb-10">
-              <ThankYouWall sightings={sightings} />
             </section>
 
             {/* ── Disclaimer ─────────────────────────────────── */}
