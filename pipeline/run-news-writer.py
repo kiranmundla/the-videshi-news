@@ -1,40 +1,44 @@
 #!/usr/bin/env python3
-"""News writer for The Videshi - May 31, 2026 run"""
+"""News writer for The Videshi — publishes 3 articles to Supabase."""
 
-import json, os, sys, uuid, re, datetime, time
+import os, json, sys, time, re, urllib.parse, subprocess
 import requests
-from urllib.parse import quote
+from datetime import datetime, timezone
 
-# Load env from file
-env_file = os.path.expanduser("~/.env.supabase")
-if os.path.exists(env_file):
-    with open(env_file) as f:
+# ── Load env ──
+def load_env(path):
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
         for line in f:
             line = line.strip()
-            if '=' in line and not line.startswith('#'):
-                k, v = line.split('=', 1)
-                os.environ[k] = v
+            if not line or line.startswith('#'):
+                continue
+            if line.startswith('export '):
+                line = line[7:]
+            k, _, v = line.partition('=')
+            v = v.strip().strip('"').strip("'")
+            os.environ[k.strip()] = v
 
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
 
-PEXELS_KEY = None
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-if os.path.exists(pexels_env):
-    with open(pexels_env) as f:
-        for line in f:
-            if line.startswith("PEXELS_API_KEY="):
-                PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
-
+# ── Image sourcing ──
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = quote(person_name.replace(' ', '_'))
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
@@ -53,21 +57,24 @@ def fetch_wikipedia_person_image(person_name):
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels. Returns URL or None."""
+    """Fetch image from Pexels. Use curl internally (urllib gets 403)."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key available")
+        print("  ⚠ No Pexels API key")
         return None
-    import subprocess
+
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            cmd = f'curl -sS "https://api.pexels.com/v1/search?query={quote(q)}&per_page=5&orientation=landscape" -H "Authorization: {PEXELS_KEY}"'
-            result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=15)
+            result = subprocess.run(
+                ['curl', '-sS', f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5',
+                 '-H', f'Authorization: {PEXELS_KEY}'],
+                capture_output=True, text=True, timeout=15
+            )
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
+            photos = data.get('photos', [])
             for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+                url = p.get('src', {}).get('large2x') or p.get('src', {}).get('large')
                 if url:
                     print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                     return url
@@ -77,296 +84,286 @@ def fetch_pexels_image(query, fallback_query=None):
 
 
 def validate_image(url):
-    """Validate an image URL returns 200 with proper content type and size."""
+    """Validate image URL returns 200 with image content-type and >5KB."""
     if not url:
+        return False
+    # Block banned sources
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
+    if any(b in url for b in banned):
+        print(f"  ✗ Banned source: {url[:60]}")
         return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            print(f"  ✓ Image validated: {r.status_code}, {ct}, {cl} bytes")
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
+            print(f"  ✓ Image validated: {cl} bytes, {ct}")
             return True
-        # Try GET if HEAD doesn't give content-length
-        if r.status_code == 200 and "image" in ct:
+        # Try GET if HEAD didn't return content-length
+        if r.status_code == 200 and 'image' in ct and cl == 0:
             r2 = requests.get(url, timeout=10, stream=True,
-                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            size = 0
-            for chunk in r2.iter_content(8192):
-                size += len(chunk)
-                if size > 5000:
-                    print(f"  ✓ Image validated via GET: {size}+ bytes")
-                    return True
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            size = len(r2.content)
+            if size > 5000:
+                print(f"  ✓ Image validated (GET): {size} bytes")
+                return True
         print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
         print(f"  ✗ Image validation error: {e}")
     return False
 
 
+def get_image(person_name=None, pexels_query=None, pexels_fallback=None):
+    """Get image following hierarchy: Wikipedia person → Pexels → None."""
+    url = None
+    attribution = None
+
+    if person_name:
+        url = fetch_wikipedia_person_image(person_name)
+        if url and validate_image(url):
+            return url, "Wikimedia Commons"
+
+    if pexels_query:
+        url = fetch_pexels_image(pexels_query, pexels_fallback)
+        if url and validate_image(url):
+            return url, "Pexels"
+
+    return None, None
+
+
 def publish_article(article):
-    """Publish an article to Supabase."""
-    print(f"\n📝 Publishing: {article['headline']}")
-    print(f"   Category: {article['category']}")
-    print(f"   Slug: {article['slug']}")
-    print(f"   Body length: {len(article['body'].split())} words")
-
-    payload = {
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "body": article["body"],
-        "slug": article["slug"],
-        "category": article["category"],
-        "vertical": article["category"],  # vertical matches category
-        "status": "published",
-        "image_url": article.get("image_url"),
-        "image_attribution": article.get("image_attribution"),
-        "sources": json.dumps(article.get("sources", [])),
-        "published_at": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-    }
-
-    try:
-        r = requests.post(
-            f"{SUPABASE_URL}/rest/v1/p2_articles",
-            headers=HEADERS,
-            json=payload,
-            timeout=15
-        )
-        if r.status_code in (200, 201):
-            result = r.json()
-            aid = result[0]["id"] if isinstance(result, list) else result.get("id")
-            print(f"  ✅ Published! ID: {aid}")
+    """Publish article to Supabase."""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article
+    )
+    if r.status_code in (200, 201):
+        result = r.json()
+        if isinstance(result, list) and result:
+            print(f"  ✓ Published: {result[0].get('headline', '')[:60]}")
             return True
-        else:
-            print(f"  ❌ Failed: {r.status_code} - {r.text[:300]}")
-            return False
-    except Exception as e:
-        print(f"  ❌ Error: {e}")
+        print(f"  ✓ Published (no body returned)")
+        return True
+    else:
+        print(f"  ✗ Publish failed ({r.status_code}): {r.text[:200]}")
         return False
 
 
-# ── ARTICLE 1: India's Military Leadership Reshuffle ──────────────────
-def write_article_1():
-    print("\n═══ Article 1: Military Leadership Reshuffle ═══")
-    
-    # Image sourcing - try Anil Chauhan from Wikipedia
-    img_url = fetch_wikipedia_person_image("Anil Chauhan")
-    img_attr = "Wikimedia Commons"
-    if not img_url or not validate_image(img_url):
-        img_url = fetch_wikipedia_person_image("Anil Chauhan (general)")
-        if not img_url or not validate_image(img_url):
-            img_url = fetch_pexels_image("Indian military guard of honour ceremony", "India defense forces")
-            img_attr = "Pexels"
-            if not validate_image(img_url):
-                img_url = None
-                img_attr = None
+# ── Articles ──
 
-    body = """India's armed forces underwent their most significant leadership transition in years over the weekend, as both the Chief of Defence Staff and the Chief of the Naval Staff retired within hours of each other — and their successors took charge before the country could catch its breath.
+articles = []
 
-General Anil Chauhan, India's second-ever CDS, hung up his boots on Saturday after more than four decades in uniform. His farewell was a solemn affair at the South Block lawns in New Delhi, where he received a tri-services Guard of Honour before laying a wreath at the National War Memorial for the last time as a serving officer.
+# ──────────────────────────────────────────────────────────────────────
+# ARTICLE 1: India's Weakest Monsoon in 11 Years
+# ──────────────────────────────────────────────────────────────────────
+print("\n=== Article 1: Monsoon Forecast ===")
 
-"It is a matter of great honour to superannuate with such a tribute," Chauhan said, offering what he called a "humble tribute" to those who had laid down their lives in the line of duty.
+img1, attr1 = get_image(pexels_query="india monsoon rain farmer field", pexels_fallback="monsoon rain india agriculture")
 
-## A Legacy of Integration
+monsoon_body = """India is bracing for its weakest monsoon season in over a decade, and the timing could not be worse.
 
-Chauhan took over the CDS post in September 2022, stepping in after the tragic death of India's first CDS, General Bipin Rawat, in a helicopter crash. Over his nearly four-year tenure, he was tasked with one of the most difficult structural reforms in India's military history: integrating the Army, Navy, and Air Force into a more cohesive joint fighting force.
+The India Meteorological Department on Friday downgraded its forecast for the June-to-September southwest monsoon to 90 percent of the long-period average — below its earlier April estimate of 92 percent and the lowest projection since 2015. The monsoon delivers roughly 70 percent of India's annual rainfall, replenishing the reservoirs, rivers, and groundwater systems that sustain nearly half the country's farmland.
 
-At a recent defence event, Chauhan described joint military structures as one of the "most transformative reforms" India has attempted. He acknowledged the inherent friction between the services but said his approach was deliberately consensus-driven. "I tried to work through consensus," he explained. "Consensus meant taking everyone along and spreading awareness among people."
+The culprit is a developing El Niño in the equatorial Pacific Ocean, which is expected to strengthen to moderate or strong intensity during the second half of the monsoon season, suppressing the rain-bearing systems that the subcontinent depends on.
 
-His tenure saw the release of the Joint Air Defence Doctrine, the creation of the Tri-Services Tele Directory Web Application, and continued progress on the long-debated theatreisation of India's military commands — a process that remains incomplete and will now fall to his successor.
+**What the numbers mean for food and prices**
 
-## The Baton Passes
+M. Ravichandran, secretary of India's earth sciences ministry, told reporters that June alone is expected to bring below-normal rainfall across most of the country — less than 92 percent of the long-period average. Central India, South Peninsular India, Northwest India, and the critical monsoon core zone, which covers the heartland of rain-fed agriculture, are all projected to receive deficient rains. Only the Northeast is expected to see normal rainfall.
 
-Lieutenant General NS Raja Subramani assumed charge as India's third CDS on June 1, 2026. A decorated Army officer with decades of operational and command experience, Subramani will inherit both the institutional momentum and the unfinished agenda of military integration. His appointment comes at a time when India is navigating an increasingly contested Indo-Pacific, an active naval deployment in the Indian Ocean under Operation Urja Suraksha, and a deepening defence partnership with the United States.
+For an economy where nearly half of all farmland lacks irrigation, the forecast is a direct threat to crop output and food prices. Gaura Sengupta, chief economist at IDFC First Bank, warned that a deficient monsoon "particularly in the crucial July-August months, can add to the pressure and push up inflation closer to an average of 5.5 percent if food inflation spikes." India's retail inflation stood at 3.48 percent in April, but the outlook is now clouded by a convergence of forces: elevated global energy prices from the Iran war, a depreciating rupee, and the prospect of crop failures.
 
-## The Navy Changes Hands Too
+The finance ministry's own monthly economic report, released the same day, acknowledged that the confluence of fuel price hikes, a below-normal monsoon, and the ongoing Strait of Hormuz disruption "calls for sustained policy vigilance." It described the Hormuz closure as the "single most consequential variable" for India's price and external outlook.
 
-Simultaneously, the Indian Navy saw its own leadership transition. Admiral Dinesh K. Tripathi retired on Saturday after just over two years as the 26th Chief of the Naval Staff. "It has been my honour and pleasure to be at the helm of India's Navy — Indian Navy, every Indian's Navy," Tripathi told reporters.
+**Heatwave conditions intensify**
 
-He pointed to the Navy's role during Operation Sindoor and the ongoing Operation Urja Suraksha in the context of the West Asia turmoil as evidence of the service's readiness. "What we have demonstrated as a service is that we are there to protect and promote India's national maritime interests — anytime, anywhere, anyhow," he said.
+The monsoon delay is compounding a brutal summer. Several Indian states are enduring temperatures above 45 degrees Celsius, with the IMD warning of above-normal heatwave days in June across Uttar Pradesh, Haryana, Punjab, Bihar, Odisha, Chhattisgarh, Gujarat, and Andhra Pradesh. Parts of Maharashtra, Telangana, and Tamil Nadu are also expected to see increased heatwave activity.
 
-Admiral Krishna Swaminathan, a specialist in Communication and Electronic Warfare who previously served as Flag Officer Commanding-in-Chief of the Western Naval Command, has taken over as the new Navy Chief. His tenure is expected to run until December 2028, a period that will be critical for the Navy's modernization and its expanding role in securing vital sea lanes.
+The IMD said both maximum and minimum temperatures will remain above normal for most of the country during June, offering little overnight relief in regions already under severe heat stress.
 
-## What the Diaspora Should Watch
+**What it means for the diaspora**
 
-For NRIs tracking India's strategic trajectory, the simultaneous leadership change is more than ceremonial. The new CDS will shape how India projects power across the Indo-Pacific and whether the long-promised integration of its military commands finally becomes operational reality. The new Navy Chief takes charge as the Indian Ocean becomes the world's most contested maritime space — with implications for energy security, trade routes, and the safety of the 3.5 million Indians living in the Gulf region.
+For NRIs with family in rural India, the forecast raises immediate concerns about agricultural income and food security. Remittance flows to rural households could come under pressure if crop losses materialize, particularly in kharif-season staples like rice, pulses, and oilseeds that depend heavily on monsoon timing.
 
-The Shangri-La Dialogue in Singapore, which concluded this weekend, offered a preview: US Defence Secretary Pete Hegseth publicly described India as a "powerful" nation with the industrial and logistical capacity for advanced military operations, while India's Defence Secretary held five bilateral meetings in a single day. The new military leadership will determine whether India can convert that diplomatic capital into durable strategic advantage."""
+India's $4 trillion economy is already navigating the headwinds of an energy shock. A failed monsoon would add food inflation to the mix, potentially forcing the Reserve Bank of India to rethink the rate cuts that markets have been counting on. The next few weeks of rainfall data will determine whether this remains a forecast or becomes a crisis.
 
-    return {
-        "headline": "India Just Replaced Its Top Military Commander and Navy Chief on the Same Day. Here Is What Changes.",
-        "subheadline": "General Anil Chauhan retired after four decades in uniform. His successor inherits an unfinished revolution in how India fights wars.",
-        "body": body,
-        "slug": "india-cds-anil-chauhan-retires-raja-subramani-navy-chief-swaminathan-dual-transition-20260531",
-        "category": "news",
-        "image_url": img_url,
-        "image_attribution": img_attr,
-        "sources": ["Ministry of Defence India", "Reuters", "India Sentinels", "Aviation Defence Universe", "The Freedom Press"]
-    }
+*Sources: Reuters, India Meteorological Department press conference (May 29), India Finance Ministry monthly economic report (May 30), The Hindu Business Line*"""
 
+articles.append({
+    "headline": "India Just Forecast Its Weakest Monsoon in 11 Years. El Niño Is Only Part of the Problem.",
+    "subheadline": "The IMD downgraded its rainfall forecast to 90% of normal as food inflation fears collide with the Iran war's energy shock.",
+    "body": monsoon_body,
+    "slug": "india-weakest-monsoon-11-years-el-nino-inflation-food-prices-20260531",
+    "category": "news",
+    "vertical": "economy",
+    "diaspora_angle": "For NRIs with family in rural India, a failed monsoon threatens agricultural income and food security. Remittance flows to rural households could come under pressure if crop losses hit kharif staples. A weaker rupee and higher food inflation would squeeze household budgets across the country.",
+    "tags": ["monsoon", "el-nino", "inflation", "imd", "agriculture", "food-prices"],
+    "urgency": "high",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": img1,
+    "image_attribution": attr1,
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com/world/india/"},
+        {"name": "India Meteorological Department", "url": "https://mausam.imd.gov.in/"},
+        {"name": "India Finance Ministry", "url": "https://finmin.nic.in/"},
+        {"name": "The Hindu Business Line", "url": "https://www.thehindubusinessline.com/"}
+    ])
+})
 
-# ── ARTICLE 2: Supreme Court 3-Month Deadline for High Courts ────────
-def write_article_2():
-    print("\n═══ Article 2: Supreme Court 3-Month Deadline ═══")
-    
-    # Image sourcing - try Supreme Court of India or CJI Surya Kant
-    img_url = fetch_wikipedia_person_image("Surya Kant (judge)")
-    img_attr = "Wikimedia Commons"
-    if not img_url or not validate_image(img_url):
-        img_url = fetch_wikipedia_person_image("Supreme Court of India")
-        if not img_url or not validate_image(img_url):
-            img_url = fetch_pexels_image("Indian supreme court building", "courtroom justice gavel")
-            img_attr = "Pexels"
-            if not validate_image(img_url):
-                img_url = None
-                img_attr = None
+# ──────────────────────────────────────────────────────────────────────
+# ARTICLE 2: Delhi HC Fines Google Over Hindware Trademark
+# ──────────────────────────────────────────────────────────────────────
+print("\n=== Article 2: Delhi HC Google Ruling ===")
 
-    body = """The Supreme Court of India has done something its critics said it would never do: set a hard deadline for High Courts to deliver judgments after reserving them. Three months. Not a suggestion. A mandate.
+img2, attr2 = get_image(pexels_query="google search engine laptop india", pexels_fallback="online advertising digital marketing")
 
-A bench led by Chief Justice of India Surya Kant, invoking the court's extraordinary powers under Article 142 of the Constitution, issued a sweeping set of directives on Friday aimed at one of the most persistent and quietly devastating failures of the Indian judicial system — the practice of reserving judgments and then taking months, sometimes years, to deliver them.
+google_body = """A Delhi High Court ruling has rattled India's digital advertising market by declaring that Google's practice of auctioning trademarked brand names as advertising keywords amounts to trademark infringement — and ordering the tech giant to pay ₹30 lakh ($31,600) in damages to sanitaryware maker Hindware.
 
-## The Trigger
+The judgment, delivered on May 22 by Justice Mini Pushkarna, permanently restrains Google LLC and Google India from using Hindware's registered trademarks as advertising keywords. It rejected Google's defense that it is merely an intermediary entitled to safe-harbor protection, ruling instead that Google's keyword auction system constitutes an "unfair practice" that exploits the "distinctive character or repute" of a well-known trademark.
 
-The ruling was born from a specific injustice. Four convicts serving life sentences in Jharkhand had their criminal appeals reserved by the Jharkhand High Court in 2022. The judgments were not delivered until three years later. Their petition forced the Supreme Court to confront what it called a "broader institutional concern affecting courts nationwide."
+**What Google was doing**
 
-CJI Surya Kant did not mince words. "In my 15 years as a High Court judge, never ever did we reserve a judgment and not deliver it within three months," he said. The court had already, in November 2025, ordered High Courts to submit reports on their judgment timelines — a move that revealed the scale of the problem.
+The case, which dates back to 2013, centered on Google's AdWords platform. Hindware alleged that competitors Grohe and Cera — assisted by digital agency Omkara Infoweb — had purchased "Hindware" and variations like "Hindware Sanitary" as keywords on Google Ads. When users searched for Hindware, competitors' sponsored links appeared as the first results, above Hindware's own website.
 
-## What the New Rules Require
+While Grohe, Cera, and Omkara settled with Hindware during the trial, Google contested the case to the end. The court found that Google actively sold, suggested, and auctioned the use of Hindware's trademark "without any authorisation from the proprietor" — going beyond the role of a passive intermediary.
 
-The guidelines are detailed and enforceable:
+"The manner in which Google operates its AdWords Policy makes it clear that Google sells or auctions the use of the trademark," the judgment states.
 
-**Judgments must be delivered within three months** of being reserved. If a bench fails to meet this deadline, the Registrar General must bring the matter before the Chief Justice of the High Court. The Chief Justice then has two weeks to nudge the bench. If the judgment still does not come, the case may be reassigned to a different bench entirely — a remarkable encroachment on judicial independence that signals just how urgent the court considers the crisis.
+**Why Indian business leaders are celebrating**
 
-**Bail orders must be delivered the same day.** If reserved, they must be pronounced and made public by the following day. The court recognized that for people whose personal liberty hangs in the balance, even a two-day delay is too long.
+The ruling has drawn vocal support from some of India's most prominent entrepreneurs. Nithin Kamath, founder of brokerage firm Zerodha, said his brand had suffered from the same practice for years and that the ruling "now opens up a route for legal recourse."
 
-**Bail and release orders must be communicated to jail authorities immediately**, ensuring that undertrial prisoners are released the same day their bail is granted — or at the very latest, the next day.
+Anupam Mittal, founder of matchmaking platform Shaadi.com, was blunter: "You create the brand. Someone else bids on it. Google takes the fee." He said the ruling "could change the economics of online advertising for millions of businesses."
 
-**All judgments must be uploaded to High Court websites within 24 hours** of pronouncement. An automated email system must be set up so that the Chief Justice receives a monthly list of all reserved cases, with copies sent to the relevant benches.
+Legal experts say the decision could trigger a wave of similar cases across India, where Google counts more users than in any other market except for the United States. If other brand owners follow Hindware's lead, Google may be forced to build trademark-verification systems at scale before allowing keyword bidding — a significant compliance burden that could slow its ad-auction machinery in one of its most critical growth markets.
 
-## The Scale of the Crisis
+**The bigger picture**
 
-The numbers behind the ruling are staggering. India's total case pendency has breached 5.49 crore — that is nearly 55 million unresolved cases across all levels of the judiciary. The 25 High Courts alone account for over 63.6 lakh cases. The Supreme Court itself has approximately 92,385 pending cases.
+The case has implications beyond India. Courts in the European Union have previously ruled that keyword advertising on trademarked terms does not automatically constitute infringement, placing the Delhi High Court's decision at odds with international precedent. Google's statement said it operates in accordance "with all local laws" and works to explain its position in cases where orders are "overbroad or inconsistent" with its policies — a signal that an appeal is likely.
 
-The crisis has deepened in recent years as digital e-filing, introduced during the pandemic, made it easier to file cases but did not increase the courts' capacity to hear and decide them. The result is a growing gap between input and output that threatens to overwhelm the system.
+For now, the ruling gives Indian brand owners a powerful new legal weapon in the fight over search-engine real estate. The ₹30 lakh fine is nominal by Google's standards, but the precedent it sets is not. If upheld, it could fundamentally alter how keyword advertising works in India's $8 billion digital ad market.
 
-## Why It Matters for the Diaspora
+**The diaspora angle**
 
-For NRIs with property disputes, family law cases, business litigation, or inheritance matters pending in Indian courts, the practical impact could be significant. High Court cases that have languished for years with reserved judgments may now face genuine pressure for resolution.
+For NRI entrepreneurs running businesses in India or targeting Indian consumers through Google Ads, the ruling introduces new uncertainty. Companies that have been bidding on competitors' brand names as keywords may need to rethink their search advertising strategies. At the same time, Indian-origin brands sold globally — from spice companies to fashion labels — now have a legal framework to challenge trademark misuse on Google's platform.
 
-More broadly, the ruling is a test of whether India's judiciary can reform itself from within. Senior advocates in New Delhi acknowledged the significance of the three-month cap but pointed to unfilled judicial vacancies as the deeper structural problem. "The pressure on High Court judges is immense due to unfilled vacancies," a member of the Supreme Court Bar Association said. "However, keeping a judgment reserved for six months to a year dilutes the arguments presented. This deadline will force better judicial discipline."
+*Sources: Reuters, Inc42, Bar and Bench, The Hindu Business Line, Storyboard18*"""
 
-The Supreme Court was careful to frame its directives as institutional, not personal. "Our directions are not an aspersion on any particular judge or court," the bench noted. But the subtext was unmistakable: a system that makes people wait three years for a judgment it heard in full is a system that has lost the confidence of the people it serves.
+articles.append({
+    "headline": "A Delhi Court Just Ruled Google's Keyword Ads Violate Trademark Law. India's Founders Are Cheering.",
+    "subheadline": "The Delhi HC fined Google ₹30 lakh for letting rivals bid on Hindware's brand name. Zerodha and Shaadi.com founders say it could reshape online advertising.",
+    "body": google_body,
+    "slug": "delhi-hc-google-hindware-trademark-keyword-ads-ruling-zerodha-shaadi-20260531",
+    "category": "news",
+    "vertical": "business",
+    "diaspora_angle": "For NRI entrepreneurs running businesses in India or targeting Indian consumers through Google Ads, the ruling introduces new uncertainty. Companies bidding on competitors' brand names may need to rethink strategies. Indian-origin brands sold globally now have a legal framework to challenge trademark misuse on Google's platform.",
+    "tags": ["google", "trademark", "delhi-high-court", "hindware", "digital-advertising", "zerodha"],
+    "urgency": "medium",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": img2,
+    "image_attribution": attr2,
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com/world/india/"},
+        {"name": "Inc42", "url": "https://inc42.com/buzz/delhi-hc-fines-google-for-infringing-hindwares-trademark/"},
+        {"name": "Bar and Bench", "url": "https://www.barandbench.com/"},
+        {"name": "The Hindu Business Line", "url": "https://www.thehindubusinessline.com/"},
+        {"name": "Storyboard18", "url": "https://storyboard18.com/"}
+    ])
+})
 
-The question now is enforcement. India's judiciary has no shortage of well-intentioned circulars and guidelines. What it has lacked is the will to make them stick. The three-month deadline gives CJI Surya Kant's court a chance to prove that this time is different."""
+# ──────────────────────────────────────────────────────────────────────
+# ARTICLE 3: India Cuts Fuel Export Duties
+# ──────────────────────────────────────────────────────────────────────
+print("\n=== Article 3: Fuel Export Duty Cut ===")
 
-    return {
-        "headline": "The Supreme Court Just Set a 3-Month Deadline for High Courts to Deliver Judgments. India Has 5.49 Crore Cases Pending.",
-        "subheadline": "Bail orders must now be delivered the same day. If a reserved judgment is not pronounced in 90 days, the case can be reassigned to another bench.",
-        "body": body,
-        "slug": "supreme-court-3-month-deadline-high-courts-reserved-judgments-bail-same-day-pendency-crisis-20260531",
-        "category": "news",
-        "image_url": img_url,
-        "image_attribution": img_attr,
-        "sources": ["LiveLaw", "Bar and Bench", "Dainik Jagran", "Devdiscourse", "Law Trend"]
-    }
+img3, attr3 = get_image(pexels_query="oil refinery India industrial", pexels_fallback="petroleum refinery fuel export")
 
+fuel_body = """India will cut export duties on petrol, diesel, and aviation turbine fuel starting June 1, the finance ministry announced on Saturday, in the latest adjustment to the emergency levies it imposed in March to keep fuel available at home during the Iran war.
 
-# ── ARTICLE 3: NYC Mayor Zohran Mamdani's COGE + Bezos ──────────────
-def write_article_3():
-    print("\n═══ Article 3: Zohran Mamdani COGE + Bezos ═══")
-    
-    # Image sourcing - try Zohran Mamdani from Wikipedia
-    img_url = fetch_wikipedia_person_image("Zohran Mamdani")
-    img_attr = "Wikimedia Commons"
-    if not img_url or not validate_image(img_url):
-        img_url = fetch_pexels_image("New York City Hall government building", "New York City skyline")
-        img_attr = "Pexels"
-        if not validate_image(img_url):
-            img_url = None
-            img_attr = None
+The new rates: ₹1.5 per litre on petrol exports (down sharply from previous levels), ₹13.5 per litre on diesel, and ₹9.5 per litre on aviation turbine fuel. There is no change to excise duties on fuel sold for domestic consumption.
 
-    body = """New York City's first Indian-origin mayor just launched his own government efficiency commission. Then the world's second-richest man publicly agreed with him. The political alignment between Zohran Mamdani — a self-described democratic socialist — and Jeff Bezos, the founder of Amazon, is as surprising as it is revealing.
+The cuts, described as a routine fortnightly revision based on average international prices since the last review on May 16, come at a moment when the global oil market is flashing some of its most alarming signals since the war began.
 
-Mamdani announced the creation of COGE, the Commission on Government Efficiency, this week, charging it with reviewing the entire New York City Charter to "find ways for our city to work smarter, faster, and more effectively for working people." The commission will hold 10 public hearings across the city, and its proposals could go before voters on the November ballot.
+**The backstory**
 
-## The Name Is Not an Accident
+India introduced the export levies — formally called Special Additional Excise Duty and Road and Infrastructure Cess — on March 27, 2026, weeks after the U.S.-Iran conflict began disrupting shipping through the Strait of Hormuz. The explicit goal was to "ensure domestic availability of petroleum products by disincentivising exports in the backdrop of the West Asia crises."
 
-The acronym invites immediate comparison to DOGE, the Department of Government Efficiency that Elon Musk ran for the Trump administration in early 2025 — a project that led to mass firings of federal workers, cancelled contracts, and slashed services before it was eventually disbanded. Mamdani has been explicit about the distinction.
+The mechanism is simple: every two weeks, the government recalculates duties based on global crude, petrol, diesel, and ATF prices. When international prices soften relative to Indian refinery costs, the levies come down to let refiners export more competitively. When prices spike, the levies go up to keep fuel at home.
 
-"Musk manipulated the fact that so many people across this country want to see a government that is more efficient," Mamdani said. "He used that as a justification to simply slash and burn so much of the services that Americans rely on. What we are speaking about is a sincere fulfillment of a vision that city government is operating with the same level of focus that a working-class New Yorker is when they're trying to balance their bills."
+The sharp reduction in petrol export duties this round reflects softening international gasoline prices relative to crude, according to The Hindu Business Line. Diesel and ATF levies remain elevated because global demand for those fuels — driven by shipping, aviation, and industrial use during the conflict — has not eased.
 
-COGE will be led by Patrick Gaspard, a former US Ambassador to South Africa and one-time executive director of the Democratic National Committee who also served as president of the Open Society Foundations. Ann Cheng has been proposed as executive director.
+**But the calm may not last**
 
-## Bezos Weighs In
+The timing of the duty cut is ironic. Just two days before the announcement, ExxonMobil senior vice president Neil Chapman warned at the Bernstein Conference in New York that global oil inventories are approaching "unheard of" lows and that physical Brent crude could spike to $150–$160 per barrel within weeks.
 
-The endorsement from Jeff Bezos came just days after the two men had clashed publicly. Last week, Bezos appeared on CNBC and told Mamdani to stop "villainizing billionaires," arguing that doubling his tax bill would not help "that teacher in Queens." Mamdani fired back on X: "I know a few teachers in Queens who would beg to differ." The same week, Mamdani's administration announced it had retrieved $9 million from Amazon in unpaid fines for truck pollution violations.
+"We're approaching unheard of inventory levels. I mean, really, really low levels," Chapman said. "Once you get to that point, then you'll see prices shoot up."
 
-But on COGE, Bezos found common ground. Responding to Mamdani's announcement, Bezos wrote on X: "This is great and they do deserve that. And, with some of the savings, we can zero out taxes on the bottom half of earners. The best way to put money in people's pockets is not to take it out in the first place."
+Chevron CEO Mike Wirth echoed the warning, saying the "buffers and shock absorbers" that have kept prices manageable — strategic petroleum reserve releases, commercial inventory drawdowns — are steadily being exhausted. The International Energy Agency has flagged that stockpiles are being consumed at an unprecedented rate, with member countries releasing 400 million barrels in March alone.
 
-The unlikely alignment underscores a political reality that transcends ideology: government efficiency has become a bipartisan talking point, even if the left and right define it very differently.
+The Strait of Hormuz closure has removed roughly 14 million barrels per day from global supply. Dated Brent dropped from a monthly average of $117 in April to near $103 in May, partly on news of progress in U.S.-Iran ceasefire talks. But if those talks falter, or if inventories hit the floor that Chapman described, India's carefully calibrated export levies could swing sharply upward again.
 
-## The Diaspora Angle
+**What it means for Indians at home and abroad**
 
-Zohran Mamdani's ascent to the mayoralty of America's largest city remains one of the most remarkable stories in the Indian diaspora's political history. Born to Ugandan-Indian parents — his mother is the acclaimed filmmaker Mira Nair, known for *Monsoon Wedding* and *The Namesake* — Mamdani grew up straddling continents and cultures. He served in the New York State Assembly before his mayoral win, and has governed with a progressive agenda that includes free buses, universal childcare, and ambitious affordable housing targets.
+For consumers in India, the immediate news is neutral: domestic fuel prices are unchanged. But the finance ministry's own economic report, released the same day, warned that "a sharp rise in upstream price pressures, along with recent increases in fuel prices, suggests a gradual pass-through to retail inflation." The rupee has been under pressure, and pump prices were last raised in mid-May.
 
-His willingness to pick fights with billionaires while simultaneously launching efficiency initiatives that billionaires praise reflects a political dexterity that has few parallels in the current crop of American mayors. For Indian Americans watching the political landscape, Mamdani represents something new: not just representation in high office, but the exercise of power in ways that challenge and co-opt the establishment simultaneously.
+For NRIs, the story is the fragility underneath. India imports over 85 percent of its crude oil. A sustained move to $150-plus Brent would widen the current account deficit, weaken the rupee further, and squeeze household budgets across the country. The fortnightly export levy adjustment is a tool, not a shield. If global stockpiles run out, the tool runs out too.
 
-Senator Marsha Blackburn, a Tennessee Republican, noted the irony. "Remember when Democrats ridiculed President Trump and his administration for tackling government waste?" she said. The fact that a socialist mayor is now embracing the language of efficiency — even while fighting Amazon over pollution fines — suggests the political terrain has shifted in ways that neither party fully controls.
+*Sources: Reuters, India Finance Ministry notification (May 31), The Hindu Business Line, Fox Business, Seeking Alpha*"""
 
-## What Comes Next
+articles.append({
+    "headline": "India Just Cut Fuel Export Duties. Exxon Says Oil Could Hit $160 Anyway.",
+    "subheadline": "The government eased levies on petrol, diesel, and ATF exports starting June 1. But global inventories are running out — and industry leaders say the worst is ahead.",
+    "body": fuel_body,
+    "slug": "india-cuts-fuel-export-duties-exxon-oil-160-warning-hormuz-20260531",
+    "category": "news",
+    "vertical": "economy",
+    "diaspora_angle": "India imports over 85% of its crude oil. A sustained move to $150+ Brent would widen the current account deficit, weaken the rupee, and squeeze household budgets. NRIs sending remittances would see exchange rate pressure, while family members in India face higher transport and cooking fuel costs.",
+    "tags": ["fuel-export-duty", "oil-prices", "exxon", "chevron", "hormuz", "iran-war", "windfall-tax"],
+    "urgency": "high",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": img3,
+    "image_attribution": attr3,
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com/world/india/"},
+        {"name": "India Finance Ministry", "url": "https://finmin.nic.in/"},
+        {"name": "The Hindu Business Line", "url": "https://www.thehindubusinessline.com/"},
+        {"name": "Fox Business", "url": "https://www.foxbusiness.com/"},
+        {"name": "Seeking Alpha", "url": "https://seekingalpha.com/"}
+    ])
+})
 
-COGE's immediate mandate is to identify "outdated bureaucratic barriers that slow infrastructure projects and delay services." Mamdani has already appointed chief savings officers across city agencies, and in March his administration reported savings from technology modernization, space consolidation, and lease management — including the Department of Sanitation vacating unused office space and the Taxi and Limousine Commission cancelling its Slack subscription.
+# ── Publish all ──
+print("\n=== Publishing ===")
+success = 0
+for i, article in enumerate(articles):
+    print(f"\nArticle {i+1}: {article['headline'][:60]}...")
 
-The real test will be whether COGE's recommendations survive the transition from commission report to ballot measure. New Yorkers will have the final say in November. And if Mamdani can prove that government efficiency does not require Musk-style demolition, the model could become a template for progressive governance in American cities — built, in part, by a mayor whose family roots stretch from Kampala to Mumbai to Queens."""
+    # Validate article quality
+    body_words = len(article['body'].split())
+    if body_words < 400:
+        print(f"  ✗ REJECTED: Body too short ({body_words} words, minimum 400)")
+        continue
+    if len(article['headline']) < 20 or len(article['headline']) > 200:
+        print(f"  ✗ REJECTED: Headline length issue ({len(article['headline'])} chars)")
+        continue
+    if len(article.get('subheadline', '')) < 15:
+        print(f"  ✗ REJECTED: Subheadline too short")
+        continue
+    if not article.get('image_url'):
+        print(f"  ⚠ No image found — publishing without image")
+        article.pop('image_url', None)
+        article.pop('image_attribution', None)
 
-    return {
-        "headline": "New York's Indian-Origin Mayor Just Launched His Own DOGE. Jeff Bezos Agreed With Him.",
-        "subheadline": "Zohran Mamdani's Commission on Government Efficiency is designed to do what Elon Musk's version never could: make government work without burning it down.",
-        "body": body,
-        "slug": "zohran-mamdani-nyc-mayor-coge-government-efficiency-bezos-endorsement-diaspora-20260531",
-        "category": "news",
-        "image_url": img_url,
-        "image_attribution": img_attr,
-        "sources": ["USA Today", "Fox News", "Bloomberg via 1010 WINS", "Mandatory.com", "Traders Union"]
-    }
+    print(f"  Body: {body_words} words")
+    print(f"  Headline: {len(article['headline'])} chars")
+    print(f"  Slug: {article['slug']}")
+    print(f"  Image: {'Yes' if article.get('image_url') else 'No'}")
 
+    if publish_article(article):
+        success += 1
 
-# ── MAIN ──────────────────────────────────────────────────────────────
-if __name__ == "__main__":
-    print("=" * 60)
-    print("The Videshi News Writer — May 31, 2026")
-    print("=" * 60)
-    
-    articles = [write_article_1, write_article_2, write_article_3]
-    
-    success_count = 0
-    for write_fn in articles:
-        article = write_fn()
-        # Validate article quality
-        word_count = len(article["body"].split())
-        if word_count < 400:
-            print(f"  ⚠ REJECTED: Body too short ({word_count} words)")
-            continue
-        if len(article["headline"]) > 200:
-            print(f"  ⚠ WARNING: Headline too long ({len(article['headline'])} chars)")
-        if len(article.get("subheadline", "")) < 15:
-            print(f"  ⚠ REJECTED: Subheadline too short or missing")
-            continue
-        if article["category"] != "news":
-            print(f"  ⚠ REJECTED: Wrong category '{article['category']}'")
-            continue
-            
-        # Check for banned image sources
-        img = article.get("image_url", "") or ""
-        if any(banned in img for banned in ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat="]):
-            print(f"  ⚠ BANNED image source detected, removing image")
-            article["image_url"] = None
-            article["image_attribution"] = None
-        
-        if publish_article(article):
-            success_count += 1
-        time.sleep(1)
-    
-    print(f"\n{'=' * 60}")
-    print(f"✅ Published {success_count}/{len(articles)} articles")
-    print(f"{'=' * 60}")
+print(f"\n=== Done: {success}/{len(articles)} articles published ===")
