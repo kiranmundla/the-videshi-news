@@ -50,6 +50,18 @@ export default function HeroCarousel() {
     return () => window.clearInterval(id);
   }, [images.length, paused]);
 
+  // Preload first carousel image for faster LCP
+  useEffect(() => {
+    if (images.length > 0) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = images[0].url;
+      document.head.appendChild(link);
+      return () => { document.head.removeChild(link); };
+    }
+  }, [images]);
+
   if (images.length === 0) return null;
 
   const total = images.length;

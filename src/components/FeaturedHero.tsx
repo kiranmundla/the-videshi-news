@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Article } from "@/lib/articles";
 import { isValidImage } from "@/components/HeroImage";
@@ -26,6 +27,18 @@ export default function FeaturedHero({ article }: { article: Article }) {
   const url = article.hero_image_url || "";
   const isFlag = /flag/i.test(url);
   const hasImage = isValidImage(url) && !isFlag;
+
+  // Preload hero image for faster LCP
+  useEffect(() => {
+    if (hasImage && article.hero_image_url) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = article.hero_image_url;
+      document.head.appendChild(link);
+      return () => { document.head.removeChild(link); };
+    }
+  }, [hasImage, article.hero_image_url]);
 
   if (hasImage) {
     const orient = getImageOrientation(article.hero_image_url);

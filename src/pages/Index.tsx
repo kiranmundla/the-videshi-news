@@ -379,6 +379,43 @@ export default function Index() {
         <meta property="og:description" content="News for the global Indian diaspora" />
         {featuredArticle && <meta property="og:image" content={featuredArticle.hero_image_url} />}
         <link rel="canonical" href="https://www.thevideshi.com/" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "NewsMediaOrganization",
+                "@id": "https://www.thevideshi.com/#organization",
+                name: "The Videshi",
+                url: "https://www.thevideshi.com",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://www.thevideshi.com/logo.jpg"
+                },
+                sameAs: [
+                  "https://www.instagram.com/thevideshi",
+                  "https://x.com/thevideshi"
+                ],
+                description: "Editorial reporting and analysis for the global Indian diaspora — news, travel, lifestyle & health, markets, technology, and sports."
+              },
+              {
+                "@type": "WebSite",
+                "@id": "https://www.thevideshi.com/#website",
+                url: "https://www.thevideshi.com",
+                name: "The Videshi",
+                publisher: { "@id": "https://www.thevideshi.com/#organization" },
+                potentialAction: {
+                  "@type": "SearchAction",
+                  target: {
+                    "@type": "EntryPoint",
+                    urlTemplate: "https://www.thevideshi.com/search?q={search_term_string}"
+                  },
+                  "query-input": "required name=search_term_string"
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
 
       <Masthead />

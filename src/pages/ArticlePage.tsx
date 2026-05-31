@@ -478,11 +478,19 @@ export default function ArticlePage() {
             ...(article.published_at ? { datePublished: article.published_at } : {}),
             ...(article.hero_image_url ? { image: article.hero_image_url } : {}),
             url: `https://www.thevideshi.com/articles/${article.slug}`,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `https://www.thevideshi.com/articles/${article.slug}`
+            },
             author: { "@type": "Organization", name: "The Videshi" },
             publisher: {
               "@type": "Organization",
               name: "The Videshi",
               url: "https://www.thevideshi.com",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://www.thevideshi.com/logo.jpg"
+              }
             },
           })}
         </script>
