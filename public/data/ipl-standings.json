@@ -1,7 +1,7 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-31T15:56:13Z",
-  "stage": "PLAYOFFS \u2014 FINAL IN PROGRESS (innings break). League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1: RCB beat GT by 92 runs (May 26). Eliminator: RR beat SRH by 47 runs (May 27). Qualifier 2: GT beat RR by 7 wickets (May 29). FINAL: RCB vs GT \u2014 INNINGS BREAK, GT 155/8 (20 ov), RCB to chase 156. Narendra Modi Stadium, Ahmedabad.",
+  "last_updated": "2026-05-31T17:00:00Z",
+  "stage": "PLAYOFFS — FINAL LIVE. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1: RCB beat GT by 92 runs (May 26). Eliminator: RR beat SRH by 47 runs (May 27). Qualifier 2: GT beat RR by 7 wickets (May 29). FINAL: RCB 83/2 (7.3 ov) chasing GT's 155/8 — RCB cruising at 10.96 RPO, need 73 off 75 balls (RRR 5.84). Narendra Modi Stadium, Ahmedabad.",
   "recent_results": [
     {
       "team1": "RR",
@@ -176,7 +176,7 @@
     "qualifier_1": "RCB 254/5 beat GT 162/10 by 92 runs (May 26, Dharamsala). POTM: Rajat Patidar 93*(33).",
     "eliminator": "RR 243/8 beat SRH 196/10 by 47 runs (May 27, Mullanpur). Vaibhav Sooryavanshi 97(29), Jofra Archer 3 wkts.",
     "qualifier_2": "GT 219/3 beat RR 214/6 by 7 wickets (May 29, Mullanpur). Shubman Gill 104*(53) & Sai Sudharsan 58(32) put on 167-run opening stand. Vaibhav Sooryavanshi 96(47) for RR but GT chased down 215 in 18.4 overs.",
-    "final": "RCB vs GT \u2014 INNINGS BREAK. GT 155/8 (20 ov). Key wickets: Shubman Gill 10(8) c Patidar b Hazlewood, Sai Sudharsan 12(12) c Jitesh b Bhuvneshwar. RCB need 156 to win. Narendra Modi Stadium, Ahmedabad, May 31."
+    "final": "RCB vs GT — LIVE. GT 155/8 (20 ov), RCB 83/2 (7.3 ov). RCB cruising at 10.96 RPO, need 73 off 75 balls (RRR 5.84). RCB won toss, chose to bowl. Key GT bowling: Rasikh Salam 3/27, Bhuvneshwar Kumar & Josh Hazlewood took key wickets. Washington Sundar top-scored for GT with 50(37). Narendra Modi Stadium, Ahmedabad, May 31."
   },
   "next_match": {
     "team1": "RCB",
