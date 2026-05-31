@@ -13,10 +13,7 @@ export function optimizeImageUrl(url: string | null | undefined, width: number =
     return `${baseUrl}?auto=compress&cs=tinysrgb&w=${width}&fit=crop`;
   }
 
-  // Supabase storage images: use render/image transform
-  if (url.includes('supabase.co/storage/v1/object/')) {
-    return url.replace('/storage/v1/object/', '/storage/v1/render/image/') + `?width=${width}&resize=contain`;
-  }
+  // Supabase storage images: pass through as-is (transform saves <3%, not worth the CLS/preload issues)
 
   return url;
 }
