@@ -1,43 +1,23 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-05-31 batch"""
+"""Entertainment writer for The Videshi — 2026-05-31 batch."""
 
-import json, os, sys, time, uuid, re, html
+import json, os, time, re, uuid, sys
 from datetime import datetime, timezone
+import requests, urllib.parse
 
-import requests
-import urllib.parse
-
-# ── ENV ──────────────────────────────────────────────────────────────────
-def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            if line.startswith("export "):
-                line = line[7:]
-            k, _, v = line.partition("=")
-            v = v.strip().strip('"').strip("'")
-            os.environ.setdefault(k.strip(), v)
-
-load_env(os.path.expanduser("~/.env.supabase"))
-load_env(os.path.expanduser("~/workspace/.env.pexels"))
-
-SB_URL = os.environ["SUPABASE_URL"]
-SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+# ---------- ENV ----------
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
-    "apikey": SB_KEY,
-    "Authorization": f"Bearer {SB_KEY}",
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation",
 }
 
-
-# ── IMAGE HELPERS ──────────────────────────────────────────────────────
+# ---------- IMAGE SOURCING ----------
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -59,7 +39,7 @@ def fetch_wikipedia_person_image(person_name):
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (urllib gets 403)."""
+    """Fetch an image from Pexels with specific search terms."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
@@ -67,275 +47,243 @@ def fetch_pexels_image(query, fallback_query=None):
         if not q:
             continue
         try:
-            import subprocess
-            result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
-                 "-H", f"Authorization: {PEXELS_KEY}"],
-                capture_output=True, text=True, timeout=15,
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                headers={"Authorization": PEXELS_KEY},
+                params={"query": q, "per_page": 5, "orientation": "landscape"},
+                timeout=10,
             )
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                return url
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                for p in photos:
+                    url = p["src"]["large2x"]
+                    if url:
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                        return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 
 def validate_image_url(url):
-    """Check that the URL returns a valid image > 5KB."""
+    """Validate image URL returns 200 with image content type and reasonable size."""
     if not url:
         return False
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, allow_redirects=True)
+        content_type = r.headers.get("Content-Type", "")
+        content_length = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in content_type and content_length > 5000:
             return True
-        # Some servers don't return Content-Length on HEAD, try GET with range
-        if r.status_code == 200 and "image" in ct:
-            return True
-    except Exception:
-        pass
+        print(f"  ⚠ Image validation failed: status={r.status_code}, type={content_type}, size={content_length}")
+    except Exception as e:
+        print(f"  ⚠ Image validation error: {e}")
     return False
 
 
-# ── SUPABASE HELPERS ────────────────────────────────────────────────────
-def sb_insert(article):
-    """Insert article into p2_articles."""
+def sb_insert(table, payload):
+    """Insert into Supabase, return response data."""
     r = requests.post(
-        f"{SB_URL}/rest/v1/p2_articles",
+        f"{SUPABASE_URL}/rest/v1/{table}",
         headers=HEADERS,
-        json=article,
+        json=payload,
         timeout=30,
     )
     if r.status_code in (200, 201):
         data = r.json()
-        aid = data[0]["id"] if isinstance(data, list) else data["id"]
-        print(f"  ✓ Inserted: {article['slug']} (id={aid})")
-        return aid
-    else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
-        return None
+        return data[0] if isinstance(data, list) and data else data
+    print(f"  ⚠ Insert error ({r.status_code}): {r.text[:200]}")
+    return None
 
 
-# ── ARTICLES ────────────────────────────────────────────────────────────
-articles = []
-
-# ────────────────────────────────────────────────────────────────────────
-# ARTICLE 1: Masoom: The New Generation — Shekhar Kapur & A.R. Rahman
-# ────────────────────────────────────────────────────────────────────────
-articles.append({
-    "headline": "Shekhar Kapur and A.R. Rahman Reunite for Masoom: The New Generation. Naseeruddin Shah and Shabana Azmi Are Returning.",
-    "subheadline": "Forty-three years after the original, the filmmaker is revisiting his classic with the Oscar-winning composer as co-producer — and a cast that bridges two eras of Indian cinema.",
-    "slug": "shekhar-kapur-ar-rahman-masoom-new-generation-naseeruddin-shabana-azmi-nri-20260531",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps(["Cinema Express", "Bollywood Hungama", "Devdiscourse"]),
-    "image_attribution": "Wikimedia Commons",
-    "vertical": "entertainment",
-    "tags": [],
-    "is_featured": False,
-    "person_for_image": "A. R. Rahman",
-    "pexels_fallback": ("Indian film director", "Bollywood cinema"),
-    "body": """It has been forty-three years since a young Jugal Hansraj walked into a household that did not know what to do with him, and the phrase *"Tujhe Nahin Chodhunga"* became shorthand for an entire generation's understanding of what family secrets could cost. Now Shekhar Kapur is going back.
-
-The filmmaker has officially announced **Masoom: The New Generation**, a contemporary reimagining of his 1983 classic that will explore evolving ideas of identity, family, love, and migration — themes that carry a particular charge for diaspora audiences who have spent decades navigating those very questions across continents.
-
-## The Reunion That Matters
-
-The headline casting brings back **Naseeruddin Shah** and **Shabana Azmi**, who played the couple at the heart of the original film's devastating domestic crisis. They will be joined by **Manoj Bajpayee**, **Nithya Menen**, and **Kaveri Kapur** — Shekhar's own daughter, adding a personal dimension to a project already loaded with emotional weight.
-
-But the collaboration that has the industry most intrigued is behind the camera. **A.R. Rahman** is not merely scoring the film — he is serving as co-producer, marking one of the rare occasions the Oscar-winning composer has taken a financial and creative stake in a project beyond its music.
-
-"Working with Shekhar has always been a deeply enriching experience — he has been a mentor and a creative force in many ways," Rahman said in a statement. "When he shared the vision for this film, I felt compelled to be involved beyond the music. There's something timeless about *Masoom*, and reinterpreting that emotional world for a new generation feels both exciting and necessary."
-
-## Why This Matters to the Diaspora
-
-The original *Masoom* — adapted from Erich Segal's novel *Man, Woman and Child* — resonated precisely because it refused to moralize. It presented a family forced to confront an uncomfortable truth and let the audience sit in the discomfort. For NRI families who have watched Indian cinema grow progressively louder and more maximalist, the announcement signals a return to the kind of quiet, interior storytelling that once defined Hindi cinema's artistic peak.
-
-The addition of "migration" to the film's stated themes is telling. Kapur, who has lived and worked between India and the UK for decades, brings a naturally transnational perspective. He knows what it means to belong to multiple worlds at once — a sensibility that the diaspora shares but rarely sees reflected in mainstream Bollywood.
-
-"For a long time, I've felt that the themes of *Masoom* deserved to be revisited through the lens of today's world," Kapur said. "Families, relationships, identity — these ideas have evolved so much, and cinema must evolve with them."
-
-## A Stacked Creative Partnership
-
-Kapur and Rahman have a history that predates their celebrity. Rahman composed for Kapur's involvement in *Dil Se..* (1998) and scored *Elizabeth: The Golden Age* (2007). They also collaborated on the West End musical *Bombay Dreams* and the theatrical production *Why? The Musical*. Each project pushed both artists into unfamiliar territory — exactly the kind of creative risk-taking that *Masoom: The New Generation* appears to demand.
-
-The film is currently in pre-production and is expected to begin shooting later this year, with a worldwide theatrical release anticipated in 2026.
-
-For a generation of Indian viewers — both in India and abroad — who grew up with Jugal Hansraj's face and Gulzar's lyrics as their introduction to moral complexity in cinema, the question is simple: can lightning strike the same place twice? Kapur seems to believe the place has changed enough that it's worth trying.
-
-*Sources: Cinema Express, Bollywood Hungama, Devdiscourse*"""
-})
-
-# ────────────────────────────────────────────────────────────────────────
-# ARTICLE 2: Vashu Bhagnani ₹400 Crore Lawsuit
-# ────────────────────────────────────────────────────────────────────────
-articles.append({
-    "headline": "Vashu Bhagnani Just Filed a ₹400 Crore Lawsuit Over Two Biwi No. 1 Songs. Hai Jawani's June 5 Release Is Now in Jeopardy.",
-    "subheadline": "The producer's Puja Entertainment is seeking an injunction to block distribution, exhibition, and streaming of Varun Dhawan's film — one of the largest copyright suits in recent Bollywood history.",
-    "slug": "vashu-bhagnani-400-crore-lawsuit-biwi-no-1-songs-hai-jawani-varun-dhawan-nri-20260531",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps(["Bollywood Hungama", "India Forums", "Zoom TV"]),
-    "image_attribution": "Wikimedia Commons",
-    "vertical": "entertainment",
-    "tags": [],
-    "is_featured": False,
-    "person_for_image": "Varun Dhawan",
-    "pexels_fallback": ("Bollywood film court", "Indian legal court"),
-    "body": """A week before David Dhawan's **Hai Jawani Toh Ishq Hona Hai** was supposed to arrive in theatres, the film has walked into a legal minefield worth ₹400 crore.
-
-Producer Vashu Bhagnani's **Puja Entertainment** has filed a massive suit in the Bombay High Court against **Tips Industries Limited**, brothers **Ramesh and Kumar S Taurani**, and filmmaker **David Dhawan** himself — alleging that two iconic songs from the 1999 blockbuster *Biwi No. 1* were used in the Varun Dhawan-starrer without valid rights or authorization.
-
-The songs at the centre of the dispute: **'Chunnari Chunnari'** and **'Ishq Sona Hai'**, two of the most recognizable Bollywood tracks of the late '90s.
-
-## What Puja Entertainment Is Claiming
-
-According to the press statement issued through Counsels V K Dubey Associates, Puja Entertainment is seeking "urgent and sweeping injunctive relief" to restrain the release, distribution, exhibition, streaming, and any further commercial exploitation of the film and its promotional material containing the disputed songs.
-
-The suit also seeks an additional ₹100 crore in damages beyond the ₹400 crore claim — bringing the total legal exposure to half a billion rupees.
-
-The lawyer for Puja Entertainment, Advocate V K Dubey, has laid out the timeline in detail. He claims that Tips originally held only audio rights under their agreement with Puja Entertainment. In 2018, when Tips allegedly requested visual rights as well, things fell apart. "Puja Entertainment had sent a notice to them saying that they are cancelling the agreement as they didn't comply with the terms related to royalty and other things," Dubey told ANI. "So Puja Entertainment had cancelled all rights at that time. Leave alone video rights — Puja Entertainment had even cancelled the audio rights."
-
-He further alleged that Tips continued to exploit both audio and visual content from Puja's films across YouTube, Instagram, and other platforms even after the rights were terminated.
-
-## What This Means for the Film
-
-**Hai Jawani Toh Ishq Hona Hai**, starring **Varun Dhawan**, **Mrunal Thakur**, and **Pooja Hegde**, is scheduled to release on **June 5, 2026**. The court has reportedly permitted the filing and has kept the matter for an early hearing — meaning a ruling could arrive before or around the release date.
-
-If the injunction is granted, it could force the makers to either pull the disputed songs from the film or delay the release altogether. For a film that has already been through a turbulent production cycle, the timing could not be worse.
-
-## The Bigger Picture
-
-This is not just a contractual dispute. It touches on a chronic problem in Bollywood's music ecosystem: the tangled web of who owns what, especially when songs from the '90s and early 2000s are remixed for new films. The industry's appetite for nostalgic remakes has created a lucrative but legally precarious market where original producers, music labels, and new filmmakers often operate on conflicting assumptions about rights that were never properly documented or transferred.
-
-For NRI audiences who grew up with *Biwi No. 1* — and who associate 'Chunnari Chunnari' with wedding sangeets and Navratri parties across three continents — the suit is a reminder that the soundtracks of their childhoods are now corporate battlegrounds.
-
-The Bombay High Court's decision will be watched closely. If Puja Entertainment succeeds in blocking the release, it would set a significant precedent for how remixed or recreated songs are licensed in the future. If Tips prevails, it will likely be on the strength of whatever documentation exists from the original agreements — a question that could take months to fully adjudicate.
-
-Either way, David Dhawan's retirement film — which was supposed to be a valedictory celebration — has become a legal exhibit.
-
-*Sources: Bollywood Hungama, India Forums, Zoom TV*"""
-})
-
-# ────────────────────────────────────────────────────────────────────────
-# ARTICLE 3: Hombale Films enters Marathi cinema with Yeto Ka Naay
-# ────────────────────────────────────────────────────────────────────────
-articles.append({
-    "headline": "The Producers of KGF and Kantara Just Made Their First Marathi Film. It's a Hip-Hop Musical.",
-    "subheadline": "Hombale Films' Yeto Ka Naay is a bilingual coming-of-age story set in Mumbai's underground music scene — a radical departure from the action epics that made them a pan-India powerhouse.",
-    "slug": "hombale-films-yeto-ka-naay-marathi-hip-hop-musical-kgf-kantara-nri-20260531",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps(["Bollywood Hungama", "New Kerala", "BlazeaTrends"]),
-    "image_attribution": "",
-    "vertical": "entertainment",
-    "tags": [],
-    "is_featured": False,
-    "person_for_image": None,
-    "pexels_fallback": ("Mumbai hip hop music street", "Indian hip hop rapper"),
-    "body": """When you think of **Hombale Films**, you think of Yash walking through fire in *KGF*, or Rishab Shetty invoking ancient spirits in *Kantara*, or Prabhas with a rifle in *Salaar*. You think of scale, swagger, and the kind of maximalist action cinema that turned a Bangalore-based production house into a pan-India brand.
-
-You do not think of hip-hop musicals.
-
-Which is exactly why **Yeto Ka Naay** is interesting.
-
-## The Announcement
-
-Hombale Films, led by producer **Vijay Kiragandur**, has officially entered Marathi cinema for the first time with a project that could not be further from their comfort zone. *Yeto Ka Naay* is described as a coming-of-age hip-hop musical drama set entirely in Mumbai, exploring youth culture, friendship, identity, and ambition through the city's evolving underground music scene.
-
-The film is being released as a bilingual — the Marathi version retains the original title, while the Hindi version will be called **YKN - Pehla Vaar**.
-
-Directed by **Sarang Sanjeev Sathaye**, the screenplay was co-written by Sathaye alongside **Sujay Jadhav**, **Srushti Tawade** (an actual hip-hop artist, adding authentic street credibility), and **Shreyas Sagvekar**. Music is by **AV Prafullachandra**, and **Harshvir Oberai** is handling cinematography. The shoot is already underway in Mumbai.
-
-## Why It Matters
-
-The timing is not coincidental. Marathi cinema is in the middle of a historic run. **Raja Shivaji**, directed by and starring Riteish Deshmukh, has crossed ₹115 crore worldwide to become the highest-grossing Marathi film of all time, dethroning *Sairat*'s decade-old record. **Deool Band 2** has surprised everyone by racing toward ₹50 crore in its first week. The Marathi market is no longer a regional afterthought — it is a genuine commercial force.
-
-For Hombale Films, entering this market is both a business move and a creative statement. The production house has spent years building a model based on high-concept, mass-appeal cinema in Kannada, Telugu, and Hindi. A Marathi hip-hop musical represents a deliberate expansion into a different register — intimate, urban, youth-driven, and culturally specific.
-
-## The Diaspora Connection
-
-Mumbai's hip-hop scene has always had a complicated relationship with the Indian diaspora. The genre's rise in India — from *Gully Boy* to the proliferation of battle rap leagues and independent labels — was partly fueled by NRIs who grew up on American hip-hop and recognized something familiar in the way young Indians were using the form to narrate their own stories of class, ambition, and identity.
-
-A film that takes this culture seriously — rather than treating it as a backdrop for star-vehicle melodrama — has the potential to resonate with younger diaspora audiences who have watched Indian cinema struggle to represent their reality.
-
-Whether Hombale Films can translate their instinct for spectacle into a more grounded, music-driven narrative remains to be seen. But the fact that the makers of *KGF* are willing to bet on a Marathi hip-hop film tells you something about where Indian cinema is headed: the regional is no longer niche, and genre experimentation is no longer optional.
-
-The film is slated for a theatrical release later this year.
-
-*Sources: Bollywood Hungama, New Kerala, BlazeaTrends*"""
-})
+def sb_patch(table, match, payload):
+    """Patch a Supabase row."""
+    params = "&".join(f"{k}={v}" for k, v in match.items())
+    r = requests.patch(
+        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
+        headers=HEADERS,
+        json=payload,
+        timeout=30,
+    )
+    if r.status_code in (200, 204):
+        return True
+    print(f"  ⚠ Patch error ({r.status_code}): {r.text[:200]}")
+    return False
 
 
-# ── PUBLISH LOOP ────────────────────────────────────────────────────────
-print(f"\n{'='*60}")
-print(f"Entertainment Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-print(f"Publishing {len(articles)} articles")
-print(f"{'='*60}\n")
+# ---------- ARTICLES ----------
+articles = [
+    # Article 1: Kaala Hiran — Salman Khan's Blackbuck Case
+    {
+        "headline": "Salman Khan's 1998 Blackbuck Case Is Now a Film. It's Called Kaala Hiran, and It Covers Everything.",
+        "subheadline": "Producer Amit Jani's crime drama revisits the Jodhpur hunt, the courtroom fallout, and the Salman-Lawrence Bishnoi feud that followed.",
+        "slug": "kaala-hiran-salman-khan-blackbuck-case-lawrence-bishnoi-film-nri-20260531",
+        "category": "entertainment",
+        "image_person": "Salman Khan",
+        "image_pexels_query": None,
+        "sources_text": "IANS, Filmfare, India Forums",
+        "body": """One of Bollywood's longest-running controversies is getting the cinematic treatment. Producer Amit Jani's Jani Firefox Media has officially announced *Kaala Hiran: The Battle for Legacy*, a crime drama inspired by Salman Khan's infamous 1998 blackbuck poaching case — and, crucially, the violent feud with gangster Lawrence Bishnoi that grew out of it.
 
-for i, art in enumerate(articles, 1):
-    print(f"\n[{i}/{len(articles)}] {art['headline'][:70]}...")
+The first-look poster dropped on X this week, with a teaser confirmed for June 20, 2026. Bharat S. Shrinate is directing.
+
+## What the Film Covers
+
+Jani confirmed to IANS that the film recreates the hunting of blackbucks in Kakani village near Jodhpur during the shooting of *Hum Saath-Saath Hain* in October 1998. It covers the arrest, the courtroom drama, the sentencing, and the broader rivalry between Khan and the Bishnoi community that has defined headlines for over two decades.
+
+"Audiences have waited a long time for a cinematic story around Salman Khan, Lawrence Bishnoi, and the case of deer hunting," Jani said. The shoot has been completed across Sambhal, Moradabad, and other locations in Uttar Pradesh. Cast details remain under wraps — we still don't know who's playing Salman.
+
+## Why the Bishnoi Community Cares
+
+The Bishnoi community considers blackbucks sacred, viewing them as a reincarnation of their spiritual guru. What began as a poaching case escalated into a generational vendetta. Salman Khan was convicted by a Jodhpur court in 2018 and sentenced to five years in prison, though he was granted bail. Co-accused actors including Saif Ali Khan, Tabu, Sonali Bendre, and Neelam were acquitted.
+
+The feud's most violent chapter came in October 2024, when politician Baba Siddique — a close associate of Khan — was shot dead outside his Mumbai residence. Lawrence Bishnoi's gang claimed responsibility, framing it as revenge for the blackbuck killing.
+
+## The Diaspora Angle
+
+For NRIs, the Salman-Bishnoi saga has been impossible to ignore. It surfaces every few months — in courtroom developments, in security bulletins, in the celebrity gossip cycle. A film that dramatizes the entire arc, from the hunt to the ongoing threats, taps directly into a story the diaspora has followed for nearly three decades.
+
+Jani's previous production, *Udaipur Files*, stirred controversy but struggled at the box office. *Kaala Hiran* arrives with a built-in audience that has strong opinions about every character involved. The teaser on June 20 will be the first real test of whether this retelling has the gravity the subject demands.
+
+**What to watch for:** The cast reveal — whoever plays Salman Khan will inherit one of the most scrutinized roles in recent Hindi cinema.""",
+    },
+
+    # Article 2: Manoj Bajpayee as RBI Governor
+    {
+        "headline": "Manoj Bajpayee Plays the RBI Governor Who Kept India From Going Bankrupt. Governor Opens June 12.",
+        "subheadline": "The film is inspired by S. Venkitaramanan, the real RBI Governor during India's 1991 economic crisis. Bajpayee says he was 'scared and nervous' about the Tamil diction.",
+        "slug": "manoj-bajpayee-governor-rbi-1991-economic-crisis-film-june-12-nri-20260531",
+        "category": "entertainment",
+        "image_person": "Manoj Bajpayee",
+        "image_pexels_query": None,
+        "sources_text": "IANS, Bollywood Hungama, The Freedom Press",
+        "body": """Manoj Bajpayee's next film puts him in the kind of role he was born to play — understated, institutional, and loaded with the weight of national consequence. In *Governor*, releasing June 12, he plays the Reserve Bank of India chief who navigated the country through its worst economic crisis.
+
+The character is inspired by S. Venkitaramanan, the real-life RBI Governor during India's 1991 balance-of-payments catastrophe — the year India nearly went bankrupt, pledged its gold reserves to the Bank of England, and was forced into the liberalization that transformed its economy.
+
+## The Diction Challenge
+
+At the trailer launch in Mumbai, Bajpayee was disarmingly honest about the difficulty of the role. His character comes from Tamil culture, and the actor — a native of Bihar — admitted he was "scared and nervous" about getting the linguistic texture right.
+
+"I don't like to go wrong with language and diction," he told IANS. "I am from Bihar. So I know how much I get offended when language is wrongly spoken. It is better to go to the minimum. You need to play up the essence of that language, but you are not supposed to be completely indulgent about the accent because it will take away the attention from the matter."
+
+He drew parallels to his earlier work in *Satya* and *Aligarh*, where he inhabited characters from the same cultural region but deployed completely different speech patterns based on their social standing and education. This kind of micro-calibration — playing a Tamil Brahmin bureaucrat in Hindi without veering into caricature — is the high-wire act that separates Bajpayee from most of his contemporaries.
+
+## What Makes This Relevant for the Diaspora
+
+The 1991 crisis is foundational mythology for every Indian who lived through it — and for the NRI generation that grew up hearing about it. The moment when India's foreign exchange reserves dropped to barely enough to cover two weeks of imports. The humiliating airlift of gold to London. The political crisis that brought P.V. Narasimha Rao to power and Manmohan Singh to the finance ministry.
+
+For the diaspora, this isn't ancient history — it's the inflection point that created the India they left, or the India that made their careers possible. Economic liberalization opened the doors to the IT boom, the outsourcing revolution, and the middle-class migration wave that built Indian communities across the US, UK, and Canada.
+
+*Governor* is directed by Chinmay Mandlekar, produced by Vipul Amrutlal Shah (who previously backed *The Kerala Story*), with music by Amit Trivedi and lyrics by Javed Akhtar. Adah Sharma co-stars.
+
+The film enters a crowded June 12 slate — it'll compete with Kangana Ranaut's *Bharat Bhhagya Viddhaata* and at least two other releases. But a Bajpayee performance built around India's most consequential economic moment? That's an audience that books tickets regardless of what else is playing.
+
+**Release date:** June 12, 2026, in theaters.""",
+    },
+
+    # Article 3: Jailer 2 Hrithik Roshan after SRK drops out
+    {
+        "headline": "Shah Rukh Khan Couldn't Do Jailer 2. Now Rajinikanth's Sequel Is Chasing Hrithik Roshan Instead.",
+        "subheadline": "SRK reportedly dropped out due to King commitments. The Rajinikanth sequel, eyeing a September release, has already secured a record ₹160 crore OTT deal with Amazon.",
+        "slug": "jailer-2-hrithik-roshan-cameo-shah-rukh-khan-rajinikanth-september-2026-nri-20260531",
+        "category": "entertainment",
+        "image_person": "Rajinikanth",
+        "image_pexels_query": None,
+        "sources_text": "Pinkvilla, MensXP, Sacnilk, Valai Pechu",
+        "body": """The most anticipated cameo in Tamil cinema just got a plot twist. Shah Rukh Khan was supposed to appear in *Jailer 2* alongside Rajinikanth, but the Pathaan star has reportedly pulled out because of his commitments to *King*. The makers are now in active discussions with Hrithik Roshan to fill the slot.
+
+The report, first surfaced by Tamil industry tracker Valai Pechu and confirmed by multiple outlets including Pinkvilla and MensXP, suggests that the swap is still being negotiated. There's no official confirmation from Sun Pictures or Hrithik's team.
+
+## Why This Matters
+
+*Jailer* was a monster. The 2023 original grossed over ₹604 crore worldwide, moved 9 million tickets, and registered ₹21 crore in advance bookings on BookMyShow alone. Its formula — Rajinikanth as a retired jailer who assembles an all-star crew of cameos — turned the film into a pan-Indian event. Mohanlal, Shiva Rajkumar, and Jackie Shroff all showed up, each getting their own mass moment.
+
+The sequel, directed by Nelson Dilipkumar, was always going to double down on the cameo strategy. Mithun Chakraborty has already confirmed his involvement. Vidya Balan, S.J. Suryah, and Suraj Venjaramoodu are part of the ensemble. Mohanlal and Shiva Rajkumar are expected to return. Bigg Boss 18's Edin Rose has reportedly joined for a substantial role. Even Nora Fatehi is confirmed for a dance number.
+
+Shah Rukh Khan's cameo was supposed to be the crown jewel — a Thalaivar-and-King-Khan frame that would have broken the internet. Fans are understandably processing the loss.
+
+## The OTT Side of the Story
+
+The business numbers tell their own tale. Amazon Prime Video has locked the post-theatrical digital rights for *Jailer 2* at a reported ₹160 crore — a 113% jump over the ₹75 crore Netflix paid for the first film. That makes it the most expensive Tamil OTT acquisition in history, surpassing even Vijay's *Leo* and Kamal Haasan's *Thug Life*, both valued around ₹120 crore.
+
+The premium reflects the franchise's proven commercial viability, but it also prices in the expectation that *Jailer 2* will be a bigger spectacle than its predecessor. Losing SRK and potentially gaining Hrithik doesn't necessarily reduce the spectacle — Hrithik brings his own brand of screen command — but it changes the flavor entirely.
+
+## Diaspora Audience Impact
+
+For the NRI audience, the *Jailer* franchise occupies a unique space — it's a Tamil-language film that functions as a pan-Indian event, the kind of movie that fills screens from Dallas to Dubai on opening night. The cameo strategy turns each screening into a communal experience where the audience erupts at every reveal.
+
+Hrithik Roshan, fresh off the *War* franchise and with strong pull among Hindi-belt NRIs, could deliver a different kind of electricity than SRK would have. But the question fans are asking is simpler: can any Bollywood star walk into Rajinikanth's world and match the energy?
+
+The film is reportedly targeting a September 10-11 release, timed around Ganesh Chaturthi. Shooting has wrapped, and post-production is underway.
+
+**Status:** Unconfirmed but widely reported. Watch for an official announcement from Sun Pictures.""",
+    },
+]
+
+
+# ---------- PUBLISH ----------
+def publish_article(art):
+    """Publish a single article with image sourcing."""
+    print(f"\n{'='*60}")
+    print(f"Publishing: {art['headline'][:60]}...")
 
     # Image sourcing
     img_url = None
-    if art.get("person_for_image"):
-        img_url = fetch_wikipedia_person_image(art["person_for_image"])
-        if not img_url:
-            # Try alternate name forms
-            alts = []
-            name = art["person_for_image"]
-            if "." in name:
-                alts.append(name.replace(".", ""))
-            alts.append(name)
-            for alt in alts:
-                img_url = fetch_wikipedia_person_image(alt)
-                if img_url:
-                    break
 
-    if not img_url and art.get("pexels_fallback"):
-        q1, q2 = art["pexels_fallback"]
-        img_url = fetch_pexels_image(q1, q2)
+    # Try Wikipedia for person articles
+    if art.get("image_person"):
+        img_url = fetch_wikipedia_person_image(art["image_person"])
+        if img_url and not validate_image_url(img_url):
+            print(f"  ⚠ Wikipedia image failed validation, trying fallback...")
+            img_url = None
 
-    if img_url and validate_image_url(img_url):
-        art["image_url"] = img_url
-        print(f"  ✓ Image validated: {img_url[:80]}...")
-    elif img_url:
-        print(f"  ⚠ Image failed validation, trying Pexels fallback...")
-        if art.get("pexels_fallback"):
-            q1, q2 = art["pexels_fallback"]
-            img_url = fetch_pexels_image(q1, q2)
-            if img_url and validate_image_url(img_url):
-                art["image_url"] = img_url
-                art["image_attribution"] = "Pexels"
-            else:
-                art["image_url"] = None
-        else:
-            art["image_url"] = None
+    # Try Pexels fallback
+    if not img_url and art.get("image_pexels_query"):
+        img_url = fetch_pexels_image(art["image_pexels_query"])
+        if img_url and not validate_image_url(img_url):
+            img_url = None
+
+    attribution = "Wikimedia Commons" if img_url and "wikipedia" in (img_url or "").lower() or "wikimedia" in (img_url or "").lower() else "The Videshi"
+
+    # Build payload
+    now = datetime.now(timezone.utc).isoformat()
+    payload = {
+        "headline": art["headline"],
+        "subheadline": art["subheadline"],
+        "slug": art["slug"],
+        "category": art["category"],
+        "vertical": "entertainment",
+        "body": art["body"],
+        "status": "published",
+        "published_at": now,
+        "sources": art.get("sources_text", ""),
+        "image_url": img_url,
+        "image_attribution": attribution if img_url else None,
+    }
+
+    result = sb_insert("p2_articles", payload)
+    if result:
+        art_id = result.get("id")
+        print(f"  ✓ Published: {art['slug']} (id={art_id})")
+        print(f"  Image: {img_url[:80] if img_url else 'None'}")
+        return art_id
     else:
-        art["image_url"] = None
+        print(f"  ✗ Failed to publish: {art['slug']}")
+        return None
 
-    # Clean up non-DB fields
-    for k in ["person_for_image", "pexels_fallback"]:
-        art.pop(k, None)
 
-    # Insert
-    aid = sb_insert(art)
-    if aid:
-        print(f"  ✓ Published: {art['slug']}")
-    else:
-        print(f"  ✗ FAILED: {art['slug']}")
+def main():
+    published = []
+    for art in articles:
+        art_id = publish_article(art)
+        if art_id:
+            published.append(art_id)
+        time.sleep(1)
 
-    time.sleep(1)
+    print(f"\n{'='*60}")
+    print(f"Published {len(published)}/{len(articles)} articles")
+    return 0 if published else 1
 
-print(f"\n{'='*60}")
-print(f"Done! Published {len(articles)} entertainment articles.")
-print(f"{'='*60}")
+
+if __name__ == "__main__":
+    sys.exit(main())
