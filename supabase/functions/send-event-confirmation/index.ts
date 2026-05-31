@@ -3,7 +3,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const RESEND_API_KEY = "re_FpqYdtuj_JCHhzabuovEGqG7rdqKLi9uw";
+const RESEND_API_KEY = "re_DJnhWN9J_DW8qVvNAGMocfhj3AB3pb6rU";
 
 function jsonResp(body: Record<string, unknown>, status = 200) {
   return new Response(JSON.stringify(body), {

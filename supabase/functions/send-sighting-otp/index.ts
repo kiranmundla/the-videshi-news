@@ -5,7 +5,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const RESEND_API_KEY = "re_GKr12Vmh_5beBV9kJkrmSRYG3JR97p1Gf";
+const RESEND_API_KEY = "re_DJnhWN9J_DW8qVvNAGMocfhj3AB3pb6rU";
 
 function isEmail(s: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
