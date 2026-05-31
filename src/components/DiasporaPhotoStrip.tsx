@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import { optimizeImageUrl, IMAGE_SIZES } from "@/lib/imageUrl";
 
 type Photo = { src: string; label: string; source?: string; added_date?: string };
 
@@ -341,7 +340,7 @@ export default function DiasporaPhotoStrip() {
                 }}
               >
                 <img
-                  src={optimizeImageUrl(photo.src, IMAGE_SIZES.gallery)}
+                  src={photo.src}
                   alt={photo.label}
                   loading={i < 4 ? "eager" : "lazy"}
                   draggable={false}
@@ -469,7 +468,7 @@ export default function DiasporaPhotoStrip() {
                   flexShrink: 0, padding: "0 20px", boxSizing: "border-box",
                 }}>
                   <img
-                    src={optimizeImageUrl(photo.src, IMAGE_SIZES.hero)} alt={photo.label}
+                    src={photo.src} alt={photo.label}
                     loading={Math.abs(i - (selectedIndex ?? 0)) <= 2 ? "eager" : "lazy"}
                     draggable={false}
                     style={{

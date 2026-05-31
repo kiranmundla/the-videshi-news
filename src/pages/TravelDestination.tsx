@@ -6,7 +6,6 @@ import type { ReactNode } from "react";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import PhotoScrollStrip from "@/components/PhotoScrollStrip";
-import { optimizeImageUrl, IMAGE_SIZES } from "@/lib/imageUrl";
 
 /* ─── destination metadata ─── */
 interface DestMeta {
@@ -266,7 +265,7 @@ export default function TravelDestination() {
               onTouchEnd={(e) => { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff < 0 ? fsNext() : fsPrev(); } }}
               className="max-w-[90vw] max-h-[75vh]"
             >
-              <img src={optimizeImageUrl(fullscreenPhotos[fullscreenIdx].src, IMAGE_SIZES.hero)} alt={fullscreenPhotos[fullscreenIdx].caption}
+              <img src={fullscreenPhotos[fullscreenIdx].src} alt={fullscreenPhotos[fullscreenIdx].caption}
                 className="max-w-[90vw] max-h-[75vh] object-contain rounded" />
             </div>
             <button onClick={(e) => { e.stopPropagation(); fsNext(); }}

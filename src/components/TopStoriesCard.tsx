@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Article } from "@/lib/articles";
 import { isValidImage } from "@/components/HeroImage";
-import { optimizeImageUrl, IMAGE_SIZES } from "@/lib/imageUrl";
 
 const ACCENT: Record<string, string> = {
   news: "hsl(var(--primary))",
@@ -44,7 +43,7 @@ export default function TopStoriesCard({
       >
         <div className="w-full aspect-[16/9] overflow-hidden bg-muted">
           <img
-            src={optimizeImageUrl(article.hero_image_url, IMAGE_SIZES.card)}
+            src={article.hero_image_url}
             alt={article.title}
             loading="lazy"
             decoding="async"

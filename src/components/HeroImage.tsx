@@ -1,5 +1,4 @@
 import { useState, useCallback } from "react";
-import { optimizeImageUrl, IMAGE_SIZES } from "@/lib/imageUrl";
 
 type Props = {
   src?: string | null;
@@ -41,10 +40,9 @@ export default function HeroImage({ src, alt, className = "", loading = "lazy", 
   }, [onOrientationDetected]);
 
   if (!isValidImage(src) || failed) return null;
-  const optimizedSrc = optimizeImageUrl(src as string, typeof width === 'number' ? width : IMAGE_SIZES.gallery);
   return (
     <img
-      src={optimizedSrc}
+      src={src as string}
       alt={alt}
       loading={loading}
       fetchPriority={fetchPriority}

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { optimizeImageUrl, IMAGE_SIZES } from "@/lib/imageUrl";
 
 type HeroImage = {
   url: string;
@@ -51,18 +50,6 @@ export default function HeroCarousel() {
     return () => window.clearInterval(id);
   }, [images.length, paused]);
 
-  // Preload first carousel image for faster LCP
-  useEffect(() => {
-    if (images.length > 0) {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
-      link.href = optimizeImageUrl(images[0].url, IMAGE_SIZES.hero);
-      document.head.appendChild(link);
-      return () => { document.head.removeChild(link); };
-    }
-  }, [images]);
-
   if (images.length === 0) return null;
 
   const total = images.length;
@@ -112,7 +99,7 @@ export default function HeroCarousel() {
         {images.map((img, i) => (
           <div key={img.url} className="relative h-full" style={{ width: `${100 / total}%` }}>
             <img
-              src={optimizeImageUrl(img.url, i === 0 ? IMAGE_SIZES.hero : IMAGE_SIZES.gallery)}
+              src={img.url}
               alt={img.alt}
               referrerPolicy="no-referrer"
               draggable={false}

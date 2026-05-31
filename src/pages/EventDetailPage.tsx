@@ -5,7 +5,6 @@ import { Share2, Link as LinkIcon, Check, CalendarPlus } from "lucide-react";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
-import { optimizeImageUrl, IMAGE_SIZES } from "@/lib/imageUrl";
 import {
   EventItem,
   getEventBySlug,
@@ -58,7 +57,7 @@ function VenuePhotoGallery({ images, venueName, attribution }: {
             className="flex-shrink-0 snap-start w-[85%] sm:w-[45%] lg:w-[30%] rounded-lg overflow-hidden"
           >
             <img
-              src={optimizeImageUrl(url, IMAGE_SIZES.card)}
+              src={url}
               alt={`${venueName} — photo ${i + 1}`}
               className="w-full h-44 sm:h-52 object-cover bg-white/5"
               loading="lazy"
@@ -454,7 +453,7 @@ export default function EventDetailPage() {
             {/* Full poster — no heavy gradient, just a subtle bottom fade */}
             <div className="relative w-full max-h-[75vh] overflow-hidden">
               <img
-                src={optimizeImageUrl(event.image_url, IMAGE_SIZES.hero)}
+                src={event.image_url}
                 alt={event.title}
                 className="w-full h-full object-contain bg-black"
                 style={{ maxHeight: "75vh" }}

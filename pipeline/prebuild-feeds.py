@@ -330,11 +330,13 @@ def main():
     feed_size = HOMEPAGE_FEED.stat().st_size
     print(f"  ✓ homepage-feed.json ({feed_size:,} bytes, {len(feed['sections'])} sections, carousel: {len(feed['carousel'])})")
 
-    # 1b. Inject hero image preload into index.html
-    hero_url = (feed.get("featured") or {}).get("hero_image_url", "")
-    if not hero_url and feed.get("carousel"):
-        hero_url = feed["carousel"][0].get("hero_image_url", "")
-    inject_hero_preload(hero_url)
+    # 1b. Hero image preload injection — disabled (was causing PageSpeed variance
+    # because the preload URL could mismatch what React renders, and the preload
+    # itself didn't help since LCP element is the headline text, not the image)
+    # hero_url = (feed.get("featured") or {}).get("hero_image_url", "")
+    # if not hero_url and feed.get("carousel"):
+    #     hero_url = feed["carousel"][0].get("hero_image_url", "")
+    # inject_hero_preload(hero_url)
 
     # 2. Build per-category feeds
     print("  Building category feeds...")

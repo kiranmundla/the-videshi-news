@@ -20,7 +20,6 @@ import PhotoScrollStrip from "@/components/PhotoScrollStrip";
 import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
 import YouTubeEmbed, { extractYouTubeId } from "@/components/YouTubeEmbed";
 import ChampionsTimeline from "@/components/ChampionsTimeline";
-import { optimizeImageUrl, IMAGE_SIZES } from "@/lib/imageUrl";
 
 /* ------------------------------------------------------------------ */
 /* Gemini-style compact sources pill                                  */
@@ -277,7 +276,7 @@ function MarkdownWithEmbeds({
       if (heroImageUrl && norm(src) === norm(heroImageUrl)) {
         return null;
       }
-      return <img src={optimizeImageUrl(src, IMAGE_SIZES.gallery)} alt={alt || title} loading="lazy" referrerPolicy="no-referrer" />;
+      return <img src={src} alt={alt || title} loading="lazy" referrerPolicy="no-referrer" />;
     },
   };
 
@@ -703,7 +702,7 @@ export default function ArticlePage() {
                   style={{ scrollSnapAlign: "start" }}
                   onClick={(e) => { if (e.target === e.currentTarget) fsClose(); }}
                 >
-                  <img src={optimizeImageUrl(photo.src, IMAGE_SIZES.hero)} alt={photo.caption}
+                  <img src={photo.src} alt={photo.caption}
                     className="max-w-[90vw] max-h-[75vh] object-contain rounded" />
                   {photo.caption && (
                     <div className="mt-4 text-white/85 text-[15px] font-medium text-center max-w-[80vw]">{photo.caption}</div>

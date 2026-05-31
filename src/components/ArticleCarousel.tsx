@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { optimizeImageUrl, IMAGE_SIZES } from "@/lib/imageUrl";
 
 type Slide = {
   slug: string;
@@ -102,7 +101,7 @@ export default function ArticleCarousel() {
             style={{ width: `${100 / total}%` }}
           >
             <img
-              src={optimizeImageUrl(s.image_url, i === 0 ? IMAGE_SIZES.hero : IMAGE_SIZES.gallery)}
+              src={s.image_url}
               alt={s.headline}
               referrerPolicy="no-referrer"
               draggable={false}
