@@ -11,6 +11,11 @@ import re
 import urllib.request
 from datetime import datetime, timezone
 
+try:
+    import requests as _requests
+except ImportError:
+    _requests = None
+
 TARGETS = {
     # India consulates
     "Chennai (Madras)": ("chennai", "Chennai"),
@@ -58,9 +63,15 @@ def parse_months(text):
 def fetch_wait_times():
     """Fetch and parse the State Dept wait times page."""
     url = "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/global-visa-wait-times.html"
-    req = urllib.request.Request(url, headers={"User-Agent": "TheVideshi/1.0 (immigration news)"})
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        html = resp.read().decode("utf-8")
+    headers = {"User-Agent": "TheVideshi/1.0 (immigration news)"}
+    if _requests:
+        r = _requests.get(url, headers=headers, timeout=30)
+        r.raise_for_status()
+        html = r.text
+    else:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            html = resp.read().decode("utf-8")
     
     results = []
     now = datetime.now(timezone.utc).isoformat()
