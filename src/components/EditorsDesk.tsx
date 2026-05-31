@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { supabase as supabaseTyped } from "@/integrations/supabase/client";
 import { readingTime } from "@/lib/articles";
 import { isValidImage } from "@/components/HeroImage";
-
-const supabase = supabaseTyped as unknown as { from: (table: string) => any };
 
 type EditorialArticle = {
   id: string;
@@ -21,33 +18,26 @@ type EditorialArticle = {
 const GOLD = "#d4a855";
 
 async function fetchLatestEditorial(): Promise<EditorialArticle | null> {
-  // Primary: try is_editorial column
-  const { data, error } = await supabase
-    .from("p2_articles")
-    .select(
-      "id, slug, headline, subheadline, body, category, image_url, image_caption, published_at"
-    )
-    .eq("status", "published")
-    .eq("is_editorial", true)
-    .order("published_at", { ascending: false })
-    .limit(1)
-    .maybeSingle();
-
-  if (!error && data) return data as EditorialArticle;
-
-  // Fallback: check for 'editorial' tag (works before column migration)
-  const { data: tagData } = await supabase
-    .from("p2_articles")
-    .select(
-      "id, slug, headline, subheadline, body, category, image_url, image_caption, published_at"
-    )
-    .eq("status", "published")
-    .contains("tags", ["editorial"])
-    .order("published_at", { ascending: false })
-    .limit(1)
-    .maybeSingle();
-
-  return (tagData as EditorialArticle) ?? null;
+  try {
+    const resp = await fetch("/data/homepage-feed.json");
+    if (!resp.ok) return null;
+    const feed = await resp.json();
+    const ed = feed.editorial;
+    if (!ed) return null;
+    return {
+      id: ed.id,
+      slug: ed.slug,
+      headline: ed.title || "",
+      subheadline: ed.excerpt || null,
+      body: ed.body || "",
+      category: ed.category || null,
+      image_url: ed.hero_image_url || null,
+      image_caption: ed.image_caption || null,
+      published_at: ed.published_at || null,
+    };
+  } catch {
+    return null;
+  }
 }
 
 export default function EditorsDesk() {

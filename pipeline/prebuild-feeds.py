@@ -203,9 +203,31 @@ def article_without_body(a: dict) -> dict:
     return {k: v for k, v in a.items() if k != "body"}
 
 
+def fetch_editorial(url: str, key: str) -> dict | None:
+    """Fetch the latest is_editorial=true article from Supabase."""
+    headers = {"apikey": key, "Authorization": f"Bearer {key}"}
+    resp = requests.get(
+        f"{url}/rest/v1/p2_articles",
+        headers=headers,
+        params={
+            "select": P2_COLS,
+            "status": "eq.published",
+            "is_editorial": "eq.true",
+            "order": "published_at.desc",
+            "limit": "1",
+        },
+    )
+    if resp.status_code != 200:
+        return None
+    rows = resp.json()
+    if not rows:
+        return None
+    return map_row(rows[0])
+
+
 # ── Homepage feed builder ─────────────────────────────────────────────
 
-def build_homepage_feed(articles: list[dict]) -> dict:
+def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> dict:
     """Build the homepage-feed.json structure."""
     now = datetime.now(timezone.utc)
     since_72h = (now - timedelta(hours=72)).isoformat()
@@ -259,9 +281,14 @@ def build_homepage_feed(articles: list[dict]) -> dict:
                 seen_ids.add(a["id"])
                 break
 
+    # Editorial pick: article with is_editorial=true (manually curated)
+    editorial_article = fetch_editorial(url, key)
+    editorial = article_without_body(editorial_article) if editorial_article else None
+
     return {
         "generated_at": now.isoformat(),
         "featured": featured,
+        "editorial": editorial,
         "sections": sections,
         "carousel": carousel,
     }
@@ -324,7 +351,7 @@ def main():
 
     # 1. Build homepage feed
     print("  Building homepage-feed.json...")
-    feed = build_homepage_feed(articles)
+    feed = build_homepage_feed(articles, url, key)
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     HOMEPAGE_FEED.write_text(json.dumps(feed, ensure_ascii=False, separators=(",", ":")))
     feed_size = HOMEPAGE_FEED.stat().st_size
