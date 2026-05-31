@@ -1,22 +1,21 @@
 #!/usr/bin/env python3
-"""
-Sports Writer — 2026-05-31
-Publishes 2 fresh sports articles for The Videshi:
-1. Norway Chess Round 5: Gukesh's first classical win + Divya leads women's
-2. Zee to broadcast FIFA World Cup 2026 in India
-"""
+"""Sports writer for The Videshi — 2026-05-31 batch"""
 
-import os, json, uuid, datetime, requests, urllib.parse, re, sys
+import json, os, re, time, uuid, subprocess, urllib.parse
+import requests
 
-# ── env ──
-from dotenv import load_dotenv
-load_dotenv(os.path.expanduser("~/.env.supabase"))
-load_dotenv(os.path.expanduser("~/workspace/.env.pexels"))
+# Load env
+env_path = os.path.expanduser("~/.env.supabase")
+with open(env_path) as f:
+    for line in f:
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            key, _, val = line.partition("=")
+            val = val.strip().strip('"').strip("'")
+            os.environ[key] = val
 
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY   = os.environ.get("PEXELS_API_KEY", "")
-
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -24,7 +23,18 @@ HEADERS = {
     "Prefer": "return=representation",
 }
 
-# ── helpers ──
+# Load Pexels key
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+PEXELS_KEY = None
+if os.path.exists(pexels_env):
+    with open(pexels_env) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                key, _, val = line.partition("=")
+                val = val.strip().strip('"').strip("'")
+                if "PEXELS" in key.upper():
+                    PEXELS_KEY = val
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -45,71 +55,66 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
+    """Fetch image from Pexels using curl (Python urllib gets 403)."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
+        print("  ⚠ No Pexels API key found")
         return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            import subprocess
             result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
+                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
                  "-H", f"Authorization: {PEXELS_KEY}"],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
             photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+            for photo in photos:
+                src = photo.get("src", {})
+                url = src.get("large2x") or src.get("large") or src.get("original")
                 if url:
-                    # Validate
-                    head = requests.head(url, timeout=5)
-                    clen = int(head.headers.get("Content-Length", 0))
-                    if clen > 5000:
-                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                        return url
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase article-images bucket."""
+def upload_image_to_supabase(image_url, filename):
+    """Download image and upload to Supabase storage."""
     try:
-        resp = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=15)
-        if resp.status_code != 200:
-            print(f"  ⚠ Failed to download image: HTTP {resp.status_code}")
-            return image_url  # fall back to original URL if permanent
-        content_type = resp.headers.get("Content-Type", "image/jpeg")
+        r = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=20)
+        if r.status_code != 200:
+            print(f"  ⚠ Image download failed: HTTP {r.status_code}")
+            # If it's a permanent source (Wikimedia/Pexels), use URL directly
+            if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
+                print(f"  → Using permanent URL directly")
+                return image_url
+            return image_url
+        content_type = r.headers.get("Content-Type", "image/jpeg")
         if not content_type.startswith("image/"):
-            content_type = "image/jpeg"
-        if len(resp.content) < 5000:
-            print(f"  ⚠ Image too small ({len(resp.content)} bytes), skipping upload")
+            print(f"  ⚠ Not an image: {content_type}")
+            return image_url
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small: {len(r.content)} bytes")
             return image_url
 
         upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        upload_resp = requests.post(
-            upload_url,
-            headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": content_type,
-                "x-upsert": "true",
-            },
-            data=resp.content,
-            timeout=30,
-        )
-        if upload_resp.status_code in (200, 201):
+        upload_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": content_type,
+            "x-upsert": "true",
+        }
+        ur = requests.post(upload_url, headers=upload_headers, data=r.content, timeout=30)
+        if ur.status_code in (200, 201):
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ⚠ Supabase upload failed: {upload_resp.status_code} {upload_resp.text[:200]}")
-            # If the original URL is from Wikipedia/Pexels (permanent), use it directly
+            print(f"  ⚠ Supabase upload failed: {ur.status_code} {ur.text[:200]}")
+            # If it's a Wikimedia URL, it's permanent and safe to use directly
             if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
                 return image_url
             return None
@@ -119,280 +124,224 @@ def upload_to_supabase_storage(image_url, filename):
             return image_url
         return None
 
-
-def insert_article(article):
-    """Insert article into Supabase."""
-    resp = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article,
-    )
-    if resp.status_code in (200, 201):
-        data = resp.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data["id"]
-        print(f"  ✓ Article inserted: {art_id}")
-        return art_id
-    else:
-        print(f"  ✗ Insert failed: {resp.status_code} {resp.text[:300]}")
-        return None
-
-
-def patch_article(art_id, updates):
-    """Patch an article by ID."""
-    resp = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{art_id}",
-        headers=HEADERS,
-        json=updates,
-    )
-    if resp.status_code in (200, 204):
-        print(f"  ✓ Article patched: {art_id}")
-    else:
-        print(f"  ⚠ Patch issue: {resp.status_code} {resp.text[:200]}")
-
-
 def validate_image_url(url):
-    """Verify URL returns 200 with image content-type and >5KB."""
+    """Validate that an image URL returns a real image."""
     if not url:
         return False
     try:
-        head = requests.head(url, timeout=10, allow_redirects=True,
-                             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = head.headers.get("Content-Type", "")
-        cl = int(head.headers.get("Content-Length", 0))
-        if head.status_code == 200 and "image" in ct and cl > 5000:
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, allow_redirects=True)
+        if r.status_code != 200:
+            # Try GET for servers that don't support HEAD
+            r = requests.get(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, stream=True)
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if "image" in ct and cl > 5000:
             return True
-        # Some servers don't support HEAD, try GET with range
-        if head.status_code in (200, 405, 403):
-            r = requests.get(url, timeout=10, stream=True,
-                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            ct = r.headers.get("Content-Type", "")
-            if r.status_code == 200 and "image" in ct:
-                chunk = r.raw.read(6000)
-                if len(chunk) >= 5000:
-                    return True
+        if "image" in ct and cl == 0:
+            # Some servers don't return Content-Length with HEAD
+            return True
     except:
         pass
     return False
 
+def sb_insert(table, data):
+    """Insert a row into Supabase."""
+    url = f"{SUPABASE_URL}/rest/v1/{table}"
+    r = requests.post(url, headers=HEADERS, json=data, timeout=30)
+    if r.status_code in (200, 201):
+        result = r.json()
+        if isinstance(result, list) and result:
+            return result[0]
+        return result
+    else:
+        print(f"  ⚠ Insert failed: {r.status_code} {r.text[:300]}")
+        return None
 
-# ── Article 1: Norway Chess Round 5 ──
-print("\n" + "="*60)
-print("ARTICLE 1: Norway Chess Round 5 — Gukesh's First Classical Win")
-print("="*60)
+def sb_patch(table, filters, data):
+    """Patch a row in Supabase."""
+    filter_str = "&".join(f"{k}={v}" for k, v in filters.items())
+    url = f"{SUPABASE_URL}/rest/v1/{table}?{filter_str}"
+    r = requests.patch(url, headers=HEADERS, json=data, timeout=30)
+    return r.status_code in (200, 204)
 
-art1_slug = "norway-chess-2026-round-5-gukesh-first-classical-win-divya-deshmukh-leads-women-pragg"
-art1_headline = "Gukesh Has Won His First Classical Game at Norway Chess. Divya Deshmukh Has Taken the Lead in the Women's Tournament."
-art1_subheadline = "The world champion beat Praggnanandhaa in Round 5 after four frustrating rounds. Wesley So stunned Carlsen. And Divya Deshmukh overtook Bibisara Assaubayeva to lead the women's event in Oslo."
 
-art1_body = """D Gukesh needed this. After four rounds of miscues, Armageddon losses, and a punishing classical defeat to Magnus Carlsen, the reigning world champion finally played the kind of chess that won him the title in Singapore last December.
+###############################################################################
+# ARTICLE 1: Pooja Singh High Jump National Record
+###############################################################################
 
-In Round 5 of Norway Chess 2026, Gukesh defeated fellow Indian R Praggnanandhaa in a classical game to register his first full three-point win of the tournament. It was the all-India clash that the chess world had circled since the pairings were announced — the world champion against the player many believe will challenge him next.
+print("\n=== Article 1: Pooja Singh High Jump National Record ===")
 
-## Gukesh Finds His Rhythm
+art1_slug = "pooja-singh-high-jump-national-record-1-93m-asian-u20-hong-kong-haryana-nri"
+art1_headline = "She Practised With Bamboo Poles and Husk Sacks. Now Pooja Singh Is the Highest-Jumping Woman in Indian History."
+art1_subheadline = "The nineteen-year-old from a mason's family in rural Haryana cleared 1.93 metres to break a fourteen-year-old national record and win gold at the Asian U20 Championships in Hong Kong."
 
-Gukesh had entered the day bottom of the standings on 3.5 points, a position unbefitting a world champion. His tournament had been defined by near-misses: two Armageddon losses and a classical defeat to Carlsen in Round 4 that left him staring at the standings from the wrong end.
+art1_body = """When Pooja Singh lined up for her second attempt at 1.93 metres at the Asian U20 Athletics Championships in Hong Kong on Friday, the bar had been set at a height no Indian woman had ever cleared in competition. She ran in, planted her foot, arched her back and sailed over it.
 
-Against Pragg, he found clarity. The game featured sharp middlegame play where Gukesh gradually outmaneuvered his compatriot's defenses. The win was clinical rather than spectacular — a world champion executing his preparation with precision when it mattered most.
+Then she broke down in tears on the track.
 
-For Pragg, the loss was a setback after an impressive start to the tournament. The 20-year-old had won his first two Armageddon games and sat in second place heading into Round 5. He remains well-positioned in the standings but will need to regroup.
+The nineteen-year-old from Bosti village in Fatehabad, Haryana, had just shattered a national record that had stood for fourteen years. Sahana Kumari's mark of 1.92 metres, set at the 2012 Federation Cup, had survived every Indian high jumper who came after her — until a teenager who first learned to jump over bamboo poles stuck into sacks of husk in a village field decided it was time.
 
-## Wesley So Ends Carlsen's Momentum
+## From Yoga Mat to Landing Pit
 
-The bigger surprise of Round 5 came on the adjacent board, where Wesley So defeated Magnus Carlsen. The American grandmaster, representing the Philippines by birth and the United States by choice, has long been one of the most underrated players in elite chess.
+Pooja Singh's journey into high jump began, improbably, in a yoga class. Her first coach, Balwan Singh Parta, noticed the extraordinary flexibility in her asanas — particularly her charasana and dhanurasana — and saw the raw material of a high jumper. He recruited her and began training her on whatever equipment they could find.
 
-So's victory ended Carlsen's resurgence after the Norwegian had beaten Gukesh in Round 4. The world number one had looked back to his imperious best against the Indian champion, but So exposed defensive weaknesses that the top-ranked player could not solve.
+Her father, Hansraj, is a construction worker. The family had no money for proper facilities. So Pooja improvised: bamboo poles for crossbars, gunny sacks stuffed with husk for landing mats, village fields for training grounds. The gap between where she started and where she has arrived is measured in more than centimetres.
 
-Alireza Firouzja, the French-Iranian prodigy, continues to lead the open tournament despite losing his Armageddon game to So. The 23-year-old's unbeaten run in classical games remains intact, and he sits comfortably ahead of the field.
+## The Record Sequence
 
-## Divya Deshmukh Takes Over
+In Hong Kong, Pooja first cleared 1.91 metres to improve her own Under-20 national record. Then she raised the bar to 1.93 metres. Her first attempt clipped the bar. On her second, she cleared it cleanly and the history books were rewritten.
 
-The women's tournament produced its own dramatic shift. India's Divya Deshmukh overtook Kazakhstan's Bibisara Assaubayeva to take the lead in the women's event — a remarkable achievement for the 19-year-old from Nagpur.
+The previous national record of 1.92 metres had been held by Sahana Kumari since 2012 — a mark that had become a kind of ceiling for Indian women's high jump. Kumari herself was in the stands on Friday, now serving as Pooja's current mentor, and was among the first to embrace her after the leap.
 
-Deshmukh, who stunned reigning women's world champion Ju Wenjun earlier in the tournament, has been the most consistent performer in the women's field. Her rise to the top of the standings confirms what Indian chess followers have long suspected: she is ready for the very highest level.
+Pooja also broke the championship record of 1.90 metres set by Uzbekistan's Svetlana Radzivil in 2006. Emboldened, she took three attempts at 1.96 metres — the Asian junior record — and came agonisingly close but could not clear it.
 
-The women's tournament features a six-player round-robin running parallel to the open event, with equal prize money of 1,690,000 NOK (approximately $182,000) — a welcome step toward parity in professional chess.
+"Aaj to ho jaata," she had said after narrowly missing 1.92 metres at a meet in Delhi in April. Two months later, she went a centimetre beyond it.
 
-## The NRI Perspective
+## A Comeback Season
 
-For the Indian diaspora, Norway Chess 2026 represents something extraordinary. Three Indian players — Gukesh, Pragg, and Divya — are competing at the highest level of classical chess simultaneously, a scenario that would have seemed unimaginable a decade ago.
+The record was made more remarkable by the fact that Pooja was sidelined for months last year with a Grade 2 ligament tear that threatened her career. When she returned, she joined a new coach — Sergey Biran of Uzbekistan, who had coached his wife Svetlana Radzivil to three Asian Games titles in the same event.
 
-Gukesh, at 20, is the youngest world champion in history. Pragg, also 20, pushed Carlsen to a tiebreaker in the 2023 World Cup final. Divya, at 19, is leading a prestigious women's event against the established elite. The depth of Indian chess talent has never been greater.
+The partnership bore fruit quickly. Pooja won silver at the Asian Indoor Championships in Tianjin in February 2026, then cleared a personal best of 1.90 metres in Delhi in April. Friday's jump of 1.93 metres was thirteen centimetres above her Asian Championships gold-medal height of 1.89 metres from Gumi, South Korea, in 2025 — a staggering improvement in the space of a year.
 
-Norway Chess continues through June 5 in Oslo, with the open and women's events running in parallel. The classical time control — 120 minutes for 40 moves with a 10-second increment — means these are the deepest, most consequential games these players will face outside of world championship matches.
+## What It Means
 
-## Standings After Round 5
+The 1.93-metre clearance also breaches the Athletics Federation of India's qualification standard of 1.92 metres for the 2026 Commonwealth Games. Whether she will be selected remains to be seen — the Federation Cup in Ranchi was designated as the final qualifying event, and Pooja did not compete there — but a national record holder will be difficult to leave behind.
 
-**Open:** Firouzja leads, followed by Pragg, So, Carlsen, Gukesh, and Keymer.
+India's campaign at the Asian U20 Championships has been exceptional. By the end of day three, the team had collected eight gold medals, four silver and three bronze — second only to China on the medal table. Shahnavaz Khan won gold in the men's long jump with a leap of 7.84 metres, Basant cleared 2.20 metres to win the men's high jump, and Nikhil Chandrashekar set a personal best of 9:25.44 to take the 3000-metre steeplechase title.
 
-**Women's:** Divya Deshmukh leads, having overtaken Assaubayeva.
+But the image that will endure from Hong Kong is a teenager from Haryana, crying on the track, with the Indian flag draped over her shoulders and the number 1.93 on the scoreboard above her.
 
-Round 6 pairings promise more fireworks, with Gukesh facing Firouzja and Carlsen taking on Pragg in rematches that could reshape the standings entirely.
+Union Sports Minister Raksha Khadse summed it up: "India is proud of you, Pooja. Your flight will continue to inspire generations to come."
 
-*Norway Chess 2026 is streamed live on Chess24's YouTube and Twitch channels. All games begin at 5 PM CEST (8:30 PM IST, 11 AM ET, 8 AM PT).*
+*Sources: PTI, IANS, Athletics Federation of India, RevSportz*"""
 
-**Sources:** Chess.com, ChessBase, Norway Chess official"""
-
-# Image for Gukesh
-print("  Sourcing image for Gukesh...")
-img1_url = fetch_wikipedia_person_image("D. Gukesh")
+# Image: try Wikipedia first
+img1_url = fetch_wikipedia_person_image("Pooja Singh (athlete)")
 if not img1_url:
-    img1_url = fetch_wikipedia_person_image("Gukesh D")
+    img1_url = fetch_wikipedia_person_image("Pooja Singh high jumper")
 if not img1_url:
-    img1_url = fetch_wikipedia_person_image("Dommaraju Gukesh")
+    print("  Trying Pexels for high jump image...")
+    img1_url = fetch_pexels_image("women high jump athletics", "track field high jump competition")
 
-art1_id = str(uuid.uuid4())
-img1_attribution = "Wikimedia Commons"
-
+final_img1 = None
 if img1_url:
-    # Try upload, but if rate limited, use direct Wikimedia URL (permanent)
-    final_img1 = upload_to_supabase_storage(img1_url, f"{art1_id}.jpg")
-    if not final_img1:
-        # Wikimedia URLs are permanent, safe to use directly
-        if "upload.wikimedia.org" in img1_url:
-            print(f"  ℹ Using direct Wikimedia URL")
-            final_img1 = img1_url
-        elif validate_image_url(img1_url):
+    final_img1 = upload_image_to_supabase(img1_url, f"{art1_slug}.jpg")
+    if final_img1 and not validate_image_url(final_img1):
+        print(f"  ⚠ Image validation failed for {final_img1[:60]}, trying direct URL...")
+        if "upload.wikimedia.org" in img1_url or "images.pexels.com" in img1_url:
             final_img1 = img1_url
         else:
             final_img1 = None
-else:
-    final_img1 = None
-    print("  ⚠ No Wikipedia image found for Gukesh, trying Pexels...")
-    pexels_img = fetch_pexels_image("chess tournament grandmaster", "chess pieces competition")
-    if pexels_img:
-        final_img1 = pexels_img
-        img1_attribution = "The Videshi"
 
-article1 = {
-    "id": art1_id,
+art1_data = {
     "headline": art1_headline,
     "subheadline": art1_subheadline,
-    "slug": art1_slug,
     "body": art1_body,
+    "slug": art1_slug,
     "category": "sports",
-    "vertical": "sport",
-    "urgency": "daily",
-    "diaspora_angle": "Three Indian players — Gukesh, Pragg, and Divya Deshmukh — are competing at the highest level of classical chess simultaneously at Norway Chess 2026. Gukesh, 20, is the youngest world champion in history. Pragg sits second in the standings. Divya, 19, has taken the lead in the women's event. For NRI chess fans, this depth of Indian talent at the elite level is unprecedented.",
-    "word_count": len(art1_body.split()),
+    "vertical": "sports",
+    "diaspora_angle": "India's all-time women's high jump record holder is a nineteen-year-old from a mason's family who trained with bamboo poles. Her CWG qualification and national record resonate with NRIs who follow Indian athletics and grassroots sport development stories.",
     "status": "published",
-    "published_at": datetime.datetime.utcnow().isoformat() + "Z",
+    "published_at": "2026-05-31T06:00:00Z",
     "sources": json.dumps([
-        {"name": "Chess.com", "url": "https://www.chess.com/news/view/2026-norway-chess-round-5"},
-        {"name": "ChessBase", "url": "https://en.chessbase.com/"},
-        {"name": "Norway Chess", "url": "https://norwaychess.no/"}
+        {"name": "PTI", "url": "https://www.ptinews.com/"},
+        {"name": "IANS", "url": "https://ianslive.in/"},
+        {"name": "Athletics Federation of India", "url": "https://www.indianathletics.in/"},
+        {"name": "RevSportz", "url": "https://revsportz.in/"}
     ]),
     "image_url": final_img1,
-    "image_attribution": img1_attribution if final_img1 else None,
+    "image_attribution": "Wikimedia Commons" if (final_img1 and "wikimedia" in (final_img1 or "").lower()) else "The Videshi",
 }
 
-result1 = insert_article(article1)
+result1 = sb_insert("p2_articles", art1_data)
+if result1:
+    art1_id = result1.get("id", "unknown")
+    print(f"  ✓ Article 1 published: {art1_headline[:60]}... (ID: {art1_id})")
+else:
+    print(f"  ✗ Article 1 failed to publish")
 
 
-# ── Article 2: Zee to Broadcast FIFA World Cup 2026 in India ──
-print("\n" + "="*60)
-print("ARTICLE 2: Zee to Broadcast FIFA World Cup 2026 in India")
-print("="*60)
+###############################################################################
+# ARTICLE 2: India Women U18 Beat Korea in Hockey Asia Cup
+###############################################################################
 
-art2_slug = "zee-broadcast-fifa-world-cup-2026-india-unite8-sports-nri-watch-guide"
-art2_headline = "Zee Will Broadcast the FIFA World Cup in India. Twelve Days Before Kickoff, Indian Fans Finally Have an Answer."
-art2_subheadline = "After weeks of uncertainty, Zee Entertainment is set to announce a broadcast deal with FIFA. Matches will air on Unite8 Sports channels and stream on Zee5 — ending fears of a World Cup blackout in one of football's biggest markets."
+print("\n=== Article 2: India Women U18 Beat Korea 3-1 ===")
 
-art2_body = """For weeks, Indian football fans have lived with an absurd question: will the biggest sporting event in the world actually be shown in their country?
+art2_slug = "india-women-u18-hockey-beat-korea-3-1-asia-cup-nousheen-naz-kakamigahara-nri"
+art2_headline = "Nousheen Naz Has Now Scored in Every Game. India's U18 Women Beat Korea 3-1 to Top Their Asia Cup Pool."
+art2_subheadline = "The fifteen-year-old from Seoni converted a penalty stroke in the fourth minute, Shruti Kumari and Kiran Ekka added field goals, and India sit first in Pool A in Japan."
 
-With the FIFA World Cup 2026 kicking off on June 11 across the United States, Canada, and Mexico, India — a nation of 1.4 billion people with a rapidly growing football audience — still had no confirmed broadcaster. That is about to change.
+art2_body = """On the opening day of the U18 Asia Cup in Kakamigahara, a fifteen-year-old from Seoni in Madhya Pradesh scored both goals in a 2-1 win over Malaysia. Two days later, she was at it again.
 
-## Zee Steps In
+Nousheen Naz stepped up to take a penalty stroke in the fourth minute on Sunday and calmly beat the Korean goalkeeper to put India ahead. It was her third goal in two matches. She has now scored in every game India have played at this tournament, and the U18 women's team have won both.
 
-According to multiple reports, Zee Entertainment Enterprises is set to officially announce a broadcast deal with FIFA over the coming days. The agreement covers the 2026 FIFA World Cup and will bring all 104 matches to Indian television screens through Zee's newly launched Unite8 Sports channels and its OTT platform Zee5.
+India beat Korea 3-1 in their second Pool A match to move to the top of the group with six points from two games. They will face Singapore in their final pool fixture on June 2.
 
-The channels — Unite8 Sports 1 and Unite8 Sports 1 HD in Hindi, alongside Unite8 Sports 2 and Unite8 Sports 2 HD in English — represent Zee's renewed push into sports broadcasting. For the diaspora community, the Zee5 streaming option means NRIs with existing subscriptions may be able to access coverage digitally, though geo-restrictions will vary by region.
+## The Match
 
-## How India Nearly Missed the World Cup
+India made their intentions clear from the start. The opening quarter saw them dominate possession and create multiple chances. The penalty stroke came in the fourth minute, and Nousheen made no mistake — placing the ball firmly past the Korean keeper to give India a 1-0 lead.
 
-The road to this deal was anything but smooth. FIFA initially sought $100 million from Indian broadcasters for the 2026 and 2030 editions combined. That figure was later reduced to $60 million — the same price paid for the 2022 tournament in Qatar.
+The Indians continued to press in the second quarter. In the twenty-first minute, Shruti Kumari found the back of the net with a clean field goal, doubling the advantage to 2-0 at halftime. India had earned four penalty corners and converted one penalty stroke in the first two quarters, controlling the tempo and keeping Korean counterattacks to a minimum.
 
-Reliance-Disney's JioStar, which controls the IPL and most premium cricket rights in India, entered discussions but walked away. Sony Pictures Networks India held talks but ultimately declined to submit a formal bid. The impasse left FIFA facing the embarrassing prospect of a World Cup blackout in one of the world's largest television markets.
+Korea attempted to mount a comeback after the break. In the forty-first minute, Gyeongmin Ryu pulled one back to reduce the deficit to 2-1 and give the Koreans a lifeline heading into the final quarter. But India responded swiftly.
 
-Meanwhile, an Indian-American investment firm called Avni LLC, based in Washington DC, emerged as an unlikely contender. Led by CEO Deelip Mhaske, the firm claimed to have submitted a corporate guarantee exceeding $300 million as part of FIFA's closed tender process. Avni pitched a vision built around AI-powered multilingual broadcasting, mobile micro-subscriptions, and esports integrations across Asia.
+Two minutes later, Kiran Ekka, who was later named Player of the Match, converted a penalty corner to restore the two-goal cushion at 3-1. India's defence held firm through the fourth quarter, denying Korea any further opportunities to get back into the contest.
 
-A Delhi High Court petition added further pressure, seeking directions to ensure the tournament is broadcast on Doordarshan and DD Sports — India's free-to-air public broadcasters — to prevent a total blackout.
+## Nousheen's Rise
 
-## What NRIs Need to Know
+The backstory of Nousheen Naz reads like the kind of tale Indian hockey was built on. She comes from Seoni, a small town in central Madhya Pradesh, and picked up a hockey stick in circumstances that would be familiar to anyone who has followed the sport in India's smaller towns — limited facilities, borrowed equipment, a natural ability spotted by a local coach.
 
-For Indian Americans and the broader diaspora, the World Cup broadcast landscape varies by country:
-
-**United States:** Fox Sports and Telemundo hold English and Spanish rights respectively. Fox will broadcast matches across Fox, FS1, and the Fox Sports app. The tournament is being hosted across 16 American cities including New York, Los Angeles, Dallas, Houston, Miami, and the Bay Area.
-
-**Canada:** CTV/TSN holds English rights, with TVA Sports broadcasting in French.
-
-**United Kingdom:** BBC and ITV share free-to-air rights.
-
-**India:** Zee's Unite8 Sports channels and Zee5 streaming platform. Exact pricing and packages are expected to be announced shortly.
-
-The timing challenge remains significant for Indian audiences. With matches kicking off during North American afternoon and evening hours, most games will fall between midnight and 6 AM IST — a familiar inconvenience for cricket fans accustomed to watching overseas series, but still a hurdle for mass viewership.
+At fifteen, she is the youngest player in the Indian squad and already the tournament's most impactful forward. Her three goals in two games have come through a penalty corner against Malaysia, a field goal against Malaysia, and a penalty stroke against Korea — evidence of a player comfortable scoring from any situation.
 
 ## The Bigger Picture
 
-India's World Cup broadcast saga reflects the broader tensions in global sports media rights. FIFA's valuation expectations clashed with the reality of a time-zone-disadvantaged market. Cricket still dominates Indian sports viewership so comprehensively that even the world's biggest football tournament struggled to find a buyer.
+India's men's U18 team has been equally dominant in Kakamigahara. They opened with a 13-0 demolition of Kazakhstan on Friday, with captain Ketan Kushwaha scoring a hat-trick and six other players finding the net. The men face hosts Japan on Sunday in what should be a sterner test of their credentials.
 
-Yet the 2022 Qatar World Cup generated record television numbers in India, with late-night viewing parties becoming a cultural phenomenon in cities across the country. Football's audience in India — particularly among young, urban, and diaspora-connected viewers — continues to grow.
+Both Indian teams are now in strong positions to top their pools and qualify for the knockout stages. The U18 Asia Cup serves as a key pathway for identifying future senior internationals, and the performances of players like Nousheen Naz, Kushwaha, and Shruti Kumari suggest India's hockey pipeline continues to produce talent at an encouraging rate.
 
-For NRIs in the United States, this World Cup is uniquely accessible. With matches happening across American time zones and venues within driving distance of major Indian-American population centers, the 2026 tournament offers an opportunity to experience the global game on home soil.
+For the NRI community watching from abroad, the tournament is available through Hockey India's streaming channels. India's women play Singapore on June 2, while the men's schedule continues through the group stage this week in Kakamigahara.
 
-Zee's late entry ensures that fans back home will not miss out. The deal may have come down to the wire, but Indian football fans — both in the country and across the world — can finally plan their viewing schedules.
+The matches are being played in Japan, which means evening kick-offs for viewers in India and early morning starts for those on the US East Coast — a familiar scheduling challenge for diaspora fans who have learned to set alarms for the sports they love.
 
-*The FIFA World Cup 2026 runs from June 11 to July 19 across 16 cities in the United States, Canada, and Mexico. 48 teams will compete in 104 matches.*
+*Sources: PTI, Hockey India, RevSportz*"""
 
-**Sources:** RevSportz, MensXP, The Indian Eye, Reuters"""
+# Image: try Wikipedia for field hockey or Pexels
+img2_url = fetch_pexels_image("women field hockey game", "hockey sport women")
 
-# Image for FIFA World Cup
-print("  Sourcing image for FIFA World Cup...")
-img2_url = fetch_pexels_image("soccer football stadium world cup", "football match stadium")
-art2_id = str(uuid.uuid4())
-
+final_img2 = None
 if img2_url:
-    final_img2 = upload_to_supabase_storage(img2_url, f"{art2_id}.jpg")
-    if not final_img2 or not validate_image_url(final_img2):
-        if validate_image_url(img2_url):
+    final_img2 = upload_image_to_supabase(img2_url, f"{art2_slug}.jpg")
+    if final_img2 and not validate_image_url(final_img2):
+        print(f"  ⚠ Image validation failed, using Pexels direct")
+        if "images.pexels.com" in img2_url:
             final_img2 = img2_url
         else:
             final_img2 = None
-    img2_attribution = "The Videshi"
-else:
-    final_img2 = None
-    img2_attribution = None
 
-article2 = {
-    "id": art2_id,
+art2_data = {
     "headline": art2_headline,
     "subheadline": art2_subheadline,
-    "slug": art2_slug,
     "body": art2_body,
+    "slug": art2_slug,
     "category": "sports",
-    "vertical": "sport",
-    "urgency": "high",
-    "diaspora_angle": "NRIs in the US will watch the World Cup live at local venues across 16 American cities. For fans back home in India, weeks of uncertainty about whether the tournament would even be broadcast have finally ended with Zee's deal. The 2022 Qatar World Cup generated record late-night viewership in India. Indian-American firm Avni LLC also emerged as an unlikely broadcast contender. The time-zone disadvantage for IST audiences makes streaming on Zee5 essential for diaspora fans in India-friendly time zones.",
-    "word_count": len(art2_body.split()),
+    "vertical": "sports",
+    "diaspora_angle": "India's junior hockey pipeline continues to produce talent at a pace that resonates with NRIs who grew up watching the sport. The U18 Asia Cup in Japan is streamed live, with early-morning starts for US East Coast viewers.",
     "status": "published",
-    "published_at": datetime.datetime.utcnow().isoformat() + "Z",
+    "published_at": "2026-05-31T06:00:00Z",
     "sources": json.dumps([
-        {"name": "RevSportz", "url": "https://revsportz.in/zee-set-to-broadcast-fifa-world-cup-2026-in-india/"},
-        {"name": "MensXP", "url": "https://www.mensxp.com/"},
-        {"name": "The Indian Eye", "url": "https://theindianeye.com/"}
+        {"name": "PTI", "url": "https://www.ptinews.com/"},
+        {"name": "Hockey India", "url": "https://www.hockeyindia.org/"},
+        {"name": "RevSportz", "url": "https://revsportz.in/"}
     ]),
     "image_url": final_img2,
-    "image_attribution": img2_attribution,
+    "image_attribution": "The Videshi",
 }
 
-result2 = insert_article(article2)
+result2 = sb_insert("p2_articles", art2_data)
+if result2:
+    art2_id = result2.get("id", "unknown")
+    print(f"  ✓ Article 2 published: {art2_headline[:60]}... (ID: {art2_id})")
+else:
+    print(f"  ✗ Article 2 failed to publish")
 
-# ── Summary ──
-print("\n" + "="*60)
-print("SUMMARY")
-print("="*60)
-print(f"Article 1: {'✓' if result1 else '✗'} {art1_headline[:80]}...")
-print(f"  Slug: {art1_slug}")
-print(f"  Image: {'✓' if final_img1 else '✗ (no image)'}")
-print(f"Article 2: {'✓' if result2 else '✗'} {art2_headline[:80]}...")
-print(f"  Slug: {art2_slug}")
-print(f"  Image: {'✓' if final_img2 else '✗ (no image)'}")
+print("\n=== Sports writer batch complete ===")
