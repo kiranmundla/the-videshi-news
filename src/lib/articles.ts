@@ -128,7 +128,7 @@ function mapRow(row: P2Row): Article {
     nri_angle: row.diaspora_angle ?? undefined,
     article_type: "news",
     tags: Array.isArray(row.tags) ? row.tags : undefined,
-    author: "Editor's Desk",
+    author: row.sources || "Diaspora Desk",
     featured_score: 0,
     is_pinned_featured: !!row.is_featured,
     pinned_until: null,
