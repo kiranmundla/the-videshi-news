@@ -151,10 +151,15 @@ function SightingCard({ s }: { s: VisaSighting }) {
         </p>
       )}
 
-      <p className="text-sm text-foreground/80 leading-relaxed">{s.description}</p>
+      <p className="text-sm text-foreground/80 leading-relaxed">{s.raw_message || s.description}</p>
 
       <p className="text-xs text-foreground/40 mt-2">
-        🙏 <span className="font-medium text-foreground/60">{s.reporter_name}</span> · Thank you for spotting
+        🙏 <span className="font-medium text-foreground/60">{s.reporter_name}</span>
+        {s.source_channel ? (
+          <span className="ml-1">· via <span className="text-blue-500/70">{s.source_channel}</span></span>
+        ) : (
+          <span className="ml-1">· Thank you for spotting</span>
+        )}
       </p>
     </article>
   );
