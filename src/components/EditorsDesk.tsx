@@ -86,11 +86,14 @@ export default function EditorsDesk() {
           loading="eager"
           referrerPolicy="no-referrer"
           className="w-full h-auto block"
+          width={1200}
+          height={675}
           style={{
             minHeight: "260px",
             maxHeight: "520px",
             objectFit: "cover",
             objectPosition: "center 20%",
+            aspectRatio: "16/9",
           }}
         />
 
