@@ -70,14 +70,14 @@ export default function FeaturedHero({ article }: { article: Article }) {
                 )}
               </Link>
             </div>
-            <div className="hidden md:block w-[180px] lg:w-[220px] flex-shrink-0 aspect-[3/2] overflow-hidden">
+            <div className="hidden md:block w-[180px] lg:w-[220px] flex-shrink-0">
               <img
                 src={optimizeImageUrl(article.hero_image_url, IMAGE_SIZES.card)}
                 alt={article.title}
                 loading="eager"
                 fetchPriority="high"
                 referrerPolicy="no-referrer"
-                className="w-full h-full rounded object-cover"
+                className="w-full h-auto rounded object-cover"
                 width="220"
                 height="146"
               />
@@ -90,21 +90,19 @@ export default function FeaturedHero({ article }: { article: Article }) {
     // Landscape: full-bleed background
     return (
       <section className="relative w-full overflow-hidden rounded-lg">
-        <div className="w-full aspect-video overflow-hidden">
-          <img
-            src={optimizeImageUrl(article.hero_image_url, IMAGE_SIZES.hero)}
-            alt={article.title}
-            loading="eager"
-            fetchPriority="high"
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover block"
-            width="800"
-            height="450"
-            srcSet={`${optimizeImageUrl(article.hero_image_url, 400)} 400w, ${optimizeImageUrl(article.hero_image_url, 800)} 800w, ${optimizeImageUrl(article.hero_image_url, 1200)} 1200w`}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 800px, 1200px"
-            style={{ objectPosition: "center 20%" }}
-          />
-        </div>
+        <img
+          src={optimizeImageUrl(article.hero_image_url, IMAGE_SIZES.hero)}
+          alt={article.title}
+          loading="eager"
+          fetchPriority="high"
+          referrerPolicy="no-referrer"
+          className="w-full h-auto block"
+          width="800"
+          height="450"
+          srcSet={`${optimizeImageUrl(article.hero_image_url, 400)} 400w, ${optimizeImageUrl(article.hero_image_url, 800)} 800w, ${optimizeImageUrl(article.hero_image_url, 1200)} 1200w`}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 800px, 1200px"
+          style={{ minHeight: "200px", maxHeight: "500px", objectFit: "cover", objectPosition: "center 20%" }}
+        />
         <div
           className="absolute inset-0"
           style={{
