@@ -267,6 +267,45 @@ def build_homepage_feed(articles: list[dict]) -> dict:
     }
 
 
+# ── Hero image preload injection ──────────────────────────────────────
+
+INDEX_HTML = REPO_ROOT / "index.html"
+
+
+def optimize_image_url(url: str, width: int = 1200) -> str:
+    """Return a bandwidth-optimized variant of the image URL."""
+    if not url:
+        return ""
+    if "images.pexels.com" in url:
+        base = url.split("?")[0]
+        return f"{base}?auto=compress&cs=tinysrgb&w={width}&fit=crop"
+    return url
+
+
+def inject_hero_preload(hero_url: str) -> None:
+    """Inject a <link rel="preload"> for the hero image into index.html.
+
+    Idempotent: removes any previous hero-preload tag first.
+    """
+    if not hero_url or not INDEX_HTML.exists():
+        return
+
+    html = INDEX_HTML.read_text()
+    # Remove any existing hero preload
+    html = re.sub(r'<link rel="preload"[^>]*data-hero-preload[^>]*/>\n?', "", html)
+    # Build the preload tag
+    optimized = optimize_image_url(hero_url)
+    preload_tag = f'<link rel="preload" as="image" fetchpriority="high" href="{optimized}" data-hero-preload />\n'
+    # Replace comment marker or fall back to inserting before </head>
+    if "<!-- HERO_PRELOAD -->" in html:
+        html = html.replace("<!-- HERO_PRELOAD -->", preload_tag.strip())
+    else:
+        html = html.replace("</head>", f"    {preload_tag}  </head>")
+
+    INDEX_HTML.write_text(html)
+    print(f"  ✓ Hero preload injected: {optimized[:80]}...")
+
+
 # ── Main ──────────────────────────────────────────────────────────────
 
 def main():
@@ -290,6 +329,12 @@ def main():
     HOMEPAGE_FEED.write_text(json.dumps(feed, ensure_ascii=False, separators=(",", ":")))
     feed_size = HOMEPAGE_FEED.stat().st_size
     print(f"  ✓ homepage-feed.json ({feed_size:,} bytes, {len(feed['sections'])} sections, carousel: {len(feed['carousel'])})")
+
+    # 1b. Inject hero image preload into index.html
+    hero_url = (feed.get("featured") or {}).get("hero_image_url", "")
+    if not hero_url and feed.get("carousel"):
+        hero_url = feed["carousel"][0].get("hero_image_url", "")
+    inject_hero_preload(hero_url)
 
     # 2. Build per-category feeds
     print("  Building category feeds...")

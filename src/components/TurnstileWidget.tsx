@@ -65,20 +65,37 @@ export default function TurnstileWidget({
   }, []);
 
   useEffect(() => {
-    /* If turnstile script is already loaded, render immediately */
-    if (window.turnstile) {
-      renderWidget();
-    } else {
-      /* Wait for the script to load */
-      const interval = setInterval(() => {
-        if (window.turnstile) {
-          clearInterval(interval);
-          renderWidget();
-        }
-      }, 200);
-      return () => clearInterval(interval);
+    /* Dynamically load the Turnstile script if not already present */
+    function ensureScript(): Promise<void> {
+      if (window.turnstile) return Promise.resolve();
+      if (document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) {
+        // Script tag exists but hasn't loaded yet — poll for it
+        return new Promise((resolve) => {
+          const iv = setInterval(() => {
+            if (window.turnstile) { clearInterval(iv); resolve(); }
+          }, 200);
+        });
+      }
+      return new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+        script.async = true;
+        script.onload = () => {
+          const iv = setInterval(() => {
+            if (window.turnstile) { clearInterval(iv); resolve(); }
+          }, 100);
+        };
+        document.head.appendChild(script);
+      });
     }
+
+    let cancelled = false;
+    ensureScript().then(() => {
+      if (!cancelled) renderWidget();
+    });
+
     return () => {
+      cancelled = true;
       if (widgetIdRef.current !== null && window.turnstile) {
         try {
           window.turnstile.remove(widgetIdRef.current);
