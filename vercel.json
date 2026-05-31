@@ -1,35 +1,92 @@
 {
   "headers": [
     {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(self)" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self)"
+        }
       ]
     }
   ],
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "the-videshi.vercel.app" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "the-videshi.vercel.app"
+        }
+      ],
       "destination": "https://www.thevideshi.com/:path*",
       "permanent": true
     }
   ],
   "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/api/sitemap.xml" },
-    { "source": "/rss.xml", "destination": "/api/rss.xml" },
-    { "source": "/api/og", "destination": "/api/og" },
-    { "source": "/api/subscribe", "destination": "/api/subscribe" },
-    { "source": "/api/instagram-thumb", "destination": "/api/instagram-thumb" },
-    { "source": "/api/verify-turnstile", "destination": "/api/verify-turnstile" },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap.xml"
+    },
+    {
+      "source": "/rss.xml",
+      "destination": "/api/rss.xml"
+    },
+    {
+      "source": "/api/og",
+      "destination": "/api/og"
+    },
+    {
+      "source": "/api/subscribe",
+      "destination": "/api/subscribe"
+    },
+    {
+      "source": "/api/instagram-thumb",
+      "destination": "/api/instagram-thumb"
+    },
+    {
+      "source": "/api/verify-turnstile",
+      "destination": "/api/verify-turnstile"
+    },
     {
       "source": "/articles/:slug",
-      "has": [{ "type": "header", "key": "user-agent", "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*" }],
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
+        }
+      ],
       "destination": "/api/prerender?slug=:slug"
     },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
