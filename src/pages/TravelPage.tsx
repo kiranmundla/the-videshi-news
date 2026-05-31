@@ -223,6 +223,7 @@ export default function TravelPage() {
         <meta property="og:description" content="Destinations, visa quick-reference, and travel news for NRIs and the Indian diaspora." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.thevideshi.com/travel" />
+              <link rel="canonical" href="https://www.thevideshi.com/travel" />
       </Helmet>
       <Masthead />
       <CategoryPills />

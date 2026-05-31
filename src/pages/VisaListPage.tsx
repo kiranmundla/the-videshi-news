@@ -116,6 +116,7 @@ export default function VisaListPage() {
           name="description"
           content={`Full list of ${data.meta.count}+ ${data.meta.title.toLowerCase()} ${data.meta.subtitle.toLowerCase()}. Updated visa requirements and travel tips for NRIs.`}
         />
+        <link rel="canonical" href={`https://www.thevideshi.com/travel/visa-list/${status}/${category}`} />
       </Helmet>
       <Masthead />
       <CategoryPills />

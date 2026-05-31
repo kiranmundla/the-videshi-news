@@ -193,6 +193,7 @@ export default function ClassifiedsPage() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.thevideshi.com/classifieds" />
         <meta name="twitter:card" content="summary" />
+              <link rel="canonical" href="https://www.thevideshi.com/classifieds" />
       </Helmet>
 
       <Masthead />

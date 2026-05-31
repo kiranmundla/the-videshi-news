@@ -82,6 +82,7 @@ export default function ProcessingTimesPage() {
         <meta name="description" content="Check current USCIS processing times for I-140, I-485, I-765 (EAD), I-131, N-400, and more by service center. Updated monthly." />
         <meta property="og:title" content="USCIS Processing Times | The Videshi" />
         <meta property="og:url" content="https://www.thevideshi.com/immigration/processing-times" />
+              <link rel="canonical" href="https://www.thevideshi.com/immigration/processing-times" />
       </Helmet>
       <Masthead />
       <CategoryPills />

@@ -117,6 +117,7 @@ export default function Contact() {
           name="description"
           content="Get in touch with The Videshi — feedback, story tips, partnership inquiries, or just say hello."
         />
+              <link rel="canonical" href="https://www.thevideshi.com/contact" />
       </Helmet>
       <Masthead />
 

@@ -378,7 +378,7 @@ export default function Index() {
         <meta property="og:title" content="The Videshi" />
         <meta property="og:description" content="News for the global Indian diaspora" />
         {featuredArticle && <meta property="og:image" content={featuredArticle.hero_image_url} />}
-        <link rel="canonical" href="/" />
+        <link rel="canonical" href="https://www.thevideshi.com/" />
       </Helmet>
 
       <Masthead />

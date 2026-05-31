@@ -9,6 +9,7 @@ export default function Terms() {
       <Helmet>
         <title>Terms of Service — The Videshi</title>
         <meta name="description" content="Terms of Service for The Videshi — rules and guidelines for using our website." />
+              <link rel="canonical" href="https://www.thevideshi.com/terms" />
       </Helmet>
       <Masthead />
       <CategoryPills />

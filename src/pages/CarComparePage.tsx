@@ -153,6 +153,7 @@ export default function CarComparePage() {
           name="description"
           content={`Compare ${cars.map((c) => c.name).join(", ")} — side-by-side specs, pricing, lease deals, and NRI take.`}
         />
+              <link rel="canonical" href="https://www.thevideshi.com/cars/compare" />
       </Helmet>
       <Masthead />
       <CategoryPills />

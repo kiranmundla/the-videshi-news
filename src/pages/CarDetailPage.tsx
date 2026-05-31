@@ -250,6 +250,7 @@ export default function CarDetailPage() {
               : undefined,
           })}
         </script>
+        <link rel="canonical" href={`https://www.thevideshi.com/cars/${slug}`} />
       </Helmet>
       <Masthead />
       <CategoryPills />

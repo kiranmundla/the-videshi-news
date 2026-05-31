@@ -63,6 +63,7 @@ export default function LeaseDealsPage() {
       <Helmet>
         <title>Best Lease Deals for NRIs — May 2026 | The Videshi</title>
         <meta name="description" content="Best car lease deals in America this month. Compare monthly payments, due at signing, and terms — curated for the Indian diaspora." />
+              <link rel="canonical" href="https://www.thevideshi.com/cars/deals" />
       </Helmet>
       <Masthead />
       <CategoryPills />

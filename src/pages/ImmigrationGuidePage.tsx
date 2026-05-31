@@ -138,6 +138,7 @@ export default function ImmigrationGuidePage() {
         <meta name="description" content={description} />
         <meta property="og:title" content={`${title} | The Videshi`} />
         <meta property="og:url" content={`https://www.thevideshi.com/immigration/guides/${slug}`} />
+        <link rel="canonical" href={`https://www.thevideshi.com/immigration/guides/${slug}`} />
       </Helmet>
       <Masthead />
       <CategoryPills />

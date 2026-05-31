@@ -9,6 +9,7 @@ export default function Privacy() {
       <Helmet>
         <title>Privacy Policy — The Videshi</title>
         <meta name="description" content="Privacy Policy for The Videshi — how we collect, use, and protect your information." />
+              <link rel="canonical" href="https://www.thevideshi.com/privacy" />
       </Helmet>
       <Masthead />
       <CategoryPills />

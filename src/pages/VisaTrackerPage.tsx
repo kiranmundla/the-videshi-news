@@ -1016,6 +1016,7 @@ export default function VisaTrackerPage() {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.thevideshi.com/immigration/visas" />
+              <link rel="canonical" href="https://www.thevideshi.com/immigration/visas" />
       </Helmet>
       <Masthead />
       <CategoryPills />

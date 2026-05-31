@@ -5,7 +5,7 @@ import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 
-function GuideLayout({ title, description, children }: { title: string; description: string; children: React.ReactNode }) {
+function GuideLayout({ title, description, canonicalPath, children }: { title: string; description: string; canonicalPath: string; children: React.ReactNode }) {
   return (
     <>
       <Helmet>
@@ -13,6 +13,7 @@ function GuideLayout({ title, description, children }: { title: string; descript
         <meta name="description" content={description} />
         <meta property="og:title" content={`${title} | The Videshi`} />
         <meta property="og:description" content={description} />
+        <link rel="canonical" href={`https://www.thevideshi.com${canonicalPath}`} />
       </Helmet>
       <Masthead />
       <CategoryPills />
@@ -41,7 +42,7 @@ function GuideLayout({ title, description, children }: { title: string; descript
 
 export function FirstCarGuide() {
   return (
-    <GuideLayout title="Your First Car in America" description="Step-by-step guide for H-1B and L-1 visa holders buying their first car in the US.">
+    <GuideLayout canonicalPath="/cars/guide/first-car-in-america" title="Your First Car in America" description="Step-by-step guide for H-1B and L-1 visa holders buying their first car in the US.">
       <section>
         <h2 className="text-xl font-bold text-foreground mb-3">🇺🇸 The H-1B/L-1 Car Buying Checklist</h2>
         <p>Just arrived in the US? Here's exactly what you need to do to get your first car — no American credit history required.</p>
@@ -113,7 +114,7 @@ export function FirstCarGuide() {
 
 export function LeaseVsBuyGuide() {
   return (
-    <GuideLayout title="Lease vs Buy" description="Should you lease or buy your next car? A practical comparison for the Indian mindset.">
+    <GuideLayout canonicalPath="/cars/guide/lease-vs-buy" title="Lease vs Buy" description="Should you lease or buy your next car? A practical comparison for the Indian mindset.">
       <section>
         <h2 className="text-xl font-bold text-foreground mb-3">📊 The Quick Comparison</h2>
       </section>
@@ -175,7 +176,7 @@ export function LeaseVsBuyGuide() {
 
 export function InsuranceGuide() {
   return (
-    <GuideLayout title="Car Insurance for New Immigrants" description="How to get car insurance in the US with no American driving history. A guide for new Indian immigrants.">
+    <GuideLayout canonicalPath="/cars/guide/insurance-for-new-immigrants" title="Car Insurance for New Immigrants" description="How to get car insurance in the US with no American driving history. A guide for new Indian immigrants.">
       <section>
         <h2 className="text-xl font-bold text-foreground mb-3">🛡️ Insurance Basics for New Arrivals</h2>
         <p>Car insurance is mandatory in every US state. As a new immigrant with no US driving history, expect to pay more initially — but there are ways to save.</p>
@@ -232,7 +233,7 @@ export function InsuranceGuide() {
 
 export function BestFamilySuvsGuide() {
   return (
-    <GuideLayout title="Best Family SUVs for Indian Families" description="Top 3-row SUVs ranked for desi families — space, safety, value, and road trip readiness.">
+    <GuideLayout canonicalPath="/cars/guide/best-family-suvs" title="Best Family SUVs for Indian Families" description="Top 3-row SUVs ranked for desi families — space, safety, value, and road trip readiness.">
       <section>
         <h2 className="text-xl font-bold text-foreground mb-3">👨‍👩‍👧‍👦 The Desi Family Car Criteria</h2>
         <p>When the in-laws visit, when you're loading up for a road trip to Niagara Falls, when 3 car seats need to fit across — these SUVs deliver.</p>
@@ -318,7 +319,7 @@ export function BestFamilySuvsGuide() {
 
 export function CarsUnder30KGuide() {
   return (
-    <GuideLayout title="Best Cars Under $30K for New Immigrants" description="Reliable, affordable cars for NRIs building credit in America — ranked by total cost of ownership.">
+    <GuideLayout canonicalPath="/cars/guide/best-cars-under-30k" title="Best Cars Under $30K for New Immigrants" description="Reliable, affordable cars for NRIs building credit in America — ranked by total cost of ownership.">
       <section>
         <h2 className="text-xl font-bold text-foreground mb-3">💰 Why Under-$30K Is the Sweet Spot</h2>
         <p>You just landed in America. You need a car that starts every morning, won't drain your savings on repairs, and won't scare off a lender who's never seen your credit file. The under-$30K bracket is where reliability, insurance costs, and resale value converge perfectly for new immigrants.</p>
@@ -443,7 +444,7 @@ export function CarsUnder30KGuide() {
 
 export function BestEVsGuide() {
   return (
-    <GuideLayout title="Best EVs Worth Switching To in 2026" description="Electric vehicles ranked for the Indian diaspora — tax credits, apartment charging, and whether an EV actually makes sense for NRIs.">
+    <GuideLayout canonicalPath="/cars/guide/best-evs-2026" title="Best EVs Worth Switching To in 2026" description="Electric vehicles ranked for the Indian diaspora — tax credits, apartment charging, and whether an EV actually makes sense for NRIs.">
       <section>
         <h2 className="text-xl font-bold text-foreground mb-3">⚡ The Big Question: Is an EV Right for You?</h2>
         <p>Electric vehicles are cheaper to fuel, cheaper to maintain, and qualify for up to $7,500 in federal tax credits. But most NRIs live in apartments, not houses with garages. Let's figure out if an EV makes sense for your situation.</p>
@@ -573,7 +574,7 @@ export function BestEVsGuide() {
 
 export function IndiaVsUSDrivingGuide() {
   return (
-    <GuideLayout title="India vs US: Everything Different About Driving" description="All the driving differences between India and America — road rules, highway culture, and the habits you need to unlearn.">
+    <GuideLayout canonicalPath="/cars/guide/india-vs-us-driving" title="India vs US: Everything Different About Driving" description="All the driving differences between India and America — road rules, highway culture, and the habits you need to unlearn.">
       <section>
         <h2 className="text-xl font-bold text-foreground mb-3">🔄 Two Countries, Two Completely Different Driving Universes</h2>
         <p>You drove in India for years. You think you know how to drive. Then you get on a US highway for the first time and realize: <em>everything</em> is different. This guide covers every adjustment you need to make — from the obvious (which side of the road) to the subtle (why Americans get irrationally angry if you honk).</p>
@@ -668,7 +669,7 @@ export function IndiaVsUSDrivingGuide() {
 
 export function TechProfessionalsGuide() {
   return (
-    <GuideLayout title="Best Cars for Tech Professionals" description="Smart car picks for Bay Area, Seattle, and Austin tech commuters — from entry-level to RSU-fueled upgrades.">
+    <GuideLayout canonicalPath="/cars/guide/cars-for-tech-professionals" title="Best Cars for Tech Professionals" description="Smart car picks for Bay Area, Seattle, and Austin tech commuters — from entry-level to RSU-fueled upgrades.">
       <section>
         <h2 className="text-xl font-bold text-foreground mb-3">💻 The Indian Tech Worker's Car Journey</h2>
         <p>You arrived on H-1B, bought a Civic, and drove it for three years. Then your RSUs started vesting. Then you noticed every third car in your office parking lot is a Tesla. Here's the practical guide to what you should actually drive at each stage of your tech career in America.</p>

@@ -176,6 +176,7 @@ export default function StoriesPage() {
           name="description"
           content="Community stories from the Indian diaspora. Share your journey, help someone a few steps behind you, and learn from those who've been there. Immigration, careers, family, food, and everything in between."
         />
+              <link rel="canonical" href="https://www.thevideshi.com/stories" />
       </Helmet>
 
       <Masthead />

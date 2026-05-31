@@ -38,6 +38,7 @@ export default function SearchPage() {
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>{query ? `"${query}" — Search — The Videshi` : "Search — The Videshi"}</title>
+              <link rel="canonical" href="https://www.thevideshi.com/search" />
       </Helmet>
 
       <Masthead />

@@ -45,6 +45,7 @@ export default function H1BHubPage() {
         <meta name="description" content="H-1B visa hub for Indian professionals. FY2027 lottery results, selection rates, registration stats, wage-weighted changes, and guides." />
         <meta property="og:title" content="H-1B Visa Hub | The Videshi" />
         <meta property="og:url" content="https://www.thevideshi.com/immigration/h1b" />
+              <link rel="canonical" href="https://www.thevideshi.com/immigration/h1b" />
       </Helmet>
       <Masthead />
       <CategoryPills />

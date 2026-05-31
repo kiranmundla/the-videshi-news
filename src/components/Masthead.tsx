@@ -174,7 +174,7 @@ export default function Masthead() {
           </button>
 
           <Link to="/" className="flex items-center gap-3">
-            <img src="/logo.jpg" alt="The Videshi" className="h-10 md:h-14 w-auto rounded-sm" />
+            <img src="/logo.jpg" alt="The Videshi" className="h-10 md:h-14 w-auto rounded-sm" width="56" height="56" decoding="async" />
             <h1 className="font-serif font-black tracking-tight text-foreground leading-none text-[2.25rem] md:text-[3.25rem] lg:text-[3.75rem]">
               The Videshi
             </h1>

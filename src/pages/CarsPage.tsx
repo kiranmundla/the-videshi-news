@@ -534,6 +534,7 @@ export default function CarsPage() {
         <meta property="og:description" content="Your guide to buying the right car in America. Curated for the Indian community." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.thevideshi.com/cars" />
+              <link rel="canonical" href="https://www.thevideshi.com/cars" />
       </Helmet>
       <Masthead />
       <CategoryPills />

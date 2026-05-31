@@ -542,9 +542,8 @@ export default function ClassifiedDetailPage() {
         <script type="application/ld+json">
           {JSON.stringify(jsonLd)}
         </script>
-      </Helmet>
-
-      <Masthead />
+        <link rel="canonical" href={`https://www.thevideshi.com/classifieds/${slug}`} />
+      </Helmet>      <Masthead />
       <CategoryPills />
 
       <main className="container py-6">

@@ -69,6 +69,7 @@ export default function About() {
           name="description"
           content="The Videshi is a free news and resources platform built for the Indian diaspora — covering news, immigration, events, travel, cars, classifieds, and more with an NRI perspective."
         />
+              <link rel="canonical" href="https://www.thevideshi.com/about" />
       </Helmet>
       <Masthead />
 

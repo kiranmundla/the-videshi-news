@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""News writer for The Videshi — publishes 3 articles to Supabase."""
+"""The Videshi — News Writer (2026-05-31 batch)"""
 
-import os, json, sys, time, re, urllib.parse, subprocess
-import requests
+import json, os, re, sys, time, uuid, urllib.parse, urllib.request
 from datetime import datetime, timezone
 
-# ── Load env ──
+# ── Supabase ──
 def load_env(path):
     if not os.path.exists(path):
         return
@@ -18,35 +17,57 @@ def load_env(path):
                 line = line[7:]
             k, _, v = line.partition('=')
             v = v.strip().strip('"').strip("'")
-            os.environ[k.strip()] = v
+            os.environ.setdefault(k.strip(), v)
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+SB_URL = os.environ.get('SUPABASE_URL', '')
+SB_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
 HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'apikey': SB_KEY,
+    'Authorization': f'Bearer {SB_KEY}',
     'Content-Type': 'application/json',
     'Prefer': 'return=representation'
 }
+
+def sb_post(table, payload):
+    url = f"{SB_URL}/rest/v1/{table}"
+    data = json.dumps(payload).encode()
+    req = urllib.request.Request(url, data=data, headers=HEADERS, method='POST')
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read())
+    except Exception as e:
+        print(f"  ⚠ Supabase POST error: {e}")
+        return None
+
+def sb_patch(table, filters, payload):
+    qs = '&'.join(f"{k}={v}" for k, v in filters.items())
+    url = f"{SB_URL}/rest/v1/{table}?{qs}"
+    data = json.dumps(payload).encode()
+    req = urllib.request.Request(url, data=data, headers=HEADERS, method='PATCH')
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read())
+    except Exception as e:
+        print(f"  ⚠ Supabase PATCH error: {e}")
+        return None
 
 # ── Image sourcing ──
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
-        r = requests.get(
+        req = urllib.request.Request(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
         )
-        if r.status_code == 200:
-            data = r.json()
+        with urllib.request.urlopen(req, timeout=10) as r:
+            data = json.loads(r.read())
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
@@ -55,315 +76,291 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels. Use curl internally (urllib gets 403)."""
+    """Fetch an image from Pexels using curl (urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
-
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            result = subprocess.run(
-                ['curl', '-sS', f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5',
-                 '-H', f'Authorization: {PEXELS_KEY}'],
-                capture_output=True, text=True, timeout=15
-            )
+            import subprocess
+            result = subprocess.run([
+                'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'
+            ], capture_output=True, text=True, timeout=15)
             data = json.loads(result.stdout)
             photos = data.get('photos', [])
-            for p in photos:
-                url = p.get('src', {}).get('large2x') or p.get('src', {}).get('large')
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            if photos:
+                url = photos[0]['src']['large2x']
+                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def validate_image(url):
-    """Validate image URL returns 200 with image content-type and >5KB."""
+def validate_image_url(url):
+    """Verify URL returns valid image with Content-Length > 5000."""
     if not url:
         return False
-    # Block banned sources
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
-    if any(b in url for b in banned):
-        print(f"  ✗ Banned source: {url[:60]}")
-        return False
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
-            print(f"  ✓ Image validated: {cl} bytes, {ct}")
-            return True
-        # Try GET if HEAD didn't return content-length
-        if r.status_code == 200 and 'image' in ct and cl == 0:
-            r2 = requests.get(url, timeout=10, stream=True,
-                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            size = len(r2.content)
-            if size > 5000:
-                print(f"  ✓ Image validated (GET): {size} bytes")
+        req = urllib.request.Request(url, method='HEAD', headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            ct = r.headers.get('Content-Type', '')
+            cl = int(r.headers.get('Content-Length', 0))
+            if 'image' in ct and cl > 5000:
                 return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
+            elif 'image' in ct and cl == 0:
+                # Some servers don't return Content-Length for HEAD
+                return True
     except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
+        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
     return False
 
-
-def get_image(person_name=None, pexels_query=None, pexels_fallback=None):
-    """Get image following hierarchy: Wikipedia person → Pexels → None."""
-    url = None
-    attribution = None
-
-    if person_name:
-        url = fetch_wikipedia_person_image(person_name)
-        if url and validate_image(url):
-            return url, "Wikimedia Commons"
-
-    if pexels_query:
-        url = fetch_pexels_image(pexels_query, pexels_fallback)
-        if url and validate_image(url):
-            return url, "Pexels"
-
-    return None, None
-
-
-def publish_article(article):
-    """Publish article to Supabase."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article
-    )
-    if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            print(f"  ✓ Published: {result[0].get('headline', '')[:60]}")
-            return True
-        print(f"  ✓ Published (no body returned)")
-        return True
-    else:
-        print(f"  ✗ Publish failed ({r.status_code}): {r.text[:200]}")
-        return False
-
+def upload_to_supabase_storage(image_url, filename):
+    """Download image and upload to Supabase storage bucket."""
+    try:
+        req = urllib.request.Request(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            img_data = r.read()
+            content_type = r.headers.get('Content-Type', 'image/jpeg')
+        
+        if len(img_data) < 5000:
+            print(f"  ⚠ Image too small ({len(img_data)} bytes), skipping upload")
+            return None
+        
+        upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
+        upload_headers = {
+            'Authorization': f'Bearer {SB_KEY}',
+            'Content-Type': content_type,
+            'x-upsert': 'true'
+        }
+        req2 = urllib.request.Request(upload_url, data=img_data, headers=upload_headers, method='POST')
+        with urllib.request.urlopen(req2, timeout=30) as r2:
+            pass
+        
+        public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
+        print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+        return public_url
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
+        return None
 
 # ── Articles ──
+ARTICLES = [
+    {
+        "headline": "India's Trade Deal With Oman Goes Live Tomorrow. Here Is What Changes for Exporters and Workers in the Gulf.",
+        "subheadline": "The CEPA eliminates duties on 98 percent of Indian exports, raises mobility quotas for professionals, and opens Oman's services market to Indian companies for the first time.",
+        "slug": "india-oman-cepa-trade-deal-live-june-1-exports-professionals-gulf-nri-20260531",
+        "category": "news",
+        "sources": "Outlook Business, Directorate General of Foreign Trade (DGFT), Ministry of Commerce press release, NationPress, Devdiscourse",
+        "image_search_person": None,
+        "image_pexels_query": "Muscat Oman port trade",
+        "image_pexels_fallback": "shipping container port Gulf",
+        "image_attribution": "Pexels",
+        "body": """India's Comprehensive Economic Partnership Agreement with Oman takes effect on June 1, opening the Gulf nation's market to Indian goods on terms that New Delhi has spent two years negotiating. The deal, signed during Prime Minister Narendra Modi's visit to Muscat in December 2025, eliminates tariffs on 98.08 percent of Oman's tariff lines — covering 99.38 percent of India's export value to the country.
 
-articles = []
+For Indian exporters, the numbers translate into immediate relief. Duties of up to 5 percent on goods worth approximately $3.64 billion will disappear overnight. The sectors that stand to gain the most — textiles, gems and jewellery, pharmaceuticals, leather, engineering goods, automobiles, and medical devices — are precisely the labour-intensive industries that India has been trying to push into Gulf markets for years.
 
-# ──────────────────────────────────────────────────────────────────────
-# ARTICLE 1: India's Weakest Monsoon in 11 Years
-# ──────────────────────────────────────────────────────────────────────
-print("\n=== Article 1: Monsoon Forecast ===")
+## What the Deal Actually Covers
 
-img1, attr1 = get_image(pexels_query="india monsoon rain farmer field", pexels_fallback="monsoon rain india agriculture")
+The Directorate General of Foreign Trade confirmed on Friday that electronic preferential certificates of origin will be issued through the Trade Connect ePlatform starting June 1. Exporters will need to select "India Oman CEPA (Agency Issued)" when applying, and the system will generate QR-coded digital certificates. This is not a ceremonial announcement. Without these certificates, exporters cannot claim duty-free access at Omani ports.
 
-monsoon_body = """India is bracing for its weakest monsoon season in over a decade, and the timing could not be worse.
+India, for its part, is liberalising 77.79 percent of its own tariff lines — covering 94.81 percent of imports from Oman by value. Omani dates, marbles, and petrochemical products will enter India at reduced rates. Sensitive Indian sectors, including dairy, tea, coffee, tobacco, gold and silver bullion, and certain agricultural goods, have been excluded from concessions entirely.
 
-The India Meteorological Department on Friday downgraded its forecast for the June-to-September southwest monsoon to 90 percent of the long-period average — below its earlier April estimate of 92 percent and the lowest projection since 2015. The monsoon delivers roughly 70 percent of India's annual rainfall, replenishing the reservoirs, rivers, and groundwater systems that sustain nearly half the country's farmland.
+Bilateral trade between the two countries already crossed $10.61 billion in FY2024-25, up significantly from the previous year. Petroleum products dominate — light oils and preparations alone accounted for $1.57 billion in FY26 — but the CEPA is designed to diversify the export basket beyond energy.
 
-The culprit is a developing El Niño in the equatorial Pacific Ocean, which is expected to strengthen to moderate or strong intensity during the second half of the monsoon season, suppressing the rain-bearing systems that the subcontinent depends on.
+## The Diaspora Angle: Professional Mobility
 
-**What the numbers mean for food and prices**
+For the estimated 780,000 Indians living and working in Oman, the deal carries implications that go beyond trade statistics. The CEPA includes what the government calls an "enhanced mobility framework" under Mode 4 — the first of its kind in any Indian trade agreement with a Gulf state.
 
-M. Ravichandran, secretary of India's earth sciences ministry, told reporters that June alone is expected to bring below-normal rainfall across most of the country — less than 92 percent of the long-period average. Central India, South Peninsular India, Northwest India, and the critical monsoon core zone, which covers the heartland of rain-fed agriculture, are all projected to receive deficient rains. Only the Northeast is expected to see normal rainfall.
+Oman has raised the quota for intra-corporate transferees from 20 percent to 50 percent, meaning Indian companies operating in Oman can now move significantly more of their own employees into the country. The permitted stay for contractual service suppliers has been extended from 90 days to two full years, with the option of a further two-year extension. Professionals in accountancy, taxation, architecture, and medical services get more liberal entry conditions.
 
-For an economy where nearly half of all farmland lacks irrigation, the forecast is a direct threat to crop output and food prices. Gaura Sengupta, chief economist at IDFC First Bank, warned that a deficient monsoon "particularly in the crucial July-August months, can add to the pressure and push up inflation closer to an average of 5.5 percent if food inflation spikes." India's retail inflation stood at 3.48 percent in April, but the outlook is now clouded by a convergence of forces: elevated global energy prices from the Iran war, a depreciating rupee, and the prospect of crop failures.
+The agreement also permits 100 percent foreign direct investment by Indian companies in major Omani services sectors through commercial presence — a provision that could reshape how Indian IT firms, consulting companies, and healthcare providers operate in the region.
 
-The finance ministry's own monthly economic report, released the same day, acknowledged that the confluence of fuel price hikes, a below-normal monsoon, and the ongoing Strait of Hormuz disruption "calls for sustained policy vigilance." It described the Hormuz closure as the "single most consequential variable" for India's price and external outlook.
+Perhaps most notably, Oman has made its first-ever comprehensive commitment on traditional medicine across all modes of supply. This creates a formal opening for India's AYUSH and wellness sector in the Gulf — a niche but symbolically significant concession that no other country has offered.
 
-**Heatwave conditions intensify**
+## Strategic Timing
 
-The monsoon delay is compounding a brutal summer. Several Indian states are enduring temperatures above 45 degrees Celsius, with the IMD warning of above-normal heatwave days in June across Uttar Pradesh, Haryana, Punjab, Bihar, Odisha, Chhattisgarh, Gujarat, and Andhra Pradesh. Parts of Maharashtra, Telangana, and Tamil Nadu are also expected to see increased heatwave activity.
+The deal arrives at a moment when the Strait of Hormuz — the waterway that Oman partially flanks — remains a flashpoint. The US naval blockade of Iranian ports continues, commercial shipping volumes through the strait have dropped, and oil markets remain volatile. Against that backdrop, a trade agreement that deepens India's commercial ties with a stable Gulf partner on the strait's opposite shore carries obvious strategic weight.
 
-The IMD said both maximum and minimum temperatures will remain above normal for most of the country during June, offering little overnight relief in regions already under severe heat stress.
+Discussions are also ongoing about the Middle East-India Deepwater Pipeline, a proposed subsea gas project linking Oman's coast with Gujarat. The CEPA creates a broader commercial framework within which such infrastructure projects could advance.
 
-**What it means for the diaspora**
+India already has trade agreements with the UAE, Australia, and several ASEAN nations. The Oman pact is Muscat's first bilateral trade agreement since its deal with the United States in 2006 — a fact that underscores the significance both sides attach to the partnership.
 
-For NRIs with family in rural India, the forecast raises immediate concerns about agricultural income and food security. Remittance flows to rural households could come under pressure if crop losses materialize, particularly in kharif-season staples like rice, pulses, and oilseeds that depend heavily on monsoon timing.
+For Indian exporters, the immediate task is prosaic: register on the Trade Connect platform, update their Digital Signature Certificate details, and start filing for certificates of origin. The tariff walls come down at midnight."""
+    },
+    {
+        "headline": "Blue Origin's New Glenn Rocket Exploded on the Launch Pad. Here Is Why It Matters Beyond Space.",
+        "subheadline": "The blast destroyed Jeff Bezos' only heavy-lift launch site, delays Amazon's satellite internet rollout, and hands SpaceX an even larger lead in the commercial launch market.",
+        "slug": "blue-origin-new-glenn-explosion-launch-pad-amazon-leo-spacex-nasa-artemis-20260531",
+        "category": "news",
+        "sources": "Reuters, GeekWire, Florida Today, Wikipedia, NBC Palm Springs",
+        "image_search_person": "Jeff Bezos",
+        "image_pexels_query": "rocket launch Cape Canaveral",
+        "image_pexels_fallback": "space rocket launch pad explosion",
+        "image_attribution": "Wikimedia Commons",
+        "body": """A Blue Origin rocket exploded during a static fire test at Cape Canaveral on Thursday night, producing what observers described as the most powerful rocket explosion since the Soviet Union's N1 moon rocket was destroyed during a launch attempt in 1969.
 
-India's $4 trillion economy is already navigating the headwinds of an energy shock. A failed monsoon would add food inflation to the mix, potentially forcing the Reserve Bank of India to rethink the rate cuts that markets have been counting on. The next few weeks of rainfall data will determine whether this remains a forecast or becomes a crisis.
+The blast destroyed the New Glenn booster nicknamed "No, It's Necessary" — a reference to a line from the film Interstellar — along with its fuelled second stage. More critically, it "practically destroyed" Launch Complex 36, Blue Origin's only operational New Glenn launch site. Engineers expect at least six months of repairs, possibly longer.
 
-*Sources: Reuters, India Meteorological Department press conference (May 29), India Finance Ministry monthly economic report (May 30), The Hindu Business Line*"""
+No injuries were reported. Jeff Bezos, the company's founder, confirmed on X that all personnel had been accounted for.
 
-articles.append({
-    "headline": "India Just Forecast Its Weakest Monsoon in 11 Years. El Niño Is Only Part of the Problem.",
-    "subheadline": "The IMD downgraded its rainfall forecast to 90% of normal as food inflation fears collide with the Iran war's energy shock.",
-    "body": monsoon_body,
-    "slug": "india-weakest-monsoon-11-years-el-nino-inflation-food-prices-20260531",
-    "category": "news",
-    "vertical": "economy",
-    "diaspora_angle": "For NRIs with family in rural India, a failed monsoon threatens agricultural income and food security. Remittance flows to rural households could come under pressure if crop losses hit kharif staples. A weaker rupee and higher food inflation would squeeze household budgets across the country.",
-    "tags": ["monsoon", "el-nino", "inflation", "imd", "agriculture", "food-prices"],
-    "urgency": "high",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img1,
-    "image_attribution": attr1,
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com/world/india/"},
-        {"name": "India Meteorological Department", "url": "https://mausam.imd.gov.in/"},
-        {"name": "India Finance Ministry", "url": "https://finmin.nic.in/"},
-        {"name": "The Hindu Business Line", "url": "https://www.thehindubusinessline.com/"}
-    ])
-})
+## The Immediate Fallout
 
-# ──────────────────────────────────────────────────────────────────────
-# ARTICLE 2: Delhi HC Fines Google Over Hindware Trademark
-# ──────────────────────────────────────────────────────────────────────
-print("\n=== Article 2: Delhi HC Google Ruling ===")
+The rocket had been scheduled to carry 48 satellites into low Earth orbit as early as the following week for Amazon Leo — the company's high-speed internet constellation, formerly known as Project Kuiper. That launch is now off the table.
 
-img2, attr2 = get_image(pexels_query="google search engine laptop india", pexels_fallback="online advertising digital marketing")
+Amazon, however, is not without options. The day after the explosion, United Launch Alliance successfully sent 29 Amazon Leo satellites into orbit on an Atlas V rocket from a pad not far from the ruins of Blue Origin's facility. Amazon has also reserved launches on Arianespace's Ariane 6, ULA's Vulcan, and SpaceX's Falcon 9.
 
-google_body = """A Delhi High Court ruling has rattled India's digital advertising market by declaring that Google's practice of auctioning trademarked brand names as advertising keywords amounts to trademark infringement — and ordering the tech giant to pay ₹30 lakh ($31,600) in damages to sanitaryware maker Hindware.
+"Weirdly, as far as New Glenn customers go, Amazon is probably in the best position to deal with this setback," said Caleb Henry, director of research at Quilty Space. "They've got safety through the diversity of their launch supplier base."
 
-The judgment, delivered on May 22 by Justice Mini Pushkarna, permanently restrains Google LLC and Google India from using Hindware's registered trademarks as advertising keywords. It rejected Google's defense that it is merely an intermediary entitled to safe-harbor protection, ruling instead that Google's keyword auction system constitutes an "unfair practice" that exploits the "distinctive character or repute" of a well-known trademark.
+The irony is not lost on industry watchers. Amazon's contingency plan involves relying, in part, on SpaceX — the company run by Elon Musk, Bezos' long-running commercial rival. The explosion hands Musk's business leverage over Bezos at a critical moment.
 
-**What Google was doing**
+## NASA's Lunar Problem
 
-The case, which dates back to 2013, centered on Google's AdWords platform. Hindware alleged that competitors Grohe and Cera — assisted by digital agency Omkara Infoweb — had purchased "Hindware" and variations like "Hindware Sanitary" as keywords on Google Ads. When users searched for Hindware, competitors' sponsored links appeared as the first results, above Hindware's own website.
+The damage extends beyond commercial satellite launches. NASA Administrator Jared Isaacman visited Launch Complex 36 to inspect the damage and speak with Blue Origin employees. In an email to the NASA workforce, he said the incident could potentially affect the agency's Artemis program and Moon Base plans.
 
-While Grohe, Cera, and Omkara settled with Hindware during the trial, Google contested the case to the end. The court found that Google actively sold, suggested, and auctioned the use of Hindware's trademark "without any authorisation from the proprietor" — going beyond the role of a passive intermediary.
+Blue Origin is a key contractor for Artemis. The company's Blue Moon lander was selected to carry astronauts to the lunar surface. Any delay to the New Glenn launch vehicle ripples through NASA's lunar timeline — a program already under pressure from budget constraints and political scrutiny.
 
-"The manner in which Google operates its AdWords Policy makes it clear that Google sells or auctions the use of the trademark," the judgment states.
+"It's only been a year since the SpaceX Starship also exploded on the launch pad and Blue Origin can also recover. But it will take months to rebuild," said Antoine Grenier, partner and head of space consulting at Analysys Mason.
 
-**Why Indian business leaders are celebrating**
+SpaceX itself spent more than a year repairing its pad after a Falcon 9 exploded in 2016, though it resumed launches within four and a half months by shifting operations to a second Florida pad. Blue Origin does not have a second New Glenn pad.
 
-The ruling has drawn vocal support from some of India's most prominent entrepreneurs. Nithin Kamath, founder of brokerage firm Zerodha, said his brand had suffered from the same practice for years and that the ruling "now opens up a route for legal recourse."
+## The Bigger Picture
 
-Anupam Mittal, founder of matchmaking platform Shaadi.com, was blunter: "You create the brand. Someone else bids on it. Google takes the fee." He said the ruling "could change the economics of online advertising for millions of businesses."
+The explosion comes at a pivotal moment for the commercial space industry. Amazon's Leo satellite internet service is racing to catch up with SpaceX's Starlink, which already has thousands of satellites in orbit and millions of paying subscribers. The initial Amazon Leo constellation calls for around 3,000 satellites — and the company was counting on New Glenn to carry a significant share of them.
 
-Legal experts say the decision could trigger a wave of similar cases across India, where Google counts more users than in any other market except for the United States. If other brand owners follow Hindware's lead, Google may be forced to build trademark-verification systems at scale before allowing keyword bidding — a significant compliance burden that could slow its ad-auction machinery in one of its most critical growth markets.
+For India's space sector, the implications are indirect but real. ISRO and Indian private launch companies like Skyroot and Agnikul have been positioning themselves in the small and medium satellite launch market. Every setback for the giants — whether it's Blue Origin's explosion or Vulcan's solid rocket booster issues — creates potential openings for alternative launch providers.
 
-**The bigger picture**
+The Indian diaspora in the US aerospace industry, meanwhile, watches closely. Indian-origin engineers occupy senior positions across Blue Origin, SpaceX, Amazon, and NASA. The investigation into the explosion's cause will determine how quickly Bezos can rebuild — not just the launch pad, but confidence in a program that was supposed to prove Blue Origin could compete at the highest level.
 
-The case has implications beyond India. Courts in the European Union have previously ruled that keyword advertising on trademarked terms does not automatically constitute infringement, placing the Delhi High Court's decision at odds with international precedent. Google's statement said it operates in accordance "with all local laws" and works to explain its position in cases where orders are "overbroad or inconsistent" with its policies — a signal that an appeal is likely.
+Musk, for his part, offered brief sympathy on X: "Sorry to see this, I hope you recover quickly." In the commercial space race, even condolences carry competitive subtext."""
+    },
+    {
+        "headline": "Modi Used Mann Ki Baat to Celebrate Two Sprinters Who Broke India's 100-Metre Record Three Times in Two Days.",
+        "subheadline": "In the 134th episode of his monthly address, the Prime Minister spoke to Gurinder Veer Singh and Animesh Kujur — and also talked about Chola copper plates returned from the Netherlands, traditional summer drinks, and dolphin conservation.",
+        "slug": "modi-mann-ki-baat-134-gurinder-veer-animesh-kujur-100m-record-chola-copper-plates-20260531",
+        "category": "news",
+        "sources": "DD News, Tripura Star News (full transcript), NDTV, IANS, India Today",
+        "image_search_person": "Narendra Modi",
+        "image_pexels_query": None,
+        "image_pexels_fallback": None,
+        "image_attribution": "Wikimedia Commons",
+        "body": """Prime Minister Narendra Modi used the 134th episode of Mann Ki Baat on Sunday to call two athletes who had just rewritten Indian sprinting history — and in the process delivered a pointed rebuttal to the idea that Indians cannot compete in the 100-metre dash.
 
-For now, the ruling gives Indian brand owners a powerful new legal weapon in the fight over search-engine real estate. The ₹30 lakh fine is nominal by Google's standards, but the precedent it sets is not. If upheld, it could fundamentally alter how keyword advertising works in India's $8 billion digital ad market.
+Gurinder Veer Singh, a Petty Officer in the Indian Navy, and Animesh Kujur, an athlete from Chhattisgarh who plays for Odisha, broke the national record in the men's 100-metre race three times within two days at the National Senior Athletics Federation Competition in Ranchi, Jharkhand. Nearly 800 athletes competed in the event, and four national records fell across different disciplines.
 
-**The diaspora angle**
+## The Conversation
 
-For NRI entrepreneurs running businesses in India or targeting Indian consumers through Google Ads, the ruling introduces new uncertainty. Companies that have been bidding on competitors' brand names as keywords may need to rethink their search advertising strategies. At the same time, Indian-origin brands sold globally — from spice companies to fashion labels — now have a legal framework to challenge trademark misuse on Google's platform.
+Modi spoke to both athletes live on air. The exchange was unusually personal for a programme that typically keeps to scripted inspirational narratives.
 
-*Sources: Reuters, Inc42, Bar and Bench, The Hindu Business Line, Storyboard18*"""
+Gurinder Veer, who ran 10.09 seconds to become the first Indian to break the 10.1-second barrier, told Modi about growing up in a middle-class family and cleaning his father's trophies as a child. "I used to clean any trophy and ask him where he won it," Gurinder said. "Then I would tell him, I also want to do some sport."
 
-articles.append({
-    "headline": "A Delhi Court Just Ruled Google's Keyword Ads Violate Trademark Law. India's Founders Are Cheering.",
-    "subheadline": "The Delhi HC fined Google ₹30 lakh for letting rivals bid on Hindware's brand name. Zerodha and Shaadi.com founders say it could reshape online advertising.",
-    "body": google_body,
-    "slug": "delhi-hc-google-hindware-trademark-keyword-ads-ruling-zerodha-shaadi-20260531",
-    "category": "news",
-    "vertical": "business",
-    "diaspora_angle": "For NRI entrepreneurs running businesses in India or targeting Indian consumers through Google Ads, the ruling introduces new uncertainty. Companies bidding on competitors' brand names may need to rethink strategies. Indian-origin brands sold globally now have a legal framework to challenge trademark misuse on Google's platform.",
-    "tags": ["google", "trademark", "delhi-high-court", "hindware", "digital-advertising", "zerodha"],
-    "urgency": "medium",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img2,
-    "image_attribution": attr2,
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com/world/india/"},
-        {"name": "Inc42", "url": "https://inc42.com/buzz/delhi-hc-fines-google-for-infringing-hindwares-trademark/"},
-        {"name": "Bar and Bench", "url": "https://www.barandbench.com/"},
-        {"name": "The Hindu Business Line", "url": "https://www.thehindubusinessline.com/"},
-        {"name": "Storyboard18", "url": "https://storyboard18.com/"}
-    ])
-})
+He recalled his mother switching off the television during a broadcast of a world record race. "I said, 'It's okay, you don't let me watch TV. One day, you'll find me on TV.'"
 
-# ──────────────────────────────────────────────────────────────────────
-# ARTICLE 3: India Cuts Fuel Export Duties
-# ──────────────────────────────────────────────────────────────────────
-print("\n=== Article 3: Fuel Export Duty Cut ===")
+Animesh Kujur, who holds national records in the 200m and 400m, described how he began athletics only in 2021 after passing out of Sainik School Ambikapur. He had played football, switched to running during COVID, got selected for the nationals from a state meet he entered casually, and now represents India internationally.
 
-img3, attr3 = get_image(pexels_query="oil refinery India industrial", pexels_fallback="petroleum refinery fuel export")
+Both athletes addressed the same prejudice directly: that Indian genes are not suited for sprinting. "People used to tell me the body of Indians is not at all made for 100 meters," Gurinder said. "My father and I always used to say, we will show them that we can do it."
 
-fuel_body = """India will cut export duties on petrol, diesel, and aviation turbine fuel starting June 1, the finance ministry announced on Saturday, in the latest adjustment to the emergency levies it imposed in March to keep fuel available at home during the Iran war.
+Animesh echoed the sentiment: "People used to tell me the genes of Indians are not such that they can run Sub 10. But now both of us have proved that Indians can also do it." Both have been selected for the Commonwealth Games.
 
-The new rates: ₹1.5 per litre on petrol exports (down sharply from previous levels), ₹13.5 per litre on diesel, and ₹9.5 per litre on aviation turbine fuel. There is no change to excise duties on fuel sold for domestic consumption.
+## Chola Copper Plates Return From the Netherlands
 
-The cuts, described as a routine fortnightly revision based on average international prices since the last review on May 16, come at a moment when the global oil market is flashing some of its most alarming signals since the war began.
+Modi also spoke about his recent visit to the Netherlands, where ancient copper plates from the Chola period were formally returned to India. The Prime Minister of the Netherlands was present at the ceremony. Modi said he had received "continuous messages from India and abroad" about the repatriation, and noted that the Tamil community worldwide was "particularly enthusiastic."
 
-**The backstory**
+The Chola-era copper plates are among the most significant recent examples of heritage repatriation — a subject that has gained momentum globally as former colonial powers face pressure to return artefacts taken during the colonial era.
 
-India introduced the export levies — formally called Special Additional Excise Duty and Road and Infrastructure Cess — on March 27, 2026, weeks after the U.S.-Iran conflict began disrupting shipping through the Strait of Hormuz. The explicit goal was to "ensure domestic availability of petroleum products by disincentivising exports in the backdrop of the West Asia crises."
+## Summer Drinks and Mango Diplomacy
 
-The mechanism is simple: every two weeks, the government recalculates duties based on global crude, petrol, diesel, and ATF prices. When international prices soften relative to Indian refinery costs, the levies come down to let refiners export more competitively. When prices spike, the levies go up to keep fuel at home.
+In a lighter segment, Modi delivered what amounted to a geography lesson through beverages. He listed traditional summer drinks across Indian states — Aam Panna in North India, lassi in Punjab and Haryana, buttermilk in Rajasthan and Gujarat, Sattu sherbet in Bihar and Jharkhand, Kokum sherbet and Sol Kadhi in Konkan and Goa, Panakam and Neer Mor in South India, and Bael Pana in Odisha.
 
-The sharp reduction in petrol export duties this round reflects softening international gasoline prices relative to crude, according to The Hindu Business Line. Diesel and ATF levies remain elevated because global demand for those fuels — driven by shipping, aviation, and industrial use during the conflict — has not eased.
+He then pivoted to mangoes, naming varieties from every region: Maharashtra's Alphonso, Gujarat's Kesar, UP's Dussehri and Langra ("which often remains green even after ripening"), Bihar's Zardalu, Bengal's Himsagar, and South India's Banganapalli and Totapuri. The segment was designed to highlight India's agricultural diversity, but it also doubled as soft cultural diplomacy — the kind of content that travels on WhatsApp forwards among diaspora communities.
 
-**But the calm may not last**
+## Dolphin Conservation and Swimming in Rivers
 
-The timing of the duty cut is ironic. Just two days before the announcement, ExxonMobil senior vice president Neil Chapman warned at the Bernstein Conference in New York that global oil inventories are approaching "unheard of" lows and that physical Brent crude could spike to $150–$160 per barrel within weeks.
+Modi highlighted efforts to protect the endangered Ganges river dolphin and praised Saji Valasheril from Aluva, Kerala, who runs a swimming club in a river where more than 15,000 people have learned to swim — including children with disabilities. Saji began the initiative after several students died in a boat accident.
 
-"We're approaching unheard of inventory levels. I mean, really, really low levels," Chapman said. "Once you get to that point, then you'll see prices shoot up."
+The 134th episode aired at 11 AM IST across All India Radio, DD News, and government digital channels. For the diaspora, it was available on YouTube through multiple news channels."""
+    }
+]
 
-Chevron CEO Mike Wirth echoed the warning, saying the "buffers and shock absorbers" that have kept prices manageable — strategic petroleum reserve releases, commercial inventory drawdowns — are steadily being exhausted. The International Energy Agency has flagged that stockpiles are being consumed at an unprecedented rate, with member countries releasing 400 million barrels in March alone.
+# ── Main ──
+def main():
+    print(f"\n{'='*60}")
+    print(f"The Videshi — News Writer")
+    print(f"Date: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
+    print(f"Articles to write: {len(ARTICLES)}")
+    print(f"{'='*60}\n")
 
-The Strait of Hormuz closure has removed roughly 14 million barrels per day from global supply. Dated Brent dropped from a monthly average of $117 in April to near $103 in May, partly on news of progress in U.S.-Iran ceasefire talks. But if those talks falter, or if inventories hit the floor that Chapman described, India's carefully calibrated export levies could swing sharply upward again.
+    published = 0
 
-**What it means for Indians at home and abroad**
+    for i, article in enumerate(ARTICLES, 1):
+        print(f"\n--- Article {i}/{len(ARTICLES)}: {article['headline'][:60]}... ---")
 
-For consumers in India, the immediate news is neutral: domestic fuel prices are unchanged. But the finance ministry's own economic report, released the same day, warned that "a sharp rise in upstream price pressures, along with recent increases in fuel prices, suggests a gradual pass-through to retail inflation." The rupee has been under pressure, and pump prices were last raised in mid-May.
+        # Image sourcing
+        img_url = None
+        attribution = article.get('image_attribution', 'The Videshi')
 
-For NRIs, the story is the fragility underneath. India imports over 85 percent of its crude oil. A sustained move to $150-plus Brent would widen the current account deficit, weaken the rupee further, and squeeze household budgets across the country. The fortnightly export levy adjustment is a tool, not a shield. If global stockpiles run out, the tool runs out too.
+        # Step 1: Wikipedia for person articles
+        if article.get('image_search_person'):
+            img_url = fetch_wikipedia_person_image(article['image_search_person'])
+            if img_url:
+                attribution = "Wikimedia Commons"
 
-*Sources: Reuters, India Finance Ministry notification (May 31), The Hindu Business Line, Fox Business, Seeking Alpha*"""
+        # Step 2: Pexels fallback
+        if not img_url and article.get('image_pexels_query'):
+            img_url = fetch_pexels_image(
+                article['image_pexels_query'],
+                article.get('image_pexels_fallback')
+            )
+            if img_url:
+                attribution = "Pexels"
 
-articles.append({
-    "headline": "India Just Cut Fuel Export Duties. Exxon Says Oil Could Hit $160 Anyway.",
-    "subheadline": "The government eased levies on petrol, diesel, and ATF exports starting June 1. But global inventories are running out — and industry leaders say the worst is ahead.",
-    "body": fuel_body,
-    "slug": "india-cuts-fuel-export-duties-exxon-oil-160-warning-hormuz-20260531",
-    "category": "news",
-    "vertical": "economy",
-    "diaspora_angle": "India imports over 85% of its crude oil. A sustained move to $150+ Brent would widen the current account deficit, weaken the rupee, and squeeze household budgets. NRIs sending remittances would see exchange rate pressure, while family members in India face higher transport and cooking fuel costs.",
-    "tags": ["fuel-export-duty", "oil-prices", "exxon", "chevron", "hormuz", "iran-war", "windfall-tax"],
-    "urgency": "high",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img3,
-    "image_attribution": attr3,
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com/world/india/"},
-        {"name": "India Finance Ministry", "url": "https://finmin.nic.in/"},
-        {"name": "The Hindu Business Line", "url": "https://www.thehindubusinessline.com/"},
-        {"name": "Fox Business", "url": "https://www.foxbusiness.com/"},
-        {"name": "Seeking Alpha", "url": "https://seekingalpha.com/"}
-    ])
-})
+        # Step 3: Upload to Supabase storage for permanence
+        art_id = str(uuid.uuid4())
+        final_image_url = None
 
-# ── Publish all ──
-print("\n=== Publishing ===")
-success = 0
-for i, article in enumerate(articles):
-    print(f"\nArticle {i+1}: {article['headline'][:60]}...")
+        if img_url:
+            filename = f"{art_id}.jpg"
+            final_image_url = upload_to_supabase_storage(img_url, filename)
+            if not final_image_url:
+                # Try using original URL if it's from a permanent source
+                if 'upload.wikimedia.org' in img_url or 'images.pexels.com' in img_url:
+                    final_image_url = img_url
+                    print(f"  ℹ Using original permanent URL")
 
-    # Validate article quality
-    body_words = len(article['body'].split())
-    if body_words < 400:
-        print(f"  ✗ REJECTED: Body too short ({body_words} words, minimum 400)")
-        continue
-    if len(article['headline']) < 20 or len(article['headline']) > 200:
-        print(f"  ✗ REJECTED: Headline length issue ({len(article['headline'])} chars)")
-        continue
-    if len(article.get('subheadline', '')) < 15:
-        print(f"  ✗ REJECTED: Subheadline too short")
-        continue
-    if not article.get('image_url'):
-        print(f"  ⚠ No image found — publishing without image")
-        article.pop('image_url', None)
-        article.pop('image_attribution', None)
+        if not final_image_url:
+            print(f"  ⚠ No image — publishing without hero image")
 
-    print(f"  Body: {body_words} words")
-    print(f"  Headline: {len(article['headline'])} chars")
-    print(f"  Slug: {article['slug']}")
-    print(f"  Image: {'Yes' if article.get('image_url') else 'No'}")
+        # Publish
+        now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+        payload = {
+            "id": art_id,
+            "headline": article['headline'],
+            "subheadline": article['subheadline'],
+            "slug": article['slug'],
+            "body": article['body'],
+            "category": article['category'],
+            "status": "published",
+            "published_at": now,
+            "sources": article['sources'],
+            "image_url": final_image_url,
+            "image_attribution": attribution if final_image_url else None,
+        }
 
-    if publish_article(article):
-        success += 1
+        result = sb_post('p2_articles', payload)
+        if result:
+            published += 1
+            print(f"  ✅ Published: {article['slug']}")
+        else:
+            print(f"  ❌ Failed to publish: {article['slug']}")
 
-print(f"\n=== Done: {success}/{len(articles)} articles published ===")
+        time.sleep(1)
+
+    print(f"\n{'='*60}")
+    print(f"Done. Published {published}/{len(ARTICLES)} articles.")
+    print(f"{'='*60}\n")
+
+if __name__ == '__main__':
+    main()

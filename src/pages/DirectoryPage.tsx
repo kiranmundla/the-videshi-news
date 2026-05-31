@@ -457,7 +457,7 @@ export default function DirectoryPage() {
           name="description"
           content="Find trusted Indian and desi professionals — doctors, lawyers, accountants, real estate agents, and more across the US."
         />
-        <link rel="canonical" href="/directory" />
+        <link rel="canonical" href="https://www.thevideshi.com/directory" />
       </Helmet>
 
       <Masthead />

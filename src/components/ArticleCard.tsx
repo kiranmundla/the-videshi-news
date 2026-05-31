@@ -48,7 +48,10 @@ function ArticleGallery({ images, title }: { images: { url: string; caption?: st
               src={img.url}
               alt={img.caption || title}
               loading={i === 0 ? "eager" : "lazy"}
+              decoding={i === 0 ? undefined : "async"}
               className="w-full rounded-lg"
+              width="600"
+              height="338"
               style={{ maxHeight: "50vh", objectFit: "contain", background: "#f5f5f0" }}
             />
           </div>
@@ -93,7 +96,10 @@ function MiniGallery({ images }: { images: { url: string; caption: string }[] })
             src={img.url}
             alt={img.caption || ""}
             loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
+            width="80"
+            height="56"
           />
         </div>
       ))}
@@ -178,7 +184,10 @@ export default function ArticleCard({
             src={article.hero_image_url}
             alt={article.title}
             loading="lazy"
+            decoding="async"
             className="w-20 h-20 object-cover flex-shrink-0"
+            width="80"
+            height="80"
           />
         )}
         <div
@@ -238,7 +247,10 @@ export default function ArticleCard({
               src={article.hero_image_url}
               alt={article.title}
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
+              width="400"
+              height="225"
               style={{ objectPosition: "center 20%" }}
             />
           </div>
@@ -383,7 +395,11 @@ export default function ArticleCard({
               src={article.hero_image_url}
               alt={article.title}
               loading={variant === "hero" ? "eager" : "lazy"}
+              fetchPriority={variant === "hero" ? "high" : undefined}
+              decoding={variant === "hero" ? undefined : "async"}
               className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
+              width="600"
+              height="338"
               style={{ objectPosition: "center 20%" }}
               onOrientationDetected={setRuntimeOrientation}
             />

@@ -166,6 +166,7 @@ export default function TravelDestination() {
       <Helmet>
         <title>{meta.title} Travel Guide — The Videshi</title>
         <meta name="description" content={`Complete diaspora travel guide to ${meta.title}. Best months, budget tips, visa info, and more.`} />
+        <link rel="canonical" href={`https://www.thevideshi.com/travel/${destination}`} />
       </Helmet>
 
       <Masthead />

@@ -61,8 +61,11 @@ export default function FeaturedHero({ article }: { article: Article }) {
                 src={article.hero_image_url}
                 alt={article.title}
                 loading="eager"
+                fetchPriority="high"
                 referrerPolicy="no-referrer"
                 className="w-full h-auto rounded object-cover"
+                width="220"
+                height="146"
               />
             </div>
           </div>
@@ -77,8 +80,11 @@ export default function FeaturedHero({ article }: { article: Article }) {
           src={article.hero_image_url}
           alt={article.title}
           loading="eager"
+          fetchPriority="high"
           referrerPolicy="no-referrer"
           className="w-full h-auto block"
+          width="800"
+          height="450"
           style={{ minHeight: "200px", maxHeight: "500px", objectFit: "cover", objectPosition: "center 20%" }}
         />
         <div

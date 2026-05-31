@@ -475,7 +475,7 @@ export default function EventsPage() {
           name="description"
           content="Discover Indian cultural events, festivals, concerts, and community gatherings near you across the US."
         />
-        <link rel="canonical" href="/events" />
+        <link rel="canonical" href="https://www.thevideshi.com/events" />
       </Helmet>
 
       <Masthead />

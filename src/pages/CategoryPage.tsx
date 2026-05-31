@@ -91,7 +91,7 @@ export default function CategoryPage() {
       <Helmet>
         <title>{def.label} — The Videshi</title>
         <meta name="description" content={`${def.label} stories from The Videshi.`} />
-        <link rel="canonical" href={def.path} />
+        <link rel="canonical" href={`https://www.thevideshi.com${def.path}`} />
       </Helmet>
       <Masthead />
       <CategoryPills />

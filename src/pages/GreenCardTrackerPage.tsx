@@ -225,6 +225,7 @@ export default function GreenCardTrackerPage() {
         <meta name="description" content="Track EB-1, EB-2, EB-3, EB-5 green card priority dates for India. Historical movement charts, India vs China comparison, and monthly analysis." />
         <meta property="og:title" content="Green Card Tracker — The Videshi" />
         <meta property="og:url" content="https://www.thevideshi.com/immigration/green-card" />
+              <link rel="canonical" href="https://www.thevideshi.com/immigration/green-card" />
       </Helmet>
       <Masthead />
       <CategoryPills />

@@ -48,6 +48,7 @@ export default function LinksPage() {
         <title>Links · The Videshi</title>
         <meta name="description" content="Latest articles from The Videshi — your daily source for Indian diaspora news." />
         <meta name="robots" content="noindex" />
+              <link rel="canonical" href="https://www.thevideshi.com/links" />
       </Helmet>
 
       <div

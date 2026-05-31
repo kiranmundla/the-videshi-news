@@ -180,6 +180,7 @@ export default function StoryDetailPage() {
         {story.author_photo_url && <meta property="og:image" content={story.author_photo_url} />}
         <meta property="og:url" content={storyUrl} />
         <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href={`https://www.thevideshi.com/stories/${slug}`} />
       </Helmet>
 
       <Masthead />

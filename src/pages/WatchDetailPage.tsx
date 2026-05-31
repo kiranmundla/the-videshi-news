@@ -109,6 +109,7 @@ export default function WatchDetailPage() {
         <meta name="description" content={pick.why_watch} />
         {pick.poster_url && <meta property="og:image" content={pick.poster_url} />}
         <meta property="og:title" content={`${pick.title} — What to Watch | The Videshi`} />
+        <link rel="canonical" href={`https://www.thevideshi.com/watch/${slug}`} />
       </Helmet>
 
       <Masthead />

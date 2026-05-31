@@ -104,7 +104,11 @@ export default function HeroCarousel() {
               referrerPolicy="no-referrer"
               draggable={false}
               loading={i === 0 ? "eager" : "lazy"}
+              fetchPriority={i === 0 ? "high" : undefined}
+              decoding={i === 0 ? undefined : "async"}
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              width="800"
+              height="450"
             />
           </div>
         ))}

@@ -106,7 +106,10 @@ export default function ArticleCarousel() {
               referrerPolicy="no-referrer"
               draggable={false}
               loading={i === 0 ? "eager" : "lazy"}
+              decoding={i === 0 ? undefined : "async"}
               className="absolute inset-0 w-full h-full object-cover"
+              width="400"
+              height="225"
                 style={{ objectPosition: "center" }}
             />
           </Link>

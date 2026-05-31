@@ -283,6 +283,7 @@ export default function ImmigrationPage() {
         <meta property="og:description" content="Track green card priority dates, consulate wait times, H-1B lottery, and USCIS processing times. Your Indian American immigration dashboard." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.thevideshi.com/immigration" />
+              <link rel="canonical" href="https://www.thevideshi.com/immigration" />
       </Helmet>
       <Masthead />
       <CategoryPills />

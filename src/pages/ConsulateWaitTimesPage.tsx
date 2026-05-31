@@ -141,6 +141,7 @@ export default function ConsulateWaitTimesPage() {
         <meta name="description" content="Compare US visa appointment wait times across all 5 Indian consulates. B1/B2 visitor visa, H-1B/L-1 work visa, student visa, and more." />
         <meta property="og:title" content="US Consulate Wait Times — India | The Videshi" />
         <meta property="og:url" content="https://www.thevideshi.com/immigration/consulate-wait-times" />
+              <link rel="canonical" href="https://www.thevideshi.com/immigration/consulate-wait-times" />
       </Helmet>
       <Masthead />
       <CategoryPills />

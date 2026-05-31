@@ -49,6 +49,7 @@ export default function ImmigrationGuidesPage() {
         <meta name="description" content="Comprehensive immigration guides for Indian Americans. H-1B visa, green card, OCI card, parent visa, NRI taxes, money transfer, and more." />
         <meta property="og:title" content="Immigration Guides | The Videshi" />
         <meta property="og:url" content="https://www.thevideshi.com/immigration/guides" />
+              <link rel="canonical" href="https://www.thevideshi.com/immigration/guides" />
       </Helmet>
       <Masthead />
       <CategoryPills />

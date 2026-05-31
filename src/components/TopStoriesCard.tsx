@@ -46,8 +46,11 @@ export default function TopStoriesCard({
             src={article.hero_image_url}
             alt={article.title}
             loading="lazy"
+            decoding="async"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+            width="400"
+            height="225"
             style={{ objectPosition: "center" }}
           />
         </div>
