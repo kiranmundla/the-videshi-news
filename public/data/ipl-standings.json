@@ -1,8 +1,19 @@
 {
   "season": "IPL 2026",
-  "last_updated": "2026-05-31T18:00:00Z",
-  "stage": "PLAYOFFS \u2014 FINAL LIVE. League stage complete (70 matches). Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th). Qualifier 1: RCB beat GT by 92 runs (May 26). Eliminator: RR beat SRH by 47 runs (May 27). Qualifier 2: GT beat RR by 7 wickets (May 29). FINAL: RCB 151/5 (17.4 ov) chasing GT 155/8 \u2014 RCB need 5 runs off 14 balls. Virat Kohli scored his fastest IPL fifty (25 balls). Narendra Modi Stadium, Ahmedabad.",
+  "last_updated": "2026-05-31T18:56:15Z",
+  "stage": "SEASON COMPLETE \u2014 RCB are IPL 2026 Champions! Royal Challengers Bengaluru retained their title, beating Gujarat Titans by 5 wickets in the Final at Narendra Modi Stadium, Ahmedabad (May 31). Virat Kohli scored his fastest IPL fifty (25 balls). League stage: 70 matches. Top 4: RCB (1st), GT (2nd), SRH (3rd), RR (4th).",
   "recent_results": [
+    {
+      "team1": "GT",
+      "team2": "RCB",
+      "score1": "155/8",
+      "score2": "161/5",
+      "winner": "RCB",
+      "margin": "5 wickets",
+      "date": "May 31",
+      "venue": "Ahmedabad",
+      "match": "Final"
+    },
     {
       "team1": "RR",
       "team2": "GT",
@@ -46,17 +57,6 @@
       "date": "May 25",
       "venue": "",
       "match": 70
-    },
-    {
-      "team1": "RR",
-      "team2": "MI",
-      "score1": "",
-      "score2": "",
-      "winner": "RR",
-      "margin": "",
-      "date": "May 25",
-      "venue": "",
-      "match": 69
     }
   ],
   "upcoming": [],
@@ -176,13 +176,7 @@
     "qualifier_1": "RCB 254/5 beat GT 162/10 by 92 runs (May 26, Dharamsala). POTM: Rajat Patidar 93*(33).",
     "eliminator": "RR 243/8 beat SRH 196/10 by 47 runs (May 27, Mullanpur). Vaibhav Sooryavanshi 97(29), Jofra Archer 3 wkts.",
     "qualifier_2": "GT 219/3 beat RR 214/6 by 7 wickets (May 29, Mullanpur). Shubman Gill 104*(53) & Sai Sudharsan 58(32) put on 167-run opening stand. Vaibhav Sooryavanshi 96(47) for RR but GT chased down 215 in 18.4 overs.",
-    "final": "RCB vs GT \u2014 LIVE. GT 155/8 (20 ov), RCB 151/5 (17.4 ov). RCB need 5 runs off 14 balls. Kohli smashed his fastest IPL fifty (25 balls). Rashid Khan took 2 wickets to give GT hope but RCB cruising. Rasikh Salam Dar 3/27, Bhuvneshwar 2/29, Hazlewood 2/37 restricted GT. Washington Sundar 50*(37) top-scored for GT. Narendra Modi Stadium, Ahmedabad, May 31."
+    "final": "RCB 161/5 beat GT 155/8 by 5 wickets (May 31, Ahmedabad). Virat Kohli scored his fastest IPL fifty (25 balls). Rasikh Salam Dar 3/27, Bhuvneshwar Kumar 2/29, Josh Hazlewood 2/37 restricted GT to 155/8. Washington Sundar 50*(37) top-scored for GT. RCB are IPL 2026 Champions \u2014 title retained!"
   },
-  "next_match": {
-    "team1": "RCB",
-    "team2": "GT",
-    "date": "May 31",
-    "time": "7:30 PM IST",
-    "venue": "Narendra Modi Stadium, Ahmedabad"
-  }
+  "next_match": null
 }
