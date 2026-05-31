@@ -1,35 +1,39 @@
 #!/usr/bin/env python3
-"""
-The Videshi — News Writer (2026-05-31 batch)
-Writes 3 articles: dabbawalas, Myanmar visit, RBI MPC
-"""
+"""News writer for The Videshi — 2026-05-31 batch"""
 
-import os, sys, json, uuid, requests, urllib.parse, re
+import json, os, sys, uuid, re, time
+import requests
 from datetime import datetime, timezone
 
-# ── Supabase config ──────────────────────────────────────────────────────────
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+# Load env
+def load_env(path):
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, _, val = line.partition('=')
+                    val = val.strip().strip('"').strip("'")
+                    os.environ.setdefault(key.strip(), val)
+
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
-
-# ── Pexels config ─────────────────────────────────────────────────────────────
-PEXELS_KEY = None
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-if os.path.exists(pexels_env):
-    for line in open(pexels_env):
-        if line.startswith("PEXELS_API_KEY="):
-            PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
-
-# ── Image helpers ─────────────────────────────────────────────────────────────
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import time
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -39,337 +43,341 @@ def fetch_wikipedia_person_image(person_name):
         )
         if r.status_code == 200:
             data = r.json()
-            # Prefer thumbnail (330px, always works) over originalimage (may get 429 on large files)
-            img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
-                time.sleep(1)  # rate limit courtesy
                 return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels API using requests."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key available")
-        return None
+    """Fetch image from Pexels API using curl (urllib gets 403)."""
+    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = requests.get(
-                "https://api.pexels.com/v1/search",
-                params={"query": q, "per_page": 5, "orientation": "landscape"},
-                headers={"Authorization": PEXELS_KEY},
-                timeout=10
+            result = subprocess.run(
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape'],
+                capture_output=True, text=True, timeout=15
             )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for p in photos:
-                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
-                    if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                        return url
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            if photos:
+                img_url = photos[0]['src']['large2x']
+                print(f"  ✓ Pexels image found for '{q}': {img_url[:80]}...")
+                return img_url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def upload_image_to_supabase(image_url, filename):
-    """Download image and upload to Supabase storage bucket 'article-images'."""
+def validate_image(url):
+    """Check image URL returns valid image with decent size."""
     try:
-        r = requests.get(image_url, timeout=15, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200:
-            print(f"  ⚠ Image download failed ({r.status_code}): {image_url[:80]}")
-            return image_url  # fall back to direct URL if it's a permanent source
-        content_type = r.headers.get("Content-Type", "image/jpeg")
-        if not content_type.startswith("image/"):
-            print(f"  ⚠ Not an image: {content_type}")
-            return image_url
-        if len(r.content) < 5000:
-            print(f"  ⚠ Image too small ({len(r.content)} bytes), skipping upload")
-            return image_url
-
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        up = requests.post(
-            upload_url,
-            headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": content_type,
-                "x-upsert": "true",
-            },
-            data=r.content,
-            timeout=20
-        )
-        if up.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Supabase upload failed ({up.status_code}): {up.text[:200]}")
-            return image_url
-    except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-        return image_url
-
-
-def validate_image_url(url):
-    """Validate that an image URL returns 200, is an image, and > 5KB."""
-    if not url:
-        return False
-    try:
-        r = requests.head(url, timeout=10, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, allow_redirects=True)
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
             return True
-        # HEAD sometimes doesn't return Content-Length; try GET
-        if r.status_code == 200 and "image" in ct:
-            r2 = requests.get(url, timeout=10, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, stream=True)
-            chunk = r2.raw.read(6000)
+        # Try GET for servers that don't support HEAD well
+        r = requests.get(url, timeout=10, stream=True,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct:
+            # Read first chunk to check size
+            chunk = next(r.iter_content(8192), b'')
             if len(chunk) > 5000:
                 return True
-    except:
-        pass
+    except Exception as e:
+        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
     return False
 
-
-# ── Supabase helpers ──────────────────────────────────────────────────────────
-
-def sb_insert(table, data):
+def publish_article(article):
+    """Insert article into Supabase."""
+    article_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
+    
+    payload = {
+        'id': article_id,
+        'headline': article['headline'],
+        'subheadline': article['subheadline'],
+        'body': article['body'],
+        'slug': article['slug'],
+        'category': article['category'],
+        'status': 'published',
+        'published_at': now,
+        'created_at': now,
+        'updated_at': now,
+        'vertical': article.get('vertical', 'news'),
+        'sources': json.dumps(article.get('sources', [])),
+    }
+    
+    if article.get('image_url'):
+        payload['image_url'] = article['image_url']
+    if article.get('image_attribution'):
+        payload['image_attribution'] = article['image_attribution']
+    
     r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=data,
-        timeout=15,
+        json=payload
     )
+    
     if r.status_code in (200, 201):
-        rows = r.json()
-        if rows and isinstance(rows, list):
-            return rows[0]
-    print(f"  ⚠ Insert to {table} failed ({r.status_code}): {r.text[:300]}")
-    return None
+        result = r.json()
+        aid = result[0]['id'] if isinstance(result, list) else result.get('id', article_id)
+        print(f"  ✅ Published: {article['headline'][:60]}... (id: {aid})")
+        return aid
+    else:
+        print(f"  ❌ Failed to publish: {r.status_code} {r.text[:200]}")
+        return None
 
+# ─── ARTICLE 1: Scripps Spelling Bee ──────────────────────────────────────
+def write_spelling_bee():
+    print("\n📝 Writing: Scripps Spelling Bee article...")
+    
+    headline = "An Indian American Kid Just Won the Scripps Spelling Bee. Again."
+    subheadline = "Shrey Parikh, 14, from California shattered the spell-off record with 32 words in 90 seconds. The runner-up was also Indian American."
+    slug = "shrey-parikh-wins-2026-scripps-spelling-bee-indian-american-record-spell-off-20260531"
+    
+    body = """Shrey Parikh does not get nervous once he sees the word. "Before I get the word, it's just like, what word am I gonna get?" the 14-year-old told reporters after winning the 2026 Scripps National Spelling Bee on Thursday night. "Once I get the word, I'm not really nervous anymore, because then it's all in my control."
 
-def sb_patch(table, match, data):
-    params = "&".join(f"{k}={v}" for k, v in match.items())
-    r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
-        headers=HEADERS,
-        json=data,
-        timeout=15,
-    )
-    if r.status_code in (200, 204):
-        return True
-    print(f"  ⚠ Patch {table} failed ({r.status_code}): {r.text[:300]}")
-    return False
+That calm served him well. In a 90-second lightning-round spell-off at DAR Constitution Hall in Washington, D.C., Parikh correctly spelled 32 words — shattering the previous record of 29 set in 2024 — and clinched the title with "bromocriptine," a polypeptide alkaloid derived from ergot. The word rolled off his tongue like it was nothing.
 
+His opponent in the final showdown was 12-year-old Ishaan Gupta from Jersey City, New Jersey, who managed an impressive 25 words in his own 90 seconds. Third place went to Sarv Dharavane, a 12-year-old from Dunwoody, Georgia, who finished third for the second consecutive year and still has two more years of eligibility.
 
-# ── Articles ──────────────────────────────────────────────────────────────────
+All three finalists were of Indian origin. This is not a coincidence, and it has not been for a very long time.
 
-ARTICLES = [
-    {
-        "headline": "Mumbai's Dabbawalas Fed the City for 130 Years. Now Only 1,500 Are Left.",
-        "subheadline": "Remote work, app-based delivery, and rising costs are dismantling a logistics system that Harvard studied and Prince Charles admired.",
-        "slug": "mumbai-dabbawalas-disappearing-1500-left-remote-work-app-delivery-bbc-20260531",
-        "category": "news",
-        "tags": ["mumbai", "dabbawalas", "culture", "remote-work", "food-delivery"],
-        "sources_list": ["BBC Marathi", "Mumbai Tiffin Box Suppliers Association", "New York Post"],
-        "person_image": None,  # no single person
-        "pexels_query": "Mumbai train station commuters",
-        "pexels_fallback": "Indian lunchbox tiffin",
-        "image_attribution": "Pexels",
-        "body": """Every morning before Mumbai wakes up, men in white caps arrive at suburban railway stations on bicycles stacked with lunchboxes. They load the boxes onto trains, cross the city, and deliver hot, home-cooked meals to office workers. After lunch, they collect the empty boxes and return them by mid-afternoon.
+## A Two-Decade Dynasty
 
-These men are called dabbawalas, and for more than 130 years, they have kept Mumbai fed through a delivery system so precise it became world famous. Harvard Business School studied it as a masterclass in low-cost logistics. In 2003, the future King Charles spent time with dabbawalas during a visit to Mumbai. At its peak, roughly 4,500 registered dabbawalas moved 50,000 lunchboxes a day across India's financial capital — with no apps, no GPS, and an error rate of one in six million deliveries.
+Indian American kids have dominated the Scripps Bee for more than 20 years. The streak began in earnest with Nupur Lala's win in 1999, and since then, contestants of Indian origin have won 22 of the last 27 championships. The phenomenon is well-documented: a combination of a deeply competitive academic culture, organized study circuits within the Indian American community, structured coaching networks, and families that treat spelling preparation with the same seriousness as competitive math or science olympiads.
 
-Now, according to the Mumbai Tiffin Box Suppliers Association, that number has fallen to about 1,500. The decline started during the pandemic, when offices closed and the daily lunch run simply stopped making sense. Even after offices reopened, hybrid schedules meant many workers go in only two or three days a week — not enough to justify a daily subscription. App-based food delivery services like Swiggy and Zomato, along with cloud kitchens offering cheap meals near office buildings, have given workers alternatives that require no advance planning.
+Parikh is a product of this ecosystem. An eighth-grader at Day Creek Intermediate School in Rancho Cucamonga, California, he first reached the national Bee in 2022, tying for 89th place. He returned in 2024 and tied for third — heartbreakingly close after blending two letters in a word. Then he missed the 2025 national competition entirely after faltering at his school bee.
 
-**A system built for a city that no longer exists**
+"I was really dejected and just very upset," he said of that moment. "It didn't even sink in until the next day."
 
-The dabbawala system was designed for a specific version of Mumbai: one where workers commuted to the same office every day, where home-cooked food was both a cultural expectation and an economic necessity, and where the suburban railway network was the circulatory system of the city's working life. Each lunchbox carries an alphanumeric code that tells a dabbawala where it came from, where it is going, which floor of which building it belongs to, and how to get it back. No technology — just a system passed down through generations of workers who know Mumbai's trains and streets instinctively.
+He took six months off. Then he went back to work.
 
-That Mumbai still exists, but it is shrinking. The workers who remain are older, and younger men from the community are choosing other jobs. Rising transportation costs and stagnant subscription fees have made the economics increasingly difficult. A dabbawala delivering 35 boxes a day earns roughly $240 a month — below India's average monthly wage.
+## The Spell-Off
 
-**What NRIs are losing**
+The 98th edition of the Bee started with 247 spellers from all 50 states, the District of Columbia, Guam, Puerto Rico, the U.S. Virgin Islands, and five other countries. By the finals, it was down to nine. After 18 grueling rounds of conventional spelling, the judges could not separate Parikh and Gupta, triggering only the third spell-off in the Bee's history.
 
-For Indians abroad, the dabbawala is more than a delivery service. It is a symbol of a particular kind of Indian ingenuity — the ability to build extraordinarily efficient systems from nothing but human coordination and local knowledge. Many NRIs grew up eating meals that arrived in a dabba, or heard stories from parents and grandparents who did. The system represents a version of Mumbai that many in the diaspora still carry in their heads: a city where home-cooked food arrived hot at your desk every day, where a network of men on bicycles solved a logistics problem that Silicon Valley would later spend billions trying to replicate with algorithms.
+The format is deliberately high-pressure. One contestant stays on stage while the other is sequestered in an isolated room wearing noise-canceling headphones. Both are given an identical word list in the same sequence. Then they have 90 seconds each to correctly spell as many words as possible.
 
-Subhash Talekar, the spokesperson for the Mumbai Tiffin Box Suppliers Association, told the BBC that the dabbawalas have tried to adapt. Some have partnered with corporate canteens. Others offer meal plans that accommodate hybrid schedules. A few have experimented with WhatsApp-based ordering. But none of these adaptations have been enough to reverse the fundamental shift in how Mumbai works and eats.
+Parikh was methodical and relentless. His pace was almost mechanical. "Spelling fast is what I do everyday, so a spell-off came naturally," he said. "It's just another day of spelling."
 
-**The bigger picture**
+## The Diaspora Dimension
 
-The story of the dabbawalas is ultimately about a city changing faster than the institutions built to serve it. Mumbai's office culture, food habits, and commuting patterns have all shifted, and a system engineered for the old rhythm is losing its place. The question is not whether the dabbawalas will survive — some will — but whether the system that made them extraordinary, the one that moved 50,000 boxes a day with near-perfect accuracy, will ever function at that scale again. The answer, increasingly, is no.""",
-    },
-    {
-        "headline": "Myanmar's Junta Chief Turned President Is in India. He Wants Rare Earths and Legitimacy. Modi Wants to Counter China.",
-        "subheadline": "Min Aung Hlaing's five-day trip is his first foreign visit as president. For India, it is a chance to dilute Beijing's outsized influence on its eastern neighbour.",
-        "slug": "myanmar-president-min-aung-hlaing-india-visit-modi-china-rare-earths-20260531",
-        "category": "news",
-        "tags": ["myanmar", "india", "modi", "china", "geopolitics", "rare-earths"],
-        "sources_list": ["Reuters", "India Ministry of External Affairs", "Crisis Group"],
-        "person_image": "Min Aung Hlaing",
-        "pexels_query": None,
-        "pexels_fallback": None,
-        "image_attribution": "Wikimedia Commons",
-        "body": """Myanmar President Min Aung Hlaing arrived in India on Saturday for a five-day official visit that underscores the gradual return of regional re-engagement for a country that has been largely shunned by its neighbours since a military coup in 2021. The former general, who was elected president through a parliamentary vote in April after formalising his grip on power, is scheduled to meet Prime Minister Narendra Modi in New Delhi on June 1.
+For Indian American families, the Spelling Bee is more than a competition. It is a gateway — proof that academic excellence can be a form of cultural identity in a country that often struggles to see Asian Americans as anything more than a monolithic "model minority."
 
-The visit began in Bodh Gaya, the Buddhist pilgrimage site in Bihar, before moving to the capital for bilateral talks. Min Aung Hlaing will also travel to Mumbai on June 2 for business and industry interactions. He is accompanied by a high-level delegation of cabinet ministers, senior officials, and business leaders.
+The Bee circuit in the Indian American community has its own infrastructure: the South Asian Spelling Bee (SASB), regional competitions, WhatsApp study groups, word-list databases, and coaches who specialize in etymology and Latin roots. Families drive hours to regional bees. Kids study 3,000 to 5,000 words a year.
 
-**What India wants**
+Parikh takes home the Scripps Cup, a $50,000 cash prize, $2,500 from Merriam-Webster, $1,000 in Delta Air Lines flight credits, reference works from Encyclopaedia Britannica, and a trip to Universal Studios Orlando.
 
-For India, the visit is about three things: rare earths, border security, and counterbalancing China. Myanmar sits on significant deposits of critical rare earth minerals that are essential for electronics, defence systems, and clean energy technology. China currently dominates Myanmar's rare earth sector, and India has been looking for ways to secure access to these resources as part of its broader strategy to reduce dependence on Chinese supply chains.
+He also visits India frequently to spend time with his grandparents. According to his Scripps biography, he plays percussion in his school band — snare drum, bass drum, timpani, toms, triangle, glockenspiel, and marimba — and recently qualified for the California state Mathcounts competition.
 
-India and Myanmar share a 1,643-kilometre land border across four northeastern states — Arunachal Pradesh, Nagaland, Manipur, and Mizoram. Cross-border insurgent activity and the flow of refugees from Myanmar's civil conflict have been persistent security concerns. New Delhi wants to strengthen border management cooperation and ensure that instability in Myanmar does not spill over into India's northeast.
+The Spelling Bee will be back next year. So will Dharavane, the third-place finisher from Georgia, who is only 12. And somewhere in the Indian American community, a kid with a word list and a dream is already preparing."""
 
-The third objective is geopolitical. China's influence over Myanmar has grown substantially since the coup, and India's Act East Policy — which positions Myanmar as a key corridor to Southeast Asia — has been stalled. The India-Myanmar-Thailand Trilateral Highway and the Kaladan Multi-Modal Transit Transport Project, both designed to improve connectivity through Myanmar, have faced repeated delays. Reviving these projects is expected to be on the agenda.
-
-**What Myanmar wants**
-
-Min Aung Hlaing is looking for something simpler: legitimacy. Five years after ousting the elected government of Aung San Suu Kyi, he has changed into civilian clothes and is seeking to rebuild diplomatic relationships that collapsed after the coup. India, as a fellow democracy that has maintained cautious engagement with Myanmar throughout, offers a less confrontational re-entry point than Western capitals.
-
-"After changing into civilian clothes as president, Min Aung Hlaing is looking to boost diplomatic engagement across the region," Richard Horsey, senior Myanmar adviser at Crisis Group, told Reuters. "He expects more normal ties with ASEAN. He is also likely to visit Beijing soon to meet Xi Jinping. India is Myanmar's other key neighbour."
-
-The visit was originally planned around the International Big Cat Alliance Summit in India, but when that summit was postponed, it was converted into an official bilateral visit — a signal that both sides considered the trip important enough to proceed regardless.
-
-**The trade picture**
-
-Bilateral trade between India and Myanmar stood at $1.95 billion in 2025-26, covering petroleum products, pharmaceuticals, machinery, and agricultural goods. Both sides are expected to discuss ways to increase this figure, particularly in energy, infrastructure, and manufacturing.
-
-**The diaspora angle**
-
-India is home to a small but significant Myanmar diaspora, concentrated in the northeastern states and in cities like Delhi and Kolkata. Many are refugees from the post-coup conflict, and their status — some documented, many not — is expected to be discussed at least informally during the visit. For the broader Indian diaspora, the visit matters because it shapes the security environment in India's northeast, a region that many NRIs trace their roots to.
-
-Indian foreign ministry spokesman Randhir Jaiswal said on Friday that "all issues that form part of the gamut of relations between Myanmar and India will come up for discussion." The deliberate breadth of that statement suggests both sides want to use this visit to reset the relationship, not just manage it.""",
-    },
-    {
-        "headline": "The RBI Will Decide on Interest Rates This Week. The Rupee, Oil, and a Weak Monsoon Are All Working Against It.",
-        "subheadline": "Most economists expect the central bank to hold at 5.25 percent on June 5. But a growing minority thinks it should hike now before the situation gets worse.",
-        "slug": "rbi-mpc-june-5-rate-decision-rupee-oil-monsoon-inflation-hold-hike-2026",
-        "category": "news",
-        "tags": ["rbi", "interest-rates", "rupee", "inflation", "monsoon", "oil", "economy"],
-        "sources_list": ["Reuters", "Outlook Money", "Livemint", "Capital Economics"],
-        "person_image": "Sanjay Malhotra (banker)",
-        "pexels_query": "Reserve Bank of India Mumbai",
-        "pexels_fallback": "Indian rupee currency notes",
-        "image_attribution": "Wikimedia Commons",
-        "body": """The Reserve Bank of India's Monetary Policy Committee will begin a three-day meeting on Tuesday, June 3, with Governor Sanjay Malhotra scheduled to announce the rate decision on Thursday, June 5. The meeting comes at one of the most complicated moments for Indian monetary policy in years, with the central bank caught between still-benign inflation and a constellation of risks that are all pointing in the wrong direction.
-
-According to a Reuters poll of 56 economists conducted between May 22 and 29, nearly 80 percent — 44 of 56 — expect the MPC to keep the repo rate unchanged at 5.25 percent. But the minority calling for a hike has grown sharply: 11 economists now forecast a 25-basis-point increase, and one expects a larger 50-basis-point move. In an April poll, only one respondent had predicted a June rate lift.
-
-**The case for holding**
-
-India's retail inflation stood at 3.48 percent in April, comfortably below the RBI's 4 percent medium-term target and well within its 2-6 percent tolerance band. Headline inflation has been below target for over a year. With the economy facing downside growth risks from the Iran war's impact on trade and energy costs, hiking rates could slow growth without meaningfully addressing supply-side price pressures.
-
-"Interest rates are not a good tool to counter large supply shocks," said Aditya Vyas, chief economist at STCI Primary Dealer. "Also, I do not think the RBI MPC will increase rates to defend the rupee since it is beyond the remit of the MPC."
-
-**The case for hiking**
-
-The problem is that every inflation risk indicator is flashing amber. Crude oil prices remain roughly 30 percent above pre-Iran-war levels. India is the world's third-largest crude oil importer, and elevated energy costs have a direct and rapid transmission mechanism into transport, food, and manufacturing costs. The finance ministry's own monthly report, released Saturday, warned that fuel price hikes and a weaker-than-normal monsoon could push retail inflation higher in the coming months. It called the duration of the Strait of Hormuz disruption "the single most consequential variable" for India's price and external outlook.
-
-The rupee has lost more than 5 percent this year, briefly touching 97 per dollar on May 22 before apparent central bank intervention pulled it back to around 95. Foreign investors have pulled over $24 billion from Indian equities and debt on a net basis between March and May. A weaker rupee makes imports more expensive, creating another channel for inflation to accelerate.
-
-The India Meteorological Department has forecast a below-normal monsoon for 2026, which threatens food production and rural demand. The finance ministry warned that "a significant rainfall deficit coupled with current geopolitical conditions could translate into food inflation, weakening rural demand and aggregate growth."
-
-**What to watch on June 5**
-
-Even if the MPC holds rates — the most likely outcome — the market will be watching the RBI's forward guidance closely. Any shift in the committee's stance from "accommodative" toward "neutral" would signal that rate hikes are coming, possibly as early as August. Standard Chartered has projected a 50-basis-point hike in the current fiscal year, with the first increase possible as early as this month. Capital Economics sees the repo rate reaching 6.00 percent before year-end, contingent on the Iran crisis ending and energy prices dropping.
-
-**What this means for NRIs**
-
-For Indians abroad, the rate decision has direct implications. A weaker rupee reduces the value of remittances sent to India in local purchasing power terms, although it makes those remittances go further when converted. Higher interest rates, if they come, would increase returns on NRI fixed deposits and debt instruments — several banks have already started offering enhanced rates to attract NRI capital. The RBI has been exploring expanding deposit schemes for non-resident Indians and may announce measures to mobilise dollar inflows.
-
-On the investment side, a rate hike would likely weigh on equity markets in the short term, particularly rate-sensitive sectors like banking, real estate, and auto. But it could stabilise the rupee and attract foreign portfolio investment back into Indian debt, which has been under sustained selling pressure.
-
-The decision on June 5 will not just set the interest rate. It will signal whether the RBI believes the current economic headwinds are temporary or structural — and that judgment will shape the investment landscape for the rest of 2026.""",
-    },
-]
-
-# ── Main ──────────────────────────────────────────────────────────────────────
-
-def main():
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    published = 0
-
-    for i, art in enumerate(ARTICLES, 1):
-        print(f"\n{'='*60}")
-        print(f"Article {i}/{len(ARTICLES)}: {art['headline'][:60]}...")
-        print(f"{'='*60}")
-
-        # ── Image sourcing ────────────────────────────────────────────
+    # Image sourcing — try Pexels for spelling bee
+    img_url = fetch_pexels_image("spelling bee competition stage", "student spelling competition award")
+    img_attribution = "Pexels"
+    
+    if img_url and not validate_image(img_url):
+        print("  ⚠ Image validation failed, skipping image")
         img_url = None
-        attribution = art.get("image_attribution", "The Videshi")
+    
+    return {
+        'headline': headline,
+        'subheadline': subheadline,
+        'body': body,
+        'slug': slug,
+        'category': 'news',
+        'image_url': img_url,
+        'image_attribution': img_attribution,
+        'source': 'The Videshi',
+        'sources': [
+            {"name": "New York Post", "url": "https://nypost.com"},
+            {"name": "Bleacher Report", "url": "https://bleacherreport.com"},
+            {"name": "Scripps National Spelling Bee", "url": "https://spellingbee.com"}
+        ]
+    }
 
-        # Try Wikipedia for person articles
-        if art.get("person_image"):
-            print(f"  → Trying Wikipedia for '{art['person_image']}'...")
-            img_url = fetch_wikipedia_person_image(art["person_image"])
-            if img_url:
-                attribution = "Wikimedia Commons"
 
-        # Fall back to Pexels
-        if not img_url and art.get("pexels_query"):
-            print(f"  → Trying Pexels for '{art['pexels_query']}'...")
-            img_url = fetch_pexels_image(art["pexels_query"], art.get("pexels_fallback"))
-            if img_url:
-                attribution = "Pexels"
+# ─── ARTICLE 2: India's Monsoon Forecast ──────────────────────────────────
+def write_monsoon():
+    print("\n📝 Writing: Monsoon forecast article...")
+    
+    headline = "India Is Bracing for Its Driest Monsoon in 11 Years. Farmers Are Already Worried."
+    subheadline = "The IMD now forecasts just 90 percent of normal rainfall this season. El Niño is building, the rupee is sliding, and two-thirds of the country still depends on rain-fed agriculture."
+    slug = "india-imd-monsoon-forecast-2026-driest-11-years-el-nino-agriculture-inflation-20260531"
+    
+    body = """The India Meteorological Department has delivered the news that farmers, policymakers, and commodity traders had been dreading. In its second-stage long-range forecast released on May 29, the IMD projected that the 2026 southwest monsoon will bring only 90 percent of the Long Period Average rainfall — with a margin of error of plus or minus 4 percent. If the forecast holds, this will be India's driest monsoon since 2015, when rainfall came in at 86 percent of normal and triggered severe crop losses across the country.
 
-        # Upload to Supabase for permanence
-        final_img_url = None
-        if img_url:
-            filename = f"{art['slug']}.jpg"
-            final_img_url = upload_image_to_supabase(img_url, filename)
-            if final_img_url and not validate_image_url(final_img_url):
-                print(f"  ⚠ Uploaded image failed validation, trying direct URL...")
-                if validate_image_url(img_url):
-                    # Check if it's a permanent source
-                    if any(d in img_url for d in ["upload.wikimedia.org", "images.pexels.com", "images.unsplash.com"]):
-                        final_img_url = img_url
-                    else:
-                        final_img_url = None
-                else:
-                    final_img_url = None
+The arithmetic is stark. Two-thirds of India's 1.4 billion people live in rural areas. More than half the country's net sown area is rain-fed, with no irrigation backup. When the monsoon fails, it does not just affect harvests. It reverberates through incomes, rural demand, consumer goods sales, and ultimately GDP.
 
-        # ── Word count check ──────────────────────────────────────────
-        word_count = len(art["body"].split())
-        print(f"  Word count: {word_count}")
-        if word_count < 400:
-            print(f"  ⚠ SKIPPING: Below 400-word minimum")
-            continue
+## What Is Driving the Forecast
 
-        # ── Insert article ────────────────────────────────────────────
-        article_id = str(uuid.uuid4())
-        row = {
-            "id": article_id,
-            "headline": art["headline"],
-            "subheadline": art["subheadline"],
-            "slug": art["slug"],
-            "body": art["body"],
-            "category": art["category"],
-            "vertical": art["category"],
-            "status": "published",
-            "published_at": now,
-            "sources": art["sources_list"],
-        "tags": art["tags"],
-            "image_url": final_img_url,
-            "image_attribution": attribution if final_img_url else None,
-        }
+Two climate drivers are shaping the outlook. El Niño — the periodic warming of equatorial Pacific waters — is emerging and expected to strengthen through the monsoon season. Historically, El Niño years correlate strongly with below-normal Indian monsoons. The last consecutive drought years, 2014 and 2015, were both El Niño years.
 
-        print(f"  → Inserting into p2_articles...")
-        result = sb_insert("p2_articles", row)
-        if result:
-            print(f"  ✓ Published: {art['slug']}")
+The second variable is the Indian Ocean Dipole, the temperature differential between the Arabian Sea and the Bay of Bengal. A positive IOD can offset some of El Niño's suppressive effects on the monsoon. This year, the IMD expects the IOD to remain neutral — offering no counterbalance.
+
+"The near-term outlook for the Indian economy is one of cautious resilience," the Finance Ministry said in its monthly report on Saturday, in what amounted to a carefully worded warning.
+
+## Regional Breakdown
+
+The damage will not be uniform. The IMD forecasts below-normal rainfall for Northwest India, Central India, South Peninsular India, and the critical Monsoon Core Zone — the belt of rain-fed agricultural land that produces much of India's food. Only Northeast India is expected to receive normal rainfall.
+
+For June specifically, the picture is even worse. Rainfall is forecast to be below 92 percent of normal across most of the country, and the monsoon's arrival at the Kerala coast — which typically happens around June 1 — is expected to be delayed.
+
+The IMD also warned of above-normal temperatures through June, with more heatwave days expected in Uttar Pradesh, Haryana, Punjab, Bihar, Odisha, Chhattisgarh, Gujarat, and Andhra Pradesh. Parts of northern India have already been recording temperatures above 47°C.
+
+## The Economic Cascade
+
+A weak monsoon triggers a predictable chain reaction. Pulses, cotton, oilseeds, and coarse grains — all planted early in the monsoon season — face the most immediate risk. Rice paddy is vulnerable in non-irrigated areas across the north and northwest. India is the world's largest exporter of rice and onions and the second-largest producer of sugar, so domestic shortfalls quickly ripple into global commodity markets.
+
+"Below-normal rainfall could affect early-season planting of pulses, cotton, edible oilseeds and coarse grains such as corn," said Ashwini Bansod, vice president for commodities research at Phillip Capital India.
+
+The Finance Ministry's report highlighted an additional complication: the Strait of Hormuz disruption, which it called the "single most consequential variable" for India's price outlook. With crude oil prices elevated by the Middle East conflict and the rupee under pressure, fuel price hikes are already passing through to transport, energy, and food costs. A weak monsoon on top of that creates a compounding effect.
+
+India's retail inflation currently sits at 3.48 percent — comfortably below the RBI's 4 percent target. But economists expect it to climb above 5 percent this fiscal year, breaching the RBI's projection of 4.6 percent. The RBI's Monetary Policy Committee meets on June 5 to decide on interest rates, and the monsoon forecast will weigh heavily on that decision.
+
+## What India Has in Its Favor
+
+There is some resilience built into the system. India holds sufficient stockpiles of rice and wheat, which provides a buffer against immediate food shortages. Irrigation coverage has expanded significantly over the past decade. And the government has learned from past droughts — the 2015 experience prompted investments in crop insurance, buffer stocks, and early warning systems.
+
+But these buffers have limits. Lower rural incomes dampen sales of everything from motorcycles to refrigerators, dragging on broader economic growth. Consumer companies that depend on rural India — from FMCG giants to two-wheeler manufacturers — are already factoring in a tough quarter.
+
+The monsoon is India's annual referendum on vulnerability. Despite all the talk of a $4 trillion economy and semiconductor missions and nuclear power expansion, the country's agricultural backbone still depends on rain falling from the sky at the right time, in the right amount, in the right places. This year, the sky is not cooperating."""
+
+    # Image sourcing — try Pexels for monsoon/farming
+    img_url = fetch_pexels_image("Indian farmer monsoon rain field", "rice paddy field India agriculture")
+    img_attribution = "Pexels"
+    
+    if img_url and not validate_image(img_url):
+        print("  ⚠ Image validation failed, skipping image")
+        img_url = None
+    
+    return {
+        'headline': headline,
+        'subheadline': subheadline,
+        'body': body,
+        'slug': slug,
+        'category': 'news',
+        'image_url': img_url,
+        'image_attribution': img_attribution,
+        'source': 'The Videshi',
+        'sources': [
+            {"name": "Reuters", "url": "https://reuters.com"},
+            {"name": "India Meteorological Department", "url": "https://mausam.imd.gov.in"},
+            {"name": "The Hindu BusinessLine", "url": "https://thehindubusinessline.com"},
+            {"name": "Livemint", "url": "https://livemint.com"}
+        ]
+    }
+
+
+# ─── ARTICLE 3: BRICS Foreign Ministers Meeting ──────────────────────────
+def write_brics():
+    print("\n📝 Writing: BRICS Foreign Ministers article...")
+    
+    headline = "India Just Hosted Every BRICS Foreign Minister in Delhi. The Agenda Was Bigger Than Anyone Expected."
+    subheadline = "From MSME technology access to alternative payment systems, India's BRICS chairship is shaping up as its most ambitious multilateral play in years. The leaders' summit is in September."
+    slug = "india-brics-2026-chairship-foreign-ministers-delhi-msme-technology-payment-summit-20260531"
+    
+    body = """India is not just hosting the next BRICS summit. It is trying to reshape what BRICS means.
+
+In the span of two weeks, New Delhi has convened a foreign ministers' meeting, an SME working group focused on technology access for small businesses, and a series of preparatory sessions that reveal the scale of India's ambitions for its 2026 chairship. The 18th BRICS Summit, scheduled for September 12–13, will be chaired by Prime Minister Narendra Modi. The groundwork being laid right now suggests India wants it to be more than a photo opportunity.
+
+## The Foreign Ministers' Meeting
+
+Between May 14 and 15, foreign ministers from all BRICS member states — Brazil, Russia, India, China, South Africa, Egypt, Ethiopia, Indonesia, Iran, and the United Arab Emirates — gathered in Delhi. External Affairs Minister S. Jaishankar used the platform to position India as a bridge between the bloc's competing interests.
+
+The headline numbers are impressive. Intra-BRICS trade has surged from $89 billion in 2004 to $1.17 trillion in 2024 — a thirteen-fold increase. But Jaishankar also acknowledged the gap between ambition and reality: intra-BRICS trade still accounts for only about 5 percent of global trade.
+
+"Resilient supply chains," "technology transfer," and "equitable participation" were recurring themes — diplomatic language for a shared anxiety about dependence on Western-controlled financial systems and supply chains. The subtext is clear: BRICS countries want alternatives, and India wants to be the one building them.
+
+Delegates also visited Gujarat International Finance Tec-City (GIFT City), which India is positioning as a future global financial hub. The symbolism was deliberate.
+
+## The MSME Technology Push
+
+On May 26, India convened the second SME Working Group meeting under the BRICS Partnership on the New Industrial Revolution (PartNIR). The theme: "Enhancing Access to Technology for MSMEs."
+
+This is not glamorous diplomacy. It is practical, ground-level economic coordination — and it matters enormously. MSMEs account for the bulk of employment and GDP in most BRICS economies. In India alone, MSMEs employ over 110 million people and contribute roughly 30 percent of GDP.
+
+The working group discussions focused on three areas: harnessing innovations and technology commercialization for MSMEs, skilling and developing industry-ready workforces, and bridging the digital inclusion gap that leaves small businesses locked out of global value chains.
+
+India plans to host three SME meetings and the inaugural BRICS MSME Forum during its chairship year. The Ministry of MSME described the discussions as centering on "deeper collaboration among BRICS economies in technology access, innovation ecosystems, and skills development."
+
+## The Bigger Picture
+
+India's BRICS chairship comes at a complicated moment. The bloc has expanded rapidly — adding Egypt, Ethiopia, Indonesia, Iran, and the UAE as members — but that expansion has also introduced new fault lines. Iran and the UAE have different interests. China and India have an unresolved border dispute. Russia is at war in Ukraine.
+
+India is navigating these tensions by focusing on economic cooperation rather than geopolitical grandstanding. The chairship theme — "Building for Resilience, Innovation, Cooperation and Sustainability" — is deliberately anodyne. The substance underneath it is not.
+
+The BRICS de-dollarization conversation continues to evolve. Russia, China, and India are exploring CBDC interoperability — linking the digital ruble, yuan, and rupee as an alternative to SWIFT. The New Development Bank is targeting one-third of all loans in member nations' domestic currencies by 2026. BRICS Pay has already reduced USD usage in intra-bloc trade significantly.
+
+But India is careful not to overplay this hand. Jaishankar clarified the bloc's official position in March: "I don't think there's any policy on our part to replace the dollar. The dollar as the reserve currency is the source of global economic stability, and right now what we want in the world is more economic stability, not less."
+
+## What Comes Next
+
+The September summit will bring all BRICS leaders to India. Modi has personally invited Chinese President Xi Jinping. Whether Xi attends — and what bilateral conversations happen on the margins — will be closely watched.
+
+For the Indian diaspora, BRICS matters for pragmatic reasons. Alternative payment systems could make remittances cheaper. MSME technology partnerships could open new export markets. And India's credibility as a convener of the Global South has direct implications for how the country — and its diaspora — is perceived on the world stage.
+
+India assumed the BRICS chair on January 1, 2026, succeeding Brazil. The official logo and website were launched on January 13. The machinery has been running for five months. The September summit will be the test of whether it produced anything that outlasts the presidency."""
+
+    # Image sourcing — try Wikipedia for Jaishankar
+    img_url = fetch_wikipedia_person_image("S. Jaishankar")
+    img_attribution = "Wikimedia Commons"
+    
+    if not img_url:
+        img_url = fetch_pexels_image("international diplomatic summit meeting", "world leaders conference")
+        img_attribution = "Pexels"
+    
+    if img_url and not validate_image(img_url):
+        print("  ⚠ Image validation failed, skipping image")
+        img_url = None
+    
+    return {
+        'headline': headline,
+        'subheadline': subheadline,
+        'body': body,
+        'slug': slug,
+        'category': 'news',
+        'image_url': img_url,
+        'image_attribution': img_attribution,
+        'source': 'The Videshi',
+        'sources': [
+            {"name": "ANI", "url": "https://aninews.in"},
+            {"name": "Devdiscourse", "url": "https://devdiscourse.com"},
+            {"name": "The Indian Eye", "url": "https://theindianeye.com"},
+            {"name": "Wikipedia - 18th BRICS Summit", "url": "https://en.wikipedia.org/wiki/18th_BRICS_summit"}
+        ]
+    }
+
+
+# ─── MAIN ─────────────────────────────────────────────────────────────────
+if __name__ == '__main__':
+    print("=" * 60)
+    print("The Videshi — News Writer (2026-05-31)")
+    print("=" * 60)
+    
+    articles = [
+        write_spelling_bee(),
+        write_monsoon(),
+        write_brics(),
+    ]
+    
+    published = 0
+    for article in articles:
+        aid = publish_article(article)
+        if aid:
             published += 1
-        else:
-            print(f"  ✗ FAILED to publish: {art['slug']}")
-
-    print(f"\n{'='*60}")
-    print(f"Done. Published {published}/{len(ARTICLES)} articles.")
-    print(f"{'='*60}")
-
-
-if __name__ == "__main__":
-    main()
+        time.sleep(1)
+    
+    print(f"\n{'=' * 60}")
+    print(f"Done. Published {published}/{len(articles)} articles.")
+    print(f"{'=' * 60}")
