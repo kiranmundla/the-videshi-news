@@ -212,13 +212,13 @@ export default function HeroMedia({ url, alt, credit, caption, category }: HeroM
   // Regular image (fallback) — preserves existing rendering exactly
   return (
     <figure className="mt-10 w-full max-w-full md:max-w-[780px] md:mx-auto">
-      <div className="w-full max-w-full relative bg-stone-100">
+      <div className="w-full max-w-full relative bg-stone-100 aspect-video overflow-hidden">
         <HeroImage
           src={url}
           alt={alt}
           loading="eager"
           category={category}
-          className="block w-full h-auto max-h-[80vh] object-contain"
+          className="block w-full h-full object-cover"
           style={{}}
         />
       </div>

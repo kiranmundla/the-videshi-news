@@ -80,19 +80,18 @@ export default function EditorsDesk() {
     return (
       <section className="relative w-full overflow-hidden rounded-lg mb-10">
         {/* Background image */}
-        <img
-          src={article.image_url!}
-          alt={article.headline}
-          loading="eager"
-          referrerPolicy="no-referrer"
-          className="w-full h-auto block"
-          style={{
-            minHeight: "260px",
-            maxHeight: "520px",
-            objectFit: "cover",
-            objectPosition: "center 20%",
-          }}
-        />
+        <div className="w-full aspect-video overflow-hidden">
+          <img
+            src={article.image_url!}
+            alt={article.headline}
+            loading="eager"
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover block"
+            style={{
+              objectPosition: "center 20%",
+            }}
+          />
+        </div>
 
         {/* Gradient overlay */}
         <div

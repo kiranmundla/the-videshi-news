@@ -42,7 +42,7 @@ function ArticleGallery({ images, title }: { images: { url: string; caption?: st
         {images.map((img, i) => (
           <div
             key={i}
-            className="w-full flex-shrink-0 bg-stone-100"
+            className="w-full flex-shrink-0 bg-stone-100 aspect-video"
             style={{ scrollSnapAlign: "start" }}
           >
             <img
@@ -50,10 +50,9 @@ function ArticleGallery({ images, title }: { images: { url: string; caption?: st
               alt={img.caption || title}
               loading={i === 0 ? "eager" : "lazy"}
               decoding={i === 0 ? undefined : "async"}
-              className="w-full rounded-lg"
+              className="w-full h-full object-cover rounded-lg"
               width="600"
               height="338"
-              style={{ maxHeight: "50vh", objectFit: "contain", background: "#f5f5f0" }}
             />
           </div>
         ))}
@@ -341,12 +340,12 @@ export default function ArticleCard({
   if (effectiveOrientation === 'portrait' && variant === 'card') {
     return (
       <Link to={href} onClick={saveScroll} className="group flex gap-4">
-        <div className="w-[120px] md:w-[160px] flex-shrink-0">
+        <div className="w-[120px] md:w-[160px] flex-shrink-0 aspect-[3/4] overflow-hidden">
           <HeroImage
             src={article.hero_image_url}
             alt={article.title}
             loading="lazy"
-            className="w-full h-auto rounded object-cover"
+            className="w-full h-full rounded object-cover"
             onOrientationDetected={setRuntimeOrientation}
           />
         </div>

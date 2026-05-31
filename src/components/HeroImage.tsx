@@ -40,7 +40,10 @@ export default function HeroImage({ src, alt, className = "", loading = "lazy", 
     onOrientationDetected(ratio > 1.2 ? "landscape" : "portrait");
   }, [onOrientationDetected]);
 
-  if (!isValidImage(src) || failed) return null;
+  if (!isValidImage(src) || failed) {
+    // Return a placeholder that preserves layout space to prevent CLS
+    return <div className={className} style={{ ...style, backgroundColor: '#f5f5f0' }} />;
+  }
   const optimizedSrc = optimizeImageUrl(src as string, typeof width === 'number' ? width : IMAGE_SIZES.gallery);
   return (
     <img
