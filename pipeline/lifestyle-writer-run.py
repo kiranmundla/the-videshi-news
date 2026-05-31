@@ -228,16 +228,20 @@ def publish_article(article):
 
     # Build record
     now = datetime.now(timezone.utc).isoformat()
+    vertical_map = {
+        "lifestyle-health": "culture",
+        "markets-finance": "economy",
+    }
     record = {
         "headline": article['headline'],
         "subheadline": article['subheadline'],
         "body": article['body'],
         "slug": article['slug'],
         "category": article['category'],
+        "vertical": vertical_map.get(article['category'], "culture"),
         "status": "published",
         "published_at": now,
-        "source": article.get('source', 'The Videshi'),
-        "source_urls": json.dumps(article.get('source_urls', [])),
+        "sources": json.dumps(article.get('source_urls', [])),
     }
     if image_url:
         record["image_url"] = image_url
