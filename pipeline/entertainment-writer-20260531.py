@@ -24,7 +24,7 @@ HEADERS = {
 def sb_insert(table, payload):
     r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=payload, timeout=30)
     if r.status_code not in (200, 201):
-        print(f"  ✗ INSERT {table} failed ({r.status_code}): {r.text[:300]}")
+        print(f"  ✗ INSERT {table} failed ({r.status_code}): {r.text[:600]}")
         return None
     data = r.json()
     return data[0] if isinstance(data, list) and data else data
@@ -40,7 +40,8 @@ def fetch_wikipedia_person_image(person_name):
         )
         if r.status_code == 200:
             data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            # Use thumbnail AS-IS (330px) to avoid 429 rate limits on original images
+            img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
@@ -106,6 +107,7 @@ articles.append({
     "subheadline": "The Oscar-winning composer joins as co-producer alongside Naseeruddin Shah, Shabana Azmi, Manoj Bajpayee, and Nithya Menen in a modern reimagining of the 1983 classic.",
     "slug": "ar-rahman-shekhar-kapur-masoom-new-generation-migration-identity-nri-20260531",
     "category": "entertainment",
+    "vertical": "entertainment",
     "status": "published",
     "is_editorial": False,
     "published_at": now_iso(),
@@ -146,6 +148,7 @@ articles.append({
     "subheadline": "Maddock Films' spiritual successor to the 2012 hit delayed its trailer from May 29 to June 2 in what appears to be a tighter marketing strategy. Three songs are already out.",
     "slug": "cocktail-2-trailer-june-2-shahid-kriti-rashmika-release-date-nri-20260531",
     "category": "entertainment",
+    "vertical": "entertainment",
     "status": "published",
     "is_editorial": False,
     "published_at": now_iso(),
@@ -194,6 +197,7 @@ articles.append({
     "subheadline": "Darlings director Jasmeet K. Reen replaces the original director. Bhumi Pednekar has exited. The rom-com is now a family power drama starring Ishaan Khatter, Sakshi Tanwar, and Zeenat Aman.",
     "slug": "the-royals-season-2-netflix-jasmeet-reen-bhumi-pednekar-exit-overhaul-nri-20260531",
     "category": "entertainment",
+    "vertical": "entertainment",
     "status": "published",
     "is_editorial": False,
     "published_at": now_iso(),
