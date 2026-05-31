@@ -120,13 +120,6 @@
     "added_date": "2026-05-01"
   },
   {
-    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-community-celebration-11094777.jpg",
-    "label": "A lively scene of men playing traditional drums at a cultural festival, wearing colorful attire. · 📷 Swastik Arora",
-    "source": "pexels",
-    "added_date": "2026-05-27",
-    "pexels_id": 11094777
-  },
-  {
     "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-community-celebration-15675903.jpg",
     "label": "Smiling Indian women in colorful traditional clothing engaging in a lively outdoor gathering. · 📷 Voters Party International",
     "source": "pexels",
@@ -258,5 +251,12 @@
     "source": "pexels",
     "added_date": "2026-05-27",
     "pexels_id": 10587328
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/jaipur-hawa-mahal-palace-19867647.jpg",
+    "label": "Capture of the iconic Hawa Mahal facade, showcasing intricate architecture in Jaipur, India. · 📷 vijesh vijayan",
+    "source": "pexels",
+    "added_date": "2026-05-31",
+    "pexels_id": 19867647
   }
 ]

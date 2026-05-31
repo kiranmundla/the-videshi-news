@@ -1,29 +1,82 @@
 #!/usr/bin/env python3
-"""Lifestyle-Health & Markets-Finance writer — 2026-05-30 run"""
+"""
+Lifestyle-Health + Markets-Finance writer for The Videshi
+Run: 2026-05-31
+Articles:
+  1. FDA inhaled insulin for children (lifestyle-health)
+  2. Leisure exercise vs work exercise genetics study (lifestyle-health)
+  3. AI spending fatigue NRI portfolio rebalancing (markets-finance)
+"""
 
-import json, os, sys, time, uuid, urllib.parse, re
-import requests
+import json, os, sys, time, uuid, re, subprocess
 from datetime import datetime, timezone
 
-# ── Supabase config ──────────────────────────────────────────────────
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
-}
+# Load env
+def load_env(path):
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                key, _, val = line.partition('=')
+                key = key.replace('export ', '').strip()
+                val = val.strip().strip('"').strip("'")
+                os.environ[key] = val
 
-# ── Pexels config ────────────────────────────────────────────────────
-PEXELS_KEY = None
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-if os.path.exists(pexels_env):
-    for line in open(pexels_env):
-        if line.startswith("PEXELS_API_KEY="):
-            PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-# ── Image helpers ────────────────────────────────────────────────────
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
+if not SUPABASE_URL or not SUPABASE_KEY:
+    print("ERROR: Missing Supabase credentials")
+    sys.exit(1)
+
+import requests
+import urllib.parse
+
+def sb_post(table, data):
+    """Insert a row into Supabase and return the inserted record."""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/{table}",
+        json=data,
+        headers={
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": "application/json",
+            "Prefer": "return=representation"
+        },
+        timeout=30
+    )
+    if r.status_code not in (200, 201):
+        print(f"  ✗ Supabase POST error {r.status_code}: {r.text[:300]}")
+        return None
+    result = r.json()
+    return result[0] if isinstance(result, list) and result else result
+
+def sb_patch(table, match, data):
+    """Update rows in Supabase."""
+    params = "&".join(f"{k}={v}" for k, v in match.items())
+    r = requests.patch(
+        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
+        json=data,
+        headers={
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": "application/json",
+            "Prefer": "return=representation"
+        },
+        timeout=30
+    )
+    if r.status_code not in (200, 201):
+        print(f"  ✗ Supabase PATCH error {r.status_code}: {r.text[:300]}")
+        return None
+    return r.json()
+
+
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -45,337 +98,339 @@ def fetch_wikipedia_person_image(person_name):
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch from Pexels using specific search terms."""
+    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
+        print("  ⚠ No Pexels API key available")
         return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = requests.get(
-                "https://api.pexels.com/v1/search",
-                params={"query": q, "per_page": 5, "orientation": "landscape"},
-                headers={"Authorization": PEXELS_KEY},
-                timeout=10,
+            result = subprocess.run(
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'],
+                capture_output=True, text=True, timeout=15
             )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for p in photos:
-                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
-                    if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                        return url
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            for photo in photos:
+                src = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+                if src:
+                    print(f"  ✓ Pexels image found for '{q}': {src[:80]}...")
+                    return src
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 
-def validate_image(url):
-    """Verify image URL returns 200 with image content-type and >5KB."""
+def upload_image_to_supabase(image_url, filename):
+    """Download an image and upload to Supabase storage bucket 'article-images'."""
+    try:
+        r = requests.get(image_url, timeout=20, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code != 200:
+            print(f"  ✗ Image download failed: HTTP {r.status_code}")
+            return None
+        content_type = r.headers.get('Content-Type', 'image/jpeg')
+        if 'image' not in content_type:
+            print(f"  ✗ Not an image: {content_type}")
+            return None
+        if len(r.content) < 5000:
+            print(f"  ✗ Image too small: {len(r.content)} bytes")
+            return None
+
+        # Upload to Supabase storage
+        upload_r = requests.post(
+            f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}",
+            data=r.content,
+            headers={
+                "apikey": SUPABASE_KEY,
+                "Authorization": f"Bearer {SUPABASE_KEY}",
+                "Content-Type": content_type,
+                "x-upsert": "true"
+            },
+            timeout=30
+        )
+        if upload_r.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ✗ Upload failed: {upload_r.status_code} {upload_r.text[:200]}")
+            return None
+    except Exception as e:
+        print(f"  ✗ Upload error: {e}")
+        return None
+
+
+def validate_image_url(url):
+    """Validate that URL returns a real image."""
     if not url:
         return False
+    # Check for banned sources
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
+    for b in banned:
+        if b in url:
+            print(f"  ✗ Banned image source: {b}")
+            return False
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            return True
-        # Try GET if HEAD doesn't return Content-Length
-        if r.status_code == 200 and "image" in ct:
-            r2 = requests.get(url, timeout=10, stream=True,
-                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                return True
-        print(f"  ⚠ Image validation failed: status={r.status_code} ct={ct} cl={cl}")
+        r = requests.head(url, timeout=10, allow_redirects=True, headers={"User-Agent": "TheVideshi/1.0"})
+        if r.status_code != 200:
+            print(f"  ✗ Image URL returned {r.status_code}")
+            return False
+        ct = r.headers.get('Content-Type', '')
+        if 'image' not in ct:
+            print(f"  ✗ Not an image content-type: {ct}")
+            return False
+        cl = int(r.headers.get('Content-Length', 0))
+        if cl > 0 and cl < 5000:
+            print(f"  ✗ Image too small: {cl} bytes")
+            return False
+        return True
     except Exception as e:
         print(f"  ⚠ Image validation error: {e}")
-    return False
+        return True  # Benefit of the doubt if HEAD fails
 
 
-def sb_insert(table, data):
-    """Insert a row into Supabase."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
-        headers=HEADERS,
-        json=data,
-    )
-    if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            return result[0]
-        return result
-    print(f"  ✗ Insert to {table} failed: {r.status_code} {r.text[:200]}")
-    return None
+def publish_article(article):
+    """Insert article into p2_articles and set image."""
+    print(f"\n{'='*60}")
+    print(f"Publishing: {article['headline']}")
+    print(f"Category: {article['category']}")
+    print(f"Slug: {article['slug']}")
+
+    # Source image
+    image_url = None
+    image_attribution = None
+
+    if article.get('person_name'):
+        print(f"  Searching Wikipedia for '{article['person_name']}'...")
+        wiki_img = fetch_wikipedia_person_image(article['person_name'])
+        if wiki_img:
+            filename = f"{article['slug']}.jpg"
+            image_url = upload_image_to_supabase(wiki_img, filename)
+            image_attribution = "Wikimedia Commons"
+
+    if not image_url and article.get('pexels_query'):
+        print(f"  Searching Pexels for '{article['pexels_query']}'...")
+        pexels_img = fetch_pexels_image(article['pexels_query'], article.get('pexels_fallback'))
+        if pexels_img:
+            if 'images.pexels.com' in pexels_img:
+                image_url = pexels_img
+                image_attribution = "Pexels"
+            else:
+                filename = f"{article['slug']}.jpg"
+                image_url = upload_image_to_supabase(pexels_img, filename)
+                image_attribution = "The Videshi"
+
+    if image_url and not validate_image_url(image_url):
+        print("  ✗ Image validation failed, skipping image")
+        image_url = None
+
+    # Build record
+    now = datetime.now(timezone.utc).isoformat()
+    record = {
+        "headline": article['headline'],
+        "subheadline": article['subheadline'],
+        "body": article['body'],
+        "slug": article['slug'],
+        "category": article['category'],
+        "status": "published",
+        "published_at": now,
+        "source": article.get('source', 'The Videshi'),
+        "source_urls": json.dumps(article.get('source_urls', [])),
+    }
+    if image_url:
+        record["image_url"] = image_url
+    if image_attribution:
+        record["image_attribution"] = image_attribution
+
+    result = sb_post("p2_articles", record)
+    if result:
+        art_id = result.get('id')
+        print(f"  ✓ Published! ID: {art_id}")
+        return art_id
+    else:
+        print(f"  ✗ Failed to publish")
+        return None
 
 
-def sb_patch(table, filters, data):
-    """Patch a row in Supabase."""
-    params = "&".join(f"{k}={v}" for k, v in filters.items())
-    r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
-        headers=HEADERS,
-        json=data,
-    )
-    if r.status_code in (200, 204):
-        return True
-    print(f"  ✗ Patch {table} failed: {r.status_code} {r.text[:200]}")
-    return False
-
-
-# ── Article definitions ──────────────────────────────────────────────
-
-articles = []
-
-# ═══════════════════════════════════════════════════════════════════
-# ARTICLE 1: Long COVID Autoantibodies Discovery
-# ═══════════════════════════════════════════════════════════════════
-
-articles.append({
-    "headline": "Two Studies Just Proved That Long COVID Neurological Symptoms Are Caused by the Body Attacking Itself. Existing Drugs May Already Work.",
-    "subheadline": "Autoantibodies from long COVID patients caused fatigue, pain, and nerve damage when transferred to healthy mice — even two years after infection. Researchers say millions could benefit from immunotherapy treatments already on the market.",
-    "slug": "long-covid-autoantibodies-neurological-symptoms-autoimmunity-treatment-south-asian-diaspora-20260530",
+# ============================================================
+# ARTICLE 1: FDA Inhaled Insulin for Children
+# ============================================================
+article1 = {
+    "headline": "The FDA Just Approved Inhaled Insulin for Children. For South Asian Families Managing Diabetes, the Needle Era May Finally Be Ending.",
+    "subheadline": "Afrezza, the first needle-free mealtime insulin for kids aged six and above, costs $35 a month and mimics the body's natural insulin response more closely than injections do.",
+    "slug": "fda-afrezza-inhaled-insulin-children-diabetes-south-asian-families-20260531",
     "category": "lifestyle-health",
-    "sources": [
-        {"name": "Cell Reports Medicine", "url": "https://www.cell.com/cell-reports-medicine"},
-        {"name": "Cell", "url": "https://www.cell.com/cell"},
-        {"name": "Reuters Health", "url": "https://www.reuters.com/"},
-        {"name": "Icahn School of Medicine at Mount Sinai", "url": "https://icahn.mssm.edu/"}
-    ],
-    "vertical": "lifestyle-health",
-    "urgency": "daily",
-    "tags": ["long COVID", "autoimmunity", "autoantibodies", "neurological symptoms", "immunotherapy", "chronic illness"],
-    "diaspora_angle": "India experienced one of the world's most severe COVID waves, with seroprevalence above 90 per cent by mid-2022. South Asians in the US, UK, and Canada report higher rates of post-COVID fatigue and cognitive complaints than the general population. The autoantibody finding offers a testable biomarker and a path to targeted treatment for millions.",
-    "image_search": {"type": "pexels", "query": "immune system cells antibody medical", "fallback": "neurological brain scan research"},
-    "body": """Long COVID has baffled clinicians for five years. More than 200 million people worldwide have struggled with persistent fatigue, brain fog, pain sensitivity, and balance problems long after their initial SARS-CoV-2 infection cleared. Now, two landmark studies published simultaneously — one in *Cell Reports Medicine*, the other in *Cell* — have identified a central mechanism behind the neurological devastation: the body's own immune system is attacking itself.
+    "person_name": None,
+    "pexels_query": "child using inhaler medical device",
+    "pexels_fallback": "diabetes insulin medical",
+    "source": "Reuters, MannKind Corporation, FDA",
+    "source_urls": ["https://www.reuters.com/business/healthcare-pharmaceuticals/us-fda-approves-mannkinds-inhaled-insulin-children-2026-05-30/", "https://www.globenewswire.com/news-release/2026/05/29/mannkind-announces-fda-approval-of-afrezza"],
+    "body": """For decades, the daily reality of managing childhood diabetes has involved needles. Multiple injections a day, anxiety at school lunch, the social stigma of pulling out a syringe at a friend's birthday party. On Friday, the US Food and Drug Administration changed the calculus by approving Afrezza — a rapid-acting inhaled insulin — for children and adolescents aged six and above.
 
-## The Discovery
+It is the first and only needle-free mealtime insulin option ever approved for paediatric patients in the United States.
 
-Both research teams collected autoantibodies — rogue immune proteins that mistakenly target the body's own tissues rather than foreign invaders — from the blood of long COVID patients. When these human autoantibodies were infused into healthy mice, the animals developed neurological symptoms that closely mimicked those of the patients who donated the blood.
+## Why This Matters for South Asian Families
 
-The mice exhibited fatigue, loss of balance, heightened pain sensitivity, and measurable nerve fibre damage. In one particularly striking experiment from the *Cell Reports Medicine* study, autoantibodies collected from patients **two full years** after their initial COVID-19 infection still produced the same debilitating effects when transferred to mice. The immune system's misdirected assault, it appears, does not fade on its own.
+More than 350,000 children in the US live with diabetes, the majority with Type 1. But for South Asian families, the stakes are uniquely personal. South Asians carry a two- to fourfold higher risk of developing Type 2 diabetes compared to white populations, and that elevated risk begins showing up in adolescence. A landmark study in the *Journal of the American Heart Association* found that South Asian women had nearly double the prevalence of prediabetes at age 45 compared to other groups — and the trajectory starts much earlier.
 
-"This new awareness of the physiology of long COVID will enable us to identify a number of effective treatments for autoimmunity that could significantly improve the symptoms of millions of people with this chronic condition," said Dr David Putrino from the Icahn School of Medicine at Mount Sinai, a coauthor of the *Cell* study.
+For parents already navigating the genetic predisposition, a needle-free alternative is not a convenience. It is a compliance tool. Research consistently shows that fear of injections is one of the leading causes of insulin non-adherence in children and teenagers.
 
-## Why This Matters for Treatment
+## How Afrezza Works
 
-The breakthrough is not just diagnostic — it is immediately actionable. Autoimmune conditions have been treated for decades with well-established immunotherapy drugs, including monoclonal antibodies, plasma exchange, and immunomodulators like baricitinib (already FDA-approved for rheumatoid arthritis and used during acute COVID-19). Until now, the challenge was that clinicians had no way of knowing which long COVID patients would respond to these therapies.
+Afrezza uses MannKind Corporation's proprietary Technosphere drug-delivery platform to deliver insulin through the lungs via a small, portable inhaler. The insulin enters the bloodstream within minutes, more closely mimicking the body's natural mealtime response than subcutaneous injections do.
 
-"Before we had no way of predicting who would benefit from these therapies," Putrino said. "Our study now shows that if you are in a subgroup of long COVID patients who have autoantibodies circulating in your body, you may be a good candidate for these drugs."
+The key clinical advantage is speed and flexibility. Children's eating patterns are unpredictable — snacking after school, eating at irregular intervals during sports, refusing meals they agreed to ten minutes ago. Afrezza can be taken at the start of a meal or even slightly after, accommodating the chaos of paediatric eating without the rigid pre-meal timing that injections require.
 
-A commentary published alongside the studies in *Cell* described the evidence as "compelling" but cautioned that autoantibodies are likely one of several mechanisms driving long COVID, not the sole explanation for every patient's experience.
+The approval is backed by the Phase 3 INHALE-1 clinical trial, plus over 20 years of development data on inhaled insulin technology.
 
-## The South Asian Dimension
+## What Parents Need to Know
 
-The findings carry particular weight for the Indian diaspora. India experienced one of the world's most severe COVID waves, and population-level seroprevalence studies suggest that well over 90 per cent of Indians had been infected by mid-2022. Community health surveys across the US, UK, and Canada have consistently shown that South Asians report higher rates of post-COVID fatigue, cognitive complaints, and pain syndromes than the general population.
+**Cost:** MannKind says eligible patients can access Afrezza for $35 or less per month through its MannKind Cares programme — significantly below the out-of-pocket cost of many injectable insulin regimens.
 
-Access to specialist immunology care remains uneven. In India, long COVID clinics are concentrated in metro hospitals; in the diaspora, many patients have been told their symptoms are psychosomatic or stress-related. The new autoantibody evidence provides a concrete, testable biomarker that could change the clinical conversation entirely.
+**Age range:** Approved for children aged six and above with Type 1 or Type 2 diabetes.
 
-For NRI families with elderly relatives in India who have been struggling with unexplained fatigue or cognitive decline since a COVID infection, a simple blood test for circulating autoantibodies — available at most major pathology labs — could now be the first step toward targeted treatment rather than years of symptomatic management.
+**Not a replacement for basal insulin:** Afrezza handles mealtime glucose spikes. It does not replace long-acting insulin for Type 1 patients.
 
-## What Comes Next
+**Lung function screening required:** The drug is not recommended for children with underlying lung conditions such as asthma. Pulmonary function testing (FEV1) is part of the onboarding process.
 
-Several clinical trials targeting the autoimmune pathway in long COVID are already underway. The REVERSE-LC trial at Vanderbilt University Medical Center is testing baricitinib in a Phase 3, placebo-controlled study. AER002, a long-acting human immunoglobulin designed to neutralise persistent spike protein, is in Phase 2 testing. And existing IVIG (intravenous immunoglobulin) protocols used for other autoimmune conditions are being adapted for long COVID patients who test positive for pathogenic autoantibodies.
+**Safety profile:** In the paediatric trial, side effects were consistent with the adult experience accumulated over 12 years of use. The most notable warning is the risk of bronchospasm — sudden tightening of the airway muscles — which is why lung screening is mandatory.
 
-The timeline from bench to bedside may be unusually short. Unlike novel drug development, repurposing existing immunotherapy agents for a newly understood mechanism can move through regulatory channels in months rather than years."""
-})
+## The Bigger Picture
 
-# ═══════════════════════════════════════════════════════════════════
-# ARTICLE 2: Mounjaro SURPASS-EARLY — Best GLP-1 for Early Diabetes
-# ═══════════════════════════════════════════════════════════════════
+Jennifer Segrist, whose 15-year-old daughter Taisie participated in MannKind's clinical study, told Reuters that switching from injections to inhaled insulin was "life changing." The teenager became more independent in managing her condition — a critical milestone in adolescent diabetes care.
 
-articles.append({
-    "headline": "Mounjaro Outperformed Every Other GLP-1 Drug in a Two-Year Trial of Early Type 2 Diabetes Patients. 60 Per Cent Achieved Normal Blood Sugar.",
-    "subheadline": "The SURPASS-EARLY trial found that tirzepatide helped recently diagnosed patients reach glycaemic targets 4 to 12 weeks faster than semaglutide and produced sustained normal HbA1c levels in more than double the patients on competing drugs.",
-    "slug": "mounjaro-tirzepatide-surpass-early-type-2-diabetes-glp1-south-asian-20260530",
-    "category": "lifestyle-health",
-    "sources": [
-        {"name": "Annals of Internal Medicine", "url": "https://www.acpjournals.org/journal/aim"},
-        {"name": "Reuters Health", "url": "https://www.reuters.com/"},
-        {"name": "Eli Lilly and Company", "url": "https://www.lilly.com/"},
-        {"name": "Drug Topics / EASD", "url": "https://www.drugtopics.com/"}
-    ],
-    "vertical": "lifestyle-health",
-    "urgency": "daily",
-    "tags": ["Mounjaro", "tirzepatide", "type 2 diabetes", "GLP-1", "SURPASS-EARLY", "South Asian health", "insulin resistance"],
-    "diaspora_angle": "South Asians have among the highest type 2 diabetes rates globally — 23 per cent prevalence among Indian Americans vs 11 per cent in the general US population. They develop diabetes a decade earlier and at lower BMI thresholds, making early aggressive treatment even more critical. The SURPASS-EARLY data directly supports earlier intervention with tirzepatide for this population.",
-    "image_search": {"type": "pexels", "query": "blood sugar glucose monitor diabetes", "fallback": "diabetes insulin injection health"},
-    "body": """A new two-year clinical trial has established Eli Lilly's Mounjaro as the most effective GLP-1 drug for recently diagnosed type 2 diabetes patients — a finding with outsized implications for the South Asian community, which faces among the highest diabetes rates of any ethnic group worldwide.
+For diaspora families in the US, where cultural stigma around chronic disease management still runs deep and where children may resist visible medical devices at school, inhaling insulin through what looks like a small asthma inhaler carries less social friction than pulling out a syringe.
 
-## The Trial
-
-The SURPASS-EARLY trial, published in the *Annals of Internal Medicine* and presented at the American Society of Clinical Oncology meeting in Chicago, enrolled nearly 800 adults who had been diagnosed with type 2 diabetes within the previous four years and whose blood sugar remained poorly controlled despite treatment with metformin, the standard first-line medication, combined with diet and exercise.
-
-Patients were randomly assigned to add either tirzepatide — the active ingredient in Mounjaro — or another medication to their existing metformin regimen. Most patients in the control group received other GLP-1 drugs, including Novo Nordisk's semaglutide (sold as Ozempic and Rybelsus for diabetes) or Lilly's older drug Trulicity (dulaglutide).
-
-The results after two years were decisive.
-
-## The Numbers
-
-Roughly **60 per cent** of patients receiving tirzepatide achieved normal blood sugar levels (HbA1c below 5.7 per cent), compared to just **24 per cent** of patients on other GLP-1 drugs. Tirzepatide patients also showed significantly greater improvements in weight loss and waist circumference — both critical markers for the metabolic syndrome that disproportionately affects South Asians.
-
-A separate analysis of pooled data from the broader SURPASS programme, presented at the European Association for the Study of Diabetes annual meeting, found that tirzepatide helped patients reach glycaemic targets **4 to 12 weeks sooner** than those receiving semaglutide or long-acting insulin degludec.
-
-"Tirzepatide is unique because it mimics two natural insulin-releasing and appetite-suppressing hormones in one injection," said lead investigator Dr Adie Viljoen, a consultant metabolic physician at the East and North Hertfordshire NHS Trust. "The speed we are seeing in glucose-lowering and weight loss is beyond anything else we have available right now."
-
-## Why Early Intervention Matters
-
-The study's most significant implication may not be which drug won, but when treatment should begin. The researchers found that patients who started tirzepatide early — within four years of diagnosis, when metformin alone was insufficient — experienced "stronger and more sustained metabolic benefits" than patients who waited longer or used less potent add-on therapies.
-
-This matters enormously because type 2 diabetes is a progressive disease. The longer blood sugar remains elevated, the more damage accumulates in blood vessels, nerves, kidneys, and the retina. South Asians develop diabetic complications at lower BMI and lower blood sugar thresholds than European-descent populations, making early aggressive treatment even more critical.
-
-## The South Asian Crisis
-
-The numbers are staggering. India has an estimated 101 million people living with diabetes — the highest absolute count of any country. The prevalence among Indian Americans in the US is roughly 23 per cent, compared to 11 per cent in the general US population. And South Asians tend to develop type 2 diabetes a decade earlier than white populations, often in their 30s and 40s, driven by a combination of genetic insulin resistance, visceral fat distribution, and dietary patterns high in refined carbohydrates.
-
-For NRI families, the practical question is immediate: if a parent or sibling in India or a family member in the US has been on metformin for years without reaching target HbA1c, the SURPASS-EARLY data suggests that adding tirzepatide early — rather than waiting for the disease to progress — could be the difference between achieving normal blood sugar and spending decades managing complications.
-
-## Cost and Access
-
-Mounjaro's list price in the US is roughly $1,000 per month without insurance. Most commercial insurance plans now cover it for type 2 diabetes (its FDA-approved indication), though prior authorisation is often required. In India, tirzepatide was launched in late 2025 at approximately ₹15,000–18,000 per month — expensive by Indian standards but significantly cheaper than the US price.
-
-Generic versions are not yet available, but Lilly has signed licensing agreements with several Indian pharmaceutical manufacturers. Biosimilar competition is expected to begin driving prices down by 2028.
+Desmond Schatz, a professor of paediatrics at the University of Florida College of Medicine, put it plainly: "Mealtime insulin can be especially challenging for children because eating and snacking patterns, activity levels, and daily settings like school and sports often vary. With its rapid onset and dosing at the start of a meal, Afrezza may help clinicians better match insulin therapy to how children and families live day to day."
 
 ## What to Ask Your Doctor
 
-The SURPASS-EARLY results reinforce a shift already underway in diabetes care: treating early and treating aggressively, rather than starting with the mildest intervention and escalating only after years of inadequate control. For South Asian patients, who face higher baseline risk and faster disease progression, that message is especially urgent.
+If your child is on injectable mealtime insulin, the conversation with your endocrinologist is straightforward: Is Afrezza appropriate given their lung function, current regimen, and control? If your child has been recently diagnosed, it is worth asking whether inhaled insulin should be part of the initial treatment plan rather than something added later.
 
-If you or a family member has been on metformin for more than a year without achieving an HbA1c below 7 per cent, the data now supports a conversation about adding a GLP-1 drug — and tirzepatide, based on this trial, appears to be the most effective option in the class."""
-})
+The drug is available now. No waiting period, no phased rollout. For the 350,000 families managing paediatric diabetes in America — and particularly for the South Asian families where the genetic burden runs heaviest — this is a material change in the daily burden of care."""
+}
 
-# ═══════════════════════════════════════════════════════════════════
-# ARTICLE 3: Markets — US-Iran Deal, Hormuz, and the Week Ahead
-# ═══════════════════════════════════════════════════════════════════
+# ============================================================
+# ARTICLE 2: Leisure Exercise vs Work Exercise — Genetics Study
+# ============================================================
+article2 = {
+    "headline": "A Study of 540,000 People Found That Exercise at Work Does Not Protect Your Health the Way Leisure Exercise Does. The Genetics Are Different.",
+    "subheadline": "A Nature Genetics study using data from the Million Veteran Program and UK Biobank found that leisure-time physical activity has distinct genetic pathways and uniquely protects against diabetes, heart failure and early death.",
+    "slug": "leisure-exercise-vs-work-exercise-genetics-nature-south-asian-tech-professionals-20260531",
+    "category": "lifestyle-health",
+    "person_name": None,
+    "pexels_query": "person jogging park leisure exercise",
+    "pexels_fallback": "running exercise outdoor fitness",
+    "source": "Nature Genetics, Psychiatric Times, Yale School of Medicine",
+    "source_urls": ["https://www.nature.com/articles/s41588-024-01933-5", "https://www.psychiatrictimes.com/view/yale-study-physical-activity-health-well-being-illness"],
+    "body": """If you walk 8,000 steps a day shuttling between meetings and the office kitchen, you might assume your body is getting what it needs. A major new study published in *Nature Genetics* says it is not — and the reason is not what you would expect.
 
-articles.append({
-    "headline": "The US and Iran Have a Deal to Reopen the Strait of Hormuz. Markets Rallied. But a Reuters Analysis Says It May Change Nothing.",
-    "subheadline": "A 60-day truce extension would lift shipping restrictions and require Iran to de-mine the strait within 30 days. But global oil reserves are running out, the PCE just hit 3.8 per cent, and Friday's US jobs report could push the Fed toward a rate hike. Here is what NRI investors should watch.",
-    "slug": "us-iran-hormuz-deal-60-day-truce-oil-markets-nri-investors-week-ahead-june-2026",
+The research, led by scientists at the Yale School of Medicine and the VA Connecticut Healthcare System, analysed genetic data from nearly 540,000 people across the Million Veteran Program and UK Biobank. It is one of the largest genomic studies of physical activity ever conducted, and its core finding upends a common assumption: exercise performed during leisure time is genetically, biologically, and clinically distinct from physical activity performed at work or at home.
+
+## The Core Finding
+
+Using genome-wide association analysis across nearly 190,000 individuals of European ancestry, 27,000 of African ancestry and 10,000 of Latin-American ancestry, the researchers identified genetic variants linked to each type of physical activity. What they found was a clear divergence.
+
+Leisure-time physical activity — jogging, swimming, cycling, gym workouts, recreational sports — was associated with a distinct set of genetic pathways involving the brain's dopamine reward system and visual information processing. Work and home physical activity showed different genetic architecture entirely.
+
+When the researchers applied Mendelian randomisation to test causal effects, leisure-time exercise showed protective effects against Type 2 diabetes, heart failure, abdominal aortic aneurysm, osteoarthritis and elevated triglycerides. Critically, most of these protective effects held even after controlling for BMI — meaning the benefits were not simply a side effect of being thinner.
+
+Work and home physical activity did not show the same protective profile.
+
+## Why This Matters for NRI Tech Professionals
+
+The finding carries particular weight for Indian Americans working in technology, finance, and other desk-intensive industries. South Asians already carry a disproportionate cardiovascular and metabolic risk profile — two to four times the diabetes incidence of white populations, coronary heart disease that presents five to seven years earlier, and dangerous visceral fat accumulation even at normal BMI.
+
+Many NRI professionals log long hours at work. The compensatory logic is familiar: "I'm on my feet during commutes," or "I walk around the campus," or "housework keeps me active." This study says that logic is biologically flawed. The body processes leisure exercise through reward and motivation pathways that appear to confer unique health benefits that occupational movement does not replicate.
+
+Marco Galimberti, the study's first author and an associate research scientist at Yale, was direct: "This work not only shows the genetic differences associated with physical activity performed in different contexts but also highlights the significant health benefits of engaging in physical activity during leisure time."
+
+## What the Genetics Tell Us
+
+The study identified enrichment for dopaminergic neurons in leisure-time physical activity — the same reward circuitry involved in motivation, pleasure and habit formation. This suggests that the psychological experience of choosing to exercise, for enjoyment or self-improvement, may activate biological pathways that obligatory movement does not.
+
+The researchers also found that genetic variants associated with sedentary time during leisure were enriched in skeletal muscle genes whose expression changes with resistance training — indicating a direct biological link between leisure-time inactivity and muscular deconditioning.
+
+A phenome-wide association analysis across an independent sample confirmed negative correlations between leisure-time activity and diabetes, cardiovascular disease, lung cancer and asthma. The strongest association was with diabetes — the disease that disproportionately stalks the South Asian population.
+
+## The Practical Takeaway
+
+This is not a study that says your standing desk is useless or that walking to work has no value. General movement throughout the day reduces sedentary risk. But the data is clear that deliberate, chosen, leisure-time exercise — the kind you do because you want to, not because your job requires it — activates protective biological machinery that occupational activity does not.
+
+For South Asian Americans navigating genetically elevated cardiometabolic risk, the message is sharper than for the general population. The 30-minute evening run, the weekend cricket match, the gym session before the kids wake up — these are not lifestyle luxuries. They are, according to the largest genomic dataset ever assembled on the question, a biologically distinct category of movement with uniquely protective health effects.
+
+The study's Mendelian randomisation analysis also found a protective effect of leisure-time activity on phenotypic age acceleration and parental survival — meaning the benefits extend not just to disease prevention but to the rate at which the body ages.
+
+If you are a 35-year-old software engineer who walks 6,000 steps around the office but has not done a deliberate workout in months, this study says your step count is not doing what you think it is doing. The prescription is not more movement at work. It is dedicated, intentional exercise during your own time — and the genetics suggest your body knows the difference."""
+}
+
+# ============================================================
+# ARTICLE 3: AI Spending Fatigue Hits NRI Portfolios
+# ============================================================
+article3 = {
+    "headline": "Enterprise AI Spending Is Showing Its First Cracks. If You Hold US Tech Stocks, Your Portfolio May Be More Exposed Than You Think.",
+    "subheadline": "GPU rental prices have fallen 40 per cent, Fortune 20 companies are tightening AI budgets, and NRI investors with heavy US tech exposure need to think about what comes next.",
+    "slug": "ai-enterprise-spending-fatigue-nri-portfolio-tech-stocks-rebalancing-20260531",
     "category": "markets-finance",
-    "sources": [
-        {"name": "Reuters", "url": "https://www.reuters.com/"},
-        {"name": "Axios", "url": "https://www.axios.com/"},
-        {"name": "New York Post", "url": "https://nypost.com/"},
-        {"name": "Brookings Institution", "url": "https://www.brookings.edu/"},
-        {"name": "The Sun", "url": "https://www.thesun.co.uk/"}
-    ],
-    "vertical": "markets-finance",
-    "urgency": "daily",
-    "tags": ["US-Iran", "Strait of Hormuz", "oil prices", "Brent crude", "Fed rate hike", "PCE inflation", "NRI investments", "RBI"],
-    "diaspora_angle": "India imports 85 per cent of its crude oil. Every $10 rise in Brent costs India roughly $15 billion annually. The Hormuz deal directly affects the rupee, RBI rate decisions, NRI deposit rates, and inflation-sensitive portfolios held by diaspora investors.",
-    "image_search": {"type": "pexels", "query": "oil tanker ship strait ocean", "fallback": "crude oil barrel global trade"},
-    "body": """The United States and Iran reached an agreement on May 28 to extend their ceasefire for 60 days and reopen the Strait of Hormuz to unrestricted commercial shipping, Reuters reported, citing sources familiar with the deal. Markets rallied on the news, with Brent crude dropping from $94.50 to about $91.30 per barrel within hours. But the agreement remains unsigned — President Trump has not yet approved it, Iran says it has not been finalised, and a sobering analysis from Reuters warns that even a successful deal may not prevent a global oil crunch that is already well underway.
+    "person_name": None,
+    "pexels_query": "stock market trading technology",
+    "pexels_fallback": "financial charts data analysis",
+    "source": "Barron's, NRI Globe, UBS, Goldman Sachs",
+    "source_urls": ["https://www.barrons.com/articles/ai-retirement-portfolio-rebalance", "https://nriglobe.com/ai-bubble-cracking-2026-nri-investor-guide-india-opportunity"],
+    "body": """The AI trade that powered the S&P 500's gains for the past two years is showing its first honest signs of fatigue. In the last 30 days, multiple Fortune 20 corporations have visibly tightened AI tool budgets as per-engineer token costs climb and demonstrable return on investment remains harder to pin down.
 
-## The Deal
+For the global Indian diaspora — many of whom hold significant exposure to US tech giants through 401(k)s, individual brokerage accounts and global index funds — this shift demands attention rather than panic.
 
-The tentative agreement, first reported by Axios, would require Iran to remove all mines from the Strait of Hormuz within 30 days and guarantee unrestricted shipping through the waterway — meaning no tolls, no harassment, and no military interference. In return, the United States would lift its naval blockade of Iranian ports and ease some sanctions on Iranian oil sales.
+## The Warning Signs Are Concrete
 
-The deal would also open formal negotiations on Iran's nuclear programme, with Tehran pledging to discuss destroying its highly enriched uranium and future enrichment activities. The US would commit to discussing the release of $12 billion in frozen Iranian assets.
+GPU rental prices for Nvidia's H200 have fallen roughly 40 per cent, from about $7 per hour to $4 per hour, the clearest pricing signal yet that short-term demand is softening. When the hardware that powers AI becomes cheaper because fewer companies want to rent it, that is not a discount. It is a demand signal.
 
-Trump posted on Truth Social on Friday that Iran would remove its mines and end the strait closure "with no tolls," while the US would lift its "parallel blockade." But Iran's foreign ministry spokesman Esmaeil Baqaei told state media that "no final agreement has been reached yet" and that the republic "said goodbye to the language of 'must' 47 years ago."
+Several enterprise buyers — including Microsoft and Uber — have tightened AI tool spending in the last month as per-seat costs collide with unclear ROI. The pattern is familiar from past technology cycles: initial euphoria, heavy capital deployment, and then a reckoning when the accountants catch up with the engineers.
 
-## Why the Market Reaction May Be Premature
+Alphabet's guidance of $175 to $185 billion in 2026 capital spending — nearly double the $91.4 billion spent in 2025 — initially spooked investors. The five hyperscalers are now spending 60 per cent of operating cash flow on capex, a record. Goldman Sachs estimates that AI investment will drive nearly half of S&P 500 earnings growth this year. The market's valuation assumes this influx will continue, but that is not a given.
 
-Reuters' Yawen Chen published a pointed analysis on Friday arguing that a ceasefire extension is "no solution to the Hormuz crisis" and could simply postpone a deeper reckoning.
+## Why NRI Portfolios Are Particularly Exposed
 
-The core problem: the Strait of Hormuz has been effectively closed to commercial shipping for three months. During that period, governments worldwide have released more than 400 million barrels from emergency petroleum reserves. The Brookings Institution estimates that once those reserves and other temporary buffers are exhausted — likely by July — the global market will face a shortfall equivalent to roughly **16 per cent of global crude trade**. That is a gap no 60-day truce can fill.
+The typical NRI investor portfolio in the US, Canada, UK and UAE is heavily tilted toward American technology. Microsoft, Nvidia, Google, Apple, Meta and Amazon are not just individual stock picks — they dominate the index funds that sit inside most 401(k)s and retirement accounts.
 
-Even if the strait reopens and shipping resumes, crude prices are unlikely to return to pre-crisis levels. Physical infrastructure in the Gulf has been damaged, inventories need replenishing, and insurers are demanding war-risk premiums on tankers transiting the waterway.
+Technology and communications stocks now account for more than 40 per cent of the S&P 500 index. If you own a broad US index fund — and most NRI investors do — you are carrying more concentrated AI exposure than you may realise.
 
-Brent crude settled at $92.05 per barrel on Friday, down 1.77 per cent on the day but still well above the $70–75 range that prevailed before the conflict began.
+Angelo Kourkafas, senior global investment strategist at Edward Jones, warned in Barron's this week: "Concentration increases volatility, and that can be problematic for investors who are drawing income, including retirees."
 
-## The Inflation Problem Is Already Here
+The issue is not that AI is a bad long-term bet. It is that the market has priced in a future where every dollar of AI capex generates returns — and the enterprise spending data suggests that assumption is being tested right now.
 
-Thursday's Personal Consumption Expenditures (PCE) price index — the Federal Reserve's preferred inflation gauge — showed annual inflation at **3.8 per cent** in April, nearly double the Fed's 2 per cent target. It is expected to top 4 per cent in May, driven almost entirely by energy costs.
+## The India Countercyclical Opportunity
 
-The data has transformed the Fed outlook. Markets now see a greater probability of a rate **hike** than a cut in 2026. Fed Board member Lisa Cook said on Wednesday that if disinflation does not resume soon, she would be "prepared to raise rates." New Fed Chair Kevin Warsh, who took over this year, faces his first meeting in June with inflation running at levels that leave little room for the rate cuts President Trump has publicly demanded.
+While US enterprise AI spending shows signs of fatigue, India's AI build-out is moving in the opposite direction. The IndiaAI Mission, Microsoft's $17.5 billion India commitment, hyperscaler data centre construction across Hyderabad, Mumbai and Chennai, and projections of 2.3 million AI-related jobs by 2027 all point to a parallel growth lane that is still in early innings.
 
-## The Week Ahead
+For NRI investors, this creates a portfolio construction opportunity: adding India-AI exposure to balance pure-hype US concentration. This is not about exiting US tech. It is about recognising that the diaspora's natural home bias toward American equities has created an unintentional concentration risk at precisely the moment when enterprise buyers are starting to ask harder questions about AI returns.
 
-Friday's May non-farm payrolls report is expected to show job growth slowing to 96,000 and an unemployment rate of 4.3 per cent, according to a Reuters poll. A stronger-than-expected number could signal overheating and rattle bonds further. Manufacturing and services data will offer additional clues on economic momentum.
+Gulf NRIs are already moving in this direction. A recent survey found that 73 per cent of GCC-based NRIs have boosted their Indian equity exposure, with many deploying fresh capital as a structural shift in wealth strategy.
 
-The S&P 500 closed at 7,580.12 on Friday, the Dow at 51,032.65, and the Nasdaq at 26,972.62 — all modestly higher on the day. Remarkably, the S&P 500 has climbed more than 9 per cent since the start of the US-Iran conflict, with Goldman Sachs raising its year-end target from 7,600 to 8,000, citing strong corporate earnings.
+## What to Do Right Now
 
-But rising Treasury yields remain the market's biggest vulnerability. The 10-year yield settled at 4.441 per cent, and the 30-year at 4.98 per cent. The dollar index fell 0.1 per cent to 98.90, with the euro at $1.1663.
+**Check your actual tech exposure.** If you have not rebalanced your 401(k) or brokerage account in a while, your tech allocation may have drifted well above your target. A 60/40 portfolio from two years ago may now be 65/35 or 70/30 simply from tech appreciation.
 
-## What This Means for NRI Portfolios
+**Consider bonds at current yields.** The 10-year US Treasury yield is hovering near 4.5 per cent — an attractive entry point for investors rotating out of appreciated tech positions. Since selling can trigger capital-gains taxes, concentrate rebalancing in tax-deferred accounts where possible.
 
-**Oil and energy exposure:** India imports roughly 85 per cent of its crude. Every $10 rise in Brent costs India approximately $15 billion annually in additional import bills. If the Hormuz deal collapses or oil climbs past $100, the rupee will come under renewed pressure, the RBI's foreign exchange reserves (already at a one-year low of $681 billion) will deplete faster, and inflation-indexed bonds could outperform equities.
+**Look at India-focused funds.** Indian equities, despite a weak May for the Nifty, offer diversification away from the US-AI concentration. The RBI's monetary policy decision on June 5 may provide further direction on the investment climate.
 
-**Fixed income:** The RBI meets on June 5. Bond traders are pricing in up to 100 basis points of hikes. NRI deposits in Indian banks could see rising rates, making FCNR and NRE fixed deposits more attractive than they have been in years.
+**Do not panic-sell.** Goldman Sachs forecasts that AI investment will still drive significant earnings growth. The companies building AI infrastructure have stronger financial positions than the dot-com-era telecoms that built fibre-optic networks in anticipation of demand that never came. Free cash flow margins for AI hyperscalers have averaged 15 per cent, compared to 3.5 per cent for 1990s telecoms.
 
-**US equities:** If payrolls come in hot and the Fed signals a hike, growth stocks and high-multiple tech names — which dominate many NRI portfolios — could face a sharp correction. Defensive sectors (utilities, healthcare, consumer staples) and inflation hedges (TIPS, commodity ETFs, energy stocks) deserve a closer look.
+The message is not that the AI trade is over. It is that the easy money phase may be, and for NRI investors with concentrated US tech exposure, now is the time to ensure your portfolio reflects your actual risk tolerance — not just the last two years of momentum."""
+}
 
-**The rupee:** The Indian currency had its best day in two months on Friday, aided by the oil price dip and RBI intervention. But the relief could be short-lived. If the Hormuz deal falls apart over the weekend, Monday's open in Mumbai could be volatile.
+# ============================================================
+# Publish all articles
+# ============================================================
+articles = [article1, article2, article3]
 
-The bottom line: the deal is real but fragile. Its success depends not on whether Iran and the US sign a piece of paper, but on whether crude oil actually starts flowing again — and whether 400 million barrels of depleted reserves can be rebuilt before the next escalation."""
-})
-
-# ── Publish articles ─────────────────────────────────────────────────
-
-now = datetime.now(timezone.utc).isoformat()
-
-for i, article in enumerate(articles):
-    print(f"\n{'='*60}")
-    print(f"Article {i+1}: {article['headline'][:70]}...")
-    print(f"Category: {article['category']}")
-    
-    # Generate article ID
-    art_id = str(uuid.uuid4())
-    
-    # Image sourcing
-    img_url = None
-    img_attribution = None
-    search_info = article.pop("image_search")
-    
-    if search_info["type"] == "pexels":
-        img_url = fetch_pexels_image(search_info["query"], search_info.get("fallback"))
-        img_attribution = "Pexels"
-    
-    if img_url and not validate_image(img_url):
-        print(f"  ⚠ Image failed validation, trying fallback...")
-        img_url = fetch_pexels_image(search_info.get("fallback"))
-        if img_url and not validate_image(img_url):
-            img_url = None
-    
-    if not img_url:
-        print(f"  ⚠ No valid image found, publishing without image")
-    
-    # Build article record
-    record = {
-        "id": art_id,
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "slug": article["slug"],
-        "category": article["category"],
-        "vertical": article.get("vertical", article["category"]),
-        "body": article["body"],
-        "sources": article["sources"],
-        "tags": article.get("tags", []),
-        "urgency": article.get("urgency", "daily"),
-        "diaspora_angle": article.get("diaspora_angle"),
-        "status": "published",
-        "published_at": now,
-        "created_at": now,
-        "updated_at": now,
-    }
-    
-    if img_url:
-        record["image_url"] = img_url
-        record["image_attribution"] = img_attribution
-    
-    result = sb_insert("p2_articles", record)
-    if result:
-        print(f"  ✓ Published: {article['slug']}")
-        print(f"    ID: {art_id}")
-        if img_url:
-            print(f"    Image: {img_url[:80]}...")
-    else:
-        print(f"  ✗ FAILED to publish: {article['slug']}")
-    
-    time.sleep(1)
+for art in articles:
+    publish_article(art)
 
 print(f"\n{'='*60}")
-print("Writer run complete.")
+print(f"Writer run complete. Published {len(articles)} articles.")
+print(f"  - lifestyle-health: 2")
+print(f"  - markets-finance: 1")
