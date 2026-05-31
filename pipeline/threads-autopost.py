@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
-"""Post recent Videshi articles to Threads (@the.videshi)."""
+"""Auto-post recent Videshi articles to Threads (@the.videshi)."""
 
-import json, os, sys, time, requests
+import json, os, time, sys, requests
 from datetime import datetime
 
 # --- Config ---
 THREADS_USER_ID = "26854521280856098"
 SUPABASE_URL = "https://lboecaekpynbpyijrbfz.supabase.co"
-LOG_PATH = os.path.expanduser("~/workspace/the-videshi-news/pipeline/threads-log.json")
-MAX_POSTS = 3
 
 # Load env
 def load_env(path):
@@ -16,19 +14,22 @@ def load_env(path):
     with open(os.path.expanduser(path)) as f:
         for line in f:
             line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                k, v = line.split('=', 1)
-                env[k.strip()] = v.strip()
+            if not line or line.startswith('#'):
+                continue
+            if line.startswith('export '):
+                line = line[7:]
+            key, _, val = line.partition('=')
+            env[key.strip()] = val.strip()
     return env
 
 threads_env = load_env("~/workspace/.env.threads")
 supa_env = load_env("~/workspace/.env.supabase")
 
 THREADS_ACCESS_TOKEN = threads_env["THREADS_ACCESS_TOKEN"]
-SUPABASE_KEY = supa_env["SUPABASE_SERVICE_ROLE_KEY"]
+SUPABASE_SERVICE_ROLE_KEY = supa_env["SUPABASE_SERVICE_ROLE_KEY"]
 
 # Category emoji mapping
-EMOJI_MAP = {
+CATEGORY_EMOJI = {
     "news": "🇮🇳",
     "immigration": "🛂",
     "nri-world": "🌏",
@@ -41,22 +42,18 @@ EMOJI_MAP = {
     "food": "🍛",
 }
 
-# --- Step 1: Load tracking log ---
+# --- Load tracking log ---
+LOG_PATH = os.path.expanduser("~/workspace/the-videshi-news/pipeline/threads-log.json")
 if os.path.exists(LOG_PATH):
     with open(LOG_PATH) as f:
         threads_log = json.load(f)
 else:
     threads_log = {}
-    os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
-    with open(LOG_PATH, 'w') as f:
-        json.dump(threads_log, f)
 
-print(f"Threads log has {len(threads_log)} entries")
-
-# --- Step 2: Fetch recent articles ---
+# --- Fetch recent published articles ---
 headers = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "apikey": SUPABASE_SERVICE_ROLE_KEY,
+    "Authorization": f"Bearer {SUPABASE_SERVICE_ROLE_KEY}",
 }
 resp = requests.get(
     f"{SUPABASE_URL}/rest/v1/p2_articles",
@@ -72,83 +69,74 @@ resp.raise_for_status()
 articles = resp.json()
 print(f"Fetched {len(articles)} recent published articles")
 
-# --- Step 3: Filter to unposted articles with images ---
+# Filter: not already posted, has image_url
 candidates = []
 for a in articles:
     aid = str(a["id"])
     if aid in threads_log:
         continue
     if not a.get("image_url"):
-        print(f"  Skipping {aid} ({a.get('headline','?')[:50]}) — no image")
+        print(f"  Skipping (no image): {a.get('headline','?')[:60]}")
         continue
     candidates.append(a)
 
-candidates = candidates[:MAX_POSTS]
-print(f"Will post {len(candidates)} articles")
+print(f"Candidates after filtering: {len(candidates)}")
+to_post = candidates[:3]
 
-if not candidates:
-    print("Nothing to post. Done.")
+if not to_post:
+    print("Nothing new to post. Done.")
     sys.exit(0)
 
-# --- Step 4: Compose and post ---
+# --- Compose & post ---
 def compose_post(article):
-    cat = (article.get("category") or "news").lower()
-    emoji = EMOJI_MAP.get(cat, "📰")
-    cat_display = cat.upper().replace("-", " ")
+    cat = article.get("category", "news") or "news"
+    emoji = CATEGORY_EMOJI.get(cat, "📰")
+    cat_label = cat.upper().replace("-", " ")
     slug = article.get("slug", "")
+
+    # Rewrite headline: punchy ALL CAPS
     headline = article.get("headline", "").strip()
+    headline_caps = headline.upper()
+
+    # Extract summary from body (first meaningful paragraph)
     body = article.get("body", "") or ""
+    subheadline = article.get("subheadline", "") or ""
+    summary = subheadline.strip()
+    if not summary:
+        # Try to grab first paragraph from body
+        for para in body.split("\n"):
+            para = para.strip()
+            if len(para) > 40 and not para.startswith("#") and not para.startswith("!"):
+                summary = para[:200]
+                break
 
-    # Extract first substantive sentences from body for summary
-    # Strip markdown formatting
-    import re
-    clean = re.sub(r'[#*>\[\]`_]', '', body)
-    clean = re.sub(r'\!\[.*?\]\(.*?\)', '', clean)
-    clean = re.sub(r'\(https?://[^\)]+\)', '', clean)
-    clean = re.sub(r'https?://\S+', '', clean)
-    sentences = re.split(r'(?<=[.!?])\s+', clean.strip())
-    # Skip very short or header-like sentences
-    good = [s.strip() for s in sentences if len(s.strip()) > 40 and not s.strip().startswith('|')]
-
-    summary = ""
-    if good:
-        summary = good[0]
-        if len(good) > 1 and len(summary) < 180:
-            combined = summary + " " + good[1]
-            if len(combined) < 250:
-                summary = combined
-
-    # Build post
-    url_line = f"📰 thevideshi.com/articles/{slug}"
+    # Build the post
+    url = f"📰 thevideshi.com/articles/{slug}"
+    header = f"{emoji} {cat_label} | The Videshi"
     separator = "━━━━━━━━━━━━━━━━━━━━"
 
-    post = f"{emoji} {cat_display} | The Videshi\n\n{separator}\n\n{headline.upper()}\n\n{summary}\n\n{url_line}"
+    post = f"{header}\n\n{separator}\n\n{headline_caps}\n\n{summary}\n\n{url}"
 
-    # Trim if over 500 chars
+    # Trim to 500 chars if needed
     if len(post) > 500:
         # Shorten summary
-        avail = 500 - len(post) + len(summary)
-        if avail > 30:
-            summary = summary[:avail-3].rsplit(' ', 1)[0] + "..."
+        available = 500 - len(header) - len(separator) - len(headline_caps) - len(url) - 10  # newlines
+        if available > 20:
+            summary = summary[:available-3].rsplit(" ", 1)[0] + "..."
         else:
             summary = ""
-        post = f"{emoji} {cat_display} | The Videshi\n\n{separator}\n\n{headline.upper()}\n\n{summary}\n\n{url_line}"
+        post = f"{header}\n\n{separator}\n\n{headline_caps}\n\n{summary}\n\n{url}" if summary else f"{header}\n\n{separator}\n\n{headline_caps}\n\n{url}"
 
-    if len(post) > 500:
-        post = post[:497] + "..."
-
-    return post
+    return post[:500]
 
 posted = 0
-errors = []
+errors = 0
 
-for i, article in enumerate(candidates):
-    aid = str(article["id"])
-    headline = article.get("headline", "?")
-    print(f"\n--- Posting {i+1}/{len(candidates)}: {headline[:60]} ---")
-
+for i, article in enumerate(to_post):
     post_text = compose_post(article)
-    print(f"Post text ({len(post_text)} chars):\n{post_text}\n")
+    print(f"\n--- Post {i+1}/{len(to_post)} ---")
+    print(f"Article: {article['headline'][:80]}")
+    print(f"Post ({len(post_text)} chars):\n{post_text}\n")
 
     # Step 1: Create media container with image
     image_url = article["image_url"]
@@ -163,35 +151,33 @@ for i, article in enumerate(candidates):
         resp = requests.post(
             f"https://graph.threads.net/v1.0/{THREADS_USER_ID}/threads",
             data=container_data,
-            timeout=30,
         )
         resp_json = resp.json()
         print(f"Container response: {resp.status_code} {resp_json}")
 
         if "id" not in resp_json:
-            # Image might have failed — fall back to TEXT
-            print(f"Image container failed, falling back to TEXT-only")
-            container_data = {
+            # Image might have failed, fall back to TEXT
+            print("Image container failed, falling back to TEXT...")
+            container_data_text = {
                 "media_type": "TEXT",
                 "text": post_text,
                 "access_token": THREADS_ACCESS_TOKEN,
             }
             resp = requests.post(
                 f"https://graph.threads.net/v1.0/{THREADS_USER_ID}/threads",
-                data=container_data,
-                timeout=30,
+                data=container_data_text,
             )
             resp_json = resp.json()
             print(f"Text container response: {resp.status_code} {resp_json}")
-
-        if "id" not in resp_json:
-            errors.append(f"{aid}: container creation failed: {resp_json}")
-            continue
+            if "id" not in resp_json:
+                print(f"ERROR: Could not create container: {resp_json}")
+                errors += 1
+                continue
 
         container_id = resp_json["id"]
 
         # Step 2: Wait for processing then publish
-        print(f"Waiting 10s for media processing...")
+        print("Waiting 10s for image processing...")
         time.sleep(10)
 
         resp = requests.post(
@@ -200,43 +186,38 @@ for i, article in enumerate(candidates):
                 "creation_id": container_id,
                 "access_token": THREADS_ACCESS_TOKEN,
             },
-            timeout=30,
         )
         pub_json = resp.json()
         print(f"Publish response: {resp.status_code} {pub_json}")
 
         if "id" not in pub_json:
-            errors.append(f"{aid}: publish failed: {pub_json}")
+            print(f"ERROR: Publish failed: {pub_json}")
+            errors += 1
             continue
 
-        post_id = str(pub_json["id"])
+        post_id = pub_json["id"]
+        print(f"✅ Posted! Threads post ID: {post_id}")
 
         # Update log
-        threads_log[aid] = {
-            "slug": article.get("slug", ""),
-            "threads_post_id": post_id,
+        threads_log[str(article["id"])] = {
+            "slug": article["slug"],
+            "threads_post_id": str(post_id),
             "posted_at": datetime.utcnow().isoformat() + "Z",
         }
-        with open(LOG_PATH, 'w') as f:
+        with open(LOG_PATH, "w") as f:
             json.dump(threads_log, f, indent=2)
 
         posted += 1
-        print(f"✅ Posted successfully! Post ID: {post_id}")
 
     except Exception as e:
-        errors.append(f"{aid}: exception: {str(e)}")
-        print(f"❌ Error: {e}")
+        print(f"ERROR posting article {article['id']}: {e}")
+        errors += 1
 
     # Wait between posts
-    if i < len(candidates) - 1:
-        print("Waiting 10s before next post...")
+    if i < len(to_post) - 1:
+        print("Waiting 10s between posts...")
         time.sleep(10)
 
-# --- Summary ---
-print(f"\n{'='*40}")
-print(f"SUMMARY: Posted {posted}/{len(candidates)} articles to Threads")
-if errors:
-    print(f"Errors ({len(errors)}):")
-    for e in errors:
-        print(f"  - {e}")
-print(f"Total entries in threads-log.json: {len(threads_log)}")
+print(f"\n=== SUMMARY ===")
+print(f"Posted: {posted}/{len(to_post)}")
+print(f"Errors: {errors}")
