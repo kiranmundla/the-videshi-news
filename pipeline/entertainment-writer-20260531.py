@@ -1,319 +1,394 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-05-31 batch (curl-based)"""
+"""Entertainment writer for The Videshi - 2026-05-31 batch"""
 
-import json, os, re, subprocess, sys, time, urllib.parse, urllib.request
+import os, json, sys, time, re, uuid, requests, urllib.parse
 from datetime import datetime, timezone
 
-# ── env ──────────────────────────────────────────────────────────────
+# Load env
 def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith('#'):
-                continue
-            if line.startswith('export '):
-                line = line[7:]
-            k, _, v = line.partition('=')
-            v = v.strip().strip('"').strip("'")
-            os.environ.setdefault(k.strip(), v)
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, _, val = line.partition('=')
+                    val = val.strip().strip('"').strip("'")
+                    os.environ.setdefault(key.strip(), val)
 
 load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SB_URL = os.environ['SUPABASE_URL']
-SB_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-# ── curl-based Supabase helpers ──────────────────────────────────────
-def sb_insert(table, row):
-    """Insert via curl to avoid IncompleteRead."""
-    result = subprocess.run(
-        ['curl', '-sS', '-X', 'POST',
-         f'{SB_URL}/rest/v1/{table}',
-         '-H', f'apikey: {SB_KEY}',
-         '-H', f'Authorization: Bearer {SB_KEY}',
-         '-H', 'Content-Type: application/json',
-         '-H', 'Prefer: return=representation',
-         '-d', json.dumps(row)],
-        capture_output=True, text=True, timeout=30
-    )
-    if result.returncode != 0:
-        print(f"  ✗ curl insert failed: {result.stderr[:300]}")
-        return None
-    try:
-        data = json.loads(result.stdout)
-        return data
-    except:
-        print(f"  ✗ Parse error: {result.stdout[:300]}")
-        return None
+HEADERS = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
+}
 
-def sb_patch(table, filters, patch):
-    """Patch via curl."""
-    qs = '&'.join(f"{k}={v}" for k, v in filters.items())
-    subprocess.run(
-        ['curl', '-sS', '-X', 'PATCH',
-         f'{SB_URL}/rest/v1/{table}?{qs}',
-         '-H', f'apikey: {SB_KEY}',
-         '-H', f'Authorization: Bearer {SB_KEY}',
-         '-H', 'Content-Type: application/json',
-         '-d', json.dumps(patch)],
-        capture_output=True, text=True, timeout=30
-    )
-
-# ── Image helpers ────────────────────────────────────────────────────
+# --- Wikipedia Image Sourcing ---
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's photo from Wikipedia. Returns image URL or None."""
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
-        req = urllib.request.Request(
+        r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
         )
-        resp = urllib.request.urlopen(req, timeout=10)
-        data = json.loads(resp.read().decode())
-        img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
-        if img:
-            print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
-            return img
+        if r.status_code == 200:
+            data = r.json()
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            if img:
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+def fetch_pexels_image(query, fallback_query=None):
+    """Fetch image from Pexels as fallback."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key available")
+        return None
+    
+    for q in [query, fallback_query]:
+        if not q:
+            continue
+        try:
+            import subprocess
+            result = subprocess.run(
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3'],
+                capture_output=True, text=True, timeout=15
+            )
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            if photos:
+                url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('original')
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
+        except Exception as e:
+            print(f"  ⚠ Pexels error for '{q}': {e}")
+    return None
 
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase storage using curl."""
-    tmp_path = f"/tmp/{filename}"
+def validate_image_url(url):
+    """Check image URL is valid and returns proper image content."""
+    if not url:
+        return False
+    # Block banned sources
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
+    if any(b in url for b in banned):
+        print(f"  ✗ Banned source: {url[:60]}")
+        return False
+    if any(p in url for p in ['_nc_ht=', '_nc_cat=', 'ccb=']):
+        print(f"  ✗ Signed Meta URL: {url[:60]}")
+        return False
     try:
-        # Download
-        dl = subprocess.run(
-            ['curl', '-sS', '-L', '-o', tmp_path,
-             '-H', 'User-Agent: TheVideshi/1.0 (thevideshi.com)',
-             image_url],
-            capture_output=True, text=True, timeout=20
-        )
-        if not os.path.exists(tmp_path) or os.path.getsize(tmp_path) < 5000:
-            print(f"  ⚠ Downloaded image too small or missing")
-            return None
-
-        # Upload
-        ul = subprocess.run(
-            ['curl', '-sS', '-X', 'POST',
-             f'{SB_URL}/storage/v1/object/article-images/{filename}',
-             '-H', f'apikey: {SB_KEY}',
-             '-H', f'Authorization: Bearer {SB_KEY}',
-             '-H', 'Content-Type: image/jpeg',
-             '-H', 'x-upsert: true',
-             '--data-binary', f'@{tmp_path}'],
-            capture_output=True, text=True, timeout=30
-        )
-
-        public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
-        print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-        os.remove(tmp_path)
-        return public_url
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
+            return True
+        # Try GET if HEAD doesn't give content-length
+        if r.status_code == 200 and 'image' in ct:
+            r2 = requests.get(url, timeout=10, stream=True,
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
+                return True
+        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
-        print(f"  ⚠ Upload failed: {e}")
-        if os.path.exists(tmp_path):
-            os.remove(tmp_path)
+        print(f"  ✗ Image validation error: {e}")
+    return False
+
+def sb_insert(table, data):
+    """Insert into Supabase table."""
+    url = f"{SUPABASE_URL}/rest/v1/{table}"
+    r = requests.post(url, headers=HEADERS, json=data, timeout=30)
+    if r.status_code in (200, 201):
+        result = r.json()
+        if isinstance(result, list) and result:
+            return result[0]
+        return result
+    else:
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
         return None
 
-# ── Articles ─────────────────────────────────────────────────────────
-articles = [
-    {
-        "headline": "FWICE Just Banned Ranveer Singh From Working in Bollywood. The Don 3 Fallout Is Now an Industry Crisis.",
-        "subheadline": "A ₹45 crore dispute, a non-cooperation directive, and Ram Gopal Varma calling the trade body a 'kangaroo court' — the Don 3 controversy has split the film industry into two camps.",
-        "slug": "ranveer-singh-fwice-ban-don-3-controversy-industry-crisis-nri-20260531",
-        "category": "entertainment",
-        "sources": [{"name": "Bollywood Hungama"}, {"name": "The Indian Eye"}, {"name": "Indulge Express"}, {"name": "Zoom TV Entertainment"}],
-        "person_for_image": "Ranveer Singh",
-        "body": """Ranveer Singh's name is now on a blacklist — not from a court order, not from a government body, but from the Federation of Western India Cine Employees, which has issued a non-cooperation directive telling every union member in the Hindi film industry to refuse to work with him.
+def sb_patch(table, filters, data):
+    """Update Supabase row."""
+    params = '&'.join(f'{k}={v}' for k,v in filters.items())
+    url = f"{SUPABASE_URL}/rest/v1/{table}?{params}"
+    r = requests.patch(url, headers=HEADERS, json=data, timeout=30)
+    if r.status_code in (200, 204):
+        return True
+    print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
+    return False
 
-The ban stems from his abrupt exit from Don 3. Farhan Akhtar and Ritesh Sidhwani's Excel Entertainment claim they lost ₹45 crore in pre-production costs after Ranveer walked away three weeks before shooting was scheduled to begin. The actor's camp maintains that the film lacked a finalized script after years of development and that no advance payment had been made.
+# ============================================================================
+# ARTICLES
+# ============================================================================
 
-## A Dispute That Escalated Fast
+articles = []
 
-FWICE sent multiple notices to Ranveer. His legal team responded by questioning the federation's jurisdiction — arguing that this was a private commercial contract between a star and a producer, not a matter for an industry body. FWICE went ahead with the directive anyway.
+# --- ARTICLE 1: Maa Behen on Netflix June 4 ---
+articles.append({
+    "headline": "Madhuri Dixit Returns to Netflix With a Dead Body, a Dysfunctional Family, and Zero Apologies. Maa Behen Drops June 4.",
+    "subheadline": "The dark comedy pairs Madhuri with Triptii Dimri and newcomer Dharna Durga as three women trying to hide a corpse while their world falls apart. It includes a 'Dhak Dhak Reloaded' track.",
+    "slug": "madhuri-dixit-maa-behen-netflix-dark-comedy-triptii-dimri-june-4-nri-20260531",
+    "category": "entertainment",
+    "body": """Madhuri Dixit is about to remind streaming audiences why she's been Bollywood's most watchable actress for three decades — and she's doing it with a body bag.
 
-The ban is not legally binding. Chief Adviser Ashoke Pandit has clarified that it's an "industry body-level action," but in practice, it means most technicians, crew members, and below-the-line workers will refuse to collaborate on any Ranveer Singh project until the matter is resolved.
+*Maa Behen*, Netflix's new Hindi-language dark comedy, premieres globally on **June 4, 2026**. Directed by Suresh Triveni (*Tumhari Sulu*, *Jalsa*) and written by Pooja Tolani, the film casts Madhuri as Rekha, the matriarch of a spectacularly dysfunctional family living in Gurugram's fictional Adarsh Colony. Triptii Dimri plays her daughter Jaya, and newcomer Dharna Durga rounds out the trio as Sushma — three women who discover a dead body in their home and must figure out what to do before everything unravels.
 
-## The Industry Splits
+## A Crime-Comedy With Teeth
 
-Ram Gopal Varma was the first major voice to push back. "BAN 'FWICE' and not Ranveer Singh," he posted on X, calling the directive a "performative muscle-flex" by an "extremely outdated union system." He argued that FWICE was operating as a "kangaroo court" with no legal authority to adjudicate private contracts.
+The trailer makes the film's DNA unmistakable: this isn't a clean family comedy. It's a chaotic spiral of panic, cover-ups, emotional breakdowns, and hilariously bad decisions. Ravi Kishan plays Gupta Ji, adding mass-market comic timing to what is already an unhinged setup. Geetanjali Kulkarni, Arunoday Singh, Shardul Bhardwaj, and Jatin Sarna (as Rekha's husband) fill out a cast that reads like a who's who of India's best character actors.
 
-CINTAA — the Cine and TV Artistes' Association — also broke ranks. Vice-President Padmini Kolhapure publicly stated that the organization stands with Ranveer, suggesting the directive was overreach.
+Produced by Vikram Malhotra's Abundantia Entertainment — the same banner behind *Breathe*, *Sherni*, and *Jalsa* — in association with Triveni's Opening Image Films, *Maa Behen* is the kind of mid-budget, star-powered OTT project that Netflix India has been betting on with increasing confidence.
 
-Behind the scenes, Salman Khan has stepped in as a mediator. He enjoys a cordial relationship with both Ranveer and Farhan, and has reportedly urged both sides to settle privately without involving legal proceedings or industry organizations. Both parties are believed to be following his advice, though Excel Entertainment insists that any settlement talks must happen with Farhan and Ritesh personally present.
+## The Diaspora Appeal
 
-## What Started as a Creative Disagreement
+For NRI audiences, *Maa Behen* checks every box. It's a **day-and-date global release** on Netflix, meaning viewers in the US, UK, and Canada get it at the same time as India. It features Madhuri Dixit, arguably the most universally beloved actress among the Indian diaspora — a generation of NRIs grew up with her, and she's been smart about reinventing herself for the streaming era (from *The Fame Game* to *Bhool Bhulaiyaa 3*).
 
-The roots go deeper than a scheduling conflict. According to Indulge Express, Ranveer wanted the Don character to be portrayed with more sinister overtones, while Farhan was insistent on keeping the franchise's established tone. After nearly two years of creative deadlock, Ranveer exited. His team reportedly offered a ₹35 crore settlement — ₹10 crore upfront plus a ₹25 crore discount on a future project — but Excel rejected it and held firm at ₹45 crore.
+The soundtrack includes *Dhak Dhak Reloaded*, a reimagining of the iconic track from *Beta* (1992) that first cemented Madhuri's status as Bollywood's dancing queen. Original composers Anand-Milind's work has been rearranged by Akshay Raheja and Abhishek Singh. Other tracks — *Kaari Kaari*, *Yeh Kaisi Raat*, and *Khol Pinjara* — are composed by Akashdeep Sengupta, with T-Series handling the music label.
 
-## What NRIs Should Know
+## Why This Film Matters
 
-For diaspora audiences who grew up with Amitabh Bachchan's Don and watched Shah Rukh Khan reinvent it, the franchise carries cultural weight. Ranveer was announced as the new Don in 2023, inheriting a legacy that spans nearly five decades of Indian cinema.
+Triveni has built a reputation for making films about women who refuse to be victims — from Vidya Balan in *Tumhari Sulu* to the moral grey zones of *Jalsa*. *Maa Behen* appears to continue that thread: three women navigating a crisis with dark humour and messy solidarity rather than waiting for a man to fix things.
 
-The real question is whether the FWICE ban has any teeth. India's film industry operates on relationships, not union mandates. If a major studio wants to work with Ranveer — and his upcoming film Pralay is still in active development — the directive may prove to be more symbolic than substantive.
+For Triptii Dimri, who broke through with *Animal* and has become one of the most in-demand young actresses in Bollywood, this is a chance to play against type alongside a legend. And for Dharna Durga, it's an introduction to a global audience of millions.
 
-But it sets a precedent. If trade bodies can effectively blackball an A-list star over a contract dispute, the power dynamics between stars, studios, and unions will shift in ways the industry hasn't seen since the underworld era of the 1990s.
+Whether *Maa Behen* becomes Netflix India's next breakout hit or a niche cult favourite, one thing is certain: Madhuri Dixit selling chaos in a Gurugram colony is exactly the kind of content that NRI audiences will queue up for on a Wednesday night.
 
-This also marks Ranveer's second major controversy in six months. In December 2025, he faced backlash and a police complaint after mimicking Rishab Shetty's Kantara Daiva scene at IFFI Goa, calling the sacred Chamundi Daiva a "female ghost." He apologized, but the pattern of high-profile public clashes is becoming hard to ignore.
+*Maa Behen premieres on Netflix on June 4, 2026.*
 
-Ranveer's next move will determine whether this becomes a footnote or a turning point. For now, the man who once told Karan Johar on Koffee With Karan that all he wanted was a fair chance is learning that the industry's definition of fairness depends heavily on who's asking.
+**Sources:** Netflix India, Bollywood Life, Wikipedia, Latestly""",
+    "sources": ["Netflix India", "Bollywood Life", "Wikipedia", "Latestly"],
+    "person_for_image": "Madhuri Dixit",
+    "pexels_query": None,
+    "pexels_fallback": None,
+    "image_attribution": "Wikimedia Commons"
+})
 
-*Sources: Bollywood Hungama, The Indian Eye, Indulge Express, Zoom TV Entertainment*"""
-    },
-    {
-        "headline": "Main Vaapas Aaunga Just Topped IMDb's Most Anticipated Indian Film of 2026. It's Imtiaz Ali's Partition Love Story.",
-        "subheadline": "Diljit Dosanjh, Vedang Raina, Sharvari, and Naseeruddin Shah star in a film about love and separation during the bloodiest chapter of Indian history. It opens June 12.",
-        "slug": "main-vaapas-aaunga-imdb-most-anticipated-imtiaz-ali-partition-june-12-nri-20260531",
-        "category": "entertainment",
-        "sources": [{"name": "IMDb"}, {"name": "Bollywood Hungama"}, {"name": "Zoom TV Entertainment"}, {"name": "IWM Buzz"}],
-        "person_for_image": "Imtiaz Ali",
-        "body": """IMDb has spoken, and the numbers confirm what the trailer already suggested: Main Vaapas Aaunga is the most anticipated Indian film of 2026.
+# --- ARTICLE 2: Dhurandhar 2 OTT Premiere ---
+articles.append({
+    "headline": "Dhurandhar 2 Hits JioHotstar on June 4 With a Raw & Undekha Cut. Here's What NRI Audiences Need to Know.",
+    "subheadline": "Ranveer Singh's ₹1,800 crore blockbuster finally lands on streaming — with extended scenes, longer action sequences, and a 30-minute pre-show premiere event.",
+    "slug": "dhurandhar-2-the-revenge-jiohotstar-ott-release-june-4-raw-undekha-nri-20260531",
+    "category": "entertainment",
+    "body": """The wait is over. India's second-biggest film of all time is finally coming to your living room — and it's bringing extra footage.
 
-Imtiaz Ali's upcoming release has topped IMDb's annual survey of Most Anticipated Indian Films and Shows, beating out every Bollywood blockbuster, every regional tentpole, and every streaming original on the platform's radar. The film opens in theatres on June 12.
+**Dhurandhar 2: The Revenge** — Aditya Dhar's spy action blockbuster starring Ranveer Singh — premieres on **JioHotstar on June 4, 2026 at 7 PM IST** as the *Raw & Undekha* extended cut. A subsequent Netflix India release follows on June 19.
 
-## A Partition Story Through Imtiaz Ali's Lens
+## What's in the Extended Cut?
 
-The film is set against the backdrop of the 1947 Partition — the event that divided British India into India and Pakistan, displaced 15 million people, and killed between one and two million. It's the foundational trauma of the Indian diaspora, the wound that echoes through every NRI family's generational memory.
+The Raw & Undekha version promises additional scenes, longer action sequences, and previously unseen footage that was trimmed from the theatrical release. This follows the precedent set by the first *Dhurandhar*, which also received an extended OTT cut that became a sensation on both Netflix and JioHotstar in May.
 
-Imtiaz Ali, the filmmaker behind Jab We Met, Highway, and Rockstar, is not typically associated with historical epics. His films live in the intimate, the personal — lovers on trains, wanderers in the mountains, musicians drowning in their own excess. Setting that sensibility against the scale of Partition is either a masterstroke or a miscalculation. The trailer suggests the former.
+The premiere isn't just a standard streaming drop. JioHotstar is hosting an exclusive **30-minute pre-show event** at 7 PM featuring candid cast conversations, behind-the-scenes stories, and production insights — before the film becomes available for general streaming from June 5 onwards.
 
-## The Cast
+## The Numbers Behind the Phenomenon
 
-Diljit Dosanjh — who has become a global touring phenomenon and one of Punjabi cinema's most bankable stars — headlines alongside Vedang Raina, the young actor from The Archies who Imtiaz has already compared to Alia Bhatt in Highway. "Some newcomers unexpectedly bring a certain depth of emotion," Ali said in a recent interview. "There is a certain maturity that these people possess."
+*Dhurandhar 2: The Revenge* has grossed approximately **₹1,800 crore worldwide**, making it the second-highest-grossing Indian film in history. The film opened on March 19, 2026, and was still earning over ₹30 lakh daily in its ninth week — the kind of theatrical endurance that's almost unheard of in contemporary Bollywood.
 
-Sharvari, coming off the buzz from her upcoming Alpha alongside Alia Bhatt, rounds out the younger cast. And Naseeruddin Shah — at this point less an actor and more a national institution — anchors the film's older timeline.
+The sequel picks up the story of Hamza Ali Mazari in the volatile world of Lyari, expanding the power struggles, ambition, and survival that defined the first film. Alongside Ranveer Singh, the cast includes **R. Madhavan, Sanjay Dutt, Arjun Rampal, Sara Arjun, Rakesh Bedi, and Danish Pandor**.
 
-The music comes from A.R. Rahman, reuniting with Imtiaz after the Rockstar and Highway soundtracks that defined a generation of Bollywood music. Songs from Main Vaapas Aaunga are already dominating streaming playlists weeks before release.
+## The Dual-Platform Strategy
 
-## Why It Matters for the Diaspora
+The staggered release — JioHotstar first, Netflix two weeks later — is a calculated business move. JioHotstar secured the primary Indian streaming rights in a premium deal, while Netflix retains global distribution and a delayed Indian window. This allows both platforms to maximise subscriber engagement without cannibalising each other's numbers.
 
-Every Indian family abroad carries a Partition story. Some know it in detail — the village they lost, the train they barely survived, the relatives who ended up on the other side. Others carry it as a vague inheritance, a heaviness their grandparents never fully explained.
+## The NRI Angle
 
-Imtiaz Ali has said this is a story of love and longing, not a political history lesson. That's exactly what makes it potentially powerful for NRI audiences. The diaspora doesn't need another documentary about Partition. It needs a film that makes the personal loss feel present — the kind of storytelling Imtiaz does better than almost anyone in Indian cinema.
+For diaspora audiences, the timing is strategic. The OTT premiere lands right after the **IPL 2026 final** — when cricket viewership traditionally transitions back to entertainment content. With cricket season wrapping up and summer blockbusters dominating streaming, *Dhurandhar 2* is positioned to capture undivided attention.
 
-Main Vaapas Aaunga opens June 12. It will face a crowded release window — Governor (with Manoj Bajpayee as the RBI chief who saved India from bankruptcy) and Bharat Bhhagya Vidhaata (Kangana Ranaut's 26/11 film) are also opening around the same date. But IMDb's ranking suggests it has the early audience advantage.
+For NRIs who missed the theatrical run, or who want to see the uncut version with the extended sequences that social media has been buzzing about, June 4 is the date to mark. The film is already streaming globally on Netflix in several international markets, but the Raw & Undekha version with the premiere event is exclusive to the JioHotstar launch.
 
-The title translates roughly to "I Will Come Back." For a Partition story, that's either a promise or a prayer.
+Whether you watched it in IMAX on opening weekend or have been waiting for the couch viewing, the extended cut of India's biggest action spectacle of 2026 is worth the wait.
 
-*Sources: IMDb, Bollywood Hungama, Zoom TV Entertainment, IWM Buzz*"""
-    },
-    {
-        "headline": "Harvard Just Named Mean Girls Star Avantika Vandanapu Its South Asian Person of the Year. She's 19.",
-        "subheadline": "The Telugu-origin actress who broke through in Hollywood's biggest teen franchise is now being recognized by America's oldest university for her impact on global representation.",
-        "slug": "avantika-vandanapu-harvard-south-asian-person-of-year-mean-girls-nri-20260531",
-        "category": "entertainment",
-        "sources": [{"name": "The Indian Eye"}, {"name": "Harvard University"}],
-        "person_for_image": "Avantika Vandanapu",
-        "body": """Avantika Vandanapu has been named the South Asian Person of the Year by Harvard University — and at 19, she might be the youngest person to receive the honor.
+*Dhurandhar 2: The Revenge (Raw & Undekha) premieres on JioHotstar on June 4 at 7 PM IST. Regular streaming begins June 5. Netflix India release: June 19.*
 
-The Indian-American actress, best known for playing Karen Shetty in the 2024 Mean Girls musical adaptation, was recognized for her impact on both international and Indian entertainment industries. "Being honored by such a prestigious institution as Harvard University is truly humbling and incredibly motivating," Vandanapu said in her acceptance remarks.
+**Sources:** Sacnilk, Livemint, JioHotstar, Bollywood Hungama""",
+    "sources": ["Sacnilk", "Livemint", "JioHotstar", "Bollywood Hungama"],
+    "person_for_image": "Ranveer Singh",
+    "pexels_query": None,
+    "pexels_fallback": None,
+    "image_attribution": "Wikimedia Commons"
+})
 
-## The Hyderabad-to-Hollywood Pipeline
+# --- ARTICLE 3: Welcome to the Jungle ---
+articles.append({
+    "headline": "Welcome to the Jungle Arrives June 26 With 30+ Stars and the Biggest Comedy Cast Bollywood Has Ever Assembled.",
+    "subheadline": "Akshay Kumar, Suniel Shetty, Paresh Rawal, Sanjay Dutt, Raveena Tandon, and a parade of Bollywood's finest reunite for the third chapter of the franchise that defined desi comedy.",
+    "slug": "welcome-to-the-jungle-june-26-akshay-kumar-massive-cast-comedy-franchise-nri-20260531",
+    "category": "entertainment",
+    "body": """If you grew up watching Nana Patekar bark "Aap ka Ghoda, Aap ka Gadha" or Anil Kapoor yell his way through *Welcome* (2007), this one's for you. The franchise is back — and it's brought everyone.
 
-Vandanapu was born into a Telugu family from Hyderabad. Her path to Hollywood started with a second-place finish on Dance India Dance L'il Masters, the children's dance reality competition that has launched dozens of Indian entertainment careers. She crossed over into Telugu cinema with Brahmotsavam before making the jump to American productions.
+**Welcome to the Jungle**, the third instalment of Bollywood's most chaotic comedy franchise, releases theatrically on **June 26, 2026**. Directed by Ahmed Khan and produced by Firoz Nadiadwala, the film features what might be the largest ensemble cast ever assembled for a Hindi comedy: **over 30 actors**, led by Akshay Kumar in his return to the franchise after nearly two decades.
 
-Disney took notice first. She starred in Spin alongside Meera Syal and Abhay Deol, playing an Indian-American teenager navigating her identity through DJ culture. Then came Big Girls Don't Cry, the Indian OTT series that established her as a cross-market talent. But it was Mean Girls — Paramount's musical reimagining of Tina Fey's 2004 classic — that made her a household name.
+## The Cast Is Absurd (In the Best Way)
 
-Karen Shetty, her character, was the first South Asian lead in the Mean Girls franchise. The character wasn't defined by her ethnicity; she was simply Karen, one of the Plastics, written into the story without the usual "immigration subplot" or "identity crisis" arc that Hollywood typically assigns to brown characters.
+The lineup reads like a Bollywood hall of fame reunion: **Akshay Kumar, Suniel Shetty, Paresh Rawal, Sanjay Dutt, Arshad Warsi, Raveena Tandon, Lara Dutta, Disha Patani, Jacqueline Fernandez, Urvashi Rautela, Rajpal Yadav, Johnny Lever, Tusshar Kapoor, Shreyas Talpade, Aftab Shivdasani, Krushna Abhishek, Kiku Sharda, Vindu Dara Singh, Mukesh Tiwari, Yashpal Sharma, Nawab Shah, Kiran Kumar, Puneet Issar, Sudesh Berry, Hemant Pandey, Zakir Hussain, and Sayaji Shinde**. Singer Daler Mehndi appears in a special role.
 
-## The Tangled Controversy
+The film also features the **late Pankaj Dheer** in his final on-screen appearance, making it a poignant watch alongside the comedy.
 
-The recognition comes at an interesting moment. Vandanapu has recently faced backlash over rumors that she was being considered for the role of Rapunzel in Disney's live-action adaptation of Tangled. Multiple Disney fan communities took to social media to express displeasure at a South Asian actress potentially portraying the blonde, European fairy-tale princess.
+## The Franchise's Diaspora DNA
 
-The casting was never confirmed, but the discourse was revealing. It exposed the limits of Hollywood's representation progress — audiences celebrate diversity in original roles but resist it when applied to established characters. For NRI parents watching their children navigate American pop culture, it was a familiar tension.
+The original *Welcome* wasn't just a hit — it became a cultural language for the Indian diaspora. Dialogues from the 2007 film are still quoted at gatherings, WhatsApp groups reference Majnu Bhai's art, and "Uday bhai" remains shorthand for a certain type of chaos. *Welcome Back* (2015) extended that vocabulary, and the franchise's recall value among NRIs is arguably unmatched in the comedy genre.
 
-## What Harvard's Honor Signals
+Ahmed Khan takes over directorial duties from Anees Bazmee, bringing a fresh creative direction while retaining the trademark slapstick chaos. The behind-the-scenes footage that dropped this week went viral across social media, showing the scale of the production — massive sets, high-energy sequences, and the sheer logistical challenge of coordinating 30+ actors in comedy scenes.
 
-Harvard's South Asian Person of the Year recognition isn't just about entertainment. It signals that institutions at the highest level of American society are beginning to acknowledge the cultural impact of South Asian creatives, not just South Asian technologists and business leaders.
+## The Business Side
 
-For decades, the diaspora's most celebrated figures in America were CEOs — Sundar Pichai, Satya Nadella, Indra Nooyi. The Spelling Bee champions. The doctors. Vandanapu represents a different kind of diaspora success: creative, visible, and unapologetically mainstream.
+JioStar has acquired the domestic theatrical rights along with satellite and OTT rights, giving the company complete control over the film's Indian lifecycle. The film will eventually stream on JioHotstar after its theatrical window. Pen Marudhar is reportedly finalising overseas rights, with strong interest from diaspora-heavy markets including the **UK, US, Middle East, and North America**.
 
-"My journey is just beginning," she said, "and this recognition ignites my determination to continue contributing positively through my work."
+Akshay Kumar, riding high on the success of *Bhooth Bangla* (which has earned over ₹260 crore domestically and counting), posted a jungle-themed image of himself in a dark suit on a red carpet laid through a forest — the kind of larger-than-life visual that signals the film's ambitions.
 
-She's 19. The journey is indeed just beginning. But for every Telugu kid in Hyderabad watching Dance India Dance and dreaming of Hollywood, and for every Indian-American teenager who saw Karen Shetty in Mean Girls and finally felt like the popular girl could look like them — the impact is already substantial.
+## The June Comedy War
 
-*Sources: The Indian Eye, Harvard University*"""
-    }
-]
+*Welcome to the Jungle* isn't arriving in a vacuum. **Dhamaal 4** (Ajay Devgn, Riteish Deshmukh, Arshad Warsi) releases just one week later on July 3, setting up a direct comedy clash at the box office. Before that, **Hai Jawani Toh Ishq Hona Hai** (Varun Dhawan, David Dhawan) and the Imtiaz Ali drama **Main Vaapas Aaunga** (Diljit Dosanjh, Naseeruddin Shah) hit theatres on June 12. It's the most competitive Hindi cinema summer in years.
 
-# ── Main loop ────────────────────────────────────────────────────────
-now = datetime.now(timezone.utc).isoformat()
+For NRI audiences, the real question is whether *Welcome to the Jungle* will get a wide international release on opening weekend. Given the franchise's track record and Pen Marudhar's involvement, multiplex screenings in major diaspora cities are likely. But the film's true test will be whether Ahmed Khan can capture the anarchic magic that made the original a classic — not just assemble the cast, but give them something genuinely funny to do.
 
-# First, check if article 1 was already inserted from previous run
-check = subprocess.run(
-    ['curl', '-sS',
-     f'{SB_URL}/rest/v1/p2_articles?select=id&slug=eq.ranveer-singh-fwice-ban-don-3-controversy-industry-crisis-nri-20260531',
-     '-H', f'apikey: {SB_KEY}',
-     '-H', f'Authorization: Bearer {SB_KEY}'],
-    capture_output=True, text=True, timeout=15
-)
-existing = json.loads(check.stdout) if check.stdout.strip() else []
-skip_first = len(existing) > 0
-if skip_first:
-    print(f"⚠ Article 1 already exists (id={existing[0]['id']}), skipping insert")
-    articles[0]['_existing_id'] = existing[0]['id']
+June 26. Mark it. The jungle is calling.
 
-for i, art in enumerate(articles, 1):
+**Sources:** Sacnilk, Filmibeat, Zoom TV, Bollywood Hungama""",
+    "sources": ["Sacnilk", "Filmibeat", "Zoom TV", "Bollywood Hungama"],
+    "person_for_image": "Akshay Kumar",
+    "pexels_query": None,
+    "pexels_fallback": None,
+    "image_attribution": "Wikimedia Commons"
+})
+
+# --- ARTICLE 4: Spider-Noir hits #1 ---
+articles.append({
+    "headline": "Nicolas Cage's Spider-Noir Is the Most Popular Show on Prime Video. It's Also the Best Superhero TV in Years.",
+    "subheadline": "Set in a noir-styled 1930s New York with a 92% Rotten Tomatoes score and an authentic black-and-white viewing option, the show has dethroned every other Prime original in its first week.",
+    "slug": "spider-noir-nicolas-cage-prime-video-number-one-streaming-superhero-best-nri-20260531",
+    "category": "entertainment",
+    "body": """If you've been burned by too many mediocre superhero shows, *Spider-Noir* is the palate cleanser you didn't know you needed.
+
+Nicolas Cage's new **Prime Video** series launched on **May 27, 2026** and has already become the platform's most popular show, dethroning every other original series in its first week. With a **92% critics score and 93% audience score on Rotten Tomatoes** and an IMDb rating of 8.3, it's not just a hit — it's a genuine phenomenon.
+
+## What Makes It Different
+
+*Spider-Noir* isn't your standard Marvel fare. The eight-episode series is set in a stylized **1930s New York City**, where Cage plays Ben Reilly — a veteran superhero who has hung up his suit to work as a private investigator. The tone is pure pulp detective fiction: shadowy alleyways, moral ambiguity, crackling dialogue, and a mystery that deepens with every episode.
+
+The show offers two viewing modes: **Authentic Black & White** and **True-Hue Full Color**. In black and white, the immersion is remarkable — it feels like a genuine noir film from the era, not a modern show with a filter. The production team, led by showrunners Oren Uziel and Steve Lightfoot with producers Phil Lord, Christopher Miller, and Amy Pascal, clearly understands that atmosphere matters more than spectacle.
+
+## Cage at His Most Restrained (and Most Unhinged)
+
+Critics have praised Cage's performance as one of his best in years. Ruben Peralta Rigaud noted that Cage "delivers a surprisingly restrained and human performance in a series that understands that shadows can be just as interesting as superpowers." The show lets him channel Humphrey Bogart — Cage has said his Ben Reilly is "70 percent Bogart" — while still leaving room for his signature unpredictability.
+
+The supporting cast is equally strong: **Lamorne Morris** as Joe "Robbie" Robertson, **Li Jun Li** as Felicia "Cat" Hardy, **Brendan Gleeson** as Silvermane, **Jack Huston** as Sandman, and **Abraham Popoola** as Tombstone.
+
+## Why It Matters for Streaming Audiences Everywhere
+
+For Indian diaspora audiences who subscribe to Prime Video — and there are millions, given the platform's strong Indian content library — *Spider-Noir* represents exactly the kind of premium English-language content that justifies a subscription. It's binge-worthy (all eight episodes dropped at once), visually distinctive, and doesn't require any prior Spider-Man knowledge.
+
+The show has ranked **#1 on Prime Video's overall chart** according to FlixPatrol data, pushing aside heavyweights like *The Boys*, *Citadel*, *Invincible*, and *Fallout*. Empire Magazine's Alex Godfrey called it a series that "just gets better and better, with a rug-pulling season finale that delivers on every level."
+
+A second season hasn't been confirmed yet, but showrunner Uziel has teased that a potential continuation would go in a more "chaotic" direction. With numbers like these and a Tom Holland *Spider-Man: Brand New Day* theatrical release coming July 31, the Spider-Man universe is having a very good 2026.
+
+*Spider-Noir Season 1 is streaming now on Prime Video worldwide.*
+
+**Sources:** ComicBook.com, ScreenRant, FandomWire, SuperHeroHype, FlixPatrol""",
+    "sources": ["ComicBook.com", "ScreenRant", "FandomWire", "SuperHeroHype"],
+    "person_for_image": "Nicolas Cage",
+    "pexels_query": "noir detective dark city",
+    "pexels_fallback": "film noir 1930s",
+    "image_attribution": "Wikimedia Commons"
+})
+
+
+# ============================================================================
+# PUBLISH
+# ============================================================================
+
+published = 0
+for i, article in enumerate(articles):
     print(f"\n{'='*60}")
-    print(f"Article {i}/{len(articles)}: {art['headline'][:70]}...")
-    print('='*60)
-
-    # ── Image sourcing ───────────────────────────────────────────
+    print(f"Article {i+1}/{len(articles)}: {article['headline'][:70]}...")
+    
+    # Validate article quality
+    body_words = len(article['body'].split())
+    if body_words < 400:
+        print(f"  ✗ REJECTED: body too short ({body_words} words)")
+        continue
+    if len(article['headline']) > 200:
+        print(f"  ✗ REJECTED: headline too long ({len(article['headline'])} chars)")
+        continue
+    if len(article['subheadline']) < 15:
+        print(f"  ✗ REJECTED: subheadline too short")
+        continue
+    
+    # Image sourcing - Wikipedia first for person articles
     img_url = None
-    img_attribution = None
-
-    if art.get('person_for_image'):
-        img_url = fetch_wikipedia_person_image(art['person_for_image'])
+    if article.get('person_for_image'):
+        img_url = fetch_wikipedia_person_image(article['person_for_image'])
+        if img_url and not validate_image_url(img_url):
+            print(f"  ⚠ Wikipedia image failed validation, trying without originalimage...")
+            # Try just the thumbnail
+            encoded = urllib.parse.quote(article['person_for_image'].replace(' ', '_'))
+            try:
+                r = requests.get(
+                    f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+                    headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+                    timeout=10
+                )
+                if r.status_code == 200:
+                    data = r.json()
+                    thumb = data.get("thumbnail", {}).get("source")
+                    if thumb and validate_image_url(thumb):
+                        img_url = thumb
+                        print(f"  ✓ Using thumbnail instead: {thumb[:80]}...")
+                    else:
+                        img_url = None
+            except:
+                img_url = None
+    
+    if not img_url and article.get('pexels_query'):
+        img_url = fetch_pexels_image(article['pexels_query'], article.get('pexels_fallback'))
         if img_url:
-            img_attribution = "Wikimedia Commons"
-
-    # ── Insert article ───────────────────────────────────────────
-    if art.get('_existing_id'):
-        art_id = art['_existing_id']
-        print(f"  → Using existing article: {art_id}")
+            article['image_attribution'] = "The Videshi"
+            if not validate_image_url(img_url):
+                img_url = None
+    
+    if img_url:
+        print(f"  ✓ Final image: {img_url[:80]}...")
     else:
-        row = {
-            "headline": art["headline"],
-            "subheadline": art["subheadline"],
-            "slug": art["slug"],
-            "category": art["category"],
-            "vertical": art["category"],
-            "body": art["body"].strip(),
-            "sources": json.dumps(art["sources"]),
-            "status": "published",
-            "published_at": now,
-            "image_attribution": img_attribution,
-        }
-
-        result = sb_insert("p2_articles", row)
-        if isinstance(result, list) and result:
-            art_id = result[0].get('id')
-            print(f"  ✓ Inserted article: {art_id}")
-        else:
-            print(f"  ✗ Insert failed: {result}")
-            continue
-
-    # ── Upload image to Supabase storage ─────────────────────────
-    if img_url and art_id:
-        filename = f"{art_id}.jpg"
-        final_url = upload_to_supabase_storage(img_url, filename)
-        if final_url:
-            sb_patch("p2_articles", {"id": f"eq.{art_id}"}, {"image_url": final_url})
-            print(f"  ✓ Image set: {final_url[:70]}...")
-        else:
-            # Try Wikipedia URL directly (permanent)
-            if 'upload.wikimedia.org' in (img_url or ''):
-                sb_patch("p2_articles", {"id": f"eq.{art_id}"}, {"image_url": img_url})
-                print(f"  ✓ Using Wikipedia URL directly")
-            else:
-                print(f"  ⚠ No valid image for this article")
+        print(f"  ⚠ No valid image found - publishing without image")
+    
+    # Build article record
+    now_iso = datetime.now(timezone.utc).isoformat()
+    record = {
+        "headline": article['headline'],
+        "subheadline": article['subheadline'],
+        "slug": article['slug'],
+        "category": article['category'],
+        "vertical": article['category'],
+        "body": article['body'],
+        "status": "published",
+        "published_at": now_iso,
+        "sources": article['sources'],
+        "image_url": img_url,
+        "image_attribution": article.get('image_attribution', 'Wikimedia Commons') if img_url else None
+    }
+    
+    result = sb_insert("p2_articles", record)
+    if result:
+        art_id = result.get('id', 'unknown')
+        print(f"  ✓ Published: {article['slug']} (id: {art_id})")
+        published += 1
     else:
-        print(f"  ⚠ No image sourced for this article")
+        print(f"  ✗ Failed to publish: {article['slug']}")
+    
+    time.sleep(1)  # Rate limit
 
-    time.sleep(1)
-
-print(f"\n✅ Done! Published {len(articles)} entertainment articles.")
+print(f"\n{'='*60}")
+print(f"Done. Published {published}/{len(articles)} articles.")
