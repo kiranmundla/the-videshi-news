@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Article } from "@/lib/articles";
 import { isValidImage } from "@/components/HeroImage";
+import { optimizeImageUrl, IMAGE_SIZES } from "@/lib/imageUrl";
 
 function getImageOrientation(url: string | null | undefined): 'landscape' | 'portrait' | null {
   if (!url) return null;
@@ -48,7 +49,7 @@ export default function EventCluster({
           {leadHasImg && (
             <div className={`w-full overflow-hidden mb-3 bg-muted ${getImageOrientation(lead.hero_image_url) === 'portrait' ? 'max-w-[200px]' : 'aspect-[16/9]'}`}>
               <img
-                src={lead.hero_image_url}
+                src={optimizeImageUrl(lead.hero_image_url, IMAGE_SIZES.card)}
                 alt={lead.title}
                 loading="lazy"
                 referrerPolicy="no-referrer"

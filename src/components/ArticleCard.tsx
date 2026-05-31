@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Article, formatShortDate, readingTime } from "@/lib/articles";
 import HeroImage, { isValidImage } from "@/components/HeroImage";
+import { optimizeImageUrl, IMAGE_SIZES } from "@/lib/imageUrl";
 
 type Variant = "hero" | "featured" | "card" | "long" | "compact";
 
@@ -45,7 +46,7 @@ function ArticleGallery({ images, title }: { images: { url: string; caption?: st
             style={{ scrollSnapAlign: "start" }}
           >
             <img
-              src={img.url}
+              src={optimizeImageUrl(img.url, IMAGE_SIZES.card)}
               alt={img.caption || title}
               loading={i === 0 ? "eager" : "lazy"}
               decoding={i === 0 ? undefined : "async"}
@@ -93,7 +94,7 @@ function MiniGallery({ images }: { images: { url: string; caption: string }[] })
           className="flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded overflow-hidden bg-stone-100"
         >
           <img
-            src={img.url}
+            src={optimizeImageUrl(img.url, IMAGE_SIZES.thumbnail)}
             alt={img.caption || ""}
             loading="lazy"
             decoding="async"

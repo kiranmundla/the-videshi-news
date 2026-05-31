@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Article } from "@/lib/articles";
 import { isValidImage } from "@/components/HeroImage";
+import { optimizeImageUrl, IMAGE_SIZES } from "@/lib/imageUrl";
 
 function parseImageDimensions(url: string | null | undefined): { w: number; h: number } | null {
   if (!url) return null;
@@ -34,7 +35,7 @@ export default function FeaturedHero({ article }: { article: Article }) {
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = 'image';
-      link.href = article.hero_image_url;
+      link.href = optimizeImageUrl(article.hero_image_url, IMAGE_SIZES.hero);
       document.head.appendChild(link);
       return () => { document.head.removeChild(link); };
     }
@@ -71,7 +72,7 @@ export default function FeaturedHero({ article }: { article: Article }) {
             </div>
             <div className="hidden md:block w-[180px] lg:w-[220px] flex-shrink-0">
               <img
-                src={article.hero_image_url}
+                src={optimizeImageUrl(article.hero_image_url, IMAGE_SIZES.card)}
                 alt={article.title}
                 loading="eager"
                 fetchPriority="high"
@@ -90,7 +91,7 @@ export default function FeaturedHero({ article }: { article: Article }) {
     return (
       <section className="relative w-full overflow-hidden rounded-lg">
         <img
-          src={article.hero_image_url}
+          src={optimizeImageUrl(article.hero_image_url, IMAGE_SIZES.hero)}
           alt={article.title}
           loading="eager"
           fetchPriority="high"
@@ -98,6 +99,8 @@ export default function FeaturedHero({ article }: { article: Article }) {
           className="w-full h-auto block"
           width="800"
           height="450"
+          srcSet={`${optimizeImageUrl(article.hero_image_url, 400)} 400w, ${optimizeImageUrl(article.hero_image_url, 800)} 800w, ${optimizeImageUrl(article.hero_image_url, 1200)} 1200w`}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 800px, 1200px"
           style={{ minHeight: "200px", maxHeight: "500px", objectFit: "cover", objectPosition: "center 20%" }}
         />
         <div

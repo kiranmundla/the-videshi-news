@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import { optimizeImageUrl, IMAGE_SIZES } from "@/lib/imageUrl";
 
 type Photo = { src: string; label: string; source?: string; added_date?: string };
 
@@ -340,7 +341,7 @@ export default function DiasporaPhotoStrip() {
                 }}
               >
                 <img
-                  src={photo.src}
+                  src={optimizeImageUrl(photo.src, IMAGE_SIZES.gallery)}
                   alt={photo.label}
                   loading={i < 4 ? "eager" : "lazy"}
                   draggable={false}
