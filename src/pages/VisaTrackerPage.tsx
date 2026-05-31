@@ -702,12 +702,19 @@ function buildTimeBlocks(userOffset: number, useIST: boolean) {
     }));
   }
 
-  // Convert to user's local TZ
+  // Convert to user's local TZ — relabel based on local time-of-day
+  const localLabel = (h: number): string => {
+    if (h >= 22 || h < 2) return "Late Night";
+    if (h >= 2 && h < 6) return "Early Morning";
+    if (h >= 6 && h < 12) return "Morning";
+    if (h >= 12 && h < 18) return "Afternoon";
+    return "Evening";
+  };
   return istBlocks.map((b, i) => {
     const localStart = istToLocal(b.istStart, offset);
     const localEnd = istToLocal(b.istEnd, offset);
     return {
-      label: `${labels[i]} IST`,
+      label: localLabel(localStart),
       sublabel: `${fmtHour(localStart)} – ${fmtHour(localEnd)}`,
       start: b.istStart, // keep IST for data matching
       end: b.istEnd,
