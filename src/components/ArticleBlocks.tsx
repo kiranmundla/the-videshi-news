@@ -1,4 +1,6 @@
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import SocialEmbed from "./SocialEmbed";
 
 type Block =
@@ -100,7 +102,7 @@ export default function ArticleBlocks({ blocks }: { blocks: Block[] }) {
                   {b.title ?? "The NRI Angle"}
                 </p>
                 <div className="nri-prose text-foreground/90 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-3 [&_li]:leading-relaxed [&_p]:m-0 [&_p+ul]:mt-3">
-                  <ReactMarkdown>{md}</ReactMarkdown>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{md}</ReactMarkdown>
                 </div>
               </aside>
             );

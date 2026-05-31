@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import SocialEmbed, { detectSocialUrl } from "@/components/SocialEmbed";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
@@ -290,7 +292,7 @@ function MarkdownWithEmbeds({
         ) : chunk.kind === "champions-timeline" ? (
           <ChampionsTimeline key={i} />
         ) : (
-          <ReactMarkdown key={i} components={mdComponents}>
+          <ReactMarkdown key={i} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={mdComponents}>
             {chunk.text}
           </ReactMarkdown>
         )
