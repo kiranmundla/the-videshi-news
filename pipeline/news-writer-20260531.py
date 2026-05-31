@@ -1,40 +1,35 @@
 #!/usr/bin/env python3
-"""News writer for The Videshi — 2026-05-31 batch"""
+"""
+The Videshi — News Writer (2026-05-31 batch)
+Writes 3 articles: dabbawalas, Myanmar visit, RBI MPC
+"""
 
-import os, json, re, time, uuid, requests, urllib.parse
+import os, sys, json, uuid, requests, urllib.parse, re
 from datetime import datetime, timezone
 
-# Load env
-def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                if line.startswith('export '):
-                    line = line[7:]
-                key, _, val = line.partition('=')
-                val = val.strip().strip('"').strip("'")
-                os.environ[key.strip()] = val
-
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
-
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
+# ── Supabase config ──────────────────────────────────────────────────────────
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
 }
+
+# ── Pexels config ─────────────────────────────────────────────────────────────
+PEXELS_KEY = None
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+if os.path.exists(pexels_env):
+    for line in open(pexels_env):
+        if line.startswith("PEXELS_API_KEY="):
+            PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
+
+# ── Image helpers ─────────────────────────────────────────────────────────────
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import time
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -44,281 +39,337 @@ def fetch_wikipedia_person_image(person_name):
         )
         if r.status_code == 200:
             data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            # Prefer thumbnail (330px, always works) over originalimage (may get 429 on large files)
+            img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                time.sleep(1)  # rate limit courtesy
                 return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
-    import subprocess
+    """Fetch a relevant image from Pexels API using requests."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key available")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            result = subprocess.run(
-                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'],
-                capture_output=True, text=True, timeout=15
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                params={"query": q, "per_page": 5, "orientation": "landscape"},
+                headers={"Authorization": PEXELS_KEY},
+                timeout=10
             )
-            data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for photo in photos:
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
-                if url:
-                    # Validate
-                    check = requests.head(url, timeout=10)
-                    if check.status_code == 200:
-                        cl = int(check.headers.get('Content-Length', 0))
-                        ct = check.headers.get('Content-Type', '')
-                        if cl > 5000 and 'image' in ct:
-                            print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                            return url
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                for p in photos:
+                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+                    if url:
+                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                        return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+
+def upload_image_to_supabase(image_url, filename):
+    """Download image and upload to Supabase storage bucket 'article-images'."""
+    try:
+        r = requests.get(image_url, timeout=15, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code != 200:
+            print(f"  ⚠ Image download failed ({r.status_code}): {image_url[:80]}")
+            return image_url  # fall back to direct URL if it's a permanent source
+        content_type = r.headers.get("Content-Type", "image/jpeg")
+        if not content_type.startswith("image/"):
+            print(f"  ⚠ Not an image: {content_type}")
+            return image_url
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small ({len(r.content)} bytes), skipping upload")
+            return image_url
+
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        up = requests.post(
+            upload_url,
+            headers={
+                "apikey": SUPABASE_KEY,
+                "Authorization": f"Bearer {SUPABASE_KEY}",
+                "Content-Type": content_type,
+                "x-upsert": "true",
+            },
+            data=r.content,
+            timeout=20
+        )
+        if up.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Supabase upload failed ({up.status_code}): {up.text[:200]}")
+            return image_url
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
+        return image_url
+
+
 def validate_image_url(url):
-    """Validate image URL returns HTTP 200 with image content > 5KB."""
+    """Validate that an image URL returns 200, is an image, and > 5KB."""
     if not url:
         return False
-    # Block banned sources
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
-    for b in banned:
-        if b in url:
-            print(f"  ✗ Banned source detected: {b}")
-            return False
-    # Trust Wikipedia/Wikimedia URLs
-    if 'upload.wikimedia.org' in url:
-        print(f"  ✓ Trusted Wikimedia URL")
-        return True
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True, headers={"User-Agent": "TheVideshi/1.0"})
-        if r.status_code == 200:
-            cl = int(r.headers.get('Content-Length', 0))
-            ct = r.headers.get('Content-Type', '')
-            if cl > 5000 and 'image' in ct:
+        r = requests.head(url, timeout=10, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, allow_redirects=True)
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
+            return True
+        # HEAD sometimes doesn't return Content-Length; try GET
+        if r.status_code == 200 and "image" in ct:
+            r2 = requests.get(url, timeout=10, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, stream=True)
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
                 return True
-            if cl == 0 and 'image' in ct:
-                return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, CL={r.headers.get('Content-Length')}, CT={r.headers.get('Content-Type')}")
-    except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
+    except:
+        pass
     return False
 
-def publish_article(article):
-    """Publish an article to Supabase."""
-    # Validate required fields
-    assert len(article['headline']) >= 20, f"Headline too short: {article['headline']}"
-    assert len(article['headline']) <= 200, f"Headline too long: {article['headline']}"
-    assert len(article.get('subheadline', '')) >= 15, f"Subheadline too short or missing"
-    assert len(article['body']) >= 400, f"Body too short: {len(article['body'])} chars"
-    assert article['category'] == 'news', f"Wrong category: {article['category']}"
-    assert not re.match(r'^[0-9a-f]{8}-', article['slug']), f"Slug looks like UUID: {article['slug']}"
-    assert len(article.get('sources', [])) >= 2, f"Not enough sources: {len(article.get('sources', []))}"
 
-    payload = {
-        'id': str(uuid.uuid4()),
-        'headline': article['headline'],
-        'subheadline': article['subheadline'],
-        'body': article['body'],
-        'slug': article['slug'],
-        'category': article['category'],
-        'vertical': article.get('vertical', 'news'),
-        'image_url': article.get('image_url'),
-        'image_attribution': article.get('image_attribution'),
-        'sources': json.dumps(article.get('sources', [])),
-        'status': 'published',
-        'published_at': datetime.now(timezone.utc).isoformat(),
-        'created_at': datetime.now(timezone.utc).isoformat()
-    }
+# ── Supabase helpers ──────────────────────────────────────────────────────────
 
+def sb_insert(table, data):
     r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        f"{SUPABASE_URL}/rest/v1/{table}",
         headers=HEADERS,
-        json=payload
+        json=data,
+        timeout=15,
     )
     if r.status_code in (200, 201):
-        print(f"  ✓ Published: {article['headline']}")
+        rows = r.json()
+        if rows and isinstance(rows, list):
+            return rows[0]
+    print(f"  ⚠ Insert to {table} failed ({r.status_code}): {r.text[:300]}")
+    return None
+
+
+def sb_patch(table, match, data):
+    params = "&".join(f"{k}={v}" for k, v in match.items())
+    r = requests.patch(
+        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
+        headers=HEADERS,
+        json=data,
+        timeout=15,
+    )
+    if r.status_code in (200, 204):
         return True
-    else:
-        print(f"  ✗ Failed to publish: {r.status_code} - {r.text[:200]}")
-        return False
+    print(f"  ⚠ Patch {table} failed ({r.status_code}): {r.text[:300]}")
+    return False
 
-# ============================================================
-# ARTICLE 1: Delhi Saket Building Collapse
-# ============================================================
-print("\n📰 Article 1: Delhi Saket Building Collapse")
 
-img1 = fetch_pexels_image("building collapse rescue India rubble", "rescue operation building debris")
+# ── Articles ──────────────────────────────────────────────────────────────────
 
-article1 = {
-    'headline': "A Building Collapsed Near Delhi's Saket Metro Station. At Least Four People Are Dead.",
-    'subheadline': "A four-storey structure housing a coaching centre, cafes and offices came down without warning on Saturday evening. Rescue teams worked through the night.",
-    'category': 'news',
-    'vertical': 'news',
-    'slug': 'delhi-saket-building-collapse-four-dead-coaching-centre-rescue-ndrf-20260531',
-    'image_url': img1 if validate_image_url(img1) else None,
-    'image_attribution': 'Pexels' if img1 else None,
-    'sources': [
-        {"name": "PTI via Swadesi News", "url": "https://swadesi.com"},
-        {"name": "The Bharat Affairs", "url": "https://bharataffairs.com"},
-        {"name": "India Today", "url": "https://www.indiatoday.in"},
-        {"name": "hi INDiA (IANS)", "url": "https://hiindia.com"}
-    ],
-    'body': """The Delhi Fire Services received the call at 7.44 pm on Saturday. A four-storey building on Western Marg in Saidulajab — a congested neighbourhood barely a few hundred metres from the Saket Metro station — had collapsed without warning. The structure came down onto an adjacent tin-shed canteen where young students preparing for medical entrance exams were having dinner. Their evening ended under tonnes of concrete and twisted steel.
+ARTICLES = [
+    {
+        "headline": "Mumbai's Dabbawalas Fed the City for 130 Years. Now Only 1,500 Are Left.",
+        "subheadline": "Remote work, app-based delivery, and rising costs are dismantling a logistics system that Harvard studied and Prince Charles admired.",
+        "slug": "mumbai-dabbawalas-disappearing-1500-left-remote-work-app-delivery-bbc-20260531",
+        "category": "news",
+        "tags": ["mumbai", "dabbawalas", "culture", "remote-work", "food-delivery"],
+        "sources_list": ["BBC Marathi", "Mumbai Tiffin Box Suppliers Association", "New York Post"],
+        "person_image": None,  # no single person
+        "pexels_query": "Mumbai train station commuters",
+        "pexels_fallback": "Indian lunchbox tiffin",
+        "image_attribution": "Pexels",
+        "body": """Every morning before Mumbai wakes up, men in white caps arrive at suburban railway stations on bicycles stacked with lunchboxes. They load the boxes onto trains, cross the city, and deliver hot, home-cooked meals to office workers. After lunch, they collect the empty boxes and return them by mid-afternoon.
 
-By Sunday morning, at least four people were confirmed dead and eight others had been pulled from the rubble, all of them admitted to the AIIMS Trauma Centre with injuries that officials described as serious. One of the dead, a 26-year-old man identified only as Ravi, was declared brought dead by the medical officer on duty. The names of the other deceased had not been released as rescue teams continued combing through debris.
+These men are called dabbawalas, and for more than 130 years, they have kept Mumbai fed through a delivery system so precise it became world famous. Harvard Business School studied it as a masterclass in low-cost logistics. In 2003, the future King Charles spent time with dabbawalas during a visit to Mumbai. At its peak, roughly 4,500 registered dabbawalas moved 50,000 lunchboxes a day across India's financial capital — with no apps, no GPS, and an error rate of one in six million deliveries.
 
-The building housed a coaching institute on the ground floor along with cafes and offices. Construction work was reportedly underway on the upper floors at the time of the collapse — a detail that investigators are expected to examine closely. Preliminary assessments suggest the structure gave way suddenly, leaving its occupants almost no time to escape.
+Now, according to the Mumbai Tiffin Box Suppliers Association, that number has fallen to about 1,500. The decline started during the pandemic, when offices closed and the daily lunch run simply stopped making sense. Even after offices reopened, hybrid schedules meant many workers go in only two or three days a week — not enough to justify a daily subscription. App-based food delivery services like Swiggy and Zomato, along with cloud kitchens offering cheap meals near office buildings, have given workers alternatives that require no advance planning.
 
-## The Rescue Operation
+**A system built for a city that no longer exists**
 
-A multi-agency rescue operation began within minutes of the collapse. Delhi Fire Services dispatched three water tenders and an incident response team. The National Disaster Response Force deployed a specialised team with heavy cutting equipment and search dogs. The Delhi Disaster Management Authority, Delhi Police, civil defence units and local volunteers joined the operation, which continued through the night under floodlights.
+The dabbawala system was designed for a specific version of Mumbai: one where workers commuted to the same office every day, where home-cooked food was both a cultural expectation and an economic necessity, and where the suburban railway network was the circulatory system of the city's working life. Each lunchbox carries an alphanumeric code that tells a dabbawala where it came from, where it is going, which floor of which building it belongs to, and how to get it back. No technology — just a system passed down through generations of workers who know Mumbai's trains and streets instinctively.
 
-Seven of the survivors were pulled out by NDRF and DDMA personnel. Two were rescued by local residents who reached the site before official teams. Eyewitnesses described screams rising from beneath the rubble as rescuers worked to clear concrete slabs and steel reinforcement bars. The narrow lanes of Saidulajab — barely wide enough for a single vehicle — complicated the effort, with ambulances struggling to reach the site.
+That Mumbai still exists, but it is shrinking. The workers who remain are older, and younger men from the community are choosing other jobs. Rising transportation costs and stagnant subscription fees have made the economics increasingly difficult. A dabbawala delivering 35 boxes a day earns roughly $240 a month — below India's average monthly wage.
 
-Delhi Chief Minister Rekha Gupta visited the collapse site to oversee rescue operations and said the administration had deployed all available resources. An FIR has been registered against the building owner under provisions of culpable homicide, and police raids are underway to secure an arrest.
+**What NRIs are losing**
 
-## A Familiar Tragedy
+For Indians abroad, the dabbawala is more than a delivery service. It is a symbol of a particular kind of Indian ingenuity — the ability to build extraordinarily efficient systems from nothing but human coordination and local knowledge. Many NRIs grew up eating meals that arrived in a dabba, or heard stories from parents and grandparents who did. The system represents a version of Mumbai that many in the diaspora still carry in their heads: a city where home-cooked food arrived hot at your desk every day, where a network of men on bicycles solved a logistics problem that Silicon Valley would later spend billions trying to replicate with algorithms.
 
-Building collapses are disturbingly common in Indian cities. Unauthorised construction, the illegal addition of floors to existing structures, the use of substandard materials and the failure of municipal authorities to enforce building codes have created a crisis that claims hundreds of lives each year.
+Subhash Talekar, the spokesperson for the Mumbai Tiffin Box Suppliers Association, told the BBC that the dabbawalas have tried to adapt. Some have partnered with corporate canteens. Others offer meal plans that accommodate hybrid schedules. A few have experimented with WhatsApp-based ordering. But none of these adaptations have been enough to reverse the fundamental shift in how Mumbai works and eats.
 
-In Delhi specifically, where land prices make every square foot valuable, builders routinely flout height restrictions and safety regulations. The Saidulajab building reportedly had construction underway on its upper floors — raising immediate questions about whether it had the necessary permits and whether structural assessments were conducted before additional loads were placed on the foundation.
+**The bigger picture**
 
-The presence of a coaching centre and student cafes in the building adds another dimension to the tragedy. India's coaching industry — particularly for medical and engineering entrance examinations — operates in a vast grey zone of regulation, with institutes frequently occupying buildings that were never designed for the foot traffic and density they generate.
+The story of the dabbawalas is ultimately about a city changing faster than the institutions built to serve it. Mumbai's office culture, food habits, and commuting patterns have all shifted, and a system engineered for the old rhythm is losing its place. The question is not whether the dabbawalas will survive — some will — but whether the system that made them extraordinary, the one that moved 50,000 boxes a day with near-perfect accuracy, will ever function at that scale again. The answer, increasingly, is no.""",
+    },
+    {
+        "headline": "Myanmar's Junta Chief Turned President Is in India. He Wants Rare Earths and Legitimacy. Modi Wants to Counter China.",
+        "subheadline": "Min Aung Hlaing's five-day trip is his first foreign visit as president. For India, it is a chance to dilute Beijing's outsized influence on its eastern neighbour.",
+        "slug": "myanmar-president-min-aung-hlaing-india-visit-modi-china-rare-earths-20260531",
+        "category": "news",
+        "tags": ["myanmar", "india", "modi", "china", "geopolitics", "rare-earths"],
+        "sources_list": ["Reuters", "India Ministry of External Affairs", "Crisis Group"],
+        "person_image": "Min Aung Hlaing",
+        "pexels_query": None,
+        "pexels_fallback": None,
+        "image_attribution": "Wikimedia Commons",
+        "body": """Myanmar President Min Aung Hlaing arrived in India on Saturday for a five-day official visit that underscores the gradual return of regional re-engagement for a country that has been largely shunned by its neighbours since a military coup in 2021. The former general, who was elected president through a parliamentary vote in April after formalising his grip on power, is scheduled to meet Prime Minister Narendra Modi in New Delhi on June 1.
 
-## What Comes Next
+The visit began in Bodh Gaya, the Buddhist pilgrimage site in Bihar, before moving to the capital for bilateral talks. Min Aung Hlaing will also travel to Mumbai on June 2 for business and industry interactions. He is accompanied by a high-level delegation of cabinet ministers, senior officials, and business leaders.
 
-The rescue operation continued on Sunday, with authorities warning that the death toll could rise as teams cleared more debris. Structural engineers have been called in to assess adjacent buildings that may have been weakened by the collapse.
+**What India wants**
 
-For the families of those trapped, the wait continues in the narrow lanes of Saidulajab. For the diaspora watching from abroad, the scene is grimly recognizable — another preventable tragedy in a city that builds faster than it can regulate. The question that follows every such collapse is whether this one will finally produce the enforcement reforms that decades of similar disasters have failed to deliver.
+For India, the visit is about three things: rare earths, border security, and counterbalancing China. Myanmar sits on significant deposits of critical rare earth minerals that are essential for electronics, defence systems, and clean energy technology. China currently dominates Myanmar's rare earth sector, and India has been looking for ways to secure access to these resources as part of its broader strategy to reduce dependence on Chinese supply chains.
 
-*The injured are identified as Tarun Kumar (26) of Gurugram, Saika Khan (27) from Bihar's Motihari, Neelam Yadav (25) of Saidulajab, Aditya Sharma (24) of Saket, Kshitij Pratap (25) of Noida, Anuj Dikshi (25) of Saket, Aastha (25) of Saidulajab and Vishal (24) of Saket.*"""
-}
+India and Myanmar share a 1,643-kilometre land border across four northeastern states — Arunachal Pradesh, Nagaland, Manipur, and Mizoram. Cross-border insurgent activity and the flow of refugees from Myanmar's civil conflict have been persistent security concerns. New Delhi wants to strengthen border management cooperation and ensure that instability in Myanmar does not spill over into India's northeast.
 
-publish_article(article1)
-time.sleep(1)
+The third objective is geopolitical. China's influence over Myanmar has grown substantially since the coup, and India's Act East Policy — which positions Myanmar as a key corridor to Southeast Asia — has been stalled. The India-Myanmar-Thailand Trilateral Highway and the Kaladan Multi-Modal Transit Transport Project, both designed to improve connectivity through Myanmar, have faced repeated delays. Reviving these projects is expected to be on the agenda.
 
-# ============================================================
-# ARTICLE 2: DK Shivakumar — India's Richest CM
-# ============================================================
-print("\n📰 Article 2: DK Shivakumar to become India's Richest CM")
+**What Myanmar wants**
 
-img2 = fetch_wikipedia_person_image("D. K. Shivakumar")
-if not img2 or not validate_image_url(img2):
-    img2 = fetch_wikipedia_person_image("D.K. Shivakumar")
-if not img2 or not validate_image_url(img2):
-    img2 = fetch_pexels_image("Karnataka state legislature Bengaluru Vidhana Soudha", "India politician government")
-    img2_attr = 'Pexels'
-else:
-    img2_attr = 'Wikimedia Commons'
+Min Aung Hlaing is looking for something simpler: legitimacy. Five years after ousting the elected government of Aung San Suu Kyi, he has changed into civilian clothes and is seeking to rebuild diplomatic relationships that collapsed after the coup. India, as a fellow democracy that has maintained cautious engagement with Myanmar throughout, offers a less confrontational re-entry point than Western capitals.
 
-article2 = {
-    'headline': "DK Shivakumar Will Be Sworn In as Karnataka CM on June 3. He Will Also Be India's Richest.",
-    'subheadline': "The Congress leader's declared assets of ₹1,413 crore place him ahead of Chandrababu Naidu and Thalapathy Vijay. All three of India's wealthiest chief ministers are now from the south.",
-    'category': 'news',
-    'vertical': 'politics',
-    'slug': 'dk-shivakumar-karnataka-cm-richest-1413-crore-assets-june-3-swearing-in-20260531',
-    'image_url': img2 if validate_image_url(img2) else None,
-    'image_attribution': img2_attr if img2 else None,
-    'sources': [
-        {"name": "The Bharat Affairs", "url": "https://bharataffairs.com"},
-        {"name": "Association for Democratic Reforms (ADR)", "url": "https://adrindia.org"},
-        {"name": "Dainik Bhaskar English", "url": "https://bhaskarenglish.in"},
-        {"name": "NewsPoint", "url": "https://newspointapp.com"}
-    ],
-    'body': """DK Shivakumar will take the oath of office as Karnataka's Chief Minister on June 3 at the Glass House in Lok Bhavan, Bengaluru. The 64-year-old Congress leader was formally elected as the leader of the Karnataka Congress Legislature Party on Saturday, following the resignation of Siddaramaiah after three years in office — the completion of a reported power-sharing arrangement within the party.
+"After changing into civilian clothes as president, Min Aung Hlaing is looking to boost diplomatic engagement across the region," Richard Horsey, senior Myanmar adviser at Crisis Group, told Reuters. "He expects more normal ties with ASEAN. He is also likely to visit Beijing soon to meet Xi Jinping. India is Myanmar's other key neighbour."
 
-When Shivakumar assumes office, he will carry a distinction beyond political rank. His declared family net worth of ₹1,413 crore will make him India's wealthiest sitting Chief Minister, surpassing Andhra Pradesh CM N Chandrababu Naidu (₹931 crore) and Tamil Nadu CM Thalapathy Vijay (₹648 crore). An analysis by the Association for Democratic Reforms based on election affidavits confirms the ranking. A striking detail: India's three richest chief ministers are now all from the south.
+The visit was originally planned around the International Big Cat Alliance Summit in India, but when that summit was postponed, it was converted into an official bilateral visit — a signal that both sides considered the trip important enough to proceed regardless.
 
-## The Fortune
+**The trade picture**
 
-Shivakumar's election affidavit presents a detailed picture of accumulated wealth. His personal assets are listed at ₹1,214.93 crore, comprising movable assets worth ₹251.69 crore and immovable properties valued at ₹972.65 crore. The family's combined declaration — including his wife's holdings — reaches the ₹1,413 crore headline figure, with total movable assets of ₹1,140 crore and immovable properties of ₹273 crore. Liabilities stand at approximately ₹265 crore.
+Bilateral trade between India and Myanmar stood at $1.95 billion in 2025-26, covering petroleum products, pharmaceuticals, machinery, and agricultural goods. Both sides are expected to discuss ways to increase this figure, particularly in energy, infrastructure, and manufacturing.
 
-The bulk of the wealth sits in real estate. He owns commercial buildings and office spaces worth ₹852 crore, including a major property at Pantharapalya in Bengaluru and the Vinayaka Touring Talkies in Kodihalli. Agricultural land across Kodihalli and Kanakapura Taluk is valued at ₹28.60 crore. Non-agricultural land in Bengaluru South, Mysore and Bhoopasandra is worth ₹60.53 crore. Residential holdings include a house in Krishna Nagar in Delhi and apartments on Palace Road in Bengaluru, together worth ₹18.51 crore.
+**The diaspora angle**
 
-The affidavit also records gold and silver holdings, luxury watches from Rolex and Hublot, and a single registered vehicle — a Toyota Qualis.
+India is home to a small but significant Myanmar diaspora, concentrated in the northeastern states and in cities like Delhi and Kolkata. Many are refugees from the post-coup conflict, and their status — some documented, many not — is expected to be discussed at least informally during the visit. For the broader Indian diaspora, the visit matters because it shapes the security environment in India's northeast, a region that many NRIs trace their roots to.
 
-His business interests are centered on land development, real estate and construction enterprises, a portfolio that has grown substantially over his decades in Karnataka politics.
+Indian foreign ministry spokesman Randhir Jaiswal said on Friday that "all issues that form part of the gamut of relations between Myanmar and India will come up for discussion." The deliberate breadth of that statement suggests both sides want to use this visit to reset the relationship, not just manage it.""",
+    },
+    {
+        "headline": "The RBI Will Decide on Interest Rates This Week. The Rupee, Oil, and a Weak Monsoon Are All Working Against It.",
+        "subheadline": "Most economists expect the central bank to hold at 5.25 percent on June 5. But a growing minority thinks it should hike now before the situation gets worse.",
+        "slug": "rbi-mpc-june-5-rate-decision-rupee-oil-monsoon-inflation-hold-hike-2026",
+        "category": "news",
+        "tags": ["rbi", "interest-rates", "rupee", "inflation", "monsoon", "oil", "economy"],
+        "sources_list": ["Reuters", "Outlook Money", "Livemint", "Capital Economics"],
+        "person_image": "Sanjay Malhotra (banker)",
+        "pexels_query": "Reserve Bank of India Mumbai",
+        "pexels_fallback": "Indian rupee currency notes",
+        "image_attribution": "Wikimedia Commons",
+        "body": """The Reserve Bank of India's Monetary Policy Committee will begin a three-day meeting on Tuesday, June 3, with Governor Sanjay Malhotra scheduled to announce the rate decision on Thursday, June 5. The meeting comes at one of the most complicated moments for Indian monetary policy in years, with the central bank caught between still-benign inflation and a constellation of risks that are all pointing in the wrong direction.
 
-## The Political Journey
+According to a Reuters poll of 56 economists conducted between May 22 and 29, nearly 80 percent — 44 of 56 — expect the MPC to keep the repo rate unchanged at 5.25 percent. But the minority calling for a hike has grown sharply: 11 economists now forecast a 25-basis-point increase, and one expects a larger 50-basis-point move. In an April poll, only one respondent had predicted a June rate lift.
 
-Shivakumar's ascent to the chief ministership is the culmination of a 37-year political career. He entered electoral politics in 1989 and has won multiple consecutive Assembly elections from the Kanakapura constituency. He served as Deputy Chief Minister in the Siddaramaiah government and simultaneously held the position of Karnataka Congress president — a dual role that gave him control over both governance and party machinery.
+**The case for holding**
 
-Within Congress, Shivakumar is regarded as the party's foremost Vokkaliga face in Karnataka. The Vokkaliga community — one of the state's most influential agrarian groupings — forms a critical pillar of the party's caste arithmetic in the state. His elevation is widely read as Congress balancing community representation by handing the top job to a leader rooted in the Vokkaliga base, after Siddaramaiah, a Kuruba, held office for three years.
+India's retail inflation stood at 3.48 percent in April, comfortably below the RBI's 4 percent medium-term target and well within its 2-6 percent tolerance band. Headline inflation has been below target for over a year. With the economy facing downside growth risks from the Iran war's impact on trade and energy costs, hiking rates could slow growth without meaningfully addressing supply-side price pressures.
 
-Shivakumar is also known within the party as a crisis manager and "troubleshooter," a reputation built through years of managing defections, floor management and backroom negotiations. His role in the Congress party's return to power in Karnataka was widely acknowledged as central.
+"Interest rates are not a good tool to counter large supply shocks," said Aditya Vyas, chief economist at STCI Primary Dealer. "Also, I do not think the RBI MPC will increase rates to defend the rupee since it is beyond the remit of the MPC."
 
-## Wealth and Power in Indian Politics
+**The case for hiking**
 
-The ADR rankings present an uncomfortable but unavoidable portrait of Indian democracy. When Shivakumar takes office, the top tier of chief ministers by wealth will include three leaders whose combined declared assets exceed ₹2,990 crore. In the 2025 ADR list, after Naidu, Arunachal Pradesh CM Pema Khandu ranked third with ₹332 crore — a fraction of the wealth now concentrated in the south.
+The problem is that every inflation risk indicator is flashing amber. Crude oil prices remain roughly 30 percent above pre-Iran-war levels. India is the world's third-largest crude oil importer, and elevated energy costs have a direct and rapid transmission mechanism into transport, food, and manufacturing costs. The finance ministry's own monthly report, released Saturday, warned that fuel price hikes and a weaker-than-normal monsoon could push retail inflation higher in the coming months. It called the duration of the Strait of Hormuz disruption "the single most consequential variable" for India's price and external outlook.
 
-For Indian Americans watching from the diaspora, the figures are a reminder of the entanglement of political power and private wealth that defines much of Indian public life. Karnataka, which is home to Bengaluru's tech ecosystem — the same ecosystem that employs tens of thousands of NRIs and their families — is now led by a real estate billionaire who has navigated multiple legal challenges, including a 2017 income tax raid that recovered undisclosed assets and led to Enforcement Directorate investigations. Shivakumar has denied all charges of impropriety.
+The rupee has lost more than 5 percent this year, briefly touching 97 per dollar on May 22 before apparent central bank intervention pulled it back to around 95. Foreign investors have pulled over $24 billion from Indian equities and debt on a net basis between March and May. A weaker rupee makes imports more expensive, creating another channel for inflation to accelerate.
 
-The swearing-in on June 3 will mark the formal completion of a transition that has been expected for months. What it will not settle is the broader question of whether the concentration of wealth in Indian politics strengthens or undermines the institutions those leaders are elected to serve."""
-}
+The India Meteorological Department has forecast a below-normal monsoon for 2026, which threatens food production and rural demand. The finance ministry warned that "a significant rainfall deficit coupled with current geopolitical conditions could translate into food inflation, weakening rural demand and aggregate growth."
 
-publish_article(article2)
-time.sleep(1)
+**What to watch on June 5**
 
-# ============================================================
-# ARTICLE 3: Kasol Shooting
-# ============================================================
-print("\n📰 Article 3: Kasol Shooting — Tourist Fires at Local Youth")
+Even if the MPC holds rates — the most likely outcome — the market will be watching the RBI's forward guidance closely. Any shift in the committee's stance from "accommodative" toward "neutral" would signal that rate hikes are coming, possibly as early as August. Standard Chartered has projected a 50-basis-point hike in the current fiscal year, with the first increase possible as early as this month. Capital Economics sees the repo rate reaching 6.00 percent before year-end, contingent on the Iran crisis ending and energy prices dropping.
 
-img3 = fetch_pexels_image("Kasol valley Himachal Pradesh mountains Parvati", "Himachal Pradesh mountain village")
+**What this means for NRIs**
 
-article3 = {
-    'headline': "A Tourist Shot a Local Youth in Kasol Over a Parking Dispute. He Then Chased Him Down the Street With a Pistol.",
-    'subheadline': "The shooting in Himachal Pradesh's most popular backpacker destination has renewed calls for a crackdown on violent tourists. Four suspects from Punjab have been arrested.",
-    'category': 'news',
-    'vertical': 'news',
-    'slug': 'kasol-shooting-tourist-punjab-fires-local-youth-parking-dispute-himachal-arrests-20260531',
-    'image_url': img3 if validate_image_url(img3) else None,
-    'image_attribution': 'Pexels' if img3 else None,
-    'sources': [
-        {"name": "News89", "url": "https://news89.com"},
-        {"name": "Northeast Herald", "url": "https://northeastherald.in"},
-        {"name": "The News Himachal", "url": "https://thenewshimachal.com"},
-        {"name": "Bhasha Times", "url": "https://bhashatimes.com"}
-    ],
-    'body': """The bullet hit the local youth in the leg at around 6 pm on Saturday in Kasol, a hamlet in Himachal Pradesh's Kullu district that has become one of North India's most popular tourist destinations. What followed was captured on video and has since gone viral: the injured man limping out of the Green Valley hotel's parking area, being carried to safety on another man's back, while the shooter — a tourist from Punjab — allegedly tried to reload his weapon and fire again before being restrained by his own companions.
+For Indians abroad, the rate decision has direct implications. A weaker rupee reduces the value of remittances sent to India in local purchasing power terms, although it makes those remittances go further when converted. Higher interest rates, if they come, would increase returns on NRI fixed deposits and debt instruments — several banks have already started offering enhanced rates to attract NRI capital. The RBI has been exploring expanding deposit schemes for non-resident Indians and may announce measures to mobilise dollar inflows.
 
-The incident began, according to police, as an argument over parking at the hotel. The verbal exchange between a group of tourists from Punjab and local residents escalated into a physical confrontation. During the fight, one of the tourists pulled out a pistol and fired, hitting a young man from the nearby village of Bagiyanda in the leg.
+On the investment side, a rate hike would likely weigh on equity markets in the short term, particularly rate-sensitive sectors like banking, real estate, and auto. But it could stabilise the rupee and attract foreign portfolio investment back into Indian debt, which has been under sustained selling pressure.
 
-Witnesses told local media that even as the injured man was being rushed to hospital, the armed tourist followed him down Kasol's narrow main road, brandishing the pistol in full view of shopkeepers, tourists and residents. The sound of the gunshot sent the crowded market into panic, with people scrambling for cover in what is ordinarily a laid-back backpacker village known for its cafes, mountain treks and a complicated relationship with recreational drugs.
+The decision on June 5 will not just set the interest rate. It will signal whether the RBI believes the current economic headwinds are temporary or structural — and that judgment will shape the investment landscape for the rest of 2026.""",
+    },
+]
 
-## Four Arrested, One Absconding
+# ── Main ──────────────────────────────────────────────────────────────────────
 
-Kullu police reached the scene shortly after the incident and detained four suspects. They have been identified as Manpreet Singh, 29, from Tarn Taran; Aman Randhawa, 22, from Amritsar; Sukhmandeep Singh, 17, from Ferozepur; and Karndeep Singh, 22, from Gurdaspur. A fifth suspect, identified as Taman from Gurdaspur, is currently absconding. Police have launched a search operation to locate him.
+def main():
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    published = 0
 
-The weapon and the vehicle in which the group was travelling have been seized. An FIR has been registered under relevant sections of the Bharatiya Nyaya Sanhita and the Arms Act. Kullu Superintendent of Police Madan Lal Kaushal confirmed the arrests and said the incident stemmed from a parking dispute.
+    for i, art in enumerate(ARTICLES, 1):
+        print(f"\n{'='*60}")
+        print(f"Article {i}/{len(ARTICLES)}: {art['headline'][:60]}...")
+        print(f"{'='*60}")
 
-"Such incidents will not be tolerated in Himachal Pradesh," Kaushal said. "Any attempt to disturb law and order in Dev Bhoomi will be dealt with strictly."
+        # ── Image sourcing ────────────────────────────────────────────
+        img_url = None
+        attribution = art.get("image_attribution", "The Videshi")
 
-The injured youth was rushed to Kullu Hospital, where he is undergoing treatment for the gunshot wound to his leg. His condition is reported to be stable.
+        # Try Wikipedia for person articles
+        if art.get("person_image"):
+            print(f"  → Trying Wikipedia for '{art['person_image']}'...")
+            img_url = fetch_wikipedia_person_image(art["person_image"])
+            if img_url:
+                attribution = "Wikimedia Commons"
 
-## A Pattern, Not an Aberration
+        # Fall back to Pexels
+        if not img_url and art.get("pexels_query"):
+            print(f"  → Trying Pexels for '{art['pexels_query']}'...")
+            img_url = fetch_pexels_image(art["pexels_query"], art.get("pexels_fallback"))
+            if img_url:
+                attribution = "Pexels"
 
-The Kasol shooting has triggered renewed outrage across Himachal Pradesh, where concerns about violent and unruly tourist behaviour have been building for years. As soaring temperatures across northern India drive millions of visitors to hill stations each summer, incidents of fights, vandalism, drunk driving and confrontations between tourists and locals have become increasingly frequent.
+        # Upload to Supabase for permanence
+        final_img_url = None
+        if img_url:
+            filename = f"{art['slug']}.jpg"
+            final_img_url = upload_image_to_supabase(img_url, filename)
+            if final_img_url and not validate_image_url(final_img_url):
+                print(f"  ⚠ Uploaded image failed validation, trying direct URL...")
+                if validate_image_url(img_url):
+                    # Check if it's a permanent source
+                    if any(d in img_url for d in ["upload.wikimedia.org", "images.pexels.com", "images.unsplash.com"]):
+                        final_img_url = img_url
+                    else:
+                        final_img_url = None
+                else:
+                    final_img_url = None
 
-Kasol, in particular, occupies a fraught position. The village in the Parvati Valley has long been a magnet for both domestic and international backpackers, drawn by its mountain scenery, Israeli-influenced cafe culture and a reputation for easy availability of drugs. Local residents and business owners have watched their village transform from a quiet Himalayan hamlet into a high-traffic destination that brings both revenue and disorder.
+        # ── Word count check ──────────────────────────────────────────
+        word_count = len(art["body"].split())
+        print(f"  Word count: {word_count}")
+        if word_count < 400:
+            print(f"  ⚠ SKIPPING: Below 400-word minimum")
+            continue
 
-The shooting has amplified voices that have long called for stricter regulation of tourist behaviour in the state. Demands include enhanced policing during peak season, mandatory vehicle registration and identity verification at entry points to sensitive areas, and a zero-tolerance policy toward visitors who carry weapons or engage in violence.
+        # ── Insert article ────────────────────────────────────────────
+        article_id = str(uuid.uuid4())
+        row = {
+            "id": article_id,
+            "headline": art["headline"],
+            "subheadline": art["subheadline"],
+            "slug": art["slug"],
+            "body": art["body"],
+            "category": art["category"],
+            "vertical": art["category"],
+            "status": "published",
+            "published_at": now,
+            "sources": art["sources_list"],
+        "tags": art["tags"],
+            "image_url": final_img_url,
+            "image_attribution": attribution if final_img_url else None,
+        }
 
-## The Tourism Dilemma
+        print(f"  → Inserting into p2_articles...")
+        result = sb_insert("p2_articles", row)
+        if result:
+            print(f"  ✓ Published: {art['slug']}")
+            published += 1
+        else:
+            print(f"  ✗ FAILED to publish: {art['slug']}")
 
-For Himachal Pradesh, tourism is both lifeline and liability. The state depends heavily on visitor spending — particularly during the summer months, when the plains become unbearable and hill stations fill to capacity. But the sheer volume of traffic has begun to overwhelm the infrastructure, policing and social fabric of small mountain communities.
+    print(f"\n{'='*60}")
+    print(f"Done. Published {published}/{len(ARTICLES)} articles.")
+    print(f"{'='*60}")
 
-For the Indian diaspora, many of whom plan summer trips to Kullu, Manali and the Parvati Valley when visiting family, the Kasol shooting is a stark reminder that the places they remember from childhood are changing. The village where travellers once sat in open-air cafes watching the Parvati River has become a place where a parking dispute can end with a gunshot — and a man being chased down the street by an armed stranger in broad daylight.
 
-The viral videos from Saturday have ensured that this incident will not fade quietly. Whether it produces the policy response that residents are demanding remains an open question."""
-}
-
-publish_article(article3)
-
-print("\n✅ News writer batch complete.")
+if __name__ == "__main__":
+    main()
