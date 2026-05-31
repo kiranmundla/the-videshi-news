@@ -19,13 +19,13 @@ import {
 import {
   type VisaSighting,
   getVisaSightings,
-  submitSighting,
   relativeTime,
   CONSULATES,
   CONSULATE_LABELS,
   VISA_TYPES,
   CONSULATE_COLORS,
 } from "@/lib/visas";
+import { supabase } from "@/integrations/supabase/client";
 
 /* ------------------------------------------------------------------ */
 /* Compact Wait-Time Strip (reuses immigration.ts data)               */
@@ -161,7 +161,7 @@ function SightingCard({ s }: { s: VisaSighting }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Report Form                                                        */
+/* Report Form (with OTP email verification)                          */
 /* ------------------------------------------------------------------ */
 function ReportForm({ onSubmitted }: { onSubmitted: () => void }) {
   const [consulate, setConsulate] = useState("");
@@ -176,38 +176,85 @@ function ReportForm({ onSubmitted }: { onSubmitted: () => void }) {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  const canSubmit = consulate && visaType && description.trim() && name.trim() && turnstileToken && !submitting;
+  // OTP state
+  const [step, setStep] = useState<"form" | "otp">("form");
+  const [otpCode, setOtpCode] = useState("");
+  const [otpSending, setOtpSending] = useState(false);
+  const [otpResendCooldown, setOtpResendCooldown] = useState(0);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const canSubmit = consulate && visaType && description.trim() && name.trim() && email.trim() && isValidEmail && turnstileToken && !submitting;
+
+  // Cooldown timer
+  useEffect(() => {
+    if (otpResendCooldown <= 0) return;
+    const t = setTimeout(() => setOtpResendCooldown((c) => c - 1), 1000);
+    return () => clearTimeout(t);
+  }, [otpResendCooldown]);
+
+  const sendOtp = async () => {
+    setOtpSending(true);
+    setError(null);
+    try {
+      const { data, error: fnErr } = await supabase.functions.invoke("send-sighting-otp", {
+        body: { email: email.trim().toLowerCase() },
+      });
+      if (fnErr) throw new Error(fnErr.message || "Failed to send code");
+      if (data?.error) throw new Error(data.error);
+      setStep("otp");
+      setOtpResendCooldown(60);
+    } catch (e: any) {
+      setError(e.message || "Failed to send verification code");
+    } finally {
+      setOtpSending(false);
+    }
+  };
+
+  const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!canSubmit) return;
+    await sendOtp();
+  };
+
+  const handleVerifyOtp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (otpCode.length !== 6) return;
 
     setSubmitting(true);
     setError(null);
 
-    const result = await submitSighting({
-      consulate,
-      visa_type: visaType,
-      slots_date_start: dateStart || undefined,
-      slots_date_end: dateEnd || undefined,
-      description: description.trim(),
-      reporter_name: name.trim(),
-      reporter_email: email.trim(),
-    });
+    try {
+      const { data, error: fnErr } = await supabase.functions.invoke("verify-sighting-otp", {
+        body: {
+          email: email.trim().toLowerCase(),
+          code: otpCode,
+          sighting_data: {
+            consulate,
+            visa_type: visaType,
+            slots_date_start: dateStart || null,
+            slots_date_end: dateEnd || null,
+            description: description.trim(),
+            reporter_name: name.trim(),
+          },
+        },
+      });
+      if (fnErr) throw new Error(fnErr.message || "Verification failed");
+      if (data?.error) throw new Error(data.error);
 
-    setSubmitting(false);
-    if (result.success) {
       setSuccess(true);
+      setStep("form");
+      setOtpCode("");
       setConsulate("");
       setVisaType("");
       setDateStart("");
       setDateEnd("");
       setDescription("");
-      // keep name / email for repeat sighters
       onSubmitted();
       setTimeout(() => setSuccess(false), 5000);
-    } else {
-      setError(result.error || "Failed to submit. Please try again.");
+    } catch (e: any) {
+      setError(e.message || "Invalid or expired code");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -215,13 +262,13 @@ function ReportForm({ onSubmitted }: { onSubmitted: () => void }) {
     "w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors";
 
   return (
-    <form onSubmit={handleSubmit} className="bg-card border border-border rounded-xl overflow-hidden">
+    <div className="bg-card border border-border rounded-xl overflow-hidden">
       <div className="px-5 py-4 border-b border-border bg-green-500/5">
         <h3 className="font-serif font-bold text-lg flex items-center gap-2">
           🛂 Report a Sighting
         </h3>
         <p className="text-sm text-foreground/60 mt-1">
-          Saw open slots on <a href="https://www.ustraveldocs.com/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 hover:text-primary/80">ustraveldocs.com</a>? Help the community by sharing what you found.
+          Saw open slots on <a href="https://www.usvisascheduling.com/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 hover:text-primary/80">usvisascheduling.com</a>? Help the community by sharing what you found.
         </p>
       </div>
 
@@ -229,7 +276,7 @@ function ReportForm({ onSubmitted }: { onSubmitted: () => void }) {
         {success && (
           <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-lg px-4 py-3 text-green-700 text-sm font-medium">
             <CheckCircle className="h-4 w-4 flex-shrink-0" />
-            Sighting published — thank you! 🎉 Your name is now on the wall.
+            Sighting published — thank you! 🎉
           </div>
         )}
 
@@ -240,104 +287,349 @@ function ReportForm({ onSubmitted }: { onSubmitted: () => void }) {
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
-              Consulate <span className="text-red-500">*</span>
-            </label>
-            <select value={consulate} onChange={(e) => setConsulate(e.target.value)} className={fieldClass} required>
-              <option value="">Select consulate…</option>
-              {CONSULATES.map((c) => (
-                <option key={c} value={c}>{CONSULATE_LABELS[c]}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
-              Visa Type <span className="text-red-500">*</span>
-            </label>
-            <select value={visaType} onChange={(e) => setVisaType(e.target.value)} className={fieldClass} required>
-              <option value="">Select type…</option>
-              {VISA_TYPES.map((v) => (
-                <option key={v} value={v}>{v}</option>
-              ))}
-            </select>
-          </div>
-        </div>
+        {step === "form" ? (
+          <form onSubmit={handleSendOtp} className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
+                  Consulate <span className="text-red-500">*</span>
+                </label>
+                <select value={consulate} onChange={(e) => setConsulate(e.target.value)} className={fieldClass} required>
+                  <option value="">Select consulate…</option>
+                  {CONSULATES.map((c) => (
+                    <option key={c} value={c}>{CONSULATE_LABELS[c]}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
+                  Visa Type <span className="text-red-500">*</span>
+                </label>
+                <select value={visaType} onChange={(e) => setVisaType(e.target.value)} className={fieldClass} required>
+                  <option value="">Select type…</option>
+                  {VISA_TYPES.map((v) => (
+                    <option key={v} value={v}>{v}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
-              Slots From
-            </label>
-            <input type="date" value={dateStart} onChange={(e) => setDateStart(e.target.value)} className={fieldClass} />
-          </div>
-          <div>
-            <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
-              Slots To
-            </label>
-            <input type="date" value={dateEnd} onChange={(e) => setDateEnd(e.target.value)} className={fieldClass} />
-          </div>
-        </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
+                  Slots From
+                </label>
+                <input type="date" value={dateStart} onChange={(e) => setDateStart(e.target.value)} className={fieldClass} />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
+                  Slots To
+                </label>
+                <input type="date" value={dateEnd} onChange={(e) => setDateEnd(e.target.value)} className={fieldClass} />
+              </div>
+            </div>
 
-        <div>
-          <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
-            What did you see? <span className="text-red-500">*</span>
-          </label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            rows={3}
-            placeholder="e.g. 'Multiple B1/B2 slots opened up for August at Mumbai consulate, including same-day cancellation slots'"
-            className={fieldClass + " resize-none"}
+            <div>
+              <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
+                What did you see? <span className="text-red-500">*</span>
+              </label>
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                rows={3}
+                placeholder="e.g. 'Multiple B1/B2 slots opened up for August at Mumbai consulate, including same-day cancellation slots'"
+                className={fieldClass + " resize-none"}
+                required
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
+                  Your Name <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="How should we credit you?"
+                  className={fieldClass}
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
+                  Email <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="We'll send a verification code"
+                  className={fieldClass}
+                  required
+                />
+              </div>
+            </div>
+
+            <TurnstileWidget
+              onVerify={setTurnstileToken}
+              onExpire={() => setTurnstileToken(null)}
+              className="mt-2"
+            />
+
+            <button
+              type="submit"
+              disabled={!canSubmit || otpSending}
+              className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold text-sm py-3 px-6 rounded-lg hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+            >
+              <Send className="h-4 w-4" />
+              {otpSending ? "Sending code…" : "Verify & Publish"}
+            </button>
+          </form>
+        ) : (
+          /* OTP verification step */
+          <form onSubmit={handleVerifyOtp} className="space-y-4">
+            <div className="bg-blue-500/5 border border-blue-500/15 rounded-lg px-4 py-3">
+              <p className="text-sm text-foreground/70">
+                We sent a 6-digit code to <strong className="text-foreground/90">{email.trim()}</strong>
+              </p>
+              <p className="text-xs text-foreground/50 mt-1">Check your inbox (and spam folder). Code expires in 10 minutes.</p>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
+                Verification Code <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                maxLength={6}
+                value={otpCode}
+                onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                placeholder="000000"
+                autoFocus
+                className={fieldClass + " text-center text-2xl tracking-[0.5em] font-mono"}
+                required
+              />
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                type="submit"
+                disabled={otpCode.length !== 6 || submitting}
+                className="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold text-sm py-3 px-6 rounded-lg hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+              >
+                <CheckCircle className="h-4 w-4" />
+                {submitting ? "Verifying…" : "Confirm & Publish"}
+              </button>
+              <button
+                type="button"
+                onClick={() => { setStep("form"); setOtpCode(""); setError(null); }}
+                className="px-4 py-3 text-sm font-medium text-foreground/60 hover:text-foreground/80 border border-border rounded-lg hover:bg-foreground/5 transition-colors"
+              >
+                ← Back
+              </button>
+            </div>
+
+            <button
+              type="button"
+              onClick={sendOtp}
+              disabled={otpResendCooldown > 0 || otpSending}
+              className="w-full text-xs text-primary hover:text-primary/80 disabled:text-foreground/30 disabled:cursor-not-allowed transition-colors py-1"
+            >
+              {otpResendCooldown > 0 ? `Resend code in ${otpResendCooldown}s` : "Resend code"}
+            </button>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Alert Signup Form (with OTP email verification)                    */
+/* ------------------------------------------------------------------ */
+function AlertSignupForm() {
+  const [email, setEmail] = useState("");
+  const [visaType, setVisaType] = useState("all");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [step, setStep] = useState<"form" | "otp" | "done">("form");
+  const [otpCode, setOtpCode] = useState("");
+  const [sending, setSending] = useState(false);
+  const [verifying, setVerifying] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [otpResendCooldown, setOtpResendCooldown] = useState(0);
+
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
+  useEffect(() => {
+    if (otpResendCooldown <= 0) return;
+    const t = setTimeout(() => setOtpResendCooldown((c) => c - 1), 1000);
+    return () => clearTimeout(t);
+  }, [otpResendCooldown]);
+
+  const sendOtp = async () => {
+    setSending(true);
+    setError(null);
+    try {
+      const { data, error: fnErr } = await supabase.functions.invoke("send-alert-otp", {
+        body: { email: email.trim().toLowerCase() },
+      });
+      if (fnErr) throw new Error(fnErr.message || "Failed to send code");
+      if (data?.error) throw new Error(data.error);
+      setStep("otp");
+      setOtpResendCooldown(60);
+    } catch (e: any) {
+      setError(e.message || "Failed to send verification code");
+    } finally {
+      setSending(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isValidEmail) return;
+    await sendOtp();
+  };
+
+  const handleVerify = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (otpCode.length !== 6) return;
+
+    setVerifying(true);
+    setError(null);
+    try {
+      const { data, error: fnErr } = await supabase.functions.invoke("verify-alert-otp", {
+        body: {
+          email: email.trim().toLowerCase(),
+          code: otpCode,
+          preferences: {
+            visa_type: visaType,
+            whatsapp: whatsapp || null,
+          },
+        },
+      });
+      if (fnErr) throw new Error(fnErr.message || "Verification failed");
+      if (data?.error) throw new Error(data.error);
+      setStep("done");
+    } catch (e: any) {
+      setError(e.message || "Invalid or expired code");
+    } finally {
+      setVerifying(false);
+    }
+  };
+
+  const inputClass = "w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors";
+
+  return (
+    <div className="bg-gradient-to-b from-green-500/10 to-emerald-500/5 border border-green-500/20 rounded-xl p-6">
+      <h3 className="font-serif font-bold text-lg mb-1 flex items-center gap-2">
+        🔔 Visa Slot Alerts
+      </h3>
+      <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-500/15 text-green-700 text-[10px] font-bold uppercase tracking-wider mb-2">
+        Free during launch
+      </div>
+      <p className="text-sm text-foreground/60 leading-relaxed mb-4">
+        Get notified instantly when new appointment slots open or when policy changes affect your visa type.
+      </p>
+
+      {error && (
+        <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2 text-red-700 text-xs mb-3">
+          <AlertTriangle className="h-3 w-3 flex-shrink-0" />
+          {error}
+        </div>
+      )}
+
+      {step === "done" ? (
+        <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-lg px-4 py-3 text-green-700 text-sm font-medium">
+          <CheckCircle className="h-4 w-4 flex-shrink-0" />
+          You're in! We'll notify you when slots open. 🎉
+        </div>
+      ) : step === "otp" ? (
+        <form onSubmit={handleVerify} className="space-y-2">
+          <div className="bg-blue-500/5 border border-blue-500/15 rounded-lg px-3 py-2">
+            <p className="text-xs text-foreground/70">
+              Code sent to <strong className="text-foreground/90">{email.trim()}</strong>
+            </p>
+          </div>
+          <input
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            maxLength={6}
+            value={otpCode}
+            onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+            placeholder="000000"
+            autoFocus
+            className={inputClass + " text-center text-xl tracking-[0.4em] font-mono"}
+          />
+          <div className="flex gap-2">
+            <button
+              type="submit"
+              disabled={otpCode.length !== 6 || verifying}
+              className="flex-1 bg-green-600 text-white text-sm font-semibold py-2.5 rounded-lg hover:bg-green-500 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            >
+              {verifying ? "Verifying…" : "Confirm"}
+            </button>
+            <button
+              type="button"
+              onClick={() => { setStep("form"); setOtpCode(""); setError(null); }}
+              className="px-3 py-2.5 text-sm font-medium text-foreground/60 hover:text-foreground/80 border border-border rounded-lg hover:bg-foreground/5 transition-colors"
+            >
+              ←
+            </button>
+          </div>
+          <button
+            type="button"
+            onClick={sendOtp}
+            disabled={otpResendCooldown > 0 || sending}
+            className="w-full text-xs text-green-700 hover:text-green-600 disabled:text-foreground/30 disabled:cursor-not-allowed transition-colors py-0.5"
+          >
+            {otpResendCooldown > 0 ? `Resend in ${otpResendCooldown}s` : "Resend code"}
+          </button>
+        </form>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-2">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="your@email.com"
+            className={inputClass}
             required
           />
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
-              Your Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="How should we credit you?"
-              className={fieldClass}
-              required
-            />
+          <div className="relative">
+            <input type="tel" disabled placeholder="WhatsApp — coming soon" className="w-full rounded-lg border border-border bg-foreground/[0.03] px-3 py-2.5 text-sm text-foreground/30 cursor-not-allowed" />
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-semibold uppercase tracking-wider text-foreground/30">Soon</span>
           </div>
-          <div>
-            <label className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wider">
-              Email <span className="text-[10px] text-foreground/40 font-normal normal-case">(optional, never shown)</span>
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="For follow-up only"
-              className={fieldClass}
-            />
-          </div>
-        </div>
-
-        <TurnstileWidget
-          onVerify={setTurnstileToken}
-          onExpire={() => setTurnstileToken(null)}
-          className="mt-2"
-        />
-
-        <button
-          type="submit"
-          disabled={!canSubmit}
-          className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold text-sm py-3 px-6 rounded-lg hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
-        >
-          <Send className="h-4 w-4" />
-          {submitting ? "Publishing…" : "Publish Sighting"}
-        </button>
-      </div>
-    </form>
+          <select
+            value={visaType}
+            onChange={(e) => setVisaType(e.target.value)}
+            className={inputClass + " text-foreground/70"}
+          >
+            <option value="all">All visa types</option>
+            <option value="B1B2">B1/B2 (Visitor)</option>
+            <option value="H-1B">H-1B</option>
+            <option value="H-4">H-4</option>
+            <option value="F-1">F-1 (Student)</option>
+            <option value="L-1">L-1</option>
+            <option value="O-1">O-1</option>
+          </select>
+          <button
+            type="submit"
+            disabled={!isValidEmail || sending}
+            className="w-full bg-green-600 text-white text-sm font-semibold py-2.5 rounded-lg hover:bg-green-500 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          >
+            {sending ? "Sending code…" : "Get Free Alerts"}
+          </button>
+        </form>
+      )}
+      <p className="text-[11px] text-foreground/40 mt-3 leading-relaxed">
+        This is a premium service offered free during our launch period. No credit card needed.
+      </p>
+    </div>
   );
 }
 
@@ -813,72 +1105,7 @@ export default function VisaTrackerPage() {
             {/* ── Notification + Guides Row ──────────────────── */}
             <section className="mb-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Visa Slot Alerts */}
-              <div className="bg-gradient-to-b from-green-500/10 to-emerald-500/5 border border-green-500/20 rounded-xl p-6">
-                <h3 className="font-serif font-bold text-lg mb-1 flex items-center gap-2">
-                  🔔 Visa Slot Alerts
-                </h3>
-                <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-500/15 text-green-700 text-[10px] font-bold uppercase tracking-wider mb-2">
-                  Free during launch
-                </div>
-                <p className="text-sm text-foreground/60 leading-relaxed mb-4">
-                  Get notified instantly when new appointment slots open or when policy changes affect your visa type.
-                </p>
-                <form
-                  onSubmit={async (e) => {
-                    e.preventDefault();
-                    const form = e.target as HTMLFormElement;
-                    const emailEl = form.elements.namedItem("alert_email") as HTMLInputElement;
-                    const waEl = form.elements.namedItem("alert_whatsapp") as HTMLInputElement;
-                    const typeEl = form.elements.namedItem("alert_type") as HTMLSelectElement;
-                    if (!emailEl.value && !waEl.value) { alert("Please enter at least an email or WhatsApp number."); return; }
-                    try {
-                      const { createClient } = await import("@supabase/supabase-js");
-                      const sb = createClient(
-                        import.meta.env.VITE_SUPABASE_URL,
-                        import.meta.env.VITE_SUPABASE_ANON_KEY
-                      );
-                      const channels: string[] = [];
-                      if (emailEl.value) channels.push("email");
-                      if (waEl.value) channels.push("whatsapp");
-                      await sb.from("visa_alert_subscribers").upsert({
-                        email: emailEl.value || `wa-${waEl.value}@placeholder.local`,
-                        whatsapp: waEl.value || null,
-                        visa_type: typeEl.value || "all",
-                        channel: channels.join(","),
-                        subscribed_at: new Date().toISOString(),
-                        active: true,
-                      }, { onConflict: "email" });
-                      emailEl.value = "";
-                      waEl.value = "";
-                      alert("You're in! We'll notify you when slots open. 🎉");
-                    } catch {
-                      alert("Something went wrong — try again.");
-                    }
-                  }}
-                  className="space-y-2"
-                >
-                  <input name="alert_email" type="email" placeholder="your@email.com" className="w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors" />
-                  <div className="relative">
-                    <input name="alert_whatsapp" type="tel" disabled placeholder="WhatsApp — coming soon" className="w-full rounded-lg border border-border bg-foreground/[0.03] px-3 py-2.5 text-sm text-foreground/30 cursor-not-allowed" />
-                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-semibold uppercase tracking-wider text-foreground/30">Soon</span>
-                  </div>
-                  <select name="alert_type" className="w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground/70 focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors">
-                    <option value="all">All visa types</option>
-                    <option value="B1B2">B1/B2 (Visitor)</option>
-                    <option value="H-1B">H-1B</option>
-                    <option value="H-4">H-4</option>
-                    <option value="F-1">F-1 (Student)</option>
-                    <option value="L-1">L-1</option>
-                    <option value="O-1">O-1</option>
-                  </select>
-                  <button type="submit" className="w-full bg-green-600 text-white text-sm font-semibold py-2.5 rounded-lg hover:bg-green-500 transition-colors">
-                    Get Free Alerts
-                  </button>
-                </form>
-                <p className="text-[11px] text-foreground/40 mt-3 leading-relaxed">
-                  This is a premium service offered free during our launch period. No credit card needed.
-                </p>
-              </div>
+              <AlertSignupForm />
 
               {/* Visa Guides */}
               <div className="bg-card border border-border rounded-xl p-6 flex flex-col">
@@ -962,7 +1189,7 @@ export default function VisaTrackerPage() {
                 <span className="font-semibold text-foreground/70">Data Source Note:</span>{" "}
                 Official wait times are from the US State Department. Community sightings are
                 user-reported observations — we never scrape or automate access to
-                ustraveldocs.com. Slot availability changes rapidly; always verify on the
+                usvisascheduling.com. Slot availability changes rapidly; always verify on the
                 official site before booking.
               </p>
             </div>
