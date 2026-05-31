@@ -1,7 +1,15 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-05-31 batch"""
+"""Entertainment writer for The Videshi - 2026-05-31 batch"""
 
-import json, os, re, sys, time, uuid, urllib.parse, subprocess
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+import uuid
+import requests
+import urllib.parse
 from datetime import datetime, timezone
 
 # Load env
@@ -15,16 +23,22 @@ def load_env(path):
                     os.environ[k.strip()] = v.strip().strip('"').strip("'")
 
 load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
 SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
 SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
+HEADERS = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
+}
+
+# ── Wikipedia image fetch ──
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import requests
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -42,8 +56,9 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+# ── Pexels fallback ──
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels API using curl (urllib gets 403)."""
+    """Fetch image from Pexels using curl (urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
@@ -59,7 +74,7 @@ def fetch_pexels_image(query, fallback_query=None):
             data = json.loads(result.stdout)
             photos = data.get('photos', [])
             if photos:
-                url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('large')
+                url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('original')
                 if url:
                     print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                     return url
@@ -67,310 +82,343 @@ def fetch_pexels_image(query, fallback_query=None):
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image(url):
-    """Validate image URL returns HTTP 200 with image content type and >5KB."""
+# ── Image validation ──
+def validate_image_url(url):
+    """Check that URL returns an image > 5KB."""
     if not url:
         return False
+    # Block banned sources
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
+    for b in banned:
+        if b in url:
+            print(f"  ✗ Banned source detected: {b}")
+            return False
     try:
-        result = subprocess.run(
-            ['curl', '-sS', '-I', '-L', '--max-time', '10', url],
-            capture_output=True, text=True, timeout=15
-        )
-        headers = result.stdout.lower()
-        if '200 ok' in headers and 'content-type: image/' in headers:
-            # Check content-length
-            for line in headers.split('\n'):
-                if 'content-length:' in line:
-                    size = int(line.split(':')[1].strip())
-                    if size > 5000:
-                        return True
-                    else:
-                        print(f"  ⚠ Image too small: {size} bytes")
-                        return False
-            # If no content-length header, assume it's OK (chunked)
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if 'image' in ct and cl > 5000:
             return True
+        # Some servers don't return Content-Length on HEAD, try GET
+        if 'image' in ct:
+            r2 = requests.get(url, timeout=10, stream=True,
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
+                return True
+        print(f"  ✗ Image validation failed: CT={ct}, CL={cl}")
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
+        print(f"  ✗ Image validation error: {e}")
     return False
 
-def publish_article(article):
-    """Publish article to Supabase."""
-    import requests
-    headers = {
-        'apikey': SUPABASE_KEY,
-        'Authorization': f'Bearer {SUPABASE_KEY}',
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
-    }
-    payload = {
-        'headline': article['headline'],
-        'subheadline': article['subheadline'],
-        'body': article['body'],
-        'slug': article['slug'],
-        'category': 'entertainment',
-        'image_url': article.get('image_url', ''),
-        'image_attribution': article.get('image_attribution', ''),
-        'sources': json.dumps(article.get('sources', [])),
-        'status': 'published',
-        'vertical': 'entertainment',
-        'published_at': datetime.now(timezone.utc).isoformat(),
-    }
-    try:
-        r = requests.post(
-            f"{SUPABASE_URL}/rest/v1/p2_articles",
-            headers=headers,
-            json=payload,
-            timeout=15
-        )
-        if r.status_code in [200, 201]:
-            print(f"  ✓ Published: {article['headline'][:60]}...")
-            return True
-        else:
-            print(f"  ✗ Publish failed ({r.status_code}): {r.text[:200]}")
-            return False
-    except Exception as e:
-        print(f"  ✗ Publish error: {e}")
-        return False
+# ── Supabase insert ──
+def insert_article(article):
+    """Insert article into p2_articles."""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article
+    )
+    if r.status_code in (200, 201):
+        data = r.json()
+        art_id = data[0]['id'] if isinstance(data, list) and data else 'unknown'
+        print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
+        return art_id
+    else:
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:500]}")
+        return None
 
+# ── Articles ──
 
-# ─── ARTICLE 1: Karan Johar Instagram Digital Detox ───────────────────────────
+def write_anushka_sharma_one8_yoga():
+    """Anushka Sharma invests in Agilitas, co-creating One8 Yoga with Virat Kohli"""
+    print("\n📝 Writing: Anushka Sharma One8 Yoga...")
 
-def write_karan_johar_article():
-    print("\n📝 Article 1: Karan Johar Instagram Digital Detox")
-    
-    # Image: try Wikipedia for Karan Johar
-    image_url = fetch_wikipedia_person_image("Karan Johar")
-    image_attribution = "Wikimedia Commons"
-    
-    if not validate_image(image_url):
-        image_url = fetch_pexels_image("Instagram social media phone", "social media detox")
-        image_attribution = "Pexels"
-    
+    headline = "Anushka Sharma Just Invested in Virat Kohli's Sportswear Company. Together, They're Launching a Yoga Line."
+    subheadline = "One8 Yoga drops on International Yoga Day. The husband-wife bet on India's $22 billion athleisure market is a family affair now."
+    slug = "anushka-sharma-virat-kohli-one8-yoga-agilitas-sports-athleisure-nri-20260531"
+
+    body = """Anushka Sharma has picked up a minority stake in Agilitas Sports, the sportswear startup that already counts her husband Virat Kohli as an investor and co-creator. But this isn't a passive celebrity endorsement deal. Sharma will co-develop One8 Yoga, a new yoga-focused activewear line under the One8 brand, with a launch date of June 21 — International Day of Yoga.
+
+The move makes the Kohli-Sharma household arguably the most commercially aligned power couple in Indian sport and entertainment. Kohli brought his One8 brand to Agilitas last year after ending an eight-year, ₹110 crore association with Puma. He invested roughly ₹40 crore in the startup as part of that deal. Now Sharma joins the cap table, though neither side has disclosed how much she's putting in.
+
+## What Is Agilitas, and Why Does It Matter?
+
+Agilitas Sports was founded in 2023 by Abhishek Ganguly, Atul Bajaj, and Amit Prabhu — all former Puma India executives. Ganguly was Puma India's managing director. The trio built the company as a vertically integrated sportswear platform: product design, manufacturing, distribution, and retail, all under one roof. It's backed by Convergent Finance and Nexus Venture Partners.
+
+The company has moved fast. It acquired Mochiko Shoes in 2023, locked down long-term licensing rights for Lotto across India, South Asia, Australia, and South Africa, and recently launched Sportsyard, a large-format multi-brand sports retail chain. It claims over 12,500 employees across multiple manufacturing units.
+
+When Kohli joined in 2025, the One8 brand came along — and with it, a clear signal that Agilitas was betting on athlete-driven lifestyle brands, not just performance gear.
+
+## The Yoga Play
+
+Sharma's involvement sharpens that bet. One8 Yoga will be a distinct category under the One8 umbrella, focused on yoga activewear that prioritizes comfort, movement, and functionality. Sharma described it as "building the category thoughtfully from the ground up," with products designed to "seamlessly integrate into daily routines."
+
+Ganguly framed it as more than a brand extension. "Anushka joining goes much deeper than an investment," he said. "With One8 Yoga, we are extending that idea into a larger movement around wellness, mindfulness, and everyday fitness."
+
+The timing is deliberate. India's athleisure market is projected to reach $22.4 billion by 2034, according to industry estimates. Yoga, once a niche wellness practice, has become a mainstream lifestyle category globally — and the Indian diaspora has been at the center of that shift. From Lululemon's dominance in North America to the proliferation of yoga studios in every NRI suburb, the market is there.
+
+## What This Means for the Diaspora
+
+For NRIs, the Kohli-Sharma entry into athleisure isn't just a business story — it's a cultural one. Indian-origin brands in the activewear space have been virtually nonexistent at the premium end. The closest parallel might be Sabyasachi's luxury fashion empire, but sportswear and yoga wear have been dominated by Western labels.
+
+One8 Yoga, if executed well, could become the first Indian-founded yoga activewear brand with genuine global ambitions. Whether it ends up competing with Alo Yoga and Lululemon or carves out a distinctly Indian niche remains to be seen. But with two of India's most recognizable names behind it, it won't be starting from scratch.
+
+The June 21 launch on International Day of Yoga is marketing that writes itself. Whether the product backs up the promise is the only question that matters."""
+
+    sources = json.dumps([
+        {"name": "Inc42", "url": "https://inc42.com"},
+        {"name": "Franchise India", "url": "https://franchiseindia.com"},
+        {"name": "Apparel Resources", "url": "https://apparelresources.com"}
+    ])
+
+    # Image: Try Wikipedia for Anushka Sharma
+    img_url = fetch_wikipedia_person_image("Anushka Sharma")
+    if not img_url or not validate_image_url(img_url):
+        img_url = fetch_wikipedia_person_image("Virat Kohli")
+    if not img_url or not validate_image_url(img_url):
+        img_url = fetch_pexels_image("yoga activewear fashion", "yoga studio practice")
+    if img_url and not validate_image_url(img_url):
+        img_url = None
+
     article = {
-        'headline': "Karan Johar Unfollowed Shah Rukh Khan, Alia Bhatt, and Nearly Everyone on Instagram. He Only Kept Priyanka Chopra.",
-        'subheadline': "The filmmaker called it a 'digital detox,' but the internet noticed he still follows exactly one Bollywood star — and she's the one who left India.",
-        'slug': 'karan-johar-unfollows-srk-alia-instagram-digital-detox-priyanka-chopra-nri-20260531',
-        'image_url': image_url or '',
-        'image_attribution': image_attribution,
-        'sources': [
-            {"name": "Filmfare", "url": "https://filmfare.com"},
-            {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-            {"name": "Pinkvilla", "url": "https://pinkvilla.com"}
-        ],
-        'body': """Karan Johar has done a lot of dramatic things in his career. He's made Shah Rukh Khan cry on a train platform. He's turned Kajol into a college legend. He's spent two decades being the loudest, most Instagram-fluent filmmaker in Bollywood. But what he did on Thursday might be the most dramatic thing he's done all year — and he did it with a single tap.
-
-He unfollowed almost everyone on Instagram.
-
-Shah Rukh Khan. Alia Bhatt. Kareena Kapoor Khan. Varun Dhawan. Sidharth Malhotra. Kajol. Malaika Arora. Ananya Panday. Manish Malhotra. Even the entire Khan family — Gauri, Aryan, Suhana. Gone. All of them, wiped from his following list in one sweep.
-
-By Friday morning, Karan Johar — a man with 17.5 million followers — was following exactly 74 accounts. Among Bollywood celebrities, only one name remained: **Priyanka Chopra Jonas**.
-
-## The Internet Lost Its Mind
-
-Reddit noticed first, because Reddit always notices first. Screenshots of Karan's following list began circulating within hours. The theories ranged from industry fallout to secret feuds to elaborate PR stunts. Some fans wondered if this was about the underwhelming box office performance of *Chand Mera Dil*, his latest production starring Ananya Panday and Lakshya. Others speculated about behind-the-scenes tensions with Dharma's talent roster.
-
-The timing was suspicious. Karan had just come off a birthday bash at Manish Malhotra's house — a party attended by the same people he was now unfollowing. What changed between cake and unfollow?
-
-## "This Can't Be National News"
-
-Karan addressed the frenzy through his Instagram Story, and he was characteristically blunt.
-
-"It's a DIGITAL DETOX!!!! Am unfollowing everyone to reduce my time and energy spent on the gram!!! This can't be national news for god's sake... please clickbait something else! This is irrelevant!"
-
-A source close to the filmmaker told media outlets that the mass unfollowing was a "social media strategy" — nothing to do with any particular star, page, or person.
-
-## Why Priyanka Chopra?
-
-But the detail that nobody can stop talking about is the Priyanka Chopra detail. Of all the Bollywood celebrities in Karan Johar's orbit — people he's launched, directed, partied with, cried on camera with — the one person he chose to keep following is the one who left Mumbai for Hollywood.
-
-It's probably a coincidence. Maybe he just didn't get to her name in the unfollowing spree. Maybe it's contractual. But for the NRI audience watching from Los Angeles and London and Toronto, it's hard not to read something into it. Priyanka Chopra is the Bollywood star who chose the diaspora path — who moved to America, married an American, built a career outside the Bollywood ecosystem. And she's the one Karan kept.
-
-## What It Says About Bollywood's Social Media Culture
-
-The real story here isn't about who Karan follows. It's about the fact that an Instagram unfollow by a film producer became the biggest entertainment story in India for 48 hours.
-
-Bollywood's relationship with social media has always been performative. Follows and unfollows are read as political statements. Likes are counted. Comment sections are mined for subtext. The industry has built an entire ecosystem around engagement metrics — and Karan Johar, more than anyone, has been at the center of it.
-
-His "digital detox" — whether genuine or strategic — is an acknowledgment that the machine has become exhausting even for the people who built it.
-
-For the diaspora watching from abroad, it's a reminder that Bollywood's real drama has long since moved from the screen to the feed. And sometimes the most interesting plot twist is someone choosing to log off."""
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": sources,
+        "image_url": img_url,
+        "image_attribution": "Wikimedia Commons" if img_url and ("wikimedia" in img_url.lower() or "wikipedia" in img_url.lower()) else "The Videshi"
     }
-    
-    return publish_article(article)
+    return insert_article(article)
 
 
-# ─── ARTICLE 2: Vashu Bhagnani ₹400 Crore Lawsuit ────────────────────────────
+def write_salman_khan_maatrubhumi():
+    """Salman Khan's Maatrubhumi gets first industry reactions"""
+    print("\n📝 Writing: Salman Khan Maatrubhumi screening...")
 
-def write_vashu_bhagnani_article():
-    print("\n📝 Article 2: Vashu Bhagnani ₹400 Crore Lawsuit")
-    
-    # Image: try Wikipedia for David Dhawan
-    image_url = fetch_wikipedia_person_image("David Dhawan")
-    image_attribution = "Wikimedia Commons"
-    
-    if not validate_image(image_url):
-        image_url = fetch_wikipedia_person_image("Varun Dhawan")
-        image_attribution = "Wikimedia Commons"
-    
-    if not validate_image(image_url):
-        image_url = fetch_pexels_image("Bollywood film courtroom", "legal gavel court")
-        image_attribution = "Pexels"
-    
+    headline = "Salman Khan Screened Maatrubhumi for Bollywood's Inner Circle. Every Director Called It a Must-Watch."
+    subheadline = "The Galwan Valley war drama got its first reactions from Subhash Ghai, Kabir Khan, Sooraj Barjatya, and David Dhawan. No release date yet."
+    slug = "salman-khan-maatrubhumi-screening-subhash-ghai-kabir-khan-must-watch-nri-20260531"
+
+    body = """Salman Khan doesn't do quiet previews. When he screened a rough cut of Maatrubhumi: May War Rest in Peace for a handpicked group of Bollywood directors this week, the guest list read like a who's who of Hindi cinema's establishment: Subhash Ghai, Sooraj Barjatya, Kabir Khan, David Dhawan, Riteish Deshmukh, Chitrangda Singh, and Siddharth Roy Kapur.
+
+The verdict was unanimous — at least publicly. Subhash Ghai took to X to call it "a must watch film," describing it as "a warm story of Indo-China soldiers with their respective emotions for their nations and families." Writer-director Rumy Jafry, who also attended, echoed the sentiment: "The film is truly a must watch."
+
+## What Is Maatrubhumi About?
+
+Originally titled Battle of Galwan, the film is inspired by the June 2020 Galwan Valley clash between Indian and Chinese soldiers — the deadliest border confrontation between the two countries in decades. Twenty Indian soldiers and an unknown number of Chinese troops were killed in hand-to-hand combat at 14,000 feet in Ladakh's Aksai Chin region.
+
+Director Apoorva Lakhia has framed the story not as a jingoistic war film but as an emotional drama about soldiers and their families on both sides of the border. The title change from Battle of Galwan to Maatrubhumi: May War Rest in Peace reflects that shift — reportedly driven by sensitivities around depicting an ongoing geopolitical flashpoint.
+
+Salman Khan underwent intense physical training and filmed at high-altitude locations in Ladakh. Chitrangda Singh co-stars. Choreographer Mudassar Khan revealed that they shot a massive song sequence with 200 dancers over five days, calling Salman's performance "baap level."
+
+## The Release Date Problem
+
+Maatrubhumi was originally scheduled for April 17. It was postponed after the makers undertook roughly 40 days of reshoots to "revise certain portions and enhance narrative impact." No new date has been announced, though reports suggest a possible Independence Day weekend window — which would be August 2026.
+
+That delay matters commercially. Salman's last few theatrical releases have underperformed relative to his star power, and a patriotic war drama timed to Independence Day is a proven formula in Bollywood (Uri: The Surgical Strike, Gadar 2, and even Lakshya all benefited from nationalist sentiment around release timing).
+
+## Why NRIs Should Watch This Space
+
+The Galwan Valley clash resonated deeply across the Indian diaspora. It was one of those rare geopolitical events that cut through the noise — WhatsApp groups lit up, vigils were held in Silicon Valley and London, and the fallen soldiers became household names in NRI communities within days.
+
+A film that treats that event with nuance rather than chest-thumping nationalism could be significant. Ghai's description — "mutual peace and respect" — suggests the filmmakers are going for emotional depth over propaganda. Whether that translates to box office success in a market that rewards flag-waving spectacle is another question entirely.
+
+The screening's guest list itself tells a story. Sooraj Barjatya directed Salman in Maine Pyar Kiya and Hum Aapke Hain Koun. Kabir Khan made Bajrangi Bhaijaan and Ek Tha Tiger with him. David Dhawan gave him Partner and Biwi No. 1. These aren't film critics — they're collaborators with decades of shared history. Their approval is meaningful, but it's also expected.
+
+The real test comes when Maatrubhumi faces audiences. Until then, the early buzz is real — and the wait continues."""
+
+    sources = json.dumps([
+        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
+        {"name": "Bollywood Life", "url": "https://bollywoodlife.com"},
+        {"name": "Bollywood Bubble", "url": "https://bollywoodbubble.com"}
+    ])
+
+    img_url = fetch_wikipedia_person_image("Salman Khan")
+    if not img_url or not validate_image_url(img_url):
+        img_url = fetch_pexels_image("Indian army soldiers Ladakh", "Indian military")
+    if img_url and not validate_image_url(img_url):
+        img_url = None
+
     article = {
-        'headline': "Vashu Bhagnani Just Filed a ₹400 Crore Lawsuit Over Two Songs From Biwi No. 1. The Film They're In Opens June 5.",
-        'subheadline': "The 'Chunari Chunari' and 'Ishq Sona Hai' dispute could block the release of David Dhawan's Hai Jawani Toh Ishq Hona Hai, starring Varun Dhawan.",
-        'slug': 'vashu-bhagnani-400-crore-lawsuit-tips-biwi-no-1-chunari-chunari-hai-jawani-nri-20260531',
-        'image_url': image_url or '',
-        'image_attribution': image_attribution,
-        'sources': [
-            {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-            {"name": "Zoom TV Entertainment", "url": "https://zoomtventertainment.com"},
-            {"name": "India Forums", "url": "https://indiaforums.com"}
-        ],
-        'body': """There is a particular kind of chaos that only Bollywood can produce — the kind where a 27-year-old song, a father directing his son, a ₹400 crore lawsuit, and a June 5 release date all collide in the same week. Welcome to the *Hai Jawani Toh Ishq Hona Hai* saga.
-
-Veteran producer Vashu Bhagnani's Puja Entertainment has filed a ₹400 crore suit in the Bombay High Court against Tips Industries Limited, Ramesh Taurani, Kumar S. Taurani, and filmmaker David Dhawan. The allegation: two iconic songs from the 1999 blockbuster *Biwi No. 1* — **'Chunari Chunari'** and **'Ishq Sona Hai'** — were used in the upcoming Varun Dhawan-starrer without proper authorization.
-
-The film releases in six days. The court has reportedly permitted the filing and kept it for hearing soon. This could be one of the most explosive copyright battles in recent Bollywood history.
-
-## What Happened
-
-The dispute goes deeper than a simple remix controversy. According to Puja Entertainment's lawyer, Advocate VK Dubey, the original agreements between Puja Entertainment and Tips only covered audio rights — not video. In 2018, Tips reportedly approached Puja Entertainment asking for visual rights as well, but the request fell through.
-
-What happened next is the core of the lawsuit: Puja Entertainment claims it sent a formal notice cancelling even the audio rights, citing non-compliance with royalty terms.
-
-"After these rights were nullified, they should have gone to some court," Dubey told ANI. "You didn't go and you continued to use the music. Not just audio, but they continued to stream the songs on YouTube, Instagram, and other platforms."
-
-If the allegations hold, Tips not only used songs it no longer had rights to — it incorporated them into an entirely new film.
-
-## The Film in the Crosshairs
-
-*Hai Jawani Toh Ishq Hona Hai* stars Varun Dhawan, Mrunal Thakur, and Pooja Hegde, directed by David Dhawan — Varun's father. The CBFC has already cleared the film with a U/A rating and a 136-minute runtime. It's scheduled for a worldwide release on June 5.
-
-The lawsuit seeks an immediate injunction to halt the release, distribution, exhibition, and streaming of the film and its promotional material featuring the disputed songs. Bhagnani is also seeking an additional ₹100 crore in damages if David Dhawan and Tips refuse to change the film's title — which directly references 'Ishq Sona Hai.'
-
-PVR Inox Pictures has already issued a statement dismissing reports of a parallel legal dispute, calling certain claims "misleading." But the Bombay High Court filing is real, and the clock is ticking.
-
-## Why the Diaspora Should Pay Attention
-
-For NRIs who grew up in the late '90s, 'Chunari Chunari' isn't just a song — it's a generational marker. It played at every wedding, every Diwali party, every school cultural night from Edison to Southall. The idea that the rights to that song are contested — and that the contestation is happening days before a major release — is a reminder of how casually Bollywood has historically treated intellectual property.
-
-The Indian film industry's relationship with music rights has always been murky. Songs were traded, re-licensed, and remixed in handshake deals that worked fine until they didn't. What's different now is that the amounts involved (₹400 crore) and the legal infrastructure (Bombay High Court, formal injunction requests) suggest the industry is finally being forced to professionalize.
-
-If the court grants an injunction, *Hai Jawani Toh Ishq Hona Hai* could be delayed or forced into emergency re-edits days before release — a nightmare scenario for any production.
-
-## What Happens Next
-
-The court hearing is expected soon. The film's release date remains June 5 for now. Varun Dhawan has been actively promoting the film, recently clapping back at an influencer who accused him of faking reviews.
-
-Meanwhile, David Dhawan — who has said this will be his last film — is watching his farewell project become the center of a legal firestorm involving songs he didn't produce, rights he doesn't own, and a lawsuit filed by the man who made the original film that made those songs famous.
-
-Bollywood has always been a family business. This week, it's also a family lawsuit."""
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": sources,
+        "image_url": img_url,
+        "image_attribution": "Wikimedia Commons" if img_url and ("wikimedia" in img_url.lower() or "wikipedia" in img_url.lower()) else "The Videshi"
     }
-    
-    return publish_article(article)
+    return insert_article(article)
 
 
-# ─── ARTICLE 3: Ram Charan's Peddi — The ₹350 Crore Diaspora Bet ─────────────
+def write_kd_devil_ott():
+    """KD: The Devil hitting ZEE5 on June 5"""
+    print("\n📝 Writing: KD The Devil OTT release...")
 
-def write_ram_charan_peddi_article():
-    print("\n📝 Article 3: Ram Charan's Peddi")
-    
-    # Image: try Wikipedia for Ram Charan
-    image_url = fetch_wikipedia_person_image("Ram Charan")
-    image_attribution = "Wikimedia Commons"
-    
-    if not validate_image(image_url):
-        image_url = fetch_wikipedia_person_image("Ram Charan (actor)")
-        image_attribution = "Wikimedia Commons"
-    
-    if not validate_image(image_url):
-        image_url = fetch_pexels_image("Indian sports wrestling rural", "Indian village sports")
-        image_attribution = "Pexels"
-    
+    headline = "KD: The Devil Hits ZEE5 on June 5. Sanjay Dutt and Dhruva Sarja's Gangster Saga Gets a Second Life."
+    subheadline = "The Kannada period thriller underperformed in theatres but arrives on streaming in five languages — just in time for NRIs who missed it."
+    slug = "kd-the-devil-zee5-ott-release-june-5-dhruva-sarja-sanjay-dutt-nri-20260531"
+
+    body = """KD: The Devil had everything a pan-Indian blockbuster is supposed to have: a massive ensemble cast (Dhruva Sarja, Sanjay Dutt, Shilpa Shetty, Nora Fatehi, Sudeep in a cameo), a period gangster setting in 1970s Bengaluru, and a production scale that screamed event cinema. What it didn't have was an audience — at least not in theatres.
+
+Now, five weeks after its April 30 theatrical release, the Kannada action thriller is heading to ZEE5 on June 5 for its digital debut. It'll stream in Kannada, Telugu, Tamil, Malayalam, and Hindi — and for the diaspora, this might actually be where the film finds its footing.
+
+## What Went Wrong in Theatres
+
+Director Prem's ambitious gangster saga drew near-universal negative reviews upon release. Critics called the narrative unfocused, the runtime excessive, and the visual effects inconsistent despite the big budget. The box office numbers reflected that disconnect: in a year where Tamil and Malayalam films have been setting records, KD: The Devil couldn't sustain first-week momentum.
+
+The irony is that the film's building blocks were solid. The story follows Kalidasa — KD — a young man from humble beginnings who idolizes Dhak Deva (Sanjay Dutt), a feared underworld don. When a chain of betrayals drags KD's family into the don's crosshairs, the carefree youngster transforms into a reluctant warrior. It's a classic rise-of-the-underdog framework wrapped in period aesthetics, with the usual Kannada action cinema flair.
+
+## The Cast Is the Draw
+
+For NRI audiences who consume pan-Indian cinema primarily through OTT platforms, the cast alone makes this worth a look. Dhruva Sarja, fresh off the success of his prior Kannada hits, brings a raw, physical screen presence to the lead. Sanjay Dutt plays the menacing Dhak Deva — a role tailor-made for his late-career screen persona. Shilpa Shetty appears as Satyavati, Reeshma Nanaiah plays Macchu Lakshmi, and the supporting cast includes V. Ravichandran, Ramesh Aravind, and Jisshu Sengupta.
+
+Sudeep's special appearance generated conversation even before the film's release. And Nora Fatehi's item number as "Senorita" was among the few elements that drew unqualified praise.
+
+## June 5 Is a Crowded Day
+
+ZEE5 isn't the only platform dropping heavy content on June 5. Mammootty's spy thriller Patriot also premieres on ZEE5 the same day in five languages. JioHotstar is releasing Dhurandhar 2 Revenge for Indian audiences. In theatres, Ram Charan's Peddi opens on June 4 and will dominate conversation.
+
+For KD: The Devil, the OTT release is less about competing and more about redemption. Plenty of films that underperform theatrically — from Laal Singh Chaddha to Radhe — have found surprisingly engaged audiences on streaming platforms, especially among diaspora viewers who sample broadly and forgive theatrical flaws when they can watch at home.
+
+The end credits already announced a sequel: KD 2: Evil's Kingdom. Whether it gets made will depend largely on whether ZEE5 can turn this into a streaming hit. Stranger things have happened.
+
+## How to Watch
+
+KD: The Devil premieres on ZEE5 on June 5, 2026. Available in Kannada, Telugu, Tamil, Malayalam, and Hindi. ZEE5 subscriptions are available in the US, UK, Canada, and most diaspora markets."""
+
+    sources = json.dumps([
+        {"name": "Koimoi", "url": "https://koimoi.com"},
+        {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
+        {"name": "Cinema Express", "url": "https://cinemaexpress.com"},
+        {"name": "The Cinema Post", "url": "https://thecinemapost.com"}
+    ])
+
+    img_url = fetch_wikipedia_person_image("Dhruva Sarja")
+    if not img_url or not validate_image_url(img_url):
+        img_url = fetch_wikipedia_person_image("Sanjay Dutt")
+    if not img_url or not validate_image_url(img_url):
+        img_url = fetch_pexels_image("gangster 1970s India vintage", "Indian cinema action")
+    if img_url and not validate_image_url(img_url):
+        img_url = None
+
     article = {
-        'headline': "Ram Charan's ₹350 Crore Peddi Opens June 4. It Already Broke the Fastest Indian Pre-Sale Record in North America.",
-        'subheadline': "The Telugu sports-action drama hit $100K in US premiere bookings in just four hours — faster than Pushpa 2, Devara, and every other Indian film before it.",
-        'slug': 'ram-charan-peddi-350-crore-north-america-advance-booking-record-june-4-nri-20260531',
-        'image_url': image_url or '',
-        'image_attribution': image_attribution,
-        'sources': [
-            {"name": "Sacnilk", "url": "https://sacnilk.com"},
-            {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
-            {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"}
-        ],
-        'body': """The numbers for Ram Charan's *Peddi* don't look like numbers for an Indian film. They look like numbers for a Marvel premiere.
-
-In North America, the Telugu sports-action drama has already sold 10,000 tickets for its premiere shows — nearly three weeks before release. It crossed $100,000 in US pre-sales in just four hours, making it the fastest Indian film to reach that benchmark. As of mid-May, total North American premiere pre-sales had surpassed $300,000.
-
-For context, here's where *Peddi* stands against recent Telugu premieres in North America:
-
-- **Peddi**: $100K+ in 4 hours
-- **OG Movie**: $82K+ in 24 hours
-- **Devara Part 1**: $75K+ in 24 hours
-- **Pushpa 2**: $52K+ in 24 hours
-- **Salaar Part 1**: $40K+ in 24 hours
-
-The film releases worldwide on **June 4, 2026**, with North American premieres on June 3.
-
-## What Is Peddi?
-
-Directed by Buchi Babu Sana, *Peddi* is a sports-action drama about a young man from a village who is regarded as a legend in multiple disciplines — cricket, wrestling, running. As he navigates everyday life, he faces a defining test and tries to make a name for himself using the talent he's honed over years.
-
-It's described as a journey of self-discovery and excellence, with themes of personal rivalry and romance woven through the action. Think *Dangal* meets *Rangasthalam*, with A.R. Rahman composing the soundtrack.
-
-The cast includes **Janhvi Kapoor** as the female lead, alongside **Shiva Rajkumar**, **Jagapathi Babu**, **Divyenndu**, and **Boman Irani**.
-
-## ₹350 Crore and Two Delays
-
-The budget — reportedly around ₹350 crore — makes *Peddi* one of the most expensive Telugu films ever produced. It was originally scheduled for March 27, then pushed to April 30, and finally locked for June 4 after post-production delays. The makers made the shift when Yash's *Toxic* vacated the date.
-
-The delays created anxiety in trade circles, but the advance booking numbers have silenced most doubts. The Nizam theatrical rights alone were reportedly locked at ₹63 crore, one of the biggest regional deals in Telugu cinema history.
-
-Ram Charan recently addressed the importance of box office performance, telling ANI: "Good box office performance is related to the next film. You get the scope to experiment more. So numbers are important, but they are not the only thing."
-
-## Why the NRI Market Matters
-
-The $300K+ North American pre-sale isn't just a nice headline — it's a signal of where Indian cinema's economics are heading. For big-ticket Telugu films, the overseas market is no longer supplementary. It's structural.
-
-Ram Charan's post-*RRR* stardom has made him a genuinely global draw. The Telugu diaspora in the US and Canada has grown into one of the most organized film-going communities in North America, with premiere screenings functioning as community events. IMAX tickets for *Peddi* are priced at $35, with premium formats at $30 and standard at $25 — pricing that would have been unthinkable for an Indian film a decade ago.
-
-For the Indian diaspora watching from Edison, Fremont, Plano, and Mississauga, *Peddi* isn't just a movie. It's a test of whether a rural Telugu sports drama — with no English-language crossover play, no superhero IP, no franchise sequel safety net — can command Hollywood-scale ticket prices in American multiplexes.
-
-The advance booking suggests it can.
-
-## What's at Stake
-
-The Telugu film industry is watching *Peddi* closely because the economics are razor-thin at this budget level. At ₹350 crore, the film needs to gross at least ₹500-600 crore worldwide to be considered a financial success. The Telangana exhibitor dispute — where single-screen owners are demanding a shift from rental to percentage-sharing models — adds an additional layer of risk.
-
-The film's producer made an emotional appeal during a recent chamber meeting: "I spent 350 crores on this film. We have already postponed from March 27 and April 30. My film should not be affected by this percentage model conflict."
-
-Whether *Peddi* delivers or stumbles, it will define the ceiling for Telugu cinema's global ambitions in 2026. The premiere is in five days. The tickets are selling. The diaspora is watching."""
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": sources,
+        "image_url": img_url,
+        "image_attribution": "Wikimedia Commons" if img_url and ("wikimedia" in img_url.lower() or "wikipedia" in img_url.lower()) else "The Videshi"
     }
-    
-    return publish_article(article)
+    return insert_article(article)
 
 
-# ─── MAIN ─────────────────────────────────────────────────────────────────────
+def write_vicky_katrina_vihaan():
+    """Vicky Kaushal and Katrina Kaif introduce baby Vihaan to paparazzi"""
+    print("\n📝 Writing: Vicky-Katrina baby Vihaan...")
 
-if __name__ == '__main__':
+    headline = "Katrina Kaif and Vicky Kaushal Introduced Baby Vihaan to Mumbai's Paparazzi. Then They Set One Rule."
+    subheadline = "No photographs. The couple let photographers meet their six-month-old son at the airport but drew a clear line on images — following the Virat-Anushka playbook."
+    slug = "katrina-kaif-vicky-kaushal-baby-vihaan-paparazzi-airport-privacy-rule-nri-20260531"
+
+    body = """Katrina Kaif carried her six-month-old son Vihaan through Mumbai airport this week while Vicky Kaushal posed for the cameras. The couple introduced their baby to the paparazzi for the first time — and then asked them not to take his picture.
+
+It was vintage Katrina-Vicky: warm, deliberate, and completely controlled. A photographer at the scene described the interaction simply: "Katrina was with Vicky, but she asked not to be photographed with the baby and introduced the baby to the paparazzi."
+
+## The Playbook
+
+The Kohli-Sharma approach to celebrity children has become the template in Bollywood. Virat and Anushka have never publicly shared a photograph of their daughter Vamika's face (though one paparazzi image leaked and was swiftly condemned by fans and industry alike). Alia Bhatt and Ranbir Kapoor have been similarly protective of daughter Raha, though they've been more willing to share curated moments on their own terms.
+
+Katrina and Vicky appear to be charting a middle path. They didn't avoid the paparazzi. They walked through the airport, let Vicky take photos, and introduced Vihaan by name. But the no-photo request was firm. The message is clear: you can know our son exists. You can know his name. You cannot own his image.
+
+## Why This Matters Beyond Bollywood
+
+For the Indian diaspora, the evolution of celebrity privacy norms in India is fascinating because it tracks a cultural shift that NRIs often feel more acutely. In the US, UK, and Canada, the expectation of children's privacy — even for public figures — is deeply embedded. Paparazzi laws in California, anti-harassment legislation in the UK, and the general cultural norm of keeping kids off social media until they're old enough to consent have all reshaped how celebrity parents navigate visibility.
+
+In India, the paparazzi ecosystem operates differently. Airport arrivals and departures are a genre unto themselves — celebrity spotting at Mumbai's Chhatrapati Shivaji International Airport is content that feeds dozens of Instagram pages and YouTube channels daily. The unwritten rule has historically been: if you're at the airport, you're fair game.
+
+What Katrina and Vicky did was renegotiate that contract in real time. They showed up, engaged, and drew a line. The paparazzi, to their credit, apparently respected it. No unauthorized images of Vihaan have surfaced.
+
+## The Name That Started a Conversation
+
+When the couple revealed their son's name in January, the choice sparked instant recognition among Bollywood fans. Vihaan was the name of Vicky Kaushal's character in Uri: The Surgical Strike — the 2019 war drama that made him a household name and gave India one of its most quoted film dialogues: "How's the josh?"
+
+Whether the naming was intentional homage or coincidence, the connection is now permanently etched into the family's public narrative. For a couple that has managed to keep their relationship, wedding, pregnancy, and now their child largely on their own terms, it's a fitting detail — personal, meaningful, and shared only when they chose to share it.
+
+## A Private Couple in a Public Industry
+
+Katrina Kaif and Vicky Kaushal successfully kept their relationship hidden from the paparazzi throughout their courtship — no leaked dinner photos, no airport sightings together, nothing. Their December 2021 wedding at Six Senses Fort Barwara in Sawai Madhopur, Rajasthan, was an invitation-only affair with phones reportedly collected at the door.
+
+They welcomed Vihaan in November 2025 and announced it with a simple Instagram post: "Our bundle of joy has arrived."
+
+Katrina was last seen on screen in Merry Christmas opposite Vijay Sethupathi. Vicky delivered one of 2025's biggest Hindi films with Chhaava, which crossed ₹797 crore worldwide. Both careers are at a peak. Both have chosen to keep their son out of the content machine.
+
+In an industry where baby reveals generate millions of views and brand deals, that restraint is its own statement."""
+
+    sources = json.dumps([
+        {"name": "Bollywood Bubble", "url": "https://bollywoodbubble.com"},
+        {"name": "Bombay Times", "url": "https://bombaytimes.com"},
+        {"name": "Radio City", "url": "https://radiocity.in"}
+    ])
+
+    img_url = fetch_wikipedia_person_image("Katrina Kaif")
+    if not img_url or not validate_image_url(img_url):
+        img_url = fetch_wikipedia_person_image("Vicky Kaushal")
+    if not img_url or not validate_image_url(img_url):
+        img_url = fetch_pexels_image("Mumbai airport terminal", "airport departure India")
+    if img_url and not validate_image_url(img_url):
+        img_url = None
+
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": sources,
+        "image_url": img_url,
+        "image_attribution": "Wikimedia Commons" if img_url and ("wikimedia" in img_url.lower() or "wikipedia" in img_url.lower()) else "The Videshi"
+    }
+    return insert_article(article)
+
+
+# ── Main ──
+if __name__ == "__main__":
     print("=" * 60)
-    print("The Videshi — Entertainment Writer (2026-05-31)")
+    print(f"Entertainment Writer - {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     print("=" * 60)
-    
+
     results = []
-    results.append(("Karan Johar Digital Detox", write_karan_johar_article()))
-    results.append(("Vashu Bhagnani Lawsuit", write_vashu_bhagnani_article()))
-    results.append(("Ram Charan Peddi", write_ram_charan_peddi_article()))
-    
+    results.append(("Anushka Sharma One8 Yoga", write_anushka_sharma_one8_yoga()))
+    results.append(("Salman Khan Maatrubhumi", write_salman_khan_maatrubhumi()))
+    results.append(("KD The Devil OTT", write_kd_devil_ott()))
+    results.append(("Vicky-Katrina Baby Vihaan", write_vicky_katrina_vihaan()))
+
     print("\n" + "=" * 60)
     print("RESULTS:")
-    for name, success in results:
-        print(f"  {'✓' if success else '✗'} {name}")
+    for name, art_id in results:
+        status = "✓ Published" if art_id else "✗ Failed"
+        print(f"  {status}: {name}")
     
-    failures = sum(1 for _, s in results if not s)
-    if failures:
-        print(f"\n⚠ {failures} article(s) failed to publish")
-        sys.exit(1)
-    else:
-        print(f"\n✓ All {len(results)} articles published successfully")
+    success = sum(1 for _, aid in results if aid)
+    print(f"\n{success}/{len(results)} articles published successfully.")
+    print("=" * 60)
