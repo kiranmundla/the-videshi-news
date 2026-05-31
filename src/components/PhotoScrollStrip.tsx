@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { optimizeImageUrl, IMAGE_SIZES } from "@/lib/imageUrl";
 
 interface Photo {
   src: string;
@@ -130,7 +131,7 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
               boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
             }}>
               <img
-                src={photo.src}
+                src={optimizeImageUrl(photo.src, IMAGE_SIZES.gallery)}
                 alt={photo.caption}
                 loading="lazy"
                 style={{ width: "100%", height: "100%", objectFit: objectFit, display: "block", background: objectFit === "contain" ? "#111" : undefined }}
