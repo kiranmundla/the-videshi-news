@@ -1,9 +1,38 @@
 [
   {
+    "id": "gc-return-home-walkback",
+    "date": "2026-05-30",
+    "label": "May 30, 2026",
+    "headline": "DHS walks back Green Card return-home rule \u2014 now case-by-case",
+    "summary": "After backlash to the May 23 directive, DHS clarifies most green card applicants will NOT be required to leave the US. Adjustment of status called 'extraordinary relief' but officers decide case-by-case \u2014 no blanket exit mandate.",
+    "severity": "high",
+    "source": "Dept. of Homeland Security",
+    "url": "/immigration"
+  },
+  {
+    "id": "eb2-india-exhausted",
+    "date": "2026-05-27",
+    "label": "May 27, 2026",
+    "headline": "EB-2 India green card quota fully exhausted for FY2026",
+    "summary": "All EB-2 immigrant visa numbers for India used up. Final Action Date retrogressed to Sep 2013. No new EB-2 green cards for Indians until FY2027 begins Oct 2026.",
+    "severity": "high",
+    "source": "US State Department"
+  },
+  {
+    "id": "rubio-freezes-student-visas",
+    "date": "2026-05-26",
+    "label": "May 26, 2026",
+    "headline": "Rubio freezes student visa appointments worldwide",
+    "summary": "US State Department halts all new F-1 visa appointments. Indian fall enrollments already in freefall.",
+    "severity": "high",
+    "source": "US State Department",
+    "url": "/articles/rubio-freezes-student-visa-appointments-india-fall-enrollment-20260526"
+  },
+  {
     "id": "appus-launch",
     "date": "2026-05-24",
     "label": "May 24, 2026",
-    "headline": "Rubio launches \"AppUS\" — new America First visa scheduling tool",
+    "headline": "Rubio launches \"AppUS\" \u2014 new America First visa scheduling tool",
     "summary": "Prioritises business professionals who strengthen US-India commercial ties. Announced during Rubio's first India visit as Secretary of State.",
     "severity": "high",
     "source": "US State Department",
@@ -14,7 +43,7 @@
     "date": "2026-05-23",
     "label": "May 23, 2026",
     "headline": "Green Card applicants must return to home country to apply",
-    "summary": "US government announces that those seeking a Green Card must now return to their home countries to file — a major shift affecting thousands of Indian applicants.",
+    "summary": "US government announces that those seeking a Green Card must now return to their home countries to file \u2014 a major shift affecting thousands of Indian applicants. (Update: DHS partially walked this back on May 30.)",
     "severity": "high",
     "source": "US State Department",
     "url": "/immigration"
@@ -30,16 +59,6 @@
     "url": "/articles/kolkata-us-consulate-b1b2-visa-pilot-parents-priority-20260529"
   },
   {
-    "id": "interview-waiver-eliminated",
-    "date": "2025-09-02",
-    "label": "Sep 2025",
-    "headline": "Interview waiver eliminated for work & student visas",
-    "summary": "H-1B, H-4, L-1, F-1, J-1, O-1 applicants no longer qualify for interview waiver. All must attend in-person interviews.",
-    "severity": "high",
-    "source": "US State Department",
-    "url": "/immigration/guides/visa-interview-prep"
-  },
-  {
     "id": "social-media-screening",
     "date": "2025-12-15",
     "label": "Dec 2025",
@@ -50,13 +69,13 @@
     "url": "/immigration/guides/social-media-screening"
   },
   {
-    "id": "rubio-freezes-student-visas",
-    "date": "2026-05-26",
-    "label": "May 26, 2026",
-    "headline": "Rubio freezes student visa appointments worldwide",
-    "summary": "US State Department halts all new F-1 visa appointments. Indian fall enrollments already in freefall.",
+    "id": "interview-waiver-eliminated",
+    "date": "2025-09-02",
+    "label": "Sep 2025",
+    "headline": "Interview waiver eliminated for work & student visas",
+    "summary": "H-1B, H-4, L-1, F-1, J-1, O-1 applicants no longer qualify for interview waiver. All must attend in-person interviews.",
     "severity": "high",
     "source": "US State Department",
-    "url": "/articles/rubio-freezes-student-visa-appointments-india-fall-enrollment-20260526"
+    "url": "/immigration/guides/visa-interview-prep"
   }
 ]
