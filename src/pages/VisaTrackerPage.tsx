@@ -707,7 +707,7 @@ function buildTimeBlocks(userOffset: number, useIST: boolean) {
     const localStart = istToLocal(b.istStart, offset);
     const localEnd = istToLocal(b.istEnd, offset);
     return {
-      label: labels[i],
+      label: `${labels[i]} IST`,
       sublabel: `${fmtHour(localStart)} – ${fmtHour(localEnd)}`,
       start: b.istStart, // keep IST for data matching
       end: b.istEnd,
