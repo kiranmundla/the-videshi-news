@@ -392,19 +392,84 @@ function ReportForm({ onSubmitted }: { onSubmitted: () => void }) {
 /* ------------------------------------------------------------------ */
 /* Slot Drop Patterns — Heatmap                                       */
 /* ------------------------------------------------------------------ */
-const TIME_BLOCKS = [
-  { label: "Late Night",    sublabel: "10 PM – 2 AM", start: 22, end: 2 },
-  { label: "Early Morning", sublabel: "2 AM – 6 AM",  start: 2,  end: 6 },
-  { label: "Morning",       sublabel: "6 AM – 12 PM", start: 6,  end: 12 },
-  { label: "Afternoon",     sublabel: "12 – 6 PM",    start: 12, end: 18 },
-  { label: "Evening",       sublabel: "6 PM – 10 PM", start: 18, end: 22 },
-] as const;
+
+/** IST offset from UTC in hours */
+const IST_OFFSET = 5.5;
+
+/** Get user's UTC offset in hours (e.g. PST = -7, EST = -4) */
+function getUserUTCOffset(): number {
+  return -(new Date().getTimezoneOffset() / 60);
+}
+
+/** Get short timezone label like "PST", "EST", "IST" */
+function getUserTZLabel(): string {
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", { timeZoneName: "short" }).formatToParts(new Date());
+    const tz = parts.find((p) => p.type === "timeZoneName");
+    return tz?.value ?? "Local";
+  } catch {
+    return "Local";
+  }
+}
+
+/** Convert an IST hour to user's local hour */
+function istToLocal(istHour: number, userOffset: number): number {
+  const utcHour = istHour - IST_OFFSET;
+  let local = utcHour + userOffset;
+  // Normalize to 0-24
+  while (local < 0) local += 24;
+  while (local >= 24) local -= 24;
+  return local;
+}
+
+/** Format an hour as 12h string */
+function fmtHour(h: number): string {
+  const hr = Math.floor(h);
+  const min = Math.round((h - hr) * 60);
+  const ampm = hr >= 12 ? "PM" : "AM";
+  const h12 = hr === 0 ? 12 : hr > 12 ? hr - 12 : hr;
+  return min > 0 ? `${h12}:${min.toString().padStart(2, "0")} ${ampm}` : `${h12} ${ampm}`;
+}
+
+/** Build time blocks for a given timezone offset */
+function buildTimeBlocks(userOffset: number, useIST: boolean) {
+  const offset = useIST ? IST_OFFSET : userOffset;
+  // Canonical blocks in IST
+  const istBlocks = [
+    { istStart: 22, istEnd: 2 },
+    { istStart: 2,  istEnd: 6 },
+    { istStart: 6,  istEnd: 12 },
+    { istStart: 12, istEnd: 18 },
+    { istStart: 18, istEnd: 22 },
+  ];
+  const labels = ["Late Night", "Early Morning", "Morning", "Afternoon", "Evening"];
+
+  if (useIST) {
+    return istBlocks.map((b, i) => ({
+      label: labels[i],
+      sublabel: `${fmtHour(b.istStart)} – ${fmtHour(b.istEnd)}`,
+      start: b.istStart,
+      end: b.istEnd,
+    }));
+  }
+
+  // Convert to user's local TZ
+  return istBlocks.map((b, i) => {
+    const localStart = istToLocal(b.istStart, offset);
+    const localEnd = istToLocal(b.istEnd, offset);
+    return {
+      label: labels[i],
+      sublabel: `${fmtHour(localStart)} – ${fmtHour(localEnd)}`,
+      start: b.istStart, // keep IST for data matching
+      end: b.istEnd,
+    };
+  });
+}
 
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
 
 /** Try to extract hour (IST) from a sighting description. */
 function extractISTHour(desc: string): number | null {
-  // Match patterns like "1:30 AM IST", "12:01 AM IST", "11:45 PM IST", "midnight"
   const ampm = desc.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)\s*IST/i);
   if (ampm) {
     let h = parseInt(ampm[1], 10);
@@ -419,30 +484,42 @@ function extractISTHour(desc: string): number | null {
 
 /** Try to extract day-of-week from a sighting description. */
 function extractDayOfWeek(desc: string, createdAt: string): number {
-  // Check description for explicit day mentions
   const dayNames = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
   const lower = desc.toLowerCase();
   for (let i = 0; i < dayNames.length; i++) {
     if (lower.includes(dayNames[i]) || lower.includes(dayNames[i].slice(0, 3))) {
-      return i; // 0=Mon
+      return i;
     }
   }
-  // Fall back to created_at timestamp day
   const d = new Date(createdAt);
-  const js = d.getUTCDay(); // 0=Sun
-  return js === 0 ? 6 : js - 1; // convert to 0=Mon
+  const js = d.getUTCDay();
+  return js === 0 ? 6 : js - 1;
 }
 
-function inTimeBlock(hour: number, block: typeof TIME_BLOCKS[number]): boolean {
+function inTimeBlock(hour: number, block: { start: number; end: number }): boolean {
   if (block.start < block.end) {
     return hour >= block.start && hour < block.end;
   }
-  // Wraps midnight: e.g. 22–2
   return hour >= block.start || hour < block.end;
 }
 
 function SlotPatterns({ sightings, filterConsulate }: { sightings: VisaSighting[]; filterConsulate: string }) {
   const [heatConsulate, setHeatConsulate] = useState("");
+  const [useIST, setUseIST] = useState(true);
+
+  const userOffset = useMemo(() => getUserUTCOffset(), []);
+  const userTZ = useMemo(() => getUserTZLabel(), []);
+  const isUserIST = Math.abs(userOffset - IST_OFFSET) < 1; // within 1 hr of IST, default to IST
+
+  const timeBlocks = useMemo(() => buildTimeBlocks(userOffset, useIST), [userOffset, useIST]);
+
+  // Peak window in user's TZ
+  const peakLabel = useMemo(() => {
+    if (useIST) return "Wednesday – Thursday, 11 PM – 1 AM IST";
+    const localStart = istToLocal(23, userOffset);
+    const localEnd = istToLocal(1, userOffset);
+    return `Wednesday – Thursday, ${fmtHour(localStart)} – ${fmtHour(localEnd)} ${userTZ}`;
+  }, [useIST, userOffset, userTZ]);
 
   const activeSightings = useMemo(() => {
     const c = heatConsulate || filterConsulate;
@@ -451,26 +528,25 @@ function SlotPatterns({ sightings, filterConsulate }: { sightings: VisaSighting[
 
   // Build heatmap grid: [timeBlock][dayOfWeek] = count
   const { grid, maxCount } = useMemo(() => {
-    const g: number[][] = TIME_BLOCKS.map(() => DAYS.map(() => 0));
+    const g: number[][] = timeBlocks.map(() => DAYS.map(() => 0));
     for (const s of activeSightings) {
       const hour = extractISTHour(s.description);
       const day = extractDayOfWeek(s.description, s.created_at);
       if (hour !== null) {
-        for (let t = 0; t < TIME_BLOCKS.length; t++) {
-          if (inTimeBlock(hour, TIME_BLOCKS[t])) {
+        for (let t = 0; t < timeBlocks.length; t++) {
+          if (inTimeBlock(hour, timeBlocks[t])) {
             g[t][day]++;
             break;
           }
         }
       } else {
-        // No time parsed — distribute to late night (most common pattern)
         g[0][day] += 0.5;
       }
     }
     let mx = 0;
     for (const row of g) for (const v of row) if (v > mx) mx = v;
     return { grid: g, maxCount: mx };
-  }, [activeSightings]);
+  }, [activeSightings, timeBlocks]);
 
   // Parse slot lifespans from descriptions
   const avgLifespan = useMemo(() => {
@@ -504,7 +580,16 @@ function SlotPatterns({ sightings, filterConsulate }: { sightings: VisaSighting[
                 ⏰ When Do Slots Drop?
               </h2>
               <p className="text-xs text-foreground/50 mt-1">
-                Heatmap of community sightings by day & time (IST)
+                Heatmap of community sightings by day & time
+                {!isUserIST && (
+                  <button
+                    onClick={() => setUseIST(!useIST)}
+                    className="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full border border-primary/20 text-primary hover:bg-primary/5 transition-colors text-[10px] font-semibold"
+                  >
+                    🌐 {useIST ? `Show in ${userTZ}` : "Show in IST"}
+                  </button>
+                )}
+                {isUserIST && <span className="ml-1 text-foreground/35">(IST)</span>}
               </p>
             </div>
             <select
@@ -526,10 +611,10 @@ function SlotPatterns({ sightings, filterConsulate }: { sightings: VisaSighting[
             <span className="text-lg flex-shrink-0 mt-0.5">💡</span>
             <div>
               <p className="text-sm font-semibold text-foreground/85">
-                Peak window: <span className="text-amber-600">Wednesday – Thursday, 11 PM – 1 AM IST</span>
+                Peak window: <span className="text-amber-600">{peakLabel}</span>
               </p>
               <p className="text-xs text-foreground/50 mt-0.5 leading-relaxed">
-                Based on community reports and cross-referenced data, most new appointment slots appear during the late-night Wednesday window. Set an alarm and refresh at midnight IST.
+                Based on community reports and cross-referenced data, most new appointment slots appear during the late-night Wednesday window.{useIST ? " Set an alarm and refresh at midnight IST." : ` That's ${fmtHour(istToLocal(0, userOffset))} ${userTZ} for you.`}
               </p>
             </div>
           </div>
@@ -554,7 +639,7 @@ function SlotPatterns({ sightings, filterConsulate }: { sightings: VisaSighting[
               </div>
 
               {/* Time block rows */}
-              {TIME_BLOCKS.map((block, ti) => (
+              {timeBlocks.map((block, ti) => (
                 <div key={block.label} className="grid grid-cols-[120px_repeat(7,1fr)] gap-1.5 mb-1.5">
                   <div className="flex flex-col justify-center pr-2 text-right">
                     <span className={`text-[11px] font-semibold leading-tight ${
@@ -743,203 +828,192 @@ export default function VisaTrackerPage() {
             {/* ── Slot Drop Patterns ──────────────────────────── */}
             <SlotPatterns sightings={sightings} filterConsulate={filterConsulate} />
 
-            {/* ── Two-Column Layout ────────────────────────────── */}
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
-              {/* ── Left: Sighting Feed ──────────────────────── */}
-              <div>
-                <div className="flex items-center justify-between mb-5">
-                  <h2 className="font-serif text-xl font-bold flex items-center gap-2">
-                    📡 Community Sightings
-                    <span className="text-xs font-normal text-foreground/40 ml-1">
-                      {filtered.length} report{filtered.length !== 1 && "s"}
-                    </span>
-                  </h2>
-                </div>
-
-                {/* ── Filter Pills ──────────────────────────── */}
-                <div className="mb-5 space-y-2">
-                  <div className="flex flex-wrap gap-2">
-                    <button className={pillClass(!filterConsulate)} onClick={() => setFilterConsulate("")}>
-                      All Consulates
-                    </button>
-                    {CONSULATES.map((c) => (
-                      <button key={c} className={pillClass(filterConsulate === c)} onClick={() => setFilterConsulate(filterConsulate === c ? "" : c)}>
-                        {CONSULATE_LABELS[c]}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <button className={pillClass(!filterVisa)} onClick={() => setFilterVisa("")}>
-                      All Types
-                    </button>
-                    {VISA_TYPES.map((v) => (
-                      <button key={v} className={pillClass(filterVisa === v)} onClick={() => setFilterVisa(filterVisa === v ? "" : v)}>
-                        {v}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* ── Sighting Cards ─────────────────────────── */}
-                <div className="space-y-3">
-                  {filtered.length === 0 ? (
-                    <div className="text-center py-12 bg-card border border-border rounded-xl">
-                      <p className="text-foreground/40 text-sm">No sightings match the current filters.</p>
-                      <button
-                        onClick={() => { setFilterConsulate(""); setFilterVisa(""); }}
-                        className="mt-2 text-primary text-sm font-medium hover:underline"
-                      >
-                        Clear filters
-                      </button>
+            {/* ── Latest Updates ──────────────────────────────── */}
+            {updates.length > 0 && (
+            <section className="mb-10">
+              <div className="bg-card border border-border rounded-xl p-6">
+                <h3 className="font-serif font-bold text-lg mb-4 flex items-center gap-2">
+                  📰 Latest Updates
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {updates.map((u) => (
+                    <div key={u.id} className="border border-border rounded-lg p-4 hover:border-primary/30 transition-colors">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">{u.label}</span>
+                      {u.url ? (
+                        <Link to={u.url} className="block mt-1 font-medium text-sm text-foreground/90 hover:text-primary transition-colors leading-snug">
+                          {u.headline} →
+                        </Link>
+                      ) : (
+                        <p className="mt-1 font-medium text-sm text-foreground/90 leading-snug">{u.headline}</p>
+                      )}
+                      <p className="mt-1.5 text-xs text-foreground/60 leading-relaxed">{u.summary}</p>
                     </div>
-                  ) : (
-                    filtered.map((s) => <SightingCard key={s.id} s={s} />)
-                  )}
+                  ))}
                 </div>
+              </div>
+            </section>
+            )}
 
-                {/* ── Report Form ─────────────────────────────── */}
-                <div id="report" className="mt-10 scroll-mt-20">
-                  <ReportForm onSubmitted={load} />
+            {/* ── Notification + Guides Row ──────────────────── */}
+            <section className="mb-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Visa Slot Alerts */}
+              <div className="bg-gradient-to-b from-green-500/10 to-emerald-500/5 border border-green-500/20 rounded-xl p-6">
+                <h3 className="font-serif font-bold text-lg mb-1 flex items-center gap-2">
+                  🔔 Visa Slot Alerts
+                </h3>
+                <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-500/15 text-green-700 text-[10px] font-bold uppercase tracking-wider mb-2">
+                  Free during launch
+                </div>
+                <p className="text-sm text-foreground/60 leading-relaxed mb-4">
+                  Get notified instantly when new appointment slots open or when policy changes affect your visa type.
+                </p>
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const form = e.target as HTMLFormElement;
+                    const emailEl = form.elements.namedItem("alert_email") as HTMLInputElement;
+                    const waEl = form.elements.namedItem("alert_whatsapp") as HTMLInputElement;
+                    const typeEl = form.elements.namedItem("alert_type") as HTMLSelectElement;
+                    if (!emailEl.value && !waEl.value) { alert("Please enter at least an email or WhatsApp number."); return; }
+                    try {
+                      const { createClient } = await import("@supabase/supabase-js");
+                      const sb = createClient(
+                        import.meta.env.VITE_SUPABASE_URL,
+                        import.meta.env.VITE_SUPABASE_ANON_KEY
+                      );
+                      const channels: string[] = [];
+                      if (emailEl.value) channels.push("email");
+                      if (waEl.value) channels.push("whatsapp");
+                      await sb.from("visa_alert_subscribers").upsert({
+                        email: emailEl.value || `wa-${waEl.value}@placeholder.local`,
+                        whatsapp: waEl.value || null,
+                        visa_type: typeEl.value || "all",
+                        channel: channels.join(","),
+                        subscribed_at: new Date().toISOString(),
+                        active: true,
+                      }, { onConflict: "email" });
+                      emailEl.value = "";
+                      waEl.value = "";
+                      alert("You're in! We'll notify you when slots open. 🎉");
+                    } catch {
+                      alert("Something went wrong — try again.");
+                    }
+                  }}
+                  className="space-y-2"
+                >
+                  <input name="alert_email" type="email" placeholder="your@email.com" className="w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors" />
+                  <div className="relative">
+                    <input name="alert_whatsapp" type="tel" disabled placeholder="WhatsApp — coming soon" className="w-full rounded-lg border border-border bg-foreground/[0.03] px-3 py-2.5 text-sm text-foreground/30 cursor-not-allowed" />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-semibold uppercase tracking-wider text-foreground/30">Soon</span>
+                  </div>
+                  <select name="alert_type" className="w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground/70 focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors">
+                    <option value="all">All visa types</option>
+                    <option value="B1B2">B1/B2 (Visitor)</option>
+                    <option value="H-1B">H-1B</option>
+                    <option value="H-4">H-4</option>
+                    <option value="F-1">F-1 (Student)</option>
+                    <option value="L-1">L-1</option>
+                    <option value="O-1">O-1</option>
+                  </select>
+                  <button type="submit" className="w-full bg-green-600 text-white text-sm font-semibold py-2.5 rounded-lg hover:bg-green-500 transition-colors">
+                    Get Free Alerts
+                  </button>
+                </form>
+                <p className="text-[11px] text-foreground/40 mt-3 leading-relaxed">
+                  This is a premium service offered free during our launch period. No credit card needed.
+                </p>
+              </div>
+
+              {/* Visa Guides */}
+              <div className="bg-card border border-border rounded-xl p-6 flex flex-col">
+                <h3 className="font-serif font-bold text-lg mb-4 flex items-center gap-2">
+                  📚 Visa Guides
+                </h3>
+                <ul className="text-sm text-foreground/70 space-y-3 leading-relaxed flex-1">
+                  <li><Link to="/immigration/guides/visa-interview-prep" className="flex items-center gap-2 hover:text-primary transition-colors">🏛️ Interview prep & document checklist →</Link></li>
+                  <li><Link to="/immigration/guides/visa-interview-mistakes" className="flex items-center gap-2 hover:text-primary transition-colors">🚫 What NOT to say to the officer →</Link></li>
+                  <li><Link to="/immigration/guides/social-media-screening" className="flex items-center gap-2 hover:text-primary transition-colors">📱 Social media screening guide →</Link></li>
+                  <li><Link to="/immigration/guides/after-visa-interview" className="flex items-center gap-2 hover:text-primary transition-colors">📬 After your interview — what to expect →</Link></li>
+                  <li><Link to="/immigration/guides/third-country-stamping" className="flex items-center gap-2 hover:text-primary transition-colors">🌍 Third-country stamping guide →</Link></li>
+                </ul>
+                <Link to="/immigration/guides" className="text-sm text-primary font-medium mt-4 flex items-center gap-1 hover:gap-2 transition-all">
+                  Read all guides <ChevronRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </section>
+
+            {/* ── Report a Sighting ──────────────────────────── */}
+            <section className="mb-10" id="report">
+              <ReportForm onSubmitted={load} />
+            </section>
+
+            {/* ── Community Sightings Feed ────────────────────── */}
+            <section className="mb-10">
+              <div className="flex items-center justify-between mb-5">
+                <h2 className="font-serif text-xl font-bold flex items-center gap-2">
+                  📡 Community Sightings
+                  <span className="text-xs font-normal text-foreground/40 ml-1">
+                    {filtered.length} report{filtered.length !== 1 && "s"}
+                  </span>
+                </h2>
+              </div>
+
+              {/* ── Filter Pills ──────────────────────────── */}
+              <div className="mb-5 space-y-2">
+                <div className="flex flex-wrap gap-2">
+                  <button className={pillClass(!filterConsulate)} onClick={() => setFilterConsulate("")}>
+                    All Consulates
+                  </button>
+                  {CONSULATES.map((c) => (
+                    <button key={c} className={pillClass(filterConsulate === c)} onClick={() => setFilterConsulate(filterConsulate === c ? "" : c)}>
+                      {CONSULATE_LABELS[c]}
+                    </button>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <button className={pillClass(!filterVisa)} onClick={() => setFilterVisa("")}>
+                    All Types
+                  </button>
+                  {VISA_TYPES.map((v) => (
+                    <button key={v} className={pillClass(filterVisa === v)} onClick={() => setFilterVisa(filterVisa === v ? "" : v)}>
+                      {v}
+                    </button>
+                  ))}
                 </div>
               </div>
 
-              {/* ── Right Sidebar ────────────────────────────── */}
-              <aside className="space-y-6">
-                {/* Visa Alerts Signup — top of sidebar */}
-                <div className="bg-gradient-to-b from-green-500/10 to-emerald-500/5 border border-green-500/20 rounded-xl p-5">
-                  <h4 className="font-serif font-bold text-sm mb-1 flex items-center gap-2">
-                    🔔 Visa Slot Alerts
-                  </h4>
-                  <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-500/15 text-green-700 text-[10px] font-bold uppercase tracking-wider mb-2">
-                    Free during launch
-                  </div>
-                  <p className="text-xs text-foreground/60 leading-relaxed mb-3">
-                    Get notified instantly when new appointment slots open or when policy changes affect your visa type.
-                  </p>
-                  <form
-                    onSubmit={async (e) => {
-                      e.preventDefault();
-                      const form = e.target as HTMLFormElement;
-                      const emailEl = form.elements.namedItem("alert_email") as HTMLInputElement;
-                      const waEl = form.elements.namedItem("alert_whatsapp") as HTMLInputElement;
-                      const typeEl = form.elements.namedItem("alert_type") as HTMLSelectElement;
-                      if (!emailEl.value && !waEl.value) { alert("Please enter at least an email or WhatsApp number."); return; }
-                      try {
-                        const { createClient } = await import("@supabase/supabase-js");
-                        const sb = createClient(
-                          import.meta.env.VITE_SUPABASE_URL,
-                          import.meta.env.VITE_SUPABASE_ANON_KEY
-                        );
-                        const channels: string[] = [];
-                        if (emailEl.value) channels.push("email");
-                        if (waEl.value) channels.push("whatsapp");
-                        await sb.from("visa_alert_subscribers").upsert({
-                          email: emailEl.value || `wa-${waEl.value}@placeholder.local`,
-                          whatsapp: waEl.value || null,
-                          visa_type: typeEl.value || "all",
-                          channel: channels.join(","),
-                          subscribed_at: new Date().toISOString(),
-                          active: true,
-                        }, { onConflict: "email" });
-                        emailEl.value = "";
-                        waEl.value = "";
-                        alert("You're in! We'll notify you when slots open. 🎉");
-                      } catch {
-                        alert("Something went wrong — try again.");
-                      }
-                    }}
-                    className="space-y-2"
-                  >
-                    <input name="alert_email" type="email" placeholder="your@email.com" className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors" />
-                    <div className="relative">
-                      <input name="alert_whatsapp" type="tel" disabled placeholder="WhatsApp — coming soon" className="w-full rounded-lg border border-border bg-foreground/[0.03] px-3 py-2 text-xs text-foreground/30 cursor-not-allowed" />
-                      <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] font-semibold uppercase tracking-wider text-foreground/30">Soon</span>
-                    </div>
-                    <select name="alert_type" className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground/70 focus:outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 transition-colors">
-                      <option value="all">All visa types</option>
-                      <option value="B1B2">B1/B2 (Visitor)</option>
-                      <option value="H-1B">H-1B</option>
-                      <option value="H-4">H-4</option>
-                      <option value="F-1">F-1 (Student)</option>
-                      <option value="L-1">L-1</option>
-                      <option value="O-1">O-1</option>
-                    </select>
-                    <button type="submit" className="w-full bg-green-600 text-white text-xs font-semibold py-2 rounded-lg hover:bg-green-500 transition-colors">
-                      Get Free Alerts
+              {/* ── Sighting Cards ─────────────────────────── */}
+              <div className="space-y-3">
+                {filtered.length === 0 ? (
+                  <div className="text-center py-12 bg-card border border-border rounded-xl">
+                    <p className="text-foreground/40 text-sm">No sightings match the current filters.</p>
+                    <button
+                      onClick={() => { setFilterConsulate(""); setFilterVisa(""); }}
+                      className="mt-2 text-primary text-sm font-medium hover:underline"
+                    >
+                      Clear filters
                     </button>
-                  </form>
-                  <p className="text-[10px] text-foreground/40 mt-2 leading-relaxed">
-                    This is a premium service offered free during our launch period. No credit card needed.
-                  </p>
-                </div>
-
-                {/* Latest Updates */}
-                {updates.length > 0 && (
-                <div className="bg-card border border-border rounded-xl p-5">
-                  <h4 className="font-serif font-bold text-sm mb-3 flex items-center gap-2">
-                    📰 Latest Updates
-                  </h4>
-                  <ul className="text-xs text-foreground/70 space-y-3 leading-relaxed">
-                    {updates.map((u, i) => (
-                      <li key={u.id} className={i < updates.length - 1 ? "border-b border-border pb-2.5" : ""}>
-                        <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/70">{u.label}</span>
-                        {u.url ? (
-                          <Link to={u.url} className="block mt-0.5 font-medium text-foreground/90 hover:text-primary transition-colors">
-                            {u.headline} →
-                          </Link>
-                        ) : (
-                          <p className="mt-0.5 font-medium text-foreground/90">{u.headline}</p>
-                        )}
-                        <p className="mt-0.5">{u.summary}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  </div>
+                ) : (
+                  filtered.map((s) => <SightingCard key={s.id} s={s} />)
                 )}
+              </div>
+            </section>
 
-                <ThankYouWall sightings={sightings} />
+            {/* ── Thank You Wall ──────────────────────────────── */}
+            <section className="mb-10">
+              <ThankYouWall sightings={sightings} />
+            </section>
 
-                {/* How it works */}
-                <div className="bg-card border border-border rounded-xl p-5">
-                  <h4 className="font-serif font-bold text-sm mb-3 flex items-center gap-2">
-                    💡 How This Works
-                  </h4>
-                  <ol className="text-xs text-foreground/60 space-y-2 list-decimal list-inside leading-relaxed">
-                    <li>Check <a href="https://www.ustraveldocs.com/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">ustraveldocs.com</a> for open slots</li>
-                    <li>Spot available dates? Report them here</li>
-                    <li>Others see your sighting and can book their slot</li>
-                    <li>You appear on the Community Spotters wall 🙏</li>
-                  </ol>
-                </div>
-
-                {/* Visa Guides */}
-                <Link to="/immigration/guides" className="block bg-card border border-border rounded-xl p-5 hover:border-primary/40 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5 group">
-                  <h4 className="font-serif font-bold text-sm mb-2 flex items-center gap-2 group-hover:text-primary transition-colors">
-                    📚 Visa Guides
-                  </h4>
-                  <ul className="text-xs text-foreground/60 space-y-1.5 leading-relaxed">
-                    <li className="flex items-center gap-1.5">🏛️ <span>Interview prep & document checklist</span></li>
-                    <li className="flex items-center gap-1.5">🚫 <span>What NOT to say to the officer</span></li>
-                    <li className="flex items-center gap-1.5">📱 <span>Social media screening guide</span></li>
-                    <li className="flex items-center gap-1.5">📬 <span>After your interview — what to expect</span></li>
-                    <li className="flex items-center gap-1.5">🌍 <span>Third-country stamping guide</span></li>
-                  </ul>
-                  <p className="text-xs text-primary font-medium mt-3 flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Read all guides <ChevronRight className="h-3 w-3" />
-                  </p>
-                </Link>
-
-                {/* Disclaimer */}
-                <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
-                  <p className="text-[11px] text-foreground/50 leading-relaxed">
-                    <span className="font-semibold text-foreground/70">Data Source Note:</span>{" "}
-                    Official wait times are from the US State Department. Community sightings are
-                    user-reported observations — we never scrape or automate access to
-                    ustraveldocs.com. Slot availability changes rapidly; always verify on the
-                    official site before booking.
-                  </p>
-                </div>
-              </aside>
+            {/* ── Disclaimer ─────────────────────────────────── */}
+            <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4 mb-10">
+              <p className="text-[11px] text-foreground/50 leading-relaxed">
+                <span className="font-semibold text-foreground/70">Data Source Note:</span>{" "}
+                Official wait times are from the US State Department. Community sightings are
+                user-reported observations — we never scrape or automate access to
+                ustraveldocs.com. Slot availability changes rapidly; always verify on the
+                official site before booking.
+              </p>
             </div>
           </>
         )}
