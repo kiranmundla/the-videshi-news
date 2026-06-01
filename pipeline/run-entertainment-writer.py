@@ -1,25 +1,29 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — publishes 3 articles with images."""
+"""Entertainment writer for The Videshi — June 1, 2026 batch."""
 
-import json, os, re, requests, time, uuid, urllib.parse
-from datetime import datetime, timezone
+import json, os, re, sys, time, uuid, urllib.parse
+import requests
 
 # Load env
 def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                if line.startswith('export '):
+                    line = line[7:]
+                key, val = line.split('=', 1)
+                val = val.strip().strip('"').strip("'")
+                os.environ[key] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
 HEADERS = {
@@ -29,51 +33,35 @@ HEADERS = {
     'Prefer': 'return=representation'
 }
 
-def sb_insert(table, data):
-    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 201):
-        result = r.json()
-        return result[0] if isinstance(result, list) else result
-    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
-    return None
-
-def sb_patch(table, match, data):
-    params = '&'.join(f"{k}={v}" for k, v in match.items())
-    r = requests.patch(f"{SUPABASE_URL}/rest/v1/{table}?{params}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 204):
-        return True
-    print(f"  ✗ Patch failed ({r.status_code}): {r.text[:200]}")
-    return False
-
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com; editorial)"},
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
             timeout=10
         )
         if r.status_code == 200:
             data = r.json()
-            # Use thumbnail (330px, always works) — originalimage may 429
+            # Prefer thumbnail (330px, always works) over originalimage (may 429 on download)
             img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
         elif r.status_code == 429:
-            print(f"  ⚠ Wikipedia rate limited for '{person_name}', retrying after delay...")
+            print(f"  ⚠ Wikipedia rate limited for '{person_name}', retrying in 3s...")
             time.sleep(3)
-            r2 = requests.get(
+            r = requests.get(
                 f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-                headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com; editorial)"},
+                headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
                 timeout=10
             )
-            if r2.status_code == 200:
-                data = r2.json()
+            if r.status_code == 200:
+                data = r.json()
                 img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
                 if img:
-                    print(f"  ✓ Wikipedia image found on retry for '{person_name}': {img[:80]}...")
+                    print(f"  ✓ Wikipedia image found (retry) for '{person_name}': {img[:80]}...")
                     return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
@@ -81,9 +69,6 @@ def fetch_wikipedia_person_image(person_name):
 
 def fetch_pexels_image(query, fallback_query=None):
     """Fetch an image from Pexels using curl (urllib gets 403)."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
     import subprocess
     for q in [query, fallback_query]:
         if not q:
@@ -91,12 +76,12 @@ def fetch_pexels_image(query, fallback_query=None):
         try:
             result = subprocess.run([
                 'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'
+                f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'
             ], capture_output=True, text=True, timeout=15)
             data = json.loads(result.stdout)
             photos = data.get('photos', [])
-            for p in photos:
-                url = p.get('src', {}).get('large2x') or p.get('src', {}).get('large')
+            if photos:
+                url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('original')
                 if url:
                     print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                     return url
@@ -104,274 +89,378 @@ def fetch_pexels_image(query, fallback_query=None):
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image(url):
-    """Validate image URL returns 200 and is > 5KB."""
-    try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('content-type', '')
-        cl = int(r.headers.get('content-length', 0))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
-            return True
-        # Try GET if HEAD doesn't return content-length
-        if r.status_code == 200 and 'image' in ct and cl == 0:
-            r2 = requests.get(url, timeout=10, stream=True,
-                             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            r2.close()
-            if len(chunk) > 5000:
-                return True
-        print(f"  ⚠ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
-    except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-    return False
-
-def upload_to_supabase_storage(image_url, filename):
+def upload_image_to_supabase(image_url, filename):
     """Download image and upload to Supabase storage bucket."""
     try:
-        r = requests.get(image_url, timeout=15,
-                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200 or len(r.content) < 5000:
-            print(f"  ⚠ Download failed: {r.status_code}, size={len(r.content)}")
+        resp = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=30)
+        if resp.status_code == 429:
+            print(f"  ⚠ Rate limited downloading image, using direct URL")
+            if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
+                return image_url
             return None
+        if resp.status_code != 200:
+            print(f"  ⚠ Failed to download image: HTTP {resp.status_code}")
+            return image_url  # fallback to original
         
-        ct = r.headers.get('content-type', 'image/jpeg')
-        upload_headers = {
-            'Authorization': f'Bearer {SUPABASE_KEY}',
-            'Content-Type': ct,
-            'x-upsert': 'true'
-        }
-        up = requests.post(
-            f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}",
-            headers=upload_headers, data=r.content, timeout=30
+        content_type = resp.headers.get('Content-Type', 'image/jpeg')
+        if 'image' not in content_type:
+            print(f"  ⚠ Not an image: {content_type}")
+            return image_url
+        
+        if len(resp.content) < 5000:
+            print(f"  ⚠ Image too small: {len(resp.content)} bytes")
+            return image_url
+        
+        # Upload to Supabase storage
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        upload_resp = requests.post(
+            upload_url,
+            headers={
+                'apikey': SUPABASE_KEY,
+                'Authorization': f'Bearer {SUPABASE_KEY}',
+                'Content-Type': content_type,
+                'x-upsert': 'true'
+            },
+            data=resp.content,
+            timeout=30
         )
-        if up.status_code in (200, 201):
+        if upload_resp.status_code in [200, 201]:
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
-        print(f"  ⚠ Upload failed: {up.status_code} {up.text[:100]}")
+        else:
+            print(f"  ⚠ Upload failed: {upload_resp.status_code} {upload_resp.text[:200]}")
+            # Return original URL only if it's from a permanent source
+            if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
+                return image_url
+            return None
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
-    return None
+        if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
+            return image_url
+        return None
+
+def validate_image_url(url):
+    """Validate an image URL returns HTTP 200 with image content."""
+    if not url:
+        return False
+    try:
+        resp = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
+        if resp.status_code == 200:
+            ct = resp.headers.get('Content-Type', '')
+            cl = int(resp.headers.get('Content-Length', '0'))
+            if 'image' in ct and cl > 5000:
+                return True
+            # Some servers don't return Content-Length on HEAD
+            if 'image' in ct:
+                return True
+        # Try GET for servers that don't support HEAD well
+        resp = requests.get(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, stream=True)
+        ct = resp.headers.get('Content-Type', '')
+        cl = int(resp.headers.get('Content-Length', '0'))
+        resp.close()
+        return 'image' in ct and cl > 5000
+    except:
+        return False
+
+def insert_article(article):
+    """Insert article into Supabase."""
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
+    resp = requests.post(url, headers=HEADERS, json=article, timeout=30)
+    if resp.status_code in [200, 201]:
+        data = resp.json()
+        art_id = data[0]['id'] if isinstance(data, list) else data.get('id')
+        print(f"  ✓ Inserted: {article['headline'][:60]}... (id: {art_id})")
+        return art_id
+    else:
+        print(f"  ✗ Insert failed: {resp.status_code} {resp.text[:300]}")
+        return None
+
 
 # ============================================================
-# ARTICLES
+# ARTICLE 1: Diljit Dosanjh Wembley Stadium announcement
 # ============================================================
-
-articles = []
-
-# -------- Article 1: Drishyam 3 crosses 200 crore worldwide --------
-articles.append({
-    "headline": "Drishyam 3 Crosses ₹200 Crore Worldwide in 9 Days. Overseas Collections Are Outpacing India.",
-    "subheadline": "Mohanlal's third consecutive blockbuster of 2026 hits the milestone faster than every Malayalam film except L2 Empuraan. For NRI audiences, this is their franchise too — and the numbers prove it.",
-    "slug": "drishyam-3-200-crore-worldwide-overseas-mohanlal-nri-diaspora-20260531",
-    "category": "entertainment",
-    "sources": [{"name": "Sacnilk"}, {"name": "Pinkvilla"}, {"name": "Filmfare"}, {"name": "Zoom TV"}],
-    "person_for_image": "Mohanlal",
-    "pexels_query": "Malayalam cinema theater audience",
-    "body": """Georgekutty is back, and this time, the world is watching.
-
-Mohanlal's **Drishyam 3**, directed by Jeethu Joseph, has crossed the ₹200 crore mark at the worldwide box office within just nine days of its theatrical release — making it the first film in the franchise to hit the milestone and the second-fastest Malayalam film ever to do so, trailing only Mohanlal's own **L2: Empuraan**, which got there in five days.
-
-The numbers tell a story that should matter to every Indian abroad. Of the ₹208 crore worldwide gross collected by Day 9, approximately ₹108 crore — more than half — came from **overseas markets**. North America, the Middle East, Europe, and Australia have driven collections at a pace that outstripped domestic earnings for most of the run. Drishyam 3 also became the first South Indian film of 2026 to cross $10 million at the overseas box office.
-
-## The Franchise That Travels
-
-The original Drishyam (2013) was a masterclass in slow-burn suspense that became a pan-Indian phenomenon, spawning remakes in Hindi (starring Ajay Devgn), Telugu, Kannada, and Tamil. But the third instalment's overseas dominance signals something deeper: the Malayalam original now draws its own global audience, without needing a Hindi intermediary.
-
-For the Indian diaspora — particularly in the Gulf, where Malayalam-speaking communities are deeply rooted, and in North America, where Indian-language cinema is having its strongest theatrical moment ever — Drishyam 3's performance validates a shift. Regional cinema doesn't need Bollywood's stamp anymore.
-
-## Three Films, Three Blockbusters
-
-What makes 2026 extraordinary for Mohanlal is the consistency. Earlier this year, **L2: Empuraan** entered the ₹200 crore club. **Thudarum** followed. Drishyam 3 is now his third film to cross the mark in a single calendar year — a feat virtually no Indian actor has achieved.
-
-Domestically, Drishyam 3 has grossed approximately ₹100 crore in India (the 8th Malayalam film to do so), with Kerala contributing around ₹62.70 crore and the rest of India adding ₹32.50 crore. The film is now the sixth-highest-grossing Malayalam film of all time in India.
-
-## Mixed Reviews, Massive Turnout
-
-The road wasn't entirely smooth. Before release, some questioned whether the franchise needed a third chapter after Drishyam 2's seemingly definitive conclusion. Critics were divided. But audiences showed up anyway — driven by curiosity about Georgekutty's fate and the emotional weight of a family that has become one of Indian cinema's most beloved.
-
-Rather than relying solely on nostalgia, the third chapter explores the long-term psychological consequences of the events that defined the family. Mohanlal himself wrote on social media: "Three films. Three chapters. One unbroken bond. Thank you for walking with Georgekutty and family."
-
-## What This Means for NRI Audiences
-
-Drishyam 3's overseas success is a reminder that the Indian diaspora doesn't just consume Bollywood — it actively drives box office for films in Malayalam, Tamil, Telugu, and Kannada. The ₹108 crore overseas haul suggests that theatrical distribution for Indian-language films in markets like the US, UK, Canada, and the Gulf is maturing rapidly.
-
-Trade analysts project the film will comfortably clear ₹250 crore worldwide during its full run, with some suggesting it could challenge **Lokah Chapter One: Chandra's** ₹300 crore lifetime. Whether it gets there or not, Drishyam 3 has already proven something important: the franchise that started as a quiet Malayalam thriller about a cable operator outsmarting the police has become a global phenomenon — and the diaspora owns a bigger share of it than India itself."""
-})
-
-# -------- Article 2: ₹400 crore lawsuit over Biwi No. 1 songs --------
-articles.append({
-    "headline": "Vashu Bhagnani Just Filed a ₹400 Crore Lawsuit to Block Varun Dhawan's Next Film. The Fight Is Over Two 1999 Songs.",
-    "subheadline": "Chunnari Chunnari and Ishq Sona Hai from Biwi No. 1 are at the centre of one of Bollywood's biggest copyright battles. Hai Jawani Toh Ishq Hona Hai releases June 5 — if the court allows it.",
-    "slug": "vashu-bhagnani-400-crore-lawsuit-biwi-no-1-songs-hai-jawani-varun-dhawan-nri-20260531",
-    "category": "entertainment",
-    "sources": [{"name": "Bollywood Hungama"}, {"name": "India Forums"}, {"name": "Zoom TV"}, {"name": "MensXP"}],
-    "person_for_image": "Varun Dhawan",
-    "pexels_query": None,
-    "body": """Varun Dhawan's upcoming romantic comedy **Hai Jawani Toh Ishq Hona Hai** was supposed to be a feel-good summer release. Instead, it's walking into a legal firestorm.
-
-Veteran producer **Vashu Bhagnani's** Puja Entertainment has filed a ₹400 crore lawsuit in the Bombay High Court against **Tips Industries Limited**, producers **Ramesh Taurani** and **Kumar S Taurani**, and director **David Dhawan** over the alleged unauthorized use of two songs from the 1999 blockbuster **Biwi No. 1** — *Chunnari Chunnari* and *Ishq Sona Hai*.
-
-The suit seeks urgent injunctive relief to restrain the release, distribution, exhibition, streaming, and commercial exploitation of the film and all promotional material featuring the disputed songs. The court has reportedly permitted filing and will hear the matter soon — potentially before the film's scheduled June 5 release date.
-
-## What's at Stake
-
-This isn't a routine Bollywood squabble. At ₹400 crore, it's being described as one of the largest copyright claims in Indian film history. And it strikes at the heart of a practice the industry has leaned on heavily: **remaking or remixing iconic 90s songs** to drive nostalgia-fueled marketing.
-
-The dispute centres on who actually owns the rights to the songs. Bhagnani's lawyers argue that Tips was granted only audio rights in the original agreements from the late 1990s, not visual rights. In 2018, Tips reportedly emailed Bhagnani requesting visual rights, but the conversation never reached a resolution. Despite this, the songs were allegedly used in the new film.
-
-Tips Industries has called the allegations "baseless," but the legal machinery is already in motion.
-
-## The Remake Economy Under Threat
-
-For NRI audiences who grew up on 90s Bollywood soundtracks, *Chunnari Chunnari* isn't just a song — it's a cultural touchstone. And the broader issue here will resonate with anyone who's watched Bollywood's relentless remix engine churn through classic after classic.
-
-The lawsuit could set a precedent for how music rights from the analogue era — when agreements were simpler and less precise — are handled in the streaming age. If the court rules in Bhagnani's favour, it could complicate dozens of projects currently in production that rely on recreated versions of classic tracks.
-
-## A Film Caught in the Crossfire
-
-**Hai Jawani Toh Ishq Hona Hai** marks the fourth collaboration between Varun Dhawan and his father David Dhawan, following *Main Tera Hero*, *Judwaa 2*, and *Coolie No. 1*. The film also stars **Mrunal Thakur** and **Pooja Hegde**, alongside Jimmy Shergill, Chunky Panday, and Mouni Roy.
-
-The release date has already been shuffled multiple times — originally April 2026, then June 12, briefly May 22, and finally settled on June 5. This lawsuit adds another layer of uncertainty.
-
-Industry watchers are divided. Some believe the court is unlikely to issue a stay on a completed film just days before release, particularly when the rights ownership is contested. Others point out that Bombay High Court has previously intervened in music copyright disputes with injunctive relief.
-
-## Why Diaspora Audiences Should Care
-
-For Indians abroad, Bollywood's music library isn't just entertainment — it's the soundtrack of weddings, Diwali parties, and identity. The question of who owns these songs, and who can profit from them, matters beyond the courtroom. If the 90s music catalogue becomes a legal minefield, the remix-driven marketing that currently defines Bollywood releases could face a reckoning.
-
-The hearing is expected before June 5. Whether Varun Dhawan dances to *Chunnari Chunnari* on screen or not may depend entirely on what happens in court this week."""
-})
-
-# -------- Article 3: Desi Bling Netflix debate --------
-articles.append({
-    "headline": "Desi Bling Is Netflix's Most Divisive Indian Show Right Now. It's Also the Most Honest.",
-    "subheadline": "The reality series about ultra-wealthy Indian expats in Dubai has ignited a national debate about marriage, patriarchy, and what 'traditional values' really mean when there's gold involved.",
-    "slug": "desi-bling-netflix-debate-marriage-patriarchy-dubai-indians-nri-20260531",
-    "category": "entertainment",
-    "sources": [{"name": "The Hollywood Reporter India"}, {"name": "India Forums"}, {"name": "Zoom TV"}, {"name": "The Tab"}],
-    "person_for_image": None,
-    "pexels_query": "Dubai luxury skyline night",
-    "pexels_fallback": "luxury gold lifestyle",
-    "body": """It starts with a foot massage in the Burj Khalifa and ends with half the internet arguing about what it means to be a good wife in 2026.
-
-**Desi Bling**, Netflix's new reality series about ultra-wealthy Indian expats living in Dubai, premiered on May 20 with seven episodes and has since become the platform's most talked-about Indian show — not because of the Lamborghinis or the couture, but because of a woman named **Tabinda "Binda" Sanpal** and the things she said about her marriage.
-
-In the show's opening episode, Binda — wife of billionaire businessman **Satish Sanpal**, founder of ANAX Holding — reveals that she massages her husband's feet every morning, cuts his nails, and wakes him up "like a prince." She explains it as an act of devotion rooted in Hindu tradition, adding that she believes touching her husband's feet brings wealth.
-
-The internet lost its mind.
-
-## The Great Marriage Debate
-
-Social media split into two irreconcilable camps. One side defended Binda's right to express love however she chooses, arguing that personal gestures within a marriage shouldn't be policed by strangers. The other saw her comments as a public endorsement of patriarchal norms — the kind of messaging that reinforces the expectation that wives should prioritize their husband's comfort above everything else.
-
-The debate turned Binda into Desi Bling's breakout star, which is exactly what reality television is designed to do. But the conversation it sparked touches something deeper for the Indian diaspora: the tension between "traditional values" and evolving gender norms that plays out in living rooms from Dubai to Dallas.
-
-## Inside the Bubble
-
-The show itself is a lavish, unapologetic look at how money, culture, and ambition collide in Dubai's Indian community. The cast includes **Karan Kundrra** and **Tejasswi Prakash** (whose on-camera proposal became a major storyline), socialites **Lailli Mirza** and **Pamela Serena** (whose pre-existing feud the producers knew about before filming), and businessman **Adil Poonawala** ("AP"), who runs a luxury car empire.
-
-Showrunner **Marcel Dufour** and executive producer **Mazen Laham** told The Hollywood Reporter India that the show is largely unscripted — though they admitted to knowing where the drama already existed before cameras rolled. "We had no idea things would spiral as far as divorce," Marcel said, referring to cast members Dyuti and Iryna, whose marriage unravelled on camera.
-
-The production model is controlled chaos: after filming one episode, the team builds the next one around whatever is currently exploding in the cast's lives. It's reality television at its most transparent about its own manipulation — and somehow, that honesty makes it more watchable, not less.
-
-## The NRI Mirror
-
-What makes Desi Bling significant for diaspora audiences isn't the wealth — it's the cultural friction it exposes. The show's cast are NRIs themselves, people who've built fortunes abroad while holding onto (or performatively displaying) Indian traditions. When Satish Sanpal describes himself as a school dropout from Jabalpur who now lives in the Burj Khalifa, it's an immigrant success story. When his wife cuts his nails on camera and calls it devotion, it becomes a referendum on what success costs.
-
-For Indian expats watching from the US, UK, or Canada, the show holds up an unflattering but recognizable mirror: the constant negotiation between the culture you inherited and the one you live in, the way money amplifies rather than resolves those tensions, and the public performance of identity that social media has made mandatory.
-
-## More Than Guilty Pleasure
-
-Desi Bling is absolutely a guilty pleasure. The show peddles in "sexism, elitism, gluttony of wealth, gendered desires, and backbiting," as one review put it, "without shame or apology." But it's also the first major Indian reality show set in the diaspora that doesn't feel like a tourism ad.
-
-Whether the debate around Binda's marriage philosophies changes any minds is beside the point. What matters is that a Netflix show about rich Indians in Dubai has become a genuine cultural conversation about gender, tradition, and the contradictions of the NRI experience.
-
-Season 2 hasn't been announced yet. Given the numbers, it's a matter of when, not if."""
-})
-
-# ============================================================
-# PUBLISH
-# ============================================================
-
-print(f"\n{'='*60}")
-print(f"Entertainment Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-print(f"{'='*60}\n")
-
-published = 0
-
-for i, art in enumerate(articles, 1):
-    print(f"\n--- Article {i}: {art['headline'][:60]}... ---")
+def write_article_1():
+    print("\n=== Article 1: Diljit Dosanjh Wembley Stadium ===")
     
-    # Source image
-    img_url = None
-    img_attribution = None
+    slug = "diljit-dosanjh-wembley-stadium-london-first-south-asian-artist-nri-20260601"
     
-    if art.get('person_for_image'):
-        img_url = fetch_wikipedia_person_image(art['person_for_image'])
-        if img_url:
-            img_attribution = "Wikimedia Commons"
+    headline = "Diljit Dosanjh Just Announced a Wembley Stadium Show. No South Asian Artist Has Ever Headlined There."
     
-    if not img_url and art.get('pexels_query'):
-        img_url = fetch_pexels_image(art['pexels_query'], art.get('pexels_fallback'))
-        if img_url:
-            img_attribution = "Pexels"
+    subheadline = "The Punjabi superstar broke the news mid-concert in Toronto, adding September 12 to his Aura World Tour. Michael Jackson, Prince, and Queen have played the venue. Now Diljit."
     
-    # Validate and upload
-    final_image_url = None
+    body = """The announcement came where all the best Diljit moments come from — on stage, mid-show, in a stadium full of people losing their minds.
+
+During his sold-out performance at Rogers Centre in Toronto on May 31, the final North American stop of his Aura World Tour, Diljit Dosanjh told the crowd he was adding a show at Wembley Stadium in London on September 12, 2026. And then he let the fact speak for itself: no South Asian artist has ever headlined the venue.
+
+"Michael Jackson performed there. Prince performed there. The Queen's Band performs there," Diljit said from the stage. "Wembley Stadium, for the first time in the history of South Asian artists, especially Punjabis — Wembley Stadium London."
+
+## A Tour That Keeps Getting Bigger
+
+The Wembley addition caps what has already been the most commercially dominant tour by an Indian artist in history. The Aura World Tour, which launched in Vancouver in April, has sold out arenas across 13 North American cities — including two nights at Madison Square Garden, a venue that South Asian acts couldn't reliably fill five years ago.
+
+In Vancouver, he drew over 50,000 fans to BC Place, making it the largest Punjabi concert ever held outside India. The tour still has California dates remaining — Crypto.com Arena in Los Angeles on June 18, and two nights at Chase Center in San Francisco on June 20-21.
+
+Wembley Stadium seats 90,000. The London date, if it sells anywhere near capacity, would be the single largest ticketed event by an Indian artist anywhere in the world.
+
+## What This Means for the Diaspora
+
+For NRI audiences — especially the Punjabi and broader South Asian communities in the UK, where an estimated 1.8 million people of Indian origin live — this isn't just a concert announcement. It's a cultural marker. The UK has the largest Indian diaspora outside of the US, and Wembley has been the symbolic peak of live performance since it was rebuilt in 2007.
+
+Diljit's crossover from Punjabi music star to global touring phenomenon has been building since his Coachella set in 2024, which made him the first Punjabi artist to perform at the festival. The Dil-Luminati Tour that followed set North American records. Now with the Aura tour, he's not just repeating the feat — he's scaling it.
+
+## His Mother Called It
+
+In a moment that resonated with fans who shared the clip thousands of times overnight, Diljit recalled what his mother told him growing up.
+
+"She used to say, whenever you have a problem, something good is going to happen," he said. "I used to say, mom, I am going to a big place. I am going to Wembley Stadium. She doesn't know what Wembley Stadium is."
+
+The quote landed because it captures something the Indian diaspora understands intuitively — the gap between where our parents imagined we could go and where some of us have actually landed.
+
+## What's Next
+
+Diljit's acting schedule is equally packed. His next film, *Main Vaapas Aaunga*, directed by Imtiaz Ali and co-starring Naseeruddin Shah, Sharvari, and Vedang Raina, releases theatrically in June. The film is already the most anticipated Indian title on IMDb for 2026.
+
+Tickets and on-sale details for the Wembley show have not been announced yet, but given the pace at which his recent dates have sold, NRIs in the UK would be wise to set their alarms early.
+
+*Sources: IANS, Ticketmaster, SeatGeek, Diljit Dosanjh's official Instagram*"""
+
+    # Image: Wikipedia for Diljit Dosanjh
+    img_url = fetch_wikipedia_person_image("Diljit Dosanjh")
+    if not img_url:
+        img_url = fetch_pexels_image("Wembley Stadium London concert", "music concert stadium crowd")
+    
+    final_img = None
+    attribution = "Wikimedia Commons"
     if img_url:
-        # For Wikimedia thumbnail URLs, skip validation (known good) and upload directly
         if 'upload.wikimedia.org' in img_url:
-            filename = f"{art['slug']}.jpg"
-            uploaded = upload_to_supabase_storage(img_url, filename)
-            if uploaded:
-                final_image_url = uploaded
-            else:
-                # Wikimedia is permanent, safe to use directly
-                final_image_url = img_url
-        elif validate_image(img_url):
-            ext = 'jpg'
-            if '.png' in img_url.lower():
-                ext = 'png'
-            filename = f"{art['slug']}.{ext}"
-            uploaded = upload_to_supabase_storage(img_url, filename)
-            if uploaded:
-                final_image_url = uploaded
-            elif 'images.pexels.com' in img_url:
-                final_image_url = img_url
+            final_img = upload_image_to_supabase(img_url, f"{slug}.jpg")
+            attribution = "Wikimedia Commons"
+        elif 'images.pexels.com' in img_url:
+            final_img = img_url
+            attribution = "Pexels"
         else:
-            print(f"  ⚠ Image validation failed, skipping image")
+            final_img = upload_image_to_supabase(img_url, f"{slug}.jpg")
     
-    if not final_image_url:
-        print(f"  ⚠ No valid image found for this article")
-    
-    # Build article record
-    article_data = {
-        "headline": art["headline"],
-        "subheadline": art["subheadline"],
-        "slug": art["slug"],
-        "body": art["body"],
-        "category": art["category"],
-        "vertical": "entertainment",
-        "sources": art["sources"],
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": final_image_url,
-        "image_attribution": img_attribution
+    article = {
+        'headline': headline,
+        'subheadline': subheadline,
+        'body': body,
+        'slug': slug,
+        'category': 'entertainment',
+        'status': 'published',
+        'published_at': '2026-06-01T13:00:00Z',
+        'sources': json.dumps([{'name': 'IANS'}, {'name': 'Ticketmaster'}, {'name': 'SeatGeek'}, {'name': 'Diljit Dosanjh Instagram'}]),
+        'vertical': 'entertainment',
+        'image_url': final_img,
+        'image_attribution': attribution,
+        'is_editorial': False
     }
     
-    result = sb_insert("p2_articles", article_data)
-    if result:
-        art_id = result.get('id', 'unknown')
-        print(f"  ✓ Published: {art['slug']} (id: {art_id})")
-        published += 1
-    else:
-        print(f"  ✗ Failed to publish: {art['slug']}")
-    
-    # Small delay between articles
-    time.sleep(2)
+    art_id = insert_article(article)
+    return art_id
 
-print(f"\n{'='*60}")
-print(f"Done. Published {published}/{len(articles)} articles.")
-print(f"{'='*60}")
+
+# ============================================================
+# ARTICLE 2: Peddi $700K US advance booking
+# ============================================================
+def write_article_2():
+    print("\n=== Article 2: Peddi USA Advance Booking ===")
+    
+    slug = "peddi-ram-charan-usa-advance-booking-700k-north-america-nri-20260601"
+    
+    headline = "Ram Charan's Peddi Is at $700K in US Advance Booking. NRI Audiences Are Driving a Telugu Pre-Sale Record."
+    
+    subheadline = "With three days left before its June 4 release, Peddi has crossed $767K in North American premiere bookings — the strongest pre-sale for a Telugu film since RRR."
+    
+    body = """Three days before its theatrical debut, Ram Charan's *Peddi* has quietly become the pre-sale story of the summer for Indian cinema — and the numbers are being written entirely by audiences overseas.
+
+As of Sunday morning, the Telugu sports action drama had crossed $692,000 in US premiere advance sales, with total North American premiere bookings reaching approximately $767,000 (roughly ₹7.33 crore), according to box office tracker Jerin Georgekutty. The film releases worldwide on June 4, with US premiere shows on June 3.
+
+## The Numbers in Context
+
+To understand what $700K in US pre-sales means, consider the recent landscape. *Peddi* crossed $100K in North American advance bookings within four hours of tickets going live in early May — a record for any Indian film. By mid-May, it had sold 10,000 premiere tickets.
+
+The film's advance trajectory puts it in conversation with Ram Charan's own *RRR*, which remains the benchmark for Telugu cinema's overseas performance. If the current pace holds through Tuesday, Peddi could register one of the biggest premiere grossers for any Indian film in North America this year.
+
+## Why NRIs Are Buying Early
+
+The overseas appetite for *Peddi* reflects several converging factors. Ram Charan's post-RRR star power in North America has been well-documented — Telugu audiences in the US, concentrated in metros like Dallas, Chicago, the Bay Area, and the New Jersey corridor, have become the most reliable overseas ticket buyers for any Indian-language cinema.
+
+The film also has A.R. Rahman scoring the music and background, with Buchi Babu Sana (who directed the acclaimed *Uppena*) helming the project. The rural sports drama genre — a combination that worked spectacularly for *Dangal* and *83* — has cross-demographic appeal.
+
+## A Packed Weekend Ahead
+
+*Peddi* releases into a June first week that's already one of the busiest of 2026. Varun Dhawan's *Hai Jawani Toh Ishq Hona Hai* moved to June 12 to avoid the clash. But the Telugu film still faces holdover competition from *Drishyam 3* (which has crossed ₹225 crore worldwide) and the Hollywood slate.
+
+The real question isn't whether *Peddi* will open big — it will. With a reported ₹350 crore budget, the question is whether it can sustain past the premiere rush. To break even, trade analysts estimate the film needs approximately ₹450 crore worldwide.
+
+The cast — which includes Janhvi Kapoor, Shiva Rajkumar, Jagapathi Babu, Divyenndu, and Boman Irani — gives it multi-market appeal. The film releases in standard, IMAX, Dolby Cinema, 4DX, and several premium formats, maximizing per-ticket revenue.
+
+## What Peddi Tells Us About the NRI Box Office
+
+For the diaspora audience, especially Telugu-speaking families in the US, premiere night has evolved from a movie outing into a community event. Theatres in cities like Frisco, Dallas, and Edison now routinely program 4 AM and 7 AM fan shows for Indian tentpoles. *Peddi* is no exception — many of these early shows are already sold out.
+
+It's a dynamic that Indian studios have learned to engineer for, and it's reshaping how films are marketed, released, and monetized in North America.
+
+*Sources: Filmibeat, Sacnilk, ZoomTV Entertainment, Wikipedia*"""
+
+    # Image: Wikipedia for Ram Charan
+    img_url = fetch_wikipedia_person_image("Ram Charan")
+    if not img_url:
+        img_url = fetch_wikipedia_person_image("Ram Charan (actor)")
+    if not img_url:
+        img_url = fetch_pexels_image("Indian cinema movie premiere", "Telugu cinema audience")
+    
+    final_img = None
+    attribution = "Wikimedia Commons"
+    if img_url:
+        if 'upload.wikimedia.org' in img_url:
+            final_img = upload_image_to_supabase(img_url, f"{slug}.jpg")
+            attribution = "Wikimedia Commons"
+        elif 'images.pexels.com' in img_url:
+            final_img = img_url
+            attribution = "Pexels"
+        else:
+            final_img = upload_image_to_supabase(img_url, f"{slug}.jpg")
+    
+    article = {
+        'headline': headline,
+        'subheadline': subheadline,
+        'body': body,
+        'slug': slug,
+        'category': 'entertainment',
+        'status': 'published',
+        'published_at': '2026-06-01T13:05:00Z',
+        'sources': json.dumps([{'name': 'Filmibeat'}, {'name': 'Sacnilk'}, {'name': 'ZoomTV Entertainment'}, {'name': 'Wikipedia'}]),
+        'vertical': 'entertainment',
+        'image_url': final_img,
+        'image_attribution': attribution,
+        'is_editorial': False,
+        
+    }
+    
+    art_id = insert_article(article)
+    return art_id
+
+
+# ============================================================
+# ARTICLE 3: Drishyam 3 overseas vs domestic — NRI angle
+# ============================================================
+def write_article_3():
+    print("\n=== Article 3: Drishyam 3 Box Office NRI angle ===")
+    
+    slug = "drishyam-3-overseas-beats-domestic-225-crore-worldwide-mohanlal-nri-20260601"
+    
+    headline = "Drishyam 3's Overseas Collections Have Outpaced India. That's Never Happened for a Malayalam Thriller."
+    
+    subheadline = "Mohanlal's franchise closer has crossed ₹225 crore worldwide in 11 days. The diaspora — Gulf, US, UK, Australia — has contributed more than Kerala."
+    
+    body = """Here's a statistic that would have been inconceivable five years ago: *Drishyam 3*, a Malayalam-language crime thriller, has earned more money outside India than inside it.
+
+After 11 days of theatrical release, Jeethu Joseph's franchise closer has grossed approximately ₹228.95 crore worldwide. Of that, overseas markets — led by the Gulf, North America, the UK, and Australia — have contributed roughly ₹114 crore. The India gross stands at about ₹110 crore (₹96.70 crore net). It's the first time a Malayalam thriller has had its overseas total outpace its domestic one.
+
+## The Gulf Connection
+
+The numbers make sense when you map them against the Malayalam-speaking diaspora. The Gulf Cooperation Council countries alone are home to an estimated 2.5 million Malayalis — nurses, engineers, IT workers, and business owners who have been the bedrock of Kerala's remittance economy for decades. For this audience, *Drishyam 3* isn't just a movie. It's a shared cultural text.
+
+The franchise has a unique relationship with overseas audiences. The original *Drishyam* (2013) became one of the most remade Indian films — spawning Hindi, Telugu, Tamil, Kannada, and even Chinese adaptations. Its premise — a working-class father who outsmarts the police to protect his family — resonated universally, but it hit particularly hard in the Gulf, where many viewers saw their own vulnerability and resourcefulness mirrored in Georgekutty.
+
+## A Mixed-Reviews Blockbuster
+
+What makes the commercial performance more remarkable is that *Drishyam 3* has received mixed critical reception. Unlike the universally acclaimed first two installments, reviews for the third chapter have been divided. Yet the audience has shown up regardless — opening day alone saw 587,000 tickets sold on BookMyShow, shattering the previous Day 1 record held by *Thudarum* (430,000).
+
+The film has crossed the 3 million ticket mark on BookMyShow in just 11 days, placing it among the top seven Malayalam films ever on the platform. Only *Lokah Chapter 1* (5.5 million) sits significantly ahead.
+
+## What It Means for Malayalam Cinema's Business Model
+
+The overseas-heavy revenue split signals a structural shift. Malayalam cinema has traditionally been a domestic-first industry, with the Gulf as a reliable but secondary market. But a succession of global hits — *Manjummel Boys*, *Lokah Chapter 1*, *Thudarum*, *Vaazha 2*, and now *Drishyam 3* — has established a new paradigm where overseas revenue can match or exceed India collections.
+
+For NRI audiences, the implication is straightforward: studios are now marketing and releasing with you in mind, not as an afterthought. Simultaneous dubbed releases in Tamil, Telugu, and Kannada — which *Drishyam 3* has for the first time — are designed to capture pan-Indian diaspora audiences who might not speak Malayalam but know the franchise from its remakes.
+
+## The Hindi Remake Is Coming
+
+The financial success of the original virtually guarantees that Ajay Devgn's *Drishyam 3* Hindi remake, which is already in production, will arrive as scheduled on October 2, 2026. The remake franchise has its own massive following — the Hindi *Drishyam 2* earned over ₹240 crore worldwide.
+
+But the Malayalam original has now established that it doesn't need the Hindi version to access a global audience. That's the real story.
+
+## Box Office Breakdown (11 Days)
+
+- **India Net**: ₹96.70 crore
+- **India Gross**: ~₹110.75 crore
+- **Overseas Gross**: ~₹114.10 crore
+- **Worldwide Gross**: ₹228.95 crore (approx.)
+- **Budget**: ₹60 crore (reported)
+- **ROI**: ~275%
+
+*Sources: Sacnilk, BoxOfficeWala, Hollywood Reporter India, Livemint, Wikipedia*"""
+
+    # Image: Wikipedia for Mohanlal
+    img_url = fetch_wikipedia_person_image("Mohanlal")
+    if not img_url:
+        img_url = fetch_pexels_image("Indian cinema audience theater", "movie theater audience India")
+    
+    final_img = None
+    attribution = "Wikimedia Commons"
+    if img_url:
+        if 'upload.wikimedia.org' in img_url:
+            final_img = upload_image_to_supabase(img_url, f"{slug}.jpg")
+            attribution = "Wikimedia Commons"
+        elif 'images.pexels.com' in img_url:
+            final_img = img_url
+            attribution = "Pexels"
+        else:
+            final_img = upload_image_to_supabase(img_url, f"{slug}.jpg")
+    
+    article = {
+        'headline': headline,
+        'subheadline': subheadline,
+        'body': body,
+        'slug': slug,
+        'category': 'entertainment',
+        'status': 'published',
+        'published_at': '2026-06-01T13:10:00Z',
+        'sources': json.dumps([{'name': 'Sacnilk'}, {'name': 'BoxOfficeWala'}, {'name': 'Hollywood Reporter India'}, {'name': 'Livemint'}, {'name': 'Wikipedia'}]),
+        'vertical': 'entertainment',
+        'image_url': final_img,
+        'image_attribution': attribution,
+        'is_editorial': False,
+        
+    }
+    
+    art_id = insert_article(article)
+    return art_id
+
+
+# ============================================================
+# Run all
+# ============================================================
+if __name__ == '__main__':
+    print("=" * 60)
+    print("The Videshi Entertainment Writer — June 1, 2026")
+    print("=" * 60)
+    
+    results = []
+    
+    art1 = write_article_1()
+    results.append(('Diljit Wembley', art1))
+    
+    time.sleep(2)  # Avoid Wikipedia rate limiting
+    
+    art2 = write_article_2()
+    results.append(('Peddi USA Booking', art2))
+    
+    time.sleep(2)  # Avoid Wikipedia rate limiting
+    
+    art3 = write_article_3()
+    results.append(('Drishyam 3 Overseas', art3))
+    
+    print("\n" + "=" * 60)
+    print("RESULTS:")
+    for name, aid in results:
+        status = "✓" if aid else "✗"
+        print(f"  {status} {name}: {aid}")
+    
+    successes = sum(1 for _, a in results if a)
+    print(f"\n{successes}/{len(results)} articles published successfully.")
+    print("=" * 60)
