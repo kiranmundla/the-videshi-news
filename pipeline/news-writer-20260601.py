@@ -1,15 +1,29 @@
 #!/usr/bin/env python3
-"""
-News writer for The Videshi — 2026-06-01 afternoon batch
-3 articles: Iran halts talks, India monsoon crisis, Anthropic IPO filing
-"""
+"""News writer for The Videshi — June 1, 2026 evening batch."""
 
-import json, os, sys, re, time, uuid, urllib.parse
+import json, os, re, sys, time, uuid, urllib.parse
 from datetime import datetime, timezone
 
 import requests
 
-# ── env ──────────────────────────────────────────────────────────────────
+# ── env ──────────────────────────────────────────────────────────────────────
+def load_env(path):
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            if line.startswith("export "):
+                line = line[7:]
+            k, _, v = line.partition("=")
+            v = v.strip().strip("'\"")
+            os.environ.setdefault(k.strip(), v)
+
+load_env(os.path.expanduser("~/.env.supabase"))
+load_env(os.path.expanduser("~/workspace/.env.pexels"))
+
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 PEXELS_KEY   = os.environ.get("PEXELS_API_KEY", "")
@@ -21,10 +35,9 @@ HEADERS = {
     "Prefer": "return=representation",
 }
 
-# ── helpers ──────────────────────────────────────────────────────────────
-
+# ── helpers ──────────────────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    encoded = urllib.parse.quote(person_name.replace(" ", "_"))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
@@ -35,12 +48,11 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}…")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
-
 
 def fetch_pexels_image(query, fallback_query=None):
     if not PEXELS_KEY:
@@ -61,345 +73,275 @@ def fetch_pexels_image(query, fallback_query=None):
                 for p in photos:
                     url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
                     if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}…")
+                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
                         return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def upload_image_to_supabase(image_url, filename):
-    try:
-        img_resp = requests.get(image_url, timeout=15, headers={"User-Agent": "TheVideshi/1.0"})
-        if img_resp.status_code != 200:
-            print(f"  ⚠ Image download failed ({img_resp.status_code})")
-            if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
-                return image_url
-            return None
-
-        content_type = img_resp.headers.get("Content-Type", "image/jpeg")
-        if not content_type.startswith("image/"):
-            content_type = "image/jpeg"
-
-        if len(img_resp.content) < 5000:
-            print(f"  ⚠ Image too small ({len(img_resp.content)} bytes)")
-            return None
-
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        up = requests.post(
-            upload_url,
-            headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": content_type,
-                "x-upsert": "true",
-            },
-            data=img_resp.content,
-            timeout=30,
-        )
-        if up.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}…")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed ({up.status_code}): {up.text[:200]}")
-            if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
-                return image_url
-            return None
-    except Exception as e:
-        print(f"  ⚠ Upload exception: {e}")
-        if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
-            return image_url
-        return None
-
-
-def validate_image_url(url):
+def validate_image(url):
     if not url:
         return False
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com"]
-    if any(b in url for b in banned):
-        return False
-    if any(p in url for p in ["_nc_ht=", "_nc_cat=", "ccb="]):
-        return False
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True, headers={"User-Agent": "TheVideshi/1.0"})
+        r = requests.get(url, timeout=10, stream=True, allow_redirects=True,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         ct = r.headers.get("Content-Type", "")
         cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
+        if "image" in ct and cl > 5000:
             return True
-        r2 = requests.get(url, timeout=10, stream=True, headers={"User-Agent": "TheVideshi/1.0"})
-        ct2 = r2.headers.get("Content-Type", "")
-        chunk = r2.raw.read(6000)
-        r2.close()
-        if "image" in ct2 and len(chunk) >= 5000:
-            return True
-    except:
-        pass
+        if "image" in ct:
+            chunk = r.content[:10000]
+            if len(chunk) > 5000:
+                return True
+    except Exception as e:
+        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
     return False
 
+def make_sources_json(source_list):
+    """Convert list of source strings into the DB's JSON string format."""
+    items = []
+    for s in source_list:
+        items.append({"name": s, "url": ""})
+    return json.dumps(items)
 
-def insert_article(article):
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    r = requests.post(url, headers=HEADERS, json=article, timeout=15)
+def sb_insert(article):
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article,
+    )
     if r.status_code in (200, 201):
         data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
-        print(f"  ✓ Inserted: {article['slug']} (id={art_id})")
-        return art_id
+        aid = data[0]["id"] if isinstance(data, list) else data.get("id")
+        print(f"  ✓ Published: {article['slug']}  (id={aid})")
+        return aid
     else:
         print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
         return None
 
 
-# ── articles ─────────────────────────────────────────────────────────────
+# ── ARTICLE 1 ────────────────────────────────────────────────────────────────
+def article_zee_fifa():
+    print("\n── Article 1: Zee secures FIFA World Cup 2026 broadcasting in India ──")
 
-now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    slug = "zee-entertainment-fifa-world-cup-2026-india-broadcast-rights-zee5-unite8-20260601"
+    headline = "Zee Just Secured the Rights to Broadcast the 2026 FIFA World Cup in India. The Tournament Starts in 10 Days."
+    subheadline = "FIFA rejected JioStar's $20 million bid. Zee will carry 39 FIFA events through 2034, including the Women's World Cup 2027 and World Cup 2030."
 
-articles = []
+    body = """India's 1.4 billion football fans finally know where they will watch the 2026 FIFA World Cup. Zee Entertainment announced on Monday that it has secured a long-term broadcasting deal with FIFA covering 39 competitions through 2034 — starting with the tournament that kicks off across the United States, Canada, and Mexico on June 11.
 
-# ── ARTICLE 1: Iran halts US talks, threatens full Hormuz blockade ──────
+The deal ended months of uncertainty. As recently as last week, India — one of the world's largest television markets — still had no official broadcaster for football's biggest event. The agreement covers the 2026 World Cup, the 2027 Women's World Cup, the 2030 World Cup, and a full slate of youth, futsal, and intercontinental tournaments. Coverage will air on UNITE8 Sports and stream on Zee5 in multiple languages.
 
-body1 = """Iran's negotiating team has stopped all indirect message exchanges with the United States through mediators, the semi-official Tasnim News Agency reported on Monday, in the most serious setback to the three-month-old peace process since the April ceasefire.
+## How the Deal Almost Didn't Happen
 
-The decision came hours after Israeli Prime Minister Benjamin Netanyahu ordered strikes on Hezbollah-controlled suburbs of Beirut, a move that Iran's Foreign Minister Abbas Araqchi called a "violation on all fronts." In a post on X, Araqchi warned that "the U.S. and Israel are responsible for the consequences of any violation."
+FIFA originally sought around $100 million for the India media rights package covering the 2026 and 2030 World Cups. That figure dropped to roughly $60 million during negotiations, according to Reuters. Zee's final terms were not publicly disclosed.
 
-## A Two-Strait Threat
+The bigger story is who did not get the deal. JioStar — the Reliance-Disney joint venture that broadcast the 2022 World Cup through its predecessor Viacom18 — submitted a bid of approximately $20 million. FIFA rejected it. Sony, which held rights for the 2014 and 2018 editions, held discussions but never submitted a formal bid.
 
-What makes Monday's development alarming is not just the diplomatic freeze — it is the military escalation Iran is signalling behind it. Tasnim reported that Iran and the Resistance Front, its network of Shiite allies across Yemen, Lebanon, and Iraq, have drawn up an agenda to completely block the Strait of Hormuz and activate the Bab el-Mandeb Strait off the coast of Yemen.
+The standoff left Indian viewers in limbo until the last moment, a scenario that has become familiar in Indian sports broadcasting where rights negotiations regularly come down to the wire.
 
-The Strait of Hormuz has been effectively constricted since Iran entered the war in late February, pushing global oil prices up by more than 40 percent and triggering a fertiliser shortage that is already threatening the northern hemisphere's growing season. A full blockade — combined with Houthi operations at the Bab el-Mandeb, which controls traffic toward the Suez Canal — would choke two of the three main arteries of global maritime trade simultaneously.
+## What This Means for Indian Fans
 
-"There will be no talks until Iran and the resistance's views on this matter are met," Tasnim said, referring specifically to demands that Israel halt all operations in Lebanon and withdraw from occupied areas.
+The 2026 World Cup is the largest in FIFA history: 48 teams, 104 matches, and venues spread across 16 cities in three countries. For Indian fans, the time zone factor is significant — most matches will air between 7:30 PM and 5:30 AM IST, with prime evening slots landing perfectly for India's viewership window.
 
-## The Weekend That Broke the Ceasefire
-
-The diplomatic collapse followed a weekend of escalating tit-for-tat strikes. The U.S. military said it struck Iranian air defences, a ground control station, and two drones that were threatening ships after what it described as "aggressive Iranian actions," including the downing of an American drone over international waters.
-
-Iran's Islamic Revolutionary Guard Corps responded by targeting a U.S. air base — believed to be in Kuwait, which activated its air defences and condemned the Iranian attacks. The U.S. military confirmed it intercepted two Iranian ballistic missiles aimed at American forces in Kuwait late on Sunday. No American personnel were harmed.
-
-The fighting followed what had been billed as a pivotal week for diplomacy. On Friday, Israel and Lebanon held Washington-overseen negotiations, and President Trump said he would "soon decide" on a proposed extension of the ceasefire. By Monday morning, that optimism had evaporated.
-
-Trump posted on Truth Social early Monday that "Iran really wants to make a deal, and it will be a good one for the U.S.A." But he also acknowledged the difficulty of the situation, writing that "it is MUCH tougher for me to properly do my job and negotiate, when political hacks keep negatively 'chirping.'"
-
-## What This Means for India
-
-India is the most exposed major economy outside the Gulf. The Hormuz blockade has already forced New Delhi to pivot its oil imports to Venezuela, Brazil, and Angola — a shift that has increased shipping costs and delivery times. India's forex reserves have fallen $47 billion in three months as the Reserve Bank of India spends billions defending the rupee against oil-driven inflation.
-
-A full Hormuz shutdown, combined with Bab el-Mandeb disruption, would hit India on three fronts: energy costs, fertiliser supply at the start of a monsoon season already forecast to be the driest since 2015, and the safety of the estimated 8.5 million Indian workers in Gulf states.
-
-Average U.S. gas prices stood at $4.32 a gallon as of Monday, according to AAA. Oil prices rose more than 2 percent in early trading, and Gulf stock markets retreated across the board. The Strait of Hormuz carries roughly one-fifth of the world's oil and natural gas — and about 30 percent of traded fertiliser.
-
-The war launched by the U.S. and Israel on February 28 has killed thousands of people, mainly in Iran and Lebanon. Israel says 24 of its soldiers and four civilians have been killed over the same period. Thirteen American service members have died in the conflict. And the economic pain is spreading — not just in the Middle East, but in every economy that depends on energy and fertiliser flowing through the world's most contested waterways."""
-
-articles.append({
-    "headline": "Iran Just Froze Peace Talks With the US. It Is Now Threatening to Shut Down Two of the World's Most Important Shipping Lanes.",
-    "subheadline": "Tehran says it will not resume negotiations until Israel stops attacking Lebanon. The Resistance Front has drawn up plans to blockade both the Strait of Hormuz and the Bab el-Mandeb.",
-    "slug": "iran-halts-us-talks-threatens-full-hormuz-bab-el-mandeb-blockade-india-oil-20260601",
-    "category": "news",
-    "status": "published",
-    "is_editorial": False,
-    "published_at": now,
-    "sources": [
-        {"name": "Reuters — Iran halting indirect talks with US over Israel's Lebanon incursion", "url": "https://www.reuters.com"},
-        {"name": "Tasnim News Agency — Iran suspends negotiations", "url": "https://www.tasnimnews.com"},
-        {"name": "USA Today — Iran suspends US talks over Israel's attacks in Lebanon", "url": "https://www.usatoday.com"},
-        {"name": "Reuters — Trump says Iran really wants to make a deal", "url": "https://www.reuters.com"}
-    ],
-    "body": body1,
-    "word_count": len(body1.split()),
-    "tags": ["Iran", "US-Iran war", "Strait of Hormuz", "Bab el-Mandeb", "oil prices", "India", "Hezbollah", "Lebanon"],
-    "vertical": "geopolitics",
-    "urgency": "breaking",
-    "diaspora_angle": "India is the most exposed major economy — the Hormuz blockade has already forced an oil import pivot, drained $47 billion in forex reserves, and threatens the 8.5 million Indian workers in Gulf states. A second strait closure would compound the damage at the worst possible time.",
-    "image_attribution": None,
-    "image_url": None,
-})
-
-# ── ARTICLE 2: India monsoon downgraded — driest since 2015 ─────────────
-
-body2 = """The India Meteorological Department has downgraded its monsoon forecast for the second time, warning that the June-to-September season is now expected to deliver just 90 percent of normal rainfall — making 2026 potentially the driest year since 2015, when India received only 86 percent.
-
-The updated forecast, released on Friday, is worse than the 92 percent projected in April and carries an 84 percent probability that rainfall will be below normal. The probability of a full-blown deficient monsoon — below 90 percent of the long-period average — stands at 60 percent.
-
-## The El Niño Factor
-
-The culprit is El Niño, the Pacific Ocean warming pattern that has historically suppressed Indian monsoon rainfall. IMD confirmed that neutral conditions in the equatorial Pacific are transitioning toward El Niño, which climate models expect to develop during the monsoon season itself — the worst possible timing.
-
-"This being an El Niño year, we have to experience this kind of below normal rainfall, including spatial and temporal distribution," said IMD Director Neetha K. Gopal. "Sometimes states can receive good rainfall in some period of the week or month. Then there would be drier periods also."
-
-The last consecutive drought years were 2014 and 2015, when back-to-back El Niño events devastated harvests and pushed food inflation into double digits. India has not had a truly deficient monsoon in 11 years, and policymakers have had little recent practice managing one.
-
-## Where the Damage Will Be Worst
-
-Northwest India — the country's wheat and rice belt, spanning Punjab, Haryana, Rajasthan, and Uttar Pradesh — is expected to be the driest region, with rainfall below 92 percent of the long-period average. Central India, South Peninsular India, and the Monsoon Core Zone, which covers most of India's rain-fed farmland, are all forecast for below-normal rainfall.
-
-Only Northeast India is expected to receive normal precipitation, between 94 and 106 percent.
-
-June is critical because it is when kharif sowing begins. The first month's rainfall is also projected at just 92 percent of normal, which means farmers will be planting into dry soil at a time when input costs — particularly fertiliser, disrupted by the Hormuz blockade — are already elevated.
-
-## The Economic Cascade
-
-The monsoon delivers roughly 75 percent of India's annual rainfall. It replenishes reservoirs, recharges groundwater, and underpins irrigation, drinking water, and hydropower generation. A deficit monsoon in an El Niño year typically triggers a chain reaction: lower crop yields push up food prices, food inflation forces the Reserve Bank of India to keep rates high, and rural demand — which drives nearly half of India's consumer economy — contracts.
-
-IMD has also warned that June will be hotter than normal across most of the country, with above-normal heatwave days expected in Himachal Pradesh, Uttar Pradesh, Bihar, and Odisha. Extended heat combined with deficit rain could push water stress to dangerous levels in northern and central India.
-
-Reservoir levels, already below the 10-year average after a tepid winter season, will be slow to recover. Hydropower generation — which accounts for roughly 12 percent of India's electricity — could fall, increasing dependence on coal and imported LNG at a time when global energy markets are already strained by the Iran conflict.
-
-## What It Means for the Diaspora
-
-For NRIs with family in rural India, a drought monsoon is personal. It means higher food bills for parents and siblings, water rationing in smaller cities, and the spectre of crop failure for farming families. Remittances from the diaspora tend to rise during drought years — in 2015, India received a record $68.9 billion in inward remittances — but the money often chases rising costs rather than improving living standards.
-
-Food export restrictions are also likely. India banned rice exports during the 2023 drought scare, and a repeat in 2026 would affect diaspora communities that depend on Indian rice, spices, and pulses.
-
-The monsoon onset over Kerala, typically around June 1, has already been delayed. IMD expects some rainfall around June 10, but said it will be followed by extended dry spells. For a country already managing war-driven energy inflation and a weakening rupee, the monsoon is the one variable that could tip the balance from managed stress to genuine economic pain."""
-
-articles.append({
-    "headline": "India's 2026 Monsoon Is Now Forecast to Be the Driest in a Decade. El Niño Is the Reason.",
-    "subheadline": "IMD has downgraded its rainfall outlook to 90 percent of normal with a 60 percent probability of a deficient monsoon. Northwest India, the food bowl, will be hit hardest.",
-    "slug": "india-monsoon-2026-driest-decade-el-nino-imd-forecast-food-prices-nri-20260601",
-    "category": "news",
-    "status": "published",
-    "is_editorial": False,
-    "published_at": now,
-    "sources": [
-        {"name": "India Meteorological Department — Long Range Forecast for 2026 Monsoon Season", "url": "https://mausam.imd.gov.in"},
-        {"name": "Livemint — Is 2026 heading for its driest monsoon since 2015?", "url": "https://www.livemint.com"},
-        {"name": "IANS — IMD forecasts below normal monsoon across India", "url": "https://ianslive.in"},
-        {"name": "Dogra Herald — Heatwaves, weak monsoon, El Nino rising", "url": "https://dograherald.com"}
-    ],
-    "body": body2,
-    "word_count": len(body2.split()),
-    "tags": ["monsoon", "El Niño", "IMD", "India weather", "agriculture", "food prices", "drought", "kharif"],
-    "vertical": "economy",
-    "urgency": "daily",
-    "diaspora_angle": "NRIs with family in rural India face higher food bills and water rationing. Remittances tend to rise during drought years, and food export bans on rice and pulses could directly affect diaspora kitchens abroad.",
-    "image_attribution": None,
-    "image_url": None,
-})
-
-# ── ARTICLE 3: Anthropic files confidential S-1 for IPO ─────────────────
-
-body3 = """Anthropic, the artificial intelligence company behind the Claude chatbot and Claude Code, said on Monday that it has confidentially submitted a draft S-1 registration statement to the Securities and Exchange Commission for a proposed initial public offering of its common stock.
-
-The company did not disclose the number of shares to be offered or a price range. But the filing fires a starting gun on what is shaping up to be the most consequential IPO year in American financial history — and one with deep implications for the hundreds of thousands of Indian-origin engineers and investors in Silicon Valley's AI ecosystem.
-
-## The Three-Way Race
-
-Anthropic's filing lands in the middle of a three-company stampede toward public markets. Elon Musk's SpaceX is set to begin trading on the Nasdaq under the ticker SPCX on June 12, targeting a valuation of up to $2 trillion in what would be the largest IPO on record. And the Wall Street Journal reported last month that OpenAI, Anthropic's chief rival, is working with bankers to file its own confidential prospectus imminently.
-
-Investment banks have told both Anthropic and OpenAI that whoever reaches the public market first will "get to define the new industry and have first dibs on the large pools of cash eager to back new AI companies," according to the Journal.
-
-Anthropic may have an edge. In late May, the company raised $65 billion in fresh funding from Greenoaks, Dragoneer, Altimeter Capital, and Sequoia Capital at a post-money valuation of $965 billion — surpassing OpenAI's most recent private valuation. Its revenue run-rate has reached $47 billion, up from $9 billion at the end of 2025, driven largely by the viral adoption of Claude Code among developers.
-
-## From Underdog to Front-Runner
-
-Anthropic was founded in 2021 by Dario and Daniela Amodei, both former executives at OpenAI, along with a small group of researchers who left over disagreements about AI safety practices. For years, it was seen as a principled but commercially uncertain challenger to ChatGPT.
-
-That narrative shifted with the launch of Claude Code, an AI coding assistant that became the most talked-about developer tool in Silicon Valley in early 2026. Enterprises adopted Claude for its precision, safety features, and ability to handle complex reasoning — positioning Anthropic as a serious competitor in the enterprise AI market that OpenAI has dominated.
-
-The Journal noted that Anthropic, while still unprofitable, is "on track to become profitable more quickly than OpenAI." Its confidential filing was widely expected — the company had engaged Wilson Sonsini Goodrich & Rosati to help with IPO preparation, according to the Financial Times.
-
-## What the IPO Means for the Diaspora
-
-The Anthropic IPO matters to the Indian diaspora for three reasons.
-
-First, compensation. Anthropic employs a significant number of Indian-origin engineers, researchers, and product managers, many of whom hold equity grants that will vest upon or shortly after a public listing. An IPO at a valuation near $1 trillion would create substantial wealth across the company's workforce — much of it concentrated in the Bay Area and Seattle, where Indian-origin tech workers are heavily represented.
-
-Second, the market signal. The combined listings of SpaceX, Anthropic, and OpenAI will test whether the AI investment thesis can survive contact with public-market scrutiny. If all three price well, it validates the massive capital expenditures and hiring sprees that have defined the AI sector — and that employ millions of workers on H-1B and L-1 visas. If any stumbles, it could trigger a reassessment that ripples through hiring and visa sponsorship.
-
-Third, the capital drain. The sheer scale of capital being raised is itself a risk. SpaceX alone is looking to extract roughly $86.5 billion from equity markets. Add Anthropic and OpenAI, and investors will be asked to absorb potentially $200 billion or more in new tech paper before year-end. Barron's warned Monday that the SpaceX listing could "signal the end of the stock market rally," noting that the Nasdaq is pushing toward 30,000 points on momentum that may not survive the cash drain.
+Zee5's streaming platform will be critical for the Indian diaspora. NRIs in the US, UK, Canada, and the Gulf will need to check whether Zee5's coverage is geo-restricted or available through international subscriptions. In previous tournaments, streaming platforms offered separate international packages that did not always mirror domestic availability.
 
 ## The Bigger Picture
 
-For Indian-origin professionals in AI — whether at Anthropic, OpenAI, Google DeepMind, or Meta — the IPO wave is a defining career moment. Public listings create liquidity that funds angel investments, startup formation, and philanthropic commitments within the diaspora. The 2004 Google IPO and 2012 Facebook IPO each generated cascading waves of Indian-origin founder wealth in Silicon Valley.
+Zee's aggressive push into sports comes at a time when the company is looking to differentiate itself from JioStar's dominance in cricket. While JioStar controls IPL and most ICC cricket rights, Zee is building a portfolio around football, positioning UNITE8 Sports as a challenger brand.
 
-But the reverse is also true. If the AI IPO wave reprices downward, stock-based compensation loses value, and companies that have hired aggressively may retrench. For workers on employer-sponsored visas, a hiring freeze is not just a career inconvenience — it is an immigration crisis.
+For FIFA, the India deal — however much it was discounted — locks in the world's most populous country and one of its fastest-growing streaming markets. India's football culture is surging, driven by the Indian Super League, growing Premier League viewership, and a generation of fans who discovered the sport through FIFA video games and social media.
 
-Anthropic's confidential filing means most financial details will remain under wraps until the company publishes its prospectus — typically at least 15 days before roadshow meetings with investors. The company said its timeline "will depend on market conditions and other factors." The market conditions, as of Monday, are anything but predictable."""
+The 2026 World Cup kicks off on June 11 when Mexico hosts their opener at the Estadio Azteca. The final is scheduled for July 19 at MetLife Stadium in New Jersey, where Shakira, Madonna, and BTS will perform at halftime."""
 
-articles.append({
-    "headline": "Anthropic Just Filed to Go Public. It Is Racing OpenAI and SpaceX for the Biggest IPO Year in History.",
-    "subheadline": "The $965 billion AI lab submitted a confidential S-1 to the SEC on Monday. With SpaceX listing on June 12 and OpenAI filing imminently, Wall Street is about to absorb three of the largest debuts ever.",
-    "slug": "anthropic-files-ipo-s1-sec-spacex-openai-wall-street-indian-tech-workers-20260601",
-    "category": "news",
-    "status": "published",
-    "is_editorial": False,
-    "published_at": now,
-    "sources": [
-        {"name": "Wall Street Journal — Anthropic Files to Go Public", "url": "https://www.wsj.com"},
-        {"name": "Reuters — AI giant Anthropic confidentially files for US IPO", "url": "https://www.reuters.com"},
-        {"name": "CNN — Anthropic confidentially files to go public", "url": "https://www.cnn.com"},
-        {"name": "Barron's — Anthropic Files for IPO", "url": "https://www.barrons.com"}
-    ],
-    "body": body3,
-    "word_count": len(body3.split()),
-    "tags": ["Anthropic", "IPO", "Claude", "AI", "SpaceX", "OpenAI", "Silicon Valley", "Indian tech workers"],
-    "vertical": "technology",
-    "urgency": "breaking",
-    "diaspora_angle": "Indian-origin engineers at Anthropic and across Silicon Valley's AI ecosystem stand to gain or lose significantly from the IPO wave — equity vesting, hiring momentum, and visa sponsorship all hinge on how public markets receive these listings.",
-    "image_attribution": None,
-    "image_url": None,
-})
+    sources = make_sources_json([
+        "Reuters — Zee Entertainment to broadcast 2026 FIFA world cup in India (June 1, 2026)",
+        "Athlon Sports — FIFA Lands Major India Broadcast Deal 10 Days Before 2026 World Cup (June 1, 2026)",
+        "Mint — With 10 days to go, how will Indians watch FIFA World Cup 2026? (June 1, 2026)",
+    ])
 
-
-# ── main ─────────────────────────────────────────────────────────────────
-
-def main():
-    print("=" * 60)
-    print(f"News writer — {datetime.now(timezone.utc).isoformat()}")
-    print(f"Articles to write: {len(articles)}")
-    print("=" * 60)
-
-    for i, art in enumerate(articles):
-        print(f"\n{'─' * 50}")
-        print(f"[{i+1}/{len(articles)}] {art['headline'][:70]}…")
-        print(f"  Word count: {art['word_count']}")
-
-        if art["word_count"] < 400:
-            print(f"  ✗ SKIP — below 400-word floor")
-            continue
-
-        # Image sourcing
+    img_url = fetch_pexels_image("FIFA World Cup trophy football", "football stadium fans celebration")
+    if img_url and not validate_image(img_url):
         img_url = None
 
-        if "hormuz" in art["slug"]:
-            img_url = fetch_pexels_image("oil tanker ocean shipping", "cargo ship strait sea")
+    return {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "news",
+        "vertical": "media",
+        "status": "published",
+        "is_editorial": False,
+        "is_featured": False,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": sources,
+        "image_url": img_url,
+        "image_attribution": "Pexels" if img_url else None,
+    }
 
-        elif "monsoon" in art["slug"]:
-            img_url = fetch_pexels_image("monsoon rain India farmer", "rain agriculture field")
 
-        elif "anthropic" in art["slug"]:
-            img_url = fetch_wikipedia_person_image("Dario Amodei")
-            if not img_url:
-                img_url = fetch_pexels_image("stock exchange IPO trading floor", "Wall Street financial district")
+# ── ARTICLE 2 ────────────────────────────────────────────────────────────────
+def article_trump_hezbollah():
+    print("\n── Article 2: Trump claims first direct US-Hezbollah communication ──")
 
-        if img_url and validate_image_url(img_url):
-            filename = f"{art['slug']}.jpg"
-            final_url = upload_image_to_supabase(img_url, filename)
-            if final_url:
-                art["image_url"] = final_url
-                if "wikimedia" in (img_url or ""):
-                    art["image_attribution"] = "Wikimedia Commons"
-                else:
-                    art["image_attribution"] = "The Videshi"
-            else:
-                print("  ⚠ No usable image — publishing without")
-        elif img_url:
-            print("  ⚠ Image validation failed — publishing without")
-        else:
-            print("  ⚠ No image found — publishing without")
+    slug = "trump-hezbollah-direct-call-lebanon-ceasefire-netanyahu-beirut-oil-prices-20260601"
+    headline = "Trump Says He Spoke Directly With Hezbollah. No US President Has Ever Done That Before."
+    subheadline = "Netanyahu agreed to pull troops back from Beirut. Hezbollah agreed to stop shooting. Oil prices jumped 5 percent before the announcement. Israel-Lebanon talks are set for Tuesday."
 
-        art_id = insert_article(art)
-        if art_id:
-            print(f"  ✓ Published: {art['slug']}")
-        else:
-            print(f"  ✗ Failed: {art['slug']}")
+    body = """In a post on Truth Social on Monday, US President Donald Trump said he had a "very good call with Hezbollah" through intermediaries and that the group agreed to stop all attacks on Israel. He also said he had a "very productive call" with Israeli Prime Minister Benjamin Netanyahu, who agreed to pull back troops from Beirut.
 
-        time.sleep(0.5)
+No US president has ever communicated directly with Hezbollah, with or without intermediaries. The group has been designated as a foreign terrorist organization by the United States since 1997.
 
-    print(f"\n{'=' * 60}")
-    print("Done.")
+## The Sequence of Events
 
+The day began with a diplomatic crisis. Iran's semi-official Tasnim news agency reported that Tehran was halting all indirect negotiations with the US, citing Israel's intensifying military campaign in Lebanon. Oil prices immediately jumped 5 percent on the news, rattling global energy markets.
+
+Israel had pushed its deepest into Lebanon in 25 years, with troops moving beyond the Litani River toward the Zaharani River — roughly 10 kilometers further north. Netanyahu had ordered fresh strikes on Hezbollah-controlled southern suburbs of Beirut.
+
+Then came Trump's intervention. In rapid succession, he posted that Netanyahu had agreed to halt troop movements toward Beirut, that Hezbollah had agreed through representatives to stop shooting, and that talks with Iran were "continuing, at a rapid pace."
+
+Lebanon's President Joseph Aoun confirmed Trump's claims regarding Beirut and said Israel-Lebanon negotiations were scheduled for June 2 and 3.
+
+## Iran's Position Remains Unclear
+
+The picture from Tehran is contradictory. Iranian state media initially announced a full suspension of indirect talks with Washington. Then Iran's foreign ministry said it held the US and Israel responsible for "any violation" of the ceasefire, including in Lebanon. Hours later, Trump posted that talks with Iran were back on.
+
+Speaking to NBC News, Trump appeared unbothered by Iran's earlier walkout. "It's an appropriate thing to say, because they're better negotiators than they are fighters," he said. "But they haven't informed us of that."
+
+The IRGC-affiliated Tasnim had also threatened a "complete closure of the Strait of Hormuz" and activation of the Bab el-Mandeb Strait — the two chokepoints that together control roughly 40 percent of the world's seaborne oil trade.
+
+## What This Means for India
+
+India is watching the Hormuz situation with particular urgency. Any disruption to the Strait directly threatens India's energy security — roughly 60 percent of India's crude oil imports transit through Hormuz. India has already begun diversifying its oil sourcing, pivoting to Venezuela, Brazil, and Angola, but these alternatives are more expensive and logistically complex.
+
+The 5 percent spike in oil prices on Monday — even before any actual blockade — is a reminder of how fragile India's energy economics remain. With crude already trading between $90 and $100 per barrel due to the Iran-US conflict, any sustained disruption would push prices higher and further strain the Reserve Bank of India's inflation management ahead of its policy decision on Friday.
+
+Indian equity markets fell for the fourth consecutive session on Monday, with the Nifty 50 dropping 0.7 percent to 23,382 and the Sensex losing 0.68 percent to 74,267. Foreign investors sold a record $2.22 billion of Indian shares on Friday during MSCI's May rebalancing.
+
+## The Ceasefire's Fragile State
+
+The US-Iran ceasefire, in effect since early April, was meant to create space for broader negotiations over Iran's nuclear program and the reopening of the Strait of Hormuz. But the ceasefire has been repeatedly tested — over the weekend, the US struck Iranian military sites and Iran's Revolutionary Guards targeted a US base in Kuwait.
+
+Whether Monday's flurry of diplomatic activity represents a genuine de-escalation or merely a pause depends on what happens in the next 48 hours. The Israel-Lebanon talks scheduled for Tuesday and Wednesday will be the first real test."""
+
+    sources = make_sources_json([
+        "Reuters — Trump holds calls with Israel, Hezbollah amid hopes Lebanon ceasefire can hold (June 1, 2026)",
+        "USA Today — Iran suspends US talks over Israel's attacks in Lebanon (June 1, 2026)",
+        "New York Post — Iran calls off negotiations with US following Israeli strike on Beirut (June 1, 2026)",
+        "Reuters — Indian shares drop again on outflows, weak monsoon woes (June 1, 2026)",
+    ])
+
+    img_url = fetch_wikipedia_person_image("Donald Trump")
+    if img_url and not validate_image(img_url):
+        img_url = None
+    attr = "Wikimedia Commons" if img_url else None
+    if not img_url:
+        img_url = fetch_pexels_image("Middle East diplomacy oil tanker", "oil tanker strait ocean")
+        attr = "Pexels" if img_url else None
+        if img_url and not validate_image(img_url):
+            img_url = None
+            attr = None
+
+    return {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "news",
+        "vertical": "geopolitics",
+        "status": "published",
+        "is_editorial": False,
+        "is_featured": False,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": sources,
+        "image_url": img_url,
+        "image_attribution": attr,
+    }
+
+
+# ── ARTICLE 3 ────────────────────────────────────────────────────────────────
+def article_sc_judges():
+    print("\n── Article 3: President appoints 5 new Supreme Court judges ──")
+
+    slug = "india-five-new-supreme-court-judges-appointed-collegium-may-2026-cji-surya-kant-20260601"
+    headline = "India's President Just Appointed Five New Supreme Court Judges. The Court Is Racing to Clear a Backlog of Over 80,000 Cases."
+    subheadline = "The appointments follow the Collegium's May 22 and May 27 recommendations and include four High Court chief justices and one senior advocate."
+
+    body = """The President of India has appointed five new judges to the Supreme Court, giving effect to recommendations made by the Collegium headed by Chief Justice of India Surya Kant on May 22 and May 27. Union Law Minister Arjun Ram Meghwal announced the appointments on Monday.
+
+The five appointees are:
+
+**Justice Sheel Nagu**, Chief Justice of the Punjab and Haryana High Court, whose parent court is the Madhya Pradesh High Court.
+
+**Justice Shree Chandrashekhar**, Chief Justice of the Bombay High Court, from the Jharkhand High Court.
+
+**Justice Sanjeev Sachdeva**, Chief Justice of the Madhya Pradesh High Court, from the Delhi High Court.
+
+**Justice Arun Palli**, Chief Justice of the High Court of Jammu and Kashmir and Ladakh, from the Punjab and Haryana High Court.
+
+**Senior Advocate V. Mohana**, practicing at the Supreme Court of India — the only non-judge among the five.
+
+## Why This Matters Now
+
+India's Supreme Court has been grappling with a mounting case backlog. The latest data shows more than 80,000 cases pending before the court, a number that has grown steadily despite efforts to increase judicial strength. The President recently issued an ordinance to expand the court's capacity, and these five appointments are part of that broader push.
+
+The selection of four sitting High Court chief justices signals the Collegium's emphasis on administrative experience. Each of the four has led a major High Court and managed complex docket pressures — experience directly applicable to the Supreme Court's own capacity challenges.
+
+The inclusion of Senior Advocate V. Mohana marks a continuation of the tradition of elevating distinguished lawyers directly to the bench, bringing a practitioner's perspective to complement career judges.
+
+## The Week That Was in India's Courts
+
+The appointments cap an extraordinary week for India's judiciary. The Supreme Court issued a comprehensive victim protection plan for human trafficking survivors, directed all High Courts to deliver reserved judgments within three months, and issued pan-India directions on trauma care for road accident victims under Article 21's right to life.
+
+The court also issued notice on a petition challenging CBSE's new three-language mandate for Class IX students — a policy requiring at least two of three languages to be native Indian languages, with foreign languages relegated to a secondary position. The challenge raises questions about educational autonomy and parental choice that resonate deeply with NRI families navigating language instruction for children straddling two cultures.
+
+Meanwhile, the Centre moved to transfer petitions challenging the Transgender Persons (Protection of Rights) Amendment Act, 2026, from four High Courts to the Supreme Court — consolidating a constitutional challenge that will likely become one of the court's most closely watched cases this term.
+
+## What This Means for the Indian Diaspora
+
+For the Indian diaspora, the court's direction matters profoundly. Property disputes, inheritance claims, NRI-specific tax cases, and OCI rights issues all flow through India's judicial system. A stronger, better-staffed Supreme Court means faster resolution of the cases that directly affect Indians living abroad.
+
+Over the past year, the government and Collegium have accelerated appointments to both the Supreme Court and High Courts, where vacancies had reached alarming levels. The five judges will take their oaths in the coming days, bringing the Supreme Court closer to its sanctioned strength — and closer to the capacity it needs to manage the world's largest democracy's heaviest docket."""
+
+    sources = make_sources_json([
+        "SCC Online — President Appoints 5 Judges to Supreme Court Following Collegium Recommendations (June 1, 2026)",
+        "LawBeat — Supreme Court Weekly Round Up May 25-31 2026 (June 1, 2026)",
+        "LawBeat — Law and Justice This Week May 25-31 2026 (June 1, 2026)",
+    ])
+
+    img_url = fetch_pexels_image("India Supreme Court building New Delhi", "Indian court justice")
+    attr = "Pexels" if img_url else None
+    if img_url and not validate_image(img_url):
+        img_url = None
+        attr = None
+
+    return {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "news",
+        "vertical": "politics",
+        "status": "published",
+        "is_editorial": False,
+        "is_featured": False,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": sources,
+        "image_url": img_url,
+        "image_attribution": attr,
+    }
+
+
+# ── main ─────────────────────────────────────────────────────────────────────
+def main():
+    articles = [article_zee_fifa(), article_trump_hezbollah(), article_sc_judges()]
+    success = 0
+    for art in articles:
+        aid = sb_insert(art)
+        if aid:
+            success += 1
+    print(f"\n✅ Published {success}/{len(articles)} articles.")
 
 if __name__ == "__main__":
     main()
