@@ -1,13 +1,40 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-06-01 batch."""
+"""Entertainment writer for The Videshi — 2026-06-01 run.
 
-import json, os, re, sys, time, uuid, urllib.parse
-import requests
+Articles:
+1. KASHISH Pride Film Festival 2026 — 153 films from 43 countries, June 3-7 Mumbai
+2. Maa Behen — Madhuri Dixit + Triptii Dimri Netflix crime-comedy, June 4
+3. Main Vaapas Aaunga — Imtiaz Ali + Diljit Dosanjh Partition love story, June 12
+"""
+
+import json, os, subprocess, sys, time, uuid, urllib.parse, re
 from datetime import datetime, timezone
 
-# ── Supabase config ─────────────────────────────────────────────
+# --- env ---
+env_file = os.path.expanduser("~/.env.supabase")
+with open(env_file) as f:
+    for line in f:
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ[k.strip()] = v.strip().strip('"').strip("'")
+
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+PEXELS_KEY = None
+if os.path.exists(pexels_env):
+    with open(pexels_env) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                if "PEXELS" in k.upper():
+                    PEXELS_KEY = v.strip().strip('"').strip("'")
+
+import requests
+
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -15,23 +42,15 @@ HEADERS = {
     "Prefer": "return=representation",
 }
 
-# ── Pexels config ───────────────────────────────────────────────
-PEXELS_KEY = None
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-if os.path.exists(pexels_env):
-    for line in open(pexels_env):
-        if line.startswith("PEXELS_API_KEY="):
-            PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
 
-# ── Image helpers ───────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    encoded = urllib.parse.quote(person_name.replace(" ", "_"))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            timeout=10,
         )
         if r.status_code == 200:
             data = r.json()
@@ -45,25 +64,26 @@ def fetch_wikipedia_person_image(person_name):
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels. Use curl internally since Python urllib gets 403."""
+    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key available")
         return None
-    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            cmd = [
-                "curl", "-sS",
-                f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
-                "-H", f"Authorization: {PEXELS_KEY}"
-            ]
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+            result = subprocess.run(
+                [
+                    "curl", "-sS",
+                    f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
+                    "-H", f"Authorization: {PEXELS_KEY}",
+                ],
+                capture_output=True, text=True, timeout=15,
+            )
             data = json.loads(result.stdout)
             photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+            for photo in photos:
+                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("original")
                 if url:
                     print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                     return url
@@ -73,317 +93,279 @@ def fetch_pexels_image(query, fallback_query=None):
 
 
 def validate_image(url):
-    """Verify image URL returns 200 with image content-type and >5KB."""
-    if not url:
-        return False
+    """Verify image URL returns HTTP 200 with image content-type and >5KB."""
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         ct = r.headers.get("Content-Type", "")
         cl = int(r.headers.get("Content-Length", 0))
         if r.status_code == 200 and "image" in ct and cl > 5000:
+            print(f"  ✓ Image validated: {r.status_code}, {ct}, {cl} bytes")
             return True
-        # Try GET if HEAD doesn't return content-length
-        if r.status_code == 200 and "image" in ct:
-            r2 = requests.get(url, timeout=10, stream=True,
-                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                return True
+        # Try GET for servers that don't support HEAD well
+        r2 = requests.get(url, timeout=10, stream=True, allow_redirects=True,
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct2 = r2.headers.get("Content-Type", "")
+        cl2 = int(r2.headers.get("Content-Length", 0))
+        if r2.status_code == 200 and "image" in ct2 and cl2 > 5000:
+            print(f"  ✓ Image validated (GET): {r2.status_code}, {ct2}, {cl2} bytes")
+            return True
+        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
         print(f"  ⚠ Image validation error: {e}")
     return False
 
 
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase article-images bucket."""
-    try:
-        r = requests.get(image_url, timeout=15,
-                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200 or len(r.content) < 5000:
-            print(f"  ⚠ Failed to download image: status={r.status_code}, size={len(r.content)}")
-            return None
+def insert_article(article):
+    """Insert article into Supabase p2_articles table."""
+    article_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
 
-        ct = r.headers.get("Content-Type", "image/jpeg")
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        resp = requests.post(
-            upload_url,
-            headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": ct,
-                "x-upsert": "true",
-            },
-            data=r.content,
-            timeout=20
-        )
-        if resp.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Supabase upload failed: {resp.status_code} {resp.text[:200]}")
-    except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-    return None
+    payload = {
+        "id": article_id,
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": "entertainment",
+        "status": "published",
+        "published_at": now,
+        "sources": article["sources"],
+        "vertical": "entertainment",
+        "image_url": article.get("image_url"),
+        "image_attribution": article.get("image_attribution", ""),
+        "is_editorial": False,
+    }
 
-
-def sb_insert(table, data):
-    """Insert row into Supabase and return the row."""
     r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=data,
-        timeout=20
+        json=payload,
     )
     if r.status_code in (200, 201):
-        rows = r.json()
-        return rows[0] if rows else data
+        result = r.json()
+        print(f"  ✓ Published: {article['headline'][:60]}... (id={article_id})")
+        return article_id
     else:
-        print(f"  ✗ Insert into {table} failed: {r.status_code} {r.text[:300]}")
+        print(f"  ✗ Failed to publish: {r.status_code} {r.text[:200]}")
         return None
 
 
-def sb_patch(table, filters, data):
-    """Update a Supabase row."""
-    params = "&".join(f"{k}={v}" for k, v in filters.items())
-    r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
-        headers=HEADERS,
-        json=data,
-        timeout=20
-    )
-    if r.status_code in (200, 204):
-        return True
-    print(f"  ⚠ Patch {table} failed: {r.status_code} {r.text[:200]}")
-    return False
+# ============================================================
+# ARTICLE 1: KASHISH Pride Film Festival 2026
+# ============================================================
+print("\n=== Article 1: KASHISH Pride Film Festival 2026 ===")
 
+# Image: Try to get a Pride/rainbow flag or festival image from Pexels
+img1 = fetch_pexels_image("pride month rainbow celebration", "LGBTQ pride festival colorful")
+if img1 and not validate_image(img1):
+    img1 = None
 
-# ── Articles ────────────────────────────────────────────────────
-articles = []
+article1 = {
+    "headline": "KASHISH Opens in Mumbai This Week With 153 Queer Films From 43 Countries. Here's What It Means for the Diaspora.",
+    "subheadline": "South Asia's biggest LGBTQ+ film festival runs June 3-7 at Liberty Cinema. For NRI audiences who grew up without seeing themselves on screen, this is the conversation India is finally having.",
+    "slug": "kashish-pride-film-festival-2026-mumbai-153-films-43-countries-nri-diaspora-20260601",
+    "sources": [
+        {"name": "KASHISH Pride Film Festival Official", "url": "https://mumbaiqueerfest.com"},
+        {"name": "NewsPoint", "url": "https://newspointapp.com"},
+        {"name": "Passionate in Marketing", "url": "https://passionateinmarketing.com"},
+        {"name": "Festivals from India", "url": "https://festivalsfromindia.com"},
+    ],
+    "image_url": img1,
+    "image_attribution": "Pexels" if img1 else "",
+    "body": """It is June 1, Pride Month has officially begun, and in Mumbai, a 17-year-old institution is preparing to do what it does better than anyone else on the subcontinent: fill a cinema hall with queer stories and dare you not to feel something.
 
-# ─────────────────────────────────────────────────────────────────
-# ARTICLE 1: Suman Kalyanpur Tribute
-# ─────────────────────────────────────────────────────────────────
-articles.append({
-    "headline": "Suman Kalyanpur, the Voice That Rivalled Lata Mangeshkar's, Has Died at 89. NRI Families Are Mourning a Soundtrack.",
-    "subheadline": "The playback legend behind 'Aaj Kal Tere Mere Pyar Ke Charche' and 'Na Na Karte Pyar' shaped the sonic memory of an entire diaspora generation. She spent her final days listening to her own songs.",
-    "slug": "suman-kalyanpur-death-89-playback-singer-golden-era-nri-tribute-20260601",
-    "category": "entertainment",
-    "vertical": "entertainment",
-    "tags": [],
-    "is_featured": False,
-    "status": "published",
-    "is_editorial": False,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps([
-        "Bollywood Hungama", "Filmfare", "The Hindu Business Line",
-        "Livemint", "PTI", "Radio City"
-    ]),
-    "image_person": "Suman Kalyanpur",
-    "image_search_fallback": "vintage Indian music recording studio microphone",
-    "image_attribution": "Wikimedia Commons",
-    "body": """Suman Kalyanpur, one of the most distinctive and beloved voices in the history of Indian playback singing, passed away on Sunday evening at her Mumbai residence. She was 89. The singer, whose voice was so pure and crystalline that it was routinely mistaken for Lata Mangeshkar's, had been unwell for several weeks. According to her biographer Mangala Khadilkar, Kalyanpur spent her final days at home in Lokhandwala, listening to her own recordings.
+The **KASHISH Pride Film Festival** returns for its 17th edition from **June 3 to 7**, spreading across three South Mumbai venues — the iconic **Liberty Cinema**, the **Alliance Française de Bombay**, and for the first time, the **National Gallery of Modern Art**. This year's programme is the largest yet: **153 films from 43 countries**, curated under the theme *Reflect, Resonate, Rejoice!*
 
-"It happened around 8 pm. She passed away peacefully," Khadilkar told PTI. "I am going to remember what a gentle person Suman Tai was. Her voice — its sweetness was so different, soft and gentle, and touched your heart instantly."
+## Why This Matters Beyond Mumbai
 
-## A Voice That Defined Bollywood's Golden Age
+For queer South Asians in the diaspora — in the Bay Area, London, Toronto, Sydney — the relationship with Indian cinema has always been complicated. Bollywood's idea of a queer character, for decades, was a punchline. A limp wrist. A predator. The representation wasn't just absent; it was hostile.
 
-For three decades, from the mid-1950s through the 1980s, Kalyanpur was one of Hindi cinema's most prolific playback voices. Songs like *Na Na Karte Pyar Tumhin Se*, *Na Tum Humein Jaano*, *Ajhun Na Aaye Baalma*, and the iconic *Aaj Kal Tere Mere Pyar Ke Charche* became the emotional architecture of millions of Indian households — including those that would eventually scatter across the United States, the United Kingdom, and Canada.
+KASHISH exists to rewrite that. Founded in 2010, it was the first LGBTQ+ film festival in India to be held in a mainstream theatre, and the first to receive approval from the Information & Broadcasting Ministry. It has since been voted one of the **Top 5 LGBTQ+ film festivals in the world** by Movie Maker magazine, and named one of the **Top 15 International Film Festivals Worth Travelling For** by Travel & Leisure.
 
-Born Suman Hemmadi in 1937 in Bhawanipur, Bangladesh (then undivided India), she began her career at All India Radio in 1952, debuting in film with the Marathi movie *Shukrachi Chandni* a year later. Her Hindi cinema career took off with the 1954 film *Mangu*, and from there she became a fixture in the recording studios of Bollywood's greatest composers — Shankar Jaikishan, Naushad, Madan Mohan Kohli, S.D. Burman, Laxmikant-Pyarelal, and Kalyanji Anandji.
+"This year there are 153 films from 43 countries that will be showcased," said festival director **Saagar Gupta**. "Our theme 'Reflect, Resonate, Rejoice!' is an invitation to embrace the full emotional spectrum of queer life."
 
-Her duets with Mohammed Rafi remain cornerstones of the Hindi film songbook. Songs like *Na Tum Humein Jaano* from *Baat Ek Raat Ki* (1962) and *Tumne Pukara Aur Hum Chale Aaye* continue to be played at Indian weddings and festivals worldwide.
+## The Programme
 
-## The Lata Comparison — and Why It Missed the Point
+The opening night on June 3 features **Jimpa**, a 113-minute feature, following the opening ceremony at 7 PM. The five-day schedule is dense and deliberate — student shorts competitions, documentary showcases, Spanish short film programmes, panel discussions, and country-focus features.
 
-Throughout her career, Kalyanpur lived in the shadow of Lata Mangeshkar. Critics often compared the two, sometimes reducing Kalyanpur to a "backup" — a characterization that was both unfair and inaccurate. While their vocal registers overlapped, Kalyanpur possessed a softer, more intimate quality that composers specifically sought. She wasn't competing with Lata; she was offering something different.
+Among the highlights:
 
-Her versatility extended far beyond Hindi. She recorded in Marathi, Bengali, Kannada, Assamese, Gujarati, Odia, and Punjabi. Her Marathi songs — *Ketakichya Bani Tithe*, *Sang Kadhi Kalnar Tula* — remain beloved standards. She also had a significant body of work in devotional music, ghazals, and thumris.
+- **Sabar Bonda**, directed by **Rohan Kanawade** — a tender romance between two men set during a 10-day mourning period in a village, which won acclaim at Sundance
+- **Na Aavadti Goshta**, the debut feature from **Sai Deodhar**, which she described as a film "that families could watch together and have a conversation around the topic"
+- **Queering India**, an Indian documentary centrepiece screening on Friday
+- **LSD 2: Love, Sex and Betrayal 2**, a special presentation
+- **A (Dis)Liked Story** and **Astronaut Lovers**, both screening on Friday night
 
-## Why the Diaspora Is Mourning Differently
+The festival's advisory board includes figures like **Ashwiny Iyer Tiwari** and **Nikkhil Advani** as jury members, alongside board members **Arunaraje Patil**, **Dolly Thakore**, and **Meghna Ghai Puri** — names that signal the mainstream is no longer looking away.
 
-For NRI families, Suman Kalyanpur's songs occupy a particular emotional register. These are the songs their parents played on cassette tapes in apartments in New Jersey and houses in Leicester, the melodies that filled Diwali gatherings in Toronto and weekend picnics in the Bay Area. Her voice was rarely the loudest in the room, but it was always the one that made people stop talking and listen.
+## The Diaspora Connection
 
-In an era before Spotify playlists and YouTube compilations, her music traveled through dubbed cassettes and Sunday morning requests on ethnic radio stations. For a generation of Indian Americans who grew up hearing these songs without fully understanding the lyrics, Kalyanpur's voice *was* the sound of heritage — gentle, persistent, and impossible to forget.
+For NRI families, KASHISH represents something that wasn't available when most first-generation immigrants left India: an institutional, government-approved space for queer Indian stories. The festival has steadily become a reference point for queer South Asians abroad who want to see their experiences reflected in their own cultural language, not just through Western narratives.
 
-## A Quiet Departure
+As filmmaker Sai Deodhar put it: "Maharashtrians are a very progressive community, but there is no conversation on LGBTQ. So I wanted to create a film that families could watch together. Love is the purest emotion — how does gender matter?"
 
-In recognition of her immense contribution to Indian music, the Government of India awarded her the Padma Bhushan in 2023. Maharashtra Chief Minister Devendra Fadnavis described her passing as the loss of "a divine voice that enriched India's musical heritage for more than six decades." NCP chief Sharad Pawar called it the end of "a golden era in Indian classical and light music."
+That sentence carries different weight when you hear it in a family WhatsApp group than when you read it in an American think piece about representation. It's the kind of shift that KASHISH has been engineering, one screening at a time, for nearly two decades.
 
-Kalyanpur is survived by her daughter, Charu. Her last rites were performed at the Pawan Hans crematorium in Mumbai on Monday.
+## The Numbers
 
-She was 89. Her songs will outlive everyone who mourns her today."""
-})
+The festival draws an average footfall of **9,500 attendees** per year. Past guests have included **Ian McKellen**, **Nandita Das**, **Sonam Kapoor**, and filmmakers like **Shyam Benegal** and **Onir**. For the first time this year, KASHISH has launched a dedicated app for scheduling and access — a small detail that signals growth.
 
+## What's Next
 
-# ─────────────────────────────────────────────────────────────────
-# ARTICLE 2: Jacqueline Fernandez Money Laundering Trial
-# ─────────────────────────────────────────────────────────────────
-articles.append({
-    "headline": "Jacqueline Fernandez Will Stand Trial in a ₹200 Crore Money Laundering Case. The Court Said She Wasn't a Victim.",
-    "subheadline": "A Delhi court has ordered charges against the Sri Lankan-born Bollywood actress, alleged conman Sukesh Chandrashekhar, and 15 others. She must appear in person on June 3.",
-    "slug": "jacqueline-fernandez-money-laundering-trial-sukesh-chandrashekhar-200-crore-nri-20260601",
-    "category": "entertainment",
-    "vertical": "entertainment",
-    "tags": [],
-    "is_featured": False,
-    "status": "published",
-    "is_editorial": False,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps([
-        "Bollywood Hungama", "Cinema Express", "Hindustan Times",
-        "PTI", "Movie Talkies", "News Ei Samay"
-    ]),
-    "image_person": "Jacqueline Fernandez",
-    "image_search_fallback": "Delhi court building India law",
-    "image_attribution": "Wikimedia Commons",
-    "body": """A Delhi court has ordered the framing of criminal charges against Bollywood actress Jacqueline Fernandez, alleged conman Sukesh Chandrashekhar, and 15 other individuals in connection with a ₹200 crore money laundering investigation. The ruling, delivered on Saturday by Additional Sessions Judge Prashant Sharma, formally advances the case to trial — a significant escalation for the Sri Lankan-born actress who has maintained she was an unwitting victim.
+If you're in Mumbai between June 3 and 7, registrations are open with discounts for students, senior citizens, and transgender persons. If you're in the diaspora, the festival's digital footprint continues to expand, and several films from previous editions are available on streaming platforms.
 
-The court rejected that defense squarely. "Prima facie, there is sufficient material on record based upon which a strong suspicion is raised against all the accused," Judge Sharma stated. All 17 individuals have been ordered to appear physically at Patiala House Court on June 3 at 2:00 PM for the formal signing and framing of charges.
+The real story here isn't the film count or the venue additions. It's that in 2026, the largest queer film festival in South Asia can fill three venues across five days in the heart of Mumbai — and the government's response isn't a raid but an approval stamp. For a community that has spent decades watching itself be caricatured on screen, that's not just progress. It's a reckoning.""",
+}
 
-## The Case: Spoofed Calls, Luxury Gifts, and Tihar Jail
+# ============================================================
+# ARTICLE 2: Maa Behen — Madhuri + Triptii on Netflix
+# ============================================================
+print("\n=== Article 2: Maa Behen ===")
 
-The case originates from a Delhi Police extortion complaint filed by Aditi Singh, wife of former Ranbaxy promoter Shivinder Singh. Investigators allege that Chandrashekhar, operating from inside Tihar Jail, spoofed phone numbers to impersonate senior government officials, conning Singh into transferring enormous sums. The total alleged proceeds of crime amount to ₹215 crores.
+img2 = fetch_wikipedia_person_image("Madhuri Dixit")
+if img2 and not validate_image(img2):
+    img2 = None
+if not img2:
+    img2 = fetch_wikipedia_person_image("Triptii Dimri")
+    if img2 and not validate_image(img2):
+        img2 = None
 
-The Enforcement Directorate named Fernandez in a supplementary chargesheet, alleging she maintained regular contact with Chandrashekhar and received high-value luxury gifts — purchased with the illicit funds — through an intermediary named Pinky Irani. The gifts reportedly included designer handbags, jewellery, and significant cash transfers.
+article2 = {
+    "headline": "Madhuri Dixit and Triptii Dimri Hide a Dead Body in Maa Behen. Netflix Drops It Wednesday.",
+    "subheadline": "Suresh Triveni's crime-comedy pairs Bollywood's most beloved dancer with Gen Z's breakout star. For diaspora audiences who grew up on Madhuri, this is the Netflix homecoming you didn't know you needed.",
+    "slug": "maa-behen-madhuri-dixit-triptii-dimri-netflix-june-4-crime-comedy-nri-20260601",
+    "sources": [
+        {"name": "Filmfare", "url": "https://filmfare.com"},
+        {"name": "Zoom TV Entertainment", "url": "https://zoomtventertainment.com"},
+        {"name": "Bollywood Life", "url": "https://bollywoodlife.com"},
+        {"name": "IANS", "url": "https://ianslive.in"},
+    ],
+    "image_url": img2,
+    "image_attribution": "Wikimedia Commons" if img2 else "",
+    "body": """There's a dead body in the kitchen, the neighbours are nosy, and the only people who can fix this are a mother and her two daughters who can barely stand each other. That's the premise of **Maa Behen**, and if you think it sounds like a family gathering during Diwali gone sideways, you're not far off.
 
-## "Unwitting Victim" or "Conscious Association"?
+Directed by **Suresh Triveni** (*Tumhari Sulu*, *Jalsa*), the Netflix crime-comedy stars **Madhuri Dixit**, **Triptii Dimri**, and newcomer **Dharna Durga** as Rekha, Jaya, and Sushma — a dysfunctional mother-daughter trio in Bhopal who must hide a corpse while keeping their neighbourhood from finding out. It drops on **Netflix on June 4**.
 
-Fernandez's legal strategy centered on portraying herself as a victim who was misled by Chandrashekhar's fabricated identity. Her team argued she should not face prosecution under the Prevention of Money Laundering Act because she was never named as an accused in the original extortion case.
+## The Cast
 
-The court dismissed this as "meritless," ruling that an individual can be independently prosecuted under anti-money laundering laws regardless of their role in the underlying crime.
+Let's start with the obvious: **Madhuri Dixit** on Netflix. For an entire generation of NRI families, Madhuri wasn't just an actress — she was the reason the VCR existed. Hum Aapke Hain Koun, Dil To Pagal Hai, Devdas — her filmography is essentially the soundtrack of every Indian household in the 1990s. She lived in Denver for over a decade before returning to Mumbai, making her as much a diaspora figure as a Bollywood one.
 
-The ED's response was even more pointed. The agency told the court that Fernandez "remained in regular and sustained contact with Sukesh Chandrashekhar even after having knowledge of his criminal antecedents." The consistent receipt of benefits, the ED argued, "negated any claim of being an unwitting victim" and instead demonstrated "conscious association with the main perpetrator."
+Opposite her is **Triptii Dimri**, who in the last two years has become Gen Z's definitive Bollywood star. From *Animal* to *Bhool Bhulaiyaa 3*, she's demonstrated range that most of her contemporaries can't touch. Pairing her with Madhuri isn't just casting — it's a generational handshake.
 
-Earlier this month, Fernandez had attempted to turn approver in the case — essentially seeking to cooperate with the prosecution in exchange for potential leniency. The court allowed her to withdraw that plea.
+**Dharna Durga** rounds out the trio as Sushma, the wild card sister. **Ravi Kishan**, **Geetanjali Kulkarni**, **Arunoday Singh**, and **Shardul Bhardwaj** fill out the supporting cast.
 
-## The NRI Dimension
+## The Premise
 
-Jacqueline Fernandez's career arc is itself a diaspora story. Born in Bahrain to a Sri Lankan father of Sinhalese and Portuguese descent, she won Miss Universe Sri Lanka in 2006 before relocating to Mumbai to pursue Bollywood. Her success — from *Race 2* to *Kick* to the *Housefull* franchise — made her one of the few non-Indian-born actresses to achieve sustained stardom in Hindi cinema.
+The film is set in **Bhopal's Adarsh Colony** — the kind of neighbourhood where everyone knows everyone else's business, and a dead body in your kitchen is everyone's problem. Rekha (Madhuri) is a mother already dealing with enough family drama when the ultimate curveball arrives. Jaya (Triptii) is the responsible daughter, Sushma (Dharna) is the chaos agent, and together they must think fast, lie faster, and somehow keep their world from unravelling.
 
-For NRI audiences who followed her career as a fellow outsider-who-made-it-in-Bollywood, the trial raises uncomfortable questions about the intersection of celebrity culture, wealth, and accountability. The court's finding that receiving luxury gifts with awareness of their dubious origin constitutes money laundering — regardless of direct involvement in the underlying crime — sets a legal precedent that extends well beyond Fernandez.
+During a promotional event in Gurugram, Madhuri was asked who among the three would cause the most *kaands* (chaos) in real life. "I think they will have more kaands because they are from here," she laughed. "She has less to do."
 
-## What Happens Next
+Triptii disagreed. "All three of us are equally *kaandi*. Whether it's the mother, whether it's the sister, or the older sister. It's a very dysfunctional family."
 
-The formal framing of charges on June 3 will mark the beginning of what is expected to be a lengthy trial. Separately, Chandrashekhar and his direct associates face even harsher charges under the Maharashtra Control of Organised Crime Act, though Fernandez is not implicated in that specific track.
+## Why It Matters for NRI Audiences
 
-The case is being closely watched by legal observers as a test of whether Indian anti-money laundering laws will be applied as aggressively to celebrity beneficiaries as they are to the direct perpetrators of financial crimes. For Fernandez, who is simultaneously shooting for a forthcoming Bollywood project and preparing for her Cannes 2026 appearance, the dual reality of red carpets and courtrooms has become unavoidable."""
-})
+Suresh Triveni has built a reputation for wrapping social commentary inside commercial packaging. *Tumhari Sulu* turned a housewife's radio career into a meditation on ambition. *Jalsa* used a hit-and-run to examine class privilege. With *Maa Behen*, the framework is dark comedy — but the subtext is about the bonds that hold Indian families together even when everything is falling apart.
 
+For diaspora viewers, that's a familiar frequency. The mother-daughter dynamic at the film's centre — the expectations, the resentment, the inability to say what you mean, the willingness to bury a body together when it counts — translates across time zones.
 
-# ─────────────────────────────────────────────────────────────────
-# ARTICLE 3: Star Kids Class of 2026
-# ─────────────────────────────────────────────────────────────────
-articles.append({
-    "headline": "Bollywood's Children Are Graduating from NYU, Columbia, and Emory. They're Coming Home to Act.",
-    "subheadline": "The Class of 2026 includes Chunky Panday's daughter from Tisch, Juhi Chawla's son from Columbia, Farah Khan's triplets headed to Babson, NYU, and Emory — and a daughter of Rohit Roy preparing for her Bollywood debut.",
-    "slug": "bollywood-star-kids-class-2026-nyu-columbia-emory-nri-diaspora-education-20260601",
-    "category": "entertainment",
-    "vertical": "entertainment",
-    "tags": [],
-    "is_featured": False,
-    "status": "published",
-    "is_editorial": False,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps([
-        "Zoom TV Entertainment", "Bollywood Hungama", "Times of India"
-    ]),
-    "image_person": None,
-    "image_search_fallback": "university graduation ceremony cap gown celebration",
-    "image_attribution": "Pexels",
-    "body": """It is graduation season, and Bollywood's next generation is collecting degrees from some of the most prestigious American universities before doing what their parents expected — and perhaps feared — all along: returning to Mumbai to become actors.
+Madhuri herself addressed the shifting landscape of audience criticism in the age of social media: "There were people like that even then, but they didn't have a way to express. Today everyone is a filmmaker, everyone is a fashionista, and everyone is moral police."
 
-The Class of 2026 is stacked. Rysa Panday, Ananya Panday's younger sister, has completed her Bachelor of Fine Arts in Film, Video and Photographic Arts at NYU's Tisch School of the Arts. Juhi Chawla's son Arjun Mehta just celebrated his graduation from Columbia University. And Farah Khan's triplets — Diva, Anya, and Czar Kunder — are splitting across three American campuses: Babson College (Entrepreneurship and Finance), NYU (Economics and Data Science), and Emory University (Artificial Intelligence in Business), respectively.
+## The Streaming Landscape
 
-Then there's Kiara Bose Roy, daughter of actor Rohit Roy and Manasi Joshi Roy, who has not only graduated but is reportedly being groomed for a Bollywood debut.
+*Maa Behen* arrives in a stacked week for Indian OTT. Also dropping: **Dhurandhar: The Revenge** (Ranveer Singh, JioHotstar, June 4), **Gullak Season 5** (SonyLIV, June 5), **Brown** starring Karisma Kapoor (ZEE5, June 5), and **Made In India: A Titan Story** (Amazon Prime Video, June 3).
 
-## The American Degree Pipeline
+But the Madhuri-Triptii pairing gives *Maa Behen* a demographic range that none of the others can match. It's simultaneously an event for parents who remember *Ek Do Teen* and for the college-age cousin who discovered Triptii through Instagram reels.
 
-The pattern is now unmistakable. Bollywood's elite have spent the last decade routing their children through elite American universities — not as a detour from entertainment, but as preparation for it. The choices tell a story: Rysa's BFA from Tisch is a technical film education at one of the world's top programs. Anya Kunder's Economics-meets-Data Science degree reflects the increasingly analytics-driven entertainment business. Czar's AI-in-Business major at Emory anticipates a Bollywood that will be radically transformed by generative AI within the next five years.
+Produced by **Abundantia Entertainment** in association with **Opening Image Films**, *Maa Behen* streams on Netflix starting **June 4**. Mark it.""",
+}
 
-Even Bobby Deol's son Aryaman, who graduated from NYU with honors earlier this year, has already returned to Mumbai to begin his acting career. The American education isn't replacing Bollywood ambitions — it's refining them.
+# ============================================================
+# ARTICLE 3: Main Vaapas Aaunga — Imtiaz Ali + Diljit
+# ============================================================
+print("\n=== Article 3: Main Vaapas Aaunga ===")
 
-## What NRI Families Recognize
+img3 = fetch_wikipedia_person_image("Diljit Dosanjh")
+if img3 and not validate_image(img3):
+    img3 = None
+if not img3:
+    img3 = fetch_wikipedia_person_image("Imtiaz Ali (director)")
+    if img3 and not validate_image(img3):
+        img3 = None
 
-For Indian American families who have spent years navigating the same admissions cycle — the SAT prep, the extracurricular portfolios, the nail-biting decisions between UC Berkeley and a private East Coast school — watching Bollywood families make identical choices carries a particular resonance.
+article3 = {
+    "headline": "Diljit Dosanjh Showed the Main Vaapas Aaunga Trailer to a Packed Toronto Stadium. The Film Is About Partition. The Crowd Roared.",
+    "subheadline": "Imtiaz Ali's Partition-era love story reunites the Chamkila director with Diljit, adds A.R. Rahman's score and Naseeruddin Shah. It opens June 12 — and advance bookings in North America are already live.",
+    "slug": "main-vaapas-aaunga-diljit-dosanjh-imtiaz-ali-toronto-trailer-partition-nri-20260601",
+    "sources": [
+        {"name": "Filmfare", "url": "https://filmfare.com"},
+        {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Main_Vaapas_Aaunga"},
+        {"name": "Hauterfly", "url": "https://hauterrfly.com"},
+        {"name": "The Daily Jagran", "url": "https://thedailyjagran.com"},
+        {"name": "Zoom TV Entertainment", "url": "https://zoomtventertainment.com"},
+    ],
+    "image_url": img3,
+    "image_attribution": "Wikimedia Commons" if img3 else "",
+    "body": """There's a video circulating from Diljit Dosanjh's **AURA Tour** stop in Toronto. He's on stage, tens of thousands of fans packed into a stadium, and instead of dropping a track, he plays the trailer for **Main Vaapas Aaunga**. The screen lights up with images of Partition — separation, longing, a love story fractured by history — and the crowd, largely diaspora, erupts.
 
-These aren't families sending their children abroad because India lacks options. Dhirubhai Ambani International School, where the Kunder triplets just graduated, is one of Mumbai's most elite institutions. The choice to send children to American universities is deliberate and strategic — access to global networks, exposure to diverse creative industries, and the credential that still carries disproportionate weight in India's entertainment and business establishment.
+The moment crystallises something that's been building for months: this isn't just another Bollywood release. It's a film about leaving home, made by people who understand what that means, premiering its trailer to an audience that lives it.
 
-The tuition at these institutions ranges from $60,000 to $85,000 annually. For Bollywood's top families, this is easily absorbed. But the signaling matters: it tells the industry that the next generation is globally trained, not just locally connected.
+## What We Know
 
-## The Return Migration Pattern
+**Main Vaapas Aaunga** (translation: *I Will Return*) is directed by **Imtiaz Ali** and stars **Diljit Dosanjh**, **Naseeruddin Shah**, **Vedang Raina**, and **Sharvari**. **Banita Sandhu** and **Danish Pandor** also appear. It's a Hindi-language period romantic drama set against the backdrop of **Partition**, structured across two timelines, exploring a love story that is interrupted by history and endures across decades.
 
-What makes this wave different from previous generations is the near-universal plan to return. Unlike the 1990s brain drain, where Indian graduates stayed in the US for tech careers and green cards, Bollywood's children are treating American universities as finishing schools, not permanent relocations.
+The music is by **A.R. Rahman** with lyrics by **Irshad Kamil** — the same creative trio (Ali-Rahman-Kamil) that gave us *Rockstar*, *Highway*, and *Tamasha*. Two singles have already been released: "Kya Kamaal Hai" (sung by Diljit, dropped April 17) and "Maskara" (by Nilanjana Ghosh Dastidar and Vedang Raina, released May 5). "Maskara" has become a viral sensation on social media.
 
-Rysa Panday is already back with her family in France on vacation. Bobby Deol publicly celebrated his son's decision to "come back to Mumbai to become an actor" — framing the return as the point, not the exception.
+Principal photography ran from August to December 2025, with significant portions filmed in Punjab. It's produced by **Applause Entertainment**, **Birla Studios**, and **Window Seat Films**, with a worldwide release on **June 12, 2026**.
 
-This mirrors a broader trend among affluent Indian diaspora families: education abroad, career at home. The global Indian identity now includes an American or British degree as a standard accessory, not a life-altering choice.
+## The Diaspora Trailer Moment
 
-## What Comes Next
+The Toronto screening wasn't an accident. Diljit Dosanjh is, at this point, the single most important cultural bridge between Punjab and the global Punjabi diaspora. His AURA Tour is selling out stadiums across North America. He isn't promoting a film to a niche audience — he's premiering it to his core demographic, many of whom carry Partition stories in their family histories.
 
-The real test will be whether American-educated star kids bring something genuinely new to Bollywood — different sensibilities, storytelling techniques learned at Tisch, analytical frameworks from Columbia — or whether the degrees simply serve as expensive Instagram captions before they land the same three-film deal their parents would have secured anyway.
+"From a story of belonging to a stadium full of emotions," one fan posted on social media after the Toronto reveal. "What a moment. What a beginning."
 
-For NRI audiences watching from the other side of the same university experience, the answer will reveal a lot about whether Bollywood's relationship with America is deepening or decorative."""
-})
+The makers have since announced that **advance bookings in North America** are open a full week before India — a recognition that diaspora demand is not secondary to domestic interest but is driving the conversation.
 
+## Why This Film Hits Different
 
-# ── Publish all articles ────────────────────────────────────────
-print(f"\n{'='*60}")
-print(f"Entertainment Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-print(f"Articles to publish: {len(articles)}")
-print(f"{'='*60}\n")
+Partition films have been attempted before, with varying degrees of success. What sets Main Vaapas Aaunga apart is its creative pedigree and its timing.
 
+**Imtiaz Ali** has spent his career making films about people searching for something they've lost — identity, love, a version of themselves they left behind. From *Jab We Met*'s Geet running away from an arranged marriage to *Tamasha*'s Ved trying to escape the life he built, Ali's protagonists are always, in some sense, displaced. A Partition love story is the most literal version of his recurring theme.
+
+**Diljit Dosanjh** brings something no other lead could: authenticity. He's Punjabi, he's deeply rooted in the culture that Partition severed, and his collaboration with Ali on *Amar Singh Chamkila* (2024) proved they could handle heavy material with nuance.
+
+**A.R. Rahman** scoring a Partition love story directed by Imtiaz Ali feels inevitable in the way the best creative pairings do. The "Maskara" single has already demonstrated that the soundtrack will be more than functional — it'll be the emotional spine of the film.
+
+And then there's **Naseeruddin Shah**, whose presence in any cast signals that the material is serious. He's not doing rom-coms for the paycheck.
+
+## The Box Office Setup
+
+Main Vaapas Aaunga opens June 12 against **Kangana Ranaut's Bharat Bhagya Vidhata** (a 26/11 drama) and **Manoj Bajpayee's Governor** (a political thriller set during the 1990 economic crisis). It's a crowded corridor, but the film's positioning as a prestige romance with music-driven appeal gives it a lane.
+
+After its theatrical run, the film will stream on **Netflix** — confirming a pattern from *Chamkila*, which went directly to the platform. This time, Ali and Diljit are doing theatres first, a bet that the material can sustain a big-screen experience.
+
+The film topped **IMDb's Most Anticipated Indian Films and Shows of 2026** — a list that, for all its algorithmic quirks, reflects genuine search interest.
+
+## What It Means
+
+The title translates to "I Will Return." For a film about Partition, that's not just a romantic promise — it's a historical wound. Millions of families separated in 1947 carried that exact hope, and most never fulfilled it.
+
+For the diaspora watching the trailer in a Toronto stadium, the title carries a third meaning: the promise every immigrant makes to the place they left. *Main vaapas aaunga.* I'll come back. The question the film seems to be asking is: what happens when you can't?
+
+**Main Vaapas Aaunga** releases in theatres on **June 12, 2026**. Advance bookings are live in North America.""",
+}
+
+# ============================================================
+# PUBLISH
+# ============================================================
+articles = [article1, article2, article3]
 published = 0
-for i, article in enumerate(articles, 1):
-    print(f"\n--- Article {i}/{len(articles)}: {article['headline'][:70]}... ---")
 
-    # Image sourcing
-    img_url = None
-    img_attribution = article.pop("image_attribution", "The Videshi")
-    person = article.pop("image_person", None)
-    fallback_q = article.pop("image_search_fallback", None)
-
-    if person:
-        print(f"  Trying Wikipedia for '{person}'...")
-        img_url = fetch_wikipedia_person_image(person)
-
-    if not img_url and fallback_q:
-        print(f"  Trying Pexels for '{fallback_q}'...")
-        img_url = fetch_pexels_image(fallback_q)
-
-    # Validate and upload
-    final_image_url = None
-    if img_url:
-        if validate_image(img_url):
-            art_id = str(uuid.uuid4())
-            filename = f"{art_id}.jpg"
-            final_image_url = upload_to_supabase_storage(img_url, filename)
-            if not final_image_url:
-                # Fall back to direct URL if from Wikipedia/Pexels
-                if "upload.wikimedia.org" in img_url or "images.pexels.com" in img_url:
-                    final_image_url = img_url
-                    print(f"  Using direct URL: {img_url[:80]}...")
-        else:
-            print(f"  ⚠ Image validation failed for {img_url[:80]}...")
-
-    if final_image_url:
-        article["image_url"] = final_image_url
-        article["image_attribution"] = img_attribution
-    else:
-        print(f"  ⚠ No valid image found — publishing without image")
-
-    # Insert
-    row = sb_insert("p2_articles", article)
-    if row:
-        art_id = row.get("id", "unknown")
-        print(f"  ✓ Published: {article['slug']} (id: {art_id})")
+for i, art in enumerate(articles, 1):
+    print(f"\n--- Publishing Article {i} ---")
+    aid = insert_article(art)
+    if aid:
         published += 1
-    else:
-        print(f"  ✗ FAILED to publish: {article['slug']}")
+    time.sleep(1)
 
-    time.sleep(1)  # Gentle delay between inserts
-
-print(f"\n{'='*60}")
-print(f"Done. Published {published}/{len(articles)} articles.")
-print(f"{'='*60}")
+print(f"\n=== Done. Published {published}/{len(articles)} articles. ===")
