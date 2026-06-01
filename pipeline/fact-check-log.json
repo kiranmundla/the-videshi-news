@@ -1,0 +1,70 @@
+[
+  {
+    "timestamp": "2026-06-01T01:04:20.231328+00:00",
+    "article_id": "",
+    "headline": "RCB IPL 2026 Champions",
+    "corrections": [
+      {
+        "type": "place_correction",
+        "person": "Sambalpur",
+        "claimed": "Vaibhav Sooryavanshi",
+        "actual": "Sambalpur",
+        "confidence": "medium",
+        "source": "wikipedia",
+        "wiki_cities": [
+          "Sambalpur"
+        ],
+        "applied": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-01T01:06:32.078913+00:00",
+    "article_id": "",
+    "headline": "RCB IPL 2026 Champions",
+    "corrections": [
+      {
+        "type": "place_correction",
+        "person": "Virat Kohli",
+        "claimed": "Sambalpur",
+        "actual": "Delhi",
+        "confidence": "high",
+        "source": "wikidata",
+        "applied": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-01T01:09:17.409888+00:00",
+    "article_id": "",
+    "headline": "RCB IPL 2026 Champions",
+    "corrections": [
+      {
+        "type": "place_correction",
+        "person": "Vaibhav Sooryavanshi",
+        "claimed": "Sambalpur",
+        "actual": "Samastipur, Bihar, India",
+        "confidence": "medium",
+        "source": "wikipedia_infobox",
+        "applied": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-01T01:09:48.902529+00:00",
+    "article_id": "",
+    "headline": "RCB IPL 2026 Champions",
+    "corrections": [
+      {
+        "type": "place_correction",
+        "person": "Vaibhav Sooryavanshi",
+        "claimed": "Sambalpur",
+        "actual": "Samastipur",
+        "actual_full": "Samastipur, Bihar, India",
+        "confidence": "medium",
+        "source": "wikipedia_infobox",
+        "applied": true
+      }
+    ]
+  }
+]
