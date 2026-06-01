@@ -3,21 +3,58 @@
     {
       "id": "ipl-2026",
       "name": "IPL 2026 Season",
-      "keywords": ["IPL", "Indian Premier League", "IPL 2026"],
+      "keywords": [
+        "IPL",
+        "Indian Premier League",
+        "IPL 2026"
+      ],
       "category": "sports",
-      "active": true,
+      "active": false,
       "priority": "high",
-      "phase_change_words": ["wins", "won", "eliminated", "qualified", "playoff", "final", "upset", "record", "century", "hat-trick", "collapsed", "defeats", "chases", "thrashes"],
+      "phase_change_words": [
+        "wins",
+        "won",
+        "eliminated",
+        "qualified",
+        "playoff",
+        "final",
+        "upset",
+        "record",
+        "century",
+        "hat-trick",
+        "collapsed",
+        "defeats",
+        "chases",
+        "thrashes"
+      ],
       "max_articles_per_day": 3
     },
     {
       "id": "sample-election",
       "name": "Tamil Nadu Elections (sample - inactive)",
-      "keywords": ["Tamil Nadu election", "TN election", "DMK", "AIADMK", "Stalin"],
+      "keywords": [
+        "Tamil Nadu election",
+        "TN election",
+        "DMK",
+        "AIADMK",
+        "Stalin"
+      ],
       "category": "news",
       "active": false,
       "priority": "high",
-      "phase_change_words": ["wins", "leads", "swept", "concedes", "results", "victory", "defeat", "coalition", "sworn", "landslide", "majority"],
+      "phase_change_words": [
+        "wins",
+        "leads",
+        "swept",
+        "concedes",
+        "results",
+        "victory",
+        "defeat",
+        "coalition",
+        "sworn",
+        "landslide",
+        "majority"
+      ],
       "max_articles_per_day": 5
     }
   ]
