@@ -1,51 +1,49 @@
 #!/usr/bin/env python3
 """
-The Videshi — News Writer
-Generates 3 news articles with proper image sourcing, quality, and dedup.
+News writer for The Videshi — June 1, 2026 run.
+Three articles:
+1. Forex reserves / Rupee crisis
+2. Solar ALMM mandate June 1
+3. Record stock market foreign sell-off (MSCI rebalancing)
 """
 
-import json
-import os
-import sys
-import subprocess
-import datetime
-import re
-import urllib.parse
-import requests
-import uuid
-import time
+import json, os, uuid, requests, subprocess, sys, re
+from datetime import datetime, timezone
 
 # Load env
-env_path = os.path.expanduser("~/.env.supabase")
-if os.path.exists(env_path):
-    with open(env_path) as f:
+def load_env(path):
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
         for line in f:
             line = line.strip()
-            if line and not line.startswith("#") and "=" in line:
-                key, val = line.split("=", 1)
-                os.environ[key.strip()] = val.strip().strip('"').strip("'")
+            if line and not line.startswith('#') and '=' in line:
+                if line.startswith('export '):
+                    line = line[7:]
+                key, _, val = line.partition('=')
+                val = val.strip().strip('"').strip("'")
+                os.environ[key.strip()] = val
 
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
-SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
-PEXELS_KEY = ""
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-if os.path.exists(pexels_env):
-    with open(pexels_env) as f:
-        for line in f:
-            line = line.strip()
-            if "PEXELS_API_KEY" in line and "=" in line:
-                PEXELS_KEY = line.split("=", 1)[1].strip().strip('"').strip("'")
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
 
+# ─── Image sourcing ───
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -65,351 +63,370 @@ def fetch_wikipedia_person_image(person_name):
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (urllib gets 403)."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
-    
+    """Fetch image from Pexels using curl (Python urllib gets 403)."""
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             result = subprocess.run(
-                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
-                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape"],
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape'],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            if photos:
-                url = photos[0].get("src", {}).get("large2x") or photos[0].get("src", {}).get("original")
+            photos = data.get('photos', [])
+            for photo in photos:
+                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
                 if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+                    # Validate
+                    head = requests.head(url, timeout=10)
+                    ct = head.headers.get('Content-Type', '')
+                    cl = int(head.headers.get('Content-Length', '0'))
+                    if head.status_code == 200 and 'image' in ct and cl > 5000:
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                        return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 
-def validate_image_url(url):
-    """Validate image URL returns HTTP 200 with proper content type and size."""
-    if not url:
-        return False
-    # Block banned sources
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
-    for b in banned:
-        if b in url:
-            print(f"  ✗ Banned image source: {b}")
-            return False
+def upload_to_supabase_storage(image_url, filename):
+    """Download image and upload to Supabase storage bucket 'article-images'."""
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", "0"))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            print(f"  ✓ Image validated: {ct}, {cl} bytes")
-            return True
-        # Some servers don't return Content-Length on HEAD
-        if r.status_code == 200 and "image" in ct:
-            print(f"  ✓ Image validated (no CL): {ct}")
-            return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
-    except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
-    return False
-
-
-def generate_slug(headline):
-    """Generate a human-readable slug from headline."""
-    slug = headline.lower()
-    slug = re.sub(r'[^a-z0-9\s-]', '', slug)
-    slug = re.sub(r'\s+', '-', slug.strip())
-    slug = re.sub(r'-+', '-', slug)
-    slug = slug[:80].rstrip('-')
-    today = datetime.datetime.utcnow().strftime('%Y%m%d')
-    return f"{slug}-{today}"
-
-
-def publish_article(article):
-    """Publish article to Supabase."""
-    # Format sources as array of objects with name key
-    raw_sources = article.get("sources", [])
-    if raw_sources and isinstance(raw_sources[0], str):
-        formatted_sources = [{"name": s} for s in raw_sources]
-    else:
-        formatted_sources = raw_sources
-
-    payload = {
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "body": article["body"],
-        "slug": article["slug"],
-        "category": "news",
-        "vertical": article.get("vertical", "general"),
-        "diaspora_angle": article.get("diaspora_angle", ""),
-        "tags": article.get("tags", []),
-        "urgency": article.get("urgency", "medium"),
-        "status": "published",
-        "published_at": datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S+00:00'),
-        "image_url": article.get("image_url", ""),
-        "image_caption": article.get("image_caption", ""),
-        "sources": formatted_sources,
-        "image_attribution": article.get("image_attribution", ""),
-        "score_total": article.get("score_total", 85),
-    }
-    
-    try:
-        r = requests.post(
-            f"{SUPABASE_URL}/rest/v1/p2_articles",
-            headers=HEADERS,
-            json=payload,
+        r = requests.get(image_url, timeout=20, headers={"User-Agent": "TheVideshi/1.0"})
+        if r.status_code != 200 or len(r.content) < 5000:
+            print(f"  ⚠ Download failed or too small: {r.status_code}, {len(r.content)} bytes")
+            return None
+        
+        ct = r.headers.get('Content-Type', 'image/jpeg')
+        
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        resp = requests.post(
+            upload_url,
+            headers={
+                'Authorization': f'Bearer {SUPABASE_KEY}',
+                'Content-Type': ct,
+                'x-upsert': 'true'
+            },
+            data=r.content,
             timeout=30
         )
-        if r.status_code in [200, 201]:
-            result = r.json()
-            if isinstance(result, list) and result:
-                print(f"  ✓ Published: {result[0].get('slug', 'unknown')}")
-                return True
-            print(f"  ✓ Published (response: {r.status_code})")
-            return True
+        if resp.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
         else:
-            print(f"  ✗ Publish failed: {r.status_code} — {r.text[:300]}")
-            return False
+            print(f"  ⚠ Upload failed: {resp.status_code} {resp.text[:200]}")
     except Exception as e:
-        print(f"  ✗ Publish error: {e}")
-        return False
+        print(f"  ⚠ Upload error: {e}")
+    return None
 
 
-# ============================================================
-# ARTICLE 1: India Monsoon Below-Average Forecast
-# ============================================================
-print("\n" + "="*60)
-print("ARTICLE 1: India Monsoon Below-Average Forecast")
-print("="*60)
+def source_image(article_slug, person_name=None, pexels_query=None, pexels_fallback=None):
+    """Source image following the hierarchy: Wikipedia > Pexels > None."""
+    img_url = None
+    attribution = None
+    
+    if person_name:
+        img_url = fetch_wikipedia_person_image(person_name)
+        if img_url:
+            attribution = "Wikimedia Commons"
+    
+    if not img_url and pexels_query:
+        img_url = fetch_pexels_image(pexels_query, pexels_fallback)
+        if img_url:
+            attribution = "Pexels"
+    
+    if img_url:
+        # Upload to Supabase for permanence (unless already Pexels permanent URL)
+        if 'images.pexels.com' in img_url or 'upload.wikimedia.org' in img_url:
+            return img_url, attribution
+        else:
+            uploaded = upload_to_supabase_storage(img_url, f"{article_slug}.jpg")
+            if uploaded:
+                return uploaded, attribution
+            return img_url, attribution
+    
+    return None, None
 
-monsoon_image = fetch_pexels_image("Indian monsoon rain farmer field", "monsoon rain India agriculture")
-if monsoon_image and not validate_image_url(monsoon_image):
-    monsoon_image = None
 
-article1 = {
-    "headline": "India's Monsoon Will Be the Weakest in Three Decades. Half the Country's Farmers Depend on It.",
-    "subheadline": "The India Meteorological Department has downgraded its monsoon forecast to just 90 percent of the long-period average — the lowest since the mid-1990s — as El Niño conditions develop and the Iran war drives food inflation higher.",
-    "slug": generate_slug("india-monsoon-weakest-three-decades-farmers-el-nino-food-inflation"),
-    "image_url": monsoon_image or "",
-    "image_caption": "Indian farmers depend on the June-September monsoon for nearly 70 percent of their annual rainfall.",
-    "image_attribution": "Pexels" if monsoon_image else "",
-    "sources": [
-        "Reuters — India expected to have below-average monsoon rains in 2026",
-        "India Meteorological Department (IMD) — May 2026 Updated Forecast",
-        "ICRA — Chief Economist Aditi Nayar analysis",
-        "Froggyweb/Reuters — India forecasts sub-par monsoon after two years of above-average rains"
-    ],
-    "vertical": "economy",
-    "diaspora_angle": "The monsoon directly affects food prices for families back home and the value of remittances — India's $136 billion annual inflow from NRIs often flows to rural households whose incomes depend on seasonal rainfall.",
-    "tags": ["monsoon", "el-nino", "agriculture", "food-inflation", "imd", "india-economy"],
-    "urgency": "high",
-    "score_total": 92,
-    "body": """India's government confirmed on Friday what farmers across the country had been dreading: the 2026 monsoon will deliver significantly less rain than normal, threatening crop yields, pushing food prices higher, and compounding an economy already battered by the Iran war's energy shock.
+def insert_article(article):
+    """Insert article into Supabase p2_articles."""
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
+    resp = requests.post(url, headers=HEADERS, json=article, timeout=30)
+    if resp.status_code in (200, 201):
+        data = resp.json()
+        art_id = data[0]['id'] if isinstance(data, list) and data else data.get('id', 'unknown')
+        print(f"  ✓ Inserted article: {article['slug']} (id: {art_id})")
+        return art_id
+    else:
+        print(f"  ✗ Insert failed: {resp.status_code} {resp.text[:300]}")
+        return None
 
-The India Meteorological Department has downgraded its seasonal forecast to just 90 percent of the long-period average — the weakest projection in nearly three decades. An earlier estimate in April had pegged rainfall at 92 percent of the LPA; the updated May outlook is even grimmer.
 
-## What 90 Percent of LPA Actually Means
+# ─── Articles ───
 
-The IMD defines "normal" monsoon rainfall as between 96 and 104 percent of a 50-year average of 87 centimetres across the four-month June-to-September season. Anything below 96 percent is classified as below normal.
+articles = []
 
-At 90 percent, India would receive roughly 78 centimetres of rain — enough to avoid the "deficient" classification (below 90 percent) but not enough to sustain a normal cropping cycle across the country's vast agricultural heartland.
+# ── Article 1: Forex Reserves / Rupee Crisis ──
+print("\n=== Article 1: India's Forex Reserves Plunge ===")
 
-"Currently weak La Niña-like conditions are transitioning to neutral conditions. But after June it's very likely that El Niño will develop," said Mrutyunjay Mohapatra, director-general of the IMD.
+body_1 = """India's foreign exchange reserves have dropped to their lowest level in more than a year, falling to $681.4 billion in the week ending May 22 — a decline of nearly $47 billion from the record high of $728.49 billion reached in February.
 
-El Niño — the ocean warming phenomenon in the central and eastern Pacific — has historically been devastating for Indian agriculture. In most El Niño years, India has experienced below-average rainfall, sometimes leading to severe droughts that destroyed crops and forced authorities to restrict exports of grains and sugar.
+The sharp drawdown reflects the Reserve Bank of India's aggressive intervention in currency markets to prevent a disorderly fall in the rupee, which has lost roughly 6 percent of its value against the dollar in 2026. At its weakest point in May, the currency touched a record low of 96.96 per dollar before recovering to 95 on the back of heavy central bank selling.
 
-## The Economic Cascade
+## The Numbers Tell a Stark Story
 
-The monsoon is the lifeblood of India's nearly $4 trillion economy, delivering almost 70 percent of the rainfall needed to water farms and replenish aquifers and reservoirs. More than half of India's 1.4 billion people depend directly or indirectly on agriculture, and the sector accounts for about 15 percent of GDP.
+In a single week ending May 22, reserves fell by $7.5 billion. Of that, approximately $4.5 billion came from a decline in the value of the RBI's gold holdings, while foreign currency assets — the largest component of reserves — dropped by nearly $3 billion to $543 billion.
 
-"This, along with the impending impact of the ongoing crisis in the Middle East, poses downside risks to India's GDP growth in financial year 2026-27," said Aditi Nayar, chief economist at rating agency ICRA. The government had projected growth of between 6.8 and 7.2 percent for the fiscal year that started on April 1.
+Market participants estimate the RBI has been selling between $800 million and $2 billion a day in recent weeks to slow the rupee's slide. The central bank's short forward dollar commitments fell to $95.3 billion at the end of April from over $100 billion in March, according to data released after market hours on Friday.
 
-Nayar warned that lower rainfall forecasts also pose "material upside risks" to inflation, with average retail inflation potentially exceeding 4.5 percent this fiscal year — well above the Reserve Bank of India's 4 percent target. Inflation stood at 3.4 percent in March.
+The RBI has maintained that it does not target any specific exchange rate but intervenes to prevent "disorderly market movements and excessive speculation." The distinction, economists say, is increasingly academic.
 
-## Food Supply at Risk
+## Why the Rupee Is Under Siege
 
-India is the world's biggest exporter of rice and onions and the second-biggest producer of sugar. It is also the largest importer of edible oils, fulfilling nearly two-thirds of domestic demand through overseas purchases of palm oil, soy oil, and sunflower oil from Indonesia, Malaysia, Argentina, Brazil, Russia, and Ukraine.
+Three forces are converging on the Indian currency.
 
-A weak monsoon would hit both sides of this equation. Domestic production of rice, pulses, and oilseeds would fall, while import demand would rise — putting further pressure on the rupee, which has already declined about 5 percent since the Iran war began in late February.
+**The oil shock.** The Strait of Hormuz, which handles roughly a fifth of global oil and liquefied natural gas flows, has remained largely shut since February 28 due to the US-Iran conflict. Brent crude, while easing 11 percent last week, still trades at around $92-93 per barrel — 30 percent above pre-war levels. India imports nearly 90 percent of its crude oil, making it acutely vulnerable to sustained energy price increases.
 
-"Lower rainfall is likely to increase India's edible oil imports and eliminate the possibility of sugar exports in the next season," a Mumbai-based dealer with a global trading house told Reuters.
+**Capital flight.** Foreign portfolio investors have been pulling money out of Indian equities for months. On Friday alone, they dumped $2.22 billion worth of shares — a record single-day outflow — as MSCI's index rebalancing triggered massive position adjustments. The outflows have been amplified by an AI-driven rally in markets like South Korea and Taiwan, which has diverted foreign capital away from India.
 
-## What the Diaspora Should Watch
+**The dollar's strength.** US Treasury yields remain elevated, making dollar-denominated assets more attractive relative to emerging market investments. The rupee has weakened from the mid-80s to 95 against the dollar, a slide that directly erodes the dollar-denominated returns foreign investors earn in India.
 
-For the millions of Indian families with relatives abroad, the monsoon forecast is not an abstraction. It directly shapes the cost of staples — rice, dal, cooking oil, vegetables — that NRI families help pay for through remittances. India received a record $136 billion in remittances in FY25; much of that flows to rural households whose incomes fluctuate with the monsoon.
+## What This Means for the Diaspora
 
-A positive Indian Ocean Dipole, which the IMD expects to develop later in the monsoon season, could partially offset the El Niño effect. But that remains a hope, not a plan.
+For the estimated 18 million Indians living abroad, the weaker rupee has a direct and tangible impact. Every dollar, pound, or dirham sent home now converts to significantly more rupees — a family sending $1,000 home gets roughly ₹95,000 today compared to ₹85,000 at the start of the year.
 
-The agriculture ministry has said it is preparing contingency crop plans and ensuring adequate seed stocks. But with oil prices elevated, fertiliser costs rising, and the rupee under pressure, even a modestly below-normal monsoon would compound the cost-of-living crisis that is already squeezing Indian households from every direction.
+But the benefit comes with uncertainty. NRIs with India-denominated investments — property, fixed deposits, mutual funds — are seeing the value of those holdings shrink in dollar terms. Those planning to repatriate funds face the question of whether to wait for a recovery or lock in current rates.
 
-The real monsoon arrives in Kerala around June 1. Until then, the country waits."""
-}
+India received $129 billion in remittances in the fiscal year ending March 2026, the largest in the world. The weaker rupee makes those flows more valuable in local currency terms, providing a modest cushion to the economy's external accounts.
 
-print(f"  Headline: {article1['headline']}")
-print(f"  Slug: {article1['slug']}")
-publish_article(article1)
+## The Week Ahead
 
+All eyes now turn to the RBI's Monetary Policy Committee meeting from June 3-5, where Governor Sanjay Malhotra will announce the rate decision on June 5. A Reuters poll of economists shows nearly 80 percent expect the repo rate to be held at 5.25 percent, with analysts at Goldman Sachs forecasting a "hawkish pause alongside possible measures to attract dollar inflows."
 
-# ============================================================
-# ARTICLE 2: India-Bangladesh "Detect, Delete, Deport" Crisis
-# ============================================================
-print("\n" + "="*60)
-print("ARTICLE 2: India-Bangladesh Deportation Crisis")
-print("="*60)
+The SBI Research team has projected GDP growth at 6.6 percent for FY27 and inflation at 5 percent, with risks tilted to the upside. The RBI is also expected to update its inflation and growth forecasts, which currently assume crude oil at $85 per barrel — well below current market prices.
 
-# Try Wikipedia for relevant person or Pexels for border imagery
-border_image = fetch_pexels_image("India Bangladesh border fence patrol", "international border crossing")
-if border_image and not validate_image_url(border_image):
-    border_image = None
+India's reserves, despite the decline, still cover approximately 11 months of imports and remain among the largest in the world. But the pace of depletion — nearly $50 billion in three months — has raised questions about how long the central bank can sustain this level of intervention without triggering a confidence crisis of its own.
 
-article2 = {
-    "headline": "India Wants to Deport 2,860 Suspected Bangladeshis. Bangladesh Says Prove They Are Ours First.",
-    "subheadline": "The BJP's 'detect, delete, deport' campaign has pushed hundreds of people across the border without formal procedures, prompting Bangladesh to deploy loudspeakers and patrol boats along one of the world's longest land frontiers.",
-    "slug": generate_slug("india-bangladesh-detect-delete-deport-border-crisis"),
-    "image_url": border_image or "",
-    "image_caption": "Bangladesh and India share a border stretching over 4,000 kilometres — one of the longest land frontiers in the world.",
-    "image_attribution": "Pexels" if border_image else "",
-    "sources": [
-        "Reuters — Bangladesh boosts vigilance over suspected forced crossings from India",
-        "Human Rights Watch — India: Hundreds of Muslims Unlawfully Expelled to Bangladesh",
-        "Global India Broadcast News — 'Detection, deletion and deportation': Why Bangladeshi migrants gather around the Bangladesh border",
-        "News Nest — Fleeing Bangladeshis Reveal How They Crossed into India Amid Deportation Fears"
-    ],
-    "vertical": "politics",
-    "diaspora_angle": "India's deportation campaign raises uncomfortable parallels with immigration enforcement in the US and Canada, where NRIs have personal experience navigating documentation and uncertain legal status.",
-    "tags": ["india-bangladesh", "deportation", "detect-delete-deport", "bjp", "immigration", "human-rights", "border"],
-    "urgency": "high",
-    "score_total": 90,
-    "body": """Bangladesh's border guards have intensified patrols and deployed loudspeaker campaigns along their frontier with India, warning villagers to stay alert against what Dhaka calls illegal "push-ins" — a diplomatic euphemism for what human rights groups describe as mass deportations without due process.
+*Sources: Reserve Bank of India data, Reuters, Outlook Money, SBI Research, Goldman Sachs*"""
 
-The escalation comes as India's ruling Bharatiya Janata Party drives a nationwide "detect, delete, deport" campaign targeting undocumented migrants, primarily Bengali-speaking Muslims, across states from Assam to Maharashtra. India's foreign ministry has asked Bangladesh to verify the nationality of more than 2,860 people suspected of living illegally in the country.
+img_1, attr_1 = source_image(
+    "india-forex-reserves-681-billion-rbi-rupee-defence-47-billion-decline-20260601",
+    pexels_query="Indian rupee currency notes",
+    pexels_fallback="reserve bank India"
+)
 
-## A Policy With a Slogan
+articles.append({
+    "headline": "India\u2019s Forex Reserves Have Fallen $47 Billion in Three Months. The RBI Is Spending Billions to Defend the Rupee.",
+    "subheadline": "From a record $728 billion in February to $681 billion in May \u2014 the central bank is burning through dollars as the Hormuz crisis, oil shock, and capital flight batter the currency.",
+    "slug": "india-forex-reserves-681-billion-rbi-rupee-defence-47-billion-decline-20260601",
+    "body": body_1,
+    "category": "news",
+    "vertical": "news",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        {"name": "Reserve Bank of India", "url": "https://www.rbi.org.in/"},
+        {"name": "Reuters", "url": "https://www.reuters.com/"},
+        {"name": "Outlook Money", "url": "https://www.outlookmoney.com/"},
+        {"name": "SBI Research", "url": "https://sbi.co.in/"},
+        {"name": "Goldman Sachs", "url": "https://www.goldmansachs.com/"}
+    ]),
+    "image_url": img_1,
+    "image_attribution": attr_1 or "Pexels",
+    "is_editorial": False
+})
 
-The BJP, which governs the border states of Tripura, West Bengal, and Assam, has made immigration enforcement a political priority. The "detect, delete, deport" framework has evolved from political rhetoric into operational policy, with states establishing new detention centres and conducting document verification drives in neighbourhoods with large Bengali-speaking populations.
 
-In Assam alone, tribunals have declared more than 30,000 people to be foreigners since May 2025. Hundreds have been physically pushed across the border into Bangladesh — many without the formal bilateral procedures both countries agreed to follow.
+# ── Article 2: Solar ALMM Mandate ──
+print("\n=== Article 2: India Solar ALMM Mandate ===")
 
-Human Rights Watch documented over 1,500 expulsions between May and June 2025, calling them "unlawful" and accusing Indian authorities of acting without due process. The organisation found cases of arbitrary detention, forced repatriation, and family separations that violated international law.
+body_2 = """Starting today, every solar power project in India must use domestically manufactured solar cells. No extensions. No exceptions.
 
-## The Border Response
+The Ministry of New and Renewable Energy has enforced its Approved List of Models and Manufacturers (ALMM) List-II mandate for solar photovoltaic cells, effective June 1, 2026. The policy, announced 18 months ago to give the industry time to prepare, is designed to cut India's dependence on Chinese solar imports and build a self-sustaining domestic manufacturing ecosystem.
 
-Lieutenant Colonel S. M. Shariful Islam, commander of Bangladesh's 60th Border Guard Battalion, told Reuters that his forces have begun public awareness campaigns in border villages of Brahmanbaria district, which accounts for roughly 73 kilometres of the frontier with the Indian state of Tripura.
+The numbers suggest the industry was listening. India's cumulative solar PV cell manufacturing capacity reached 40 gigawatts at the end of March 2026, with 5 GW added in the January-March quarter alone — the third-highest quarterly addition in six years, according to JMK Research & Analytics. Of the total capacity, approximately 27.23 GW is already listed under the ALMM framework.
 
-"We have started miking in border villages to raise awareness among residents and ask them to stay vigilant against any illegal crossings or push-in attempts," he said. "Our patrols and surveillance have been strengthened across the border areas."
+## Why This Matters
 
-The 4,000-kilometre border between India and Bangladesh is one of the longest land frontiers in the world, running through densely populated river deltas, marshlands, and villages where the distinction between "Indian Bengali" and "Bangladeshi Bengali" is often a matter of paperwork rather than language, culture, or family ties.
+India has been the world's third-largest solar market for several years, but its manufacturing base has lagged far behind its installation ambitions. Until recently, the country imported the vast majority of its solar cells and modules from China, creating a strategic vulnerability that became painfully visible during the supply chain disruptions of the pandemic era.
 
-## The Gurugram Ripple Effect
+The ALMM mandate flips the equation. Developers building solar projects — whether utility-scale farms in Rajasthan or rooftop installations in Bengaluru — must now source cells from manufacturers on the approved domestic list. The policy effectively creates a guaranteed market for Indian manufacturers, incentivizing further investment in production capacity.
 
-The deportation drive is not limited to border states. In Gurugram, the corporate hub outside Delhi, police detained ten Bangladeshi nationals after document verification found them living with Indian papers that were deemed fraudulent. The operation, conducted under Home Ministry directives, sparked panic among Bengali-speaking communities far from the border, where long-term residents suddenly face questions about their own documentation.
+"There are two things," a senior government official told The Hindu BusinessLine. "First, whatever investments have been made in cell manufacturing to make India self-reliant, please go ahead and we will support you. There is demand creation. Second, this also gives a clear window for fresh investments."
 
-The fear has driven a reverse migration. Hundreds of undocumented Bangladeshi migrants have begun returning to India's border regions voluntarily, using brokers to cross back into Bangladesh through riverine areas rather than face detention.
+## The Scale of Ambition
 
-## Why This Matters to the Diaspora
+India's solar targets are staggering. The country aims to reach 500 GW of renewable energy capacity by 2030, of which solar is expected to contribute the largest share. Meeting that target requires not just installation capacity but a robust domestic supply chain — from polysilicon and wafers to cells and modules.
 
-For Indian Americans and NRIs, the deportation crisis touches a nerve on multiple levels. It raises uncomfortable parallels with immigration enforcement debates in the United States and Canada — countries where many NRIs have personal experience navigating documentation, visa processes, and the anxiety of uncertain legal status.
+The 40 GW of cell manufacturing capacity is a significant milestone, but it is still not enough. India installed approximately 18 GW of solar capacity in FY26, and installation rates are expected to accelerate sharply over the next four years. The government's Production-Linked Incentive (PLI) scheme for solar manufacturing, with an allocation of ₹19,500 crore ($2.3 billion), is designed to bridge the remaining gap.
 
-It also surfaces the deeper question of who belongs. India's Citizenship Amendment Act, which fast-tracks citizenship for non-Muslim refugees from neighbouring countries, remains a fault line in Indian politics. The "detect, delete, deport" campaign operates in the same political space, raising questions about whether enforcement is driven by law or by identity.
+Several major players have announced or are building gigawatt-scale cell manufacturing facilities, including Adani Solar, Tata Power Solar, Waaree Energies, and Vikram Solar. The combination of the ALMM mandate and PLI incentives has created what industry analysts describe as the most favorable policy environment for domestic solar manufacturing in India's history.
 
-Dhaka has repeatedly stated that any repatriation must follow formal bilateral procedures. India's foreign ministry did not respond to Reuters' request for comment.
+## The Diaspora Connection
 
-## What Comes Next
+For NRI investors tracking India's green energy transition, the ALMM mandate represents a structural shift. Indian solar manufacturers listed on domestic exchanges have seen significant interest from institutional investors anticipating the captive market the policy creates. The mandate also reduces currency risk for solar projects by localizing the supply chain — a relevant consideration as the rupee faces pressure from elevated oil prices.
 
-The campaign shows no sign of slowing. Multiple states are expanding detention infrastructure, and the Home Ministry has issued fresh directives for document verification. But without a bilateral agreement on verification procedures, each deportation risks becoming a diplomatic incident — and every unverified expulsion risks pushing an Indian citizen into a country that is not theirs.
+India's broader energy security calculus is also shifting. The country imports nearly 90 percent of its crude oil, a vulnerability starkly exposed by the ongoing Hormuz crisis. Every gigawatt of solar capacity installed reduces that dependency, making the ALMM mandate as much an energy security policy as an industrial one.
 
-The 4,000-kilometre border will keep being crossed in both directions. The question is whether either government can manage that reality without violating the rights of the people caught in between."""
-}
+## What Could Go Wrong
 
-print(f"  Headline: {article2['headline']}")
-print(f"  Slug: {article2['slug']}")
-publish_article(article2)
+Critics of the ALMM mandate argue that restricting cell sourcing to domestic manufacturers could temporarily increase costs for solar developers, potentially slowing installation rates in the short term. Some developers have lobbied for extensions, arguing that domestic manufacturing capacity, while growing, is not yet sufficient to meet all demand at competitive prices.
 
+The Ministry's response has been unequivocal. "No blanket extension of the deadline for applicability of ALMM List-II for solar PV cells will be given beyond June 1, 2026," MNRE clarified in a statement.
 
-# ============================================================
-# ARTICLE 3: EU Fines Temu $232M — Global E-Commerce Regulation
-# ============================================================
-print("\n" + "="*60)
-print("ARTICLE 3: EU Fines Temu $232M")
-print("="*60)
+The message to the industry is clear: the era of unlimited Chinese solar imports is over.
 
-# Try Wikipedia for EU Commission or Temu
-temu_image = fetch_wikipedia_person_image("European Commission")
-if temu_image and not validate_image_url(temu_image):
-    temu_image = None
-if not temu_image:
-    temu_image = fetch_pexels_image("online shopping package delivery", "ecommerce marketplace packages")
-    if temu_image and not validate_image_url(temu_image):
-        temu_image = None
+*Sources: Ministry of New and Renewable Energy, JMK Research & Analytics, The Hindu BusinessLine*"""
 
-article3 = {
-    "headline": "The EU Just Fined Temu $232 Million for Selling Dangerous Products. India Blocked Chinese Apps Years Ago.",
-    "subheadline": "Europe's largest penalty under the Digital Services Act targets the Chinese e-commerce giant for flooding the market with unsafe toys and defective electronics — a problem India preempted by banning dozens of Chinese platforms after 2020.",
-    "slug": generate_slug("eu-temu-232-million-fine-digital-services-act-india-chinese-apps"),
-    "image_url": temu_image or "",
-    "image_caption": "Temu has been fined €200 million by the European Commission under the Digital Services Act for failing to stop the sale of unsafe products.",
-    "image_attribution": "Wikimedia Commons" if temu_image and "wikimedia" in (temu_image or "").lower() else ("Pexels" if temu_image else ""),
-    "sources": [
-        "Reuters — Temu fined $232 million for breaching EU rules on sale of illegal products",
-        "Wall Street Journal — Temu Fined More Than $230 Million in EU Over Product Risks",
-        "European Commission — Preliminary findings on Temu under Digital Services Act",
-        "The Sun — Temu slapped with $232m fine for selling dangerous products"
-    ],
-    "vertical": "technology",
-    "diaspora_angle": "Millions of NRIs in the US, UK, and Canada shop on Temu — the EU's finding that the platform routinely sells unsafe products is a direct consumer warning for diaspora shoppers.",
-    "tags": ["temu", "eu", "digital-services-act", "ecommerce", "consumer-safety", "chinese-apps", "india-ban"],
-    "urgency": "medium",
-    "score_total": 88,
-    "body": """The European Union has slapped Chinese online retailer Temu with a €200 million ($232 million) fine for failing to prevent the sale of illegal and unsafe products on its platform — the largest penalty yet under Europe's sweeping Digital Services Act, and a landmark moment in the global battle to regulate cross-border e-commerce.
+img_2, attr_2 = source_image(
+    "india-almm-solar-cell-mandate-june-2026-40gw-manufacturing-20260601",
+    pexels_query="solar panel manufacturing factory",
+    pexels_fallback="solar panels India"
+)
 
-The fine, announced on Thursday by the European Commission, follows a nearly two-year investigation that found Temu had "failed to diligently identify, analyse and assess the systemic risks of illegal products being offered on its platform and the resulting harm to consumers in the European Union."
+articles.append({
+    "headline": "India Just Made It Mandatory to Use Indian-Made Solar Cells. It Has 40 GW of Manufacturing Capacity to Back It Up.",
+    "subheadline": "The ALMM mandate for solar PV cells takes effect today. No extensions, no exceptions — India's push to end dependence on Chinese solar imports enters its most consequential phase.",
+    "slug": "india-almm-solar-cell-mandate-june-2026-40gw-manufacturing-20260601",
+    "body": body_2,
+    "category": "news",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        {"name": "Ministry of New and Renewable Energy", "url": "https://mnre.gov.in/"},
+        {"name": "JMK Research & Analytics", "url": "https://jmkresearch.com/"},
+        {"name": "The Hindu BusinessLine", "url": "https://www.thehindubusinessline.com/"}
+    ]),
+    "vertical": "news",
+    "image_url": img_2,
+    "image_attribution": attr_2 or "Pexels",
+    "is_editorial": False
+})
 
-## What Temu Got Wrong
 
-At the heart of the case are everyday consumer products — baby toys containing toxic materials, phone chargers that could overheat and catch fire, small electronics that failed basic safety standards. The Commission found that European consumers were "very likely to come across illegal items" while shopping on Temu, and that the platform had not conducted the comprehensive risk assessments required under the DSA.
+# ── Article 3: Record Stock Market Foreign Sell-Off ──
+print("\n=== Article 3: Record Foreign Sell-Off ===")
 
-Temu rejected the penalty as "disproportionate," claiming it has strengthened its safety processes since the investigation began. The company has until August 28 to submit an action plan; more fines could follow if regulators find ongoing non-compliance.
+body_3 = """Foreign investors pulled $2.22 billion out of Indian equities on Friday in a single trading session — the largest one-day outflow in the history of Indian stock markets.
 
-This is only the second penalty under the Digital Services Act, which came into force in 2024 and requires large online platforms to actively combat illegal content and products. The first fine targeted another company for content moderation failures.
+The Nifty 50 index dropped 1.5 percent to close at 23,547.75, a two-week low, while turnover on the National Stock Exchange soared to a record ₹2.87 trillion ($30.21 billion). Nifty 50 turnover alone surpassed ₹1 trillion for the first time, according to data compiled by LSEG.
 
-## India Saw This Coming
+The immediate trigger was MSCI's May index rebalancing, which took effect at approximately 3:00 PM IST on Friday. Goldman Sachs had estimated the rebalancing would lead to about $870 million in outflows from Indian equities — but the actual selling far exceeded expectations as other portfolio adjustments piled on top of the index-driven flows.
 
-India's approach to Chinese digital platforms has been dramatically different from Europe's. Beginning in June 2020, India banned 59 Chinese apps — including TikTok, WeChat, and UC Browser — citing national security concerns, data privacy, and sovereignty. The bans have since expanded to over 300 Chinese apps and services.
+## What Is MSCI Rebalancing?
 
-Temu, owned by PDD Holdings, has never officially launched in India. While the platform has grown aggressively across the United States, Europe, and Southeast Asia — often undercutting local retailers with astonishingly low prices — India's blanket restrictions on Chinese digital services have kept it out of the world's largest open market by population.
+MSCI Inc., the index provider whose benchmarks are tracked by an estimated $16.3 trillion in assets worldwide, periodically adjusts the weightings of individual countries and stocks in its global indices. When India's weight decreases — or when specific Indian stocks are removed or reduced — funds that track these indices are forced to sell Indian shares to stay aligned with the benchmark.
 
-The result is an accidental case study: India avoided the very problems Europe is now fining Temu for, though through a blunt instrument (bans) rather than Europe's more surgical regulatory approach (safety standards and penalties).
+The May 2026 rebalancing was particularly significant because of changes to the weighting methodology that reduced India's share in the MSCI Emerging Markets Index. The result: a wave of forced selling that concentrated into the final hours of trading on Friday.
 
-## Why NRIs Should Pay Attention
+"A range of different flows, including those linked to equity index adjustments, maturities in the non-deliverable forward market and routine corporate demand, are likely to drive the rupee," a trader at a Mumbai-based private bank told Reuters.
 
-For the millions of Indian Americans who shop on Temu — the app was the most downloaded shopping app in the United States in 2023 and 2024 — the EU fine raises immediate questions about product safety.
+## Beyond the Rebalancing: Structural Outflows
 
-The unsafe toys and electronics that triggered Europe's investigation are the same products sold on the same platform to American consumers. The United States has not yet taken comparable regulatory action against Temu, though Congress has held hearings on the platform's use of the "de minimis" trade loophole to avoid customs duties on millions of small shipments.
+While the MSCI rebalancing explains Friday's extreme numbers, the broader trend of foreign portfolio investor (FPI) outflows has been building for months. Three factors are driving the pattern.
 
-For NRIs who buy products on Temu to ship to family in India — a common practice for affordable electronics, clothing, and household goods — the EU's findings are a warning. Products that fail European safety standards are unlikely to meet any country's consumer protection thresholds.
+**The oil shock.** India imports nearly 90 percent of its crude oil, and the ongoing closure of the Strait of Hormuz has kept Brent crude prices elevated at around $92-93 per barrel — 30 percent above pre-war levels. Higher energy costs squeeze corporate margins, weaken the current account, and put downward pressure on the rupee, all of which reduce the attractiveness of Indian equities for foreign investors.
 
-## The Bigger Picture
+**Currency depreciation.** The rupee has fallen approximately 6 percent against the dollar in 2026. For foreign investors, this means their returns in Indian equities are eroded when converted back to dollars. A stock that gains 10 percent in rupee terms delivers only about 4 percent in dollar terms after accounting for the currency slide.
 
-The Temu fine is part of a broader global reckoning with the business model that has made ultra-cheap Chinese e-commerce platforms dominant. The model depends on high volume, razor-thin margins, and minimal quality control — a combination that maximises choice and affordability but also maximises the risk of dangerous products reaching consumers.
+**The AI trade.** Markets in South Korea and Taiwan have surged on the back of the global artificial intelligence boom, drawing capital away from India. Samsung, TSMC, and other Asian chipmakers have delivered outsized returns, making India's consumption-driven market less attractive by comparison.
 
-Europe is betting that regulation can force these platforms to internalise the cost of safety. India bet on exclusion. The United States, so far, has done neither — leaving American consumers, including millions of Indian Americans, in a regulatory grey zone.
+## Markets Expected to Recover Monday
 
-As cross-border e-commerce continues to grow, the EU's DSA is becoming a template that other countries are watching closely. India's own proposed Digital India Act, which would modernise the country's Information Technology Act of 2000, is expected to include similar platform accountability provisions.
+Despite Friday's bloodbath, early indicators suggest Monday will bring relief. GIFT Nifty futures were trading at 23,726 as of 7:40 AM IST, indicating the benchmark Nifty 50 will open above Friday's close.
 
-The question is no longer whether governments will regulate global e-commerce platforms. It is whether they will do so before the next batch of toxic baby toys reaches someone's doorstep."""
-}
+The recovery expectation rests on the fact that Friday's selling was largely technical and index-driven rather than reflecting a fundamental deterioration in India's economic outlook. Corporate earnings for the March quarter have been broadly in line with expectations, and India's GDP growth remains among the fastest of any major economy.
 
-print(f"  Headline: {article3['headline']}")
-print(f"  Slug: {article3['slug']}")
-publish_article(article3)
+"As seen on Friday, those flows would matter little if the RBI decides to keep the currency anchored around a certain level," the Mumbai-based trader added.
 
+## What NRI Investors Should Watch
 
-print("\n" + "="*60)
-print("NEWS WRITER RUN COMPLETE")
-print(f"Published 3 articles at {datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}")
-print("="*60)
+For diaspora investors with exposure to Indian equities — whether through direct investments, mutual funds, or NRE/NRO-linked portfolios — the record sell-off raises legitimate questions about near-term volatility.
+
+The key events this week include the RBI's monetary policy decision on June 5, where the central bank is widely expected to hold the repo rate at 5.25 percent but may signal a more hawkish posture. India's January-March GDP data, also due on June 5, will provide a clearer picture of whether the oil shock is beginning to dent economic growth. A Reuters poll expects 7.3 percent growth for the quarter.
+
+The HSBC Manufacturing PMI for May, due today (Monday), will offer an early read on whether factory activity is holding up despite the energy headwinds.
+
+Record one-day outflows make for alarming headlines, but they are rarely inflection points. The last time Indian markets experienced a comparable sell-off driven by index rebalancing — in November 2024 — the Nifty recovered within two weeks.
+
+*Sources: Reuters, LSEG data, Goldman Sachs, National Stock Exchange of India, provisional exchange data*"""
+
+img_3, attr_3 = source_image(
+    "india-record-foreign-sell-off-222-billion-msci-rebalancing-nse-turnover-20260601",
+    pexels_query="stock market trading screen India",
+    pexels_fallback="stock exchange trading floor"
+)
+
+articles.append({
+    "headline": "Foreign Investors Just Dumped $2.22 Billion in Indian Stocks in a Single Day. It Was the Largest Sell-Off in History.",
+    "subheadline": "MSCI's index rebalancing triggered record outflows and pushed NSE turnover past ₹2.87 trillion. Markets are expected to recover on Monday — but the structural headwinds remain.",
+    "slug": "india-record-foreign-sell-off-222-billion-msci-rebalancing-nse-turnover-20260601",
+    "body": body_3,
+    "category": "news",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com/"},
+        {"name": "LSEG", "url": "https://www.lseg.com/"},
+        {"name": "Goldman Sachs", "url": "https://www.goldmansachs.com/"},
+        {"name": "National Stock Exchange of India", "url": "https://www.nseindia.com/"}
+    ]),
+    "vertical": "news",
+    "image_url": img_3,
+    "image_attribution": attr_3 or "Pexels",
+    "is_editorial": False
+})
+
+
+# ─── Check skip list ───
+skip_path = os.path.expanduser('~/workspace/the-videshi-news/pipeline/image-skip-list.json')
+skip_list = []
+if os.path.exists(skip_path):
+    with open(skip_path) as f:
+        skip_list = json.load(f)
+
+
+# ─── Insert all articles ───
+print("\n=== Inserting articles ===")
+# Article 3 was already inserted in a prior run
+already_inserted = {"india-record-foreign-sell-off-222-billion-msci-rebalancing-nse-turnover-20260601"}
+for art in articles:
+    slug = art['slug']
+    
+    if slug in already_inserted:
+        print(f"  ⏭ Skipping {slug} (already inserted)")
+        continue
+    
+    # Skip if in image skip list
+    if slug in skip_list:
+        print(f"  ⚠ Skipping {slug} (in image skip list)")
+        art.pop('image_url', None)
+        art.pop('image_attribution', None)
+    
+    # Validate image
+    if art.get('image_url'):
+        try:
+            head = requests.head(art['image_url'], timeout=10, allow_redirects=True)
+            ct = head.headers.get('Content-Type', '')
+            cl = int(head.headers.get('Content-Length', '0'))
+            if head.status_code != 200 or 'image' not in ct or cl < 5000:
+                print(f"  ⚠ Image validation failed for {slug}: status={head.status_code}, ct={ct}, cl={cl}")
+                art['image_url'] = None
+                art['image_attribution'] = None
+        except Exception as e:
+            print(f"  ⚠ Image validation error for {slug}: {e}")
+            art['image_url'] = None
+            art['image_attribution'] = None
+    
+    # Clean up None values
+    art = {k: v for k, v in art.items() if v is not None}
+    
+    art_id = insert_article(art)
+    if art_id:
+        print(f"  ✓ Published: {art['headline'][:60]}...")
+    else:
+        print(f"  ✗ Failed: {art['headline'][:60]}...")
+
+print("\n=== Done ===")
