@@ -1,27 +1,31 @@
 #!/usr/bin/env python3
 """
-News writer for The Videshi — 2026-06-01 batch (fixed)
+News writer for The Videshi - 2026-06-01 batch
+Covers:
+1. India GDP expected to ease to 7.2% in Q1 2026
+2. EB-2 green cards frozen for Indians until October 2026
+3. June 1 financial rule changes (UPI, LPG, ATM, solar, PAN, Maruti)
 """
 
-import json, os, sys, uuid, requests, subprocess, urllib.parse
+import os, json, sys, uuid, time, re
+import requests
 from datetime import datetime, timezone
 
+# Load env
 def load_env(path):
     if os.path.exists(path):
         with open(path) as f:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
-                    key, _, val = line.partition('=')
-                    val = val.strip().strip('"').strip("'")
-                    os.environ.setdefault(key.strip(), val)
+                    key, val = line.split('=', 1)
+                    os.environ.setdefault(key.strip(), val.strip().strip('"').strip("'"))
 
 load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
 HEADERS = {
@@ -32,7 +36,8 @@ HEADERS = {
 }
 
 def fetch_wikipedia_person_image(person_name):
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    encoded = requests.utils.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
@@ -43,163 +48,171 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image: {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia error: {e}")
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
+    """Fetch image from Pexels. Returns URL or None."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            encoded_q = urllib.parse.quote(q)
-            result = subprocess.run(
-                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={encoded_q}&per_page=5&orientation=landscape'],
-                capture_output=True, text=True, timeout=15
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                params={"query": q, "per_page": 5, "orientation": "landscape"},
+                headers={"Authorization": PEXELS_KEY},
+                timeout=10
             )
-            if result.returncode != 0:
-                print(f"  ⚠ Pexels curl error: {result.stderr[:100]}")
-                continue
-            data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for photo in photos:
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
-                if url:
-                    print(f"  ✓ Pexels image: {url[:80]}...")
-                    return url
-            print(f"  ⚠ Pexels: no photos for '{q}'")
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                for p in photos:
+                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+                    if url:
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                        return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 def validate_image(url):
+    """Validate image URL returns a real image > 5KB."""
+    if not url:
+        return False
+    # Block banned domains
+    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
+    if any(b in url for b in banned):
+        print(f"  ✗ Banned domain in URL: {url[:60]}")
+        return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         ct = r.headers.get('Content-Type', '')
         cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
+            print(f"  ✓ Image validated: {cl} bytes, {ct}")
+            return True
+        # Some servers don't return Content-Length on HEAD, try GET
         if r.status_code == 200 and 'image' in ct:
-            if cl > 5000:
-                print(f"  ✓ Image OK: {cl} bytes")
+            r2 = requests.get(url, timeout=10, stream=True,
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            size = len(r2.content)
+            if size > 5000:
+                print(f"  ✓ Image validated (GET): {size} bytes")
                 return True
-            if cl == 0:
-                r2 = requests.get(url, timeout=10, stream=True,
-                                headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-                chunk = r2.raw.read(6000)
-                r2.close()
-                if len(chunk) > 5000:
-                    print(f"  ✓ Image OK via GET: {len(chunk)}+ bytes")
-                    return True
-        print(f"  ✗ Image failed: {r.status_code}, ct={ct}, cl={cl}")
+        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
-        print(f"  ✗ Image error: {e}")
+        print(f"  ✗ Image validation error: {e}")
     return False
 
-def create_topic(title, category):
-    topic = {
-        "id": str(uuid.uuid4()),
-        "canonical_title": title[:200],
-        "vertical": "politics",
-        "urgency": "daily",
-        "score_diaspora": 70,
-        "score_significance": 75,
-        "score_recency": 90,
-        "score_source_avail": 80,
-        "score_total": 78,
-        "signal_count": 3,
-        "status": "published",
-        "keywords": title.split()[:5],
-        "category": category
-    }
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_topics",
-        headers=HEADERS,
-        json=topic
-    )
-    if r.status_code in (200, 201):
-        print(f"  ✓ Topic created: {topic['id']}")
-        return topic['id']
-    else:
-        print(f"  ✗ Topic insert failed ({r.status_code}): {r.text[:200]}")
-        return None
+def upload_to_supabase_storage(image_url, filename):
+    """Download image and upload to Supabase storage bucket."""
+    try:
+        r = requests.get(image_url, timeout=15,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code != 200 or len(r.content) < 5000:
+            print(f"  ✗ Download failed: status={r.status_code}, size={len(r.content)}")
+            return None
+        
+        ct = r.headers.get('Content-Type', 'image/jpeg')
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        resp = requests.post(
+            upload_url,
+            headers={
+                'apikey': SUPABASE_KEY,
+                'Authorization': f'Bearer {SUPABASE_KEY}',
+                'Content-Type': ct,
+                'x-upsert': 'true'
+            },
+            data=r.content,
+            timeout=30
+        )
+        if resp.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ✗ Upload failed: {resp.status_code} {resp.text[:200]}")
+    except Exception as e:
+        print(f"  ✗ Upload error: {e}")
+    return None
 
 def insert_article(article):
+    """Insert article into Supabase."""
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=article
+        json=article,
+        timeout=30
     )
     if r.status_code in (200, 201):
         data = r.json()
-        art_id = data[0]['id'] if isinstance(data, list) and data else 'unknown'
-        print(f"  ✓ Article published: {article['slug']}")
-        return art_id
+        if isinstance(data, list) and data:
+            print(f"  ✓ Article inserted: {data[0].get('id', 'unknown')}")
+            return data[0]
+        print(f"  ✓ Article inserted (raw response)")
+        return data
     else:
-        print(f"  ✗ Article insert failed ({r.status_code}): {r.text[:300]}")
+        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
         return None
 
-def count_words(text):
-    return len(text.split())
+# ==========================
+# ARTICLE 1: India GDP Q1 2026
+# ==========================
+def write_gdp_article():
+    print("\n=== Article 1: India GDP Q1 2026 ===")
+    slug = "india-gdp-q1-2026-eases-7-2-percent-fastest-growing-major-economy-iran-war-tariffs"
+    headline = "India's Economy Is Still the World's Fastest Growing. But the Cracks Are Starting to Show."
+    subheadline = "A Reuters poll of 45 economists expects Q1 2026 GDP growth to ease to 7.2%, down from 7.8%, as US tariffs and the Iran war weigh on exports and private investment."
 
-# ============================================================
-# ARTICLE 1
-# ============================================================
-def write_article_1():
-    print("\n=== Article 1: India Manufacturing PMI ===")
-    
-    headline = "India's Factories Are Running Faster Than They Have in Three Months. The War Is Making Everything More Expensive."
-    subheadline = "The HSBC India Manufacturing PMI rose to 55.0 in May on strong domestic demand, but input costs hit a near four-year high as the Middle East war pushes up energy and fuel prices."
-    slug = "india-manufacturing-pmi-55-may-2026-three-month-high-cost-pressures"
-    
-    body = """India's manufacturing sector expanded at its fastest pace in three months in May, defying a punishing rise in input costs that firms are struggling to pass on to customers.
+    body = """India's economy likely grew 7.2% year-on-year in the January–March 2026 quarter, down from 7.8% in the previous three months, according to a Reuters poll of 45 economists. The estimates ranged from 6.1% to 7.7%, with the official data due on Friday, June 5.
 
-The HSBC India Manufacturing Purchasing Managers' Index, compiled by S&P Global, came in at 55.0 for May — up from 54.7 in April and comfortably above the flash estimate of 54.3. Any reading above 50 signals expansion. The final print marked the strongest improvement in factory conditions since February.
+The slowdown is not a surprise. Three external shocks hit India in the first quarter — higher US tariffs on Indian goods, the US-Israeli war with Iran that sent crude oil prices surging past $90 a barrel, and a broader global pullback in trade that crimped export demand.
 
-## Domestic Demand Is Doing the Heavy Lifting
+## Still the Fastest-Growing Major Economy
 
-New orders — the most closely watched forward-looking component — grew at the fastest clip since February. Civil engineering projects, competitive pricing, and broadly favorable demand conditions drove the acceleration. But the demand engine is running on one cylinder more than the other: domestic orders surged while export order growth slowed to a three-month low.
+Despite the deceleration, India remains the world's fastest-growing large economy, comfortably ahead of China's sub-5% pace. The revised national accounts series, which shifted the GDP base year to 2022-23 from 2011-12 in February, puts India's growth trajectory in sharper focus.
 
-Factory output rose at its quickest pace in three months, led by intermediate and capital goods producers. Consumer goods makers, however, saw growth ease — an early sign that the cost squeeze may be filtering through to household-facing businesses.
+Government spending did much of the heavy lifting. Capital expenditure on infrastructure — roads, railways, defence — maintained a healthy pace, partially offsetting the weakness in private investment, which economists describe as "moribund."
 
-Hiring continued, though the pace of job creation slowed from April. Companies added workers but were cautious about headcount expansion as margins tightened.
+"Underlying drivers suggest a transition from broad-based expansion to a more uneven growth profile," said Dhiraj Nim, economist at ANZ. "Government spending likely maintained a healthy pace of growth, while external demand weakened amid global disruptions."
 
-## The War Is in the Numbers
+## What the Numbers Mean for NRIs
 
-Input price inflation was the second-strongest in roughly four years, trailing only April's reading. Higher outlays for energy, fuel, raw materials, and transportation drove the spike, with survey respondents explicitly citing the Middle East conflict — now in its fourth month — as a contributing factor.
+For the Indian diaspora watching from abroad, the GDP print is a mixed signal. On one hand, India's resilience through a global war and a tariff escalation is remarkable — no other major economy has held above 7% under comparable stress. On the other hand, the weakness in private investment is the statistic that should worry long-term watchers.
 
-Capital goods producers bore the sharpest cost increases among the three sub-sectors tracked, a worrying signal for investment-heavy industries.
+Private investment is what creates well-paying jobs for the millions entering India's workforce each year. Without it, the burden falls entirely on government capex — a model that works in the short term but cannot scale indefinitely.
 
-Yet selling price inflation actually eased from April. Competitive pressures prevented firms from passing on the full cost burden to buyers, compressing margins. That gap between what factories are paying and what they can charge is the central tension in India's manufacturing story right now.
+## The RBI's Dilemma
 
-## Stockpiling Continues as War Drags On
+The growth data arrives just as the Reserve Bank of India's Monetary Policy Committee meets this week to decide on interest rates. The RBI faces a triple bind: a weakening rupee that argues for holding rates, crude oil prices above $90 that add inflationary pressure, and the forecast of the driest monsoon in 11 years that could push food prices higher.
 
-Despite the cost squeeze, manufacturers sharply increased purchasing activity at the fastest rate in three months — partly to build contingency stocks. Pranjul Bhandari, Chief India Economist at HSBC, called it "another month of possible precautionary stockpiling as the Middle East conflict remains unresolved."
+Markets are pricing in a hold, with some analysts now expecting a rate hike if the monsoon forecast deteriorates further. The Nifty 50 has fallen 2.7% over four sessions, and foreign investors dumped a record $2.22 billion in Indian stocks on Friday alone.
 
-Finished goods inventories also rose at a faster clip, suggesting firms are building buffers against potential supply chain disruptions tied to the Strait of Hormuz closure.
+## The Bigger Picture
 
-## Optimism Hits a Ceiling
+Gross value added, which strips out taxes and subsidies, is estimated at 7.3% — suggesting the underlying productive economy is holding up slightly better than the headline GDP number implies.
 
-Business confidence fell to its lowest level since February, though it remained in positive territory. Companies expressed hope that cost pressures would eventually ease, supported by strong order pipelines and marketing efforts.
+The Asian Development Bank recently upgraded India's full-year FY26 growth forecast to 7.2%, up from its earlier estimate of 6.5%, calling India a "key driver of global growth." But that optimism is increasingly conditional on two things: the Iran war finding a resolution that reopens the Strait of Hormuz, and the monsoon delivering enough rain to keep food inflation in check.
 
-The data lands on a critical week for India's economy. The RBI's Monetary Policy Committee meets June 3-5, with most economists expecting the repo rate to hold at 5.25 percent. The central bank faces a delicate balancing act: inflation remains below 4 percent, but crude oil at $92 per barrel and a rupee that has depreciated over 5 percent since February are creating imported inflation pressures that could accelerate sharply if the Strait of Hormuz disruption continues.
+For now, India is growing fast enough to matter and slow enough to worry. The June 5 data will tell us which way the balance is tipping.
 
-For NRI investors tracking the Indian economy from abroad, the PMI data offers a nuanced picture: the factory floor is busy, order books are full, but margins are under siege from a war that shows no sign of ending. The January-March GDP data, due Friday alongside the RBI decision, will reveal whether that resilience is translating into broader economic growth — or whether the war's drag is starting to bite.
+*Sources: Reuters poll of 45 economists (June 1, 2026); Asian Development Bank FY26 forecast revision; ANZ Economics research note*"""
 
-*Sources: S&P Global/HSBC India PMI, Reuters, IANS, The Hindu BusinessLine*"""
+    # Image: try Wikipedia for "Indian economy" or Pexels
+    print("  Sourcing image...")
+    img_url = fetch_pexels_image("Indian rupee currency notes", "India Reserve Bank building")
 
-    topic_id = create_topic(headline, "news")
-    if not topic_id:
-        return None
+    final_img = None
+    if img_url and validate_image(img_url):
+        final_img = upload_to_supabase_storage(img_url, f"{slug}.jpg")
 
-    img_url = fetch_pexels_image("factory manufacturing production", "industrial machinery workers")
-    if img_url and not validate_image(img_url):
-        img_url = None
-    
     article = {
-        "topic_id": topic_id,
         "headline": headline,
         "subheadline": subheadline,
         "body": body,
@@ -207,90 +220,68 @@ For NRI investors tracking the Indian economy from abroad, the PMI data offers a
         "category": "news",
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url,
-        "image_attribution": "Pexels" if img_url else None,
-        "sources": ["S&P Global/HSBC India PMI", "Reuters", "IANS", "The Hindu BusinessLine"],
-        "word_count": count_words(body),
+        "image_url": final_img,
+        "image_attribution": "Pexels" if final_img else None,
+        "sources": json.dumps(["Reuters", "Asian Development Bank", "ANZ Economics"]),
         "is_editorial": False,
-        "is_featured": False,
-        "diaspora_angle": "For NRI investors and professionals tracking the Indian economy, the PMI data shows a factory sector running hot on domestic demand but squeezed by war-driven energy costs — a tension that will shape RBI rate decisions and rupee trajectory in coming months.",
-        "vertical": "politics",
-        "tags": ["manufacturing", "PMI", "HSBC", "Indian economy", "Middle East war", "RBI", "cost inflation"],
-        "urgency": "daily"
+        "vertical": "news"
     }
+
     return insert_article(article)
 
-# ============================================================
-# ARTICLE 2
-# ============================================================
-def write_article_2():
-    print("\n=== Article 2: Jensen Huang Computex / Vera CPU ===")
-    
-    headline = "Jensen Huang Just Unveiled the Chip That Could Power Every AI Agent on Earth. He Says It Will Not Cost a Single Engineer Their Job."
-    subheadline = "At Computex in Taipei, Nvidia announced its Vera CPU for AI agents — with OpenAI, Anthropic, and SpaceX as early adopters — and a new line of AI-powered laptops built on its RTX Spark chip."
-    slug = "jensen-huang-computex-2026-vera-cpu-ai-pcs-nvidia-150-billion-taiwan"
-    
-    body = """Jensen Huang walked onto the stage at Taipei's Music Hall in his signature black leather jacket and did what he has done every year since Nvidia became the most profitable company in the world: he redrew the map of computing.
 
-The Nvidia CEO's GTC Taipei keynote, delivered ahead of the Computex trade show on Monday, centered on two announcements that could reshape the AI industry's next phase — and directly affect the millions of Indian-origin engineers who build on Nvidia's platforms.
+# ==========================
+# ARTICLE 2: EB-2 Green Cards Frozen
+# ==========================
+def write_eb2_article():
+    print("\n=== Article 2: EB-2 Green Cards Frozen ===")
+    slug = "us-freezes-eb2-green-cards-indians-october-2026-quota-exhausted-2800-visas"
+    headline = "The US Just Froze EB-2 Green Cards for Indians. The Next One Will Not Be Issued Until October."
+    subheadline = "The State Department says all 2,800 EB-2 visas allocated to India for FY2026 have been used. No final approvals will happen until the new fiscal year begins on October 1."
 
-## Vera: The CPU Built for a World of AI Agents
+    body = """The United States State Department has confirmed that the EB-2 immigrant visa category for Indian nationals is now "unavailable" for the remainder of fiscal year 2026. Every green card allocated to India under the EB-2 preference — roughly 2,800 out of a global cap of about 40,000 — has been issued.
 
-The headline product is Vera, a central processing unit designed specifically for AI agents — the autonomous bots that are rapidly replacing conversational chatbots as the dominant form of AI usage. During Nvidia's May earnings call, Huang had described Vera as giving the company access to a "$200 billion market." On Monday, he named its first customers: OpenAI, Anthropic, and SpaceX.
+No new EB-2 green cards will be approved for Indians until October 1, 2026, when the next fiscal year's quota opens.
 
-"This is going to be our new major growth driver," Huang said.
+## What EB-2 Covers
 
-The strategic shift is significant. Nvidia built its $5 trillion valuation on graphics processing units that train large language models. But as AI moves from training to inference — and from chatbots to autonomous agents performing tasks without human prompting — the computational bottleneck is shifting to CPUs. Vera is Nvidia's play for that transition.
+The EB-2 category is one of the primary employment-based routes to permanent residency in the United States. It covers professionals with advanced degrees — masters and above — and individuals with exceptional ability in science, business, or the arts. For tens of thousands of Indian engineers, doctors, researchers, and tech workers on H-1B visas, EB-2 is the main pathway from temporary work status to a green card.
 
-## AI PCs: 30 Laptop Models, RTX Spark Inside
+## The Math Behind the Freeze
 
-Nvidia also introduced the RTX Spark, which it called "the most efficient PC chip ever built." The chip will power a new category of laptops designed to run AI agents locally — not in the cloud.
+US immigration law caps total employment-based green cards at 140,000 per year. The EB-2 category receives 28.6% of that — about 40,000 visas. But a per-country cap of 7% means India can receive only around 2,800 EB-2 green cards annually, despite representing the single largest source of demand.
 
-Six manufacturers — Dell, Lenovo, Microsoft, HP, Asus, and MSI — will build about 30 laptop models and 10 desktop models using RTX Spark. The thinnest devices will be 14 millimeters thick and weigh under three pounds.
+The mismatch between demand and supply has been structural for over a decade. The current EB-2 Final Action Date for India stands at September 1, 2013 — meaning only applicants who filed their petitions 13 years ago are currently eligible for final processing.
 
-The laptops are "targeted at creators, AI developers and gamers" and will sit at the premium end of the market, according to Mark Aevermann, Nvidia's senior director of product development. For the hundreds of thousands of Indian-origin developers working in Silicon Valley and Bangalore, these machines represent a shift from cloud-dependent AI workflows to local agent computing.
+## The June 2026 Visa Bulletin's Other Bad News
 
-## Humanoid Robots — and a Geopolitical Tightrope
+The freeze is not the only setback. The June 2026 Visa Bulletin also showed EB-1 India retrogressing 3.5 months to December 15, 2022, and EB-2 India retrogressing 10.4 months to September 1, 2013. Immigration attorney Charlie Oppenheim, formerly of the State Department, has warned that the recent forward movements were "completely artificial" — driven by reduced processing for nationals of 75 countries whose immigrant visas were paused by the Trump administration.
 
-In a more surprising move, Nvidia announced a partnership with China's Unitree to build a standardized humanoid robot for academic researchers. The robot's body comes from Unitree, its hands from Singapore's Sharpa, and its computing brain from Nvidia. Stanford and UC San Diego are among the planned users.
+"The longer the policy remains in place, the more severe the corrective action may be," Oppenheim said. "The affected applicants are not going away and will be at the front of the visa line with early Rest of World priority dates."
 
-The partnership is politically charged. U.S. lawmakers have alleged that Unitree has ties to the Chinese government and military, and have introduced a bill to ban its robots from government-funded research. Nvidia executives told Reuters the company plans to pursue similar partnerships with robotics firms in the U.S., South Korea, and Europe — a hedging strategy that mirrors how the entire AI industry is navigating U.S.-China tensions.
+## What This Means for Indians in the US
 
-## "AI Replacing Jobs Is Complete Nonsense"
+If you are an Indian professional with a pending EB-2 petition, USCIS may continue accepting applications, but no final adjudication can happen until fresh visa numbers become available in October. Your case moves forward on paper; nothing moves in reality.
 
-Huang delivered a direct rebuttal to the growing anxiety around AI and employment — a concern that weighs particularly heavily on Indian tech workers who dominate the H-1B visa pipeline.
+For those on H-1B visas waiting for EB-2 processing, the freeze extends what is already one of the longest immigration queues in the world. Many Indian professionals have been waiting 10 to 15 years for a green card that nationals of most other countries receive in months.
 
-"The number of engineers, software engineers, is actually increasing," Huang said. "People talk about AI reducing jobs — complete nonsense. It's causing more software engineers to be hired."
+## The Broader Pattern
 
-He claimed that GitHub's AI coding tools are generating "$9 trillion in value for companies," far exceeding the "$3 trillion" that software engineers' collective salaries represent. The math was Huang's own, and not everyone was convinced. But the message was clear: Nvidia's CEO sees AI as a force multiplier for technical talent, not a replacement.
+The EB-2 freeze is part of a broader tightening. USCIS recently issued a policy memo emphasising that Adjustment of Status — the process of applying for a green card from within the US — is a "discretionary benefit," signalling that officers may scrutinise applications more closely. The agency later walked back parts of the memo, but the message was clear: the path to permanent residency is getting narrower, not wider.
 
-For the hundreds of thousands of Indian engineers in the U.S. who have watched AI anxiety compound on top of visa uncertainty, Huang's words are worth noting — even if taking them entirely at face value requires trusting the CEO of the company that sells the picks and shovels in the AI gold rush.
+Germany, meanwhile, has approved 30 new initiatives to recruit Indian skilled workers, reserving 90,000 visas. Canada, Australia, and the UK continue to expand their own talent pipelines. For Indian professionals weighing their options, the EB-2 freeze is one more data point in a shifting global calculus.
 
-## $150 Billion a Year in Taiwan
+*Sources: US State Department June 2026 Visa Bulletin; Outlook Business; WR Immigration analysis; USCIS policy guidance*"""
 
-Huang, who was born in Taiwan's southern city of Tainan, announced plans to invest approximately $150 billion annually in the island — describing it as the epicenter of the AI revolution. Samsung and LG shares surged in South Korea ahead of Huang's planned meetings with Korean executives later this week, with investors betting on new AI chip partnerships.
+    # Image: try Pexels for US visa/passport
+    print("  Sourcing image...")
+    img_url = fetch_pexels_image("US visa passport stamp", "American immigration documents")
 
-The Computex trade show runs June 2-5. Nvidia's stock rose 1 percent in the Monday session.
+    final_img = None
+    if img_url and validate_image(img_url):
+        final_img = upload_to_supabase_storage(img_url, f"{slug}.jpg")
 
-*Sources: Reuters, Wall Street Journal, Gizmodo, The Motley Fool, WCCFTech*"""
-
-    topic_id = create_topic(headline, "news")
-    if not topic_id:
-        return None
-
-    img_url = fetch_wikipedia_person_image("Jensen Huang")
-    if img_url and not validate_image(img_url):
-        img_url = None
-    
-    img_attr = "Wikimedia Commons"
-    if not img_url:
-        img_url = fetch_pexels_image("computer chip AI technology", "semiconductor GPU chip")
-        img_attr = "Pexels"
-        if img_url and not validate_image(img_url):
-            img_url = None
-    
     article = {
-        "topic_id": topic_id,
         "headline": headline,
         "subheadline": subheadline,
         "body": body,
@@ -298,83 +289,84 @@ The Computex trade show runs June 2-5. Nvidia's stock rose 1 percent in the Mond
         "category": "news",
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url,
-        "image_attribution": img_attr if img_url else None,
-        "sources": ["Reuters", "Wall Street Journal", "Gizmodo", "The Motley Fool", "WCCFTech"],
-        "word_count": count_words(body),
+        "image_url": final_img,
+        "image_attribution": "Pexels" if final_img else None,
+        "sources": json.dumps(["US State Department", "Outlook Business", "WR Immigration", "USCIS"]),
         "is_editorial": False,
-        "is_featured": False,
-        "diaspora_angle": "Jensen Huang's claim that AI is creating more software engineering jobs — not fewer — is directly relevant to the hundreds of thousands of Indian-origin tech workers in the U.S. navigating both AI anxiety and visa uncertainty. The Vera CPU and AI PC announcements also shape the tools Indian developers will use daily.",
-        "vertical": "politics",
-        "tags": ["Nvidia", "Jensen Huang", "Computex", "Vera CPU", "AI agents", "RTX Spark", "AI PCs", "technology"],
-        "urgency": "daily"
+        "vertical": "politics"
     }
+
     return insert_article(article)
 
-# ============================================================
-# ARTICLE 3
-# ============================================================
-def write_article_3():
-    print("\n=== Article 3: DigiYatra Expansion ===")
-    
-    headline = "India Will Let You Walk Through 65 Airports Without Showing a Document. The System Has Already Processed 10 Crore Journeys."
-    subheadline = "The government is adding 27 airports to DigiYatra's facial recognition network by next year — a shift that could transform how NRIs experience Indian airports."
-    slug = "digiyatra-65-airports-facial-recognition-nri-travel-10-crore-journeys-2026"
-    
-    body = """If you have flown through an Indian airport recently and breezed past the entry gate in five seconds flat, you have DigiYatra to thank. If you have not, you are about to.
 
-The Civil Aviation Ministry announced on Saturday that DigiYatra — India's facial recognition-based contactless airport travel system — will expand to 27 more airports by next year, bringing its total footprint to 65 airports. The platform is currently active at 38 airports and has already enabled over 10 crore seamless passenger journeys.
+# ==========================
+# ARTICLE 3: June 1 Rule Changes
+# ==========================
+def write_june1_rules_article():
+    print("\n=== Article 3: June 1 Rule Changes ===")
+    slug = "india-june-1-2026-rule-changes-upi-lpg-atm-solar-pan-maruti-prices"
+    headline = "Nine Things That Changed in India on June 1. Your Wallet Will Notice Most of Them."
+    subheadline = "From UPI security upgrades to commercial LPG price hikes, new ATM withdrawal rules, and the solar panel mandate — here is everything that kicked in today."
 
-## From 15 Seconds to 5
+    body = """June 1, 2026 brought a stack of regulatory and price changes that will affect everyone from restaurant owners in Delhi to NRIs sending money home through UPI. Here is what changed and what it means.
 
-The numbers tell the story of a system that has quietly become one of India's most successful digital infrastructure deployments. DigiYatra has crossed 2.4 crore downloads. Average airport entry processing time has dropped from 15 seconds to 5 seconds per passenger — a three-fold improvement that compounds dramatically when multiplied across India's growing base of air travelers.
+## 1. UPI Gets New Security Layers
 
-"While many nations continue to evaluate the large-scale deployment of biometric passenger processing, India has successfully operationalized and scaled DigiYatra within a remarkably short timeframe," Civil Aviation Minister K. Rammohan Naidu said.
+High-value UPI transactions now require additional authentication beyond the standard PIN. Under the new framework, larger transfers may need extra verification steps, including beneficiary name confirmation before the payment is processed. The Reserve Bank of India has been pushing these measures since early 2026 to reduce payment fraud, which crossed ₹1,200 crore last fiscal year.
 
-The system works simply: passengers register on the DigiYatra app with their face biometrics, link their boarding pass, and then walk through airport entry gates and security checkpoints with just a face scan — no boarding pass flash, no ID fumble, no QR code dance.
+For the diaspora, the UPI changes are relevant because international UPI-linked remittance services are growing. The extra verification adds a few seconds to each transaction but should reduce the misdirected payment problem that has plagued the platform.
 
-## Why the Diaspora Should Pay Attention
+## 2. Commercial LPG Prices Rise Up to ₹53.50
 
-For members of the Indian diaspora who fly home once or twice a year and dread the document-checking scrum at domestic airports, the expansion is directly relevant. The connecting flight from Delhi to Lucknow or Mumbai to Coimbatore often involves more friction than the 16-hour international leg. DigiYatra is designed to eliminate exactly that.
+Indian Oil Corporation raised the price of 19-kg commercial LPG cylinders by ₹42 to ₹53.50 depending on the city. Delhi's price moved to ₹3,113.50 from ₹3,071.50. Kolkata saw the steepest increase at ₹53.50, while Mumbai and Chennai rose by ₹43.50 and ₹46 respectively.
 
-The upcoming greenfield airports at Navi Mumbai, Jewar, and Bhogapuram will be fully integrated with DigiYatra from day one. These are the three largest new airport projects in India — each designed to handle tens of millions of passengers — with facial recognition baked into their architecture from the ground up.
+The hike hits restaurants, hotels, and catering businesses hardest. Domestic LPG cylinder prices — the ones used in homes — remain unchanged for now, but energy analysts warn that a sustained rise in global crude could trigger a review.
 
-The 27 airports being added next year will prioritize regional hubs, extending the contactless experience to Tier-2 and Tier-3 cities. The ministry did not name the specific airports, but the focus on regional connectivity suggests that cities NRIs often fly to after landing at a metro — Jaipur, Ahmedabad, Kochi, Visakhapatnam, Chandigarh — are likely candidates.
+## 3. ATM Withdrawals Now Count UPI Cardless Cash
 
-## The Language Push
+Banks will now include UPI-based cardless cash withdrawals within monthly free ATM transaction limits. Customers who exceed their free withdrawal quota — typically three to five per month for non-home bank ATMs — will face the same ₹21 surcharge that applies to card-based withdrawals.
 
-DigiYatra currently supports 11 languages. By the end of 2026, the ministry plans to add 11 more regional languages — a recognition that India's air travel market is expanding beyond English and Hindi-speaking metros into states where passengers navigate apps in Tamil, Telugu, Kannada, Marathi, Bengali, and Gujarati.
+## 4. The Solar Cell Mandate Is Live
 
-India's passenger traffic is projected to reach 50 crore annually by 2030 and nearly 100 crore by 2040, according to Minister Naidu. That doubling will be driven overwhelmingly by first-time flyers from smaller cities — passengers who are less likely to be comfortable with English-only interfaces.
+The Ministry of New and Renewable Energy has enforced the ALMM List-II (Approved List of Models and Manufacturers) requirement for solar PV cells from today. Only domestically manufactured, ALMM-approved solar cells can now be used in eligible projects. India's cumulative solar cell manufacturing capacity reached 40 GW at the end of March 2026, with 27.23 GW already on the approved list.
 
-## Privacy by Design — But Questions Remain
+The ministry confirmed on Monday that "no blanket extension" would be given. The mandate is designed to support India's push for energy self-reliance and give policy certainty to domestic manufacturers who have invested heavily in cell production.
 
-The ministry emphasized that DigiYatra follows a "privacy-by-design framework." Passenger data remains encrypted and stored on the user's own device. It is shared with the departure airport only for a limited verification window, and the ministry says no centralized biometric database exists.
+## 5. Export Duty on Fuel Products Revised
 
-The claim sets DigiYatra apart from facial recognition deployments in China and the United States, where centralized databases have drawn scrutiny from civil liberties groups. But privacy advocates in India have noted that the system operates without fully operationalized enforcement rules under the Digital Personal Data Protection Act passed in 2023.
+The government reduced export duty on petrol to ₹1.5 per litre, diesel to ₹13.5 per litre, and aviation turbine fuel to ₹9.5 per litre. The revision is part of the fortnightly review cycle that tracks global crude prices. Domestic fuel prices are not directly affected by this change.
 
-For now, adoption rates suggest passengers are voting with their faces. The trajectory from zero to 10 crore journeys in under four years puts DigiYatra on par with India's other rapid-scale digital successes — UPI, Aadhaar, and CoWIN.
+## 6. Jet Fuel for International Airlines Slashed 27%
 
-## Five Indian Airports in the Global Top 100
+ATF prices for international carriers were cut by 27% — more than $400 per kilolitre — to about $1,100 per kilolitre. Domestic airline ATF rates, however, remain unchanged at ₹1,04,927.18 per kilolitre for the second consecutive month.
 
-DigiYatra is part of a broader push that is lifting Indian airports in global rankings. Five Indian airports made the Skytrax World Airport Awards 2026 top-100 list — Delhi at 28th, followed by Bangalore, Hyderabad, Goa's Manohar International, and Mumbai.
+## 7. PAN Card Rules for Cash Transactions Updated
 
-The ministry is also deploying self-baggage drop systems, upgraded air traffic control automation, the AirSewa grievance portal, and AI-powered digital twins at major airports. The contactless check-in at 65 airports is the most visible piece of an infrastructure overhaul that is steadily making Indian airports more competitive internationally.
+PAN is no longer mandatory for certain cash deposits exceeding ₹50,000, though reporting requirements for higher-value transactions remain. The threshold for mandatory PAN disclosure in property transactions has also been raised.
 
-For the NRI who last flew domestically in India three years ago and remembers the paper-boarding-pass-and-ID-card ritual at the entry gate — the next trip home will feel different.
+## 8. Maruti Suzuki Raises Car Prices
 
-*Sources: Civil Aviation Ministry press release, The Hindu BusinessLine, Outlook Business, Storyboard18, All India Radio News*"""
+Maruti Suzuki has increased prices on several models, including the Alto and Brezza, citing higher production costs. The exact increase varies by model and variant.
 
-    topic_id = create_topic(headline, "news")
-    if not topic_id:
-        return None
+## 9. Advance Tax Deadline Approaches
 
-    img_url = fetch_pexels_image("airport terminal passengers modern", "airport gate boarding travelers")
-    if img_url and not validate_image(img_url):
-        img_url = None
-    
+Taxpayers whose estimated annual tax liability exceeds ₹10,000 must pay 15% of their estimated liability by June 15 — the first instalment of advance tax for FY2026-27. Missing the deadline attracts interest charges under Sections 234B and 234C.
+
+## The NRI Takeaway
+
+For Indians abroad, the UPI security upgrade and PAN rule changes are the most directly relevant. If you send money to family through UPI-linked services, expect minor workflow changes. If you are planning property transactions in India, the revised PAN thresholds are worth reviewing with your CA before you sign.
+
+*Sources: IANS; Indian Oil Corporation; Reserve Bank of India; Ministry of New and Renewable Energy; Dainik Bhaskar*"""
+
+    # Image: Pexels for UPI / digital payment / India financial
+    print("  Sourcing image...")
+    img_url = fetch_pexels_image("mobile phone digital payment India", "smartphone banking transaction")
+
+    final_img = None
+    if img_url and validate_image(img_url):
+        final_img = upload_to_supabase_storage(img_url, f"{slug}.jpg")
+
     article = {
-        "topic_id": topic_id,
         "headline": headline,
         "subheadline": subheadline,
         "body": body,
@@ -382,35 +374,45 @@ For the NRI who last flew domestically in India three years ago and remembers th
         "category": "news",
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url,
-        "image_attribution": "Pexels" if img_url else None,
-        "sources": ["Civil Aviation Ministry", "The Hindu BusinessLine", "Outlook Business", "Storyboard18", "All India Radio News"],
-        "word_count": count_words(body),
+        "image_url": final_img,
+        "image_attribution": "Pexels" if final_img else None,
+        "sources": json.dumps(["IANS", "Indian Oil Corporation", "RBI", "MNRE", "Dainik Bhaskar"]),
         "is_editorial": False,
-        "is_featured": False,
-        "diaspora_angle": "DigiYatra directly affects NRIs who fly domestically in India during visits home. The expansion to 65 airports — including regional hubs that NRIs often connect through — means the document-checking friction at domestic airports is being eliminated. The new greenfield airports at Navi Mumbai, Jewar, and Bhogapuram will have facial recognition from day one.",
-        "vertical": "politics",
-        "tags": ["DigiYatra", "Indian airports", "facial recognition", "NRI travel", "Civil Aviation Ministry", "aviation"],
-        "urgency": "daily"
+        "vertical": "news"
     }
+
     return insert_article(article)
 
-# ============================================================
+
+# ==========================
+# MAIN
+# ==========================
 if __name__ == "__main__":
-    if not SUPABASE_URL or not SUPABASE_KEY:
-        print("ERROR: Missing Supabase credentials")
-        sys.exit(1)
-    
-    print(f"News writer batch — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    
+    print("=" * 60)
+    print("The Videshi News Writer - 2026-06-01")
+    print("=" * 60)
+
     results = []
-    for fn in [write_article_1, write_article_2, write_article_3]:
-        try:
-            results.append(fn())
-        except Exception as e:
-            print(f"  ✗ Error: {e}")
-            import traceback; traceback.print_exc()
-            results.append(None)
+
+    r1 = write_gdp_article()
+    results.append(("GDP Q1 2026", r1))
+
+    r2 = write_eb2_article()
+    results.append(("EB-2 Green Card Freeze", r2))
+
+    r3 = write_june1_rules_article()
+    results.append(("June 1 Rule Changes", r3))
+
+    print("\n" + "=" * 60)
+    print("RESULTS SUMMARY")
+    print("=" * 60)
+    for name, result in results:
+        status = "✓ Published" if result else "✗ Failed"
+        print(f"  {status}: {name}")
     
-    ok = sum(1 for r in results if r)
-    print(f"\n=== DONE: {ok}/{len(results)} articles published ===")
+    failed = sum(1 for _, r in results if not r)
+    if failed:
+        print(f"\n⚠ {failed} article(s) failed to publish")
+        sys.exit(1)
+    else:
+        print(f"\n✓ All {len(results)} articles published successfully")
