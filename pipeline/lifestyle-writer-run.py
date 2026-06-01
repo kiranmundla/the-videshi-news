@@ -120,12 +120,16 @@ art1 = {
     "status": "published",
     "is_editorial": False,
     "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps([
+    "vertical": "lifestyle",
+    "tags": ["red-light-therapy", "skincare", "dermatology", "south-asian-health", "wellness-trends"],
+    "urgency": "daily",
+    "is_featured": False,
+    "sources": [
         {"name": "San Francisco Chronicle", "url": "https://www.sfchronicle.com"},
         {"name": "NPR", "url": "https://www.npr.org"},
         {"name": "Journal of Clinical and Aesthetic Dermatology", "url": "https://jcadonline.com"},
         {"name": "PLOS ONE (2025 systematic review)", "url": "https://doi.org/10.1371/journal.pone.0332995"}
-    ]),
+    ],
     "body": """If your Instagram feed looks anything like ours, you have seen it: a glowing LED mask strapped to someone's face, bathed in red light, captioned with promises of younger skin, fewer wrinkles, and cleared acne. The devices cost anywhere from $50 to $800. Some are endorsed by dermatologists. Most are endorsed by influencers. And a growing body of clinical evidence suggests the truth lies somewhere between the hype and the dismissal.
 
 ## What Red Light Therapy Actually Does
@@ -189,12 +193,16 @@ art2 = {
     "status": "published",
     "is_editorial": False,
     "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps([
+    "vertical": "lifestyle",
+    "tags": ["yoga-day-2026", "healthy-ageing", "elder-care", "india-seniors", "diaspora-families", "ministry-of-ayush"],
+    "urgency": "daily",
+    "is_featured": False,
+    "sources": [
         {"name": "Devdiscourse", "url": "https://www.devdiscourse.com"},
         {"name": "Ministry of Ayush, Government of India", "url": "https://www.ayush.gov.in"},
         {"name": "World Health Organization", "url": "https://www.who.int"},
         {"name": "Nature", "url": "https://www.nature.com"}
-    ]),
+    ],
     "body": """The International Day of Yoga on June 21 will carry a theme this year that millions of NRI families will recognise from their own lives: Yoga for Healthy Ageing.
 
 India's Ministry of Ayush announced the theme at the Yoga Mahotsav in Khajuraho on May 31, kicking off a 25-day countdown to the 12th edition of the global celebration. Minister Prataprao Jadhav said the theme reflects an urgent demographic reality: India's population aged 60 and above is projected to exceed 230 million by 2036, and the country's senior-focused market already exceeds Rs 73,000 crore.
@@ -266,13 +274,17 @@ art3 = {
     "status": "published",
     "is_editorial": False,
     "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps([
+    "vertical": "markets",
+    "tags": ["iran-war", "oil-prices", "strait-of-hormuz", "crude-oil", "nri-investors", "energy-markets", "brent-crude"],
+    "urgency": "high",
+    "is_featured": False,
+    "sources": [
         {"name": "Reuters", "url": "https://www.reuters.com"},
         {"name": "Morningstar / Dow Jones", "url": "https://www.morningstar.com"},
         {"name": "Associated Press / Barchart", "url": "https://www.barchart.com"},
         {"name": "Deutsche Bank Research", "url": "https://www.db.com"},
         {"name": "Capital Economics", "url": "https://www.capitaleconomics.com"}
-    ]),
+    ],
     "body": """The fragile ceasefire between the United States and Iran collapsed on Monday. Oil prices surged more than six dollars a barrel in a single session, and for NRI investors with portfolios split between US equities and Indian markets, the consequences are immediate and material.
 
 ## What Happened
