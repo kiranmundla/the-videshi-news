@@ -1,14 +1,8 @@
 #!/usr/bin/env python3
-"""
-News writer for The Videshi — June 1, 2026 run.
-Three articles:
-1. Forex reserves / Rupee crisis
-2. Solar ALMM mandate June 1
-3. Record stock market foreign sell-off (MSCI rebalancing)
-"""
+"""News writer - 2026-06-01 evening run. Publishes 3 articles."""
 
-import json, os, uuid, requests, subprocess, sys, re
-from datetime import datetime, timezone
+import json, os, sys, time, uuid, re, urllib.parse
+import requests
 
 # Load env
 def load_env(path):
@@ -18,11 +12,10 @@ def load_env(path):
         for line in f:
             line = line.strip()
             if line and not line.startswith('#') and '=' in line:
-                if line.startswith('export '):
-                    line = line[7:]
-                key, _, val = line.partition('=')
+                key, val = line.split('=', 1)
+                key = key.replace('export ', '').strip()
                 val = val.strip().strip('"').strip("'")
-                os.environ[key.strip()] = val
+                os.environ[key] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.supabase'))
@@ -39,11 +32,8 @@ HEADERS = {
     'Prefer': 'return=representation'
 }
 
-# ─── Image sourcing ───
-
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -55,378 +45,287 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels using curl (Python urllib gets 403)."""
+    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
+    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            result = subprocess.run(
-                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape'],
-                capture_output=True, text=True, timeout=15
-            )
-            data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for photo in photos:
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
-                if url:
-                    # Validate
-                    head = requests.head(url, timeout=10)
-                    ct = head.headers.get('Content-Type', '')
-                    cl = int(head.headers.get('Content-Length', '0'))
-                    if head.status_code == 200 and 'image' in ct and cl > 5000:
-                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                        return url
+            cmd = [
+                'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+            if result.returncode == 0:
+                data = json.loads(result.stdout)
+                photos = data.get('photos', [])
+                if photos:
+                    url = photos[0]['src']['large2x']
+                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase storage bucket 'article-images'."""
+def validate_image(url):
+    """Validate image URL returns 200 with image content type and >5KB."""
+    if not url:
+        return False
     try:
-        r = requests.get(image_url, timeout=20, headers={"User-Agent": "TheVideshi/1.0"})
-        if r.status_code != 200 or len(r.content) < 5000:
-            print(f"  ⚠ Download failed or too small: {r.status_code}, {len(r.content)} bytes")
-            return None
-        
-        ct = r.headers.get('Content-Type', 'image/jpeg')
-        
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        resp = requests.post(
-            upload_url,
-            headers={
-                'Authorization': f'Bearer {SUPABASE_KEY}',
-                'Content-Type': ct,
-                'x-upsert': 'true'
-            },
-            data=r.content,
-            timeout=30
-        )
-        if resp.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed: {resp.status_code} {resp.text[:200]}")
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
+            print(f"  ✓ Image validated: {r.status_code}, {ct}, {cl} bytes")
+            return True
+        # Try GET if HEAD fails
+        r = requests.get(url, timeout=10, stream=True, allow_redirects=True,
+                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct:
+            # Read a chunk to verify size
+            chunk = r.raw.read(6000)
+            if len(chunk) > 5000:
+                print(f"  ✓ Image validated via GET: {r.status_code}, {ct}")
+                return True
     except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-    return None
+        print(f"  ⚠ Image validation error: {e}")
+    return False
 
-
-def source_image(article_slug, person_name=None, pexels_query=None, pexels_fallback=None):
-    """Source image following the hierarchy: Wikipedia > Pexels > None."""
-    img_url = None
-    attribution = None
-    
-    if person_name:
-        img_url = fetch_wikipedia_person_image(person_name)
-        if img_url:
-            attribution = "Wikimedia Commons"
-    
-    if not img_url and pexels_query:
-        img_url = fetch_pexels_image(pexels_query, pexels_fallback)
-        if img_url:
-            attribution = "Pexels"
-    
-    if img_url:
-        # Upload to Supabase for permanence (unless already Pexels permanent URL)
-        if 'images.pexels.com' in img_url or 'upload.wikimedia.org' in img_url:
-            return img_url, attribution
-        else:
-            uploaded = upload_to_supabase_storage(img_url, f"{article_slug}.jpg")
-            if uploaded:
-                return uploaded, attribution
-            return img_url, attribution
-    
-    return None, None
-
-
-def insert_article(article):
-    """Insert article into Supabase p2_articles."""
+def publish_article(article):
+    """Insert article into Supabase."""
     url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    resp = requests.post(url, headers=HEADERS, json=article, timeout=30)
-    if resp.status_code in (200, 201):
-        data = resp.json()
-        art_id = data[0]['id'] if isinstance(data, list) and data else data.get('id', 'unknown')
-        print(f"  ✓ Inserted article: {article['slug']} (id: {art_id})")
-        return art_id
-    else:
-        print(f"  ✗ Insert failed: {resp.status_code} {resp.text[:300]}")
-        return None
+    r = requests.post(url, headers=HEADERS, json=article)
+    if r.status_code in (200, 201):
+        data = r.json()
+        if isinstance(data, list) and data:
+            print(f"  ✓ Published: {data[0].get('headline', '?')[:60]}...")
+            return True
+        elif isinstance(data, dict):
+            print(f"  ✓ Published: {data.get('headline', '?')[:60]}...")
+            return True
+    print(f"  ✗ Publish failed ({r.status_code}): {r.text[:200]}")
+    return False
 
+def word_count(text):
+    return len(text.split())
 
-# ─── Articles ───
+# ============================================================
+# ARTICLE 1: Delhi Saket Building Collapse
+# ============================================================
+print("\n=== ARTICLE 1: Delhi Saket Building Collapse ===")
 
-articles = []
+img1 = fetch_pexels_image("building collapse rescue India debris", "collapsed building rubble rescue workers")
+if img1 and not validate_image(img1):
+    img1 = None
 
-# ── Article 1: Forex Reserves / Rupee Crisis ──
-print("\n=== Article 1: India's Forex Reserves Plunge ===")
+article1_body = """A three-storey commercial building near the Saket Metro Station in south Delhi collapsed on Saturday evening, killing six people and injuring eight others in one of the deadliest structural failures the city has seen this year.
 
-body_1 = """India's foreign exchange reserves have dropped to their lowest level in more than a year, falling to $681.4 billion in the week ending May 22 — a decline of nearly $47 billion from the record high of $728.49 billion reached in February.
+The building, located on Western Marg in the Saidulajab area, housed a coaching institute, cafes, offices, and a tin shed canteen on its ground floor that served students preparing for medical entrance examinations. Construction work was reportedly underway on the upper floors when the structure gave way around 6 PM on May 30.
 
-The sharp drawdown reflects the Reserve Bank of India's aggressive intervention in currency markets to prevent a disorderly fall in the rupee, which has lost roughly 6 percent of its value against the dollar in 2026. At its weakest point in May, the currency touched a record low of 96.96 per dollar before recovering to 95 on the back of heavy central bank selling.
+## A Night of Rescue
 
-## The Numbers Tell a Stark Story
+Rescue teams from the National Disaster Response Force, Delhi Fire Services, the Delhi Disaster Management Authority, and local police deployed heavy machinery, hydraulic cutters, victim-location cameras, and sniffer dogs to comb through the rubble. The operation continued for more than 24 hours.
 
-In a single week ending May 22, reserves fell by $7.5 billion. Of that, approximately $4.5 billion came from a decline in the value of the RBI's gold holdings, while foreign currency assets — the largest component of reserves — dropped by nearly $3 billion to $543 billion.
+Nine people were pulled alive from the debris and rushed to AIIMS Trauma Centre and Safdarjung Hospital. A green corridor was established to ensure unhindered ambulance movement from the site. Two of the injured were later discharged after receiving first aid, while five others remained in critical condition.
 
-Market participants estimate the RBI has been selling between $800 million and $2 billion a day in recent weeks to slow the rupee's slide. The central bank's short forward dollar commitments fell to $95.3 billion at the end of April from over $100 billion in March, according to data released after market hours on Friday.
+## The Dead and the Mourning
 
-The RBI has maintained that it does not target any specific exchange rate but intervenes to prevent "disorderly market movements and excessive speculation." The distinction, economists say, is increasingly academic.
+Among the six killed was Parvati, who ran the canteen on the premises. Her daughter Neelam told PTI that her mother had initially escaped the building after signs of collapse became evident — but went back inside to help students still trapped in the rubble.
 
-## Why the Rupee Is Under Siege
+"I asked her to open the canteen, but now I regret it," Neelam said. She alleged that the family had previously noticed pieces of concrete falling from parts of the building and had raised concerns about its structural condition. "The real fault lies with the building owner," she said, adding that construction materials had occasionally fallen during ongoing work on the upper floors.
 
-Three forces are converging on the Indian currency.
+## Owner Absconding, Engineers Suspended
 
-**The oil shock.** The Strait of Hormuz, which handles roughly a fifth of global oil and liquefied natural gas flows, has remained largely shut since February 28 due to the US-Iran conflict. Brent crude, while easing 11 percent last week, still trades at around $92-93 per barrel — 30 percent above pre-war levels. India imports nearly 90 percent of its crude oil, making it acutely vulnerable to sustained energy price increases.
+Delhi Police registered an FIR under several sections related to culpable homicide and negligence against the building owner, who remains absconding as of Monday evening. Multiple police teams are searching for him.
 
-**Capital flight.** Foreign portfolio investors have been pulling money out of Indian equities for months. On Friday alone, they dumped $2.22 billion worth of shares — a record single-day outflow — as MSCI's index rebalancing triggered massive position adjustments. The outflows have been amplified by an AI-driven rally in markets like South Korea and Taiwan, which has diverted foreign capital away from India.
+The Municipal Corporation of Delhi suspended two engineers for oversight failures, confirming that early findings point to potential infrastructural lapses and regulatory violations. The structure was reportedly unauthorised, according to officials at the scene.
 
-**The dollar's strength.** US Treasury yields remain elevated, making dollar-denominated assets more attractive relative to emerging market investments. The rupee has weakened from the mid-80s to 95 against the dollar, a slide that directly erodes the dollar-denominated returns foreign investors earn in India.
+Chief Minister Rekha Gupta visited the site on Sunday to review the rescue operations and ordered strict action against unauthorised structures and the officials who enabled them.
 
-## What This Means for the Diaspora
+## A Pattern That Keeps Repeating
 
-For the estimated 18 million Indians living abroad, the weaker rupee has a direct and tangible impact. Every dollar, pound, or dirham sent home now converts to significantly more rupees — a family sending $1,000 home gets roughly ₹95,000 today compared to ₹85,000 at the start of the year.
+Building collapses remain a persistent risk across Indian cities, particularly in areas where unauthorised construction is rampant. Poor construction materials, inadequate foundations, and the pressure to add floors to existing structures have all been cited as recurring causes. In Delhi, where land commands a premium, the incentive to build beyond sanctioned limits often outweighs the fear of enforcement.
 
-But the benefit comes with uncertainty. NRIs with India-denominated investments — property, fixed deposits, mutual funds — are seeing the value of those holdings shrink in dollar terms. Those planning to repatriate funds face the question of whether to wait for a recovery or lock in current rates.
+The Saket collapse has renewed demands for a comprehensive audit of commercial buildings in south Delhi, particularly those housing coaching centres and student-facing businesses where occupancy is high and evacuation routes are often narrow.
 
-India received $129 billion in remittances in the fiscal year ending March 2026, the largest in the world. The weaker rupee makes those flows more valuable in local currency terms, providing a modest cushion to the economy's external accounts.
+## What the Diaspora Should Know
 
-## The Week Ahead
+For NRIs with family members preparing for competitive exams in coaching hubs across Delhi, Kota, and Hyderabad, the collapse is a grim reminder of the safety conditions students often endure. Many coaching centres operate out of buildings that were never designed or approved for high-occupancy commercial use. Parents calling from abroad have limited ability to verify the structural safety of facilities their children use daily — a gap that no government inspection regime has yet closed."""
 
-All eyes now turn to the RBI's Monetary Policy Committee meeting from June 3-5, where Governor Sanjay Malhotra will announce the rate decision on June 5. A Reuters poll of economists shows nearly 80 percent expect the repo rate to be held at 5.25 percent, with analysts at Goldman Sachs forecasting a "hawkish pause alongside possible measures to attract dollar inflows."
+wc1 = word_count(article1_body)
+print(f"  Word count: {wc1}")
 
-The SBI Research team has projected GDP growth at 6.6 percent for FY27 and inflation at 5 percent, with risks tilted to the upside. The RBI is also expected to update its inflation and growth forecasts, which currently assume crude oil at $85 per barrel — well below current market prices.
-
-India's reserves, despite the decline, still cover approximately 11 months of imports and remain among the largest in the world. But the pace of depletion — nearly $50 billion in three months — has raised questions about how long the central bank can sustain this level of intervention without triggering a confidence crisis of its own.
-
-*Sources: Reserve Bank of India data, Reuters, Outlook Money, SBI Research, Goldman Sachs*"""
-
-img_1, attr_1 = source_image(
-    "india-forex-reserves-681-billion-rbi-rupee-defence-47-billion-decline-20260601",
-    pexels_query="Indian rupee currency notes",
-    pexels_fallback="reserve bank India"
-)
-
-articles.append({
-    "headline": "India\u2019s Forex Reserves Have Fallen $47 Billion in Three Months. The RBI Is Spending Billions to Defend the Rupee.",
-    "subheadline": "From a record $728 billion in February to $681 billion in May \u2014 the central bank is burning through dollars as the Hormuz crisis, oil shock, and capital flight batter the currency.",
-    "slug": "india-forex-reserves-681-billion-rbi-rupee-defence-47-billion-decline-20260601",
-    "body": body_1,
-    "category": "news",
-    "vertical": "news",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps([
-        {"name": "Reserve Bank of India", "url": "https://www.rbi.org.in/"},
-        {"name": "Reuters", "url": "https://www.reuters.com/"},
-        {"name": "Outlook Money", "url": "https://www.outlookmoney.com/"},
-        {"name": "SBI Research", "url": "https://sbi.co.in/"},
-        {"name": "Goldman Sachs", "url": "https://www.goldmansachs.com/"}
-    ]),
-    "image_url": img_1,
-    "image_attribution": attr_1 or "Pexels",
-    "is_editorial": False
-})
-
-
-# ── Article 2: Solar ALMM Mandate ──
-print("\n=== Article 2: India Solar ALMM Mandate ===")
-
-body_2 = """Starting today, every solar power project in India must use domestically manufactured solar cells. No extensions. No exceptions.
-
-The Ministry of New and Renewable Energy has enforced its Approved List of Models and Manufacturers (ALMM) List-II mandate for solar photovoltaic cells, effective June 1, 2026. The policy, announced 18 months ago to give the industry time to prepare, is designed to cut India's dependence on Chinese solar imports and build a self-sustaining domestic manufacturing ecosystem.
-
-The numbers suggest the industry was listening. India's cumulative solar PV cell manufacturing capacity reached 40 gigawatts at the end of March 2026, with 5 GW added in the January-March quarter alone — the third-highest quarterly addition in six years, according to JMK Research & Analytics. Of the total capacity, approximately 27.23 GW is already listed under the ALMM framework.
-
-## Why This Matters
-
-India has been the world's third-largest solar market for several years, but its manufacturing base has lagged far behind its installation ambitions. Until recently, the country imported the vast majority of its solar cells and modules from China, creating a strategic vulnerability that became painfully visible during the supply chain disruptions of the pandemic era.
-
-The ALMM mandate flips the equation. Developers building solar projects — whether utility-scale farms in Rajasthan or rooftop installations in Bengaluru — must now source cells from manufacturers on the approved domestic list. The policy effectively creates a guaranteed market for Indian manufacturers, incentivizing further investment in production capacity.
-
-"There are two things," a senior government official told The Hindu BusinessLine. "First, whatever investments have been made in cell manufacturing to make India self-reliant, please go ahead and we will support you. There is demand creation. Second, this also gives a clear window for fresh investments."
-
-## The Scale of Ambition
-
-India's solar targets are staggering. The country aims to reach 500 GW of renewable energy capacity by 2030, of which solar is expected to contribute the largest share. Meeting that target requires not just installation capacity but a robust domestic supply chain — from polysilicon and wafers to cells and modules.
-
-The 40 GW of cell manufacturing capacity is a significant milestone, but it is still not enough. India installed approximately 18 GW of solar capacity in FY26, and installation rates are expected to accelerate sharply over the next four years. The government's Production-Linked Incentive (PLI) scheme for solar manufacturing, with an allocation of ₹19,500 crore ($2.3 billion), is designed to bridge the remaining gap.
-
-Several major players have announced or are building gigawatt-scale cell manufacturing facilities, including Adani Solar, Tata Power Solar, Waaree Energies, and Vikram Solar. The combination of the ALMM mandate and PLI incentives has created what industry analysts describe as the most favorable policy environment for domestic solar manufacturing in India's history.
-
-## The Diaspora Connection
-
-For NRI investors tracking India's green energy transition, the ALMM mandate represents a structural shift. Indian solar manufacturers listed on domestic exchanges have seen significant interest from institutional investors anticipating the captive market the policy creates. The mandate also reduces currency risk for solar projects by localizing the supply chain — a relevant consideration as the rupee faces pressure from elevated oil prices.
-
-India's broader energy security calculus is also shifting. The country imports nearly 90 percent of its crude oil, a vulnerability starkly exposed by the ongoing Hormuz crisis. Every gigawatt of solar capacity installed reduces that dependency, making the ALMM mandate as much an energy security policy as an industrial one.
-
-## What Could Go Wrong
-
-Critics of the ALMM mandate argue that restricting cell sourcing to domestic manufacturers could temporarily increase costs for solar developers, potentially slowing installation rates in the short term. Some developers have lobbied for extensions, arguing that domestic manufacturing capacity, while growing, is not yet sufficient to meet all demand at competitive prices.
-
-The Ministry's response has been unequivocal. "No blanket extension of the deadline for applicability of ALMM List-II for solar PV cells will be given beyond June 1, 2026," MNRE clarified in a statement.
-
-The message to the industry is clear: the era of unlimited Chinese solar imports is over.
-
-*Sources: Ministry of New and Renewable Energy, JMK Research & Analytics, The Hindu BusinessLine*"""
-
-img_2, attr_2 = source_image(
-    "india-almm-solar-cell-mandate-june-2026-40gw-manufacturing-20260601",
-    pexels_query="solar panel manufacturing factory",
-    pexels_fallback="solar panels India"
-)
-
-articles.append({
-    "headline": "India Just Made It Mandatory to Use Indian-Made Solar Cells. It Has 40 GW of Manufacturing Capacity to Back It Up.",
-    "subheadline": "The ALMM mandate for solar PV cells takes effect today. No extensions, no exceptions — India's push to end dependence on Chinese solar imports enters its most consequential phase.",
-    "slug": "india-almm-solar-cell-mandate-june-2026-40gw-manufacturing-20260601",
-    "body": body_2,
+article1 = {
+    "headline": "A Building Near Delhi's Saket Metro Collapsed on Saturday. Six People Are Dead and the Owner Is Missing.",
+    "subheadline": "Rescue teams pulled survivors from the rubble for 24 hours. The structure housed a coaching centre, cafes, and a canteen that served medical aspirants.",
+    "body": article1_body.strip(),
+    "slug": "delhi-saket-building-collapse-six-dead-owner-absconding-fir-culpable-homicide-20260601",
     "category": "news",
     "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps([
-        {"name": "Ministry of New and Renewable Energy", "url": "https://mnre.gov.in/"},
-        {"name": "JMK Research & Analytics", "url": "https://jmkresearch.com/"},
-        {"name": "The Hindu BusinessLine", "url": "https://www.thehindubusinessline.com/"}
-    ]),
+    "is_editorial": False,
+    "published_at": "2026-06-01T18:30:00Z",
+    "sources": [
+        {"name": "PTI via Swadesi News", "url": "https://swadesi.com"},
+        {"name": "ANI via LatestLY", "url": "https://latestly.com"},
+        {"name": "Devdiscourse", "url": "https://devdiscourse.com"}
+    ],
     "vertical": "news",
-    "image_url": img_2,
-    "image_attribution": attr_2 or "Pexels",
-    "is_editorial": False
-})
+    "image_url": img1 or "",
+    "image_attribution": "Pexels" if img1 else ""
+}
 
+# ============================================================
+# ARTICLE 2: Rajya Sabha Elections - 27 Seats
+# ============================================================
+print("\n=== ARTICLE 2: Rajya Sabha Elections 27 Seats ===")
 
-# ── Article 3: Record Stock Market Foreign Sell-Off ──
-print("\n=== Article 3: Record Foreign Sell-Off ===")
+img2 = fetch_pexels_image("Indian parliament building New Delhi", "India Rajya Sabha parliament")
+if img2 and not validate_image(img2):
+    img2 = None
 
-body_3 = """Foreign investors pulled $2.22 billion out of Indian equities on Friday in a single trading session — the largest one-day outflow in the history of Indian stock markets.
+article2_body = """The Election Commission of India on Monday formally kicked off the process for elections to 27 Rajya Sabha seats and multiple state Legislative Council seats across the country, setting June 18 as the date for polling and counting.
 
-The Nifty 50 index dropped 1.5 percent to close at 23,547.75, a two-week low, while turnover on the National Stock Exchange soared to a record ₹2.87 trillion ($30.21 billion). Nifty 50 turnover alone surpassed ₹1 trillion for the first time, according to data compiled by LSEG.
+The nomination process began at 11 AM on June 1. Candidates have until June 8 to submit their papers. Scrutiny of nominations will take place on June 9, with the final date for withdrawal of candidature fixed as June 11. If contests remain, polling will be held on June 18 from 8 AM to 4 PM, with counting beginning at 5 PM the same day.
 
-The immediate trigger was MSCI's May index rebalancing, which took effect at approximately 3:00 PM IST on Friday. Goldman Sachs had estimated the rebalancing would lead to about $870 million in outflows from Indian equities — but the actual selling far exceeded expectations as other portfolio adjustments piled on top of the index-driven flows.
+## The Scale of the Contest
 
-## What Is MSCI Rebalancing?
+The elections cover biennial vacancies for 24 Rajya Sabha seats across 10 states — Andhra Pradesh (4), Gujarat (4), Karnataka (4), Madhya Pradesh (3), Rajasthan (3), Jharkhand (2), and one each in Manipur, Meghalaya, Arunachal Pradesh, and Mizoram. Additionally, bye-elections will fill vacancies in Maharashtra, Tamil Nadu, and Odisha.
 
-MSCI Inc., the index provider whose benchmarks are tracked by an estimated $16.3 trillion in assets worldwide, periodically adjusts the weightings of individual countries and stocks in its global indices. When India's weight decreases — or when specific Indian stocks are removed or reduced — funds that track these indices are forced to sell Indian shares to stay aligned with the benchmark.
+In Maharashtra, the seat fell vacant after Sunetra Pawar resigned from the Rajya Sabha following her win in the Baramati by-election earlier this year. In Odisha, BJD's Debashish Samantaray resigned on May 25, creating a vacancy that BJP is expected to fill. In Tamil Nadu, AIADMK's C.V. Shanmugam vacated his seat after being elected to the state assembly.
 
-The May 2026 rebalancing was particularly significant because of changes to the weighting methodology that reduced India's share in the MSCI Emerging Markets Index. The result: a wave of forced selling that concentrated into the final hours of trading on Friday.
+Beyond the Rajya Sabha, the Election Commission has also announced elections for nine Legislative Council seats in Bihar and seven in Karnataka, along with a by-election for one Bihar Legislative Council seat vacated by former Chief Minister Nitish Kumar.
 
-"A range of different flows, including those linked to equity index adjustments, maturities in the non-deliverable forward market and routine corporate demand, are likely to drive the rupee," a trader at a Mumbai-based private bank told Reuters.
+## The Political Math
 
-## Beyond the Rebalancing: Structural Outflows
+For the NDA coalition, the arithmetic is favourable in several states. In Gujarat, Madhya Pradesh, and Rajasthan — all BJP-ruled — the ruling party is expected to sweep its quota of seats comfortably. In Karnataka, where the BJP-JD(S) alliance holds a majority, the NDA should secure most of the four seats on offer.
 
-While the MSCI rebalancing explains Friday's extreme numbers, the broader trend of foreign portfolio investor (FPI) outflows has been building for months. Three factors are driving the pattern.
+The real contest will play out in Jharkhand, where both the ruling JMM-Congress alliance and the BJP have staked claims. The JMM-led INDIA bloc, with 56 members in the 81-seat assembly, argues that both seats should go to them since each candidate needs 28 first-preference votes to win. The ruling alliance wrote to the Election Commission on May 26, flagging concerns about potential horse trading.
 
-**The oil shock.** India imports nearly 90 percent of its crude oil, and the ongoing closure of the Strait of Hormuz has kept Brent crude prices elevated at around $92-93 per barrel — 30 percent above pre-war levels. Higher energy costs squeeze corporate margins, weaken the current account, and put downward pressure on the rupee, all of which reduce the attractiveness of Indian equities for foreign investors.
+The BJP has already announced it will field a candidate for one of the two Jharkhand seats. Congress, part of the ruling alliance, has also staked a claim to one — setting up a potential intra-alliance negotiation that will be closely watched.
 
-**Currency depreciation.** The rupee has fallen approximately 6 percent against the dollar in 2026. For foreign investors, this means their returns in Indian equities are eroded when converted back to dollars. A stock that gains 10 percent in rupee terms delivers only about 4 percent in dollar terms after accounting for the currency slide.
+## Why It Matters for the Upper House
 
-**The AI trade.** Markets in South Korea and Taiwan have surged on the back of the global artificial intelligence boom, drawing capital away from India. Samsung, TSMC, and other Asian chipmakers have delivered outsized returns, making India's consumption-driven market less attractive by comparison.
+Every Rajya Sabha election shifts the balance of power in India's upper chamber. The BJP-led NDA has been steadily building its strength in the Rajya Sabha over the past decade, but it still does not command a clear majority on its own. The outcome of these 27 seats — along with the Legislative Council results — will determine whether the ruling alliance moves closer to that threshold or whether the opposition INDIA bloc can hold its current position.
 
-## Markets Expected to Recover Monday
+For bills that require passage in both houses, the composition of the Rajya Sabha remains decisive. Key legislative battles — including potential amendments to the Waqf Act, the proposed Uniform Civil Code, and pending judicial reform bills — all depend on the government's Upper House numbers.
 
-Despite Friday's bloodbath, early indicators suggest Monday will bring relief. GIFT Nifty futures were trading at 23,726 as of 7:40 AM IST, indicating the benchmark Nifty 50 will open above Friday's close.
+## What the Diaspora Should Know
 
-The recovery expectation rests on the fact that Friday's selling was largely technical and index-driven rather than reflecting a fundamental deterioration in India's economic outlook. Corporate earnings for the March quarter have been broadly in line with expectations, and India's GDP growth remains among the fastest of any major economy.
+The Rajya Sabha elections are decided by state legislators, not the general public — which means they reflect the cumulative outcome of recent assembly elections rather than a fresh public mandate. For NRIs tracking Indian politics, these elections are a useful barometer of how India's political coalitions are consolidating after the 2024 general election and the assembly polls that followed. The results on June 18 will clarify the legislative roadmap for the Modi government's remaining term."""
 
-"As seen on Friday, those flows would matter little if the RBI decides to keep the currency anchored around a certain level," the Mumbai-based trader added.
+wc2 = word_count(article2_body)
+print(f"  Word count: {wc2}")
 
-## What NRI Investors Should Watch
-
-For diaspora investors with exposure to Indian equities — whether through direct investments, mutual funds, or NRE/NRO-linked portfolios — the record sell-off raises legitimate questions about near-term volatility.
-
-The key events this week include the RBI's monetary policy decision on June 5, where the central bank is widely expected to hold the repo rate at 5.25 percent but may signal a more hawkish posture. India's January-March GDP data, also due on June 5, will provide a clearer picture of whether the oil shock is beginning to dent economic growth. A Reuters poll expects 7.3 percent growth for the quarter.
-
-The HSBC Manufacturing PMI for May, due today (Monday), will offer an early read on whether factory activity is holding up despite the energy headwinds.
-
-Record one-day outflows make for alarming headlines, but they are rarely inflection points. The last time Indian markets experienced a comparable sell-off driven by index rebalancing — in November 2024 — the Nifty recovered within two weeks.
-
-*Sources: Reuters, LSEG data, Goldman Sachs, National Stock Exchange of India, provisional exchange data*"""
-
-img_3, attr_3 = source_image(
-    "india-record-foreign-sell-off-222-billion-msci-rebalancing-nse-turnover-20260601",
-    pexels_query="stock market trading screen India",
-    pexels_fallback="stock exchange trading floor"
-)
-
-articles.append({
-    "headline": "Foreign Investors Just Dumped $2.22 Billion in Indian Stocks in a Single Day. It Was the Largest Sell-Off in History.",
-    "subheadline": "MSCI's index rebalancing triggered record outflows and pushed NSE turnover past ₹2.87 trillion. Markets are expected to recover on Monday — but the structural headwinds remain.",
-    "slug": "india-record-foreign-sell-off-222-billion-msci-rebalancing-nse-turnover-20260601",
-    "body": body_3,
+article2 = {
+    "headline": "India Just Began Nominations for 27 Rajya Sabha Seats. The Votes Will Be Cast on June 18.",
+    "subheadline": "The elections span 10 states and three by-elections. The real fight is in Jharkhand, where the ruling alliance and the BJP both want both seats.",
+    "body": article2_body.strip(),
+    "slug": "rajya-sabha-27-seats-nominations-begin-june-18-polling-jharkhand-nda-india-bloc-20260601",
     "category": "news",
     "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com/"},
-        {"name": "LSEG", "url": "https://www.lseg.com/"},
-        {"name": "Goldman Sachs", "url": "https://www.goldmansachs.com/"},
-        {"name": "National Stock Exchange of India", "url": "https://www.nseindia.com/"}
-    ]),
+    "is_editorial": False,
+    "published_at": "2026-06-01T18:35:00Z",
+    "sources": [
+        {"name": "Election Commission of India via News Ei Samay", "url": "https://newseisamay.com"},
+        {"name": "PTI via Swadesi News (Jharkhand)", "url": "https://swadesi.com"},
+        {"name": "PingTV India", "url": "https://pingtvindia.com"}
+    ],
     "vertical": "news",
-    "image_url": img_3,
-    "image_attribution": attr_3 or "Pexels",
-    "is_editorial": False
-})
+    "image_url": img2 or "",
+    "image_attribution": "Pexels" if img2 else ""
+}
 
+# ============================================================
+# ARTICLE 3: MAHA Water Mission + ISRO MoU
+# ============================================================
+print("\n=== ARTICLE 3: MAHA Water Mission + ISRO MoU ===")
 
-# ─── Check skip list ───
-skip_path = os.path.expanduser('~/workspace/the-videshi-news/pipeline/image-skip-list.json')
-skip_list = []
-if os.path.exists(skip_path):
-    with open(skip_path) as f:
-        skip_list = json.load(f)
+# Try Wikipedia for Jitendra Singh or C.R. Patil
+img3 = fetch_wikipedia_person_image("C. R. Patil")
+if not img3 or not validate_image(img3):
+    img3 = fetch_wikipedia_person_image("Jitendra Singh (politician)")
+    if not img3 or not validate_image(img3):
+        img3 = fetch_pexels_image("satellite water management India", "India water innovation technology")
+        if img3 and not validate_image(img3):
+            img3 = None
 
+article3_body = """The Indian government on Monday launched a ₹200 crore programme to fund water technology startups and signed a landmark agreement with ISRO to bring satellite-based monitoring to the country's water management infrastructure.
 
-# ─── Insert all articles ───
-print("\n=== Inserting articles ===")
-# Article 3 was already inserted in a prior run
-already_inserted = {"india-record-foreign-sell-off-222-billion-msci-rebalancing-nse-turnover-20260601"}
-for art in articles:
-    slug = art['slug']
-    
-    if slug in already_inserted:
-        print(f"  ⏭ Skipping {slug} (already inserted)")
-        continue
-    
-    # Skip if in image skip list
-    if slug in skip_list:
-        print(f"  ⚠ Skipping {slug} (in image skip list)")
-        art.pop('image_url', None)
-        art.pop('image_attribution', None)
-    
-    # Validate image
-    if art.get('image_url'):
-        try:
-            head = requests.head(art['image_url'], timeout=10, allow_redirects=True)
-            ct = head.headers.get('Content-Type', '')
-            cl = int(head.headers.get('Content-Length', '0'))
-            if head.status_code != 200 or 'image' not in ct or cl < 5000:
-                print(f"  ⚠ Image validation failed for {slug}: status={head.status_code}, ct={ct}, cl={cl}")
-                art['image_url'] = None
-                art['image_attribution'] = None
-        except Exception as e:
-            print(f"  ⚠ Image validation error for {slug}: {e}")
-            art['image_url'] = None
-            art['image_attribution'] = None
-    
-    # Clean up None values
-    art = {k: v for k, v in art.items() if v is not None}
-    
-    art_id = insert_article(art)
-    if art_id:
-        print(f"  ✓ Published: {art['headline'][:60]}...")
-    else:
-        print(f"  ✗ Failed: {art['headline'][:60]}...")
+The Mission for Advancement in High-Impact Areas for Water — known as MAHA Water — was unveiled at a national workshop on water research and development at Dr. Ambedkar International Centre in New Delhi. The programme is jointly run by the Anusandhan National Research Foundation and the Ministry of Jal Shakti.
 
-print("\n=== Done ===")
+## How the Money Will Work
+
+The ₹200 crore outlay will be spread over five years, jointly contributed by ANRF and the Ministry of Jal Shakti. Selected multidisciplinary consortia — which can include universities, national laboratories, research organisations, startups, MSMEs, and industry partners — will be eligible for up to ₹20 crore each.
+
+The funds can be used for technology development, field assessment, validation, and deployment of water solutions. An open call for research proposals was announced at the launch, alongside a separate open call for startups and MSMEs through the BHARAT-WIN Portal for product and prototype development.
+
+## Five Priority Themes
+
+The mission will focus on five areas: water resource assessment and sustainable management; drinking water quality and access; water quality and ecological health; water use efficiency and the circular economy; and climate resilience and adaptation.
+
+"ANRF is democratising research funding by expanding opportunities for startups, MSMEs, universities and innovators," said Dr. Jitendra Singh, Union Minister of State for Science and Technology, who launched the mission. "National missions, scientific resources and innovation support are no longer confined to a limited number of institutions."
+
+## ISRO Enters the Water Sector
+
+In a parallel development at the same event, the Department of Water Resources and the Department of Space signed a memorandum of understanding to deepen cooperation on satellite-based water management. ISRO Chairman V. Narayanan said the partnership will support groundwater assessment, water resource monitoring, and flood forecasting.
+
+"Space technology today offers unprecedented capacity for observing, assessing, forecasting and managing water resources," Narayanan said, adding that ISRO has been working with the water sector since 1982 but that the formal MoU marks a new phase of structured collaboration.
+
+The event also saw the launch of the Jal Sanchay Jan Bhagidari portal and app — a citizen tracking and reporting platform designed to crowdsource water conservation data from the ground level.
+
+## The Scale of India's Water Challenge
+
+India faces a water crisis that is simultaneously a drought problem, a pollution problem, and a governance problem. The country is home to 18 percent of the world's population but only 4 percent of its freshwater resources. Groundwater — which supplies 85 percent of drinking water in rural areas — is being depleted faster than it can recharge across large parts of northern and western India.
+
+The monsoon season, which is forecast to be the driest in a decade due to El Niño conditions, will put additional pressure on an already strained system. The government's decision to invest ₹200 crore in research and innovation is modest relative to the scale of the challenge, but it signals an effort to move beyond traditional engineering solutions toward technology-driven approaches.
+
+## What the Diaspora Should Know
+
+For NRIs with ancestral homes in water-stressed regions — particularly in Rajasthan, Punjab, Tamil Nadu, and Maharashtra — the MAHA Water Mission represents an opportunity for engagement. The open call for startups explicitly includes MSMEs and private-sector innovators, creating a pathway for diaspora-funded or diaspora-founded ventures to participate in India's water infrastructure buildout. The ISRO partnership also opens doors for remote sensing and data analytics ventures that can operate across borders."""
+
+wc3 = word_count(article3_body)
+print(f"  Word count: {wc3}")
+
+article3 = {
+    "headline": "India Just Launched a ₹200 Crore Fund for Water Tech Startups and Signed an MoU With ISRO to Monitor Water From Space.",
+    "subheadline": "The MAHA Water Mission will fund consortia of universities, labs, and startups with up to ₹20 crore each. ISRO will bring satellite data to groundwater and flood forecasting.",
+    "body": article3_body.strip(),
+    "slug": "india-maha-water-mission-200-crore-isro-mou-satellite-water-management-startups-20260601",
+    "category": "news",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": "2026-06-01T18:40:00Z",
+    "sources": [
+        {"name": "IANS via Dailyworld", "url": "https://dailyworld.in"},
+        {"name": "Madhyamam Online", "url": "https://madhyamamonline.com"},
+        {"name": "India Education Diary", "url": "https://indiaeducationdiary.in"}
+    ],
+    "vertical": "news",
+    "image_url": img3 or "",
+    "image_attribution": "Wikimedia Commons" if (img3 and 'wiki' in str(img3).lower()) else ("Pexels" if img3 else "")
+}
+
+# ============================================================
+# PUBLISH ALL
+# ============================================================
+print("\n=== PUBLISHING ===")
+success = 0
+for i, article in enumerate([article1, article2, article3], 1):
+    print(f"\nArticle {i}: {article['headline'][:60]}...")
+    if not article['image_url']:
+        print("  ⚠ No image found — publishing without image")
+    if publish_article(article):
+        success += 1
+    time.sleep(1)
+
+print(f"\n=== DONE: {success}/3 articles published ===")
