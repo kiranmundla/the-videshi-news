@@ -1,54 +1,53 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-06-01 batch"""
+"""Entertainment writer — 3 articles for 2026-06-01"""
 
-import json, os, re, sys, time, uuid, urllib.parse
-import requests
+import json, os, sys, uuid, re, time
+from datetime import datetime, timezone
 
-# ── env ──────────────────────────────────────────────────────────────────
-def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            if line.startswith("export "):
-                line = line[7:]
-            k, _, v = line.partition("=")
-            v = v.strip().strip('"').strip("'")
-            os.environ.setdefault(k.strip(), v)
+# --- env ---
+from pathlib import Path
+env_file = Path.home() / "workspace" / ".env.supabase"
+for line in env_file.read_text().splitlines():
+    line = line.strip()
+    if line and not line.startswith("#") and "=" in line:
+        k, v = line.split("=", 1)
+        os.environ.setdefault(k.strip(), v.strip())
 
-load_env(os.path.expanduser("~/.env.supabase"))
-load_env(os.path.expanduser("~/workspace/.env.supabase"))
-load_env(os.path.expanduser("~/workspace/.env.pexels"))
+pexels_env = Path.home() / "workspace" / ".env.pexels"
+if pexels_env.exists():
+    for line in pexels_env.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip())
 
-SB_URL = os.environ.get("SUPABASE_URL", "")
-SB_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+import requests, urllib.parse
+
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
-    "apikey": SB_KEY,
-    "Authorization": f"Bearer {SB_KEY}",
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation",
 }
 
-# ── helpers ──────────────────────────────────────────────────────────────
-def sb_insert(table, payload):
-    r = requests.post(f"{SB_URL}/rest/v1/{table}", headers=HEADERS, json=payload, timeout=30)
-    if r.status_code >= 300:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+def sb_insert(table, data):
+    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
+    if r.status_code not in (200, 201):
+        print(f"INSERT ERROR {r.status_code}: {r.text[:500]}")
         return None
-    data = r.json()
-    return data[0] if isinstance(data, list) and data else data
+    result = r.json()
+    return result[0] if isinstance(result, list) else result
 
-def sb_patch(table, params, payload):
-    url = f"{SB_URL}/rest/v1/{table}?{params}"
-    r = requests.patch(url, headers=HEADERS, json=payload, timeout=30)
-    if r.status_code >= 300:
-        print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
-    return r
+def sb_patch(table, match, data):
+    params = "&".join(f"{k}={v}" for k, v in match.items())
+    url = f"{SUPABASE_URL}/rest/v1/{table}?{params}"
+    r = requests.patch(url, headers=HEADERS, json=data, timeout=30)
+    if r.status_code not in (200, 204):
+        print(f"PATCH ERROR {r.status_code}: {r.text[:500]}")
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -70,334 +69,280 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels using curl (Python urllib gets 403)."""
+    """Fetch image from Pexels API using curl (Python urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
+    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = requests.get(
-                f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
-                headers={"Authorization": PEXELS_KEY},
-                timeout=10
-            )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for p in photos:
-                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
-                    if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                        return url
+            cmd = [
+                "curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+                f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape"
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            for p in photos:
+                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+def upload_to_supabase_storage(image_url, filename):
+    """Download image and upload to Supabase storage bucket article-images."""
+    try:
+        r = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=20)
+        if r.status_code != 200:
+            print(f"  ⚠ Download failed ({r.status_code}) for {image_url[:80]}")
+            return None
+        content_type = r.headers.get("Content-Type", "image/jpeg")
+        if "image" not in content_type:
+            print(f"  ⚠ Not an image: {content_type}")
+            return None
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small ({len(r.content)} bytes)")
+            return None
+
+        upload_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": content_type,
+            "x-upsert": "true",
+        }
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        up = requests.put(upload_url, headers=upload_headers, data=r.content, timeout=30)
+        if up.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase storage: {filename}")
+            return public_url
+        else:
+            print(f"  ⚠ Upload failed ({up.status_code}): {up.text[:200]}")
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
+    return None
+
 def validate_image_url(url):
-    """Check that URL returns a valid image > 5KB."""
+    """Validate that a URL returns a real image."""
     if not url:
         return False
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, allow_redirects=True)
         ct = r.headers.get("Content-Type", "")
         cl = int(r.headers.get("Content-Length", 0))
         if "image" in ct and cl > 5000:
             return True
-        # Some servers don't return Content-Length on HEAD; try GET with range
+        # Some servers don't return Content-Length on HEAD, try GET
         if "image" in ct:
             return True
     except:
         pass
     return False
 
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase storage bucket 'article-images'."""
-    try:
-        r = requests.get(image_url, timeout=20,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200 or len(r.content) < 5000:
-            print(f"  ⚠ Download failed or too small: {r.status_code}, {len(r.content)} bytes")
-            return None
-        ct = r.headers.get("Content-Type", "image/jpeg")
-        upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
-        upload_headers = {
-            "apikey": SB_KEY,
-            "Authorization": f"Bearer {SB_KEY}",
-            "Content-Type": ct,
-            "x-upsert": "true",
-        }
-        ur = requests.post(upload_url, headers=upload_headers, data=r.content, timeout=30)
-        if ur.status_code < 300:
-            public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed ({ur.status_code}): {ur.text[:200]}")
-    except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-    return None
-
-# ── articles ─────────────────────────────────────────────────────────────
+# ===== ARTICLES =====
 
 articles = []
 
-# ═══════════════════════════════════════════════════════════════════════
-# ARTICLE 1: Ranveer Singh at Champions League Final
-# ═══════════════════════════════════════════════════════════════════════
-
+# --- Article 1: Ramayana SDCC + October 30 release ---
 articles.append({
-    "headline": "Ranveer Singh Flew to Budapest for Arsenal's Champions League Final. His Instagram Note Hit Harder Than the Penalty Miss.",
-    "subheadline": "Amid the FWICE controversy over Don 3, Bollywood's most visible football fan was in the stands at the Puskás Arena for one of the most heartbreaking finishes in Champions League history.",
-    "slug": "ranveer-singh-budapest-arsenal-champions-league-final-psg-penalties-nri-20260601",
+    "headline": "Ramayana Is Heading to San Diego Comic-Con. Here's Why That Matters for Every NRI Waiting for Diwali.",
+    "subheadline": "Nitesh Tiwari's ₹1,000-crore epic will share SDCC's stage with Avengers and Dune before a possible October 30 theatrical release — a week ahead of Diwali.",
+    "slug": "ramayana-san-diego-comic-con-sdcc-trailer-october-30-release-ranbir-kapoor-nri-20260601",
     "category": "entertainment",
-    "body": """Arsenal came agonisingly close. And Ranveer Singh was there to watch it fall apart.
+    "sources": "Sacnilk, Mid-day, Bollywood Hungama, Mykhel",
+    "image_person": "Ranbir Kapoor",
+    "body": """Nitesh Tiwari's Ramayana is no longer just a Bollywood film. It's a global campaign — and the next stop is Hall H at San Diego Comic-Con.
 
-The Bollywood superstar flew to Budapest for Saturday's UEFA Champions League final between Arsenal and Paris Saint-Germain at the Puskás Arena — a match that ended 1-1 after extra time before PSG won 4-3 on penalties to claim back-to-back European titles.
+## The Comic-Con Play
 
-## A Heartbreaker in Budapest
+According to multiple industry reports, producer Namit Malhotra and his team at Prime Focus Studios are in advanced talks with SDCC organisers to present Ramayana: Part 1 at the July 23-26 event. If confirmed, this would make Ramayana the first Indian film ever to receive a dedicated presentation at Comic-Con's main stage — sharing the spotlight with Marvel's Avengers: Doomsday and Denis Villeneuve's Dune 3.
 
-Kai Havertz had given Arsenal fans a dream start, powering the Gunners ahead after just six minutes. For much of the first half, Mikel Arteta's side — already crowned Premier League champions — looked capable of completing a historic double.
+The move follows an encouraging reception at CinemaCon 2026 in Las Vegas, where Malhotra and actor Yash personally hosted private previews for international distributors. Trade insiders report that the response has emboldened the team to treat Ramayana as a genuine global tentpole rather than a domestic-first release with international spillover.
 
-But Ousmane Dembélé's second-half penalty levelled the tie, and the match ground through a tense, goalless extra time before reaching the spot-kick lottery. Arsenal's Eberechi Eze missed first, and though David Raya saved Nuno Mendes' effort to give the Gunners a lifeline, Gabriel Magalhães blazed his decisive penalty over the bar. PSG celebrated becoming only the second club after Real Madrid to win consecutive Champions League titles in the modern era.
+Reports suggest the SDCC presentation could include the first official trailer or even Yash's much-anticipated first look as Ravana, both featuring upgraded VFX from the Oscar-winning DNEG studio that represents a significant leap from the initial teaser.
 
-## "Proud of the Boys"
+## The Release Date Shift
 
-Hours after the final whistle, Ranveer posted an emotional tribute on Instagram that resonated far beyond football circles.
+Simultaneously, Bollywood Hungama reports that the makers are now eyeing October 30, 2026, for the theatrical release — a full week before Diwali. The original plan was a Diwali-day release, but the new strategy aims to build strong word-of-mouth before the extended holiday period kicks in.
 
-"Proud of the boys. Fought like lions!" he wrote. "Couldn't get any closer in a game of such fine margins. Congratulations to my Arsenal family on a historic season. And… the best is yet to come!"
+The logic is straightforward: arriving a week early gives the film an uncontested opening in a window free of major competition, followed by a massive second-week surge driven by holiday crowds. Internal discussions are reportedly underway, with the final decision hinging on distribution negotiations reportedly worth ₹450 crore.
 
-Earlier in his Budapest trip, Ranveer had met Arsenal and England midfielder Declan Rice, sharing a photo on Instagram with the caption "All about last night" set to the classic Bollywood track *Tere Jaisa Yaar Kahan* from the film *Yaarana*.
+## Why NRIs Should Care
 
-## Bollywood's Most Devoted Football Fan
+For diaspora audiences who grew up with the Ramayana in every form — from Ramanand Sagar's television serial to Amar Chitra Katha comics to bedtime stories — this is a watershed moment. The film features a once-in-a-generation cast: Ranbir Kapoor as Lord Ram (plus a dual role as Lord Parashurama, which he accidentally confirmed in a Hollywood media interview), Sai Pallavi as Goddess Sita, Yash as Ravana, Sunny Deol as Hanuman, and Arun Govil — the original television Ram — as King Dasharatha.
 
-Ranveer's Arsenal devotion is not a recent PR exercise. He has been photographed at the Emirates Stadium multiple times, has worn the Gunners kit at public events, and has cultivated friendships across the Arsenal dressing room. His Budapest trip placed him among roughly 25,000 travelling Arsenal fans in a 67,000-capacity stadium.
+The music alone justifies the excitement. A.R. Rahman and Hans Zimmer are collaborating on the score, and the makers are reportedly planning a live orchestral event in October to showcase the soundtrack before release.
 
-For the Indian diaspora — a significant and growing segment of the Premier League's global audience — Ranveer's visible fandom has become a bridge between two of their biggest cultural passions. The sight of one of India's biggest film stars consoling himself alongside English, Ghanaian, and Nigerian Arsenal supporters in a Hungarian stadium captures something about modern fandom that transcends geography.
+Both parts will span over six hours of storytelling, with Part 2 already 50 percent shot and scheduled for Diwali 2027. The production budget exceeds ₹1,000 crore, making it the most expensive Indian film ever produced.
 
-## The Don 3 Shadow
+If the SDCC gambit works, NRI audiences in North America, the UK, and beyond will have experienced Ramayana's world months before opening day — transforming them from ticket buyers into evangelists. For a film built to be "India's Avatar for the global audience," as Malhotra himself has described it, that's exactly the strategy you'd want.
 
-The Budapest trip came at a complicated moment for Ranveer professionally. The Federation of Western India Cine Employees (FWICE) recently issued a non-cooperation directive against him following his reported exit from *Don 3*, and the organisation has approached the Indian Motion Picture Producers' Association and the Producers Guild of India seeking intervention.
-
-Ranveer has not publicly addressed the Don 3 situation in detail, but his Budapest presence — visible, unapologetic, emotional — suggested a man who was not hiding from the spotlight, just choosing where to point it.
-
-The Premier League resumes in August. Arsenal will be back. So, presumably, will Ranveer.""",
-    "sources": [
-        "IANS (ianslive.in) — Ranveer Singh motivates team Arsenal post their Champions League defeat",
-        "Fox Sports — UEFA Champions League final 2026: PSG defeat Arsenal on penalties",
-        "Reuters — PSG forge modern dynasty with Champions League shootout triumph over Arsenal",
-        "talkSPORT — PSG win Champions League LIVE REACTION: Arsenal lose on penalties"
-    ],
-    "person_image": "Ranveer Singh",
-    "pexels_query": "football stadium champions league",
-    "pexels_fallback": "football fans celebrating stadium",
-    "diaspora_angle": "For the millions of NRI Premier League fans across the US, UK, and Middle East, Ranveer Singh's visible Arsenal fandom has become a cultural bridge. His Budapest trip places an Indian superstar at the heart of European football's biggest night — a reminder that the diaspora's sporting passions extend far beyond cricket."
+The trailer may not be the film. But at Comic-Con, it becomes the invitation.""",
 })
 
-# ═══════════════════════════════════════════════════════════════════════
-# ARTICLE 2: Panchayat Season 5 — "Bada, Behtar, Khoobsurat"
-# ═══════════════════════════════════════════════════════════════════════
-
+# --- Article 2: Michael Jackson biopic India box office ---
 articles.append({
-    "headline": "Panchayat's Vikas Just Teased Season 5 in Three Words. Here's Everything NRI Fans Need to Know.",
-    "subheadline": "Chandan Roy says Season 5 will be 'bada, behtar aur khoobsurat.' After Season 4 trended in 42 countries, the show that made the world fall in love with rural India is coming back.",
-    "slug": "panchayat-season-5-chandan-roy-vikas-teaser-bada-behtar-prime-video-nri-20260601",
+    "headline": "The Michael Jackson Biopic Is the Second-Biggest Hollywood Film in India This Year. The Reason Is a 40-Year-Old Love Affair.",
+    "subheadline": "Antoine Fuqua's 'Michael' has grossed ₹76.50 crore in India and is marching toward ₹80 crore — driven by South India and Mumbai audiences who grew up on the King of Pop.",
+    "slug": "michael-jackson-biopic-india-box-office-76-crore-second-biggest-hollywood-nri-20260601",
     "category": "entertainment",
-    "body": """Three words. That is all Chandan Roy — the man who plays the endlessly lovable Vikas in Amazon Prime Video's *Panchayat* — needed to set the internet alight.
+    "sources": "Bollywood Life, Pinkvilla, Sacnilk, Screen Rant",
+    "image_person": "Michael Jackson",
+    "body": """Michael Jackson has been gone for 17 years. His music never left India.
 
-"Bada, behtar aur khoobsurat."
+Antoine Fuqua's biopic *Michael*, starring Jaafar Jackson — the King of Pop's nephew who bears an almost unsettling resemblance to his uncle — has quietly become the second-biggest Hollywood grosser in India in 2026. At ₹76.50 crore after five weeks, it trails only Ryan Gosling's *Project Hail Mary* (₹85+ crore) and is expected to cross ₹80 crore shortly.
 
-Bigger, better, and more beautiful.
+## The Numbers Tell a Story
 
-Speaking publicly on May 31, the actor confirmed that the full ensemble is returning to Phulera for a fifth season of India's most beloved streaming series. And if Season 4's global reception is any indication, the world is paying attention.
+What's remarkable isn't just the total — it's the hold. *Michael* dropped only 43-45 percent from Week 4 to Week 5, a number that most Bollywood films would envy by their third week. Here's the week-by-week breakdown:
 
-## A Show That Conquered 180 Countries
+- **Week 1**: ₹31.25 crore
+- **Week 2**: ₹20.50 crore
+- **Week 3**: ₹13.00 crore
+- **Week 4**: ₹7.50 crore
+- **Week 5**: ₹4.25 crore (estimated)
 
-When *Panchayat* Season 4 premiered on Prime Video in June 2025, it set a franchise record immediately. The show trended in over 42 countries on its opening day — including the United States, United Kingdom, Canada, Australia, and the UAE — and was streamed across more than 180 countries during its launch week.
+This is not the trajectory of a film powered by opening-weekend hype. This is a film powered by word-of-mouth — people watching it, telling others, and returning for the recreated concert sequences that Fuqua stages with meticulous devotion.
 
-For a Hindi-language show set in an imaginary village called Phulera, featuring no car chases, no item songs, and no CGI, those are extraordinary numbers.
+## Why India Connects
 
-"The season's exceptional viewership across India and in over 180 countries within its launch week is a testament to its universal appeal and deep cultural resonance," said Manish Menghani, Director and Head of Content Licensing at Prime Video India, when Season 5 was first confirmed.
+The business is concentrated in two regions: South India and Mumbai. That's not random. Michael Jackson's music — and more importantly, his movement — became cultural currency in India during the 1980s and 1990s in ways that went far beyond what happened in most of the West.
 
-## Why the Diaspora Cannot Get Enough
+In South Indian cities, Jackson wasn't just a pop star. He was a dance revolution. Local dance competitions, college festivals, and talent shows in Chennai, Hyderabad, and Bengaluru featured MJ impersonators long before YouTube made the practice global. Mumbai, with its deep film-music culture and proximity to Bollywood choreography, absorbed Jackson's influence through a different channel — through Prabhu Deva, through Hrithik Roshan, through every second dance number that borrowed a moonwalk or a crotch-grab.
 
-*Panchayat* works for NRI audiences in a way few Indian shows manage. It is not aspirational Mumbai or glossy Delhi — it is the India that many diaspora families left behind and still carry in their memories. The village politics, the chai-fuelled gossip, the gentle absurdity of a panchayat secretary who really just wants to crack the CAT exam — these are textures that resonate deeply with first-generation immigrants and their children alike.
+## The Diaspora Angle
 
-The show has also become a gateway for non-Indian audiences curious about Indian life beyond Bollywood stereotypes. On Reddit and social media, international viewers have described discovering *Panchayat* as a revelation — a show that asks nothing of them except patience and an openness to laugh.
+For NRIs in the US, UK, and Canada, Jackson's cultural position is even more layered. Many grew up in two musical worlds simultaneously — Bollywood playback and Western pop — and Jackson sat at the intersection. He was the one Western artist that transcended the divide, equally at home in a car stereo in Edison, New Jersey, and at a wedding in Hyderabad.
 
-## What We Know About Season 5
+Jaafar Jackson's performance has drawn universal praise even from critics who gave the film itself a middling 27 percent on Rotten Tomatoes. The resemblance is physical, vocal, and kinetic — and it's proving enough to bring both longtime fans and a younger generation into theatres.
 
-Details remain scarce, but here is what has been confirmed:
+## What Happens Next
 
-**Returning cast:** Jitendra Kumar (Sachiv Ji), Neena Gupta (Manju Devi), Raghubir Yadav (Brij Bhushan), Chandan Roy (Vikas), Faisal Malik (Prahlad), Sanvikaa (Rinki), Durgesh Kumar, Sunita Rajwar, and Pankaj Jha are all expected back.
+With no major Hollywood competition in Indian theatres right now, *Michael* has room to keep earning. The question is whether it can overtake *Project Hail Mary*'s lifetime total. At its current pace of decline, ₹85 crore is within reach but not guaranteed.
 
-**Creators:** Deepak Kumar Mishra and Chandan Kumar, who created the show and wrote every season, are returning alongside director Akshat Vijaywargiya.
-
-**Platform:** Exclusively on Amazon Prime Video, like all previous seasons.
-
-**Release window:** 2026. No specific date has been announced, but the show typically drops in the June-July window — meaning a release within the next few months is plausible.
-
-## The Questions Season 5 Must Answer
-
-Season 4 left several threads dangling. The election outcome between key characters remains unresolved. Sachiv Ji's CAT exam results have raised the possibility that he might finally leave Phulera — a prospect that would fundamentally alter the show's DNA. And the cliffhanger involving Prahlad (Pradhan Ji) has fans speculating wildly about what comes next.
-
-Vijay Koshy, President of The Viral Fever (TVF), the production company behind the series, has spoken about the emotional stakes: "This series holds a special place in our hearts for capturing the humor, charm, and warmth of rural India."
-
-## A Quiet Global Phenomenon
-
-*Panchayat* has never been a loud show. It does not trend because of controversy or celebrity Instagram posts. It trends because people watch it, feel something, and tell their friends. In an era of algorithm-driven content, that kind of organic word-of-mouth is increasingly rare — and increasingly valuable.
-
-Bada, behtar aur khoobsurat. If Vikas says so, Phulera is in good hands.""",
-    "sources": [
-        "Wow News — Vikas Teases 'Bada, Behtar, Khoobsurat': Panchayat Season 5 Promises Bigger Drama",
-        "The Indian Eye — Prime Video's Panchayat Season 4 Achieves Record-Breaking Success, Season 5 Confirmed",
-        "BizzBuzz News — Panchayat Season 4 Sets Franchise Record, Prime Video Confirms Season 5 for 2026"
-    ],
-    "person_image": "Jitendra Kumar (actor)",
-    "pexels_query": "Indian village rural life",
-    "pexels_fallback": "Indian rural countryside",
-    "diaspora_angle": "Panchayat Season 4 trended in 42 countries on its premiere day and was streamed in 180+ countries. The show has become a nostalgia touchstone for NRI families who left rural India behind — and a gateway for non-Indian viewers curious about Indian life beyond Bollywood stereotypes."
+What's already guaranteed is this: a biopic about an American musician, produced in Hollywood, earned more in India than most Hindi films released this year. Somewhere in that fact is everything you need to know about how deeply Jackson's legacy is woven into the Indian cultural fabric — and how eager audiences are for films that honour that legacy with care rather than caricature.""",
 })
 
-# ═══════════════════════════════════════════════════════════════════════
-# ARTICLE 3: Toxic's domino effect on Bollywood's June calendar
-# ═══════════════════════════════════════════════════════════════════════
-
+# --- Article 3: Gullak Season 5 ---
 articles.append({
-    "headline": "Bollywood's Entire June Calendar Changed Four Times Because of One Film That Still Hasn't Released.",
-    "subheadline": "Yash's Toxic has been postponed from April to March to June to 'later.' In its wake, at least five other films have reshuffled their release dates — and the Gulf diaspora market is the reason everyone keeps blinking first.",
-    "slug": "toxic-yash-postponement-domino-effect-bollywood-june-calendar-gulf-diaspora-nri-20260601",
+    "headline": "Gullak's Annu Bhaiya Has a New Face. Anant Joshi Steps In, and the Mishras Return on June 5.",
+    "subheadline": "TVF's beloved small-town family drama returns for Season 5 on SonyLIV with a major cast change — and it's already the most emotionally loaded recasting in Indian streaming.",
+    "slug": "gullak-season-5-anant-joshi-replaces-vaibhav-raj-gupta-sonyliv-june-5-nri-20260601",
     "category": "entertainment",
-    "body": """In Bollywood's 2026 release calendar, one film has caused more chaos than any other — without showing a single frame in a public theatre.
+    "sources": "Zoom TV, Hauterrfly, Bollywood Life, Wikipedia",
+    "image_person": "Anant Joshi",
+    "body": """There are shows you watch. And then there are shows that feel like visiting your parents' house. Gullak is the second kind.
 
-Yash's *Toxic: A Fairy Tale for Grown-Ups*, directed by Geetu Mohandas, has been rescheduled so many times that the Indian film trade has started referring to its release date as a moving target. And every time Toxic moves, everything around it moves too.
+TVF's gentle, melancholic, frequently hilarious family drama returns for its fifth season on SonyLIV on June 5, bringing back the Mishra family — Santosh Papa, Shanti Mummy, little Aman — and all the cramped-house, middle-class North Indian energy that has made it one of India's most quietly adored streaming series.
 
-## The Timeline
+But this time, there's a change that will hit harder than any plot twist the show has ever attempted: Annu Bhaiya has a new face.
 
-Here is what happened:
+## The Swap
 
-**Original date: March 19, 2026.** The plan was simple — give the KGF star a solo Eid-adjacent weekend. IMAX confirmed. Advance bookings were set to open.
+Vaibhav Raj Gupta, who played Anand "Annu" Mishra for four seasons, is out. In his place is Anant Joshi — best known for *12th Fail* and TVF's own *Maamla Legal Hai*. The reason for Gupta's departure hasn't been officially disclosed, but reports suggest he exited before filming began on Season 5.
 
-**First postponement: June 4, 2026.** In early March, the makers cited geopolitical instability in the Middle East. The Gulf region — home to approximately 9.5 million Indians, including over one million Kannadigas — is a primary revenue territory for South Indian blockbusters. For a film budgeted at a reported ₹600-800 crore, leaving Gulf money on the table was not an option.
+In an interview with Zoom TV, Joshi described his reaction to getting the call from TVF: "Are you sure?" He'd been watching Gullak as a fan and had always thought he and Gupta looked similar enough to play brothers someday. He never imagined he'd be playing the same brother.
 
-**CinemaCon showcase: April 2026.** In a bold move, the team screened a nine-minute preview at CinemaCon in Las Vegas. The response was electric — trade analysts called it "a game-changer" and "unlike anything seen in Indian cinema before." The footage reportedly spans the 1940s to the 1970s, with a period gangster aesthetic filtered through what the makers call "a fairy tale for grown-ups."
+The two haven't spoken. "We were never friends," Joshi said. "So I couldn't talk to him about the role that I'm undertaking." It's an honest, slightly melancholy admission that captures exactly the kind of emotional complexity Gullak specialises in.
 
-**Second postponement: April 29, 2026.** Just five weeks before the June 4 date, the makers announced another delay. This time, the reason was strategic ambition — after the CinemaCon reception, they wanted to align global distribution and partnerships for a wider rollout. The new date? To be announced.
+## Why Gullak Matters — Especially for NRIs
 
-## The Domino Effect
+If you've left India, you know the specific ache that Gullak is designed to locate. The show doesn't trade in melodrama or spectacle. Its currency is recognition: the sound of pressure cooker whistles marking dinner time, the passive-aggressive family arguments about electricity bills, the father's quiet pride when a son achieves something small, the mother's impossible talent for making scarcity feel like abundance.
 
-Each Toxic move sent shockwaves through the June calendar.
+For diaspora audiences streaming from apartments in New Jersey, Hounslow, or Brampton, Gullak is a portal. It's the closest thing to sitting in your parents' drawing room during a visit that never lasts long enough. The Mishras aren't aspirational. They're familiar. And that familiarity is the show's superpower.
 
-**Hai Jawani Toh Ishq Hona Hai** — David Dhawan's romantic comedy starring Varun Dhawan, Mrunal Thakur, and Pooja Hegde — has changed its release date *four times*. It went from June 5 to June 12 (to avoid Toxic), then jumped forward to May 22 (to beat Toxic), and now sits back at June 5 (because Toxic left). Varun Dhawan publicly thanked Yash for the calendar clarity.
+Jameel Khan (Santosh Mishra), Geetanjali Kulkarni (Shanti Mishra), and Harsh Mayar (Aman Mishra) all return for the new season, along with Sunita Rajwar as the scene-stealing neighbour Bittu Ki Mummy. A new addition is Gopal Datt as Pinky Mama, who, based on promos, seems poised to create domestic chaos of the highest order.
 
-**Bobby Deol's Bandar**, directed by Anurag Kashyap, locked June 5 once the coast was clear.
+## The Recast Challenge
 
-**Main Vaapas Aaunga**, Imtiaz Ali's Partition-era love story with Diljit Dosanjh and Vedang Raina — the most anticipated Indian film of 2026 according to IMDb — staked out June 12, safely distant from Toxic's original June 4 slot.
+Recasting a lead in an ensemble show is always risky. When the show is built on intimacy and specificity — when audiences don't just like the characters but feel related to them — the stakes multiply. Every shared glance between Santosh and Annu, every sibling dynamic between Annu and Aman, every frustrated-but-loving exchange carries muscle memory from four seasons of buildup.
 
-**Welcome to the Jungle**, Ahmed Khan's 30-star comedy extravaganza led by Akshay Kumar, claimed June 26, the month's final major slot.
+Joshi seems aware of the weight. "What made me very sure was the creative team of TVF for Gullak," he said. "They are very sure, they are very aware because we are doing the fifth season." He credits the writers for how they've shaped the character in Season 5, suggesting the show may acknowledge the transition within its narrative rather than pretending nothing changed.
 
-## The Gulf Market Factor
+Seven episodes. The Mishras' cramped house. A new face in a beloved chair. June 5 on SonyLIV.
 
-What makes Toxic's scheduling story particularly relevant for diaspora audiences is the explicit centrality of the Gulf market in every decision.
-
-The 9.5 million Indians in the Gulf Cooperation Council countries are no longer an afterthought in Bollywood's box office calculations — they are a primary driver. Karnataka alone has over one million residents in the region, making the Gulf a kingmaker for Kannada-language blockbusters.
-
-When Toxic postponed its March release, the stated reason was airspace disruptions and reduced foot traffic in Gulf cinemas due to regional tensions. This was not a soft excuse — exhibitors in the UAE and Saudi Arabia confirmed that occupancy rates had dropped significantly, especially for premium formats like IMAX and Dolby Cinema.
-
-The implication is clear: a single overseas market now has the power to dictate when India's most expensive film opens worldwide. For NRI audiences, this is both validation and leverage — your tickets literally move mountains.
-
-## What It Means for the Industry
-
-Bollywood's 2026 release calendar has exposed a structural fragility. When one mega-budget film sneezes, a dozen mid-budget films catch a cold. The date-shuffling game disproportionately affects smaller films that lack the marketing budgets to pivot repeatedly — every date change means reprinted posters, renegotiated theatre allocations, and lost promotional momentum.
-
-Trade analyst sentiment is mixed. Some see the chaos as a sign of a market in transition — moving from a domestic-first model to a truly global release strategy where international territories have equal weight. Others worry that the concentration of power in a handful of franchises (Toxic, Dhurandhar, Ramayana) is squeezing the oxygen out of mid-range cinema.
-
-Either way, the lesson from Toxic's scheduling saga is unmistakable: in 2026, Bollywood's release calendar is no longer a local affair. It is a global negotiation — and the diaspora is at the table.""",
-    "sources": [
-        "Sacnilk — Toxic Box Office Hype: Yash Starrer Leaves Global Trade Speechless With 9-Minute CinemaCon Preview",
-        "Hollywood Reporter India — 'Toxic': Release Of The Yash-Kiara Advani Film Pushed To June",
-        "Sacnilk — Yash's Toxic Postponed to June 4: Analyzing the Significance of the Middle East Market",
-        "PinkVilla — Varun Dhawan's Hai Jawani Toh Ishq Hona Hai locks June 5, 2026 release date after Toxic gets postponed",
-        "Sacnilk — David Dhawan's Hai Jawani Moves Back To Original Date After Toxic Postponement"
-    ],
-    "person_image": "Yash (actor)",
-    "pexels_query": "Indian cinema theatre audience",
-    "pexels_fallback": "movie theatre marquee",
-    "diaspora_angle": "The Gulf diaspora market — 9.5 million Indians across the GCC, including over 1 million Kannadigas — is now powerful enough to force release date changes for India's most expensive films. Every scheduling decision in Bollywood's 2026 June calendar was driven by the financial weight of overseas audiences, especially in the Middle East."
+For diaspora audiences who measure their homesickness in Gullak episodes, the countdown has already begun.""",
 })
 
-# ── publish ──────────────────────────────────────────────────────────────
+# ===== PUBLISH =====
 
-published = 0
-for i, art in enumerate(articles, 1):
+published_count = 0
+now_ts = datetime.now(timezone.utc).isoformat()
+
+for art in articles:
     print(f"\n{'='*60}")
-    print(f"Article {i}: {art['headline'][:70]}...")
-    print(f"{'='*60}")
+    print(f"Publishing: {art['headline'][:60]}...")
 
-    # Image sourcing — Wikipedia first for person articles
+    # Source image
     img_url = None
     img_attribution = None
-    person = art.get("person_image")
+
+    # Try Wikipedia for the person
+    person = art.get("image_person")
     if person:
-        img_url = fetch_wikipedia_person_image(person)
-        if img_url:
-            img_attribution = "Wikimedia Commons"
+        wiki_url = fetch_wikipedia_person_image(person)
+        if wiki_url:
+            # Upload to Supabase storage for permanence
+            fname = f"{art['slug']}.jpg"
+            uploaded = upload_to_supabase_storage(wiki_url, fname)
+            if uploaded:
+                img_url = uploaded
+                img_attribution = "Wikimedia Commons"
 
+    # Fallback to Pexels if no Wikipedia image
     if not img_url:
-        img_url = fetch_pexels_image(art.get("pexels_query"), art.get("pexels_fallback"))
-        if img_url:
-            img_attribution = "Pexels"
+        if "Ramayana" in art["headline"]:
+            pexels_url = fetch_pexels_image("Hindu epic mythology temple", "ancient Indian mythology")
+        elif "Michael Jackson" in art["headline"]:
+            pexels_url = fetch_pexels_image("concert stage performance lights", "music concert crowd")
+        elif "Gullak" in art["headline"]:
+            pexels_url = fetch_pexels_image("Indian family living room", "middle class Indian home")
+        else:
+            pexels_url = fetch_pexels_image("Bollywood cinema India")
 
-    # Upload to Supabase storage for permanence
-    final_image_url = None
-    if img_url:
-        slug = art["slug"]
-        ext = "jpg"
-        if ".png" in img_url.lower():
-            ext = "png"
-        filename = f"{slug}.{ext}"
-        final_image_url = upload_to_supabase_storage(img_url, filename)
-        if not final_image_url and validate_image_url(img_url):
-            # If upload fails but URL is from a permanent source, use directly
-            if "upload.wikimedia.org" in img_url or "images.pexels.com" in img_url:
-                final_image_url = img_url
-                print(f"  → Using direct URL as fallback: {img_url[:80]}...")
+        if pexels_url:
+            fname = f"{art['slug']}.jpg"
+            uploaded = upload_to_supabase_storage(pexels_url, fname)
+            if uploaded:
+                img_url = uploaded
+                img_attribution = "Pexels"
 
-    if not final_image_url:
-        print(f"  ⚠ No image sourced for article {i}")
-
-    # Build sources string
-    sources_str = "\n".join(f"- {s}" for s in art["sources"])
-
-    from datetime import datetime, timezone
-    now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
+    # Build insert payload
+    article_id = str(uuid.uuid4())
     payload = {
+        "id": article_id,
         "headline": art["headline"],
         "subheadline": art["subheadline"],
         "slug": art["slug"],
-        "body": art["body"].strip(),
+        "body": art["body"],
         "category": art["category"],
-        "vertical": art["category"],  # vertical = category for entertainment
-        "diaspora_angle": art.get("diaspora_angle", ""),
+        "sources": art["sources"],
         "status": "published",
-        "published_at": now_iso,
+        "published_at": now_ts,
         "is_editorial": False,
-        "sources": sources_str,
     }
-    if final_image_url:
-        payload["image_url"] = final_image_url
-        payload["image_attribution"] = img_attribution or "The Videshi"
+
+    payload["vertical"] = "entertainment"
+
+    if img_url:
+        payload["image_url"] = img_url
+    if img_attribution:
+        payload["image_attribution"] = img_attribution
 
     result = sb_insert("p2_articles", payload)
     if result:
-        art_id = result.get("id", "unknown")
-        print(f"  ✓ Published: {art['slug']} (id: {art_id})")
-        published += 1
+        print(f"  ✓ Published: {art['slug']}")
+        print(f"    Image: {img_url or 'none'}")
+        published_count += 1
     else:
-        print(f"  ✗ FAILED to publish: {art['slug']}")
+        print(f"  ✗ FAILED: {art['slug']}")
+
+    time.sleep(1)  # Brief pause between inserts
 
 print(f"\n{'='*60}")
-print(f"Done. Published {published}/{len(articles)} articles.")
-print(f"{'='*60}")
+print(f"Done. Published {published_count}/{len(articles)} entertainment articles.")
