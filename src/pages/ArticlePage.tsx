@@ -601,8 +601,8 @@ export default function ArticlePage() {
             const blocks = tryParseBlocks(article.body);
             if (blocks) return <ArticleBlocks blocks={blocks} />;
 
-            // Detect HTML bodies (contain <p>, <h3>, etc.) and render natively
-            const isHtml = /<(?:p|h[1-6]|ul|ol|blockquote|div|figure|aside|strong|em)\b/i.test(article.body);
+            // Detect HTML bodies (start with HTML block tags) and render natively
+            const isHtml = /^\s*<(?:p|h[1-6]|div|section|article)\b/i.test(article.body);
             if (isHtml) {
               return (
                 <div
