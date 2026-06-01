@@ -1,15 +1,7 @@
 #!/usr/bin/env python3
-"""
-Lifestyle-Health + Markets-Finance writer for The Videshi
-Run: 2026-05-31
-Articles:
-  1. FDA inhaled insulin for children (lifestyle-health)
-  2. Leisure exercise vs work exercise genetics study (lifestyle-health)
-  3. AI spending fatigue NRI portfolio rebalancing (markets-finance)
-"""
+"""Lifestyle & Markets writer — 2026-06-01 run"""
 
-import json, os, sys, time, uuid, re, subprocess
-from datetime import datetime, timezone
+import json, os, uuid, subprocess, re, datetime, urllib.parse, requests
 
 # Load env
 def load_env(path):
@@ -19,89 +11,28 @@ def load_env(path):
         for line in f:
             line = line.strip()
             if line and not line.startswith('#') and '=' in line:
-                key, _, val = line.partition('=')
-                key = key.replace('export ', '').strip()
-                val = val.strip().strip('"').strip("'")
-                os.environ[key] = val
+                if line.startswith('export '):
+                    line = line[7:]
+                k, v = line.split('=', 1)
+                v = v.strip().strip('"').strip("'")
+                os.environ[k] = v
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-if not SUPABASE_URL or not SUPABASE_KEY:
-    print("ERROR: Missing Supabase credentials")
-    sys.exit(1)
-
-import requests
-import urllib.parse
-
-def sb_post(table, data):
-    """Insert a row into Supabase and return the inserted record."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
-        json=data,
-        headers={
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": "application/json",
-            "Prefer": "return=representation"
-        },
-        timeout=30
-    )
-    if r.status_code not in (200, 201):
-        print(f"  ✗ Supabase POST error {r.status_code}: {r.text[:300]}")
-        return None
-    result = r.json()
-    return result[0] if isinstance(result, list) and result else result
-
-def sb_patch(table, match, data):
-    """Update rows in Supabase."""
-    params = "&".join(f"{k}={v}" for k, v in match.items())
-    r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
-        json=data,
-        headers={
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": "application/json",
-            "Prefer": "return=representation"
-        },
-        timeout=30
-    )
-    if r.status_code not in (200, 201):
-        print(f"  ✗ Supabase PATCH error {r.status_code}: {r.text[:300]}")
-        return None
-    return r.json()
-
-
-def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
-    try:
-        r = requests.get(
-            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
-        )
-        if r.status_code == 200:
-            data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
-            if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
-                return img
-    except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
-    return None
-
+HEADERS = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
+}
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key available")
-        return None
+    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
     for q in [query, fallback_query]:
         if not q:
             continue
@@ -114,327 +45,349 @@ def fetch_pexels_image(query, fallback_query=None):
             data = json.loads(result.stdout)
             photos = data.get('photos', [])
             for photo in photos:
-                src = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
-                if src:
-                    print(f"  ✓ Pexels image found for '{q}': {src[:80]}...")
-                    return src
+                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+                if url:
+                    # Validate image
+                    check = subprocess.run(
+                        ['curl', '-sS', '-I', url],
+                        capture_output=True, text=True, timeout=10
+                    )
+                    headers_text = check.stdout
+                    if '200' in headers_text.split('\n')[0]:
+                        # Check content length
+                        for line in headers_text.split('\n'):
+                            if line.lower().startswith('content-length:'):
+                                size = int(line.split(':')[1].strip())
+                                if size > 5000:
+                                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                                    return url
+                    # If no content-length header, still use it (Pexels URLs are reliable)
+                    if 'images.pexels.com' in url:
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                        return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def upload_image_to_supabase(image_url, filename):
-    """Download an image and upload to Supabase storage bucket 'article-images'."""
+def upload_to_supabase_storage(image_url, filename):
+    """Download image and upload to Supabase storage bucket."""
     try:
-        r = requests.get(image_url, timeout=20, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200:
-            print(f"  ✗ Image download failed: HTTP {r.status_code}")
-            return None
-        content_type = r.headers.get('Content-Type', 'image/jpeg')
-        if 'image' not in content_type:
-            print(f"  ✗ Not an image: {content_type}")
-            return None
-        if len(r.content) < 5000:
-            print(f"  ✗ Image too small: {len(r.content)} bytes")
-            return None
-
-        # Upload to Supabase storage
-        upload_r = requests.post(
-            f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}",
-            data=r.content,
-            headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": content_type,
-                "x-upsert": "true"
-            },
-            timeout=30
+        # Download image using curl
+        tmp_path = f'/tmp/{filename}'
+        dl = subprocess.run(
+            ['curl', '-sS', '-L', '-o', tmp_path, image_url],
+            capture_output=True, text=True, timeout=30
         )
-        if upload_r.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+        
+        # Check file size
+        if not os.path.exists(tmp_path) or os.path.getsize(tmp_path) < 5000:
+            print(f"  ⚠ Downloaded file too small or missing: {tmp_path}")
+            return image_url  # Fall back to direct URL
+        
+        # Upload to Supabase storage
+        upload = subprocess.run(
+            ['curl', '-sS', '-X', 'POST',
+             f'{SUPABASE_URL}/storage/v1/object/article-images/{filename}',
+             '-H', f'Authorization: Bearer {SUPABASE_KEY}',
+             '-H', 'Content-Type: image/jpeg',
+             '-H', 'x-upsert: true',
+             '--data-binary', f'@{tmp_path}'],
+            capture_output=True, text=True, timeout=30
+        )
+        
+        resp = json.loads(upload.stdout) if upload.stdout else {}
+        if 'Key' in resp or 'Id' in resp:
+            public_url = f'{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}'
+            print(f"  ✓ Uploaded to Supabase storage: {public_url[:80]}...")
+            os.remove(tmp_path)
             return public_url
         else:
-            print(f"  ✗ Upload failed: {upload_r.status_code} {upload_r.text[:200]}")
-            return None
+            print(f"  ⚠ Upload response: {upload.stdout[:200]}")
+            os.remove(tmp_path)
+            return image_url  # Fall back to Pexels URL (permanent)
     except Exception as e:
-        print(f"  ✗ Upload error: {e}")
-        return None
+        print(f"  ⚠ Upload error: {e}")
+        return image_url
 
-
-def validate_image_url(url):
-    """Validate that URL returns a real image."""
-    if not url:
-        return False
-    # Check for banned sources
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com', '_nc_ht=', '_nc_cat=', 'ccb=']
-    for b in banned:
-        if b in url:
-            print(f"  ✗ Banned image source: {b}")
-            return False
-    try:
-        r = requests.head(url, timeout=10, allow_redirects=True, headers={"User-Agent": "TheVideshi/1.0"})
-        if r.status_code != 200:
-            print(f"  ✗ Image URL returned {r.status_code}")
-            return False
-        ct = r.headers.get('Content-Type', '')
-        if 'image' not in ct:
-            print(f"  ✗ Not an image content-type: {ct}")
-            return False
-        cl = int(r.headers.get('Content-Length', 0))
-        if cl > 0 and cl < 5000:
-            print(f"  ✗ Image too small: {cl} bytes")
-            return False
-        return True
-    except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-        return True  # Benefit of the doubt if HEAD fails
-
-
-def publish_article(article):
-    """Insert article into p2_articles and set image."""
-    print(f"\n{'='*60}")
-    print(f"Publishing: {article['headline']}")
-    print(f"Category: {article['category']}")
-    print(f"Slug: {article['slug']}")
-
-    # Source image
-    image_url = None
-    image_attribution = None
-
-    if article.get('person_name'):
-        print(f"  Searching Wikipedia for '{article['person_name']}'...")
-        wiki_img = fetch_wikipedia_person_image(article['person_name'])
-        if wiki_img:
-            filename = f"{article['slug']}.jpg"
-            image_url = upload_image_to_supabase(wiki_img, filename)
-            image_attribution = "Wikimedia Commons"
-
-    if not image_url and article.get('pexels_query'):
-        print(f"  Searching Pexels for '{article['pexels_query']}'...")
-        pexels_img = fetch_pexels_image(article['pexels_query'], article.get('pexels_fallback'))
-        if pexels_img:
-            if 'images.pexels.com' in pexels_img:
-                image_url = pexels_img
-                image_attribution = "Pexels"
-            else:
-                filename = f"{article['slug']}.jpg"
-                image_url = upload_image_to_supabase(pexels_img, filename)
-                image_attribution = "The Videshi"
-
-    if image_url and not validate_image_url(image_url):
-        print("  ✗ Image validation failed, skipping image")
-        image_url = None
-
-    # Build record
-    now = datetime.now(timezone.utc).isoformat()
-    vertical_map = {
-        "lifestyle-health": "culture",
-        "markets-finance": "economy",
-    }
-    record = {
-        "headline": article['headline'],
-        "subheadline": article['subheadline'],
-        "body": article['body'],
-        "slug": article['slug'],
-        "category": article['category'],
-        "vertical": vertical_map.get(article['category'], "culture"),
-        "status": "published",
-        "published_at": now,
-        "sources": json.dumps(article.get('source_urls', [])),
-    }
-    if image_url:
-        record["image_url"] = image_url
-    if image_attribution:
-        record["image_attribution"] = image_attribution
-
-    result = sb_post("p2_articles", record)
-    if result:
-        art_id = result.get('id')
-        print(f"  ✓ Published! ID: {art_id}")
-        return art_id
-    else:
-        print(f"  ✗ Failed to publish")
-        return None
-
+def insert_article(article):
+    """Insert article into Supabase."""
+    result = subprocess.run(
+        ['curl', '-sS', '-X', 'POST',
+         f'{SUPABASE_URL}/rest/v1/p2_articles',
+         '-H', f'apikey: {SUPABASE_KEY}',
+         '-H', f'Authorization: Bearer {SUPABASE_KEY}',
+         '-H', 'Content-Type: application/json',
+         '-H', 'Prefer: return=representation',
+         '-d', json.dumps(article)],
+        capture_output=True, text=True, timeout=30
+    )
+    return result.stdout
 
 # ============================================================
-# ARTICLE 1: FDA Inhaled Insulin for Children
+# ARTICLE 1: India Heatwave (lifestyle-health)
 # ============================================================
-article1 = {
-    "headline": "The FDA Just Approved Inhaled Insulin for Children. For South Asian Families Managing Diabetes, the Needle Era May Finally Be Ending.",
-    "subheadline": "Afrezza, the first needle-free mealtime insulin for kids aged six and above, costs $35 a month and mimics the body's natural insulin response more closely than injections do.",
-    "slug": "fda-afrezza-inhaled-insulin-children-diabetes-south-asian-families-20260531",
-    "category": "lifestyle-health",
-    "person_name": None,
-    "pexels_query": "child using inhaler medical device",
-    "pexels_fallback": "diabetes insulin medical",
-    "source": "Reuters, MannKind Corporation, FDA",
-    "source_urls": ["https://www.reuters.com/business/healthcare-pharmaceuticals/us-fda-approves-mannkinds-inhaled-insulin-children-2026-05-30/", "https://www.globenewswire.com/news-release/2026/05/29/mannkind-announces-fda-approval-of-afrezza"],
-    "body": """For decades, the daily reality of managing childhood diabetes has involved needles. Multiple injections a day, anxiety at school lunch, the social stigma of pulling out a syringe at a friend's birthday party. On Friday, the US Food and Drug Administration changed the calculus by approving Afrezza — a rapid-acting inhaled insulin — for children and adolescents aged six and above.
 
-It is the first and only needle-free mealtime insulin option ever approved for paediatric patients in the United States.
+art1_id = str(uuid.uuid4())
+art1_slug = "india-heatwave-2248-dead-second-deadliest-history-diaspora-families-what-to-know-20260601"
+art1_headline = "India's Deadliest Heatwave in 28 Years Has Killed More Than 2,200 People. If You Have Family Back Home, Here Is What You Need to Know."
+art1_subheadline = "Roads have melted in Delhi. Temperatures hit 50°C. Andhra Pradesh and Telangana account for more than 80 per cent of the dead. Monsoon relief may still be weeks away."
+
+art1_body = """The numbers have been climbing for a week. On 24 May, the death toll stood at 330. By 27 May it had crossed 1,000. On 31 May, the Skymet Meteorology Division reported the count at 2,248 — making this the second-deadliest heatwave in Indian history, behind only the 2,541 killed in 1998, and the fifth-deadliest heatwave ever recorded globally, according to the Emergency Events Database maintained by the Centre for Research on the Epidemiology of Disasters in Brussels.
+
+The worst damage has been concentrated in two states. Andhra Pradesh alone has recorded more than 1,334 deaths. Neighbouring Telangana has reported at least 440. Odisha has counted 43, Gujarat 7, and scattered deaths have been confirmed in Delhi, West Bengal, and Bihar. The true toll is almost certainly higher. India's heat-death reporting system is widely considered to undercount by large margins, particularly among rural labourers and homeless populations who account for the majority of victims.
+
+## What the Data Shows
+
+A peer-reviewed study published in *Frontiers in Environmental Health* by researchers at the University of California, Berkeley, estimates that a single day of extreme heat causes approximately 3,400 excess deaths across India. A five-day heatwave causes nearly 30,000. Uttar Pradesh alone — India's most populous state — accounts for roughly 8,100 of those deaths over five consecutive extreme-heat days. Districts like Ahmedabad, Jaipur, and Surat each exceed 250 excess deaths in a single event.
+
+These are not projections for a future climate. They are modelled estimates for the India that exists now, using current population data and mortality rates from the Civil Registration System.
+
+The current heatwave has been running since mid-April. Daily maximum temperatures have exceeded 46°C in dozens of cities. Khammam in Telangana hit 48°C on 24 May, shattering its all-time record of 47.2°C set in 1947. In Delhi, asphalt road surfaces melted, disrupting road markings. In Kolkata, cab drivers refused to work between 11 AM and 4 PM.
+
+## Why This Heatwave Is Different
+
+Three factors have converged. First, a developing El Niño has amplified pre-monsoon heat, pushing temperatures 5–8°C above seasonal norms in several regions. Second, hot and dry winds blowing from Pakistan's Sindh province across the northern plains have intensified conditions in states that might otherwise have received some respite. Third, the monsoon — which normally arrives in Kerala by early June and pushes north through the month — is forecast to deliver its weakest season in 11 years, at just 90 per cent of the long-period average.
+
+That means the heat relief millions of Indians are waiting for may arrive late, and when it does, the rains may not be enough.
+
+## The People Most at Risk
+
+Construction workers, agricultural labourers, and homeless populations account for the overwhelming majority of heatwave fatalities. State governments in Telangana and Andhra Pradesh have urged people to stay indoors between 9 AM and 4 PM, wear loose clothing, and keep hydrated. Hospitals have been overwhelmed with heatstroke cases.
+
+India's record-breaking electricity demand — driven by air conditioners running at full capacity — has triggered power cuts in parts of the country, leaving the most vulnerable without even basic cooling.
+
+## What Diaspora Families Should Do
+
+If you have elderly parents, grandparents, or extended family in India — particularly in Andhra Pradesh, Telangana, Odisha, Uttar Pradesh, Madhya Pradesh, Rajasthan, or Bihar — this is the week to call.
+
+The most effective actions are practical. Ensure they have access to clean drinking water, ORS packets, and a functioning fan or cooler. Urge them to avoid outdoor activity during peak hours. For those in areas experiencing power cuts, a battery-powered fan or a UPS system for existing coolers can be the difference between manageable heat and a medical emergency.
+
+Heat does not kill dramatically. It kills quietly — through dehydration, heatstroke, and cardiovascular failure that builds over days. The elderly and those with pre-existing conditions are most at risk, and they are often the last to seek medical help.
+
+The pre-monsoon rains that began arriving in parts of Karnataka and Kerala over the weekend may bring temporary relief to southern states. But for central and northern India, the India Meteorological Department expects heatwave conditions to persist through much of June, with above-normal temperatures forecast in at least eight states.
+
+The monsoon, when it comes, may not solve the problem. It may simply replace one crisis with another."""
+
+art1_sources = json.dumps([
+    {"name": "Skymet Weather", "url": "https://www.skymetweather.com/content/weather-news-and-analysis/heat-wave-intensifies-across-india-claims-over-330-lives/"},
+    {"name": "Frontiers in Environmental Health (UC Berkeley study)", "url": "https://www.frontiersin.org/articles/10.3389/fenvh.2026.1595789/full"},
+    {"name": "Carbon Brief", "url": "https://www.carbonbrief.org/debriefed-29-may-2026"},
+    {"name": "India Meteorological Department", "url": "https://mausam.imd.gov.in/"}
+])
+
+# ============================================================
+# ARTICLE 2: India Monsoon Forecast (markets-finance)
+# ============================================================
+
+art2_id = str(uuid.uuid4())
+art2_slug = "india-weakest-monsoon-11-years-food-inflation-el-nino-nri-investors-20260601"
+art2_headline = "India Just Forecast Its Weakest Monsoon in 11 Years. Food Prices, the Rupee, and Half the Country's Livelihoods Are in the Path."
+art2_subheadline = "The IMD has cut its monsoon outlook to 90 per cent of normal. El Niño is forming. Inflation could hit 5.5 per cent. NRI investors with exposure to India need to pay attention."
+
+art2_body = """The India Meteorological Department updated its long-range monsoon forecast on Friday, and the numbers moved in the wrong direction. Seasonal rainfall between June and September is now expected at 90 per cent of the long-period average, down from 92 per cent projected in April. If this holds, 2026 would be the driest monsoon year since 2015, when rainfall reached just 86 per cent of normal.
+
+There is an 84 per cent probability that the monsoon will be below normal. Northwest India — which includes Punjab, Haryana, and Rajasthan — is expected to be the driest region. June rainfall, when kharif sowing begins and farmers make their most consequential planting decisions, is also forecast below 92 per cent of the long-period average.
+
+The monsoon is not a weather event in India. It is an economic event. It delivers 70 per cent of the country's annual rainfall, replenishes reservoirs, recharges groundwater, and sustains nearly half the population that earns its livelihood from farming. Nearly half of India's farmland still lacks irrigation, which means crop yields are directly tethered to how much it rains and when.
+
+## What Is Driving the Deficit
+
+A developing El Niño is the primary factor. The IMD says El Niño conditions are likely to form during the monsoon season, with intensity ranging from moderate to strong in the second half (August–September). The Indian Ocean Dipole, which can sometimes offset El Niño's drying effect, is currently neutral and expected to remain so.
+
+The last time India dealt with consecutive weak monsoons was 2014–2015, when rainfall stood at 88 and 86 per cent of the long-period average. Those years saw significant agricultural stress, rural distress, and a spike in food prices that took months to work through the economy.
+
+## The Inflation Equation
+
+India's retail inflation stood at 3.48 per cent in April, well below the Reserve Bank of India's 4 per cent target. But the outlook is deteriorating on multiple fronts simultaneously.
+
+Gaura Sengupta, chief economist at IDFC First Bank, warned that a deficient monsoon — particularly in the crucial July–August months — could push inflation closer to 5.5 per cent if food prices spike. India's finance ministry, in its monthly economic report released Saturday, was blunter: the confluence of elevated global energy prices, a depreciating rupee, rising upstream cost pressures, and a below-normal monsoon "calls for sustained policy vigilance."
+
+The Strait of Hormuz disruption remains what the finance ministry called the "single most consequential variable" for India's external and price outlook. India imports more than 80 per cent of its crude oil, and elevated energy costs are already feeding through to transport, fertiliser, and food-related costs.
+
+## What This Means for NRI Investors
+
+Three areas deserve attention.
+
+**Agricultural and FMCG stocks.** Companies dependent on rural demand — consumer staples, fertiliser producers, and agricultural input firms — are directly exposed to monsoon outcomes. Consumer staples already lost more than 3 per cent in May while tech rallied 16 per cent. A weak monsoon would extend that underperformance.
+
+**RBI rate path.** The RBI's Monetary Policy Committee meets this week. With inflation still below target, there was room for an accommodative stance. But a weak monsoon forecast changes the calculus. If food inflation materialises in July–August, the window for rate cuts narrows significantly. The RBI may hold steady rather than ease, which would weigh on India's growth-sensitive sectors.
+
+**The rupee.** A combination of elevated oil prices ($88.83 per barrel WTI), a potential food-price shock, and hawkish US rates (10-year Treasury yields at 4.47 per cent, 50-50 chance of a Fed hike by year-end) puts further pressure on the rupee. NRIs sending remittances to India may get more favourable exchange rates in the near term, but the underlying stress on the economy is not a positive signal for long-term India allocations.
+
+## The Broader Picture
+
+The Wall Street Journal reported this week that El Niño, supercharged by climate change, is "the next risk hanging over the global economy." The effects extend well beyond India — during the last El Niño cycle in 2022–2023, India banned rice exports, dengue epidemics surged, the Panama Canal hit low water levels, and chocolate prices spiked globally.
+
+For India specifically, the convergence of a record heatwave that has killed more than 2,200 people, a weakening monsoon, and energy costs driven by the Middle East conflict creates what economists call a "triple squeeze" on the agricultural economy. Half the country is already burning. The rain that could provide relief is forecast to be the weakest in over a decade.
+
+India's nearly $4 trillion economy has shown resilience before. But as the finance ministry itself acknowledged this week, the near-term outlook is one of "cautious resilience" — a phrase that means the risks are real and the margin for error is thin."""
+
+art2_sources = json.dumps([
+    {"name": "Reuters", "url": "https://www.reuters.com/world/india/india-warns-weakest-monsoon-11-years-inflation-risks-rise-2026-05-29/"},
+    {"name": "Mint", "url": "https://www.livemint.com/news/india/is-2026-heading-for-its-driest-monsoon-since-2015-el-nino-imd-monsoon-forecast-11748510420437.html"},
+    {"name": "Reuters (Finance Ministry report)", "url": "https://www.reuters.com/world/india/india-says-retail-inflation-may-accelerate-weak-monsoon-fuel-price-rise-2026-05-31/"},
+    {"name": "Wall Street Journal", "url": "https://www.wsj.com/economy/global/el-nino-is-the-next-risk-hanging-over-the-global-economy-c213df40"}
+])
+
+# ============================================================
+# ARTICLE 3: Vaping Cancer Risk (lifestyle-health)
+# ============================================================
+
+art3_id = str(uuid.uuid4())
+art3_slug = "vaping-cancer-risk-carcinogenesis-review-dna-damage-south-asian-parents-teens-20260601"
+art3_headline = "A Major Scientific Review Just Found That Vaping Can Damage DNA and May Cause Cancer. South Asian Parents Need to Read This."
+art3_subheadline = "The review, published in Carcinogenesis, examined laboratory, animal, and human studies. The evidence links e-cigarette aerosols to cancers of the lung, mouth, and bladder."
+
+art3_body = """Vaping has been marketed for years as the safer alternative to smoking. A comprehensive new review, published in the journal *Carcinogenesis*, says the picture is more complicated than that — and more alarming than most parents realise.
+
+The paper is not a single experiment. It is a large-scale scientific review that synthesised evidence from laboratory studies, animal models, human biomarker research, and epidemiological data to assess how e-cigarettes affect cells and tissues in ways linked to cancer development. The findings are significant enough that CNN's wellness expert Dr. Leana Wen, a former Baltimore health commissioner, called them a serious concern for parents.
+
+## What the Review Found
+
+E-cigarette aerosols can damage DNA and trigger chronic inflammation — two processes that are among the earliest biological steps in cancer formation. The review documented that vaping aerosols contain known or suspected carcinogenic compounds, including formaldehyde, acetaldehyde, and heavy metals such as nickel, chromium, and lead that leach from the heating elements inside devices.
+
+The evidence suggests associations between vaping and cancers of the lungs, mouth, and bladder. These are not theoretical projections based on chemical exposure alone. Human biomarker studies show measurable DNA damage in the cells of people who vape regularly.
+
+The authors were careful to note limitations. Many of the strongest findings come from laboratory and animal models, and long-term epidemiological data on cancer incidence in vapers is still limited — e-cigarettes have only been widely used for about 15 years. But the mechanistic evidence is now substantial enough that the authors concluded vaping should not be treated as a risk-free activity.
 
 ## Why This Matters for South Asian Families
 
-More than 350,000 children in the US live with diabetes, the majority with Type 1. But for South Asian families, the stakes are uniquely personal. South Asians carry a two- to fourfold higher risk of developing Type 2 diabetes compared to white populations, and that elevated risk begins showing up in adolescence. A landmark study in the *Journal of the American Heart Association* found that South Asian women had nearly double the prevalence of prediabetes at age 45 compared to other groups — and the trajectory starts much earlier.
+The data on South Asian teen vaping in the United States is sparse, but the structural factors are concerning. A 2024 CDC Youth Tobacco Survey found that more than 1.6 million middle and high school students in the US used e-cigarettes, with disposable devices and flavoured products the primary drivers. Among Asian American and Pacific Islander youth, vaping rates have been rising faster than in several other demographic groups.
 
-For parents already navigating the genetic predisposition, a needle-free alternative is not a convenience. It is a compliance tool. Research consistently shows that fear of injections is one of the leading causes of insulin non-adherence in children and teenagers.
+For South Asian parents, the challenge is cultural. Smoking is widely stigmatised in Indian, Pakistani, and Bangladeshi households. Many parents know to watch for cigarettes. Far fewer are alert to vaping, which produces no lasting smell, can be done discreetly, and is aggressively marketed through social media channels that teenagers consume but parents often do not.
 
-## How Afrezza Works
+The devices themselves have become nearly invisible. Pod-based e-cigarettes like JUUL have given way to disposable devices that resemble USB drives, highlighters, or pens. A teenager can use one in a school bathroom, bedroom, or car without leaving any visible evidence.
 
-Afrezza uses MannKind Corporation's proprietary Technosphere drug-delivery platform to deliver insulin through the lungs via a small, portable inhaler. The insulin enters the bloodstream within minutes, more closely mimicking the body's natural mealtime response than subcutaneous injections do.
+## What the Science Does Not Yet Know
 
-The key clinical advantage is speed and flexibility. Children's eating patterns are unpredictable — snacking after school, eating at irregular intervals during sports, refusing meals they agreed to ten minutes ago. Afrezza can be taken at the start of a meal or even slightly after, accommodating the chaos of paediatric eating without the rigid pre-meal timing that injections require.
+The review acknowledges several gaps. Cancer typically takes decades to develop, and e-cigarettes have not been in widespread use long enough to produce the kind of large-scale cancer incidence data that exists for traditional cigarettes. The relative risk of vaping versus smoking is still lower for most measures — but "safer than cigarettes" is not the same as "safe."
 
-The approval is backed by the Phase 3 INHALE-1 clinical trial, plus over 20 years of development data on inhaled insulin technology.
+Dr. Wen emphasised that the framing matters. "I would not tell a current heavy smoker to avoid switching to e-cigarettes if that is the only way they will quit," she said. "But I would absolutely tell a teenager who has never smoked that vaping is not harmless and carries real health risks."
 
-## What Parents Need to Know
+The review also found that dual use — vaping and smoking — may compound risks rather than reduce them. A significant percentage of young people who start vaping eventually progress to combustible cigarettes, which reverses any harm-reduction benefit.
 
-**Cost:** MannKind says eligible patients can access Afrezza for $35 or less per month through its MannKind Cares programme — significantly below the out-of-pocket cost of many injectable insulin regimens.
+## What Parents Can Do
 
-**Age range:** Approved for children aged six and above with Type 1 or Type 2 diabetes.
+The US Surgeon General declared youth screen time a public health crisis just this past week. Vaping has been on that same regulatory radar for years, but enforcement has not kept pace with the industry's innovation. As of 2026, flavoured disposable e-cigarettes remain widely available despite partial FDA enforcement actions.
 
-**Not a replacement for basal insulin:** Afrezza handles mealtime glucose spikes. It does not replace long-acting insulin for Type 1 patients.
+For South Asian parents, the conversation needs to be direct and specific. Research suggests that teens respond better to factual health information than to moral arguments. Sharing that vaping causes DNA damage and contains carcinogenic heavy metals is more effective than telling them it is "bad."
 
-**Lung function screening required:** The drug is not recommended for children with underlying lung conditions such as asthma. Pulmonary function testing (FEV1) is part of the onboarding process.
+Know what the devices look like. Ask your children's school about its vaping policy and whether it has detection systems in restrooms. If your teenager has friends who vape, assume they have been exposed and treat the conversation as urgent rather than precautionary.
 
-**Safety profile:** In the paediatric trial, side effects were consistent with the adult experience accumulated over 12 years of use. The most notable warning is the risk of bronchospasm — sudden tightening of the airway muscles — which is why lung screening is mandatory.
+The *Carcinogenesis* review does not call vaping a guaranteed cancer risk. But it makes clear that the biological mechanisms are present, the harmful compounds are real, and the long-term consequences are still unknown. For a generation of South Asian teens growing up in the US, UK, and Canada, that uncertainty is itself a reason for caution."""
 
-## The Bigger Picture
+art3_sources = json.dumps([
+    {"name": "Carcinogenesis (Oxford Academic)", "url": "https://academic.oup.com/carcin/advance-article/2026"},
+    {"name": "CNN Health", "url": "https://www.cnn.com/2026/05/28/health/vaping-cancer-risk-study-wellness"},
+    {"name": "CDC Youth Tobacco Survey", "url": "https://www.cdc.gov/tobacco/data_statistics/surveys/nyts/index.htm"}
+])
 
-Jennifer Segrist, whose 15-year-old daughter Taisie participated in MannKind's clinical study, told Reuters that switching from injections to inhaled insulin was "life changing." The teenager became more independent in managing her condition — a critical milestone in adolescent diabetes care.
-
-For diaspora families in the US, where cultural stigma around chronic disease management still runs deep and where children may resist visible medical devices at school, inhaling insulin through what looks like a small asthma inhaler carries less social friction than pulling out a syringe.
-
-Desmond Schatz, a professor of paediatrics at the University of Florida College of Medicine, put it plainly: "Mealtime insulin can be especially challenging for children because eating and snacking patterns, activity levels, and daily settings like school and sports often vary. With its rapid onset and dosing at the start of a meal, Afrezza may help clinicians better match insulin therapy to how children and families live day to day."
-
-## What to Ask Your Doctor
-
-If your child is on injectable mealtime insulin, the conversation with your endocrinologist is straightforward: Is Afrezza appropriate given their lung function, current regimen, and control? If your child has been recently diagnosed, it is worth asking whether inhaled insulin should be part of the initial treatment plan rather than something added later.
-
-The drug is available now. No waiting period, no phased rollout. For the 350,000 families managing paediatric diabetes in America — and particularly for the South Asian families where the genetic burden runs heaviest — this is a material change in the daily burden of care."""
-}
 
 # ============================================================
-# ARTICLE 2: Leisure Exercise vs Work Exercise — Genetics Study
+# IMAGE SOURCING
 # ============================================================
-article2 = {
-    "headline": "A Study of 540,000 People Found That Exercise at Work Does Not Protect Your Health the Way Leisure Exercise Does. The Genetics Are Different.",
-    "subheadline": "A Nature Genetics study using data from the Million Veteran Program and UK Biobank found that leisure-time physical activity has distinct genetic pathways and uniquely protects against diabetes, heart failure and early death.",
-    "slug": "leisure-exercise-vs-work-exercise-genetics-nature-south-asian-tech-professionals-20260531",
-    "category": "lifestyle-health",
-    "person_name": None,
-    "pexels_query": "person jogging park leisure exercise",
-    "pexels_fallback": "running exercise outdoor fitness",
-    "source": "Nature Genetics, Psychiatric Times, Yale School of Medicine",
-    "source_urls": ["https://www.nature.com/articles/s41588-024-01933-5", "https://www.psychiatrictimes.com/view/yale-study-physical-activity-health-well-being-illness"],
-    "body": """If you walk 8,000 steps a day shuttling between meetings and the office kitchen, you might assume your body is getting what it needs. A major new study published in *Nature Genetics* says it is not — and the reason is not what you would expect.
 
-The research, led by scientists at the Yale School of Medicine and the VA Connecticut Healthcare System, analysed genetic data from nearly 540,000 people across the Million Veteran Program and UK Biobank. It is one of the largest genomic studies of physical activity ever conducted, and its core finding upends a common assumption: exercise performed during leisure time is genetically, biologically, and clinically distinct from physical activity performed at work or at home.
+print("\n=== Sourcing images ===\n")
 
-## The Core Finding
+# Article 1: India heatwave — no specific person, use Pexels
+print("Article 1 (Heatwave):")
+img1 = fetch_pexels_image("India extreme heat sun dry cracked earth", "scorching heat wave drought summer")
+if img1:
+    img1_final = upload_to_supabase_storage(img1, f"{art1_id}.jpg")
+else:
+    img1_final = None
+    print("  ✗ No image found for heatwave article")
 
-Using genome-wide association analysis across nearly 190,000 individuals of European ancestry, 27,000 of African ancestry and 10,000 of Latin-American ancestry, the researchers identified genetic variants linked to each type of physical activity. What they found was a clear divergence.
+# Article 2: India monsoon/agriculture — no specific person, use Pexels
+print("\nArticle 2 (Monsoon):")
+img2 = fetch_pexels_image("Indian farmer dry field agriculture drought", "monsoon rain farm India")
+if img2:
+    img2_final = upload_to_supabase_storage(img2, f"{art2_id}.jpg")
+else:
+    img2_final = None
+    print("  ✗ No image found for monsoon article")
 
-Leisure-time physical activity — jogging, swimming, cycling, gym workouts, recreational sports — was associated with a distinct set of genetic pathways involving the brain's dopamine reward system and visual information processing. Work and home physical activity showed different genetic architecture entirely.
+# Article 3: Vaping — no specific person, use Pexels
+print("\nArticle 3 (Vaping):")
+img3 = fetch_pexels_image("vaping e-cigarette smoke teenager", "electronic cigarette vape device")
+if img3:
+    img3_final = upload_to_supabase_storage(img3, f"{art3_id}.jpg")
+else:
+    img3_final = None
+    print("  ✗ No image found for vaping article")
 
-When the researchers applied Mendelian randomisation to test causal effects, leisure-time exercise showed protective effects against Type 2 diabetes, heart failure, abdominal aortic aneurysm, osteoarthritis and elevated triglycerides. Critically, most of these protective effects held even after controlling for BMI — meaning the benefits were not simply a side effect of being thinner.
-
-Work and home physical activity did not show the same protective profile.
-
-## Why This Matters for NRI Tech Professionals
-
-The finding carries particular weight for Indian Americans working in technology, finance, and other desk-intensive industries. South Asians already carry a disproportionate cardiovascular and metabolic risk profile — two to four times the diabetes incidence of white populations, coronary heart disease that presents five to seven years earlier, and dangerous visceral fat accumulation even at normal BMI.
-
-Many NRI professionals log long hours at work. The compensatory logic is familiar: "I'm on my feet during commutes," or "I walk around the campus," or "housework keeps me active." This study says that logic is biologically flawed. The body processes leisure exercise through reward and motivation pathways that appear to confer unique health benefits that occupational movement does not replicate.
-
-Marco Galimberti, the study's first author and an associate research scientist at Yale, was direct: "This work not only shows the genetic differences associated with physical activity performed in different contexts but also highlights the significant health benefits of engaging in physical activity during leisure time."
-
-## What the Genetics Tell Us
-
-The study identified enrichment for dopaminergic neurons in leisure-time physical activity — the same reward circuitry involved in motivation, pleasure and habit formation. This suggests that the psychological experience of choosing to exercise, for enjoyment or self-improvement, may activate biological pathways that obligatory movement does not.
-
-The researchers also found that genetic variants associated with sedentary time during leisure were enriched in skeletal muscle genes whose expression changes with resistance training — indicating a direct biological link between leisure-time inactivity and muscular deconditioning.
-
-A phenome-wide association analysis across an independent sample confirmed negative correlations between leisure-time activity and diabetes, cardiovascular disease, lung cancer and asthma. The strongest association was with diabetes — the disease that disproportionately stalks the South Asian population.
-
-## The Practical Takeaway
-
-This is not a study that says your standing desk is useless or that walking to work has no value. General movement throughout the day reduces sedentary risk. But the data is clear that deliberate, chosen, leisure-time exercise — the kind you do because you want to, not because your job requires it — activates protective biological machinery that occupational activity does not.
-
-For South Asian Americans navigating genetically elevated cardiometabolic risk, the message is sharper than for the general population. The 30-minute evening run, the weekend cricket match, the gym session before the kids wake up — these are not lifestyle luxuries. They are, according to the largest genomic dataset ever assembled on the question, a biologically distinct category of movement with uniquely protective health effects.
-
-The study's Mendelian randomisation analysis also found a protective effect of leisure-time activity on phenotypic age acceleration and parental survival — meaning the benefits extend not just to disease prevention but to the rate at which the body ages.
-
-If you are a 35-year-old software engineer who walks 6,000 steps around the office but has not done a deliberate workout in months, this study says your step count is not doing what you think it is doing. The prescription is not more movement at work. It is dedicated, intentional exercise during your own time — and the genetics suggest your body knows the difference."""
-}
 
 # ============================================================
-# ARTICLE 3: AI Spending Fatigue Hits NRI Portfolios
+# INSERT ARTICLES
 # ============================================================
-article3 = {
-    "headline": "Enterprise AI Spending Is Showing Its First Cracks. If You Hold US Tech Stocks, Your Portfolio May Be More Exposed Than You Think.",
-    "subheadline": "GPU rental prices have fallen 40 per cent, Fortune 20 companies are tightening AI budgets, and NRI investors with heavy US tech exposure need to think about what comes next.",
-    "slug": "ai-enterprise-spending-fatigue-nri-portfolio-tech-stocks-rebalancing-20260531",
-    "category": "markets-finance",
-    "person_name": None,
-    "pexels_query": "stock market trading technology",
-    "pexels_fallback": "financial charts data analysis",
-    "source": "Barron's, NRI Globe, UBS, Goldman Sachs",
-    "source_urls": ["https://www.barrons.com/articles/ai-retirement-portfolio-rebalance", "https://nriglobe.com/ai-bubble-cracking-2026-nri-investor-guide-india-opportunity"],
-    "body": """The AI trade that powered the S&P 500's gains for the past two years is showing its first honest signs of fatigue. In the last 30 days, multiple Fortune 20 corporations have visibly tightened AI tool budgets as per-engineer token costs climb and demonstrable return on investment remains harder to pin down.
 
-For the global Indian diaspora — many of whom hold significant exposure to US tech giants through 401(k)s, individual brokerage accounts and global index funds — this shift demands attention rather than panic.
+print("\n=== Inserting articles ===\n")
 
-## The Warning Signs Are Concrete
+now = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
 
-GPU rental prices for Nvidia's H200 have fallen roughly 40 per cent, from about $7 per hour to $4 per hour, the clearest pricing signal yet that short-term demand is softening. When the hardware that powers AI becomes cheaper because fewer companies want to rent it, that is not a discount. It is a demand signal.
+articles = [
+    {
+        "id": art1_id,
+        "headline": art1_headline,
+        "subheadline": art1_subheadline,
+        "body": art1_body,
+        "slug": art1_slug,
+        "category": "lifestyle-health",
+        "status": "published",
+        "published_at": now,
+        "sources": art1_sources,
+        "image_url": img1_final,
+        "image_attribution": "Pexels" if img1_final else None,
+        "is_editorial": False,
+        "author": "The Videshi"
+    },
+    {
+        "id": art2_id,
+        "headline": art2_headline,
+        "subheadline": art2_subheadline,
+        "body": art2_body,
+        "slug": art2_slug,
+        "category": "markets-finance",
+        "status": "published",
+        "published_at": now,
+        "sources": art2_sources,
+        "image_url": img2_final,
+        "image_attribution": "Pexels" if img2_final else None,
+        "is_editorial": False,
+        "author": "The Videshi"
+    },
+    {
+        "id": art3_id,
+        "headline": art3_headline,
+        "subheadline": art3_subheadline,
+        "body": art3_body,
+        "slug": art3_slug,
+        "category": "lifestyle-health",
+        "status": "published",
+        "published_at": now,
+        "sources": art3_sources,
+        "image_url": img3_final,
+        "image_attribution": "Pexels" if img3_final else None,
+        "is_editorial": False
+    }
+]
 
-Several enterprise buyers — including Microsoft and Uber — have tightened AI tool spending in the last month as per-seat costs collide with unclear ROI. The pattern is familiar from past technology cycles: initial euphoria, heavy capital deployment, and then a reckoning when the accountants catch up with the engineers.
+for i, article in enumerate(articles, 1):
+    # Remove None values
+    article = {k: v for k, v in article.items() if v is not None}
+    
+    print(f"Inserting article {i}: {article['headline'][:60]}...")
+    result = insert_article(article)
+    try:
+        resp = json.loads(result)
+        if isinstance(resp, list) and len(resp) > 0:
+            print(f"  ✓ Inserted: {resp[0].get('id', 'unknown')}")
+        elif isinstance(resp, dict) and resp.get('message'):
+            print(f"  ✗ Error: {resp.get('message', 'unknown')}")
+        else:
+            print(f"  Response: {result[:200]}")
+    except Exception as e:
+        print(f"  ✗ Parse error: {e}")
+        print(f"  Raw: {result[:300]}")
 
-Alphabet's guidance of $175 to $185 billion in 2026 capital spending — nearly double the $91.4 billion spent in 2025 — initially spooked investors. The five hyperscalers are now spending 60 per cent of operating cash flow on capex, a record. Goldman Sachs estimates that AI investment will drive nearly half of S&P 500 earnings growth this year. The market's valuation assumes this influx will continue, but that is not a given.
-
-## Why NRI Portfolios Are Particularly Exposed
-
-The typical NRI investor portfolio in the US, Canada, UK and UAE is heavily tilted toward American technology. Microsoft, Nvidia, Google, Apple, Meta and Amazon are not just individual stock picks — they dominate the index funds that sit inside most 401(k)s and retirement accounts.
-
-Technology and communications stocks now account for more than 40 per cent of the S&P 500 index. If you own a broad US index fund — and most NRI investors do — you are carrying more concentrated AI exposure than you may realise.
-
-Angelo Kourkafas, senior global investment strategist at Edward Jones, warned in Barron's this week: "Concentration increases volatility, and that can be problematic for investors who are drawing income, including retirees."
-
-The issue is not that AI is a bad long-term bet. It is that the market has priced in a future where every dollar of AI capex generates returns — and the enterprise spending data suggests that assumption is being tested right now.
-
-## The India Countercyclical Opportunity
-
-While US enterprise AI spending shows signs of fatigue, India's AI build-out is moving in the opposite direction. The IndiaAI Mission, Microsoft's $17.5 billion India commitment, hyperscaler data centre construction across Hyderabad, Mumbai and Chennai, and projections of 2.3 million AI-related jobs by 2027 all point to a parallel growth lane that is still in early innings.
-
-For NRI investors, this creates a portfolio construction opportunity: adding India-AI exposure to balance pure-hype US concentration. This is not about exiting US tech. It is about recognising that the diaspora's natural home bias toward American equities has created an unintentional concentration risk at precisely the moment when enterprise buyers are starting to ask harder questions about AI returns.
-
-Gulf NRIs are already moving in this direction. A recent survey found that 73 per cent of GCC-based NRIs have boosted their Indian equity exposure, with many deploying fresh capital as a structural shift in wealth strategy.
-
-## What to Do Right Now
-
-**Check your actual tech exposure.** If you have not rebalanced your 401(k) or brokerage account in a while, your tech allocation may have drifted well above your target. A 60/40 portfolio from two years ago may now be 65/35 or 70/30 simply from tech appreciation.
-
-**Consider bonds at current yields.** The 10-year US Treasury yield is hovering near 4.5 per cent — an attractive entry point for investors rotating out of appreciated tech positions. Since selling can trigger capital-gains taxes, concentrate rebalancing in tax-deferred accounts where possible.
-
-**Look at India-focused funds.** Indian equities, despite a weak May for the Nifty, offer diversification away from the US-AI concentration. The RBI's monetary policy decision on June 5 may provide further direction on the investment climate.
-
-**Do not panic-sell.** Goldman Sachs forecasts that AI investment will still drive significant earnings growth. The companies building AI infrastructure have stronger financial positions than the dot-com-era telecoms that built fibre-optic networks in anticipation of demand that never came. Free cash flow margins for AI hyperscalers have averaged 15 per cent, compared to 3.5 per cent for 1990s telecoms.
-
-The message is not that the AI trade is over. It is that the easy money phase may be, and for NRI investors with concentrated US tech exposure, now is the time to ensure your portfolio reflects your actual risk tolerance — not just the last two years of momentum."""
-}
-
-# ============================================================
-# Publish all articles
-# ============================================================
-articles = [article1, article2, article3]
-
-for art in articles:
-    publish_article(art)
-
-print(f"\n{'='*60}")
-print(f"Writer run complete. Published {len(articles)} articles.")
-print(f"  - lifestyle-health: 2")
-print(f"  - markets-finance: 1")
+print("\n=== Done ===")
