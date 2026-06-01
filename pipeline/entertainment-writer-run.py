@@ -1,21 +1,33 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi - Run 2026-05-30 evening batch."""
+"""Entertainment writer — June 1, 2026 15:00 UTC run"""
 
-import json, os, re, sys, time, uuid, urllib.parse
+import json, os, sys, time, uuid, re, urllib.parse
 from datetime import datetime, timezone
 
 import requests
 
-# --- ENV ---
+# --- env ---
+ENV_FILE = os.path.expanduser("~/.env.supabase")
+PEXELS_ENV = os.path.expanduser("~/workspace/.env.pexels")
+
+def load_env(path):
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                k = k.replace("export ", "").strip()
+                v = v.strip().strip('"').strip("'")
+                os.environ[k] = v
+
+load_env(ENV_FILE)
+load_env(PEXELS_ENV)
+
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = None
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-if os.path.exists(pexels_env):
-    with open(pexels_env) as f:
-        for line in f:
-            if line.startswith("PEXELS_API_KEY="):
-                PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
     "apikey": SUPABASE_KEY,
@@ -24,7 +36,23 @@ HEADERS = {
     "Prefer": "return=representation",
 }
 
-# --- IMAGE FUNCTIONS ---
+# --- helpers ---
+
+def sb_insert(table, payload):
+    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=payload, timeout=30)
+    if r.status_code not in (200, 201):
+        print(f"  ✗ INSERT {table} failed ({r.status_code}): {r.text[:300]}")
+        return None
+    data = r.json()
+    return data[0] if isinstance(data, list) and data else data
+
+def sb_patch(table, match, payload):
+    params = "&".join(f"{k}={v}" for k, v in match.items())
+    r = requests.patch(f"{SUPABASE_URL}/rest/v1/{table}?{params}", headers=HEADERS, json=payload, timeout=30)
+    if r.status_code not in (200, 204):
+        print(f"  ✗ PATCH {table} failed ({r.status_code}): {r.text[:300]}")
+    return r
+
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -44,347 +72,326 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch from Pexels using curl (Python urllib gets 403)."""
+    """Fetch an image from Pexels API using curl (urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
-    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
-        cmd = [
-            "curl", "-sS",
-            f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3",
-            "-H", f"Authorization: {PEXELS_KEY}"
-        ]
         try:
+            import subprocess
+            cmd = [
+                "curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+                f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape"
+            ]
             result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
-            if result.returncode == 0:
-                data = json.loads(result.stdout)
-                photos = data.get("photos", [])
-                if photos:
-                    url = photos[0].get("src", {}).get("large2x") or photos[0].get("src", {}).get("original")
-                    if url:
-                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                        return url
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            for photo in photos:
+                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("original")
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+
+def upload_to_supabase_storage(image_url, filename, bucket="article-images"):
+    """Download image and upload to Supabase storage. Returns public URL or None."""
+    try:
+        r = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=20)
+        if r.status_code != 200:
+            print(f"  ✗ Download failed ({r.status_code}): {image_url[:80]}")
+            return None
+        content_type = r.headers.get("Content-Type", "image/jpeg")
+        if "image" not in content_type:
+            print(f"  ✗ Not an image ({content_type}): {image_url[:80]}")
+            return None
+        if len(r.content) < 5000:
+            print(f"  ✗ Image too small ({len(r.content)} bytes): {image_url[:80]}")
+            return None
+
+        upload_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": content_type,
+            "x-upsert": "true",
+        }
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/{bucket}/{filename}"
+        up = requests.post(upload_url, headers=upload_headers, data=r.content, timeout=30)
+        if up.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/{bucket}/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ✗ Upload failed ({up.status_code}): {up.text[:200]}")
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
+    return None
+
+
 def validate_image_url(url):
-    """Check that URL returns a real image > 5KB."""
+    """Validate image URL returns 200 with image content-type and decent size."""
     if not url:
         return False
-    # Check for banned sources
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
-    for b in banned:
-        if b in url:
-            print(f"  ✗ Banned source detected: {b}")
-            return False
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True, headers={"User-Agent": "TheVideshi/1.0"})
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, allow_redirects=True)
         ct = r.headers.get("Content-Type", "")
         cl = int(r.headers.get("Content-Length", 0))
         if r.status_code == 200 and "image" in ct and cl > 5000:
-            print(f"  ✓ Image validated: {cl} bytes, {ct}")
             return True
-        # Try GET if HEAD didn't return content-length
-        if r.status_code == 200 and "image" in ct and cl == 0:
-            r2 = requests.get(url, timeout=10, stream=True, headers={"User-Agent": "TheVideshi/1.0"})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                print(f"  ✓ Image validated via GET: {len(chunk)}+ bytes")
+        # Some servers don't support HEAD, try GET with range
+        if r.status_code in (200, 405, 403):
+            r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)", "Range": "bytes=0-1000"}, timeout=10)
+            if r2.status_code in (200, 206):
                 return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
-    except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
+    except:
+        pass
     return False
 
-def sb_insert(table, data):
-    """Insert into Supabase."""
-    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 201):
-        result = r.json()
-        print(f"  ✓ Inserted into {table}")
-        return result[0] if isinstance(result, list) and result else result
-    else:
-        print(f"  ✗ Insert failed: {r.status_code} {r.text[:200]}")
-        return None
 
-def sb_patch(table, match, data):
-    """Update in Supabase."""
-    params = "&".join(f"{k}={v}" for k, v in match.items())
-    r = requests.patch(f"{SUPABASE_URL}/rest/v1/{table}?{params}", headers=HEADERS, json=data, timeout=30)
-    if r.status_code in (200, 204):
-        print(f"  ✓ Patched {table}")
-    else:
-        print(f"  ✗ Patch failed: {r.status_code} {r.text[:200]}")
+# --- Articles ---
 
-# --- ARTICLES ---
-articles = []
+ARTICLES = []
 
-# ---- ARTICLE 1: Bhooth Bangla Netflix OTT Release ----
-articles.append({
-    "headline": "Bhooth Bangla Hits Netflix on June 12. Akshay Kumar and Priyadarshan's ₹264 Crore Horror-Comedy Comes Home.",
-    "subheadline": "After a 43-day theatrical run and a worldwide gross of ₹264 crore, the Hera Pheri duo's reunion is finally heading to your living room. Here's what the diaspora needs to know.",
-    "slug": "bhooth-bangla-netflix-ott-release-june-12-akshay-kumar-priyadarshan-nri-20260530",
+# ============================================================
+# Article 1: Zee Entertainment bags FIFA World Cup 2026 rights
+# ============================================================
+ARTICLES.append({
+    "headline": "Zee Just Grabbed the FIFA World Cup. Indian Fans Had 10 Days to Spare.",
+    "subheadline": "After months of standoff and a slashed asking price, Zee Entertainment secured broadcast and streaming rights for the 2026 World Cup and 38 other FIFA events through 2034. NRI fans across the US, Canada, and Mexico can breathe.",
+    "slug": "zee-entertainment-fifa-world-cup-2026-broadcast-india-nri-20260601",
     "category": "entertainment",
-    "body": """Bhooth Bangla, the horror-comedy that reunited Akshay Kumar and director Priyadarshan after 16 years, is officially heading to Netflix on June 12, 2026. For millions of Indian diaspora viewers who missed the film's theatrical run, this is the moment they've been waiting for.
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "Inc42", "url": "https://inc42.com"},
+        {"name": "The Hindu BusinessLine", "url": "https://www.thehindubusinessline.com"},
+        {"name": "afaqs!", "url": "https://www.afaqs.com"}
+    ]),
+    "image_search_person": None,
+    "image_search_pexels": "FIFA World Cup football stadium",
+    "image_search_pexels_fallback": "football soccer world cup fans",
+    "body": """The months-long stalemate is over. Zee Entertainment announced on Monday that it has secured the broadcast and digital streaming rights for the 2026 FIFA World Cup, along with 38 other FIFA events spanning eight years through 2034. The deal includes the 2030 World Cup and the 2027 FIFA Women's World Cup — and it was closed with just 10 days to spare before the tournament kicks off on June 11.
 
-## The Numbers Tell the Story
+## A Standoff That Went Down to the Wire
 
-The film has been one of Bollywood's most commercially successful releases of 2026. After opening in theaters on April 17, Bhooth Bangla has grossed approximately ₹264 crore worldwide across its 43-day run, making it one of Akshay Kumar's strongest box office performances in recent years. It's a certified hit by every metric that matters.
+FIFA had initially sought roughly $100 million from the Indian market for a package covering the 2026 and 2030 World Cups. When that price tag found no takers, it was slashed to $60 million, according to Reuters. India's dominant sports broadcaster JioStar — the Reliance-Disney joint venture that aired the 2022 World Cup through its predecessor Viacom18 — offered about $20 million and was turned away. Sony, which held rights for the 2014 and 2018 tournaments, discussed terms but never formally bid.
 
-What makes the financial story even more interesting is the risk management. Before a single ticket was sold, the producers had already recovered ₹105 crore of their estimated ₹120 crore budget through non-theatrical deals alone. Netflix paid ₹60 crore for digital rights, Zee Cinema secured satellite rights for ₹25 crore, and Zee Music Company acquired the music rights for ₹10 crore. By the time audiences showed up, the film was already in profit on paper.
+The final deal landed somewhere between $25 million and $80 million, per The Hindu BusinessLine, though exact financial terms remain undisclosed. For context, this was one of the last major global markets without a confirmed broadcaster for the biggest sporting event on the planet.
 
-## Why the Diaspora Should Care
+## Where NRI Fans Will Watch
 
-This isn't just another Akshay Kumar comedy. This is a reunion of the partnership that gave Indian cinema Hera Pheri, Garam Masala, Bhool Bhulaiyaa, and Bhagam Bhag — films that remain comfort-watch staples in every NRI household from New Jersey to New South Wales. Priyadarshan's brand of comedy, rooted in South Indian storytelling traditions but executed with Bollywood's big-screen energy, has always traveled exceptionally well with diaspora audiences.
+Zee will broadcast the World Cup through its newly launched Unite8 Sports network — a four-channel lineup comprising Unite8 Sports 1, Unite8 Sports 1 HD, Unite8 Sports 2, and Unite8 Sports 2 HD. Streaming will be available on ZEE5 with multilingual viewing options.
 
-The film follows a vengeful spirit targeting newly married brides due to a tragic past, blending supernatural elements with the kind of physical comedy and ensemble chaos that Priyadarshan does better than anyone in the business. It's spooky enough to keep you engaged, funny enough to keep it light, and just chaotic enough to feel like a Priyadarshan film.
+For the Indian diaspora in the US, Canada, and Mexico — the three host countries for this year's tournament — the timing couldn't be more relevant. Many NRI football fans had been scrambling for clarity on how to watch the tournament from India-facing platforms, especially those who prefer Hindi or regional-language commentary alongside the action.
 
-## The Reunion Factor
+## More Than Just One Summer
 
-The last time Kumar and Priyadarshan collaborated was in 2010, and in the intervening 16 years, both have navigated very different career arcs. Kumar cycled through action dramas, social message films, and historical epics with varying success. Priyadarshan largely retreated to Malayalam cinema, where he continued making acclaimed work. Their coming back together felt like an event, and the box office responded accordingly.
+The deal isn't a one-off. Beyond the 2026 and 2030 men's World Cups, Zee's package includes FIFA Men's and Women's U-17 World Cups (2026-2034), U-20 World Cups for both genders, FIFA Futsal World Cups, the FIFA Intercontinental Cup (2026-2030), and exclusive docu-series content tied to these tournaments.
 
-## What to Expect on Netflix
+"Football cuts across regions and demographics," said Zee CEO Punit Goenka. "Our partnership with FIFA will enable us to unlock the true value of the sport."
 
-The film runs at a tight 2 hours 15 minutes and features a supporting cast that includes Paresh Rawal, Rajpal Yadav, and Tabu — essentially a greatest-hits assembly of Bollywood's comedy talent. For NRI families looking for a movie night that the whole family can enjoy without anyone reaching for the remote, this is the safest bet on Netflix this month.
+## What This Means for the Indian Media Landscape
 
-The June 12 premiere aligns with the standard 45-to-60-day theatrical-to-OTT window that Bollywood has settled into. For diaspora viewers in the US, UK, and Canada, the timing is convenient — a weeknight drop that sets up perfectly for weekend viewing.
+Zee's move marks a strategic pivot. The company has been rebuilding after the collapsed merger with Sony, and securing a prestige global sporting property signals ambition. The Unite8 Sports brand is entirely new — a dedicated sports vertical that didn't exist until this deal was announced.
 
-Mark your calendars. The duo is back, and this time they're coming directly to your couch.""",
-    "sources": ["Sacnilk", "Bollywood Hungama", "Netflix"],
-    "image_person": "Akshay Kumar",
-})
+For JioStar, the dominant force in Indian sports broadcasting with IPL, Olympics, and cricket rights, this is a rare miss. It also reshapes the competitive dynamics: Zee now has a year-round football content pipeline that could pull younger, urban, sports-hungry viewers toward its ecosystem.
 
-# ---- ARTICLE 2: Deool Band 2 Marathi Records ----
-articles.append({
-    "headline": "Deool Band 2 Just Surpassed Sairat's First-Week Record. Marathi Cinema Is Having the Year of Its Life.",
-    "subheadline": "With ₹25.85 crore in its first week, the devotional drama is now the second-highest first-week Marathi grosser ever. Here's why this matters beyond Maharashtra.",
-    "slug": "deool-band-2-marathi-box-office-sairat-record-golden-year-nri-20260530",
-    "category": "entertainment",
-    "body": """Something remarkable is happening in Marathi cinema, and the numbers for Deool Band 2 just confirmed it. The devotional drama has earned ₹25.85 crore net in its first seven days, surpassing Sairat's opening-week collection of ₹25.50 crore and becoming the second-highest first-week grosser in Marathi cinema history. Only Raja Shivaji, with ₹36.25 crore, sits above it.
-
-## Three Blockbusters in One Month
-
-What makes 2026 extraordinary for Marathi cinema isn't just Deool Band 2. It's the fact that this is the third major hit in the same month. First came Krantijyoti Vidyalay Marathi Madhyam, which connected with audiences on a cultural level. Then Raja Shivaji broke all existing records. Now Deool Band 2 has settled in right behind it, proving that the first two weren't flukes.
-
-The May 2026 box office report tells a story that would have seemed improbable even two years ago: regional cinema is dominating Bollywood at the national box office. While Hindi films have struggled to find consistent audiences — with the exception of the Dhurandhar franchise and Bhooth Bangla — Marathi, Tamil, and Malayalam industries are delivering hit after hit.
-
-## The Numbers in Detail
-
-Deool Band 2 opened on a Thursday with ₹2.45 crore, making it the second-biggest opening day for a Marathi film. What happened next was textbook word-of-mouth growth. Friday stayed steady at ₹2.55 crore. Saturday jumped to ₹4.85 crore. Sunday surged to ₹5.90 crore — a 21.6 percent increase from Saturday. And here's the really impressive part: on its first Wednesday (Day 7), the film held completely flat at ₹3.35 crore, matching the previous day exactly.
-
-Holding flat on a weekday isn't normal. Films drop. That's what they do. When a film holds or grows on a Tuesday or Wednesday, it signals that the audience isn't just showing up — they're telling other people to show up.
-
-The national chains tell the same story. BookMyShow advance sales crossed 25,000 before release. By Sunday, PVR, INOX, and Cinepolis combined were selling over 38,000 tickets per day. MovieMax locations were selling out within four hours of opening.
-
-## Why This Matters for the Diaspora
-
-For the Marathi-speaking diaspora — and there are significant communities in the US (particularly New Jersey, the Bay Area, and the Chicago suburbs), the UK, and Australia — this is more than box office news. Marathi cinema has historically been overshadowed by Hindi and South Indian industries in the global conversation. The fact that three films in a single month have delivered these numbers suggests a structural shift, not a seasonal spike.
-
-Deool Band 2 carries a devotional theme that resonates deeply with cultural identity. Pune continues to be the primary driver, recording 45.5 percent occupancy on its seventh day — extraordinary for any film in any language. Mumbai contributed 33.3 percent occupancy across 624 shows. These are blockbuster-level holds.
-
-## The Bigger Picture
-
-May 2026's top five Indian films by worldwide gross tell a story of regional dominance: Karuppu (Tamil, ₹253 crore), Drishyam 3 (Malayalam, ₹170 crore), Raja Shivaji (Marathi, ₹114 crore), Athiradi (Malayalam, ₹63 crore), and Pati Patni Aur Woh Do (Hindi, ₹54 crore). Only one Hindi film cracks the top five, and it's in last place.
-
-For years, the narrative was that Bollywood was Indian cinema. That narrative is over. Regional industries are now the growth engine, and Marathi cinema — long considered a niche market — is proving it belongs in the conversation with Tamil, Telugu, and Malayalam as a genuine commercial force.
-
-Deool Band 2 isn't just a hit. It's evidence of a transformation.""",
-    "sources": ["Sacnilk", "BookMyShow"],
-    "image_search": ["Marathi cinema theater Pune", "Indian movie theater audience"],
-})
-
-# ---- ARTICLE 3: Jackie Shroff Great Grand Superhero ----
-articles.append({
-    "headline": "Jackie Shroff Just Made a Film Where His Grandson Tells Everyone He's a Superhero. It's the Most Heartfelt Hindi Film This Year.",
-    "subheadline": "The Great Grand Superhero opened to ₹25 lakh and a 3.5-star Filmfare review. The box office doesn't care, but it should.",
-    "slug": "jackie-shroff-great-grand-superhero-review-heartfelt-childrens-film-nri-20260530",
-    "category": "entertainment",
-    "body": """The Great Grand Superhero opened in Indian theaters on May 29 to near-empty halls and a day-one collection of ₹25 lakh — a number so small it barely registers on the same chart as the films it's competing against. By day two, the total was still under ₹1 crore. By every commercial metric, this film is invisible.
-
-But here's the thing: it might also be the most genuinely good-hearted Hindi film released in 2026.
-
-## What the Film Is Actually About
-
-Directed by Manish Saini, the film stars Jackie Shroff as Jagdishchandra — known as Dadaji or Dadu — a creaky grandfather who grows plants and is terrified of lizards. His grandson Deepu, played by a pitch-perfect Mihir Godbole, is the new kid at school. Again. His father's job requires constant transfers, and every few months, Deepu finds himself in a new classroom full of strangers who don't know him and don't want to.
-
-So Deepu does what kids do. He tells a lie. He tells his classmate Laddu that his grandfather is secretly a superhero.
-
-The lie spreads. The kids want to meet Dadu. Deepu and his grandfather start playing along, creating an elaborate mythology. The first half, according to The Hollywood Reporter India, is "funny, poignant, satirical and very inventive" — drawing comparisons to Stanley Ka Dabba, the 2011 film that remains one of Indian cinema's best children's stories.
-
-Then the actual aliens show up. Because of course they do.
-
-## The Reviews Are Kind
-
-Filmfare gave it 3.5 out of 5, calling it "not the most polished product, but this cute and warm film has all the right lessons." The Hollywood Reporter India praised its charming setup and child performances. Bollywood Hungama called it "a well-intentioned, rare children's film from Bollywood, driven by a novel plot and endearing performances." Audience reactions on social media have been emphatic — 4 out of 5 ratings, words like "comfort movie" and "a superhero story with heart."
-
-The consensus is clear: this is a good film that the market decided not to show up for.
-
-## Why This Matters
-
-Bollywood doesn't make children's films. Not really. The industry makes superhero films for adults, family films that are actually comedies for parents, and animated imports from Hollywood. A genuine, original, live-action children's film — one that takes childhood imagination seriously and treats its young protagonist with respect — is vanishingly rare. The last widely praised example was Chillar Party in 2011. Before that, Taare Zameen Par in 2007.
-
-The Great Grand Superhero sits in that tradition. It's a film about a kid who uses storytelling to survive loneliness, and a grandfather who loves him enough to play along. Jackie Shroff, at this point in his career, brings a worn-in warmth to the role that a younger actor couldn't replicate. He's not performing grandfatherhood — he's inhabiting it.
-
-## The Diaspora Angle
-
-For NRI families with children growing up between cultures, this film touches something specific. The experience of being the new kid — of showing up in a place where nobody knows your name and inventing a version of yourself to survive — isn't just a plot device. It's a lived reality for millions of diaspora kids who navigate different worlds every day.
-
-The Great Grand Superhero might not make money. But if you have kids between 6 and 14, and you're looking for a Hindi film that doesn't rely on crude humor or manufactured emotion, this is the one.
-
-Catch it in theaters before it's gone. Which, at this rate, might be next week.""",
-    "sources": ["Filmfare", "The Hollywood Reporter India", "Bollywood Hungama", "Sacnilk"],
-    "image_person": "Jackie Shroff",
-})
-
-# ---- ARTICLE 4: Kiara Advani on Toxic ----
-articles.append({
-    "headline": "Kiara Advani Learned Kannada Overnight to Shoot Toxic. She Wasn't Allowed to Say 'Hi' on Set.",
-    "subheadline": "Yash's first film since KGF: Chapter 2 was shot entirely in English and Kannada. Kiara's character Nadia may redefine how Bollywood sees its female leads.",
-    "slug": "kiara-advani-toxic-kannada-english-nadia-yash-geetu-mohandas-nri-20260530",
-    "category": "entertainment",
-    "body": """Kiara Advani has always been the warm one. She's the actor who walks on set saying "hi" to everyone, who greets the crew by name, who carries a sunny disposition that's become part of her professional identity. On the set of Toxic: A Fairy Tale for Grown-Ups, director Geetu Mohandas told her to stop.
-
-"Geetu is like, okay, tomorrow when you come on set, I want you to be… I'm a person who walks on set always like, 'Hi, what's up, good morning.' And she's like, 'I don't want pleasantries, I want you to come in that zone, no hi hello, not your team, nobody, just be in a zone today,'" Kiara told Bombay Times in an interview published this week.
-
-## A Film Shot in Two Languages Simultaneously
-
-Toxic, directed by Geetu Mohandas and starring Yash in his first role since KGF: Chapter 2, was filmed in both English and Kannada — simultaneously. Every scene was shot twice: once in English, once in Kannada. For Kiara, who doesn't speak Kannada, this meant learning her lines by rote the night before each shoot day.
-
-"I have been mugging up my dialogues literally. Sometimes, they would come with the lines the night before shoot," she said. "It is work; it is homework for sure." She compared it to her school days — she was, by her own admission, "that frontbencher in class" who memorized everything.
-
-The dual-language approach is unusual in Indian cinema. Most multilingual releases are dubbed in post-production. Shooting natively in two languages raises the performance bar considerably — the emotional beats, the rhythm, the intonation all have to work independently in each language. It's a choice that signals Mohandas's ambition for the film to feel authentic in both its Kannada and English versions.
-
-## Nadia: The Character That Changed Her Perspective
-
-Kiara plays a character named Nadia, and she's clearly been affected by the role. "Toxic completely changes the way you see the dynamics between men and women," she said. "Even for me, when Geetu narrated the script, it took a while for me to understand that okay, this is also normal, even though it may be grey and not conventional. But there's a certain liberation in love."
-
-She went further: "When Nadia was narrated to me, I was like 'wow,' I wish I was capable of being so detached and liberated in my own thoughts."
-
-These are striking words from an actor whose filmography — Kabir Singh, Shershaah, Satyaprem Ki Katha — has largely placed her in conventional romantic roles. The suggestion that Nadia operates in morally gray territory, that she's "detached" and "liberated" in ways that challenge traditional relationship dynamics, hints at a very different kind of character than Kiara has played before.
-
-## The Geetu Mohandas Factor
-
-Mohandas is one of Indian cinema's most respected independent filmmakers, known for Liar's Dice (India's Oscar entry in 2015) and the critically acclaimed Moothon. She's also a founding member of the Women in Cinema Collective, which advocates for gender equality in the Malayalam film industry.
-
-Her involvement in Toxic is what makes the film genuinely unpredictable. A KGF-scale action film directed by an art-house feminist filmmaker — it's a combination that shouldn't work on paper, but the early reactions from CinemaCon suggest it does. A nine-minute preview left international trade attendees "speechless," according to reports.
-
-## What the Diaspora Should Watch For
-
-Toxic features a stacked cast: Yash, Kiara Advani, Nayanthara, Huma Qureshi, Tara Sutaria, and Rukmini Vasanth. The film is set between the 1940s and 1970s, described as "a fairy tale for grown-ups" with a period-action aesthetic. Music by Ravi Basrur (KGF). Action choreography by JJ Perry and the Anbariv duo.
-
-The release date remains in flux — it was originally set for June 4, then postponed as the makers recalibrated their global distribution strategy after the overwhelmingly positive CinemaCon response. An Independence Day (August 15) window is now being discussed.
-
-For diaspora audiences who watched KGF: Chapter 2 turn into a cultural phenomenon in overseas markets, Toxic carries enormous expectations. The difference this time: the filmmaker behind it isn't making a mass entertainer. She's making something that, by Kiara's own admission, requires you to sit with its discomfort before you understand it.
-
-That's either going to be a problem or a masterpiece. There's rarely an in-between.""",
-    "sources": ["Bombay Times", "Bollywood Hungama", "Pinkvilla", "Cinema Express"],
-    "image_person": "Kiara Advani",
+For the millions of Indian football fans — and the growing diaspora community that follows the sport passionately — the uncertainty is finally over. The World Cup will be on Indian screens. And this time, Zee is the one holding the remote."""
 })
 
 
-# --- MAIN EXECUTION ---
-def main():
-    published_count = 0
-    for i, art in enumerate(articles, 1):
-        print(f"\n{'='*60}")
-        print(f"ARTICLE {i}: {art['headline'][:70]}...")
-        print(f"{'='*60}")
+# ============================================================
+# Article 2: Maa Behen — Netflix June 4
+# ============================================================
+ARTICLES.append({
+    "headline": "Madhuri Dixit Hides a Dead Body in Her Kitchen in Maa Behen. Netflix Drops It Wednesday.",
+    "subheadline": "Suresh Triveni's crime-comedy pairs Madhuri with Gen-Z star Triptii Dimri as a dysfunctional mother-daughter trio navigating chaos, nosy neighbours, and a very inconvenient corpse. It streams globally on June 4.",
+    "slug": "maa-behen-madhuri-dixit-triptii-dimri-netflix-june-4-nri-20260601",
+    "category": "entertainment",
+    "sources": json.dumps([
+        {"name": "Filmfare", "url": "https://www.filmfare.com"},
+        {"name": "Bollywood Life", "url": "https://www.bollywoodlife.com"},
+        {"name": "IANS", "url": "https://ianslive.in"},
+        {"name": "Bollywood Bubble", "url": "https://www.bollywoodbubble.com"}
+    ]),
+    "image_search_person": "Madhuri Dixit",
+    "image_search_pexels": None,
+    "image_search_pexels_fallback": None,
+    "body": """There's a dead body in the kitchen, nosy neighbours circling, and a mother-daughter trio that can barely agree on what to have for dinner. That's the setup for Maa Behen, the Netflix crime-comedy dropping globally on June 4, and it might be the most unexpectedly fun Hindi film to land on OTT this month.
 
-        # Image sourcing
-        img_url = None
-        img_attribution = None
+## The Setup
 
-        if art.get("image_person"):
-            print(f"  Sourcing Wikipedia image for: {art['image_person']}")
-            img_url = fetch_wikipedia_person_image(art["image_person"])
-            if img_url:
-                img_attribution = "Wikimedia Commons"
+Directed by Suresh Triveni — who earned critical praise for Tumhari Sulu and Jalsa — Maa Behen follows Rekha (Madhuri Dixit), a mother already juggling more than enough when life throws her the ultimate curveball: a corpse in her kitchen. Her two daughters couldn't be more different — Jaya (Triptii Dimri), the responsible one, and Sushma (Dharna Durga), the wild card. Together, this dysfunctional trio must think fast, lie faster, and somehow keep the truth from spilling out.
 
-        if not img_url and art.get("image_search"):
-            for q in art["image_search"]:
-                print(f"  Trying Pexels for: {q}")
-                img_url = fetch_pexels_image(q)
-                if img_url:
-                    img_attribution = "Pexels"
-                    break
+It's black comedy meets family drama, set in a neighbourhood that feels like every middle-class colony in India — where everyone knows everyone's business, and secrets have a shelf life of approximately thirty minutes.
 
-        # Validate
-        if img_url and not validate_image_url(img_url):
-            print(f"  ⚠ Image failed validation, skipping image")
-            img_url = None
-            img_attribution = None
+## Why It Matters
 
-        # Insert article
-        now = datetime.now(timezone.utc).isoformat()
-        article_id = str(uuid.uuid4())
-        
-        # Create topic first
-        topic_id = str(uuid.uuid4())
-        topic_data = {
-            "id": topic_id,
-            "canonical_title": art["headline"][:200],
-            "vertical": "culture",
-            "urgency": "daily",
-            "score_diaspora": 70,
-            "score_significance": 65,
-            "score_recency": 80,
-            "score_source_avail": 75,
-            "score_total": 72,
-            "signal_count": 1,
-            "status": "published",
-            "keywords": [],
-            "category": art["category"],
-            "created_at": now,
-            "updated_at": now,
-        }
-        topic_result = sb_insert("p2_topics", topic_data)
-        if not topic_result:
-            print(f"  ✗ Failed to create topic, skipping article")
-            continue
+The casting alone makes this worth watching. Madhuri Dixit, who last appeared alongside Triptii Dimri in Bhool Bhulaiyaa 3, is fully leaning into her post-comeback phase with projects that feel more adventurous than safe. Playing a harried mother navigating moral grey areas is a far cry from the song-and-dance routines that defined her '90s peak — and that's exactly what makes it interesting.
 
-        # Calculate word count
-        word_count = len(art["body"].split())
+Then there's Triptii Dimri, who has quietly become one of the most bankable names in Hindi cinema. After Animal's breakout success, she's been selective about her choices, and a Suresh Triveni film feels like a smart bet for maintaining critical credibility alongside commercial appeal.
 
-        insert_data = {
-            "id": article_id,
-            "topic_id": topic_id,
-            "headline": art["headline"],
-            "subheadline": art["subheadline"],
-            "slug": art["slug"],
-            "category": art["category"],
-            "body": art["body"],
-            "diaspora_angle": "Diaspora-relevant coverage of Indian entertainment industry developments.",
-            "vertical": "culture",
-            "tags": [],
-            "urgency": "daily",
-            "sources": json.dumps(art["sources"]) if isinstance(art["sources"], list) else art["sources"],
-            "word_count": word_count,
-            "status": "published",
-            "is_featured": False,
-            "published_at": now,
-            "created_at": now,
-            "image_url": img_url,
-            "image_attribution": img_attribution,
-            "score_total": 0,
-        }
+The supporting cast adds weight: Ravi Kishan brings his small-town comic timing, Geetanjali Kulkarni (who was terrific in Gullak) handles the neighbour dynamics, and Arunoday Singh adds an edge that the trailer hints will be significant.
 
-        result = sb_insert("p2_articles", insert_data)
-        if result:
-            published_count += 1
-            print(f"  ✓ Published: {art['slug']}")
-        else:
-            print(f"  ✗ FAILED to publish: {art['slug']}")
+## The NRI Angle
 
-        time.sleep(1)  # Brief pause between inserts
+For diaspora audiences, this is straightforward: it's on Netflix, it drops globally on June 4, and it's the kind of film you can watch with family without needing to explain the cultural context. The setting is distinctly Indian, the humour is rooted in recognizable middle-class anxieties — property disputes, social reputation, keeping up appearances — and the performances promise to carry the premise past its genre-film foundation.
 
+During promotions in Gurugram last week, the cast arrived on a decorated rickshaw to a packed mall, complete with flash mobs and the now-viral "Roti Challenge" that's been circulating on Instagram. When asked who'd cause the most chaos if Maa Behen were set in Delhi instead of Bhopal, Madhuri immediately pointed to her co-stars: "They're from here. I don't know much about Delhi."
+
+## What to Expect
+
+Suresh Triveni has a track record of making films that are smarter than their trailers suggest. Tumhari Sulu looked like a simple feel-good comedy but was actually a sharp commentary on ambition and domesticity. Jalsa, also on Prime Video, dealt with class and privilege through a thriller framework. If Maa Behen follows this pattern, the dead-body premise is likely just the entry point for something more layered about family loyalty, moral compromise, and who gets to define right and wrong.
+
+The film is produced by Abundantia Entertainment in association with Opening Image Films. Runtime details haven't been confirmed, but expect a tight sub-two-hour package — Triveni doesn't waste screen time."""
+})
+
+
+# ============================================================
+# Article 3: Bandar — Bobby Deol + Anurag Kashyap
+# ============================================================
+ARTICLES.append({
+    "headline": "Bobby Deol Plays a Fading Star Accused of Rape in Anurag Kashyap's Bandar. It Premiered at TIFF. It Releases Friday.",
+    "subheadline": "Written by the Paatal Lok team, this crime drama explores false allegations, prison survival, and a broken justice system. Bobby Deol's transformation continues with his most demanding role yet.",
+    "slug": "bandar-bobby-deol-anurag-kashyap-tiff-release-june-5-nri-20260601",
+    "category": "entertainment",
+    "sources": json.dumps([
+        {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Bandar_(film)"},
+        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+        {"name": "Zoom TV", "url": "https://www.zoomtventertainment.com"},
+        {"name": "Cinema Express", "url": "https://www.cinemaexpress.com"}
+    ]),
+    "image_search_person": "Bobby Deol",
+    "image_search_pexels": None,
+    "image_search_pexels_fallback": None,
+    "body": """Bobby Deol plays a once-famous television star. His ex-girlfriend accuses him of rape. His career implodes. He lands in prison. And the system he trusted to deliver justice turns out to be as broken as his public image. That's Bandar — Anurag Kashyap's crime drama that premiered at the Toronto International Film Festival last September and finally hits Indian theatres on June 5.
+
+## The Film
+
+Bandar — subtitled "Monkey In A Cage" for international audiences — follows Samar Mehra, an aging TV star whose life collapses after serious allegations surface following a breakup. Proclaimed innocence doesn't count for much when the court of public opinion has already rendered its verdict. The film tracks what happens after the headlines: the prison system, the corruption inside it, the violence, and the question of whether truth can survive when everyone has already picked a side.
+
+The script comes from Sudip Sharma and Abhishek Banerjee — the writers behind Paatal Lok, Kohra, and Udta Punjab. That pedigree matters. These are storytellers who don't simplify moral complexity for audience comfort, and Bandar apparently follows that tradition. The film is reportedly inspired by real events, though specific details about which case have been kept deliberately vague.
+
+## Bobby Deol's Reinvention
+
+Three years ago, if you'd told anyone that Bobby Deol would be headlining an Anurag Kashyap film that premiered at TIFF, you'd have been laughed out of the room. But that's exactly where we are. After Animal gave him a career-defining villain turn, Bobby has systematically dismantled the rom-com hero image that defined — and limited — his career for two decades.
+
+For Bandar, he shot in actual prison conditions. Producer Nikhil Dwivedi revealed that during filming, Bobby "had someone's foot on his cheek, sometimes on his stomach." It's the kind of physical commitment that suggests this isn't just acting — it's transformation.
+
+Bobby himself has spoken about how his sisters shaped his understanding of the film's themes. "I have grown up in an environment where I have seen this myself," he said recently. "I have sisters and I used to always worry. We have grown up in a very male chauvinist kind of a world." The honesty cuts through the standard promotional noise.
+
+## The Controversy
+
+Bandar has already sparked debate before anyone outside TIFF has seen it. The premise — a man accused of sexual assault who maintains his innocence — inevitably draws scrutiny in the post-MeToo landscape. Producer Nikhil Dwivedi has been direct: "This is not an anti-women film. It's a pro-justice film. Nobody is saying please don't believe women when they have been wronged. We want to believe in justice more than we want to believe a particular gender."
+
+It's a tightrope statement, and the film will be judged on whether it walks it convincingly or falls into victimhood narratives. Given Kashyap's track record of uncomfortable, morally grey storytelling — Gangs of Wasseypur, Ugly, Raman Raghav 2.0 — the bet is that Bandar won't offer easy answers.
+
+## The Cast
+
+Beyond Bobby, the ensemble is stacked: Sanya Malhotra, Sapna Pabbi, and Saba Azad handle key roles. Indrajith Sukumaran (Malayalam cinema's quietly brilliant presence) and Raj B. Shetty (Karnataka's indie darling) add cross-industry heft. Jitendra Joshi rounds out the cast. First-time actor Agu Stanley Chiedozie — a Nigerian content creator who moved to India seven years ago and learned fluent Hindi — makes his Bollywood debut, calling it "a full-circle moment."
+
+## The NRI Factor
+
+Two things make Bandar relevant for diaspora audiences. First, it premiered at TIFF — a festival that NRI film communities in Toronto follow closely. The buzz from that screening has been circulating in diaspora film circles for months. Second, the themes are universal: power, accusation, justice, and what happens when a system designed to protect people fails them. These conversations don't respect borders.
+
+Distributed by Zee Studios, Bandar releases worldwide on June 5. Runtime is 140 minutes. The film is in Hindi, Marathi, and English."""
+})
+
+
+# --- Main execution ---
+
+def process_article(article):
+    art_id = str(uuid.uuid4())
+    slug = article["slug"]
     print(f"\n{'='*60}")
-    print(f"DONE: Published {published_count}/{len(articles)} articles")
-    print(f"{'='*60}")
+    print(f"Processing: {article['headline'][:60]}...")
+    print(f"  Slug: {slug}")
+    
+    # Image sourcing
+    image_url = None
+    image_attribution = None
+    
+    # 1. Try Wikipedia for person articles
+    if article.get("image_search_person"):
+        person = article["image_search_person"]
+        print(f"  Trying Wikipedia for: {person}")
+        wiki_url = fetch_wikipedia_person_image(person)
+        if wiki_url:
+            # Upload to Supabase for permanence
+            filename = f"{art_id}.jpg"
+            uploaded = upload_to_supabase_storage(wiki_url, filename)
+            if uploaded:
+                image_url = uploaded
+                image_attribution = "Wikimedia Commons"
+    
+    # 2. Fall back to Pexels
+    if not image_url and article.get("image_search_pexels"):
+        print(f"  Trying Pexels for: {article['image_search_pexels']}")
+        pexels_url = fetch_pexels_image(
+            article["image_search_pexels"],
+            article.get("image_search_pexels_fallback")
+        )
+        if pexels_url:
+            # Pexels URLs are permanent, but upload to Supabase for consistency
+            filename = f"{art_id}.jpg"
+            uploaded = upload_to_supabase_storage(pexels_url, filename)
+            if uploaded:
+                image_url = uploaded
+                image_attribution = "Pexels"
+            else:
+                # Fall back to direct Pexels URL (permanent)
+                image_url = pexels_url
+                image_attribution = "Pexels"
+    
+    if image_url:
+        print(f"  ✓ Final image: {image_url[:80]}...")
+    else:
+        print(f"  ⚠ No image found — publishing without image")
+    
+    # Build payload
+    now = datetime.now(timezone.utc).isoformat()
+    payload = {
+        "id": art_id,
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "slug": slug,
+        "category": article["category"],
+        "vertical": article["category"],
+        "body": article["body"].strip(),
+        "sources": article["sources"],
+        "status": "published",
+        "published_at": now,
+        "is_editorial": False,
+    }
+    
+    if image_url:
+        payload["image_url"] = image_url
+    if image_attribution:
+        payload["image_attribution"] = image_attribution
+    
+    result = sb_insert("p2_articles", payload)
+    if result:
+        print(f"  ✓ Published: {slug}")
+        return True
+    else:
+        print(f"  ✗ Failed to publish: {slug}")
+        return False
+
 
 if __name__ == "__main__":
-    main()
+    print(f"Entertainment Writer Run — {datetime.now(timezone.utc).isoformat()}")
+    print(f"Articles to write: {len(ARTICLES)}")
+    
+    success = 0
+    for article in ARTICLES:
+        if process_article(article):
+            success += 1
+        time.sleep(1)
+    
+    print(f"\n{'='*60}")
+    print(f"Done. Published {success}/{len(ARTICLES)} articles.")
