@@ -161,7 +161,7 @@ export default function ArticleCard({
   hideCategory?: boolean;
   featured?: boolean;
 }) {
-  const time = readingTime(article.body);
+  const time = (article as any).reading_time || readingTime(article.body);
   const href = `/articles/${article.slug}`;
   const featureLabel = featured ? "FEATURED" : null;
   const hasImage = isValidImage(article.hero_image_url);

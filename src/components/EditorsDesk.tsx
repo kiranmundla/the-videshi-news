@@ -56,7 +56,7 @@ export default function EditorsDesk() {
 
   const href = `/articles/${article.slug ?? article.id}`;
   const hasImage = isValidImage(article.image_url);
-  const minutes = readingTime(article.body);
+  const minutes = article.reading_time || readingTime(article.body);
   const excerpt =
     article.subheadline?.trim() ||
     (article.body ?? "")

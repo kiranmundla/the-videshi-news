@@ -200,7 +200,14 @@ def map_row(row: dict) -> dict:
 
 def article_without_body(a: dict) -> dict:
     """Return article dict without body (for homepage feed, saves size)."""
-    return {k: v for k, v in a.items() if k != "body"}
+    import re, math
+    body = a.get("body", "")
+    text = re.sub(r'[#*_>`~\-\[\]{}]+', '', body).strip()
+    words = len([w for w in text.split() if w])
+    reading_time = max(1, round(words / 225))
+    out = {k: v for k, v in a.items() if k != "body"}
+    out["reading_time"] = reading_time
+    return out
 
 
 def fetch_editorial(url: str, key: str) -> dict | None:
