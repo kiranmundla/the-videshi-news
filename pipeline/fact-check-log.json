@@ -1,49 +1,15 @@
 [
   {
-    "timestamp": "2026-06-01T01:04:20.231328+00:00",
-    "article_id": "",
-    "headline": "RCB IPL 2026 Champions",
-    "corrections": [
-      {
-        "type": "place_correction",
-        "person": "Sambalpur",
-        "claimed": "Vaibhav Sooryavanshi",
-        "actual": "Sambalpur",
-        "confidence": "medium",
-        "source": "wikipedia",
-        "wiki_cities": [
-          "Sambalpur"
-        ],
-        "applied": true
-      }
-    ]
-  },
-  {
-    "timestamp": "2026-06-01T01:06:32.078913+00:00",
-    "article_id": "",
-    "headline": "RCB IPL 2026 Champions",
-    "corrections": [
-      {
-        "type": "place_correction",
-        "person": "Virat Kohli",
-        "claimed": "Sambalpur",
-        "actual": "Delhi",
-        "confidence": "high",
-        "source": "wikidata",
-        "applied": true
-      }
-    ]
-  },
-  {
-    "timestamp": "2026-06-01T01:09:17.409888+00:00",
-    "article_id": "",
-    "headline": "RCB IPL 2026 Champions",
+    "timestamp": "2026-06-01T01:16:06.114288+00:00",
+    "article_id": "test-1",
+    "headline": "RCB Champions",
     "corrections": [
       {
         "type": "place_correction",
         "person": "Vaibhav Sooryavanshi",
         "claimed": "Sambalpur",
-        "actual": "Samastipur, Bihar, India",
+        "actual": "Samastipur",
+        "actual_full": "Samastipur, Bihar, India",
         "confidence": "medium",
         "source": "wikipedia_infobox",
         "applied": true
@@ -51,9 +17,43 @@
     ]
   },
   {
-    "timestamp": "2026-06-01T01:09:48.902529+00:00",
-    "article_id": "",
-    "headline": "RCB IPL 2026 Champions",
+    "timestamp": "2026-06-01T01:16:09.746010+00:00",
+    "article_id": "test-2",
+    "headline": "Kohli Leads",
+    "corrections": [
+      {
+        "type": "age_correction",
+        "person": "Virat Kohli",
+        "claimed_age": 34,
+        "actual_age": 37,
+        "dob": "1988-11-05",
+        "confidence": "high",
+        "source": "wikidata",
+        "applied": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-01T01:16:16.502872+00:00",
+    "article_id": "test-4",
+    "headline": "Bumrah",
+    "corrections": [
+      {
+        "type": "place_correction",
+        "person": "Jasprit Bumrah",
+        "claimed": "Mumbai",
+        "actual": "Ahmedabad",
+        "actual_full": "Ahmedabad",
+        "confidence": "high",
+        "source": "wikidata",
+        "applied": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-06-01T01:16:19.893463+00:00",
+    "article_id": "test-5",
+    "headline": "Season Star",
     "corrections": [
       {
         "type": "place_correction",

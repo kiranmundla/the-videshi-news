@@ -315,21 +315,32 @@ _SKIP_FIRST_WORDS = {
     "The", "This", "That", "With", "From", "After", "Before", "Under",
     "Over", "Against", "Between", "During", "Indian", "Premier", "League",
     "Royal", "Orange", "Purple", "Golden", "Match", "Final", "Season",
-    "First", "Second", "Third", "Most", "Best", "Worst",
+    "First", "Second", "Third", "Most", "Best", "Worst", "And", "But",
+    "For", "Not", "His", "Her", "Their", "Its", "Our", "New", "What",
+    "How", "When", "Where", "Why", "Who",
+}
+
+_SKIP_LAST_WORDS = {
+    "But", "And", "The", "For", "Not", "His", "Her", "Cup", "Cap",
+    "Award", "Winner", "Player", "Emerging", "Pos",
 }
 
 
 def _extract_claims(text: str) -> list[dict]:
     """
-    Extract person-place and person-age claims using sentence-level context.
-    Each person is only associated with places mentioned in the SAME sentence.
+    Extract person-place and person-age claims.
+    Strategy:
+      1. Sentence-level: person + place/age in the same sentence.
+      2. Cross-sentence: "N-year-old from Place" without a person name →
+         look at adjacent sentences for the person being referred to.
+      3. Person-age pairs (e.g., "Name, 37,").
     """
     claims = []
     seen_persons = set()
     sentences = _split_sentences(text)
 
-    for sentence in sentences:
-        # Find person names in this sentence
+    # ── Pass 1: same-sentence extraction ──
+    for i, sentence in enumerate(sentences):
         person_matches = list(_PERSON_RE.finditer(sentence))
 
         for pm in person_matches:
@@ -338,33 +349,31 @@ def _extract_claims(text: str) -> list[dict]:
                 continue
             if person.split()[0] in _SKIP_FIRST_WORDS:
                 continue
+            if person.split()[-1] in _SKIP_LAST_WORDS:
+                continue
 
             claim: dict = {"person": person}
 
-            # Look for place associations in THIS SENTENCE ONLY
-            # Patterns: "from Place", "in Place", "of Place", "born in Place"
-            place_patterns = [
-                r"\bfrom\s+([A-Z][a-z]+(?:,\s*[A-Z][a-z]+)?)\b",
-                r"\bborn\s+in\s+([A-Z][a-z]+(?:,\s*[A-Z][a-z]+)?)\b",
-                r"\bhails?\s+from\s+([A-Z][a-z]+(?:,\s*[A-Z][a-z]+)?)\b",
-            ]
-            for pp in place_patterns:
+            # Place associations in this sentence
+            for pp in (
+                r"\bfrom\s+([A-Z][a-z]+(?:,\s*[A-Z][a-z]+)*)\b",
+                r"\bborn\s+in\s+([A-Z][a-z]+(?:,\s*[A-Z][a-z]+)*)\b",
+                r"\bhails?\s+from\s+([A-Z][a-z]+(?:,\s*[A-Z][a-z]+)*)\b",
+            ):
                 m = re.search(pp, sentence)
                 if m:
                     place = m.group(1).strip()
-                    # Make sure the place isn't part of the person's name
                     if place not in person and place not in _SKIP_NAMES:
                         claim["place"] = place
                         claim["type"] = "person_place"
                         break
 
-            # Look for age in this sentence
-            age_patterns = [
+            # Age in this sentence
+            for ap in (
                 r"(\d{1,2})-year-old",
                 r"\bage[d]?\s+(\d{1,2})\b",
                 re.escape(person) + r",?\s+(\d{1,2})[,\s]",
-            ]
-            for ap in age_patterns:
+            ):
                 m = re.search(ap, sentence)
                 if m:
                     try:
@@ -375,12 +384,59 @@ def _extract_claims(text: str) -> list[dict]:
                     except ValueError:
                         pass
 
-            # Only keep claims that have something to verify
             if "place" in claim or "claimed_age" in claim:
                 if "type" not in claim:
                     claim["type"] = "age"
                 claims.append(claim)
                 seen_persons.add(person)
+
+    # ── Pass 2: orphan "N-year-old from Place" without a person name ──
+    for i, sentence in enumerate(sentences):
+        orphan = re.search(
+            r"(\d{1,2})-year-old\s+from\s+([A-Z][a-z]+(?:,\s*[A-Z][a-z]+)*)",
+            sentence,
+        )
+        if not orphan:
+            continue
+
+        # Check if this sentence already has a person name
+        if _PERSON_RE.search(sentence):
+            continue  # Already handled in pass 1
+
+        age_val = int(orphan.group(1))
+        place_val = orphan.group(2).strip()
+
+        # Look backward through prior sentences to find the most recently
+        # mentioned person name — i.e. the one this orphan "N-year-old"
+        # most likely refers to.
+        person = None
+        for delta in range(1, 5):
+            if i - delta < 0:
+                break
+            adj = sentences[i - delta]
+            # Collect all valid person names; we want the LAST one in the text
+            # (closest to the orphan sentence)
+            candidates = []
+            for pm in _PERSON_RE.finditer(adj):
+                cand = pm.group(1)
+                if cand in _SKIP_NAMES or cand.split()[0] in _SKIP_FIRST_WORDS:
+                    continue
+                if cand.split()[-1] in _SKIP_LAST_WORDS:
+                    continue
+                if cand not in seen_persons:
+                    candidates.append(cand)
+            if candidates:
+                person = candidates[-1]  # Last mentioned = closest referent
+                break
+
+        if person and place_val not in _SKIP_NAMES:
+            claims.append({
+                "type": "person_place",
+                "person": person,
+                "place": place_val,
+                "claimed_age": age_val if 10 <= age_val <= 80 else None,
+            })
+            seen_persons.add(person)
 
     return claims
 

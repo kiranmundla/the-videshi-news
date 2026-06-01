@@ -10,7 +10,6 @@ import TechBuzz from "@/components/TechBuzz";
 import StreamingPicks from "@/components/StreamingPicks";
 import FeaturedHero from "@/components/FeaturedHero";
 import FeaturedCarousel from "@/components/FeaturedCarousel";
-import IPLTracker from "@/components/IPLTracker";
 import MarketTicker from "@/components/MarketTicker";
 import CategoryPills from "@/components/CategoryPills";
 import EventCluster from "@/components/EventCluster";
@@ -435,7 +434,7 @@ export default function Index() {
           </div>
         ) : null}
 
-        <IPLTracker />
+        {/* IPL 2026 season ended — tracker removed */}
 
         <HomeCategorySection
           slug={INDIA_NEWS.slug}
