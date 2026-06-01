@@ -19,7 +19,6 @@ HEADERS = {
 
 # ── helpers ──────────────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(" ", "_"))
     try:
         r = requests.get(
@@ -39,18 +38,15 @@ def fetch_wikipedia_person_image(person_name):
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels. Use curl internally to avoid 403."""
     import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             result = subprocess.run(
-                [
-                    "curl", "-sS",
-                    f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
-                    "-H", f"Authorization: {PEXELS_API_KEY}",
-                ],
+                ["curl", "-sS",
+                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
+                 "-H", f"Authorization: {PEXELS_API_KEY}"],
                 capture_output=True, text=True, timeout=15,
             )
             data = json.loads(result.stdout)
@@ -66,12 +62,13 @@ def fetch_pexels_image(query, fallback_query=None):
 
 
 def upload_image_to_supabase(img_url, filename):
-    """Download image and upload to Supabase storage article-images bucket."""
     try:
         r = requests.get(img_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=20)
         if r.status_code != 200:
             print(f"  ⚠ Image download failed ({r.status_code}): {img_url[:80]}")
-            return img_url  # fall back to direct URL if from allowed source
+            if "upload.wikimedia.org" in img_url or "images.pexels.com" in img_url:
+                return img_url
+            return None
         content_type = r.headers.get("Content-Type", "image/jpeg")
         if not content_type.startswith("image/"):
             print(f"  ⚠ Not an image: {content_type}")
@@ -98,7 +95,6 @@ def upload_image_to_supabase(img_url, filename):
             return public_url
         else:
             print(f"  ⚠ Supabase upload error ({resp.status_code}): {resp.text[:200]}")
-            # If image is from allowed permanent source, use direct URL
             if "upload.wikimedia.org" in img_url or "images.pexels.com" in img_url:
                 return img_url
             return None
@@ -110,7 +106,6 @@ def upload_image_to_supabase(img_url, filename):
 
 
 def insert_article(article):
-    """Insert article into Supabase."""
     url = f"{SUPABASE_URL}/rest/v1/p2_articles"
     r = requests.post(url, headers=HEADERS, json=article, timeout=30)
     if r.status_code in (200, 201):
@@ -124,7 +119,6 @@ def insert_article(article):
 
 
 def validate_article(a):
-    """Validate article meets quality bar."""
     errors = []
     if not a.get("headline") or len(a["headline"]) < 20:
         errors.append("headline too short")
@@ -156,14 +150,15 @@ article1 = {
     "subheadline": "J&J's Erleada, given for six months before and after surgery, reduced the risk of the cancer spreading or death by 20 per cent. ASCO chose the data to open its plenary session.",
     "slug": "jnj-erleada-prostate-surgery-proteus-asco-2026-south-asian-men-cancer-free",
     "category": "lifestyle-health",
+    "vertical": "health",
+    "tags": ["prostate-cancer", "asco-2026", "erleada", "jnj", "south-asian-men"],
+    "urgency": "timely",
+    "sources": json.dumps(["Reuters", "The New England Journal of Medicine", "GlobeNewsWire / Johnson & Johnson", "ASCO 2026 Plenary (Abstract LBA1)"]),
     "status": "published",
     "is_editorial": False,
+    "is_featured": False,
+    "score_total": 0,
     "published_at": datetime.now(timezone.utc).isoformat(),
-    "source_urls": json.dumps([
-        "https://www.reuters.com/business/healthcare-pharmaceuticals/jj-prostate-cancer-drug-reduces-risk-cancer-spread-death-late-stage-study-2026-05-31/",
-        "https://www.nejm.org/doi/full/10.1056/NEJMoa2603129",
-        "https://www.globenewswire.com/news-release/2026/05/31/johnson-johnson-erleada-proteus-asco"
-    ]),
     "body": """Nearly half of all men who have prostate cancer surgery see their cancer return. For decades, the standard approach has been to operate first and treat later — usually after the disease has already spread beyond the prostate and the window for a cure has narrowed.
 
 A five-year study just upended that sequence. Johnson & Johnson's Phase 3 PROTEUS trial, published simultaneously in *The New England Journal of Medicine* and presented as the opening plenary at the 2026 American Society of Clinical Oncology meeting in Chicago, found that giving the drug apalutamide — sold as Erleada — alongside hormone therapy for six months before and after prostate surgery produced results that researchers are calling paradigm-changing.
@@ -204,7 +199,6 @@ The message from Chicago this week is unambiguous: treating prostate cancer earl
 }
 
 if validate_article(article1):
-    # Image: Wikipedia for prostate cancer or J&J — use Pexels for medical concept
     img_url = fetch_pexels_image("prostate cancer medical treatment", "cancer surgery hospital")
     if img_url:
         art_id = insert_article(article1)
@@ -231,14 +225,15 @@ article2 = {
     "subheadline": "Japanese researchers linked elevated homocysteine — a marker of B12 and folate deficiency — to persistent physical exhaustion in men and low motivation in women. The findings have direct implications for the millions of South Asians who follow plant-based diets.",
     "slug": "b12-folate-deficiency-fatigue-motivation-homocysteine-south-asian-vegetarians-20260601",
     "category": "lifestyle-health",
+    "vertical": "health",
+    "tags": ["vitamin-b12", "folate", "fatigue", "vegetarian", "south-asian-health"],
+    "urgency": "timely",
+    "sources": json.dumps(["Diabetes.co.uk", "Peer-reviewed nutrition journal (Japan)", "The Lancet Global Health (2022)", "American Society of Hematology"]),
     "status": "published",
     "is_editorial": False,
+    "is_featured": False,
+    "score_total": 0,
     "published_at": datetime.now(timezone.utc).isoformat(),
-    "source_urls": json.dumps([
-        "https://www.diabetes.co.uk/news/2026/may/low-vitamin-b12-and-folate-may-contribute-to-fatigue-and-low-motivation.html",
-        "https://pubmed.ncbi.nlm.nih.gov/",
-        "https://www.thelancet.com/journals/langlo/article/PIIS2214-109X(22)00088-0/fulltext"
-    ]),
     "body": """You sleep eight hours and still feel drained. You exercise, eat well, avoid caffeine after noon — and still cannot shake the fog. Most people blame stress. Their doctors check for anaemia, thyroid dysfunction, depression. What often goes unchecked is one of the most common and correctable nutrient deficiencies in the world: vitamin B12.
 
 A new study from Japan has added another dimension to the evidence. Researchers measured homocysteine, vitamin B12, and folate levels in roughly 600 healthy adults and cross-referenced them with detailed fatigue and motivation assessments. The findings were published in a peer-reviewed nutrition journal and have drawn attention for their specificity.
@@ -312,14 +307,15 @@ article3 = {
     "subheadline": "The all-cash acquisition of Taylor Morrison, at a 24 per cent premium, deploys less than 2 per cent of Berkshire's $397 billion cash pile. For NRI investors watching the US housing market, the bet is worth understanding.",
     "slug": "berkshire-hathaway-taylor-morrison-68-billion-greg-abel-housing-nri-investors-20260601",
     "category": "markets-finance",
+    "vertical": "markets",
+    "tags": ["berkshire-hathaway", "taylor-morrison", "greg-abel", "housing-market", "nri-investors"],
+    "urgency": "timely",
+    "sources": json.dumps(["Reuters", "MarketWatch", "Investopedia", "Citi Research"]),
     "status": "published",
     "is_editorial": False,
+    "is_featured": False,
+    "score_total": 0,
     "published_at": datetime.now(timezone.utc).isoformat(),
-    "source_urls": json.dumps([
-        "https://www.reuters.com/business/berkshire-hathaway-buy-taylor-morrison-68-billion-cash-expand-housing-2026-06-01/",
-        "https://www.marketwatch.com/story/berkshire-hathaway-finds-a-use-for-2-of-its-397-billion-cash-pile-2026-06-01",
-        "https://www.investopedia.com/stock-market-today-june-01-2026-12284721"
-    ]),
     "body": """Berkshire Hathaway announced on Sunday that it will acquire Taylor Morrison Home Corp in an all-cash deal valued at $6.8 billion, paying $72.50 per share — a 24 per cent premium to Taylor Morrison's Friday closing price of $58.50. The deal has an enterprise value of approximately $8.5 billion when debt is included.
 
 Taylor Morrison shares surged 22 per cent in premarket trading on Monday. Berkshire's own stock was essentially flat.
@@ -368,7 +364,6 @@ For NRI investors, the combination of record equity valuations, rising oil, and 
 }
 
 if validate_article(article3):
-    # Image: Greg Abel / Berkshire Hathaway — try Wikipedia
     img_url = fetch_wikipedia_person_image("Greg Abel")
     if not img_url:
         img_url = fetch_wikipedia_person_image("Berkshire Hathaway")
@@ -379,13 +374,14 @@ if validate_article(article3):
         if art_id:
             final_url = upload_image_to_supabase(img_url, f"{art_id}.jpg")
             if final_url:
+                attr = "Wikimedia Commons" if "wikimedia" in (img_url or "").lower() or "wikipedia" in (img_url or "").lower() else "Pexels"
                 requests.patch(
                     f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{art_id}",
                     headers=HEADERS,
-                    json={"image_url": final_url, "image_attribution": "Wikimedia Commons" if "wikimedia" in (final_url or "").lower() or "wikipedia" in (img_url or "").lower() else "Pexels"},
+                    json={"image_url": final_url, "image_attribution": attr},
                     timeout=15,
                 )
-                print(f"  ✓ Image attached")
+                print(f"  ✓ Image attached ({attr})")
     else:
         insert_article(article3)
 
