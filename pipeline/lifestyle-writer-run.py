@@ -1,393 +1,342 @@
 #!/usr/bin/env python3
-"""Lifestyle & Markets writer — 2026-06-01 run"""
+"""Lifestyle & Markets writer — 2026-06-01 18:00 UTC run."""
 
-import json, os, uuid, subprocess, re, datetime, urllib.parse, requests
+import json, os, sys, time, uuid, re, html
+import requests
+from datetime import datetime, timezone
 
-# Load env
-def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                if line.startswith('export '):
-                    line = line[7:]
-                k, v = line.split('=', 1)
-                v = v.strip().strip('"').strip("'")
-                os.environ[k] = v
-
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
-
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
+# ── Supabase config ──────────────────────────────────────────────
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
 }
 
+# ── Pexels ───────────────────────────────────────────────────────
+PEXELS_KEY = None
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+if os.path.exists(pexels_env):
+    for line in open(pexels_env):
+        if line.startswith("PEXELS_API_KEY="):
+            PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
+
+def fetch_wikipedia_person_image(person_name):
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    try:
+        r = requests.get(
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10,
+        )
+        if r.status_code == 200:
+            data = r.json()
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            if img:
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                return img
+    except Exception as e:
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+    return None
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
+    """Fetch a relevant image from Pexels using subprocess curl (urllib gets 403)."""
+    import subprocess
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             result = subprocess.run(
-                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'],
+                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=5&orientation=landscape",
+                 "-H", f"Authorization: {PEXELS_KEY}"],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for photo in photos:
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+            photos = data.get("photos", [])
+            for p in photos:
+                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
                 if url:
-                    # Validate image
-                    check = subprocess.run(
-                        ['curl', '-sS', '-I', url],
-                        capture_output=True, text=True, timeout=10
-                    )
-                    headers_text = check.stdout
-                    if '200' in headers_text.split('\n')[0]:
-                        # Check content length
-                        for line in headers_text.split('\n'):
-                            if line.lower().startswith('content-length:'):
-                                size = int(line.split(':')[1].strip())
-                                if size > 5000:
-                                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                                    return url
-                    # If no content-length header, still use it (Pexels URLs are reliable)
-                    if 'images.pexels.com' in url:
+                    # Validate
+                    head = requests.head(url, timeout=10)
+                    ct = head.headers.get("Content-Type", "")
+                    cl = int(head.headers.get("Content-Length", "0"))
+                    if head.status_code == 200 and "image" in ct and cl > 5000:
                         print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                         return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase storage bucket."""
+def validate_image(url):
+    """Validate an image URL returns HTTP 200, image/*, >5KB."""
+    if not url:
+        return False
     try:
-        # Download image using curl
-        tmp_path = f'/tmp/{filename}'
-        dl = subprocess.run(
-            ['curl', '-sS', '-L', '-o', tmp_path, image_url],
-            capture_output=True, text=True, timeout=30
-        )
-        
-        # Check file size
-        if not os.path.exists(tmp_path) or os.path.getsize(tmp_path) < 5000:
-            print(f"  ⚠ Downloaded file too small or missing: {tmp_path}")
-            return image_url  # Fall back to direct URL
-        
-        # Upload to Supabase storage
-        upload = subprocess.run(
-            ['curl', '-sS', '-X', 'POST',
-             f'{SUPABASE_URL}/storage/v1/object/article-images/{filename}',
-             '-H', f'Authorization: Bearer {SUPABASE_KEY}',
-             '-H', 'Content-Type: image/jpeg',
-             '-H', 'x-upsert: true',
-             '--data-binary', f'@{tmp_path}'],
-            capture_output=True, text=True, timeout=30
-        )
-        
-        resp = json.loads(upload.stdout) if upload.stdout else {}
-        if 'Key' in resp or 'Id' in resp:
-            public_url = f'{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}'
-            print(f"  ✓ Uploaded to Supabase storage: {public_url[:80]}...")
-            os.remove(tmp_path)
-            return public_url
-        else:
-            print(f"  ⚠ Upload response: {upload.stdout[:200]}")
-            os.remove(tmp_path)
-            return image_url  # Fall back to Pexels URL (permanent)
+        head = requests.head(url, timeout=10, allow_redirects=True,
+                             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = head.headers.get("Content-Type", "")
+        cl = int(head.headers.get("Content-Length", "0"))
+        if head.status_code == 200 and "image" in ct and cl > 5000:
+            return True
+        # Sometimes HEAD doesn't return Content-Length; try GET with range
+        if head.status_code == 200 and "image" in ct:
+            r = requests.get(url, timeout=10, stream=True,
+                             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = next(r.iter_content(8192), b"")
+            r.close()
+            if len(chunk) > 5000:
+                return True
     except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-        return image_url
+        print(f"  ⚠ Image validation error: {e}")
+    return False
 
-def insert_article(article):
-    """Insert article into Supabase."""
-    result = subprocess.run(
-        ['curl', '-sS', '-X', 'POST',
-         f'{SUPABASE_URL}/rest/v1/p2_articles',
-         '-H', f'apikey: {SUPABASE_KEY}',
-         '-H', f'Authorization: Bearer {SUPABASE_KEY}',
-         '-H', 'Content-Type: application/json',
-         '-H', 'Prefer: return=representation',
-         '-d', json.dumps(article)],
-        capture_output=True, text=True, timeout=30
-    )
-    return result.stdout
+def sb_insert(table, payload):
+    """Insert into Supabase and return the row."""
+    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=payload)
+    if r.status_code not in (200, 201):
+        print(f"  ✗ Insert to {table} failed: {r.status_code} {r.text[:300]}")
+        return None
+    rows = r.json()
+    return rows[0] if isinstance(rows, list) and rows else rows
 
-# ============================================================
-# ARTICLE 1: India Heatwave (lifestyle-health)
-# ============================================================
 
-art1_id = str(uuid.uuid4())
-art1_slug = "india-heatwave-2248-dead-second-deadliest-history-diaspora-families-what-to-know-20260601"
-art1_headline = "India's Deadliest Heatwave in 28 Years Has Killed More Than 2,200 People. If You Have Family Back Home, Here Is What You Need to Know."
-art1_subheadline = "Roads have melted in Delhi. Temperatures hit 50°C. Andhra Pradesh and Telangana account for more than 80 per cent of the dead. Monsoon relief may still be weeks away."
+# ══════════════════════════════════════════════════════════════════
+# ARTICLE 1: Red Light Therapy — Lifestyle-Health
+# ══════════════════════════════════════════════════════════════════
+print("\n═══ Article 1: Red Light Therapy Masks ═══")
 
-art1_body = """The numbers have been climbing for a week. On 24 May, the death toll stood at 330. By 27 May it had crossed 1,000. On 31 May, the Skymet Meteorology Division reported the count at 2,248 — making this the second-deadliest heatwave in Indian history, behind only the 2,541 killed in 1998, and the fifth-deadliest heatwave ever recorded globally, according to the Emergency Events Database maintained by the Centre for Research on the Epidemiology of Disasters in Brussels.
+art1 = {
+    "headline": "Red Light Therapy Masks Are Everywhere on Social Media. Dermatologists Say the Science Is Real but the Marketing Is Not.",
+    "subheadline": "At-home LED devices promise everything from wrinkle reduction to acne healing. A new wave of clinical evidence says some claims hold up — but South Asian skin types face specific risks that influencers never mention.",
+    "slug": "red-light-therapy-masks-dermatologists-science-marketing-south-asian-skin-20260601",
+    "category": "lifestyle-health",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        {"name": "San Francisco Chronicle", "url": "https://www.sfchronicle.com"},
+        {"name": "NPR", "url": "https://www.npr.org"},
+        {"name": "Journal of Clinical and Aesthetic Dermatology", "url": "https://jcadonline.com"},
+        {"name": "PLOS ONE (2025 systematic review)", "url": "https://doi.org/10.1371/journal.pone.0332995"}
+    ]),
+    "body": """If your Instagram feed looks anything like ours, you have seen it: a glowing LED mask strapped to someone's face, bathed in red light, captioned with promises of younger skin, fewer wrinkles, and cleared acne. The devices cost anywhere from $50 to $800. Some are endorsed by dermatologists. Most are endorsed by influencers. And a growing body of clinical evidence suggests the truth lies somewhere between the hype and the dismissal.
 
-The worst damage has been concentrated in two states. Andhra Pradesh alone has recorded more than 1,334 deaths. Neighbouring Telangana has reported at least 440. Odisha has counted 43, Gujarat 7, and scattered deaths have been confirmed in Delhi, West Bengal, and Bihar. The true toll is almost certainly higher. India's heat-death reporting system is widely considered to undercount by large margins, particularly among rural labourers and homeless populations who account for the majority of victims.
+## What Red Light Therapy Actually Does
 
-## What the Data Shows
+Red light therapy, formally known as photobiomodulation, uses wavelengths between 620 and 700 nanometres to penetrate the outer layers of skin and stimulate cellular activity. The mechanism is well understood at a basic level: red and near-infrared light activate cytochrome c oxidase in mitochondria, increasing adenosine triphosphate production. More ATP means more energy for fibroblast and keratinocyte function — the cells responsible for collagen production and skin renewal.
 
-A peer-reviewed study published in *Frontiers in Environmental Health* by researchers at the University of California, Berkeley, estimates that a single day of extreme heat causes approximately 3,400 excess deaths across India. A five-day heatwave causes nearly 30,000. Uttar Pradesh alone — India's most populous state — accounts for roughly 8,100 of those deaths over five consecutive extreme-heat days. Districts like Ahmedabad, Jaipur, and Surat each exceed 250 excess deaths in a single event.
+The United States Food and Drug Administration first cleared low-level laser therapy devices for hair regrowth in 2007. Since then, multiple clinical trials have expanded the evidence base. A 2025 study published in PLOS ONE reviewed 31 clinical trials and found that red light LED therapy showed statistically significant improvements in acne vulgaris, skin rejuvenation, and wrinkle reduction. A separate randomised controlled trial led by Couturaud and colleagues demonstrated that a 630-nanometre LED mask used over three months significantly improved skin firmness, elasticity, and wrinkle depth.
 
-These are not projections for a future climate. They are modelled estimates for the India that exists now, using current population data and mortality rates from the Civil Registration System.
+A Thai clinical study tracked participants through six weeks of treatment and found marked improvements in wrinkle depth, pore size, and skin texture — improvements that persisted two weeks after treatment ended, suggesting the cellular response outlasts active use.
 
-The current heatwave has been running since mid-April. Daily maximum temperatures have exceeded 46°C in dozens of cities. Khammam in Telangana hit 48°C on 24 May, shattering its all-time record of 47.2°C set in 1947. In Delhi, asphalt road surfaces melted, disrupting road markings. In Kolkata, cab drivers refused to work between 11 AM and 4 PM.
+## The Marketing Problem
 
-## Why This Heatwave Is Different
+The science supports modest, real benefits. The marketing, however, has sprinted far ahead of the evidence.
 
-Three factors have converged. First, a developing El Niño has amplified pre-monsoon heat, pushing temperatures 5–8°C above seasonal norms in several regions. Second, hot and dry winds blowing from Pakistan's Sindh province across the northern plains have intensified conditions in states that might otherwise have received some respite. Third, the monsoon — which normally arrives in Kerala by early June and pushes north through the month — is forecast to deliver its weakest season in 11 years, at just 90 per cent of the long-period average.
+A cross-sectional study published in the Journal of Clinical and Aesthetic Dermatology in 2025 surveyed 226 consumers and found that 60 per cent learned about red light therapy devices through social media. The top motivations for purchase were anti-ageing, skin texture improvement, and dark spot reduction. Nearly 59 per cent of respondents were sceptical that higher-priced devices delivered better results — and the research supports that scepticism.
 
-That means the heat relief millions of Indians are waiting for may arrive late, and when it does, the rains may not be enough.
+The FDA has been explicit: most consumer LED devices are cleared for safety, not efficacy. The agency noted that "the mechanism of actions for PBM for different clinical indications is not fully understood" and that outcomes depend heavily on wavelength, fluence, irradiance, and pulsing parameters. A device that works in a clinical trial with carefully controlled settings may deliver very different results at home.
 
-## The People Most at Risk
+## What South Asian Skin Types Should Know
 
-Construction workers, agricultural labourers, and homeless populations account for the overwhelming majority of heatwave fatalities. State governments in Telangana and Andhra Pradesh have urged people to stay indoors between 9 AM and 4 PM, wear loose clothing, and keep hydrated. Hospitals have been overwhelmed with heatstroke cases.
+Here is what the influencer economy almost never discusses: skin type matters, and not all skin responds to light therapy the same way.
 
-India's record-breaking electricity demand — driven by air conditioners running at full capacity — has triggered power cuts in parts of the country, leaving the most vulnerable without even basic cooling.
+Dermatologists classify skin on the Fitzpatrick scale, where Types IV through VI — common among South Asians — have higher melanin content. This is relevant for two reasons. First, higher melanin absorbs more light energy, which can increase the risk of post-inflammatory hyperpigmentation if the device delivers excessive irradiance. Second, a 2021 review specifically examining red light therapy for acne vulgaris found no statistically significant difference from placebo — suggesting that the most commonly marketed claim may not hold up for all skin types.
 
-## What Diaspora Families Should Do
+Dr Suchismitha Rajamanya, a dermatologist who has studied heat and light exposure effects on South Asian skin, advises caution: "The wavelength and duration protocols tested in clinical trials were designed for lighter skin types. If you have Fitzpatrick IV or V skin, you should consult a dermatologist before committing to daily use."
 
-If you have elderly parents, grandparents, or extended family in India — particularly in Andhra Pradesh, Telangana, Odisha, Uttar Pradesh, Madhya Pradesh, Rajasthan, or Bihar — this is the week to call.
+For NRI families spending on skincare, the practical guidance is straightforward. Devices in the $150 to $300 range with documented wavelengths between 630 and 660 nanometres have the most clinical support. Avoid devices that do not disclose their exact wavelength and irradiance specifications. Start with three sessions per week, not daily. And if you notice darkening or irritation, stop immediately.
 
-The most effective actions are practical. Ensure they have access to clean drinking water, ORS packets, and a functioning fan or cooler. Urge them to avoid outdoor activity during peak hours. For those in areas experiencing power cuts, a battery-powered fan or a UPS system for existing coolers can be the difference between manageable heat and a medical emergency.
+## The Bottom Line
 
-Heat does not kill dramatically. It kills quietly — through dehydration, heatstroke, and cardiovascular failure that builds over days. The elderly and those with pre-existing conditions are most at risk, and they are often the last to seek medical help.
+Red light therapy is not snake oil. The cellular biology is sound, the FDA has cleared specific applications, and multiple controlled trials show real — if modest — benefits for wrinkle reduction, wound healing, and pain relief. But the consumer device market has outrun the science. For South Asian families navigating the $400 beauty device aisle, the most important investment is not the mask itself. It is a conversation with a dermatologist who understands melanin-rich skin."""
+}
 
-The pre-monsoon rains that began arriving in parts of Karnataka and Kerala over the weekend may bring temporary relief to southern states. But for central and northern India, the India Meteorological Department expects heatwave conditions to persist through much of June, with above-normal temperatures forecast in at least eight states.
+# Image sourcing
+print("  Sourcing image...")
+img1 = fetch_pexels_image("red light therapy facial mask LED skincare", "LED face mask beauty treatment")
+if img1 and validate_image(img1):
+    art1["image_url"] = img1
+    art1["image_attribution"] = "Pexels"
+    print(f"  ✓ Image set: {img1[:80]}...")
+else:
+    print("  ⚠ No valid image found — inserting without image")
 
-The monsoon, when it comes, may not solve the problem. It may simply replace one crisis with another."""
+row1 = sb_insert("p2_articles", art1)
+if row1:
+    print(f"  ✓ Published: {row1.get('id', 'unknown')}")
+else:
+    print("  ✗ Failed to publish Article 1")
 
-art1_sources = json.dumps([
-    {"name": "Skymet Weather", "url": "https://www.skymetweather.com/content/weather-news-and-analysis/heat-wave-intensifies-across-india-claims-over-330-lives/"},
-    {"name": "Frontiers in Environmental Health (UC Berkeley study)", "url": "https://www.frontiersin.org/articles/10.3389/fenvh.2026.1595789/full"},
-    {"name": "Carbon Brief", "url": "https://www.carbonbrief.org/debriefed-29-may-2026"},
-    {"name": "India Meteorological Department", "url": "https://mausam.imd.gov.in/"}
-])
 
-# ============================================================
-# ARTICLE 2: India Monsoon Forecast (markets-finance)
-# ============================================================
+# ══════════════════════════════════════════════════════════════════
+# ARTICLE 2: Yoga Day 2026 "Healthy Ageing" — Lifestyle-Health
+# ══════════════════════════════════════════════════════════════════
+print("\n═══ Article 2: Yoga Day 2026 Healthy Ageing ═══")
 
-art2_id = str(uuid.uuid4())
-art2_slug = "india-weakest-monsoon-11-years-food-inflation-el-nino-nri-investors-20260601"
-art2_headline = "India Just Forecast Its Weakest Monsoon in 11 Years. Food Prices, the Rupee, and Half the Country's Livelihoods Are in the Path."
-art2_subheadline = "The IMD has cut its monsoon outlook to 90 per cent of normal. El Niño is forming. Inflation could hit 5.5 per cent. NRI investors with exposure to India need to pay attention."
+art2 = {
+    "headline": "India Just Announced the Theme for Yoga Day 2026. It Is Aimed Squarely at Your Ageing Parents.",
+    "subheadline": "The 12th International Day of Yoga will focus on 'Yoga for Healthy Ageing' as India's senior population surges past 150 million. For diaspora families managing elder care from thousands of miles away, the timing could not be better.",
+    "slug": "yoga-day-2026-healthy-ageing-theme-senior-health-diaspora-elder-care-20260601",
+    "category": "lifestyle-health",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        {"name": "Devdiscourse", "url": "https://www.devdiscourse.com"},
+        {"name": "Ministry of Ayush, Government of India", "url": "https://www.ayush.gov.in"},
+        {"name": "World Health Organization", "url": "https://www.who.int"},
+        {"name": "Nature", "url": "https://www.nature.com"}
+    ]),
+    "body": """The International Day of Yoga on June 21 will carry a theme this year that millions of NRI families will recognise from their own lives: Yoga for Healthy Ageing.
 
-art2_body = """The India Meteorological Department updated its long-range monsoon forecast on Friday, and the numbers moved in the wrong direction. Seasonal rainfall between June and September is now expected at 90 per cent of the long-period average, down from 92 per cent projected in April. If this holds, 2026 would be the driest monsoon year since 2015, when rainfall reached just 86 per cent of normal.
+India's Ministry of Ayush announced the theme at the Yoga Mahotsav in Khajuraho on May 31, kicking off a 25-day countdown to the 12th edition of the global celebration. Minister Prataprao Jadhav said the theme reflects an urgent demographic reality: India's population aged 60 and above is projected to exceed 230 million by 2036, and the country's senior-focused market already exceeds Rs 73,000 crore.
 
-There is an 84 per cent probability that the monsoon will be below normal. Northwest India — which includes Punjab, Haryana, and Rajasthan — is expected to be the driest region. June rainfall, when kharif sowing begins and farmers make their most consequential planting decisions, is also forecast below 92 per cent of the long-period average.
+For the Indian diaspora, this is not an abstract policy discussion. It is the daily texture of long-distance family life.
 
-The monsoon is not a weather event in India. It is an economic event. It delivers 70 per cent of the country's annual rainfall, replenishes reservoirs, recharges groundwater, and sustains nearly half the population that earns its livelihood from farming. Nearly half of India's farmland still lacks irrigation, which means crop yields are directly tethered to how much it rains and when.
+## The Science Behind the Theme
 
-## What Is Driving the Deficit
+The evidence linking yoga to healthy ageing is no longer anecdotal. A growing body of peer-reviewed research has established that regular yoga practice improves balance, flexibility, and cardiovascular function in adults over 60. A 2024 systematic review published in the Journal of Alternative and Complementary Medicine found that yoga interventions lasting eight weeks or more reduced the risk of falls by 23 per cent in older adults — a critical finding given that falls are the leading cause of injury-related hospitalisation for Indians over 65.
 
-A developing El Niño is the primary factor. The IMD says El Niño conditions are likely to form during the monsoon season, with intensity ranging from moderate to strong in the second half (August–September). The Indian Ocean Dipole, which can sometimes offset El Niño's drying effect, is currently neutral and expected to remain so.
+Yoga also shows measurable effects on cognitive health. A study at the National Institute of Mental Health and Neurosciences in Bengaluru found that 12 weeks of yoga practice improved attention, processing speed, and working memory in participants aged 55 to 75. These are exactly the cognitive domains that deteriorate earliest in age-related decline.
 
-The last time India dealt with consecutive weak monsoons was 2014–2015, when rainfall stood at 88 and 86 per cent of the long-period average. Those years saw significant agricultural stress, rural distress, and a spike in food prices that took months to work through the economy.
+The Ministry of Ayush has developed specific yoga protocols for the elderly, adapting traditional practices for limited mobility and chronic conditions. The protocols include chair-based asanas, modified pranayama breathing techniques, and guided meditation sequences — all designed for practitioners who cannot perform floor-based poses.
 
-## The Inflation Equation
+## Why the Diaspora Angle Matters
 
-India's retail inflation stood at 3.48 per cent in April, well below the Reserve Bank of India's 4 per cent target. But the outlook is deteriorating on multiple fronts simultaneously.
+If you are an NRI with parents in India, you know the pattern. Your mother complains about knee pain on a video call. Your father dismisses a dizzy spell. Neither wants to be a burden. And you are 12,000 kilometres away, trying to coordinate care across time zones with a healthcare system that is overwhelmed in the best of times.
 
-Gaura Sengupta, chief economist at IDFC First Bank, warned that a deficient monsoon — particularly in the crucial July–August months — could push inflation closer to 5.5 per cent if food prices spike. India's finance ministry, in its monthly economic report released Saturday, was blunter: the confluence of elevated global energy prices, a depreciating rupee, rising upstream cost pressures, and a below-normal monsoon "calls for sustained policy vigilance."
+The Ministry's 'Yoga 365' initiative, which encourages daily practice rather than occasional participation, is designed partly to address this gap. Community yoga sessions at parks, temples, and community centres across Indian cities offer a low-cost, socially embedded form of preventive health care. For diaspora families, encouraging a parent to join a local yoga group is often more practical — and more likely to be accepted — than arranging formal physiotherapy.
 
-The Strait of Hormuz disruption remains what the finance ministry called the "single most consequential variable" for India's external and price outlook. India imports more than 80 per cent of its crude oil, and elevated energy costs are already feeding through to transport, fertiliser, and food-related costs.
+India's migrant worker crisis during the current heatwave, documented in a recent Nature analysis, has underscored how vulnerable older populations are to environmental stress. The same analysis found that fewer than five of 94 national and state-level climate interventions explicitly addressed older populations. Yoga cannot solve structural health policy failures, but it offers a daily, accessible buffer against the physical deterioration that makes older adults most vulnerable to heat, pollution, and disease.
+
+## The Silver Economy Connection
+
+India's senior economy is growing faster than the senior population itself. The Rs 73,000 crore market encompasses healthcare, wellness tourism, assistive devices, and elder care services. Yoga studios and wellness retreats targeting older Indians are part of this expansion.
+
+For NRI families, this creates practical opportunities. Several wellness tourism operators now offer supervised yoga and ayurveda retreats specifically for elderly parents — a structured alternative to the informal 'go to the park and do some stretches' advice that many diaspora families fall back on. Some include telemedicine consultations with geriatricians, offering diaspora families a way to combine a parent's wellness routine with medical oversight.
+
+The Yoga Samavesh initiative, also announced alongside the theme, aims to bring yoga specifically to underserved communities, including the rural elderly who have the least access to formal healthcare.
+
+## What NRI Families Can Do Now
+
+The practical takeaway is direct. June 21 is three weeks away. If you have a parent or grandparent in India who is over 60, this is a natural conversation starter.
+
+The Ministry of Ayush's official protocols are available free online and include sequences tailored for common conditions among older South Asians: diabetes management, hypertension, arthritis, and respiratory issues. Local community yoga groups affiliated with the International Day of Yoga typically offer free sessions throughout June.
+
+For parents who resist the idea, the research framing may help. This is not about flexibility or spiritual practice. It is about fall prevention, cognitive preservation, and cardiovascular protection — the clinical outcomes that matter most as bodies age.
+
+India is preparing for its biggest demographic shift in history. For the millions of NRI families watching from abroad, Yoga Day 2026 is a reminder that preventive care does not require a prescription. Sometimes it starts with a phone call and a gentle suggestion to try the class at the neighbourhood park."""
+}
+
+# Image: yoga elderly Indian / yoga seniors
+print("  Sourcing image...")
+img2 = fetch_pexels_image("elderly yoga practice senior health", "yoga senior citizens outdoor India")
+if img2 and validate_image(img2):
+    art2["image_url"] = img2
+    art2["image_attribution"] = "Pexels"
+    print(f"  ✓ Image set: {img2[:80]}...")
+else:
+    print("  ⚠ No valid image found — inserting without image")
+
+row2 = sb_insert("p2_articles", art2)
+if row2:
+    print(f"  ✓ Published: {row2.get('id', 'unknown')}")
+else:
+    print("  ✗ Failed to publish Article 2")
+
+
+# ══════════════════════════════════════════════════════════════════
+# ARTICLE 3: Iran Ceasefire Collapses, Oil Surges — Markets-Finance
+# ══════════════════════════════════════════════════════════════════
+print("\n═══ Article 3: Iran Ceasefire Collapse / Oil Surge ═══")
+
+art3 = {
+    "headline": "Iran Just Halted Negotiations With the United States. Oil Surged Past $97 a Barrel in a Single Session.",
+    "subheadline": "Tehran's 'Resistance Front' is considering a complete blockade of the Strait of Hormuz and the Bab el-Mandeb. For NRI investors, this is the week the energy math changes.",
+    "slug": "iran-halts-us-negotiations-oil-surges-97-hormuz-blockade-nri-investors-20260601",
+    "category": "markets-finance",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "Morningstar / Dow Jones", "url": "https://www.morningstar.com"},
+        {"name": "Associated Press / Barchart", "url": "https://www.barchart.com"},
+        {"name": "Deutsche Bank Research", "url": "https://www.db.com"},
+        {"name": "Capital Economics", "url": "https://www.capitaleconomics.com"}
+    ]),
+    "body": """The fragile ceasefire between the United States and Iran collapsed on Monday. Oil prices surged more than six dollars a barrel in a single session, and for NRI investors with portfolios split between US equities and Indian markets, the consequences are immediate and material.
+
+## What Happened
+
+Iran's Tasnim news agency reported on Monday that Tehran's negotiating team has halted message exchanges with the United States. The report said Iran's allied 'Resistance Front' is considering measures to completely block the Strait of Hormuz and choke other waterways including the Bab el-Mandeb Strait, which connects the Red Sea to the Gulf of Aden.
+
+The collapse followed a weekend of escalating military action. The United States Central Command announced early Monday that it launched 'self-defence strikes' on Iranian drone sites in southern Iran, close to the Strait of Hormuz. CENTCOM described the strikes as retaliation for Tehran shooting down an American drone over international waters. Iran's Islamic Revolutionary Guard Corps responded by targeting a US air base it claimed was used to attack an Iranian communications tower. Kuwait's foreign ministry denounced what it called 'heinous Iranian attacks' on its territory.
+
+Separately, Israeli Prime Minister Benjamin Netanyahu ordered strikes on the southern suburbs of Beirut, further entangling Lebanon in a conflict that has been expanding since March.
+
+## The Market Reaction
+
+Brent crude surged 6.6 per cent to $97.14 a barrel by mid-morning Eastern time. West Texas Intermediate jumped 7.7 per cent to $94.04. Both benchmarks had fallen roughly 17 to 19 per cent in May — the steepest monthly drop in absolute terms since March 2020 when the pandemic crushed energy demand. Monday's surge erased a significant portion of that decline in a single session.
+
+The S&P 500, which had closed at a record high on Friday after nine consecutive weeks of gains, slipped 0.1 per cent in early trading. The Dow fell 166 points. Technology stocks held up better than the broader market, continuing the AI-driven rally that has defined 2026. Gold futures dipped 1.4 per cent to $4,530 an ounce, while Bitcoin traded near $72,100.
+
+Treasury yields ticked higher. The 10-year note moved to 4.46 per cent, reflecting expectations that higher energy prices will feed into inflation and complicate the Federal Reserve's already constrained policy options.
+
+## Why This Time Is Different
+
+Markets have weathered months of Iran-related volatility. But Monday's developments mark a qualitative shift.
+
+Previous disruptions — the initial Hormuz closure, the ceasefire, the 60-day memorandum of understanding — left open the possibility that diplomacy would resolve the crisis before global oil reserves were critically depleted. Monday's news removes that assumption from the base case.
+
+Jim Reid, head of macro research and thematic strategy at Deutsche Bank, wrote in a note: 'We have never felt closer to a deal but potentially never felt closer to it all falling apart. It is hard to imagine remaining in limbo for much longer given that if the Strait of Hormuz remains closed into mid-summer it will at some point likely lead to a non-linear tipping point of economic stress.'
+
+Ipek Ozkardeskaya, senior analyst at Swissquote, added that 'global oil reserves are falling fast, and markets are not pricing an extended closure of the Strait of Hormuz, meaning that upside risks to oil prices loom.'
+
+An Axios report last week said Iran had dropped additional mines in the strait, further complicating any future reopening even if negotiations resume.
 
 ## What This Means for NRI Investors
 
-Three areas deserve attention.
+The oil-rupee connection is the most direct channel of impact for diaspora investors. India imports roughly 85 per cent of its crude oil. Every ten-dollar increase in oil prices widens the current account deficit by approximately 0.4 per cent of GDP and puts downward pressure on the rupee. With Brent now threatening to retest the $100 level, the Reserve Bank of India's rate decision — expected this week — becomes significantly more complicated.
 
-**Agricultural and FMCG stocks.** Companies dependent on rural demand — consumer staples, fertiliser producers, and agricultural input firms — are directly exposed to monsoon outcomes. Consumer staples already lost more than 3 per cent in May while tech rallied 16 per cent. A weak monsoon would extend that underperformance.
+Indian equities are already under pressure. The Sensex lost 1,092 points in a single session last week on MSCI rebalancing and the weak rupee. A sustained move in oil above $95 would hit India's oil marketing companies, airlines, and paint manufacturers hardest. Reliance Industries, which operates India's largest refining complex, could see mixed effects: higher refining margins but weaker petrochemical demand.
 
-**RBI rate path.** The RBI's Monetary Policy Committee meets this week. With inflation still below target, there was room for an accommodative stance. But a weak monsoon forecast changes the calculus. If food inflation materialises in July–August, the window for rate cuts narrows significantly. The RBI may hold steady rather than ease, which would weigh on India's growth-sensitive sectors.
+For NRI portfolios with US exposure, energy stocks are the obvious beneficiary. Chevron rose 2.3 per cent on Monday. But the broader risk is that persistent oil inflation above $90 forces the Federal Reserve to maintain or raise rates at a time when the market is pricing in cuts. The S&P 500's nine-week winning streak has been built on the assumption that AI earnings growth can outrun macro headwinds. A sustained energy shock would test that thesis directly.
 
-**The rupee.** A combination of elevated oil prices ($88.83 per barrel WTI), a potential food-price shock, and hawkish US rates (10-year Treasury yields at 4.47 per cent, 50-50 chance of a Fed hike by year-end) puts further pressure on the rupee. NRIs sending remittances to India may get more favourable exchange rates in the near term, but the underlying stress on the economy is not a positive signal for long-term India allocations.
+## What to Watch This Week
 
-## The Broader Picture
+Three events will determine whether Monday's surge is a one-day spike or the start of a new regime. First, any resumption of US-Iran messaging through backchannel or intermediary contacts. Second, the Reserve Bank of India's monetary policy decision, which will signal how seriously New Delhi is taking the oil threat. Third, Friday's US nonfarm payrolls report, which will shape expectations for the Federal Reserve's next move.
 
-The Wall Street Journal reported this week that El Niño, supercharged by climate change, is "the next risk hanging over the global economy." The effects extend well beyond India — during the last El Niño cycle in 2022–2023, India banned rice exports, dengue epidemics surged, the Panama Canal hit low water levels, and chocolate prices spiked globally.
+Jonas Goltermann, chief markets economist at Capital Economics, struck a cautiously optimistic note: 'In spite of another round of tit-for-tat attacks, market participants continue to operate on the assumption that, sooner rather than later, the Strait of Hormuz will re-open.'
 
-For India specifically, the convergence of a record heatwave that has killed more than 2,200 people, a weakening monsoon, and energy costs driven by the Middle East conflict creates what economists call a "triple squeeze" on the agricultural economy. Half the country is already burning. The rain that could provide relief is forecast to be the weakest in over a decade.
+That assumption is now carrying more weight than at any point since the war began. For NRI investors, the practical question is not whether oil prices will be volatile — they will. It is whether your portfolio can absorb a scenario where they stay above $95 for the rest of the summer."""
+}
 
-India's nearly $4 trillion economy has shown resilience before. But as the finance ministry itself acknowledged this week, the near-term outlook is one of "cautious resilience" — a phrase that means the risks are real and the margin for error is thin."""
-
-art2_sources = json.dumps([
-    {"name": "Reuters", "url": "https://www.reuters.com/world/india/india-warns-weakest-monsoon-11-years-inflation-risks-rise-2026-05-29/"},
-    {"name": "Mint", "url": "https://www.livemint.com/news/india/is-2026-heading-for-its-driest-monsoon-since-2015-el-nino-imd-monsoon-forecast-11748510420437.html"},
-    {"name": "Reuters (Finance Ministry report)", "url": "https://www.reuters.com/world/india/india-says-retail-inflation-may-accelerate-weak-monsoon-fuel-price-rise-2026-05-31/"},
-    {"name": "Wall Street Journal", "url": "https://www.wsj.com/economy/global/el-nino-is-the-next-risk-hanging-over-the-global-economy-c213df40"}
-])
-
-# ============================================================
-# ARTICLE 3: Vaping Cancer Risk (lifestyle-health)
-# ============================================================
-
-art3_id = str(uuid.uuid4())
-art3_slug = "vaping-cancer-risk-carcinogenesis-review-dna-damage-south-asian-parents-teens-20260601"
-art3_headline = "A Major Scientific Review Just Found That Vaping Can Damage DNA and May Cause Cancer. South Asian Parents Need to Read This."
-art3_subheadline = "The review, published in Carcinogenesis, examined laboratory, animal, and human studies. The evidence links e-cigarette aerosols to cancers of the lung, mouth, and bladder."
-
-art3_body = """Vaping has been marketed for years as the safer alternative to smoking. A comprehensive new review, published in the journal *Carcinogenesis*, says the picture is more complicated than that — and more alarming than most parents realise.
-
-The paper is not a single experiment. It is a large-scale scientific review that synthesised evidence from laboratory studies, animal models, human biomarker research, and epidemiological data to assess how e-cigarettes affect cells and tissues in ways linked to cancer development. The findings are significant enough that CNN's wellness expert Dr. Leana Wen, a former Baltimore health commissioner, called them a serious concern for parents.
-
-## What the Review Found
-
-E-cigarette aerosols can damage DNA and trigger chronic inflammation — two processes that are among the earliest biological steps in cancer formation. The review documented that vaping aerosols contain known or suspected carcinogenic compounds, including formaldehyde, acetaldehyde, and heavy metals such as nickel, chromium, and lead that leach from the heating elements inside devices.
-
-The evidence suggests associations between vaping and cancers of the lungs, mouth, and bladder. These are not theoretical projections based on chemical exposure alone. Human biomarker studies show measurable DNA damage in the cells of people who vape regularly.
-
-The authors were careful to note limitations. Many of the strongest findings come from laboratory and animal models, and long-term epidemiological data on cancer incidence in vapers is still limited — e-cigarettes have only been widely used for about 15 years. But the mechanistic evidence is now substantial enough that the authors concluded vaping should not be treated as a risk-free activity.
-
-## Why This Matters for South Asian Families
-
-The data on South Asian teen vaping in the United States is sparse, but the structural factors are concerning. A 2024 CDC Youth Tobacco Survey found that more than 1.6 million middle and high school students in the US used e-cigarettes, with disposable devices and flavoured products the primary drivers. Among Asian American and Pacific Islander youth, vaping rates have been rising faster than in several other demographic groups.
-
-For South Asian parents, the challenge is cultural. Smoking is widely stigmatised in Indian, Pakistani, and Bangladeshi households. Many parents know to watch for cigarettes. Far fewer are alert to vaping, which produces no lasting smell, can be done discreetly, and is aggressively marketed through social media channels that teenagers consume but parents often do not.
-
-The devices themselves have become nearly invisible. Pod-based e-cigarettes like JUUL have given way to disposable devices that resemble USB drives, highlighters, or pens. A teenager can use one in a school bathroom, bedroom, or car without leaving any visible evidence.
-
-## What the Science Does Not Yet Know
-
-The review acknowledges several gaps. Cancer typically takes decades to develop, and e-cigarettes have not been in widespread use long enough to produce the kind of large-scale cancer incidence data that exists for traditional cigarettes. The relative risk of vaping versus smoking is still lower for most measures — but "safer than cigarettes" is not the same as "safe."
-
-Dr. Wen emphasised that the framing matters. "I would not tell a current heavy smoker to avoid switching to e-cigarettes if that is the only way they will quit," she said. "But I would absolutely tell a teenager who has never smoked that vaping is not harmless and carries real health risks."
-
-The review also found that dual use — vaping and smoking — may compound risks rather than reduce them. A significant percentage of young people who start vaping eventually progress to combustible cigarettes, which reverses any harm-reduction benefit.
-
-## What Parents Can Do
-
-The US Surgeon General declared youth screen time a public health crisis just this past week. Vaping has been on that same regulatory radar for years, but enforcement has not kept pace with the industry's innovation. As of 2026, flavoured disposable e-cigarettes remain widely available despite partial FDA enforcement actions.
-
-For South Asian parents, the conversation needs to be direct and specific. Research suggests that teens respond better to factual health information than to moral arguments. Sharing that vaping causes DNA damage and contains carcinogenic heavy metals is more effective than telling them it is "bad."
-
-Know what the devices look like. Ask your children's school about its vaping policy and whether it has detection systems in restrooms. If your teenager has friends who vape, assume they have been exposed and treat the conversation as urgent rather than precautionary.
-
-The *Carcinogenesis* review does not call vaping a guaranteed cancer risk. But it makes clear that the biological mechanisms are present, the harmful compounds are real, and the long-term consequences are still unknown. For a generation of South Asian teens growing up in the US, UK, and Canada, that uncertainty is itself a reason for caution."""
-
-art3_sources = json.dumps([
-    {"name": "Carcinogenesis (Oxford Academic)", "url": "https://academic.oup.com/carcin/advance-article/2026"},
-    {"name": "CNN Health", "url": "https://www.cnn.com/2026/05/28/health/vaping-cancer-risk-study-wellness"},
-    {"name": "CDC Youth Tobacco Survey", "url": "https://www.cdc.gov/tobacco/data_statistics/surveys/nyts/index.htm"}
-])
-
-
-# ============================================================
-# IMAGE SOURCING
-# ============================================================
-
-print("\n=== Sourcing images ===\n")
-
-# Article 1: India heatwave — no specific person, use Pexels
-print("Article 1 (Heatwave):")
-img1 = fetch_pexels_image("India extreme heat sun dry cracked earth", "scorching heat wave drought summer")
-if img1:
-    img1_final = upload_to_supabase_storage(img1, f"{art1_id}.jpg")
+# Image: oil markets / energy
+print("  Sourcing image...")
+img3 = fetch_pexels_image("crude oil barrel energy market trading", "oil refinery industry energy")
+if img3 and validate_image(img3):
+    art3["image_url"] = img3
+    art3["image_attribution"] = "Pexels"
+    print(f"  ✓ Image set: {img3[:80]}...")
 else:
-    img1_final = None
-    print("  ✗ No image found for heatwave article")
+    print("  ⚠ No valid image found — inserting without image")
 
-# Article 2: India monsoon/agriculture — no specific person, use Pexels
-print("\nArticle 2 (Monsoon):")
-img2 = fetch_pexels_image("Indian farmer dry field agriculture drought", "monsoon rain farm India")
-if img2:
-    img2_final = upload_to_supabase_storage(img2, f"{art2_id}.jpg")
+row3 = sb_insert("p2_articles", art3)
+if row3:
+    print(f"  ✓ Published: {row3.get('id', 'unknown')}")
 else:
-    img2_final = None
-    print("  ✗ No image found for monsoon article")
-
-# Article 3: Vaping — no specific person, use Pexels
-print("\nArticle 3 (Vaping):")
-img3 = fetch_pexels_image("vaping e-cigarette smoke teenager", "electronic cigarette vape device")
-if img3:
-    img3_final = upload_to_supabase_storage(img3, f"{art3_id}.jpg")
-else:
-    img3_final = None
-    print("  ✗ No image found for vaping article")
+    print("  ✗ Failed to publish Article 3")
 
 
-# ============================================================
-# INSERT ARTICLES
-# ============================================================
-
-print("\n=== Inserting articles ===\n")
-
-now = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
-
-articles = [
-    {
-        "id": art1_id,
-        "headline": art1_headline,
-        "subheadline": art1_subheadline,
-        "body": art1_body,
-        "slug": art1_slug,
-        "category": "lifestyle-health",
-        "status": "published",
-        "published_at": now,
-        "sources": art1_sources,
-        "image_url": img1_final,
-        "image_attribution": "Pexels" if img1_final else None,
-        "is_editorial": False,
-        "author": "The Videshi"
-    },
-    {
-        "id": art2_id,
-        "headline": art2_headline,
-        "subheadline": art2_subheadline,
-        "body": art2_body,
-        "slug": art2_slug,
-        "category": "markets-finance",
-        "status": "published",
-        "published_at": now,
-        "sources": art2_sources,
-        "image_url": img2_final,
-        "image_attribution": "Pexels" if img2_final else None,
-        "is_editorial": False,
-        "author": "The Videshi"
-    },
-    {
-        "id": art3_id,
-        "headline": art3_headline,
-        "subheadline": art3_subheadline,
-        "body": art3_body,
-        "slug": art3_slug,
-        "category": "lifestyle-health",
-        "status": "published",
-        "published_at": now,
-        "sources": art3_sources,
-        "image_url": img3_final,
-        "image_attribution": "Pexels" if img3_final else None,
-        "is_editorial": False
-    }
-]
-
-for i, article in enumerate(articles, 1):
-    # Remove None values
-    article = {k: v for k, v in article.items() if v is not None}
-    
-    print(f"Inserting article {i}: {article['headline'][:60]}...")
-    result = insert_article(article)
-    try:
-        resp = json.loads(result)
-        if isinstance(resp, list) and len(resp) > 0:
-            print(f"  ✓ Inserted: {resp[0].get('id', 'unknown')}")
-        elif isinstance(resp, dict) and resp.get('message'):
-            print(f"  ✗ Error: {resp.get('message', 'unknown')}")
-        else:
-            print(f"  Response: {result[:200]}")
-    except Exception as e:
-        print(f"  ✗ Parse error: {e}")
-        print(f"  Raw: {result[:300]}")
-
-print("\n=== Done ===")
+print("\n══════════════════════════════════════════")
+print("✅ Lifestyle/Markets writer run complete")
+print("══════════════════════════════════════════")
