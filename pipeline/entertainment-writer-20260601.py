@@ -1,40 +1,36 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-06-01 run.
+"""Entertainment writer for The Videshi - June 1, 2026 evening run"""
 
-Articles:
-1. KASHISH Pride Film Festival 2026 — 153 films from 43 countries, June 3-7 Mumbai
-2. Maa Behen — Madhuri Dixit + Triptii Dimri Netflix crime-comedy, June 4
-3. Main Vaapas Aaunga — Imtiaz Ali + Diljit Dosanjh Partition love story, June 12
-"""
-
-import json, os, subprocess, sys, time, uuid, urllib.parse, re
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+import urllib.parse
+import requests
 from datetime import datetime, timezone
 
-# --- env ---
-env_file = os.path.expanduser("~/.env.supabase")
-with open(env_file) as f:
+# Load env
+env_path = os.path.expanduser("~/workspace/.env.supabase")
+with open(env_path) as f:
     for line in f:
         line = line.strip()
         if line and not line.startswith("#") and "=" in line:
             k, v = line.split("=", 1)
-            os.environ[k.strip()] = v.strip().strip('"').strip("'")
-
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+            os.environ[k] = v
 
 pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-PEXELS_KEY = None
 if os.path.exists(pexels_env):
     with open(pexels_env) as f:
         for line in f:
             line = line.strip()
             if line and not line.startswith("#") and "=" in line:
                 k, v = line.split("=", 1)
-                if "PEXELS" in k.upper():
-                    PEXELS_KEY = v.strip().strip('"').strip("'")
+                os.environ[k] = v
 
-import requests
-
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -54,19 +50,22 @@ def fetch_wikipedia_person_image(person_name):
         )
         if r.status_code == 200:
             data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            img = data.get("originalimage", {}).get("source") or data.get(
+                "thumbnail", {}
+            ).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key available")
+    """Fetch image from Pexels as fallback. Returns URL or None."""
+    api_key = os.environ.get("PEXELS_API_KEY", "")
+    if not api_key:
+        print("  ⚠ No Pexels API key")
         return None
     for q in [query, fallback_query]:
         if not q:
@@ -74,298 +73,268 @@ def fetch_pexels_image(query, fallback_query=None):
         try:
             result = subprocess.run(
                 [
-                    "curl", "-sS",
-                    f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
-                    "-H", f"Authorization: {PEXELS_KEY}",
+                    "curl",
+                    "-sS",
+                    f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3",
+                    "-H",
+                    f"Authorization: {api_key}",
                 ],
-                capture_output=True, text=True, timeout=15,
+                capture_output=True,
+                text=True,
+                timeout=15,
             )
             data = json.loads(result.stdout)
             photos = data.get("photos", [])
-            for photo in photos:
-                url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("original")
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            if photos:
+                url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels image for '{q}': {url[:60]}...")
+                return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 
-def validate_image(url):
-    """Verify image URL returns HTTP 200 with image content-type and >5KB."""
+def validate_image_url(url):
+    """Validate image URL returns HTTP 200 with image content."""
+    if not url:
+        return False
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            print(f"  ✓ Image validated: {r.status_code}, {ct}, {cl} bytes")
+        r = requests.head(url, timeout=10, allow_redirects=True, headers={
+            "User-Agent": "TheVideshi/1.0 (thevideshi.com)"
+        })
+        content_type = r.headers.get("Content-Type", "")
+        content_length = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in content_type and content_length > 5000:
+            print(f"  ✓ Image validated: {content_length} bytes, {content_type}")
             return True
-        # Try GET for servers that don't support HEAD well
-        r2 = requests.get(url, timeout=10, stream=True, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        # Try GET if HEAD fails
+        r2 = requests.get(url, timeout=10, stream=True, headers={
+            "User-Agent": "TheVideshi/1.0 (thevideshi.com)"
+        })
         ct2 = r2.headers.get("Content-Type", "")
         cl2 = int(r2.headers.get("Content-Length", 0))
         if r2.status_code == 200 and "image" in ct2 and cl2 > 5000:
-            print(f"  ✓ Image validated (GET): {r2.status_code}, {ct2}, {cl2} bytes")
+            print(f"  ✓ Image validated (GET): {cl2} bytes, {ct2}")
             return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
+        print(f"  ✗ Image validation failed: status={r2.status_code}, type={ct2}, size={cl2}")
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
+        print(f"  ✗ Image validation error: {e}")
     return False
 
 
-def insert_article(article):
-    """Insert article into Supabase p2_articles table."""
-    article_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).isoformat()
-
-    payload = {
-        "id": article_id,
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "body": article["body"],
-        "slug": article["slug"],
-        "category": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "sources": article["sources"],
-        "vertical": "entertainment",
-        "image_url": article.get("image_url"),
-        "image_attribution": article.get("image_attribution", ""),
-        "is_editorial": False,
-    }
-
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=payload,
-    )
+def sb_insert(table, payload):
+    """Insert row into Supabase."""
+    url = f"{SUPABASE_URL}/rest/v1/{table}"
+    r = requests.post(url, headers=HEADERS, json=payload)
     if r.status_code in (200, 201):
-        result = r.json()
-        print(f"  ✓ Published: {article['headline'][:60]}... (id={article_id})")
-        return article_id
+        data = r.json()
+        if isinstance(data, list) and data:
+            return data[0]
+        return data
+    print(f"  ✗ Insert error: {r.status_code} {r.text[:200]}")
+    return None
+
+
+def sb_patch(table, filters, payload):
+    """Patch row in Supabase."""
+    filter_str = "&".join(f"{k}={v}" for k, v in filters.items())
+    url = f"{SUPABASE_URL}/rest/v1/{table}?{filter_str}"
+    r = requests.patch(url, headers=HEADERS, json=payload)
+    if r.status_code in (200, 204):
+        return True
+    print(f"  ✗ Patch error: {r.status_code} {r.text[:200]}")
+    return False
+
+
+# ── ARTICLES ──
+
+articles = []
+
+# ═══════════════════════════════════════════════════════════════
+# ARTICLE 1: Ranveer Singh Don 3 FWICE Controversy
+# ═══════════════════════════════════════════════════════════════
+
+articles.append({
+    "headline": "Ranveer Singh Has Been Shadow-Banned by Bollywood's Biggest Union. The Don 3 Fallout Is Getting Ugly.",
+    "subheadline": "FWICE issued a non-cooperation directive after the actor walked out of Farhan Akhtar's franchise reboot. Ram Gopal Varma says ban the union, not the actor. Salman Khan is mediating. The diaspora is watching a power struggle play out in real time.",
+    "slug": "ranveer-singh-don-3-fwice-shadow-ban-bollywood-union-nri-20260601",
+    "category": "entertainment",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        "Bollywood Hungama",
+        "Devdiscourse",
+        "Zoom TV Entertainment",
+        "Pinkvilla",
+        "Indulge Express"
+    ]),
+    "body": """The Federation of Western India Cine Employees (FWICE) — the union that claims to represent over five lakh workers across the Indian film industry — has issued a non-cooperation directive against Ranveer Singh. The directive effectively shadow-bans the actor, advising the entire industry to refrain from collaborating with him until he resolves his dispute with Excel Entertainment over the shelved *Don 3*.
+
+It is one of the most significant industry interventions in recent Bollywood memory. And it is dividing the film fraternity right down the middle.
+
+## How It Started
+
+The trouble traces back to late 2025, when reports first surfaced that Ranveer Singh had exited *Don 3* — the long-awaited reboot of the franchise that Farhan Akhtar and Ritesh Sidhwani's Excel Entertainment had been developing for years. The original *Don* (2006) and *Don 2* (2011), both starring Shah Rukh Khan, were box office successes. A third instalment with Ranveer was meant to relaunch the franchise for a new generation.
+
+But creative differences derailed the project. Ranveer reportedly wanted the Don character portrayed with more sinister, darker overtones. Farhan Akhtar insisted on keeping things consistent with the franchise's established tone. After nearly two years of back-and-forth, the actor walked out — just three weeks before the scheduled shoot.
+
+Excel Entertainment claims the departure caused losses of approximately ₹45 crore (roughly $5.4 million), covering pre-production work, location scouting, costume design, and other development expenses. The production house lodged a formal complaint with the Indian Film & Television Directors' Association, which referred the matter to FWICE.
+
+## FWICE Steps In
+
+FWICE sent three separate notices to Ranveer Singh's team, asking the actor to appear before the federation and present his side. His legal team responded by questioning FWICE's jurisdiction over what they described as a private commercial agreement between two parties.
+
+That response was perceived as a snub. FWICE's chief adviser Ashoke Pandit clarified that the directive was technically a "non-cooperation measure" rather than an outright ban, but the distinction felt academic. The practical effect is the same: the union has advised its vast membership — technicians, spot boys, makeup artists, assistant directors, the daily-wage workers who form the backbone of every film set — to avoid working with Ranveer Singh.
+
+For NRI audiences who follow the Indian film industry from abroad, the move raises uncomfortable questions about how disputes between millionaire actors and production houses end up affecting the livelihoods of the industry's most vulnerable workers.
+
+## Settlement Talks and Salman Khan's Mediation
+
+Behind the scenes, efforts to defuse the crisis have been underway. Ranveer's team reportedly offered a settlement worth ₹35 crore, structured as a ₹10 crore upfront payment plus a ₹25 crore discount on a future project. Farhan and Ritesh rejected the offer and maintained their demand of ₹45 crore in full compensation.
+
+Enter Salman Khan. The actor, who shares a cordial relationship with both Ranveer and Farhan, stepped in as an informal mediator. His advice, according to multiple reports: sort it out between yourselves without dragging in unions or courts. Both sides are believed to be following his counsel, though Farhan and Ritesh have insisted that any future settlement discussions must happen with them personally present — no proxies, no intermediaries.
+
+## Ram Gopal Varma Goes to War
+
+The controversy took a new turn when filmmaker Ram Gopal Varma weighed in with a blistering critique of FWICE. In a long post on X (formerly Twitter), Varma wrote: "BAN 'FWICE' and not @RanveerOfficial."
+
+Varma called the federation a "kangaroo court" and described the non-cooperation directive as "a massive PR disaster" for the union itself. His argument was blunt: the dispute is a private contractual matter between a production house and an actor, the kind of thing that happens "in millions of cases all the time and all over India in all businesses." FWICE, he argued, is "neither a court of legal justice nor a government-authorised regulatory body."
+
+He went further, questioning the federation's claim to represent five lakh workers. "The brutal truth is that most of those lakhs don't even know the internal facts of the two parties' dispute," he wrote, calling the ban "pure performative muscle flexing by an extremely outdated union system desperately trying to hold on to their grip."
+
+## The Precedent Question
+
+FWICE's position, however, has its own logic. If a major star can exit a project three weeks before shooting begins, cause crores in losses, and then refuse to even engage with the industry's dispute resolution mechanisms, what deterrent exists for future producers? That question has genuine weight, particularly for the smaller producers who cannot absorb tens of crores in sunk costs.
+
+The federation's argument is less about Ranveer Singh the individual and more about maintaining a system where commitments carry consequences. Without some enforcement mechanism, producers face asymmetric risk every time they invest heavily in a star-driven project.
+
+## What It Means for the Diaspora
+
+For NRI audiences in the US, UK, Canada, and the Gulf, the Don 3 saga is more than industry gossip. Ranveer Singh is one of the most visible Indian stars in global markets. His *Dhurandhar* franchise has been a massive international hit — the sequel is currently dominating Netflix charts in multiple countries. His presence (or absence) in upcoming projects directly affects what Indian cinema looks like on screens outside India.
+
+The FWICE directive, if it holds, could delay or derail multiple projects that diaspora audiences are looking forward to. Ranveer's *Pralay*, reportedly set to begin shooting in August 2026, could face logistical complications if the non-cooperation measure isn't resolved. The actor's legal team has the option of challenging the directive in court, but that would mean a prolonged public battle that benefits no one.
+
+The resolution, when it comes, will likely happen in a quiet room rather than on social media. But the episode has already exposed the fault lines in Bollywood's power structure — the tensions between star power and institutional authority, between contractual obligations and creative freedom, between a union system built for a different era and an industry that has outgrown it.
+
+For now, Ranveer Singh remains one of the biggest box office draws in Indian cinema. And one of its most controversial figures.""",
+})
+
+# ═══════════════════════════════════════════════════════════════
+# ARTICLE 2: Netflix Tamil Original Series Slate
+# ═══════════════════════════════════════════════════════════════
+
+articles.append({
+    "headline": "Netflix Just Unveiled a Tamil Original Slate. R. Madhavan Is Leading a Crime Saga. The Diaspora Should Pay Attention.",
+    "subheadline": "Legacy, a family crime drama starring Madhavan and Nimisha Sajayan, headlines a new lineup of Tamil-language originals. Netflix is betting that hyperlocal South Indian stories can travel globally.",
+    "slug": "netflix-tamil-original-series-slate-madhavan-legacy-nri-diaspora-20260601",
+    "category": "entertainment",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps([
+        "Sacnilk",
+        "Netflix India",
+        "What's on Netflix",
+        "Zoom TV Entertainment"
+    ]),
+    "body": """Netflix has formally announced a new slate of Tamil-language original series, marking what may be the streaming giant's most aggressive push into South Indian content to date. The lineup features a star-powered crime saga, a modern romantic comedy, and a psychological thriller — all commissioned as Netflix originals rather than post-theatrical acquisitions.
+
+For the Tamil diaspora spread across the US, UK, Canada, Singapore, Malaysia, Australia, and the Gulf, the announcement carries particular significance. This is not Netflix licensing a theatrical hit after its cinema run. This is Netflix investing in Tamil-language storytelling from the ground up, betting that hyperlocal narratives from Chennai and Tamil Nadu can travel as effectively globally as Korean dramas or Spanish thrillers.
+
+## Legacy: Madhavan Returns to Tamil
+
+The most anticipated project is *Legacy*, a high-stakes family crime drama that represents one of the most impressive ensemble casts assembled for a Tamil streaming series. R. Madhavan — whose career has spanned three decades from *Alaipayuthey* and *Minnale* to the Hindi-language hits *3 Idiots*, *Tanu Weds Manu*, and *Rehnaa Hai Terre Dil Mein* — takes the lead.
+
+Joining him are Nimisha Sajayan, the National Award-winning Malayalam actress making her Tamil streaming debut; Gautham Karthik, continuing his evolution beyond the legacy of his father Karthik; and Gulshan Devaiah in his Tamil debut. The series is produced by Stone Bench Pvt Ltd and directed by Charukesh Sekar.
+
+The premise centers on an aging patriarch of a powerful crime family who must choose a successor to protect his empire from an inevitable siege. Netflix's official description promises a narrative exploring "power, morality, and familial betrayal" — themes that have driven some of the greatest crime sagas in global television, from *The Sopranos* to *Succession*.
+
+For NRI Tamil audiences who grew up watching Madhavan transition from romantic hero to versatile actor, *Legacy* represents something new: a prestige Tamil-language series with global production values on the world's biggest streaming platform. The question is whether it will be the Tamil equivalent of *Sacred Games* — the show that proved Hindi-language original content could compete on an international stage.
+
+## A Strategic Shift in Content
+
+Netflix's Tamil push is not happening in isolation. The platform has simultaneously unveiled an expansive Telugu original slate featuring projects with Nani, Venkatesh, and Vijay Deverakonda. Taken together, these announcements represent a clear strategic pivot: Netflix is no longer treating South Indian content as a secondary market to be served with post-theatrical licensing deals. It is building original content pipelines for each major language.
+
+The timing is deliberate. The South Indian film industry has been outperforming Bollywood at the box office with increasing regularity. Malayalam cinema has produced a string of globally successful films. Telugu cinema's reach in North America has grown exponentially — Ram Charan's *Peddi* is already at $700,000 in US advance bookings before its release. Tamil cinema, with global stars like Dhanush, Vijay, and Suriya, has one of the most passionate and geographically dispersed fan bases in the world.
+
+For Netflix, the calculation is straightforward: South Indian audiences are among the most engaged streaming consumers globally, and they have been underserved by original content. JioHotstar and Amazon Prime Video have been competing aggressively for this audience; Netflix needed to respond with more than theatrical acquisitions.
+
+## What Else Is in the Lineup
+
+Beyond *Legacy*, the Tamil slate includes several other projects whose details are still emerging. A modern romantic comedy series is in development, reflecting Netflix's awareness that not all South Indian content needs to be high-stakes crime drama. A psychological thriller rounds out the confirmed genres, suggesting Netflix is building a diverse portfolio rather than betting everything on one tone.
+
+The involvement of Stone Bench Pvt Ltd — the production company behind the recently streamed Tamil romantic drama *29* (directed by Rathna Kumar, which hit Netflix on June 5) — signals that Netflix is building ongoing relationships with Tamil production houses rather than treating each project as a one-off.
+
+## The Diaspora Opportunity
+
+For Tamil diaspora families in the US and Canada, streaming has become the primary way they consume Indian entertainment. The days of waiting months for a VHS or DVD to arrive from Chennai are long gone. But the content available on streaming platforms has not always reflected the depth and quality of Tamil storytelling.
+
+What Netflix is offering is not just more Tamil content — it is Tamil content made with the production budgets, writing ambitions, and distribution reach that were previously reserved for Hindi-language shows. *Legacy*, with its crime-saga premise and star cast, is clearly positioned to compete not just with other Indian shows but with international prestige television.
+
+The Tamil diaspora has been one of the most loyal communities on streaming platforms. They subscribe to multiple services to access content, often switching between Netflix, Amazon Prime, JioHotstar, and Zee5 depending on which platform has the latest theatrical release. Netflix's gamble is that by offering high-quality originals, it can become the default platform for Tamil-language entertainment abroad — not just a place to catch up on movies that already played in theatres.
+
+## The Competition Responds
+
+Netflix's move is expected to accelerate investment from rivals. JioHotstar, which already streams a significant portion of Tamil theatrical content, has been developing its own Tamil originals. Amazon Prime Video has had success with Tamil-language content and is likely to intensify its commissioning. The winners, ultimately, are the audiences — particularly the diaspora audiences who have been asking for prestige South Indian content on global platforms for years.
+
+The release dates for most of the newly announced Tamil originals have not been disclosed. But with *Legacy* carrying the weight of Madhavan's star power and a crime-saga premise designed for global appeal, the series is likely to be Netflix's highest-profile Tamil launch to date.
+
+For a diaspora that has watched Tamil cinema evolve from local industry to global cultural force, the message from Netflix is clear: Tamil stories are no longer regional content. They are global entertainment.""",
+})
+
+
+# ── PROCESS ARTICLES ──
+
+for i, article in enumerate(articles):
+    print(f"\n{'='*60}")
+    print(f"ARTICLE {i+1}: {article['headline'][:60]}...")
+    print(f"{'='*60}")
+
+    # Image sourcing
+    img_url = None
+    img_attribution = None
+
+    if i == 0:  # Ranveer Singh
+        img_url = fetch_wikipedia_person_image("Ranveer Singh")
+        img_attribution = "Wikimedia Commons"
+        if not img_url:
+            img_url = fetch_pexels_image("Bollywood film industry", "Indian cinema studio")
+            img_attribution = "The Videshi"
+
+    elif i == 1:  # Netflix Tamil / Madhavan
+        img_url = fetch_wikipedia_person_image("R. Madhavan")
+        img_attribution = "Wikimedia Commons"
+        if not img_url:
+            img_url = fetch_wikipedia_person_image("Madhavan (actor)")
+            img_attribution = "Wikimedia Commons"
+        if not img_url:
+            img_url = fetch_pexels_image("streaming service television", "digital entertainment")
+            img_attribution = "The Videshi"
+
+    # Validate image
+    if img_url and not validate_image_url(img_url):
+        print(f"  ⚠ Image failed validation, trying fallback...")
+        img_url = fetch_pexels_image("Indian cinema", "Bollywood")
+        img_attribution = "The Videshi"
+        if img_url and not validate_image_url(img_url):
+            img_url = None
+
+    if img_url:
+        article["image_url"] = img_url
+        article["image_attribution"] = img_attribution
+        print(f"  ✓ Final image: {img_url[:80]}...")
     else:
-        print(f"  ✗ Failed to publish: {r.status_code} {r.text[:200]}")
-        return None
+        print(f"  ✗ No valid image found")
+
+    # Insert article
+    result = sb_insert("p2_articles", article)
+    if result:
+        art_id = result.get("id")
+        print(f"  ✓ Published: {article['slug']} (id: {art_id})")
+    else:
+        print(f"  ✗ Failed to publish: {article['slug']}")
 
-
-# ============================================================
-# ARTICLE 1: KASHISH Pride Film Festival 2026
-# ============================================================
-print("\n=== Article 1: KASHISH Pride Film Festival 2026 ===")
-
-# Image: Try to get a Pride/rainbow flag or festival image from Pexels
-img1 = fetch_pexels_image("pride month rainbow celebration", "LGBTQ pride festival colorful")
-if img1 and not validate_image(img1):
-    img1 = None
-
-article1 = {
-    "headline": "KASHISH Opens in Mumbai This Week With 153 Queer Films From 43 Countries. Here's What It Means for the Diaspora.",
-    "subheadline": "South Asia's biggest LGBTQ+ film festival runs June 3-7 at Liberty Cinema. For NRI audiences who grew up without seeing themselves on screen, this is the conversation India is finally having.",
-    "slug": "kashish-pride-film-festival-2026-mumbai-153-films-43-countries-nri-diaspora-20260601",
-    "sources": [
-        {"name": "KASHISH Pride Film Festival Official", "url": "https://mumbaiqueerfest.com"},
-        {"name": "NewsPoint", "url": "https://newspointapp.com"},
-        {"name": "Passionate in Marketing", "url": "https://passionateinmarketing.com"},
-        {"name": "Festivals from India", "url": "https://festivalsfromindia.com"},
-    ],
-    "image_url": img1,
-    "image_attribution": "Pexels" if img1 else "",
-    "body": """It is June 1, Pride Month has officially begun, and in Mumbai, a 17-year-old institution is preparing to do what it does better than anyone else on the subcontinent: fill a cinema hall with queer stories and dare you not to feel something.
-
-The **KASHISH Pride Film Festival** returns for its 17th edition from **June 3 to 7**, spreading across three South Mumbai venues — the iconic **Liberty Cinema**, the **Alliance Française de Bombay**, and for the first time, the **National Gallery of Modern Art**. This year's programme is the largest yet: **153 films from 43 countries**, curated under the theme *Reflect, Resonate, Rejoice!*
-
-## Why This Matters Beyond Mumbai
-
-For queer South Asians in the diaspora — in the Bay Area, London, Toronto, Sydney — the relationship with Indian cinema has always been complicated. Bollywood's idea of a queer character, for decades, was a punchline. A limp wrist. A predator. The representation wasn't just absent; it was hostile.
-
-KASHISH exists to rewrite that. Founded in 2010, it was the first LGBTQ+ film festival in India to be held in a mainstream theatre, and the first to receive approval from the Information & Broadcasting Ministry. It has since been voted one of the **Top 5 LGBTQ+ film festivals in the world** by Movie Maker magazine, and named one of the **Top 15 International Film Festivals Worth Travelling For** by Travel & Leisure.
-
-"This year there are 153 films from 43 countries that will be showcased," said festival director **Saagar Gupta**. "Our theme 'Reflect, Resonate, Rejoice!' is an invitation to embrace the full emotional spectrum of queer life."
-
-## The Programme
-
-The opening night on June 3 features **Jimpa**, a 113-minute feature, following the opening ceremony at 7 PM. The five-day schedule is dense and deliberate — student shorts competitions, documentary showcases, Spanish short film programmes, panel discussions, and country-focus features.
-
-Among the highlights:
-
-- **Sabar Bonda**, directed by **Rohan Kanawade** — a tender romance between two men set during a 10-day mourning period in a village, which won acclaim at Sundance
-- **Na Aavadti Goshta**, the debut feature from **Sai Deodhar**, which she described as a film "that families could watch together and have a conversation around the topic"
-- **Queering India**, an Indian documentary centrepiece screening on Friday
-- **LSD 2: Love, Sex and Betrayal 2**, a special presentation
-- **A (Dis)Liked Story** and **Astronaut Lovers**, both screening on Friday night
-
-The festival's advisory board includes figures like **Ashwiny Iyer Tiwari** and **Nikkhil Advani** as jury members, alongside board members **Arunaraje Patil**, **Dolly Thakore**, and **Meghna Ghai Puri** — names that signal the mainstream is no longer looking away.
-
-## The Diaspora Connection
-
-For NRI families, KASHISH represents something that wasn't available when most first-generation immigrants left India: an institutional, government-approved space for queer Indian stories. The festival has steadily become a reference point for queer South Asians abroad who want to see their experiences reflected in their own cultural language, not just through Western narratives.
-
-As filmmaker Sai Deodhar put it: "Maharashtrians are a very progressive community, but there is no conversation on LGBTQ. So I wanted to create a film that families could watch together. Love is the purest emotion — how does gender matter?"
-
-That sentence carries different weight when you hear it in a family WhatsApp group than when you read it in an American think piece about representation. It's the kind of shift that KASHISH has been engineering, one screening at a time, for nearly two decades.
-
-## The Numbers
-
-The festival draws an average footfall of **9,500 attendees** per year. Past guests have included **Ian McKellen**, **Nandita Das**, **Sonam Kapoor**, and filmmakers like **Shyam Benegal** and **Onir**. For the first time this year, KASHISH has launched a dedicated app for scheduling and access — a small detail that signals growth.
-
-## What's Next
-
-If you're in Mumbai between June 3 and 7, registrations are open with discounts for students, senior citizens, and transgender persons. If you're in the diaspora, the festival's digital footprint continues to expand, and several films from previous editions are available on streaming platforms.
-
-The real story here isn't the film count or the venue additions. It's that in 2026, the largest queer film festival in South Asia can fill three venues across five days in the heart of Mumbai — and the government's response isn't a raid but an approval stamp. For a community that has spent decades watching itself be caricatured on screen, that's not just progress. It's a reckoning.""",
-}
-
-# ============================================================
-# ARTICLE 2: Maa Behen — Madhuri + Triptii on Netflix
-# ============================================================
-print("\n=== Article 2: Maa Behen ===")
-
-img2 = fetch_wikipedia_person_image("Madhuri Dixit")
-if img2 and not validate_image(img2):
-    img2 = None
-if not img2:
-    img2 = fetch_wikipedia_person_image("Triptii Dimri")
-    if img2 and not validate_image(img2):
-        img2 = None
-
-article2 = {
-    "headline": "Madhuri Dixit and Triptii Dimri Hide a Dead Body in Maa Behen. Netflix Drops It Wednesday.",
-    "subheadline": "Suresh Triveni's crime-comedy pairs Bollywood's most beloved dancer with Gen Z's breakout star. For diaspora audiences who grew up on Madhuri, this is the Netflix homecoming you didn't know you needed.",
-    "slug": "maa-behen-madhuri-dixit-triptii-dimri-netflix-june-4-crime-comedy-nri-20260601",
-    "sources": [
-        {"name": "Filmfare", "url": "https://filmfare.com"},
-        {"name": "Zoom TV Entertainment", "url": "https://zoomtventertainment.com"},
-        {"name": "Bollywood Life", "url": "https://bollywoodlife.com"},
-        {"name": "IANS", "url": "https://ianslive.in"},
-    ],
-    "image_url": img2,
-    "image_attribution": "Wikimedia Commons" if img2 else "",
-    "body": """There's a dead body in the kitchen, the neighbours are nosy, and the only people who can fix this are a mother and her two daughters who can barely stand each other. That's the premise of **Maa Behen**, and if you think it sounds like a family gathering during Diwali gone sideways, you're not far off.
-
-Directed by **Suresh Triveni** (*Tumhari Sulu*, *Jalsa*), the Netflix crime-comedy stars **Madhuri Dixit**, **Triptii Dimri**, and newcomer **Dharna Durga** as Rekha, Jaya, and Sushma — a dysfunctional mother-daughter trio in Bhopal who must hide a corpse while keeping their neighbourhood from finding out. It drops on **Netflix on June 4**.
-
-## The Cast
-
-Let's start with the obvious: **Madhuri Dixit** on Netflix. For an entire generation of NRI families, Madhuri wasn't just an actress — she was the reason the VCR existed. Hum Aapke Hain Koun, Dil To Pagal Hai, Devdas — her filmography is essentially the soundtrack of every Indian household in the 1990s. She lived in Denver for over a decade before returning to Mumbai, making her as much a diaspora figure as a Bollywood one.
-
-Opposite her is **Triptii Dimri**, who in the last two years has become Gen Z's definitive Bollywood star. From *Animal* to *Bhool Bhulaiyaa 3*, she's demonstrated range that most of her contemporaries can't touch. Pairing her with Madhuri isn't just casting — it's a generational handshake.
-
-**Dharna Durga** rounds out the trio as Sushma, the wild card sister. **Ravi Kishan**, **Geetanjali Kulkarni**, **Arunoday Singh**, and **Shardul Bhardwaj** fill out the supporting cast.
-
-## The Premise
-
-The film is set in **Bhopal's Adarsh Colony** — the kind of neighbourhood where everyone knows everyone else's business, and a dead body in your kitchen is everyone's problem. Rekha (Madhuri) is a mother already dealing with enough family drama when the ultimate curveball arrives. Jaya (Triptii) is the responsible daughter, Sushma (Dharna) is the chaos agent, and together they must think fast, lie faster, and somehow keep their world from unravelling.
-
-During a promotional event in Gurugram, Madhuri was asked who among the three would cause the most *kaands* (chaos) in real life. "I think they will have more kaands because they are from here," she laughed. "She has less to do."
-
-Triptii disagreed. "All three of us are equally *kaandi*. Whether it's the mother, whether it's the sister, or the older sister. It's a very dysfunctional family."
-
-## Why It Matters for NRI Audiences
-
-Suresh Triveni has built a reputation for wrapping social commentary inside commercial packaging. *Tumhari Sulu* turned a housewife's radio career into a meditation on ambition. *Jalsa* used a hit-and-run to examine class privilege. With *Maa Behen*, the framework is dark comedy — but the subtext is about the bonds that hold Indian families together even when everything is falling apart.
-
-For diaspora viewers, that's a familiar frequency. The mother-daughter dynamic at the film's centre — the expectations, the resentment, the inability to say what you mean, the willingness to bury a body together when it counts — translates across time zones.
-
-Madhuri herself addressed the shifting landscape of audience criticism in the age of social media: "There were people like that even then, but they didn't have a way to express. Today everyone is a filmmaker, everyone is a fashionista, and everyone is moral police."
-
-## The Streaming Landscape
-
-*Maa Behen* arrives in a stacked week for Indian OTT. Also dropping: **Dhurandhar: The Revenge** (Ranveer Singh, JioHotstar, June 4), **Gullak Season 5** (SonyLIV, June 5), **Brown** starring Karisma Kapoor (ZEE5, June 5), and **Made In India: A Titan Story** (Amazon Prime Video, June 3).
-
-But the Madhuri-Triptii pairing gives *Maa Behen* a demographic range that none of the others can match. It's simultaneously an event for parents who remember *Ek Do Teen* and for the college-age cousin who discovered Triptii through Instagram reels.
-
-Produced by **Abundantia Entertainment** in association with **Opening Image Films**, *Maa Behen* streams on Netflix starting **June 4**. Mark it.""",
-}
-
-# ============================================================
-# ARTICLE 3: Main Vaapas Aaunga — Imtiaz Ali + Diljit
-# ============================================================
-print("\n=== Article 3: Main Vaapas Aaunga ===")
-
-img3 = fetch_wikipedia_person_image("Diljit Dosanjh")
-if img3 and not validate_image(img3):
-    img3 = None
-if not img3:
-    img3 = fetch_wikipedia_person_image("Imtiaz Ali (director)")
-    if img3 and not validate_image(img3):
-        img3 = None
-
-article3 = {
-    "headline": "Diljit Dosanjh Showed the Main Vaapas Aaunga Trailer to a Packed Toronto Stadium. The Film Is About Partition. The Crowd Roared.",
-    "subheadline": "Imtiaz Ali's Partition-era love story reunites the Chamkila director with Diljit, adds A.R. Rahman's score and Naseeruddin Shah. It opens June 12 — and advance bookings in North America are already live.",
-    "slug": "main-vaapas-aaunga-diljit-dosanjh-imtiaz-ali-toronto-trailer-partition-nri-20260601",
-    "sources": [
-        {"name": "Filmfare", "url": "https://filmfare.com"},
-        {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Main_Vaapas_Aaunga"},
-        {"name": "Hauterfly", "url": "https://hauterrfly.com"},
-        {"name": "The Daily Jagran", "url": "https://thedailyjagran.com"},
-        {"name": "Zoom TV Entertainment", "url": "https://zoomtventertainment.com"},
-    ],
-    "image_url": img3,
-    "image_attribution": "Wikimedia Commons" if img3 else "",
-    "body": """There's a video circulating from Diljit Dosanjh's **AURA Tour** stop in Toronto. He's on stage, tens of thousands of fans packed into a stadium, and instead of dropping a track, he plays the trailer for **Main Vaapas Aaunga**. The screen lights up with images of Partition — separation, longing, a love story fractured by history — and the crowd, largely diaspora, erupts.
-
-The moment crystallises something that's been building for months: this isn't just another Bollywood release. It's a film about leaving home, made by people who understand what that means, premiering its trailer to an audience that lives it.
-
-## What We Know
-
-**Main Vaapas Aaunga** (translation: *I Will Return*) is directed by **Imtiaz Ali** and stars **Diljit Dosanjh**, **Naseeruddin Shah**, **Vedang Raina**, and **Sharvari**. **Banita Sandhu** and **Danish Pandor** also appear. It's a Hindi-language period romantic drama set against the backdrop of **Partition**, structured across two timelines, exploring a love story that is interrupted by history and endures across decades.
-
-The music is by **A.R. Rahman** with lyrics by **Irshad Kamil** — the same creative trio (Ali-Rahman-Kamil) that gave us *Rockstar*, *Highway*, and *Tamasha*. Two singles have already been released: "Kya Kamaal Hai" (sung by Diljit, dropped April 17) and "Maskara" (by Nilanjana Ghosh Dastidar and Vedang Raina, released May 5). "Maskara" has become a viral sensation on social media.
-
-Principal photography ran from August to December 2025, with significant portions filmed in Punjab. It's produced by **Applause Entertainment**, **Birla Studios**, and **Window Seat Films**, with a worldwide release on **June 12, 2026**.
-
-## The Diaspora Trailer Moment
-
-The Toronto screening wasn't an accident. Diljit Dosanjh is, at this point, the single most important cultural bridge between Punjab and the global Punjabi diaspora. His AURA Tour is selling out stadiums across North America. He isn't promoting a film to a niche audience — he's premiering it to his core demographic, many of whom carry Partition stories in their family histories.
-
-"From a story of belonging to a stadium full of emotions," one fan posted on social media after the Toronto reveal. "What a moment. What a beginning."
-
-The makers have since announced that **advance bookings in North America** are open a full week before India — a recognition that diaspora demand is not secondary to domestic interest but is driving the conversation.
-
-## Why This Film Hits Different
-
-Partition films have been attempted before, with varying degrees of success. What sets Main Vaapas Aaunga apart is its creative pedigree and its timing.
-
-**Imtiaz Ali** has spent his career making films about people searching for something they've lost — identity, love, a version of themselves they left behind. From *Jab We Met*'s Geet running away from an arranged marriage to *Tamasha*'s Ved trying to escape the life he built, Ali's protagonists are always, in some sense, displaced. A Partition love story is the most literal version of his recurring theme.
-
-**Diljit Dosanjh** brings something no other lead could: authenticity. He's Punjabi, he's deeply rooted in the culture that Partition severed, and his collaboration with Ali on *Amar Singh Chamkila* (2024) proved they could handle heavy material with nuance.
-
-**A.R. Rahman** scoring a Partition love story directed by Imtiaz Ali feels inevitable in the way the best creative pairings do. The "Maskara" single has already demonstrated that the soundtrack will be more than functional — it'll be the emotional spine of the film.
-
-And then there's **Naseeruddin Shah**, whose presence in any cast signals that the material is serious. He's not doing rom-coms for the paycheck.
-
-## The Box Office Setup
-
-Main Vaapas Aaunga opens June 12 against **Kangana Ranaut's Bharat Bhagya Vidhata** (a 26/11 drama) and **Manoj Bajpayee's Governor** (a political thriller set during the 1990 economic crisis). It's a crowded corridor, but the film's positioning as a prestige romance with music-driven appeal gives it a lane.
-
-After its theatrical run, the film will stream on **Netflix** — confirming a pattern from *Chamkila*, which went directly to the platform. This time, Ali and Diljit are doing theatres first, a bet that the material can sustain a big-screen experience.
-
-The film topped **IMDb's Most Anticipated Indian Films and Shows of 2026** — a list that, for all its algorithmic quirks, reflects genuine search interest.
-
-## What It Means
-
-The title translates to "I Will Return." For a film about Partition, that's not just a romantic promise — it's a historical wound. Millions of families separated in 1947 carried that exact hope, and most never fulfilled it.
-
-For the diaspora watching the trailer in a Toronto stadium, the title carries a third meaning: the promise every immigrant makes to the place they left. *Main vaapas aaunga.* I'll come back. The question the film seems to be asking is: what happens when you can't?
-
-**Main Vaapas Aaunga** releases in theatres on **June 12, 2026**. Advance bookings are live in North America.""",
-}
-
-# ============================================================
-# PUBLISH
-# ============================================================
-articles = [article1, article2, article3]
-published = 0
-
-for i, art in enumerate(articles, 1):
-    print(f"\n--- Publishing Article {i} ---")
-    aid = insert_article(art)
-    if aid:
-        published += 1
     time.sleep(1)
 
-print(f"\n=== Done. Published {published}/{len(articles)} articles. ===")
+print("\n✅ Entertainment writer complete!")
