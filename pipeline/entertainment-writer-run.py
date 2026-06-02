@@ -1,29 +1,48 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — June 2, 2026 run.
+"""Entertainment writer — June 2, 2026 evening run"""
 
-Publishes 3 articles:
-1. Delhi HC protects Varun Dhawan's personality rights against AI deepfakes
-2. IMAX returns to Hyderabad after a decade with AMB Cinemas
-3. Bobby Deol's personal redemption story — Aap Ki Adalat interview
-"""
-
-import json, os, sys, uuid, re, time
-import requests, urllib.parse
+import json, os, re, time, urllib.parse, subprocess, uuid, sys
 from datetime import datetime, timezone
 
-# --- ENV ---
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
+# Load env
+def load_env(path):
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                if line.startswith('export '):
+                    line = line[7:]
+                k, v = line.split('=', 1)
+                v = v.strip().strip('"').strip("'")
+                os.environ[k] = v
 
-HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
-}
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-# --- HELPERS ---
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
+import requests
+
+def sb_insert(table, data):
+    """Insert a row into Supabase and return the response."""
+    url = f"{SUPABASE_URL}/rest/v1/{table}"
+    headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "application/json",
+        "Prefer": "return=representation"
+    }
+    r = requests.post(url, json=data, headers=headers, timeout=30)
+    if r.status_code in (200, 201):
+        return r.json()
+    else:
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        return None
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -44,315 +63,336 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
+    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            import subprocess
             result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape",
-                 "-H", f"Authorization: {PEXELS_KEY}"],
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                return url
+            photos = data.get('photos', [])
+            for photo in photos:
+                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
 def validate_image(url):
-    """Check that image URL returns a valid image > 5KB."""
+    """Validate that the image URL returns a proper image."""
+    if not url:
+        return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        content_type = r.headers.get('Content-Type', '')
+        content_length = int(r.headers.get('Content-Length', 0))
+        if 'image' in content_type and content_length > 5000:
             return True
-        # Some servers don't return Content-Length on HEAD, try GET
-        if r.status_code == 200 and "image" in ct:
+        # Try GET if HEAD doesn't give content-length
+        if 'image' in content_type and content_length == 0:
             r2 = requests.get(url, timeout=10, stream=True,
-                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
             chunk = r2.raw.read(6000)
+            r2.close()
             if len(chunk) > 5000:
                 return True
     except Exception as e:
-        print(f"  ⚠ Image validation error for {url[:60]}: {e}")
+        print(f"  ⚠ Image validation error: {e}")
     return False
 
+def is_banned_url(url):
+    """Check if URL is from a banned source."""
+    if not url:
+        return True
+    banned_patterns = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com',
+                       '_nc_ht=', '_nc_cat=', 'ccb=']
+    return any(p in url for p in banned_patterns)
 
-def insert_article(article):
-    """Insert article into Supabase."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article,
-        timeout=30,
-    )
-    if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data["id"]
-        print(f"  ✓ Inserted article: {article['slug']} (id={art_id})")
-        return art_id
+
+# ── Article definitions ──
+
+articles = []
+
+# ── ARTICLE 1: Zee FIFA World Cup Deal ──
+articles.append({
+    "headline": "Zee Just Grabbed the FIFA World Cup. Indian Fans Almost Watched the Biggest Tournament Ever on a Pirated Stream.",
+    "subheadline": "Ten days before kickoff in the US, Canada, and Mexico, Zee locked an 8-year FIFA deal that JioStar walked away from. For NRIs hosting watch parties, the broadcast will finally have an Indian voice.",
+    "slug": "zee-entertainment-fifa-world-cup-2026-unite8-sports-india-broadcast-nri-20260602",
+    "category": "entertainment",
+    "sources": json.dumps(["Reuters", "BestMediaInfo", "The Hindu BusinessLine", "Devdiscourse"]),
+    "body": """The 2026 FIFA World Cup kicks off on June 11 across the United States, Canada, and Mexico. Until two days ago, India — a market of 1.4 billion people and a rapidly growing football fanbase — had no confirmed broadcaster. The most expensive sporting event on the planet was about to go dark in one of the world's last unsold major markets.
+
+Then Zee Entertainment stepped in.
+
+On Monday, Zee confirmed an eight-year partnership with FIFA covering 39 events, including the 2026 and 2030 Men's World Cups, the 2027 Women's World Cup, and a slate of youth, futsal, and intercontinental tournaments running through 2034. The deal also includes docu-series content exploring the cultural dimensions of participating nations.
+
+## What Happened Behind the Scenes
+
+The backstory is a masterclass in brinkmanship. FIFA initially sought approximately $100 million for the India package covering the 2026 and 2030 World Cups. JioStar — the Reliance-Disney joint venture that aired the 2022 World Cup through its predecessor Viacom18 — reportedly offered about $20 million and was rejected. Sony, which held rights for the 2014 and 2018 tournaments, held discussions but did not bid. FIFA then slashed its asking price to $60 million, and the final deal with Zee reportedly closed somewhere between $25 million and $80 million.
+
+The timeline was extraordinary. The agreement was announced just ten days before the opening match. Had negotiations collapsed, India would have been the most populous nation on earth without a legal way to watch football's biggest event.
+
+## Unite8 Sports: Zee's Big Bet
+
+Zee is not just airing the World Cup. It is building an entire sports brand around it. The company has launched Unite8 Sports with four dedicated channels — Unite8 Sports 1 and Unite8 Sports 1 HD in Hindi, plus Unite8 Sports 2 and Unite8 Sports 2 HD in English. The tournament will also stream on ZEE5.
+
+Beyond football, Unite8 Sports will carry kabaddi, cricket, badminton, wrestling, boxing, and combat sports. Airtel Digital TV has already lined up the four channels in its 300-303 band starting June 4. The brand went live on Instagram with its logo and tagline within hours of the deal's announcement.
+
+Zee's stock surged roughly 7 percent on the news, signaling that investors view the FIFA acquisition as a genuine growth lever, not just a content expense.
+
+## The NRI Angle
+
+This is where it gets personal for the diaspora. The 2026 World Cup is being hosted in the US, Canada, and Mexico — the three countries with the largest concentrations of Indian immigrants in the Western Hemisphere. Matches will be played in cities like New York, Los Angeles, Dallas, Toronto, Miami, and Houston — all major NRI hubs.
+
+For the first time, many NRIs will be able to attend World Cup matches in person while simultaneously having access to Indian-language commentary through Zee's Hindi broadcast. The combination of a home-country broadcaster covering a tournament literally in your backyard creates a unique cultural moment.
+
+Watch parties at Indian restaurants, community centers, and cricket club halls across North America will have an Indian broadcast option — something that was genuinely uncertain until 48 hours ago.
+
+## What It Means for Indian Football
+
+The deal also arrives at a time when Indian football is experiencing quiet but real growth. The Indian Super League has stabilized as a domestic product, and the women's national team has been gaining visibility. FIFA's youth tournaments — the Men's U-17 and Women's U-17 World Cups — are included in the Zee package through 2034, providing consistent exposure to development-level international football.
+
+The question now is whether Zee can convert the World Cup moment into a sustainable sports business or whether Unite8 Sports becomes another short-lived experiment in Indian sports broadcasting. The answer will likely depend on what happens in the three weeks between June 11 and July 19, when the world watches the most expanded World Cup in history — 48 teams for the first time — and India watches along, finally, with the broadcast secured.""",
+    "image_person": None,
+    "image_query": "FIFA World Cup stadium",
+    "image_fallback_query": "football soccer stadium crowd"
+})
+
+# ── ARTICLE 2: Bhooth Bangla Netflix OTT ──
+articles.append({
+    "headline": "Bhooth Bangla Hits Netflix on June 12. Akshay Kumar's Biggest Hit in Years Is About to Find Its Real Audience.",
+    "subheadline": "The Priyadarshan reunion grossed ₹264 crore worldwide in theatres. Netflix paid ₹60 crore for the digital rights alone. NRIs who missed the theatrical run get their shot in ten days.",
+    "slug": "bhooth-bangla-netflix-ott-release-june-12-akshay-kumar-priyadarshan-nri-20260602",
+    "category": "entertainment",
+    "sources": json.dumps(["Sacnilk", "Filmfare", "Bollywood Hungama"]),
+    "body": """Akshay Kumar and Priyadarshan made some of Bollywood's most beloved comedies together — Hera Pheri, Garam Masala, Bhagam Bhag, Bhool Bhulaiyaa. Then they stopped working together for the better part of two decades. When they finally reunited for Bhooth Bangla, the question was whether the old magic was still there.
+
+The box office answered definitively. Bhooth Bangla, a horror-comedy that opened on April 10, has now grossed ₹264 crore worldwide, with ₹171 crore in India net collections — making it Akshay Kumar's biggest hit in years and a certified commercial success. The film ran for over six weeks in theatres, an increasingly rare feat in an era of two-week theatrical windows.
+
+Now, on June 12, Bhooth Bangla arrives on Netflix. And for the Indian diaspora, this is arguably the more important release date.
+
+## The Economics Tell the Story
+
+The film was produced on a budget of approximately ₹120 crore, which sounds like a big bet until you look at what the producers recovered before a single ticket was sold. Netflix acquired the digital rights for ₹60 crore. Zee Cinema paid ₹25 crore for satellite rights. Zee Music Company picked up the music rights for ₹10 crore. That is ₹105 crore in non-theatrical revenue — nearly 88 percent of the production budget recovered through deals alone.
+
+Every rupee from the box office was essentially profit from day one. It is a blueprint that more Bollywood producers are trying to replicate: build a film with enough star power and franchise potential to command premium pre-release deals, then let the theatrical run provide pure upside.
+
+## Why It Worked
+
+Bhooth Bangla is Priyadarshan's second Hindi-language horror comedy after the original Bhool Bhulaiyaa in 2007. The genre has since exploded — Stree, Bhediya, Munjya, and their various sequels have proven that Indian audiences will reliably turn out for well-executed horror comedies. Bhooth Bangla entered a proven market with the strongest possible brand combination.
+
+The cast goes deep: Paresh Rawal, Tabu, Wamiqa Gabbi, Rajpal Yadav, Mithila Palkar, Jisshu Sengupta, and Manoj Joshi. For viewers who grew up on the Priyadarshan-Akshay comedies of the 2000s, the ensemble triggers a specific kind of nostalgia — the promise of genuine laughs without the heaviness that has dominated recent Hindi cinema.
+
+The film follows a family that moves into a cursed ancestral property, with Akshay Kumar playing the wisecracking protagonist who must navigate both supernatural threats and family politics. Reviews praised the film's commitment to practical comedy — physical gags, situational humor, and character-driven laughs rather than CGI spectacle.
+
+## The NRI Streaming Moment
+
+For the diaspora, Bhooth Bangla's Netflix premiere fills a specific gap. Many NRIs follow Bollywood releases closely but cannot always make it to the limited theatrical windows in overseas markets. A horror comedy with 2000s-era Bollywood nostalgia, a cast that spans generations, and the Akshay-Priyadarshan brand is practically engineered for family streaming.
+
+The film's Week 5 collections — ₹7.15 crore, with consistent daily numbers and steady occupancy — suggest that it was still drawing audiences to theatres well into its second month. On Netflix, where it will be available in multiple languages, the potential reach multiplies dramatically.
+
+## What Comes Next for Akshay
+
+The Bhooth Bangla success has given Akshay Kumar significant momentum heading into his next release. Welcome to the Jungle, the third instalment of the Welcome franchise directed by Ahmed Khan, arrives on June 26 — just two weeks after Bhooth Bangla hits Netflix. If that film delivers even a fraction of Bhooth Bangla's performance, 2026 will mark the definitive Akshay Kumar comeback that his fans have been waiting for since the post-pandemic slump that saw films like Bachchhan Paandey, Raksha Bandhan, and Selfiee underperform.
+
+For now, though, the Priyadarshan reunion stands on its own. Mark June 12. The ghosts are coming to your living room.""",
+    "image_person": "Akshay Kumar",
+    "image_query": None,
+    "image_fallback_query": "Bollywood horror comedy movie"
+})
+
+# ── ARTICLE 3: Raaka Silence Speculation ──
+articles.append({
+    "headline": "Nobody Has Heard From the Raaka Set in Two Months. That Is Either Very Good or Very Bad for Allu Arjun.",
+    "subheadline": "Atlee's ₹600-crore sci-fi epic with Deepika Padukone, Hollywood VFX studios, and a half-human Allu Arjun has gone completely quiet. The speculation is getting louder than the film.",
+    "slug": "raaka-allu-arjun-atlee-silence-production-update-deepika-vfx-nri-20260602",
+    "category": "entertainment",
+    "sources": json.dumps(["Gulte", "Cinema Express", "Sacnilk", "Bollywood Hungama"]),
+    "body": """The first-look poster dropped on April 8, Allu Arjun's birthday. It showed the Pushpa star in a rugged, primal avatar — heavy textures, wild beard, tusk-like elements emerging from his face. The title was one word: Raaka. The internet lost its collective mind. Two months later, nobody has heard anything.
+
+No shooting updates. No behind-the-scenes footage. No official statements about the production timeline. The silence around what is reportedly the most expensive Indian film currently in production — budgeted at over ₹600 crore — has fueled a wave of speculation that the makers have so far chosen not to address.
+
+## What We Know
+
+Raaka is directed by Atlee, the filmmaker behind Bigil, Mersal, and Jawan. It is his first collaboration with Allu Arjun and his first film outside the commercial formula that made him a household name. The project is billed as a large-scale entertainer blending science fiction, fantasy, and superhero elements, set in a parallel universe.
+
+The production pedigree is staggering. Five Hollywood VFX studios — Legacy Effects, Fractured FX, Spectral Motion, Lola VFX, and ILM Technoprops — are involved. Sun Pictures, owned by media mogul Kalanithi Maran, is producing. The cast includes Deepika Padukone in the lead opposite Allu Arjun, with Mrunal Thakur and Janhvi Kapoor in prominent roles. Reports have linked Vijay Sethupathi and Kajol to supporting parts, though the makers have not confirmed the full ensemble.
+
+Principal photography began in Mumbai in mid-June 2025. Allu Arjun is reportedly playing a dual role. The film is expected to release in multiple languages.
+
+## What We Do Not Know
+
+This is where it gets complicated. Several industry trackers believe the production is moving slower than initially planned. Reports surfaced in late May that Deepika Padukone — who announced her second pregnancy on April 19 — may not be joining the shoot anytime soon. According to Bollywood Hungama, Atlee's team has drafted a strategic plan to use a body double for the majority of Deepika's remaining action sequences, as she reportedly has around 50 days of shooting left for the film.
+
+Femina George, the Minnal Murali actor, confirmed in a recent interview that she has a role in Raaka. She described landing the part as an unexpected development, having been noticed by the makers through her breakout portrayal as Bruce Lee Biji. The confirmation was welcome, but it also highlighted a pattern: individual cast members are talking about the film, but the official production has said almost nothing since the first-look reveal.
+
+## The Stakes
+
+Raaka is not just another big-budget Indian film. At ₹600 crore, it sits alongside the most expensive productions in Indian cinema history. The VFX-heavy nature of the film means that delays in principal photography cascade into post-production timelines, which cascade into release windows, which cascade into recovery math.
+
+For Allu Arjun, the film carries a specific weight. After Pushpa 2: The Rule became one of the highest-grossing Indian films of all time, the expectation is that his next project will match or exceed that scale. A VFX-driven sci-fi spectacle is inherently riskier than a sequel to a proven franchise. The commercial viability of the film depends heavily on the execution of its visual effects — the very department that requires the most time and the least schedule disruption.
+
+For the diaspora audience that turned Pushpa 2 into a cultural event in overseas markets, Raaka represents the next evolution of Allu Arjun's global appeal. The science fiction genre has traditionally been underrepresented in Indian cinema at this scale. If Raaka delivers, it could redefine what is possible.
+
+## The Silence Problem
+
+The film industry runs on buzz. Controlled silence can build mystique — Rajamouli perfected this approach with RRR and Baahubali. But uncontrolled silence breeds speculation, and speculation rarely favors big-budget productions. When your film costs ₹600 crore and your lead actress's pregnancy has introduced legitimate scheduling questions, the absence of communication becomes the story.
+
+Fans and industry watchers are not asking for a trailer. They are asking for an update — a shooting schedule, a casting confirmation, a behind-the-scenes photo. Even a small signal would redirect the conversation from anxiety to anticipation. The makers of Raaka have the material to generate that excitement. The question is why they have chosen not to.""",
+    "image_person": "Allu Arjun",
+    "image_query": None,
+    "image_fallback_query": "Indian sci-fi movie visual effects"
+})
+
+# ── ARTICLE 4: Welcome to the Jungle ──
+articles.append({
+    "headline": "Welcome to the Jungle Has 15 Stars, One Director, and Bollywood's Last Great Comedy Franchise at Stake. It Opens June 26.",
+    "subheadline": "After Bhooth Bangla's ₹264-crore run, Akshay Kumar returns with the Welcome threequel. JioStar has locked theatrical, satellite, and OTT rights. The ensemble includes everyone from Sanjay Dutt to Johnny Lever.",
+    "slug": "welcome-to-the-jungle-akshay-kumar-ensemble-comedy-june-26-jiostar-nri-20260602",
+    "category": "entertainment",
+    "sources": json.dumps(["Sacnilk", "Bollywood Hungama", "Filmfare"]),
+    "body": """In a year where Hindi cinema has been dominated by intense actioners, dark dramas, spy thrillers, and violent spectacles, Welcome to the Jungle is positioning itself as the antidote. A full-blown, unabashedly silly, family-friendly comedy with a cast list so long it looks like a wedding invitation.
+
+The third instalment of the Welcome franchise opens on June 26. Director Ahmed Khan is at the helm, and the ensemble reads like a roll call of Bollywood's comedy establishment: Akshay Kumar, Suniel Shetty, Paresh Rawal, Sanjay Dutt, Arshad Warsi, Raveena Tandon, Lara Dutta, Jacqueline Fernandez, Disha Patani, Johnny Lever, Rajpal Yadav, Tusshar Kapoor, Shreyas Talpade, Krushna Abhishek, and Kiku Sharda. That is fifteen names, and there are reportedly more in smaller roles.
+
+## The Franchise Math
+
+The original Welcome (2007) was a Priyadarshan production that became a surprise blockbuster, eventually achieving cult status through television reruns and meme culture. Welcome Back (2015), directed by Anees Bazmee, underperformed relative to expectations but still earned enough to keep the franchise viable. The gap between the second and third films — eleven years — is unusually long for a Bollywood franchise.
+
+During that gap, the comedy landscape shifted dramatically. Stree, Fukrey Returns, and the entire horror-comedy wave created a new template for commercial laughs. Multi-starrer comedies fell out of fashion as the economics of assembling large casts became increasingly prohibitive. Welcome to the Jungle is, in many ways, a throwback to an older model of Hindi comedy — the kind where the jokes come from character collisions and the star power comes from sheer volume.
+
+## The Business Model
+
+The film's distribution structure tells an interesting story. JioStar has acquired the domestic theatrical rights along with satellite and OTT rights, giving the Reliance-Disney joint venture complete control over the film's Indian lifecycle. It will release in theatres under JioStar's distribution, followed by a television premiere and digital streaming on JioHotstar.
+
+On the international front, Pen Marudhar is reportedly in advanced talks for the overseas theatrical rights, with strong interest driven by the franchise's popularity in key diaspora markets — the Middle East, the UK, and North America. The deal structure mirrors a growing Bollywood trend: bulk domestic deals that ensure cost recovery before release, with overseas rights monetized separately for maximum value.
+
+Produced by Firoz Nadiadwallah, Cape of Good Films, Seeta Films, and several co-producers, the film reportedly carries a controlled budget — a strategic decision given the uncertain box office climate for non-franchise comedies.
+
+## The Akshay Kumar Factor
+
+Welcome to the Jungle arrives exactly two weeks after Bhooth Bangla premieres on Netflix. If Akshay Kumar manages to deliver back-to-back successes — one in the horror-comedy space with Priyadarshan, another in the slapstick space with Ahmed Khan — 2026 will mark the most convincing stretch of his career since the pre-pandemic era.
+
+The teaser, dropped on May 15 without prior announcement, delivered exactly what the franchise's fanbase wanted: laugh-out-loud moments set against a jungle backdrop, trademark slapstick confusion, and the promise that the film stays true to the Welcome formula. The teaser's reception on social media was overwhelmingly positive, with fans expressing confidence in the film's box office prospects.
+
+For Akshay Kumar specifically, the film represents a return to the comedy zone where his instincts are sharpest. Long before Pan-India spectacles and action universes became the industry's obsession, Akshay built a comic legacy through physical gags, deadpan reactions, and an ability to find genuine humor in absurd situations. Welcome to the Jungle is a bet that audiences still want that version of him.
+
+## The NRI Factor
+
+Comedy franchises have historically performed well in overseas markets because they travel on nostalgia. NRI audiences who grew up watching Welcome on television, quoting Majnu Bhai and Uday Bhai dialogue, represent a pre-sold audience for the threequel. The franchise's humor does not require cultural translation — it runs on universal slapstick and character archetypes that work across geographies.
+
+The June 26 release date is strategically placed at the end of the month, giving the film a relatively clear window after the expected dominance of Peddi (June 4) and Bandar (June 5) in the first week. By late June, theatres will be looking for fresh content, and a big-screen comedy with this many recognizable faces is exactly what the release calendar needs.
+
+Whether Welcome to the Jungle recaptures the original's lightning or joins the growing list of belated franchise sequels that could not quite find the old magic will come down to one thing: whether it is actually funny. The cast, the brand, and the timing are all in place. Ahmed Khan has the ingredients. The recipe is what matters now.""",
+    "image_person": "Akshay Kumar",
+    "image_query": None,
+    "image_fallback_query": "Bollywood comedy movie ensemble cast"
+})
+
+
+# ── Main execution ──
+
+print("=" * 60)
+print(f"Entertainment Writer — {datetime.now(timezone.utc).isoformat()}")
+print("=" * 60)
+
+published_count = 0
+
+for i, article in enumerate(articles):
+    print(f"\n{'─' * 40}")
+    print(f"Article {i+1}: {article['headline'][:80]}...")
+    print(f"{'─' * 40}")
+
+    # Image sourcing
+    img_url = None
+    img_attribution = None
+
+    if article.get('image_person'):
+        print(f"  → Trying Wikipedia for: {article['image_person']}")
+        img_url = fetch_wikipedia_person_image(article['image_person'])
+        if img_url:
+            img_attribution = "Wikimedia Commons"
+
+    if not img_url and article.get('image_query'):
+        print(f"  → Trying Pexels for: {article['image_query']}")
+        img_url = fetch_pexels_image(article['image_query'], article.get('image_fallback_query'))
+        if img_url:
+            img_attribution = "Pexels"
+
+    if not img_url and article.get('image_fallback_query') and not article.get('image_query'):
+        print(f"  → Trying Pexels fallback for: {article['image_fallback_query']}")
+        img_url = fetch_pexels_image(article['image_fallback_query'])
+        if img_url:
+            img_attribution = "Pexels"
+
+    # Validate image
+    if img_url:
+        if is_banned_url(img_url):
+            print(f"  ✗ Banned URL detected, skipping: {img_url[:60]}")
+            img_url = None
+        elif not validate_image(img_url):
+            print(f"  ✗ Image validation failed, skipping: {img_url[:60]}")
+            img_url = None
+
+    if not img_url:
+        print("  ⚠ No valid image found — publishing without image")
+
+    # Build payload
+    now_iso = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
+
+    payload = {
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "slug": article["slug"],
+        "body": article["body"],
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": now_iso,
+        "sources": article["sources"],
+        "is_editorial": False,
+    }
+
+    if img_url:
+        payload["image_url"] = img_url
+        payload["image_attribution"] = img_attribution
+
+    # Validation
+    headline_len = len(article["headline"])
+    subheadline_len = len(article["subheadline"])
+    body_words = len(article["body"].split())
+
+    print(f"  Headline: {headline_len} chars | Subheadline: {subheadline_len} chars | Body: {body_words} words")
+
+    if headline_len < 20 or headline_len > 200:
+        print(f"  ✗ Headline length out of range ({headline_len}), skipping")
+        continue
+    if subheadline_len < 15:
+        print(f"  ✗ Subheadline too short ({subheadline_len}), skipping")
+        continue
+    if body_words < 400:
+        print(f"  ✗ Body too short ({body_words} words), skipping")
+        continue
+
+    # Insert
+    result = sb_insert("p2_articles", payload)
+    if result:
+        art_id = result[0].get('id') if isinstance(result, list) else result.get('id')
+        print(f"  ✓ Published: {article['slug']} (id: {art_id})")
+        published_count += 1
     else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
-        return None
+        print(f"  ✗ Failed to publish: {article['slug']}")
 
+    time.sleep(1)
 
-# === ARTICLE 1: Delhi HC protects Varun Dhawan's personality rights ===
-
-def write_article_1():
-    print("\n--- Article 1: Delhi HC / Varun Dhawan personality rights ---")
-    
-    img_url = fetch_wikipedia_person_image("Varun Dhawan")
-    if not img_url or not validate_image(img_url):
-        img_url = fetch_pexels_image("Indian court law gavel", "Delhi High Court")
-    
-    body = """The Delhi High Court has granted interim protection to actor Varun Dhawan against the unauthorized commercial exploitation of his personality rights — a ruling that arrives at a moment when AI-generated deepfakes and face-morphing tools have made digital identity theft trivially easy, and not just in India.
-
-## What the Court Ordered
-
-Justice Jyoti Singh, hearing a suit filed by Dhawan, passed an ex parte ad interim injunction on May 29, restraining multiple websites, social media accounts, e-commerce platforms, and online intermediaries from using the actor's name, image, voice, likeness, or any other identifiable element of his persona without explicit authorization.
-
-The restraint specifically covers technologies including artificial intelligence, generative AI, machine learning, deepfakes, AI chatbots, and face-morphing tools. The Court directed Google, Meta Platforms, and X Corporation to provide Basic Subscriber Information of infringing users. All three intermediaries must take down newly reported content within 36 hours.
-
-"Plaintiff is entitled to protection against dissemination of pornographic content as well as AI-generated images portraying him in an inappropriate scenario," Justice Singh observed. "Such distasteful content is harming and damaging the reputation of the Plaintiff and may mislead the public into believing what is depicted may be true."
-
-## What Triggered the Suit
-
-Dhawan's legal team, led by Senior Advocate Sandeep Sethi, flagged three categories of abuse: online e-commerce sellers misusing his personality traits to sell unauthorized merchandise, booking agencies falsely claiming to arrange his appearances at events, and — most disturbingly — the circulation of AI-generated pornographic deepfakes showing the actor in fabricated intimate scenarios with female co-stars.
-
-The Court noted that Dhawan has secured trademark registrations over his name and signature, and that these attributes are exclusively associated with him.
-
-## Why This Matters for the Diaspora
-
-For NRIs who navigate multiple digital ecosystems across countries, this ruling has implications that reach far beyond Bollywood gossip. AI deepfake tools are now accessible to anyone with a laptop. The technology that can fabricate a convincing video of Varun Dhawan can do the same to any public figure, any professional, any person.
-
-India's courts have been building a body of personality rights jurisprudence in recent years. Naga Chaitanya obtained a similar order from the Delhi High Court in May after AI-manipulated content linked him to allegations involving his former wife Samantha Ruth Prabhu. Anil Kapoor secured a landmark personality rights order in 2023.
-
-What makes the Dhawan order notable is its explicit scope over AI, generative AI, machine learning, deepfakes, and chatbots — a comprehensive list that acknowledges the full toolkit now available to bad actors. The 36-hour takedown mandate for intermediaries sets a practical enforcement timeline.
-
-## The Bigger Picture
-
-For Indian professionals abroad, the case raises a question that extends beyond celebrity culture: what legal protections exist when someone creates a deepfake of you? In the United States, deepfake laws remain a patchwork of state-level legislation. The EU's AI Act introduces some provisions, but enforcement mechanisms are still evolving. India's approach through personality rights jurisprudence, while not legislated in a single statute, is producing court orders with teeth.
-
-The film industry, predictably, has its own concerns. With AI tools capable of generating convincing actor likenesses, the commercial model of star power — the thing that drives casting decisions, brand endorsements, and box office numbers — faces an existential question. If anyone can put Varun Dhawan's face on any body in any scenario, what exactly is his image worth?
-
-For now, the Delhi High Court has drawn a line. The next hearing will determine whether the interim protection becomes permanent. The deepfake industry is unlikely to notice."""
-
-    article = {
-        "headline": "Delhi High Court Draws a Line on AI Deepfakes. Varun Dhawan's Personality Rights Order Covers Everything from Chatbots to Face-Morphing.",
-        "subheadline": "Justice Jyoti Singh's ruling mandates a 36-hour takedown window for AI-generated content — and names every tool in the deepfake arsenal.",
-        "body": body.strip(),
-        "slug": "delhi-hc-varun-dhawan-personality-rights-ai-deepfakes-order-nri-20260602",
-        "category": "entertainment",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps([
-            "https://barandbench.com/news/delhi-high-court-protects-personality-rights-varun-dhawan-ai-deepfakes",
-            "https://latestly.com/agency-news/india-news-delhi-hc-restrains-ai-deepfakes-unauthorised-merchandise-and-online-exploitation-of-varun-dhawans-personality-rights-6895017.html",
-            "https://devdiscourse.com/article/headlines/3300981-delhi-hc-grants-varun-dhawan-protection-against-unauthorized-use-of-persona"
-        ]),
-        "image_url": img_url,
-        "image_attribution": "Wikimedia Commons" if img_url and ("wikipedia" in img_url or "wikimedia" in img_url) else "The Videshi",
-        "vertical": "entertainment",
-        "is_editorial": False,
-    }
-    
-    art_id = insert_article(article)
-    return art_id
-
-
-# === ARTICLE 2: IMAX Returns to Hyderabad ===
-
-def write_article_2():
-    print("\n--- Article 2: IMAX returns to Hyderabad ---")
-    
-    # Try Mahesh Babu (AMB Cinemas partner)
-    img_url = fetch_wikipedia_person_image("Mahesh Babu")
-    if img_url and not validate_image(img_url):
-        print(f"  ⚠ Wikipedia image failed validation, trying Pexels")
-        img_url = None
-    if not img_url:
-        img_url = fetch_pexels_image("IMAX cinema theater", "movie theater screen")
-        if img_url and not validate_image(img_url):
-            img_url = None
-    
-    body = """Hyderabad is getting IMAX back. After a decade-long absence that left the home of Tollywood without a single premium large-format screen, IMAX Corporation and Asian Cinemas have announced a partnership for three new IMAX with Laser locations through the AMB Cinemas brand. The first screen opens before the end of 2026.
-
-## The Deal
-
-Two of the three new locations will be in Hyderabad. The first, at AMB Classic, is targeted for a late-2026 opening. The remaining two locations are planned for 2028. All three will feature IMAX with Laser technology — the company's top-tier projection and sound system.
-
-AMB Cinemas is Asian Cinemas' flagship "superplex" brand, launched in partnership with Telugu superstar Mahesh Babu. The brand has built a reputation for premium movie-going in the Telugu market.
-
-"Hyderabad's appetite and love for cinema is unparalleled, and bringing back the prestigious IMAX format to Hyderabad is a matter of great honour and pride for AMB Cinemas," said Managing Directors Sunil Narang and Bharat Narang.
-
-IMAX CEO Rich Gelfond called India's cinema culture "vibrant" and noted that 2025 was IMAX's best year ever at the Indian box office, powered by both Hollywood and Indian films.
-
-## Why It Took a Decade
-
-The last IMAX screen in Hyderabad was at Prasads, one of India's first IMAX theaters. It closed around 2015, leaving a city that produces some of the world's most visually ambitious cinema without the screen format designed to show it.
-
-The irony was not lost on the industry. S.S. Rajamouli, whose RRR and Baahubali: The Conclusion rank among the highest-grossing Indian films ever shown in IMAX, publicly expressed frustration that Hyderabad — the production hub behind these spectacles — lacked an IMAX theater.
-
-During the recent launch event for his upcoming film Varanasi, starring Mahesh Babu, Rajamouli had openly called for an IMAX screen in the city. The timing of this announcement, just ahead of Varanasi's release, is hard to read as coincidental.
-
-## What This Means for Telugu Cinema's Global Ambitions
-
-Telugu cinema has undergone a tectonic shift in the past five years. Films like RRR, Pushpa, KGF, and Kalki 2898 AD have redefined what Indian cinema can achieve at the global box office. The domestic market now regularly produces films that gross ₹500+ crore worldwide.
-
-For NRIs who grew up watching Telugu films in modest single-screen theaters, the IMAX announcement carries symbolic weight. The Telugu film industry is no longer a regional curiosity — it is the factory floor for India's biggest cinematic spectacles. An IMAX partnership validates that status within the exhibition infrastructure.
-
-Several upcoming projects stand to benefit immediately. Ram Charan's Peddi releases on June 4 in IMAX across available markets. Rajamouli's Varanasi, reportedly mounted on a massive scale, was conceived for IMAX-scale viewing. Projects like Raaka and the rumored God of War adaptation from Indian filmmakers would also find a natural home on these screens.
-
-## The Business Logic
-
-IMAX has been aggressively expanding in India. The company now operates over 50 screens across the country, with Delhi, Mumbai, Bengaluru, and Chennai among the major markets. Hyderabad's absence was a conspicuous gap.
-
-The Telugu-speaking diaspora is one of the most active movie-going communities in North America, the UK, and the Gulf. NRI audiences in these markets already watch Telugu films in IMAX — Peddi's advance booking in the US has crossed $700K. The domestic market lagging behind its overseas audience in screen technology was an anomaly that this deal corrects.
-
-For Asian Cinemas, the partnership strengthens AMB's positioning as a premium brand. For IMAX, it secures a foothold in a market that produces the kind of films their technology was built to show.
-
-The first screen opens by December 2026. Hyderabad has waited long enough."""
-
-    article = {
-        "headline": "IMAX Returns to Hyderabad After a Decade. Tollywood's Biggest Filmmakers Finally Get the Screen They Deserve.",
-        "subheadline": "Three new IMAX with Laser locations through AMB Cinemas — the first opens by December 2026, just in time for Rajamouli's Varanasi.",
-        "body": body.strip(),
-        "slug": "imax-hyderabad-amb-cinemas-rajamouli-telugu-cinema-decade-nri-20260602",
-        "category": "entertainment",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps([
-            "https://www.businesswire.com/news/home/20260601463827/en/Asian-Cinemas-and-IMAX-Launch-Partnership-With-Three-New-IMAX-With-Laser-Locations-In-India",
-            "https://www.bollywoodhungama.com/news/bollywood/imax-returns-to-hyderabad-after-a-decade-with-three-new-amb-cinemas-locations/",
-            "https://www.gulte.com/news/finally-its-official-imax-returns-to-hyderabad/396862"
-        ]),
-        "image_url": img_url,
-        "image_attribution": "Wikimedia Commons" if img_url and ("wikipedia" in img_url or "wikimedia" in img_url) else "The Videshi",
-        "vertical": "entertainment",
-        "is_editorial": False,
-    }
-    
-    art_id = insert_article(article)
-    return art_id
-
-
-# === ARTICLE 3: Bobby Deol's Redemption Story ===
-
-def write_article_3():
-    print("\n--- Article 3: Bobby Deol's personal redemption ---")
-    
-    img_url = fetch_wikipedia_person_image("Bobby Deol")
-    if img_url and not validate_image(img_url):
-        print(f"  ⚠ Wikipedia image failed validation, trying Pexels")
-        img_url = None
-    if not img_url:
-        img_url = fetch_pexels_image("Bollywood actor portrait", "Indian cinema actor")
-        if img_url and not validate_image(img_url):
-            img_url = None
-    
-    body = """Bobby Deol sat across from Rajat Sharma on Aap Ki Adalat and said the thing that most Bollywood actors spend entire careers avoiding. He said he gave up.
-
-"When you hit rock bottom, self-pity takes over," Deol told Sharma in the interview that has since been clipped, shared, and discussed across every Indian social media platform. "You feel the world has ended for you. Nobody likes you anymore. And you get into addictions — to sedate yourself."
-
-## The Drinking, the Silence, the Disappearance
-
-The facts of Bobby Deol's career hiatus are well-documented but rarely articulated by the man himself. After a string of box office failures in the 2000s and early 2010s, work dried up. The son of Dharmendra and younger brother of Sunny Deol — a man who had debuted to a blockbuster opening with Barsaat in 1995 — found himself at home while the industry moved on.
-
-He started drinking. His father, Dharmendra, had a well-known relationship with alcohol, and Bobby found himself following the same path. "My father always liked to drink, and I just got addicted to it," he said. "The thing about alcohol is that first you drink it, and then it drinks you."
-
-What happened next is the part that has struck a nerve.
-
-## "She Is My Spine"
-
-Bobby's wife Tanya Deol started working. She ran the household finances. She managed the family. She did not leave.
-
-"Usne ghar sambhala, kharch woh karti thi," Bobby said, switching between Hindi and English with the ease of a man who has rehearsed this truth in his head many times. "She works. She never made me feel that way. She always told me — why do you think about yourself like this?"
-
-The turning point came from their children. "It was when my children started asking why I was always sitting at home and their mother would go to the office that something snapped within me," Bobby said. "I decided to work on myself."
-
-He addressed the persistent rumor that Tanya had left him during his lowest period. "It's amusing to hear such claims. Women possess incredible strength, and my wife never abandoned me. She did threaten to leave if I didn't quit drinking, but she stood by me."
-
-## The Comeback That Became a Meme, Then Became Real
-
-Bobby Deol's career resurrection is one of the stranger second-act stories in Hindi cinema. A supporting role in Salman Khan's Race 3 (2018) broke the drought. Then came Aashram on MX Player, where he played a morally bankrupt godman with unsettling conviction. Class of 83 followed.
-
-But it was Animal (2023) that turned Bobby Deol into an internet phenomenon. His near-silent performance as the antagonist Abrar — cold, measured, terrifying — spawned the "Lord Bobby" meme. For a man who had spent years as a punchline in Bollywood joke threads, the transformation was jarring.
-
-Now comes Bandar, directed by Anurag Kashyap, releasing on June 5. Bobby plays a fading television star falsely accused of rape — a role that requires him to channel vulnerability, desperation, and rage. The film premiered at TIFF to strong notices. The cast includes Sanya Malhotra, Raj B Shetty, and Saba Azad.
-
-## Why This Resonates with the Diaspora
-
-Bobby Deol's story is not really about Bollywood. It is about the specific shame that Indian families know intimately: the man who is supposed to provide, sitting at home while his wife works. The children who notice. The relatives who talk. The silence that fills a house when purpose disappears.
-
-For NRI families who have watched their own members struggle with career setbacks, addiction, or the suffocating weight of expectations in a new country, Bobby's candor on national television is disarming. He did not blame the industry, his genes, or his circumstances. He credited his wife. He credited his children's innocent question.
-
-"Change only happens when it comes from within you," he said. And then he went quiet for a moment, which is the most Bobby Deol thing in the world — letting the silence say what words cannot.
-
-Bandar releases in theaters on June 5. This time, the audience is not laughing at him. They are watching."""
-
-    article = {
-        "headline": "Bobby Deol Told Rajat Sharma He Gave Up on Himself. Then He Explained Who Pulled Him Back.",
-        "subheadline": "The Aap Ki Adalat interview ahead of Bandar's release is the most candid Bobby Deol has ever been about addiction, disappearance, and the wife who stayed.",
-        "body": body.strip(),
-        "slug": "bobby-deol-aap-ki-adalat-addiction-tanya-comeback-bandar-nri-20260602",
-        "category": "entertainment",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps([
-            "https://www.newsdive.net/bobby-deol-sons-alcohol-struggle-wife-handling-everything/",
-            "https://www.saartaj.com/bobby-deol-opens-up-on-alcohol-addiction-wife-tanya-deol/",
-            "https://inshorts.com/en/news/kids-asked-why-i-was-at-home-while-mother-worked-bobby-on-alcohol-addiction"
-        ]),
-        "image_url": img_url,
-        "image_attribution": "Wikimedia Commons" if img_url and ("wikipedia" in img_url or "wikimedia" in img_url) else "The Videshi",
-        "vertical": "entertainment",
-        "is_editorial": False,
-    }
-    
-    art_id = insert_article(article)
-    return art_id
-
-
-# === MAIN ===
-if __name__ == "__main__":
-    print("=" * 60)
-    print("The Videshi — Entertainment Writer Run")
-    print(f"Date: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    print("=" * 60)
-    
-    results = []
-    
-    art1 = write_article_1()
-    results.append(("Varun Dhawan AI deepfakes", art1))
-    
-    art2 = write_article_2()
-    results.append(("IMAX Hyderabad", art2))
-    
-    art3 = write_article_3()
-    results.append(("Bobby Deol redemption", art3))
-    
-    print("\n" + "=" * 60)
-    print("RESULTS:")
-    for name, art_id in results:
-        status = f"✓ {art_id}" if art_id else "✗ FAILED"
-        print(f"  {name}: {status}")
-    
-    failures = sum(1 for _, a in results if not a)
-    print(f"\nPublished: {len(results) - failures}/{len(results)}")
-    if failures:
-        sys.exit(1)
-    print("Done.")
+print(f"\n{'=' * 60}")
+print(f"Done. Published {published_count}/{len(articles)} articles.")
+print(f"{'=' * 60}")

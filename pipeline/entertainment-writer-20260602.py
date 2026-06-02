@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-06-02 batch."""
+"""Entertainment writer — 2026-06-02 batch"""
 
-import json, os, re, sys, time, uuid, hashlib
-from datetime import datetime, timezone
+import json, os, sys, uuid, time, re
 import requests, urllib.parse
+from datetime import datetime, timezone
 
-# ── Supabase config ──
+# ── Supabase config ──────────────────────────────────────────────────────────
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
@@ -15,6 +15,7 @@ HEADERS = {
     "Prefer": "return=representation",
 }
 
+# ── Pexels config ─────────────────────────────────────────────────────────────
 PEXELS_KEY = None
 pexels_env = os.path.expanduser("~/workspace/.env.pexels")
 if os.path.exists(pexels_env):
@@ -22,8 +23,8 @@ if os.path.exists(pexels_env):
         if line.startswith("PEXELS_API_KEY="):
             PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
 
-# ── Image helpers ──
 
+# ── Image helpers ─────────────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -45,238 +46,206 @@ def fetch_wikipedia_person_image(person_name):
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels. Returns URL or None."""
+    """Fetch an image from Pexels. Returns URL or None."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key found")
+        print("  ⚠ No Pexels API key available")
         return None
-    headers = {"Authorization": PEXELS_KEY}
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             r = requests.get(
-                f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
-                headers=headers, timeout=10
+                "https://api.pexels.com/v1/search",
+                headers={"Authorization": PEXELS_KEY},
+                params={"query": q, "per_page": 5, "orientation": "landscape"},
+                timeout=10,
             )
             if r.status_code == 200:
                 photos = r.json().get("photos", [])
                 for p in photos:
                     url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
                     if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                         return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 
-def validate_image(url):
-    """Check that URL returns a valid image > 5KB."""
+def validate_image_url(url):
+    """Check image URL is valid, returns 200, and is > 5KB."""
     if not url:
+        return False
+    # Block banned sources
+    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com"]
+    if any(b in url for b in banned):
+        print(f"  ✗ Banned image source: {url[:60]}")
+        return False
+    banned_params = ["_nc_ht=", "_nc_cat=", "ccb="]
+    if any(p in url for p in banned_params):
+        print(f"  ✗ Banned signed URL params: {url[:60]}")
         return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         ct = r.headers.get("Content-Type", "")
         cl = int(r.headers.get("Content-Length", 0))
-        if "image" in ct and cl > 5000:
+        if r.status_code == 200 and "image" in ct and cl > 5000:
+            print(f"  ✓ Image validated: {ct}, {cl} bytes")
             return True
-        # Sometimes HEAD doesn't return Content-Length, try GET
-        if "image" in ct and cl == 0:
-            r2 = requests.get(url, timeout=10, stream=True,
-                             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                return True
+        # Some servers don't return Content-Length on HEAD
+        if r.status_code == 200 and "image" in ct:
+            print(f"  ✓ Image validated (no Content-Length): {ct}")
+            return True
+        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
+        print(f"  ✗ Image validation error: {e}")
     return False
 
 
-def sb_insert(table, data):
-    """Insert a row into Supabase and return the result."""
+def sb_insert(table, payload):
+    """Insert row into Supabase, return the inserted row."""
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/{table}",
-        headers=HEADERS, json=data, timeout=30
+        headers=HEADERS,
+        json=payload,
     )
     if r.status_code in (200, 201):
-        result = r.json()
-        return result[0] if isinstance(result, list) else result
-    else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
-        return None
+        data = r.json()
+        return data[0] if isinstance(data, list) else data
+    print(f"  ✗ Insert error ({table}): {r.status_code} — {r.text[:300]}")
+    return None
 
 
-def sb_patch(table, match, data):
-    """Update rows matching conditions."""
-    params = "&".join(f"{k}={v}" for k, v in match.items())
+def sb_patch(table, filters, payload):
+    """Patch a row in Supabase."""
+    params = "&".join(f"{k}={v}" for k, v in filters.items())
     r = requests.patch(
         f"{SUPABASE_URL}/rest/v1/{table}?{params}",
-        headers=HEADERS, json=data, timeout=30
+        headers=HEADERS,
+        json=payload,
     )
     if r.status_code in (200, 204):
         return True
-    print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
+    print(f"  ✗ Patch error ({table}): {r.status_code} — {r.text[:300]}")
     return False
 
 
-# ── Articles ──
+# ── Articles ──────────────────────────────────────────────────────────────────
 
 articles = [
-    # ── Article 1: Drishyam 3 ──
     {
-        "headline": "Drishyam 3 Wraps Shooting. Akshaye Khanna Is Out. Jaideep Ahlawat Is In. October 2 Is Circled.",
-        "subheadline": "Bollywood's most beloved franchise heads to post-production with a new cast member, a fee dispute, and a Gandhi Jayanti release that puts it on a collision course with the biggest day on India's calendar.",
-        "slug": "drishyam-3-wraps-shoot-akshaye-khanna-exit-jaideep-ahlawat-october-2-nri-20260602",
+        "headline": "Salman Khan Fires a Legal Notice at the Makers of Kala Hiran. The Producer Says He Won't Back Down.",
+        "subheadline": "A blackbuck, a courtroom, and a personality rights battle that exposes Bollywood's next big legal frontier — all before the teaser even drops.",
+        "slug": "salman-khan-kala-hiran-legal-notice-personality-rights-blackbuck-nri-20260602",
         "category": "entertainment",
-        "body": """If you grew up watching Vijay Salgaonkar outthink an entire police department with cable-TV plots and a fish pit, this one lands differently.
+        "sources": ["Filmfare", "Livemint", "MensXP", "BollywoodBubble"],
+        "image_person": "Salman Khan",
+        "image_pexels_query": None,
+        "body": """Salman Khan's legal team has sent a formal cease-and-desist notice to the makers of *Kala Hiran: The Battle for Legacy*, a film reportedly inspired by the actor's 1998 blackbuck poaching case. The notice, issued through the law firm DSK Legal and dated April 24, demands an immediate halt to the film's development, production, and promotion.
 
-Drishyam 3 has wrapped its final shooting schedule. Director Abhishek Pathak confirmed the milestone with a note to his cast and crew that read less like a press release and more like a goodbye letter: "For the past many months, this film has been our world. We've spent countless days and nights together, chasing scenes, solving problems, sharing laughs, overcoming challenges."
+## The Legal Argument
 
-The third and likely final instalment of the Hindi adaptation brings back Ajay Devgn as the 9th-fail cable operator who has now become Bollywood's most improbable criminal mastermind. Tabu returns as Meera Deshmukh, the IG whose obsession with justice has defined the franchise's moral tension. Shriya Saran, Ishita Dutta, and Mrunal Jadhav round out the Salgaonkar family.
+The crux of Salman's case rests on three pillars. First, that the blackbuck poaching case remains sub judice before the Rajasthan High Court, and any dramatisation of the events could amount to interference with judicial proceedings and impinge on his right to a fair trial. Second, that the film constitutes a "gross violation of personality rights" — the actor has not authorised the use of his name, persona, or events associated with him. Third, that the project is "defamatory in nature" and could damage his professional reputation and public image.
 
-## The Akshaye Khanna Exit
+The notice specifically names casting director Akshay Pandey, alleging that he was approaching actors and circulating project materials — including a synopsis and character sketches — that drew a direct line to the blackbuck case. Salman's lawyers have demanded an unconditional written apology and warned that failure to comply within 24 hours would trigger both civil and criminal proceedings.
 
-The headline-within-the-headline is who is **not** in the film. Akshaye Khanna, who electrified Drishyam 2 as IG Tarun Ahlawat, walked away from the project in late 2025. The fallout was spectacular and very public.
+## The Producer Pushes Back
 
-Producer Kumar Mangat Pathak told The Times of India that Khanna was initially enthusiastic — reportedly hugging the director and predicting a ₹500-crore haul. Then the terms changed. According to Bollywood Hungama, Khanna demanded ₹21 crore in fees, citing his post-Chhaava and post-Dhurandhar momentum. He also reportedly insisted on wearing a wig, which the makers rejected since his character went wigless in the second film.
+Producer Amit Jani, whose banner Jani Firefox Films previously made *Udaipur Files*, is not going quietly. He took to social media to share the legal notice publicly and accused Salman Khan of "threatening people related to the movie." His response: "The purpose of the notice is to intimidate people so that they succumb to his glamour. It's my nature to not be intimidated."
 
-Communication broke down. Panorama Studios initiated legal proceedings. By the time the dust settled, two new names had joined the cast.
+Jani maintains the film is not a biopic but a courtroom drama and crime thriller that uses the blackbuck case as a narrative springboard. Director Bharat S. Shrinate had reportedly shot portions in Sambhal and Moradabad in Uttar Pradesh, and the team had planned to release a first look poster and teaser on June 20.
 
-## The Replacements
+## The Bigger Picture for the Diaspora
 
-Jaideep Ahlawat — best known for Paatal Lok and the kind of screen presence that makes you forget he's acting — has stepped in, though director Pathak was careful to clarify: "Jaideep is not replacing Akshaye. I'm writing a new character." That distinction matters. This isn't a reshoot of existing scenes; it's a new antagonist thread.
+The dispute sits at the intersection of two legal concepts that Indian courts are still actively defining. Personality rights — the right of public figures to control commercial use of their name and image — have been the subject of several recent orders, including the Delhi High Court's sweeping ruling in Varun Dhawan's favour on AI deepfakes just weeks ago. But the boundaries between personality rights and artistic freedom remain blurry, especially when a film claims to be inspired by real events rather than depicting a specific person.
 
-Veteran Prakash Raj has also joined the ensemble, confirming that he too plays a fresh role rather than a stand-in. The casting upgrades have shifted the dynamic from a rematch to something potentially richer — a final chapter with new stakes.
+For NRIs who have followed Salman Khan's legal saga across decades — from the hit-and-run case to the blackbuck appeals — this latest front opens a new chapter. It is no longer just about the star and the courtroom. It is about who owns the story.
 
-## Shot Across Mumbai and Goa
+The film's poster features an unnamed actor resembling Salman, posing with a gun and wearing a firoza bracelet — a deliberate visual echo of the actor's real-life signature accessory. Whether a courtroom will see that as artistic expression or personality rights violation will likely define a legal precedent that extends far beyond one Bollywood star and one blackbuck.
 
-The production spanned multiple locations, with an extended Goa schedule that reportedly provided some of the film's most crucial sequences. Given that the original Drishyam was set in Goa (Panaji, specifically), the return to that geography suggests the story circles back to where it all began.
-
-## The October 2 Date
-
-Drishyam 3 is locked for Gandhi Jayanti, October 2, 2026 — traditionally one of Indian cinema's most lucrative release windows. The date puts it in prime position for the festive corridor, though SRK's King has also been rumoured for the same slot. If both hold, it would be the biggest Bollywood clash of the year.
-
-## The Diaspora Angle
-
-For NRIs who discovered Drishyam through family WhatsApp groups and late-night binge sessions, this franchise carries weight beyond box office. It's the rare Hindi film that parents and children watch together, that sparks genuine debate at dinner tables — could Vijay really pull it off? Is Meera right to never let go?
-
-The Malayalam Drishyam 3 with Mohanlal is also in production, and unlike previous instalments, the Hindi version will reportedly diverge from the original plot. For diaspora audiences who've watched both, that means two different final chapters to the same story.
-
-The question Drishyam 3 needs to answer isn't whether Vijay Salgaonkar can outsmart the system one more time. It's whether anyone even wants him to. After two films of watching a man bury evidence and manipulate testimony to protect his family, the franchise has quietly become a referendum on complicity. The third film will either resolve that tension or live with it.
-
-October 2 is circled. The cameras are down. Post-production has begun.""",
-        "sources": [
-            {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
-            {"name": "Sacnilk", "url": "https://www.sacnilk.com"},
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-            {"name": "Bollywood Life", "url": "https://www.bollywoodlife.com"},
-            {"name": "The Times of India", "url": "https://www.timesofindia.com"}
-        ],
-        "image_person": "Ajay Devgn",
-        "image_fallback_query": "Indian cinema thriller suspense",
+*The teaser was planned for June 20. Whether it ever arrives now depends on what happens in a courtroom first.*""",
     },
-    # ── Article 2: Bandar ──
     {
-        "headline": "Bobby Deol Spent 20 Days in a Fake Prison With 115 Theatre Actors. Someone's Foot Was on His Face. The Film Opens Thursday.",
-        "subheadline": "Anurag Kashyap's Bandar premiered at TIFF to whispers of Bobby Deol's best work. Nine months later, it arrives in Indian theatres as a crime thriller about fame, false accusations, and the system that swallows you whole.",
-        "slug": "bandar-bobby-deol-anurag-kashyap-tiff-prison-thriller-june-5-nri-20260602",
+        "headline": "Zee Just Grabbed the FIFA World Cup. Ten Days Before Kickoff. For a Third of FIFA's Asking Price.",
+        "subheadline": "After months of silence and a collapsed JioStar bid, Zee Entertainment swoops in with an eight-year deal, four new channels, and a $60 million bet that Indian football is finally ready to pay off.",
+        "slug": "zee-fifa-world-cup-2026-india-broadcast-unite8-sports-deal-nri-20260602",
         "category": "entertainment",
-        "body": """Here is something producer Nikhil Dwivedi wants you to know about the making of Bandar: Bobby Deol showed up at 7 AM every single morning for twenty consecutive days on a set designed to replicate an overcrowded Indian prison. The set held 115 actors — almost all trained theatre performers — packed into a single room, lying on top of each other. Bobby Deol was one of them. Someone's foot on his cheek. Someone else's on his stomach.
+        "sources": ["Reuters", "Inc42", "SacNilk", "BestMediaInfo"],
+        "image_person": None,
+        "image_pexels_query": "FIFA World Cup football stadium",
+        "image_pexels_fallback": "soccer football match crowd",
+        "body": """The 2026 FIFA World Cup starts on June 11 across the United States, Canada, and Mexico. Until yesterday, India — one of the world's fastest-growing football markets — did not have a confirmed broadcaster. That changed on Monday when Zee Entertainment announced it had secured the rights to broadcast the tournament and 38 other FIFA events through 2034.
 
-"In the beginning, the other actors were understandably hesitant," Dwivedi told Bollywood Hungama. "They would try to keep their distance and remain careful around him." Then Anurag Kashyap intervened: "It doesn't look like you're in jail at all. Why is everyone so stiff?" After that, Bobby Deol stopped being a star on set. He rarely returned to his vanity van. He ate where the others ate. He stayed.
+## The Deal
 
-## The Story
+FIFA had initially sought approximately $100 million for the India package covering the 2026 and 2030 World Cups. JioStar, the Reliance-Disney joint venture that had broadcast the 2022 tournament through its predecessor Viacom18, reportedly offered $20 million and was rejected. Sony, which held the rights for the 2014 and 2018 editions, held discussions but ultimately did not bid. FIFA eventually slashed its asking price to roughly $60 million, and Zee stepped in.
 
-Bandar — released internationally as Monkey In A Cage — follows Sameer Mehra, a once-celebrated pop sensation and television star whose life collapses when his ex-girlfriend accuses him of rape. The film is inspired by real events, though the makers have not specified which. Written by Sudip Sharma and Abhishek Banerjee (the duo behind Paatal Lok and Kohrra), the screenplay navigates the space between allegation and guilt, between media spectacle and quiet devastation.
+The deal covers 39 FIFA events, including both men's World Cups (2026 and 2030), the 2027 Women's World Cup, multiple youth tournaments, Futsal World Cups, the Intercontinental Cup, and docu-series content. It is the most comprehensive football rights package ever acquired by an Indian broadcaster.
 
-This is not a courtroom drama in the traditional sense. The courtroom exists, but the real arena is the prison — the brutal, corrupt, overcrowded world of India's undertrial system where innocence is theoretical and survival is the only immediate concern.
+## Unite8 Sports: Zee's New Sports Play
 
-## The TIFF Reception
+To house this acquisition, Zee is launching a brand-new sports network called Unite8 Sports. Four channels are going live: Unite8 Sports 1 (Hindi), Unite8 Sports 1 HD, Unite8 Sports 2 (English), and Unite8 Sports 2 HD. Airtel Digital TV has already lined up the channels in the 300–303 band, with activation set for June 4 — exactly one week before the opening match.
 
-Bandar premiered at the 2025 Toronto International Film Festival in the Special Presentations program — the same section that has historically showcased films like Moonlight and The Whale before their commercial runs. Critics at TIFF described it as "hard-hitting, unflinching, and deeply impactful." The festival circuit positioned it as one of the year's most discussed Indian entries.
+For digital viewers, ZEE5 will stream matches live. Zee's CEO Punit Goenka called the deal a reflection of "clear belief in football's long-term potential" and positioned it as a growth driver for youth engagement.
 
-That was September 2025. The Indian theatrical release comes nine months later, on June 5, 2026 — a delay attributed to the competitive release calendar and strategic positioning by distributor Zee Studios.
+## What This Means for NRIs
+
+For the Indian diaspora in the US, UK, and Canada, the Zee deal carries specific implications. NRIs in North America are in the unique position of having the World Cup literally in their backyard — games will be played in cities from New York to Los Angeles, from Toronto to Mexico City. While they can watch locally on Fox and Telemundo (in the US) or TSN (in Canada), the Zee deal ensures that Hindi and English commentary from an Indian perspective will be available via ZEE5 streaming.
+
+This matters because the Indian football audience has evolved. The Indian Super League built a domestic fanbase, and the 2022 World Cup final between Argentina and France drew massive Indian viewership. Football is no longer a niche sport in India — it is the second-most-watched sport after cricket, particularly among viewers under 30.
+
+## The Bigger Strategic Bet
+
+Zee's move is as much about corporate positioning as it is about football. The company had exited sports broadcasting roughly eight years ago when it sold its sports assets to Sony. This deal marks a decisive re-entry, and it comes at a moment when Zee's stock price jumped approximately 7% on the announcement alone.
+
+The implicit bet: that football, unlike cricket, is not yet locked up by JioStar's near-monopoly on premium Indian sports content. By securing FIFA rights for eight years, Zee is carving out a territory that no other Indian broadcaster controls. The Unite8 Sports brand is designed to carry more than just football — the channels are also planned for kabaddi, badminton, wrestling, boxing, and combat sports.
+
+Whether this gamble pays off depends on advertising revenue, ZEE5 subscription growth, and whether Indian football fandom translates into sustained viewership beyond World Cup spikes. But for now, Zee has ensured that when India's 1.4 billion people want to watch the world's biggest sporting event, they know exactly where to find it.
+
+*The opening match is June 11. Zee's channels go live June 4. The clock is ticking.*""",
+    },
+    {
+        "headline": "Akshay Kumar Is Bringing Back the Welcome Franchise With the Biggest Ensemble Bollywood Has Assembled in Years.",
+        "subheadline": "Welcome to the Jungle arrives June 26 with a cast list that reads like a '90s and 2000s reunion party — and Bollywood is betting big on nostalgia as its counter-programming weapon.",
+        "slug": "welcome-to-the-jungle-akshay-kumar-june-26-ensemble-comedy-nri-20260602",
+        "category": "entertainment",
+        "sources": ["Bollywood Hungama", "Filmfare", "The Daily Jagran"],
+        "image_person": "Akshay Kumar",
+        "image_pexels_query": None,
+        "body": """At a time when Hindi cinema is saturated with intense actioners, spy thrillers, and heavy-duty emotional dramas, *Welcome to the Jungle* is positioning itself as the stress-buster Bollywood badly needs. The film is scheduled for a theatrical release on June 26, and with Akshay Kumar leading an ensemble cast that borders on absurd in its size and ambition, it has already generated enormous buzz.
 
 ## The Cast
 
-The ensemble reads like a who's-who of India's finest character actors. Sanya Malhotra, who has steadily built one of the most interesting filmographies of her generation, plays a key role. Raj B. Shetty, the Kannada industry powerhouse behind Garuda Gamana Vrishabha Vahana, adds cross-industry gravity. Jitendra Joshi (Sacred Games), Sapna Pabbi, Saba Azad, Indrajith Sukumaran (one of Malayalam cinema's most respected actors), and Riddhi Sen round out a cast assembled for acting chops, not star power.
+The cast list alone tells the story of what the makers are attempting. Akshay Kumar, Suniel Shetty, Paresh Rawal, Johnny Lever, Rajpal Yadav — the comedy veterans who anchored the original *Welcome* (2007) and its sequel *Welcome Back* (2015). Then add Arshad Warsi, Raveena Tandon, Lara Dutta, Jacqueline Fernandez, Disha Patani, Tusshar Kapoor, and Shreyas Talpade. The film has managed what most Bollywood productions struggle to do in today's date-sheet-driven industry: get more than a dozen established names in front of the same camera.
 
-## Why the Diaspora Should Watch
+Mounting a multi-starrer at this scale is not easy. Dates are difficult to match, actor combinations are tricky, costs escalate rapidly, and every performer expects screen time that justifies their presence. Yet the *Welcome* franchise has always operated on an unspoken promise — controlled chaos, where everyone gets their moment and nobody needs to carry the film alone.
 
-For NRIs, Bandar arrives at a moment when India's criminal justice conversation has never been louder. The undertrial crisis — where hundreds of thousands of people languish in prison for years without conviction — is one of those issues that diaspora audiences know about but rarely see depicted with this level of specificity. Kashyap, whose work from Gangs of Wasseypur to Ugly has always drawn international festival audiences, has a built-in diaspora following.
+## Why It Matters for the Diaspora
 
-Bobby Deol's career arc adds another layer. The Aap Ki Adalat interview last week — where he spoke about giving up on himself and the person who pulled him back — was not promotional machinery for this film. But it rhymes. Bandar is the work of an actor who has stopped performing and started inhabiting.
+The original *Welcome* occupies a particular space in the Indian diaspora's collective memory. It is, alongside *Hera Pheri*, *Bhagam Bhag*, and *Housefull*, one of those films that NRI families have watched repeatedly on long flights, during Diwali gatherings, and at Saturday night house parties. Its dialogue has become shorthand in group chats. Nana Patekar's "Aapka ghoda kitna paani mein?" entered the diaspora lexicon the same way "Babu Bhaiya" did from *Hera Pheri*.
 
-## The Box Office Reality
+*Welcome to the Jungle* is betting that this nostalgia carries real box-office power. The timing is deliberate — a June 26 release sits in the summer window when overseas markets traditionally spike, and NRI audiences are the most reliable ticket-buyers for big Hindi comedies.
 
-Bandar opens the same week as Peddi (Ram Charan's ₹250-crore sports drama), Hai Jawani Toh Ishq Hona Hai (David Dhawan's final directorial), and He-Man and the Masters of the Universe. It will not win the opening weekend numbers game. But Kashyap's films have never needed to. They find their audience — in theatres initially, on OTT platforms permanently, and in film school conversations for years after.
+## Akshay Kumar's Comic Reset
 
-The foot on Bobby Deol's face? That's the film in miniature. Discomfort as craft. Specificity as style. A star who stopped asking for special treatment and got the best work of his career in return.""",
-        "sources": [
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-            {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Bandar_(film)"},
-            {"name": "Sacnilk", "url": "https://www.sacnilk.com"},
-            {"name": "Filmfare", "url": "https://www.filmfare.com"},
-            {"name": "Zoom TV Entertainment", "url": "https://www.zoomtventertainment.com"}
-        ],
-        "image_person": "Bobby Deol",
-        "image_fallback_query": "Indian cinema prison drama",
-    },
-    # ── Article 3: Ramayana at CinemaCon ──
-    {
-        "headline": "Ramayana Got a Private Screening Room at CinemaCon. The Audience Was Every Major Distributor on Earth.",
-        "subheadline": "India's most expensive film just made its global pitch alongside Avengers and Avatar sequels. The diaspora might be the audience that unlocks the whole thing.",
-        "slug": "ramayana-cinemacons-global-push-namit-malhotra-bollywood-nri-20260602",
-        "category": "entertainment",
-        "body": """CinemaCon is where Hollywood decides what gets screens. It is the annual convention where distributors, exhibitors, and studio executives from North America, Europe, Latin America, and Australia gather to see footage, hear pitches, and commit to the titles that will fill multiplexes for the next twelve months.
+The film also represents something personal for Akshay Kumar. Before the action universes and pan-India spectacles became the industry's default mode, Akshay had built one of Bollywood's strongest comic legacies. His ability to play chaos with a straight face, to react deadpan in the middle of absurdity, was what made him irreplaceable in films like *Garam Masala* and *Bhool Bhulaiyaa*. Recent years have seen him swing between patriotic dramas and action vehicles with diminishing returns. *Welcome to the Jungle* is a deliberate return to the zone audiences have loved him in for decades.
 
-This year, Ramayana was in the room.
+## The Counter-Programming Angle
 
-Not on a panel about "international cinema." Not in a sidebar about emerging markets. In the Milano III Ballroom, with its own private screening, its own presentation, and its own invitation — sent by exhibition industry veteran John Fithian — to "experience the world of Ramayana." The tone was unmistakable: this is not an Indian film seeking Hollywood's attention. This is a global blockbuster that happens to come from India.
+June 2026 is one of the most stacked months in Indian cinema. Ram Charan's *Peddi* opens June 4. Yash's *Toxic* arrives the same day. Bobby Deol and Anurag Kashyap's *Bandar* releases June 5. Diljit Dosanjh's *Main Vaapas Aaunga* follows on June 12. Samantha Ruth Prabhu's *Maa Inti Bangaram* hits on June 19. And Shahid Kapoor's *Cocktail 2* targets the same week.
 
-## The Scale
+In a month dominated by intense, dark, and action-heavy films, *Welcome to the Jungle* is the only major release that promises pure, uncut laughter. That positioning could be its biggest advantage — the counter-programming play that gives audiences a breather between all the gunfights and courtroom dramas.
 
-Ramayana is widely reported as the most expensive Indian film ever produced. While exact figures remain unconfirmed, estimates place the budget between ₹600 crore and ₹1,000 crore — territory that puts it alongside mid-range Marvel productions. The visual effects pipeline, handled by producer Namit Malhotra's own Prime Focus (the same company that has done VFX work for Avatar, Gravity, and Interstellar), is being built to Hollywood technical standards.
+Whether the franchise magic still works in 2026, nearly two decades after the original, is the multi-hundred-crore question. But if the first day's advance bookings follow the pattern of previous *Welcome* films, Bollywood's biggest stress-buster might also become its most commercially significant comedy of the year.
 
-Malhotra's pitch at CinemaCon was strategic: "Global audiences are now actively seeking fresh stories and new cultural perspectives." The implication was clear — in a market fatigued by superhero sequels, an ancient Indian epic rendered with cutting-edge technology offers something genuinely different.
-
-## The Global Release Strategy
-
-What happened at CinemaCon was not a screening. It was a sales operation. The production team organized private meetings with key distributors and exhibitors from every major territory. This level of focused international outreach is unprecedented for an Indian film.
-
-Previous attempts at Indian films breaking through globally — from Baahubali to RRR to Pathaan — relied on diaspora audiences as the core international market, with crossover appeal as a bonus. Ramayana appears to be reversing that formula: the global pitch comes first, with the diaspora as the bridge audience that validates the investment for international exhibitors.
-
-## Why the Diaspora Is the Linchpin
-
-Every NRI who has tried to explain Diwali to a colleague or Dussehra to a neighbour has essentially been pitching the Ramayana. The story is the cultural operating system for a billion people. It is the reason Ram Navami exists, the reason Dussehra bonfires burn, the reason "Ram" is both a name and an invocation.
-
-For diaspora audiences, a global Ramayana release isn't just a film — it's validation. It is seeing the story that shaped your childhood projected in an IMAX theatre in New Jersey or Leicester or Brampton, with the same technical polish as any Spielberg production. If the film delivers on its CinemaCon promise, NRI audiences will not just buy tickets. They will bring their non-Indian friends.
-
-## The Competitive Landscape
-
-Ramayana's CinemaCon presence positioned it alongside the biggest Hollywood titles of the year — films with marketing budgets that dwarf most Indian production costs entirely. That takes conviction, and it takes a certain amount of data. The success of RRR at the Oscars, Baahubali's $20M+ North American run, and the steady growth of Indian box office in the US and UK have created the market conditions for a film like this to be taken seriously by global exhibitors.
-
-The risk is proportional to the ambition. If Ramayana delivers a visual spectacle that matches its source material's emotional weight, it could permanently redefine what "Indian cinema" means in international markets. If it feels like a VFX showreel with a mythology veneer, the setback won't just be commercial — it will close the door for the next Indian film that tries to walk into CinemaCon's ballroom.
-
-## What Comes Next
-
-The theatrical release date has not been confirmed, but the CinemaCon push suggests the makers are targeting a wide global day-and-date release — the same strategy used by Hollywood tentpoles. For diaspora audiences tracking the film, the CinemaCon moment was the signal that this is no longer an Indian industry event. It's a global entertainment bet with Indian storytelling at its centre.
-
-The ballroom in Las Vegas is booked. The distributors have seen the footage. Now the film has to deliver what the pitch promised.""",
-        "sources": [
-            {"name": "Sacnilk", "url": "https://www.sacnilk.com"},
-            {"name": "CinemaCon Coverage", "url": "https://www.cinemacon.com"},
-            {"name": "Variety (Indian cinema global push)", "url": "https://variety.com"}
-        ],
-        "image_person": None,
-        "image_fallback_query": "Indian epic cinema ancient temple",
+*Welcome to the Jungle arrives in theatres on June 26. For NRIs in North America, expect IMAX and premium format screenings in major metros.*""",
     },
 ]
 
-# ── Publish loop ──
-published = []
 
+# ── Publish loop ──────────────────────────────────────────────────────────────
+published = 0
 for art in articles:
     print(f"\n{'='*60}")
     print(f"Publishing: {art['headline'][:70]}...")
@@ -285,82 +254,55 @@ for art in articles:
     img_url = None
     img_attribution = None
 
+    # 1. Wikipedia for person articles
     if art.get("image_person"):
-        print(f"  Trying Wikipedia for: {art['image_person']}")
         img_url = fetch_wikipedia_person_image(art["image_person"])
         if img_url:
             img_attribution = "Wikimedia Commons"
 
-        if not img_url:
-            # Try alternate name forms
-            alt_names = {
-                "Ajay Devgn": ["Ajay Devgan", "Ajay Devgn (actor)"],
-                "Bobby Deol": ["Bobby Deol (actor)"],
-            }
-            for alt in alt_names.get(art["image_person"], []):
-                img_url = fetch_wikipedia_person_image(alt)
-                if img_url:
-                    img_attribution = "Wikimedia Commons"
-                    break
-
-    if not img_url and art.get("image_fallback_query"):
-        print(f"  Falling back to Pexels: {art['image_fallback_query']}")
-        img_url = fetch_pexels_image(art["image_fallback_query"])
+    # 2. Pexels fallback
+    if not img_url and art.get("image_pexels_query"):
+        img_url = fetch_pexels_image(
+            art["image_pexels_query"],
+            art.get("image_pexels_fallback"),
+        )
         if img_url:
             img_attribution = "The Videshi"
 
-    # Validate image
-    if img_url and not validate_image(img_url):
-        print(f"  ✗ Image validation failed, dropping image")
+    # 3. Validate
+    if img_url and not validate_image_url(img_url):
+        print(f"  ⚠ Image failed validation, publishing without image")
         img_url = None
         img_attribution = None
 
-    if img_url:
-        print(f"  ✓ Final image: {img_url[:80]}...")
-    else:
-        print(f"  ⚠ No image found — publishing without image")
-
-    # Build sources JSON
-    sources_json = json.dumps(art["sources"])
-
     # Build payload
-    now_iso = datetime.now(timezone.utc).isoformat()
+    now = datetime.now(timezone.utc).isoformat()
     payload = {
         "headline": art["headline"],
         "subheadline": art["subheadline"],
         "slug": art["slug"],
+        "body": art["body"],
         "category": art["category"],
-        "vertical": art["category"],
-        "body": art["body"].strip(),
-        "sources": sources_json,
         "status": "published",
-        "published_at": now_iso,
+        "published_at": now,
+        "sources": json.dumps(art["sources"]),
         "is_editorial": False,
-        "is_featured": False,
-        "tags": [],
-        "score_total": 0,
     }
+
     if img_url:
         payload["image_url"] = img_url
     if img_attribution:
         payload["image_attribution"] = img_attribution
 
-    result = sb_insert("p2_articles", payload)
-    if result:
-        art_id = result.get("id", "unknown")
-        print(f"  ✓ Published: {art_id}")
-        published.append({
-            "id": art_id,
-            "slug": art["slug"],
-            "headline": art["headline"],
-            "has_image": bool(img_url),
-        })
+    row = sb_insert("p2_articles", payload)
+    if row:
+        art_id = row.get("id", "unknown")
+        print(f"  ✓ Published: {art['slug']} (id={art_id})")
+        published += 1
     else:
-        print(f"  ✗ FAILED to publish")
+        print(f"  ✗ FAILED to publish: {art['slug']}")
 
-# ── Summary ──
+    time.sleep(1)
+
 print(f"\n{'='*60}")
-print(f"SUMMARY: {len(published)}/{len(articles)} articles published")
-for p in published:
-    img_status = "✓ with image" if p["has_image"] else "⚠ no image"
-    print(f"  [{img_status}] {p['headline'][:60]}...")
+print(f"Done. Published {published}/{len(articles)} articles.")
