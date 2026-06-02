@@ -1,32 +1,12 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-06-02 batch."""
+"""Entertainment writer — 2026-06-02 batch"""
 
-import json, os, sys, time, uuid, re
-import requests, urllib.parse
-from datetime import datetime, timezone
+import json, os, sys, time, uuid, re, urllib.parse
+import requests
 
-# ── env ──────────────────────────────────────────────────────────────────────
-def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            if line.startswith("export "):
-                line = line[7:]
-            k, _, v = line.partition("=")
-            v = v.strip().strip('"').strip("'")
-            os.environ.setdefault(k.strip(), v)
-
-load_env(os.path.expanduser("~/.env.supabase"))
-load_env(os.path.expanduser("~/workspace/.env.pexels"))
-
+# ── Supabase config ──
 SB_URL = os.environ["SUPABASE_URL"]
 SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
-
 HEADERS = {
     "apikey": SB_KEY,
     "Authorization": f"Bearer {SB_KEY}",
@@ -34,98 +14,179 @@ HEADERS = {
     "Prefer": "return=representation",
 }
 
-# ── helpers ──────────────────────────────────────────────────────────────────
+# ── Pexels ──
+PEXELS_KEY = None
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+if os.path.exists(pexels_env):
+    for line in open(pexels_env):
+        if line.startswith("PEXELS_API_KEY="):
+            PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
 
+# ── Image sourcing ──
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
+        time.sleep(2)  # Rate limit courtesy delay
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com; editorial use)"},
             timeout=10
         )
         if r.status_code == 200:
             data = r.json()
+            # Prefer originalimage (higher res), fall back to thumbnail
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
+        elif r.status_code == 429:
+            print(f"  ⚠ Wikipedia rate limited for '{person_name}', trying thumbnail fallback...")
+            time.sleep(5)
+            r2 = requests.get(
+                f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+                headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com; editorial use)"},
+                timeout=10
+            )
+            if r2.status_code == 200:
+                data = r2.json()
+                img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
+                if img:
+                    print(f"  ✓ Wikipedia image found (retry) for '{person_name}': {img[:80]}...")
+                    return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels API using curl (urllib gets 403)."""
-    import subprocess
+    """Fetch an image from Pexels. Returns URL or None."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key available")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
-                 "-H", f"Authorization: {PEXELS_KEY}"],
-                capture_output=True, text=True, timeout=15
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                headers={"Authorization": PEXELS_KEY},
+                params={"query": q, "per_page": 5, "orientation": "landscape"},
+                timeout=10,
             )
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                for p in photos:
+                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+                    if url:
+                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                        return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 
-def validate_image(url):
-    """Verify the URL returns HTTP 200 with image content > 5KB."""
+def validate_image_url(url):
+    """Check image URL returns HTTP 200 with image content type and >5KB."""
+    if not url:
+        return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
                           headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
+        cl = int(r.headers.get("Content-Length", "0"))
         if r.status_code == 200 and "image" in ct and cl > 5000:
             return True
-        # Try GET if HEAD didn't return Content-Length
-        if r.status_code == 200 and "image" in ct and cl == 0:
+        # Try GET if HEAD doesn't have content-length
+        if r.status_code == 200 and "image" in ct:
             r2 = requests.get(url, timeout=10, stream=True,
                               headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
             chunk = r2.raw.read(6000)
             if len(chunk) > 5000:
                 return True
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
+        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
     return False
 
 
-def sb_insert(table, payload):
-    """Insert a row into Supabase."""
-    r = requests.post(f"{SB_URL}/rest/v1/{table}", headers=HEADERS, json=payload)
-    if r.status_code in (200, 201):
-        data = r.json()
-        return data[0] if isinstance(data, list) else data
-    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:1000]}")
+def upload_to_supabase_storage(image_url, filename):
+    """Download image and upload to Supabase article-images bucket."""
+    try:
+        headers = {"User-Agent": "TheVideshi/1.0 (thevideshi.com; editorial use)"}
+        r = requests.get(image_url, timeout=15, headers=headers)
+        if r.status_code == 429:
+            print(f"  ⚠ Rate limited downloading image, retrying after 5s...")
+            time.sleep(5)
+            r = requests.get(image_url, timeout=15, headers=headers)
+        if r.status_code != 200 or len(r.content) < 5000:
+            print(f"  ⚠ Download failed: status={r.status_code}, size={len(r.content)}")
+            return None
+
+        content_type = r.headers.get("Content-Type", "image/jpeg")
+        if ";" in content_type:
+            content_type = content_type.split(";")[0].strip()
+
+        upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
+        up = requests.post(
+            upload_url,
+            headers={
+                "apikey": SB_KEY,
+                "Authorization": f"Bearer {SB_KEY}",
+                "Content-Type": content_type,
+                "x-upsert": "true",
+            },
+            data=r.content,
+            timeout=30,
+        )
+        if up.status_code in (200, 201):
+            public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}")
+            return public_url
+        else:
+            print(f"  ⚠ Supabase upload failed: {up.status_code} {up.text[:200]}")
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
     return None
 
 
-def sb_patch(table, filters, payload):
-    """Patch rows in Supabase matching filters."""
-    params = "&".join(f"{k}={v}" for k, v in filters.items())
-    r = requests.patch(f"{SB_URL}/rest/v1/{table}?{params}", headers=HEADERS, json=payload)
-    if r.status_code in (200, 204):
-        return True
-    print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
-    return False
+def source_image(person_name=None, pexels_query=None, pexels_fallback=None, slug="article"):
+    """Source image following the hierarchy: Wikipedia → Pexels → None."""
+    img_url = None
+    attribution = None
+
+    if person_name:
+        img_url = fetch_wikipedia_person_image(person_name)
+        if img_url:
+            attribution = "Wikimedia Commons"
+
+    if not img_url and pexels_query:
+        img_url = fetch_pexels_image(pexels_query, pexels_fallback)
+        if img_url:
+            attribution = "Pexels"
+
+    if img_url:
+        # Upload to Supabase for permanence (except Pexels which is permanent)
+        if "upload.wikimedia.org" in img_url:
+            uploaded = upload_to_supabase_storage(img_url, f"{slug}.jpg")
+            if uploaded:
+                return uploaded, attribution
+            # If upload fails, use Wikipedia URL directly (it's permanent)
+            if validate_image_url(img_url):
+                return img_url, attribution
+        elif "images.pexels.com" in img_url:
+            if validate_image_url(img_url):
+                return img_url, attribution
+        else:
+            uploaded = upload_to_supabase_storage(img_url, f"{slug}.jpg")
+            if uploaded:
+                return uploaded, attribution
+
+    return None, None
 
 
-def publish_article(article):
-    """Insert article into p2_articles and attach image."""
+def insert_article(article):
+    """Insert article into Supabase."""
     art_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).isoformat()
-
     payload = {
         "id": art_id,
         "headline": article["headline"],
@@ -133,214 +194,239 @@ def publish_article(article):
         "body": article["body"],
         "slug": article["slug"],
         "category": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "sources": json.dumps(article["sources"]),
-        "is_editorial": False,
         "vertical": "entertainment",
+        "status": "published",
+        "published_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "sources": json.dumps(article["sources"]),
+        "image_url": article.get("image_url"),
+        "image_attribution": article.get("image_attribution"),
+        "is_editorial": False,
+        "is_featured": False,
+        "tags": article.get("tags", []),
     }
+    # Remove None values
+    payload = {k: v for k, v in payload.items() if v is not None}
 
-    result = sb_insert("p2_articles", payload)
-    if not result:
-        print(f"  ✗ Failed to publish: {article['headline']}")
+    r = requests.post(
+        f"{SB_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload,
+        timeout=30,
+    )
+    if r.status_code in (200, 201):
+        print(f"✅ Published: {article['headline'][:70]}...")
+        return art_id
+    else:
+        print(f"❌ Insert failed ({r.status_code}): {r.text[:200]}")
         return None
 
-    print(f"  ✓ Published: {article['headline']} (id={art_id})")
 
-    # Image sourcing
-    img_url = None
-    if article.get("person_name"):
-        img_url = fetch_wikipedia_person_image(article["person_name"])
-        # Try alternate name if no result
-        if not img_url and article.get("person_alt"):
-            img_url = fetch_wikipedia_person_image(article["person_alt"])
-
-    if not img_url and article.get("pexels_query"):
-        img_url = fetch_pexels_image(article["pexels_query"], article.get("pexels_fallback"))
-
-    if img_url:
-        if validate_image(img_url):
-            attribution = "Wikimedia Commons" if "wikimedia" in img_url or "wikipedia" in img_url else "The Videshi"
-            sb_patch("p2_articles", {"id": f"eq.{art_id}"}, {
-                "image_url": img_url,
-                "image_attribution": attribution,
-            })
-            print(f"  ✓ Image attached: {img_url[:80]}...")
-        else:
-            print(f"  ⚠ Image validation failed, skipping: {img_url[:80]}...")
-    else:
-        print(f"  ⚠ No image found for: {article['headline']}")
-
-    return art_id
-
-
-# ── articles ─────────────────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════
+# ARTICLES
+# ═══════════════════════════════════════════════════════════════
 
 articles = []
 
-# ─── Article 1: Vicky Kaushal Mahavatar ───────────────────────────────────────
+# ─── Article 1: Katrina Kaif May Photo Dump + Baby Vihaan ───
 articles.append({
-    "headline": "Vicky Kaushal Just Blocked 18 Months of His Life for One Role. It's Parashurama.",
-    "subheadline": "The actor will undergo six months of physical transformation before filming even begins on Maddock Films' mythological epic Mahavatar, directed by Amar Kaushik.",
-    "slug": "vicky-kaushal-mahavatar-parashurama-18-months-maddock-amar-kaushik-nri-20260602",
-    "person_name": "Vicky Kaushal",
+    "headline": "Katrina Kaif Just Shared Her May Photo Dump. Baby Vihaan's Tiny Hands Stole Every Frame.",
+    "subheadline": "The actress introduced her seven-month-old son to paparazzi at the airport — then asked them not to photograph his face. Her Instagram post reveals a family quietly rewriting celebrity parenthood.",
+    "slug": "katrina-kaif-may-photo-dump-baby-vihaan-vicky-kaushal-birthday-airport-nri-20260602",
+    "person": "Katrina Kaif",
     "pexels_query": None,
     "pexels_fallback": None,
-    "author_name": "Videshi Entertainment Desk",
-    "author_slug": "videshi-entertainment-desk",
     "sources": [
-        {"name": "Sacnilk", "url": "https://sacnilk.com"},
+        {"name": "Filmfare", "url": "https://www.filmfare.com"},
         {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
-        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"}
+        {"name": "India Forums", "url": "https://www.indiaforums.com"},
     ],
-    "body": """In an era when most A-listers juggle three to four projects a year, Vicky Kaushal has made a decision that breaks the template entirely. The actor has blocked a continuous eighteen-month window — from June 2026 through the end of 2027 — exclusively for **Mahavatar**, Maddock Films' mythological action epic about the immortal sage-warrior Parashurama.
+    "tags": ["Katrina Kaif", "Vicky Kaushal", "Baby Vihaan", "celebrity parenthood", "Bollywood"],
+    "body": """Katrina Kaif does not post often. When she does, the internet stops scrolling and starts studying every pixel. Her May photo dump, dropped on June 1, is a masterclass in what a celebrity can share without actually revealing much — and why that restraint matters more than a perfectly curated grid.
 
-No other film. No brand shoots squeezed in between schedules. No cameos. Just one role, one director, one story.
+## A Birthday, a Book, and a Pair of Tiny Hands
 
-## The Prep Alone Takes Six Months
+The carousel opens with warmth, not spectacle. There are images from Vicky Kaushal's 38th birthday celebration on May 16 — a cake reading "Happy Birthday Papa" with three little figures on top, a family picnic spread, and the kind of candid shots that feel more living room than red carpet. But it is one specific frame that has consumed comment sections across platforms: a photograph of baby Vihaan Kaushal's tiny hands, visible while Katrina appears to be reading *Gujapati Kulapati* to her seven-month-old son.
 
-The timeline is staggering even by Bollywood's increasingly ambitious standards. Kaushal will begin an intensive six-month preparatory phase immediately after wrapping Sanjay Leela Bhansali's **Love and War**, which is targeting a January 2027 release with its final 50-day shooting schedule underway since May 2026.
+No face. No full reveal. Just hands and a children's book. And yet, it says everything about how Katrina and Vicky have chosen to navigate parenthood in the age of paparazzi culture.
 
-Director **Amar Kaushik** — who turned Stree into a franchise and Stree 2 into a blockbuster — has designed a comprehensive training module for the role. It includes a rigorous physical transformation to bulk up Kaushal's physique to mythological proportions, alongside acting workshops focused on the psychological and spiritual depth of the character. Kaushik has been in pre-production for over seven months already, working on set design, weapon design, and character aesthetics.
+## The Airport Moment That Rewrote the Rules
 
-"The prep is going on for 6-7 months. We have worked on the set design, weapon design, how every character would look. The scripting is done. Yet, we need more time," Kaushik told Bollywood Hungama in a recent interview.
+Days before the Instagram post, the couple was spotted at Mumbai airport with Vihaan. What happened next was unusual by Bollywood standards. Vicky smiled and posed at the entrance. Katrina held the baby. And then she made a request that a photographer later shared publicly: she asked that no pictures of the baby's face be taken or circulated.
 
-## Why Parashurama Demands This Level of Commitment
+She did not hide. She did not run. She introduced her son to the media — and then drew a line. The gesture echoed the privacy-first approach adopted by a handful of celebrity parents globally, from Ryan Reynolds and Blake Lively to Virat Kohli and Anushka Sharma. But in Mumbai's paparazzi ecosystem, where photographers routinely camp outside hospitals and schools, it carried a different weight.
 
-Chiranjeevi Parashurama — the sixth avatar of Vishnu, an immortal warrior of dharma who bridges the Ramayana and Mahabharata — is among the most complex figures in Hindu mythology. He was the guru of Bheeshma, Dronacharya, and Karna. He received Mahakaal's Parashu (axe) and led the Devas to victory against the Asuras. His story spans ages, making him unlike any character Bollywood has attempted at this scale.
+For NRI families watching from Houston or London or Toronto, the moment resonated on a deeper frequency. Many diaspora parents navigate their own version of this — deciding how much of their children's lives to share on social media, balancing family WhatsApp groups that want every photo with the instinct to protect a child's digital footprint before they are old enough to consent.
 
-Filming is expected to begin in January 2027 and run through December, with heavy VFX post-production to follow. Maddock Films, produced by Dinesh Vijan, originally announced the film for a Christmas 2026 release before pushing it to 2027. An Independence Day 2027 weekend release is now being considered.
+## What Katrina's Caption Actually Tells You
 
-## Shraddha Kapoor in Talks for the Female Lead
+The caption was vintage Katrina — warm, a little scattered, and oddly specific. She wrote about discovering the best hot chocolate and the best coffee in the same month, mentioned her legs hurting from watching someone named Reza, and claimed she discovered the song "Naa Pushde" entirely on her own. Each photo got its own micro-caption, including one that read: "Happy Family, but mummy has a strange hairstyle."
 
-According to Mid-Day, **Shraddha Kapoor** is the primary choice for the female lead. If confirmed, it would mark her first collaboration with Kaushal — a fresh pairing the producers believe will resonate with audiences. The Stree franchise connection through Kaushik makes the casting almost poetic.
+Fans, predictably, zeroed in on the hairstyle. Comments like "hair goals omg" and "mommy kat is everything" flooded the post. But the real story was in the tone — a woman who once guarded every public appearance with meticulous precision now sharing something genuinely unpolished. Motherhood has not made Katrina more public. It has made her more comfortable with imperfection.
 
-## What This Means for the Industry — and the Diaspora
+## The Professional Pause
 
-Kaushal's decision reflects a broader shift in Bollywood. Top-tier actors are increasingly choosing singular, high-impact performances over multiple concurrent projects. Ranveer Singh, notably, has moved away from the Don franchise to focus on **Pralay**, a survival drama shooting from August 2026. The industry is pivoting toward long-term investments in world-building — and the global audience, particularly the diaspora hungry for culturally rooted spectacle, stands to benefit.
+On the work front, Katrina has not announced any new project since Vihaan's birth on November 7, 2025. Reports continue to swirl about her potential return in Farhan Akhtar's *Jee Le Zaraa* alongside Priyanka Chopra Jonas and Alia Bhatt, but nothing has been confirmed. Meanwhile, Vicky Kaushal is deep into filming *Love & War* with Ranbir Kapoor and Alia Bhatt, directed by Sanjay Leela Bhansali, scheduled for January 21, 2027.
 
-For NRI audiences who grew up with Amar Chitra Katha depictions of Parashurama and debated his role in the Mahabharata over family dinners, Mahavatar represents something rare: a modern Indian film willing to take the time to get mythology right. Eighteen months for one character isn't excess. For Parashurama, it might just be enough.
+The career break is deliberate, not accidental. Katrina has been open about wanting to be present for Vihaan's first year, and the May photo dump — with its park walks, coffee dates, and picture books — suggests she is exactly where she wants to be.
 
-*Mahavatar is produced by Maddock Films and directed by Amar Kaushik. A release date has not been officially confirmed.*"""
+## Why This Matters Beyond the Celebrity Bubble
+
+The Kaif-Kaushal approach to parenting visibility is becoming a template. In an industry that has historically monetized every baby reveal, gender announcement, and first birthday, their decision to share on their own terms — one tiny hand at a time — feels like a quiet revolution. It is not about secrecy. It is about agency.
+
+For the diaspora, whose relationship with Bollywood celebrity culture often runs through Instagram stories consumed at 2 AM in a different time zone, this photo dump offered something rarer than a baby face reveal: a reminder that some of the most meaningful moments do not need to be fully visible to be fully felt.
+
+Vihaan Kaushal is seven months old. He has appeared in exactly one photograph, shown only his hands, and already become the most talked-about baby in Bollywood. His parents would not have it any other way.""",
 })
 
-# ─── Article 2: Dhurandhar 2 OTT ─────────────────────────────────────────────
+# ─── Article 2: Karan Johar Instagram Unfollow ───
 articles.append({
-    "headline": "Dhurandhar 2 Hits JioHotstar on June 4 With 20 Extra Minutes the Theatres Never Showed",
-    "subheadline": "The ₹1,100 crore spy thriller gets a 'Raw and Undekha' extended cut for its digital premiere — and the franchise's economics are as jaw-dropping as its action.",
-    "slug": "dhurandhar-2-revenge-jiohotstar-ott-june-4-extended-cut-raw-undekha-nri-20260602",
-    "person_name": "Ranveer Singh",
+    "headline": "Karan Johar Unfollowed Shah Rukh Khan, Alia Bhatt, and Half of Bollywood on Instagram. Then He Explained Why.",
+    "subheadline": "The filmmaker's mass Instagram unfollow triggered conspiracy theories across Reddit and Twitter. His response — 'It's a digital detox, not national news' — says more about celebrity social media culture than any of the theories did.",
+    "slug": "karan-johar-instagram-unfollow-srk-alia-kareena-digital-detox-nri-20260602",
+    "person": "Karan Johar",
     "pexels_query": None,
     "pexels_fallback": None,
-    "author_name": "Videshi Entertainment Desk",
-    "author_slug": "videshi-entertainment-desk",
     "sources": [
-        {"name": "JioHotstar", "url": "https://www.jiohotstar.com"},
-        {"name": "Sacnilk", "url": "https://sacnilk.com"},
-        {"name": "Livemint", "url": "https://www.livemint.com"}
+        {"name": "Sacnilk", "url": "https://www.sacnilk.com"},
+        {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
     ],
-    "body": """After eleven weeks in theatres, ₹1,100 crore in domestic net collections, and ₹1,800 crore worldwide, **Dhurandhar 2: The Revenge** is finally coming to your living room. JioHotstar has confirmed the spy thriller will begin streaming on **June 4 at 7 PM IST**, with regular subscriber access from June 5 onwards.
+    "tags": ["Karan Johar", "Shah Rukh Khan", "Instagram", "social media", "digital detox", "Bollywood"],
+    "body": """It started, as most modern Bollywood controversies do, on Reddit. Eagle-eyed users noticed something odd on Karan Johar's Instagram: his following count had plummeted. Shah Rukh Khan — gone. Alia Bhatt — gone. Kareena Kapoor Khan, Kajol, Varun Dhawan, Sidharth Malhotra, Ananya Panday, Kartik Aaryan, Manish Malhotra, even the entire Khan family including Gauri, Aryan, and Suhana — all unfollowed in what appeared to be a single, ruthless purge.
 
-But the platform isn't just putting the theatrical cut online. This is the **"Raw and Undekha"** edition — an extended version featuring twenty minutes of additional footage, longer action sequences, and unseen scenes that never made it to cinemas.
+Within hours, the screenshots were everywhere. Theories multiplied like franchises at a YRF pitch meeting. Had Karan and SRK finally had a falling out? Was there trouble with Alia after years of mentorship? Had a professional disagreement turned personal? Was this a calculated PR move before a new project announcement?
 
-## The Numbers That Broke Bollywood's Brain
+## The Actual Explanation Was Anti-Climactic
 
-Let's talk about the economics, because the Dhurandhar franchise has rewritten every rule in the book.
+Karan Johar, never one to let a narrative run without his input, responded through his Instagram Story with characteristic exasperation. "It's a DIGITAL DETOX!!!!" he wrote, the four exclamation marks doing a lot of heavy lifting. "Am unfollowing everyone to reduce my time and energy spent on the gram!!! This can't be national news for god's sake... please clickbait something else! This is irrelevant!"
 
-The two films were produced on a combined budget of just **₹255 crore**. Across both chapters, the franchise has generated over **₹3,107 crore** in total worldwide gross. The return on investment isn't just impressive — it's in a league of its own.
+The statement was simultaneously a denial, a clarification, and a critique of the media ecosystem that had turned a follower count into a Bollywood crisis. It was also, inadvertently, the most honest thing Karan Johar has said about social media in years.
 
-The digital rights deal is equally remarkable. Part 1 remained with Netflix at a revised value of ₹85 crore. The sequel's massive hype allowed producers to negotiate a separate **₹150 crore deal** with JioHotstar — pushing total digital revenue to ₹235 crore. That's nearly the entire production cost of both films recovered through streaming rights alone, before a single OTT viewer hit play.
+## The Friendship That Made This News
 
-Overseas, the film grossed **₹426.67 crore**, with roughly 18 percent of international revenue coming from premium formats like IMAX and 4DX. For the diaspora, that's significant — NRI audiences drove a measurable chunk of the international haul.
+The reason the unfollow became a story at all — rather than a footnote — is the Karan-SRK relationship. This is not a casual industry friendship. Karan Johar launched his directorial career with Shah Rukh Khan in *Kuch Kuch Hota Hai* in 1998. Over the next two decades, Khan starred in *Kabhi Khushi Kabhie Gham*, *Kabhi Alvida Naa Kehna*, and *My Name Is Khan*. Karan has publicly credited SRK with shaping not just his filmography but his identity as a filmmaker.
 
-## What's in the Extended Cut
+Unfollowing SRK on Instagram, in the public imagination, was the digital equivalent of removing a foundation stone. That it meant nothing — that it was just a man reducing his screen time — reveals how completely we have allowed social media metrics to stand in for human relationships.
 
-The Raw and Undekha version promises additional character depth alongside the expected action extensions. Director **Aditya Dhar** has spoken about scenes that were trimmed for the theatrical runtime of 3 hours and 55 minutes — itself one of the longest mainstream Hindi films in recent memory.
+## What NRIs Recognize in This Story
 
-JioHotstar is treating the premiere as an event. A 30-minute pre-show at 7 PM on June 4 will feature candid cast conversations, behind-the-scenes footage, and insights into the making of the film.
+For the diaspora, this story hits a nerve that has nothing to do with Bollywood. Indian families — particularly those spread across multiple countries and time zones — have built their emotional infrastructure on WhatsApp groups, Instagram follows, and Facebook birthday wishes. An unfollow is not just a button click. It is a statement. A muted group chat is a cold war. A delayed response is a diplomatic incident.
 
-## The Spy Universe Keeps Expanding
+Karan Johar's digital detox, whether genuine or performative, mirrors a conversation happening in living rooms from Fremont to Flushing: how much of our emotional life are we outsourcing to platforms designed to monetize our attention? When unfollowing your oldest friend becomes national news, the problem is not with the person who clicked unfollow. It is with a culture that made the follow count a measure of loyalty in the first place.
 
-Dhurandhar 2 picks up with **Ranveer Singh** reprising his role as undercover operative Jaskirat Singh Rangi, now operating as Hamza Ali Mazari in Karachi, navigating organized crime while targeting terror cells linked to the 26/11 attacks. The film also stars **R. Madhavan**, **Sanjay Dutt**, and **Arjun Rampal**.
+## The Broader Celebrity Detox Trend
 
-The franchise's success has cemented the Spy Universe as Bollywood's most bankable cinematic universe. With the sequel's 8.5/10 IMDB rating and a box office trail that outpaced everything except Baahubali 2 adjusted for inflation, the conversation has shifted from "if" to "when" for the next installment.
+Karan is not the first high-profile figure to publicly pull back from social media. Deepika Padukone has spoken about her complicated relationship with Instagram. Aamir Khan famously quit all platforms in 2022. Globally, celebrities from Selena Gomez to Tom Holland have documented cycles of deactivation and return.
 
-## Why This Matters for NRI Audiences
+But Karan Johar's version is distinctly Bollywood. He did not deactivate. He did not go silent. He unfollowed — the most visible, most trackable, most public form of digital withdrawal possible. And then he got annoyed when people noticed. It is the social media equivalent of slamming a door and then being surprised by the noise.
 
-For diaspora viewers who caught the film in packed North American theatres — where advance bookings crossed $1.07 million — the extended cut offers a reason to revisit. For those who couldn't make it to a theatre screening, this is the main event.
+## What This Actually Means for Dharma
 
-The film is available in Hindi, Telugu, Tamil, Kannada, and Malayalam on JioHotstar. If you've somehow avoided spoilers for eleven weeks, your patience has been rewarded — with twenty extra minutes to show for it.
+From a professional standpoint, absolutely nothing. Karan Johar's Dharma Productions has a slate that includes the highly anticipated *Love & War* and multiple projects in various stages of development. His professional relationships with the people he unfollowed remain unchanged — no one in the industry is evaluating partnerships based on Instagram follows, even if the public does.
 
-*Dhurandhar 2: The Revenge Raw & Undekha premieres on JioHotstar June 4 at 7 PM IST. Regular streaming begins June 5.*"""
+The real takeaway is more mundane and more universal: a 54-year-old man decided he was spending too much time on Instagram and pressed a lot of buttons. The fact that this became the most discussed entertainment story of the week says less about Karan Johar and more about the rest of us.
+
+He unfollowed everyone. The sky did not fall. Bollywood did not implode. *Kuch Kuch Hota Hai* is still a classic. Maybe that is the digital detox the rest of us need — the realization that an unfollow is just an unfollow, and the relationships that matter were never measured in follower counts to begin with.""",
 })
 
-# ─── Article 3: Karisma Kapoor Brown ─────────────────────────────────────────
+# ─── Article 3: Divyanka Tripathi & Vivek Dahiya Twins ───
 articles.append({
-    "headline": "Karisma Kapoor Plays a Disgraced Kolkata Cop Hunting a Serial Killer. Brown Drops on ZEE5 Thursday.",
-    "subheadline": "The neo-noir crime thriller marks one of the most dramatic role departures in Karisma's three-decade career — and it arrives with a 9-minute Cannes ovation still echoing.",
-    "slug": "karisma-kapoor-brown-zee5-neo-noir-kolkata-cop-serial-killer-june-5-nri-20260602",
-    "person_name": "Karisma Kapoor",
-    "pexels_query": "Kolkata night city",
-    "pexels_fallback": "Kolkata street noir",
-    "author_name": "Videshi Entertainment Desk",
-    "author_slug": "videshi-entertainment-desk",
+    "headline": "Divyanka Tripathi and Vivek Dahiya Waited Ten Years for This Moment. Then Twins Arrived.",
+    "subheadline": "Television's most stable couple welcomed twin boys on May 26, announced them with a 'Karan Arjun' reference, and came home to a building guard's blessings. The response tells you everything about what Indian audiences want from their celebrities.",
+    "slug": "divyanka-tripathi-vivek-dahiya-twin-boys-karan-arjun-nri-20260602",
+    "person": "Divyanka Tripathi",
+    "pexels_query": "newborn baby twins hospital",
+    "pexels_fallback": "baby nursery celebration",
     "sources": [
-        {"name": "Cinema Express", "url": "https://www.cinemaexpress.com"},
-        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+        {"name": "Bollywood Shaadis", "url": "https://www.bollywoodshaadis.com"},
         {"name": "IANS", "url": "https://ianslive.in"},
-        {"name": "MensXP", "url": "https://www.mensxp.com"}
+        {"name": "Zoom TV", "url": "https://www.zoomtventertainment.com"},
     ],
-    "body": """There is a version of Karisma Kapoor that Bollywood remembers: the one who danced through Dil To Pagal Hai, who brought glamour to every frame she occupied through the nineties and early 2000s. **Brown** is not that Karisma. And that's precisely the point.
+    "tags": ["Divyanka Tripathi", "Vivek Dahiya", "twins", "Indian television", "celebrity parenthood", "Bollywood"],
+    "body": """There is a specific kind of love that the Indian diaspora reserves for celebrity couples who do not make headlines for drama. Divyanka Tripathi and Vivek Dahiya have built their public image on exactly this foundation — a decade of quiet stability in an industry that feeds on chaos. On May 26, 2026, that foundation expanded by two.
 
-Premiering on **ZEE5 on June 5**, the neo-noir crime thriller casts the veteran actress as **DCDD Rita Brown** — a disgraced, alcoholic Kolkata police officer haunted by a past she can't outrun, pulled back into active investigation when a series of brutal murders shocks the city.
+The couple welcomed twin baby boys, and their announcement carried the only pop culture reference that could possibly do the moment justice: "Mere Karan Arjun aa gaye!"
 
-## A Character Built on Fragility, Not Glamour
+## The Announcement That Broke the Internet's Wholesome Meter
 
-"Rita Brown is unlike any character I've played before," Karisma said in a statement ahead of the trailer launch. "She is flawed, vulnerable, emotionally bruised, yet incredibly resilient in the way she keeps moving forward despite everything life throws at her."
+Divyanka and Vivek shared the news through a joint Instagram post that read: "We asked for happiness, God said take double. Blessed with twin baby boys." The caption added: "The wait is finally over... 'The Boys' are here, and life already feels more beautiful than we ever imagined."
 
-The actress has been selective in recent years, appearing in the 2024 whodunit **Murder Mubarak** and the 2020 series **Mentalhood**. But Brown represents something fundamentally different — a de-glam, psychologically layered lead performance that leans into darkness rather than away from it.
+The "Karan Arjun" reference — invoking the 1995 Salman Khan-Shah Rukh Khan reincarnation drama — was pitch-perfect. It acknowledged the ten-year wait since their 2016 wedding with humor rather than sentimentality. It positioned the twins as destined arrivals, not medical outcomes. And it gave every desi parent in the comment section the perfect reaction template. Within hours, the reference had become a shorthand, shared across WhatsApp groups and family chats with the universal understanding that only an Indian audience would fully appreciate.
 
-"What drew me was the emotional honesty of the writing," she added. "There's no attempt to glamorise pain or simplify human relationships. Over the years, I've played many strong women, but Rita's strength lies in her fragility and silence as much as in her courage."
+## Ten Years, Zero Drama
 
-## Kolkata as a Character
+Divyanka and Vivek met on the sets of *Yeh Hai Mohabbatein*, the long-running Star Plus drama that cemented Divyanka's position as one of Indian television's most beloved faces. They married in 2016 in a ceremony that was widely covered but notably free of the manufactured spectacle that often accompanies celebrity weddings.
 
-Director **Abhinay Deo** — who gave Bollywood the irreverent classic **Delhi Belly** and the taut thriller **24** — has spoken at length about why Kolkata isn't just a backdrop in this series.
+For the next decade, they became something rare in Indian entertainment: a celebrity couple that the public rooted for without reservation. No breakup rumors. No public arguments. No cryptic Instagram stories. The absence of drama was itself remarkable, and their fan base — heavily concentrated among NRI women who grew up watching *Yeh Hai Mohabbatein* in syndication — treated their stability as aspirational rather than boring.
 
-"What truly compelled me to direct it was the way the writers handled the story," Deo told Bollywood Hungama. "At its core, it felt like a case study of people — individuals from different walks of life, social strata, castes, and communities. There is a Bihari, a Marwadi, a bhadralok Bengali, along with Anglo-Indians and Chinese characters. All of them coexist within Kolkata."
+The pregnancy announcement came on Gudi Padwa in March 2026. Even then, the response was notably different from the typical Bollywood pregnancy discourse. There were no speculation cycles about due dates or gender reveals. The couple shared updates on their timeline, and the audience respected the boundaries.
 
-The series is adapted from **City of Death**, a novel by Abheek Barua, and it uses the city's haunting beauty and moral chaos as a canvas for its central mystery: a serial killer targeting young women, beginning with the daughter of an influential businessman.
+## The Hospital Exit That Went Viral
 
-## The Cast and Creative Team
+On May 29, three days after the birth, Divyanka and Vivek made their first public appearance with the twins. The hospital exit video quickly became one of the most shared entertainment clips of the week. A decorated car with blue and white balloons pulled up. Vivek, beaming, announced to the gathered photographers: "Presenting the new mother and father in town." Divyanka emerged in white, radiant, and immediately requested that photographers not show the babies' faces.
 
-Beyond Karisma, the ensemble includes **Jisshu Sengupta** as a psychiatrist who may hold vital information about the murders, **Surya Sharma** as Rita's grieving junior officer Inspector Arjun Sinha, **Soni Razdan**, veteran actress **Helen Khan**, **Paresh Pahuja**, **Ajinkya Deo**, and **Aryann Bhowmik**. Singer **Shaan** makes his OTT acting debut in a role that has generated considerable curiosity.
+But the moment that truly captured hearts came at their apartment building. As Divyanka walked in carrying one of her sons, she stopped at the gate. The building's security guard — an older man who had presumably watched the couple for years — was opening the gate. Instead of walking past, Divyanka paused, smiled, and showed her baby to the guard. He gently touched the infant and gave his blessings, an *aashirwad* caught on camera that felt more meaningful than any celebrity photo op.
 
-The writing team comprises Diggi Sissodia, Sunayana Kumari, and Mayukh Gosh, with cinematography by Amogh Deshpande and editing by Huzefa Lokhandwala. Production designer Shiuli Thukral doubles as creative producer.
+The video went viral not because of what it showed but because of what it represented: a woman who, in the most significant moment of her personal life, remembered to include someone who is often invisible in celebrity narratives.
 
-## Why NRI Audiences Should Care
+## Addressing the Questions She Never Owed Answers To
 
-For diaspora viewers, Brown offers something the Indian OTT landscape has been building toward for years: a female-led noir with genuine psychological complexity, anchored by a star who doesn't need the safety net of glamour to command attention.
+Throughout the decade-long wait, speculation about Divyanka's pregnancy was a recurring theme in tabloid coverage. Was there a medical issue? Had they chosen to delay? Was IVF involved? The questions were invasive, and Divyanka largely ignored them.
 
-The Kolkata setting adds a dimension that global audiences increasingly appreciate — a city that is simultaneously literary, decaying, and alive. If you've watched international crime series set in Scandinavian or British cities and wished for something with the same atmospheric density but rooted in India, Brown is making that argument.
+After the birth, she addressed it simply: it was a natural pregnancy, and she became a mother when she felt the time was right. She shared that she had a strong instinct from God and had been preparing herself. The matter-of-factness of the response was its own statement — a rejection of the idea that a woman's reproductive timeline requires public explanation.
 
-The trailer, dropped on May 30, has already drawn comparisons to international noir series — the dark imagery, the unreliable protagonist, the sense that every character is hiding something. Fans have responded with "OG is back" trending online, signaling an appetite for Karisma in roles that match her range rather than her image.
+## The NRI Connection
 
-*Brown premieres on ZEE5 on June 5, 2026. The series is produced by Zee Studios and directed by Abhinay Deo.*"""
+For diaspora families, particularly those who have watched Divyanka since her *Banoo Main Teri Dulhann* days, the twins represent a specific kind of emotional payoff. Many NRI women who were watching *Yeh Hai Mohabbatein* in their twenties are now in their thirties, navigating their own timelines around marriage, children, and career. Divyanka's decade-long journey — unmarked by public pressure or performative urgency — mirrors a choice that many diaspora women recognize.
+
+The "Karan Arjun" reference, too, carries a different resonance abroad. For NRIs, the 1995 film is not just a movie. It is a cultural artifact — watched on rented VHS tapes in apartments in Edison and Brampton, quoted at family gatherings, and embedded in a generation's emotional vocabulary. Naming your twins after a Bollywood destiny narrative is not just a joke. It is a declaration of cultural continuity.
+
+Divyanka Tripathi did not need twins to trend. She trended because, after ten years, the story wrote itself — and she let it.""",
 })
 
-# ── main ─────────────────────────────────────────────────────────────────────
+
+# ═══════════════════════════════════════════════════════════════
+# MAIN
+# ═══════════════════════════════════════════════════════════════
 
 def main():
-    print(f"Entertainment writer starting — {len(articles)} articles queued")
-    published = []
-    for i, art in enumerate(articles, 1):
-        print(f"\n[{i}/{len(articles)}] Publishing: {art['headline']}")
-        art_id = publish_article(art)
-        if art_id:
-            published.append(art_id)
-        time.sleep(1)
+    published = 0
+    for art in articles:
+        print(f"\n{'='*60}")
+        print(f"Processing: {art['headline'][:70]}...")
 
-    print(f"\n✅ Done — {len(published)}/{len(articles)} articles published")
-    return 0 if len(published) == len(articles) else 1
+        # Source image
+        img_url, img_attr = source_image(
+            person_name=art.get("person"),
+            pexels_query=art.get("pexels_query"),
+            pexels_fallback=art.get("pexels_fallback"),
+            slug=art["slug"],
+        )
+
+        art["image_url"] = img_url
+        art["image_attribution"] = img_attr
+
+        # Word count check
+        word_count = len(art["body"].split())
+        print(f"  Word count: {word_count}")
+        if word_count < 400:
+            print(f"  ⚠ Article below 400-word floor! Skipping.")
+            continue
+
+        # Insert
+        art_id = insert_article(art)
+        if art_id:
+            published += 1
+            # If we got an image, update the article with it
+            if img_url:
+                print(f"  Image: {img_url[:70]}...")
+            else:
+                print(f"  ⚠ No image sourced — article published without image")
+
+        time.sleep(1)  # Small delay between inserts
+
+    print(f"\n{'='*60}")
+    print(f"✅ Published {published}/{len(articles)} articles")
+
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
