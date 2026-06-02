@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Entertainment writer - June 2, 2026 batch"""
+"""Entertainment writer - June 2, 2026 batch (v2 - fixed vertical + image handling)"""
 
-import json, os, sys, time, uuid, re
+import json, os, sys, time, subprocess
 import requests
 from datetime import datetime, timezone
 
@@ -42,7 +42,8 @@ def fetch_wikipedia_person_image(person_name):
         )
         if r.status_code == 200:
             data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            # Use thumbnail (330px) to avoid Wikimedia 429/400 on large originals
+            img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
@@ -51,8 +52,7 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels API using curl (Python urllib gets 403)."""
-    import subprocess
+    """Fetch image from Pexels API using curl."""
     for q in [query, fallback_query]:
         if not q:
             continue
@@ -75,17 +75,32 @@ def fetch_pexels_image(query, fallback_query=None):
 def upload_image_to_supabase(img_url, filename):
     """Download image and upload to Supabase storage bucket."""
     try:
-        r = requests.get(img_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=20)
-        if r.status_code != 200:
-            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
-            return img_url
-        content_type = r.headers.get('Content-Type', 'image/jpeg')
+        # Use curl for download to avoid Python request issues
+        result = subprocess.run(
+            ['curl', '-sS', '-L', '-o', f'/tmp/{filename}',
+             '-H', 'User-Agent: TheVideshi/1.0 (thevideshi.com)',
+             '-w', '%{http_code}|%{size_download}|%{content_type}',
+             img_url],
+            capture_output=True, text=True, timeout=30
+        )
+        parts = result.stdout.strip().split('|')
+        http_code = parts[0] if parts else '0'
+        file_size = int(parts[1]) if len(parts) > 1 else 0
+        content_type = parts[2] if len(parts) > 2 else 'image/jpeg'
+
+        if http_code not in ['200', '301', '302'] or file_size < 5000:
+            print(f"  ⚠ Download issue: HTTP {http_code}, size {file_size}")
+            # For Wikimedia/Pexels URLs, use directly (they're permanent)
+            if 'upload.wikimedia.org' in img_url or 'images.pexels.com' in img_url:
+                return img_url
+            return None
+
         if 'image' not in content_type:
-            print(f"  ⚠ Not an image: {content_type}")
-            return img_url
-        if len(r.content) < 5000:
-            print(f"  ⚠ Image too small: {len(r.content)} bytes")
-            return img_url
+            content_type = 'image/jpeg'
+
+        # Upload to Supabase
+        with open(f'/tmp/{filename}', 'rb') as f:
+            img_data = f.read()
 
         upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
         upload_headers = {
@@ -94,14 +109,13 @@ def upload_image_to_supabase(img_url, filename):
             'Content-Type': content_type,
             'x-upsert': 'true'
         }
-        up = requests.post(upload_url, headers=upload_headers, data=r.content, timeout=20)
+        up = requests.post(upload_url, headers=upload_headers, data=img_data, timeout=20)
         if up.status_code in [200, 201]:
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            print(f"  ✓ Uploaded to Supabase: {filename}")
             return public_url
         else:
-            print(f"  ⚠ Upload failed: {up.status_code} {up.text[:200]}")
-            # If it's a Wikimedia or Pexels URL, it's permanent, okay to use directly
+            print(f"  ⚠ Upload failed: {up.status_code}")
             if 'upload.wikimedia.org' in img_url or 'images.pexels.com' in img_url:
                 return img_url
             return None
@@ -121,8 +135,11 @@ def insert_article(article):
         print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
         return art_id
     else:
-        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
+        print(f"  ✗ Insert failed: {r.status_code} {r.text[:500]}")
         return None
+
+def count_words(text):
+    return len(text.split())
 
 # ============================================================
 # ARTICLE 1: Zee FIFA World Cup Deal
@@ -171,13 +188,12 @@ Whether this deal makes financial sense for Zee depends entirely on advertising 
 
 The first match kicks off June 11. For the first time, the diaspora won't need a VPN to share the moment with home."""
 
-# Image for Zee article - use Pexels for World Cup/football theme
+# Image
 img1_url = fetch_pexels_image("FIFA World Cup football stadium crowd", "football soccer stadium fans")
 img1_attribution = "The Videshi"
+img1_final = None
 if img1_url:
     img1_final = upload_image_to_supabase(img1_url, f"{art1_slug}.jpg")
-else:
-    img1_final = None
 
 art1 = {
     "headline": art1_headline,
@@ -185,43 +201,45 @@ art1 = {
     "body": art1_body,
     "slug": art1_slug,
     "category": "entertainment",
+    "vertical": "entertainment",
     "status": "published",
     "published_at": datetime.now(timezone.utc).isoformat(),
     "image_url": img1_final,
     "image_attribution": img1_attribution if img1_final else None,
     "is_editorial": False,
-    "sources": json.dumps([
+    "word_count": count_words(art1_body),
+    "sources": [
         {"name": "Reuters", "url": "https://www.reuters.com"},
         {"name": "BestMediaInfo", "url": "https://www.bestmediainfo.com"},
         {"name": "The Hindu BusinessLine", "url": "https://www.thehindubusinessline.com"},
         {"name": "LiveMint", "url": "https://www.livemint.com"}
-    ])
+    ]
 }
 
 id1 = insert_article(art1)
 
 # ============================================================
-# ARTICLE 2: Patriot — Mammootty + Mohanlal on ZEE5
+# ARTICLE 2: Patriot on ZEE5
 # ============================================================
 print("\n=== ARTICLE 2: Patriot on ZEE5 ===")
+time.sleep(2)  # Rate limit spacing for Wikipedia
 
-art2_slug = "patriot-mammootty-mohanlal-fahadh-faasil-zee5-june-5-malayalam-spy-thriller-nri-20260602"
+art2_slug = "patriot-mammootty-mohanlal-fahadh-faasil-zee5-june-5-spy-thriller-nri-20260602"
 art2_headline = "Mammootty and Mohanlal Share a Screen for the First Time in Years. Patriot Hits ZEE5 Thursday."
 art2_subheadline = "The three-hour Malayalam spy thriller — with Fahadh Faasil and Nayanthara in tow — was a theatrical blockbuster. Now it's coming to your living room."
 
-# Get images
 img2_url = fetch_wikipedia_person_image("Mammootty")
 img2_attribution = "Wikimedia Commons"
 if not img2_url:
+    time.sleep(1)
     img2_url = fetch_wikipedia_person_image("Mohanlal")
 if not img2_url:
-    img2_url = fetch_pexels_image("Indian cinema spy thriller")
+    img2_url = fetch_pexels_image("Indian cinema spy thriller dark")
     img2_attribution = "The Videshi"
 
+img2_final = None
 if img2_url:
     img2_final = upload_image_to_supabase(img2_url, f"{art2_slug}.jpg")
-else:
-    img2_final = None
 
 art2_body = """There are film events, and then there are events that redefine what a film industry can achieve. Patriot — the spy thriller that put Mammootty and Mohanlal in the same frame for the first time in over a decade — starts streaming on ZEE5 this Thursday, June 5. And if you missed the theatrical run, you missed something historic.
 
@@ -235,17 +253,17 @@ Mammootty plays Dr. Daniel James, an intelligence operative who stumbles onto a 
 
 ## What Happened at the Box Office
 
-Patriot didn't just open well — it opened like a cultural event. Advance bookings in Kerala sold 85,000 tickets within hours of going live on April 28, worth over ₹1.5 lakh. Overseas pre-sales crossed $200,000 (₹1.8 crore) before the first domestic show even ran.
+Patriot didn't just open well — it opened like a cultural event. Advance bookings in Kerala sold 85,000 tickets within hours of going live on April 28, worth over 1.5 crore rupees. Overseas pre-sales crossed $200,000 before the first domestic show even ran.
 
-The final theatrical verdict: certified blockbuster. The film ran for three hours and audiences stayed. Internationally, it performed particularly well in GCC markets, the UK, and North America — the exact corridors where the Malayalam diaspora concentrates.
+The final theatrical verdict was clear: certified blockbuster. The film ran for three hours and audiences stayed. Internationally, it performed particularly well in GCC markets, the UK, and North America — the exact corridors where the Malayalam diaspora concentrates.
 
-The film carried an IMDB rating of 6.6, which — for a three-hour Malayalam spy drama that grapples with surveillance ethics — suggests it's the kind of film that divides casual viewers but deeply rewards those willing to engage.
+The film carries an IMDB rating of 6.6, which for a three-hour Malayalam spy drama that grapples with surveillance ethics suggests it's the kind of film that divides casual viewers but deeply rewards those willing to engage.
 
 ## Why the Diaspora Angle Matters
 
 Malayalam cinema has been quietly outperforming its weight class on OTT platforms for years. From Drishyam to Minnal Murali, from Malik to 2018, the industry's best work travels globally because it consistently chooses substance over spectacle.
 
-Patriot continues that tradition. But it also represents something the diaspora specifically responds to: a film about the tension between national security and individual rights, set in a world where the watchers are being watched. For NRIs navigating visa bureaucracies, surveillance debates, and the complex relationship between Indian institutions and their citizens abroad, the thematic resonance isn't accidental.
+Patriot continues that tradition. But it also represents something the diaspora specifically responds to: a film about the tension between national security and individual rights, set in a world where the watchers are being watched. For NRIs navigating visa bureaucracies, surveillance debates, and the complex relationship between Indian institutions and their citizens abroad, the thematic resonance runs deeper than entertainment.
 
 ## The ZEE5 Factor
 
@@ -261,44 +279,46 @@ art2 = {
     "body": art2_body,
     "slug": art2_slug,
     "category": "entertainment",
+    "vertical": "entertainment",
     "status": "published",
     "published_at": datetime.now(timezone.utc).isoformat(),
     "image_url": img2_final,
     "image_attribution": img2_attribution if img2_final else None,
     "is_editorial": False,
-    "sources": json.dumps([
+    "word_count": count_words(art2_body),
+    "sources": [
         {"name": "Sacnilk", "url": "https://www.sacnilk.com"},
         {"name": "Zoom TV Entertainment", "url": "https://www.zoomtventertainment.com"},
         {"name": "FilmiBeat", "url": "https://www.filmibeat.com"}
-    ])
+    ]
 }
 
 id2 = insert_article(art2)
 
 # ============================================================
-# ARTICLE 3: Rajamouli's Varanasi — The Biggest Indian Film in Production
+# ARTICLE 3: Rajamouli's Varanasi
 # ============================================================
 print("\n=== ARTICLE 3: Rajamouli's Varanasi ===")
+time.sleep(2)
 
-art3_slug = "rajamouli-varanasi-mahesh-babu-priyanka-chopra-1300-crore-time-travel-epic-nri-20260602"
+art3_slug = "rajamouli-varanasi-mahesh-babu-priyanka-chopra-time-travel-epic-march-2027-nri-20260602"
 art3_headline = "Rajamouli Is Spending ₹1,300 Crore on a Time-Travel Epic. Priyanka Chopra Holds a Gun in a Saree. This Is Varanasi."
 art3_subheadline = "The RRR director, Mahesh Babu, and a global cast are shooting across Africa and Antarctica for a March 2027 release that aims to outscale everything Indian cinema has ever attempted."
 
-# Get images
 img3_url = fetch_wikipedia_person_image("S. S. Rajamouli")
 img3_attribution = "Wikimedia Commons"
 if not img3_url:
+    time.sleep(1)
     img3_url = fetch_wikipedia_person_image("Mahesh Babu")
 if not img3_url:
-    img3_url = fetch_pexels_image("ancient Varanasi India temple", "Indian temple spiritual")
+    img3_url = fetch_pexels_image("ancient Varanasi India temple sunrise", "Indian temple spiritual dawn")
     img3_attribution = "The Videshi"
 
+img3_final = None
 if img3_url:
     img3_final = upload_image_to_supabase(img3_url, f"{art3_slug}.jpg")
-else:
-    img3_final = None
 
-art3_body = """Every few years, Indian cinema produces a project so absurdly ambitious that the industry collectively holds its breath. Baahubali was one. RRR was another. Now comes Varanasi — S.S. Rajamouli's ₹1,300 crore time-travel action epic starring Mahesh Babu, Priyanka Chopra Jonas, and Prithviraj Sukumaran — and the scale has escalated beyond anything previously attempted.
+art3_body = """Every few years, Indian cinema produces a project so absurdly ambitious that the industry collectively holds its breath. Baahubali was one. RRR was another. Now comes Varanasi — S.S. Rajamouli's time-travel action epic starring Mahesh Babu, Priyanka Chopra Jonas, and Prithviraj Sukumaran — and the scale has escalated beyond anything previously attempted. The budget stands at a reported ₹1,300 crore.
 
 ## What We Know About the Plot
 
@@ -314,29 +334,27 @@ The screenplay comes from Rajamouli and his father V. Vijayendra Prasad, the sam
 
 ## The Production Is Genuinely Global
 
-This isn't a film that shoots in Mumbai and adds international locations for songs. The production has already filmed in Odisha, using the hills and plateaus of Koraput as a backdrop. But the real headlines came from a social media exchange in March where Priyanka Chopra responded to Mahesh Babu with: "See you soon in Antarctica."
+This isn't a film that shoots in Mumbai and adds international locations for songs. The production has already filmed in Odisha, using the hills and plateaus of Koraput as a backdrop. The team has shot extensively across East Africa — Kenya's forests and the savanna providing the setting for intense action sequences in wild and dense terrain. Rajamouli personally scouted locations across the continent.
 
-Antarctica. For a Telugu film. Budgeted at ₹1,300 crore.
+But the real headline came from a social media exchange in March where Priyanka Chopra responded to Mahesh Babu with the words: "See you soon in Antarctica." Antarctica. For an Indian film.
 
-The production has also scheduled major shoots across East Africa — Kenya's forests and the savanna providing the backdrop for what's described as intense action sequences in wild and dense terrain. Rajamouli personally scouted locations across the continent.
+The production plans to shoot throughout 2026 across multiple international locations. Originally rumored to be a two-part saga in the Baahubali mold, reports now indicate Rajamouli has opted for a single film with an extended runtime. Given that RRR ran three hours and nobody complained, this feels right.
 
-Originally rumored to be a two-part saga in the Baahubali mold, reports now indicate Rajamouli has opted for a single film with an extended runtime. Given that RRR ran three hours and nobody complained, this feels right.
-
-## Why This Is a 15-Year Story
+## A 15-Year Collaboration in the Making
 
 Mahesh Babu revealed in the DiscussingFilm interview that he first met Rajamouli long before the Baahubali franchise existed. The collaboration was discussed, delayed, discussed again, delayed by the pandemic, delayed by RRR's production and global promotion tour. When Mahesh finally heard the full narration after RRR's release, he described feeling nervousness at the sheer scale of the vision.
 
-For Rajamouli, Varanasi represents the next logical step in a career that has systematically raised the ceiling of Indian cinema's global ambitions. Baahubali proved that a Telugu film could gross ₹1,800 crore worldwide. RRR proved that an Indian film could win an Oscar and become a cultural phenomenon in the West. Varanasi aims to prove that Indian cinema can compete at the same technical and narrative level as Hollywood's biggest tentpoles — but with a distinctly Indian mythological core.
+The title itself — Varanasi, after India's most ancient and sacred city — was officially unveiled at the GlobeTrotter event in Hyderabad in November 2025. The first glimpse showed Mahesh Babu riding a massive white Nandi bull, kicking up clouds of sand in a dramatic, temple-filled backdrop. The imagery immediately confirmed that Varanasi draws deeply from Hindu mythology while pushing into science fiction territory.
 
-## The Diaspora Angle
+## Why the Diaspora Is Already Invested
 
 For NRIs who grew up watching Mahesh Babu mature from the prince of Telugu cinema into a genuine superstar, Varanasi represents the role they've been waiting to see him play on the world stage. For those who followed Priyanka Chopra's Hollywood journey and wondered when she'd return to Indian cinema with something worthy, this appears to be the answer.
 
-The March 2027 release window puts Varanasi in direct proximity to major Hollywood releases, which is itself a statement. Rajamouli doesn't dodge competition — he seeks it.
+The March 2027 release window puts Varanasi in direct proximity to major Hollywood releases, which is itself a statement of intent. Rajamouli doesn't dodge competition — after RRR's global run, which included an Oscar, a Golden Globe nomination, and a Japanese box office surprise, he actively seeks it.
 
 Multiple languages confirmed. Global theatrical release. And a filmmaker who has never once under-delivered on his ambitions.
 
-Mark the date: March 25, 2027. Clear your calendar."""
+Mark the date: March 25, 2027. The countdown to Indian cinema's next global event has begun."""
 
 art3 = {
     "headline": art3_headline,
@@ -344,17 +362,19 @@ art3 = {
     "body": art3_body,
     "slug": art3_slug,
     "category": "entertainment",
+    "vertical": "entertainment",
     "status": "published",
     "published_at": datetime.now(timezone.utc).isoformat(),
     "image_url": img3_final,
     "image_attribution": img3_attribution if img3_final else None,
     "is_editorial": False,
-    "sources": json.dumps([
+    "word_count": count_words(art3_body),
+    "sources": [
         {"name": "Sacnilk", "url": "https://www.sacnilk.com"},
         {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
         {"name": "DiscussingFilm (via Sacnilk)", "url": "https://www.sacnilk.com"},
         {"name": "Filmfare", "url": "https://www.filmfare.com"}
-    ])
+    ]
 }
 
 id3 = insert_article(art3)
@@ -368,3 +388,7 @@ for headline, aid in results:
     status = "✓" if aid else "✗"
     print(f"  {status} {headline[:70]}...")
 print(f"\nTotal published: {sum(1 for _, a in results if a)}/{len(results)}")
+
+successful = sum(1 for _, a in results if a)
+if successful < len(results):
+    sys.exit(1)
