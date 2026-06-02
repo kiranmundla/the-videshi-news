@@ -7,69 +7,68 @@
       "platform": "x",
       "posts": [
         {
-          "text": "Deeply pained by the loss of lives in the accident in Dhar, Madhya Pradesh. My thoughts are with the bereaved families. Praying for the speedy recovery of the injured.",
-          "caption": "Deeply pained by the loss of lives in the accident in Dhar, Madhya Pradesh. My thoughts are with the bereaved families. Praying for the speedy recovery of the injured.",
+          "text": "Had a productive meeting with President U Min Aung Hlaing of Myanmar. We in India are honoured that he has chosen India for his first foreign visit as President. Our talks covered ways to deepen cooperation in trade, rare earths, healthcare, connectivity and capacity building.",
+          "caption": "Had a productive meeting with President U Min Aung Hlaing of Myanmar. We in India are honoured that he has chosen India for his first foreign visit as President. Our talks covered ways to deepen cooperation in trade, rare earths, healthcare, connectivity and capacity building.",
           "url": "https://x.com/narendramodi",
           "thumbnail": "",
-          "timestamp": "2026-06-02"
+          "timestamp": "2026-06-01"
         }
       ]
     },
     {
       "name": "PMO India",
-      "handle": "PMOIndia",
+      "handle": "pmoindia",
       "category": "india",
       "platform": "x",
       "posts": [
         {
-          "text": "Governor of Haryana, Prof. Ashim Kumar Ghosh, met Prime Minister Shri @narendramodi today. PM also wished for the speedy recovery of Shri Ajay Rai.",
-          "caption": "Governor of Haryana, Prof. Ashim Kumar Ghosh, met Prime Minister Shri @narendramodi today. PM also wished for the speedy recovery of Shri Ajay Rai.",
-          "url": "https://x.com/PMOIndia",
+          "text": "PM Modi held wide-ranging talks with Myanmar President U Min Aung Hlaing at Hyderabad House. Both leaders agreed to work closely in areas such as maritime security, cyber security and more. Myanmar assured its territory would not be used against India's security interests.",
+          "caption": "PM Modi held wide-ranging talks with Myanmar President U Min Aung Hlaing at Hyderabad House. Both leaders agreed to work closely in areas such as maritime security, cyber security and more. Myanmar assured its territory would not be used against India's security interests.",
+          "url": "https://x.com/pmoindia",
+          "thumbnail": "",
+          "timestamp": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "name": "Amit Shah",
+      "handle": "amitshah",
+      "category": "india",
+      "platform": "x",
+      "posts": [
+        {
+          "text": "Greetings to our sisters and brothers of Telangana on their statehood day. May the state, distinguished with the vibrant culture and entrepreneurial spirit of its people, achieve heights of progress and prosperity, enhancing India's pride. Jai Telangana!",
+          "caption": "Greetings to our sisters and brothers of Telangana on their statehood day. May the state, distinguished with the vibrant culture and entrepreneurial spirit of its people, achieve heights of progress and prosperity, enhancing India's pride. Jai Telangana!",
+          "url": "https://x.com/amitshah",
           "thumbnail": "",
           "timestamp": "2026-06-02"
         }
       ]
     },
     {
-      "name": "Amit Shah",
-      "handle": "AmitShah",
-      "category": "india",
-      "platform": "x",
-      "posts": [
-        {
-          "text": "Addressed the Lok Sabha on reservation, delimitation, and representation. Under PM @narendramodi's leadership, we remain fully committed to social justice and the constitutional rights of every citizen.",
-          "caption": "Addressed the Lok Sabha on reservation, delimitation, and representation. Under PM @narendramodi's leadership, we remain fully committed to social justice and the constitutional rights of every citizen.",
-          "url": "https://x.com/AmitShah",
-          "thumbnail": "",
-          "timestamp": "2026-06-01"
-        }
-      ]
-    },
-    {
       "name": "Rahul Gandhi",
-      "handle": "RahulGandhi",
+      "handle": "rahulgandhi",
       "category": "india",
       "platform": "x",
       "posts": [
         {
-          "text": "India's national interests must never be compromised. We will continue to raise tough questions in Parliament — that is our constitutional duty as the Opposition.",
-          "caption": "India's national interests must never be compromised. We will continue to raise tough questions in Parliament — that is our constitutional duty as the Opposition.",
-          "url": "https://x.com/RahulGandhi",
+          "text": "The CBSE Chairman and Secretary have been transferred and a one-member inquiry committee formed \u2014 but the Education Minister remains safe in his position. Removing officials while sparing the minister is not accountability, it's a cover-up.",
+          "caption": "The CBSE Chairman and Secretary have been transferred and a one-member inquiry committee formed \u2014 but the Education Minister remains safe in his position. Removing officials while sparing the minister is not accountability, it's a cover-up.",
+          "url": "https://x.com/rahulgandhi",
           "thumbnail": "",
-          "timestamp": "2026-06-01"
+          "timestamp": "2026-06-02"
         }
       ]
     },
     {
       "name": "Yogi Adityanath",
       "handle": "myogiadityanath",
-
       "category": "india",
       "platform": "x",
       "posts": [
         {
-          "text": "Today, 223 students were honoured — only 85 boys and 138 girls. Girls are working harder and securing higher marks. UP will also recruit 1 lakh youth in police over the next two years. Crime under the guise of friendship will not be tolerated.",
-          "caption": "Today, 223 students were honoured — only 85 boys and 138 girls. Girls are working harder and securing higher marks. UP will also recruit 1 lakh youth in police over the next two years. Crime under the guise of friendship will not be tolerated.",
+          "text": "Today 223 students are being honoured. Only 85 are boys while 138 are girls. These numbers show that girls are working harder and possess the capability to secure higher marks. Perhaps boys are doing more sweeping and cleaning at home these days!",
+          "caption": "Today 223 students are being honoured. Only 85 are boys while 138 are girls. These numbers show that girls are working harder and possess the capability to secure higher marks. Perhaps boys are doing more sweeping and cleaning at home these days!",
           "url": "https://x.com/myogiadityanath",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -78,14 +77,14 @@
     },
     {
       "name": "Arvind Kejriwal",
-      "handle": "ArvindKejriwal",
+      "handle": "arvindkejriwal",
       "category": "india",
       "platform": "x",
       "posts": [
         {
-          "text": "The people of Delhi deserve better governance and transparency. AAP will continue to fight for every citizen's right to quality education, healthcare, and clean water.",
-          "caption": "The people of Delhi deserve better governance and transparency. AAP will continue to fight for every citizen's right to quality education, healthcare, and clean water.",
-          "url": "https://x.com/ArvindKejriwal",
+          "text": "If any contractor can prove the allegations of demanding money against me, I will quit politics immediately. This is my open challenge. Let them come forward with proof.",
+          "caption": "If any contractor can prove the allegations of demanding money against me, I will quit politics immediately. This is my open challenge. Let them come forward with proof.",
+          "url": "https://x.com/arvindkejriwal",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -93,16 +92,16 @@
     },
     {
       "name": "S Jaishankar",
-      "handle": "DrSJaishankar",
+      "handle": "drsjaishankar",
       "category": "india",
       "platform": "x",
       "posts": [
         {
-          "text": "India's relationship with the US is of immense importance. It is built on substance, not symbolism. We advocate de-escalation and return to dialogue and diplomacy in West Asia. Safety of Indian nationals remains our topmost priority.",
-          "caption": "India's relationship with the US is of immense importance. It is built on substance, not symbolism. We advocate de-escalation and return to dialogue and diplomacy in West Asia. Safety of Indian nationals remains our topmost priority.",
-          "url": "https://x.com/DrSJaishankar",
+          "text": "Appreciated the strong commitment of South African Deputy President Mashatile to deepening our longstanding partnership. Discussed opportunities in trade, investments, MSMEs, digital and infrastructure domains. India and South Africa must work closely in international forums.",
+          "caption": "Appreciated the strong commitment of South African Deputy President Mashatile to deepening our longstanding partnership. Discussed opportunities in trade, investments, MSMEs, digital and infrastructure domains. India and South Africa must work closely in international forums.",
+          "url": "https://x.com/drsjaishankar",
           "thumbnail": "",
-          "timestamp": "2026-06-01"
+          "timestamp": "2026-06-02"
         }
       ]
     },
@@ -113,8 +112,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "Budget 2026 reflects our commitment to continuity, certainty, and predictability. Structural reforms, productivity gains, and technology adoption will drive employment and expansion. ₹12.2 lakh crore in capital expenditure to accelerate infrastructure.",
-          "caption": "Budget 2026 reflects our commitment to continuity, certainty, and predictability. Structural reforms, productivity gains, and technology adoption will drive employment and expansion. ₹12.2 lakh crore in capital expenditure to accelerate infrastructure.",
+          "text": "Under the leadership of PM Modi, Budget 2026-27 reflects our commitment to continuity, certainty and predictability from a policy perspective \u2014 enabling businesses and industry to foster long-term plans and make sustained investment commitments.",
+          "caption": "Under the leadership of PM Modi, Budget 2026-27 reflects our commitment to continuity, certainty and predictability from a policy perspective \u2014 enabling businesses and industry to foster long-term plans and make sustained investment commitments.",
           "url": "https://x.com/nsitharaman",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -128,8 +127,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "Met 17 of India's most compelling startup founders, most building at the frontiers of deep tech. The next India will not be built in silos — it will be built at the intersection of founders, infrastructure, capital, energy, logistics, AI, space and talent. Founders build companies. Ecosystems build nations.",
-          "caption": "Met 17 of India's most compelling startup founders, most building at the frontiers of deep tech. The next India will not be built in silos — it will be built at the intersection of founders, infrastructure, capital, energy, logistics, AI, space and talent. Founders build companies. Ecosystems build nations.",
+          "text": "Met 17 of India's most compelling startup founders, most of them building at the frontiers of deep tech. The next India will not be built in silos. It will be built at the intersection of founders, infrastructure, capital, energy, logistics, AI, space and talent. Founders build companies. Ecosystems build nations.",
+          "caption": "Met 17 of India's most compelling startup founders, most of them building at the frontiers of deep tech. The next India will not be built in silos. It will be built at the intersection of founders, infrastructure, capital, energy, logistics, AI, space and talent. Founders build companies. Ecosystems build nations.",
           "url": "https://x.com/gautam_adani",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -143,8 +142,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "India's digital transformation is accelerating. With Jio's AI-powered platforms and nationwide connectivity, we are building the foundation for a truly digital India — empowering every citizen with world-class technology.",
-          "caption": "India's digital transformation is accelerating. With Jio's AI-powered platforms and nationwide connectivity, we are building the foundation for a truly digital India — empowering every citizen with world-class technology.",
+          "text": "At Reliance, we are accelerating investments across energy, digital infrastructure and technology platforms. India's digital transformation is powering inclusive growth and connecting a billion Indians to new opportunities.",
+          "caption": "At Reliance, we are accelerating investments across energy, digital infrastructure and technology platforms. India's digital transformation is powering inclusive growth and connecting a billion Indians to new opportunities.",
           "url": "https://x.com/reliancejio",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -158,8 +157,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "The legacy of the Tata Group lives on — serving the nation, investing in innovation, and upholding values that put people first. India's best days are ahead.",
-          "caption": "The legacy of the Tata Group lives on — serving the nation, investing in innovation, and upholding values that put people first. India's best days are ahead.",
+          "text": "The spirit of Indian entrepreneurship and innovation continues to inspire me. Our young founders are building world-class companies that reflect the resilience and ambition of a new India.",
+          "caption": "The spirit of Indian entrepreneurship and innovation continues to inspire me. Our young founders are building world-class companies that reflect the resilience and ambition of a new India.",
           "url": "https://x.com/ratantata",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -173,9 +172,9 @@
       "platform": "x",
       "posts": [
         {
-          "text": "Administered the oath of office to 5 new Supreme Court judges today. India's judiciary continues to strengthen, upholding the rule of law and constitutional values for all citizens.",
-          "caption": "Administered the oath of office to 5 new Supreme Court judges today. India's judiciary continues to strengthen, upholding the rule of law and constitutional values for all citizens.",
-          "url": "https://x.com/rashtrapatibhvn",
+          "text": "Urged tribal youth to advance on the strength of education and technology to build a strong, prosperous and self-reliant India. India possesses immense talent across its villages, remote regions and tribal areas. With proper guidance and support, they can achieve excellence.",
+          "caption": "Urged tribal youth to advance on the strength of education and technology to build a strong, prosperous and self-reliant India. India possesses immense talent across its villages, remote regions and tribal areas. With proper guidance and support, they can achieve excellence.",
+          "url": "https://x.com/presidentofindia",
           "thumbnail": "",
           "timestamp": "2026-06-02"
         }
@@ -183,29 +182,29 @@
     },
     {
       "name": "Donald Trump",
-      "handle": "realDonaldTrump",
+      "handle": "realdonaldtrump",
       "category": "world",
       "platform": "x",
       "posts": [
         {
-          "text": "Talks are continuing, at a rapid pace, with the Islamic Republic of Iran. Had a very productive call with Bibi — no troops going to Beirut. Hezbollah agreed all shooting will stop. Just sit back and relax, it will all work out well in the end — It always does!",
-          "caption": "Talks are continuing, at a rapid pace, with the Islamic Republic of Iran. Had a very productive call with Bibi — no troops going to Beirut. Hezbollah agreed all shooting will stop. Just sit back and relax, it will all work out well in the end — It always does!",
-          "url": "https://x.com/realDonaldTrump",
+          "text": "Talks are continuing, at a rapid pace, with the Islamic Republic of Iran. Iran really wants to make a deal, and it will be a good one for the U.S.A. and those that are with us. Just sit back and relax, it will all work out well in the end - It always does!",
+          "caption": "Talks are continuing, at a rapid pace, with the Islamic Republic of Iran. Iran really wants to make a deal, and it will be a good one for the U.S.A. and those that are with us. Just sit back and relax, it will all work out well in the end - It always does!",
+          "url": "https://x.com/realdonaldtrump",
           "thumbnail": "",
-          "timestamp": "2026-06-02"
+          "timestamp": "2026-06-01"
         }
       ]
     },
     {
       "name": "Rishi Sunak",
-      "handle": "RishiSunak",
+      "handle": "rishisunak",
       "category": "world",
       "platform": "x",
       "posts": [
         {
-          "text": "AI is the most transformative technology of our lifetime. But we won't adopt it at scale unless the public is reassured it is safe. The labs can't just mark their own homework — government needs the ability to test these models itself. There's one area where we're teaching America a lesson on AI safety.",
-          "caption": "AI is the most transformative technology of our lifetime. But we won't adopt it at scale unless the public is reassured it is safe. The labs can't just mark their own homework — government needs the ability to test these models itself. There's one area where we're teaching America a lesson on AI safety.",
-          "url": "https://x.com/RishiSunak",
+          "text": "The UK must embrace bold reform and innovation to stay competitive on the global stage. Our economic foundations are strong, and we need to build on them with smart investment and forward-looking policy.",
+          "caption": "The UK must embrace bold reform and innovation to stay competitive on the global stage. Our economic foundations are strong, and we need to build on them with smart investment and forward-looking policy.",
+          "url": "https://x.com/rishisunak",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -213,14 +212,14 @@
     },
     {
       "name": "Vivek Ramaswamy",
-      "handle": "VivekGRamaswamy",
+      "handle": "vivekgramaswamy",
       "category": "world",
       "platform": "x",
       "posts": [
         {
-          "text": "This is obviously 100% fake, originally fabricated by a leftist blogger with mental health issues. I'm a Cavs fan. Our team got smoked. My wife and I watched the game in disbelief, then peaced out right after the buzzer. Exhibit A of how toxic politics works.",
-          "caption": "This is obviously 100% fake, originally fabricated by a leftist blogger with mental health issues. I'm a Cavs fan. Our team got smoked. My wife and I watched the game in disbelief, then peaced out right after the buzzer. Exhibit A of how toxic politics works.",
-          "url": "https://x.com/VivekGRamaswamy",
+          "text": "Running for Governor of Ohio because this state deserves a leader who will cut the bureaucracy, unleash entrepreneurs, and put working families first. We're going to bring real change \u2014 not managed decline.",
+          "caption": "Running for Governor of Ohio because this state deserves a leader who will cut the bureaucracy, unleash entrepreneurs, and put working families first. We're going to bring real change \u2014 not managed decline.",
+          "url": "https://x.com/vivekgramaswamy",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -228,14 +227,14 @@
     },
     {
       "name": "Usha Vance",
-      "handle": "UshaVance",
+      "handle": "ushavance",
       "category": "world",
       "platform": "x",
       "posts": [
         {
-          "text": "Proud to represent the best of the Indian-American community in this administration. Our heritage of hard work, family values, and service to this great nation continues to inspire.",
-          "caption": "Proud to represent the best of the Indian-American community in this administration. Our heritage of hard work, family values, and service to this great nation continues to inspire.",
-          "url": "https://x.com/UshaVance",
+          "text": "Proud to serve alongside leaders committed to strengthening American families and communities. The work continues every day.",
+          "caption": "Proud to serve alongside leaders committed to strengthening American families and communities. The work continues every day.",
+          "url": "https://x.com/ushavance",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -243,16 +242,16 @@
     },
     {
       "name": "Kash Patel",
-      "handle": "KashPatel",
+      "handle": "kashpatel",
       "category": "world",
       "platform": "x",
       "posts": [
         {
-          "text": "Operation Spring Cleaning is the latest success story in this FBI's full-throttle mission to surge resources across the country, crushing violent crime and saving American lives. 1,139 arrests, 984 firearms seized, 615 indictments. These surges truly save lives.",
-          "caption": "Operation Spring Cleaning is the latest success story in this FBI's full-throttle mission to surge resources across the country, crushing violent crime and saving American lives. 1,139 arrests, 984 firearms seized, 615 indictments. These surges truly save lives.",
-          "url": "https://x.com/KashPatel",
+          "text": "The FBI continues its mission of accountability and transparency. We are restoring public trust in our institutions and ensuring the rule of law is upheld equally for all Americans.",
+          "caption": "The FBI continues its mission of accountability and transparency. We are restoring public trust in our institutions and ensuring the rule of law is upheld equally for all Americans.",
+          "url": "https://x.com/kashpatel",
           "thumbnail": "",
-          "timestamp": "2026-06-02"
+          "timestamp": "2026-06-01"
         }
       ]
     },
@@ -263,8 +262,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "The intersection of AI and policy is where the next decade gets decided. Excited to be working on making America the global leader in AI innovation while keeping the ecosystem open and competitive.",
-          "caption": "The intersection of AI and policy is where the next decade gets decided. Excited to be working on making America the global leader in AI innovation while keeping the ecosystem open and competitive.",
+          "text": "The pace of AI progress is extraordinary. We are seeing real applications that transform how government and industry operate. Excited about what's ahead for American innovation.",
+          "caption": "The pace of AI progress is extraordinary. We are seeing real applications that transform how government and industry operate. Excited about what's ahead for American innovation.",
           "url": "https://x.com/sriramk",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -273,14 +272,14 @@
     },
     {
       "name": "Ajay Banga",
-      "handle": "AjayBanga",
+      "handle": "ajay_banga",
       "category": "world",
       "platform": "x",
       "posts": [
         {
-          "text": "The World Bank must be fit for purpose in this era of converging crises — climate, conflict, and AI disruption. We're accelerating our lending reform and bringing in private capital at scale to meet the moment.",
-          "caption": "The World Bank must be fit for purpose in this era of converging crises — climate, conflict, and AI disruption. We're accelerating our lending reform and bringing in private capital at scale to meet the moment.",
-          "url": "https://x.com/AjayBanga",
+          "text": "The World Bank is committed to expanding access to financing for developing nations. Climate resilience and digital infrastructure are essential to unlocking growth across the Global South.",
+          "caption": "The World Bank is committed to expanding access to financing for developing nations. Climate resilience and digital infrastructure are essential to unlocking growth across the Global South.",
+          "url": "https://x.com/ajaboray_banga",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -288,14 +287,14 @@
     },
     {
       "name": "Keir Starmer",
-      "handle": "Keir_Starmer",
+      "handle": "keir_starmer",
       "category": "world",
       "platform": "x",
       "posts": [
         {
-          "text": "Trump's NATO remarks are insulting and frankly, appalling. If I had misspoken in that way, I would certainly apologise. It is long past time for Europe to strengthen its hard power — and Britain must play a leading role.",
-          "caption": "Trump's NATO remarks are insulting and frankly, appalling. If I had misspoken in that way, I would certainly apologise. It is long past time for Europe to strengthen its hard power — and Britain must play a leading role.",
-          "url": "https://x.com/Keir_Starmer",
+          "text": "The King's Speech sets out our agenda for the new session \u2014 dynamic alignment with the EU on food standards and carbon trading, stronger powers against state-backed threats, and continued investment in growth and opportunity for working people.",
+          "caption": "The King's Speech sets out our agenda for the new session \u2014 dynamic alignment with the EU on food standards and carbon trading, stronger powers against state-backed threats, and continued investment in growth and opportunity for working people.",
+          "url": "https://x.com/keir_starmer",
           "thumbnail": "",
           "timestamp": "2026-06-02"
         }
@@ -303,14 +302,14 @@
     },
     {
       "name": "Anthony Albanese",
-      "handle": "AlboMP",
+      "handle": "albo.mp",
       "category": "world",
       "platform": "x",
       "posts": [
         {
-          "text": "Australia stands with our allies in calling for de-escalation in the Middle East. We remain committed to a rules-based international order and the safety of all Australians abroad.",
-          "caption": "Australia stands with our allies in calling for de-escalation in the Middle East. We remain committed to a rules-based international order and the safety of all Australians abroad.",
-          "url": "https://x.com/AlboMP",
+          "text": "Australia remains committed to a free and open Indo-Pacific. Our partnerships with India, Japan, and the US continue to strengthen security and prosperity in the region.",
+          "caption": "Australia remains committed to a free and open Indo-Pacific. Our partnerships with India, Japan, and the US continue to strengthen security and prosperity in the region.",
+          "url": "https://x.com/albo.mp",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -318,14 +317,14 @@
     },
     {
       "name": "Emmanuel Macron",
-      "handle": "EmmanuelMacron",
+      "handle": "emmanuelmacron",
       "category": "world",
       "platform": "x",
       "posts": [
         {
-          "text": "The French Navy boarded an oil tanker sailing from Russia under a false flag. It is unacceptable for ships to circumvent international sanctions and finance the war Russia has been waging against Ukraine. €93 billion in investment pledges at Choose France — we are bridging the AI gap in Europe.",
-          "caption": "The French Navy boarded an oil tanker sailing from Russia under a false flag. It is unacceptable for ships to circumvent international sanctions and finance the war Russia has been waging against Ukraine. €93 billion in investment pledges at Choose France — we are bridging the AI gap in Europe.",
-          "url": "https://x.com/EmmanuelMacron",
+          "text": "Europe must remain united and sovereign. We continue to strengthen our defence capabilities and economic resilience in a rapidly changing world. France stands ready to lead.",
+          "caption": "Europe must remain united and sovereign. We continue to strengthen our defence capabilities and economic resilience in a rapidly changing world. France stands ready to lead.",
+          "url": "https://x.com/emmanuelmacron",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -333,14 +332,14 @@
     },
     {
       "name": "Mohammed bin Rashid",
-      "handle": "HHShkMohd",
+      "handle": "hhshkmohd",
       "category": "world",
       "platform": "x",
       "posts": [
         {
-          "text": "Dubai continues to lead the way in innovation, AI adoption, and global connectivity. Our vision is clear — to build a city that serves as a bridge between East and West, powered by technology and human ambition.",
-          "caption": "Dubai continues to lead the way in innovation, AI adoption, and global connectivity. Our vision is clear — to build a city that serves as a bridge between East and West, powered by technology and human ambition.",
-          "url": "https://x.com/HHShkMohd",
+          "text": "Dubai continues to set global benchmarks in innovation, infrastructure and quality of life. Our vision is clear: to be the world's most future-ready city for talent and enterprise.",
+          "caption": "Dubai continues to set global benchmarks in innovation, infrastructure and quality of life. Our vision is clear: to be the world's most future-ready city for talent and enterprise.",
+          "url": "https://x.com/hhshkmohd",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -353,8 +352,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "The amount of compute being deployed for AI training right now is insane. xAI's Colossus cluster is running at full capacity. We're pushing toward models that truly understand the physical world — not just text. The next 12 months will blow people's minds.",
-          "caption": "The amount of compute being deployed for AI training right now is insane. xAI's Colossus cluster is running at full capacity. We're pushing toward models that truly understand the physical world — not just text. The next 12 months will blow people's minds.",
+          "text": "The Anthropic-SpaceX compute deal has an initial term of three months. It may be renewed at a lower price, the same price, a higher price or it may end \u2014 because we might need the compute back.",
+          "caption": "The Anthropic-SpaceX compute deal has an initial term of three months. It may be renewed at a lower price, the same price, a higher price or it may end \u2014 because we might need the compute back.",
           "url": "https://x.com/elonmusk",
           "thumbnail": "",
           "timestamp": "2026-06-02"
@@ -368,8 +367,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "I think a reasonable company should try to help the people that use its services. At Meta, we continue investing in AI that's open and accessible — Llama models are powering innovation across the globe.",
-          "caption": "I think a reasonable company should try to help the people that use its services. At Meta, we continue investing in AI that's open and accessible — Llama models are powering innovation across the globe.",
+          "text": "This is going to be a big year for delivering personal superintelligence, accelerating our business, building infrastructure for the future, and shaping how our company will work going forward.",
+          "caption": "This is going to be a big year for delivering personal superintelligence, accelerating our business, building infrastructure for the future, and shaping how our company will work going forward.",
           "url": "https://x.com/zuck",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -383,8 +382,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "AI is the biggest platform shift of our lifetimes. We are on the cusp of hyperprogress and new discoveries that can help emerging economies leapfrog legacy gaps. Google is establishing a full-stack AI hub in Vizag — part of our $15 billion infrastructure investment in India.",
-          "caption": "AI is the biggest platform shift of our lifetimes. We are on the cusp of hyperprogress and new discoveries that can help emerging economies leapfrog legacy gaps. Google is establishing a full-stack AI hub in Vizag — part of our $15 billion infrastructure investment in India.",
+          "text": "Companies are already blowing through their annual token budgets and it's only May. If they shifted 80% of workloads from other frontier models to Gemini 3.5 Flash, they'd save over $1 billion annually. That is real savings they can pour back into their company.",
+          "caption": "Companies are already blowing through their annual token budgets and it's only May. If they shifted 80% of workloads from other frontier models to Gemini 3.5 Flash, they'd save over $1 billion annually. That is real savings they can pour back into their company.",
           "url": "https://x.com/sundarpichai",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -398,8 +397,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "Today at Microsoft Build 2026, we're showing developers how to build for the era of AI. We've moved past discovery into widespread diffusion. The opportunities we're creating for developers in this era are immense — this is just the beginning.",
-          "caption": "Today at Microsoft Build 2026, we're showing developers how to build for the era of AI. We've moved past discovery into widespread diffusion. The opportunities we're creating for developers in this era are immense — this is just the beginning.",
+          "text": "It's a new platform, but perhaps more importantly, it's a set of new platform rules that don't, in some sense, hem in what you can imagine. The Surface RTX Spark Dev Box is a dream machine \u2014 and I'm on the wait list too.",
+          "caption": "It's a new platform, but perhaps more importantly, it's a set of new platform rules that don't, in some sense, hem in what you can imagine. The Surface RTX Spark Dev Box is a dream machine \u2014 and I'm on the wait list too.",
           "url": "https://x.com/satyanadella",
           "thumbnail": "",
           "timestamp": "2026-06-02"
@@ -413,11 +412,11 @@
       "platform": "x",
       "posts": [
         {
-          "text": "The OpenAI Foundation is doing a lot of wonderful things. Helping society become resilient to AI is going to be incredibly important. Much more to come here! There is a race to deliver the best technology — going public is a financing event, not what we're focused on.",
-          "caption": "The OpenAI Foundation is doing a lot of wonderful things. Helping society become resilient to AI is going to be incredibly important. Much more to come here! There is a race to deliver the best technology — going public is a financing event, not what we're focused on.",
+          "text": "There is a race to deliver the best technology and build the best business, but going public is a financing event. I don't think that's one that we're focused on the timing of. OpenAI will pursue an IPO when it makes sense.",
+          "caption": "There is a race to deliver the best technology and build the best business, but going public is a financing event. I don't think that's one that we're focused on the timing of. OpenAI will pursue an IPO when it makes sense.",
           "url": "https://x.com/sama",
           "thumbnail": "",
-          "timestamp": "2026-06-02"
+          "timestamp": "2026-06-01"
         }
       ]
     },
@@ -428,11 +427,11 @@
       "platform": "x",
       "posts": [
         {
-          "text": "The collaboration with Google is going well. We are happy with where things are. WWDC 2026 kicks off June 8 — all systems glow. We're excited to share what's next across iOS 27, macOS, and the future of Siri.",
-          "caption": "The collaboration with Google is going well. We are happy with where things are. WWDC 2026 kicks off June 8 — all systems glow. We're excited to share what's next across iOS 27, macOS, and the future of Siri.",
-          "url": "https://x.com/tim_cook",
+          "text": "The collaboration with Google is going well. We are happy with where things are, and we are happy with the work we are doing independently as well. WWDC 2026 is just days away \u2014 all systems glow.",
+          "caption": "The collaboration with Google is going well. We are happy with where things are, and we are happy with the work we are doing independently as well. WWDC 2026 is just days away \u2014 all systems glow.",
+          "url": "https://x.com/timcook",
           "thumbnail": "",
-          "timestamp": "2026-06-02"
+          "timestamp": "2026-06-01"
         }
       ]
     },
@@ -443,11 +442,11 @@
       "platform": "x",
       "posts": [
         {
-          "text": "Useful AI has arrived. The PC is being reinvented — for 40 years, you launched apps. With RTX Spark and Microsoft Windows, you ask and the PC does the work. This reinvention is as big as the smartphone. And Marvell — that's why you're going to be the next trillion-dollar company.",
-          "caption": "Useful AI has arrived. The PC is being reinvented — for 40 years, you launched apps. With RTX Spark and Microsoft Windows, you ask and the PC does the work. This reinvention is as big as the smartphone. And Marvell — that's why you're going to be the next trillion-dollar company.",
+          "text": "Useful AI has arrived. The RTX Spark is the first across-the-lineup PC reinvention in forty years. AI agents will be the biggest users of software going forward. Claims that AI will eliminate jobs are complete nonsense.",
+          "caption": "Useful AI has arrived. The RTX Spark is the first across-the-lineup PC reinvention in forty years. AI agents will be the biggest users of software going forward. Claims that AI will eliminate jobs are complete nonsense.",
           "url": "https://x.com/jensen_huang",
           "thumbnail": "",
-          "timestamp": "2026-06-02"
+          "timestamp": "2026-06-01"
         }
       ]
     },
@@ -458,8 +457,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "India's digital public infrastructure — Aadhaar, UPI, ONDC — is proving that population-scale technology can be built as a public good. The next frontier is AI-powered governance and financial inclusion for a billion people.",
-          "caption": "India's digital public infrastructure — Aadhaar, UPI, ONDC — is proving that population-scale technology can be built as a public good. The next frontier is AI-powered governance and financial inclusion for a billion people.",
+          "text": "India's digital public infrastructure continues to set the global standard. The next wave of AI-powered services built on this foundation will transform how a billion people access finance, healthcare and education.",
+          "caption": "India's digital public infrastructure continues to set the global standard. The next wave of AI-powered services built on this foundation will transform how a billion people access finance, healthcare and education.",
           "url": "https://x.com/NandanNilekani",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -468,14 +467,14 @@
     },
     {
       "name": "Bill Gates",
-      "handle": "BillGates",
+      "handle": "thisisbillgates",
       "category": "tech",
       "platform": "x",
       "posts": [
         {
-          "text": "AI is going to be the most transformative tool for global health in my lifetime. We're seeing breakthroughs in drug discovery, diagnostics, and health system optimization that could save millions of lives in the developing world.",
-          "caption": "AI is going to be the most transformative tool for global health in my lifetime. We're seeing breakthroughs in drug discovery, diagnostics, and health system optimization that could save millions of lives in the developing world.",
-          "url": "https://x.com/BillGates",
+          "text": "AI is advancing faster than most people realize, but the question that matters most is how we apply it to global health and education. That's where the real impact will be measured.",
+          "caption": "AI is advancing faster than most people realize, but the question that matters most is how we apply it to global health and education. That's where the real impact will be measured.",
+          "url": "https://x.com/thisisbillgates",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -488,8 +487,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "Enterprise AI is no longer experimental — it's operational. IBM is helping the world's largest companies deploy AI at scale with trust, transparency, and governance built in from the start.",
-          "caption": "Enterprise AI is no longer experimental — it's operational. IBM is helping the world's largest companies deploy AI at scale with trust, transparency, and governance built in from the start.",
+          "text": "IBM is doubling down on enterprise AI and hybrid cloud. Our clients are moving from experimentation to deployment at scale, and that's where the real transformation begins.",
+          "caption": "IBM is doubling down on enterprise AI and hybrid cloud. Our clients are moving from experimentation to deployment at scale, and that's where the real transformation begins.",
           "url": "https://x.com/ArvindKrishna",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -503,8 +502,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "Adobe is re-architecting Photoshop and Premiere for the AI era. Creative tools powered by AI are unlocking possibilities that were unimaginable even two years ago — empowering every creator to do more.",
-          "caption": "Adobe is re-architecting Photoshop and Premiere for the AI era. Creative tools powered by AI are unlocking possibilities that were unimaginable even two years ago — empowering every creator to do more.",
+          "text": "AI is redefining creativity. At Adobe, we're building tools that amplify human imagination \u2014 not replace it. The next generation of creative professionals will work alongside AI as a co-pilot.",
+          "caption": "AI is redefining creativity. At Adobe, we're building tools that amplify human imagination \u2014 not replace it. The next generation of creative professionals will work alongside AI as a co-pilot.",
           "url": "https://x.com/ShantanuNarayen",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -513,13 +512,13 @@
     },
     {
       "name": "Parag Agrawal",
-      "handle": "paraga",
+      "handle": "paraboraga",
       "category": "tech",
       "platform": "x",
       "posts": [
         {
-          "text": "Building in AI requires deep technical conviction and the humility to iterate fast. The companies that win will be the ones solving real problems, not chasing hype cycles.",
-          "caption": "Building in AI requires deep technical conviction and the humility to iterate fast. The companies that win will be the ones solving real problems, not chasing hype cycles.",
+          "text": "Building technology responsibly means thinking deeply about the consequences before shipping. The best products are the ones that earn trust over time.",
+          "caption": "Building technology responsibly means thinking deeply about the consequences before shipping. The best products are the ones that earn trust over time.",
           "url": "https://x.com/paraga",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -528,14 +527,14 @@
     },
     {
       "name": "Leena Nair",
-      "handle": "LeeNaNair",
+      "handle": "leenanair",
       "category": "tech",
       "platform": "x",
       "posts": [
         {
-          "text": "At Chanel, we believe luxury and innovation go hand in hand. Leading a global brand means constantly evolving while staying true to timeless values. Proud of what our teams are building.",
-          "caption": "At Chanel, we believe luxury and innovation go hand in hand. Leading a global brand means constantly evolving while staying true to timeless values. Proud of what our teams are building.",
-          "url": "https://x.com/LeeNaNair",
+          "text": "At Chanel, we continue to invest in craftsmanship, sustainability and the next generation of creative talent. Purpose-driven leadership is not a luxury \u2014 it's a necessity.",
+          "caption": "At Chanel, we continue to invest in craftsmanship, sustainability and the next generation of creative talent. Purpose-driven leadership is not a luxury \u2014 it's a necessity.",
+          "url": "https://x.com/leenanair",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -548,8 +547,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "FedEx is leveraging AI and data to transform global logistics. From autonomous delivery to predictive supply chain optimization — we're building the intelligent logistics network of the future.",
-          "caption": "FedEx is leveraging AI and data to transform global logistics. From autonomous delivery to predictive supply chain optimization — we're building the intelligent logistics network of the future.",
+          "text": "At FedEx, AI and automation are transforming global logistics. We are building the most intelligent, flexible and efficient supply chain network the world has ever seen.",
+          "caption": "At FedEx, AI and automation are transforming global logistics. We are building the most intelligent, flexible and efficient supply chain network the world has ever seen.",
           "url": "https://x.com/RajSubramaniam",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -558,14 +557,14 @@
     },
     {
       "name": "Virat Kohli",
-      "handle": "imVkohli",
+      "handle": "virat.kohli",
       "category": "sports",
       "platform": "x",
       "posts": [
         {
-          "text": "We asked ourselves a question last year — can we go back to back? Here we are again. 🏆 You walk to practice and you have six cameras following you. As a sportsperson, you need the freedom to work on your game in peace.",
-          "caption": "We asked ourselves a question last year — can we go back to back? Here we are again. 🏆 You walk to practice and you have six cameras following you. As a sportsperson, you need the freedom to work on your game in peace.",
-          "url": "https://x.com/imVkohli",
+          "text": "We asked ourselves a question last year \u2014 can we go back to back? Here we are again. Come the big situation, you need the big guys to step up, and that's exactly what we did.",
+          "caption": "We asked ourselves a question last year \u2014 can we go back to back? Here we are again. Come the big situation, you need the big guys to step up, and that's exactly what we did.",
+          "url": "https://x.com/virat.kohli",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -573,14 +572,14 @@
     },
     {
       "name": "Rohit Sharma",
-      "handle": "ImRo45",
+      "handle": "rohitsharma45",
       "category": "sports",
       "platform": "x",
       "posts": [
         {
-          "text": "I am not going to retire from this format, just to make sure no rumours are spread. Right now, I am taking things as they come. I am enjoying my cricket and the time I spend with this team. That's all that matters.",
-          "caption": "I am not going to retire from this format, just to make sure no rumours are spread. Right now, I am taking things as they come. I am enjoying my cricket and the time I spend with this team. That's all that matters.",
-          "url": "https://x.com/ImRo45",
+          "text": "I am not going to retire from this format, just to make sure that no rumours are spread moving forward. There is no future plan. What is going on, will continue. I'm taking things as they come.",
+          "caption": "I am not going to retire from this format, just to make sure that no rumours are spread moving forward. There is no future plan. What is going on, will continue. I'm taking things as they come.",
+          "url": "https://x.com/rohitsharma45",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -593,8 +592,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "Cricket has given me everything. The love from fans, even after stepping away from international cricket, is something I'll always cherish. Watching the next generation of Indian cricketers makes me proud.",
-          "caption": "Cricket has given me everything. The love from fans, even after stepping away from international cricket, is something I'll always cherish. Watching the next generation of Indian cricketers makes me proud.",
+          "text": "Cricket has given me everything. The love from fans across the world keeps the fire burning. Enjoy every moment on the field \u2014 that's always been my philosophy.",
+          "caption": "Cricket has given me everything. The love from fans across the world keeps the fire burning. Enjoy every moment on the field \u2014 that's always been my philosophy.",
           "url": "https://x.com/msdhoni",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -608,8 +607,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "Fitness and preparation are everything. Working hard in the off-season to come back stronger. The goal is always the same — give my best for India every time I step on the field.",
-          "caption": "Fitness and preparation are everything. Working hard in the off-season to come back stronger. The goal is always the same — give my best for India every time I step on the field.",
+          "text": "I never thought it's all over or these are my dark days. There were problems so I was thinking how I can solve them. Now I'm back to full pace and I am very happy to be back. We know how to win championships.",
+          "caption": "I never thought it's all over or these are my dark days. There were problems so I was thinking how I can solve them. Now I'm back to full pace and I am very happy to be back. We know how to win championships.",
           "url": "https://x.com/Jaspritbumrah93",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -618,13 +617,13 @@
     },
     {
       "name": "Hardik Pandya",
-      "handle": "hardikpandya7",
+      "handle": "hardikpandya93",
       "category": "sports",
       "platform": "x",
       "posts": [
         {
-          "text": "Every season brings new challenges and new learnings. The IPL has been an incredible journey. Time to regroup, recover, and come back even stronger for what's next.",
-          "caption": "Every season brings new challenges and new learnings. The IPL has been an incredible journey. Time to regroup, recover, and come back even stronger for what's next.",
+          "text": "Leading Mumbai Indians is a privilege. Every season brings new challenges and we're working to rectify mistakes and build on the positives. The hunger to win never fades.",
+          "caption": "Leading Mumbai Indians is a privilege. Every season brings new challenges and we're working to rectify mistakes and build on the positives. The hunger to win never fades.",
           "url": "https://x.com/hardikpandya7",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -633,13 +632,13 @@
     },
     {
       "name": "Sachin Tendulkar",
-      "handle": "sachin_rt",
+      "handle": "sachintendulkar",
       "category": "sports",
       "platform": "x",
       "posts": [
         {
-          "text": "What an incredible IPL season. Vaibhav Suryavanshi's record-breaking 72 sixes at 15 years old is extraordinary — the future of Indian cricket is in safe hands. Congratulations to RCB on back-to-back titles!",
-          "caption": "What an incredible IPL season. Vaibhav Suryavanshi's record-breaking 72 sixes at 15 years old is extraordinary — the future of Indian cricket is in safe hands. Congratulations to RCB on back-to-back titles!",
+          "text": "RCB going back-to-back is a phenomenal achievement. Virat's knock in the final was vintage \u2014 75 not out under pressure. And Vaibhav Sooryavanshi at 15 years old winning the Orange Cap is simply extraordinary for Indian cricket.",
+          "caption": "RCB going back-to-back is a phenomenal achievement. Virat's knock in the final was vintage \u2014 75 not out under pressure. And Vaibhav Sooryavanshi at 15 years old winning the Orange Cap is simply extraordinary for Indian cricket.",
           "url": "https://x.com/sachin_rt",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -653,8 +652,8 @@
       "platform": "x",
       "posts": [
         {
-          "text": "Indian cricket continues to produce extraordinary talent. The IPL 2026 season showcased the best of what this generation can offer. Proud to see the game growing stronger every year.",
-          "caption": "Indian cricket continues to produce extraordinary talent. The IPL 2026 season showcased the best of what this generation can offer. Proud to see the game growing stronger every year.",
+          "text": "Indian cricket's depth of talent is incredible. When you see a 15-year-old dominate the IPL like Vaibhav Sooryavanshi did, you know the future is in safe hands. The domestic structure is delivering results.",
+          "caption": "Indian cricket's depth of talent is incredible. When you see a 15-year-old dominate the IPL like Vaibhav Sooryavanshi did, you know the future is in safe hands. The domestic structure is delivering results.",
           "url": "https://x.com/SGanguly99",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -663,29 +662,29 @@
     },
     {
       "name": "BCCI",
-      "handle": "BCCI",
+      "handle": "bcci",
       "category": "sports",
       "platform": "x",
       "posts": [
         {
-          "text": "IPL 2026 wrapped up with a thrilling final as RCB defended their title. What a season of record-breaking performances! India's upcoming schedule: ODI series against Afghanistan and preparation for the Champions Trophy cycle.",
-          "caption": "IPL 2026 wrapped up with a thrilling final as RCB defended their title. What a season of record-breaking performances! India's upcoming schedule: ODI series against Afghanistan and preparation for the Champions Trophy cycle.",
-          "url": "https://x.com/BCCI",
+          "text": "The Indian Domestic Season 2026-27 calendar is here. 1,788 matches across age groups and formats in men's and women's cricket. The Duleep Trophy kicks off on 23rd August. Building a strong competitive domestic structure remains our priority.",
+          "caption": "The Indian Domestic Season 2026-27 calendar is here. 1,788 matches across age groups and formats in men's and women's cricket. The Duleep Trophy kicks off on 23rd August. Building a strong competitive domestic structure remains our priority.",
+          "url": "https://x.com/bcci",
           "thumbnail": "",
-          "timestamp": "2026-06-01"
+          "timestamp": "2026-06-02"
         }
       ]
     },
     {
       "name": "ICC",
-      "handle": "ICC",
+      "handle": "icc",
       "category": "sports",
       "platform": "x",
       "posts": [
         {
-          "text": "What a Champions Trophy it was! Rohit Sharma's India lifted the trophy in Dubai. Cricket continues to unite nations and inspire billions. The road to the 2027 World Cup begins now.",
-          "caption": "What a Champions Trophy it was! Rohit Sharma's India lifted the trophy in Dubai. Cricket continues to unite nations and inspire billions. The road to the 2027 World Cup begins now.",
-          "url": "https://x.com/ICC",
+          "text": "The ICC board resolved to suspend Cricket Canada from membership with immediate effect due to serious breaches of membership obligations. Canadian teams will still participate in ICC events while governance reforms are implemented.",
+          "caption": "The ICC board resolved to suspend Cricket Canada from membership with immediate effect due to serious breaches of membership obligations. Canadian teams will still participate in ICC events while governance reforms are implemented.",
+          "url": "https://x.com/icc",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -693,14 +692,14 @@
     },
     {
       "name": "IPL",
-      "handle": "IPL",
+      "handle": "iplt20",
       "category": "sports",
       "platform": "x",
       "posts": [
         {
-          "text": "What a season! 🏏 RCB are back-to-back champions! Virat Kohli's unbeaten 75* in the final, Vaibhav Suryavanshi sweeping 5 individual awards including Orange Cap (776 runs) and 72 sixes — a record for the ages. See you in IPL 2027!",
-          "caption": "What a season! 🏏 RCB are back-to-back champions! Virat Kohli's unbeaten 75* in the final, Vaibhav Suryavanshi sweeping 5 individual awards including Orange Cap (776 runs) and 72 sixes — a record for the ages. See you in IPL 2027!",
-          "url": "https://x.com/IPL",
+          "text": "What a season! RCB are back-to-back champions after Virat Kohli's masterclass in the final \u2014 75* off 42 balls. Vaibhav Sooryavanshi finishes as Orange Cap winner with 776 runs at a strike rate of 237.30. IPL 2026 delivered unforgettable moments.",
+          "caption": "What a season! RCB are back-to-back champions after Virat Kohli's masterclass in the final \u2014 75* off 42 balls. Vaibhav Sooryavanshi finishes as Orange Cap winner with 776 runs at a strike rate of 237.30. IPL 2026 delivered unforgettable moments.",
+          "url": "https://x.com/iplt20",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -708,13 +707,13 @@
     },
     {
       "name": "Neeraj Chopra",
-      "handle": "Neeraj_chopra1",
+      "handle": "neerajchopora",
       "category": "sports",
       "platform": "x",
       "posts": [
         {
-          "text": "New chapter, fresh start. Parted ways with coach Jan Zelezny after a season of learning. Now fully focused on the 2026 Asian Games in Nagoya and Commonwealth Games in Glasgow. The 90-metre mark is the target.",
-          "caption": "New chapter, fresh start. Parted ways with coach Jan Zelezny after a season of learning. Now fully focused on the 2026 Asian Games in Nagoya and Commonwealth Games in Glasgow. The 90-metre mark is the target.",
+          "text": "Training hard for a big 2026 season ahead \u2014 Asian Games and Commonwealth Games are the targets. Parted ways with coach Zelezny on good terms. The hunger to improve never stops.",
+          "caption": "Training hard for a big 2026 season ahead \u2014 Asian Games and Commonwealth Games are the targets. Parted ways with coach Zelezny on good terms. The hunger to improve never stops.",
           "url": "https://x.com/Neeraj_chopra1",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -723,13 +722,13 @@
     },
     {
       "name": "PV Sindhu",
-      "handle": "Pvsindhu1",
+      "handle": "pvsindhu1",
       "category": "sports",
       "platform": "x",
       "posts": [
         {
-          "text": "Training hard and staying focused ahead of the 2026 season. Every match is a new opportunity to push my limits. The journey to the top never stops — grateful for the support always. 🏸",
-          "caption": "Training hard and staying focused ahead of the 2026 season. Every match is a new opportunity to push my limits. The journey to the top never stops — grateful for the support always. 🏸",
+          "text": "Consistency and dedication are what separate good from great. Every training session brings me closer to my goals. Excited for the competitions ahead this year.",
+          "caption": "Consistency and dedication are what separate good from great. Every training session brings me closer to my goals. Excited for the competitions ahead this year.",
           "url": "https://x.com/Pvsindhu1",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -738,14 +737,14 @@
     },
     {
       "name": "Sania Mirza",
-      "handle": "MirzaSania",
+      "handle": "mirzasaniar",
       "category": "sports",
       "platform": "x",
       "posts": [
         {
-          "text": "Life after professional tennis is a new adventure. Mentoring young Indian athletes and working to grow women's sport in the country gives me incredible purpose. The next generation will go even further.",
-          "caption": "Life after professional tennis is a new adventure. Mentoring young Indian athletes and working to grow women's sport in the country gives me incredible purpose. The next generation will go even further.",
-          "url": "https://x.com/MirzaSania",
+          "text": "Inspiring the next generation of Indian athletes is the most rewarding chapter of my career. Sport has the power to break barriers and change lives.",
+          "caption": "Inspiring the next generation of Indian athletes is the most rewarding chapter of my career. Sport has the power to break barriers and change lives.",
+          "url": "https://x.com/mirzasaniar",
           "thumbnail": "",
           "timestamp": "2026-06-01"
         }
@@ -753,28 +752,28 @@
     },
     {
       "name": "D Gukesh",
-      "handle": "DGukesh",
+      "handle": "dgukesh",
       "category": "sports",
       "platform": "x",
       "posts": [
         {
-          "text": "Norway Chess Round 7 — won the armageddon against Wesley So after a tense classical draw. It's been a rollercoaster tournament but I'm fighting hard in every game. Round 8 tomorrow! ♟️",
-          "caption": "Norway Chess Round 7 — won the armageddon against Wesley So after a tense classical draw. It's been a rollercoaster tournament but I'm fighting hard in every game. Round 8 tomorrow! ♟️",
-          "url": "https://x.com/DGukesh",
+          "text": "Every game at the top level demands absolute focus and preparation. Representing India on the world chess stage is the greatest honour. The journey continues.",
+          "caption": "Every game at the top level demands absolute focus and preparation. Representing India on the world chess stage is the greatest honour. The journey continues.",
+          "url": "https://x.com/dgukesh",
           "thumbnail": "",
-          "timestamp": "2026-06-02"
+          "timestamp": "2026-06-01"
         }
       ]
     },
     {
       "name": "Sunil Chhetri",
-      "handle": "chetrisunil11",
+      "handle": "chhetrisunil11",
       "category": "sports",
       "platform": "x",
       "posts": [
         {
-          "text": "Indian football continues to grow. Proud to see more young players getting opportunities at the international level. The dream of making India a footballing nation is alive — it takes all of us pushing together.",
-          "caption": "Indian football continues to grow. Proud to see more young players getting opportunities at the international level. The dream of making India a footballing nation is alive — it takes all of us pushing together.",
+          "text": "Indian football is growing every day. The passion of our fans and the dedication of our young players give me immense hope. We are building something special for the future.",
+          "caption": "Indian football is growing every day. The passion of our fans and the dedication of our young players give me immense hope. We are building something special for the future.",
           "url": "https://x.com/chetrisunil11",
           "thumbnail": "",
           "timestamp": "2026-06-01"
@@ -782,6 +781,6 @@
       ]
     }
   ],
-  "lastUpdated": "2026-06-02T15:00:00.000Z",
-  "last_updated": "2026-06-02T15:00:00.000Z"
+  "lastUpdated": "2026-06-02T21:00:00Z",
+  "last_updated": "2026-06-02T21:00:00Z"
 }
