@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
-"""
-The Videshi — Sports Writer (2026-06-02)
-Generates 3 sports articles with Wikipedia-first image sourcing.
-"""
+"""Sports writer — generates 2 articles for The Videshi (June 2, 2026 run)."""
 
-import json, os, sys, time, uuid, re, urllib.parse
-import requests
+import json, os, sys, uuid, re, time
 from datetime import datetime, timezone
 
-# ── env ──────────────────────────────────────────────────────────────
+# Load env
 def load_env(path):
     if not os.path.exists(path):
         return
@@ -16,28 +12,26 @@ def load_env(path):
         for line in f:
             line = line.strip()
             if line and not line.startswith('#') and '=' in line:
-                if line.startswith('export '):
-                    line = line[7:]
-                k, v = line.split('=', 1)
-                v = v.strip().strip('"').strip("'")
-                os.environ[k] = v
+                key, val = line.split('=', 1)
+                val = val.strip().strip('"').strip("'")
+                os.environ[key] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
-PEXELS_KEY   = os.environ.get('PEXELS_API_KEY', '')
+import requests, urllib.parse
+
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_API_KEY = os.environ.get('PEXELS_API_KEY', '')
 
 HEADERS = {
     'apikey': SUPABASE_KEY,
     'Authorization': f'Bearer {SUPABASE_KEY}',
     'Content-Type': 'application/json',
-    'Prefer': 'return=representation',
+    'Prefer': 'return=representation'
 }
 
-# ── image helpers ────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -58,355 +52,316 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels. Returns URL or None."""
-    if not PEXELS_KEY:
+    """Fetch a relevant image from Pexels. Returns URL or None."""
+    if not PEXELS_API_KEY:
         print("  ⚠ No Pexels API key")
         return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = requests.get(
-                "https://api.pexels.com/v1/search",
-                headers={"Authorization": PEXELS_KEY},
-                params={"query": q, "per_page": 5, "orientation": "landscape"},
-                timeout=10,
+            import subprocess
+            result = subprocess.run(
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_API_KEY}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'],
+                capture_output=True, text=True, timeout=15
             )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for p in photos:
-                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
-                    if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                        return url
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            if photos:
+                url = photos[0]['src']['large2x']
+                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image_url(url):
-    """Check URL returns a valid image."""
-    if not url:
-        return False
+def upload_image_to_supabase(img_url, filename):
+    """Download image and upload to Supabase storage."""
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
-            return True
-        # Some servers don't return content-length on HEAD
-        if r.status_code == 200 and 'image' in ct:
-            return True
-    except:
-        pass
-    return False
-
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase storage bucket 'article-images'."""
-    try:
-        r = requests.get(image_url, timeout=15,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200 or len(r.content) < 5000:
-            print(f"  ⚠ Download failed or too small: {len(r.content)} bytes")
+        r = requests.get(img_url, timeout=15, headers={"User-Agent": "TheVideshi/1.0"})
+        if r.status_code == 429:
+            print(f"  ⚠ Rate limited, waiting 3s and retrying...")
+            time.sleep(3)
+            r = requests.get(img_url, timeout=15, headers={"User-Agent": "TheVideshi/1.0"})
+        if r.status_code != 200:
+            print(f"  ⚠ Image download failed: HTTP {r.status_code}")
             return None
-        
         content_type = r.headers.get('Content-Type', 'image/jpeg')
         if 'image' not in content_type:
-            content_type = 'image/jpeg'
-        
+            print(f"  ⚠ Not an image: {content_type}")
+            return None
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small: {len(r.content)} bytes")
+            return None
+
         upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        resp = requests.post(
-            upload_url,
-            headers={
-                'apikey': SUPABASE_KEY,
-                'Authorization': f'Bearer {SUPABASE_KEY}',
-                'Content-Type': content_type,
-                'x-upsert': 'true',
-            },
-            data=r.content,
-            timeout=20,
-        )
-        if resp.status_code in (200, 201):
+        upload_headers = {
+            'apikey': SUPABASE_KEY,
+            'Authorization': f'Bearer {SUPABASE_KEY}',
+            'Content-Type': content_type,
+            'x-upsert': 'true'
+        }
+        up = requests.post(upload_url, data=r.content, headers=upload_headers, timeout=30)
+        if up.status_code in (200, 201):
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ⚠ Upload failed ({resp.status_code}): {resp.text[:200]}")
+            # Try PUT instead
+            up = requests.put(upload_url, data=r.content, headers=upload_headers, timeout=30)
+            if up.status_code in (200, 201):
+                public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+                print(f"  ✓ Uploaded to Supabase (PUT): {public_url[:80]}...")
+                return public_url
+            print(f"  ⚠ Upload failed: {up.status_code} {up.text[:200]}")
+            return None
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
-    return None
+        return None
 
-def source_image(person_name=None, pexels_query=None, pexels_fallback=None, article_id=None):
-    """Source image following hierarchy: Wikipedia → Pexels → None."""
-    attribution = None
-    url = None
-    
-    if person_name:
-        url = fetch_wikipedia_person_image(person_name)
-        if url:
-            attribution = "Wikimedia Commons"
-    
-    if not url and pexels_query:
-        url = fetch_pexels_image(pexels_query, pexels_fallback)
-        if url:
-            attribution = "Pexels"
-    
-    if url and article_id:
-        # Upload to Supabase for permanence
-        ext = 'jpg'
-        filename = f"{article_id}.{ext}"
-        final_url = upload_to_supabase_storage(url, filename)
-        if final_url:
-            return final_url, attribution
-        # If upload fails, check if original is permanent
-        if 'upload.wikimedia.org' in url or 'images.pexels.com' in url:
-            return url, attribution
-    
-    if url:
-        return url, attribution
-    
-    return None, None
-
-# ── Supabase insert ──────────────────────────────────────────────────
 def insert_article(article):
-    """Insert an article into p2_articles."""
+    """Insert article into Supabase."""
     url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    r = requests.post(url, headers=HEADERS, json=article, timeout=20)
+    r = requests.post(url, headers=HEADERS, json=article, timeout=30)
     if r.status_code in (200, 201):
         data = r.json()
-        if isinstance(data, list) and data:
-            return data[0].get('id')
-        return True
-    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:800]}")
-    return None
+        art_id = data[0]['id'] if isinstance(data, list) else data.get('id')
+        print(f"  ✓ Article inserted: {art_id}")
+        return art_id
+    else:
+        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
+        return None
 
-def patch_article(article_id, patch):
-    """Patch an existing article."""
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}"
-    r = requests.patch(url, headers=HEADERS, json=patch, timeout=15)
-    return r.status_code in (200, 204)
+def patch_article(art_id, updates):
+    """Patch an article by ID."""
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{art_id}"
+    r = requests.patch(url, headers=HEADERS, json=updates, timeout=15)
+    if r.status_code in (200, 204):
+        print(f"  ✓ Article patched: {art_id}")
+    else:
+        print(f"  ⚠ Patch failed: {r.status_code} {r.text[:200]}")
 
-# ── Articles ─────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
+# ARTICLE 1: India's ODI Squad for Afghanistan
+# ─────────────────────────────────────────────
+def write_article_1():
+    print("\n=== Article 1: India's ODI Squad for Afghanistan ===")
 
-ARTICLES = []
+    headline = "Rohit and Kohli Are Back. Ishan Kishan Returns After Three Years. India's ODI Squad for Afghanistan Is a Statement."
+    subheadline = "Hardik Pandya's inclusion is subject to fitness clearance. Prince Yadav earns a maiden call-up. The three-match series starts June 13 in Dharamsala."
+    slug = "india-odi-squad-afghanistan-2026-rohit-kohli-ishan-kishan-prince-yadav-hardik-fitness-nri"
 
-# ━━━ ARTICLE 1: Bhuvneshwar Kumar IPL 2026 Revival ━━━
-ARTICLES.append({
-    "headline": "He Was Written Off at Thirty-Four. At Thirty-Six, He Took More Wickets Than Any Indian Pacer in a Single IPL Season.",
-    "subheadline": "Bhuvneshwar Kumar's reinvention at RCB — wobbly seam, relentless discipline, and 28 wickets — has forced India's selectors into a debate they thought was settled four years ago.",
-    "slug": "bhuvneshwar-kumar-ipl-2026-revival-28-wickets-rcb-india-comeback-debate-nri",
-    "category": "sports",
-    "vertical": "sports",
-    "status": "published",
-    "is_editorial": False,
-    "is_featured": False,
-    "tags": [],
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps(["CricketAddictor", "InsideSport India", "RevSportz", "CricTracker", "Yardbarker"]),
-    "image_person": "Bhuvneshwar Kumar",
-    "pexels_query": "cricket fast bowler",
-    "pexels_fallback": "cricket bowling action",
-    "body": """Three years ago, Bhuvneshwar Kumar looked finished. His pace had dropped below 130 kph. His economy rates in IPL 2023 and 2024 — 9.35 and 9.28 respectively — were the worst of his career. SunRisers Hyderabad, the franchise he had served for a decade, let him go. When Royal Challengers Bengaluru picked him up at the 2025 mega auction, eyebrows went up across the cricketing world.
+    body = """The selectors have spoken. India's ODI squad for the three-match series against Afghanistan, starting June 13 in Dharamsala, is a blend of returning stars, surprise recalls, and fresh faces that signals the BCCI's intent heading into a packed 50-over calendar.
 
-At thirty-six, in a format that devours aging pacers, Bhuvneshwar Kumar has answered every sceptic with the most prolific season of his career.
+## The Headline Returns
 
-## The Numbers That Silenced the Doubters
+**Rohit Sharma** and **Virat Kohli** are back in the ODI setup after sitting out the England Test tour. Both are named in the 15-member squad, though Rohit's inclusion carries an asterisk — his selection is subject to fitness clearance after the hamstring injury that limited his involvement in IPL 2026. Mumbai Indians head coach Mahela Jayawardene recently said Rohit was "at 100 per cent," but the BCCI's medical team wants its own assessment before committing him to three ODIs in eight days.
 
-In IPL 2026, Bhuvneshwar finished with 28 wickets from 16 matches at an average of 17.89 and an economy of 7.95. That is the most wickets ever taken by an Indian fast bowler in a single edition of the IPL. He joins Lasith Malinga, Kagiso Rabada, and Jasprit Bumrah as only the fourth pacer to record four individual 20-wicket IPL seasons, and alongside Dwayne Bravo, he is one of just two pacers to register multiple 25-wicket hauls.
+If Rohit is cleared, he and Shubman Gill — who captains the squad — will form a formidable opening partnership. If not, Yashasvi Jaiswal or Ishan Kishan could slot in at the top.
 
-His best spell — 4/23 against Mumbai Indians — was a masterclass in seam movement and death-over execution. In the IPL 2026 final against Gujarat Titans, he returned figures of 2/29 in four overs, dismissing Sai Sudharsan in the powerplay and Jason Holder in the death overs. RCB restricted GT to 155/8 and won by five wickets to complete a historic back-to-back title defence.
+Kohli, who has been India's most prolific ODI batter since the format's restart in late 2025 with 616 runs at an average of 88.00, needs no fitness test. His presence alone makes this squad a serious unit.
 
-## Sachin Decoded the Secret
+## The Three-Year Comeback
 
-Sachin Tendulkar, analysing Bhuvneshwar's transformation on social media, identified the key change: the wobbly seam.
+The most emotionally resonant selection is **Ishan Kishan**'s. The wicketkeeper-batter last played an ODI during the 2023 World Cup — coincidentally against Afghanistan, the same opposition he now returns to face. A prolonged absence from international cricket, fuelled by a fallout with the selectors over his refusal to play domestic cricket, seemed to have ended his career at 25.
 
-"This season, if you look at Bhuvi's seam, it is a wobbly seam," Tendulkar said. "When a wobbly seam comes, a batsman often doesn't know whether the ball is going to fall out or in. And that is what Bhuvi has been doing."
+But Kishan rebuilt his reputation the hard way. Consistent domestic performances across the 2025-26 season earned him a recall to the setup, and the selectors have picked him as a versatile option who can bat anywhere from one to seven. At 27, he gets a second chance that most players never receive.
 
-Tendulkar explained that in previous seasons, Bhuvneshwar relied on conventional outswingers and inswingers with a clearly visible seam position. In 2026, he made a deliberate technical shift — bowling as straight as possible with a scrambled seam, making the ball deviate unpredictably off the surface. It is a variation more commonly associated with English county cricket, and Bhuvneshwar has weaponised it for T20s.
+## The Debutant in Waiting
 
-## The India Debate
+**Prince Yadav**, the tall right-arm pacer from Lucknow Super Giants, earns a maiden call-up to the Indian squad. The 22-year-old finished IPL 2026 with 16 wickets in 14 matches despite his franchise's torrid season. His pace, bounce, and ability to hit hard lengths consistently caught the selectors' attention.
 
-BCCI Vice-President Rajeev Shukla, speaking hours after the final, hailed Bhuvneshwar's "amazing revival" and called his season "nothing short of extraordinary." Former India off-spinner Ravichandran Ashwin went further, suggesting Bhuvneshwar — not Virat Kohli — deserved the Player of the Match award in the final.
+Prince is part of the ODI squad only — he is not in the Test squad for the one-off match starting June 6. With Mohammed Siraj named exclusively in the Test pool, Prince could make his debut as early as the first ODI in Dharamsala.
 
-The calls for an India comeback are growing louder. Bhuvneshwar has not played international cricket since 2022. But his IPL 2026 numbers are hard to ignore: he is now the most-capped fast bowler in IPL history with 205 matches and 762.4 overs bowled, more than Bumrah.
+## Hardik Pandya's Fitness Question
 
-Yet Bhuvneshwar himself refuses to chase it.
+**Hardik Pandya** is in the squad, but his selection is subject to fitness clearance at the BCCI's Centre of Excellence. The all-rounder was due to report on June 2 and will spend over a week proving his fitness before the ODI camp assembles around June 10-11.
 
-"I'm not thinking about any India comeback," he said after the final. "It's been so many years now since I stopped setting long-term goals because whenever I set them, they didn't really work for me. I am just happy that I have played 200 matches and have taken so many wickets at the powerplay and at the death."
+Pandya's body has been a recurring concern throughout his career, and the BCCI is taking no chances ahead of a stretch that includes not just the Afghanistan series but the subsequent England white-ball tour. If he passes, India get their premium all-rounder back. If he doesn't, Nitish Kumar Reddy — already in the squad — becomes the primary pace-bowling all-rounder.
 
-## The Diaspora Angle
+## The Full Squad
 
-For NRI cricket fans who grew up watching Bhuvneshwar's swing bowling in the 2013 Champions Trophy and 2017 Champions Trophy, his revival is more than a statistical anomaly. It is a story of reinvention — of a cricketer who lost his pace, lost his place, and found an entirely new way to be dangerous.
+**Captain:** Shubman Gill. **Vice-Captain:** Shreyas Iyer.
 
-At thirty-six, in a league that discards fast bowlers like used match balls, Bhuvneshwar Kumar has 28 wickets, two IPL titles with RCB, and a debate he never asked for raging around his name.
+**Batters:** Rohit Sharma*, Virat Kohli, Shreyas Iyer, KL Rahul (wk).
 
-The selectors will pick squads for the England tour later this summer. Whether Bhuvneshwar's name is on the list may depend less on his own ambitions and more on whether India can afford to ignore the best Indian pacer of the 2026 IPL.
+**Wicketkeeper:** Ishan Kishan.
 
-*Sources: CricketAddictor, InsideSport India, RevSportz, CricTracker, Yardbarker*"""
-})
+**All-rounders:** Hardik Pandya*, Nitish Kumar Reddy, Washington Sundar.
 
-# ━━━ ARTICLE 2: ISL Crisis — 150 Players Out of Contract ━━━
-ARTICLES.append({
-    "headline": "One Hundred and Fifty Players. No Contracts. The ISL's Off-Season Has Become an Existential Crisis.",
-    "subheadline": "As 150 Indian Super League players enter free agency without new deals, a commercial rights dispute between clubs and the AIFF has left Indian football's top division in limbo — and families across the northeast are feeling it first.",
-    "slug": "isl-crisis-150-players-out-of-contract-commercial-rights-dispute-aiff-2026-nri",
-    "category": "sports",
-    "vertical": "sports",
-    "status": "published",
-    "is_editorial": False,
-    "is_featured": False,
-    "tags": [],
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps(["Mykhel/PTI", "Wikipedia - 2025-26 ISL", "Bhaskar English", "RevSportz"]),
-    "image_person": None,
-    "pexels_query": "Indian football stadium fans",
-    "pexels_fallback": "football empty stadium",
-    "body": """The 2025-26 Indian Super League season ended on May 21 with East Bengal FC lifting their first national title in twenty-two years. By June 2, the celebration had given way to a crisis that threatens the very structure of Indian professional football.
+**Spinners:** Kuldeep Yadav, Harsh Dubey, Gurnoor Brar.
 
-One hundred and fifty ISL players are now out of contract. The league has no confirmed commercial partner for next season. And a bitter dispute between the clubs and the All India Football Federation over revenue-sharing has left the country's top football division without a clear path forward.
+**Pacers:** Arshdeep Singh, Prasidh Krishna, Prince Yadav.
 
-## The Contract Vacuum
+*Subject to fitness clearance.
 
-When the ISL season ended, clubs were expected to move quickly on renewals and new signings. Instead, many have stalled. The reason is simple: nobody knows what the league will look like next season, or how much money will be available.
+## The Schedule
 
-A senior ISL club official, quoted by PTI, laid out the scale of the problem. "The players are the biggest sufferers," the official said. Free agency, normally a lever of player power, has become a trap. Without clarity on budgets, clubs are offering lower fees. Transfer fees that would normally flow between clubs are drying up. For many players, the phone has simply stopped ringing.
+The series covers three venues across India: Dharamsala (June 13), Lucknow (June 17), and Chennai (June 20). For the diaspora, the timing works — all three matches start at 1:30 PM IST, which translates to early morning in the US and mid-morning in the UK.
 
-The official flagged a particularly painful dimension. Many ISL players come from India's northeast — from Manipur, Mizoram, and surrounding states. For these players, an ISL contract is not just a career; it is the primary income for entire households. The uncertainty is hitting these families hardest.
+## What It Means for NRIs
 
-## The Commercial Rights Standoff
+This squad is the first time since the Champions Trophy that Rohit, Kohli, and Gill are in the same ODI eleven. For NRI fans who watched the 50-over resurgence from October 2025 onward — India's ODI record in that stretch has been exceptional — this series is a chance to see the full-strength batting lineup in action before the bigger assignments later in the year.
 
-At the root of the crisis is an unresolved battle over the ISL's commercial future.
+The Afghanistan ODIs also serve as a dry run for the selectors. With England's white-ball tour looming and the Champions Trophy defence not far behind in the planning horizon, every spot in this squad is under evaluation.
 
-The previous commercial partner, Football Sports Development Limited, ended its Master Rights Agreement with the AIFF in December 2025. The 2025-26 season was delayed for months and only began in February 2026 after Supreme Court intervention and direct involvement by Sports Minister Mansukh Mandaviya. The truncated season featured just 91 matches in a single-leg format, a fraction of the league's usual scale.
+*Sources: CricTracker, InsideSport India, BCCI*"""
 
-A new bidding process attracted Genius Sports as the top bidder in March, offering Rs 2,129 crore per year on a 15-plus-5 year deal. But ISL clubs have balked at the terms. They want Genius confined to a data and technology partnership, not a full commercial partnership. Instead, the clubs are proposing a radical restructuring: they want to keep 90 per cent of the league's economic interest, with the AIFF holding the remaining share.
+    # Image sourcing — try Ishan Kishan (the comeback story)
+    print("  Sourcing image...")
+    img_url = fetch_wikipedia_person_image("Ishan Kishan")
+    img_attribution = "Wikimedia Commons"
+    if not img_url:
+        img_url = fetch_wikipedia_person_image("India national cricket team")
+        if not img_url:
+            img_url = fetch_pexels_image("cricket stadium India", "cricket match India")
+            img_attribution = "The Videshi"
 
-A meeting between club representatives and AIFF leadership in Kolkata last month ended without agreement. A Special General Body Meeting decided that the Executive Committee would study fresh offers, but any final decision on a commercial partner must be taken by the full AIFF General Body. That meeting has not been scheduled.
+    art_id = str(uuid.uuid4())
+    final_img = None
+    if img_url:
+        final_img = upload_image_to_supabase(img_url, f"{art_id}.jpg")
 
-## What It Means for Indian Football
+    article = {
+        "id": art_id,
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": "sports",
+        "vertical": "sports",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": json.dumps(["CricTracker", "InsideSport India", "BCCI"]),
+        "is_editorial": False,
+        "image_url": final_img,
+        "image_attribution": img_attribution if final_img else None
+    }
 
-The ISL was supposed to be the vehicle that professionalised Indian football. Launched in 2014, it attracted global stars, built stadiums, and created a generation of Indian players who could earn a living from the sport. At its peak, it featured clubs backed by some of India's wealthiest business houses — the Ambanis, the Jindals, the Tatas.
+    result = insert_article(article)
+    if result:
+        print(f"  ✓ Article 1 published: {headline[:60]}...")
+    return result
 
-Now the league finds itself in a situation where its own players cannot get contracts, its clubs cannot plan budgets, and its governing body cannot agree on who should sell the product.
 
-For the 150 players currently in limbo, the stakes are immediate. Pre-season training typically begins in August. If the commercial dispute is not resolved by then, there may be no season to train for.
+# ─────────────────────────────────────────────
+# ARTICLE 2: Norway Chess Women R8 — Assaubayeva beats Divya
+# ─────────────────────────────────────────────
+def write_article_2():
+    print("\n=== Article 2: Norway Chess Women R8 ===")
 
-## The NRI Perspective
+    headline = "Assaubayeva Beat Divya Deshmukh in the Decisive Round. The Norway Chess Women's Title Is All but Settled."
+    subheadline = "The Kazakh star leads by 5.5 points with two rounds left. Divya drops to joint third. Humpy finishes last among six."
+    slug = "norway-chess-women-2026-round-8-assaubayeva-beats-divya-deshmukh-title-decided-nri"
 
-For Indian diaspora football fans — particularly those who follow the ISL through FanCode from the US, UK, and the Middle East — the crisis is a reminder of how fragile Indian football's infrastructure remains. While the BCCI's IPL generated Rs 5,761 crore in revenue last financial year, the ISL's entire media rights deal for 2025-26 was worth Rs 8.62 crore. The gap is not just financial; it is institutional.
+    body = """The match that was supposed to decide Norway Chess Women ended up deciding it — just not the way Indian fans hoped.
 
-The FIFA World Cup begins in North America on June 11. Indian football will not be represented on the pitch. The question now is whether it will even have a functioning top division by the time the tournament ends.
+In the most anticipated game of Round 8, **Bibisara Assaubayeva** of Kazakhstan defeated **Divya Deshmukh** in classical play with the black pieces, earning the full three points and stretching her lead at the top of the standings to a virtually insurmountable 5.5 points with only two rounds remaining.
 
-*Sources: Mykhel/PTI, Wikipedia (2025-26 ISL season), Bhaskar English, RevSportz*"""
-})
+## The Decisive Game
 
-# ━━━ ARTICLE 3: India Football — Unity Cup Disaster + Tajikistan ━━━
-ARTICLES.append({
-    "headline": "Zero Goals. Two Defeats. India's Blue Tigers Left London Without Scoring. Now They Head to Tajikistan.",
-    "subheadline": "India's Unity Cup campaign ended in embarrassment — no goals in two matches — and Khalid Jamil's squad now faces two friendlies in Tajikistan with star forward Ryan Williams ruled out.",
-    "slug": "india-blue-tigers-unity-cup-goalless-tajikistan-friendlies-june-2026-nri",
-    "category": "sports",
-    "vertical": "sports",
-    "status": "published",
-    "is_editorial": False,
-    "is_featured": False,
-    "tags": [],
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "sources": json.dumps(["AIFF Official", "KhelNow", "Yardbarker", "IANS"]),
-    "image_person": None,
-    "pexels_query": "India football national team",
-    "pexels_fallback": "football soccer match action",
-    "body": """The Indian men's national football team left London at the weekend having played two matches, lost both, and scored zero goals. It was, by any measure, a dismal showing — and it came barely two weeks before the FIFA World Cup begins in their diaspora backyard across North America.
+Divya had White — the advantage of the first move, the initiative, and the knowledge that a classical win would bring her back to within striking distance. The buildup had been framed as a title-defining showdown. Our own preview described it as "now or never" for the 20-year-old from Nagpur.
 
-India's Unity Cup 2026 campaign started with hope. The four-team tournament at The Valley — home of Charlton Athletic — was the Blue Tigers' first match on British soil since 2002. They arrived with a 22-player squad assembled by head coach Khalid Jamil, though Mohun Bagan Super Giant's last-minute decision to recall their players hours before departure forced the AIFF into a frantic scramble to fly in replacements.
+But Assaubayeva, 21, is playing the tournament of her life. She absorbed Divya's opening pressure, found counterplay in the middlegame, and gradually seized control. The Kazakh player's technique in converting advantages has been the story of this event — she now has four classical wins, more than any other player in either the Open or Women's sections.
 
-## Jamaica: 0-2
+Divya's loss drops her from sole second to joint third alongside China's Zhu Jiner, both on 10 points.
 
-The semi-final against Jamaica on May 28 exposed India's limitations. Ranked 71st in the world — sixty-five places above India's 136th — Jamaica controlled the game comfortably. Two goals were enough. India rarely threatened.
+## The Standings After Round 8
 
-## Zimbabwe: 0-1
+| Player | Country | Points |
+|--------|---------|--------|
+| Bibisara Assaubayeva | Kazakhstan | **15.5** |
+| Anna Muzychuk | Ukraine | 10.5 |
+| Divya Deshmukh | India | 10 |
+| Zhu Jiner | China | 10 |
+| Ju Wenjun | China | 9 |
+| Koneru Humpy | India | 8 |
 
-Three days later, facing 130th-ranked Zimbabwe in the third-place playoff, Khalid Jamil made four changes. Vikram Partap Singh, Rahim Ali, Macarton Nickson, and Ricky Shabong all started. Shabong, who had made his international debut as a substitute against Jamaica, produced the best Indian moment of the tournament in the 29th minute — a perfectly weighted ball over the Zimbabwe defence for Vikram Partap Singh, who seemed certain to score until Zimbabwe captain John Takwara executed a stunning sliding challenge.
+With a maximum of 6 points available across the final two rounds, Assaubayeva needs just half a point from her remaining games to mathematically clinch the title. Even if she loses both — an unlikely scenario given her form — she would need all three of her nearest rivals to win their classical games to be overtaken. The title is hers to lose, and she has shown no inclination to lose anything in Oslo.
 
-Four minutes later, Farukh Choudhary crashed into Washington Gift Navaya inside the box. The referee pointed to the spot. Prince Dube converted. India spent the rest of the match chasing an equaliser that never came.
+## Divya's Tournament in Context
 
-The final record: two matches, two defeats, zero goals scored, three conceded.
+This is not a failure for Divya Deshmukh. She is 20 years old, playing in her first Norway Chess, competing against a field that includes a reigning World Champion (Ju Wenjun), a former World Championship finalist (Anna Muzychuk), and a veteran of decades of elite chess (Koneru Humpy). She came into Round 8 in second place and pushed for the title until the penultimate stage.
 
-## Tajikistan Is Next
+But the gap between second and first in women's chess has a name right now, and it is Bibisara Assaubayeva. The Kazakh player has been the most dominant force in the women's game this season, and her Norway Chess performance — likely a title-winning one — cements her status as the player everyone else is chasing.
 
-There is no time to regroup at home. The Blue Tigers fly directly from London to Tajikistan for two international friendlies during the June FIFA window. The matches are scheduled for June 5 and June 9 at the Hisor Central Stadium, with both games kicking off at 20:30 IST.
+## Humpy's Difficult Event
 
-The squad will be largely the same, but India have suffered a significant blow: star forward Ryan Williams has been ruled out with an injury. Williams has quickly established himself as a key figure in Khalid Jamil's attacking setup, and his absence will be keenly felt against a Tajikistan side playing at home.
+For Indian fans, the more sobering story is **Koneru Humpy**'s position at the bottom of the standings with 8 points after eight rounds. The 39-year-old, who remains one of the most decorated players in women's chess history, has struggled to find her form in Oslo. She drew her classical game in Round 8 but has not won a single classical game in the tournament.
 
-## What the World Cup Window Means
+Humpy's participation in Norway Chess was itself a statement of ambition — she was not content to wind down her career quietly. But the results suggest that the gap between her current form and the level required at super-tournaments has widened. Whether this event marks a turning point or a temporary dip is a question only the coming months will answer.
 
-The timing is pointed. The 2026 FIFA World Cup kicks off on June 11 in Mexico, the United States, and Canada — the three countries with the largest Indian diaspora populations outside the subcontinent. NRI fans will be surrounded by World Cup fever while their national team plays friendlies in Central Asia against teams ranked within twenty places of them.
+## The Open Section: So Still Leads
 
-India's 136th FIFA ranking means they are not remotely close to World Cup qualification. But friendlies like these are supposed to be the building blocks — opportunities to develop combinations, blood young players, and build a competitive identity.
+In the Open tournament, **Wesley So** maintained his lead with 14 points after drawing with Vincent Keymer and winning the Armageddon tiebreak. The American grandmaster has been the most consistent player in the event, but the field is closing in.
 
-The Unity Cup showed how far India still has to go. A squad weakened by Mohun Bagan's withdrawal, a formation that could not create chances, and a forward line that could not find the net — these are structural problems, not one-off results.
+**Alireza Firouzja** bounced back from two consecutive classical losses with a win over World Champion **Gukesh Dommaraju**, climbing to 13 points. And **R Praggnanandhaa** — whose classical victory over Magnus Carlsen in this same round was the headline result in the Open section — sits on 12 points, within striking distance of the top two.
 
-## The Bigger Picture
+Carlsen, who lost to Pragg in classical, drops to 9 points and fifth place. The final two rounds will determine whether So can hold off Firouzja's late surge and Pragg's momentum.
 
-Indian football is at a crossroads that extends well beyond results on the pitch. The ISL, the country's top football league, is embroiled in a commercial rights dispute that has left 150 players without contracts. The domestic calendar remains fragmented. The pathway from youth football to the senior national team is underdeveloped compared to cricketing infrastructure.
+## What Comes Next
 
-For NRI fans planning to attend World Cup matches in New York, Dallas, Houston, and Los Angeles, the tournament will be a celebration of global football. For Indian football specifically, it will be a reminder of the distance still to travel.
+The tournament resumes after a rest day. In Round 9, the pairings will be crucial — the final stretch of a double round-robin often produces the most dramatic results as players who need points take risks.
 
-Khalid Jamil has two matches in Tajikistan to start closing that gap. The question is whether a goalless squad can find its voice in Hisor.
+For Divya, the remaining rounds are about pride and rating points. For Assaubayeva, they are a coronation. And for Indian chess fans watching from abroad, the lesson is clear: India's women are at the table, even if the trophy goes elsewhere this time.
 
-*Sources: AIFF Official, KhelNow, Yardbarker, IANS*"""
-})
+*Norway Chess 2026 runs May 25–June 5 in Oslo. Sources: Chess.com, ChessBase, Wikipedia*"""
 
-# ── Main execution ───────────────────────────────────────────────────
-def main():
-    print(f"\n{'='*60}")
-    print(f"  The Videshi Sports Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    print(f"{'='*60}\n")
-    
-    success_count = 0
-    
-    for i, article in enumerate(ARTICLES):
-        print(f"\n── Article {i+1}/{len(ARTICLES)}: {article['headline'][:70]}...")
-        
-        # Extract image sourcing params
-        person_name = article.pop("image_person", None)
-        pexels_query = article.pop("pexels_query", None)
-        pexels_fallback = article.pop("pexels_fallback", None)
-        
-        # Generate article ID
-        article_id = str(uuid.uuid4())
-        article["id"] = article_id
-        
-        # Source image
-        print(f"  Sourcing image...")
-        img_url, attribution = source_image(
-            person_name=person_name,
-            pexels_query=pexels_query,
-            pexels_fallback=pexels_fallback,
-            article_id=article_id,
-        )
-        
-        if img_url:
-            article["image_url"] = img_url
-            article["image_attribution"] = attribution or "The Videshi"
-            print(f"  ✓ Image set")
-        else:
-            print(f"  ⚠ No image found — publishing without image")
-        
-        # Insert
-        print(f"  Inserting article...")
-        result = insert_article(article)
-        if result:
-            print(f"  ✓ Published: {article['slug']}")
-            success_count += 1
-        else:
-            print(f"  ✗ FAILED to publish")
-        
-        time.sleep(1)  # Be kind to Supabase
-    
-    print(f"\n{'='*60}")
-    print(f"  Done. {success_count}/{len(ARTICLES)} articles published.")
-    print(f"{'='*60}\n")
+    # Image sourcing — try Bibisara Assaubayeva from Wikipedia
+    print("  Sourcing image...")
+    img_url = fetch_wikipedia_person_image("Bibisara Assaubayeva")
+    img_attribution = "Wikimedia Commons"
+    if not img_url:
+        img_url = fetch_wikipedia_person_image("Divya Deshmukh")
+        if not img_url:
+            img_url = fetch_pexels_image("chess tournament", "chess grandmaster")
+            img_attribution = "The Videshi"
 
+    art_id = str(uuid.uuid4())
+    final_img = None
+    if img_url:
+        final_img = upload_image_to_supabase(img_url, f"{art_id}.jpg")
+
+    article = {
+        "id": art_id,
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": "sports",
+        "vertical": "sports",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": json.dumps(["Chess.com", "ChessBase", "Wikipedia"]),
+        "is_editorial": False,
+        "image_url": final_img,
+        "image_attribution": img_attribution if final_img else None
+    }
+
+    result = insert_article(article)
+    if result:
+        print(f"  ✓ Article 2 published: {headline[:60]}...")
+    return result
+
+
+# ─────────────────────────────────────────────
+# Main
+# ─────────────────────────────────────────────
 if __name__ == "__main__":
-    main()
+    print(f"Sports writer run: {datetime.now(timezone.utc).isoformat()}")
+    
+    results = []
+    r1 = write_article_1()
+    results.append(r1)
+    
+    r2 = write_article_2()
+    results.append(r2)
+    
+    success = sum(1 for r in results if r)
+    print(f"\n{'='*50}")
+    print(f"Published {success}/{len(results)} articles")
+    if success < len(results):
+        print("⚠ Some articles failed to publish")
+        sys.exit(1)
+    print("✓ All articles published successfully")
