@@ -1,42 +1,27 @@
 #!/usr/bin/env python3
-"""News writer for The Videshi — generates and publishes news articles."""
+"""News writer for The Videshi — June 2, 2026 batch"""
 
-import json
-import os
-import sys
-import uuid
-import re
+import json, os, sys, uuid, re, time
 from datetime import datetime, timezone
-import subprocess
-
-# Load env
-env_file = os.path.expanduser("~/.env.supabase")
-if os.path.exists(env_file):
-    with open(env_file) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                key, _, val = line.partition('=')
-                os.environ[key.strip()] = val.strip().strip('"').strip("'")
-
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-if os.path.exists(pexels_env):
-    with open(pexels_env) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                key, _, val = line.partition('=')
-                os.environ[key.strip()] = val.strip().strip('"').strip("'")
-
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
-SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 import requests
-import urllib.parse
+
+# ── Env ──────────────────────────────────────────────────────────────
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+PEXELS_KEY   = os.environ.get("PEXELS_API_KEY", "")
+HEADERS      = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
+}
+
+# ── Helpers ──────────────────────────────────────────────────────────
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -54,378 +39,412 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels. Returns URL or None."""
+    """Fetch a relevant image from Pexels. Returns URL or None."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
-    
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            # Use curl because Python urllib gets 403 from Pexels
-            result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
-                 "-H", f"Authorization: {PEXELS_KEY}"],
-                capture_output=True, text=True, timeout=15
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                headers={"Authorization": PEXELS_KEY},
+                params={"query": q, "per_page": 5, "orientation": "landscape"},
+                timeout=10,
             )
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                for p in photos:
+                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+                    if url:
+                        print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                        return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+
 def upload_image_to_supabase(image_url, filename):
-    """Download image and upload to Supabase storage. Returns public URL."""
+    """Download image and upload to Supabase storage bucket 'article-images'."""
     try:
-        # Try with User-Agent, then retry with different headers
-        for ua in ["TheVideshi/1.0 (thevideshi.com)", "Mozilla/5.0 (compatible; TheVideshi/1.0)"]:
-            r = requests.get(image_url, headers={"User-Agent": ua}, timeout=15)
-            if r.status_code == 200:
-                break
-            if r.status_code == 429:
-                print(f"  ⚠ Rate limited, trying alternate UA...")
-                import time
-                time.sleep(2)
-                continue
-        
-        if r.status_code != 200:
-            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
-            # For Wikipedia/Pexels, return direct URL as fallback
-            if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
-                return image_url
+        resp = requests.get(image_url, timeout=15, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if resp.status_code != 200:
+            print(f"  ⚠ Image download failed: HTTP {resp.status_code}")
             return None
-        
-        content_type = r.headers.get("Content-Type", "image/jpeg")
-        if "image" not in content_type:
+        content_type = resp.headers.get("Content-Type", "image/jpeg")
+        if not content_type.startswith("image/"):
             print(f"  ⚠ Not an image: {content_type}")
-            return image_url
-        
-        if len(r.content) < 5000:
-            print(f"  ⚠ Image too small: {len(r.content)} bytes")
-            return image_url
-        
-        # Upload to Supabase storage
+            return None
+        if len(resp.content) < 5000:
+            print(f"  ⚠ Image too small: {len(resp.content)} bytes")
+            return None
+
         upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        resp = requests.post(
+        up = requests.post(
             upload_url,
             headers={
+                "apikey": SUPABASE_KEY,
                 "Authorization": f"Bearer {SUPABASE_KEY}",
                 "Content-Type": content_type,
-                "x-upsert": "true"
+                "x-upsert": "true",
             },
-            data=r.content,
-            timeout=30
+            data=resp.content,
+            timeout=20,
         )
-        
-        if resp.status_code in (200, 201):
+        if up.status_code in (200, 201):
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ⚠ Upload failed: {resp.status_code} {resp.text[:200]}")
-            # Fall back to direct URL if it's from Wikipedia/Pexels
-            if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
-                return image_url
-            return None
+            print(f"  ⚠ Upload failed: {up.status_code} {up.text[:200]}")
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
-        if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
-            return image_url
-        return None
+    return None
 
-def sb_insert(table, data):
-    """Insert a row into Supabase."""
-    url = f"{SUPABASE_URL}/rest/v1/{table}"
-    r = requests.post(
-        url,
-        headers={
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": "application/json",
-            "Prefer": "return=representation"
-        },
-        json=data,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            return result[0]
-        return result
-    else:
-        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
-        return None
 
-def check_image_skip_list(article_id):
-    """Check if article is in the image skip list."""
-    skip_file = os.path.expanduser("~/workspace/the-videshi-news/pipeline/image-skip-list.json")
-    if os.path.exists(skip_file):
-        with open(skip_file) as f:
-            skip_list = json.load(f)
-            return article_id in skip_list
+def validate_image(url):
+    """Quick HTTP HEAD to validate an image URL."""
+    try:
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
+            return True
+        # Try GET if HEAD didn't return Content-Length
+        if r.status_code == 200 and "image" in ct:
+            r2 = requests.get(url, timeout=10, stream=True,
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
+            r2.close()
+            if len(chunk) > 5000:
+                return True
+    except Exception:
+        pass
     return False
 
-def validate_image_url(url):
-    """Validate image URL is not from banned sources."""
-    if not url:
-        return False
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "scontent-"]
-    banned_params = ["_nc_ht=", "_nc_cat=", "ccb="]
-    for b in banned:
-        if b in url:
-            print(f"  ✗ BANNED source detected: {b}")
-            return False
-    for p in banned_params:
-        if p in url:
-            print(f"  ✗ BANNED param detected: {p}")
-            return False
-    return True
 
-# ============================================================
-# ARTICLES
-# ============================================================
+def insert_article(article):
+    """Insert an article into p2_articles."""
+    resp = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article,
+        timeout=15,
+    )
+    if resp.status_code in (200, 201):
+        data = resp.json()
+        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
+        print(f"  ✓ Inserted article: {article['slug']} (id={art_id})")
+        return art_id
+    else:
+        print(f"  ✗ Insert failed: {resp.status_code} {resp.text[:300]}")
+        return None
+
+
+# ── Articles ─────────────────────────────────────────────────────────
+
+now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 articles = []
 
-# ---------- ARTICLE 1: India-Oman CEPA ----------
+# ═══════════════════════════════════════════════════════════════════
+# ARTICLE 1: India-US Trade Deal 99% Complete
+# ═══════════════════════════════════════════════════════════════════
+
 articles.append({
-    "headline": "India's New Trade Deal With Oman Just Went Live. It May Be the Country's Most Important FTA This Decade.",
-    "subheadline": "The CEPA gives 99% of Indian exports duty-free access and secures $7.2 billion in energy imports — right as the Strait of Hormuz remains under threat.",
-    "slug": "india-oman-cepa-fta-energy-security-hormuz-bypass-duty-free-exports-20260602",
+    "headline": "India and the US Are Now in the Final Hours of a Trade Deal. The Ambassador Says It Is 99% Done.",
+    "subheadline": "A three-day negotiating round in New Delhi could produce the first bilateral trade agreement between the world's largest and fifth-largest economies. The sticking point is Section 301.",
+    "slug": "india-us-trade-deal-99-percent-done-section-301-brendan-lynch-delhi-june-20260602",
     "category": "news",
-    "sources_json": ["Reuters", "The Hindu BusinessLine", "Devdiscourse", "GTRI"],
+    "status": "published",
+    "published_at": now_iso,
+    "is_editorial": False,
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "The Hindu Business Line", "url": "https://www.thehindubusinessline.com"},
+        {"name": "Devdiscourse", "url": "https://www.devdiscourse.com"},
+        {"name": "Dainik Bhaskar English", "url": "https://bhaskarenglish.in"}
+    ]),
+    "body": """India and the United States are closer to signing a bilateral trade agreement than they have ever been. Union Commerce Minister Piyush Goyal confirmed on Monday that the framework of the interim deal is complete, and US Ambassador to India Sergio Gor said that 99 percent of the terms have been settled.
+
+## The Final Round Begins in Delhi
+
+A high-level American delegation led by Chief Negotiator Brendan Lynch arrived in New Delhi on Sunday for a four-day visit running from June 1 to 4. The Indian team is headed by Additional Secretary Darpan Jain, the country's chief trade negotiator.
+
+The objective of this round is to give the interim agreement its final legal shape. The framework was agreed in a Joint Statement on February 7, when both nations committed to a first-tranche deal covering reciprocal market access, non-tariff measures, customs facilitation, investment promotion, and economic security alignment.
+
+"Technical issues remain, but the framework is complete," Goyal said at the launch of the India-Oman CEPA on Monday. "The US team is part of this crucial three-day discussion."
+
+## The Section 301 Problem
+
+The deal nearly fell apart in March when the US Supreme Court struck down Trump's sweeping reciprocal tariff measures. The administration then launched Section 301 investigations under the Trade Act of 1974 into several countries, including India, over excess capacity and forced labour in supply chains.
+
+India has firmly rejected the allegations and is now seeking tariff relief from any measures that emerge from the probe. A senior Indian trade official told reporters that New Delhi wants "a competitive tariff rate versus direct competition" and expects preferential treatment compared with Bangladesh, Pakistan, and Sri Lanka — rival manufacturing hubs that compete for the same orders.
+
+India currently faces a blanket 10 percent tariff on exports to the United States after the court ruling left that baseline levy in place.
+
+## What India Is Offering
+
+Under the agreed framework, India has proposed to eliminate or reduce tariffs on all US industrial goods and a wide range of food and agricultural products, including dried distillers' grains, red sorghum for animal feed, tree nuts, fresh fruit, soybean oil, wine, and spirits.
+
+New Delhi has also committed to purchasing $500 billion worth of American energy products, aircraft and aircraft parts, precious metals, technology products, and coking coal over the next five years — a staggering figure that underscores how much India is willing to invest in the relationship.
+
+## A Relationship That Has Grown Tenfold
+
+Bilateral trade in goods and services has surged from $20 billion to over $220 billion in the past two decades, making the US India's second-largest trading partner. India's exports to the US stood at $87.3 billion in fiscal 2025-26, while imports grew 16 percent to $52.9 billion. India's trade surplus narrowed to $34.4 billion from $40.9 billion the previous year.
+
+US Trade Representative Jamieson Greer could visit India once the broad contours are finalized, signalling that a signing is imminent.
+
+## What This Means for the Diaspora
+
+For the roughly 4.5 million Indian Americans and the broader NRI community, this deal is about more than tariff schedules. A strengthened economic relationship means more business opportunities, easier movement of goods and capital, and a deeper strategic alignment between the two countries they call home.
+
+The deal also arrives at a sensitive moment. With the Iran war pushing oil prices above $90 a barrel and India scrambling to diversify its energy sources, a formal commitment to purchase American energy at preferential terms could help stabilize the country's import bill — and, by extension, the rupee.
+
+If both sides can settle the Section 301 question, a signing could come within weeks. If they cannot, the talks will continue — but the window may not stay open for long.""",
+    "vertical": "trade",
+    "diaspora_angle": "A strengthened India-US trade corridor means more business opportunities, easier capital flows, and deeper strategic alignment for the 4.5 million Indian Americans. India's $500 billion purchase commitment over five years — covering energy, aircraft, and tech — could reshape job markets and investment patterns on both sides of the Pacific.",
+    "tags": ["india-us-trade", "section-301", "bilateral-trade-agreement", "piyush-goyal", "brendan-lynch", "tariffs"],
     "image_search_person": None,
-    "vertical": "economy",
-    "image_search_pexels": "Oman port shipping cargo",
-    "image_search_pexels_fallback": "oil tanker shipping sea",
-    "body": """India's free trade agreement with Oman officially came into force on June 1 — and its timing could not be more consequential.
-
-The Comprehensive Economic Partnership Agreement, signed in Muscat in December 2025 in the presence of Prime Minister Narendra Modi and Sultan Haitham bin Tarik Al Said, gives duty-free access to 99.38 per cent of India's exports by value. That covers 98 per cent of Oman's tariff lines — up from just 15 per cent under the previous Most Favoured Nation regime.
-
-## Why This Deal Matters Now
-
-The agreement would have been significant in peacetime. During the Iran war, it becomes strategic.
-
-Oman sits just outside the Strait of Hormuz — the 33-kilometre-wide chokepoint between Iran and the Arabian Peninsula through which roughly 20 per cent of the world's oil and a third of its seaborne liquefied natural gas once flowed. Since Iran's Revolutionary Guards began restricting passage in March, that corridor has been effectively shut to commercial traffic.
-
-Oman's ports at Duqm and Sohar, however, face the Gulf of Oman and the Arabian Sea — bypassing the Strait entirely. That geographic advantage makes Oman a critical alternate trade route for India at precisely the moment its traditional Gulf shipping lanes are disrupted.
-
-"The agreement deepens India's energy security by ensuring access to Omani crude oil, LNG, fertilisers, methanol and ammonia, worth over $7.2 billion in imports in FY2026," said Ajay Srivastava, founder of the Global Trade Research Initiative.
-
-## What India Gets
-
-India imported $7.2 billion worth of goods from Oman in fiscal 2026. Crude oil accounted for $1.6 billion, LNG for $1.2 billion, and fertilisers for $843 million. These three categories alone make up 38 per cent of all imports from the Gulf country.
-
-Under the CEPA, Oman has also offered to increase supply of petrochemicals and fertilisers to India. Pankaj Khimji, Oman's foreign trade advisor, said the country would consider diverting its share of production from the Oman India Fertiliser Project — a joint venture between IFFCO, KRIBHCO and the Oman Investment Authority — to India if needed.
-
-Indian consumers will also see cheaper Omani dates, which will enjoy quota-based duty concessions under the agreement.
-
-## The Diaspora Angle
-
-For the estimated 800,000 Indians living and working in Oman, the deal brings tangible benefits. Indian firms investing in Oman can now hire Indian workers above and beyond the local employment quotas mandated by Oman's government. Indian pharmaceuticals approved by the US, European or UK regulators will also get faster regulatory clearance in Oman.
-
-Commerce Minister Piyush Goyal called Oman "a bridge for our people and a gateway to the Gulf and East Africa."
-
-## Bilateral Trade Is Growing
-
-Bilateral trade between India and Oman reached $11.18 billion in FY2025-26, up from $10.61 billion the previous year. Oman is now India's second-largest trading partner in the Gulf region.
-
-This is India's fifth FTA implemented in the last five years and its 15th overall. The first consignments under the new preferential tariff — including agriculture and gems and jewellery exports from Mumbai, Kolkata and Chennai — were flagged off on June 1.
-
-## What's Next
-
-The CEPA is the second such agreement India has signed with a Gulf Cooperation Council country, after the UAE deal in 2022. Negotiations for a broader India-GCC FTA remain ongoing, but the Oman deal gives India an immediate hedge against the energy and trade disruptions that have defined the first half of 2026."""
+    "image_search_pexels": ("India US trade agreement handshake diplomacy", "diplomatic negotiation conference room"),
+    "image_attribution": "Pexels",
 })
 
-# ---------- ARTICLE 2: India drops to 7th in market cap ----------
+# ═══════════════════════════════════════════════════════════════════
+# ARTICLE 2: Dave Fiji — Indian-Origin Delta Pilot Killed in Crash
+# ═══════════════════════════════════════════════════════════════════
+
 articles.append({
-    "headline": "India Just Dropped to Seventh in Global Market Cap Rankings. South Korea's AI Chip Boom Is the Reason.",
-    "subheadline": "In 18 months, India went from a market cap three-and-a-half times South Korea's to being overtaken. Foreign investors have pulled $26.4 billion this year.",
-    "slug": "india-seventh-global-market-cap-south-korea-overtakes-ai-chips-fpi-outflow-20260602",
+    "headline": "A 25-Year-Old Keralite Delta Pilot Was Killed in a Helicopter Crash Hours After His Wedding. His Bride Survived.",
+    "subheadline": "Dave Fiji, a first officer at Delta Air Lines, had warned the pilot about zero visibility before takeoff. His wife Jesni was trapped in the wreckage for six hours.",
+    "slug": "dave-fiji-indian-origin-delta-pilot-killed-helicopter-crash-wedding-georgia-20260602",
     "category": "news",
-    "sources_json": ["Reuters", "Bernstein", "Carmignac", "Equirus Securities"],
+    "status": "published",
+    "published_at": now_iso,
+    "is_editorial": False,
+    "sources": json.dumps([
+        {"name": "WSB-TV / Atlanta News First", "url": "https://www.wsbtv.com"},
+        {"name": "PEOPLE Magazine", "url": "https://people.com"},
+        {"name": "FOX 5 Atlanta", "url": "https://www.fox5atlanta.com"},
+        {"name": "Livemint", "url": "https://www.livemint.com"},
+        {"name": "New York Post", "url": "https://nypost.com"}
+    ]),
+    "body": """Dave Fiji had dreamt of flying since he was ten years old. By 25, the son of Keralite immigrants had become a first officer at Delta Air Lines — one of the youngest pilots at the carrier. On Friday evening, at a wedding venue in Dawsonville, Georgia, he married Jesni in front of roughly 400 guests.
+
+Hours later, he was dead.
+
+## A Perfect Wedding, a Devastating Exit
+
+The ceremony at The Revere, a wedding and events venue in the foothills north of Atlanta, was by all accounts a joyous affair. "We could say it was the perfect wedding," Dave's father, George Fiji, told WSB-TV. "We couldn't ask for anything more."
+
+A special helicopter departure had been arranged for the newlyweds. The couple boarded a Robinson R66 helicopter around 9:30 p.m., bound for DeKalb-Peachtree Airport in Chamblee, from where they planned to begin their honeymoon.
+
+But by that point, dense fog and rain had rolled into the area. Visibility had dropped to near zero.
+
+## He Knew It Was Dangerous
+
+Dave Fiji was not only a passenger — he was an experienced pilot. And he flagged the danger before takeoff.
+
+"Since my son was a pilot, he told the pilot that there is zero visibility, and when there is zero visibility like this, we never fly," George Fiji said.
+
+Jesni later told her father-in-law that the helicopter pilot said they would fly at a higher altitude to clear the fog. The couple decided to go ahead.
+
+Within minutes, the Robinson R66 struck tall trees and crashed into a heavily wooded area on a 10,000-acre tract owned by the City of Atlanta, managed by the state as a wildlife management area. The crash occurred around 10:30 p.m., not far from the wedding venue.
+
+## Trapped for Six Hours
+
+Both Dave and the helicopter pilot were killed on impact. Jesni survived.
+
+"She said when she woke up she saw my son, Dave, resting on her bosom," George Fiji recalled. "She saw blood on him, but by then, his body was completely cold. She's a nurse, so she knew he was gone."
+
+Jesni remained trapped in the wreckage for nearly six hours before rescuers located the crash site and extracted her. She suffered cuts and bruises but no broken bones. She is recovering at a metro Atlanta hospital.
+
+"She's devastated, but she's recovering," George Fiji said.
+
+## A Keralite Family's American Dream
+
+Dave's parents, George and Pheba Fiji, emigrated to the United States from Muvattupuzha in Ernakulam district, Kerala. Jesni's family also hails from Alappuzha district in Kerala. The two families had ties through church communities in South Carolina and Georgia.
+
+Dave and Jesni first met through their church about ten years ago. Their friendship grew into love, and they decided to build a life together. Family members described Dave as disciplined, selfless, and deeply passionate about aviation.
+
+"He was kind, he was gentle, he was selfless. Those were her words," said Dave's mother, Pheba. "We have the confidence that God perfected the work that he started in his life."
+
+## The Investigation
+
+The National Transportation Safety Board is leading the investigation. In a statement, the NTSB said that initial impact signatures show the helicopter struck tall trees followed by an impact with terrain in a heavily wooded area. There was no post-impact fire.
+
+NTSB meteorologists are conducting a weather study to understand the role conditions may have played. Preliminary data shows the potential for rain showers, low-level clouds, and thunderstorms in the vicinity at the time of the crash.
+
+The helicopter belonged to Prestige Helicopters, which operates out of DeKalb-Peachtree Airport and provides chartered flights for wedding venues around the Atlanta area. All major pieces of the aircraft have been recovered.
+
+The identity of the helicopter pilot has not yet been released.
+
+## A Community in Mourning
+
+The Keralite diaspora in the Atlanta area and across the United States has been shaken by the tragedy. For a community that celebrates ambition, faith, and family, Dave Fiji's story — a boy from an immigrant household who achieved his dream of flying, only to be taken on the happiest day of his life — carries a particular weight.
+
+Jesni, who now carries the title of wife and widow within the span of a single evening, faces a recovery that goes far beyond the physical.""",
+    "vertical": "nri-world",
+    "diaspora_angle": "Dave Fiji's parents emigrated from Muvattupuzha in Ernakulam, Kerala. His wife Jesni's family hails from Alappuzha. The couple met through the Keralite church community in Georgia. The tragedy has shaken the Indian American community in Atlanta and beyond — a story of an immigrant family's American dream cut short on the happiest day of their son's life.",
+    "tags": ["indian-american", "keralite-diaspora", "delta-air-lines", "helicopter-crash", "georgia", "dave-fiji"],
     "image_search_person": None,
-    "vertical": "economy",
-    "image_search_pexels": "stock market trading screen India",
-    "image_search_pexels_fallback": "stock exchange financial charts",
-    "body": """India's equity markets slipped to seventh place globally in total market capitalisation on Tuesday — overtaken by South Korea's chip-heavy stock market, which has been propelled by the artificial intelligence boom that India's listed universe has largely missed.
-
-The combined value of companies listed on South Korea's KOSPI, KOSDAQ and KONEX exchanges reached $5.01 trillion, surpassing the $4.85 trillion value of firms on India's National Stock Exchange, according to exchange data.
-
-It is the second time in a fortnight that India has been leapfrogged. Taiwan overtook India in May.
-
-## A Stunning Reversal
-
-The speed of India's decline in the global rankings has stunned analysts.
-
-"About 18 months ago, India's equity market cap was roughly 3.5 times South Korea's and more than twice Taiwan's. Fast forward just five months into 2026 and that lead has evaporated," Bernstein analysts Venugopal Garre and Nikhil Arela wrote in a note.
-
-India's benchmark Nifty 50 and Sensex have lost 10.1 per cent and 12.5 per cent respectively this year. The IT index — the second-heaviest sector on both benchmarks — has tumbled 19 per cent, pressured by subdued earnings and persistent foreign selling.
-
-## The Foreign Exodus
-
-Foreign portfolio investors have pulled out $26.4 billion from Indian stocks in 2026 so far — already surpassing the $18.91 billion they withdrew in all of 2025, which was itself a record.
-
-India's share in the MSCI Global Standard index has shrunk to 12.3 per cent from a peak of 21 per cent in September 2024.
-
-"It's really a remarkable decline and a restructure of the whole investment environment for us because of, obviously, the rise of South Korea and Taiwan as well," said Naomi Waistell, a fund manager at French asset manager Carmignac, which manages €41 billion.
-
-The record $2.22 billion sell-off on Friday alone — triggered by MSCI's May rebalancing — underlined the scale of the retreat.
-
-## Why South Korea and Taiwan Are Surging
-
-Both countries have benefited from their deep exposure to AI-related semiconductor manufacturing. South Korea's Samsung Electronics and SK Hynix dominate the global market for high-bandwidth memory chips, a critical and supply-constrained component in AI data centres. Taiwan's TSMC is the world's largest contract chipmaker.
-
-India's listed market, by contrast, is dominated by financials, consumer staples and legacy IT services — none of which have caught the AI tailwind in the same way.
-
-## Some Relief on Tuesday
-
-Indian markets snapped a four-session losing streak on Tuesday, with the Nifty 50 rising 0.43 per cent to 23,483 and the Sensex gaining 0.52 per cent to 74,650.
-
-IT stocks surged 4.2 per cent, taking their gains to 7 per cent in two sessions, after commentary from global software companies suggested that rising AI adoption is driving demand for traditional IT services as well.
-
-"We are seeing value buying as well as sectoral rotation," said Anita Gandhi, head of institutional business at Arihant Capital Markets. "Markets are still in the midst of uncertainties regarding the U.S.-Iran war and a delayed monsoon and will need clarity on these two fronts for any further material gains."
-
-## What It Means for NRIs
-
-For the millions of non-resident Indians invested in Indian equities through PIS accounts, mutual funds and NRE deposits, the message is sobering. Eight consecutive quarters of single-digit earnings growth, combined with the Iran war's impact on oil-dependent India and the forecast of the weakest monsoon in 11 years, have eroded the structural premium that Indian markets once commanded.
-
-The Reserve Bank of India's policy decision on Friday — where most economists expect rates to be held at 5.25 per cent despite a collapsing rupee — will be the next major catalyst."""
+    "image_search_pexels": ("helicopter crash wooded area emergency", "Robinson R66 helicopter aviation"),
+    "image_attribution": "Pexels",
 })
 
-# ---------- ARTICLE 3: Rubio to face Congress on Iran war ----------
+# ═══════════════════════════════════════════════════════════════════
+# ARTICLE 3: Iran Reviewing Deal Text — Fresh Update
+# ═══════════════════════════════════════════════════════════════════
+
 articles.append({
-    "headline": "Rubio Will Testify in Public for the First Time on the Iran War This Week. His Own Party Wants Answers.",
-    "subheadline": "Republicans are asking about strategy, gasoline prices and an exit plan. Democrats say the war should end 'no matter the terms at this point.'",
-    "slug": "rubio-congress-testimony-iran-war-strategy-republicans-gasoline-prices-india-oil-20260602",
+    "headline": "Iran Is Now Reviewing the Text of a Deal to End the War. Trump Says It Will Be Done Within a Week.",
+    "subheadline": "After freezing talks on Monday, Tehran reversed course within hours. Oil prices fell 1% on Tuesday, but the IEA warns global inventories could hit historic lows.",
+    "slug": "iran-reviewing-deal-text-hormuz-reopen-trump-one-week-oil-india-20260602",
     "category": "news",
-    "sources_json": ["Reuters", "CBS News", "CNBC"],
+    "status": "published",
+    "published_at": now_iso,
+    "is_editorial": False,
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "NBC Palm Springs", "url": "https://nbcpalmsprings.com"},
+        {"name": "Fox News", "url": "https://www.foxnews.com"},
+        {"name": "Wall Street Journal", "url": "https://www.wsj.com"},
+        {"name": "Investopedia", "url": "https://www.investopedia.com"}
+    ]),
+    "body": """Iran is reviewing a proposed agreement with the United States to halt the war between the two countries, Iran's semi-official Mehr news agency reported on Tuesday. The development came less than 24 hours after Tehran said it was freezing all communications with Washington.
+
+## The Whiplash
+
+The speed of the reversal has been dizzying. On Monday morning, Iran's IRGC-affiliated Tasnim news agency announced that Tehran was suspending all talks with the US, ostensibly over Israel's expanding military operations against Hezbollah in Lebanon. Iran's Parliament Speaker Mohammad Bagher Qalibaf warned of "direct confrontation" if Israeli aggression continued.
+
+By Monday evening, President Trump had intervened. He said he spoke with Israeli Prime Minister Netanyahu and asked him not to carry out a planned strike on Beirut's southern suburbs. He also said he had communicated with Hezbollah through intermediaries — the first time a US president has done so, even indirectly, with the group Washington designates as a terrorist organization.
+
+A partial ceasefire was announced by Lebanon: Israel would refrain from strikes on Beirut and Hezbollah-controlled suburbs, while the Iran-aligned group would halt attacks on Israel. Lebanon said it would seek to expand the arrangement in talks with Israel in Washington on Wednesday.
+
+By Tuesday, Iran had pivoted from threatening to "completely block" the Strait of Hormuz to reviewing the proposed text of a deal.
+
+## What Iran Wants
+
+According to Mehr, Iran is taking a "stern" approach to the proposed final text, citing a history of US non-compliance and deep institutional mistrust. Tehran is pushing for a limited interim agreement that would ease economic pressure without requiring major concessions on its nuclear programme.
+
+Iran's demands include an end to hostilities across all fronts including Lebanon, access to billions of dollars in frozen oil revenues, waivers on crude exports, a lifting of the US blockade on its ports, and continued leverage over the Strait of Hormuz.
+
+Trump, for his part, wants the strait reopened immediately, followed by a 60-day window for talks on Iran's nuclear programme and its enriched uranium stockpiles — much of which was destroyed by US strikes earlier this year. Secretary of State Marco Rubio said the strait needs to be "open, unimpeded, without tolls, and obviously that needs to happen immediately."
+
+## The Oil Market Exhales — Barely
+
+Oil prices fell more than 1 percent on Tuesday, paring Monday's sharp gains. Brent crude slipped from around $97 to roughly $96 a barrel. But the relief is fragile.
+
+A senior International Energy Agency official warned that global oil inventories could hit historically low levels within weeks. An ExxonMobil executive said at a conference last week that prices could soar to $160 a barrel once stockpile buffers are exhausted.
+
+Goldman Sachs expects refined fuel margins to remain two to three times above historical averages through the rest of 2026, with diesel margins exceeding pre-war forecasts by $19 to $26 per barrel.
+
+## What This Means for India
+
+India's Finance Ministry has identified the Hormuz disruption as the single most consequential variable for the country's external balance and price outlook. Gulf oil imports have fallen 34 percent since the war began in February, and Indian refiners have scrambled to secure alternative supplies from Venezuela, Brazil, Angola, and Nigeria.
+
+Even a best-case scenario is grim for Indian consumers. Analysts at Societe Generale estimate that even if a deal is ratified immediately, physical flows through the strait would not resume until late August, and crude would not reach Asian end-consumers until late October at the earliest.
+
+Meanwhile, India's current account deficit is widening, the rupee is under pressure, and the RBI meets this week facing calls to raise interest rates purely to defend the currency — a step most economists believe the central bank will resist.
+
+## The Clock Is Ticking
+
+Trump said on Monday that a deal to reopen the Strait of Hormuz would come within a week. He has said this before — repeatedly, since mid-March. Each time, the timeline has slipped.
+
+What has changed is the domestic political pressure. Congress is closing in on a war powers resolution that would end the Iran conflict without Trump's authorization. Rubio will testify publicly before the Senate Foreign Relations Committee and House Foreign Affairs Committee this week — his first public testimony on the war.
+
+Even Trump's own Republicans want the gasoline prices down before November. Representative Thomas Massie of Kentucky put it in plain terms: "The farmers here in Kentucky can't afford the fertilizer to put on their fields, so heck yes, I would support it."
+
+For India, for the diaspora, and for the 80 percent of Asian oil that used to flow through the strait, the question is no longer whether a deal will happen. It is whether it will happen in time.""",
     "vertical": "geopolitics",
-    "image_search_person": "Marco Rubio",
-    "image_search_pexels": None,
-    "image_search_pexels_fallback": "US Congress Capitol building",
-    "body": """Secretary of State Marco Rubio will testify publicly on the Iran war for the first time this week — and the sharpest questions may come from his own party.
-
-Rubio, who also serves as President Trump's national security adviser, will appear before the Senate Foreign Relations Committee, the House Foreign Affairs Committee and appropriations subcommittees in both chambers over two days. The hearings are nominally about the State Department's budget request, which includes a proposed 30 per cent cut to the foreign affairs budget and a 50 per cent increase in military spending.
-
-But lawmakers have made clear they will use the sessions to press Rubio on the three-month-old war that began with US and Israeli strikes on Iran on February 28 — and that has no end date in sight.
-
-## The Republican Dilemma
-
-Republicans face a political bind. The Iran war has sent gasoline prices soaring, squeezing American consumers and businesses ahead of November's midterm elections. The party needs to retain its slim majorities in both chambers, and lawmakers are increasingly anxious about the economic fallout.
-
-At the same time, Iran hawks within the party oppose any concessions to Tehran, insisting the war must continue until Iran's nuclear programme is permanently dismantled.
-
-Trump has insisted for weeks that he is close to signing a peace agreement and that gasoline prices will come down. But despite a fragile ceasefire that has largely held since early April, the two sides have exchanged strikes several times in the past week, and Iran's Revolutionary Guards have threatened to expand their blockade to include the Bab el-Mandeb Strait at the mouth of the Red Sea.
-
-## Democrats Want Out
-
-Democratic Senator Chris Murphy of Connecticut said on CBS's Face the Nation on Sunday that the war should end "no matter the terms at this point," citing the impact on American consumers.
-
-Last month, the Senate voted to advance a war powers resolution that would end the conflict unless Trump obtains congressional authorisation. The House postponed a similar vote when it looked likely to pass — an unusual sign of Republican unease.
-
-## What India Is Watching
-
-For India, these hearings carry enormous stakes. The Iran war has effectively shut down the Strait of Hormuz, through which nearly a fifth of the world's oil once flowed. India imports close to 90 per cent of its crude oil needs, and the disruption has sent Brent crude to $94 a barrel.
-
-The rupee has tumbled to record lows since the war began. Foreign investors have pulled a record $26.4 billion from Indian equities this year. The Reserve Bank of India faces one of its toughest policy decisions in years when it meets this Friday, caught between a collapsing currency that argues for higher rates and an economy that needs cheaper money.
-
-India's fiscal deficit for FY2025-26 came in at 4.4 per cent of GDP — in line with government estimates — but the outlook for the current year is cloudier. Every dollar increase in the oil price costs India roughly $2.1 billion in additional import expenditure annually.
-
-Any signal from Rubio that a deal is imminent — or that one is not — will move oil markets and, by extension, India's economic trajectory.
-
-## The Bigger Picture
-
-Congress also wants answers on Venezuela, where Trump sent forces to seize President Nicolás Maduro in January and where US forces have been firing on boats off the coast in a campaign that has killed more than 200 people. And there are growing questions about a possible military action against Cuba.
-
-Rubio has spoken to lawmakers behind closed doors about Iran but has never testified publicly on the conflict. His former colleagues in the Senate are hoping their one-time colleague will spell out what the endgame looks like.
-
-Trump, for his part, said in a CNBC interview on Monday that the Iran peace talks had "started to get very boring" and that he did not care if they were over. "I really don't care, I couldn't care less," he said.
-
-Oil prices fell 1.3 per cent on Tuesday to $93.7 a barrel after Trump said talks with Iran were still underway — contradicting earlier reports from Iranian state media that Tehran had suspended negotiations."""
+    "diaspora_angle": "India's Finance Ministry has called the Hormuz disruption the single most consequential variable for the country's external balance. Gulf oil imports are down 34%. Even a best-case deal would not deliver relief to Indian consumers until late October. The RBI faces pressure to raise rates to defend the rupee, and the current account deficit is widening. For NRIs sending money home, the rupee's trajectory is directly tied to this conflict.",
+    "tags": ["iran-war", "hormuz", "oil-prices", "india-oil", "ceasefire", "trump-iran-deal", "rbi"],
+    "image_search_person": None,
+    "image_search_pexels": ("Strait of Hormuz oil tanker shipping", "oil tanker Persian Gulf"),
+    "image_attribution": "Pexels",
 })
 
 
-# ============================================================
-# PUBLISH
-# ============================================================
+# ── Main Loop ────────────────────────────────────────────────────────
 
-now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-published_count = 0
+def main():
+    success_count = 0
+    for i, art in enumerate(articles):
+        print(f"\n{'='*60}")
+        print(f"Article {i+1}: {art['headline'][:80]}...")
+        print(f"{'='*60}")
 
-for i, article in enumerate(articles):
+        # ── Image sourcing ──
+        image_url = None
+
+        # Try Wikipedia for person articles
+        if art.get("image_search_person"):
+            image_url = fetch_wikipedia_person_image(art["image_search_person"])
+
+        # Fall back to Pexels
+        if not image_url and art.get("image_search_pexels"):
+            q1, q2 = art["image_search_pexels"]
+            image_url = fetch_pexels_image(q1, q2)
+
+        # Upload to Supabase for permanence
+        final_image_url = None
+        if image_url:
+            filename = f"{art['slug']}.jpg"
+            final_image_url = upload_image_to_supabase(image_url, filename)
+            if not final_image_url:
+                # If upload fails, use Pexels/Wikipedia URL directly if it's permanent
+                if "images.pexels.com" in image_url or "upload.wikimedia.org" in image_url:
+                    if validate_image(image_url):
+                        final_image_url = image_url
+                        print(f"  ℹ Using direct permanent URL: {image_url[:80]}...")
+
+        # ── Build insert payload ──
+        payload = {
+            "headline": art["headline"],
+            "subheadline": art["subheadline"],
+            "slug": art["slug"],
+            "category": art["category"],
+            "status": art["status"],
+            "published_at": art["published_at"],
+            "is_editorial": False,
+            "sources": art["sources"],
+            "body": art["body"],
+        }
+        if final_image_url:
+            payload["image_url"] = final_image_url
+            payload["image_attribution"] = art.get("image_attribution", "The Videshi")
+
+        # Add vertical, diaspora_angle, tags
+        if art.get("vertical"):
+            payload["vertical"] = art["vertical"]
+        if art.get("diaspora_angle"):
+            payload["diaspora_angle"] = art["diaspora_angle"]
+        if art.get("tags"):
+            payload["tags"] = art["tags"]
+
+        # Remove helper fields that aren't DB columns
+        for key in ["image_search_person", "image_search_pexels"]:
+            payload.pop(key, None)
+
+        art_id = insert_article(payload)
+        if art_id:
+            success_count += 1
+
+            # If we uploaded to Supabase and have an art_id, update image
+            if final_image_url and final_image_url.startswith(SUPABASE_URL):
+                # Rename with article ID for consistency
+                pass  # already uploaded with slug name, that's fine
+
+        time.sleep(1)
+
     print(f"\n{'='*60}")
-    print(f"Article {i+1}: {article['headline'][:60]}...")
-    
-    art_id = str(uuid.uuid4())
-    
-    # Image sourcing
-    image_url = None
-    image_attribution = None
-    
-    # Try Wikipedia for person articles
-    if article.get("image_search_person"):
-        print(f"  Looking up Wikipedia image for: {article['image_search_person']}")
-        img = fetch_wikipedia_person_image(article["image_search_person"])
-        if img and validate_image_url(img):
-            filename = f"{art_id}.jpg"
-            image_url = upload_image_to_supabase(img, filename)
-            image_attribution = "Wikimedia Commons"
-    
-    # Fallback to Pexels
-    if not image_url and article.get("image_search_pexels"):
-        print(f"  Trying Pexels: {article['image_search_pexels']}")
-        img = fetch_pexels_image(article["image_search_pexels"], article.get("image_search_pexels_fallback"))
-        if img and validate_image_url(img):
-            filename = f"{art_id}.jpg"
-            image_url = upload_image_to_supabase(img, filename)
-            image_attribution = "The Videshi"
-    
-    # Fallback Pexels with fallback query only
-    if not image_url and not article.get("image_search_pexels") and article.get("image_search_pexels_fallback"):
-        print(f"  Trying Pexels fallback: {article['image_search_pexels_fallback']}")
-        img = fetch_pexels_image(article["image_search_pexels_fallback"])
-        if img and validate_image_url(img):
-            filename = f"{art_id}.jpg"
-            image_url = upload_image_to_supabase(img, filename)
-            image_attribution = "The Videshi"
-    
-    if not image_url:
-        print("  ⚠ No image found — publishing without image")
-    
-    # Build article data
-    data = {
-        "id": art_id,
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "slug": article["slug"],
-        "category": article["category"],
-        "vertical": article.get("vertical", "news"),
-        "body": article["body"],
-        "status": "published",
-        "published_at": now,
-        "sources": json.dumps(article["sources_json"]),
-        "is_editorial": False
-    }
-    
-    if image_url:
-        data["image_url"] = image_url
-    if image_attribution:
-        data["image_attribution"] = image_attribution
-    
-    result = sb_insert("p2_articles", data)
-    if result:
-        print(f"  ✓ Published: {article['slug']}")
-        published_count += 1
-    else:
-        print(f"  ✗ Failed to publish: {article['slug']}")
+    print(f"Done. {success_count}/{len(articles)} articles published.")
+    print(f"{'='*60}")
 
-print(f"\n{'='*60}")
-print(f"Done! Published {published_count}/{len(articles)} articles.")
+
+if __name__ == "__main__":
+    main()
