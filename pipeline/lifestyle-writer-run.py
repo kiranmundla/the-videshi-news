@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Lifestyle & Markets writer — 2026-06-02 run"""
+"""Lifestyle & Markets writer — 2026-06-02 run (fixed)"""
 
-import json, os, sys, uuid, re, time
+import json, os, sys, uuid, re, time, subprocess
 from datetime import datetime, timezone
-
 import requests
 import urllib.parse
 
@@ -18,10 +17,7 @@ SB_HEADERS = {
     "Prefer": "return=representation",
 }
 
-# ── helpers ──
-
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -33,15 +29,13 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
@@ -49,7 +43,6 @@ def fetch_pexels_image(query, fallback_query=None):
         if not q:
             continue
         try:
-            import subprocess
             cmd = [
                 "curl", "-sS",
                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
@@ -61,9 +54,8 @@ def fetch_pexels_image(query, fallback_query=None):
             for p in photos:
                 url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
                 alt = (p.get("alt") or "").lower()
-                # skip bad images
-                bad_patterns = ["aerial", "satellite", "map", "flag", "icon", "logo"]
-                if any(bp in alt for bp in bad_patterns):
+                bad = ["aerial", "satellite", "map", "flag", "icon", "logo"]
+                if any(bp in alt for bp in bad):
                     continue
                 if url:
                     print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
@@ -72,29 +64,25 @@ def fetch_pexels_image(query, fallback_query=None):
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
 def upload_image_to_supabase(img_url, filename):
-    """Download an image and upload to Supabase storage bucket 'article-images'."""
     try:
         r = requests.get(img_url, timeout=15, headers={"User-Agent": "TheVideshi/1.0"})
         if r.status_code != 200:
             print(f"  ⚠ Image download failed: HTTP {r.status_code}")
-            return img_url  # fall back to original
-        content_type = r.headers.get("Content-Type", "image/jpeg")
-        if not content_type.startswith("image/"):
-            print(f"  ⚠ Not an image: {content_type}")
+            return img_url
+        ct = r.headers.get("Content-Type", "image/jpeg")
+        if not ct.startswith("image/"):
             return img_url
         if len(r.content) < 5000:
             print(f"  ⚠ Image too small: {len(r.content)} bytes")
             return img_url
-
         upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
         up = requests.post(
             upload_url,
             headers={
                 "apikey": SB_KEY,
                 "Authorization": f"Bearer {SB_KEY}",
-                "Content-Type": content_type,
+                "Content-Type": ct,
                 "x-upsert": "true",
             },
             data=r.content,
@@ -102,7 +90,7 @@ def upload_image_to_supabase(img_url, filename):
         )
         if up.status_code in (200, 201):
             public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            print(f"  ✓ Uploaded: {public_url[:80]}...")
             return public_url
         else:
             print(f"  ⚠ Upload failed: {up.status_code} {up.text[:200]}")
@@ -111,27 +99,40 @@ def upload_image_to_supabase(img_url, filename):
         print(f"  ⚠ Upload error: {e}")
         return img_url
 
+def create_topic(canonical_title, category, score_total=75):
+    topic = {
+        "canonical_title": canonical_title,
+        "category": category,
+        "status": "published",
+        "vertical": category,
+        "urgency": "normal",
+        "score_diaspora": 7,
+        "score_significance": 7,
+        "score_recency": 8,
+        "score_source_avail": 8,
+        "score_total": score_total,
+        "signal_count": 3,
+        "keywords": [],
+    }
+    r = requests.post(
+        f"{SB_URL}/rest/v1/p2_topics",
+        headers=SB_HEADERS,
+        json=topic,
+        timeout=15,
+    )
+    if r.status_code in (200, 201):
+        data = r.json()
+        tid = data[0]["id"] if isinstance(data, list) else data.get("id")
+        print(f"  ✓ Topic created: {tid}")
+        return tid
+    else:
+        print(f"  ✗ Topic creation failed: {r.status_code} {r.text[:200]}")
+        return None
 
-def validate_image_url(url):
-    """Verify an image URL returns 200 with image content > 5KB."""
-    if not url:
-        return False
-    try:
-        r = requests.head(url, timeout=10, headers={"User-Agent": "TheVideshi/1.0"}, allow_redirects=True)
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            return True
-        # HEAD may not return Content-Length, try GET
-        if r.status_code == 200 and "image" in ct:
-            return True
-    except:
-        pass
-    return False
-
+def count_words(text):
+    return len(re.findall(r'\w+', text))
 
 def insert_article(article):
-    """Insert an article into Supabase."""
     r = requests.post(
         f"{SB_URL}/rest/v1/p2_articles",
         headers=SB_HEADERS,
@@ -147,23 +148,24 @@ def insert_article(article):
         print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
         return None
 
-
 # ═══════════════════════════════════════════════════════════════
-# ARTICLE 1 — Lifestyle-Health
-# FDA Approves First Needle-Free Insulin for Children
+# ARTICLES
 # ═══════════════════════════════════════════════════════════════
 
-art1_slug = "fda-approves-inhaled-insulin-afrezza-children-diabetes-south-asian-families-20260602"
-art1_headline = "The FDA Just Approved the First Needle-Free Insulin for Children. For South Asian Families Managing Diabetes, It Changes Everything."
-art1_subheadline = "MannKind's Afrezza, an inhaled rapid-acting insulin, is now cleared for kids aged six and older. With 350,000 American children living with diabetes and South Asians facing some of the highest rates in the world, this is not a niche approval."
+now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-art1_body = """The U.S. Food and Drug Administration has approved MannKind Corporation's Afrezza — an inhaled rapid-acting insulin delivered through a small, portable device — for children and adolescents aged six and older with Type 1 or Type 2 diabetes. It is the first and only needle-free mealtime insulin ever approved for the paediatric population.
+articles_data = [
+    {
+        "slug": "fda-approves-inhaled-insulin-afrezza-children-diabetes-south-asian-families-20260602",
+        "headline": "The FDA Just Approved the First Needle-Free Insulin for Children. For South Asian Families Managing Diabetes, It Changes Everything.",
+        "subheadline": "MannKind's Afrezza, an inhaled rapid-acting insulin, is now cleared for kids aged six and older. With 350,000 American children living with diabetes and South Asians facing some of the highest rates in the world, this is not a niche approval.",
+        "body": """The U.S. Food and Drug Administration has approved MannKind Corporation's Afrezza — an inhaled rapid-acting insulin delivered through a small, portable device — for children and adolescents aged six and older with Type 1 or Type 2 diabetes. It is the first and only needle-free mealtime insulin ever approved for the paediatric population.
 
 The approval, announced on May 30, marks a significant expansion from Afrezza's original 2014 clearance for adults. For the estimated 350,000 children and adolescents in the United States living with diabetes, the majority of whom have Type 1 and require multiple daily insulin injections, this represents the first real alternative to needles at mealtimes.
 
 ## How It Works
 
-Afrezza uses MannKind's Technosphere platform to deliver insulin powder through a pocket-sized inhaler. The insulin is absorbed rapidly through the lungs into the bloodstream, closely mimicking the body's natural insulin response to food. Patients inhale a dose at the start of each meal. The drug does not replace basal (long-acting) insulin for Type 1 patients — it supplements it.
+Afrezza uses MannKind's Technosphere platform to deliver insulin powder through a pocket-sized inhaler. The insulin is absorbed rapidly through the lungs into the bloodstream, closely mimicking the body's natural insulin response to food. Patients inhale a dose at the start of each meal. The drug does not replace basal insulin for Type 1 patients — it supplements it.
 
 The key advantage over injected rapid-acting insulins is speed and convenience. For children whose eating patterns, activity levels, and school schedules vary daily, a quick inhalation before a meal is substantially less disruptive than preparing and administering an injection.
 
@@ -193,18 +195,21 @@ MannKind says eligible patients can access Afrezza for $35 or less per month thr
 
 The approval does not change the fundamental management of Type 1 diabetes — basal insulin remains essential — but it adds a tool that prioritises how children and families actually live over how clinical protocols assume they should.
 
-*Sources: FDA, Reuters, MedPage Today, MannKind Corporation, INHALE-1 trial data (ASCO 2026)*"""
-
-# ═══════════════════════════════════════════════════════════════
-# ARTICLE 2 — Lifestyle-Health
-# Medicare's $50 GLP-1 Weight-Loss Drug Program
-# ═══════════════════════════════════════════════════════════════
-
-art2_slug = "medicare-glp1-bridge-50-dollar-wegovy-zepbound-weight-loss-nri-elderly-parents-20260602"
-art2_headline = "Medicare Will Cover Wegovy and Zepbound for $50 a Month Starting July 1. If Your Parents Are on Medicare, Read This."
-art2_subheadline = "The new GLP-1 Bridge program opens weight-loss drug access to 14 million Medicare beneficiaries. For NRI families managing ageing parents' health from abroad, the financial and logistical implications are substantial."
-
-art2_body = """Starting July 1, millions of Americans on Medicare will be able to access GLP-1 weight-loss medications — including Wegovy, Zepbound, and the oral drug Foundayo — for just $50 a month. The programme, known as the Medicare GLP-1 Bridge, is the federal government's first direct coverage of obesity medications under Medicare, bypassing longstanding legal restrictions that limited these drugs to patients with diabetes or cardiovascular disease.
+*Sources: FDA, Reuters, MedPage Today, MannKind Corporation, INHALE-1 trial data*""",
+        "category": "lifestyle-health",
+        "diaspora_angle": "South Asians face disproportionately high rates of diabetes, including growing Type 2 incidence in adolescents. A needle-free insulin option reduces adherence barriers for diaspora families managing children's diabetes across school, sports, and social settings.",
+        "tags": ["diabetes", "insulin", "FDA approval", "children health", "Afrezza", "MannKind", "needle-free", "South Asian health"],
+        "urgency": "breaking",
+        "score_total": 82,
+        "topic_title": "FDA Approves Inhaled Insulin for Children",
+        "img_queries": ("child using inhaler medical device", "diabetes insulin treatment child"),
+        "img_person": None,
+    },
+    {
+        "slug": "medicare-glp1-bridge-50-dollar-wegovy-zepbound-weight-loss-nri-elderly-parents-20260602",
+        "headline": "Medicare Will Cover Wegovy and Zepbound for $50 a Month Starting July 1. If Your Parents Are on Medicare, Read This.",
+        "subheadline": "The new GLP-1 Bridge program opens weight-loss drug access to 14 million Medicare beneficiaries. For NRI families managing ageing parents' health from abroad, the financial and logistical implications are substantial.",
+        "body": """Starting July 1, millions of Americans on Medicare will be able to access GLP-1 weight-loss medications — including Wegovy, Zepbound, and the oral drug Foundayo — for just $50 a month. The programme, known as the Medicare GLP-1 Bridge, is the federal government's first direct coverage of obesity medications under Medicare, bypassing longstanding legal restrictions that limited these drugs to patients with diabetes or cardiovascular disease.
 
 The shift is enormous. Previously, Medicare beneficiaries who wanted GLP-1s for weight loss had to pay out of pocket — often $1,000 or more per month. Under the new pilot, the $50 co-payment stays flat regardless of dose, and coverage runs for 18 months through December 2027.
 
@@ -226,11 +231,11 @@ Meanwhile, the insurance landscape is shifting in parallel. CVS Caremark, one of
 
 ## What This Means for NRI Families
 
-For the Indian diaspora in the United States, this programme has particular relevance. Many NRI families have elderly parents on Medicare — either living with them in multigenerational households or aging in place with support from adult children managing care logistics from across the country or across the world.
+For the Indian diaspora in the United States, this programme has particular relevance. Many NRI families have elderly parents on Medicare — either living with them in multigenerational households or ageing in place with support from adult children managing care logistics from across the country or across the world.
 
 Obesity and metabolic syndrome in older South Asian adults are well-documented challenges. South Asians accumulate visceral fat at lower BMIs than other populations, and the metabolic consequences — insulin resistance, cardiovascular disease, fatty liver — accelerate with age. GLP-1 medications have shown significant benefits beyond weight loss, including reductions in cardiovascular events and improvements in fatty liver markers.
 
-At $50 a month, the financial barrier drops dramatically. But navigating the programme still requires active management: ensuring the physician documents an obesity diagnosis, selecting among the three covered medications, and monitoring for side effects that are more common in older patients (nausea, gastroparesis, muscle loss).
+At $50 a month, the financial barrier drops dramatically. But navigating the programme still requires active management: ensuring the physician documents an obesity diagnosis, selecting among the three covered medications, and monitoring for side effects that are more common in older patients — nausea, gastroparesis, and muscle loss.
 
 For families coordinating elder care remotely — a reality for many NRIs with parents in suburbs with limited public transit or specialist access — telehealth providers are increasingly offering GLP-1 prescribing and monitoring, though questions about safety oversight remain.
 
@@ -238,40 +243,43 @@ For families coordinating elder care remotely — a reality for many NRIs with p
 
 The GLP-1 Bridge programme is temporary, running through December 2027. A follow-up programme is expected but not guaranteed. For beneficiaries who start on these medications and experience significant weight loss, the prospect of losing coverage in 18 months raises questions about long-term sustainability — GLP-1 medications typically require ongoing use to maintain results.
 
-The programme also raises a precedent question. If Medicare can cover obesity drugs through a pilot that bypasses existing law, the door opens for broader pharmaceutical coverage initiatives. Whether that is a positive development for healthcare costs or a windfall for drugmakers depends on who you ask.
+The programme also sets a precedent. If Medicare can cover obesity drugs through a pilot that bypasses existing law, the door opens for broader pharmaceutical coverage initiatives. Whether that is a positive development for healthcare costs or a windfall for drugmakers depends entirely on perspective.
 
 For now, if you have a parent or grandparent on Medicare who has struggled with weight-related health issues, July 1 is a date worth marking.
 
-*Sources: STAT News, People, Reuters, CMS, CVS Caremark, KFF Health News*"""
-
-# ═══════════════════════════════════════════════════════════════
-# ARTICLE 3 — Markets-Finance
-# SpaceX IPO: The Largest Listing in History
-# ═══════════════════════════════════════════════════════════════
-
-art3_slug = "spacex-ipo-june-12-largest-listing-history-2-trillion-nri-investors-20260602"
-art3_headline = "SpaceX Will Go Public on June 12. At Up to $2 Trillion, It Will Be the Largest IPO in History. Here Is What NRI Investors Need to Know."
-art3_subheadline = "Elon Musk's rocket and satellite company plans to raise up to $86.5 billion in a single offering. Morningstar says it is overvalued by nearly half. The listing will test whether the current rally can absorb the largest capital extraction U.S. equity markets have ever seen."
-
-art3_body = """SpaceX, the rocket, satellite, and AI conglomerate controlled by Elon Musk, is set to begin trading on the Nasdaq under the ticker SPCX on June 12, in what will be the largest initial public offering in the history of global capital markets.
+*Sources: STAT News, People, CMS, CVS Caremark, KFF Health News*""",
+        "category": "lifestyle-health",
+        "diaspora_angle": "Many NRI families have elderly parents on Medicare. South Asians face higher visceral fat accumulation and metabolic syndrome at lower BMIs. The $50 GLP-1 programme directly impacts diaspora families managing elder care remotely.",
+        "tags": ["Medicare", "GLP-1", "Wegovy", "Zepbound", "weight loss", "obesity", "elder care", "NRI families"],
+        "urgency": "normal",
+        "score_total": 78,
+        "topic_title": "Medicare GLP-1 Bridge Programme Launches July 1",
+        "img_queries": ("senior patient pharmacy medication prescription", "elderly healthcare prescription drugs"),
+        "img_person": None,
+    },
+    {
+        "slug": "spacex-ipo-june-12-largest-listing-history-2-trillion-nri-investors-20260602",
+        "headline": "SpaceX Will Go Public on June 12. At Up to $2 Trillion, It Will Be the Largest IPO in History. Here Is What NRI Investors Need to Know.",
+        "subheadline": "Elon Musk's rocket and satellite company plans to raise up to $86.5 billion in a single offering. Morningstar says it is overvalued by nearly half. The listing will test whether the current rally can absorb the largest capital extraction U.S. equity markets have ever seen.",
+        "body": """SpaceX, the rocket, satellite, and AI conglomerate controlled by Elon Musk, is set to begin trading on the Nasdaq under the ticker SPCX on June 12, in what will be the largest initial public offering in the history of global capital markets.
 
 The company is targeting a valuation of $1.8 trillion to $2 trillion and plans to raise approximately $75 billion to $86.5 billion from the offering. For context, Alibaba's 2014 IPO raised $21.8 billion. Facebook's 2012 listing raised $16 billion. SpaceX plans to raise more than four times the previous record in a single transaction.
 
 ## What SpaceX Actually Is Now
 
-SpaceX's S-1 registration statement, filed with the SEC on May 20, reveals a company that has expanded far beyond rocket launches. The revenue breakdown shows three distinct businesses:
+SpaceX's S-1 registration statement, filed with the SEC on May 20, reveals a company that has expanded far beyond rocket launches. The revenue breakdown shows three distinct businesses.
 
-**Starlink** — the satellite internet service — generated $11.4 billion in revenue in 2025 and is the company's largest segment. With over 200 million subscribers globally and growing, Starlink provides broadband to underserved areas, maritime vessels, and airlines.
+Starlink — the satellite internet service — generated $11.4 billion in revenue in 2025 and is the company's largest segment. With over 200 million subscribers globally, Starlink provides broadband to underserved areas, maritime vessels, and airlines.
 
-**Launch services** — SpaceX's core business of putting payloads into orbit — brought in $4.1 billion. This includes commercial satellite launches, NASA missions, and a growing roster of Department of Defence contracts, including a $4 billion agreement announced on May 29.
+Launch services — SpaceX's core business of putting payloads into orbit — brought in $4.1 billion. This includes commercial satellite launches, NASA missions, and a growing roster of Department of Defence contracts, including a $4 billion agreement announced on May 29.
 
-**xAI** — the artificial intelligence division that SpaceX absorbed after acquiring Musk's AI company in February — added $3.2 billion, largely from data centre operations. Anthropic, the AI lab, recently signed a $1.25 billion-per-month deal to access compute capacity at SpaceX's Colossus data centres through May 2029.
+xAI — the artificial intelligence division that SpaceX absorbed after acquiring Musk's AI company in February — added $3.2 billion, largely from data centre operations. Anthropic recently signed a $1.25 billion-per-month deal to access compute capacity at SpaceX's Colossus data centres through May 2029.
 
 ## Why the Market Is Nervous
 
 The sheer size of the offering has Wall Street divided. The IPO will extract more new cash from U.S. equity markets in a single event than any prior listing, and some investors worry about the impact on a market that has already rallied sharply.
 
-"There is no (even vaguely close) historical precedent to such a capital raise," wrote Rupert Mitchell of Blind Squirrel Macro, a former Salomon Brothers and Goldman Sachs executive. "I think it will place a huge test on the stability of the U.S. equity market."
+"There is no even vaguely close historical precedent to such a capital raise," wrote Rupert Mitchell of Blind Squirrel Macro, a former Salomon Brothers and Goldman Sachs executive. "I think it will place a huge test on the stability of the U.S. equity market."
 
 Mitchell estimates that investors will need to deploy roughly half a trillion dollars — covering the $75 billion base offering plus a 15 per cent greenshoe option — for the listing to be considered a success.
 
@@ -289,19 +297,29 @@ Morningstar expects heavy initial demand driven by investor appetite for AI infr
 
 ## What NRI Tech Investors Should Consider
 
-For the Indian diaspora's substantial community of tech-sector professionals and retail investors, SpaceX's IPO is the defining market event of 2026. Several considerations:
+For the Indian diaspora's substantial community of tech-sector professionals and retail investors, SpaceX's IPO is the defining market event of 2026. Several considerations stand out.
 
 **Index fund exposure.** If SpaceX enters the Nasdaq-100 in July, every index fund and ETF tracking the QQQ will automatically become a buyer. If you hold Nasdaq-100 index funds in your 401(k) or brokerage account, you will own SpaceX whether you choose to or not.
 
 **Valuation risk.** Morningstar's $780 billion estimate versus the $2 trillion target means a potential 48 per cent downside if fundamentals reassert themselves. The AI division — inherited from the xAI acquisition — is the least proven segment and the one driving the most aggressive valuation assumptions.
 
-**Lockup dynamics.** Musk's 40 per cent economic stake is locked for one year. But other insiders can begin selling in tranches as early as 180 days after the offering, with additional windows opening every 15-20 days between earnings reports. This creates a persistent supply overhang.
+**Lockup dynamics.** Musk's 40 per cent economic stake is locked for one year. But other insiders can begin selling in tranches as early as 180 days after the offering, with additional windows opening every 15 to 20 days between earnings reports. This creates a persistent supply overhang.
 
 **SpaceX is not a pure-play space company.** With xAI and Starlink in the mix, SpaceX is a conglomerate. Investors buying for the rocket business are also buying an AI data centre operation and a satellite internet provider. Each segment carries different risks and growth trajectories.
 
-The Renaissance IPO ETF (ticker: IPO) gained 2.7 per cent on Monday, reflecting broad enthusiasm for the upcoming listing. Whether that enthusiasm survives contact with a $2 trillion valuation and a nervous June market remains to be seen.
+The Renaissance IPO ETF (ticker: IPO) gained 2.7 per cent on Monday, reflecting broad enthusiasm for the upcoming listing. Whether that enthusiasm survives contact with a $2 trillion valuation and a nervous June market remains the open question.
 
-*Sources: SpaceX S-1 Filing, Morningstar, Barron's, MarketWatch, The Motley Fool, Ameriprise Research, The Street*"""
+*Sources: SpaceX S-1 Filing, Morningstar, Barron's, MarketWatch, The Motley Fool, Ameriprise Research*""",
+        "category": "markets-finance",
+        "diaspora_angle": "NRI tech professionals hold significant Nasdaq-100 exposure through 401(k)s and index funds. SpaceX's potential fast-track entry into the Nasdaq-100 means passive NRI investors will automatically become SpaceX shareholders. The Morningstar overvaluation warning is directly relevant to portfolio risk management.",
+        "tags": ["SpaceX", "IPO", "Elon Musk", "Nasdaq", "Starlink", "investing", "NRI investors", "stock market"],
+        "urgency": "breaking",
+        "score_total": 88,
+        "topic_title": "SpaceX IPO Largest in History June 12",
+        "img_queries": ("rocket launch space", "spacecraft launch pad"),
+        "img_person": "SpaceX",
+    },
+]
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -310,133 +328,90 @@ The Renaissance IPO ETF (ticker: IPO) gained 2.7 per cent on Monday, reflecting 
 
 print("\n=== Image Sourcing ===\n")
 
-# Article 1: Inhaled insulin for kids - no specific person, use Pexels
-print("Article 1: Inhaled insulin / diabetes in children")
-art1_img = fetch_pexels_image("child using inhaler medical device", "diabetes insulin treatment child")
-art1_attribution = "Pexels"
-
-# Article 2: Medicare GLP-1 - no specific person, use Pexels
-print("\nArticle 2: Medicare GLP-1 weight loss drugs")
-art2_img = fetch_pexels_image("senior citizen pharmacy medication", "elderly patient prescription drugs")
-art2_attribution = "Pexels"
-
-# Article 3: SpaceX IPO - try Wikipedia for Elon Musk or SpaceX, or Pexels
-print("\nArticle 3: SpaceX IPO")
-art3_img = fetch_wikipedia_person_image("SpaceX")
-if not art3_img:
-    art3_img = fetch_wikipedia_person_image("Elon Musk")
-art3_attribution = "Wikimedia Commons"
-if not art3_img:
-    art3_img = fetch_pexels_image("rocket launch space", "spacecraft launch pad")
-    art3_attribution = "Pexels"
-
-
-# ═══════════════════════════════════════════════════════════════
-# UPLOAD & INSERT
-# ═══════════════════════════════════════════════════════════════
-
-print("\n=== Uploading Images ===\n")
-
-now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
-articles = [
-    {
-        "slug": art1_slug,
-        "headline": art1_headline,
-        "subheadline": art1_subheadline,
-        "body": art1_body,
-        "category": "lifestyle-health",
-        "status": "published",
-        "published_at": now,
-        "is_editorial": False,
-        "sources": json.dumps([
-            {"name": "FDA", "url": "https://www.fda.gov"},
-            {"name": "Reuters", "url": "https://www.reuters.com"},
-            {"name": "MedPage Today", "url": "https://www.medpagetoday.com"},
-            {"name": "MannKind Corporation", "url": "https://www.mannkindcorp.com"},
-        ]),
-        "image_url": None,
-        "image_attribution": art1_attribution,
-    },
-    {
-        "slug": art2_slug,
-        "headline": art2_headline,
-        "subheadline": art2_subheadline,
-        "body": art2_body,
-        "category": "lifestyle-health",
-        "status": "published",
-        "published_at": now,
-        "is_editorial": False,
-        "sources": json.dumps([
-            {"name": "STAT News", "url": "https://www.statnews.com"},
-            {"name": "People", "url": "https://people.com"},
-            {"name": "CMS", "url": "https://www.cms.gov"},
-            {"name": "KFF Health News", "url": "https://kffhealthnews.org"},
-        ]),
-        "image_url": None,
-        "image_attribution": art2_attribution,
-    },
-    {
-        "slug": art3_slug,
-        "headline": art3_headline,
-        "subheadline": art3_subheadline,
-        "body": art3_body,
-        "category": "markets-finance",
-        "status": "published",
-        "published_at": now,
-        "is_editorial": False,
-        "sources": json.dumps([
-            {"name": "SpaceX S-1 Filing", "url": "https://www.sec.gov"},
-            {"name": "Morningstar", "url": "https://www.morningstar.com"},
-            {"name": "Barron's", "url": "https://www.barrons.com"},
-            {"name": "MarketWatch", "url": "https://www.marketwatch.com"},
-            {"name": "The Motley Fool", "url": "https://www.fool.com"},
-        ]),
-        "image_url": None,
-        "image_attribution": art3_attribution,
-    },
-]
-
-imgs = [art1_img, art2_img, art3_img]
-
-for i, art in enumerate(articles):
-    img = imgs[i]
-    if img:
-        art_id_temp = str(uuid.uuid4())
-        filename = f"{art_id_temp}.jpg"
-        final_url = upload_image_to_supabase(img, filename)
-        if final_url:
-            art["image_url"] = final_url
-    else:
-        print(f"  ⚠ No image for article {i+1}, inserting without image")
-
-print("\n=== Inserting Articles ===\n")
-
-for art in articles:
-    # Remove None image_url
-    if art["image_url"] is None:
-        del art["image_url"]
-        del art["image_attribution"]
+for i, art in enumerate(articles_data):
+    print(f"Article {i+1}: {art['topic_title']}")
+    img = None
+    attribution = "Pexels"
     
-    art_id = insert_article(art)
-    if art_id:
-        # If we uploaded with temp UUID, update the image filename to use real ID
-        if art.get("image_url") and "article-images/" in art["image_url"]:
-            old_filename = art["image_url"].split("article-images/")[-1]
-            new_filename = f"{art_id}.jpg"
-            if old_filename != new_filename:
-                # Re-upload with correct filename
-                print(f"  Renaming image to {new_filename}...")
-                new_url = upload_image_to_supabase(art["image_url"], new_filename)
-                if new_url and new_url != art["image_url"]:
-                    # Update article with new URL
-                    patch_r = requests.patch(
-                        f"{SB_URL}/rest/v1/p2_articles?id=eq.{art_id}",
-                        headers=SB_HEADERS,
-                        json={"image_url": new_url},
-                        timeout=15,
-                    )
-                    if patch_r.status_code in (200, 204):
-                        print(f"  ✓ Updated image URL for {art['slug']}")
+    if art["img_person"]:
+        img = fetch_wikipedia_person_image(art["img_person"])
+        if img:
+            attribution = "Wikimedia Commons"
+    
+    if not img:
+        q1, q2 = art["img_queries"]
+        img = fetch_pexels_image(q1, q2)
+    
+    if img:
+        temp_id = str(uuid.uuid4())
+        filename = f"{temp_id}.jpg"
+        final_url = upload_image_to_supabase(img, filename)
+        art["_image_url"] = final_url
+        art["_image_attribution"] = attribution
+        art["_temp_filename"] = filename
+        art["_temp_id"] = temp_id
+    else:
+        print(f"  ⚠ No image found for article {i+1}")
+        art["_image_url"] = None
+        art["_image_attribution"] = None
+    print()
 
-print("\n=== Done ===")
+
+# ═══════════════════════════════════════════════════════════════
+# CREATE TOPICS & INSERT ARTICLES
+# ═══════════════════════════════════════════════════════════════
+
+print("=== Creating Topics & Inserting Articles ===\n")
+
+for art in articles_data:
+    # Create topic
+    topic_id = create_topic(art["topic_title"], art["category"], art["score_total"])
+    if not topic_id:
+        print(f"  ✗ Skipping article {art['slug']} — no topic")
+        continue
+    
+    wc = count_words(art["body"])
+    
+    article_payload = {
+        "topic_id": topic_id,
+        "slug": art["slug"],
+        "headline": art["headline"],
+        "subheadline": art["subheadline"],
+        "body": art["body"],
+        "category": art["category"],
+        "diaspora_angle": art["diaspora_angle"],
+        "vertical": art["category"],
+        "tags": art["tags"],
+        "urgency": art["urgency"],
+        "score_total": art["score_total"],
+        "word_count": wc,
+        "status": "published",
+        "published_at": now,
+        "is_featured": False,
+        "is_editorial": False,
+        "sources": json.dumps([]),
+    }
+    
+    if art["_image_url"]:
+        article_payload["image_url"] = art["_image_url"]
+        article_payload["image_attribution"] = art["_image_attribution"]
+    
+    art_id = insert_article(article_payload)
+    
+    if art_id and art.get("_image_url") and "article-images/" in art["_image_url"]:
+        # Re-upload image with the real article ID as filename
+        new_filename = f"{art_id}.jpg"
+        old_url = art["_image_url"]
+        new_url = upload_image_to_supabase(old_url, new_filename)
+        if new_url and new_url != old_url:
+            r = requests.patch(
+                f"{SB_URL}/rest/v1/p2_articles?id=eq.{art_id}",
+                headers=SB_HEADERS,
+                json={"image_url": new_url},
+                timeout=15,
+            )
+            if r.status_code in (200, 204):
+                print(f"  ✓ Image updated to {new_filename}")
+    print()
+
+print("=== Done ===")
