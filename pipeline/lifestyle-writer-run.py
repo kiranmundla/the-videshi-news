@@ -114,6 +114,8 @@ def insert_article(article):
     article["status"] = "published"
     article["published_at"] = datetime.now(timezone.utc).isoformat()
     article["is_editorial"] = False
+    article.setdefault("vertical", article.get("category"))
+    article.setdefault("tags", [])
     
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
