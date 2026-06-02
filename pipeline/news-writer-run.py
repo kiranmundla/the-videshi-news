@@ -1,30 +1,32 @@
 #!/usr/bin/env python3
-"""News writer - 2026-06-01 evening run. Publishes 3 articles."""
+"""
+Videshi News Writer — June 2, 2026 batch
+Publishes 3 articles in the 'news' category.
+"""
+import os, json, sys, uuid, re, time
+from datetime import datetime, timezone
+import requests, urllib.parse
 
-import json, os, sys, time, uuid, re, urllib.parse
-import requests
-
-# Load env
+# ── Load env ──────────────────────────────────────────────────────────────────
 def load_env(path):
     if not os.path.exists(path):
         return
     with open(path) as f:
         for line in f:
             line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                key, val = line.split('=', 1)
-                key = key.replace('export ', '').strip()
-                val = val.strip().strip('"').strip("'")
-                os.environ[key] = val
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            key, _, val = line.partition('=')
+            key = key.replace('export ', '').strip()
+            val = val.strip().strip('"').strip("'")
+            os.environ.setdefault(key, val)
 
 load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
 HEADERS = {
     'apikey': SUPABASE_KEY,
     'Authorization': f'Bearer {SUPABASE_KEY}',
@@ -32,6 +34,7 @@ HEADERS = {
     'Prefer': 'return=representation'
 }
 
+# ── Image helpers ─────────────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -45,287 +48,343 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
-    import subprocess
+    """Fetch image from Pexels API using curl (urllib gets 403)."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            cmd = [
-                'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'
-            ]
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
-            if result.returncode == 0:
-                data = json.loads(result.stdout)
-                photos = data.get('photos', [])
-                if photos:
-                    url = photos[0]['src']['large2x']
-                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+            import subprocess
+            result = subprocess.run(
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'],
+                capture_output=True, text=True, timeout=15
+            )
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            for photo in photos:
+                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('original')
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                     return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 def validate_image(url):
-    """Validate image URL returns 200 with image content type and >5KB."""
-    if not url:
-        return False
+    """Check image URL returns 200 with image content-type and >5KB."""
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         ct = r.headers.get('Content-Type', '')
         cl = int(r.headers.get('Content-Length', 0))
         if r.status_code == 200 and 'image' in ct and cl > 5000:
-            print(f"  ✓ Image validated: {r.status_code}, {ct}, {cl} bytes")
             return True
-        # Try GET if HEAD fails
-        r = requests.get(url, timeout=10, stream=True, allow_redirects=True,
-                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
+        # Sometimes HEAD doesn't return Content-Length, try GET with stream
         if r.status_code == 200 and 'image' in ct:
-            # Read a chunk to verify size
-            chunk = r.raw.read(6000)
+            r2 = requests.get(url, timeout=10, stream=True,
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
             if len(chunk) > 5000:
-                print(f"  ✓ Image validated via GET: {r.status_code}, {ct}")
                 return True
     except Exception as e:
         print(f"  ⚠ Image validation error: {e}")
     return False
 
-def publish_article(article):
-    """Insert article into Supabase."""
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    r = requests.post(url, headers=HEADERS, json=article)
+def upload_to_supabase_storage(image_url, filename):
+    """Download image and upload to Supabase storage bucket."""
+    try:
+        r = requests.get(image_url, timeout=15,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code != 200 or len(r.content) < 5000:
+            print(f"  ⚠ Download failed: status={r.status_code}, size={len(r.content)}")
+            return None
+        ct = r.headers.get('Content-Type', 'image/jpeg')
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        r2 = requests.post(upload_url, data=r.content, headers={
+            'apikey': SUPABASE_KEY,
+            'Authorization': f'Bearer {SUPABASE_KEY}',
+            'Content-Type': ct,
+            'x-upsert': 'true'
+        }, timeout=30)
+        if r2.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Upload failed: {r2.status_code} {r2.text[:200]}")
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
+    return None
+
+# ── Supabase insert ──────────────────────────────────────────────────────────
+def insert_article(article):
+    """Insert article into p2_articles."""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article,
+        timeout=30
+    )
     if r.status_code in (200, 201):
         data = r.json()
-        if isinstance(data, list) and data:
-            print(f"  ✓ Published: {data[0].get('headline', '?')[:60]}...")
-            return True
-        elif isinstance(data, dict):
-            print(f"  ✓ Published: {data.get('headline', '?')[:60]}...")
-            return True
-    print(f"  ✗ Publish failed ({r.status_code}): {r.text[:200]}")
-    return False
+        art_id = data[0]['id'] if isinstance(data, list) else data.get('id')
+        print(f"  ✓ Article inserted: {article['slug']} (id: {art_id})")
+        return art_id
+    else:
+        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
+        return None
 
-def word_count(text):
-    return len(text.split())
+# ── Articles ─────────────────────────────────────────────────────────────────
+articles = [
+    # ── Article 1: BrahMos Vietnam Deal ──
+    {
+        "headline": "India Just Signed a BrahMos Deal With Vietnam. Three Southeast Asian Nations Now Carry the Missile.",
+        "subheadline": "Defence exports hit a record ₹38,424 crore as Operation Sindoor drives unprecedented global demand for Indian weapons systems.",
+        "slug": "india-brahmos-vietnam-deal-defense-exports-record-38424-crore-southeast-asia-20260602",
+        "category": "news",
+        "status": "published",
+        "is_editorial": False,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        
+        "sources": json.dumps([
+            "Reuters — 'India says signed BrahMos missile deal with Vietnam' (May 30, 2026)",
+            "IANS — 'Brahmos cruise missile deal with Vietnam already signed: Defence Secretary' (May 30, 2026)",
+            "The Hindu Business Line — 'India signs BrahMos missile deal with Vietnam' (May 30, 2026)",
+            "Bhaskar English — 'India Defence Exports Surge: BrahMos, Akash, Netra Deals Worth ₹21K Cr' (June 1, 2026)"
+        ]),
+        "body": """India has signed an agreement to supply its BrahMos supersonic cruise missiles to Vietnam, Defence Secretary Rajesh Kumar Singh confirmed at the Shangri-La Dialogue in Singapore on Saturday. A similar deal with Indonesia is in the "final stages," Singh said, marking the third Southeast Asian nation to acquire the weapon system after the Philippines, which took delivery of its first batch in 2024.
 
-# ============================================================
-# ARTICLE 1: Delhi Saket Building Collapse
-# ============================================================
-print("\n=== ARTICLE 1: Delhi Saket Building Collapse ===")
+## The Deal
 
-img1 = fetch_pexels_image("building collapse rescue India debris", "collapsed building rubble rescue workers")
-if img1 and not validate_image(img1):
-    img1 = None
+The Vietnam agreement is valued at approximately ₹6,000 crore ($629 million) and includes training, spare parts, and logistical support. Vietnam's package focuses on land-based coastal defence batteries designed for rapid anti-ship strikes — a direct response to its maritime disputes in the South China Sea.
 
-article1_body = """A three-storey commercial building near the Saket Metro Station in south Delhi collapsed on Saturday evening, killing six people and injuring eight others in one of the deadliest structural failures the city has seen this year.
+"My understanding is that with both Indonesia and with Vietnam, the deal is in the final stages. In fact, for Vietnam, I understand that it has already been signed, probably not publicly announced," Singh told delegates in Singapore.
 
-The building, located on Western Marg in the Saidulajab area, housed a coaching institute, cafes, offices, and a tin shed canteen on its ground floor that served students preparing for medical entrance examinations. Construction work was reportedly underway on the upper floors when the structure gave way around 6 PM on May 30.
+Indonesia, which confirmed a preliminary framework with India in March, is reportedly pursuing the naval variant that can be launched from frigates and submarines. The deal with Jakarta is estimated at ₹3,600 crore and is in the final approval stage.
 
-## A Night of Rescue
+## Record Defence Exports
 
-Rescue teams from the National Disaster Response Force, Delhi Fire Services, the Delhi Disaster Management Authority, and local police deployed heavy machinery, hydraulic cutters, victim-location cameras, and sniffer dogs to comb through the rubble. The operation continued for more than 24 hours.
+The BrahMos deals are the centrepiece of a broader transformation in India's defence export profile. According to the Ministry of Defence, India's defence exports reached a record ₹38,424 crore in FY 2025-26 — up 62 per cent from the previous year. India now exports defence equipment to more than 100 countries, with the United States, France, and Armenia among the largest buyers.
 
-Nine people were pulled alive from the debris and rushed to AIIMS Trauma Centre and Safdarjung Hospital. A green corridor was established to ensure unhindered ambulance movement from the site. Two of the injured were later discharged after receiving first aid, while five others remained in critical condition.
+The US alone imports systems and components worth $2.8 billion, supplied to major contractors including Boeing and Lockheed Martin. Armenia has signed a ₹6,100 crore contract for the Akash missile system, a surface-to-air platform.
 
-## The Dead and the Mourning
+In total, BrahMos-related export deals worth approximately ₹12,500 crore have been signed with the Philippines, Vietnam, and at least two other undisclosed nations.
 
-Among the six killed was Parvati, who ran the canteen on the premises. Her daughter Neelam told PTI that her mother had initially escaped the building after signs of collapse became evident — but went back inside to help students still trapped in the rubble.
+## The Operation Sindoor Effect
 
-"I asked her to open the canteen, but now I regret it," Neelam said. She alleged that the family had previously noticed pieces of concrete falling from parts of the building and had raised concerns about its structural condition. "The real fault lies with the building owner," she said, adding that construction materials had occasionally fallen during ongoing work on the upper floors.
+Much of the recent global interest can be traced to Operation Sindoor, India's military operation earlier this year. The combat deployment of Indian-made weapons — BrahMos, Akash, loitering munitions, and the Netra airborne early warning system — gave the world its first real-time look at India's indigenous defence technology under actual battlefield conditions.
 
-## Owner Absconding, Engineers Suspended
+Several nations have since expressed interest in purchasing these systems. Deals worth more than ₹21,000 crore across multiple weapon platforms are now in various stages of negotiation.
 
-Delhi Police registered an FIR under several sections related to culpable homicide and negligence against the building owner, who remains absconding as of Monday evening. Multiple police teams are searching for him.
+## What It Means for the Indo-Pacific
 
-The Municipal Corporation of Delhi suspended two engineers for oversight failures, confirming that early findings point to potential infrastructural lapses and regulatory violations. The structure was reportedly unauthorised, according to officials at the scene.
+India's defence export push is not purely commercial. It is a deliberate strategic play to position New Delhi as a "friendly defence partner" to nations navigating China's growing military assertiveness in the South China Sea and Indian Ocean.
 
-Chief Minister Rekha Gupta visited the site on Sunday to review the rescue operations and ordered strict action against unauthorised structures and the officials who enabled them.
+"We treat you all as friendly foreign countries with whom we can share advanced defence technology," Singh told the gathering in Singapore.
 
-## A Pattern That Keeps Repeating
+The BrahMos missile itself — co-developed with Russia, capable of flying at nearly Mach 3 with a strike range exceeding 400 kilometres — gives smaller nations a credible deterrent against high-value naval targets. For countries like Vietnam and the Philippines, which face maritime disputes with China, the calculus is straightforward: the missile changes the risk equation for any adversary contemplating incursion.
 
-Building collapses remain a persistent risk across Indian cities, particularly in areas where unauthorised construction is rampant. Poor construction materials, inadequate foundations, and the pressure to add floors to existing structures have all been cited as recurring causes. In Delhi, where land commands a premium, the incentive to build beyond sanctioned limits often outweighs the fear of enforcement.
+## The Diaspora Angle
 
-The Saket collapse has renewed demands for a comprehensive audit of commercial buildings in south Delhi, particularly those housing coaching centres and student-facing businesses where occupancy is high and evacuation routes are often narrow.
+The expansion of India's defence industrial base has a direct impact on the Indian diaspora. Thousands of NRI engineers and defence professionals work in the US and European defence sectors. The deepening US-India defence industrial partnership — with $2.8 billion in components flowing from India to American defence giants — creates a two-way talent and technology corridor that benefits diaspora professionals on both sides.
 
-## What the Diaspora Should Know
+The government has set a defence export target of ₹50,000 crore by 2029-30. From a base of just ₹1,522 crore in 2016-17, that represents a more than 25-fold increase in under a decade — a trajectory that would have been unthinkable a generation ago.""",
+        "image_search_person": "BrahMos missile",
+        "image_search_pexels": "military missile launch defense",
+        "image_search_pexels_fallback": "supersonic cruise missile"
+    },
 
-For NRIs with family members preparing for competitive exams in coaching hubs across Delhi, Kota, and Hyderabad, the collapse is a grim reminder of the safety conditions students often endure. Many coaching centres operate out of buildings that were never designed or approved for high-occupancy commercial use. Parents calling from abroad have limited ability to verify the structural safety of facilities their children use daily — a gap that no government inspection regime has yet closed."""
+    # ── Article 2: Rafale ₹3.25 Lakh Crore LoR ──
+    {
+        "headline": "India Just Sent France the Paperwork for 114 Rafale Jets. The Bill Is ₹3.25 Lakh Crore.",
+        "subheadline": "The Letter of Request for the country's largest-ever defence acquisition comes weeks before Modi's expected visit to Paris. Ninety-four of the jets will be built in India.",
+        "slug": "india-114-rafale-jets-letter-of-request-france-325-lakh-crore-make-in-india-20260602",
+        "category": "news",
+        "status": "published",
+        "is_editorial": False,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        
+        "sources": json.dumps([
+            "The Hindu Business Line — 'India Issues Letter of Request to France for ₹3.25-Lakh-Crore Rafale Deal' (June 1, 2026)",
+            "Devdiscourse — 'India Seeks to Boost Air Power with Massive Rafale Deal with France' (June 1, 2026)",
+            "Whispersinthecorridors.in — 'Indian Navy Signs ₹63,000 Cr Deal for 26 Rafale-M Fighters' (June 1, 2026)",
+            "Breaking Defense — 'India, France increase defense ties with new Rafale jet and submarine buys'"
+        ]),
+        "body": """India has formally issued a Letter of Request to France for the procurement of 114 Rafale fighter aircraft in a government-to-government deal estimated at ₹3.25 lakh crore — the largest defence acquisition in Indian history.
 
-wc1 = word_count(article1_body)
-print(f"  Word count: {wc1}")
+According to Defence Ministry sources, the Acquisition Wing sent the request to Paris recently, initiating the next phase of negotiations for a purchase that will reshape the Indian Air Force's combat fleet for the next three decades.
 
-article1 = {
-    "headline": "A Building Near Delhi's Saket Metro Collapsed on Saturday. Six People Are Dead and the Owner Is Missing.",
-    "subheadline": "Rescue teams pulled survivors from the rubble for 24 hours. The structure housed a coaching centre, cafes, and a canteen that served medical aspirants.",
-    "body": article1_body.strip(),
-    "slug": "delhi-saket-building-collapse-six-dead-owner-absconding-fir-culpable-homicide-20260601",
-    "category": "news",
-    "status": "published",
-    "is_editorial": False,
-    "published_at": "2026-06-01T18:30:00Z",
-    "sources": [
-        {"name": "PTI via Swadesi News", "url": "https://swadesi.com"},
-        {"name": "ANI via LatestLY", "url": "https://latestly.com"},
-        {"name": "Devdiscourse", "url": "https://devdiscourse.com"}
-    ],
-    "vertical": "news",
-    "image_url": img1 or "",
-    "image_attribution": "Pexels" if img1 else ""
-}
+## The Numbers
 
-# ============================================================
-# ARTICLE 2: Rajya Sabha Elections - 27 Seats
-# ============================================================
-print("\n=== ARTICLE 2: Rajya Sabha Elections 27 Seats ===")
+Of the 114 aircraft, 94 are expected to be manufactured in India through a partnership between French aerospace major Dassault Aviation and an Indian company, in line with the 'Make in India' initiative. The remaining 20 would be delivered directly from France.
 
-img2 = fetch_pexels_image("Indian parliament building New Delhi", "India Rajya Sabha parliament")
-if img2 and not validate_image(img2):
-    img2 = None
+France is expected to respond within two to three months. Both countries are aiming to conclude the agreement within the coming year. The deal comes ahead of Prime Minister Narendra Modi's expected visit to France later this month, where the Rafale programme is certain to dominate bilateral discussions.
 
-article2_body = """The Election Commission of India on Monday formally kicked off the process for elections to 27 Rajya Sabha seats and multiple state Legislative Council seats across the country, setting June 18 as the date for polling and counting.
+The Indian Air Force currently operates 36 Rafale jets, acquired under an earlier ₹59,000 crore deal signed in 2016. The new order would bring India's total Rafale fleet to 150 aircraft — making it one of the largest Rafale operators in the world alongside France itself.
 
-The nomination process began at 11 AM on June 1. Candidates have until June 8 to submit their papers. Scrutiny of nominations will take place on June 9, with the final date for withdrawal of candidature fixed as June 11. If contests remain, polling will be held on June 18 from 8 AM to 4 PM, with counting beginning at 5 PM the same day.
+## The Navy Gets Its Own
 
-## The Scale of the Contest
+Separately, India and France have signed an Inter-Governmental Agreement for the procurement of 26 Rafale-M (Marine) fighters for the Indian Navy, valued at approximately ₹63,000 crore. The naval order includes 22 single-seat and 4 twin-seat variants, making India the first international operator of the Rafale's carrier-based version.
 
-The elections cover biennial vacancies for 24 Rajya Sabha seats across 10 states — Andhra Pradesh (4), Gujarat (4), Karnataka (4), Madhya Pradesh (3), Rajasthan (3), Jharkhand (2), and one each in Manipur, Meghalaya, Arunachal Pradesh, and Mizoram. Additionally, bye-elections will fill vacancies in Maharashtra, Tamil Nadu, and Odisha.
+The deal, signed by Defence Minister Rajnath Singh and his French counterpart Sébastien Lecornu, includes training, flight simulators, weapons with transfer of technology (including integration of India's Astra beyond-visual-range missile), five-year performance-based logistics, and maintenance facilities to be established in India.
 
-In Maharashtra, the seat fell vacant after Sunetra Pawar resigned from the Rajya Sabha following her win in the Baramati by-election earlier this year. In Odisha, BJD's Debashish Samantaray resigned on May 25, creating a vacancy that BJP is expected to fill. In Tamil Nadu, AIADMK's C.V. Shanmugam vacated his seat after being elected to the state assembly.
+The Rafale-M jets will operate from India's two aircraft carriers — INS Vikrant and INS Vikramaditya. Deliveries are expected to begin in mid-2028 and continue through 2030.
 
-Beyond the Rajya Sabha, the Election Commission has also announced elections for nine Legislative Council seats in Bihar and seven in Karnataka, along with a by-election for one Bihar Legislative Council seat vacated by former Chief Minister Nitish Kumar.
+## Why This Matters
 
-## The Political Math
+The IAF's fighter squadron strength has been shrinking for years. Against a sanctioned strength of 42 squadrons, the force currently operates roughly 30 — a gap that defence planners have repeatedly flagged as dangerous, particularly given the two-front threat from China and Pakistan.
 
-For the NDA coalition, the arithmetic is favourable in several states. In Gujarat, Madhya Pradesh, and Rajasthan — all BJP-ruled — the ruling party is expected to sweep its quota of seats comfortably. In Karnataka, where the BJP-JD(S) alliance holds a majority, the NDA should secure most of the four seats on offer.
+The 114-jet order under the Multi-Role Fighter Aircraft (MRFA) programme is designed to address this gap with a proven 4.5-generation platform. The Rafale's omni-role capability — air superiority, deep strike, nuclear deterrence, maritime attack, and reconnaissance — makes it the most versatile fighter in India's inventory.
 
-The real contest will play out in Jharkhand, where both the ruling JMM-Congress alliance and the BJP have staked claims. The JMM-led INDIA bloc, with 56 members in the 81-seat assembly, argues that both seats should go to them since each candidate needs 28 first-preference votes to win. The ruling alliance wrote to the Election Commission on May 26, flagging concerns about potential horse trading.
+The emphasis on domestic manufacturing is significant. Setting up a Rafale production line in India is expected to create thousands of jobs in the domestic aerospace sector, from Tier 1 suppliers to the MSME ecosystem. This aligns with the broader goal of reducing import dependency: the recently released Defence Acquisition Procedure (DAP) 2026 has raised indigenous content requirements from 50 per cent to 60 per cent.
 
-The BJP has already announced it will field a candidate for one of the two Jharkhand seats. Congress, part of the ruling alliance, has also staked a claim to one — setting up a potential intra-alliance negotiation that will be closely watched.
+## The Strategic Partnership With France
 
-## Why It Matters for the Upper House
+The Rafale deals cement France as one of India's most consequential defence partners. Beyond fighter jets, India operates six Scorpene-class submarines built with French Naval Group technology, and three more are under negotiation. The two countries are also collaborating on the Jaitapur nuclear project, clean energy, semiconductor development, and a bilateral trade relationship exceeding €15 billion.
 
-Every Rajya Sabha election shifts the balance of power in India's upper chamber. The BJP-led NDA has been steadily building its strength in the Rajya Sabha over the past decade, but it still does not command a clear majority on its own. The outcome of these 27 seats — along with the Legislative Council results — will determine whether the ruling alliance moves closer to that threshold or whether the opposition INDIA bloc can hold its current position.
+The deepening of defence ties reflects a deliberate Indian strategy: diversifying its weapons supply chain away from historical dependency on Russia while building technology partnerships that strengthen the domestic industrial base.
 
-For bills that require passage in both houses, the composition of the Rajya Sabha remains decisive. Key legislative battles — including potential amendments to the Waqf Act, the proposed Uniform Civil Code, and pending judicial reform bills — all depend on the government's Upper House numbers.
+## What NRIs Should Watch
 
-## What the Diaspora Should Know
+For the Indian diaspora, the defence procurement wave has broader economic implications. The Rafale production line will require advanced manufacturing capabilities — precision machining, avionics, composite materials — that could create opportunities for Indian-origin professionals in the global aerospace industry. French defence major Dassault has signalled interest in establishing research centres in India, potentially creating a new corridor of aerospace talent exchange similar to what exists in the IT sector.""",
+        "image_search_person": "Rafale fighter jet",
+        "image_search_pexels": "Rafale fighter jet military aircraft",
+        "image_search_pexels_fallback": "fighter jet aircraft carrier navy"
+    },
 
-The Rajya Sabha elections are decided by state legislators, not the general public — which means they reflect the cumulative outcome of recent assembly elections rather than a fresh public mandate. For NRIs tracking Indian politics, these elections are a useful barometer of how India's political coalitions are consolidating after the 2024 general election and the assembly polls that followed. The results on June 18 will clarify the legislative roadmap for the Modi government's remaining term."""
+    # ── Article 3: Hegseth Praises India at Shangri-La ──
+    {
+        "headline": "The US Defence Secretary Just Called India a 'Powerful' Military Nation. He Said It at Asia's Top Security Forum.",
+        "subheadline": "Pete Hegseth praised India's military modernisation and industrial capacity at the Shangri-La Dialogue while calling on Asian allies to raise defence spending to 3.5% of GDP.",
+        "slug": "hegseth-india-powerful-military-shangri-la-dialogue-defense-spending-35-percent-gdp-20260602",
+        "category": "news",
+        "status": "published",
+        "is_editorial": False,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        
+        "sources": json.dumps([
+            "News Dive — 'Amid US Concerns Over China, Hegseth Highlights India's Military Modernization' (May 31, 2026)",
+            "The Indian Eye — 'India reaffirms defence cooperation with US at Shangri-La Dialogue' (May 30, 2026)",
+            "IANS — 'Defence Secretary discusses strengthening ties with Defence Ministers of Singapore, New Zealand' (May 31, 2026)",
+            "Ainvest — 'India Emerges as Go-To Arms Supplier for Southeast Asian Nations' (June 1, 2026)"
+        ]),
+        "body": """US Secretary of Defense Pete Hegseth described India as a "powerful" nation that is "in the process of modernising its military capabilities" during his keynote address at the Shangri-La Dialogue in Singapore on Saturday — the most prominent annual security forum in Asia.
 
-wc2 = word_count(article2_body)
-print(f"  Word count: {wc2}")
+## What Hegseth Said
 
-article2 = {
-    "headline": "India Just Began Nominations for 27 Rajya Sabha Seats. The Votes Will Be Cast on June 18.",
-    "subheadline": "The elections span 10 states and three by-elections. The real fight is in Jharkhand, where the ruling alliance and the BJP both want both seats.",
-    "body": article2_body.strip(),
-    "slug": "rajya-sabha-27-seats-nominations-begin-june-18-polling-jharkhand-nda-india-bloc-20260601",
-    "category": "news",
-    "status": "published",
-    "is_editorial": False,
-    "published_at": "2026-06-01T18:35:00Z",
-    "sources": [
-        {"name": "Election Commission of India via News Ei Samay", "url": "https://newseisamay.com"},
-        {"name": "PTI via Swadesi News (Jharkhand)", "url": "https://swadesi.com"},
-        {"name": "PingTV India", "url": "https://pingtvindia.com"}
-    ],
-    "vertical": "news",
-    "image_url": img2 or "",
-    "image_attribution": "Pexels" if img2 else ""
-}
+Hegseth highlighted India's "substantial industrial and logistical infrastructure necessary for conducting advanced military operations" and expressed the US commitment to co-production initiatives with New Delhi to enhance joint military capabilities.
 
-# ============================================================
-# ARTICLE 3: MAHA Water Mission + ISRO MoU
-# ============================================================
-print("\n=== ARTICLE 3: MAHA Water Mission + ISRO MoU ===")
+His remarks came within a broader call for Asian allies to raise defence spending to 3.5 per cent of GDP — a significant increase from the current levels of most nations in the region, including India, which spends approximately 1.9 per cent of GDP on defence but is aiming to reach 2.5 per cent over the next five years.
 
-# Try Wikipedia for Jitendra Singh or C.R. Patil
-img3 = fetch_wikipedia_person_image("C. R. Patil")
-if not img3 or not validate_image(img3):
-    img3 = fetch_wikipedia_person_image("Jitendra Singh (politician)")
-    if not img3 or not validate_image(img3):
-        img3 = fetch_pexels_image("satellite water management India", "India water innovation technology")
-        if img3 and not validate_image(img3):
-            img3 = None
+The US defence chief assessed ties with Japan, South Korea, ASEAN nations, and Australia alongside India, reiterating Washington's position that the Indo-Pacific is the world's most important strategic region. But his praise for India was notably specific: where other nations were mentioned in the context of alliances and treaties, India was singled out for its independent military industrial capacity and its role in "maintaining a balanced power dynamic" in the Indian Ocean.
 
-article3_body = """The Indian government on Monday launched a ₹200 crore programme to fund water technology startups and signed a landmark agreement with ISRO to bring satellite-based monitoring to the country's water management infrastructure.
+## India's Diplomatic Blitz in Singapore
 
-The Mission for Advancement in High-Impact Areas for Water — known as MAHA Water — was unveiled at a national workshop on water research and development at Dr. Ambedkar International Centre in New Delhi. The programme is jointly run by the Anusandhan National Research Foundation and the Ministry of Jal Shakti.
+India's delegation at the Dialogue was led by Defence Secretary Rajesh Kumar Singh, who conducted an unusually intensive schedule of bilateral meetings. Over three days, Singh met with defence officials from more than ten countries, including the US, Singapore, New Zealand, Sweden, the Netherlands, and several ASEAN nations.
 
-## How the Money Will Work
+Singh articulated India's vision for a "stable, secure, and inclusive Indo-Pacific" in a policy address attended by think tanks, academia, and the Indian High Commissioner to Singapore, Shilpak Ambule.
 
-The ₹200 crore outlay will be spread over five years, jointly contributed by ANRF and the Ministry of Jal Shakti. Selected multidisciplinary consortia — which can include universities, national laboratories, research organisations, startups, MSMEs, and industry partners — will be eligible for up to ₹20 crore each.
+Key bilateral discussions focused on maritime security cooperation, military exchange programmes, information-sharing mechanisms, and defence technology partnerships. The Singapore meeting with President Tharman Shanmugaratnam, held at the Istana reception, underscored the strategic depth of India-Singapore ties, recently elevated to a Comprehensive Strategic Partnership.
 
-The funds can be used for technology development, field assessment, validation, and deployment of water solutions. An open call for research proposals was announced at the launch, alongside a separate open call for startups and MSMEs through the BHARAT-WIN Portal for product and prototype development.
+## Why This Matters Now
 
-## Five Priority Themes
+Hegseth's remarks land at a moment when India's defence posture is undergoing a visible transformation. In the past week alone, India signed a BrahMos missile deal with Vietnam, issued a ₹3.25 lakh crore Letter of Request for 114 Rafale jets, and saw the Navy sign a ₹63,000 crore agreement for 26 Rafale-M carrier-based fighters.
 
-The mission will focus on five areas: water resource assessment and sustainable management; drinking water quality and access; water quality and ecological health; water use efficiency and the circular economy; and climate resilience and adaptation.
+Defence exports hit a record ₹38,424 crore in FY 2025-26. Operation Sindoor — the military operation earlier this year — gave the world a live demonstration of India's indigenous weapons capability, driving unprecedented international demand for BrahMos, Akash, and Netra systems.
 
-"ANRF is democratising research funding by expanding opportunities for startups, MSMEs, universities and innovators," said Dr. Jitendra Singh, Union Minister of State for Science and Technology, who launched the mission. "National missions, scientific resources and innovation support are no longer confined to a limited number of institutions."
+The convergence of these developments at the Shangri-La Dialogue was not accidental. India used the forum to signal that it is no longer merely a defence importer. It is now a manufacturer, exporter, and strategic partner willing to share advanced military technology with "friendly foreign countries."
 
-## ISRO Enters the Water Sector
+## The Context: China
 
-In a parallel development at the same event, the Department of Water Resources and the Department of Space signed a memorandum of understanding to deepen cooperation on satellite-based water management. ISRO Chairman V. Narayanan said the partnership will support groundwater assessment, water resource monitoring, and flood forecasting.
+The subtext of the entire Dialogue was China. Beijing sent only a low-profile delegation, with senior officials conspicuously absent from key ministerial sessions. Analysts interpreted the move as an attempt to avoid tough questions about its military build-up in the South China Sea, its expanding presence along the India-China border in Ladakh, and the construction of new military villages in Bhutanese territory near the Doklam plateau.
 
-"Space technology today offers unprecedented capacity for observing, assessing, forecasting and managing water resources," Narayanan said, adding that ISRO has been working with the water sector since 1982 but that the formal MoU marks a new phase of structured collaboration.
+Hegseth's pointed messaging — praising India while calling on Asian nations to spend more on defence — reflects Washington's evolving strategy of building a networked coalition of capable regional powers rather than relying solely on hub-and-spoke alliance structures.
 
-The event also saw the launch of the Jal Sanchay Jan Bhagidari portal and app — a citizen tracking and reporting platform designed to crowdsource water conservation data from the ground level.
+For India, the calculus is straightforward: deeper engagement with the US and ASEAN on defence, without a formal alliance, while building the domestic industrial base to sustain strategic autonomy. The Shangri-La meetings suggest that formula is gaining traction.
 
-## The Scale of India's Water Challenge
+## The Diaspora Connection
 
-India faces a water crisis that is simultaneously a drought problem, a pollution problem, and a governance problem. The country is home to 18 percent of the world's population but only 4 percent of its freshwater resources. Groundwater — which supplies 85 percent of drinking water in rural areas — is being depleted faster than it can recharge across large parts of northern and western India.
+Indian-origin professionals are increasingly embedded in the US defence ecosystem. The $2.8 billion in components India already supplies to Boeing and Lockheed Martin represents just the beginning of a co-production relationship that could expand dramatically as the Rafale production line comes online and defence technology transfer agreements multiply. For NRIs working in engineering, aerospace, and technology, the deepening US-India defence partnership is creating a talent bridge that did not exist a decade ago.""",
+        "image_search_person": "Pete Hegseth",
+        "image_search_pexels": "military defense forum conference",
+        "image_search_pexels_fallback": "international security summit diplomacy"
+    }
+]
 
-The monsoon season, which is forecast to be the driest in a decade due to El Niño conditions, will put additional pressure on an already strained system. The government's decision to invest ₹200 crore in research and innovation is modest relative to the scale of the challenge, but it signals an effort to move beyond traditional engineering solutions toward technology-driven approaches.
+# ── Main ──────────────────────────────────────────────────────────────────────
+def main():
+    published = 0
+    for i, art in enumerate(articles):
+        print(f"\n{'='*60}")
+        print(f"Article {i+1}: {art['headline'][:70]}...")
+        print(f"{'='*60}")
 
-## What the Diaspora Should Know
+        # Extract search hints
+        person = art.pop('image_search_person', None)
+        pexels_q = art.pop('image_search_pexels', None)
+        pexels_fb = art.pop('image_search_pexels_fallback', None)
 
-For NRIs with ancestral homes in water-stressed regions — particularly in Rajasthan, Punjab, Tamil Nadu, and Maharashtra — the MAHA Water Mission represents an opportunity for engagement. The open call for startups explicitly includes MSMEs and private-sector innovators, creating a pathway for diaspora-funded or diaspora-founded ventures to participate in India's water infrastructure buildout. The ISRO partnership also opens doors for remote sensing and data analytics ventures that can operate across borders."""
+        # Image sourcing
+        img_url = None
+        img_attribution = None
 
-wc3 = word_count(article3_body)
-print(f"  Word count: {wc3}")
+        # Try Wikipedia for person/topic
+        if person:
+            wiki_url = fetch_wikipedia_person_image(person)
+            if wiki_url and validate_image(wiki_url):
+                # Upload to Supabase for permanence
+                fname = f"{art['slug']}.jpg"
+                uploaded = upload_to_supabase_storage(wiki_url, fname)
+                if uploaded:
+                    img_url = uploaded
+                    img_attribution = "Wikimedia Commons"
+                else:
+                    img_url = wiki_url
+                    img_attribution = "Wikimedia Commons"
 
-article3 = {
-    "headline": "India Just Launched a ₹200 Crore Fund for Water Tech Startups and Signed an MoU With ISRO to Monitor Water From Space.",
-    "subheadline": "The MAHA Water Mission will fund consortia of universities, labs, and startups with up to ₹20 crore each. ISRO will bring satellite data to groundwater and flood forecasting.",
-    "body": article3_body.strip(),
-    "slug": "india-maha-water-mission-200-crore-isro-mou-satellite-water-management-startups-20260601",
-    "category": "news",
-    "status": "published",
-    "is_editorial": False,
-    "published_at": "2026-06-01T18:40:00Z",
-    "sources": [
-        {"name": "IANS via Dailyworld", "url": "https://dailyworld.in"},
-        {"name": "Madhyamam Online", "url": "https://madhyamamonline.com"},
-        {"name": "India Education Diary", "url": "https://indiaeducationdiary.in"}
-    ],
-    "vertical": "news",
-    "image_url": img3 or "",
-    "image_attribution": "Wikimedia Commons" if (img3 and 'wiki' in str(img3).lower()) else ("Pexels" if img3 else "")
-}
+        # Fallback to Pexels
+        if not img_url and pexels_q:
+            pexels_url = fetch_pexels_image(pexels_q, pexels_fb)
+            if pexels_url and validate_image(pexels_url):
+                fname = f"{art['slug']}.jpg"
+                uploaded = upload_to_supabase_storage(pexels_url, fname)
+                if uploaded:
+                    img_url = uploaded
+                    img_attribution = "Pexels"
+                else:
+                    img_url = pexels_url
+                    img_attribution = "Pexels"
 
-# ============================================================
-# PUBLISH ALL
-# ============================================================
-print("\n=== PUBLISHING ===")
-success = 0
-for i, article in enumerate([article1, article2, article3], 1):
-    print(f"\nArticle {i}: {article['headline'][:60]}...")
-    if not article['image_url']:
-        print("  ⚠ No image found — publishing without image")
-    if publish_article(article):
-        success += 1
-    time.sleep(1)
+        if img_url:
+            art['image_url'] = img_url
+            if img_attribution:
+                art['image_attribution'] = img_attribution
+            print(f"  ✓ Final image: {img_url[:80]}...")
+        else:
+            print(f"  ⚠ No image found — publishing without image (better than wrong image)")
 
-print(f"\n=== DONE: {success}/3 articles published ===")
+        # Insert
+        art_id = insert_article(art)
+        if art_id:
+            published += 1
+        else:
+            print(f"  ✗ FAILED to publish article {i+1}")
+
+        time.sleep(1)
+
+    print(f"\n{'='*60}")
+    print(f"Published {published}/{len(articles)} articles")
+    print(f"{'='*60}")
+
+if __name__ == '__main__':
+    main()
