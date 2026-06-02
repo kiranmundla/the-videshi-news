@@ -69,10 +69,28 @@ def fetch_article(slug: str, sb_key: str) -> dict:
 
 
 def split_takeaways(subheadline: str) -> list[str]:
+    """Split subheadline into full sentence bullets. Never truncate with ellipsis."""
     if not subheadline:
         return []
-    parts = re.split(r'(?<=[.!])\s+', subheadline.strip())
-    bullets = [p.strip() for p in parts if len(p.strip()) > 15]
+    # Strip trailing ellipsis from source
+    subheadline = subheadline.rstrip('.').strip()
+    if subheadline.endswith('…'):
+        subheadline = subheadline[:-1].rstrip()
+    # Split on sentence boundaries
+    parts = re.split(r'(?<=[.!?])\s+', subheadline.strip())
+    bullets = []
+    for p in parts:
+        p = p.strip()
+        if len(p) < 15:
+            continue
+        # Ensure it ends with proper punctuation (full sentence)
+        if not p[-1] in '.!?':
+            p = p + '.'
+        # Strip any trailing ellipsis that crept in
+        p = p.replace('...', '').replace('…', '').rstrip()
+        if not p[-1] in '.!?':
+            p = p + '.'
+        bullets.append(p)
     return bullets[:3]
 
 
@@ -88,12 +106,32 @@ def extract_stats(subheadline: str) -> list[dict]:
 
 
 def shorten_headline(headline: str, max_chars: int = 100) -> str:
-    if len(headline) > max_chars and "—" in headline:
-        headline = headline.split("—")[0].strip()
-    if len(headline) > max_chars and "." in headline:
-        parts = headline.split(".")
-        headline = parts[0].strip() + "."
-    return headline[:max_chars]
+    """Shorten headline to fit reel frame. Never truncate mid-sentence or add ellipsis."""
+    # Strip existing ellipsis or trailing quotes
+    headline = headline.rstrip('.').rstrip()
+    if len(headline) <= max_chars:
+        return headline
+    # Try splitting on em-dash and taking first part
+    if "—" in headline:
+        first = headline.split("—")[0].strip()
+        if len(first) <= max_chars and len(first) >= 20:
+            return first
+    # Try splitting on colon
+    if ":" in headline:
+        first = headline.split(":")[0].strip()
+        if len(first) <= max_chars and len(first) >= 20:
+            return first
+    # Try splitting at last comma that fits
+    if "," in headline:
+        idx = headline.rfind(",", 0, max_chars)
+        if idx > 20:
+            return headline[:idx]
+    # Hard cut at last word boundary, no ellipsis
+    cut = headline[:max_chars]
+    last_space = cut.rfind(" ")
+    if last_space > 20:
+        return cut[:last_space]
+    return cut
 
 
 def esc(s: str) -> str:
@@ -111,7 +149,7 @@ def generate_html(article: dict) -> str:
     cat_label = cat.replace("-", " ").upper()
 
     headline = article.get("headline", "")
-    short_hl = esc(shorten_headline(headline, 50))
+    short_hl = esc(shorten_headline(headline, 90))
     # Dynamic font size based on headline length
     hl_len = len(short_hl)
     if hl_len <= 25:
@@ -120,8 +158,10 @@ def generate_html(article: dict) -> str:
         hl_font = 140
     elif hl_len <= 50:
         hl_font = 120
-    else:
+    elif hl_len <= 70:
         hl_font = 100
+    else:
+        hl_font = 80
     subheadline = article.get("subheadline", "")
     takeaways = split_takeaways(subheadline)
     stats = extract_stats(subheadline)
@@ -253,7 +293,7 @@ body{{
   background:{accent};margin-top:18px;flex-shrink:0;
 }}
 .tk-text{{
-  font-size:64px;font-weight:700;line-height:1.3;
+  font-size:48px;font-weight:700;line-height:1.3;
   color:#fff;
 }}
 
