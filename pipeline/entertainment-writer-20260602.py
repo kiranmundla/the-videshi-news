@@ -1,55 +1,48 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-06-02 batch."""
+"""Entertainment writer — 2026-06-02 batch"""
 
-import json
-import os
-import re
-import sys
-import time
-import uuid
-import urllib.parse
+import os, json, requests, urllib.parse, time, uuid, re
 from datetime import datetime, timezone
 
-import requests
-
-# ── Env ──────────────────────────────────────────────────────────────────────
-env_file = os.path.expanduser("~/.env.supabase")
-if os.path.exists(env_file):
-    for line in open(env_file):
+# ── env ──
+env_file = os.path.expanduser("~/workspace/.env.supabase")
+with open(env_file) as f:
+    for line in f:
         line = line.strip()
         if line and not line.startswith("#") and "=" in line:
             k, v = line.split("=", 1)
-            os.environ.setdefault(k, v)
+            os.environ[k.strip()] = v.strip()
 
 pexels_env = os.path.expanduser("~/workspace/.env.pexels")
 if os.path.exists(pexels_env):
-    for line in open(pexels_env):
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1)
-            os.environ.setdefault(k, v)
+    with open(pexels_env) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                os.environ[k.strip()] = v.strip()
 
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+SB_URL = os.environ["SUPABASE_URL"]
+SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "apikey": SB_KEY,
+    "Authorization": f"Bearer {SB_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    "Prefer": "return=representation"
 }
 
+# ── helpers ──
 
-# ── Image helpers ────────────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(" ", "_"))
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10,
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
@@ -63,366 +56,296 @@ def fetch_wikipedia_person_image(person_name):
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels API using curl (urllib gets 403)."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
+    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
+    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            import subprocess
-            result = subprocess.run(
-                [
-                    "curl", "-sS",
-                    f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
-                    "-H", f"Authorization: {PEXELS_KEY}",
-                ],
-                capture_output=True, text=True, timeout=15,
-            )
+            cmd = [
+                "curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+                f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape"
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
             data = json.loads(result.stdout)
             photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
-                if url:
-                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                    return url
+            if photos:
+                url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 
-def validate_image(url):
-    """Validate image URL returns 200 with image content-type and > 5KB."""
+def upload_image_to_supabase(image_url, filename):
+    """Download an image and upload to Supabase storage bucket article-images."""
     try:
-        # Always use GET with stream for reliable validation
-        r = requests.get(url, timeout=15, stream=True, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        if r.status_code == 200 and "image" in ct:
-            # Read enough to check size
-            chunk = r.raw.read(6000)
-            if len(chunk) >= 5000:
-                return True
-            else:
-                print(f"  ⚠ Image too small: {len(chunk)} bytes")
-    except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-    return False
-
-
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase storage bucket."""
-    try:
-        r = requests.get(image_url, timeout=15, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200 or len(r.content) < 5000:
-            print(f"  ⚠ Download failed or too small: {len(r.content)} bytes")
+        r = requests.get(image_url, timeout=15, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code != 200:
+            print(f"  ⚠ Image download failed ({r.status_code}): {image_url[:80]}")
             return None
-        
-        ct = r.headers.get("Content-Type", "image/jpeg")
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        resp = requests.post(
+        content_type = r.headers.get("Content-Type", "image/jpeg")
+        if "image" not in content_type:
+            print(f"  ⚠ Not an image ({content_type}): {image_url[:80]}")
+            return None
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small ({len(r.content)} bytes): {image_url[:80]}")
+            return None
+
+        upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
+        up = requests.post(
             upload_url,
             headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": ct,
-                "x-upsert": "true",
+                "apikey": SB_KEY,
+                "Authorization": f"Bearer {SB_KEY}",
+                "Content-Type": content_type,
+                "x-upsert": "true"
             },
             data=r.content,
-            timeout=30,
+            timeout=30
         )
-        if resp.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+        if up.status_code in (200, 201):
+            public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ⚠ Upload failed: {resp.status_code} {resp.text[:200]}")
+            print(f"  ⚠ Upload failed ({up.status_code}): {up.text[:200]}")
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
     return None
 
 
-def source_image(person_name=None, pexels_query=None, pexels_fallback=None, slug=""):
-    """Try Wikipedia first for person, then Pexels, upload to Supabase."""
-    img_url = None
-    attribution = "The Videshi"
-    
-    if person_name:
-        img_url = fetch_wikipedia_person_image(person_name)
-        if img_url:
-            attribution = "Wikimedia Commons"
-    
-    if not img_url and pexels_query:
-        img_url = fetch_pexels_image(pexels_query, pexels_fallback)
-        attribution = "Pexels"
-    
-    if img_url:
-        if validate_image(img_url):
-            # Upload to Supabase for permanence
-            ext = "jpg"
-            if ".png" in img_url.lower():
-                ext = "png"
-            filename = f"{slug}.{ext}"
-            uploaded = upload_to_supabase_storage(img_url, filename)
-            if uploaded:
-                return uploaded, attribution
-            # Fallback: use direct URL if it's from permanent source
-            if "upload.wikimedia.org" in img_url or "images.pexels.com" in img_url:
-                return img_url, attribution
-        else:
-            print(f"  ⚠ Image validation failed for: {img_url[:80]}")
-    
-    return None, None
-
-
 def insert_article(article):
-    """Insert article into Supabase."""
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    r = requests.post(url, headers=HEADERS, json=article, timeout=30)
+    """Insert article to Supabase p2_articles."""
+    r = requests.post(
+        f"{SB_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article,
+        timeout=30
+    )
     if r.status_code in (200, 201):
         data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
-        print(f"  ✓ Inserted: {article['slug']} (id={art_id})")
+        art_id = data[0]["id"] if isinstance(data, list) else data["id"]
+        print(f"  ✓ Article inserted: {article['slug']} (id={art_id})")
         return art_id
     else:
-        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
         return None
 
 
-# ── Articles ─────────────────────────────────────────────────────────────────
+def patch_article(art_id, updates):
+    """Patch an existing article."""
+    r = requests.patch(
+        f"{SB_URL}/rest/v1/p2_articles?id=eq.{art_id}",
+        headers=HEADERS,
+        json=updates,
+        timeout=15
+    )
+    if r.status_code in (200, 204):
+        print(f"  ✓ Patched article {art_id}")
+    else:
+        print(f"  ⚠ Patch failed ({r.status_code}): {r.text[:200]}")
 
-articles = []
 
-# ─── Article 1: Don 3 court case ─────────────────────────────────────────────
-articles.append({
-    "headline": "The Don 3 Fight Just Left Bollywood's Back Rooms. It's in a Bombay Courtroom Now.",
-    "subheadline": "Veteran producer TP Aggarwal has filed a petition challenging FWICE's power to blacklist actors — and the case has implications far beyond Ranveer Singh.",
-    "slug": "don-3-fwice-ban-ranveer-singh-court-tp-aggarwal-bollywood-legal-nri-20260602",
+# ═══════════════════════════════════════════════════════════════════════
+# ARTICLE 1: IMAX Returns to Hyderabad
+# ═══════════════════════════════════════════════════════════════════════
+print("\n=== ARTICLE 1: IMAX Returns to Hyderabad ===")
+
+art1 = {
+    "headline": "Hyderabad Gets IMAX Back After a Decade. Mahesh Babu's AMB Cinemas Sealed the Deal.",
+    "subheadline": "Three new IMAX with Laser screens are coming to Tollywood's home base — just in time for Rajamouli's Varanasi. NRIs who grew up watching Telugu blockbusters at Prasads should pay attention.",
+    "slug": "imax-returns-hyderabad-amb-cinemas-mahesh-babu-decade-rajamouli-varanasi-nri-20260602",
     "category": "entertainment",
-    "vertical": "entertainment",
     "status": "published",
     "published_at": datetime.now(timezone.utc).isoformat(),
     "is_editorial": False,
-    "is_featured": False,
-    "tags": [],
     "sources": json.dumps([
-        "Bollywood Hungama",
-        "India Forums",
-        "Zoom TV Entertainment",
-        "Cinema Buzz USA"
+        {"name": "IMAX Corporation / Business Wire", "url": "https://www.businesswire.com"},
+        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+        {"name": "Gulte", "url": "https://gulte.com"},
+        {"name": "IndiaGlitz", "url": "https://www.indiaglitz.com"}
     ]),
-    "body": """The simmering dispute over Ranveer Singh's exit from *Don 3* has crossed a threshold that Bollywood rarely reaches: a formal legal challenge to the authority of its most powerful trade bodies.
+    "body": """For more than a decade, Hyderabad — the beating heart of Telugu cinema, home to filmmakers who build ₹500-crore spectacles and audiences who fill 1,000-seat theatres on a Tuesday afternoon — has not had a single IMAX screen.
 
-On June 1, veteran producer TP Aggarwal filed a civil petition in the Bombay Civil Court at Dindoshi — not against Ranveer Singh, and not against Farhan Akhtar's Excel Entertainment, but against the Federation of Western India Cine Employees (FWICE) and the Indian Motion Picture Producers' Association (IMPPA) themselves. The petition asks a question that the Hindi film industry has danced around for decades: Does any trade body have the legal right to tell its members not to work with a specific individual?
+That drought ends this year.
 
-## What Led Here
+On June 1, IMAX Corporation announced a partnership with Asian Cinemas to install three new IMAX with Laser screens through the AMB Cinemas brand. Two of the three will be in Hyderabad. The first, at AMB Classic on the historic grounds of the Sudarshan 70mm Theatre, is set to open before December 2026. The remaining two locations are planned for 2028.
 
-The controversy traces back to early 2026, when Ranveer Singh walked away from *Don 3*, the third instalment in the franchise that Shah Rukh Khan made iconic. Excel Entertainment, Farhan Akhtar's production house, reportedly sought ₹40 crore in compensation for pre-production losses. Ranveer's camp disputed the figure, and informal mediation through the Producers Guild failed. The situation escalated sharply on May 25, when FWICE issued a non-cooperation directive against the actor — effectively instructing its thousands of members across the Hindi film industry to refuse work with him until the dispute was resolved.
+## The Backstory: How Hyderabad Lost Its IMAX
 
-That directive is what Aggarwal's petition targets. His argument: such bans exceed the legal authority of voluntary trade associations and directly threaten the livelihoods and creative freedom of industry professionals.
+The city's previous IMAX venue — the legendary Prasads IMAX, once among the first IMAX theatres in all of India — stopped operating in the proprietary format around 2015. For a city that produces some of the most visually ambitious films in the world, the absence was glaring.
 
-## Why TP Aggarwal Matters
+S.S. Rajamouli said as much publicly. During a recent promotional event for his upcoming globe-trotting epic Varanasi, the RRR and Baahubali director expressed disbelief that Hyderabad — the city where Tollywood's biggest productions are born — lacked a premium large-format screen. The timing of the IMAX announcement, just ahead of Varanasi's release, feels almost poetic.
 
-This isn't a fringe complaint. Aggarwal served as President of IMPPA for 17 years and was elected President of the Film Federation of India on four occasions. He currently holds the title of Patron at both FFI and IMPPA. When someone with that institutional history files a petition challenging the system, it carries weight that a first-time litigant's case would not.
+## Mahesh Babu's AMB Cinemas: The Vehicle
 
-"The film industry thrives on collaboration," Aggarwal said in a statement accompanying the filing. "Any attempt to discourage people from working with an individual should not be taken lightly. Such actions can have far-reaching consequences for livelihoods and creative freedom, and therefore must be dealt with in a fair, transparent, and lawful manner."
+AMB Cinemas is a luxury multiplex chain co-owned by superstar Mahesh Babu along with the Asian Group's Sunil Narang and Bharat Narang. The brand has a track record of firsts: South India's first Dolby Cinema screen and one of Hyderabad's earliest HDR by Barco screens.
 
-The court has issued notices to both FWICE and IMPPA, requiring formal responses.
+For the new IMAX installation, the group has also brought in Venkatesh Daggubati and Rana Daggubati as partners — effectively assembling Telugu cinema's most powerful exhibition consortium.
 
-## The Diaspora Angle
+"Hyderabad's appetite and love for cinema is unparalleled," said the Narangs in a joint statement. "Bringing back the prestigious IMAX format is a matter of great honour and pride for AMB Cinemas."
 
-For NRI audiences who grew up watching the *Don* franchise — from Amitabh Bachchan's original to Shah Rukh Khan's reboot — this legal battle represents something larger than a contractual dispute. It's a window into Bollywood's informal power structures: the guild politics, the verbal agreements, the trade body directives that can make or break careers without any court ever being involved.
+Rich Gelfond, CEO of IMAX, noted that 2025 was the company's best year ever at the Indian box office. "India is home to a vibrant cinema culture of innovative filmmakers and passionate audiences, all of whom are clamoring for more of The IMAX Experience."
 
-The Cine and TV Artistes' Association (CINTAA) has offered formal support to Ranveer. Vice-president Padmini Kolhapure confirmed the association would stand by him as a member, though she noted that neither Singh, Excel Entertainment, nor FWICE had approached CINTAA for mediation.
+## What This Means for NRI Audiences
 
-## What Happens Next
+For the Telugu diaspora in the US, UK, and the Gulf, movie-watching trips to Hyderabad have long been part of the homecoming ritual. The absence of IMAX meant that Telugu blockbusters designed for the largest screens — from Pushpa to Salaar to the upcoming Varanasi — could only be experienced in their intended IMAX format in cities like Mumbai, Bengaluru, or overseas.
 
-The petition doesn't seek to resolve the underlying *Don 3* compensation dispute. Instead, it challenges the broader principle: whether FWICE or any similar body can enforce a boycott. If the court rules in Aggarwal's favour, it could fundamentally reshape how Bollywood's labour disputes are handled — pushing them from backroom negotiations and public pressure campaigns into formal legal proceedings.
+That changes now. When NRIs fly home for Sankranti or Dasara, the biggest Telugu films will finally be available on the screen format they were designed for, in the city where they were made.
 
-For now, Ranveer Singh remains under the non-cooperation directive. His next major release, alongside the *Dhurandhar* franchise's continued cultural impact, keeps him among the most discussed actors in Indian cinema. But the courtroom — not the box office — may determine what his next few years look like.""",
-    "person": "Ranveer Singh",
-    "pexels_query": "Indian court gavel legal",
-    "pexels_fallback": "courtroom law justice",
-})
+## The Bigger Picture
 
-# ─── Article 2: Governor – Manoj Bajpayee as RBI Governor ────────────────────
-articles.append({
-    "headline": "Manoj Bajpayee Plays the Man Who Pawned India's Gold to Save the Economy. Governor Releases June 12.",
-    "subheadline": "The 1991 balance-of-payments crisis created the India that millions of NRIs emigrated to build careers in. Now it's a film — and Bajpayee says the math terrified him.",
-    "slug": "governor-manoj-bajpayee-rbi-1991-crisis-gold-reserves-june-12-nri-20260602",
+The deal reflects a broader shift in Indian exhibition. Regional films now consistently outperform at the domestic box office, and premium formats like IMAX, Dolby Cinema, and ScreenX are no longer luxuries — they're how studios maximize returns on ₹200-crore productions.
+
+With Rajamouli's Varanasi, the upcoming Kalki 2, and a pipeline of large-canvas Telugu productions, Hyderabad's three new IMAX screens arrive at exactly the moment the market demands them.
+
+The Sudarshan 70mm Theatre location adds an emotional layer. For generations, the venue was where Telugu audiences experienced landmark film releases and wild fan celebrations. Now it becomes the site of Hyderabad's IMAX renaissance, a bridge between the old cinema and the new.
+
+The first screen opens before the end of 2026. Telugu cinema's biggest filmmakers now have the biggest screen in their own backyard."""
+}
+
+# Image: Try IMAX or Mahesh Babu from Wikipedia, fall back to Pexels
+img1 = fetch_wikipedia_person_image("Mahesh Babu")
+if not img1:
+    img1 = fetch_pexels_image("IMAX theater cinema", "movie theater screen")
+art1_id = insert_article(art1)
+if art1_id and img1:
+    fn1 = f"{art1_id}.jpg"
+    final1 = upload_image_to_supabase(img1, fn1)
+    if final1:
+        patch_article(art1_id, {"image_url": final1, "image_attribution": "Wikimedia Commons"})
+
+time.sleep(1)
+
+# ═══════════════════════════════════════════════════════════════════════
+# ARTICLE 2: Varun Dhawan Delhi HC - AI Deepfakes
+# ═══════════════════════════════════════════════════════════════════════
+print("\n=== ARTICLE 2: Varun Dhawan Delhi HC Personality Rights ===")
+
+art2 = {
+    "headline": "The Delhi High Court Just Told Google, Meta, and X to Hand Over Data on Varun Dhawan's Deepfake Creators.",
+    "subheadline": "In a landmark ruling on celebrity personality rights in the AI age, Justice Jyoti Singh ordered a sweeping injunction against deepfakes, fake merchandise, and unauthorized use of Dhawan's persona. The precedent reaches far beyond one actor.",
+    "slug": "varun-dhawan-delhi-hc-personality-rights-ai-deepfakes-google-meta-x-nri-20260602",
     "category": "entertainment",
-    "vertical": "entertainment",
     "status": "published",
     "published_at": datetime.now(timezone.utc).isoformat(),
     "is_editorial": False,
-    "is_featured": False,
-    "tags": [],
     "sources": json.dumps([
-        "Bollywood Hungama",
-        "Filmfare",
-        "The Daily Jagran",
-        "NewKerala",
-        "TechnoSports"
+        {"name": "Bar and Bench", "url": "https://www.barandbench.com"},
+        {"name": "ANI / LatestLY", "url": "https://www.latestly.com"},
+        {"name": "IANS / Asia Post", "url": "https://asiapost.in"},
+        {"name": "Devdiscourse", "url": "https://www.devdiscourse.com"}
     ]),
-    "body": """There is a specific date that shaped the lives of nearly every Indian professional living abroad, and most of them have never heard of the man behind it. In 1991, India's foreign exchange reserves had fallen to a level that could cover barely two weeks of imports. The country was days away from defaulting on its sovereign debt. The Reserve Bank of India, under Governor S. Venkitaramanan, made a decision that economists still debate and nationalists still flinch at: India shipped 47 tonnes of gold to the Bank of England and the Union Bank of Switzerland as collateral, raising approximately $405 million to keep the country solvent.
+    "body": """Varun Dhawan went to court over something that no amount of box-office success can fix: strangers were using artificial intelligence to put his face into pornographic videos, slapping his name on merchandise he never endorsed, and running fake booking websites that claimed they could hire him for events.
 
-That emergency action — and the economic liberalisation it enabled — is the subject of *Governor: The Silent Saviour*, a political drama releasing in theatres on June 12. Manoj Bajpayee plays Venkitaramanan.
+On May 29, Justice Jyoti Singh of the Delhi High Court granted one of the most sweeping personality-rights injunctions in Indian legal history.
 
-## The Story Behind the Film
+## What the Court Ordered
 
-Director Chinmay Mandlekar and producer Vipul Amrutlal Shah have built the film around the weeks of crisis in 1991, when Iraq's invasion of Kuwait had spiked oil prices, remittances from the Gulf had collapsed, and India's credit rating was in freefall. The film follows Venkitaramanan as he navigates the political pressure, institutional resistance, and personal stakes of a decision that would either save the economy or become the greatest humiliation in independent India's financial history.
+The ruling restrains multiple categories of defendants — websites, e-commerce platforms, social media accounts, and unidentified "John Doe" entities — from exploiting Dhawan's name, image, voice, likeness, or any identifiable element of his persona without authorization. The restraint explicitly covers artificial intelligence, generative AI, machine learning, deepfakes, AI chatbots, and face-morphing technologies.
 
-Bajpayee has spoken candidly about the challenge. "When we talk about heroes, we usually make films on army officers or politicians," he told IANS. "But I felt that for the first time, we are talking about a man who was working behind the curtain from a new sector, from such a department which drives the policy of a very crucial part of the country."
+The specifics are striking. The court:
 
-The actor also admitted that the role demanded more homework than most. "I didn't come from an economics background, and I'm not very skilled at maths," he said. "But this would add to my knowledge about the world and educate me." The Southern dialect of Venkitaramanan — who was Tamil — added another layer. "I was scared and nervous about getting the dialect right. It's not just about the language but the culture behind it."
+- **Banned AI-generated deepfakes** portraying Dhawan in inappropriate scenarios with female co-stars
+- **Blocked unauthorized merchandise sales** using his name, image, and registered trademarks
+- **Shut down fake booking agencies** falsely claiming to represent him for events and performances
+- **Ordered Google, Meta Platforms, and X Corporation** to hand over Basic Subscriber Information (BSI) of the infringing social media users
+- **Set a 36-hour takedown window**: social media platforms must remove any new infringing content within 36 hours of being notified by Dhawan's team
 
-## Why This Matters to the Diaspora
+"Plaintiff is entitled to protection against dissemination of pornographic content as well as AI-generated images portraying him in an inappropriate scenario," Justice Singh wrote. "Such distasteful content is harming and damaging the reputation of the Plaintiff and may mislead the public into believing what is depicted may be true."
 
-The 1991 crisis and its aftermath didn't just restructure India's economy. It created it. The liberalisation policies that followed — dismantling the License Raj, opening India to foreign investment, unleashing the IT sector — are the direct reason millions of Indians found career paths that led them to Silicon Valley, Wall Street, the City of London, and corporate offices across North America.
+## Following Naga Chaitanya's Footsteps
 
-Every H-1B petition filed from an Indian IT company traces its institutional lineage to what happened in those desperate weeks. Every NRI who wires money home through liberalised banking channels is benefiting from reforms that Venkitaramanan's crisis management made politically possible.
+Dhawan's suit lands weeks after Telugu actor Naga Chaitanya secured a similar order from the same court over AI deepfakes linked to allegations involving his ex-wife Samantha Ruth Prabhu. The two cases together signal that Indian courts are rapidly building a body of law around AI-generated celebrity exploitation — a legal framework that barely existed two years ago.
 
-The man himself passed away on November 18, 2023, at 92. He never became a household name — not even close. The film's subtitle, "The Silent Saviour," is an acknowledgement of that obscurity.
+Senior Advocate Sandeep Sethi, representing Dhawan, argued that the actor's personality traits carry significant commercial value and that unauthorized exploitation causes both reputational harm and financial loss. The court agreed, noting that Dhawan is a "celebrated Hindi film actor with a career spanning over 14 years" whose distinctive characteristics — name, signature, voice, likeness — are uniquely associated with him and "constitute valuable personality and publicity rights deserving legal protection."
 
-## The Production
+## Why the NRI Community Should Watch This
 
-The film features a screenplay by Suvendu Bhattacharyjee, Saurabh Bharat, Ravi Asrani, and Vipul Shah. Music is by Amit Trivedi, with lyrics by Javed Akhtar — a pairing that signals the makers are aiming for emotional resonance, not just procedural drama. Adah Sharma and Madhoo Shah round out the cast.
+For the Indian diaspora, the implications go beyond Bollywood gossip. Deepfake technology is global. The tools used to create non-consensual AI content featuring Indian celebrities are the same tools being used against ordinary people — including NRIs — on platforms accessible from any country.
 
-Vipul Amrutlal Shah, whose production house previously delivered *The Kerala Story*, appears to be building a slate around stories pulled from India's recent institutional history — unglamorous subjects that carry national weight.
+India's courts are now establishing that personality rights in the digital age extend to AI-generated content, that platforms have enforceable obligations to remove such content quickly, and that creators of deepfakes can be identified through court-ordered data disclosures.
 
-## What to Expect
+As AI-generated content proliferates across social media, these rulings create a legal playbook that Indian citizens — including those living abroad — can point to when their own likenesses are weaponized.
 
-If *Governor* works, it will join a small but growing category of Hindi films that treat India's economic and bureaucratic machinery as worthy of cinematic drama — alongside *Scam 1992* (the Harshad Mehta series) and portions of *Rocket Boys*. If it doesn't, the subject matter alone makes it required viewing for anyone who wants to understand why modern India exists in its current form.
+## The Broader Legal Landscape
 
-For NRIs, this is personal history dressed as a political thriller. The gold went across the ocean so that, eventually, they could too.""",
-    "person": "Manoj Bajpayee",
-    "pexels_query": "Reserve Bank India building",
-    "pexels_fallback": "gold bars vault",
-})
+The Dhawan ruling joins a growing list of Indian court interventions on celebrity AI rights. Anil Kapoor secured a similar order in 2023 protecting his persona from AI misuse. Amitabh Bachchan has long held personality-rights protections through prior court orders. But the Dhawan and Naga Chaitanya cases are among the first to specifically address generative AI deepfakes and mandate platform-level data disclosure.
 
-# ─── Article 3: Masoom: The New Generation ────────────────────────────────────
-articles.append({
-    "headline": "Shekhar Kapur and A.R. Rahman Are Remaking Masoom. The New Version Is About Migration.",
-    "subheadline": "The 1983 classic about a family secret gets a contemporary reimagining — with Naseeruddin Shah, Shabana Azmi, Manoj Bajpayee, and Nithya Menen — and themes that hit the diaspora where it lives.",
-    "slug": "masoom-new-generation-shekhar-kapur-ar-rahman-migration-identity-nri-20260602",
+The case is listed for further hearing. The interim order remains in effect until then.
+
+For Indian celebrities and ordinary citizens alike, the message from Justice Singh's courtroom is clear: your face is yours, even in the age of artificial intelligence."""
+}
+
+img2 = fetch_wikipedia_person_image("Varun Dhawan")
+art2_id = insert_article(art2)
+if art2_id and img2:
+    fn2 = f"{art2_id}.jpg"
+    final2 = upload_image_to_supabase(img2, fn2)
+    if final2:
+        patch_article(art2_id, {"image_url": final2, "image_attribution": "Wikimedia Commons"})
+
+time.sleep(1)
+
+# ═══════════════════════════════════════════════════════════════════════
+# ARTICLE 3: Welcome to the Jungle
+# ═══════════════════════════════════════════════════════════════════════
+print("\n=== ARTICLE 3: Welcome to the Jungle ===")
+
+art3 = {
+    "headline": "Welcome to the Jungle Has 30 Stars, a Late Actor's Final Role, and Bollywood's Most Unhinged Comedy Franchise. It Opens June 26.",
+    "subheadline": "The third Welcome film reunites Akshay Kumar, Suniel Shetty, and Paresh Rawal in a jungle-set dark comedy that took three years to make. For NRIs who grew up quoting the original, this is the most nostalgic release of the summer.",
+    "slug": "welcome-to-the-jungle-akshay-kumar-30-stars-june-26-franchise-nri-20260602",
     "category": "entertainment",
-    "vertical": "entertainment",
     "status": "published",
     "published_at": datetime.now(timezone.utc).isoformat(),
     "is_editorial": False,
-    "is_featured": False,
-    "tags": [],
     "sources": json.dumps([
-        "Cinema Express",
-        "Zoom TV Entertainment",
-        "Bollywood Hungama",
-        "Devdiscourse"
+        {"name": "Sacnilk", "url": "https://sacnilk.com"},
+        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+        {"name": "Dainik Jagran English", "url": "https://english.dainikjagranmpcg.com"}
     ]),
-    "body": """The original *Masoom* — Shekhar Kapur's 1983 debut, adapted from Erich Segal's novel — was about an illegitimate child who arrives at a seemingly stable family's doorstep and upends everything. It starred Naseeruddin Shah and Shabana Azmi. It featured "Lakdi Ki Kaathi," one of the most recognisable children's songs in Hindi cinema. And it dealt with guilt, parenthood, and the lies families tell themselves, with a directness that still holds up four decades later.
+    "body": """If you grew up in an NRI household in the 2000s, there is a non-zero chance that someone in your family can recite entire scenes from Welcome (2007) by heart. The Nana Patekar-Anil Kapoor crime comedy became a cultural touchstone — the kind of film that plays on loop during Diwali parties and family gatherings, where "Uday bhai" and "Majnu bhai" are not characters but permanent inside jokes.
 
-Now Kapur is returning to that emotional territory, but with a rewrite that reflects a world the 1983 film never imagined.
+Nineteen years later, the franchise is back. Welcome to the Jungle releases worldwide on June 26, 2026, and it arrives with the largest ensemble cast assembled for a Hindi comedy in recent memory.
 
-## What's Changed
+## The Cast: 30 Stars and Counting
 
-*Masoom: The New Generation* is billed as a "contemporary reimagining" rather than a direct sequel. According to the filmmakers, the new version will explore "evolving themes of family, love, migration, and identity through a contemporary lens." That word — migration — is doing significant work. The original *Masoom* was a domestic drama set entirely within the architecture of an Indian joint family. The new film appears to be expanding those boundaries.
+Director Ahmed Khan has assembled what might be Bollywood's most ambitious comedy lineup. The headliners: Akshay Kumar, Suniel Shetty, Sanjay Dutt, Arshad Warsi, Paresh Rawal, and Jackie Shroff. The supporting ensemble reads like a who's-who of Hindi cinema: Raveena Tandon, Lara Dutta, Disha Patani, Jacqueline Fernandez, Johnny Lever, Tusshar Kapoor, Shreyas Talpade, Rajpal Yadav, Aftab Shivdasani, Krushna Abhishek, Kiku Sharda, Vindu Dara Singh, Mukesh Tiwari, Yashpal Sharma, and Daler Mehndi in a special role.
 
-Kapur explained: "For a long time, I have felt that the themes of *Masoom* deserved to be revisited through the lens of today's world. Families, relationships, identity — these ideas have evolved so much, and cinema must evolve with them."
+Suniel Shetty is reprising his iconic "Yeda Anna" character from Awara Paagal Deewana, creating an unexpected franchise crossover within the same film. Director Khan described his dynamic with Akshay Kumar and Arshad Warsi as "great banter that takes the fun and chaos a notch higher."
 
-The cast bridges the 1983 original and the present. Naseeruddin Shah and Shabana Azmi return — the first time both original leads have reprised roles in a reimagining of their own film. They're joined by Manoj Bajpayee, Nithya Menen, and Kaveri Kapur (Shekhar Kapur's daughter, who has been building a career as both an actress and singer-songwriter).
+The film also carries emotional weight. The late actor Pankaj Dheer, who passed away earlier this year after decades in film and television, appears in Welcome to the Jungle in his final on-screen role.
 
-## The Rahman Factor
+## What Kind of Comedy Is This?
 
-The headline creative reunion is between Kapur and A.R. Rahman, who are working together for the first time since *Elizabeth: The Golden Age* (2007) and their theatre collaborations *Bombay Dreams* and *Why? The Musical*. Rahman isn't just composing — he's co-producing the film, a role that signals deeper creative involvement than a standard music commission.
+Not what you might expect. Ahmed Khan has been clear that Welcome to the Jungle diverges from the franchise's slapstick roots. "It's a black dark situational humour," he told Pinkvilla. "It's not a comedy. Firoz Nadiadwala believes in dark humour and situational humour. And of course, it's serious cinema: not a comedy or slapstick."
 
-"Working with Shekhar has always been a deeply enriching experience — he has been a mentor and a creative force in many ways," Rahman said. "When he shared the vision for this film, I felt compelled to be involved beyond the music. There's something timeless about *Masoom*, and reinterpreting that emotional world for a new generation feels both exciting and necessary."
+Set against a jungle backdrop, the film trades the original's urban gangster world for a wilder, more absurd premise. The teaser, dropped without announcement on May 15, was packed with over-the-top comedic situations that immediately went viral. JioStar has acquired the domestic theatrical, satellite, and OTT rights, meaning the film will stream on JioHotstar after its theatrical run.
 
-For diaspora audiences, Rahman's involvement is its own draw. His soundtrack for *Dil Se..* (1998) — which Kapur produced — remains one of the defining albums of '90s Bollywood, and tracks like "Chaiyya Chaiyya" are cultural touchstones for an entire generation of NRIs.
+## The Production Saga
 
-## The Diaspora Angle
+Welcome to the Jungle had a turbulent path to the screen. Production began in 2024 but was halted midway, and the project was reportedly at risk of being shelved entirely. Shooting resumed in November 2025, with a final 15-day schedule in early 2026 wrapping up the remaining portions. Producer Firoz Nadiadwala stayed committed throughout, and the June 26 release date has held firm.
 
-The explicit inclusion of "migration" among the film's themes positions *Masoom: The New Generation* as potentially the rare mainstream Hindi film that addresses the Indian diaspora experience as a central narrative element rather than a backdrop for song sequences shot in Switzerland.
+The budget is reported at a massive scale, befitting a franchise that grossed over ₹200 crore with its first two installments combined. With Akshay Kumar coming off the hit Bhooth Bangla and the franchise's built-in nostalgia factor, trade circles are projecting a major opening weekend.
 
-Family secrets — the engine of the original — take on different textures when set against the dislocations of migration: the identities that shift, the relationships that strain across time zones, the children who grow up between cultures, the truths that families suppress not out of malice but out of the exhaustion of reinvention.
+## Why This Matters for the Diaspora
 
-Whether Kapur and his team land that complexity remains to be seen. The film is currently in pre-production and is expected to begin filming later this year, with a theatrical release anticipated before the end of 2026.
+The original Welcome was not just a Bollywood hit — it was an NRI phenomenon. The film's outrageous humour, quotable dialogues, and ensemble energy made it a staple at Indian community events, university cultural nights, and family watch-alongs across the US, UK, Canada, and the Gulf. Welcome Back (2015) attempted to recapture that energy with a different cast and had a mixed reception.
 
-## A Note on Vaibhav Sooryavanshi
+Welcome to the Jungle brings back the franchise's original DNA — Akshay Kumar, Suniel Shetty, and Paresh Rawal — while adding enough new faces to keep it fresh. For a generation of NRIs now in their 30s and 40s, this is less a movie and more a reunion.
 
-In a charming aside, Kapur took to X after the announcement to praise 15-year-old IPL sensation Vaibhav Sooryavanshi, writing: "If Sooryavanshi wasn't such a sensational cricketer, I could have cast him in Masoom, the film." The original *Masoom* turned child actor Jugal Hansraj into a household name. Kapur appears to still have an eye for young talent — he's just competing with the IPL for it now.""",
-    "person": "Shekhar Kapur",
-    "person_alt": "A. R. Rahman",
-    "pexels_query": "Indian family reunion airport",
-    "pexels_fallback": "family drama emotional",
-})
+The film opens June 26 worldwide. Expect premiere shows across North America and the UK to fill up fast."""
+}
 
+img3 = fetch_wikipedia_person_image("Akshay Kumar")
+art3_id = insert_article(art3)
+if art3_id and img3:
+    fn3 = f"{art3_id}.jpg"
+    final3 = upload_image_to_supabase(img3, fn3)
+    if final3:
+        patch_article(art3_id, {"image_url": final3, "image_attribution": "Wikimedia Commons"})
 
-# ── Main execution ───────────────────────────────────────────────────────────
-def main():
-    print(f"\n{'='*60}")
-    print(f"Entertainment Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    print(f"{'='*60}\n")
-    
-    success_count = 0
-    
-    for i, art in enumerate(articles, 1):
-        print(f"\n--- Article {i}/{len(articles)}: {art['headline'][:60]}... ---")
-        
-        # Extract image sourcing params
-        person = art.pop("person", None)
-        person_alt = art.pop("person_alt", None)
-        pexels_q = art.pop("pexels_query", None)
-        pexels_fb = art.pop("pexels_fallback", None)
-        
-        # Source image
-        print("  Sourcing image...")
-        img_url, attribution = source_image(
-            person_name=person,
-            pexels_query=pexels_q,
-            pexels_fallback=pexels_fb,
-            slug=art["slug"],
-        )
-        
-        # If primary person didn't yield, try alternate
-        if not img_url and person_alt:
-            print(f"  Trying alternate person: {person_alt}")
-            img_url, attribution = source_image(
-                person_name=person_alt,
-                slug=art["slug"],
-            )
-        
-        if img_url:
-            art["image_url"] = img_url
-            art["image_attribution"] = attribution
-            print(f"  ✓ Image set: {img_url[:60]}...")
-        else:
-            print("  ⚠ No image found — inserting without image")
-        
-        # Validate article quality
-        body_words = len(art["body"].split())
-        print(f"  Body: {body_words} words")
-        if body_words < 400:
-            print(f"  ✗ REJECTED: body too short ({body_words} words)")
-            continue
-        if len(art["headline"]) > 200:
-            print(f"  ✗ REJECTED: headline too long ({len(art['headline'])} chars)")
-            continue
-        if len(art.get("subheadline", "")) < 15:
-            print(f"  ✗ REJECTED: subheadline too short")
-            continue
-        
-        # Insert
-        art_id = insert_article(art)
-        if art_id:
-            success_count += 1
-        
-        time.sleep(1)  # Rate limit courtesy
-    
-    print(f"\n{'='*60}")
-    print(f"Done. {success_count}/{len(articles)} articles published.")
-    print(f"{'='*60}\n")
-
-
-if __name__ == "__main__":
-    main()
+print("\n=== All articles published ===")
