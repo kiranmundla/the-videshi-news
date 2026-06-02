@@ -1,25 +1,32 @@
 #!/usr/bin/env python3
-"""
-News writer for The Videshi — June 2, 2026 batch
-Produces 3 articles in the 'news' category.
-"""
+"""News writer for The Videshi — June 2, 2026 batch."""
 
-import json, os, uuid, requests, urllib.parse, time
+import json, os, re, time, uuid, requests, urllib.parse
 from datetime import datetime, timezone
 
-# --- ENV ---
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
+# ── env ──────────────────────────────────────────────────────────────
+for envfile in [os.path.expanduser("~/workspace/.env.supabase"),
+                os.path.expanduser("~/workspace/.env.pexels")]:
+    if os.path.exists(envfile):
+        with open(envfile) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    os.environ[k.strip()] = v.strip()
+
+SB_URL  = os.environ["SUPABASE_URL"]
+SB_KEY  = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+PEXELS  = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "apikey": SB_KEY,
+    "Authorization": f"Bearer {SB_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation",
 }
 
-# --- IMAGE HELPERS ---
+# ── helpers ──────────────────────────────────────────────────────────
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -34,31 +41,34 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels via curl (Python urllib gets 403)."""
+    """Fetch image from Pexels with specific search terms."""
+    if not PEXELS:
+        print("  ⚠ No Pexels API key")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             import subprocess
             result = subprocess.run(
-                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+                ["curl", "-sS", "-H", f"Authorization: {PEXELS}",
                  f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape"],
-                capture_output=True, text=True, timeout=15,
+                capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
             photos = data.get("photos", [])
             for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
                 if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
                     return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
@@ -66,7 +76,7 @@ def fetch_pexels_image(query, fallback_query=None):
 
 
 def validate_image(url):
-    """Validate image URL returns 200 with image content-type and >5KB."""
+    """Verify image URL returns HTTP 200 with image content > 5KB."""
     if not url:
         return False
     try:
@@ -76,43 +86,42 @@ def validate_image(url):
         cl = int(r.headers.get("Content-Length", 0))
         if r.status_code == 200 and "image" in ct and cl > 5000:
             return True
-        # Some servers don't support HEAD well, try GET
-        r2 = requests.get(url, timeout=10, stream=True, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct2 = r2.headers.get("Content-Type", "")
-        # Read first chunk to check size
-        chunk = r2.raw.read(6000)
-        if r2.status_code == 200 and "image" in ct2 and len(chunk) > 5000:
-            return True
+        # Sometimes HEAD doesn't return Content-Length, try GET
+        if r.status_code == 200 and "image" in ct:
+            r2 = requests.get(url, timeout=10, stream=True,
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
+                return True
     except Exception as e:
-        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
+        print(f"  ⚠ Image validation error: {e}")
     return False
 
 
 def upload_to_supabase_storage(image_url, filename):
     """Download image and upload to Supabase article-images bucket."""
     try:
-        r = requests.get(image_url, timeout=20, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        r = requests.get(image_url, timeout=20,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         if r.status_code != 200 or len(r.content) < 5000:
-            print(f"  ⚠ Download failed for {image_url[:60]}: status={r.status_code}, size={len(r.content)}")
+            print(f"  ⚠ Download failed: {r.status_code}, size={len(r.content)}")
             return None
-
-        content_type = r.headers.get("Content-Type", "image/jpeg")
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        ct = r.headers.get("Content-Type", "image/jpeg")
+        upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
         resp = requests.post(
             upload_url,
             headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": content_type,
+                "apikey": SB_KEY,
+                "Authorization": f"Bearer {SB_KEY}",
+                "Content-Type": ct,
                 "x-upsert": "true",
             },
             data=r.content,
             timeout=30,
         )
         if resp.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase storage: {public_url[:80]}...")
+            public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
             print(f"  ⚠ Upload failed: {resp.status_code} {resp.text[:200]}")
@@ -122,242 +131,247 @@ def upload_to_supabase_storage(image_url, filename):
 
 
 def insert_article(article):
-    """Insert article into p2_articles."""
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    r = requests.post(url, headers=HEADERS, json=article, timeout=30)
+    """Insert article into Supabase."""
+    r = requests.post(
+        f"{SB_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article,
+        timeout=30,
+    )
     if r.status_code in (200, 201):
         data = r.json()
-        aid = data[0]["id"] if isinstance(data, list) and data else "unknown"
-        print(f"  ✓ Inserted: {article['slug']} (id={aid})")
-        return aid
+        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
+        print(f"  ✓ Inserted: {article['slug']} (id={art_id})")
+        return art_id
     else:
-        print(f"  ✗ Insert failed for {article['slug']}: {r.status_code} {r.text[:300]}")
+        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
         return None
 
 
-# ========== ARTICLES ==========
+# ── articles ─────────────────────────────────────────────────────────
 
 articles = []
 
-# -----------------------------------------------------------------------
-# ARTICLE 1: AirTrunk $21 billion data center in Maharashtra
-# -----------------------------------------------------------------------
-print("\n=== Article 1: AirTrunk $21B data center ===")
-
-art1_slug = "airtrunk-21-billion-data-center-maharashtra-blackstone-ai-india-20260602"
-art1_headline = "A Blackstone-Backed Firm Just Committed $21 Billion to Build a Data Centre on the Outskirts of Mumbai."
-art1_subheadline = "AirTrunk's deal in Maharashtra is part of a $630 billion wave of tech investments that is turning India into Asia's AI infrastructure hub — and the biggest construction site the cloud industry has ever seen."
-
-art1_body = """India's ambition to become a global AI powerhouse just received its largest single commitment yet.
-
-AirTrunk, the Australian hyperscale data centre operator backed by Blackstone, has signed a letter of intent with the Maharashtra government to build a 3 GW data centre campus in the Raigad Pen Growth Centre, just outside Mumbai. The investment: ₹2 lakh crore, or roughly $21 billion.
-
-Maharashtra Chief Minister Devendra Fadnavis announced the deal after meeting AirTrunk founder and CEO Robin Khuda, alongside Australian Consul General Paul Murphy. "A massive Rs 2 Lakh Crore investment with 3 GW capacity," Fadnavis said in a post on X, calling it a milestone for the state's digital infrastructure ambitions.
-
-## The Scale of It
-
-To put 3 GW in perspective: that is roughly twice the entire installed data centre capacity of India today. The country currently has about 1.5 GW of operational data centre power, and industry projections suggest it will need around 10 GW by 2030. AirTrunk alone is committing to nearly a third of that future demand in a single campus.
-
-The company already operates hyperscale facilities in Hong Kong, Japan, Malaysia, and Singapore. It entered India earlier this year through the acquisition of Lumina CloudInfra, which gave it access to a 600 MW pipeline across Mumbai, Chennai, and Hyderabad.
-
-## A Wider Flood of Capital
-
-AirTrunk's deal is the latest in a staggering wave of foreign technology investment washing over India. According to Reuters, more than $630 billion in commitments are expected from US tech giants this year alone, driven in part by Indian tax breaks for foreign firms operating domestic data centres.
-
-India's own conglomerates are matching the pace. Reliance committed $110 billion to AI and data infrastructure in February. Adani pledged $100 billion in the same month. Amazon, Microsoft, and Google have all announced multi-billion-dollar expansions of their Indian cloud networks.
-
-The investments are being steered at the highest levels. The India-US technology partnership in semiconductors and AI is now jointly overseen by the National Security Advisors of both countries, merging commercial digitisation with strategic competition against China.
-
-## Why It Matters for the Diaspora
-
-For the roughly 4.4 million Indian-Americans in the United States and millions more NRIs worldwide, the data centre boom represents something tangible: a bet by the world's largest technology investors that India's digital infrastructure will be globally competitive within this decade.
-
-The implications ripple outward. More data centres mean more engineering jobs in India. More cloud capacity means Indian startups can train and deploy AI models domestically rather than renting compute from Singapore or Virginia. And more foreign capital flowing into Indian real estate, power, and construction means a broader economic multiplier that touches everything from steel demand to suburban land prices near Mumbai.
-
-Blackstone, AirTrunk's parent, has already directed nearly 40 percent of its $50 billion India investment portfolio into Maharashtra. The state is positioning itself as the country's primary data centre corridor, competing with Hyderabad and Chennai for a market that barely existed five years ago.
-
-## The Catch
-
-There is one. India's power grid will need to keep up. A 3 GW data centre campus requires reliable, round-the-clock electricity at a scale that rivals small cities. India's renewable energy buildout is accelerating, but grid reliability in many states remains uneven. Blackstone CEO Stephen Schwarzman himself has warned that electricity shortages could constrain AI expansion globally.
-
-For now, the deal is a letter of intent — not a construction contract. The timeline for build-out has not been disclosed. But the signal is unmistakable: the world's largest infrastructure investors believe India is where the next generation of AI will be built.
-
-*Sources: Reuters, ANI, AirTrunk, Maharashtra CMO, Blackstone.*"""
-
-# Image: Pexels for data center / server room
-img1 = fetch_pexels_image("data center server room", "hyperscale data center")
-img1_final = None
-if img1 and validate_image(img1):
-    img1_final = upload_to_supabase_storage(img1, f"{art1_slug}.jpg")
-if not img1_final and img1 and validate_image(img1):
-    img1_final = img1  # Use Pexels direct link as fallback
+# ── ARTICLE 1: Venezuela's Rodriguez visits India ────────────────────
 
 articles.append({
-    "headline": art1_headline,
-    "subheadline": art1_subheadline,
-    "body": art1_body,
-    "slug": art1_slug,
+    "headline": "Venezuela's Acting President Will Visit India This Week. The Oil Math Is the Reason.",
+    "subheadline": "Delcy Rodriguez arrives Wednesday for five days of energy talks as India becomes the second-largest buyer of Venezuelan crude, importing 427,000 barrels a day.",
+    "slug": "venezuela-rodriguez-india-visit-june-3-energy-oil-427000-bpd-modi-reliance-20260602",
     "category": "news",
-    "vertical": "economy",
+    "vertical": "news",
     "status": "published",
-    "is_editorial": False,
     "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img1_final,
-    "image_attribution": "The Videshi" if img1_final and "supabase" in (img1_final or "") else "Pexels",
-    "sources": json.dumps(["Reuters", "ANI", "AirTrunk", "Maharashtra CMO"]),
+    "is_editorial": False,
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "Ministry of External Affairs", "url": "https://www.mea.gov.in"},
+        {"name": "Press Trust of India", "url": "https://www.ptinews.com"}
+    ]),
+    "body": """Venezuela's Acting President Delcy Rodriguez will arrive in New Delhi on Wednesday for a five-day working visit that is, at bottom, about one thing: crude oil. India's Ministry of External Affairs confirmed the June 3–7 trip on Tuesday, saying Rodriguez will hold talks with Prime Minister Narendra Modi covering the "full spectrum" of bilateral relations — energy, trade, investment, pharmaceuticals, healthcare, transportation, and renewable energy.
+
+The diplomatic language is wide. The commercial reality is narrow and urgent. India was the second-largest buyer of Venezuelan crude in May, importing 427,000 barrels per day — second only to the United States, according to Reuters shipping data. Reliance Industries has emerged as one of the three largest global buyers of Venezuelan oil in recent months, a position that would have been unthinkable a year ago.
+
+## Why India Needs Venezuelan Oil Now
+
+The arithmetic is brutal. Before the U.S.–Israeli strikes on Iran that began on February 28, more than 40 percent of India's crude imports transited the Strait of Hormuz. That chokepoint is now effectively shut. With Brent crude hovering near $95 a barrel and the Indian rupee under pressure from the largest foreign institutional outflows in modern history, every alternative barrel matters.
+
+India had stopped buying Venezuelan crude last year after the Trump administration slapped a 25 percent discretionary tariff on countries purchasing oil from Caracas. It resumed purchases in February after sanctions were eased following a flagship supply pact between Washington and Caracas — a deal reached in the aftermath of the U.S. capture of President Nicolás Maduro in January. Under that agreement, proceeds from Venezuelan oil sales flow through bank accounts administered by the U.S. Treasury Department.
+
+## The Numbers Behind the Visit
+
+Venezuela's total oil exports rose to 1.25 million barrels per day in May — the third consecutive monthly increase. India's share of that flow has grown rapidly. Government trade data for April showed India's merchandise imports from Venezuela stood at $609.87 million, of which petroleum products accounted for $601.53 million. Exports in the other direction were a thin $20.33 million.
+
+Rodriguez will be accompanied by Venezuela's ministers of foreign affairs, economy and finance, science and technology, communications, and transportation. It is the largest Venezuelan delegation to visit India in years, and the most senior since Rodriguez herself attended the India Energy Week conference in February 2025 as oil minister.
+
+## Beyond Oil: Pharma and Renewables
+
+While oil dominates the agenda, both sides are expected to discuss India's pharmaceutical exports to Venezuela, cooperation on renewable energy infrastructure, and technology partnerships. India's generic drug industry has long supplied Latin American markets, and Venezuela's healthcare system — battered by years of sanctions and mismanagement — needs affordable medicines.
+
+## What This Means for the Diaspora
+
+For NRIs in the energy sector and Indian businesses with Latin American exposure, the Rodriguez visit signals a broader shift in India's oil diplomacy. New Delhi is no longer waiting for the Hormuz crisis to resolve itself. It is building redundant supply chains from Latin America, Africa, and the Gulf's western flanks — and Venezuela, with its heavy crude grades that Indian refineries were built to process, is central to that strategy.
+
+The visit also underscores how dramatically the global oil map has shifted since February. India's top five crude suppliers now include nations that barely registered a year ago, and Venezuela — a country India had deliberately avoided for geopolitical reasons — is now a cornerstone of its energy security.""",
+    "image_search_person": "Delcy Rodriguez",
+    "image_search_pexels": "oil refinery industrial",
+    "image_search_pexels_fallback": "crude oil tanker ship",
 })
 
 
-# -----------------------------------------------------------------------
-# ARTICLE 2: India rewires oil supply chain to Latin America & Africa
-# -----------------------------------------------------------------------
-print("\n=== Article 2: India oil diversification ===")
-
-art2_slug = "india-oil-imports-latin-america-africa-venezuela-hormuz-diversification-20260602"
-art2_headline = "India Is Quietly Rewiring Its Entire Oil Supply Chain. Venezuela Is Now Its Fourth-Largest Supplier."
-art2_subheadline = "Three months into the Hormuz blockade, Indian refiners have shifted billions of dollars in crude purchases to Latin America and Africa — a move that looks less like a stopgap and more like a permanent realignment."
-
-art2_body = """Before the Iran war, India's oil map was simple. Roughly half of its crude came from the Middle East, flowing through the Strait of Hormuz. Russia and Iraq filled in the rest. The Gulf was gravity — automatic, familiar, cheap.
-
-Three months later, that map has been redrawn.
-
-## The New Suppliers
-
-Indian refiners have sharply increased crude oil purchases from Venezuela, Brazil, Angola, and Nigeria to cover shortfalls caused by the near-total shutdown of commercial shipping through the Strait of Hormuz, according to Kpler shipping data cited in multiple reports this week.
-
-Venezuela is the most striking addition. The South American producer, long hobbled by US sanctions and internal dysfunction, is now on track to become India's fourth-largest crude supplier in May — a position it has never held before. Indian demand for Venezuela's heavy crude has surged as Gulf flows remain constrained and refiners scramble for compatible grades.
-
-Brazil, Angola, and Nigeria have also seen significant increases in shipments to India in April and May. The diversification has happened fast, driven by state refiners like Indian Oil Corporation, Bharat Petroleum, and Hindustan Petroleum, all acting under government encouragement to reduce dependence on a single chokepoint.
-
-## Russia Stays, But the Mix Changes
-
-Russia remains India's largest individual supplier, with about 1.9 million barrels per day expected in May. Iraq, despite its proximity to the conflict zone, is still delivering roughly 41,000 bpd — a fraction of its pre-war volumes, but a sign that some Basra-grade shipments are finding alternate routes.
-
-The overall picture is of a supply chain that has been fundamentally rebalanced. India's oil basket no longer tilts toward the Gulf. It spans four continents.
-
-## The Oman Corridor
-
-Adding to the shift, the India-Oman Comprehensive Economic Partnership Agreement took effect on June 1, opening what trade analysts are calling a "Hormuz bypass." Oman's major ports — Salalah and Duqm — sit on the Arabian Sea, entirely outside the Strait of Hormuz. While every other Gulf exporter's shipments must transit the blockaded waterway, Oman's do not.
-
-The numbers reflect this. India's imports from Oman skyrocketed from $430 million in April 2025 to nearly $1.5 billion in April 2026, according to the Global Trade Research Initiative. GTRI founder Ajay Srivastava noted that Oman has granted India zero-duty access on 98 percent of its tariff lines, covering 99 percent of India's exports by value.
-
-## Structural, Not Temporary
-
-Government officials and refinery executives have privately signalled that the diversification is not a short-term fix. Even if the Strait of Hormuz reopens — a prospect that remains uncertain as US-Iran peace talks stall — India intends to maintain relationships with Latin American and African suppliers as a permanent hedge against future disruptions.
-
-The Finance Ministry's latest monthly economic review, published last week, noted that "the Hormuz disruption remains the most consequential variable for India's external and price outlook." Crude oil and petroleum products accounted for 53.9 percent of India's total merchandise imports from the Gulf Cooperation Council in FY26.
-
-## What This Means for NRIs
-
-For the Indian diaspora watching from abroad, the oil supply chain reshuffle has direct implications. Energy prices affect everything from airline ticket costs between New York and Mumbai to the inflation rate that determines how far remittance rupees stretch.
-
-Goldman Sachs identified India as the most exposed major economy to the Hormuz disruption, with a potential GDP hit of 3.6 percent — worse than Turkey, South Korea, or any other large country. The diversification strategy is India's primary defence against that scenario.
-
-The question is whether it is enough. Brent crude hovered near $95 a barrel on Monday. Inventories are falling globally. And Iran's Revolutionary Guards have now threatened to extend their blockade to the Bab el-Mandeb Strait at the mouth of the Red Sea — a second chokepoint that would strangle even the alternate routes India has worked so hard to build.
-
-*Sources: Kpler, Reuters, GTRI, India Finance Ministry, The Indian Eye, Goldman Sachs.*"""
-
-# Image: Pexels for oil tanker / refinery
-img2 = fetch_pexels_image("oil tanker ship ocean", "crude oil refinery")
-img2_final = None
-if img2 and validate_image(img2):
-    img2_final = upload_to_supabase_storage(img2, f"{art2_slug}.jpg")
-if not img2_final and img2 and validate_image(img2):
-    img2_final = img2
+# ── ARTICLE 2: CBSE OSM Row and new chairman ────────────────────────
 
 articles.append({
-    "headline": art2_headline,
-    "subheadline": art2_subheadline,
-    "body": art2_body,
-    "slug": art2_slug,
+    "headline": "A 17-Year-Old Read CBSE's Tender Files. Now India Has a New Board Chairman.",
+    "subheadline": "The government replaced the CBSE chief and secretary within hours after a student's analysis of the On-Screen Marking contract triggered a national firestorm.",
+    "slug": "cbse-osm-controversy-new-chairman-lokhande-prashant-sitaram-sarthak-sidhant-20260602",
     "category": "news",
-    "vertical": "economy",
+    "vertical": "news",
     "status": "published",
-    "is_editorial": False,
     "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img2_final,
-    "image_attribution": "The Videshi" if img2_final and "supabase" in (img2_final or "") else "Pexels",
-    "sources": json.dumps(["Kpler", "Reuters", "GTRI", "India Finance Ministry", "The Indian Eye", "Goldman Sachs"]),
+    "is_editorial": False,
+    "sources": json.dumps([
+        {"name": "Bar and Bench", "url": "https://www.barandbench.com"},
+        {"name": "Careers360", "url": "https://news.careers360.com"},
+        {"name": "Inshorts", "url": "https://inshorts.com"},
+        {"name": "Press Trust of India", "url": "https://www.ptinews.com"}
+    ]),
+    "body": """The Central Board of Secondary Education has a new chairman. The government announced on Tuesday that Lokhande Prashant Sitaram will take over as CBSE chairperson, while outgoing chairman Rahul Singh has been transferred to the Department of Agriculture and Farmers Welfare. CBSE Secretary Himanshu Gupta was also moved out. The twin transfers happened within hours of each other.
+
+The trigger was not a parliamentary inquiry or a ministry audit. It was a 17-year-old student from Jharkhand named Sarthak Sidhant, whose forensic reading of CBSE's tender documents for its On-Screen Marking system turned into the biggest education controversy of 2026.
+
+## What Went Wrong With OSM
+
+The On-Screen Marking system was introduced by CBSE this year to digitise the evaluation of Class 12 answer books. The idea was straightforward: scan answer sheets, distribute them to evaluators digitally, reduce manual handling, and speed up results.
+
+What followed was anything but straightforward. When the post-result re-evaluation portal opened, students began accessing scanned copies of their answer sheets — and immediately flagged blurred scans, missing pages, mismatched handwriting, and scoring discrepancies. The complaints went viral on social media. The re-evaluation portal then developed technical and payment failures, forcing CBSE to delay parts of the process and bring in public sector banks to shore up payment infrastructure.
+
+## How a Student Broke the Story Open
+
+Sarthak Sidhant, a Class 12 student, did not stop at complaining about his own paper. He obtained CBSE's tender documents through public channels and published a detailed analysis questioning how Hyderabad-based EduTeck Coempt won the contract to implement the OSM system. His findings — published on a blog and later amplified by opposition politicians on social media — raised questions about the procurement process, the technical qualifications of the vendor, and whether CBSE followed standard government procurement norms.
+
+CBSE has strongly rejected allegations of irregularities, insisting the process followed all applicable guidelines. But the political damage was already done.
+
+## Congress Demands Pradhan's Resignation
+
+The opposition Congress party escalated the attack beyond CBSE's leadership. Rahul Gandhi accused the Centre of "shielding" Education Minister Dharmendra Pradhan, and Congress formally demanded his resignation, calling the episode "one of the biggest institutional failures in India's education history."
+
+The party pointed to what it described as the government's denial of cybersecurity vulnerabilities in the OSM system for weeks before finally acting. Whether the political pressure was the proximate cause of the leadership change or whether the transfers were already in the pipeline is unclear, but the timing left little room for alternative interpretations.
+
+## Over 16,000 Students Seek Re-evaluation
+
+The scale of the fallout is measurable. More than 16,000 students have submitted re-evaluation requests through the CBSE portal — itself a system that had to withstand cyberattacks during the submission window. The sheer volume suggests the marking concerns are not isolated.
+
+## What Changes Under New Leadership
+
+Lokhande Prashant Sitaram, the new chairperson, takes charge with NEET-UG 2026 scheduled for June 21, a date that carries its own pressure after last year's paper-leak scandal that triggered Supreme Court intervention. The court told India's exam agency last week to learn from the UPSC, "the one body that has never had a paper leak."
+
+For millions of Indian families — including those in the diaspora whose children sit CBSE exams at affiliated schools abroad — the OSM controversy is a reminder that India's examination infrastructure remains fragile even as the stakes it carries grow heavier each year.""",
+    "image_search_person": None,
+    "image_search_pexels": "Indian students examination hall",
+    "image_search_pexels_fallback": "students exam answer sheet India",
 })
 
 
-# -----------------------------------------------------------------------
-# ARTICLE 3: Goldman Sachs says India most exposed to Hormuz crisis
-# -----------------------------------------------------------------------
-print("\n=== Article 3: Goldman Sachs India exposure ===")
-
-art3_slug = "goldman-sachs-india-most-exposed-economy-hormuz-3-6-percent-gdp-hit-20260602"
-art3_headline = "Goldman Sachs Just Named India the Most Vulnerable Major Economy on Earth. The Number Is 3.6%."
-art3_subheadline = "A new Goldman analysis maps exactly how much economic damage the Hormuz blockade can inflict country by country — and India tops the list, above Turkey, South Korea, and every G7 nation."
-
-art3_body = """Goldman Sachs has done the math that everyone in Delhi has been trying to avoid.
-
-In a sweeping analysis published on May 29, the investment bank mapped the economic fallout from the Strait of Hormuz blockade across every major economy. The finding that matters most for India: a potential GDP hit of 3.6 percent — the highest of any large country in the world.
-
-## The Numbers
-
-Goldman's note breaks the damage into two channels. The first is oil prices, which have risen roughly 50 percent since the conflict began. The second, less discussed, is the broader supply chain disruption: base chemicals are up more than 60 percent (the fastest rate ever recorded), helium prices have doubled, methanol is up 40 percent, and sulfur and sulfuric acid have surged 60 percent.
-
-India's 3.6 percent exposure is the combined effect of both channels. Turkey comes second at 3.3 percent. South Korea is at 3.1 percent. The United States, cushioned by its own oil production and distance from the chokepoint, faces just 0.3 percent.
-
-Vessel counts through the Strait of Hormuz are down more than 90 percent from normal levels, three months into the conflict. Some Asian petrochemical plants have already declared force majeure. Goldman's analysts warn that chemical supply disruptions could extend through 2027, even if the strait reopens tomorrow.
-
-## Why India Is Most Exposed
-
-India imports nearly 90 percent of its crude oil. Before the war, the Gulf accounted for more than half of that supply. The Hormuz closure hit India's traditional import routes harder than almost any other country's.
-
-But the exposure goes beyond oil. India's manufacturing sector — which just posted its strongest PMI reading in three months — depends on imported chemicals, industrial gases, and specialty inputs that flow through the same Gulf chokepoint. When those inputs are disrupted, factories either slow down or pay dramatically more, squeezing margins even as output rises.
-
-The rupee tells the story. It has fallen roughly 5 percent since the war began, hitting a record low of ₹96.95 per dollar before recovering slightly to ₹95. Foreign investors have pulled $26.4 billion from Indian equities in 2026 alone — more than the entire record annual outflow of 2025 — driven by the combination of high oil prices, a weakening currency, and geopolitical uncertainty.
-
-## The RBI's Impossible Choice
-
-This backdrop frames the Reserve Bank of India's rate decision on Friday, which Goldman's analysis makes even more consequential. The central bank has held rates at 5.25 percent since December, following 125 basis points of cuts last year.
-
-Nearly 80 percent of economists in a Reuters poll expect the RBI to hold again. But interest rate swaps are pricing in nearly 100 basis points of tightening over the next 12 months — a market signal that traders believe the central bank will have to act eventually, even if it does not move this week.
-
-BofA's chief India economist, Rahul Bajoria, described the dilemma as "whether to respond to market pressures or incoming data." Inflation remains below the RBI's 4 percent target for now, but fuel prices have already been hiked, the monsoon forecast is the weakest in 11 years, and food prices are expected to climb.
-
-## The German Precedent
-
-Goldman's note includes one cautious note of optimism. When Russia cut off gas to Germany in 2022, the most pessimistic models predicted a 12 percent GDP hit. The actual result was a slight technical recession — households and firms adapted far faster than anyone expected.
-
-Goldman explicitly cites this as a reason to believe India's 3.6 percent figure may overstate the ultimate damage. Countries find workarounds. Supply chains reroute. Demand adjusts. India is already doing this — shifting crude purchases to Venezuela, Brazil, and Africa, signing new trade corridors with Oman, and stockpiling through strategic reserves.
-
-But the German analogy has limits. Germany had ready access to LNG terminals, wealthy EU neighbours, and a mild winter. India faces a weak monsoon, 90 percent oil import dependence, and the constant risk that the conflict escalates further. Iran's Revolutionary Guards have now threatened to extend the blockade to the Bab el-Mandeb Strait — a move that would disrupt even the alternative shipping routes India has been building.
-
-Goldman's realistic estimate for the global GDP headwind from the crisis is about 0.4 to 0.5 percent from non-oil disruptions, plus another 0.5 percentage points from the oil price itself. For India, the floor is higher and the ceiling is darker.
-
-*Sources: Goldman Sachs (May 29 note), Reuters, BofA Global Research, CareEdge Ratings, The Street.*"""
-
-# Image: Pexels for Indian financial district / stock market
-img3 = fetch_pexels_image("Mumbai financial district skyline", "India stock exchange trading")
-img3_final = None
-if img3 and validate_image(img3):
-    img3_final = upload_to_supabase_storage(img3, f"{art3_slug}.jpg")
-if not img3_final and img3 and validate_image(img3):
-    img3_final = img3
+# ── ARTICLE 3: 5 new SC judges, highest-ever strength ───────────────
 
 articles.append({
-    "headline": art3_headline,
-    "subheadline": art3_subheadline,
-    "body": art3_body,
-    "slug": art3_slug,
+    "headline": "India's Supreme Court Just Hit Its Highest-Ever Strength. One of the New Judges Was Never a Judge Before.",
+    "subheadline": "Five judges took oath on Tuesday, bringing the court to 37 — including V. Mohana, only the second woman in India's history to be elevated directly from the Bar to the apex court.",
+    "slug": "supreme-court-5-new-judges-37-highest-strength-v-mohana-bar-elevation-20260602",
     "category": "news",
-    "vertical": "economy",
+    "vertical": "news",
     "status": "published",
-    "is_editorial": False,
     "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img3_final,
-    "image_attribution": "The Videshi" if img3_final and "supabase" in (img3_final or "") else "Pexels",
-    "sources": json.dumps(["Goldman Sachs", "Reuters", "BofA Global Research", "CareEdge Ratings", "The Street"]),
+    "is_editorial": False,
+    "sources": json.dumps([
+        {"name": "Bar and Bench", "url": "https://www.barandbench.com"},
+        {"name": "The Hindu Business Line", "url": "https://www.thehindubusinessline.com"},
+        {"name": "SCC Online", "url": "https://www.scconline.com"},
+        {"name": "Press Trust of India", "url": "https://www.ptinews.com"}
+    ]),
+    "body": """Chief Justice of India Surya Kant administered the oath of office to five new judges of the Supreme Court on Tuesday morning, raising the working strength of the court to 37 — the highest it has ever been.
+
+The five are Justices Sheel Nagu, Shree Chandrashekhar, Sanjeev Sachdeva, Arun Palli, and V. Mohana. The first four were serving as chief justices of high courts before their elevation. Mohana was not.
+
+## The Significance of V. Mohana
+
+Venkita Subramani Mohana is only the second woman in Indian judicial history to be elevated directly from the Bar to the Supreme Court bench, after Justice Indu Malhotra in 2018. Unlike her four colleagues, she has never served as a judge at any level — she comes to the court as a senior advocate, a rare and constitutionally significant appointment.
+
+With her oath, the Supreme Court now has two serving women judges. The other is Justice B.V. Nagarathna, who has been on the bench since August 2021 and is next in line to become Chief Justice of India — a milestone expected in 2027, when she will serve as CJI for slightly more than a month.
+
+## Why the Court Was Expanded
+
+The appointments came days after the government issued an ordinance amending the law to increase the sanctioned strength of the Supreme Court from 34 to 38, including the Chief Justice. The move was driven by India's staggering case backlog, which has grown even as the court has steadily added judges over the past decade.
+
+Before Tuesday's oath ceremony, the court was operating with just 32 judges against what was then a 34-seat bench — two vacancies that the government had been slow to fill. With the ordinance expanding the court and the Collegium acting within days, five slots were filled in a single appointment cycle.
+
+The court still has one vacancy.
+
+## Who the New Judges Are
+
+**Justice Sheel Nagu** served as Chief Justice of the Punjab and Haryana High Court. His parent high court was Madhya Pradesh, and he was enrolled as an advocate in October 1987.
+
+**Justice Shree Chandrashekhar** was Chief Justice of the Bombay High Court, elevated from the Jharkhand High Court where he began his judicial career.
+
+**Justice Sanjeev Sachdeva** headed the Madhya Pradesh High Court and came from the Delhi High Court, where he was known for handling significant constitutional and commercial matters.
+
+**Justice Arun Palli** served as Chief Justice of the Jammu and Kashmir and Ladakh High Court, with the Punjab and Haryana High Court as his parent court.
+
+**V. Mohana**, a senior advocate practising before the Supreme Court, was recommended by the Collegium on May 27. The President's approval came on June 1 — a turnaround of just four days, unusually fast by the standards of judicial appointments in India.
+
+## Four Days From Recommendation to Oath
+
+The speed of the appointment cycle is notable. The Supreme Court Collegium, headed by CJI Kant, recommended all five names on May 27. The Centre cleared them on June 1. The oath ceremony was held on June 2. In a system where judicial appointments have historically been delayed for months — sometimes years — by friction between the Collegium and the government, a four-day clearance signals alignment between the judiciary and the executive on the urgency of filling the bench.
+
+## What Comes Next
+
+Two sitting judges — Justice Pankaj Mithal and Justice J.K. Maheshwari — are set to retire on June 16 and June 28 respectively. Their departures will bring the strength back down to 35, creating three vacancies against the new 38-seat bench. The Collegium will need to move again before the summer recess to prevent the bench from thinning out.
+
+For ordinary litigants and for the Indian diaspora navigating cross-border disputes, property matters, and constitutional questions from abroad, a fuller bench means shorter wait times and a better chance that cases are heard by constitution benches rather than routed into an indefinite queue.""",
+    "image_search_person": "Surya Kant Chief Justice India",
+    "image_search_pexels": "Supreme Court India building",
+    "image_search_pexels_fallback": "Indian court judiciary gavel",
 })
 
 
-# ========== INSERT ALL ==========
-print("\n=== Inserting articles ===")
-for art in articles:
-    insert_article(art)
-    time.sleep(0.5)
+# ── process articles ─────────────────────────────────────────────────
 
-print("\n✅ News writer batch complete.")
+for i, art in enumerate(articles):
+    print(f"\n{'='*60}")
+    print(f"ARTICLE {i+1}: {art['headline'][:70]}...")
+    print(f"{'='*60}")
+
+    # Image sourcing
+    image_url = None
+    image_attribution = None
+
+    # Try Wikipedia for person articles
+    person = art.pop("image_search_person", None)
+    pexels_q = art.pop("image_search_pexels", None)
+    pexels_fb = art.pop("image_search_pexels_fallback", None)
+
+    if person:
+        image_url = fetch_wikipedia_person_image(person)
+        if image_url:
+            image_attribution = "Wikimedia Commons"
+
+    # Fallback to Pexels
+    if not image_url and pexels_q:
+        image_url = fetch_pexels_image(pexels_q, pexels_fb)
+        if image_url:
+            image_attribution = "Pexels"
+
+    # Validate
+    if image_url and not validate_image(image_url):
+        print(f"  ⚠ Image validation failed, trying upload anyway...")
+
+    # Upload to Supabase if from Wikipedia (permanent but let's be safe)
+    slug = art["slug"]
+    if image_url and "upload.wikimedia.org" in image_url:
+        uploaded = upload_to_supabase_storage(image_url, f"{slug}.jpg")
+        if uploaded:
+            image_url = uploaded
+            image_attribution = "Wikimedia Commons"
+    elif image_url and "pexels.com" not in image_url:
+        uploaded = upload_to_supabase_storage(image_url, f"{slug}.jpg")
+        if uploaded:
+            image_url = uploaded
+
+    if image_url:
+        art["image_url"] = image_url
+        art["image_attribution"] = image_attribution
+        print(f"  ✓ Final image: {image_url[:80]}...")
+    else:
+        print(f"  ⚠ No image found — publishing without image")
+
+    # Insert
+    art_id = insert_article(art)
+    if art_id:
+        print(f"  ✓ Published: {slug}")
+    else:
+        print(f"  ✗ FAILED: {slug}")
+
+    time.sleep(1)
+
+print("\n\nDone! All articles processed.")
