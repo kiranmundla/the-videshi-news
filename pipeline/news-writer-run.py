@@ -1,42 +1,30 @@
 #!/usr/bin/env python3
-"""
-Videshi News Writer — June 2, 2026 batch
-Publishes 3 articles in the 'news' category.
-"""
-import os, json, sys, uuid, re, time
-from datetime import datetime, timezone
-import requests, urllib.parse
+"""News writer run — 2026-06-02"""
 
-# ── Load env ──────────────────────────────────────────────────────────────────
+import json, os, re, sys, time, uuid, urllib.parse, subprocess
+from datetime import datetime, timezone
+
+# Load env
 def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith('#') or '=' not in line:
-                continue
-            key, _, val = line.partition('=')
-            key = key.replace('export ', '').strip()
-            val = val.strip().strip('"').strip("'")
-            os.environ.setdefault(key, val)
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    k, v = line.split('=', 1)
+                    os.environ[k.strip()] = v.strip().strip('"').strip("'")
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
-}
 
-# ── Image helpers ─────────────────────────────────────────────────────────────
+import requests
+
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    """Fetch a person's actual photo from Wikipedia."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -48,343 +36,311 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels API using curl (urllib gets 403)."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
+    """Fetch an image from Pexels using curl."""
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            import subprocess
             result = subprocess.run(
                 ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'],
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
             photos = data.get('photos', [])
-            for photo in photos:
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('original')
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+            if photos:
+                img_url = photos[0]['src']['large2x']
+                print(f"  ✓ Pexels image for '{q}': {img_url[:80]}...")
+                return img_url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
 def validate_image(url):
-    """Check image URL returns 200 with image content-type and >5KB."""
+    """Validate image URL."""
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         ct = r.headers.get('Content-Type', '')
         cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
-            return True
-        # Sometimes HEAD doesn't return Content-Length, try GET with stream
         if r.status_code == 200 and 'image' in ct:
-            r2 = requests.get(url, timeout=10, stream=True,
-                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
+            if cl > 5000 or cl == 0:  # Accept 0 content-length (HEAD may not return it)
+                print(f"  ✓ Image OK: {r.status_code}, {ct}, {cl} bytes")
                 return True
+        print(f"  ✗ Image fail: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
+        print(f"  ✗ Image error: {e}")
     return False
 
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase storage bucket."""
-    try:
-        r = requests.get(image_url, timeout=15,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200 or len(r.content) < 5000:
-            print(f"  ⚠ Download failed: status={r.status_code}, size={len(r.content)}")
-            return None
-        ct = r.headers.get('Content-Type', 'image/jpeg')
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        r2 = requests.post(upload_url, data=r.content, headers={
-            'apikey': SUPABASE_KEY,
-            'Authorization': f'Bearer {SUPABASE_KEY}',
-            'Content-Type': ct,
-            'x-upsert': 'true'
-        }, timeout=30)
-        if r2.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed: {r2.status_code} {r2.text[:200]}")
-    except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-    return None
+def make_sources(source_list):
+    """Convert source name list to the format Supabase expects."""
+    return [{"name": s, "url": ""} for s in source_list]
 
-# ── Supabase insert ──────────────────────────────────────────────────────────
-def insert_article(article):
-    """Insert article into p2_articles."""
+def sb_insert(article):
+    """Insert article into Supabase."""
+    headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "application/json",
+        "Prefer": "return=representation"
+    }
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
+        headers=headers,
         json=article,
         timeout=30
     )
     if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]['id'] if isinstance(data, list) else data.get('id')
-        print(f"  ✓ Article inserted: {article['slug']} (id: {art_id})")
-        return art_id
+        result = r.json()
+        if isinstance(result, list) and result:
+            return result[0].get('id')
+        return True
     else:
-        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
+        print(f"  ✗ Insert failed: {r.status_code} — {r.text[:500]}")
         return None
 
-# ── Articles ─────────────────────────────────────────────────────────────────
-articles = [
-    # ── Article 1: BrahMos Vietnam Deal ──
-    {
-        "headline": "India Just Signed a BrahMos Deal With Vietnam. Three Southeast Asian Nations Now Carry the Missile.",
-        "subheadline": "Defence exports hit a record ₹38,424 crore as Operation Sindoor drives unprecedented global demand for Indian weapons systems.",
-        "slug": "india-brahmos-vietnam-deal-defense-exports-record-38424-crore-southeast-asia-20260602",
-        "category": "news",
-        "status": "published",
-        "is_editorial": False,
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        
-        "sources": json.dumps([
-            "Reuters — 'India says signed BrahMos missile deal with Vietnam' (May 30, 2026)",
-            "IANS — 'Brahmos cruise missile deal with Vietnam already signed: Defence Secretary' (May 30, 2026)",
-            "The Hindu Business Line — 'India signs BrahMos missile deal with Vietnam' (May 30, 2026)",
-            "Bhaskar English — 'India Defence Exports Surge: BrahMos, Akash, Netra Deals Worth ₹21K Cr' (June 1, 2026)"
-        ]),
-        "body": """India has signed an agreement to supply its BrahMos supersonic cruise missiles to Vietnam, Defence Secretary Rajesh Kumar Singh confirmed at the Shangri-La Dialogue in Singapore on Saturday. A similar deal with Indonesia is in the "final stages," Singh said, marking the third Southeast Asian nation to acquire the weapon system after the Philippines, which took delivery of its first batch in 2024.
 
-## The Deal
+# ============================================================
+# ARTICLE 1: India-Australia Defence Ministers' Dialogue
+# ============================================================
+print("\n=== Article 1: India-Australia Defence Ministers' Dialogue ===")
 
-The Vietnam agreement is valued at approximately ₹6,000 crore ($629 million) and includes training, spare parts, and logistical support. Vietnam's package focuses on land-based coastal defence batteries designed for rapid anti-ship strikes — a direct response to its maritime disputes in the South China Sea.
+art1_body = """India and Australia have agreed to jointly track maritime activity across the Indian and Pacific Oceans, putting teeth behind a defence partnership that has moved from ceremonial to operational in less than two years.
 
-"My understanding is that with both Indonesia and with Vietnam, the deal is in the final stages. In fact, for Vietnam, I understand that it has already been signed, probably not publicly announced," Singh told delegates in Singapore.
+Defence Minister Rajnath Singh and Australia's Deputy Prime Minister and Defence Minister Richard Marles co-chaired the second India-Australia Defence Ministers' Dialogue at the Manekshaw Centre in New Delhi on June 1. The first had been held in Canberra just eight months earlier, in October 2025. The pace alone signals urgency.
 
-Indonesia, which confirmed a preliminary framework with India in March, is reportedly pursuing the naval variant that can be launched from frigates and submarines. The deal with Jakarta is estimated at ₹3,600 crore and is in the final approval stage.
+## A Maritime Roadmap Takes Shape
 
-## Record Defence Exports
+The centrepiece of the meeting was a Joint Maritime Security Collaboration Roadmap — a document that, once finalised, will formalise shared patrols, surveillance flights, and intelligence exchange across the Indian Ocean Region.
 
-The BrahMos deals are the centrepiece of a broader transformation in India's defence export profile. According to the Ministry of Defence, India's defence exports reached a record ₹38,424 crore in FY 2025-26 — up 62 per cent from the previous year. India now exports defence equipment to more than 100 countries, with the United States, France, and Armenia among the largest buyers.
+Both sides agreed to accelerate maritime domain awareness activities using their respective long-range maritime patrol aircraft. India and Australia will also begin exploring undersea domain awareness cooperation — a capability area that until recently was reserved for the most intimate of defence partnerships.
 
-The US alone imports systems and components worth $2.8 billion, supplied to major contractors including Boeing and Lockheed Martin. Armenia has signed a ₹6,100 crore contract for the Akash missile system, a surface-to-air platform.
+The Indian Coast Guard and Australia's Maritime Border Command, the two agencies responsible for day-to-day maritime enforcement, will deepen direct engagement. Later this month, the two countries will co-host a Search and Rescue exercise and tabletop drill in Chennai under the auspices of the Indian Ocean Rim Association's Working Group on Maritime Safety and Security.
 
-In total, BrahMos-related export deals worth approximately ₹12,500 crore have been signed with the Philippines, Vietnam, and at least two other undisclosed nations.
+## A New MoU on Defence Equipment
 
-## The Operation Sindoor Effect
+Beyond the maritime domain, the ministers announced work on a new Memorandum of Understanding covering the supply of defence equipment and services. The MoU opens the door for co-development and co-production — an area India has been pushing aggressively as it tries to become a net defence exporter rather than the world's largest importer.
 
-Much of the recent global interest can be traced to Operation Sindoor, India's military operation earlier this year. The combat deployment of Indian-made weapons — BrahMos, Akash, loitering munitions, and the Netra airborne early warning system — gave the world its first real-time look at India's indigenous defence technology under actual battlefield conditions.
+Joint research in sensor systems and other emerging technologies will be pursued through existing bilateral defence science mechanisms. Australia has invited India to participate in its Defence Science, Technology and Research Summit later in 2026.
 
-Several nations have since expressed interest in purchasing these systems. Deals worth more than ₹21,000 crore across multiple weapon platforms are now in various stages of negotiation.
+## Military Exercises Expand
 
-## What It Means for the Indo-Pacific
+India is expected to increase its participation in Exercise Talisman Sabre 2027, Australia's flagship multinational military exercise. Both countries will continue to train together through Malabar, Tarang Shakti, and several navy-to-navy engagements.
 
-India's defence export push is not purely commercial. It is a deliberate strategic play to position New Delhi as a "friendly defence partner" to nations navigating China's growing military assertiveness in the South China Sea and Indian Ocean.
+The scope of cooperation has quietly expanded into areas that would have been unthinkable a decade ago: amphibious warfare, littoral operations, submarine rescue, and multinational humanitarian missions.
 
-"We treat you all as friendly foreign countries with whom we can share advanced defence technology," Singh told the gathering in Singapore.
+An Indian military instructor will be placed at the Australian Defence College during 2028-29 — a small but symbolically significant step toward building institutional memory between two armed forces that spent most of the Cold War on opposite sides of strategic alignment.
 
-The BrahMos missile itself — co-developed with Russia, capable of flying at nearly Mach 3 with a strike range exceeding 400 kilometres — gives smaller nations a credible deterrent against high-value naval targets. For countries like Vietnam and the Philippines, which face maritime disputes with China, the calculus is straightforward: the missile changes the risk equation for any adversary contemplating incursion.
+## The Quad in the Background
 
-## The Diaspora Angle
+Neither minister used the word "alliance." But the joint statement underscored growing strategic alignment among Quad partners — India, Australia, Japan, and the United States — on maritime surveillance and information sharing.
 
-The expansion of India's defence industrial base has a direct impact on the Indian diaspora. Thousands of NRI engineers and defence professionals work in the US and European defence sectors. The deepening US-India defence industrial partnership — with $2.8 billion in components flowing from India to American defence giants — creates a two-way talent and technology corridor that benefits diaspora professionals on both sides.
+The India-Australia defence relationship is no longer aspirational. It is being built, exercise by exercise, patrol by patrol, and MoU by MoU. The Chennai drill this month will be the next test of whether operational ambition can keep pace with diplomatic intent.
 
-The government has set a defence export target of ₹50,000 crore by 2029-30. From a base of just ₹1,522 crore in 2016-17, that represents a more than 25-fold increase in under a decade — a trajectory that would have been unthinkable a generation ago.""",
-        "image_search_person": "BrahMos missile",
-        "image_search_pexels": "military missile launch defense",
-        "image_search_pexels_fallback": "supersonic cruise missile"
-    },
+*Sources: Ministry of Defence press statement, IANS, Australian Defence Ministry statement*"""
 
-    # ── Article 2: Rafale ₹3.25 Lakh Crore LoR ──
-    {
-        "headline": "India Just Sent France the Paperwork for 114 Rafale Jets. The Bill Is ₹3.25 Lakh Crore.",
-        "subheadline": "The Letter of Request for the country's largest-ever defence acquisition comes weeks before Modi's expected visit to Paris. Ninety-four of the jets will be built in India.",
-        "slug": "india-114-rafale-jets-letter-of-request-france-325-lakh-crore-make-in-india-20260602",
-        "category": "news",
-        "status": "published",
-        "is_editorial": False,
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        
-        "sources": json.dumps([
-            "The Hindu Business Line — 'India Issues Letter of Request to France for ₹3.25-Lakh-Crore Rafale Deal' (June 1, 2026)",
-            "Devdiscourse — 'India Seeks to Boost Air Power with Massive Rafale Deal with France' (June 1, 2026)",
-            "Whispersinthecorridors.in — 'Indian Navy Signs ₹63,000 Cr Deal for 26 Rafale-M Fighters' (June 1, 2026)",
-            "Breaking Defense — 'India, France increase defense ties with new Rafale jet and submarine buys'"
-        ]),
-        "body": """India has formally issued a Letter of Request to France for the procurement of 114 Rafale fighter aircraft in a government-to-government deal estimated at ₹3.25 lakh crore — the largest defence acquisition in Indian history.
+# Image
+art1_img = fetch_wikipedia_person_image("Rajnath Singh")
+if not art1_img or not validate_image(art1_img):
+    art1_img = fetch_pexels_image("naval warship ocean military", "navy destroyer Indian Ocean")
+    if art1_img and not validate_image(art1_img):
+        art1_img = None
 
-According to Defence Ministry sources, the Acquisition Wing sent the request to Paris recently, initiating the next phase of negotiations for a purchase that will reshape the Indian Air Force's combat fleet for the next three decades.
+art1 = {
+    "headline": "India and Australia Just Agreed to Map Each Other's Oceans. A Joint Rescue Drill in Chennai Will Start This Month.",
+    "subheadline": "At their second Defence Ministers' Dialogue in New Delhi, Rajnath Singh and Richard Marles signed off on a maritime roadmap, a new defence equipment MoU, and deeper undersea surveillance cooperation.",
+    "slug": "india-australia-2nd-defence-ministers-dialogue-rajnath-singh-marles-maritime-roadmap-20260602",
+    "body": art1_body,
+    "category": "news",
+    "vertical": "geopolitics",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": art1_img,
+    "image_attribution": "Wikimedia Commons" if art1_img and "wikimedia" in (art1_img or "") else ("Pexels" if art1_img else None),
+    "is_editorial": False,
+    "score_total": 0,
+    "sources": make_sources([
+        "Ministry of Defence, Government of India",
+        "IANS",
+        "Australian Defence Ministry",
+        "Impressive Times"
+    ])
+}
+art1_id = sb_insert(art1)
+print(f"  → Article 1: {art1_id}")
+
+
+# ============================================================
+# ARTICLE 2: Indo-Pacific Defence Realignment
+# ============================================================
+print("\n=== Article 2: Indo-Pacific Defence Realignment ===")
+
+art2_body = """The 2026 Shangri-La Dialogue ended on Sunday with a message that was unmistakable, even if no one said it plainly: the era of waiting for Washington is over.
+
+At Asia's premier annual defence summit in Singapore, the theme that emerged was not a specific flashpoint — not Taiwan, not the Strait of Hormuz, not the South China Sea — but a structural shift. Indo-Pacific nations are arming themselves, and they are arming each other, at a pace that has no precedent since the Cold War.
+
+## The US Says Two Things at Once
+
+US Defense Secretary Pete Hegseth arrived in Singapore to reassure Asian allies that Washington's attention had not drifted despite the three-month-old war with Iran. "We can do two things at one time," he told the forum.
+
+But he also pressed partners to spend more. His target: 3.5 percent of GDP on defence — a number that would represent a massive increase for most Asian nations. He praised Asian partners for outperforming their European counterparts and took a direct shot at NATO, saying Western Europe "might take note."
+
+The mixed message — we are here, but you should be ready in case we are not — was heard clearly.
+
+## Japan Steps Into the Centre
+
+Japan's Defence Minister Shinjiro Koizumi said he believed the US commitment was "unwavering." But his actions told a different story. Tokyo is positioning itself as a "connecting point" for closer regional cooperation, moving beyond its traditional US-anchored posture.
+
+In April, Japan unveiled its biggest overhaul of defence export rules in decades, scrapping restrictions on overseas arms sales and opening the door to export warships, missiles, and other weapons. At Shangri-La, Koizumi met bilaterally with counterparts from across the region, laying the groundwork for a web of partnerships that does not require Washington at the centre of every strand.
+
+## The Philippines, New Zealand, and the Five Powers
+
+The Philippines' Defence Secretary Gilberto Teodoro was blunt. Manila is deepening ties with Japan, Australia, Canada, and New Zealand — "buttressing" the US role, he said, not replacing it. "The commitment of the United States becomes more solid when more actors come in."
+
+New Zealand, meanwhile, is weighing Japanese and British warships to replace its ageing ANZAC-class frigates. Defence Minister Chris Penk said the Five Power Defence Arrangement — a 54-year-old pact linking New Zealand, Australia, Singapore, Malaysia, and the UK — was being pursued "at a more intense level."
+
+## India: Defence Exports and Strategic Autonomy
+
+India entered the Shangri-La Dialogue with its own headline: a BrahMos missile deal with Vietnam, its third Southeast Asian customer. Hegseth called India a "critical anchor" in South Asia.
+
+But India's position is distinct from the broader hedging pattern. New Delhi is not joining a bloc. It is building a defence export portfolio — the BrahMos sales to the Philippines, Indonesia, and now Vietnam represent a deliberate strategy to become a provider of security goods, not just a consumer.
+
+Defence Secretary Rajesh Kumar Singh held bilateral meetings with counterparts from Singapore, Sweden, the Netherlands, Australia, New Zealand, and the European Union on the sidelines. Each meeting expanded a different thread of India's growing defence network.
+
+## AUKUS Goes Aquatic
+
+The AUKUS triad — Australia, the UK, and the US — unveiled a joint plan to develop aquatic drones for tasks like subsea cable defence. The initiative appears to be a response to threats exposed by the Iran-US war, where disruption of undersea infrastructure became a real risk. AUKUS had originally focused on submarine power projection in the Pacific; the pivot toward undersea infrastructure protection suggests a broader mandate.
+
+## The Takeaway
+
+Singapore's Defence Minister Chan Chun Sing captured the moment best: nations should "develop flexible partnerships with like-minded countries forming coalitions of the able and willing."
+
+The Shangri-La Dialogue has always been a place where speeches matter less than sideline conversations. This year, the conversations all pointed in the same direction. The Indo-Pacific's security architecture is being rebuilt — not around a single superpower, but around a mesh of partnerships that can hold even if one node weakens.
+
+For India, the question is whether strategic autonomy can coexist with this new mesh. For now, the answer appears to be yes — as long as New Delhi keeps building things other countries want to buy.
+
+*Sources: Reuters, Livemint, IISS Shangri-La Dialogue, ANI*"""
+
+art2_img = fetch_pexels_image("military naval fleet ships formation", "defense summit meeting international")
+if art2_img and not validate_image(art2_img):
+    art2_img = None
+
+art2 = {
+    "headline": "Every Country at the Shangri-La Dialogue Had the Same Message. Arm Yourself. And Find Partners Who Will Arm With You.",
+    "subheadline": "Asia's premier defence summit ended with a clear takeaway: Indo-Pacific nations are racing to deepen security ties with each other — not because the US is leaving, but because they are no longer sure it will stay.",
+    "slug": "shangri-la-dialogue-2026-indo-pacific-defence-hedging-japan-india-philippines-aukus-20260602",
+    "body": art2_body,
+    "category": "news",
+    "vertical": "geopolitics",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": art2_img,
+    "image_attribution": "Pexels" if art2_img else None,
+    "is_editorial": False,
+    "score_total": 0,
+    "sources": make_sources([
+        "Reuters",
+        "Livemint",
+        "IISS Shangri-La Dialogue",
+        "ANI",
+        "Ministry of Defence, Government of India"
+    ])
+}
+art2_id = sb_insert(art2)
+print(f"  → Article 2: {art2_id}")
+
+
+# ============================================================
+# ARTICLE 3: Lebanon Partial Ceasefire
+# ============================================================
+print("\n=== Article 3: Lebanon Partial Ceasefire ===")
+
+art3_body = """Lebanon announced a partial ceasefire between Israel and Hezbollah on Monday — and almost immediately, the fighting continued.
+
+The arrangement, brokered with US involvement and announced by Lebanon's embassy in Washington, calls on Israel to refrain from airstrikes on Beirut and its Hezbollah-controlled suburbs. In return, Hezbollah would halt its rocket and drone attacks on Israeli territory.
+
+It is, by any measure, a limited deal. It does not cover southern Lebanon, where Israeli ground forces are pushing deeper than at any point in 25 years, toward the Zaharani River. It does not address Gaza. And it does not resolve the larger US-Iran war that ignited in March.
+
+## What Trump Claimed
+
+US President Donald Trump announced the deal before Lebanon did, saying he had spoken to Israeli Prime Minister Benjamin Netanyahu and, through intermediaries, to Hezbollah. No US president has ever communicated with Hezbollah — a designated terrorist organisation — making the claim itself historically significant.
+
+Netanyahu, however, pushed back almost immediately. Israel would continue military operations in southern Lebanon, he said. "If Hezbollah does not cease attacking our cities and citizens — Israel will attack terror targets in Beirut," his office stated.
+
+Hezbollah lawmaker Hassan Fadlallah said the militia would support a full ceasefire across all Lebanon as a precursor to the withdrawal of Israeli troops. He did not say whether the group would stop its strikes on Israeli territory.
+
+## Iran Says No Separate Peace
+
+Hours before the ceasefire announcement, Iranian state media reported that Tehran was suspending indirect peace negotiations with the US, citing the war in Lebanon. The head of Iran's Revolutionary Guards Quds Force, Esmaeil Qaani, threatened to expand Iran's blockade of the Strait of Hormuz to the Bab el-Mandeb Strait — the chokepoint at the mouth of the Red Sea that controls access to the Suez Canal.
+
+Iranian Foreign Minister Abbas Araqchi was unambiguous: "The ceasefire between Iran and the US is unequivocally a ceasefire on all fronts, including in Lebanon. Its violation on one front is a violation of the ceasefire on all fronts."
+
+Iran has already severely disrupted maritime traffic through the Gulf, which before the war supplied one-fifth of the world's oil and liquefied natural gas. Oil prices rose 4 percent on Monday.
+
+## What This Means for India
+
+India is watching from multiple angles. It is the world's third-largest oil importer, and the Strait of Hormuz has been a lifeline for its energy security for decades. A Bab el-Mandeb blockade would compound the disruption, threatening Indian exports that transit the Red Sea and Suez Canal.
+
+India has already pivoted its oil imports toward Venezuela, Brazil, and Angola to reduce its dependence on Gulf crude. But there is no substitute for stable shipping lanes. Every week the Hormuz disruption continues, India's forex reserves take a hit — they have already fallen $47 billion in three months as the RBI defends the rupee.
+
+The partial ceasefire offers a sliver of hope that the broader US-Iran war could be contained. But Monday's events suggest the path to de-escalation runs through Tehran, not Beirut — and Tehran has just walked away from the table.
 
 ## The Numbers
 
-Of the 114 aircraft, 94 are expected to be manufactured in India through a partnership between French aerospace major Dassault Aviation and an Indian company, in line with the 'Make in India' initiative. The remaining 20 would be delivered directly from France.
+The conflict in Lebanon has killed 3,433 people and displaced more than one million. At least 26 Israeli soldiers and two civilians have been killed. Hezbollah's use of fibre-optic drones — difficult to detect and intercept — has been particularly deadly for the Israeli military.
 
-France is expected to respond within two to three months. Both countries are aiming to conclude the agreement within the coming year. The deal comes ahead of Prime Minister Narendra Modi's expected visit to France later this month, where the Rafale programme is certain to dominate bilateral discussions.
+A UN Security Council emergency meeting on Lebanon was scheduled for Monday afternoon. Lebanon said it would seek to expand the ceasefire in talks with Israel in Washington on Wednesday.
 
-The Indian Air Force currently operates 36 Rafale jets, acquired under an earlier ₹59,000 crore deal signed in 2016. The new order would bring India's total Rafale fleet to 150 aircraft — making it one of the largest Rafale operators in the world alongside France itself.
+*Sources: Reuters, Associated Press, NPR, Tasnim News Agency*"""
 
-## The Navy Gets Its Own
+art3_img = fetch_pexels_image("beirut lebanon city skyline", "mediterranean city coast")
+if art3_img and not validate_image(art3_img):
+    art3_img = None
 
-Separately, India and France have signed an Inter-Governmental Agreement for the procurement of 26 Rafale-M (Marine) fighters for the Indian Navy, valued at approximately ₹63,000 crore. The naval order includes 22 single-seat and 4 twin-seat variants, making India the first international operator of the Rafale's carrier-based version.
+art3 = {
+    "headline": "Lebanon Just Announced a Partial Ceasefire Between Israel and Hezbollah. Nobody Has Stopped Fighting.",
+    "subheadline": "The deal calls on Israel to spare Beirut while Hezbollah halts attacks on Israel. Southern Lebanon remains a war zone. Iran says there is no separate peace — any ceasefire must cover all fronts.",
+    "slug": "lebanon-partial-ceasefire-hezbollah-israel-trump-iran-war-oil-india-impact-20260602",
+    "body": art3_body,
+    "category": "news",
+    "vertical": "geopolitics",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": art3_img,
+    "image_attribution": "Pexels" if art3_img else None,
+    "is_editorial": False,
+    "score_total": 0,
+    "sources": make_sources([
+        "Reuters",
+        "Associated Press",
+        "NPR",
+        "Tasnim News Agency"
+    ])
+}
+art3_id = sb_insert(art3)
+print(f"  → Article 3: {art3_id}")
 
-The deal, signed by Defence Minister Rajnath Singh and his French counterpart Sébastien Lecornu, includes training, flight simulators, weapons with transfer of technology (including integration of India's Astra beyond-visual-range missile), five-year performance-based logistics, and maintenance facilities to be established in India.
 
-The Rafale-M jets will operate from India's two aircraft carriers — INS Vikrant and INS Vikramaditya. Deliveries are expected to begin in mid-2028 and continue through 2030.
-
-## Why This Matters
-
-The IAF's fighter squadron strength has been shrinking for years. Against a sanctioned strength of 42 squadrons, the force currently operates roughly 30 — a gap that defence planners have repeatedly flagged as dangerous, particularly given the two-front threat from China and Pakistan.
-
-The 114-jet order under the Multi-Role Fighter Aircraft (MRFA) programme is designed to address this gap with a proven 4.5-generation platform. The Rafale's omni-role capability — air superiority, deep strike, nuclear deterrence, maritime attack, and reconnaissance — makes it the most versatile fighter in India's inventory.
-
-The emphasis on domestic manufacturing is significant. Setting up a Rafale production line in India is expected to create thousands of jobs in the domestic aerospace sector, from Tier 1 suppliers to the MSME ecosystem. This aligns with the broader goal of reducing import dependency: the recently released Defence Acquisition Procedure (DAP) 2026 has raised indigenous content requirements from 50 per cent to 60 per cent.
-
-## The Strategic Partnership With France
-
-The Rafale deals cement France as one of India's most consequential defence partners. Beyond fighter jets, India operates six Scorpene-class submarines built with French Naval Group technology, and three more are under negotiation. The two countries are also collaborating on the Jaitapur nuclear project, clean energy, semiconductor development, and a bilateral trade relationship exceeding €15 billion.
-
-The deepening of defence ties reflects a deliberate Indian strategy: diversifying its weapons supply chain away from historical dependency on Russia while building technology partnerships that strengthen the domestic industrial base.
-
-## What NRIs Should Watch
-
-For the Indian diaspora, the defence procurement wave has broader economic implications. The Rafale production line will require advanced manufacturing capabilities — precision machining, avionics, composite materials — that could create opportunities for Indian-origin professionals in the global aerospace industry. French defence major Dassault has signalled interest in establishing research centres in India, potentially creating a new corridor of aerospace talent exchange similar to what exists in the IT sector.""",
-        "image_search_person": "Rafale fighter jet",
-        "image_search_pexels": "Rafale fighter jet military aircraft",
-        "image_search_pexels_fallback": "fighter jet aircraft carrier navy"
-    },
-
-    # ── Article 3: Hegseth Praises India at Shangri-La ──
-    {
-        "headline": "The US Defence Secretary Just Called India a 'Powerful' Military Nation. He Said It at Asia's Top Security Forum.",
-        "subheadline": "Pete Hegseth praised India's military modernisation and industrial capacity at the Shangri-La Dialogue while calling on Asian allies to raise defence spending to 3.5% of GDP.",
-        "slug": "hegseth-india-powerful-military-shangri-la-dialogue-defense-spending-35-percent-gdp-20260602",
-        "category": "news",
-        "status": "published",
-        "is_editorial": False,
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        
-        "sources": json.dumps([
-            "News Dive — 'Amid US Concerns Over China, Hegseth Highlights India's Military Modernization' (May 31, 2026)",
-            "The Indian Eye — 'India reaffirms defence cooperation with US at Shangri-La Dialogue' (May 30, 2026)",
-            "IANS — 'Defence Secretary discusses strengthening ties with Defence Ministers of Singapore, New Zealand' (May 31, 2026)",
-            "Ainvest — 'India Emerges as Go-To Arms Supplier for Southeast Asian Nations' (June 1, 2026)"
-        ]),
-        "body": """US Secretary of Defense Pete Hegseth described India as a "powerful" nation that is "in the process of modernising its military capabilities" during his keynote address at the Shangri-La Dialogue in Singapore on Saturday — the most prominent annual security forum in Asia.
-
-## What Hegseth Said
-
-Hegseth highlighted India's "substantial industrial and logistical infrastructure necessary for conducting advanced military operations" and expressed the US commitment to co-production initiatives with New Delhi to enhance joint military capabilities.
-
-His remarks came within a broader call for Asian allies to raise defence spending to 3.5 per cent of GDP — a significant increase from the current levels of most nations in the region, including India, which spends approximately 1.9 per cent of GDP on defence but is aiming to reach 2.5 per cent over the next five years.
-
-The US defence chief assessed ties with Japan, South Korea, ASEAN nations, and Australia alongside India, reiterating Washington's position that the Indo-Pacific is the world's most important strategic region. But his praise for India was notably specific: where other nations were mentioned in the context of alliances and treaties, India was singled out for its independent military industrial capacity and its role in "maintaining a balanced power dynamic" in the Indian Ocean.
-
-## India's Diplomatic Blitz in Singapore
-
-India's delegation at the Dialogue was led by Defence Secretary Rajesh Kumar Singh, who conducted an unusually intensive schedule of bilateral meetings. Over three days, Singh met with defence officials from more than ten countries, including the US, Singapore, New Zealand, Sweden, the Netherlands, and several ASEAN nations.
-
-Singh articulated India's vision for a "stable, secure, and inclusive Indo-Pacific" in a policy address attended by think tanks, academia, and the Indian High Commissioner to Singapore, Shilpak Ambule.
-
-Key bilateral discussions focused on maritime security cooperation, military exchange programmes, information-sharing mechanisms, and defence technology partnerships. The Singapore meeting with President Tharman Shanmugaratnam, held at the Istana reception, underscored the strategic depth of India-Singapore ties, recently elevated to a Comprehensive Strategic Partnership.
-
-## Why This Matters Now
-
-Hegseth's remarks land at a moment when India's defence posture is undergoing a visible transformation. In the past week alone, India signed a BrahMos missile deal with Vietnam, issued a ₹3.25 lakh crore Letter of Request for 114 Rafale jets, and saw the Navy sign a ₹63,000 crore agreement for 26 Rafale-M carrier-based fighters.
-
-Defence exports hit a record ₹38,424 crore in FY 2025-26. Operation Sindoor — the military operation earlier this year — gave the world a live demonstration of India's indigenous weapons capability, driving unprecedented international demand for BrahMos, Akash, and Netra systems.
-
-The convergence of these developments at the Shangri-La Dialogue was not accidental. India used the forum to signal that it is no longer merely a defence importer. It is now a manufacturer, exporter, and strategic partner willing to share advanced military technology with "friendly foreign countries."
-
-## The Context: China
-
-The subtext of the entire Dialogue was China. Beijing sent only a low-profile delegation, with senior officials conspicuously absent from key ministerial sessions. Analysts interpreted the move as an attempt to avoid tough questions about its military build-up in the South China Sea, its expanding presence along the India-China border in Ladakh, and the construction of new military villages in Bhutanese territory near the Doklam plateau.
-
-Hegseth's pointed messaging — praising India while calling on Asian nations to spend more on defence — reflects Washington's evolving strategy of building a networked coalition of capable regional powers rather than relying solely on hub-and-spoke alliance structures.
-
-For India, the calculus is straightforward: deeper engagement with the US and ASEAN on defence, without a formal alliance, while building the domestic industrial base to sustain strategic autonomy. The Shangri-La meetings suggest that formula is gaining traction.
-
-## The Diaspora Connection
-
-Indian-origin professionals are increasingly embedded in the US defence ecosystem. The $2.8 billion in components India already supplies to Boeing and Lockheed Martin represents just the beginning of a co-production relationship that could expand dramatically as the Rafale production line comes online and defence technology transfer agreements multiply. For NRIs working in engineering, aerospace, and technology, the deepening US-India defence partnership is creating a talent bridge that did not exist a decade ago.""",
-        "image_search_person": "Pete Hegseth",
-        "image_search_pexels": "military defense forum conference",
-        "image_search_pexels_fallback": "international security summit diplomacy"
-    }
+# ============================================================
+# Summary
+# ============================================================
+print("\n=== Summary ===")
+results = [
+    ("India-Australia Defence Dialogue", art1_id, bool(art1_img)),
+    ("Indo-Pacific Defence Hedging", art2_id, bool(art2_img)),
+    ("Lebanon Partial Ceasefire", art3_id, bool(art3_img)),
 ]
+for name, aid, has_img in results:
+    status = "✓" if aid else "✗"
+    img_status = "🖼️" if has_img else "⚠️ no image"
+    print(f"  {status} {name} ({img_status})")
 
-# ── Main ──────────────────────────────────────────────────────────────────────
-def main():
-    published = 0
-    for i, art in enumerate(articles):
-        print(f"\n{'='*60}")
-        print(f"Article {i+1}: {art['headline'][:70]}...")
-        print(f"{'='*60}")
-
-        # Extract search hints
-        person = art.pop('image_search_person', None)
-        pexels_q = art.pop('image_search_pexels', None)
-        pexels_fb = art.pop('image_search_pexels_fallback', None)
-
-        # Image sourcing
-        img_url = None
-        img_attribution = None
-
-        # Try Wikipedia for person/topic
-        if person:
-            wiki_url = fetch_wikipedia_person_image(person)
-            if wiki_url and validate_image(wiki_url):
-                # Upload to Supabase for permanence
-                fname = f"{art['slug']}.jpg"
-                uploaded = upload_to_supabase_storage(wiki_url, fname)
-                if uploaded:
-                    img_url = uploaded
-                    img_attribution = "Wikimedia Commons"
-                else:
-                    img_url = wiki_url
-                    img_attribution = "Wikimedia Commons"
-
-        # Fallback to Pexels
-        if not img_url and pexels_q:
-            pexels_url = fetch_pexels_image(pexels_q, pexels_fb)
-            if pexels_url and validate_image(pexels_url):
-                fname = f"{art['slug']}.jpg"
-                uploaded = upload_to_supabase_storage(pexels_url, fname)
-                if uploaded:
-                    img_url = uploaded
-                    img_attribution = "Pexels"
-                else:
-                    img_url = pexels_url
-                    img_attribution = "Pexels"
-
-        if img_url:
-            art['image_url'] = img_url
-            if img_attribution:
-                art['image_attribution'] = img_attribution
-            print(f"  ✓ Final image: {img_url[:80]}...")
-        else:
-            print(f"  ⚠ No image found — publishing without image (better than wrong image)")
-
-        # Insert
-        art_id = insert_article(art)
-        if art_id:
-            published += 1
-        else:
-            print(f"  ✗ FAILED to publish article {i+1}")
-
-        time.sleep(1)
-
-    print(f"\n{'='*60}")
-    print(f"Published {published}/{len(articles)} articles")
-    print(f"{'='*60}")
-
-if __name__ == '__main__':
-    main()
+success = sum(1 for _, aid, _ in results if aid)
+print(f"\n{success}/{len(results)} articles published.")
