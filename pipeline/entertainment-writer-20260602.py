@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Entertainment writer for The Videshi — 2026-06-02 batch."""
 
-import json, os, re, sys, time, uuid, traceback
+import json, os, sys, time, uuid, re
 import requests, urllib.parse
 from datetime import datetime, timezone
 
-# ── Load env ──────────────────────────────────────────────────────────────────
+# ── env ──────────────────────────────────────────────────────────────────────
 def load_env(path):
     if not os.path.exists(path):
         return
@@ -17,39 +17,24 @@ def load_env(path):
             if line.startswith("export "):
                 line = line[7:]
             k, _, v = line.partition("=")
-            v = v.strip().strip("'\"")
+            v = v.strip().strip('"').strip("'")
             os.environ.setdefault(k.strip(), v)
 
 load_env(os.path.expanduser("~/.env.supabase"))
-load_env(os.path.expanduser("~/workspace/.env.supabase"))
 load_env(os.path.expanduser("~/workspace/.env.pexels"))
 
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+SB_URL = os.environ["SUPABASE_URL"]
+SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "apikey": SB_KEY,
+    "Authorization": f"Bearer {SB_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation",
 }
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
-
-def sb_insert(table, payload):
-    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", headers=HEADERS, json=payload, timeout=30)
-    if r.status_code >= 400:
-        print(f"  ✗ Supabase error {r.status_code}: {r.text[:500]}")
-    r.raise_for_status()
-    return r.json()
-
-def sb_patch(table, match, payload):
-    params = "&".join(f"{k}={v}" for k, v in match.items())
-    url = f"{SUPABASE_URL}/rest/v1/{table}?{params}"
-    r = requests.patch(url, headers=HEADERS, json=payload, timeout=30)
-    r.raise_for_status()
-    return r.json()
+# ── helpers ──────────────────────────────────────────────────────────────────
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -70,309 +55,292 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels. Returns URL or None."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
+    """Fetch a relevant image from Pexels API using curl (urllib gets 403)."""
+    import subprocess
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            r = requests.get(
-                "https://api.pexels.com/v1/search",
-                params={"query": q, "per_page": 5, "orientation": "landscape"},
-                headers={"Authorization": PEXELS_KEY},
-                timeout=10
+            result = subprocess.run(
+                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
+                 "-H", f"Authorization: {PEXELS_KEY}"],
+                capture_output=True, text=True, timeout=15
             )
-            if r.status_code == 200:
-                photos = r.json().get("photos", [])
-                for p in photos:
-                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
-                    if url:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                        return url
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            for p in photos:
+                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+
 def validate_image(url):
-    """Check that an image URL returns valid image content >5KB."""
-    if not url:
-        return False
+    """Verify the URL returns HTTP 200 with image content > 5KB."""
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
                           headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         ct = r.headers.get("Content-Type", "")
         cl = int(r.headers.get("Content-Length", 0))
-        if "image" in ct and cl > 5000:
+        if r.status_code == 200 and "image" in ct and cl > 5000:
             return True
-        # Some servers don't return CL on HEAD; try GET range
-        if "image" in ct and cl == 0:
+        # Try GET if HEAD didn't return Content-Length
+        if r.status_code == 200 and "image" in ct and cl == 0:
             r2 = requests.get(url, timeout=10, stream=True,
                               headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
             chunk = r2.raw.read(6000)
-            r2.close()
-            return len(chunk) > 5000
+            if len(chunk) > 5000:
+                return True
     except Exception as e:
         print(f"  ⚠ Image validation error: {e}")
     return False
 
-def source_image_for_person(person_name, pexels_fallback_query=None, pexels_fallback2=None):
-    """Try Wikipedia first, then Pexels for person articles."""
-    img = fetch_wikipedia_person_image(person_name)
-    if img and validate_image(img):
-        return img, "Wikimedia Commons"
-    # Try alternate names
-    parts = person_name.split()
-    if len(parts) > 1:
-        # Try just first + last
-        alt = f"{parts[0]} {parts[-1]}"
-        if alt != person_name:
-            img = fetch_wikipedia_person_image(alt)
-            if img and validate_image(img):
-                return img, "Wikimedia Commons"
-    # Pexels fallback
-    if pexels_fallback_query:
-        img = fetch_pexels_image(pexels_fallback_query, pexels_fallback2)
-        if img and validate_image(img):
-            return img, "The Videshi"
-    return None, None
 
-def reading_time(body):
-    words = len(body.split())
-    return max(3, round(words / 238))
+def sb_insert(table, payload):
+    """Insert a row into Supabase."""
+    r = requests.post(f"{SB_URL}/rest/v1/{table}", headers=HEADERS, json=payload)
+    if r.status_code in (200, 201):
+        data = r.json()
+        return data[0] if isinstance(data, list) else data
+    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:1000]}")
+    return None
 
-def check_banned_url(url):
-    """Return True if URL is from a banned source."""
-    if not url:
+
+def sb_patch(table, filters, payload):
+    """Patch rows in Supabase matching filters."""
+    params = "&".join(f"{k}={v}" for k, v in filters.items())
+    r = requests.patch(f"{SB_URL}/rest/v1/{table}?{params}", headers=HEADERS, json=payload)
+    if r.status_code in (200, 204):
         return True
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
-    for b in banned:
-        if b in url:
-            return True
+    print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
     return False
 
-# ── Articles ──────────────────────────────────────────────────────────────────
 
-ARTICLES = []
-
-# ─── Article 1: Kangana's Bharat Bhhagya Viddhaata ───────────────────────────
-ARTICLES.append({
-    "headline": "Kangana Ranaut Plays a Nurse in a 26/11 Film That Ignores Commandos Entirely. It Releases June 12.",
-    "subheadline": "Bharat Bhhagya Viddhaata tells the story of unarmed hospital staff who saved 400 lives during the Mumbai attacks — a story NRI audiences have never seen on screen.",
-    "slug": "kangana-ranaut-bharat-bhhagya-viddhaata-26-11-cama-hospital-nurse-june-12-nri-20260602",
-    "category": "entertainment",
-    "person_name": "Kangana Ranaut",
-    "pexels_fallback": "Mumbai hospital nurse",
-    "sources_list": "Filmibeat, Bollywood Hungama, Sacnilk, Blaze Trends",
-    "body": """Every 26/11 film made so far has centred the obvious heroes — NSG commandos rappelling from helicopters, armed officers storming the Taj. Kangana Ranaut's next film flips the frame entirely.
-
-**Bharat Bhhagya Viddhaata**, written and directed by Manoj Tapadia and scheduled for a June 12 theatrical release, tells the story of the unarmed staff at Mumbai's Cama and Albless Hospital who kept nearly 400 patients alive while Ajmal Kasab and Abu Ismail moved through the building. Kangana plays a staff nurse. The cast around her — Girija Oak, Smita Tambe, Amrutha Namdev, Esha Dey, Priya Berde, Asha Shelar, Suhita Thatte, Rasika Aghase — is composed almost entirely of women.
-
-## A Deliberate Absence of Gunfire
-
-Tapadia has been clear about his tonal intent. This is not an action film. The director told press he wanted to capture the "silence of bravery" — how nurses, ward boys, cleaners, lift operators, and security guards made split-second decisions in corridors that had become a kill zone. No bulletproof vests. No weapons. Just the immediate calculation: keep the patients breathing, keep the doors shut, don't make a sound.
-
-The production consciously avoided the spectacle of commando-style intervention. What it stages instead is claustrophobic, hospital-bound survival — a real-time dramatisation of ordinary people becoming human shields for the vulnerable.
-
-## The NRI Connection No One Talks About
-
-For the Indian diaspora, 26/11 occupies a particular emotional register. Many NRIs have personal ties to South Mumbai. Many watched the attacks unfold on live television from thousands of miles away, unable to reach family. The Taj and the Oberoi became symbols of the tragedy internationally, but Cama Hospital — a public women's and children's hospital — barely registered in the global news cycle.
-
-The hospital's staff, drawn largely from lower-middle-class backgrounds, were never profiled on CNN or BBC. Their story became a footnote in a narrative dominated by luxury hotel sieges and counter-terror operations. Tapadia's film corrects that erasure.
-
-## Kangana's Message Before Release
-
-In a video shared on social media on June 1, Kangana decoded the film's title — drawn from the Indian national anthem — by naming the people society calls "aam aadmi": nurses, railway staff, school workers, sanitation crews. "Ek hi din mein sara system ruk jaayega," she said. "Wahi hai, asli Bharat Bhhagya Vidhaata."
-
-The message lands differently for NRIs who left a country run by these invisible workers and built new lives in countries where similar workers remain similarly invisible. It is a specific kind of recognition that crosses borders.
-
-## What to Watch For
-
-Bharat Bhhagya Viddhaata is presented by Dr. Jayantilal Gada's Pen Studios and produced in collaboration with Manikarnika Films, Paramhans Creations, Eunoia Films LLP, and Floating Rocks Entertainment. Distribution is by Pen Marudhar.
-
-Given Kangana's political profile and the film's inherently patriotic framing, expect the publicity cycle to get noisy. But the film itself appears to be doing something quieter and more interesting — telling a working-class story that the Indian film industry has repeatedly walked past for 18 years.
-
-For NRI viewers who lived through 26/11 from afar, this may be the version of the story they've been waiting to see."""
-})
-
-# ─── Article 2: Masoom: The New Generation ────────────────────────────────────
-ARTICLES.append({
-    "headline": "Shekhar Kapur and A.R. Rahman Are Reuniting for a Masoom Sequel. The Original Stars Are Coming Back After 43 Years.",
-    "subheadline": "Naseeruddin Shah and Shabana Azmi will reprise their roles alongside Manoj Bajpayee and Nithya Menen. The new film explores identity, migration, and the families that NRIs leave behind.",
-    "slug": "masoom-new-generation-shekhar-kapur-ar-rahman-naseeruddin-shah-shabana-azmi-nri-20260602",
-    "category": "entertainment",
-    "person_name": "Shekhar Kapur",
-    "person_name_alt": "A. R. Rahman",
-    "pexels_fallback": "Indian family drama emotional",
-    "sources_list": "Cinema Express, Bollywood Hungama, Devdiscourse, Zoom TV",
-    "body": """In 1983, a 38-year-old Shekhar Kapur made his directorial debut with a film about a man whose past walks through the door in the form of a child he didn't know existed. **Masoom** starred Naseeruddin Shah and Shabana Azmi. It made grown adults cry in theatres. Forty-three years later, the same director, the same leads, and an Academy Award-winning composer are doing it again.
-
-**Masoom: The New Generation** was officially announced on May 30. A.R. Rahman — who worked with Kapur on *Elizabeth: The Golden Age*, *Bombay Dreams*, and the musical *Why?* — is both composer and co-producer. The cast adds Manoj Bajpayee, Nithya Menen, and Kaveri Kapur (Shekhar's daughter) alongside Shah and Azmi in returning roles.
-
-## Why Migration Matters
-
-Kapur has been explicit that the new film will explore identity, family, love, and migration "through a contemporary lens." For a director who has spent decades moving between Mumbai, London, and Los Angeles, these are not abstract themes.
-
-The original *Masoom* asked a brutally simple question: what happens when a family is confronted with a truth it never asked for? The answer — guilt, resentment, love, forgiveness — played out in an upper-middle-class Delhi household. The new film reportedly takes that emotional architecture and sets it against the displacement of modern diaspora life.
-
-For NRI audiences, this reframing hits close. The families that immigration fractures are rarely shown with the kind of emotional precision Kapur brought to the 1983 film. Most Bollywood films about NRIs default to either patriotic nostalgia (*Swades*) or identity comedy (*Namaste London*). A drama that takes the quiet devastation of family separation seriously — and casts Naseeruddin Shah and Shabana Azmi to do it — occupies rare emotional territory.
-
-## The Rahman Factor
-
-Rahman described the opportunity in unusually personal terms. "Working with Shekhar has always been a deeply enriching experience — he has been a mentor and a creative force in many ways," he said. "When he shared the vision for this film, I felt compelled to be involved beyond the music."
-
-That last phrase matters. Rahman isn't scoring someone else's project; he's co-producing a film whose themes — uprooting, cultural dislocation, the cost of leaving — mirror his own trajectory from Chennai to the global stage.
-
-The original *Masoom* carried one of Hindi cinema's most devastating soundtracks, with R.D. Burman's "Lakdi Ki Kaathi" and "Tujhe Naraz Nahin Zindagi" becoming generational touchstones. Rahman stepping into those shoes is both an honour and a risk.
-
-## Shekhar Kapur's Other Comment
-
-In a lighter moment, Kapur tweeted about 15-year-old IPL sensation Vaibhav Sooryavanshi: "If Sooryavanshi wasn't such a sensational cricketer, I could have cast him in Masoom, the film." It was a joke, but it revealed something about the film's generational focus — the story clearly involves a child or young person whose presence disrupts the equilibrium of the adults around them.
-
-## What NRI Audiences Should Know
-
-Filming starts later this year. A worldwide theatrical release is anticipated in late 2026 or early 2027. Shabana Azmi and Naseeruddin Shah, both in their seventies now, are reprising roles they played as young married adults — an extraordinary span that will give the sequel a built-in emotional resonance no casting trick could replicate.
-
-For a diaspora that grew up with the original *Masoom* and now raises its own children between two countries, this sequel isn't just a film announcement. It's a mirror being held up at precisely the right angle."""
-})
-
-# ─── Article 3: Ananya Panday / Chand Mera Dil Bharatanatyam Controversy ─────
-ARTICLES.append({
-    "headline": "Ananya Panday's Dance Went Viral for All the Wrong Reasons. Then She Blamed Social Media for Her Anxiety.",
-    "subheadline": "Chand Mera Dil has collected ₹22 crore in 10 days. The Bharatanatyam fusion scene has become a larger conversation about Bollywood, privilege, and classical art.",
-    "slug": "ananya-panday-chand-mera-dil-bharatanatyam-controversy-box-office-nri-20260602",
-    "category": "entertainment",
-    "person_name": "Ananya Panday",
-    "pexels_fallback": "Bharatanatyam classical dance performance",
-    "pexels_fallback2": "Indian classical dance stage",
-    "sources_list": "Bollywood Hungama, Bollywood Life, Live Mint, India Forums, Tupaki",
-    "body": """On May 22, Dharma Productions released **Chand Mera Dil**, a romantic drama starring Ananya Panday and Lakshya. Ten days later, the film has collected approximately ₹22 crore gross — a number that qualifies as a commercial disappointment for a Dharma release. But the conversation around the film has nothing to do with its box office and everything to do with a single dance scene.
-
-## The Scene That Launched a Thousand Memes
-
-In the film, Ananya plays Chandni, a college student from a family steeped in classical dance. During a campus cultural event, Chandni performs what the makers describe as a "fusion" routine — Bharatanatyam blended with hip-hop and locking. The scene was meant to introduce her character as bold and rule-breaking.
-
-The internet saw it differently. Clips went viral within hours of release. The choreography was called stiff, the classical elements were called superficial, and the overall effect was called — in the most cutting coinage of the cycle — "Nepo Natyam." Established Bharatanatyam practitioners weighed in, questioning whether the sequence trivialized a 2,000-year-old art form. The backlash was loud, sustained, and brutal.
-
-## Ananya's Response Made It Worse
-
-Ananya addressed the controversy in a recent press interview, but not in the way classical dance communities were hoping. Rather than engaging with the artistic criticism, she spoke about muting Instagram pages that "give me the slightest amount of anxiety." She described social media as damaging to mental health — a valid personal stance, but one that read to many as deflection.
-
-"Slamming social media for social health is nothing but slamming the audiences for the flop show of a film," entertainment portal Tupaki noted bluntly.
-
-For NRI audiences who grew up learning Bharatanatyam, Kathak, or Kuchipudi at weekend classes — often as one of the few connections to their heritage — the controversy carries an additional charge. Classical Indian dance in diaspora communities is not just art; it is identity infrastructure. Seeing it reduced to a "breakout introduction" in a Bollywood film, performed without visible rigour, felt personal.
-
-## The Defence
-
-Charu Shankar, who plays Ananya's mother in the film, defended both the scene and her co-star. "The sequence was always conceived as a contemporary, edgy breakout introduction for Chandni's character," she told Hindustan Times. "Trolling is never in good taste. Conversations around art are valid. Mockery is not."
-
-Ananya's father, veteran actor Chunky Panday, also weighed in, clarifying that the scene was never intended as a pure Bharatanatyam performance — it was meant to reflect the experimental fusion dances commonly seen at college cultural festivals.
-
-Choreographer and dancer Sandip Soparrkar also came out in Ananya's defence, though the specifics of his argument didn't gain the same traction as the criticism.
-
-## The Box Office Tells Its Own Story
-
-Chand Mera Dil opened to lukewarm numbers and has struggled against competition. At ₹22 crore after 10 days, it trails significantly behind Pati Patni Aur Woh Do, which collected ₹40 crore gross — despite being considered a "run-of-the-mill" film.
-
-The Bharatanatyam controversy has ensured the film stays in the news cycle, but attention hasn't translated into ticket sales. Whether the discourse helped or hurt is debatable; what's clear is that it overshadowed everything else about the film, including Lakshya's performance, which has received notably warmer reviews.
-
-## The Larger Question
-
-The incident sits at the intersection of several ongoing Bollywood debates: nepotism, cultural appropriation, the gap between mainstream Hindi cinema and the classical arts it occasionally borrows from, and the question of who gets to interpret traditional art forms on screen.
-
-For the diaspora, these questions are not academic. They are lived. When your child performs Bharatanatyam at a community arangetram after years of training, and a Bollywood star performs a version of it that goes viral for being bad — that's not an abstract cultural critique. It's a visceral reaction to something you've invested in being treated as costume.
-
-Whether Ananya deserved the scale of the backlash is a fair question. Whether the backlash itself reflected something real about Bollywood's relationship with Indian classical traditions is a better one."""
-})
-
-# ── Publish ───────────────────────────────────────────────────────────────────
-
-def publish_article(art):
-    print(f"\n{'='*60}")
-    print(f"Publishing: {art['headline'][:70]}...")
-
-    # Image sourcing
-    img_url, img_attr = None, None
-    person = art.get("person_name")
-    if person:
-        img_url, img_attr = source_image_for_person(
-            person,
-            art.get("pexels_fallback"),
-            art.get("pexels_fallback2")
-        )
-    # Try alt person name if first failed
-    if not img_url and art.get("person_name_alt"):
-        img_url, img_attr = source_image_for_person(
-            art["person_name_alt"],
-            art.get("pexels_fallback"),
-            art.get("pexels_fallback2")
-        )
-    # Final Pexels fallback
-    if not img_url and art.get("pexels_fallback"):
-        img_url = fetch_pexels_image(art["pexels_fallback"], art.get("pexels_fallback2"))
-        if img_url and validate_image(img_url):
-            img_attr = "The Videshi"
-        else:
-            img_url = None
-
-    if img_url and check_banned_url(img_url):
-        print(f"  ✗ Banned URL detected, skipping: {img_url[:60]}")
-        img_url = None
-        img_attr = None
-
-    body = art["body"].strip()
-    rt = reading_time(body)
+def publish_article(article):
+    """Insert article into p2_articles and attach image."""
+    art_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
 
     payload = {
-        "headline": art["headline"],
-        "subheadline": art["subheadline"],
-        "slug": art["slug"],
-        "category": art["category"],
-        "vertical": art["category"],
-        "body": body,
+        "id": art_id,
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": "entertainment",
         "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": art["sources_list"],
+        "published_at": now,
+        "sources": json.dumps(article["sources"]),
         "is_editorial": False,
+        "vertical": "entertainment",
     }
-    if img_url:
-        payload["image_url"] = img_url
-    if img_attr:
-        payload["image_attribution"] = img_attr
 
-    try:
-        result = sb_insert("p2_articles", payload)
-        art_id = result[0]["id"] if isinstance(result, list) and result else None
-        print(f"  ✓ Published: {art['slug']} (id={art_id})")
-        print(f"    Image: {img_url[:80] if img_url else 'None'}")
-        print(f"    Words: {len(body.split())}, Reading time: {rt} min")
-        return art_id
-    except Exception as e:
-        print(f"  ✗ Failed to publish: {e}")
-        traceback.print_exc()
+    result = sb_insert("p2_articles", payload)
+    if not result:
+        print(f"  ✗ Failed to publish: {article['headline']}")
         return None
 
+    print(f"  ✓ Published: {article['headline']} (id={art_id})")
 
-# ── Main ──────────────────────────────────────────────────────────────────────
-if __name__ == "__main__":
-    print(f"Entertainment Writer — {datetime.now(timezone.utc).isoformat()}")
-    print(f"Articles to publish: {len(ARTICLES)}")
+    # Image sourcing
+    img_url = None
+    if article.get("person_name"):
+        img_url = fetch_wikipedia_person_image(article["person_name"])
+        # Try alternate name if no result
+        if not img_url and article.get("person_alt"):
+            img_url = fetch_wikipedia_person_image(article["person_alt"])
 
-    results = []
-    for art in ARTICLES:
+    if not img_url and article.get("pexels_query"):
+        img_url = fetch_pexels_image(article["pexels_query"], article.get("pexels_fallback"))
+
+    if img_url:
+        if validate_image(img_url):
+            attribution = "Wikimedia Commons" if "wikimedia" in img_url or "wikipedia" in img_url else "The Videshi"
+            sb_patch("p2_articles", {"id": f"eq.{art_id}"}, {
+                "image_url": img_url,
+                "image_attribution": attribution,
+            })
+            print(f"  ✓ Image attached: {img_url[:80]}...")
+        else:
+            print(f"  ⚠ Image validation failed, skipping: {img_url[:80]}...")
+    else:
+        print(f"  ⚠ No image found for: {article['headline']}")
+
+    return art_id
+
+
+# ── articles ─────────────────────────────────────────────────────────────────
+
+articles = []
+
+# ─── Article 1: Vicky Kaushal Mahavatar ───────────────────────────────────────
+articles.append({
+    "headline": "Vicky Kaushal Just Blocked 18 Months of His Life for One Role. It's Parashurama.",
+    "subheadline": "The actor will undergo six months of physical transformation before filming even begins on Maddock Films' mythological epic Mahavatar, directed by Amar Kaushik.",
+    "slug": "vicky-kaushal-mahavatar-parashurama-18-months-maddock-amar-kaushik-nri-20260602",
+    "person_name": "Vicky Kaushal",
+    "pexels_query": None,
+    "pexels_fallback": None,
+    "author_name": "Videshi Entertainment Desk",
+    "author_slug": "videshi-entertainment-desk",
+    "sources": [
+        {"name": "Sacnilk", "url": "https://sacnilk.com"},
+        {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
+        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"}
+    ],
+    "body": """In an era when most A-listers juggle three to four projects a year, Vicky Kaushal has made a decision that breaks the template entirely. The actor has blocked a continuous eighteen-month window — from June 2026 through the end of 2027 — exclusively for **Mahavatar**, Maddock Films' mythological action epic about the immortal sage-warrior Parashurama.
+
+No other film. No brand shoots squeezed in between schedules. No cameos. Just one role, one director, one story.
+
+## The Prep Alone Takes Six Months
+
+The timeline is staggering even by Bollywood's increasingly ambitious standards. Kaushal will begin an intensive six-month preparatory phase immediately after wrapping Sanjay Leela Bhansali's **Love and War**, which is targeting a January 2027 release with its final 50-day shooting schedule underway since May 2026.
+
+Director **Amar Kaushik** — who turned Stree into a franchise and Stree 2 into a blockbuster — has designed a comprehensive training module for the role. It includes a rigorous physical transformation to bulk up Kaushal's physique to mythological proportions, alongside acting workshops focused on the psychological and spiritual depth of the character. Kaushik has been in pre-production for over seven months already, working on set design, weapon design, and character aesthetics.
+
+"The prep is going on for 6-7 months. We have worked on the set design, weapon design, how every character would look. The scripting is done. Yet, we need more time," Kaushik told Bollywood Hungama in a recent interview.
+
+## Why Parashurama Demands This Level of Commitment
+
+Chiranjeevi Parashurama — the sixth avatar of Vishnu, an immortal warrior of dharma who bridges the Ramayana and Mahabharata — is among the most complex figures in Hindu mythology. He was the guru of Bheeshma, Dronacharya, and Karna. He received Mahakaal's Parashu (axe) and led the Devas to victory against the Asuras. His story spans ages, making him unlike any character Bollywood has attempted at this scale.
+
+Filming is expected to begin in January 2027 and run through December, with heavy VFX post-production to follow. Maddock Films, produced by Dinesh Vijan, originally announced the film for a Christmas 2026 release before pushing it to 2027. An Independence Day 2027 weekend release is now being considered.
+
+## Shraddha Kapoor in Talks for the Female Lead
+
+According to Mid-Day, **Shraddha Kapoor** is the primary choice for the female lead. If confirmed, it would mark her first collaboration with Kaushal — a fresh pairing the producers believe will resonate with audiences. The Stree franchise connection through Kaushik makes the casting almost poetic.
+
+## What This Means for the Industry — and the Diaspora
+
+Kaushal's decision reflects a broader shift in Bollywood. Top-tier actors are increasingly choosing singular, high-impact performances over multiple concurrent projects. Ranveer Singh, notably, has moved away from the Don franchise to focus on **Pralay**, a survival drama shooting from August 2026. The industry is pivoting toward long-term investments in world-building — and the global audience, particularly the diaspora hungry for culturally rooted spectacle, stands to benefit.
+
+For NRI audiences who grew up with Amar Chitra Katha depictions of Parashurama and debated his role in the Mahabharata over family dinners, Mahavatar represents something rare: a modern Indian film willing to take the time to get mythology right. Eighteen months for one character isn't excess. For Parashurama, it might just be enough.
+
+*Mahavatar is produced by Maddock Films and directed by Amar Kaushik. A release date has not been officially confirmed.*"""
+})
+
+# ─── Article 2: Dhurandhar 2 OTT ─────────────────────────────────────────────
+articles.append({
+    "headline": "Dhurandhar 2 Hits JioHotstar on June 4 With 20 Extra Minutes the Theatres Never Showed",
+    "subheadline": "The ₹1,100 crore spy thriller gets a 'Raw and Undekha' extended cut for its digital premiere — and the franchise's economics are as jaw-dropping as its action.",
+    "slug": "dhurandhar-2-revenge-jiohotstar-ott-june-4-extended-cut-raw-undekha-nri-20260602",
+    "person_name": "Ranveer Singh",
+    "pexels_query": None,
+    "pexels_fallback": None,
+    "author_name": "Videshi Entertainment Desk",
+    "author_slug": "videshi-entertainment-desk",
+    "sources": [
+        {"name": "JioHotstar", "url": "https://www.jiohotstar.com"},
+        {"name": "Sacnilk", "url": "https://sacnilk.com"},
+        {"name": "Livemint", "url": "https://www.livemint.com"}
+    ],
+    "body": """After eleven weeks in theatres, ₹1,100 crore in domestic net collections, and ₹1,800 crore worldwide, **Dhurandhar 2: The Revenge** is finally coming to your living room. JioHotstar has confirmed the spy thriller will begin streaming on **June 4 at 7 PM IST**, with regular subscriber access from June 5 onwards.
+
+But the platform isn't just putting the theatrical cut online. This is the **"Raw and Undekha"** edition — an extended version featuring twenty minutes of additional footage, longer action sequences, and unseen scenes that never made it to cinemas.
+
+## The Numbers That Broke Bollywood's Brain
+
+Let's talk about the economics, because the Dhurandhar franchise has rewritten every rule in the book.
+
+The two films were produced on a combined budget of just **₹255 crore**. Across both chapters, the franchise has generated over **₹3,107 crore** in total worldwide gross. The return on investment isn't just impressive — it's in a league of its own.
+
+The digital rights deal is equally remarkable. Part 1 remained with Netflix at a revised value of ₹85 crore. The sequel's massive hype allowed producers to negotiate a separate **₹150 crore deal** with JioHotstar — pushing total digital revenue to ₹235 crore. That's nearly the entire production cost of both films recovered through streaming rights alone, before a single OTT viewer hit play.
+
+Overseas, the film grossed **₹426.67 crore**, with roughly 18 percent of international revenue coming from premium formats like IMAX and 4DX. For the diaspora, that's significant — NRI audiences drove a measurable chunk of the international haul.
+
+## What's in the Extended Cut
+
+The Raw and Undekha version promises additional character depth alongside the expected action extensions. Director **Aditya Dhar** has spoken about scenes that were trimmed for the theatrical runtime of 3 hours and 55 minutes — itself one of the longest mainstream Hindi films in recent memory.
+
+JioHotstar is treating the premiere as an event. A 30-minute pre-show at 7 PM on June 4 will feature candid cast conversations, behind-the-scenes footage, and insights into the making of the film.
+
+## The Spy Universe Keeps Expanding
+
+Dhurandhar 2 picks up with **Ranveer Singh** reprising his role as undercover operative Jaskirat Singh Rangi, now operating as Hamza Ali Mazari in Karachi, navigating organized crime while targeting terror cells linked to the 26/11 attacks. The film also stars **R. Madhavan**, **Sanjay Dutt**, and **Arjun Rampal**.
+
+The franchise's success has cemented the Spy Universe as Bollywood's most bankable cinematic universe. With the sequel's 8.5/10 IMDB rating and a box office trail that outpaced everything except Baahubali 2 adjusted for inflation, the conversation has shifted from "if" to "when" for the next installment.
+
+## Why This Matters for NRI Audiences
+
+For diaspora viewers who caught the film in packed North American theatres — where advance bookings crossed $1.07 million — the extended cut offers a reason to revisit. For those who couldn't make it to a theatre screening, this is the main event.
+
+The film is available in Hindi, Telugu, Tamil, Kannada, and Malayalam on JioHotstar. If you've somehow avoided spoilers for eleven weeks, your patience has been rewarded — with twenty extra minutes to show for it.
+
+*Dhurandhar 2: The Revenge Raw & Undekha premieres on JioHotstar June 4 at 7 PM IST. Regular streaming begins June 5.*"""
+})
+
+# ─── Article 3: Karisma Kapoor Brown ─────────────────────────────────────────
+articles.append({
+    "headline": "Karisma Kapoor Plays a Disgraced Kolkata Cop Hunting a Serial Killer. Brown Drops on ZEE5 Thursday.",
+    "subheadline": "The neo-noir crime thriller marks one of the most dramatic role departures in Karisma's three-decade career — and it arrives with a 9-minute Cannes ovation still echoing.",
+    "slug": "karisma-kapoor-brown-zee5-neo-noir-kolkata-cop-serial-killer-june-5-nri-20260602",
+    "person_name": "Karisma Kapoor",
+    "pexels_query": "Kolkata night city",
+    "pexels_fallback": "Kolkata street noir",
+    "author_name": "Videshi Entertainment Desk",
+    "author_slug": "videshi-entertainment-desk",
+    "sources": [
+        {"name": "Cinema Express", "url": "https://www.cinemaexpress.com"},
+        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+        {"name": "IANS", "url": "https://ianslive.in"},
+        {"name": "MensXP", "url": "https://www.mensxp.com"}
+    ],
+    "body": """There is a version of Karisma Kapoor that Bollywood remembers: the one who danced through Dil To Pagal Hai, who brought glamour to every frame she occupied through the nineties and early 2000s. **Brown** is not that Karisma. And that's precisely the point.
+
+Premiering on **ZEE5 on June 5**, the neo-noir crime thriller casts the veteran actress as **DCDD Rita Brown** — a disgraced, alcoholic Kolkata police officer haunted by a past she can't outrun, pulled back into active investigation when a series of brutal murders shocks the city.
+
+## A Character Built on Fragility, Not Glamour
+
+"Rita Brown is unlike any character I've played before," Karisma said in a statement ahead of the trailer launch. "She is flawed, vulnerable, emotionally bruised, yet incredibly resilient in the way she keeps moving forward despite everything life throws at her."
+
+The actress has been selective in recent years, appearing in the 2024 whodunit **Murder Mubarak** and the 2020 series **Mentalhood**. But Brown represents something fundamentally different — a de-glam, psychologically layered lead performance that leans into darkness rather than away from it.
+
+"What drew me was the emotional honesty of the writing," she added. "There's no attempt to glamorise pain or simplify human relationships. Over the years, I've played many strong women, but Rita's strength lies in her fragility and silence as much as in her courage."
+
+## Kolkata as a Character
+
+Director **Abhinay Deo** — who gave Bollywood the irreverent classic **Delhi Belly** and the taut thriller **24** — has spoken at length about why Kolkata isn't just a backdrop in this series.
+
+"What truly compelled me to direct it was the way the writers handled the story," Deo told Bollywood Hungama. "At its core, it felt like a case study of people — individuals from different walks of life, social strata, castes, and communities. There is a Bihari, a Marwadi, a bhadralok Bengali, along with Anglo-Indians and Chinese characters. All of them coexist within Kolkata."
+
+The series is adapted from **City of Death**, a novel by Abheek Barua, and it uses the city's haunting beauty and moral chaos as a canvas for its central mystery: a serial killer targeting young women, beginning with the daughter of an influential businessman.
+
+## The Cast and Creative Team
+
+Beyond Karisma, the ensemble includes **Jisshu Sengupta** as a psychiatrist who may hold vital information about the murders, **Surya Sharma** as Rita's grieving junior officer Inspector Arjun Sinha, **Soni Razdan**, veteran actress **Helen Khan**, **Paresh Pahuja**, **Ajinkya Deo**, and **Aryann Bhowmik**. Singer **Shaan** makes his OTT acting debut in a role that has generated considerable curiosity.
+
+The writing team comprises Diggi Sissodia, Sunayana Kumari, and Mayukh Gosh, with cinematography by Amogh Deshpande and editing by Huzefa Lokhandwala. Production designer Shiuli Thukral doubles as creative producer.
+
+## Why NRI Audiences Should Care
+
+For diaspora viewers, Brown offers something the Indian OTT landscape has been building toward for years: a female-led noir with genuine psychological complexity, anchored by a star who doesn't need the safety net of glamour to command attention.
+
+The Kolkata setting adds a dimension that global audiences increasingly appreciate — a city that is simultaneously literary, decaying, and alive. If you've watched international crime series set in Scandinavian or British cities and wished for something with the same atmospheric density but rooted in India, Brown is making that argument.
+
+The trailer, dropped on May 30, has already drawn comparisons to international noir series — the dark imagery, the unreliable protagonist, the sense that every character is hiding something. Fans have responded with "OG is back" trending online, signaling an appetite for Karisma in roles that match her range rather than her image.
+
+*Brown premieres on ZEE5 on June 5, 2026. The series is produced by Zee Studios and directed by Abhinay Deo.*"""
+})
+
+# ── main ─────────────────────────────────────────────────────────────────────
+
+def main():
+    print(f"Entertainment writer starting — {len(articles)} articles queued")
+    published = []
+    for i, art in enumerate(articles, 1):
+        print(f"\n[{i}/{len(articles)}] Publishing: {art['headline']}")
         art_id = publish_article(art)
-        results.append({"slug": art["slug"], "id": art_id, "ok": art_id is not None})
+        if art_id:
+            published.append(art_id)
         time.sleep(1)
 
-    print(f"\n{'='*60}")
-    print("Summary:")
-    for r in results:
-        status = "✓" if r["ok"] else "✗"
-        print(f"  {status} {r['slug']}")
+    print(f"\n✅ Done — {len(published)}/{len(articles)} articles published")
+    return 0 if len(published) == len(articles) else 1
 
-    ok = sum(1 for r in results if r["ok"])
-    print(f"\nDone: {ok}/{len(results)} articles published.")
-    if ok < len(results):
-        sys.exit(1)
+if __name__ == "__main__":
+    sys.exit(main())
