@@ -1,39 +1,47 @@
 #!/usr/bin/env python3
-"""Entertainment writer — 2026-06-02 batch"""
+"""Entertainment writer for The Videshi - 2026-06-02 run"""
 
-import os, json, requests, urllib.parse, time, uuid, re
+import json, os, re, sys, time, uuid, urllib.parse, subprocess
 from datetime import datetime, timezone
 
-# ── env ──
-env_file = os.path.expanduser("~/workspace/.env.supabase")
-with open(env_file) as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1)
-            os.environ[k.strip()] = v.strip()
-
-pexels_env = os.path.expanduser("~/workspace/.env.pexels")
-if os.path.exists(pexels_env):
-    with open(pexels_env) as f:
+# Load env
+def load_env(filepath):
+    if not os.path.exists(filepath):
+        return
+    with open(filepath) as f:
         for line in f:
             line = line.strip()
-            if line and not line.startswith("#") and "=" in line:
-                k, v = line.split("=", 1)
-                os.environ[k.strip()] = v.strip()
+            if line and not line.startswith('#') and '=' in line:
+                key, _, val = line.partition('=')
+                key = key.strip().replace('export ', '')
+                val = val.strip().strip('"').strip("'")
+                os.environ[key] = val
 
-SB_URL = os.environ["SUPABASE_URL"]
-SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-HEADERS = {
-    "apikey": SB_KEY,
-    "Authorization": f"Bearer {SB_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
-}
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-# ── helpers ──
+import requests
+
+def sb_headers():
+    return {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "application/json",
+        "Prefer": "return=representation"
+    }
+
+def sb_insert(table, data):
+    r = requests.post(f"{SUPABASE_URL}/rest/v1/{table}", json=data, headers=sb_headers(), timeout=30)
+    if r.status_code in (200, 201):
+        return r.json()
+    else:
+        print(f"  ✗ Supabase insert error: {r.status_code} - {r.text[:300]}")
+        return None
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -54,298 +62,291 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
-    import subprocess
+    """Fetch an image from Pexels. Use curl because Python urllib gets 403."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
+        return None
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            cmd = [
-                "curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
-                f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape"
-            ]
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+            result = subprocess.run(
+                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3'],
+                capture_output=True, text=True, timeout=15
+            )
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
+            photos = data.get('photos', [])
             if photos:
-                url = photos[0]["src"]["large2x"]
+                url = photos[0]['src']['large2x']
                 print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                 return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-
-def upload_image_to_supabase(image_url, filename):
-    """Download an image and upload to Supabase storage bucket article-images."""
+def upload_image_to_supabase(img_url, filename):
+    """Download image and upload to Supabase storage bucket 'article-images'."""
     try:
-        r = requests.get(image_url, timeout=15, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200:
-            print(f"  ⚠ Image download failed ({r.status_code}): {image_url[:80]}")
-            return None
-        content_type = r.headers.get("Content-Type", "image/jpeg")
-        if "image" not in content_type:
-            print(f"  ⚠ Not an image ({content_type}): {image_url[:80]}")
-            return None
-        if len(r.content) < 5000:
-            print(f"  ⚠ Image too small ({len(r.content)} bytes): {image_url[:80]}")
-            return None
-
-        upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
+        r = requests.get(img_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=20)
+        if r.status_code != 200 or len(r.content) < 5000:
+            print(f"  ⚠ Image download failed or too small: {r.status_code}, {len(r.content)} bytes")
+            return img_url  # Fall back to direct URL
+        
+        content_type = r.headers.get('Content-Type', 'image/jpeg')
+        if 'image' not in content_type:
+            content_type = 'image/jpeg'
+        
+        upload_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": content_type,
+            "x-upsert": "true"
+        }
         up = requests.post(
-            upload_url,
-            headers={
-                "apikey": SB_KEY,
-                "Authorization": f"Bearer {SB_KEY}",
-                "Content-Type": content_type,
-                "x-upsert": "true"
-            },
+            f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}",
             data=r.content,
+            headers=upload_headers,
             timeout=30
         )
         if up.status_code in (200, 201):
-            public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ⚠ Upload failed ({up.status_code}): {up.text[:200]}")
+            print(f"  ⚠ Supabase upload error: {up.status_code} - {up.text[:200]}")
+            return img_url
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
-    return None
+        return img_url
 
+def validate_image_url(url):
+    """Check that URL returns a valid image."""
+    if not url:
+        return False
+    try:
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
+            return True
+        # Try GET for servers that don't support HEAD
+        r = requests.get(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, stream=True)
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        return r.status_code == 200 and 'image' in ct
+    except:
+        return False
 
-def insert_article(article):
-    """Insert article to Supabase p2_articles."""
-    r = requests.post(
-        f"{SB_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data["id"]
-        print(f"  ✓ Article inserted: {article['slug']} (id={art_id})")
-        return art_id
-    else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
-        return None
+# ──────────────────────────────────────────
+# ARTICLES
+# ──────────────────────────────────────────
 
+articles = []
 
-def patch_article(art_id, updates):
-    """Patch an existing article."""
-    r = requests.patch(
-        f"{SB_URL}/rest/v1/p2_articles?id=eq.{art_id}",
-        headers=HEADERS,
-        json=updates,
-        timeout=15
-    )
-    if r.status_code in (200, 204):
-        print(f"  ✓ Patched article {art_id}")
-    else:
-        print(f"  ⚠ Patch failed ({r.status_code}): {r.text[:200]}")
+# ─── ARTICLE 1: Peddi — Ram Charan's biggest solo bet arrives Wednesday ───
 
-
-# ═══════════════════════════════════════════════════════════════════════
-# ARTICLE 1: IMAX Returns to Hyderabad
-# ═══════════════════════════════════════════════════════════════════════
-print("\n=== ARTICLE 1: IMAX Returns to Hyderabad ===")
-
-art1 = {
-    "headline": "Hyderabad Gets IMAX Back After a Decade. Mahesh Babu's AMB Cinemas Sealed the Deal.",
-    "subheadline": "Three new IMAX with Laser screens are coming to Tollywood's home base — just in time for Rajamouli's Varanasi. NRIs who grew up watching Telugu blockbusters at Prasads should pay attention.",
-    "slug": "imax-returns-hyderabad-amb-cinemas-mahesh-babu-decade-rajamouli-varanasi-nri-20260602",
+articles.append({
+    "headline": "Ram Charan's Peddi Arrives Wednesday With $700K in US Pre-Sales. The Diaspora Is Treating It Like an Event.",
+    "subheadline": "A.R. Rahman's score, IMAX screens, and a ₹450 crore break-even target. Ram Charan's biggest solo release since RRR opens in two days — and NRI audiences are already buying in.",
+    "slug": "peddi-ram-charan-700k-us-presales-imax-ar-rahman-diaspora-nri-20260602",
     "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "is_editorial": False,
-    "sources": json.dumps([
-        {"name": "IMAX Corporation / Business Wire", "url": "https://www.businesswire.com"},
-        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-        {"name": "Gulte", "url": "https://gulte.com"},
-        {"name": "IndiaGlitz", "url": "https://www.indiaglitz.com"}
-    ]),
-    "body": """For more than a decade, Hyderabad — the beating heart of Telugu cinema, home to filmmakers who build ₹500-crore spectacles and audiences who fill 1,000-seat theatres on a Tuesday afternoon — has not had a single IMAX screen.
-
-That drought ends this year.
-
-On June 1, IMAX Corporation announced a partnership with Asian Cinemas to install three new IMAX with Laser screens through the AMB Cinemas brand. Two of the three will be in Hyderabad. The first, at AMB Classic on the historic grounds of the Sudarshan 70mm Theatre, is set to open before December 2026. The remaining two locations are planned for 2028.
-
-## The Backstory: How Hyderabad Lost Its IMAX
-
-The city's previous IMAX venue — the legendary Prasads IMAX, once among the first IMAX theatres in all of India — stopped operating in the proprietary format around 2015. For a city that produces some of the most visually ambitious films in the world, the absence was glaring.
-
-S.S. Rajamouli said as much publicly. During a recent promotional event for his upcoming globe-trotting epic Varanasi, the RRR and Baahubali director expressed disbelief that Hyderabad — the city where Tollywood's biggest productions are born — lacked a premium large-format screen. The timing of the IMAX announcement, just ahead of Varanasi's release, feels almost poetic.
-
-## Mahesh Babu's AMB Cinemas: The Vehicle
-
-AMB Cinemas is a luxury multiplex chain co-owned by superstar Mahesh Babu along with the Asian Group's Sunil Narang and Bharat Narang. The brand has a track record of firsts: South India's first Dolby Cinema screen and one of Hyderabad's earliest HDR by Barco screens.
-
-For the new IMAX installation, the group has also brought in Venkatesh Daggubati and Rana Daggubati as partners — effectively assembling Telugu cinema's most powerful exhibition consortium.
-
-"Hyderabad's appetite and love for cinema is unparalleled," said the Narangs in a joint statement. "Bringing back the prestigious IMAX format is a matter of great honour and pride for AMB Cinemas."
-
-Rich Gelfond, CEO of IMAX, noted that 2025 was the company's best year ever at the Indian box office. "India is home to a vibrant cinema culture of innovative filmmakers and passionate audiences, all of whom are clamoring for more of The IMAX Experience."
-
-## What This Means for NRI Audiences
-
-For the Telugu diaspora in the US, UK, and the Gulf, movie-watching trips to Hyderabad have long been part of the homecoming ritual. The absence of IMAX meant that Telugu blockbusters designed for the largest screens — from Pushpa to Salaar to the upcoming Varanasi — could only be experienced in their intended IMAX format in cities like Mumbai, Bengaluru, or overseas.
-
-That changes now. When NRIs fly home for Sankranti or Dasara, the biggest Telugu films will finally be available on the screen format they were designed for, in the city where they were made.
-
-## The Bigger Picture
-
-The deal reflects a broader shift in Indian exhibition. Regional films now consistently outperform at the domestic box office, and premium formats like IMAX, Dolby Cinema, and ScreenX are no longer luxuries — they're how studios maximize returns on ₹200-crore productions.
-
-With Rajamouli's Varanasi, the upcoming Kalki 2, and a pipeline of large-canvas Telugu productions, Hyderabad's three new IMAX screens arrive at exactly the moment the market demands them.
-
-The Sudarshan 70mm Theatre location adds an emotional layer. For generations, the venue was where Telugu audiences experienced landmark film releases and wild fan celebrations. Now it becomes the site of Hyderabad's IMAX renaissance, a bridge between the old cinema and the new.
-
-The first screen opens before the end of 2026. Telugu cinema's biggest filmmakers now have the biggest screen in their own backyard."""
-}
-
-# Image: Try IMAX or Mahesh Babu from Wikipedia, fall back to Pexels
-img1 = fetch_wikipedia_person_image("Mahesh Babu")
-if not img1:
-    img1 = fetch_pexels_image("IMAX theater cinema", "movie theater screen")
-art1_id = insert_article(art1)
-if art1_id and img1:
-    fn1 = f"{art1_id}.jpg"
-    final1 = upload_image_to_supabase(img1, fn1)
-    if final1:
-        patch_article(art1_id, {"image_url": final1, "image_attribution": "Wikimedia Commons"})
-
-time.sleep(1)
-
-# ═══════════════════════════════════════════════════════════════════════
-# ARTICLE 2: Varun Dhawan Delhi HC - AI Deepfakes
-# ═══════════════════════════════════════════════════════════════════════
-print("\n=== ARTICLE 2: Varun Dhawan Delhi HC Personality Rights ===")
-
-art2 = {
-    "headline": "The Delhi High Court Just Told Google, Meta, and X to Hand Over Data on Varun Dhawan's Deepfake Creators.",
-    "subheadline": "In a landmark ruling on celebrity personality rights in the AI age, Justice Jyoti Singh ordered a sweeping injunction against deepfakes, fake merchandise, and unauthorized use of Dhawan's persona. The precedent reaches far beyond one actor.",
-    "slug": "varun-dhawan-delhi-hc-personality-rights-ai-deepfakes-google-meta-x-nri-20260602",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "is_editorial": False,
-    "sources": json.dumps([
-        {"name": "Bar and Bench", "url": "https://www.barandbench.com"},
-        {"name": "ANI / LatestLY", "url": "https://www.latestly.com"},
-        {"name": "IANS / Asia Post", "url": "https://asiapost.in"},
-        {"name": "Devdiscourse", "url": "https://www.devdiscourse.com"}
-    ]),
-    "body": """Varun Dhawan went to court over something that no amount of box-office success can fix: strangers were using artificial intelligence to put his face into pornographic videos, slapping his name on merchandise he never endorsed, and running fake booking websites that claimed they could hire him for events.
-
-On May 29, Justice Jyoti Singh of the Delhi High Court granted one of the most sweeping personality-rights injunctions in Indian legal history.
-
-## What the Court Ordered
-
-The ruling restrains multiple categories of defendants — websites, e-commerce platforms, social media accounts, and unidentified "John Doe" entities — from exploiting Dhawan's name, image, voice, likeness, or any identifiable element of his persona without authorization. The restraint explicitly covers artificial intelligence, generative AI, machine learning, deepfakes, AI chatbots, and face-morphing technologies.
-
-The specifics are striking. The court:
-
-- **Banned AI-generated deepfakes** portraying Dhawan in inappropriate scenarios with female co-stars
-- **Blocked unauthorized merchandise sales** using his name, image, and registered trademarks
-- **Shut down fake booking agencies** falsely claiming to represent him for events and performances
-- **Ordered Google, Meta Platforms, and X Corporation** to hand over Basic Subscriber Information (BSI) of the infringing social media users
-- **Set a 36-hour takedown window**: social media platforms must remove any new infringing content within 36 hours of being notified by Dhawan's team
-
-"Plaintiff is entitled to protection against dissemination of pornographic content as well as AI-generated images portraying him in an inappropriate scenario," Justice Singh wrote. "Such distasteful content is harming and damaging the reputation of the Plaintiff and may mislead the public into believing what is depicted may be true."
-
-## Following Naga Chaitanya's Footsteps
-
-Dhawan's suit lands weeks after Telugu actor Naga Chaitanya secured a similar order from the same court over AI deepfakes linked to allegations involving his ex-wife Samantha Ruth Prabhu. The two cases together signal that Indian courts are rapidly building a body of law around AI-generated celebrity exploitation — a legal framework that barely existed two years ago.
-
-Senior Advocate Sandeep Sethi, representing Dhawan, argued that the actor's personality traits carry significant commercial value and that unauthorized exploitation causes both reputational harm and financial loss. The court agreed, noting that Dhawan is a "celebrated Hindi film actor with a career spanning over 14 years" whose distinctive characteristics — name, signature, voice, likeness — are uniquely associated with him and "constitute valuable personality and publicity rights deserving legal protection."
-
-## Why the NRI Community Should Watch This
-
-For the Indian diaspora, the implications go beyond Bollywood gossip. Deepfake technology is global. The tools used to create non-consensual AI content featuring Indian celebrities are the same tools being used against ordinary people — including NRIs — on platforms accessible from any country.
-
-India's courts are now establishing that personality rights in the digital age extend to AI-generated content, that platforms have enforceable obligations to remove such content quickly, and that creators of deepfakes can be identified through court-ordered data disclosures.
-
-As AI-generated content proliferates across social media, these rulings create a legal playbook that Indian citizens — including those living abroad — can point to when their own likenesses are weaponized.
-
-## The Broader Legal Landscape
-
-The Dhawan ruling joins a growing list of Indian court interventions on celebrity AI rights. Anil Kapoor secured a similar order in 2023 protecting his persona from AI misuse. Amitabh Bachchan has long held personality-rights protections through prior court orders. But the Dhawan and Naga Chaitanya cases are among the first to specifically address generative AI deepfakes and mandate platform-level data disclosure.
-
-The case is listed for further hearing. The interim order remains in effect until then.
-
-For Indian celebrities and ordinary citizens alike, the message from Justice Singh's courtroom is clear: your face is yours, even in the age of artificial intelligence."""
-}
-
-img2 = fetch_wikipedia_person_image("Varun Dhawan")
-art2_id = insert_article(art2)
-if art2_id and img2:
-    fn2 = f"{art2_id}.jpg"
-    final2 = upload_image_to_supabase(img2, fn2)
-    if final2:
-        patch_article(art2_id, {"image_url": final2, "image_attribution": "Wikimedia Commons"})
-
-time.sleep(1)
-
-# ═══════════════════════════════════════════════════════════════════════
-# ARTICLE 3: Welcome to the Jungle
-# ═══════════════════════════════════════════════════════════════════════
-print("\n=== ARTICLE 3: Welcome to the Jungle ===")
-
-art3 = {
-    "headline": "Welcome to the Jungle Has 30 Stars, a Late Actor's Final Role, and Bollywood's Most Unhinged Comedy Franchise. It Opens June 26.",
-    "subheadline": "The third Welcome film reunites Akshay Kumar, Suniel Shetty, and Paresh Rawal in a jungle-set dark comedy that took three years to make. For NRIs who grew up quoting the original, this is the most nostalgic release of the summer.",
-    "slug": "welcome-to-the-jungle-akshay-kumar-30-stars-june-26-franchise-nri-20260602",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "is_editorial": False,
-    "sources": json.dumps([
+    "image_person": "Ram Charan",
+    "image_fallback_query": "Telugu cinema Ram Charan",
+    "sources": [
         {"name": "Sacnilk", "url": "https://sacnilk.com"},
-        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-        {"name": "Dainik Jagran English", "url": "https://english.dainikjagranmpcg.com"}
-    ]),
-    "body": """If you grew up in an NRI household in the 2000s, there is a non-zero chance that someone in your family can recite entire scenes from Welcome (2007) by heart. The Nana Patekar-Anil Kapoor crime comedy became a cultural touchstone — the kind of film that plays on loop during Diwali parties and family gatherings, where "Uday bhai" and "Majnu bhai" are not characters but permanent inside jokes.
+        {"name": "Filmibeat", "url": "https://filmibeat.com"},
+        {"name": "Zoom TV Entertainment", "url": "https://zoomtventertainment.com"},
+        {"name": "Filmfare", "url": "https://filmfare.com"}
+    ],
+    "body": """Ram Charan's sports-action drama *Peddi* opens worldwide on Wednesday, June 4, and the numbers arriving from North America suggest the diaspora has already decided this is the Telugu event of the summer.
 
-Nineteen years later, the franchise is back. Welcome to the Jungle releases worldwide on June 26, 2026, and it arrives with the largest ensemble cast assembled for a Hindi comedy in recent memory.
+## The Advance Booking Story
 
-## The Cast: 30 Stars and Counting
+As of Sunday, US premiere advance sales had crossed $692,000, with overall North American pre-sales approaching $767,000 — roughly ₹7.33 crore before a single reel has spun. The film became the fastest Indian release to cross $100,000 in North American pre-sales, hitting that mark within four hours of bookings opening in mid-May. Hundreds of premiere shows are planned across the US and Canada, and the trajectory suggests Peddi could challenge RRR's premiere benchmarks for a Telugu film in the region.
 
-Director Ahmed Khan has assembled what might be Bollywood's most ambitious comedy lineup. The headliners: Akshay Kumar, Suniel Shetty, Sanjay Dutt, Arshad Warsi, Paresh Rawal, and Jackie Shroff. The supporting ensemble reads like a who's-who of Hindi cinema: Raveena Tandon, Lara Dutta, Disha Patani, Jacqueline Fernandez, Johnny Lever, Tusshar Kapoor, Shreyas Talpade, Rajpal Yadav, Aftab Shivdasani, Krushna Abhishek, Kiku Sharda, Vindu Dara Singh, Mukesh Tiwari, Yashpal Sharma, and Daler Mehndi in a special role.
+For the NRI audience that made RRR a cultural moment in American multiplexes, this is the payoff. Ram Charan's post-RRR star power is being tested as a standalone commodity for the first time — without the Rajamouli brand, without the Jr. NTR pairing, without the Hollywood distribution machinery that put RRR on the global map.
 
-Suniel Shetty is reprising his iconic "Yeda Anna" character from Awara Paagal Deewana, creating an unexpected franchise crossover within the same film. Director Khan described his dynamic with Akshay Kumar and Arshad Warsi as "great banter that takes the fun and chaos a notch higher."
+## What's at Stake
 
-The film also carries emotional weight. The late actor Pankaj Dheer, who passed away earlier this year after decades in film and television, appears in Welcome to the Jungle in his final on-screen role.
+The production economics are steep. Directed by Buchi Babu Sana (*Uppena*), *Peddi* is co-produced by Vriddhi Cinemas, Mythri Movie Makers, Sukumar Writings, and IVY Entertainment, with Jio Studios handling North India distribution. Trade analysts estimate the film needs approximately ₹450 crore worldwide to break even — a figure that would make it Ram Charan's biggest solo grosser and his second-largest overall after RRR.
 
-## What Kind of Comedy Is This?
+The film tells the story of Peddi Raju, a young daily-wage worker at construction sites whose athletic talent becomes his ticket out. Janhvi Kapoor plays the female lead, with Shiva Rajkumar, Jagapathi Babu, and Divyenndu rounding out a cast that spans Telugu, Kannada, and Hindi cinema.
 
-Not what you might expect. Ahmed Khan has been clear that Welcome to the Jungle diverges from the franchise's slapstick roots. "It's a black dark situational humour," he told Pinkvilla. "It's not a comedy. Firoz Nadiadwala believes in dark humour and situational humour. And of course, it's serious cinema: not a comedy or slapstick."
+## The A.R. Rahman Factor
 
-Set against a jungle backdrop, the film trades the original's urban gangster world for a wilder, more absurd premise. The teaser, dropped without announcement on May 15, was packed with over-the-top comedic situations that immediately went viral. JioStar has acquired the domestic theatrical, satellite, and OTT rights, meaning the film will stream on JioHotstar after its theatrical run.
+The music, composed by A.R. Rahman, has already found traction — the songs have been in rotation across Indian diaspora playlists for weeks, and the background score is being positioned as one of Rahman's most emotionally layered since *Roja*. For NRI audiences who grew up on Rahman soundtracks, this is both nostalgia and novelty. Cinematography by Ratnavelu, editing by Navin Nooli, and visual effects supervised by Sanath PC complete a technical crew that signals blockbuster ambition.
 
-## The Production Saga
+## IMAX and the Premium Play
 
-Welcome to the Jungle had a turbulent path to the screen. Production began in 2024 but was halted midway, and the project was reportedly at risk of being shelved entirely. Shooting resumed in November 2025, with a final 15-day schedule in early 2026 wrapping up the remaining portions. Producer Firoz Nadiadwala stayed committed throughout, and the June 26 release date has held firm.
+Peddi has been confirmed for an IMAX release, with Preetham Daniel, IMAX's Vice President for India and surrounding regions, publicly announcing the premium format rollout. This puts the film in direct competition for large-format screens with *Masters of the Universe*, which opens on IMAX just one day later on June 5. For diaspora audiences willing to pay the IMAX premium, Wednesday night becomes a genuine event.
 
-The budget is reported at a massive scale, befitting a franchise that grossed over ₹200 crore with its first two installments combined. With Akshay Kumar coming off the hit Bhooth Bangla and the franchise's built-in nostalgia factor, trade circles are projecting a major opening weekend.
+## The Week Ahead
 
-## Why This Matters for the Diaspora
+The first weekend of June is unusually crowded. Yash's *Toxic: A Fairy Tale for Grown-ups* opens the same day as Peddi. Bobby Deol's *Bandar* and Varun Dhawan's *Hai Jawani Toh Ishq Hona Hai* follow on June 5. But in North America, where Telugu cinema audiences are fiercely loyal and screen allocation favours whoever books first, Peddi has a clear head start.
 
-The original Welcome was not just a Bollywood hit — it was an NRI phenomenon. The film's outrageous humour, quotable dialogues, and ensemble energy made it a staple at Indian community events, university cultural nights, and family watch-alongs across the US, UK, Canada, and the Gulf. Welcome Back (2015) attempted to recapture that energy with a different cast and had a mixed reception.
+The question isn't whether Peddi will open big — the advance numbers have already answered that. The question is whether Ram Charan, without a director whose name alone sells tickets, can sustain the kind of run that turns a ₹450 crore target from daunting into inevitable."""
+})
 
-Welcome to the Jungle brings back the franchise's original DNA — Akshay Kumar, Suniel Shetty, and Paresh Rawal — while adding enough new faces to keep it fresh. For a generation of NRIs now in their 30s and 40s, this is less a movie and more a reunion.
 
-The film opens June 26 worldwide. Expect premiere shows across North America and the UK to fill up fast."""
-}
+# ─── ARTICLE 2: Bollywood's Missing Middle ───
 
-img3 = fetch_wikipedia_person_image("Akshay Kumar")
-art3_id = insert_article(art3)
-if art3_id and img3:
-    fn3 = f"{art3_id}.jpg"
-    final3 = upload_image_to_supabase(img3, fn3)
-    if final3:
-        patch_article(art3_id, {"image_url": final3, "image_attribution": "Wikimedia Commons"})
+articles.append({
+    "headline": "Bollywood's Middle Ground Is Vanishing. The Box Office Data Proves It.",
+    "subheadline": "Dhurandhar 2 earned ₹1,850 crore. Fourteen other films from Q1 2026 earned less than ₹50 crore combined. The Indian film industry's binary reality is no longer a theory — it's the balance sheet.",
+    "slug": "bollywood-box-office-2026-missing-middle-dhurandhar-flops-analysis-nri-20260602",
+    "category": "entertainment",
+    "image_person": None,
+    "image_fallback_query": "Bollywood cinema theatre India",
+    "sources": [
+        {"name": "Sacnilk", "url": "https://sacnilk.com"},
+        {"name": "Koimoi", "url": "https://koimoi.com"},
+        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"}
+    ],
+    "body": """The numbers from the first half of 2026 tell a story that Bollywood has been whispering about for two years and can no longer avoid saying out loud. The middle of the market — the ₹50-150 crore zone where decent films used to build decent careers — has effectively disappeared.
 
-print("\n=== All articles published ===")
+## The Data
+
+Consider the top of the chart. Ranveer Singh's *Dhurandhar 2: The Revenge* has earned approximately ₹1,850 crore worldwide, entering the top 10 highest-grossing films globally in 2026 — a feat virtually unheard of for an Indian production. *Border 2* collected ₹485 crore. *Bhooth Bangla*, Akshay Kumar's horror-comedy, crossed ₹289 crore. Together, these three films account for over ₹2,600 crore of Bollywood's total 2026 gross.
+
+Now consider the rest. *O'Romeo* (₹123 crore, verdict: "Losing"). *Mardaani 3* (₹77 crore, "Losing"). *Ikkis* (₹46 crore, "Losing"). Then the cliff: *Chand Mera Dil* (₹34 crore), *Pati Patni Aur Woh Do* (₹65 crore), and a graveyard of titles — *Ek Din*, *Ginny Wedss Sunny 2*, *Do Deewane Seher Mein*, *Tu Yaa Main*, *Rahu Ketu*, *Happy Patel*, *Vadh 2*, *Bhabiji Ghar Par Hain* — each earning between ₹1.5 crore and ₹15 crore. Virtually all carry a "Flop" verdict.
+
+The pattern is binary. You're either above ₹200 crore or below ₹50 crore. The zone between — where mid-budget dramas, rom-coms, and character studies once found a sustainable audience — has been hollowed out.
+
+## What Killed the Middle
+
+Three forces converged simultaneously.
+
+**Franchise dominance.** The success of *Dhurandhar 2* and *Bhooth Bangla* proved that audiences will pay premium prices and make repeat visits for event-scale franchise properties. This pulls discretionary spending away from films that audiences perceive as "can wait for OTT." The theatrical window is now a luxury good, not a democratic marketplace.
+
+**OTT as safety net, then as executioner.** Streaming platforms initially saved mid-budget films by offering digital premieres at guaranteed minimums. But the abundance of streaming content has conditioned audiences to expect mid-tier films at home within weeks. The theatrical window for a ₹30-60 crore film is now functionally two weekends — and if the first weekend underperforms, multiplexes replace it with the franchise tentpole that's still drawing crowds.
+
+**Cost inflation without revenue expansion.** Star fees, VFX budgets, and marketing spends have all escalated. A film that would have cost ₹25 crore in 2019 now costs ₹50 crore. But the mid-range audience hasn't grown proportionally. The economics of a "hit" have moved upward while the audience pool for non-event films has remained flat.
+
+## What This Means for the NRI Audience
+
+For diaspora viewers, the shift is felt at the ticket counter. In major US and UK markets, Indian films compete for limited screens. When a *Dhurandhar 2* or *Peddi* dominates bookings, smaller films get squeezed out entirely — often receiving no North American theatrical release at all. The mid-budget films that once offered nuanced storytelling and fresh faces increasingly bypass theatres and go straight to Netflix, JioHotstar, or Amazon Prime.
+
+This is both a loss and a realignment. The NRI audience that once discovered films like *Vicky Donor*, *Bareilly Ki Barfi*, or *Badhaai Ho* in theatres now discovers their equivalents at home on streaming apps. The theatrical experience has been reserved for spectacle.
+
+## The Road Ahead
+
+June offers a test case. The first week alone features five major releases across languages. *Peddi* and *Toxic* are event-scale bets; *Bandar* and *Hai Jawani Toh Ishq Hona Hai* are mid-budget plays. By month's end, *Welcome to the Jungle* and *Cocktail 2* add to the pile. The box office will reveal whether any of these non-franchise titles can find breathing room — or whether 2026 confirms that Bollywood's middle class, like its audience, has been split into those who can afford the premium and those who stay home."""
+})
+
+
+# ─── ARTICLE 3: Christmas 2026 Box Office Clash ───
+
+articles.append({
+    "headline": "Shah Rukh Khan's King Lines Up Against Avengers, Dune 3, and Jumanji for Christmas 2026. It's the Biggest Box Office Clash in History.",
+    "subheadline": "A ₹350 crore Bollywood action thriller, Suhana Khan's debut, and three Hollywood tentpoles — all fighting for the same holiday screens. The stakes have never been higher for Indian cinema abroad.",
+    "slug": "king-srk-christmas-2026-avengers-dune-3-jumanji-box-office-clash-nri-20260602",
+    "category": "entertainment",
+    "image_person": "Shah Rukh Khan",
+    "image_fallback_query": "Shah Rukh Khan Bollywood",
+    "sources": [
+        {"name": "Sacnilk", "url": "https://sacnilk.com"},
+        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
+        {"name": "Filmfare", "url": "https://filmfare.com"}
+    ],
+    "body": """Six months from now, the global box office will witness something unprecedented. Shah Rukh Khan's action thriller *King* has locked December 24, 2026 as its release date — placing it directly in the path of Marvel's *Avengers: Doomsday* (December 18), Denis Villeneuve's *Dune: Part Three* (December 18), and Dwayne Johnson's *Jumanji: Open World* (December 25).
+
+This isn't a clash. It's a four-way collision at the busiest box office corridor of the year, and for the first time in Bollywood history, an Indian film is voluntarily walking into a Hollywood firefight of this magnitude.
+
+## The Film
+
+Directed by Siddharth Anand, who previously helmed the ₹1,000 crore-grossing *Pathaan*, *King* reunites him with Shah Rukh Khan for what's being described as a globetrotting assassin thriller. SRK reportedly plays a deadly contract killer, with Suhana Khan — his daughter — making her theatrical debut as his protégé. Abhishek Bachchan has been cast as the primary antagonist, and reports consistently link Deepika Padukone to a substantial cameo. Arshad Warsi, Jaideep Ahlawat, and Abhay Verma round out the ensemble.
+
+The budget is reported at ₹350 crore, with Anirudh Ravichander composing the soundtrack — his second collaboration with SRK after the blockbuster *Jawan*. Principal photography is nearing completion, with global-scale post-production planned.
+
+## Why It Matters for the Diaspora
+
+For NRI audiences, Christmas is the one window where Indian and Hollywood blockbusters compete head-to-head for the same screens, the same afternoon, and the same family outing. In markets like the US, UK, Canada, Australia, and the Middle East, multiplexes allocate screens based on advance booking velocity. A strong SRK opening can command 600-800 screens across North America; a weak one might get 200.
+
+The 45-day gap between *Ramayana: Part 1* (expected Diwali 2026) and *King* (Christmas) is strategic — it ensures SRK doesn't cannibalise his own audience's theatrical appetite. But the Hollywood titles aren't so considerate. *Avengers: Doomsday* alone could command 4,000+ screens in North America, and *Dune 3* has secured a three-week exclusive IMAX window starting December 18, which means *King* won't get IMAX screens until early January at the earliest.
+
+## The Precedent
+
+SRK has historically owned the Christmas window. *Dilwale* (2015), *Zero* (2018), *Dunki* (2023) — the results have been mixed, but the strategy has been consistent: use the holiday footfall to maximise opening weekends. What's different in 2026 is the scale of Hollywood competition. No previous Christmas has featured three Hollywood tentpoles of this calibre releasing within the same week.
+
+The counterargument: *Pathaan* proved that SRK's current audience is franchise-loyal and will show up regardless of competition. *Jawan* confirmed that his appeal now crosses linguistic boundaries in ways it didn't a decade ago. If *King* delivers the action spectacle its pedigree promises, the Indian diaspora audience — which turned out for *Pathaan* in numbers that shocked US exhibitors — could give it a runway independent of Hollywood's dominance.
+
+## Suhana Khan's Debut
+
+The industry is watching Suhana Khan's theatrical launch as closely as the box office arithmetic. Star-kid debuts have been brutally punished by audiences in recent years — Shanaya Kapoor, Ibrahim Ali Khan, and others have faced scepticism that their predecessors never encountered. Suhana's Netflix film *The Archies* drew mixed reviews. But a Christmas release alongside her father, in an action genre that masks acting limitations with choreography and pace, is the most commercially protected debut imaginable.
+
+## The Stakes
+
+At ₹350 crore, *King* needs approximately ₹700-800 crore worldwide to be considered a clean hit. That's achievable for peak-era SRK — *Pathaan* earned over ₹1,000 crore — but it requires the kind of sustained theatrical run that Hollywood competition could truncate. Screens lost to *Avengers* in week one can't be recovered in week three.
+
+For the NRI audience planning their holiday movie outings, December 2026 presents an embarrassment of riches. The question is whether the Indian film in the lineup can hold its own — or whether King becomes the latest evidence that Bollywood, for all its ambition, still fights for scraps at the global table."""
+})
+
+# ──────────────────────────────────────────
+# PUBLISH
+# ──────────────────────────────────────────
+
+now = datetime.now(timezone.utc).isoformat()
+
+for i, art in enumerate(articles):
+    print(f"\n{'='*60}")
+    print(f"Article {i+1}: {art['headline'][:60]}...")
+    
+    # Image sourcing
+    img_url = None
+    img_attribution = None
+    
+    if art.get("image_person"):
+        img_url = fetch_wikipedia_person_image(art["image_person"])
+        if img_url:
+            img_attribution = "Wikimedia Commons"
+    
+    if not img_url and art.get("image_fallback_query"):
+        img_url = fetch_pexels_image(art["image_fallback_query"])
+        if img_url:
+            img_attribution = "The Videshi"
+    
+    # Upload to Supabase if we have an image
+    final_img_url = None
+    if img_url:
+        filename = f"{art['slug']}.jpg"
+        final_img_url = upload_image_to_supabase(img_url, filename)
+        if not validate_image_url(final_img_url):
+            print(f"  ⚠ Image validation failed, trying direct URL...")
+            if validate_image_url(img_url):
+                final_img_url = img_url
+            else:
+                print(f"  ⚠ Direct URL also failed, skipping image")
+                final_img_url = None
+
+    art_id = str(uuid.uuid4())
+    
+    payload = {
+        "id": art_id,
+        "headline": art["headline"],
+        "subheadline": art["subheadline"],
+        "slug": art["slug"],
+        "body": art["body"],
+        "category": art["category"],
+        "vertical": art["category"],
+        "sources": art["sources"],
+        "tags": [],
+        "status": "published",
+        "published_at": now,
+        "is_editorial": False,
+        "is_featured": False,
+        "image_url": final_img_url,
+        "image_attribution": img_attribution,
+    }
+    
+    result = sb_insert("p2_articles", payload)
+    if result:
+        print(f"  ✓ Published: {art['slug']}")
+    else:
+        print(f"  ✗ Failed to publish: {art['slug']}")
+    
+    time.sleep(1)
+
+print(f"\n{'='*60}")
+print(f"Entertainment writer complete. {len(articles)} articles processed.")
