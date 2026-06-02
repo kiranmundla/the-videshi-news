@@ -1,5 +1,14 @@
 [
   {
+    "id": "ustraveldocs-outage-jun26",
+    "date": "2026-06-02",
+    "label": "Jun 2, 2026",
+    "headline": "USTravelDocs & CEAC hit by outages \u2014 scheduling and payments disrupted",
+    "summary": "US visa processing websites including USTravelDocs.com and CEAC are experiencing significant technical issues, delaying interview bookings, fee payments, and document uploads. India is among the hardest-hit countries. State Dept working on fix, no timeline given. Applicants advised to retry after 24 hours.",
+    "severity": "medium",
+    "source": "US State Department / USTravelDocs"
+  },
+  {
     "id": "gc-return-home-walkback",
     "date": "2026-05-30",
     "label": "May 30, 2026",
