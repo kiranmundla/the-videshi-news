@@ -177,7 +177,7 @@ def insert_article(article):
         if isinstance(data, list) and data:
             return data[0].get('id')
         return True
-    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:800]}")
     return None
 
 def patch_article(article_id, patch):
@@ -196,8 +196,11 @@ ARTICLES.append({
     "subheadline": "Bhuvneshwar Kumar's reinvention at RCB — wobbly seam, relentless discipline, and 28 wickets — has forced India's selectors into a debate they thought was settled four years ago.",
     "slug": "bhuvneshwar-kumar-ipl-2026-revival-28-wickets-rcb-india-comeback-debate-nri",
     "category": "sports",
+    "vertical": "sports",
     "status": "published",
     "is_editorial": False,
+    "is_featured": False,
+    "tags": [],
     "published_at": datetime.now(timezone.utc).isoformat(),
     "sources": json.dumps(["CricketAddictor", "InsideSport India", "RevSportz", "CricTracker", "Yardbarker"]),
     "image_person": "Bhuvneshwar Kumar",
@@ -248,8 +251,11 @@ ARTICLES.append({
     "subheadline": "As 150 Indian Super League players enter free agency without new deals, a commercial rights dispute between clubs and the AIFF has left Indian football's top division in limbo — and families across the northeast are feeling it first.",
     "slug": "isl-crisis-150-players-out-of-contract-commercial-rights-dispute-aiff-2026-nri",
     "category": "sports",
+    "vertical": "sports",
     "status": "published",
     "is_editorial": False,
+    "is_featured": False,
+    "tags": [],
     "published_at": datetime.now(timezone.utc).isoformat(),
     "sources": json.dumps(["Mykhel/PTI", "Wikipedia - 2025-26 ISL", "Bhaskar English", "RevSportz"]),
     "image_person": None,
