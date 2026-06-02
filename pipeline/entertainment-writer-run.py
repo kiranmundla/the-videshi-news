@@ -1,41 +1,32 @@
 #!/usr/bin/env python3
-"""Entertainment writer — scheduled run for The Videshi"""
-import json, os, re, sys, time, uuid, urllib.parse
-import requests
+"""Entertainment writer for The Videshi — June 2, 2026 run.
+
+Publishes 3 articles:
+1. Delhi HC protects Varun Dhawan's personality rights against AI deepfakes
+2. IMAX returns to Hyderabad after a decade with AMB Cinemas
+3. Bobby Deol's personal redemption story — Aap Ki Adalat interview
+"""
+
+import json, os, sys, uuid, re, time
+import requests, urllib.parse
 from datetime import datetime, timezone
 
-# ── Load env ──
-def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            if "=" in line:
-                k, v = line.split("=", 1)
-                k = k.replace("export ", "").strip()
-                v = v.strip().strip('"').strip("'")
-                os.environ[k] = v
-
-load_env(os.path.expanduser("~/.env.supabase"))
-load_env(os.path.expanduser("~/workspace/.env.supabase"))
-load_env(os.path.expanduser("~/workspace/.env.pexels"))
-
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
-SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+# --- ENV ---
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation"
+    "Prefer": "return=representation",
 }
 
-# ── Wikipedia image fetch ──
+# --- HELPERS ---
+
 def fetch_wikipedia_person_image(person_name):
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -47,287 +38,321 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:100]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-# ── Pexels fallback ──
-def fetch_pexels_image(query):
+
+def fetch_pexels_image(query, fallback_query=None):
+    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
-    try:
-        r = requests.get(
-            "https://api.pexels.com/v1/search",
-            headers={"Authorization": PEXELS_KEY},
-            params={"query": query, "per_page": 3, "orientation": "landscape"},
-            timeout=10
-        )
-        if r.status_code == 200:
-            photos = r.json().get("photos", [])
+    for q in [query, fallback_query]:
+        if not q:
+            continue
+        try:
+            import subprocess
+            result = subprocess.run(
+                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape",
+                 "-H", f"Authorization: {PEXELS_KEY}"],
+                capture_output=True, text=True, timeout=15
+            )
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
             if photos:
                 url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image: {url[:80]}...")
+                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
                 return url
-    except Exception as e:
-        print(f"  ⚠ Pexels error: {e}")
+        except Exception as e:
+            print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-# ── Validate image ──
+
 def validate_image(url):
-    if not url:
-        return False
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
-    for b in banned:
-        if b in url:
-            print(f"  ✗ Banned source: {b}")
-            return False
+    """Check that image URL returns a valid image > 5KB."""
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         ct = r.headers.get("Content-Type", "")
         cl = int(r.headers.get("Content-Length", 0))
         if r.status_code == 200 and "image" in ct and cl > 5000:
-            print(f"  ✓ Image valid: {ct}, {cl} bytes")
             return True
-        print(f"  ✗ Image invalid: status={r.status_code}, ct={ct}, cl={cl}")
+        # Some servers don't return Content-Length on HEAD, try GET
+        if r.status_code == 200 and "image" in ct:
+            r2 = requests.get(url, timeout=10, stream=True,
+                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
+                return True
     except Exception as e:
-        print(f"  ✗ Validate error: {e}")
+        print(f"  ⚠ Image validation error for {url[:60]}: {e}")
     return False
 
-# ── Insert article ──
+
 def insert_article(article):
+    """Insert article into Supabase."""
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=article
+        json=article,
+        timeout=30,
     )
     if r.status_code in (200, 201):
         data = r.json()
-        aid = data[0]["id"] if isinstance(data, list) else data.get("id")
-        print(f"  ✓ Published: {article['headline'][:60]}... (id={aid})")
-        return aid
+        art_id = data[0]["id"] if isinstance(data, list) else data["id"]
+        print(f"  ✓ Inserted article: {article['slug']} (id={art_id})")
+        return art_id
     else:
         print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
         return None
 
 
-# ────────────────────────────────────────
-# ARTICLE 1: Naga Chaitanya Delhi HC Case
-# ────────────────────────────────────────
+# === ARTICLE 1: Delhi HC protects Varun Dhawan's personality rights ===
 
-def article_naga_chaitanya():
-    print("\n=== Article 1: Naga Chaitanya Delhi HC ===")
-    slug = "naga-chaitanya-delhi-hc-deepfakes-ai-samantha-personality-rights-nri-20260601"
+def write_article_1():
+    print("\n--- Article 1: Delhi HC / Varun Dhawan personality rights ---")
+    
+    img_url = fetch_wikipedia_person_image("Varun Dhawan")
+    if not img_url or not validate_image(img_url):
+        img_url = fetch_pexels_image("Indian court law gavel", "Delhi High Court")
+    
+    body = """The Delhi High Court has granted interim protection to actor Varun Dhawan against the unauthorized commercial exploitation of his personality rights — a ruling that arrives at a moment when AI-generated deepfakes and face-morphing tools have made digital identity theft trivially easy, and not just in India.
 
-    img = fetch_wikipedia_person_image("Naga Chaitanya")
-    if not img or not validate_image(img):
-        img = fetch_wikipedia_person_image("Naga Chaitanya (actor)")
-        if not img or not validate_image(img):
-            img = fetch_pexels_image("Delhi High Court India")
-            if not validate_image(img):
-                img = None
+## What the Court Ordered
 
-    headline = "Naga Chaitanya Went to the Delhi High Court Over AI Deepfakes. The Allegations Link Back to Samantha."
-    subheadline = "The Telugu star is fighting fabricated videos, cloned voices, and years of online speculation about his divorce — and the court is listening."
+Justice Jyoti Singh, hearing a suit filed by Dhawan, passed an ex parte ad interim injunction on May 29, restraining multiple websites, social media accounts, e-commerce platforms, and online intermediaries from using the actor's name, image, voice, likeness, or any other identifiable element of his persona without explicit authorization.
 
-    body = """The intersection of celebrity, technology, and harassment has rarely been laid this bare in an Indian courtroom. On May 29, Telugu star Naga Chaitanya appeared through counsel before Justice Jyoti Singh of the Delhi High Court, seeking sweeping protection for what legal filings describe as a systematic assault on his personality rights across the internet.
+The restraint specifically covers technologies including artificial intelligence, generative AI, machine learning, deepfakes, AI chatbots, and face-morphing tools. The Court directed Google, Meta Platforms, and X Corporation to provide Basic Subscriber Information of infringing users. All three intermediaries must take down newly reported content within 36 hours.
 
-The petition isn't about hurt feelings or negative reviews. It's about deepfake pornography, AI-generated videos depicting the actor in fabricated compromising situations, cloned voice recordings, and a sprawling cottage industry of websites that use his name alongside explicit search terms to drive traffic. His legal team, led by Senior Advocate Vaibhav Gaggar, told the court that this is "trolling, not fair criticism."
+"Plaintiff is entitled to protection against dissemination of pornographic content as well as AI-generated images portraying him in an inappropriate scenario," Justice Singh observed. "Such distasteful content is harming and damaging the reputation of the Plaintiff and may mislead the public into believing what is depicted may be true."
 
-## The Samantha Connection
+## What Triggered the Suit
 
-At the centre of the petition lies content that has dogged Chaitanya since his 2021 divorce from actress Samantha Ruth Prabhu. Despite both actors issuing a joint statement at the time requesting privacy, the internet has spent five years manufacturing narratives. Posts and videos circulating online allege — without evidence — that Chaitanya cheated on Samantha and systematically destroyed her career.
+Dhawan's legal team, led by Senior Advocate Sandeep Sethi, flagged three categories of abuse: online e-commerce sellers misusing his personality traits to sell unauthorized merchandise, booking agencies falsely claiming to arrange his appearances at events, and — most disturbingly — the circulation of AI-generated pornographic deepfakes showing the actor in fabricated intimate scenarios with female co-stars.
 
-The allegations have never been substantiated. Samantha has not publicly supported these claims. Both actors have remarried — Chaitanya to actress Sobhita Dhulipala, and Samantha, per reports, to filmmaker Raj Nidimoru. Yet the content persists, now supercharged by generative AI tools that can produce convincing fake video and audio with minimal effort.
-
-## What the Court Heard
-
-Gaggar presented the court with evidence of manipulated audiovisual content, unauthorised merchandise bearing Chaitanya's likeness, and borderline-infringing links that use his identity for commercial gain. The advocate argued that advanced digital tools — including deepfake technology and voice cloning software — are being weaponised against his client for profit.
-
-Justice Singh acknowledged the vulnerability. "You're in public life, and that makes you more vulnerable, but there's a line," she told the courtroom. The court has issued summons and indicated that interim orders protecting Chaitanya's personality rights will follow. The next hearing is scheduled for September 30.
+The Court noted that Dhawan has secured trademark registrations over his name and signature, and that these attributes are exclusively associated with him.
 
 ## Why This Matters for the Diaspora
 
-For the Telugu-speaking diaspora — particularly in the United States, Canada, and the Gulf — Tollywood celebrities occupy a cultural space that goes beyond entertainment. They are community touchstones, conversation starters at weekend gatherings, and reliable bridges to the culture back home.
+For NRIs who navigate multiple digital ecosystems across countries, this ruling has implications that reach far beyond Bollywood gossip. AI deepfake tools are now accessible to anyone with a laptop. The technology that can fabricate a convincing video of Varun Dhawan can do the same to any public figure, any professional, any person.
 
-The Naga-Samantha divorce was discussed in living rooms from Frisco to Fremont, from Mississauga to Dubai. Much of that conversation was fuelled by the very content Chaitanya is now asking the court to suppress. The case raises uncomfortable questions about what happens when diaspora audiences, often consuming content through algorithmically curated feeds, become unwitting amplifiers of fabricated narratives.
+India's courts have been building a body of personality rights jurisprudence in recent years. Naga Chaitanya obtained a similar order from the Delhi High Court in May after AI-manipulated content linked him to allegations involving his former wife Samantha Ruth Prabhu. Anil Kapoor secured a landmark personality rights order in 2023.
+
+What makes the Dhawan order notable is its explicit scope over AI, generative AI, machine learning, deepfakes, and chatbots — a comprehensive list that acknowledges the full toolkit now available to bad actors. The 36-hour takedown mandate for intermediaries sets a practical enforcement timeline.
 
 ## The Bigger Picture
 
-India's courts have been increasingly receptive to personality rights claims. Chaitanya's father, veteran actor Nagarjuna, previously secured similar protections from the Delhi High Court. The legal framework is evolving, but the technology is evolving faster.
+For Indian professionals abroad, the case raises a question that extends beyond celebrity culture: what legal protections exist when someone creates a deepfake of you? In the United States, deepfake laws remain a patchwork of state-level legislation. The EU's AI Act introduces some provisions, but enforcement mechanisms are still evolving. India's approach through personality rights jurisprudence, while not legislated in a single statute, is producing court orders with teeth.
 
-Deepfake tools that once required significant technical expertise are now available as consumer apps. Voice cloning can be accomplished with a few minutes of publicly available audio. For public figures in the Indian entertainment industry — where parasocial relationships run deep and the line between legitimate gossip and fabricated defamation is razor-thin — the threat is existential.
+The film industry, predictably, has its own concerns. With AI tools capable of generating convincing actor likenesses, the commercial model of star power — the thing that drives casting decisions, brand endorsements, and box office numbers — faces an existential question. If anyone can put Varun Dhawan's face on any body in any scenario, what exactly is his image worth?
 
-The Chaitanya petition isn't just about one actor protecting his reputation. It's a test case for whether Indian courts can meaningfully police AI-generated harassment in an era when the tools to create it are freely available and the platforms hosting it are often beyond easy jurisdictional reach.
+For now, the Delhi High Court has drawn a line. The next hearing will determine whether the interim protection becomes permanent. The deepfake industry is unlikely to notice."""
 
-The hearing continues. The deepfakes, for now, do too.
-
-*Sources: ANI, India Forums, Bollywood Bubble, IndulgeExpress, MovieTalkies*"""
-
-    return {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
+    article = {
+        "headline": "Delhi High Court Draws a Line on AI Deepfakes. Varun Dhawan's Personality Rights Order Covers Everything from Chatbots to Face-Morphing.",
+        "subheadline": "Justice Jyoti Singh's ruling mandates a 36-hour takedown window for AI-generated content — and names every tool in the deepfake arsenal.",
+        "body": body.strip(),
+        "slug": "delhi-hc-varun-dhawan-personality-rights-ai-deepfakes-order-nri-20260602",
         "category": "entertainment",
-        "vertical": "entertainment",
         "status": "published",
-        "is_editorial": False,
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img,
-        "image_attribution": "Wikimedia Commons" if img and ("wikimedia" in (img or "").lower() or "wikipedia" in (img or "").lower()) else "The Videshi",
-        "sources": json.dumps(["ANI", "India Forums", "Bollywood Bubble", "IndulgeExpress", "MovieTalkies"])
+        "sources": json.dumps([
+            "https://barandbench.com/news/delhi-high-court-protects-personality-rights-varun-dhawan-ai-deepfakes",
+            "https://latestly.com/agency-news/india-news-delhi-hc-restrains-ai-deepfakes-unauthorised-merchandise-and-online-exploitation-of-varun-dhawans-personality-rights-6895017.html",
+            "https://devdiscourse.com/article/headlines/3300981-delhi-hc-grants-varun-dhawan-protection-against-unauthorized-use-of-persona"
+        ]),
+        "image_url": img_url,
+        "image_attribution": "Wikimedia Commons" if img_url and ("wikipedia" in img_url or "wikimedia" in img_url) else "The Videshi",
+        "vertical": "entertainment",
+        "is_editorial": False,
     }
+    
+    art_id = insert_article(article)
+    return art_id
 
 
-# ────────────────────────────────────────
-# ARTICLE 2: Hai Jawani Toh Ishq Hona Hai
-# ────────────────────────────────────────
+# === ARTICLE 2: IMAX Returns to Hyderabad ===
 
-def article_hai_jawani():
-    print("\n=== Article 2: Hai Jawani Toh Ishq Hona Hai ===")
-    slug = "hai-jawani-toh-ishq-hona-hai-varun-dhawan-david-dhawan-june-5-nri-20260601"
+def write_article_2():
+    print("\n--- Article 2: IMAX returns to Hyderabad ---")
+    
+    # Try Mahesh Babu (AMB Cinemas partner)
+    img_url = fetch_wikipedia_person_image("Mahesh Babu")
+    if img_url and not validate_image(img_url):
+        print(f"  ⚠ Wikipedia image failed validation, trying Pexels")
+        img_url = None
+    if not img_url:
+        img_url = fetch_pexels_image("IMAX cinema theater", "movie theater screen")
+        if img_url and not validate_image(img_url):
+            img_url = None
+    
+    body = """Hyderabad is getting IMAX back. After a decade-long absence that left the home of Tollywood without a single premium large-format screen, IMAX Corporation and Asian Cinemas have announced a partnership for three new IMAX with Laser locations through the AMB Cinemas brand. The first screen opens before the end of 2026.
 
-    img = fetch_wikipedia_person_image("Varun Dhawan")
-    if not img or not validate_image(img):
-        img = fetch_pexels_image("Bollywood romantic comedy film")
-        if not validate_image(img):
-            img = None
+## The Deal
 
-    headline = "Varun Dhawan and His Father Are Betting ₹55 Crore on a Love Triangle. It Releases Thursday."
-    subheadline = "Hai Jawani Toh Ishq Hona Hai is David Dhawan's fourth film with his son — and Bollywood's most expensive family-comedy gamble this summer."
+Two of the three new locations will be in Hyderabad. The first, at AMB Classic, is targeted for a late-2026 opening. The remaining two locations are planned for 2028. All three will feature IMAX with Laser technology — the company's top-tier projection and sound system.
 
-    body = """David Dhawan built an empire on a simple formula: one hero, two heroines, a series of escalating misunderstandings, and an audience willing to laugh at all of it. From Govinda's anarchic energy in the 1990s to his son Varun's attempts to channel it in the 2010s, the elder Dhawan has directed more rom-com chaos than perhaps any other filmmaker in Hindi cinema.
+AMB Cinemas is Asian Cinemas' flagship "superplex" brand, launched in partnership with Telugu superstar Mahesh Babu. The brand has built a reputation for premium movie-going in the Telugu market.
 
-On June 5, the father-son duo bets on that formula one more time. Hai Jawani Toh Ishq Hona Hai — a title that sounds like it was written on a Punjabi wedding invitation — stars Varun Dhawan alongside Mrunal Thakur and Pooja Hegde. The plot, as described by the filmmakers, follows Jass, who finds himself in love with both Baani and Preet. Complications arrive when both become pregnant simultaneously.
+"Hyderabad's appetite and love for cinema is unparalleled, and bringing back the prestigious IMAX format to Hyderabad is a matter of great honour and pride for AMB Cinemas," said Managing Directors Sunil Narang and Bharat Narang.
 
-## The Numbers Behind the Nostalgia
+IMAX CEO Rich Gelfond called India's cinema culture "vibrant" and noted that 2025 was IMAX's best year ever at the Indian box office, powered by both Hollywood and Indian films.
 
-The reported budget is ₹55 crore, a significant outlay for a genre that Indian cinema has increasingly abandoned in favour of action tentpoles and franchise sequels. Varun's fee alone is rumoured at ₹30 crore — more than half the production budget — making the economics precarious from the start.
+## Why It Took a Decade
 
-Mrunal Thakur, who plays Baani, reportedly earned ₹5 crore. Pooja Hegde, fresh off a supporting role in Suriya's Retro earlier this year, took home an estimated ₹4 crore. The supporting cast — Mouni Roy (₹1.5 crore), Chunky Panday (₹90 lakh), Jimmy Shergill, Maniesh Paul, Rakesh Bedi, and Ali Asgar — suggests the makers are stacking the ensemble for maximum comic density.
+The last IMAX screen in Hyderabad was at Prasads, one of India's first IMAX theaters. It closed around 2015, leaving a city that produces some of the world's most visually ambitious cinema without the screen format designed to show it.
 
-The film is produced by Ramesh Taurani's Tips Films and Maximilian Films, and marks the fourth Varun-David collaboration after Main Tera Hero (2014), Judwaa 2 (2017), and Coolie No. 1 (2020). Of these, only Judwaa 2 was an unqualified commercial hit.
+The irony was not lost on the industry. S.S. Rajamouli, whose RRR and Baahubali: The Conclusion rank among the highest-grossing Indian films ever shown in IMAX, publicly expressed frustration that Hyderabad — the production hub behind these spectacles — lacked an IMAX theater.
 
-## Entering a Crowded Week
+During the recent launch event for his upcoming film Varanasi, starring Mahesh Babu, Rajamouli had openly called for an IMAX screen in the city. The timing of this announcement, just ahead of Varanasi's release, is hard to read as coincidental.
 
-The timing is deliberate and dangerous. Hai Jawani lands one day after Ram Charan's Telugu sports drama Peddi (June 4), which has already crossed $733K in US premiere advance bookings. It also shares the June 5 slot with Bobby Deol's Anurag Kashyap-directed Bandar and the Hollywood imports He-Man and Scary Movie.
+## What This Means for Telugu Cinema's Global Ambitions
 
-KVN Productions, the producers behind Yash's Toxic (which has been rescheduled multiple times), reportedly coordinated with Taurani to ensure both teams were aware of the scheduling proximity. Distributor Anil Thadani facilitated the conversation — a rare example of box-office diplomacy in an industry that usually prefers ambush marketing.
+Telugu cinema has undergone a tectonic shift in the past five years. Films like RRR, Pushpa, KGF, and Kalki 2898 AD have redefined what Indian cinema can achieve at the global box office. The domestic market now regularly produces films that gross ₹500+ crore worldwide.
 
-## The Diaspora Question
+For NRIs who grew up watching Telugu films in modest single-screen theaters, the IMAX announcement carries symbolic weight. The Telugu film industry is no longer a regional curiosity — it is the factory floor for India's biggest cinematic spectacles. An IMAX partnership validates that status within the exhibition infrastructure.
 
-For NRI audiences, Hai Jawani represents a specific kind of comfort viewing — the sort of film that plays at house parties in Edison and gets quoted at Diwali gatherings in Hounslow. David Dhawan's comedies, at their best, are not cinema to be analysed. They're cinema to be survived, ideally while your uncle explains the joke to someone who already got it.
+Several upcoming projects stand to benefit immediately. Ram Charan's Peddi releases on June 4 in IMAX across available markets. Rajamouli's Varanasi, reportedly mounted on a massive scale, was conceived for IMAX-scale viewing. Projects like Raaka and the rumored God of War adaptation from Indian filmmakers would also find a natural home on these screens.
 
-Whether that formula still works in 2026 — when the same NRI audience has access to every streaming platform and increasingly sophisticated South Indian blockbusters — is the ₹55 crore question. Varun has struggled commercially in recent years. His last full release, Sunny Sanskari Ki Tulsi Kumari, underperformed. His Thamma cameo reprising the Bhediya character was well-received, but a cameo doesn't carry a box-office.
+## The Business Logic
 
-The trailer, released at a Mumbai event, leans hard into the David Dhawan playbook: slapstick, double entendres, Varun mugging for the camera, and enough supporting actors to populate a small wedding. For those who grew up on Biwi No. 1 and Haseena Maan Jaayegi, the DNA is instantly recognisable.
+IMAX has been aggressively expanding in India. The company now operates over 50 screens across the country, with Delhi, Mumbai, Bengaluru, and Chennai among the major markets. Hyderabad's absence was a conspicuous gap.
 
-For everyone else, the question is simpler: has Bollywood's most prolific comedy director still got it?
+The Telugu-speaking diaspora is one of the most active movie-going communities in North America, the UK, and the Gulf. NRI audiences in these markets already watch Telugu films in IMAX — Peddi's advance booking in the US has crossed $700K. The domestic market lagging behind its overseas audience in screen technology was an anomaly that this deal corrects.
 
-June 5 will answer.
+For Asian Cinemas, the partnership strengthens AMB's positioning as a premium brand. For IMAX, it secures a foothold in a market that produces the kind of films their technology was built to show.
 
-*Sources: Sacnilk, ZoomTV Entertainment, Filmfare, MovieTalkies*"""
+The first screen opens by December 2026. Hyderabad has waited long enough."""
 
-    return {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
+    article = {
+        "headline": "IMAX Returns to Hyderabad After a Decade. Tollywood's Biggest Filmmakers Finally Get the Screen They Deserve.",
+        "subheadline": "Three new IMAX with Laser locations through AMB Cinemas — the first opens by December 2026, just in time for Rajamouli's Varanasi.",
+        "body": body.strip(),
+        "slug": "imax-hyderabad-amb-cinemas-rajamouli-telugu-cinema-decade-nri-20260602",
         "category": "entertainment",
-        "vertical": "entertainment",
         "status": "published",
-        "is_editorial": False,
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img,
-        "image_attribution": "Wikimedia Commons" if img and ("wikimedia" in (img or "").lower() or "wikipedia" in (img or "").lower()) else "The Videshi",
-        "sources": json.dumps(["Sacnilk", "ZoomTV Entertainment", "Filmfare", "MovieTalkies"])
+        "sources": json.dumps([
+            "https://www.businesswire.com/news/home/20260601463827/en/Asian-Cinemas-and-IMAX-Launch-Partnership-With-Three-New-IMAX-With-Laser-Locations-In-India",
+            "https://www.bollywoodhungama.com/news/bollywood/imax-returns-to-hyderabad-after-a-decade-with-three-new-amb-cinemas-locations/",
+            "https://www.gulte.com/news/finally-its-official-imax-returns-to-hyderabad/396862"
+        ]),
+        "image_url": img_url,
+        "image_attribution": "Wikimedia Commons" if img_url and ("wikipedia" in img_url or "wikimedia" in img_url) else "The Videshi",
+        "vertical": "entertainment",
+        "is_editorial": False,
     }
+    
+    art_id = insert_article(article)
+    return art_id
 
 
-# ──────────────────────────────────────────────
-# ARTICLE 3: Cocktail 2 — Shahid Kapoor Returns
-# ──────────────────────────────────────────────
+# === ARTICLE 3: Bobby Deol's Redemption Story ===
 
-def article_cocktail_2():
-    print("\n=== Article 3: Cocktail 2 ===")
-    slug = "cocktail-2-shahid-kapoor-kriti-sanon-rashmika-mandanna-homi-adajania-june-19-nri-20260601"
+def write_article_3():
+    print("\n--- Article 3: Bobby Deol's personal redemption ---")
+    
+    img_url = fetch_wikipedia_person_image("Bobby Deol")
+    if img_url and not validate_image(img_url):
+        print(f"  ⚠ Wikipedia image failed validation, trying Pexels")
+        img_url = None
+    if not img_url:
+        img_url = fetch_pexels_image("Bollywood actor portrait", "Indian cinema actor")
+        if img_url and not validate_image(img_url):
+            img_url = None
+    
+    body = """Bobby Deol sat across from Rajat Sharma on Aap Ki Adalat and said the thing that most Bollywood actors spend entire careers avoiding. He said he gave up.
 
-    img = fetch_wikipedia_person_image("Shahid Kapoor")
-    if not img or not validate_image(img):
-        img = fetch_pexels_image("cocktail party Bollywood film")
-        if not validate_image(img):
-            img = None
+"When you hit rock bottom, self-pity takes over," Deol told Sharma in the interview that has since been clipped, shared, and discussed across every Indian social media platform. "You feel the world has ended for you. Nobody likes you anymore. And you get into addictions — to sedate yourself."
 
-    headline = "Cocktail 2 Rewrites the Cast, Keeps the Formula. Shahid Kapoor, Kriti Sanon, and Rashmika Mandanna Take Over on June 19."
-    subheadline = "Homi Adajania returns to the franchise that turned Deepika Padukone into a star — fourteen years later, with an entirely new trio."
+## The Drinking, the Silence, the Disappearance
 
-    body = """The original Cocktail, released in 2012, was supposed to be a frothy triangle about two women and a man in London. What it actually became was a Deepika Padukone showcase — her portrayal of the free-spirited Veronica was so magnetic that it reoriented her entire career trajectory and left co-stars Saif Ali Khan and Diana Penty playing support in their own film.
+The facts of Bobby Deol's career hiatus are well-documented but rarely articulated by the man himself. After a string of box office failures in the 2000s and early 2010s, work dried up. The son of Dharmendra and younger brother of Sunny Deol — a man who had debuted to a blockbuster opening with Barsaat in 1995 — found himself at home while the industry moved on.
 
-Fourteen years later, Cocktail 2 arrives on June 19 with director Homi Adajania back at the helm but an entirely new cast. Shahid Kapoor takes the lead, flanked by Kriti Sanon and Rashmika Mandanna. The replacement of every original cast member is both an acknowledgement of what made the first film work and a gamble that the Cocktail brand is bigger than any single actor.
+He started drinking. His father, Dharmendra, had a well-known relationship with alcohol, and Bobby found himself following the same path. "My father always liked to drink, and I just got addicted to it," he said. "The thing about alcohol is that first you drink it, and then it drinks you."
 
-## What We Know
+What happened next is the part that has struck a nerve.
 
-Plot details remain thin — the makers have positioned this as a film about "love, friendship, and heartbreak with an upbeat soundtrack," which is marketing-speak for "we're not telling you anything yet." What is known is that the film was shot across multiple international locations and is being positioned as a summer tentpole for the June 19 release window.
+## "She Is My Spine"
 
-Shahid Kapoor has been on an interesting trajectory. After the massive commercial failure of Jersey (the Hindi remake) and a relatively quiet period, he pivoted to streaming with Bloody Daddy and Farzi, both of which found substantial audiences on Prime Video. A return to the theatrical space with a big-budget rom-drama signals confidence — or necessity, depending on whom you ask.
+Bobby's wife Tanya Deol started working. She ran the household finances. She managed the family. She did not leave.
 
-Kriti Sanon, meanwhile, has quietly assembled one of the most consistent filmographies of her generation. Her work in Mimi, Adipurush (despite its controversies), and the action-comedy Crew demonstrated a range that few of her contemporaries can match. In Cocktail 2, she's expected to play the more grounded of the two female leads.
+"Usne ghar sambhala, kharch woh karti thi," Bobby said, switching between Hindi and English with the ease of a man who has rehearsed this truth in his head many times. "She works. She never made me feel that way. She always told me — why do you think about yourself like this?"
 
-Rashmika Mandanna, who has spent the past three years becoming a pan-India phenomenon — from Pushpa to Animal to a growing presence in Bollywood — brings a Southern fan base that the franchise didn't previously have. Her casting is strategic: it positions Cocktail 2 as a pan-India play rather than a North Indian multiplex film.
+The turning point came from their children. "It was when my children started asking why I was always sitting at home and their mother would go to the office that something snapped within me," Bobby said. "I decided to work on myself."
 
-## The Diaspora Connection
+He addressed the persistent rumor that Tanya had left him during his lowest period. "It's amusing to hear such claims. Women possess incredible strength, and my wife never abandoned me. She did threaten to leave if I didn't quit drinking, but she stood by me."
 
-The original Cocktail was set in London, making it one of the few Bollywood films that directly depicted the NRI social milieu — the house parties, the casual mixing of cultures, the specific loneliness of being Indian abroad while trying not to be. It resonated particularly with British Indians and became a staple of diaspora movie nights.
+## The Comeback That Became a Meme, Then Became Real
 
-Whether Cocktail 2 will attempt a similar NRI setting is unclear, but the franchise carries goodwill in overseas markets. The UK, US, and Canadian diaspora — audiences who turned the original into a sleeper hit internationally — will likely give this one its opening weekend regardless of reviews.
+Bobby Deol's career resurrection is one of the stranger second-act stories in Hindi cinema. A supporting role in Salman Khan's Race 3 (2018) broke the drought. Then came Aashram on MX Player, where he played a morally bankrupt godman with unsettling conviction. Class of 83 followed.
 
-## June's Stacked Calendar
+But it was Animal (2023) that turned Bobby Deol into an internet phenomenon. His near-silent performance as the antagonist Abrar — cold, measured, terrifying — spawned the "Lord Bobby" meme. For a man who had spent years as a punchline in Bollywood joke threads, the transformation was jarring.
 
-Cocktail 2 releases into a June calendar that is already straining under weight. By June 19, audiences will have had Peddi (June 4), Bandar (June 5), Hai Jawani Toh Ishq Hona Hai (June 5), Governor (June 12), and potentially Yash's delayed Toxic — all competing for multiplex screens and viewer attention.
+Now comes Bandar, directed by Anurag Kashyap, releasing on June 5. Bobby plays a fading television star falsely accused of rape — a role that requires him to channel vulnerability, desperation, and rage. The film premiered at TIFF to strong notices. The cast includes Sanya Malhotra, Raj B Shetty, and Saba Azad.
 
-The advantage for Cocktail 2 is positioning. It occupies a different genre space than the action dramas and political thrillers around it. For audiences looking for something lighter — a Friday evening watch rather than a Saturday morning spectacle — it might be the natural choice. The franchise name helps. In an era when Bollywood sequels are the closest thing the industry has to guaranteed IP, Cocktail carries enough cultural memory to get people through the door.
+## Why This Resonates with the Diaspora
 
-Getting them to stay is Homi Adajania's problem. He's done it before.
+Bobby Deol's story is not really about Bollywood. It is about the specific shame that Indian families know intimately: the man who is supposed to provide, sitting at home while his wife works. The children who notice. The relatives who talk. The silence that fills a house when purpose disappears.
 
-*Sources: Filmfare, Daily Jagran, ZoomTV Entertainment, Sacnilk*"""
+For NRI families who have watched their own members struggle with career setbacks, addiction, or the suffocating weight of expectations in a new country, Bobby's candor on national television is disarming. He did not blame the industry, his genes, or his circumstances. He credited his wife. He credited his children's innocent question.
 
-    return {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
+"Change only happens when it comes from within you," he said. And then he went quiet for a moment, which is the most Bobby Deol thing in the world — letting the silence say what words cannot.
+
+Bandar releases in theaters on June 5. This time, the audience is not laughing at him. They are watching."""
+
+    article = {
+        "headline": "Bobby Deol Told Rajat Sharma He Gave Up on Himself. Then He Explained Who Pulled Him Back.",
+        "subheadline": "The Aap Ki Adalat interview ahead of Bandar's release is the most candid Bobby Deol has ever been about addiction, disappearance, and the wife who stayed.",
+        "body": body.strip(),
+        "slug": "bobby-deol-aap-ki-adalat-addiction-tanya-comeback-bandar-nri-20260602",
         "category": "entertainment",
-        "vertical": "entertainment",
         "status": "published",
-        "is_editorial": False,
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img,
-        "image_attribution": "Wikimedia Commons" if img and ("wikimedia" in (img or "").lower() or "wikipedia" in (img or "").lower()) else "The Videshi",
-        "sources": json.dumps(["Filmfare", "Daily Jagran", "ZoomTV Entertainment", "Sacnilk"])
+        "sources": json.dumps([
+            "https://www.newsdive.net/bobby-deol-sons-alcohol-struggle-wife-handling-everything/",
+            "https://www.saartaj.com/bobby-deol-opens-up-on-alcohol-addiction-wife-tanya-deol/",
+            "https://inshorts.com/en/news/kids-asked-why-i-was-at-home-while-mother-worked-bobby-on-alcohol-addiction"
+        ]),
+        "image_url": img_url,
+        "image_attribution": "Wikimedia Commons" if img_url and ("wikipedia" in img_url or "wikimedia" in img_url) else "The Videshi",
+        "vertical": "entertainment",
+        "is_editorial": False,
     }
+    
+    art_id = insert_article(article)
+    return art_id
 
 
-# ── Main ──
+# === MAIN ===
 if __name__ == "__main__":
-    print(f"Entertainment writer starting at {datetime.now(timezone.utc).isoformat()}")
-    print(f"Supabase URL: {SUPABASE_URL[:30]}..." if SUPABASE_URL else "⚠ No SUPABASE_URL")
-
-    articles = [
-        article_naga_chaitanya(),
-        article_hai_jawani(),
-        article_cocktail_2(),
-    ]
-
-    success = 0
-    for art in articles:
-        aid = insert_article(art)
-        if aid:
-            success += 1
-        time.sleep(1)
-
-    print(f"\n{'='*50}")
-    print(f"Done: {success}/{len(articles)} articles published")
+    print("=" * 60)
+    print("The Videshi — Entertainment Writer Run")
+    print(f"Date: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
+    print("=" * 60)
+    
+    results = []
+    
+    art1 = write_article_1()
+    results.append(("Varun Dhawan AI deepfakes", art1))
+    
+    art2 = write_article_2()
+    results.append(("IMAX Hyderabad", art2))
+    
+    art3 = write_article_3()
+    results.append(("Bobby Deol redemption", art3))
+    
+    print("\n" + "=" * 60)
+    print("RESULTS:")
+    for name, art_id in results:
+        status = f"✓ {art_id}" if art_id else "✗ FAILED"
+        print(f"  {name}: {status}")
+    
+    failures = sum(1 for _, a in results if not a)
+    print(f"\nPublished: {len(results) - failures}/{len(results)}")
+    if failures:
+        sys.exit(1)
+    print("Done.")
