@@ -1,7 +1,18 @@
 #!/usr/bin/env python3
-"""News writer run — 2026-06-02"""
+"""
+News Writer for The Videshi — June 2, 2026
+Generates 3 fresh news articles with proper image sourcing and publishes to Supabase.
+"""
 
-import json, os, re, sys, time, uuid, urllib.parse, subprocess
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+import uuid
+import requests
+import urllib.parse
 from datetime import datetime, timezone
 
 # Load env
@@ -11,8 +22,9 @@ def load_env(path):
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    os.environ[k.strip()] = v.strip().strip('"').strip("'")
+                    key, _, val = line.partition('=')
+                    val = val.strip().strip('"').strip("'")
+                    os.environ[key.strip()] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
@@ -21,10 +33,15 @@ SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
 SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-import requests
+HEADERS = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
+}
 
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia."""
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -36,311 +53,453 @@ def fetch_wikipedia_person_image(person_name):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl."""
+    """Fetch an image from Pexels using curl (urllib gets 403)."""
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
             result = subprocess.run(
                 ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
+                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape'],
                 capture_output=True, text=True, timeout=15
             )
             data = json.loads(result.stdout)
             photos = data.get('photos', [])
-            if photos:
-                img_url = photos[0]['src']['large2x']
-                print(f"  ✓ Pexels image for '{q}': {img_url[:80]}...")
-                return img_url
+            for photo in photos:
+                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+
 def validate_image(url):
-    """Validate image URL."""
+    """Validate that an image URL returns a valid image."""
+    if not url:
+        return False
     try:
         r = requests.head(url, timeout=10, allow_redirects=True,
                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct:
-            if cl > 5000 or cl == 0:  # Accept 0 content-length (HEAD may not return it)
-                print(f"  ✓ Image OK: {r.status_code}, {ct}, {cl} bytes")
+        content_type = r.headers.get('Content-Type', '')
+        content_length = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in content_type and content_length > 5000:
+            return True
+        # Try GET if HEAD doesn't give Content-Length
+        if r.status_code == 200 and 'image' in content_type:
+            r2 = requests.get(url, timeout=10, stream=True,
+                             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
                 return True
-        print(f"  ✗ Image fail: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
-        print(f"  ✗ Image error: {e}")
+        print(f"  ⚠ Image validation error: {e}")
     return False
 
-def make_sources(source_list):
-    """Convert source name list to the format Supabase expects."""
-    return [{"name": s, "url": ""} for s in source_list]
 
-def sb_insert(article):
+def upload_to_supabase_storage(image_url, filename):
+    """Download image and upload to Supabase storage bucket."""
+    try:
+        r = requests.get(image_url, timeout=30,
+                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code != 200 or len(r.content) < 5000:
+            print(f"  ⚠ Failed to download image: status={r.status_code}, size={len(r.content)}")
+            return None
+
+        content_type = r.headers.get('Content-Type', 'image/jpeg')
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        
+        resp = requests.post(
+            upload_url,
+            headers={
+                'apikey': SUPABASE_KEY,
+                'Authorization': f'Bearer {SUPABASE_KEY}',
+                'Content-Type': content_type,
+                'x-upsert': 'true'
+            },
+            data=r.content,
+            timeout=30
+        )
+        
+        if resp.status_code in [200, 201]:
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Upload failed: {resp.status_code} {resp.text[:200]}")
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
+    return None
+
+
+def insert_article(article):
     """Insert article into Supabase."""
-    headers = {
-        "apikey": SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Content-Type": "application/json",
-        "Prefer": "return=representation"
-    }
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=headers,
-        json=article,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            return result[0].get('id')
-        return True
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
+    resp = requests.post(url, headers=HEADERS, json=article, timeout=30)
+    if resp.status_code in [200, 201]:
+        data = resp.json()
+        art_id = data[0]['id'] if isinstance(data, list) and data else data.get('id')
+        print(f"  ✓ Article inserted: {article['slug']} (id: {art_id})")
+        return art_id
     else:
-        print(f"  ✗ Insert failed: {r.status_code} — {r.text[:500]}")
+        print(f"  ✗ Insert failed: {resp.status_code} {resp.text[:300]}")
         return None
 
 
+def patch_article(art_id, updates):
+    """Patch an article with updates."""
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{art_id}"
+    resp = requests.patch(url, headers=HEADERS, json=updates, timeout=15)
+    if resp.status_code in [200, 204]:
+        print(f"  ✓ Patched article {art_id}")
+    else:
+        print(f"  ⚠ Patch failed: {resp.status_code} {resp.text[:200]}")
+
+
 # ============================================================
-# ARTICLE 1: India-Australia Defence Ministers' Dialogue
+# ARTICLE 1: India-UK Trade Deal in Trouble
 # ============================================================
-print("\n=== Article 1: India-Australia Defence Ministers' Dialogue ===")
+def write_article_1():
+    print("\n📰 Article 1: India-UK Trade Deal — Scotch Whisky vs Steel")
+    
+    slug = "india-uk-trade-deal-scotch-whisky-steel-safeguards-piyush-goyal-peter-kyle-20260602"
+    
+    headline = "India Just Threatened to Pull the Scotch Whisky Tariff Cut. Britain's Steel Restrictions Are the Reason."
+    
+    subheadline = "A year-old trade deal that promised to reshape commerce between the world's fifth- and sixth-largest economies is unravelling before it has even taken effect. Britain's Trade Secretary is in New Delhi today to try to fix it."
+    
+    body = """India has warned Britain that it will reverse tariff concessions on Scotch whisky and other goods if London does not withdraw new steel safeguard measures that threaten Indian exports, a senior trade official said on Monday.
 
-art1_body = """India and Australia have agreed to jointly track maritime activity across the Indian and Pacific Oceans, putting teeth behind a defence partnership that has moved from ceremonial to operational in less than two years.
+"So now the ball is in their court," the official told reporters. "If they do not leverage their free trade agreement, we can always reconsider the concessions we offered."
 
-Defence Minister Rajnath Singh and Australia's Deputy Prime Minister and Defence Minister Richard Marles co-chaired the second India-Australia Defence Ministers' Dialogue at the Manekshaw Centre in New Delhi on June 1. The first had been held in Canberra just eight months earlier, in October 2025. The pace alone signals urgency.
+The warning lands as Britain's Trade Secretary Peter Kyle arrived in New Delhi on Tuesday for talks with Commerce Minister Piyush Goyal — a meeting that was supposed to finalize the implementation timeline for a deal both sides signed in July 2025 with considerable fanfare. Instead, it has become a damage-control exercise.
 
-## A Maritime Roadmap Takes Shape
+## The Steel Problem
 
-The centrepiece of the meeting was a Joint Maritime Security Collaboration Roadmap — a document that, once finalised, will formalise shared patrols, surveillance flights, and intelligence exchange across the Indian Ocean Region.
+The India-UK Comprehensive Economic and Trade Agreement, formally concluded last year but still not in force, hit a wall when Britain proposed slashing tariff-free steel import quotas from July 1, 2026, and nearly doubling the duty on shipments exceeding the reduced quota to 50 per cent.
 
-Both sides agreed to accelerate maritime domain awareness activities using their respective long-range maritime patrol aircraft. India and Australia will also begin exploring undersea domain awareness cooperation — a capability area that until recently was reserved for the most intimate of defence partnerships.
+India's steel exports to the UK totalled roughly $900 million in the financial year ending March 2026. Under the new safeguard measures, much of that trade could be hit, according to industry estimates.
 
-The Indian Coast Guard and Australia's Maritime Border Command, the two agencies responsible for day-to-day maritime enforcement, will deepen direct engagement. Later this month, the two countries will co-host a Search and Rescue exercise and tabletop drill in Chennai under the auspices of the Indian Ocean Rim Association's Working Group on Maritime Safety and Security.
+New Delhi's objections extend beyond steel. Indian officials said they also plan to raise concerns about Britain's Carbon Border Adjustment Mechanism, which would impose levies on exports of steel, aluminium and fertilisers — measures India views as protectionist rather than environmental.
 
-## A New MoU on Defence Equipment
+"Right now, India is more bothered about the steel import quotas as the new measures will be applicable from next month," a person tracking the discussions told reporters. "Carbon levies are still some months away, but those need to be discussed too."
 
-Beyond the maritime domain, the ministers announced work on a new Memorandum of Understanding covering the supply of defence equipment and services. The MoU opens the door for co-development and co-production — an area India has been pushing aggressively as it tries to become a net defence exporter rather than the world's largest importer.
+## What India Is Threatening
 
-Joint research in sensor systems and other emerging technologies will be pursued through existing bilateral defence science mechanisms. Australia has invited India to participate in its Defence Science, Technology and Research Summit later in 2026.
+Under the trade pact, India agreed to cut tariffs on Scotch whisky from 150 per cent to 75 per cent initially, with further reductions to 40 per cent over ten years. The deal also covers textiles, cars and a range of other goods, with both sides expecting it to boost bilateral trade by an additional £25.5 billion ($34 billion) by 2040.
 
-## Military Exercises Expand
+If Britain does not respond to India's concerns, New Delhi could take "rebalancing" measures — a diplomatic term for withdrawing benefits as a tit-for-tat response.
 
-India is expected to increase its participation in Exercise Talisman Sabre 2027, Australia's flagship multinational military exercise. Both countries will continue to train together through Malabar, Tarang Shakti, and several navy-to-navy engagements.
+India is not alone in its objections. Brazil, Turkey, Japan, South Korea, Switzerland and Australia have all raised concerns at the World Trade Organization over Britain's new steel import restrictions.
 
-The scope of cooperation has quietly expanded into areas that would have been unthinkable a decade ago: amphibious warfare, littoral operations, submarine rescue, and multinational humanitarian missions.
+## The Diaspora Dimension
 
-An Indian military instructor will be placed at the Australian Defence College during 2028-29 — a small but symbolically significant step toward building institutional memory between two armed forces that spent most of the Cold War on opposite sides of strategic alignment.
+For the 1.8 million-strong Indian diaspora in the UK — and the growing number of Indian students and professionals in Britain — the trade deal promised more than tariff cuts. It was supposed to deliver enhanced mobility provisions, mutual recognition of qualifications and easier visa pathways for Indian professionals.
 
-## The Quad in the Background
+Those provisions are now hostage to a steel dispute that neither side anticipated when the deal was signed.
 
-Neither minister used the word "alliance." But the joint statement underscored growing strategic alignment among Quad partners — India, Australia, Japan, and the United States — on maritime surveillance and information sharing.
+Britain's position is delicate. Kyle has described the deal as a "win-win" for both nations but has carefully avoided addressing the steel issue directly in public statements. His team has sought to separate the steel safeguard discussions from the broader FTA implementation — a distinction India has explicitly rejected.
 
-The India-Australia defence relationship is no longer aspirational. It is being built, exercise by exercise, patrol by patrol, and MoU by MoU. The Chennai drill this month will be the next test of whether operational ambition can keep pace with diplomatic intent.
+## What Happens Next
 
-*Sources: Ministry of Defence press statement, IANS, Australian Defence Ministry statement*"""
+The Goyal-Kyle meeting on Tuesday will determine whether the deal can be rescued before Britain's new steel measures take effect on July 1. If India follows through on its threat, British whisky producers — who have spent a year preparing for the Indian market at lower tariffs — would be the first casualties.
 
-# Image
-art1_img = fetch_wikipedia_person_image("Rajnath Singh")
-if not art1_img or not validate_image(art1_img):
-    art1_img = fetch_pexels_image("naval warship ocean military", "navy destroyer Indian Ocean")
-    if art1_img and not validate_image(art1_img):
-        art1_img = None
+The UK whisky industry exports approximately £530 million worth of Scotch to India annually, making it one of the most commercially significant products in the deal. A reversal would be a significant blow to a sector that had banked on the agreement to finally crack a market where 150 per cent tariffs have long made Scotch a luxury few could afford.
 
-art1 = {
-    "headline": "India and Australia Just Agreed to Map Each Other's Oceans. A Joint Rescue Drill in Chennai Will Start This Month.",
-    "subheadline": "At their second Defence Ministers' Dialogue in New Delhi, Rajnath Singh and Richard Marles signed off on a maritime roadmap, a new defence equipment MoU, and deeper undersea surveillance cooperation.",
-    "slug": "india-australia-2nd-defence-ministers-dialogue-rajnath-singh-marles-maritime-roadmap-20260602",
-    "body": art1_body,
-    "category": "news",
-    "vertical": "geopolitics",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": art1_img,
-    "image_attribution": "Wikimedia Commons" if art1_img and "wikimedia" in (art1_img or "") else ("Pexels" if art1_img else None),
-    "is_editorial": False,
-    "score_total": 0,
-    "sources": make_sources([
-        "Ministry of Defence, Government of India",
-        "IANS",
-        "Australian Defence Ministry",
-        "Impressive Times"
+The stakes extend well beyond whisky and steel. If the India-UK deal collapses before implementation, it would undermine both nations' credibility as reliable trade partners at a moment when both are simultaneously negotiating with the United States — and when the global trade architecture is under unprecedented strain from tariffs, wars and competing economic blocs."""
+    
+    sources = json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "The Hindu Business Line", "url": "https://www.thehindubusinessline.com"},
+        {"name": "Devdiscourse", "url": "https://www.devdiscourse.com"}
     ])
-}
-art1_id = sb_insert(art1)
-print(f"  → Article 1: {art1_id}")
+    
+    # Image sourcing — Pexels for trade/diplomatic concept
+    img_url = fetch_pexels_image("British whisky scotch barrels trade", "steel factory industry trade")
+    
+    image_attribution = "Pexels"
+    final_img = None
+    if img_url and validate_image(img_url):
+        final_img = upload_to_supabase_storage(img_url, f"{slug}.jpg")
+        if not final_img:
+            final_img = img_url  # Pexels URLs are permanent
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "news",
+        "vertical": "trade",
+        "tags": ["india-uk", "trade", "scotch-whisky", "steel", "tariffs", "piyush-goyal"],
+        "urgency": "high",
+        "diaspora_angle": "The India-UK trade deal includes enhanced mobility provisions, qualification recognition and visa pathways for Indian professionals in the UK — all now hostage to a steel dispute. The 1.8 million-strong Indian diaspora in Britain and Indian students face uncertainty.",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": sources,
+        "image_url": final_img or "",
+        "image_attribution": image_attribution if final_img else "",
+        "is_editorial": False,
+        "is_featured": False,
+        "score_total": 0,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    
+    art_id = insert_article(article)
+    return art_id
 
 
 # ============================================================
-# ARTICLE 2: Indo-Pacific Defence Realignment
+# ARTICLE 2: FII Record Outflow
 # ============================================================
-print("\n=== Article 2: Indo-Pacific Defence Realignment ===")
+def write_article_2():
+    print("\n📰 Article 2: Foreign Investors Smash Annual Record in Just 5 Months")
+    
+    slug = "foreign-investors-26-billion-outflow-india-2026-annual-record-five-months-iran-war-20260602"
+    
+    headline = "Foreign Investors Have Now Pulled More Money Out of India in 2026 Than They Did in All of 2025."
+    
+    subheadline = "It took them just five months. The $26.4 billion exodus — driven by the Iran war, $94 oil and a weak monsoon forecast — has surpassed last year's full-year record of $18.91 billion and shows no sign of slowing."
+    
+    body = """Foreign portfolio investors have now pulled $26.4 billion out of Indian equities in 2026, smashing through the previous full-year record of $18.91 billion set in 2025 — and the year is not even half over.
 
-art2_body = """The 2026 Shangri-La Dialogue ended on Sunday with a message that was unmistakable, even if no one said it plainly: the era of waiting for Washington is over.
+The milestone, crossed on Monday as overseas funds sold another $411.8 million in a single session, marks the worst sustained exodus from India's $4.8 trillion stock market since records began. On Friday, MSCI's May rebalancing triggered a single-day fire sale of $2.22 billion — the largest one-day foreign sell-off in Indian market history.
 
-At Asia's premier annual defence summit in Singapore, the theme that emerged was not a specific flashpoint — not Taiwan, not the Strait of Hormuz, not the South China Sea — but a structural shift. Indo-Pacific nations are arming themselves, and they are arming each other, at a pace that has no precedent since the Cold War.
+Indian benchmarks fell for a fifth straight session on Tuesday. The Nifty 50 dropped 0.66 per cent to 23,229 and the Sensex shed 0.43 per cent to 73,945 in early trade, having already lost 2.9 per cent over the past four sessions. Fifteen of 16 major sectors logged losses.
 
-## The US Says Two Things at Once
+## Why They Are Leaving
 
-US Defense Secretary Pete Hegseth arrived in Singapore to reassure Asian allies that Washington's attention had not drifted despite the three-month-old war with Iran. "We can do two things at one time," he told the forum.
+The scale of the retreat reflects a convergence of forces that have made India increasingly unattractive to global capital.
 
-But he also pressed partners to spend more. His target: 3.5 percent of GDP on defence — a number that would represent a massive increase for most Asian nations. He praised Asian partners for outperforming their European counterparts and took a direct shot at NATO, saying Western Europe "might take note."
+**The Iran war.** Since the US-Israeli strikes on Iran began in late February, foreign investors have pulled nearly $25 billion from Indian equities. Oil — India imports 85 per cent of its crude — has hovered near $94 per barrel, squeezing corporate margins and widening the current account deficit.
 
-The mixed message — we are here, but you should be ready in case we are not — was heard clearly.
+**Earnings stagnation.** Nifty 50 companies have now posted eight consecutive quarters of single-digit earnings growth. "If there is no resolution to the Iran war in the near term and crude prices sustain between $90 to $100 per barrel, FY27 earnings estimates could be downgraded as well," said Sunny Agrawal, head of fundamental equity research at SBICAPS Securities.
 
-## Japan Steps Into the Centre
+**Monsoon risk.** The India Meteorological Department has forecast the weakest monsoon in 11 years, rattling consumer goods and automobile stocks. FMCG shares fell 1.7 per cent on Monday and auto stocks shed 2.3 per cent.
 
-Japan's Defence Minister Shinjiro Koizumi said he believed the US commitment was "unwavering." But his actions told a different story. Tokyo is positioning itself as a "connecting point" for closer regional cooperation, moving beyond its traditional US-anchored posture.
+**MSCI rebalancing.** The index provider's May reshuffle triggered a wave of passive selling, with $2.3 billion exiting India on a single day as global index-tracking funds mechanically adjusted their allocations.
 
-In April, Japan unveiled its biggest overhaul of defence export rules in decades, scrapping restrictions on overseas arms sales and opening the door to export warships, missiles, and other weapons. At Shangri-La, Koizumi met bilaterally with counterparts from across the region, laying the groundwork for a web of partnerships that does not require Washington at the centre of every strand.
+## The Rupee Under Siege
 
-## The Philippines, New Zealand, and the Five Powers
+The outflows have left the rupee teetering. It settled at 94.99 to the dollar on Monday — held up almost entirely by the Reserve Bank of India's aggressive interventions. The central bank has spent down its forex reserves to $681 billion, the lowest in over a year, and reduced its short forward dollar commitments from over $100 billion in March to $95.3 billion by end-April.
 
-The Philippines' Defence Secretary Gilberto Teodoro was blunt. Manila is deepening ties with Japan, Australia, Canada, and New Zealand — "buttressing" the US role, he said, not replacing it. "The commitment of the United States becomes more solid when more actors come in."
+MUFG, the Japanese banking group, warned in a research note that the rupee could fall to 98 — and possibly even 100 — against the dollar if the conflict drags on or escalates.
 
-New Zealand, meanwhile, is weighing Japanese and British warships to replace its ageing ANZAC-class frigates. Defence Minister Chris Penk said the Five Power Defence Arrangement — a 54-year-old pact linking New Zealand, Australia, Singapore, Malaysia, and the UK — was being pursued "at a more intense level."
+"We continue to view the Indian rupee as vulnerable across a range of scenarios on the Strait of Hormuz, with USD/INR likely moving towards 98.00 levels and even 100.00 is in sight if the conflict prolongs or escalates," the analysts wrote.
 
-## India: Defence Exports and Strategic Autonomy
+## Can Domestic Investors Absorb the Blow?
 
-India entered the Shangri-La Dialogue with its own headline: a BrahMos missile deal with Vietnam, its third Southeast Asian customer. Hegseth called India a "critical anchor" in South Asia.
+India's domestic institutional investors — powered by a record 8 crore-plus SIP (Systematic Investment Plan) accounts — have poured $31 billion into the market this year, more than compensating for foreign exits in absolute terms. But cracks are appearing in the domestic cushion.
 
-But India's position is distinct from the broader hedging pattern. New Delhi is not joining a bloc. It is building a defence export portfolio — the BrahMos sales to the Philippines, Indonesia, and now Vietnam represent a deliberate strategy to become a provider of security goods, not just a consumer.
+CLSA warned in April that mutual fund cash levels had dropped 24 per cent from their April 2025 peak, signalling "the first signs of depletion in the resources of DIIs after 18 months of fighting this battle of equity flows."
 
-Defence Secretary Rajesh Kumar Singh held bilateral meetings with counterparts from Singapore, Sweden, the Netherlands, Australia, New Zealand, and the European Union on the sidelines. Each meeting expanded a different thread of India's growing defence network.
+The IT sector has been a rare bright spot, rising 2.7 per cent on Monday after strong earnings from Snowflake lifted global software and cloud stocks. But the broader market tells a different story: small-caps and mid-caps, where retail investors are most exposed, fell 0.9 per cent and 1.5 per cent respectively.
 
-## AUKUS Goes Aquatic
+## What NRIs Should Watch
 
-The AUKUS triad — Australia, the UK, and the US — unveiled a joint plan to develop aquatic drones for tasks like subsea cable defence. The initiative appears to be a response to threats exposed by the Iran-US war, where disruption of undersea infrastructure became a real risk. AUKUS had originally focused on submarine power projection in the Pacific; the pivot toward undersea infrastructure protection suggests a broader mandate.
+The RBI's monetary policy decision on Friday is the week's defining event. Nearly 80 per cent of economists expect the central bank to hold rates at 5.25 per cent, but MUFG dissents, predicting a 25 basis-point hike to defend the rupee.
 
-## The Takeaway
+For NRIs with investments in Indian markets — or those considering repatriating funds — the key question is whether the RBI can hold the rupee near 95 without burning through its reserves. India's Q1 GDP data, also due Friday, will test whether the world's fastest-growing major economy can sustain that title through a war, an oil shock and a monsoon that may not arrive.
 
-Singapore's Defence Minister Chan Chun Sing captured the moment best: nations should "develop flexible partnerships with like-minded countries forming coalitions of the able and willing."
-
-The Shangri-La Dialogue has always been a place where speeches matter less than sideline conversations. This year, the conversations all pointed in the same direction. The Indo-Pacific's security architecture is being rebuilt — not around a single superpower, but around a mesh of partnerships that can hold even if one node weakens.
-
-For India, the question is whether strategic autonomy can coexist with this new mesh. For now, the answer appears to be yes — as long as New Delhi keeps building things other countries want to buy.
-
-*Sources: Reuters, Livemint, IISS Shangri-La Dialogue, ANI*"""
-
-art2_img = fetch_pexels_image("military naval fleet ships formation", "defense summit meeting international")
-if art2_img and not validate_image(art2_img):
-    art2_img = None
-
-art2 = {
-    "headline": "Every Country at the Shangri-La Dialogue Had the Same Message. Arm Yourself. And Find Partners Who Will Arm With You.",
-    "subheadline": "Asia's premier defence summit ended with a clear takeaway: Indo-Pacific nations are racing to deepen security ties with each other — not because the US is leaving, but because they are no longer sure it will stay.",
-    "slug": "shangri-la-dialogue-2026-indo-pacific-defence-hedging-japan-india-philippines-aukus-20260602",
-    "body": art2_body,
-    "category": "news",
-    "vertical": "geopolitics",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": art2_img,
-    "image_attribution": "Pexels" if art2_img else None,
-    "is_editorial": False,
-    "score_total": 0,
-    "sources": make_sources([
-        "Reuters",
-        "Livemint",
-        "IISS Shangri-La Dialogue",
-        "ANI",
-        "Ministry of Defence, Government of India"
+The foreign exit is no longer a correction. It is a structural repositioning — and it is happening faster than anyone predicted."""
+    
+    sources = json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "MUFG Research", "url": "https://www.mufg.jp"},
+        {"name": "SBICAPS Securities", "url": "https://www.sbicaps.com"},
+        {"name": "CLSA", "url": "https://www.clsa.com"}
     ])
-}
-art2_id = sb_insert(art2)
-print(f"  → Article 2: {art2_id}")
+    
+    # Image — Pexels for stock market / financial trading
+    img_url = fetch_pexels_image("stock market trading screen crash", "financial markets data charts")
+    
+    image_attribution = "Pexels"
+    final_img = None
+    if img_url and validate_image(img_url):
+        final_img = upload_to_supabase_storage(img_url, f"{slug}.jpg")
+        if not final_img:
+            final_img = img_url
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "news",
+        "vertical": "economy",
+        "tags": ["fii-outflows", "indian-markets", "rupee", "iran-war", "rbi", "msci"],
+        "urgency": "high",
+        "diaspora_angle": "NRIs with investments in Indian equities or considering fund repatriation face a key decision point as the rupee weakens toward 95-100 and RBI burns forex reserves. The Q1 GDP data and RBI decision on Friday will shape NRI investment strategy.",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": sources,
+        "image_url": final_img or "",
+        "image_attribution": image_attribution if final_img else "",
+        "is_editorial": False,
+        "is_featured": False,
+        "score_total": 0,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    
+    art_id = insert_article(article)
+    return art_id
 
 
 # ============================================================
-# ARTICLE 3: Lebanon Partial Ceasefire
+# ARTICLE 3: Trump Backs Down on Weaponization Fund
 # ============================================================
-print("\n=== Article 3: Lebanon Partial Ceasefire ===")
+def write_article_3():
+    print("\n📰 Article 3: Trump Weaponization Fund Killed by Own Party")
+    
+    slug = "trump-weaponization-fund-killed-republicans-jan-6-slush-fund-ice-funding-20260602"
+    
+    headline = "Trump's Own Party Just Killed His $1.8 Billion 'Weaponization' Fund. It Was the Price of Getting His Border Bill Passed."
+    
+    subheadline = "Senate Republicans refused to move on $72 billion in immigration enforcement funding until the White House agreed to scrap a fund critics called a slush fund for January 6 defendants. Mitch McConnell called it 'utterly stupid, morally wrong.'"
+    
+    body = """President Donald Trump's $1.776 billion "anti-weaponization" fund — designed to compensate Americans who claimed they were unfairly targeted by the Biden and Obama administrations — is effectively dead, killed not by Democrats or federal judges but by members of Trump's own party.
 
-art3_body = """Lebanon announced a partial ceasefire between Israel and Hezbollah on Monday — and almost immediately, the fighting continued.
+The Justice Department announced on Monday that it would "abide by" a federal judge's ruling pausing the fund, after the White House faced what multiple sources described as an ultimatum from Senate Republican leaders: drop the fund, or the $72 billion bill to fund Immigration and Customs Enforcement and Border Patrol dies.
 
-The arrangement, brokered with US involvement and announced by Lebanon's embassy in Washington, calls on Israel to refrain from airstrikes on Beirut and its Hezbollah-controlled suburbs. In return, Hezbollah would halt its rocket and drone attacks on Israeli territory.
+"They gave us an ultimatum," a White House source told Reuters.
 
-It is, by any measure, a limited deal. It does not cover southern Lebanon, where Israeli ground forces are pushing deeper than at any point in 25 years, toward the Zaharani River. It does not address Gaza. And it does not resolve the larger US-Iran war that ignited in March.
+## What Happened
 
-## What Trump Claimed
+The fund emerged from a legal settlement between Trump and the Justice Department to resolve an unprecedented $10 billion lawsuit against the IRS over the alleged mishandling of his tax records. The $1.776 billion was supposed to pay restitution to people who said they had been "weaponized" against by the federal government.
 
-US President Donald Trump announced the deal before Lebanon did, saying he had spoken to Israeli Prime Minister Benjamin Netanyahu and, through intermediaries, to Hezbollah. No US president has ever communicated with Hezbollah — a designated terrorist organisation — making the claim itself historically significant.
+But the fund sparked immediate fury when critics — including Republican senators — realized it could direct taxpayer money to people who attacked the U.S. Capitol on January 6, 2021.
 
-Netanyahu, however, pushed back almost immediately. Israel would continue military operations in southern Lebanon, he said. "If Hezbollah does not cease attacking our cities and citizens — Israel will attack terror targets in Beirut," his office stated.
+Senator Mitch McConnell of Kentucky, the former Republican leader, called it "utterly stupid, morally wrong." Senators reportedly yelled at acting Attorney General Todd Blanche during a closed-door meeting that Senator Ted Cruz of Texas described as "one of the roughest meetings I've seen in my entire time in the Senate."
 
-Hezbollah lawmaker Hassan Fadlallah said the militia would support a full ceasefire across all Lebanon as a precursor to the withdrawal of Israeli troops. He did not say whether the group would stop its strikes on Israeli territory.
+The Republican rebellion was extraordinary given Trump's insistence on absolute loyalty and his track record of backing primary challengers against those who defy him.
 
-## Iran Says No Separate Peace
+## The Political Calculus
 
-Hours before the ceasefire announcement, Iranian state media reported that Tehran was suspending indirect peace negotiations with the US, citing the war in Lebanon. The head of Iran's Revolutionary Guards Quds Force, Esmaeil Qaani, threatened to expand Iran's blockade of the Strait of Hormuz to the Bab el-Mandeb Strait — the chokepoint at the mouth of the Red Sea that controls access to the Suez Canal.
+The timing was brutal for the White House. Senate Republicans returned from their Memorial Day recess facing an impasse: they could not pass the $72 billion immigration enforcement bill — Trump's top domestic priority — while the weaponization fund hung over the proceedings.
 
-Iranian Foreign Minister Abbas Araqchi was unambiguous: "The ceasefire between Iran and the US is unequivocally a ceasefire on all fronts, including in Lebanon. Its violation on one front is a violation of the ceasefire on all fronts."
+Trump had set a June 1 deadline for the funding package. The deadline was missed.
 
-Iran has already severely disrupted maritime traffic through the Gulf, which before the war supplied one-fifth of the world's oil and liquefied natural gas. Oil prices rose 4 percent on Monday.
+Senate Majority Leader John Thune made the stakes clear. "I do think the best way to handle it is if the administration decides to shut it down themselves," he told reporters on Monday.
 
-## What This Means for India
+House Speaker Mike Johnson discussed the fund with Trump during a nearly three-hour White House meeting on Monday. Shortly after, the Justice Department issued its statement.
 
-India is watching from multiple angles. It is the world's third-largest oil importer, and the Strait of Hormuz has been a lifeline for its energy security for decades. A Bab el-Mandeb blockade would compound the disruption, threatening Indian exports that transit the Red Sea and Suez Canal.
+## Not Quite Dead
 
-India has already pivoted its oil imports toward Venezuela, Brazil, and Angola to reduce its dependence on Gulf crude. But there is no substitute for stable shipping lanes. Every week the Hormuz disruption continues, India's forex reserves take a hit — they have already fallen $47 billion in three months as the RBI defends the rupee.
+The fund is paused, not officially terminated — and that distinction matters.
 
-The partial ceasefire offers a sliver of hope that the broader US-Iran war could be contained. But Monday's events suggest the path to de-escalation runs through Tehran, not Beirut — and Tehran has just walked away from the table.
+A federal judge in Virginia temporarily halted the fund on May 29 and scheduled a June 12 hearing. The Justice Department said it "disagrees strongly" with the ruling but would comply.
 
-## The Numbers
+Separately, a Florida judge overseeing Trump's original lawsuit against the IRS has ordered his attorneys to respond to "grievous allegations" that the president abandoned his claims to avoid scrutiny of what critics called an illegal deal.
 
-The conflict in Lebanon has killed 3,433 people and displaced more than one million. At least 26 Israeli soldiers and two civilians have been killed. Hezbollah's use of fibre-optic drones — difficult to detect and intercept — has been particularly deadly for the Israeli military.
+Democrats are not taking chances. Senate Minority Leader Chuck Schumer announced on Monday that his caucus would "launch a coordinated effort to kill the slush fund before one cent goes out the door."
 
-A UN Security Council emergency meeting on Lebanon was scheduled for Monday afternoon. Lebanon said it would seek to expand the ceasefire in talks with Israel in Washington on Wednesday.
+"There will be no escape hatch," Schumer wrote in a letter to colleagues. "No fake guardrails or backroom promises to hide behind."
 
-*Sources: Reuters, Associated Press, NPR, Tasnim News Agency*"""
+## Why This Matters Beyond Washington
 
-art3_img = fetch_pexels_image("beirut lebanon city skyline", "mediterranean city coast")
-if art3_img and not validate_image(art3_img):
-    art3_img = None
+The fund's collapse is significant not because of its dollar amount — $1.8 billion is a rounding error in federal spending — but because of what it reveals about the limits of presidential power in Trump's second term.
 
-art3 = {
-    "headline": "Lebanon Just Announced a Partial Ceasefire Between Israel and Hezbollah. Nobody Has Stopped Fighting.",
-    "subheadline": "The deal calls on Israel to spare Beirut while Hezbollah halts attacks on Israel. Southern Lebanon remains a war zone. Iran says there is no separate peace — any ceasefire must cover all fronts.",
-    "slug": "lebanon-partial-ceasefire-hezbollah-israel-trump-iran-war-oil-india-impact-20260602",
-    "body": art3_body,
-    "category": "news",
-    "vertical": "geopolitics",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": art3_img,
-    "image_attribution": "Pexels" if art3_img else None,
-    "is_editorial": False,
-    "score_total": 0,
-    "sources": make_sources([
-        "Reuters",
-        "Associated Press",
-        "NPR",
-        "Tasnim News Agency"
+Republican senators, many facing midterm elections in November, calculated that the political cost of defending payments to January 6 defendants outweighed the cost of defying a president who has made loyalty his defining test. That calculation may not have been possible even six months ago.
+
+For the Indian diaspora watching from the United States, the episode is a reminder that domestic political dysfunction has real downstream effects. The ICE and Border Patrol funding package — which includes provisions affecting visa processing times, asylum adjudication and workplace enforcement — remains stuck in limbo. Its passage now seems more likely with the fund removed, but the delay has already pushed back implementation timelines that affect millions of immigrants, including the estimated 4.4 million Indian Americans navigating the U.S. immigration system.
+
+Acting Attorney General Todd Blanche, who had been seeking permanent appointment as attorney general, may be the biggest casualty. Two sources told CNN the fund was "Blanche's idea" — a characterization the Justice Department disputes — and the debacle has raised serious questions about whether he can win Senate confirmation."""
+    
+    sources = json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com"},
+        {"name": "CNN", "url": "https://www.cnn.com"},
+        {"name": "USA Today", "url": "https://www.usatoday.com"},
+        {"name": "Morningstar", "url": "https://www.morningstar.com"}
     ])
-}
-art3_id = sb_insert(art3)
-print(f"  → Article 3: {art3_id}")
+    
+    # Image — Wikipedia for Trump
+    img_url = fetch_wikipedia_person_image("Donald Trump")
+    if not img_url:
+        img_url = fetch_pexels_image("US Capitol building Washington", "American politics government building")
+    
+    image_attribution = "Wikimedia Commons"
+    final_img = None
+    if img_url and validate_image(img_url):
+        final_img = upload_to_supabase_storage(img_url, f"{slug}.jpg")
+        if not final_img and 'wikimedia' in (img_url or '') or 'pexels' in (img_url or ''):
+            final_img = img_url
+    
+    if not final_img:
+        image_attribution = ""
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "news",
+        "vertical": "politics",
+        "tags": ["trump", "weaponization-fund", "republicans", "jan-6", "ice-funding", "congress"],
+        "urgency": "medium",
+        "diaspora_angle": "The ICE and Border Patrol funding package — stalled by this controversy — includes provisions affecting visa processing times, asylum adjudication and workplace enforcement for the estimated 4.4 million Indian Americans navigating the US immigration system.",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": sources,
+        "image_url": final_img or "",
+        "image_attribution": image_attribution,
+        "is_editorial": False,
+        "is_featured": False,
+        "score_total": 0,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    
+    art_id = insert_article(article)
+    return art_id
 
 
 # ============================================================
-# Summary
+# MAIN
 # ============================================================
-print("\n=== Summary ===")
-results = [
-    ("India-Australia Defence Dialogue", art1_id, bool(art1_img)),
-    ("Indo-Pacific Defence Hedging", art2_id, bool(art2_img)),
-    ("Lebanon Partial Ceasefire", art3_id, bool(art3_img)),
-]
-for name, aid, has_img in results:
-    status = "✓" if aid else "✗"
-    img_status = "🖼️" if has_img else "⚠️ no image"
-    print(f"  {status} {name} ({img_status})")
-
-success = sum(1 for _, aid, _ in results if aid)
-print(f"\n{success}/{len(results)} articles published.")
+if __name__ == "__main__":
+    print("=" * 60)
+    print("The Videshi — News Writer Run")
+    print(f"Time: {datetime.now(timezone.utc).isoformat()}")
+    print("=" * 60)
+    
+    results = []
+    
+    try:
+        art1 = write_article_1()
+        results.append(("India-UK Trade Deal", art1))
+    except Exception as e:
+        print(f"  ✗ Article 1 failed: {e}")
+        results.append(("India-UK Trade Deal", None))
+    
+    try:
+        art2 = write_article_2()
+        results.append(("FII Record Outflow", art2))
+    except Exception as e:
+        print(f"  ✗ Article 2 failed: {e}")
+        results.append(("FII Record Outflow", None))
+    
+    try:
+        art3 = write_article_3()
+        results.append(("Trump Weaponization Fund", art3))
+    except Exception as e:
+        print(f"  ✗ Article 3 failed: {e}")
+        results.append(("Trump Weaponization Fund", None))
+    
+    print("\n" + "=" * 60)
+    print("SUMMARY")
+    print("=" * 60)
+    for title, art_id in results:
+        status = f"✓ {art_id}" if art_id else "✗ FAILED"
+        print(f"  {title}: {status}")
+    
+    successes = sum(1 for _, aid in results if aid)
+    print(f"\n  Published: {successes}/{len(results)} articles")
+    print("=" * 60)
