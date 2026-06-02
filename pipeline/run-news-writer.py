@@ -1,73 +1,51 @@
 #!/usr/bin/env python3
-"""The Videshi — News Writer (2026-05-31 batch)"""
+"""News writer for The Videshi — generates and publishes news articles."""
 
-import json, os, re, sys, time, uuid, urllib.parse, urllib.request
+import json
+import os
+import sys
+import uuid
+import re
 from datetime import datetime, timezone
+import subprocess
 
-# ── Supabase ──
-def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
+# Load env
+env_file = os.path.expanduser("~/.env.supabase")
+if os.path.exists(env_file):
+    with open(env_file) as f:
         for line in f:
             line = line.strip()
-            if not line or line.startswith('#'):
-                continue
-            if line.startswith('export '):
-                line = line[7:]
-            k, _, v = line.partition('=')
-            v = v.strip().strip('"').strip("'")
-            os.environ.setdefault(k.strip(), v)
+            if line and not line.startswith('#') and '=' in line:
+                key, _, val = line.partition('=')
+                os.environ[key.strip()] = val.strip().strip('"').strip("'")
 
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+if os.path.exists(pexels_env):
+    with open(pexels_env) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                key, _, val = line.partition('=')
+                os.environ[key.strip()] = val.strip().strip('"').strip("'")
 
-SB_URL = os.environ.get('SUPABASE_URL', '')
-SB_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
+SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
-HEADERS = {
-    'apikey': SB_KEY,
-    'Authorization': f'Bearer {SB_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
-}
+import requests
+import urllib.parse
 
-def sb_post(table, payload):
-    url = f"{SB_URL}/rest/v1/{table}"
-    data = json.dumps(payload).encode()
-    req = urllib.request.Request(url, data=data, headers=HEADERS, method='POST')
-    try:
-        with urllib.request.urlopen(req, timeout=30) as r:
-            return json.loads(r.read())
-    except Exception as e:
-        print(f"  ⚠ Supabase POST error: {e}")
-        return None
-
-def sb_patch(table, filters, payload):
-    qs = '&'.join(f"{k}={v}" for k, v in filters.items())
-    url = f"{SB_URL}/rest/v1/{table}?{qs}"
-    data = json.dumps(payload).encode()
-    req = urllib.request.Request(url, data=data, headers=HEADERS, method='PATCH')
-    try:
-        with urllib.request.urlopen(req, timeout=30) as r:
-            return json.loads(r.read())
-    except Exception as e:
-        print(f"  ⚠ Supabase PATCH error: {e}")
-        return None
-
-# ── Image sourcing ──
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
-        req = urllib.request.Request(
+        r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
         )
-        with urllib.request.urlopen(req, timeout=10) as r:
-            data = json.loads(r.read())
+        if r.status_code == 200:
+            data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
@@ -77,290 +55,377 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (urllib gets 403)."""
+    """Fetch an image from Pexels. Returns URL or None."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
+    
     for q in [query, fallback_query]:
         if not q:
             continue
         try:
-            import subprocess
-            result = subprocess.run([
-                'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'
-            ], capture_output=True, text=True, timeout=15)
+            # Use curl because Python urllib gets 403 from Pexels
+            result = subprocess.run(
+                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5&orientation=landscape",
+                 "-H", f"Authorization: {PEXELS_KEY}"],
+                capture_output=True, text=True, timeout=15
+            )
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            if photos:
-                url = photos[0]['src']['large2x']
-                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                return url
+            photos = data.get("photos", [])
+            for p in photos:
+                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+                if url:
+                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image_url(url):
-    """Verify URL returns valid image with Content-Length > 5000."""
-    if not url:
-        return False
+def upload_image_to_supabase(image_url, filename):
+    """Download image and upload to Supabase storage. Returns public URL."""
     try:
-        req = urllib.request.Request(url, method='HEAD', headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        with urllib.request.urlopen(req, timeout=10) as r:
-            ct = r.headers.get('Content-Type', '')
-            cl = int(r.headers.get('Content-Length', 0))
-            if 'image' in ct and cl > 5000:
-                return True
-            elif 'image' in ct and cl == 0:
-                # Some servers don't return Content-Length for HEAD
-                return True
-    except Exception as e:
-        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
-    return False
-
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase storage bucket."""
-    try:
-        req = urllib.request.Request(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        with urllib.request.urlopen(req, timeout=20) as r:
-            img_data = r.read()
-            content_type = r.headers.get('Content-Type', 'image/jpeg')
+        # Try with User-Agent, then retry with different headers
+        for ua in ["TheVideshi/1.0 (thevideshi.com)", "Mozilla/5.0 (compatible; TheVideshi/1.0)"]:
+            r = requests.get(image_url, headers={"User-Agent": ua}, timeout=15)
+            if r.status_code == 200:
+                break
+            if r.status_code == 429:
+                print(f"  ⚠ Rate limited, trying alternate UA...")
+                import time
+                time.sleep(2)
+                continue
         
-        if len(img_data) < 5000:
-            print(f"  ⚠ Image too small ({len(img_data)} bytes), skipping upload")
+        if r.status_code != 200:
+            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
+            # For Wikipedia/Pexels, return direct URL as fallback
+            if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
+                return image_url
             return None
         
-        upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
-        upload_headers = {
-            'Authorization': f'Bearer {SB_KEY}',
-            'Content-Type': content_type,
-            'x-upsert': 'true'
-        }
-        req2 = urllib.request.Request(upload_url, data=img_data, headers=upload_headers, method='POST')
-        with urllib.request.urlopen(req2, timeout=30) as r2:
-            pass
+        content_type = r.headers.get("Content-Type", "image/jpeg")
+        if "image" not in content_type:
+            print(f"  ⚠ Not an image: {content_type}")
+            return image_url
         
-        public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
-        print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-        return public_url
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small: {len(r.content)} bytes")
+            return image_url
+        
+        # Upload to Supabase storage
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        resp = requests.post(
+            upload_url,
+            headers={
+                "Authorization": f"Bearer {SUPABASE_KEY}",
+                "Content-Type": content_type,
+                "x-upsert": "true"
+            },
+            data=r.content,
+            timeout=30
+        )
+        
+        if resp.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Upload failed: {resp.status_code} {resp.text[:200]}")
+            # Fall back to direct URL if it's from Wikipedia/Pexels
+            if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
+                return image_url
+            return None
     except Exception as e:
         print(f"  ⚠ Upload error: {e}")
+        if "upload.wikimedia.org" in image_url or "images.pexels.com" in image_url:
+            return image_url
         return None
 
-# ── Articles ──
-ARTICLES = [
-    {
-        "headline": "India's Trade Deal With Oman Goes Live Tomorrow. Here Is What Changes for Exporters and Workers in the Gulf.",
-        "subheadline": "The CEPA eliminates duties on 98 percent of Indian exports, raises mobility quotas for professionals, and opens Oman's services market to Indian companies for the first time.",
-        "slug": "india-oman-cepa-trade-deal-live-june-1-exports-professionals-gulf-nri-20260531",
-        "category": "news",
-        "sources": "Outlook Business, Directorate General of Foreign Trade (DGFT), Ministry of Commerce press release, NationPress, Devdiscourse",
-        "image_search_person": None,
-        "image_pexels_query": "Muscat Oman port trade",
-        "image_pexels_fallback": "shipping container port Gulf",
-        "image_attribution": "Pexels",
-        "body": """India's Comprehensive Economic Partnership Agreement with Oman takes effect on June 1, opening the Gulf nation's market to Indian goods on terms that New Delhi has spent two years negotiating. The deal, signed during Prime Minister Narendra Modi's visit to Muscat in December 2025, eliminates tariffs on 98.08 percent of Oman's tariff lines — covering 99.38 percent of India's export value to the country.
+def sb_insert(table, data):
+    """Insert a row into Supabase."""
+    url = f"{SUPABASE_URL}/rest/v1/{table}"
+    r = requests.post(
+        url,
+        headers={
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": "application/json",
+            "Prefer": "return=representation"
+        },
+        json=data,
+        timeout=30
+    )
+    if r.status_code in (200, 201):
+        result = r.json()
+        if isinstance(result, list) and result:
+            return result[0]
+        return result
+    else:
+        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
+        return None
 
-For Indian exporters, the numbers translate into immediate relief. Duties of up to 5 percent on goods worth approximately $3.64 billion will disappear overnight. The sectors that stand to gain the most — textiles, gems and jewellery, pharmaceuticals, leather, engineering goods, automobiles, and medical devices — are precisely the labour-intensive industries that India has been trying to push into Gulf markets for years.
+def check_image_skip_list(article_id):
+    """Check if article is in the image skip list."""
+    skip_file = os.path.expanduser("~/workspace/the-videshi-news/pipeline/image-skip-list.json")
+    if os.path.exists(skip_file):
+        with open(skip_file) as f:
+            skip_list = json.load(f)
+            return article_id in skip_list
+    return False
 
-## What the Deal Actually Covers
+def validate_image_url(url):
+    """Validate image URL is not from banned sources."""
+    if not url:
+        return False
+    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "scontent-"]
+    banned_params = ["_nc_ht=", "_nc_cat=", "ccb="]
+    for b in banned:
+        if b in url:
+            print(f"  ✗ BANNED source detected: {b}")
+            return False
+    for p in banned_params:
+        if p in url:
+            print(f"  ✗ BANNED param detected: {p}")
+            return False
+    return True
 
-The Directorate General of Foreign Trade confirmed on Friday that electronic preferential certificates of origin will be issued through the Trade Connect ePlatform starting June 1. Exporters will need to select "India Oman CEPA (Agency Issued)" when applying, and the system will generate QR-coded digital certificates. This is not a ceremonial announcement. Without these certificates, exporters cannot claim duty-free access at Omani ports.
+# ============================================================
+# ARTICLES
+# ============================================================
 
-India, for its part, is liberalising 77.79 percent of its own tariff lines — covering 94.81 percent of imports from Oman by value. Omani dates, marbles, and petrochemical products will enter India at reduced rates. Sensitive Indian sectors, including dairy, tea, coffee, tobacco, gold and silver bullion, and certain agricultural goods, have been excluded from concessions entirely.
+articles = []
 
-Bilateral trade between the two countries already crossed $10.61 billion in FY2024-25, up significantly from the previous year. Petroleum products dominate — light oils and preparations alone accounted for $1.57 billion in FY26 — but the CEPA is designed to diversify the export basket beyond energy.
+# ---------- ARTICLE 1: India-Oman CEPA ----------
+articles.append({
+    "headline": "India's New Trade Deal With Oman Just Went Live. It May Be the Country's Most Important FTA This Decade.",
+    "subheadline": "The CEPA gives 99% of Indian exports duty-free access and secures $7.2 billion in energy imports — right as the Strait of Hormuz remains under threat.",
+    "slug": "india-oman-cepa-fta-energy-security-hormuz-bypass-duty-free-exports-20260602",
+    "category": "news",
+    "sources_json": ["Reuters", "The Hindu BusinessLine", "Devdiscourse", "GTRI"],
+    "image_search_person": None,
+    "vertical": "economy",
+    "image_search_pexels": "Oman port shipping cargo",
+    "image_search_pexels_fallback": "oil tanker shipping sea",
+    "body": """India's free trade agreement with Oman officially came into force on June 1 — and its timing could not be more consequential.
 
-## The Diaspora Angle: Professional Mobility
+The Comprehensive Economic Partnership Agreement, signed in Muscat in December 2025 in the presence of Prime Minister Narendra Modi and Sultan Haitham bin Tarik Al Said, gives duty-free access to 99.38 per cent of India's exports by value. That covers 98 per cent of Oman's tariff lines — up from just 15 per cent under the previous Most Favoured Nation regime.
 
-For the estimated 780,000 Indians living and working in Oman, the deal carries implications that go beyond trade statistics. The CEPA includes what the government calls an "enhanced mobility framework" under Mode 4 — the first of its kind in any Indian trade agreement with a Gulf state.
+## Why This Deal Matters Now
 
-Oman has raised the quota for intra-corporate transferees from 20 percent to 50 percent, meaning Indian companies operating in Oman can now move significantly more of their own employees into the country. The permitted stay for contractual service suppliers has been extended from 90 days to two full years, with the option of a further two-year extension. Professionals in accountancy, taxation, architecture, and medical services get more liberal entry conditions.
+The agreement would have been significant in peacetime. During the Iran war, it becomes strategic.
 
-The agreement also permits 100 percent foreign direct investment by Indian companies in major Omani services sectors through commercial presence — a provision that could reshape how Indian IT firms, consulting companies, and healthcare providers operate in the region.
+Oman sits just outside the Strait of Hormuz — the 33-kilometre-wide chokepoint between Iran and the Arabian Peninsula through which roughly 20 per cent of the world's oil and a third of its seaborne liquefied natural gas once flowed. Since Iran's Revolutionary Guards began restricting passage in March, that corridor has been effectively shut to commercial traffic.
 
-Perhaps most notably, Oman has made its first-ever comprehensive commitment on traditional medicine across all modes of supply. This creates a formal opening for India's AYUSH and wellness sector in the Gulf — a niche but symbolically significant concession that no other country has offered.
+Oman's ports at Duqm and Sohar, however, face the Gulf of Oman and the Arabian Sea — bypassing the Strait entirely. That geographic advantage makes Oman a critical alternate trade route for India at precisely the moment its traditional Gulf shipping lanes are disrupted.
 
-## Strategic Timing
+"The agreement deepens India's energy security by ensuring access to Omani crude oil, LNG, fertilisers, methanol and ammonia, worth over $7.2 billion in imports in FY2026," said Ajay Srivastava, founder of the Global Trade Research Initiative.
 
-The deal arrives at a moment when the Strait of Hormuz — the waterway that Oman partially flanks — remains a flashpoint. The US naval blockade of Iranian ports continues, commercial shipping volumes through the strait have dropped, and oil markets remain volatile. Against that backdrop, a trade agreement that deepens India's commercial ties with a stable Gulf partner on the strait's opposite shore carries obvious strategic weight.
+## What India Gets
 
-Discussions are also ongoing about the Middle East-India Deepwater Pipeline, a proposed subsea gas project linking Oman's coast with Gujarat. The CEPA creates a broader commercial framework within which such infrastructure projects could advance.
+India imported $7.2 billion worth of goods from Oman in fiscal 2026. Crude oil accounted for $1.6 billion, LNG for $1.2 billion, and fertilisers for $843 million. These three categories alone make up 38 per cent of all imports from the Gulf country.
 
-India already has trade agreements with the UAE, Australia, and several ASEAN nations. The Oman pact is Muscat's first bilateral trade agreement since its deal with the United States in 2006 — a fact that underscores the significance both sides attach to the partnership.
+Under the CEPA, Oman has also offered to increase supply of petrochemicals and fertilisers to India. Pankaj Khimji, Oman's foreign trade advisor, said the country would consider diverting its share of production from the Oman India Fertiliser Project — a joint venture between IFFCO, KRIBHCO and the Oman Investment Authority — to India if needed.
 
-For Indian exporters, the immediate task is prosaic: register on the Trade Connect platform, update their Digital Signature Certificate details, and start filing for certificates of origin. The tariff walls come down at midnight."""
-    },
-    {
-        "headline": "Blue Origin's New Glenn Rocket Exploded on the Launch Pad. Here Is Why It Matters Beyond Space.",
-        "subheadline": "The blast destroyed Jeff Bezos' only heavy-lift launch site, delays Amazon's satellite internet rollout, and hands SpaceX an even larger lead in the commercial launch market.",
-        "slug": "blue-origin-new-glenn-explosion-launch-pad-amazon-leo-spacex-nasa-artemis-20260531",
-        "category": "news",
-        "sources": "Reuters, GeekWire, Florida Today, Wikipedia, NBC Palm Springs",
-        "image_search_person": "Jeff Bezos",
-        "image_pexels_query": "rocket launch Cape Canaveral",
-        "image_pexels_fallback": "space rocket launch pad explosion",
-        "image_attribution": "Wikimedia Commons",
-        "body": """A Blue Origin rocket exploded during a static fire test at Cape Canaveral on Thursday night, producing what observers described as the most powerful rocket explosion since the Soviet Union's N1 moon rocket was destroyed during a launch attempt in 1969.
+Indian consumers will also see cheaper Omani dates, which will enjoy quota-based duty concessions under the agreement.
 
-The blast destroyed the New Glenn booster nicknamed "No, It's Necessary" — a reference to a line from the film Interstellar — along with its fuelled second stage. More critically, it "practically destroyed" Launch Complex 36, Blue Origin's only operational New Glenn launch site. Engineers expect at least six months of repairs, possibly longer.
+## The Diaspora Angle
 
-No injuries were reported. Jeff Bezos, the company's founder, confirmed on X that all personnel had been accounted for.
+For the estimated 800,000 Indians living and working in Oman, the deal brings tangible benefits. Indian firms investing in Oman can now hire Indian workers above and beyond the local employment quotas mandated by Oman's government. Indian pharmaceuticals approved by the US, European or UK regulators will also get faster regulatory clearance in Oman.
 
-## The Immediate Fallout
+Commerce Minister Piyush Goyal called Oman "a bridge for our people and a gateway to the Gulf and East Africa."
 
-The rocket had been scheduled to carry 48 satellites into low Earth orbit as early as the following week for Amazon Leo — the company's high-speed internet constellation, formerly known as Project Kuiper. That launch is now off the table.
+## Bilateral Trade Is Growing
 
-Amazon, however, is not without options. The day after the explosion, United Launch Alliance successfully sent 29 Amazon Leo satellites into orbit on an Atlas V rocket from a pad not far from the ruins of Blue Origin's facility. Amazon has also reserved launches on Arianespace's Ariane 6, ULA's Vulcan, and SpaceX's Falcon 9.
+Bilateral trade between India and Oman reached $11.18 billion in FY2025-26, up from $10.61 billion the previous year. Oman is now India's second-largest trading partner in the Gulf region.
 
-"Weirdly, as far as New Glenn customers go, Amazon is probably in the best position to deal with this setback," said Caleb Henry, director of research at Quilty Space. "They've got safety through the diversity of their launch supplier base."
+This is India's fifth FTA implemented in the last five years and its 15th overall. The first consignments under the new preferential tariff — including agriculture and gems and jewellery exports from Mumbai, Kolkata and Chennai — were flagged off on June 1.
 
-The irony is not lost on industry watchers. Amazon's contingency plan involves relying, in part, on SpaceX — the company run by Elon Musk, Bezos' long-running commercial rival. The explosion hands Musk's business leverage over Bezos at a critical moment.
+## What's Next
 
-## NASA's Lunar Problem
+The CEPA is the second such agreement India has signed with a Gulf Cooperation Council country, after the UAE deal in 2022. Negotiations for a broader India-GCC FTA remain ongoing, but the Oman deal gives India an immediate hedge against the energy and trade disruptions that have defined the first half of 2026."""
+})
 
-The damage extends beyond commercial satellite launches. NASA Administrator Jared Isaacman visited Launch Complex 36 to inspect the damage and speak with Blue Origin employees. In an email to the NASA workforce, he said the incident could potentially affect the agency's Artemis program and Moon Base plans.
+# ---------- ARTICLE 2: India drops to 7th in market cap ----------
+articles.append({
+    "headline": "India Just Dropped to Seventh in Global Market Cap Rankings. South Korea's AI Chip Boom Is the Reason.",
+    "subheadline": "In 18 months, India went from a market cap three-and-a-half times South Korea's to being overtaken. Foreign investors have pulled $26.4 billion this year.",
+    "slug": "india-seventh-global-market-cap-south-korea-overtakes-ai-chips-fpi-outflow-20260602",
+    "category": "news",
+    "sources_json": ["Reuters", "Bernstein", "Carmignac", "Equirus Securities"],
+    "image_search_person": None,
+    "vertical": "economy",
+    "image_search_pexels": "stock market trading screen India",
+    "image_search_pexels_fallback": "stock exchange financial charts",
+    "body": """India's equity markets slipped to seventh place globally in total market capitalisation on Tuesday — overtaken by South Korea's chip-heavy stock market, which has been propelled by the artificial intelligence boom that India's listed universe has largely missed.
 
-Blue Origin is a key contractor for Artemis. The company's Blue Moon lander was selected to carry astronauts to the lunar surface. Any delay to the New Glenn launch vehicle ripples through NASA's lunar timeline — a program already under pressure from budget constraints and political scrutiny.
+The combined value of companies listed on South Korea's KOSPI, KOSDAQ and KONEX exchanges reached $5.01 trillion, surpassing the $4.85 trillion value of firms on India's National Stock Exchange, according to exchange data.
 
-"It's only been a year since the SpaceX Starship also exploded on the launch pad and Blue Origin can also recover. But it will take months to rebuild," said Antoine Grenier, partner and head of space consulting at Analysys Mason.
+It is the second time in a fortnight that India has been leapfrogged. Taiwan overtook India in May.
 
-SpaceX itself spent more than a year repairing its pad after a Falcon 9 exploded in 2016, though it resumed launches within four and a half months by shifting operations to a second Florida pad. Blue Origin does not have a second New Glenn pad.
+## A Stunning Reversal
+
+The speed of India's decline in the global rankings has stunned analysts.
+
+"About 18 months ago, India's equity market cap was roughly 3.5 times South Korea's and more than twice Taiwan's. Fast forward just five months into 2026 and that lead has evaporated," Bernstein analysts Venugopal Garre and Nikhil Arela wrote in a note.
+
+India's benchmark Nifty 50 and Sensex have lost 10.1 per cent and 12.5 per cent respectively this year. The IT index — the second-heaviest sector on both benchmarks — has tumbled 19 per cent, pressured by subdued earnings and persistent foreign selling.
+
+## The Foreign Exodus
+
+Foreign portfolio investors have pulled out $26.4 billion from Indian stocks in 2026 so far — already surpassing the $18.91 billion they withdrew in all of 2025, which was itself a record.
+
+India's share in the MSCI Global Standard index has shrunk to 12.3 per cent from a peak of 21 per cent in September 2024.
+
+"It's really a remarkable decline and a restructure of the whole investment environment for us because of, obviously, the rise of South Korea and Taiwan as well," said Naomi Waistell, a fund manager at French asset manager Carmignac, which manages €41 billion.
+
+The record $2.22 billion sell-off on Friday alone — triggered by MSCI's May rebalancing — underlined the scale of the retreat.
+
+## Why South Korea and Taiwan Are Surging
+
+Both countries have benefited from their deep exposure to AI-related semiconductor manufacturing. South Korea's Samsung Electronics and SK Hynix dominate the global market for high-bandwidth memory chips, a critical and supply-constrained component in AI data centres. Taiwan's TSMC is the world's largest contract chipmaker.
+
+India's listed market, by contrast, is dominated by financials, consumer staples and legacy IT services — none of which have caught the AI tailwind in the same way.
+
+## Some Relief on Tuesday
+
+Indian markets snapped a four-session losing streak on Tuesday, with the Nifty 50 rising 0.43 per cent to 23,483 and the Sensex gaining 0.52 per cent to 74,650.
+
+IT stocks surged 4.2 per cent, taking their gains to 7 per cent in two sessions, after commentary from global software companies suggested that rising AI adoption is driving demand for traditional IT services as well.
+
+"We are seeing value buying as well as sectoral rotation," said Anita Gandhi, head of institutional business at Arihant Capital Markets. "Markets are still in the midst of uncertainties regarding the U.S.-Iran war and a delayed monsoon and will need clarity on these two fronts for any further material gains."
+
+## What It Means for NRIs
+
+For the millions of non-resident Indians invested in Indian equities through PIS accounts, mutual funds and NRE deposits, the message is sobering. Eight consecutive quarters of single-digit earnings growth, combined with the Iran war's impact on oil-dependent India and the forecast of the weakest monsoon in 11 years, have eroded the structural premium that Indian markets once commanded.
+
+The Reserve Bank of India's policy decision on Friday — where most economists expect rates to be held at 5.25 per cent despite a collapsing rupee — will be the next major catalyst."""
+})
+
+# ---------- ARTICLE 3: Rubio to face Congress on Iran war ----------
+articles.append({
+    "headline": "Rubio Will Testify in Public for the First Time on the Iran War This Week. His Own Party Wants Answers.",
+    "subheadline": "Republicans are asking about strategy, gasoline prices and an exit plan. Democrats say the war should end 'no matter the terms at this point.'",
+    "slug": "rubio-congress-testimony-iran-war-strategy-republicans-gasoline-prices-india-oil-20260602",
+    "category": "news",
+    "sources_json": ["Reuters", "CBS News", "CNBC"],
+    "vertical": "geopolitics",
+    "image_search_person": "Marco Rubio",
+    "image_search_pexels": None,
+    "image_search_pexels_fallback": "US Congress Capitol building",
+    "body": """Secretary of State Marco Rubio will testify publicly on the Iran war for the first time this week — and the sharpest questions may come from his own party.
+
+Rubio, who also serves as President Trump's national security adviser, will appear before the Senate Foreign Relations Committee, the House Foreign Affairs Committee and appropriations subcommittees in both chambers over two days. The hearings are nominally about the State Department's budget request, which includes a proposed 30 per cent cut to the foreign affairs budget and a 50 per cent increase in military spending.
+
+But lawmakers have made clear they will use the sessions to press Rubio on the three-month-old war that began with US and Israeli strikes on Iran on February 28 — and that has no end date in sight.
+
+## The Republican Dilemma
+
+Republicans face a political bind. The Iran war has sent gasoline prices soaring, squeezing American consumers and businesses ahead of November's midterm elections. The party needs to retain its slim majorities in both chambers, and lawmakers are increasingly anxious about the economic fallout.
+
+At the same time, Iran hawks within the party oppose any concessions to Tehran, insisting the war must continue until Iran's nuclear programme is permanently dismantled.
+
+Trump has insisted for weeks that he is close to signing a peace agreement and that gasoline prices will come down. But despite a fragile ceasefire that has largely held since early April, the two sides have exchanged strikes several times in the past week, and Iran's Revolutionary Guards have threatened to expand their blockade to include the Bab el-Mandeb Strait at the mouth of the Red Sea.
+
+## Democrats Want Out
+
+Democratic Senator Chris Murphy of Connecticut said on CBS's Face the Nation on Sunday that the war should end "no matter the terms at this point," citing the impact on American consumers.
+
+Last month, the Senate voted to advance a war powers resolution that would end the conflict unless Trump obtains congressional authorisation. The House postponed a similar vote when it looked likely to pass — an unusual sign of Republican unease.
+
+## What India Is Watching
+
+For India, these hearings carry enormous stakes. The Iran war has effectively shut down the Strait of Hormuz, through which nearly a fifth of the world's oil once flowed. India imports close to 90 per cent of its crude oil needs, and the disruption has sent Brent crude to $94 a barrel.
+
+The rupee has tumbled to record lows since the war began. Foreign investors have pulled a record $26.4 billion from Indian equities this year. The Reserve Bank of India faces one of its toughest policy decisions in years when it meets this Friday, caught between a collapsing currency that argues for higher rates and an economy that needs cheaper money.
+
+India's fiscal deficit for FY2025-26 came in at 4.4 per cent of GDP — in line with government estimates — but the outlook for the current year is cloudier. Every dollar increase in the oil price costs India roughly $2.1 billion in additional import expenditure annually.
+
+Any signal from Rubio that a deal is imminent — or that one is not — will move oil markets and, by extension, India's economic trajectory.
 
 ## The Bigger Picture
 
-The explosion comes at a pivotal moment for the commercial space industry. Amazon's Leo satellite internet service is racing to catch up with SpaceX's Starlink, which already has thousands of satellites in orbit and millions of paying subscribers. The initial Amazon Leo constellation calls for around 3,000 satellites — and the company was counting on New Glenn to carry a significant share of them.
+Congress also wants answers on Venezuela, where Trump sent forces to seize President Nicolás Maduro in January and where US forces have been firing on boats off the coast in a campaign that has killed more than 200 people. And there are growing questions about a possible military action against Cuba.
 
-For India's space sector, the implications are indirect but real. ISRO and Indian private launch companies like Skyroot and Agnikul have been positioning themselves in the small and medium satellite launch market. Every setback for the giants — whether it's Blue Origin's explosion or Vulcan's solid rocket booster issues — creates potential openings for alternative launch providers.
+Rubio has spoken to lawmakers behind closed doors about Iran but has never testified publicly on the conflict. His former colleagues in the Senate are hoping their one-time colleague will spell out what the endgame looks like.
 
-The Indian diaspora in the US aerospace industry, meanwhile, watches closely. Indian-origin engineers occupy senior positions across Blue Origin, SpaceX, Amazon, and NASA. The investigation into the explosion's cause will determine how quickly Bezos can rebuild — not just the launch pad, but confidence in a program that was supposed to prove Blue Origin could compete at the highest level.
+Trump, for his part, said in a CNBC interview on Monday that the Iran peace talks had "started to get very boring" and that he did not care if they were over. "I really don't care, I couldn't care less," he said.
 
-Musk, for his part, offered brief sympathy on X: "Sorry to see this, I hope you recover quickly." In the commercial space race, even condolences carry competitive subtext."""
-    },
-    {
-        "headline": "Modi Used Mann Ki Baat to Celebrate Two Sprinters Who Broke India's 100-Metre Record Three Times in Two Days.",
-        "subheadline": "In the 134th episode of his monthly address, the Prime Minister spoke to Gurinder Veer Singh and Animesh Kujur — and also talked about Chola copper plates returned from the Netherlands, traditional summer drinks, and dolphin conservation.",
-        "slug": "modi-mann-ki-baat-134-gurinder-veer-animesh-kujur-100m-record-chola-copper-plates-20260531",
-        "category": "news",
-        "sources": "DD News, Tripura Star News (full transcript), NDTV, IANS, India Today",
-        "image_search_person": "Narendra Modi",
-        "image_pexels_query": None,
-        "image_pexels_fallback": None,
-        "image_attribution": "Wikimedia Commons",
-        "body": """Prime Minister Narendra Modi used the 134th episode of Mann Ki Baat on Sunday to call two athletes who had just rewritten Indian sprinting history — and in the process delivered a pointed rebuttal to the idea that Indians cannot compete in the 100-metre dash.
+Oil prices fell 1.3 per cent on Tuesday to $93.7 a barrel after Trump said talks with Iran were still underway — contradicting earlier reports from Iranian state media that Tehran had suspended negotiations."""
+})
 
-Gurinder Veer Singh, a Petty Officer in the Indian Navy, and Animesh Kujur, an athlete from Chhattisgarh who plays for Odisha, broke the national record in the men's 100-metre race three times within two days at the National Senior Athletics Federation Competition in Ranchi, Jharkhand. Nearly 800 athletes competed in the event, and four national records fell across different disciplines.
 
-## The Conversation
+# ============================================================
+# PUBLISH
+# ============================================================
 
-Modi spoke to both athletes live on air. The exchange was unusually personal for a programme that typically keeps to scripted inspirational narratives.
+now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+published_count = 0
 
-Gurinder Veer, who ran 10.09 seconds to become the first Indian to break the 10.1-second barrier, told Modi about growing up in a middle-class family and cleaning his father's trophies as a child. "I used to clean any trophy and ask him where he won it," Gurinder said. "Then I would tell him, I also want to do some sport."
-
-He recalled his mother switching off the television during a broadcast of a world record race. "I said, 'It's okay, you don't let me watch TV. One day, you'll find me on TV.'"
-
-Animesh Kujur, who holds national records in the 200m and 400m, described how he began athletics only in 2021 after passing out of Sainik School Ambikapur. He had played football, switched to running during COVID, got selected for the nationals from a state meet he entered casually, and now represents India internationally.
-
-Both athletes addressed the same prejudice directly: that Indian genes are not suited for sprinting. "People used to tell me the body of Indians is not at all made for 100 meters," Gurinder said. "My father and I always used to say, we will show them that we can do it."
-
-Animesh echoed the sentiment: "People used to tell me the genes of Indians are not such that they can run Sub 10. But now both of us have proved that Indians can also do it." Both have been selected for the Commonwealth Games.
-
-## Chola Copper Plates Return From the Netherlands
-
-Modi also spoke about his recent visit to the Netherlands, where ancient copper plates from the Chola period were formally returned to India. The Prime Minister of the Netherlands was present at the ceremony. Modi said he had received "continuous messages from India and abroad" about the repatriation, and noted that the Tamil community worldwide was "particularly enthusiastic."
-
-The Chola-era copper plates are among the most significant recent examples of heritage repatriation — a subject that has gained momentum globally as former colonial powers face pressure to return artefacts taken during the colonial era.
-
-## Summer Drinks and Mango Diplomacy
-
-In a lighter segment, Modi delivered what amounted to a geography lesson through beverages. He listed traditional summer drinks across Indian states — Aam Panna in North India, lassi in Punjab and Haryana, buttermilk in Rajasthan and Gujarat, Sattu sherbet in Bihar and Jharkhand, Kokum sherbet and Sol Kadhi in Konkan and Goa, Panakam and Neer Mor in South India, and Bael Pana in Odisha.
-
-He then pivoted to mangoes, naming varieties from every region: Maharashtra's Alphonso, Gujarat's Kesar, UP's Dussehri and Langra ("which often remains green even after ripening"), Bihar's Zardalu, Bengal's Himsagar, and South India's Banganapalli and Totapuri. The segment was designed to highlight India's agricultural diversity, but it also doubled as soft cultural diplomacy — the kind of content that travels on WhatsApp forwards among diaspora communities.
-
-## Dolphin Conservation and Swimming in Rivers
-
-Modi highlighted efforts to protect the endangered Ganges river dolphin and praised Saji Valasheril from Aluva, Kerala, who runs a swimming club in a river where more than 15,000 people have learned to swim — including children with disabilities. Saji began the initiative after several students died in a boat accident.
-
-The 134th episode aired at 11 AM IST across All India Radio, DD News, and government digital channels. For the diaspora, it was available on YouTube through multiple news channels."""
-    }
-]
-
-# ── Main ──
-def main():
+for i, article in enumerate(articles):
     print(f"\n{'='*60}")
-    print(f"The Videshi — News Writer")
-    print(f"Date: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    print(f"Articles to write: {len(ARTICLES)}")
-    print(f"{'='*60}\n")
-
-    published = 0
-
-    for i, article in enumerate(ARTICLES, 1):
-        print(f"\n--- Article {i}/{len(ARTICLES)}: {article['headline'][:60]}... ---")
-
-        # Image sourcing
-        img_url = None
-        attribution = article.get('image_attribution', 'The Videshi')
-
-        # Step 1: Wikipedia for person articles
-        if article.get('image_search_person'):
-            img_url = fetch_wikipedia_person_image(article['image_search_person'])
-            if img_url:
-                attribution = "Wikimedia Commons"
-
-        # Step 2: Pexels fallback
-        if not img_url and article.get('image_pexels_query'):
-            img_url = fetch_pexels_image(
-                article['image_pexels_query'],
-                article.get('image_pexels_fallback')
-            )
-            if img_url:
-                attribution = "Pexels"
-
-        # Step 3: Upload to Supabase storage for permanence
-        art_id = str(uuid.uuid4())
-        final_image_url = None
-
-        if img_url:
+    print(f"Article {i+1}: {article['headline'][:60]}...")
+    
+    art_id = str(uuid.uuid4())
+    
+    # Image sourcing
+    image_url = None
+    image_attribution = None
+    
+    # Try Wikipedia for person articles
+    if article.get("image_search_person"):
+        print(f"  Looking up Wikipedia image for: {article['image_search_person']}")
+        img = fetch_wikipedia_person_image(article["image_search_person"])
+        if img and validate_image_url(img):
             filename = f"{art_id}.jpg"
-            final_image_url = upload_to_supabase_storage(img_url, filename)
-            if not final_image_url:
-                # Try using original URL if it's from a permanent source
-                if 'upload.wikimedia.org' in img_url or 'images.pexels.com' in img_url:
-                    final_image_url = img_url
-                    print(f"  ℹ Using original permanent URL")
+            image_url = upload_image_to_supabase(img, filename)
+            image_attribution = "Wikimedia Commons"
+    
+    # Fallback to Pexels
+    if not image_url and article.get("image_search_pexels"):
+        print(f"  Trying Pexels: {article['image_search_pexels']}")
+        img = fetch_pexels_image(article["image_search_pexels"], article.get("image_search_pexels_fallback"))
+        if img and validate_image_url(img):
+            filename = f"{art_id}.jpg"
+            image_url = upload_image_to_supabase(img, filename)
+            image_attribution = "The Videshi"
+    
+    # Fallback Pexels with fallback query only
+    if not image_url and not article.get("image_search_pexels") and article.get("image_search_pexels_fallback"):
+        print(f"  Trying Pexels fallback: {article['image_search_pexels_fallback']}")
+        img = fetch_pexels_image(article["image_search_pexels_fallback"])
+        if img and validate_image_url(img):
+            filename = f"{art_id}.jpg"
+            image_url = upload_image_to_supabase(img, filename)
+            image_attribution = "The Videshi"
+    
+    if not image_url:
+        print("  ⚠ No image found — publishing without image")
+    
+    # Build article data
+    data = {
+        "id": art_id,
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "slug": article["slug"],
+        "category": article["category"],
+        "vertical": article.get("vertical", "news"),
+        "body": article["body"],
+        "status": "published",
+        "published_at": now,
+        "sources": json.dumps(article["sources_json"]),
+        "is_editorial": False
+    }
+    
+    if image_url:
+        data["image_url"] = image_url
+    if image_attribution:
+        data["image_attribution"] = image_attribution
+    
+    result = sb_insert("p2_articles", data)
+    if result:
+        print(f"  ✓ Published: {article['slug']}")
+        published_count += 1
+    else:
+        print(f"  ✗ Failed to publish: {article['slug']}")
 
-        if not final_image_url:
-            print(f"  ⚠ No image — publishing without hero image")
-
-        # Publish
-        now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-        payload = {
-            "id": art_id,
-            "headline": article['headline'],
-            "subheadline": article['subheadline'],
-            "slug": article['slug'],
-            "body": article['body'],
-            "category": article['category'],
-            "status": "published",
-            "published_at": now,
-            "sources": article['sources'],
-            "image_url": final_image_url,
-            "image_attribution": attribution if final_image_url else None,
-        }
-
-        result = sb_post('p2_articles', payload)
-        if result:
-            published += 1
-            print(f"  ✅ Published: {article['slug']}")
-        else:
-            print(f"  ❌ Failed to publish: {article['slug']}")
-
-        time.sleep(1)
-
-    print(f"\n{'='*60}")
-    print(f"Done. Published {published}/{len(ARTICLES)} articles.")
-    print(f"{'='*60}\n")
-
-if __name__ == '__main__':
-    main()
+print(f"\n{'='*60}")
+print(f"Done! Published {published_count}/{len(articles)} articles.")
