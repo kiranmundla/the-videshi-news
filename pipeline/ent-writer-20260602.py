@@ -284,12 +284,17 @@ for i, art in enumerate(articles, 1):
         if img_url:
             attribution = "The Videshi"
 
-    # Validate
-    if img_url and not validate_image(img_url):
+    # Validate — skip validation for wikimedia (they rate-limit HEAD)
+    if img_url and "upload.wikimedia.org" in img_url:
+        print("  ✓ Wikimedia URL — skipping HEAD validation (rate-limited)")
+    elif img_url and not validate_image(img_url):
         print("  ⚠ Image failed validation, dropping")
         img_url = None
 
     # ── insert article ───────────────────────────────────────────────────
+    from datetime import datetime, timezone
+    now_ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+
     payload = {
         "headline": art["headline"],
         "subheadline": art["subheadline"],
@@ -297,8 +302,9 @@ for i, art in enumerate(articles, 1):
         "category": art["category"],
         "body": art["body"].strip(),
         "sources": art["sources"],
+        "vertical": art["category"],
         "status": "published",
-        "published_at": "now()",
+        "published_at": now_ts,
         "is_editorial": False,
     }
     if img_url:
