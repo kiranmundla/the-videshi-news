@@ -1,21 +1,26 @@
 #!/usr/bin/env python3
-"""Sports writer run — 2026-06-02"""
+"""
+The Videshi — Sports Writer (2026-06-02)
+Generates 3 sports articles with Wikipedia-first image sourcing.
+"""
 
-import json, os, sys, time, uuid, re, subprocess
-import requests, urllib.parse
+import json, os, sys, time, uuid, re, urllib.parse
+import requests
+from datetime import datetime, timezone
 
-# Load env
+# ── env ──────────────────────────────────────────────────────────────
 def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    if line.startswith('export '):
-                        line = line[7:]
-                    k, v = line.split('=', 1)
-                    v = v.strip().strip('"').strip("'")
-                    os.environ[k] = v
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                if line.startswith('export '):
+                    line = line[7:]
+                k, v = line.split('=', 1)
+                v = v.strip().strip('"').strip("'")
+                os.environ[k] = v
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.supabase'))
@@ -23,15 +28,16 @@ load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
 SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
 SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+PEXELS_KEY   = os.environ.get('PEXELS_API_KEY', '')
 
 HEADERS = {
     'apikey': SUPABASE_KEY,
     'Authorization': f'Bearer {SUPABASE_KEY}',
     'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    'Prefer': 'return=representation',
 }
 
+# ── image helpers ────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
@@ -52,7 +58,7 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels."""
+    """Fetch an image from Pexels. Returns URL or None."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
@@ -60,255 +66,341 @@ def fetch_pexels_image(query, fallback_query=None):
         if not q:
             continue
         try:
-            r = subprocess.run(
-                ['curl', '-sS', f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5',
-                 '-H', f'Authorization: {PEXELS_KEY}'],
-                capture_output=True, text=True, timeout=15
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                headers={"Authorization": PEXELS_KEY},
+                params={"query": q, "per_page": 5, "orientation": "landscape"},
+                timeout=10,
             )
-            data = json.loads(r.stdout)
-            photos = data.get('photos', [])
-            if photos:
-                url = photos[0]['src']['large2x']
-                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                return url
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                for p in photos:
+                    url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+                    if url:
+                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                        return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image(url):
-    """Validate an image URL returns 200 with image content > 5KB."""
+def validate_image_url(url):
+    """Check URL returns a valid image."""
+    if not url:
+        return False
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True, 
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
         ct = r.headers.get('Content-Type', '')
         cl = int(r.headers.get('Content-Length', 0))
         if r.status_code == 200 and 'image' in ct and cl > 5000:
-            print(f"  ✓ Image validated: {r.status_code}, {ct}, {cl} bytes")
             return True
-        # Try GET for servers that don't support HEAD well
-        r = requests.get(url, timeout=10, stream=True,
-                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('Content-Type', '')
-        chunk = r.raw.read(6000)
-        if r.status_code == 200 and len(chunk) > 5000:
-            print(f"  ✓ Image validated via GET: {r.status_code}, {len(chunk)}+ bytes")
+        # Some servers don't return content-length on HEAD
+        if r.status_code == 200 and 'image' in ct:
             return True
-        print(f"  ✗ Image failed validation: status={r.status_code}, ct={ct}, size={len(chunk)}")
-    except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
+    except:
+        pass
     return False
 
-def sb_insert(table, data):
-    """Insert a row into Supabase."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
-        headers=HEADERS,
-        json=data
-    )
+def upload_to_supabase_storage(image_url, filename):
+    """Download image and upload to Supabase storage bucket 'article-images'."""
+    try:
+        r = requests.get(image_url, timeout=15,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code != 200 or len(r.content) < 5000:
+            print(f"  ⚠ Download failed or too small: {len(r.content)} bytes")
+            return None
+        
+        content_type = r.headers.get('Content-Type', 'image/jpeg')
+        if 'image' not in content_type:
+            content_type = 'image/jpeg'
+        
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        resp = requests.post(
+            upload_url,
+            headers={
+                'apikey': SUPABASE_KEY,
+                'Authorization': f'Bearer {SUPABASE_KEY}',
+                'Content-Type': content_type,
+                'x-upsert': 'true',
+            },
+            data=r.content,
+            timeout=20,
+        )
+        if resp.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Upload failed ({resp.status_code}): {resp.text[:200]}")
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
+    return None
+
+def source_image(person_name=None, pexels_query=None, pexels_fallback=None, article_id=None):
+    """Source image following hierarchy: Wikipedia → Pexels → None."""
+    attribution = None
+    url = None
+    
+    if person_name:
+        url = fetch_wikipedia_person_image(person_name)
+        if url:
+            attribution = "Wikimedia Commons"
+    
+    if not url and pexels_query:
+        url = fetch_pexels_image(pexels_query, pexels_fallback)
+        if url:
+            attribution = "Pexels"
+    
+    if url and article_id:
+        # Upload to Supabase for permanence
+        ext = 'jpg'
+        filename = f"{article_id}.{ext}"
+        final_url = upload_to_supabase_storage(url, filename)
+        if final_url:
+            return final_url, attribution
+        # If upload fails, check if original is permanent
+        if 'upload.wikimedia.org' in url or 'images.pexels.com' in url:
+            return url, attribution
+    
+    if url:
+        return url, attribution
+    
+    return None, None
+
+# ── Supabase insert ──────────────────────────────────────────────────
+def insert_article(article):
+    """Insert an article into p2_articles."""
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
+    r = requests.post(url, headers=HEADERS, json=article, timeout=20)
     if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            return result[0]
-        return result
+        data = r.json()
+        if isinstance(data, list) and data:
+            return data[0].get('id')
+        return True
     print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
     return None
 
-def sb_patch(table, filters, data):
-    """Patch a row in Supabase."""
-    params = '&'.join(f"{k}={v}" for k, v in filters.items())
-    r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/{table}?{params}",
-        headers=HEADERS,
-        json=data
-    )
-    if r.status_code in (200, 204):
-        return True
-    print(f"  ✗ Patch failed ({r.status_code}): {r.text[:300]}")
-    return False
+def patch_article(article_id, patch):
+    """Patch an existing article."""
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}"
+    r = requests.patch(url, headers=HEADERS, json=patch, timeout=15)
+    return r.status_code in (200, 204)
 
+# ── Articles ─────────────────────────────────────────────────────────
 
-# ============================================================
-# ARTICLE 1: Rishabh Pant stripped of Test vice-captaincy
-# ============================================================
+ARTICLES = []
 
-article1 = {
-    "headline": "Pant Has Lost the Test Vice-Captaincy. He Has Been Dropped from ODIs. The Selectors Say They Still Rate Him.",
-    "subheadline": "KL Rahul replaces Rishabh Pant as Shubman Gill's deputy for the Afghanistan Test. The BCCI says the move is about helping Pant become 'the best Test player he has always been.' The ODI squad tells a different story.",
-    "slug": "rishabh-pant-stripped-test-vice-captaincy-kl-rahul-deputy-odi-dropped-afghanistan-nri",
+# ━━━ ARTICLE 1: Bhuvneshwar Kumar IPL 2026 Revival ━━━
+ARTICLES.append({
+    "headline": "He Was Written Off at Thirty-Four. At Thirty-Six, He Took More Wickets Than Any Indian Pacer in a Single IPL Season.",
+    "subheadline": "Bhuvneshwar Kumar's reinvention at RCB — wobbly seam, relentless discipline, and 28 wickets — has forced India's selectors into a debate they thought was settled four years ago.",
+    "slug": "bhuvneshwar-kumar-ipl-2026-revival-28-wickets-rcb-india-comeback-debate-nri",
     "category": "sports",
     "status": "published",
     "is_editorial": False,
-    "sources": json.dumps([
-        "CricTracker", "Sporting News", "Inside Sport India", "India Today"
-    ]),
-    "body": """Rishabh Pant walked into the IPL 2026 season as India's Test vice-captain and a fixture in the ODI middle order. He walks out of it with neither role.
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps(["CricketAddictor", "InsideSport India", "RevSportz", "CricTracker", "Yardbarker"]),
+    "image_person": "Bhuvneshwar Kumar",
+    "pexels_query": "cricket fast bowler",
+    "pexels_fallback": "cricket bowling action",
+    "body": """Three years ago, Bhuvneshwar Kumar looked finished. His pace had dropped below 130 kph. His economy rates in IPL 2023 and 2024 — 9.35 and 9.28 respectively — were the worst of his career. SunRisers Hyderabad, the franchise he had served for a decade, let him go. When Royal Challengers Bengaluru picked him up at the 2025 mega auction, eyebrows went up across the cricketing world.
 
-The BCCI's selection committee, led by Ajit Agarkar, announced India's squads for the upcoming Afghanistan series on May 19 — a one-off Test in Mullanpur starting June 6, followed by three ODIs in Dharamsala, Lucknow, and Chennai. Pant's name appears in the Test squad. It does not appear in the ODI squad. And where his name once sat next to "(Vice-Captain)," KL Rahul's name now sits instead.
+At thirty-six, in a format that devours aging pacers, Bhuvneshwar Kumar has answered every sceptic with the most prolific season of his career.
 
-## The Shift in Leadership
+## The Numbers That Silenced the Doubters
 
-The decision carries weight far beyond a single series. Pant had assumed the Test vice-captaincy during India's home series against South Africa earlier this year, stepping in when captain Shubman Gill was sidelined with injury. By most accounts, the experiment did not go well. India lost the series, and the team management was reportedly unhappy with the tactical decisions Pant made in Gill's absence.
+In IPL 2026, Bhuvneshwar finished with 28 wickets from 16 matches at an average of 17.89 and an economy of 7.95. That is the most wickets ever taken by an Indian fast bowler in a single edition of the IPL. He joins Lasith Malinga, Kagiso Rabada, and Jasprit Bumrah as only the fourth pacer to record four individual 20-wicket IPL seasons, and alongside Dwayne Bravo, he is one of just two pacers to register multiple 25-wicket hauls.
 
-Agarkar addressed the change directly in his press conference, but the framing was careful. "We want him to become the best Test player that he has always been," the chief selector said. "I don't think there is any concern with his spot in the Test team. He is one of our main batters in that line-up. He had a really good tour of England till he got injured. So, I am sure he would like a few more runs. But he has always been very good in Test cricket."
+His best spell — 4/23 against Mumbai Indians — was a masterclass in seam movement and death-over execution. In the IPL 2026 final against Gujarat Titans, he returned figures of 2/29 in four overs, dismissing Sai Sudharsan in the powerplay and Jason Holder in the death overs. RCB restricted GT to 155/8 and won by five wickets to complete a historic back-to-back title defence.
 
-The message: Pant remains central to India's Test plans. But the leadership dimension has been removed. The selectors want him focused on runs, not captaincy.
+## Sachin Decoded the Secret
 
-## Rahul Steps Up
+Sachin Tendulkar, analysing Bhuvneshwar's transformation on social media, identified the key change: the wobbly seam.
 
-KL Rahul, at 34, is not the future of Indian cricket in the way he once seemed to be. But he brings experience, calm, and a track record of stepping into leadership roles without drama. He has captained India in limited-overs matches before and has been a steady presence in the Test middle order during the recent England tour.
+"This season, if you look at Bhuvi's seam, it is a wobbly seam," Tendulkar said. "When a wobbly seam comes, a batsman often doesn't know whether the ball is going to fall out or in. And that is what Bhuvi has been doing."
 
-The full Test squad reflects a blend of veterans and fresh faces. Gill leads, Rahul is his deputy, and two uncapped players — Harsh Dubey of Vidarbha and Gurnoor Brar of Punjab — have earned their maiden call-ups. Manav Suthar joins the spin contingent. Jasprit Bumrah has been rested entirely, kept fresh for the England tour that follows.
+Tendulkar explained that in previous seasons, Bhuvneshwar relied on conventional outswingers and inswingers with a clearly visible seam position. In 2026, he made a deliberate technical shift — bowling as straight as possible with a scrambled seam, making the ball deviate unpredictably off the surface. It is a variation more commonly associated with English county cricket, and Bhuvneshwar has weaponised it for T20s.
 
-## The ODI Omission
+## The India Debate
 
-If the vice-captaincy switch can be explained as a tactical reset, Pant's exclusion from the ODI squad is harder to frame gently. The selectors have chosen KL Rahul and Ishan Kishan as their wicketkeeping options in 50-over cricket, a clear statement that Pant's white-ball place is no longer guaranteed.
+BCCI Vice-President Rajeev Shukla, speaking hours after the final, hailed Bhuvneshwar's "amazing revival" and called his season "nothing short of extraordinary." Former India off-spinner Ravichandran Ashwin went further, suggesting Bhuvneshwar — not Virat Kohli — deserved the Player of the Match award in the final.
 
-The ODI squad features Rohit Sharma and Virat Kohli returning for limited-overs duty, with Hardik Pandya's inclusion subject to a fitness clearance from the Centre of Excellence. It is, in many ways, a squad that looks forward — testing combinations ahead of the 2027 ODI World Cup, which is still 15 to 16 months away.
+The calls for an India comeback are growing louder. Bhuvneshwar has not played international cricket since 2022. But his IPL 2026 numbers are hard to ignore: he is now the most-capped fast bowler in IPL history with 205 matches and 762.4 overs bowled, more than Bumrah.
 
-Agarkar was direct about the timeline. The selectors, he said, want to give opportunities to youngsters while there is still room to experiment. That experimentation, apparently, extends to life without Pant in ODIs.
+Yet Bhuvneshwar himself refuses to chase it.
 
-## The LSG Factor
+"I'm not thinking about any India comeback," he said after the final. "It's been so many years now since I stopped setting long-term goals because whenever I set them, they didn't really work for me. I am just happy that I have played 200 matches and have taken so many wickets at the powerplay and at the death."
 
-The timing is impossible to separate from Pant's turbulent IPL season with Lucknow Super Giants. Reports have surfaced that Pant had already decided to step down as LSG captain midway through the campaign, frustrated by what he perceived as too many voices in the dressing room — head coach Justin Langer, director Tom Moody, assistant coach Lance Klusener, and strategic advisor Kane Williamson all occupied space around the captain's chair.
+## The Diaspora Angle
 
-Pant is an instinctive leader. He thrives on making decisions in the moment and owning the consequences. At LSG, that freedom was reportedly curtailed. The Pooran Super Over decision — sending Nicholas Pooran to bat ahead of form players against KKR — became a symbol of the dysfunction. Pooran scored a duck.
+For NRI cricket fans who grew up watching Bhuvneshwar's swing bowling in the 2013 Champions Trophy and 2017 Champions Trophy, his revival is more than a statistical anomaly. It is a story of reinvention — of a cricketer who lost his pace, lost his place, and found an entirely new way to be dangerous.
 
-## What It Means for NRIs
+At thirty-six, in a league that discards fast bowlers like used match balls, Bhuvneshwar Kumar has 28 wickets, two IPL titles with RCB, and a debate he never asked for raging around his name.
 
-For the Indian diaspora, Pant remains one of cricket's most compelling figures. His recovery from the life-threatening car accident in December 2022, his return to international cricket, and his natural audacity at the crease have made him a symbol of resilience that resonates well beyond India's borders.
+The selectors will pick squads for the England tour later this summer. Whether Bhuvneshwar's name is on the list may depend less on his own ambitions and more on whether India can afford to ignore the best Indian pacer of the 2026 IPL.
 
-The demotion does not diminish any of that. But it does introduce uncertainty into a career that seemed, until recently, to be on an inexorable upward trajectory. At 28, Pant has time. The question is whether the selectors' patience will match his own.
+*Sources: CricketAddictor, InsideSport India, RevSportz, CricTracker, Yardbarker*"""
+})
 
-The Afghanistan Test begins Friday, June 6, at the Maharaja Yadavindra Singh International Cricket Stadium in Mullanpur. Pant will bat. He will keep wicket. He will not lead. For the first time in a while, that may be exactly what he needs.""",
-    "vertical": "sports",
-    "image_attribution": "Wikimedia Commons"
-}
-
-# ============================================================
-# ARTICLE 2: Auqib Nabi — J&K's Ranji Trophy hero, called as backup
-# ============================================================
-
-article2 = {
-    "headline": "He Took 104 Wickets in Two Ranji Seasons. He Won Player of the Tournament. The BCCI Called Him — as a Backup.",
-    "subheadline": "Auqib Nabi, the 24-year-old pace spearhead who led Jammu & Kashmir to their first Ranji Trophy title, has been named as a backup player for India's Test against Afghanistan. Not in the squad. Not as a reserve. As a standby.",
-    "slug": "auqib-nabi-india-test-backup-player-jammu-kashmir-ranji-trophy-104-wickets-afghanistan-nri",
+# ━━━ ARTICLE 2: ISL Crisis — 150 Players Out of Contract ━━━
+ARTICLES.append({
+    "headline": "One Hundred and Fifty Players. No Contracts. The ISL's Off-Season Has Become an Existential Crisis.",
+    "subheadline": "As 150 Indian Super League players enter free agency without new deals, a commercial rights dispute between clubs and the AIFF has left Indian football's top division in limbo — and families across the northeast are feeling it first.",
+    "slug": "isl-crisis-150-players-out-of-contract-commercial-rights-dispute-aiff-2026-nri",
     "category": "sports",
     "status": "published",
     "is_editorial": False,
-    "sources": json.dumps([
-        "Livemint", "India Today", "CricTracker", "Sporting News"
-    ]),
-    "body": """The numbers are staggering by any standard. In the 2025-26 Ranji Trophy season, Auqib Nabi took 60 wickets in 17 innings at an average of 12.56 and an economy rate of 2.65. He claimed seven five-wicket hauls. He was named Player of the Tournament. And he did it while bowling Jammu & Kashmir to their first-ever Ranji Trophy title — a triumph that remains one of Indian domestic cricket's most unlikely stories.
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps(["Mykhel/PTI", "Wikipedia - 2025-26 ISL", "Bhaskar English", "RevSportz"]),
+    "image_person": None,
+    "pexels_query": "Indian football stadium fans",
+    "pexels_fallback": "football empty stadium",
+    "body": """The 2025-26 Indian Super League season ended on May 21 with East Bengal FC lifting their first national title in twenty-two years. By June 2, the celebration had given way to a crisis that threatens the very structure of Indian professional football.
 
-Add the previous season's tally and Nabi has 104 first-class wickets across two Ranji Trophy campaigns. For context, that is more than most international fast bowlers manage in an entire career.
+One hundred and fifty ISL players are now out of contract. The league has no confirmed commercial partner for next season. And a bitter dispute between the clubs and the All India Football Federation over revenue-sharing has left the country's top football division without a clear path forward.
 
-The BCCI has now called him up for India's one-off Test against Afghanistan, which begins on June 6 at the Maharaja Yadavindra Singh International Cricket Stadium in Mullanpur. But not as a member of the squad. As a backup player.
+## The Contract Vacuum
 
-## The Selection That Wasn't
+When the ISL season ended, clubs were expected to move quickly on renewals and new signings. Instead, many have stalled. The reason is simple: nobody knows what the league will look like next season, or how much money will be available.
 
-When the 15-member Test squad was announced, Nabi's absence was the talking point. Chief selector Ajit Agarkar acknowledged the omission directly: "At this point, we have gone with the three that we have picked. But there was certainly a chat around that. There is no doubt. He has had some incredible performances for Jammu & Kashmir."
+A senior ISL club official, quoted by PTI, laid out the scale of the problem. "The players are the biggest sufferers," the official said. Free agency, normally a lever of player power, has become a trap. Without clarity on budgets, clubs are offering lower fees. Transfer fees that would normally flow between clubs are drying up. For many players, the phone has simply stopped ringing.
 
-The three pacers selected were Mohammed Siraj, Prasidh Krishna, and Gurnoor Brar. Siraj, the experienced spearhead. Krishna, the tall seamer who has been on the fringes. Brar, the Punjab left-armer earning a maiden call-up. All credible selections. None with domestic numbers remotely close to Nabi's.
+The official flagged a particularly painful dimension. Many ISL players come from India's northeast — from Manipur, Mizoram, and surrounding states. For these players, an ISL contract is not just a career; it is the primary income for entire households. The uncertainty is hitting these families hardest.
 
-The complicating factor is Jasprit Bumrah's absence. India's best fast bowler has been rested entirely for the Afghanistan assignment — both the Test and the subsequent ODI series — to keep him fresh for the England tour. With Akash Deep injured and Harshit Rana also unavailable, the pace cupboard was thinner than usual. Even so, Nabi did not make the cut.
+## The Commercial Rights Standoff
 
-## A Career Built in Obscurity
+At the root of the crisis is an unresolved battle over the ISL's commercial future.
 
-Nabi's story is inseparable from Jammu & Kashmir cricket's broader transformation. The region has never been a traditional powerhouse. Infrastructure has lagged behind the major cricket associations. Opportunities for exposure against top-tier opposition have been limited. Players from J&K have had to be not just good but exceptional to get noticed.
+The previous commercial partner, Football Sports Development Limited, ended its Master Rights Agreement with the AIFF in December 2025. The 2025-26 season was delayed for months and only began in February 2026 after Supreme Court intervention and direct involvement by Sports Minister Mansukh Mandaviya. The truncated season featured just 91 matches in a single-leg format, a fraction of the league's usual scale.
 
-Nabi has been precisely that. A right-arm fast-medium bowler who generates awkward bounce and moves the ball both ways, he has been the single most destructive force in Indian domestic cricket over the past two years. His ability to bowl long spells without losing accuracy or pace has drawn comparisons to the workhorse seamers who thrive in Test cricket — the Ishant Sharmas and Umesh Yadavs who may not generate headlines but win matches through relentless pressure.
+A new bidding process attracted Genius Sports as the top bidder in March, offering Rs 2,129 crore per year on a 15-plus-5 year deal. But ISL clubs have balked at the terms. They want Genius confined to a data and technology partnership, not a full commercial partnership. Instead, the clubs are proposing a radical restructuring: they want to keep 90 per cent of the league's economic interest, with the AIFF holding the remaining share.
 
-The Ranji Trophy title was the culmination of years of steady progress. J&K beat teams with far greater resources and far longer histories of success. Nabi was the difference in match after match, taking wickets in clusters and never allowing opposition batters to settle.
+A meeting between club representatives and AIFF leadership in Kolkata last month ended without agreement. A Special General Body Meeting decided that the Executive Committee would study fresh offers, but any final decision on a commercial partner must be taken by the full AIFF General Body. That meeting has not been scheduled.
 
-## The Backup Designation
+## What It Means for Indian Football
 
-Being named a backup player is not quite the same as being ignored. It means the selectors see Nabi as the next in line — the first call if a squad member breaks down during the match or in the lead-up. It keeps him in the environment, around the coaching staff and the senior players, absorbing the rhythms of international cricket preparation.
+The ISL was supposed to be the vehicle that professionalised Indian football. Launched in 2014, it attracted global stars, built stadiums, and created a generation of Indian players who could earn a living from the sport. At its peak, it featured clubs backed by some of India's wealthiest business houses — the Ambanis, the Jindals, the Tatas.
 
-But it is not a cap. It is not even a squad number. It is, functionally, a promise that may or may not be kept. Many backup players have gone through entire series without crossing the boundary rope in anything other than practice.
+Now the league finds itself in a situation where its own players cannot get contracts, its clubs cannot plan budgets, and its governing body cannot agree on who should sell the product.
 
-For Nabi, the frustration must be acute. He has done everything domestic cricket can ask of a bowler. The runs scored against him are few. The wickets are plentiful. The big occasion — a national title — has been conquered. What more evidence could a selector need?
+For the 150 players currently in limbo, the stakes are immediate. Pre-season training typically begins in August. If the commercial dispute is not resolved by then, there may be no season to train for.
 
-## What Comes Next
+## The NRI Perspective
 
-The Afghanistan Test is, by design, a low-stakes affair. India are massive favorites. The series is a single match. If there was ever a moment to blood a young fast bowler with irrefutable domestic credentials, this is it.
+For Indian diaspora football fans — particularly those who follow the ISL through FanCode from the US, UK, and the Middle East — the crisis is a reminder of how fragile Indian football's infrastructure remains. While the BCCI's IPL generated Rs 5,761 crore in revenue last financial year, the ISL's entire media rights deal for 2025-26 was worth Rs 8.62 crore. The gap is not just financial; it is institutional.
 
-Whether Nabi gets his chance may depend on factors beyond his control — the fitness of the three selected pacers, the Mullanpur pitch, the weather. If everything goes smoothly, he may spend the entire Test carrying drinks and bowling in the nets.
+The FIFA World Cup begins in North America on June 11. Indian football will not be represented on the pitch. The question now is whether it will even have a functioning top division by the time the tournament ends.
 
-But the conversation has started. Agarkar's public acknowledgment — "There was certainly a chat around that" — is significant. It means the selectors know. They know the numbers. They know the story. The question is not whether Auqib Nabi deserves an India cap. The question is when.
+*Sources: Mykhel/PTI, Wikipedia (2025-26 ISL season), Bhaskar English, RevSportz*"""
+})
 
-The Test begins Friday. Nabi will be there. Not quite in the team. Not quite outside it. Waiting, as he has waited before, for a system built around bigger names and bigger associations to make room for a fast bowler from Jammu & Kashmir who has earned his place the hardest way possible.""",
+# ━━━ ARTICLE 3: India Football — Unity Cup Disaster + Tajikistan ━━━
+ARTICLES.append({
+    "headline": "Zero Goals. Two Defeats. India's Blue Tigers Left London Without Scoring. Now They Head to Tajikistan.",
+    "subheadline": "India's Unity Cup campaign ended in embarrassment — no goals in two matches — and Khalid Jamil's squad now faces two friendlies in Tajikistan with star forward Ryan Williams ruled out.",
+    "slug": "india-blue-tigers-unity-cup-goalless-tajikistan-friendlies-june-2026-nri",
+    "category": "sports",
     "vertical": "sports",
-    "image_attribution": "Wikimedia Commons"
-}
+    "status": "published",
+    "is_editorial": False,
+    "is_featured": False,
+    "tags": [],
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": json.dumps(["AIFF Official", "KhelNow", "Yardbarker", "IANS"]),
+    "image_person": None,
+    "pexels_query": "India football national team",
+    "pexels_fallback": "football soccer match action",
+    "body": """The Indian men's national football team left London at the weekend having played two matches, lost both, and scored zero goals. It was, by any measure, a dismal showing — and it came barely two weeks before the FIFA World Cup begins in their diaspora backyard across North America.
 
+India's Unity Cup 2026 campaign started with hope. The four-team tournament at The Valley — home of Charlton Athletic — was the Blue Tigers' first match on British soil since 2002. They arrived with a 22-player squad assembled by head coach Khalid Jamil, though Mohun Bagan Super Giant's last-minute decision to recall their players hours before departure forced the AIFF into a frantic scramble to fly in replacements.
 
-# ============================================================
-# PUBLISH
-# ============================================================
+## Jamaica: 0-2
 
-articles = [article1, article2]
+The semi-final against Jamaica on May 28 exposed India's limitations. Ranked 71st in the world — sixty-five places above India's 136th — Jamaica controlled the game comfortably. Two goals were enough. India rarely threatened.
 
-for i, art in enumerate(articles, 1):
+## Zimbabwe: 0-1
+
+Three days later, facing 130th-ranked Zimbabwe in the third-place playoff, Khalid Jamil made four changes. Vikram Partap Singh, Rahim Ali, Macarton Nickson, and Ricky Shabong all started. Shabong, who had made his international debut as a substitute against Jamaica, produced the best Indian moment of the tournament in the 29th minute — a perfectly weighted ball over the Zimbabwe defence for Vikram Partap Singh, who seemed certain to score until Zimbabwe captain John Takwara executed a stunning sliding challenge.
+
+Four minutes later, Farukh Choudhary crashed into Washington Gift Navaya inside the box. The referee pointed to the spot. Prince Dube converted. India spent the rest of the match chasing an equaliser that never came.
+
+The final record: two matches, two defeats, zero goals scored, three conceded.
+
+## Tajikistan Is Next
+
+There is no time to regroup at home. The Blue Tigers fly directly from London to Tajikistan for two international friendlies during the June FIFA window. The matches are scheduled for June 5 and June 9 at the Hisor Central Stadium, with both games kicking off at 20:30 IST.
+
+The squad will be largely the same, but India have suffered a significant blow: star forward Ryan Williams has been ruled out with an injury. Williams has quickly established himself as a key figure in Khalid Jamil's attacking setup, and his absence will be keenly felt against a Tajikistan side playing at home.
+
+## What the World Cup Window Means
+
+The timing is pointed. The 2026 FIFA World Cup kicks off on June 11 in Mexico, the United States, and Canada — the three countries with the largest Indian diaspora populations outside the subcontinent. NRI fans will be surrounded by World Cup fever while their national team plays friendlies in Central Asia against teams ranked within twenty places of them.
+
+India's 136th FIFA ranking means they are not remotely close to World Cup qualification. But friendlies like these are supposed to be the building blocks — opportunities to develop combinations, blood young players, and build a competitive identity.
+
+The Unity Cup showed how far India still has to go. A squad weakened by Mohun Bagan's withdrawal, a formation that could not create chances, and a forward line that could not find the net — these are structural problems, not one-off results.
+
+## The Bigger Picture
+
+Indian football is at a crossroads that extends well beyond results on the pitch. The ISL, the country's top football league, is embroiled in a commercial rights dispute that has left 150 players without contracts. The domestic calendar remains fragmented. The pathway from youth football to the senior national team is underdeveloped compared to cricketing infrastructure.
+
+For NRI fans planning to attend World Cup matches in New York, Dallas, Houston, and Los Angeles, the tournament will be a celebration of global football. For Indian football specifically, it will be a reminder of the distance still to travel.
+
+Khalid Jamil has two matches in Tajikistan to start closing that gap. The question is whether a goalless squad can find its voice in Hisor.
+
+*Sources: AIFF Official, KhelNow, Yardbarker, IANS*"""
+})
+
+# ── Main execution ───────────────────────────────────────────────────
+def main():
     print(f"\n{'='*60}")
-    print(f"ARTICLE {i}: {art['headline'][:70]}...")
-    print(f"{'='*60}")
+    print(f"  The Videshi Sports Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
+    print(f"{'='*60}\n")
     
-    # Extract primary person for Wikipedia image
-    person_map = {
-        1: "Rishabh Pant",
-        2: "Auqib Nabi"
-    }
+    success_count = 0
     
-    person = person_map.get(i)
-    img_url = None
-    
-    if person:
-        print(f"\n  📸 Sourcing image for: {person}")
-        img_url = fetch_wikipedia_person_image(person)
+    for i, article in enumerate(ARTICLES):
+        print(f"\n── Article {i+1}/{len(ARTICLES)}: {article['headline'][:70]}...")
         
-        # For Auqib Nabi, try disambiguation if needed
-        if not img_url and person == "Auqib Nabi":
-            img_url = fetch_wikipedia_person_image("Auqib Nabi (cricketer)")
+        # Extract image sourcing params
+        person_name = article.pop("image_person", None)
+        pexels_query = article.pop("pexels_query", None)
+        pexels_fallback = article.pop("pexels_fallback", None)
         
-        if img_url and not validate_image(img_url):
-            print(f"  ⚠ Wikipedia image failed validation, trying Pexels...")
-            img_url = None
-    
-    # Pexels fallback with specific queries
-    if not img_url:
-        pexels_queries = {
-            1: ("Rishabh Pant cricket wicketkeeper", "cricket wicketkeeper India"),
-            2: ("fast bowling cricket India", "cricket pace bowler India red ball")
-        }
-        q1, q2 = pexels_queries.get(i, ("cricket", "sports"))
-        img_url = fetch_pexels_image(q1, q2)
+        # Generate article ID
+        article_id = str(uuid.uuid4())
+        article["id"] = article_id
+        
+        # Source image
+        print(f"  Sourcing image...")
+        img_url, attribution = source_image(
+            person_name=person_name,
+            pexels_query=pexels_query,
+            pexels_fallback=pexels_fallback,
+            article_id=article_id,
+        )
+        
         if img_url:
-            if not validate_image(img_url):
-                img_url = None
-            else:
-                art['image_attribution'] = "The Videshi"
+            article["image_url"] = img_url
+            article["image_attribution"] = attribution or "The Videshi"
+            print(f"  ✓ Image set")
+        else:
+            print(f"  ⚠ No image found — publishing without image")
+        
+        # Insert
+        print(f"  Inserting article...")
+        result = insert_article(article)
+        if result:
+            print(f"  ✓ Published: {article['slug']}")
+            success_count += 1
+        else:
+            print(f"  ✗ FAILED to publish")
+        
+        time.sleep(1)  # Be kind to Supabase
     
-    if img_url:
-        art['image_url'] = img_url
-        print(f"  ✓ Final image: {img_url[:80]}...")
-    else:
-        print(f"  ⚠ No valid image found — publishing without image")
-    
-    # Set published_at
-    art['published_at'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
-    
-    # Insert
-    print(f"\n  📝 Inserting article...")
-    result = sb_insert('p2_articles', art)
-    if result:
-        art_id = result.get('id', 'unknown')
-        print(f"  ✓ Published: {art['slug']} (id: {art_id})")
-    else:
-        print(f"  ✗ FAILED to publish: {art['slug']}")
-    
-    # Small delay between inserts
-    time.sleep(1)
+    print(f"\n{'='*60}")
+    print(f"  Done. {success_count}/{len(ARTICLES)} articles published.")
+    print(f"{'='*60}\n")
 
-print(f"\n{'='*60}")
-print("Sports writer run complete.")
-print(f"{'='*60}")
+if __name__ == "__main__":
+    main()
