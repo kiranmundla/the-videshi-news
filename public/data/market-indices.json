@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-03T22:55:22.977027+00:00",
+  "last_updated": "2026-06-03T23:55:20.211287+00:00",
   "indices": [
     {
       "symbol": "SENSEX",
@@ -38,24 +38,24 @@
       "name": "USD/INR",
       "flag": "\ud83d\udcb1",
       "value": 95.69,
-      "change": 0.44,
-      "change_pct": 0.46
+      "change": 0.0,
+      "change_pct": 0.0
     },
     {
       "symbol": "GOLD",
       "name": "Gold",
       "flag": "\u2728",
-      "value": 4464.4,
-      "change": -47.6,
-      "change_pct": -1.05
+      "value": 4485.2,
+      "change": -26.8,
+      "change_pct": -0.59
     },
     {
       "symbol": "SILVER",
       "name": "Silver",
       "flag": "\ud83e\ude99",
-      "value": 73.04,
-      "change": -2.38,
-      "change_pct": -3.16
+      "value": 73.47,
+      "change": -1.95,
+      "change_pct": -2.59
     }
   ]
 }
