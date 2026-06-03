@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — June 3, 2026 evening run."""
+"""Entertainment writer for The Videshi - June 3, 2026 evening run"""
 
-import json, os, sys, time, uuid, re, io, urllib.parse
+import json, os, sys, time, uuid, re, io
+import requests
 from datetime import datetime, timezone
 
 # Load env
@@ -11,21 +12,15 @@ def load_env(path):
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
-                    if line.startswith('export '):
-                        line = line[7:]
-                    k, v = line.split('=', 1)
-                    v = v.strip().strip('"').strip("'")
-                    os.environ[k] = v
+                    key, val = line.split('=', 1)
+                    os.environ[key.strip()] = val.strip().strip('"').strip("'")
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-import requests
-from PIL import Image
-
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
 HEADERS = {
@@ -37,10 +32,9 @@ HEADERS = {
 
 UA = "TheVideshi/1.0 (thevideshi.com)"
 
-# ── Image sourcing functions ──
-
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -61,6 +55,7 @@ def fetch_wikipedia_person_image(person_name):
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
+    import urllib.parse
     params = {
         "action": "query",
         "generator": "search",
@@ -99,7 +94,7 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
                     "mime": mime
                 })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
             return results
     except Exception as e:
         print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
@@ -107,23 +102,25 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
 
 
 def fetch_pexels_image(query):
-    """Search Pexels for an image. Returns URL or None."""
+    """Search Pexels for a relevant image. Uses curl subprocess to avoid 403."""
+    import subprocess
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
     try:
-        r = requests.get(
-            "https://api.pexels.com/v1/search",
-            params={"query": query, "per_page": 3, "orientation": "landscape"},
-            headers={"Authorization": PEXELS_KEY},
-            timeout=10
+        import urllib.parse
+        encoded_q = urllib.parse.quote(query)
+        result = subprocess.run(
+            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={encoded_q}&per_page=3",
+             "-H", f"Authorization: {PEXELS_KEY}"],
+            capture_output=True, text=True, timeout=15
         )
-        if r.status_code == 200:
-            photos = r.json().get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                return url
+        data = json.loads(result.stdout)
+        photos = data.get("photos", [])
+        if photos:
+            url = photos[0]["src"]["large2x"]
+            print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+            return url
     except Exception as e:
         print(f"  ⚠ Pexels error for '{query}': {e}")
     return None
@@ -131,6 +128,7 @@ def fetch_pexels_image(query):
 
 def compress_image(img_bytes, max_width=1200, quality=80):
     """Resize and compress image. Returns JPEG bytes."""
+    from PIL import Image
     img = Image.open(io.BytesIO(img_bytes))
     if img.mode in ('RGBA', 'P'):
         img = img.convert('RGB')
@@ -142,336 +140,325 @@ def compress_image(img_bytes, max_width=1200, quality=80):
     return buf.getvalue()
 
 
-def download_and_upload_image(image_url, slug):
-    """Download image, compress, upload to Supabase storage. Returns public URL or None."""
+def upload_to_supabase_storage(img_url, filename):
+    """Download image, compress, and upload to Supabase storage. Returns public URL."""
     try:
-        r = requests.get(image_url, headers={"User-Agent": UA}, timeout=15)
+        r = requests.get(img_url, headers={"User-Agent": UA}, timeout=20)
         if r.status_code != 200:
-            print(f"  ✗ Download failed ({r.status_code}): {image_url[:80]}")
+            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
             return None
-        ct = r.headers.get("Content-Type", "")
-        if not ct.startswith("image/"):
-            print(f"  ✗ Not an image ({ct}): {image_url[:80]}")
+        content_type = r.headers.get('Content-Type', '')
+        if not content_type.startswith('image/'):
+            print(f"  ⚠ Not an image: {content_type}")
             return None
         if len(r.content) < 5000:
-            print(f"  ✗ Image too small ({len(r.content)} bytes)")
+            print(f"  ⚠ Image too small: {len(r.content)} bytes")
             return None
 
         compressed = compress_image(r.content)
-        filename = f"{slug}.jpg"
-        print(f"  → Uploading {filename} ({len(compressed)} bytes)...")
+        print(f"  📦 Compressed: {len(r.content)} → {len(compressed)} bytes")
 
         upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        up = requests.post(
-            upload_url,
-            headers={
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": "image/jpeg",
-                "x-upsert": "true"
-            },
-            data=compressed,
-            timeout=20
-        )
-        if up.status_code in (200, 201):
+        up_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": "image/jpeg",
+            "x-upsert": "true"
+        }
+        up_r = requests.post(upload_url, headers=up_headers, data=compressed, timeout=30)
+        if up_r.status_code in (200, 201):
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded: {public_url[:80]}")
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ✗ Upload failed ({up.status_code}): {up.text[:200]}")
+            print(f"  ⚠ Upload failed: {up_r.status_code} {up_r.text[:200]}")
             return None
     except Exception as e:
-        print(f"  ✗ Image pipeline error: {e}")
+        print(f"  ⚠ Upload error: {e}")
         return None
 
 
-def source_image(person_names, topic_queries, pexels_query, slug):
-    """Multi-source compare: Wikipedia > Wikimedia Commons > Pexels."""
+def source_image(person_names, topic_queries, slug):
+    """Multi-source image search: Wikipedia → Wikimedia Commons → Pexels. Returns (url, attribution)."""
     candidates = []
 
-    # Source 1: Wikipedia person images
+    # Source 1: Wikipedia for person articles
     for name in person_names:
-        img = fetch_wikipedia_person_image(name)
-        if img:
-            candidates.append({"url": img, "source": "wikipedia", "name": name})
-            break  # first found person is usually the main subject
+        wiki_img = fetch_wikipedia_person_image(name)
+        if wiki_img:
+            candidates.append({"url": wiki_img, "source": "wikipedia", "name": name})
+            break
 
     # Source 2: Wikimedia Commons
-    for q in topic_queries:
-        results = fetch_wikimedia_commons_images(q, limit=3)
-        for r in results[:2]:
-            candidates.append({"url": r["url"], "source": "wikimedia_commons", "title": r.get("title", "")})
-        if results:
+    for query in topic_queries:
+        commons = fetch_wikimedia_commons_images(query, limit=3)
+        for c in commons[:2]:
+            candidates.append({"url": c["url"], "source": "wikimedia_commons", "title": c.get("title", "")})
+        if commons:
             break
 
     # Source 3: Pexels
-    pimg = fetch_pexels_image(pexels_query)
-    if pimg:
-        candidates.append({"url": pimg, "source": "pexels"})
+    for query in topic_queries:
+        pexels_img = fetch_pexels_image(query)
+        if pexels_img:
+            candidates.append({"url": pexels_img, "source": "pexels"})
+            break
 
-    # Pick best: wikipedia > commons > pexels
-    for c in candidates:
-        url = download_and_upload_image(c["url"], slug)
-        if url:
-            attr = "Wikimedia Commons" if c["source"] in ("wikipedia", "wikimedia_commons") else "The Videshi"
-            return url, attr
+    # Pick best: Wikipedia > Wikimedia Commons > Pexels
+    if not candidates:
+        print("  ❌ No image candidates found")
+        return None, None
 
-    print(f"  ✗ No image found for {slug}")
+    best = candidates[0]
+    filename = f"{slug}.jpg"
+    final_url = upload_to_supabase_storage(best["url"], filename)
+    if final_url:
+        attribution = "Wikimedia Commons" if best["source"] in ("wikipedia", "wikimedia_commons") else "The Videshi"
+        return final_url, attribution
+
+    # Try fallbacks
+    for c in candidates[1:]:
+        final_url = upload_to_supabase_storage(c["url"], filename)
+        if final_url:
+            attribution = "Wikimedia Commons" if c["source"] in ("wikipedia", "wikimedia_commons") else "The Videshi"
+            return final_url, attribution
+
     return None, None
 
 
 def insert_article(article):
-    """Insert an article into Supabase."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article,
-        timeout=15
-    )
+    """Insert article into Supabase."""
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
+    r = requests.post(url, headers=HEADERS, json=article, timeout=30)
     if r.status_code in (200, 201):
         data = r.json()
         art_id = data[0]["id"] if isinstance(data, list) and data else "unknown"
-        print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
+        print(f"  ✅ Published: {article['headline'][:60]}... (id: {art_id})")
         return art_id
     else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        print(f"  ❌ Insert failed: {r.status_code} {r.text[:300]}")
         return None
 
 
-# ── Article definitions ──
+# ============================================================
+# ARTICLE 1: Cocktail 2 - Trailer drops, June 19 release
+# ============================================================
+def write_cocktail_2():
+    print("\n📝 Writing: Cocktail 2")
+    slug = "cocktail-2-shahid-kapoor-kriti-sanon-rashmika-trailer-june-19-nri-20260603"
+    
+    # Source image
+    print("  🖼 Sourcing image...")
+    img_url, attribution = source_image(
+        person_names=["Shahid Kapoor", "Homi Adajania"],
+        topic_queries=["Cocktail 2 Bollywood film", "Shahid Kapoor actor", "Bollywood romantic comedy"],
+        slug=slug
+    )
 
-articles_to_write = []
+    body = """The trailer for *Cocktail 2* landed on June 2, and it delivered exactly what Homi Adajania promised: something funny, messy, emotional, and a little reckless. Fourteen years after the original *Cocktail* turned Deepika Padukone into a superstar, the franchise returns with an entirely new cast — Shahid Kapoor, Kriti Sanon, and Rashmika Mandanna — and a release date of June 19.
 
-# ═══════════════════════════════════════════════════════
-# ARTICLE 1: IMAX Returns to Hyderabad
-# ═══════════════════════════════════════════════════════
+The two-and-a-half-minute trailer introduces three central characters: Kunal, Diya, and Ally. Their trajectories are immediately familiar to anyone who has navigated the chaos of modern relationships in their twenties — friendships that blur into attraction, attraction that complicates everything, and the emotional wreckage that follows when loyalty and desire pull in different directions. The trailer leans into this tension without resolving it, which is the point. Adajania is not interested in clean endings. He never was.
 
-art1_slug = "imax-returns-hyderabad-amb-cinemas-mahesh-babu-varanasi-nri-20260603"
-art1_headline = "IMAX Is Coming Back to Hyderabad After a Decade. Mahesh Babu's AMB Cinemas Just Made It Official."
-art1_subheadline = "Three new IMAX with Laser screens are on the way — the first timed perfectly for Rajamouli's Varanasi. For the Telugu diaspora, the city that builds India's biggest films finally gets the screen they deserve."
-art1_body = """Hyderabad has not had an IMAX screen in over ten years. For a city that houses Ramoji Film City, anchors the Telugu film industry, and has produced some of the highest-grossing Indian films of the past decade — including the Baahubali franchise and RRR — that absence has been, to put it gently, absurd.
+## What the Trailer Reveals
 
-On June 1, IMAX Corporation and Asian Cinemas announced a deal that ends the drought. Three new IMAX with Laser locations will open under the AMB Cinemas brand, the luxury chain co-owned by Mahesh Babu. Two of the three screens will be in Hyderabad. The first, at AMB Classic, will open before the end of 2026. The remaining two are planned for 2028.
+Maddock Films has positioned this as a spiritual successor rather than a direct sequel. There is no continuation of the Meera-Veronica-Gautam triangle from 2012. Instead, *Cocktail 2* revisits the franchise's core preoccupation — the messiness of young love in contemporary urban India — through a fresh lens. The film was shot partly in Sicily, Italy, and the Mediterranean light visible in the trailer gives it a visual warmth that the original, set mostly in London, deliberately avoided.
 
-## The Varanasi Connection
+The music is already doing heavy promotional lifting. Composer Pritam, lyricist Amitabh Bhattacharya, and singer Arijit Singh have delivered two early standouts: *Mashooka*, an upbeat romantic number featuring Shahid and Kriti shot across Sicilian locations, and *Tujhko*, a slower, more emotionally charged track built around Shahid and Rashmika's characters. The trailer also teases a reimagined version of *Tumhi Ho Bandhu* from the original film, which drew the loudest online reaction within hours of the drop.
 
-The timing is not accidental. SS Rajamouli's Varanasi — the globe-spanning epic starring Mahesh Babu, Priyanka Chopra, and Prithviraj Sukumaran — is scheduled for worldwide release on April 7, 2027. The film was shot on IMAX-certified digital cameras. Rajamouli himself, during the Varanasi glimpse launch, had publicly called it "surprising" that Hyderabad lacked an IMAX screen despite producing some of India's biggest cinematic spectacles.
+## The Cast Equation
 
-Now his own lead actor's cinema chain is solving that problem. The Varanasi official X account confirmed the news immediately: "Experience VARANASI in IMAX in HYDERABAD and worldwide on April 7th, 2027."
+Shahid Kapoor's involvement is the commercial anchor. He has not done a pure romantic drama in years, and the trailer suggests a return to the effortless charm of his earlier career — a mode that social media users were quick to call "old Shahid Kapoor era." Kriti Sanon, fresh off a productive stretch that includes her role in the upcoming *Cocktail 2* as a confident, sharp-tongued counterpoint to Shahid's more impulsive character, appears to be carrying the film's emotional center. Rashmika Mandanna, making her second major Hindi appearance after *Animal*, rounds out the triangle as the disruptive element.
 
-## Why This Matters Beyond One Film
+The production team is stacked. Writer-producer Luv Ranjan co-wrote the screenplay alongside Tarun Jain and serves as creative lead. Producer Dinesh Vijan, who backed the original, called the reunion with Adajania a natural fit.
 
-IMAX's return to Hyderabad signals something larger about the economics of Indian exhibition. Rich Gelfond, the CEO of IMAX, said in his announcement that 2025 was IMAX's best year ever at the Indian box office, "powered by a dynamic slate of Hollywood and Indian films." The demand, according to Gelfond, is coming from both filmmakers and audiences.
+## The Diaspora Angle
 
-That demand is not abstract. Films like Toxic (Yash), Raaka (Allu Arjun with Atlee), Kalki 2, and the rumored God of War adaptation are all high-visual-ambition projects that would benefit enormously from IMAX presentations. Telugu cinema has been making films at global scale for years. It just hasn't had the local screens to match.
+For NRI audiences, the original *Cocktail* occupied a specific cultural moment. It was one of the first mainstream Bollywood films to openly portray a modern Indian woman who drank, partied, and owned her choices without being punished by the narrative — at least until the third act. The sequel arrives in a different cultural climate, and the trailer suggests it is aware of that shift. The relationship dynamics feel less judgmental, the comedy less reliant on shock, and the women less likely to be sorted into neat archetypes.
 
-Sunil Narang and Bharat Narang, the managing directors of AMB Cinemas, called the IMAX partnership "a matter of great honour and pride" and described it as the natural next step in AMB's push for cinematic excellence.
+The June 19 release puts *Cocktail 2* in a crowded month. It opens between Imtiaz Ali's *Main Vaapas Aaunga* on June 12 and Akshay Kumar's *Welcome To The Jungle* on June 26. For diaspora audiences with limited theatrical windows, it is competing directly for the summer date-night slot. The Pritam soundtrack gives it an edge — Bollywood films that travel internationally almost always travel on their music first.
 
-## The NRI Viewing Gap
+Advance bookings have not opened yet, but the trailer's reception — trending across Indian YouTube and Twitter within hours — suggests Maddock Films has a genuine crowd-puller on its hands. Whether *Cocktail 2* can match the cultural impact of the original is an open question. Whether it can match the box office is a likelier bet.
+
+*Cocktail 2 releases in theaters on June 19, 2026.*"""
+
+    article = {
+        "headline": "Cocktail 2 Just Dropped Its Trailer. Shahid Kapoor, Kriti Sanon, and Rashmika Mandanna Are Betting on Messy Modern Love.",
+        "subheadline": "Homi Adajania's sequel to the 2012 hit arrives June 19 with Pritam's music, Sicilian locations, and a love triangle built for a generation that grew up on the original.",
+        "body": body,
+        "slug": slug,
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "is_editorial": False,
+        "image_url": img_url,
+        "image_attribution": attribution,
+        "sources": json.dumps([
+            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+            {"name": "Hollywood Reporter India", "url": "https://www.hollywoodreporterindia.com"},
+            {"name": "Filmfare", "url": "https://www.filmfare.com"}
+        ])
+    }
+    return insert_article(article)
 
-For the Telugu diaspora in the United States, United Kingdom, and the Middle East, this story cuts both ways. NRIs have long had access to IMAX screenings of Telugu blockbusters in their local markets — from AMC and Regal chains in the US to Cineworld in the UK. The irony was always that you could watch a Tollywood spectacle in IMAX in New Jersey but not in Hyderabad.
 
-That gap is now closing. And for the diaspora community that regularly travels back to India and follows Telugu cinema culture as closely as cricket, the upgrade of the home market's exhibition infrastructure matters. A first-run IMAX experience in Hyderabad will change how Telugu films are marketed, screened, and talked about — on both sides of the ocean.
+# ============================================================
+# ARTICLE 2: Main Vaapas Aaunga - Imtiaz Ali + Diljit + AR Rahman
+# ============================================================
+def write_main_vaapas_aaunga():
+    print("\n📝 Writing: Main Vaapas Aaunga")
+    slug = "main-vaapas-aaunga-imtiaz-ali-diljit-dosanjh-ar-rahman-june-12-nri-20260603"
+    
+    print("  🖼 Sourcing image...")
+    img_url, attribution = source_image(
+        person_names=["Diljit Dosanjh", "Imtiaz Ali"],
+        topic_queries=["Diljit Dosanjh film", "Imtiaz Ali director", "Bollywood romance Punjab"],
+        slug=slug
+    )
 
-## What Comes Next
+    body = """Imtiaz Ali has spent the last two decades making films about people who leave home and then spend the rest of their lives trying to figure out what they left behind. With *Main Vaapas Aaunga*, releasing June 12, he is doing it again — except this time, the longing has a historical spine. The film is set partly in pre-Partition Punjab, and it stars Diljit Dosanjh, Naseeruddin Shah, Vedang Raina, and Sharvari in a story that spans generations, geographies, and the kind of emotional distances that no flight can close.
 
-The first AMB Classic IMAX screen is expected to be operational by late 2026, well ahead of Varanasi's April 2027 date. The two additional screens arriving by 2028 will further expand Hyderabad's premium exhibition capacity during a period when Telugu cinema's global footprint is at its highest point.
+The advance bookings for North America opened a full week before India. That detail alone tells you who this film was partly made for.
 
-For a city that has quietly become the epicentre of India's most commercially ambitious filmmaking, the return of IMAX is not just an upgrade. It is a correction long overdue.
+## The Imtiaz Ali-Diljit Reunion
 
-*Sources: IMAX Corporation press release (June 1, 2026); Bollywood Hungama; Hollywood Reporter India; Gulte*"""
+This is the second collaboration between Ali and Dosanjh after *Amar Singh Chamkila* in 2024, a film that turned Diljit from a global concert sensation into someone the Indian film establishment could no longer politely ignore. The reunion was inevitable. Ali has always been drawn to performers who carry real-world cultural weight, and Diljit — who debuted his *Main Vaapas Aaunga* trailer mid-concert during his AURA Tour stop in Toronto to a crowd of thousands — is the rare actor whose fan base does not need to be manufactured. It already exists, and it exists overwhelmingly among the diaspora.
 
-art1_sources = ["IMAX Corporation press release (June 1, 2026)", "Bollywood Hungama", "Hollywood Reporter India", "Gulte"]
+Naseeruddin Shah's involvement adds a different kind of gravity. At this stage of his career, Shah does not sign on to anything that does not interest him. His presence in the trailer, in what appears to be the older timeline of the story, suggests the film's emotional weight rests on the consequences of choices made decades earlier.
 
-articles_to_write.append({
-    "slug": art1_slug,
-    "headline": art1_headline,
-    "subheadline": art1_subheadline,
-    "body": art1_body,
-    "person_names": ["Mahesh Babu"],
-    "topic_queries": ["IMAX Hyderabad cinema", "AMB Cinemas Hyderabad"],
-    "pexels_query": "IMAX cinema theater screen",
-    "sources": art1_sources
-})
+## The Music Is Already Winning
 
-# ═══════════════════════════════════════════════════════
-# ARTICLE 2: Drishyam 3 Hindi Wraps Shoot
-# ═══════════════════════════════════════════════════════
+A.R. Rahman composed the score. Irshad Kamil wrote the lyrics. Mohit Chauhan sings. If you have watched an Imtiaz Ali film in the last fifteen years, this combination needs no introduction. It is the team behind *Kun Faya Kun*, *Tum Ho* from *Rockstar*, and *Patakha Guddi* from *Highway*.
 
-art2_slug = "drishyam-3-hindi-wraps-shoot-ajay-devgn-october-2-jaideep-ahlawat-nri-20260603"
-art2_headline = "Drishyam 3 Has Wrapped. Ajay Devgn's Version Promises a Very Different Film From the One Mohanlal Just Made."
-art2_subheadline = "Director Abhishek Pathak says the Hindi adaptation leans into family thriller territory, not the drama-heavy approach of the Malayalam original. October 2 is the date. Jaideep Ahlawat and Prakash Raj are the new additions."
-art2_body = """The Hindi Drishyam 3 has finished filming. Director Abhishek Pathak confirmed the wrap on June 2 with an emotional Instagram post, bringing to a close months of production across Mumbai and Goa. The film is now in post-production with a confirmed theatrical release on October 2, 2026 — the Gandhi Jayanti holiday window that Bollywood has traditionally treated as prime territory.
+The album has rolled out steadily: *Kya Kamaal Hai*, *Maskara* (which went viral on social media), *Vo Nahin*, and most recently *Ishq Mastana*, released on Vedang Raina's birthday. The latest track blends Punjabi folk traditions with jazz and swing influences, built around a refrain borrowed from the 15th-century poet Sant Kabir: "Haman Hai Ishq Mastana, Haman Ko Hoshiyari Kya." That a mainstream Hindi film in 2026 is threading Kabir through A.R. Rahman through the story of undivided Punjab is either wildly ambitious or exactly what Imtiaz Ali does best. Possibly both.
 
-The announcement arrives at a uniquely interesting moment. The Malayalam Drishyam 3, starring Mohanlal and directed by Jeethu Joseph, released recently and has already crossed ₹225 crore worldwide. Audiences who have seen it know how that story ends. The question now is how different the Hindi version will be — and Pathak has been surprisingly direct about the answer.
+## The Pre-Partition Setting
 
-## A Different Track for Hindi Audiences
+The trailer makes clear that the film operates across two timelines. The younger timeline features Vedang Raina and Sharvari in what looks like pre-Partition Punjab — colourful, communal in the older sense of the word, and alive with the kind of sensory detail that Ali's best films nail. The older timeline, anchored by Naseeruddin Shah and presumably Diljit, carries the cost of what Partition severed.
 
-In an interview with Pinkvilla, Pathak and producer Kumar Mangat Pathak revealed that the Hindi version will chart its own path. "What people are seeing right now in Malayalam Drishyam is different," the director said. "For the Hindi audience, I have created a completely different track that will work beautifully here. The Malayalam version focuses more on family drama, while the Hindi version will lean more towards a family thriller. That's the fabric of the film."
+For the Indian diaspora, this is not abstract history. It is family history. The Partition of 1947 is the foundational rupture of countless NRI family trees — the reason grandparents speak of villages they cannot visit, the reason certain surnames cluster in certain cities in the UK and Canada. A film that dramatises that rupture through Imtiaz Ali's particular brand of romantic longing — not political, not polemical, just deeply personal — has the potential to connect with diaspora audiences in ways that most Bollywood films cannot.
 
-This is significant. The first two Hindi Drishyam films closely followed the Malayalam originals, with adjustments for tone and cultural context. A deliberate departure in the third installment suggests that Pathak is treating the franchise as its own entity now — one that can take narrative risks without being judged purely as a remake.
+## The Box Office Picture
 
-## The Cast Additions
-
-Ajay Devgn returns as Vijay Salgaonkar, the small-town cable operator whose extraordinary ability to think under pressure has turned him into one of Bollywood's most unusual protagonists. Tabu reprises her role as Inspector General Meera Deshmukh, and Shriya Saran returns as Nandini Salgaonkar. Ishita Dutt and Rajat Kapoor round out the returning ensemble.
-
-The new additions are where it gets interesting. Jaideep Ahlawat — last seen dominating the screen in Paatal Lok and earning a National Award for his performance — joins in a pivotal role that has not yet been revealed. Prakash Raj, who recently completed his portions, expressed confidence that the film would resonate with audiences.
-
-The Ahlawat casting is particularly intriguing. Known for playing layered, morally complex characters, his presence suggests that Drishyam 3 will introduce a new adversary or complication that goes beyond the police procedural dynamic of the first two films.
-
-## The Box Office Context
-
-Drishyam 2 (Hindi) was a massive commercial success, earning over ₹240 crore worldwide against a modest budget. It proved that mid-budget, story-driven thrillers could compete with tentpole spectacles — a lesson the industry has repeatedly forgotten and relearned.
-
-The October 2 release places Drishyam 3 in a window with relatively thin competition. The Gandhi Jayanti holiday provides a four-day opening weekend, and the film's franchise value ensures strong advance booking interest, particularly in multiplexes.
-
-## For the Diaspora
-
-The Drishyam franchise has a unique position in the NRI market. It is one of the few Hindi-language properties that consistently draws non-traditional Bollywood audiences — older viewers, couples, families — who might not turn up for a Yash action film or a Ranveer Singh spectacle but will absolutely show up for Ajay Devgn quietly outsmarting the law for two hours.
-
-With the Malayalam version already in circulation and widely discussed in diaspora WhatsApp groups, the Hindi adaptation faces an unusual challenge: audiences who already know the broad strokes but are being promised a different experience. Pathak is betting that the "family thriller" pivot will be enough to justify the ticket. October 2 will tell us if he is right.
-
-*Sources: Pinkvilla; Bollywood Hungama; Sacnilk; Zoom TV Entertainment*"""
-
-art2_sources = ["Pinkvilla", "Bollywood Hungama", "Sacnilk", "Zoom TV Entertainment"]
-
-articles_to_write.append({
-    "slug": art2_slug,
-    "headline": art2_headline,
-    "subheadline": art2_subheadline,
-    "body": art2_body,
-    "person_names": ["Ajay Devgn", "Jaideep Ahlawat"],
-    "topic_queries": ["Drishyam 3 Hindi film", "Ajay Devgn Drishyam"],
-    "pexels_query": "Indian cinema thriller suspense",
-    "sources": art2_sources
-})
-
-# ═══════════════════════════════════════════════════════
-# ARTICLE 3: Jee Le Zaraa Is Finally Happening
-# ═══════════════════════════════════════════════════════
-
-art3_slug = "jee-le-zaraa-farhan-akhtar-priyanka-alia-katrina-road-trip-nri-20260603"
-art3_headline = "Farhan Akhtar Is Location Scouting in Rajasthan. After Five Years of Delays, Jee Le Zaraa Looks Like It's Actually Happening."
-art3_subheadline = "The Priyanka Chopra-Alia Bhatt-Katrina Kaif road trip film that was announced in 2021 is finally in active pre-production. Farhan Akhtar has shared scouting photos from the desert. There are even Shah Rukh Khan cameo rumours."
-art3_body = """There is a long list of Bollywood films that were announced with great fanfare and then quietly disappeared into development limbo. Jee Le Zaraa has spent the last five years near the top of that list. But as of late May 2026, there are concrete signs that Farhan Akhtar's female-led road trip drama is finally moving beyond the idea stage.
-
-Akhtar recently posted a photograph from what appears to be the Rajasthan desert, captioned simply: "Searching for gold." The post confirmed what industry sources had been reporting for weeks — that he has begun active location scouting for the film, with shooting expected to begin soon.
-
-## The Long Road to Here
-
-Jee Le Zaraa was announced in August 2021 with a cast that seemed almost too good to be real: Priyanka Chopra, Alia Bhatt, and Katrina Kaif, together for the first time, in a road trip film directed by Farhan Akhtar and co-written by Zoya Akhtar and Reema Kagti. Production was supposed to start in 2022.
-
-It did not. The three leads had wildly conflicting schedules. Priyanka was between Citadel seasons in the US and UK. Alia was navigating motherhood and a packed Bollywood slate. Katrina married Vicky Kaushal and stepped back from the spotlight. At one point, there were reports that the original cast might not return at all.
-
-By September 2025, Farhan addressed the speculation directly. "I can't comment on the cast anymore," he told a podcast, "but will the film happen? The film will happen." He confirmed that location scouting and music recording had already been completed, calling the script "too delicious" to abandon.
-
-## What's Happening Now
-
-The latest developments suggest the cast question has been resolved — or at least resolved enough to move forward. Alia and Priyanka are both between major projects (Alia just wrapped Alpha; Priyanka has Varanasi in post-production). Katrina, who has been the quietest of the three publicly, appears to have cleared her schedule as well.
-
-The most tantalising development is the rumour that Shah Rukh Khan may appear in a cameo. SRK has form here — his brief appearances in Brahmastra and Rocketry were among the most talked-about moments in those films. A cameo in a Farhan Akhtar-directed film would fit neatly into the Excel Entertainment universe that includes Don, Don 2, and the original Dil Chahta Hai.
-
-Neither the Khan camp nor the producers have confirmed the cameo. But the rumour alone tells you something about the scale of expectation around this project.
-
-## The Zindagi Na Milegi Dobara Parallel
-
-Jee Le Zaraa exists in the shadow of Zindagi Na Milegi Dobara, Zoya Akhtar's 2011 masterpiece about three friends on a road trip through Spain. That film was not just a box office hit — it became a cultural touchstone for an entire generation of Indian travellers, credited with single-handedly boosting tourism to Spain from India.
-
-Jee Le Zaraa is being positioned as the female counterpart to that legacy. The idea, reportedly, originated with Katrina Kaif during the making of ZNMD, when she suggested a version with women in the lead. Fifteen years later, the concept has not lost its appeal. If anything, the hunger for a female-led ensemble film with actual star power — not a token indie casting — has only grown.
-
-## Why NRIs Should Pay Attention
-
-Priyanka Chopra is the most globally visible Indian actress of her generation. Her involvement automatically gives Jee Le Zaraa a diaspora marketing footprint that few Bollywood films can match. Add Alia Bhatt — who has her own significant NRI fanbase — and Katrina Kaif, whose appeal with diaspora audiences has been consistent since Namastey London, and you have a film that could be one of the biggest diaspora events of 2027.
-
-For NRI audiences who have watched Bollywood's promised female ensemble projects fall apart before (Veere Di Wedding aside), Jee Le Zaraa's tortured journey to the starting line actually adds to the stakes. This is not a film that was casually greenlit. It has been fought for, delayed, defended, and now — apparently — rescued.
-
-The desert photos suggest that Rajasthan will be a key location, fitting the road trip genre perfectly. If Farhan can capture even a fraction of the wanderlust that made ZNMD iconic, this time through a female lens, the film could become the defining Bollywood ensemble of the decade.
-
-Shooting is expected to begin in the coming months, with a 2027 release likely.
-
-*Sources: Sacnilk; Pinkvilla; Bollywood Hungama; Zoom TV Entertainment*"""
-
-art3_sources = ["Sacnilk", "Pinkvilla", "Bollywood Hungama", "Zoom TV Entertainment"]
-
-articles_to_write.append({
-    "slug": art3_slug,
-    "headline": art3_headline,
-    "subheadline": art3_subheadline,
-    "body": art3_body,
-    "person_names": ["Farhan Akhtar", "Priyanka Chopra"],
-    "topic_queries": ["Jee Le Zaraa Bollywood film", "Farhan Akhtar road trip film"],
-    "pexels_query": "Rajasthan desert road trip India",
-    "sources": art3_sources
-})
-
-
-# ── MAIN EXECUTION ──
-
-def main():
-    now = datetime.now(timezone.utc)
-    published_at = now.strftime("%Y-%m-%dT%H:%M:%SZ")
-
-    for i, art in enumerate(articles_to_write):
-        print(f"\n{'='*60}")
-        print(f"Article {i+1}: {art['headline'][:60]}...")
-        print(f"{'='*60}")
-
-        # Image sourcing
-        print("\n📷 Sourcing image...")
-        image_url, image_attr = source_image(
-            art["person_names"],
-            art["topic_queries"],
-            art["pexels_query"],
-            art["slug"]
-        )
-
-        # Build article payload
-        payload = {
-            "headline": art["headline"],
-            "subheadline": art["subheadline"],
-            "body": art["body"],
-            "slug": art["slug"],
-            "category": "entertainment",
-            "vertical": "entertainment",
-            "status": "published",
-            "published_at": published_at,
-            "is_editorial": False,
-            "sources": art["sources"]
-        }
-
-        if image_url:
-            payload["image_url"] = image_url
-            payload["image_attribution"] = image_attr
-
-        # Validate
-        word_count = len(art["body"].split())
-        if word_count < 400:
-            print(f"  ✗ REJECTED: body too short ({word_count} words)")
-            continue
-        if len(art["headline"]) > 200:
-            print(f"  ✗ REJECTED: headline too long ({len(art['headline'])} chars)")
-            continue
-        if len(art["subheadline"]) < 15:
-            print(f"  ✗ REJECTED: subheadline too short")
-            continue
-
-        print(f"  Word count: {word_count}")
-        print(f"  Headline: {len(art['headline'])} chars")
-        print(f"  Image: {'✓' if image_url else '✗ none'}")
-
-        # Insert
-        print("\n📝 Publishing...")
-        art_id = insert_article(payload)
-        if art_id:
-            print(f"  ✓ DONE: {art['slug']}")
-        else:
-            print(f"  ✗ FAILED: {art['slug']}")
-
-        time.sleep(1)  # small delay between inserts
-
-    print(f"\n{'='*60}")
-    print("Entertainment writer run complete.")
-    print(f"{'='*60}")
-
-
+*Main Vaapas Aaunga* arrives on June 12, a week after the *Toxic* and *Hai Jawani Toh Ishq Hona Hai* face-off and a week before *Cocktail 2*. The fact that North American advance bookings opened before India's is a strategic acknowledgment of Diljit's international fanbase — a fanbase that turned his Dil-Luminati and AURA tours into record-breaking events across North America and Europe.
+
+Produced by Birla Studios and Applause Entertainment, with music on Tips, the film's commercial floor is set by its soundtrack. Its ceiling depends on whether Ali has made another *Rockstar* or another *Tamasha* — two films with very different commercial outcomes but, notably, the same long-term cultural footprint.
+
+*Main Vaapas Aaunga releases in cinemas on June 12, 2026.*"""
+
+    article = {
+        "headline": "Imtiaz Ali, Diljit Dosanjh, and A.R. Rahman Made a Film About Partition. North America Gets to See It First.",
+        "subheadline": "Main Vaapas Aaunga opens advance bookings in the US and Canada a week before India. For the diaspora, this is not just a movie — it is the family story nobody filmed until now.",
+        "body": body,
+        "slug": slug,
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "is_editorial": False,
+        "image_url": img_url,
+        "image_attribution": attribution,
+        "sources": json.dumps([
+            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+            {"name": "India Forums", "url": "https://www.indiaforums.com"},
+            {"name": "Koimoi", "url": "https://www.koimoi.com"}
+        ])
+    }
+    return insert_article(article)
+
+
+# ============================================================
+# ARTICLE 3: Welcome To The Jungle - Akshay Kumar ensemble
+# ============================================================
+def write_welcome_jungle():
+    print("\n📝 Writing: Welcome To The Jungle")
+    slug = "welcome-to-the-jungle-akshay-kumar-ensemble-comedy-june-26-nri-20260603"
+    
+    print("  🖼 Sourcing image...")
+    img_url, attribution = source_image(
+        person_names=["Akshay Kumar", "Ahmed Khan (director)"],
+        topic_queries=["Akshay Kumar comedy film", "Welcome Bollywood film franchise", "Bollywood ensemble comedy"],
+        slug=slug
+    )
+
+    body = """Bollywood has spent the last two years producing spy universes, period epics, and action franchises calibrated for global box office records. *Welcome To The Jungle* is none of those things. It is a loud, overstuffed, unapologetically commercial comedy starring Akshay Kumar and approximately everyone else in the industry, and it arrives in theaters on June 26 at a moment when audiences might genuinely need it.
+
+The film is the third installment of the *Welcome* franchise, which began in 2007 with Anees Bazmee's original — a slapstick comedy that became a permanent fixture on Indian television and, by extension, on the cultural hard drive of every NRI household with a cable connection and a tolerance for absurdity.
+
+## The Cast Is the Pitch
+
+Director Ahmed Khan has assembled a cast list that reads less like a credit sheet and more like a wedding guest list for a Bollywood producer's daughter: Akshay Kumar, Suniel Shetty, Paresh Rawal, Arshad Warsi, Raveena Tandon, Lara Dutta, Jacqueline Fernandez, Disha Patani, Johnny Lever, Rajpal Yadav, Tusshar Kapoor, Shreyas Talpade, and Bhojpuri star Akshara Singh, whose inclusion via the track *Ghis Ghis Ghis* has already made waves.
+
+This is, by any reasonable count, the largest ensemble in a Hindi film this year. Khan has said the film contains five songs, and producer Firoz Nadiadwala — who backed the entire franchise — has been called "gutsy" for greenlighting a production of this scale in a climate where mid-budget films are struggling to fill seats.
+
+The title track, a recreation of the 2007 original, dropped in late May and immediately became the subject of memes, Instagram reels, and wedding playlist debates. Khan described its making as "pure nostalgia." For the franchise's core audience, that is the entire selling proposition.
+
+## Akshay Kumar's Comedy Recalibration
+
+For Akshay Kumar, *Welcome To The Jungle* represents something more specific than a franchise sequel. It is a deliberate return to the comic mode that made him a household name long before *Sooryavanshi* or *Bell Bottom* or any of his more recent forays into patriotic action. The films that built his initial stardom — *Hera Pheri*, *Garam Masala*, *Bhagam Bhag*, the original *Welcome* — relied on his ability to play chaos with a straight face, to react rather than dominate, and to make absurd situations feel lived-in rather than scripted.
+
+His most recent release, *Bhooth Bangla*, a horror-comedy that has crossed ₹171 crore net in India after five weeks, proved that the audience appetite for Kumar in this register has not diminished. *Welcome To The Jungle* doubles down on that bet.
+
+## The NRI Living Room Factor
+
+The original *Welcome* has a specific afterlife among diaspora audiences that no box office number can capture. It is the film that plays during Diwali dinner clean-up. It is the film that uncles quote at family gatherings. It is the film that second-generation NRI kids discovered on YouTube compilations before they ever saw it in full. The comedy is broad, the setups are ridiculous, and the punchlines land because they were never trying to be clever — they were trying to be funny, which is harder.
+
+*Welcome To The Jungle* is banking on that inherited goodwill. The jungle setting, visible in Akshay's promotional images — a man in a dark suit walking down a red carpet through dense foliage — promises the same brand of absurdist comedy transplanted into a more exotic visual landscape. Khan has hinted at a blend of action and comedy, but make no mistake: this is a comedy first. The action exists to service the jokes, not the other way around.
+
+## June's Crowded Calendar
+
+The film releases on June 26, the last major theatrical date in a month that includes *Toxic* (June 4), *Hai Jawani Toh Ishq Hona Hai* (June 5), *Main Vaapas Aaunga* (June 12), *Cocktail 2* (June 19), and *Toy Story 5* (June 19). For NRI audiences who may only make it to the theater once or twice a month, the choice between a pre-Partition love story, a modern relationship drama, and a full-blown slapstick franchise sequel depends entirely on what they are in the mood for.
+
+*Welcome To The Jungle* does not need to win that argument on artistic merit. It needs to win it on the promise of two hours where nobody has to think, everyone laughs, and the drive home involves quoting dialogue back and forth. For a certain kind of audience — and that audience is large, loyal, and disproportionately diasporic — that is enough.
+
+*Welcome To The Jungle releases in theaters on June 26, 2026.*"""
+
+    article = {
+        "headline": "Welcome To The Jungle Has Akshay Kumar, Fifteen Co-Stars, and the Promise That Nobody Has to Think for Two Hours.",
+        "subheadline": "The third installment of Bollywood's most quotable franchise arrives June 26 with the biggest ensemble cast of the year and a bet that NRI nostalgia still fills seats.",
+        "body": body,
+        "slug": slug,
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "is_editorial": False,
+        "image_url": img_url,
+        "image_attribution": attribution,
+        "sources": json.dumps([
+            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+            {"name": "Sacnilk", "url": "https://www.sacnilk.com"},
+            {"name": "Filmfare", "url": "https://www.filmfare.com"}
+        ])
+    }
+    return insert_article(article)
+
+
+# ============================================================
+# MAIN
+# ============================================================
 if __name__ == "__main__":
-    main()
+    print("=" * 60)
+    print("The Videshi Entertainment Writer - June 3, 2026 evening")
+    print("=" * 60)
+    
+    results = []
+    
+    art1 = write_cocktail_2()
+    results.append(("Cocktail 2", art1))
+    
+    art2 = write_main_vaapas_aaunga()
+    results.append(("Main Vaapas Aaunga", art2))
+    
+    art3 = write_welcome_jungle()
+    results.append(("Welcome To The Jungle", art3))
+    
+    print("\n" + "=" * 60)
+    print("RESULTS:")
+    for name, art_id in results:
+        status = f"✅ {art_id}" if art_id else "❌ FAILED"
+        print(f"  {name}: {status}")
+    
+    success = sum(1 for _, a in results if a)
+    print(f"\n{success}/{len(results)} articles published")
+    print("=" * 60)
