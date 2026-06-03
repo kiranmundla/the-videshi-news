@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""
-The Videshi News Writer — News Category
-Generates articles for the 'news' category.
-Run: python3 news-writer-run.py
-"""
+"""News writer for The Videshi - June 3, 2026 evening run."""
 
-import json, os, sys, time, uuid, re
 import requests
+import json
+import os
+import io
+import uuid
+import re
 from datetime import datetime, timezone
 
 # Load env
@@ -17,9 +17,10 @@ def load_env(path):
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
                     k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip())
+                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
 load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
 SUPABASE_URL = os.environ['SUPABASE_URL']
@@ -27,13 +28,15 @@ SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
 HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
 }
 
-# ─── Image helpers ───
+UA = {"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
+
+# --- Image sourcing functions ---
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -42,12 +45,12 @@ def fetch_wikipedia_person_image(person_name):
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            headers=UA, timeout=10
         )
         if r.status_code == 200:
             data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            # Prefer thumbnail (safe size), fall back to original
+            img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
@@ -55,309 +58,433 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-def fetch_pexels_image(query, fallback_query=None):
-    """Fetch image from Pexels using curl (urllib gets 403)."""
+
+def fetch_wikimedia_commons_images(search_query, limit=5):
+    """Search Wikimedia Commons for CC-licensed images."""
+    params = {
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": search_query,
+        "gsrnamespace": "6",
+        "gsrlimit": str(limit),
+        "prop": "imageinfo",
+        "iiprop": "url|size|mime",
+        "iiurlwidth": "1200",
+        "format": "json"
+    }
+    try:
+        r = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params=params, headers=UA, timeout=15
+        )
+        if r.status_code == 200:
+            data = r.json()
+            pages = data.get("query", {}).get("pages", {})
+            results = []
+            for pid, page in pages.items():
+                ii = page.get("imageinfo", [{}])[0]
+                mime = ii.get("mime", "")
+                if not mime.startswith("image/") or mime == "image/svg+xml":
+                    continue
+                if ii.get("width", 0) < 300:
+                    continue
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0),
+                })
+            if results:
+                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
+            return results
+    except Exception as e:
+        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+    return []
+
+
+def fetch_pexels_image(query):
+    """Fetch image from Pexels. Returns URL or None."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
-    import subprocess, urllib.parse
-    for q in [query, fallback_query]:
-        if not q:
-            continue
-        try:
-            encoded_q = urllib.parse.quote(q)
-            result = subprocess.run(
-                ['curl', '-sS', f'https://api.pexels.com/v1/search?query={encoded_q}&per_page=5',
-                 '-H', f'Authorization: {PEXELS_KEY}'],
-                capture_output=True, text=True, timeout=15
-            )
-            data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            for photo in photos:
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('original')
-                if url:
-                    # Validate
-                    head = requests.head(url, timeout=10)
-                    ct = head.headers.get('Content-Type', '')
-                    cl = int(head.headers.get('Content-Length', '0'))
-                    if 'image' in ct and cl > 5000:
-                        print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
-                        return url
-        except Exception as e:
-            print(f"  ⚠ Pexels error for '{q}': {e}")
+    try:
+        r = requests.get(
+            "https://api.pexels.com/v1/search",
+            params={"query": query, "per_page": 3, "orientation": "landscape"},
+            headers={"Authorization": PEXELS_KEY},
+            timeout=10
+        )
+        if r.status_code == 200:
+            photos = r.json().get("photos", [])
+            if photos:
+                url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                return url
+    except Exception as e:
+        print(f"  ⚠ Pexels error for '{query}': {e}")
     return None
 
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase storage bucket."""
+
+def compress_image(img_bytes, max_width=1200, quality=80):
+    """Resize and compress image. Returns JPEG bytes."""
+    from PIL import Image
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    return buf.getvalue()
+
+
+def download_and_upload(img_url, filename):
+    """Download image, compress, upload to Supabase storage. Returns public URL or None."""
     try:
-        r = requests.get(image_url, timeout=20, headers={"User-Agent": "TheVideshi/1.0"})
-        if r.status_code != 200 or len(r.content) < 5000:
-            print(f"  ⚠ Image download failed or too small: {r.status_code}, {len(r.content)} bytes")
+        r = requests.get(img_url, headers=UA, timeout=20)
+        if r.status_code != 200:
+            print(f"  ⚠ Download failed ({r.status_code}): {img_url[:80]}")
             return None
-        
-        content_type = r.headers.get('Content-Type', 'image/jpeg')
-        if 'image' not in content_type:
-            content_type = 'image/jpeg'
-        
+        ct = r.headers.get('Content-Type', '')
+        if 'image' not in ct:
+            print(f"  ⚠ Not an image ({ct}): {img_url[:80]}")
+            return None
+        raw = r.content
+        if len(raw) < 5000:
+            print(f"  ⚠ Image too small ({len(raw)} bytes): {img_url[:80]}")
+            return None
+
+        compressed = compress_image(raw)
+        print(f"  📦 Compressed: {len(raw)} → {len(compressed)} bytes")
+
+        # Upload to Supabase storage
         upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        up = requests.post(
-            upload_url,
-            headers={
-                'Authorization': f'Bearer {SUPABASE_KEY}',
-                'Content-Type': content_type,
-                'x-upsert': 'true'
-            },
-            data=r.content,
-            timeout=30
-        )
-        if up.status_code in (200, 201):
+        upload_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": "image/jpeg",
+            "x-upsert": "true"
+        }
+        ur = requests.post(upload_url, headers=upload_headers, data=compressed, timeout=30)
+        if ur.status_code in (200, 201):
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            print(f"  ✅ Uploaded: {public_url}")
             return public_url
         else:
-            print(f"  ⚠ Supabase upload failed: {up.status_code} {up.text[:200]}")
+            print(f"  ⚠ Upload failed ({ur.status_code}): {ur.text[:200]}")
+            return None
     except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-    return None
-
-def source_image(article):
-    """Source an image for an article following the hierarchy."""
-    slug = article['slug']
-    person = article.get('primary_person')
-    
-    # 1. Try Wikipedia for person articles
-    if person:
-        wiki_url = fetch_wikipedia_person_image(person)
-        if wiki_url:
-            filename = f"{slug}.jpg"
-            final = upload_to_supabase_storage(wiki_url, filename)
-            if final:
-                return final, "Wikimedia Commons"
-    
-    # 2. Try Pexels with specific terms
-    pexels_query = article.get('image_search_query')
-    pexels_fallback = article.get('image_search_fallback')
-    if pexels_query:
-        pexels_url = fetch_pexels_image(pexels_query, pexels_fallback)
-        if pexels_url:
-            # Pexels URLs are permanent, can hotlink
-            return pexels_url, "Pexels"
-    
-    return None, None
-
-# ─── Article insertion ───
-
-def insert_article(article):
-    """Insert article into Supabase."""
-    art_id = str(uuid.uuid4())
-    
-    # Source image
-    img_url, img_attr = source_image(article)
-    
-    payload = {
-        'id': art_id,
-        'headline': article['headline'],
-        'subheadline': article['subheadline'],
-        'body': article['body'],
-        'slug': article['slug'],
-        'category': 'news',
-        'vertical': 'news',
-        'status': 'published',
-        'published_at': datetime.now(timezone.utc).isoformat(),
-        'sources': json.dumps(article['sources']),
-        'is_editorial': False,
-        'image_url': img_url,
-        'image_attribution': img_attr,
-    }
-    
-    # Remove None values
-    payload = {k: v for k, v in payload.items() if v is not None}
-    
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=payload,
-        timeout=30
-    )
-    
-    if r.status_code in (200, 201):
-        print(f"  ✓ Published: {article['headline'][:60]}...")
-        return art_id
-    else:
-        print(f"  ✗ Failed to insert: {r.status_code} {r.text[:300]}")
+        print(f"  ⚠ Download/upload error: {e}")
         return None
 
 
-# ─── Articles ───
+def source_image(person_name=None, search_terms=None, pexels_query=None, slug="article"):
+    """Multi-source image search: Wikipedia → Wikimedia Commons → Pexels. Returns (url, attribution)."""
+    candidates = []
 
-ARTICLES = [
-    {
-        "headline": "Zee Just Landed the FIFA World Cup. India's Biggest Sports Broadcaster Didn't Even Try.",
-        "subheadline": "Zee Entertainment secures 39 FIFA events through 2034, including two World Cups, after JioStar's $20 million bid was rejected. The tournament kicks off on June 11.",
-        "slug": "zee-entertainment-fifa-world-cup-2026-broadcast-rights-india-unite8-sports-20260603",
-        "primary_person": None,
-        "image_search_query": "FIFA World Cup football stadium",
-        "image_search_fallback": "soccer football world cup",
-        "sources": [
-            {"name": "Reuters", "url": "https://www.reuters.com"},
-            {"name": "BestMediaInfo", "url": "https://www.bestmediainfo.com"},
-            {"name": "Livemint", "url": "https://www.livemint.com"}
-        ],
-        "body": """The 2026 FIFA World Cup starts on June 11, and Indian football fans now know where to find it. Zee Entertainment announced on Monday that it has secured the broadcast rights for the tournament — along with 38 other FIFA events stretching through 2034 — in a deal that reshapes the country's sports media landscape.
+    # 1. Wikipedia person image
+    if person_name:
+        wiki_img = fetch_wikipedia_person_image(person_name)
+        if wiki_img:
+            candidates.append({"url": wiki_img, "source": "wikipedia", "priority": 1})
 
-The agreement ends months of uncertainty over whether Indian audiences would have access to the world's most-watched sporting event. FIFA had been locked in negotiations with multiple Indian broadcasters, but the talks kept falling through.
+    # 2. Wikimedia Commons
+    if search_terms:
+        for term in (search_terms if isinstance(search_terms, list) else [search_terms]):
+            commons = fetch_wikimedia_commons_images(term, limit=3)
+            for c in commons[:2]:
+                candidates.append({"url": c["url"], "source": "wikimedia_commons", "priority": 2})
 
-## JioStar walked away. Zee walked in.
+    # 3. Pexels
+    if pexels_query:
+        px = fetch_pexels_image(pexels_query)
+        if px:
+            candidates.append({"url": px, "source": "pexels", "priority": 3})
 
-JioStar, the Reliance-Disney joint venture that dominates Indian sports broadcasting with IPL, English Premier League, and Champions League rights, had offered approximately $20 million for the India package. FIFA rejected it. Sony, which broadcast the 2014 and 2018 tournaments, held discussions but did not submit a formal bid.
+    # Sort by priority and try to download/upload
+    candidates.sort(key=lambda x: x["priority"])
+    for c in candidates:
+        filename = f"{slug}.jpg"
+        uploaded = download_and_upload(c["url"], filename)
+        if uploaded:
+            attr = "Wikimedia Commons" if c["source"] in ("wikipedia", "wikimedia_commons") else "The Videshi"
+            return uploaded, attr
 
-FIFA had originally sought about $100 million for a package covering the 2026 and 2030 World Cups. It later slashed the asking price to roughly $60 million. The final terms with Zee were not disclosed, but the deal clearly came at a price point that the market leader was not willing to match.
+    print(f"  ❌ No image found for {slug}")
+    return None, None
 
-## Unite8 Sports: Zee's new play
 
-The deal accelerates Zee's push into sports broadcasting through its new Unite8 Sports brand. The company has announced four dedicated channels — Unite8 Sports 1 and Unite8 Sports 1 HD in Hindi, alongside Unite8 Sports 2 and Unite8 Sports 2 HD in English — with distribution deals already underway. Airtel is scheduled to carry the channels from June 4.
+def insert_article(article):
+    """Insert article into Supabase."""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article,
+        timeout=30
+    )
+    if r.status_code in (200, 201):
+        data = r.json()
+        art_id = data[0]["id"] if isinstance(data, list) and data else "unknown"
+        print(f"  ✅ Published: {article['headline'][:60]}... (id: {art_id})")
+        return art_id
+    else:
+        print(f"  ❌ Insert failed ({r.status_code}): {r.text[:300]}")
+        return None
 
-The FIFA package includes the 2026 and 2030 men's World Cups, the 2027 Women's World Cup, multiple age-group tournaments across both genders, the FIFA Futsal World Cup, and the FIFA Intercontinental Cup. Zee will also air docu-series covering grassroots football and the cultural dimensions of participating nations.
 
-## What the diaspora should know
+def validate_article(a):
+    """Validate article meets quality bar."""
+    errors = []
+    if len(a.get("headline", "")) < 20: errors.append("headline too short")
+    if len(a.get("headline", "")) > 200: errors.append("headline too long")
+    if len(a.get("subheadline", "")) < 15: errors.append("subheadline too short")
+    body = a.get("body", "")
+    wc = len(body.split())
+    if wc < 400: errors.append(f"body too short ({wc} words)")
+    if not a.get("slug"): errors.append("no slug")
+    if not a.get("image_url"): errors.append("no image")
+    if a.get("category") != "news": errors.append(f"wrong category: {a.get('category')}")
+    if errors:
+        print(f"  ⚠ Validation errors for '{a.get('slug', '?')}': {', '.join(errors)}")
+        return False
+    print(f"  ✓ Validation passed: {wc} words, slug={a['slug']}")
+    return True
 
-For Indian fans in the United States, the World Cup's proximity makes this one of the most accessible editions ever. The tournament will be held across venues in the US, Canada, and Mexico, with most matches in American time zones. For those with friends and family back home, the question of whether they could watch together just got answered.
 
-Zee's stock jumped roughly 7% on the announcement, reflecting investor enthusiasm for a deal that significantly expands the company's sports portfolio. But the real test comes on June 11 — whether Zee can build a compelling broadcast product around the world's biggest football event in a market where cricket has long dominated the conversation.
+# ===== ARTICLES =====
 
-## The bigger picture
+now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-India is the world's most populous country and arguably FIFA's last major untapped broadcast market. That a deal this significant came down to the wire — just 10 days before kickoff — says less about India's appetite for football and more about the hardball economics of sports rights in a market where cricket commands 90% of sports viewership revenue.
+articles_data = []
 
-For Zee, this is a bet that football's audience in India is ready to grow. For FIFA, it is an acknowledgement that the Indian market required flexibility on price. For fans, it is simply the answer they needed: yes, you can watch the World Cup."""
-    },
-    {
-        "headline": "India Threatens to Roll Back Scotch Whisky Tariff Cuts Unless Britain Backs Down on Steel",
-        "subheadline": "New Delhi signals it may withdraw concessions offered under the India-UK free trade deal as both sides meet to resolve a dispute over steel import quotas and carbon border levies.",
-        "slug": "india-uk-fta-scotch-whisky-steel-tariff-dispute-goyal-kyle-june-2026-20260603",
-        "primary_person": None,
-        "image_search_query": "scotch whisky bottles trade",
-        "image_search_fallback": "international trade deal negotiation",
-        "sources": [
-            {"name": "Reuters", "url": "https://www.reuters.com"},
-            {"name": "The Hindu BusinessLine", "url": "https://www.thehindubusinessline.com"},
-            {"name": "DevDiscourse", "url": "https://www.devdiscourse.com"}
-        ],
-        "body": """India's landmark free trade agreement with the United Kingdom — signed in May 2025 and expected to reshape bilateral commerce by $34 billion over 15 years — is running into trouble before it has even taken effect. The problem is steel, and the weapon India is reaching for is whisky.
+# --- ARTICLE 1: Modi to become India's longest-serving elected PM ---
+print("\n" + "="*60)
+print("ARTICLE 1: Modi to become India's longest-serving elected PM")
+print("="*60)
 
-An Indian trade official said on Monday that New Delhi could withdraw tariff concessions it offered Britain on products including Scotch whisky if London does not address concerns over new steel safeguard measures. "So now the ball is in their court," the official told reporters. "If they do not leverage their free trade agreement, we can always reconsider the concessions we offered."
+art1_slug = "modi-longest-serving-elected-pm-june-10-nehru-record-4399-days-20260603"
+art1_headline = "Modi Will Surpass Nehru on June 10 to Become India's Longest-Serving Elected Prime Minister."
+art1_subheadline = "After 4,399 consecutive days in office, the man from Vadnagar will hold a record that has stood since 1964. The country he governs looks nothing like the one Nehru left behind."
 
-## The steel trigger
+art1_body = """On June 10, Narendra Damodardas Modi will complete 4,399 consecutive days as Prime Minister of India, surpassing the 4,398-day record set by Jawaharlal Nehru between his first oath after the 1952 general election and his death on May 27, 1964. It will be the quietest milestone in a career built on spectacle.
 
-From July 1, 2026, Britain will slash tariff-free quotas on steel imports by 60% and nearly double duties on shipments that exceed the reduced quota to 50%. The measures are designed to protect Britain's domestic steel industry, but they directly threaten Indian exporters who shipped roughly $900 million worth of iron and steel to the UK in the last fiscal year.
+Modi was sworn in for his first term on May 26, 2014, leading the Bharatiya Janata Party to its first outright majority in three decades. He won again in 2019 with an even larger mandate, and secured an unprecedented third consecutive term in 2024 — matching Nehru himself as the only leader to achieve that feat. Last July, he passed Indira Gandhi's longest uninterrupted tenure of 4,077 days. Now he stands a week from overtaking the man whose name is synonymous with the republic itself.
 
-India is not alone in its objections. Brazil, Turkey, Japan, South Korea, Switzerland, and Australia have all raised concerns at the World Trade Organization over Britain's new restrictions.
+## A Country Transformed Beyond Recognition
 
-## Whisky as leverage
+The comparison between the two tenures is a story of how profoundly India has changed. When Nehru led the country through its first general election in 1951-52, the electorate numbered roughly 17 crore voters. By the time Modi took office, that figure had swelled past 83 crore. In the 2024 elections, 744 political parties contested — up from just 53 in Nehru's era.
 
-Under the Comprehensive Economic and Trade Agreement (CETA), India had agreed to cut tariffs on Scotch whisky from 150% to 75% immediately, with a further reduction to 40% over 10 years. That was one of the deal's headline concessions — a symbolic market opening for one of Britain's most iconic exports.
+India's population has more than quadrupled, from around 36 crore at independence to over 146 crore today. The economy that Nehru nurtured through five-year plans and state-led industrialisation has given way to one that grew at an estimated 7.2 percent in the most recent quarter — still the fastest among major economies on Earth, even as war in the Gulf and a sinking rupee threaten the outlook.
 
-Now India is threatening to take it back, characterising any rollback not as retaliation but as "rebalancing" — a recalibration of a deal whose terms, New Delhi argues, have been undercut by Britain's unilateral actions on steel.
+## The Distinctions Modi Already Holds
 
-## High-level talks in New Delhi
+The longevity record will add to a list of firsts that no other Indian leader can claim. Modi is the only Prime Minister born after independence. He is the longest-serving non-Congress PM in Indian history. He is the first and only non-Congress leader to complete two full terms and to win re-election twice with a majority of his own.
 
-Britain's Trade Secretary Peter Kyle arrived in India on Tuesday for discussions with Commerce Minister Piyush Goyal. India's Commerce Secretary Rajesh Agarwal separately met with UK Permanent Secretary Amanda Brooks to work through what officials diplomatically called "sticking points" delaying the FTA's implementation.
+He is also the only leader — among all Prime Ministers and Chief Ministers — to win six consecutive elections as the head of a political party: Gujarat in 2002, 2007 and 2012, and the Lok Sabha in 2014, 2019 and 2024. That is nearly 24 unbroken years at the helm of a democratically elected government, a record unmatched in Indian democratic history.
 
-A second concern looms behind the steel dispute: Britain's Carbon Border Adjustment Mechanism (CBAM), set to take effect in 2027. Under CBAM, carbon levies would apply to imports of steel, aluminium, and fertilisers — products in which India is a significant exporter. Indian officials want clarity on how CBAM will interact with the FTA before committing to full implementation.
+## What the Record Means for the Diaspora
 
-## Why the diaspora should pay attention
+For the estimated 32 million members of the Indian diaspora, Modi's tenure has been defined by a level of engagement no previous leader attempted. From the sold-out Madison Square Garden address in 2014 to the Howdy Modi rally in Houston to the global yoga campaigns, he has treated the diaspora not as a sentimental afterthought but as a strategic asset.
 
-The India-UK trade corridor matters enormously to the 1.6 million-strong Indian diaspora in Britain and the substantial British business community in India. The FTA was projected to boost bilateral trade by £25.5 billion by 2040, expanding access for Indian textiles, IT services, and pharmaceuticals into the UK while opening India's market to British luxury goods, financial services, and automobiles.
+That relationship has deepened during his third term. The ongoing Iran war has put millions of Indian workers in the Gulf at direct risk — one Indian national was killed in the Kuwait airport drone strike this week — and Modi's five-nation outreach to UAE, Saudi Arabia, Qatar, Bahrain and Oman has been driven in part by the need to protect those communities.
 
-A breakdown in the FTA's implementation would not just be a trade story — it would be a signal that even concluded deals between allied democracies can unravel when domestic industrial politics collide with international commitments. For NRIs in the UK who were expecting cheaper whisky and better trade terms, the answer is: not yet."""
-    },
-    {
-        "headline": "Indian Companies Had Their Best Quarter in Two Years. The Next One Could Undo It All.",
-        "subheadline": "Nifty 50 profits grew 6.6% in Q4 FY26, beating estimates by a wide margin. But eight quarters of single-digit growth, a record foreign fund exit, and the Iran war's energy shock now cloud the outlook.",
-        "slug": "india-q4-fy26-corporate-earnings-beat-iran-war-outlook-fpi-exit-20260603",
-        "primary_person": None,
-        "image_search_query": "Indian stock market Bombay Stock Exchange trading floor",
-        "image_search_fallback": "stock market trading finance India",
-        "sources": [
-            {"name": "Reuters", "url": "https://www.reuters.com"},
-            {"name": "Kotak Institutional Equities", "url": "https://www.kotaksecurities.com"},
-            {"name": "Motilal Oswal Financial Services", "url": "https://www.motilaloswal.com"},
-            {"name": "The Hindu BusinessLine", "url": "https://www.thehindubusinessline.com"}
-        ],
-        "body": """India Inc just turned in its strongest quarterly performance since early 2024 — and almost nobody is celebrating. The numbers for January to March 2026 comfortably beat expectations across every major market segment, but the celebration lasts only as long as it takes to look at what comes next.
+For NRIs in the United States, the record coincides with a moment of acute uncertainty. The Department of Homeland Security has proposed eliminating "duration of status" for student visas, a change that would affect Indian graduates more than any other group. H-1B application fees have crossed $100,000 for many applicants. The diaspora that has thrived under the frameworks of previous decades now faces questions about whether those frameworks will survive.
 
-Nifty 50 companies posted net profit growth of 6.6% year-on-year in Q4 FY26, according to Kotak Institutional Equities. That does not sound dramatic until you consider that analysts had pencilled in just 2.2% growth. The broader universe told an even better story: Motilal Oswal's coverage of 359 companies showed 16% profit growth, nearly double its 8% estimate. Mid-cap earnings grew about 35%, small-caps advanced nearly 20%.
+## The Weight of Comparison
 
-## Who delivered
+Nehru built institutions: the Indian Institutes of Technology, the Planning Commission, the Non-Aligned Movement, the temples of modern India. Modi has built infrastructure: highways, airports, digital payment systems and a biometric identity layer that reaches every citizen. Both were polarising in their time. Both believed deeply in India's civilisational role in the world.
 
-Banks and financial companies drove the largest share of the earnings beat. Stable asset quality and improving credit growth helped lenders at a time when many expected the credit cycle to show strain. Metal producers benefited from rising global prices — a direct consequence of the supply disruptions the Iran war has caused. Oil marketing companies enjoyed favourable margins.
+The difference is that Nehru's record ended with his death. Modi's will continue to grow, and how long it extends will depend on the same volatile forces — a war-disrupted global economy, a fractious opposition, and a public that has now chosen him three times — that have defined his tenure from the start.
 
-Automobile and telecom companies improved during the quarter. IT firms, however, stayed flat, as mounting concerns over AI-driven disruption and client spending caution kept revenue growth tepid. Pharmaceutical companies struggled with weakness in the US generics market. Cement, consumer staples, and durable goods makers began showing pressure from rising raw material and freight costs — an early preview of what the Iran war's energy shock will do to margins.
+On June 10, the count will tick over to 4,399. The country will barely pause. Modi himself is unlikely to mark it with much fanfare. The record, like most records that matter, will simply become a fact — one more data point in a career that has already rewritten most of India's political arithmetic.
 
-## Eight quarters and counting
+*Sources: Inshorts, Global India Broadcast News, Wikipedia, IANS*"""
 
-The headline number obscures a troubling pattern. This was the eighth consecutive quarter of single-digit earnings growth for India's top-50 companies. The broader economy has been expanding, consumption tax cuts boosted demand, and the Reserve Bank of India cut rates by 125 basis points through last year. Yet corporate earnings have stubbornly refused to accelerate into double digits.
+img1_url, img1_attr = source_image(
+    person_name="Narendra Modi",
+    search_terms=["Narendra Modi Prime Minister India 2026", "Modi Parliament India"],
+    pexels_query="India parliament government",
+    slug=art1_slug
+)
 
-The reason is structural. India's largest companies are no longer growing fast enough to absorb rising input costs, while mid-caps and small-caps — which have been the real earnings story for two years — remain too small a share of index weight to move the headline numbers.
+art1 = {
+    "headline": art1_headline,
+    "subheadline": art1_subheadline,
+    "body": art1_body,
+    "slug": art1_slug,
+    "category": "news",
+    "vertical": "news",
+    "status": "published",
+    "published_at": now_iso,
+    "image_url": img1_url,
+    "image_attribution": img1_attr or "Wikimedia Commons",
+    "is_editorial": False,
+    "sources": json.dumps(["Inshorts", "Global India Broadcast News", "Wikipedia", "IANS"]),
+}
+articles_data.append(art1)
 
-## The Iran shadow
 
-Three months into the Iran war, the energy shock is now rippling across the economy. Brent crude has risen 50% since the conflict began. Base chemical prices have surged more than 60% — the fastest rate ever recorded. Goldman Sachs has labelled India the most vulnerable major economy, estimating a potential 3.6% GDP hit.
+# --- ARTICLE 2: Supreme Court landmark ruling on sex work ---
+print("\n" + "="*60)
+print("ARTICLE 2: Supreme Court ruling on voluntary sex work")
+print("="*60)
 
-"Q4 may have marked a temporary relief, but does not yet signal improved momentum for quarters to come," Bernstein said in a note. Kotak was blunter: "A prolonged crisis could result in a deeper negative impact on both the economy and earnings."
+art2_slug = "supreme-court-voluntary-sex-work-not-illegal-trafficking-consent-ruling-20260603"
+art2_headline = "India's Supreme Court Just Drew a Line Between Sex Work and Trafficking. The Distinction Changes Everything."
+art2_subheadline = "In a landmark ruling, Justices Pardiwala and Mahadevan held that adult women who choose sex work cannot be arrested, harassed or forcibly rehabilitated. The 70-year-old law stays. The way it is enforced does not."
 
-Consensus FY27 earnings estimates have already been revised lower. Nomura's Saion Mukherjee noted that the downgrades reflect growing concerns over oil, commodities, and the broader fallout from the Iran conflict.
+art2_body = """The Supreme Court of India has issued one of the most consequential rulings on personal liberty in recent years, holding that adult women who voluntarily engage in sex work cannot be treated as criminals, subjected to police harassment, or forcibly placed in rehabilitation facilities against their will.
 
-## The foreign exit
+The ruling, delivered by a bench of Justice J.B. Pardiwala and Justice R. Mahadevan in *Prajwala v. Union of India*, draws an explicit and legally binding distinction between voluntary adult sex work and human trafficking for commercial sexual exploitation. Consent, the Court declared, is the central factor in determining which side of that line a case falls on.
 
-Foreign portfolio investors sold a record $2.22 billion of Indian shares in a single session last Friday as MSCI's May rebalancing took effect. Over the past four trading days, the Sensex has fallen 2.9% and the Nifty 2.7%. India has slipped to seventh in global market-cap rankings, overtaken by South Korea's AI-fuelled chip boom.
+## What the Court Actually Said
 
-The interest rate outlook adds another layer of complexity. The RBI meets this week for what Reuters calls one of the toughest rate calls in recent memory. Nearly 80% of economists expect the central bank to hold at 5.25%, but the swap market is pricing in nearly 100 basis points of tightening over the next 12 months.
+The bench held that the Immoral Traffic (Prevention) Act (ITPA), enacted in 1956, was designed to combat trafficking, exploitation and commercial profiteering from prostitution — not to criminalise adults who engage in sex work of their own free will. While operating brothels, trafficking persons, and profiting from another's sexual labour remain illegal, the act of consensual sex work by an adult is not a criminal offence under Indian law.
 
-## What the diaspora should watch
+The Court directed law enforcement agencies across the country to stop targeting, arresting or penalising adults engaged in voluntary sex work. During raids — which have historically swept up trafficking victims and voluntary sex workers alike — police must focus specifically on identifying coercion, trafficking, abuse and exploitation, rather than treating everyone found in a prostitution-related setting as either a criminal or a helpless victim.
 
-For NRIs with Indian market exposure — whether through direct equity holdings, mutual funds, or property-linked investments — the next quarter will be the real test. The Q4 beat was earned on last year's momentum. The question is whether Indian companies can hold margins and growth targets as crude stays above $90, the rupee weakens, the monsoon disappoints, and foreign capital continues to exit. The earnings story that just delivered a pleasant surprise may not be in a position to repeat it."""
-    },
-]
+"It is the victim's life, liberty, and future that the order will determine," the Court observed, "and thus it would be incongruous to hold that all of this can be decided without any regard for what the victim wants."
 
-# ─── Main ───
+## The Victim Protection Plan
 
-if __name__ == '__main__':
-    print(f"\n{'='*60}")
-    print(f"The Videshi News Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    print(f"{'='*60}\n")
-    
-    success = 0
-    failed = 0
-    
-    for i, article in enumerate(ARTICLES, 1):
-        print(f"\n[{i}/{len(ARTICLES)}] {article['headline'][:60]}...")
-        
-        # Validate article
-        body_words = len(article['body'].split())
-        if body_words < 400:
-            print(f"  ✗ Body too short: {body_words} words (min 400)")
-            failed += 1
+The ruling went beyond declaration and into prescription. The Court framed a detailed Victim Protection Plan that fundamentally restructures how rescued persons are handled under Section 17 of the ITPA.
+
+Under the new framework, when an adult is produced before a magistrate following a raid, a threshold inquiry must first establish whether the individual considers herself a voluntary sex worker and whether she wishes to be placed in protective custody. If the answer to either question is no, the state cannot compel her into long-term detention in a protective home.
+
+The Court explicitly rejected the paternalistic "one-size-fits-all" approach that has governed enforcement for decades, under which every person found in a prostitution-related situation was funnelled through the same rescue-and-rehabilitate pipeline regardless of their circumstances.
+
+Additional directions include: rescued persons must not be detained overnight at police stations under any circumstances; statements must be recorded only after a person's safety is ensured and initial trauma has subsided; and protection must not be made conditional on a victim's willingness to cooperate with law enforcement or participate in legal proceedings.
+
+## Why This Matters Beyond India's Borders
+
+The ruling has direct implications for how India is assessed on global anti-trafficking indices, including the U.S. State Department's annual Trafficking in Persons (TIP) Report. India has oscillated between Tier 2 and the Tier 2 Watch List for years, with enforcement practices — particularly the conflation of voluntary sex work with trafficking — cited as a persistent weakness.
+
+By mandating a consent-first framework and separating voluntary sex work from trafficking in operational terms, the Court has aligned Indian jurisprudence more closely with the approach recommended by UNAIDS, the World Health Organization, and Amnesty International, all of which have called for the decriminalisation of consensual adult sex work as a public health and human rights imperative.
+
+For the Indian diaspora, the ruling is part of a broader pattern of judicial activism that has defined the Pardiwala Court's recent term. The same bench that delivered this ruling also permitted passive euthanasia for the first time earlier this year in *Harish Rana v. Union of India*. Together, these decisions mark a Court that is willing to engage with questions of bodily autonomy, dignity and the limits of state power in ways that previous benches avoided.
+
+## The Gap Between Law and Practice
+
+The challenge, as with most progressive Supreme Court rulings in India, will be enforcement. The ITPA remains unreformed. Police forces across states operate under varying levels of training and political pressure. Anti-trafficking NGOs — some of which have been criticised for conducting coercive "rescues" of their own — will need to recalibrate their operations to respect the autonomy the Court has now formally protected.
+
+The Court acknowledged this gap implicitly by directing that its guidelines be circulated to all state police forces and that compliance be monitored. Whether that monitoring materialises with any teeth remains the open question.
+
+What is no longer an open question is the legal principle. Voluntary adult sex work is not illegal in India. The Supreme Court has said so, not for the first time, but with a clarity and a set of enforceable directions that leave no room for the studied ambiguity that has governed this space for seven decades.
+
+*Sources: LiveLaw, Bar and Bench, The CSR Journal, News18*"""
+
+img2_url, img2_attr = source_image(
+    person_name=None,
+    search_terms=["Supreme Court of India building 2024", "Supreme Court India exterior"],
+    pexels_query="India Supreme Court justice building",
+    slug=art2_slug
+)
+
+art2 = {
+    "headline": art2_headline,
+    "subheadline": art2_subheadline,
+    "body": art2_body,
+    "slug": art2_slug,
+    "category": "news",
+    "vertical": "news",
+    "status": "published",
+    "published_at": now_iso,
+    "image_url": img2_url,
+    "image_attribution": img2_attr or "Wikimedia Commons",
+    "is_editorial": False,
+    "sources": json.dumps(["LiveLaw", "Bar and Bench", "The CSR Journal", "News18"]),
+}
+articles_data.append(art2)
+
+
+# --- ARTICLE 3: Trump confirms calling Netanyahu "crazy" ---
+print("\n" + "="*60)
+print("ARTICLE 3: Trump-Netanyahu phone call fallout")
+print("="*60)
+
+art3_slug = "trump-confirms-netanyahu-crazy-call-iran-ceasefire-india-oil-20260603"
+art3_headline = "Trump Just Confirmed He Called Netanyahu 'Crazy.' The Ceasefire India Needs Is Nowhere Close."
+art3_subheadline = "The leaked phone call, the stalled talks with Iran, and the overnight strikes on Kuwait and Bahrain reveal a war that is fracturing the alliances meant to end it. India, with 9 million workers in the Gulf, has no good options."
+
+art3_body = """Donald Trump has confirmed that he called Israeli Prime Minister Benjamin Netanyahu "fucking crazy" in a phone call on Monday, in what may be the most candid public acknowledgement of friction between the two leaders since they launched the war on Iran in late February.
+
+"I did," Trump told the *Pod Force One* podcast when asked about the exchange, first reported by Axios. According to the report, Trump told Netanyahu: "You're fucking crazy. You'd be in prison if it weren't for me. I'm saving your ass. Everybody hates you now. Everybody hates Israel because of this."
+
+Trump characterised the call as a necessary intervention to stop Israel from escalating operations in Lebanon, where Israeli ground forces had made their deepest incursion in 26 years. He said Netanyahu "turned his troops around" after the conversation. Netanyahu, in a CNBC interview, played it down as a "tactical disagreement" between close allies.
+
+## The Ceasefire Is Collapsing in Real Time
+
+The phone call matters because it landed in the middle of the most fragile moment in the three-month-old conflict. Within hours of Trump's claimed success in de-escalating Lebanon, Iranian drones and missiles struck Kuwait International Airport, killing one person — confirmed as an Indian national — and injuring more than 60. Bahrain said it intercepted missiles and drones targeting U.S. military positions. The U.S. military responded with strikes on an Iranian ground control station on Qeshm Island near the Strait of Hormuz.
+
+Iran's Revolutionary Guards acknowledged attacking the headquarters of the U.S. Fifth Fleet in Bahrain, though U.S. Central Command denied its bases had been hit. Both sides said they were retaliating for earlier attacks. Iran's Foreign Ministry called the U.S. strikes "acts of aggression" that violated the ceasefire. A senior Emirati diplomat called for "a firm, unified, and cohesive Gulf position" against Iran.
+
+The ceasefire, announced with fanfare weeks ago, now exists in name only. Iran's negotiators have stopped communicating with ceasefire mediators, Iranian media reported, linking the suspension to Israel's continued operations in Lebanon and Gaza. Trump called reports of a halt in talks "false and erroneous." The gap between what the White House says and what is happening on the ground has never been wider.
+
+## India's Nine Million People in the Danger Zone
+
+For India, the disintegration of the ceasefire is not an abstract diplomatic problem. An estimated 8.9 million Indian nationals live and work in the Gulf states, concentrated in the UAE, Saudi Arabia, Kuwait, Qatar, Bahrain and Oman. The Indian killed at Kuwait airport this week was a worker — one of hundreds of thousands who staff the airports, construction sites, hospitals and service industries that keep these economies running.
+
+India's Shipping Ministry has said all Indian seafarers in West Asia are safe but acknowledged it would send a vessel to the Strait of Hormuz only "when the situation is conducive." The strait, through which nearly 40 percent of India's oil imports passed before the war, remains largely closed. Oil hit $97 a barrel this week. India imports roughly 90 percent of the crude it consumes.
+
+Prime Minister Modi has responded with an unprecedented five-nation Gulf outreach — meetings with the leaders of the UAE, Saudi Arabia, Qatar, Bahrain and Oman — driven by two calculations: securing alternative energy supplies and protecting Indian workers. Venezuela's acting President Delcy Rodriguez arrived in India this week for talks focused on energy, as Indian imports of Venezuelan crude have climbed to 380,000 barrels a day, the highest since 2020.
+
+## Why the Trump-Netanyahu Rift Matters for New Delhi
+
+The revealed tension between Trump and Netanyahu introduces a new variable into India's calculations. New Delhi has maintained careful relations with both Washington and Tel Aviv, and has avoided taking a public position on the war itself. But if the two architects of the conflict cannot agree on how to fight it — let alone how to end it — the prospect of a negotiated resolution that reopens the Strait of Hormuz recedes further.
+
+An interim deal, Reuters reported, is the most likely outcome: a framework that reopens the strait, provides Iran with limited sanctions relief, and gives Trump a political off-ramp. But even that modest agreement remains unsigned. Iran has demanded that any deal include Lebanon. Netanyahu has said Israel will continue operations in Lebanon. Trump says he started the war to prevent Iran from acquiring nuclear weapons and insists "there would be no Israel" without him.
+
+For the diaspora, the situation is double-edged. NRIs in the Gulf face direct physical risk from a conflict that shows no sign of ending. NRIs in the United States face the economic consequences of a prolonged oil shock that is already driving inflation, complicating the Federal Reserve's rate decisions, and weakening the rupee. The RBI's upcoming rate decision — its hardest in years, by most accounts — will be shaped in large part by how far this war spirals.
+
+The phone call between Trump and Netanyahu was not a breakthrough. It was a symptom: of a war without a strategy, an alliance under strain, and a ceasefire that no one on any side seems willing or able to enforce.
+
+*Sources: Reuters, Axios, AP, NPR, The Times, Energy Connects*"""
+
+img3_url, img3_attr = source_image(
+    person_name="Donald Trump",
+    search_terms=["Trump Netanyahu meeting 2025", "Donald Trump White House 2026"],
+    pexels_query="White House Washington politics",
+    slug=art3_slug
+)
+
+art3 = {
+    "headline": art3_headline,
+    "subheadline": art3_subheadline,
+    "body": art3_body,
+    "slug": art3_slug,
+    "category": "news",
+    "vertical": "news",
+    "status": "published",
+    "published_at": now_iso,
+    "image_url": img3_url,
+    "image_attribution": img3_attr or "Wikimedia Commons",
+    "is_editorial": False,
+    "sources": json.dumps(["Reuters", "Axios", "Associated Press", "NPR", "The Times", "Energy Connects"]),
+}
+articles_data.append(art3)
+
+
+# ===== PUBLISH ALL =====
+print("\n" + "="*60)
+print("PUBLISHING ARTICLES")
+print("="*60)
+
+published = 0
+for art in articles_data:
+    print(f"\n--- {art['slug'][:60]} ---")
+    if not art.get("image_url"):
+        print("  ⚠ Skipping: no image found")
+        continue
+    if not validate_article(art):
+        # Try to publish anyway if body is decent
+        wc = len(art.get("body", "").split())
+        if wc < 400:
+            print("  ❌ Skipping: body too short")
             continue
-        
-        if len(article['headline']) > 200:
-            print(f"  ✗ Headline too long: {len(article['headline'])} chars")
-            failed += 1
-            continue
-            
-        if len(article['subheadline']) < 15:
-            print(f"  ✗ Subheadline too short: {len(article['subheadline'])} chars")
-            failed += 1
-            continue
-        
-        art_id = insert_article(article)
-        if art_id:
-            success += 1
-        else:
-            failed += 1
-        
-        time.sleep(1)  # Rate limiting
-    
-    print(f"\n{'='*60}")
-    print(f"Done: {success} published, {failed} failed")
-    print(f"{'='*60}\n")
+    result = insert_article(art)
+    if result:
+        published += 1
+
+print(f"\n{'='*60}")
+print(f"DONE: {published}/{len(articles_data)} articles published")
+print(f"{'='*60}")
