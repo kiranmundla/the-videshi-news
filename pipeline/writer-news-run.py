@@ -1,425 +1,444 @@
 #!/usr/bin/env python3
-"""News writer — publishes 4 fresh articles to Supabase."""
+"""News writer for The Videshi — June 3, 2026 evening run."""
 
-import json, os, sys, uuid, re, time
+import json, os, sys, uuid, re, time, urllib.parse
 from datetime import datetime, timezone
 
 # Load env
 def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                if line.startswith('export '):
-                    line = line[7:]
-                key, _, val = line.partition('=')
-                val = val.strip().strip('"').strip("'")
-                os.environ[key.strip()] = val
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    k, v = line.split('=', 1)
+                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
 load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/.env.pexels'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-import requests
-import urllib.parse
+import subprocess
 
-# ─── Image sourcing ───
+def sb_headers():
+    return {
+        'apikey': SUPABASE_KEY,
+        'Authorization': f'Bearer {SUPABASE_KEY}',
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+    }
+
+def curl_json(method, url, data=None, extra_headers=None):
+    """Use curl for Supabase requests."""
+    cmd = ['curl', '-sS', '-X', method, url]
+    headers = sb_headers()
+    if extra_headers:
+        headers.update(extra_headers)
+    for k, v in headers.items():
+        cmd.extend(['-H', f'{k}: {v}'])
+    if data:
+        cmd.extend(['-d', json.dumps(data)])
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    if result.returncode != 0:
+        print(f"  ✗ curl error: {result.stderr}")
+        return None
+    try:
+        return json.loads(result.stdout) if result.stdout.strip() else None
+    except:
+        print(f"  ✗ parse error: {result.stdout[:200]}")
+        return None
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
-    try:
-        r = requests.get(
-            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
-        )
-        if r.status_code == 200:
-            data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+    cmd = ['curl', '-sS', '-H', 'User-Agent: TheVideshi/1.0 (thevideshi.com)',
+           f'https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}']
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+    if result.returncode == 0 and result.stdout.strip():
+        try:
+            data = json.loads(result.stdout)
+            # Prefer originalimage (higher res), fall back to thumbnail
+            img = data.get('originalimage', {}).get('source') or data.get('thumbnail', {}).get('source')
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
-    except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        except:
+            pass
+    print(f"  ⚠ No Wikipedia image for '{person_name}'")
     return None
 
-def fetch_pexels_image(query, fallback_query=None):
-    """Fetch a relevant image from Pexels. Returns URL or None."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
-    
-    for q in [query, fallback_query]:
-        if not q:
-            continue
+def fetch_wikimedia_commons_images(search_query, limit=5):
+    """Search Wikimedia Commons for CC-licensed images."""
+    params = urllib.parse.urlencode({
+        'action': 'query',
+        'generator': 'search',
+        'gsrsearch': search_query,
+        'gsrnamespace': '6',
+        'gsrlimit': str(limit),
+        'prop': 'imageinfo',
+        'iiprop': 'url|size|mime',
+        'iiurlwidth': '1200',
+        'format': 'json'
+    })
+    url = f'https://commons.wikimedia.org/w/api.php?{params}'
+    cmd = ['curl', '-sS', '-H', 'User-Agent: TheVideshi/1.0 (thevideshi.com)', url]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+    if result.returncode == 0 and result.stdout.strip():
         try:
-            import subprocess
-            result = subprocess.run(
-                ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                 f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'],
-                capture_output=True, text=True, timeout=15
-            )
+            data = json.loads(result.stdout)
+            pages = data.get('query', {}).get('pages', {})
+            results = []
+            for pid, page in pages.items():
+                ii = page.get('imageinfo', [{}])[0]
+                mime = ii.get('mime', '')
+                if not mime.startswith('image/') or mime == 'image/svg+xml':
+                    continue
+                if ii.get('width', 0) < 300:
+                    continue
+                results.append({
+                    'url': ii.get('thumburl') or ii.get('url', ''),
+                    'original_url': ii.get('url', ''),
+                    'title': page.get('title', ''),
+                    'width': ii.get('width', 0),
+                    'height': ii.get('height', 0),
+                })
+            if results:
+                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
+                return results
+        except:
+            pass
+    print(f"  ⚠ No Wikimedia Commons results for '{search_query}'")
+    return []
+
+def fetch_pexels_image(query):
+    """Search Pexels for an image. Returns URL or None."""
+    if not PEXELS_KEY:
+        return None
+    cmd = ['curl', '-sS',
+           '-H', f'Authorization: {PEXELS_KEY}',
+           f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3&orientation=landscape']
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+    if result.returncode == 0 and result.stdout.strip():
+        try:
             data = json.loads(result.stdout)
             photos = data.get('photos', [])
             if photos:
-                url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('large')
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
-        except Exception as e:
-            print(f"  ⚠ Pexels error for '{q}': {e}")
+                url = photos[0]['src']['large2x']
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                return url
+        except:
+            pass
+    print(f"  ⚠ No Pexels image for '{query}'")
     return None
 
-def validate_image(url):
-    """Validate image URL returns a real image > 5KB."""
-    if not url:
-        return False
+def download_and_upload_image(img_url, slug):
+    """Download image, compress, upload to Supabase storage."""
+    # Download
+    cmd = ['curl', '-sS', '-L', '-o', f'/tmp/{slug}.jpg',
+           '-H', 'User-Agent: TheVideshi/1.0 (thevideshi.com)',
+           img_url]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    if result.returncode != 0:
+        print(f"  ✗ Download failed for {img_url[:80]}")
+        return None
+    
+    # Check file size
+    fpath = f'/tmp/{slug}.jpg'
+    if not os.path.exists(fpath) or os.path.getsize(fpath) < 5000:
+        print(f"  ✗ Downloaded file too small or missing")
+        return None
+    
+    file_size = os.path.getsize(fpath)
+    print(f"  ✓ Downloaded {file_size} bytes")
+    
+    # Compress with PIL
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if 'image' in ct and cl > 5000:
-            return True
-        # Try GET for servers that don't support HEAD well
-        r = requests.get(url, timeout=10, stream=True,
-                        headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if 'image' in ct and cl > 5000:
-            return True
-        # Check first chunk
-        chunk = next(r.iter_content(8192), b'')
-        if len(chunk) > 5000 and 'image' in ct:
-            return True
+        from PIL import Image
+        import io
+        img = Image.open(fpath)
+        if img.mode in ('RGBA', 'P'):
+            img = img.convert('RGB')
+        if img.width > 1200:
+            ratio = 1200 / img.width
+            img = img.resize((1200, int(img.height * ratio)), Image.LANCZOS)
+        buf = io.BytesIO()
+        img.save(buf, format='JPEG', quality=80, optimize=True)
+        compressed = buf.getvalue()
+        with open(fpath, 'wb') as f:
+            f.write(compressed)
+        print(f"  ✓ Compressed to {len(compressed)} bytes ({img.width}x{img.height})")
+    except ImportError:
+        print("  ⚠ PIL not available, uploading as-is")
     except Exception as e:
-        print(f"  ⚠ Image validation failed for {url[:60]}: {e}")
-    return False
-
-def is_banned_url(url):
-    """Check if URL is from a banned source."""
-    banned = ['fbcdn.net', 'cdninstagram.com', 'lookaside.fbsbx.com']
-    banned_params = ['_nc_ht=', '_nc_cat=', 'ccb=']
-    for b in banned:
-        if b in url:
-            return True
-    for p in banned_params:
-        if p in url:
-            return True
-    return False
-
-def get_image(person_name=None, pexels_query=None, pexels_fallback=None):
-    """Get best available image. Wikipedia first for people, then Pexels."""
-    if person_name:
-        url = fetch_wikipedia_person_image(person_name)
-        if url and not is_banned_url(url) and validate_image(url):
-            return url, "Wikimedia Commons"
+        print(f"  ⚠ Compression failed: {e}, uploading as-is")
     
-    if pexels_query:
-        url = fetch_pexels_image(pexels_query, pexels_fallback)
-        if url and not is_banned_url(url) and validate_image(url):
-            return url, "Pexels"
+    # Upload to Supabase storage
+    upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{slug}.jpg"
+    cmd = ['curl', '-sS', '-X', 'POST', upload_url,
+           '-H', f'Authorization: Bearer {SUPABASE_KEY}',
+           '-H', 'Content-Type: image/jpeg',
+           '-H', 'x-upsert: true',
+           '--data-binary', f'@{fpath}']
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
     
-    return None, None
-
-# ─── Supabase helpers ───
-
-def sb_insert(table, data):
-    """Insert a row into Supabase."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/{table}",
-        headers={
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": "application/json",
-            "Prefer": "return=representation"
-        },
-        json=data,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            return result[0]
-        return result
+    public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{slug}.jpg"
+    
+    # Verify upload
+    verify_cmd = ['curl', '-sS', '-o', '/dev/null', '-w', '%{http_code}', public_url]
+    verify = subprocess.run(verify_cmd, capture_output=True, text=True, timeout=10)
+    if verify.stdout.strip() == '200':
+        print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+        return public_url
     else:
-        print(f"  ✗ Insert error {r.status_code}: {r.text[:200]}")
+        print(f"  ✗ Upload verification failed (HTTP {verify.stdout.strip()})")
         return None
 
-# ─── Articles ───
+def validate_image_url(url):
+    """Verify an image URL returns HTTP 200 with image content."""
+    cmd = ['curl', '-sS', '-o', '/dev/null', '-w', '%{http_code}|%{content_type}|%{size_download}',
+           '-H', 'User-Agent: TheVideshi/1.0 (thevideshi.com)', '-L', url]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+    if result.returncode == 0:
+        parts = result.stdout.strip().split('|')
+        if len(parts) >= 3:
+            code, ctype, size = parts[0], parts[1], float(parts[2])
+            if code == '200' and 'image' in ctype and size > 5000:
+                return True
+    return False
 
-articles = []
+# ============ ARTICLES ============
 
-# ── Article 1: Supreme Court Reliance ₹447 Crore ──
-articles.append({
-    "headline": "Supreme Court Overturns ₹447 Crore Fraud Order Against Reliance. SEBI Must Return ₹250 Crore.",
-    "subheadline": "India's apex court ruled that breaching position limits is not the same as committing fraud — a distinction that could reshape how SEBI pursues market manipulation cases for years to come.",
-    "slug": "supreme-court-reliance-industries-sebi-447-crore-fraud-overturned-rpl-20260530",
-    "category": "news",
-    "vertical": "news",
-    "person": "Mukesh Ambani",
-    "pexels_query": "India Supreme Court building",
-    "pexels_fallback": "India stock market trading",
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com/world/india/"},
-        {"name": "LiveMint", "url": "https://www.livemint.com/"},
-        {"name": "Bar and Bench", "url": "https://www.barandbench.com/"},
-        {"name": "LiveLaw", "url": "https://www.livelaw.in/"}
-    ]),
-    "body": """India's Supreme Court on Friday handed Reliance Industries a major legal victory, overturning a ₹447.27 crore disgorgement order imposed by the Securities and Exchange Board of India in a case that has wound through the Indian legal system for nearly two decades.
+articles = [
+    {
+        "headline": "A Fire in a Delhi Hotel Killed 21 People, Most of Them Foreign Nationals Who Came for Medical Treatment.",
+        "subheadline": "The Flourish Stay B&B in Malviya Nagar operated 25 rooms on a licence that allowed six. The owner is on the run, and the building had no fire safety clearance.",
+        "slug": "delhi-malviya-nagar-hotel-fire-21-dead-foreign-nationals-medical-tourism-20260603",
+        "category": "news",
+        "vertical": "news",
+        "sources": ["Reuters", "Livemint", "PTI", "NDTV", "AP News"],
+        "person_search": "Malviya Nagar Delhi",
+        "commons_search": ["Delhi fire", "Delhi hotel fire", "Malviya Nagar New Delhi"],
+        "pexels_search": "fire building India emergency",
+        "body": """A fire that started before 9 AM on Wednesday in a ground-floor restaurant in south Delhi's Malviya Nagar tore through a six-storey building above it, killing at least 21 people and injuring more than 40 others. Seventeen of the dead were foreign nationals — nine from African countries including Liberia, Nigeria and Mozambique, two from Turkmenistan, and others from Bangladesh and Central Asian nations. Most had come to Delhi for medical treatment at nearby Max Hospital and were staying at the budget accommodation upstairs.
 
-A bench comprising Justices J.B. Pardiwala and R. Mahadevan set aside findings of fraud and market manipulation that SEBI had recorded against Mukesh Ambani's conglomerate in connection with trading in shares and derivatives of Reliance Petroleum Ltd during November 2007. The court directed SEBI to refund ₹250 crore that Reliance had deposited in the Investor Protection Fund during the pendency of the appeal.
+The blaze at the Flourish Stay B&B in Hauz Rani, a congested urban village wedged between upscale malls and major hospitals, was reported to Delhi Fire Services at approximately 8:48 AM. Flames from the Lemon Green restaurant on the ground floor raced through the narrow stairwell and up five floors, smoke-locking dozens of guests in their rooms. Survivors described waking to thick black smoke with no visible exit.
 
-## What the Case Was About
+## A Building That Should Not Have Been a Hotel
 
-The dispute dates back to November 2007, when Reliance Industries — then holding roughly 75 percent of Reliance Petroleum — decided to sell about 5 percent of its stake, amounting to approximately 22.5 crore shares. Ahead of the sale, RIL had entered into arrangements with 12 entities that took short positions in RPL futures contracts. The profits and losses from those trades ultimately flowed back to the parent company.
+Investigations have already revealed that the B&B operated 25 rooms despite holding a licence for only six. The building lacked a fire No Objection Certificate (NOC), a mandatory requirement for any commercial accommodation in Delhi. Local BJP MLA Satish Upadhyay confirmed that the establishment appeared to have operated without basic fire safety provisions, including emergency exits and fire extinguishers on upper floors.
 
-SEBI investigated the transactions and, in a 2020 order, ruled that the arrangement amounted to fraud and market manipulation. The regulator said RIL had circumvented position limits in derivatives, cornered the market, and influenced settlement prices. SEBI directed the company to repay ₹447.27 crore — plus 12 percent annual interest — to investors.
+Delhi Fire Services deployed 10 to 12 fire tenders as the situation worsened. Rescue teams evacuated between 40 and 47 people, three of whom were pulled from the basement. Many of the survivors were found clinging to windows or jumping from upper floors onto mattresses that local residents had laid on the street below.
 
-Reliance challenged the order before the Securities Appellate Tribunal, which upheld SEBI's findings in a majority decision. The company then approached the Supreme Court.
+## Owner on the Run, Lookout Circular Issued
 
-## The Court's Reasoning
+Delhi Police identified the building's co-owner as Lovkesh Bajaj and registered a First Information Report under culpable homicide and other relevant sections of the Bhartiya Nyaya Sanhita. When officers arrived at Bajaj's residence, he was not there. Police have since issued a lookout circular to prevent him from leaving the country, and multiple teams are conducting raids across the capital.
 
-The Supreme Court held that the SAT had committed an "egregious error" in sustaining SEBI's fraud findings. In a 136-page judgment, the court drew a critical distinction between regulatory violations and fraud.
+Authorities are also examining links between Bajaj and other commercial properties he reportedly owns, to determine whether a pattern of safety violations exists.
 
-"There is no legal requirement to ensure a perfect hedge with a 1:1 ratio," the court observed, adding that hedging is a legitimate risk-management tool. The bench ruled that a breach of position limits is a regulatory violation but does not, by itself, establish the higher threshold of fraud required under the SEBI (Prohibition of Fraudulent and Unfair Trade Practices) Regulations.
+## A Medical Tourism Trap
 
-SEBI, the court said, had failed to meet the burden of proof required to establish that Reliance had engaged in deliberate manipulation.
+The tragedy has thrown a harsh light on a parallel accommodation economy that has grown up around Delhi's premier hospitals. Budget hotels, B&Bs and paying-guest arrangements in areas like Malviya Nagar, Saket and Hauz Khas routinely house patients' families — often for weeks at a time — while relatives undergo treatment. Many of these properties operate in regulatory grey zones, with licences that do not match their actual scale.
 
-## What Survived
+Max Healthcare Group Medical Director Dr Sandeep Budhiraja said eight patients remain on ventilator support, most suffering from severe smoke inhalation. One patient with burns covering more than 25 per cent of the body was transferred to Safdarjung Hospital's burn ward. Several others sustained fractures from jumping.
 
-The ruling was not a complete exoneration. The Supreme Court upheld a separate ₹25 crore penalty imposed on RIL for violating disclosure requirements under SEBI's 2001 derivatives position-limit framework. The company's breach of position limits was acknowledged as a regulatory failure — just not fraud.
+## Government Response
 
-## Why This Matters for NRIs and Indian Markets
+Prime Minister Narendra Modi called the incident "tragic" and announced an ex gratia payment of ₹2 lakh from the PM National Relief Fund for the next of kin of each person who died, and ₹50,000 for the injured. Delhi Chief Minister Rekha Gupta said fire services, police and disaster response teams had been mobilised immediately, but stopped short of announcing a broader audit of similar establishments.
 
-The judgment is likely to have significant implications for how India's capital markets regulator pursues market manipulation cases going forward. By raising the evidentiary bar for fraud findings, the court has effectively limited SEBI's ability to treat every position-limit violation as evidence of manipulative intent.
+The Ministry of External Affairs confirmed it is coordinating with embassies of the affected countries. Most of the foreign victims' families were already in Delhi — the very reason they were staying in the building.
 
-For NRI investors with exposure to Indian equities — and particularly to Reliance, which is one of the most widely held stocks among diaspora investors — the ruling removes a long-standing legal overhang. Reliance Industries, which recently became the first Indian company to cross $120 billion in annual revenue, has been carrying this case on its books for years.
+For a city that markets itself as a global medical tourism destination, the Malviya Nagar fire raises an uncomfortable question: who is responsible for ensuring that the thousands of foreign patients and their families who come to Delhi each year for affordable healthcare are not housed in deathtraps?"""
+    },
+    {
+        "headline": "Russia's Biggest Bank Just Asked India to Send More Workers. Moscow's Construction Sites Cannot Function Without Them.",
+        "subheadline": "Sberbank called for simplified immigration at the St. Petersburg Economic Forum. Indian work permits in Russia jumped from 5,000 to 72,000 in four years, and the country still needs 789,000 more construction workers by 2030.",
+        "slug": "russia-sberbank-indian-workers-construction-labor-shortage-st-petersburg-forum-20260603",
+        "category": "news",
+        "vertical": "news",
+        "sources": ["Reuters", "DevDiscourse", "European Interest"],
+        "person_search": None,
+        "commons_search": ["St. Petersburg International Economic Forum", "Sberbank Russia", "Indian workers Russia construction"],
+        "pexels_search": "construction workers building site",
+        "body": """Russia's largest bank, Sberbank, on Wednesday called for India to send significantly more workers to help fill a construction labour shortage that has become one of the most pressing constraints on the Russian economy. The appeal came at the St. Petersburg International Economic Forum, where the bank's deputy CEO, Anatoly Popov, told reporters that Indian migrants are critical to keeping Russian building projects on track.
 
-Legal experts say the judgment could also encourage more aggressive legal challenges to SEBI enforcement actions, particularly in cases where the regulator has relied on circumstantial evidence to establish fraud.
+"We work together with partners to develop solutions to simplify the process of entry for prospective foreign workers with the required competencies," Popov said. "Labour migrants from India are well known across many countries and on numerous construction projects."
 
-Neither Reliance Industries nor SEBI immediately responded to requests for comment on the ruling."""
-})
+The numbers tell the story of a labour market in freefall. In 2021, the year before Russia sent its troops into Ukraine, Moscow approved roughly 5,000 work permits for Indian nationals. By last year, that number had surged to nearly 72,000 — accounting for almost a third of Russia's total annual quota for migrant workers on visas. Even so, Sberbank says it is not enough.
 
-# ── Article 2: Fed Rate Hike Signals ──
-articles.append({
-    "headline": "The Fed Is Now Openly Talking About Raising Interest Rates. NRIs With American Mortgages Should Pay Attention.",
-    "subheadline": "Multiple Federal Reserve officials said on Friday they may need to hike rates if the Iran war keeps pushing inflation higher. The PCE index just hit 3.8 percent.",
-    "slug": "fed-rate-hike-signals-iran-war-inflation-nri-mortgages-remittances-20260530",
-    "category": "news",
-    "vertical": "news",
-    "person": None,
-    "pexels_query": "Federal Reserve building Washington DC",
-    "pexels_fallback": "US dollar bills currency finance",
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com/markets/us/"},
-        {"name": "Federal Reserve", "url": "https://www.federalreserve.gov/"},
-        {"name": "Bureau of Economic Analysis", "url": "https://www.bea.gov/"}
-    ]),
-    "body": """For months, the Federal Reserve held the line. Interest rates were in a good place. Patience was the right posture. The Iran war would be temporary. The energy shock would pass.
+## A War-Shaped Labour Crisis
 
-On Friday, that posture cracked.
+Russia's construction sector alone will need an additional 789,000 workers by 2030, according to the country's Labour Ministry. The broader economy faces an immediate shortage of at least 2.3 million workers across manufacturing, services and construction — a deficit that has deepened as the war in Ukraine has pulled hundreds of thousands of working-age men into military service or driven them out of the country entirely.
 
-Multiple Fed officials — including some of the central bank's most dovish voices — publicly acknowledged that interest rates may need to go up, not down, if the war-driven inflation surge proves more persistent than initially expected. For the estimated 4.4 million Indian Americans in the United States, many of whom hold variable-rate mortgages, auto loans, and credit card debt, the shift matters.
+An estimated 300,000 Russians were mobilised for military service, another 500,000 signed defence contracts, and between 600,000 and one million left Russia altogether since the full-scale invasion began in February 2022. The combined effect has hollowed out entire industries. Construction, retail and the service sector have been hit hardest.
 
-## What Changed
+Central Asian workers, historically the backbone of Russia's migrant labour force, can no longer fill the gap. Countries like Uzbekistan, Tajikistan and Kyrgyzstan — which have sent millions of workers to Russia over the past two decades — are themselves experiencing tighter labour markets and have begun redirecting workers toward Gulf states and South Korea, where wages are often higher and working conditions are better documented.
 
-The Personal Consumption Expenditures Price Index — the Fed's preferred inflation gauge — climbed to 3.8 percent year-over-year in April, up from 3.5 percent in March. A separate New York Fed measure of underlying inflation dynamics jumped to 4 percent from 3.5 percent. Both readings are well above the Fed's 2 percent target, which has now been exceeded for years running.
+## The Modi-Putin Pact
 
-The culprit is energy. The three-month war between the United States and Iran has effectively closed the Strait of Hormuz, through which roughly one-fifth of the world's oil and gas supply normally flows. Brent crude, though it fell to $92 on Friday amid ceasefire hopes, remains sharply above pre-war levels.
+The Sberbank appeal follows a bilateral agreement signed by President Vladimir Putin and Prime Minister Narendra Modi in December 2025 to streamline the immigration process for Indian workers heading to Russia. At the time, Russia's First Deputy Prime Minister Denis Manturov said the country could accept an "unlimited number" of Indian workers.
 
-## What Fed Officials Are Saying
+For India, the arrangement carries both opportunity and risk. Russian construction wages average roughly 60 per cent more than equivalent jobs in India, making the proposition financially attractive for workers from states like Uttar Pradesh, Bihar, Rajasthan and Punjab, which have historically supplied the bulk of India's outbound labour force.
 
-Fed Vice Chair for Supervision Michelle Bowman, speaking at a conference in Iceland, said that if energy disruptions persist into the second half of the year, she would "consider shifting my approach to thinking about the balance of risks" — a carefully worded nod toward supporting a rate hike.
+But the conditions are fraught. Reports from Indian workers already in Russia describe language barriers, extreme cold, delayed payments and limited consular support. The Indian Embassy in Moscow has handled a growing number of complaints from workers who arrived on contracts that did not match the conditions they encountered. Unlike the Gulf states, where India has decades of institutional experience managing large migrant worker populations, Russia is largely unfamiliar territory.
 
-Minneapolis Fed President Neel Kashkari, one of three hawkish dissenters at last month's policy meeting, said the risk of unanchored inflation expectations was real. "I think it is premature for me to conclude we need to be raising rates right away," he said, "but it makes me further pay attention to the risk that inflation could continue to climb."
+## What It Means for the Diaspora
 
-Kansas City Fed President Jeffrey Schmid was more direct: "My primary concern is inflation, which is too hot and has been above target for too long." He dismissed the textbook approach of treating energy shocks as transitory, saying it is "not viable right now."
+Sberbank's statement signals that the demand for Indian labour in Russia is not temporary. The bank also announced plans to increase its commercial presence in India, including additional offices — a clear indication that it views the labour pipeline as a long-term strategic relationship rather than a stopgap.
 
-Even San Francisco Fed President Mary Daly, who said policy was "in a good place," acknowledged that a persistent rise in oil prices would change her outlook.
+For the Indian government, the challenge is twofold: facilitating the economic opportunity while ensuring that the workers who go are protected. The December agreement included provisions for streamlined visa processing and worker welfare, but implementation details remain thin.
 
-## The NRI Impact
+The irony is hard to miss. As the United States tightens H-1B visa rules and the Gulf states automate parts of their construction sectors, Russia — whose economy is under sweeping Western sanctions — is emerging as one of the largest new destinations for Indian blue-collar labour. Whether that turns into a success story or a cautionary tale will depend on the safeguards Delhi insists on before the pipeline widens further."""
+    },
+    {
+        "headline": "58 Rebel MLAs Just Broke Away From Mamata Banerjee's Party. The TMC Has Never Faced a Crisis Like This.",
+        "subheadline": "Expelled leaders Ritabrata Banerjee and Sandipan Saha claim the Speaker has recognised their faction as the official opposition. The party dissolved all its committees in response. Mamata blames the BJP and police for engineering the split.",
+        "slug": "tmc-trinamool-congress-58-rebel-mlas-split-mamata-abhishek-banerjee-bengal-20260603",
+        "category": "news",
+        "vertical": "news",
+        "sources": ["The Hindu BusinessLine", "DevDiscourse", "India Today", "ANI", "Livemint"],
+        "person_search": "Mamata Banerjee",
+        "commons_search": ["Mamata Banerjee", "Trinamool Congress rally", "West Bengal Assembly"],
+        "pexels_search": None,
+        "body": """The Trinamool Congress, which dominated West Bengal politics for 15 years under Mamata Banerjee, is facing an existential split. On Wednesday, a rebel faction claiming the support of 58 out of 80 TMC MLAs formally broke with the party's official leadership, declared itself the legitimate Trinamool legislature party, and staked claim to the Leader of Opposition post in the state assembly — a role the party's high command had assigned to a loyalist.
 
-Financial markets are now pricing in a rate hike by year's end, likely lifting the federal funds rate above the current 3.50-3.75 percent range. For NRIs, the implications run across multiple channels.
+The rebellion is led by Ritabrata Banerjee and Sandipan Saha, both of whom were expelled from the TMC in recent weeks. Speaking at a press conference on Wednesday, Ritabrata Banerjee said the Speaker of the West Bengal Assembly had officially recognised their faction and accepted their claim to LoP status, a development that, if confirmed, would represent the most significant split in the party since its founding in 1998.
 
-**Mortgages and loans.** Anyone with an adjustable-rate mortgage, a home equity line of credit, or a variable-rate auto loan will see payments increase if the Fed raises rates. With Indian Americans disproportionately concentrated in high-cost housing markets like the Bay Area, New Jersey, and the New York metro, even a 25-basis-point hike translates into meaningful monthly increases.
+## The Target: Abhishek Banerjee
 
-**Remittances.** Higher US rates tend to strengthen the dollar against the rupee, which makes remittances cheaper in dollar terms but more valuable in rupee terms. Families sending money home may see more rupees per dollar — a modest silver lining.
+The rebels have not turned their fire on Mamata Banerjee herself. Instead, the anger is directed squarely at her nephew, Abhishek Banerjee, the party's national general secretary, who has been the de facto organisational head of the TMC for the past several years.
 
-**Savings and deposits.** NRI fixed deposits and savings accounts at US banks could see improved rates. But the flip side is higher borrowing costs for anyone leveraged.
+Ritabrata Banerjee told reporters that the rebel MLAs want Mamata Banerjee to serve as their "chief advisor" — a carefully calibrated gesture that separates loyalty to the party founder from rejection of her chosen successor. "We recognise Mamata Banerjee as our leader," he said. "But the question is whether the party will be run by the people or by one family."
 
-**Indian markets.** A Fed hike would likely trigger capital outflows from emerging markets, including India. The rupee, which has already been under pressure from elevated oil import bills, could face further depreciation.
+The criticism of Abhishek Banerjee has been building for months. He currently faces summons from the Enforcement Directorate in connection with a teachers' recruitment scam that has dogged the TMC since 2022. Several rebel leaders have publicly questioned why the party's organisational machinery — and its political future — should be controlled by someone facing serious legal scrutiny.
+
+## A Party That Lost and Then Fractured
+
+The immediate trigger for the crisis was the TMC's crushing defeat in the recent West Bengal assembly elections, where the BJP swept to power. In the aftermath, Mamata Banerjee called a meeting of TMC MLAs on May 31. Only 20 of the 80 elected legislators showed up. Sixty stayed away — a signal that the party's internal cohesion had already collapsed.
+
+The party's official spokesperson attributed the poor attendance to logistical issues following an attack on Abhishek Banerjee on May 30, when slippers and eggs were thrown at him at a public event. The next day, TMC leader Kalyan Banerjee was attacked in Hooghly district. The party has alleged that at least 15 to 20 TMC workers have been murdered since the election results, and that police and administration are working at the behest of the BJP.
+
+But the rebel faction paints a different picture. They argue that the TMC's electoral collapse was a direct consequence of Abhishek Banerjee's centralised control, which alienated grassroots workers and local leaders. The rebellion, they say, is not about defecting to the BJP but about reclaiming the party from what they describe as dynastic capture.
+
+## Anti-Defection and the Two-Thirds Threshold
+
+The numbers matter. Under India's anti-defection law, a split is not legally recognised unless at least two-thirds of a legislature party's members break away. With 58 out of 80 MLAs — more than 72 per cent — the rebel faction appears to have crossed that threshold, which would protect its members from disqualification.
+
+The TMC responded on Wednesday by dissolving all its committees and frontal organisations in Bengal, describing the move as "introspection" ahead of a comprehensive restructuring. The party's official line is that some of the signatures on the rebel petition were forged — a claim that Leader of the Opposition in the Assembly Suvendu Adhikari has asked the CID to investigate.
 
 ## What Comes Next
 
-The Fed's next policy meeting is in June. Most officials signaled they would hold rates steady at that meeting while monitoring incoming data. But the door to a hike is now explicitly open — a shift from even a month ago, when the dominant expectation was for the next move to be a cut.
+BJP leaders, including cabinet minister Dilip Ghosh, have seized on the crisis, framing it as the collapse of "family rule" in Indian politics. Ghosh predicted that the TMC would soon be reduced to its top echelon — "Mamata Banerjee and her nephew, and nobody else."
 
-The key variable remains the Iran war. If a ceasefire deal holds and the Strait of Hormuz reopens in the coming weeks, oil prices could fall sharply, easing inflationary pressure and removing the case for tighter policy. If the ceasefire collapses — as the brief April truce did — the Fed may have no choice but to act.
+For Mamata Banerjee, the stakes could not be higher. The TMC was never just a political party — it was a personality-driven movement built on her image as a street fighter who took on the Communist establishment. If the rebel faction formalises its separation and aligns with the BJP or operates independently, Mamata's ability to mount a political comeback in Bengal will be severely diminished.
 
-For NRIs, the message is straightforward: lock in fixed rates where possible, review variable-rate exposures, and prepare for a monetary policy environment that may tighten further before it eases."""
-})
-
-# ── Article 3: Pentagon Chief Praises India at Shangri-La ──
-articles.append({
-    "headline": "Pentagon Chief Praises India's Military Readiness at Shangri-La. Then He Told Asian Allies to Spend 3.5% of GDP on Defense.",
-    "subheadline": "US Defense Secretary Pete Hegseth singled out India as a partner that is 'improving military readiness' — while warning that freeloading allies will be pushed to the back of the line.",
-    "slug": "hegseth-shangri-la-india-military-readiness-defense-spending-china-20260530",
-    "category": "news",
-    "vertical": "news",
-    "person": "Pete Hegseth",
-    "pexels_query": "military defense aircraft carrier navy",
-    "pexels_fallback": "Singapore skyline Asia",
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com/world/asia-pacific/"},
-        {"name": "LiveMint", "url": "https://www.livemint.com/"},
-        {"name": "The Times", "url": "https://www.thetimes.com/"},
-        {"name": "US Department of Defense", "url": "https://www.defense.gov/"}
-    ]),
-    "body": """US Defense Secretary Pete Hegseth on Saturday used Asia's most important security forum to deliver a blunt message to the region: China's military buildup is real, potentially imminent, and the era of American security subsidies is over.
-
-Speaking at the Shangri-La Dialogue in Singapore, Hegseth singled out India as a model partner that is actively improving its military readiness — a notable endorsement at a moment when New Delhi is navigating complex relationships with both Washington and Beijing.
-
-## The India Mention
-
-In a speech that covered the full sweep of Indo-Pacific strategy, Hegseth praised India for investing in its own defense capabilities and improving military readiness. The comment, while brief, is significant in context. India has been steadily increasing its defense budget — it stood at roughly $75 billion in the 2025-26 fiscal year — and has accelerated purchases of American military hardware, including MQ-9B drones, MH-60R helicopters, and C-130J transport aircraft.
-
-The endorsement also comes weeks after the India-South Korea defense and cyber pact signed in Seoul and just days after Commerce Minister Piyush Goyal's 10-day trade sprint across North America. Washington is clearly signaling that India is a preferred partner — one that is spending, modernizing, and aligning without needing to be coerced.
-
-## The Demand: 3.5% of GDP
-
-But the larger message was aimed at the room. Hegseth told assembled defense ministers, military chiefs, and diplomats that the United States expects its Asian allies and partners to raise defense spending to 3.5 percent of GDP — a target that most Asian nations currently fall far short of.
-
-"Deterrence doesn't come on the cheap," Hegseth said. "The era of the United States subsidizing the defence of wealthy nations is over."
-
-He outlined a carrot-and-stick framework: allies that meet the spending threshold will be "moved to the front of the line" for expedited arms sales, deeper industrial collaboration, and expanded intelligence sharing. Those that don't will "face a clear shift in how we do business."
-
-The 3.5 percent target is aggressive. India currently spends roughly 2.4 percent of GDP on defense. Japan, which has been rapidly rearming, recently hit 2 percent. Most ASEAN nations hover around 1 to 2 percent. Meeting the target would require transformative budget reallocations across the region.
-
-## The China Warning
-
-Hegseth delivered his sharpest public comments yet on China's military posture, saying there is "rightful alarm" over Beijing's rapid buildup and the expansion of its military activities.
-
-"A Pacific dominated by any hegemon would unravel the regional balance of power," he said. "No state, including China, can impose its hegemony and hold the security or prosperity of our nation and our allies in question."
-
-But he also struck a measured tone on the state of the US-China relationship, saying ties are "better than they have been in many years" following the Trump-Xi summit in Beijing earlier this month. Military-to-military communication has increased, he noted, and meetings between US and Chinese counterparts are happening more frequently.
-
-## Why This Matters for the Diaspora
-
-For India and its diaspora, the Shangri-La speech reinforces a pattern. The US-India defense partnership has deepened significantly since the early 2020s, with bilateral military exercises, technology transfers, and intelligence-sharing agreements all expanding. India's participation in the Quad — alongside the US, Japan, and Australia — has become a cornerstone of the Indo-Pacific architecture.
-
-The 3.5 percent GDP target, however, could create friction. India's defense budget is large in absolute terms but constrained as a share of GDP by competing demands — infrastructure, social spending, and debt servicing. If Washington begins using spending levels as a filter for partnership quality, New Delhi may face pressure to accelerate defense procurement, potentially at the expense of other priorities.
-
-The speech also carried an implicit message about Taiwan. Hegseth, who last year suggested a Chinese invasion could be imminent, was more restrained this time but made clear that the US views its Pacific military presence as non-negotiable.
-
-For Indian Americans working in defense, aerospace, and technology sectors — and for NRI investors exposed to Indian defense stocks like HAL, BEL, and Bharat Dynamics — the strategic alignment between Washington and New Delhi continues to create opportunities. The question is whether India can meet the spending expectations that come with being called a model ally."""
-})
-
-# ── Article 4: Texas SB4 Migrant Arrest Law ──
-articles.append({
-    "headline": "Texas Can Now Arrest and Deport People Suspected of Crossing Illegally. The Law Is in Effect as of Friday.",
-    "subheadline": "A federal appeals court lifted an injunction against SB4, a law that makes unauthorized border crossing a state crime and lets Texas judges — not federal ones — issue deportation orders.",
-    "slug": "texas-sb4-migrant-arrest-law-enforceable-fifth-circuit-immigration-nri-20260530",
-    "category": "news",
-    "vertical": "news",
-    "person": None,
-    "pexels_query": "Texas US Mexico border wall fence",
-    "pexels_fallback": "immigration US passport visa",
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com/world/us/"},
-        {"name": "Fox 7 Austin", "url": "https://www.fox7austin.com/"},
-        {"name": "ACLU of Texas", "url": "https://www.aclutx.org/"}
-    ]),
-    "body": """A federal appeals court on Friday cleared the way for Texas to enforce one of the most aggressive state-level immigration laws in American history, allowing local police officers to arrest people suspected of having crossed the US-Mexico border illegally and state judges to issue deportation orders.
-
-The 2-1 ruling by the New Orleans-based 5th US Circuit Court of Appeals lifted a preliminary injunction that a federal judge had imposed on May 14, making key provisions of Senate Bill 4 enforceable immediately. The ACLU and Texas Civil Rights Project, which represent thousands of non-citizens who could be subject to the law, called the decision "disappointing" and vowed to continue fighting.
-
-## What SB4 Does
-
-The law, originally passed in 2023 during a special Texas legislative session, creates a parallel state-level immigration enforcement system that operates alongside — and in some cases in place of — the federal immigration apparatus.
-
-Under SB4, state and local police officers in Texas are authorized to detain anyone they suspect of being a non-US citizen who entered the state from Mexico or another country without authorization. The law creates a new state crime of "illegal entry" into Texas, punishable by up to six months in jail. For individuals who have previously been deported or denied admission, the charge escalates to "illegal re-entry," carrying a sentence of 10 to 20 years.
-
-Most controversially, the law empowers Texas state judges — who are not trained in immigration law and have no federal authority over immigration matters — to issue deportation orders. Individuals who refuse to comply with a state deportation order face an additional charge punishable by 2 to 20 years in prison.
-
-## The Legal Battle
-
-SB4 has been the subject of intense litigation since its passage. The Biden administration initially challenged the law, arguing it unconstitutionally usurped the federal government's exclusive authority over immigration enforcement. A federal judge agreed and blocked the law from taking effect.
-
-After the Trump administration took office, it dropped the federal government's challenge. But immigrant-rights organizations pressed on, filing a new class-action lawsuit on behalf of non-citizens directly affected by the law's provisions.
-
-On May 14, US District Judge David Ezra issued a fresh injunction, ruling that SB4 improperly encroached on federal authority. Texas Attorney General Ken Paxton — who is running for a US Senate seat — immediately appealed. The 5th Circuit stayed the injunction on Friday, with Judge Leslie Southwick dissenting.
-
-## Why NRIs and Indian Immigrants Should Care
-
-While SB4 is aimed primarily at the US-Mexico border, its provisions are not limited to any specific nationality. The law applies to anyone suspected of unauthorized entry into Texas, regardless of origin.
-
-Indian nationals represent one of the fastest-growing groups of unauthorized border crossers. In fiscal year 2024, US Customs and Border Protection encountered over 90,000 Indian nationals at the southern border — many of whom had traveled through Central America after flying to countries like Nicaragua or Ecuador. The numbers have remained elevated in 2025 and 2026.
-
-For Indian immigrants in Texas — including those on expired visas, in pending immigration proceedings, or in gray-area situations — the law introduces a new layer of risk. Unlike federal immigration enforcement, which is handled by trained ICE agents and immigration judges, SB4 puts enforcement power in the hands of local police officers and state magistrates who may have limited understanding of the complexities of immigration status.
-
-Immigration attorneys have flagged concerns that the law could lead to racial profiling, particularly in communities with large South Asian, Latino, and Middle Eastern populations. The ACLU has warned that even legal residents and US citizens could be swept up in enforcement actions based on appearance or accent.
-
-Texas Governor Greg Abbott celebrated the ruling on Friday. "We will keep fighting in the courts, working with President Trump, and doing everything necessary to secure our border and protect Texans," he posted on X.
-
-For the Indian American community in Texas — which is concentrated in the Houston, Dallas-Fort Worth, and Austin metros — the immediate advice from immigration lawyers is clear: carry documentation at all times, know your rights under the Fourth Amendment, and consult an attorney if approached by law enforcement about immigration status.
-
-The ACLU of Texas has published a "Know Your Rights" guide specific to SB4, updated as of May 29, 2026. The organization maintains that the law remains unconstitutional and expects the litigation to continue through federal courts."""
-})
-
-# ─── Publish ───
-
-published_count = 0
-now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-
-for art in articles:
-    print(f"\n{'='*60}")
-    print(f"Publishing: {art['headline'][:80]}...")
-    
-    # Get image
-    img_url, img_attr = get_image(
-        person_name=art.get('person'),
-        pexels_query=art.get('pexels_query'),
-        pexels_fallback=art.get('pexels_fallback')
-    )
-    
-    if img_url:
-        print(f"  ✓ Image: {img_url[:80]}...")
-    else:
-        print(f"  ⚠ No image found — publishing without image")
-    
-    # Build record
-    record = {
-        "headline": art["headline"],
-        "subheadline": art["subheadline"],
-        "slug": art["slug"],
-        "body": art["body"],
-        "category": art["category"],
-        "vertical": art["vertical"],
-        "status": "published",
-        "published_at": now,
-        "sources": art["sources"],
-        "image_url": img_url,
-        "image_attribution": img_attr,
+The TMC's crisis also carries a wider message for Indian politics: that electoral defeat, when combined with internal resentment over dynastic succession, can unravel even the most dominant regional parties faster than anyone expected."""
     }
-    
-    # Remove None values
-    record = {k: v for k, v in record.items() if v is not None}
-    
-    result = sb_insert("p2_articles", record)
-    if result:
-        art_id = result.get('id', 'unknown')
-        print(f"  ✓ Published! ID: {art_id}")
-        published_count += 1
-    else:
-        print(f"  ✗ Failed to publish")
-    
-    time.sleep(1)
+]
 
-print(f"\n{'='*60}")
-print(f"Done. Published {published_count}/{len(articles)} articles.")
+# ============ MAIN ============
+def main():
+    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    
+    for i, article in enumerate(articles):
+        print(f"\n{'='*60}")
+        print(f"ARTICLE {i+1}: {article['headline'][:70]}...")
+        print(f"{'='*60}")
+        
+        # 1. Source images
+        print("\n--- Image sourcing ---")
+        img_url = None
+        attribution = None
+        
+        # Try Wikipedia for person articles
+        if article.get('person_search'):
+            wiki_img = fetch_wikipedia_person_image(article['person_search'])
+            if wiki_img and validate_image_url(wiki_img):
+                uploaded = download_and_upload_image(wiki_img, article['slug'])
+                if uploaded:
+                    img_url = uploaded
+                    attribution = "Wikimedia Commons"
+        
+        # Try Wikimedia Commons
+        if not img_url and article.get('commons_search'):
+            for query in article['commons_search']:
+                commons = fetch_wikimedia_commons_images(query)
+                if commons:
+                    for c in commons:
+                        if validate_image_url(c['url']):
+                            uploaded = download_and_upload_image(c['url'], article['slug'])
+                            if uploaded:
+                                img_url = uploaded
+                                attribution = "Wikimedia Commons"
+                                break
+                if img_url:
+                    break
+        
+        # Try Pexels
+        if not img_url and article.get('pexels_search'):
+            pexels_img = fetch_pexels_image(article['pexels_search'])
+            if pexels_img and validate_image_url(pexels_img):
+                uploaded = download_and_upload_image(pexels_img, article['slug'])
+                if uploaded:
+                    img_url = uploaded
+                    attribution = "Pexels"
+        
+        if img_url:
+            print(f"  ✓ Final image: {img_url[:80]}...")
+        else:
+            print(f"  ⚠ No image found — publishing without image")
+        
+        # 2. Build article payload
+        art_id = str(uuid.uuid4())
+        
+        # Word count check
+        word_count = len(article['body'].split())
+        print(f"\n--- Article quality ---")
+        print(f"  Words: {word_count}")
+        print(f"  Headline: {len(article['headline'])} chars")
+        print(f"  Subheadline: {len(article['subheadline'])} chars")
+        
+        if word_count < 400:
+            print(f"  ✗ REJECTED: Body too short ({word_count} words)")
+            continue
+        
+        payload = {
+            "id": art_id,
+            "headline": article['headline'],
+            "subheadline": article['subheadline'],
+            "slug": article['slug'],
+            "body": article['body'],
+            "category": article['category'],
+            "vertical": article['vertical'],
+            "status": "published",
+            "published_at": now,
+            "sources": json.dumps(article['sources']),
+            "is_editorial": False,
+        }
+        
+        if img_url:
+            payload["image_url"] = img_url
+            payload["image_attribution"] = attribution
+        
+        # 3. Insert into Supabase
+        print(f"\n--- Publishing ---")
+        insert_url = f"{SUPABASE_URL}/rest/v1/p2_articles"
+        result = curl_json('POST', insert_url, payload)
+        
+        if result and isinstance(result, list) and len(result) > 0:
+            print(f"  ✓ Published: {result[0].get('slug', 'unknown')}")
+        elif result and isinstance(result, dict) and result.get('code'):
+            print(f"  ✗ Error: {result.get('message', result.get('code', 'unknown'))}")
+        else:
+            print(f"  ✓ Insert completed (response: {str(result)[:100]})")
+        
+        time.sleep(1)
+    
+    print(f"\n{'='*60}")
+    print(f"Writer run complete. {len(articles)} articles processed.")
+    print(f"{'='*60}")
+
+if __name__ == '__main__':
+    main()
