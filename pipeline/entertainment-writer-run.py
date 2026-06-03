@@ -1,44 +1,41 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — June 3, 2026 run."""
+"""Entertainment writer for The Videshi — June 3, 2026 evening run."""
 
-import json
-import os
-import re
-import subprocess
-import sys
-import time
-import uuid
-import requests
-import urllib.parse
+import json, os, sys, time, uuid, re, io, urllib.parse
 from datetime import datetime, timezone
 
-# Load Supabase env
+# Load env
 def load_env(path):
     if os.path.exists(path):
         with open(path) as f:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
-                    key, val = line.split('=', 1)
-                    key = key.replace('export ', '').strip()
-                    val = val.strip().strip('"').strip("'")
-                    os.environ[key] = val
+                    if line.startswith('export '):
+                        line = line[7:]
+                    k, v = line.split('=', 1)
+                    v = v.strip().strip('"').strip("'")
+                    os.environ[k] = v
 
 load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY')
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY')
+import requests
+from PIL import Image
 
-HEADERS_SB = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
+HEADERS = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
 }
 
-UA = 'TheVideshi/1.0 (thevideshi.com)'
+UA = "TheVideshi/1.0 (thevideshi.com)"
 
 # ── Image sourcing functions ──
 
@@ -63,7 +60,7 @@ def fetch_wikipedia_person_image(person_name):
 
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
-    """Search Wikimedia Commons for CC-licensed images. Returns list of image URLs."""
+    """Search Wikimedia Commons for CC-licensed images."""
     params = {
         "action": "query",
         "generator": "search",
@@ -87,13 +84,22 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
             pages = data.get("query", {}).get("pages", {})
             results = []
             for pid, page in pages.items():
-                for ii in page.get("imageinfo", []):
-                    url = ii.get("thumburl") or ii.get("url")
-                    mime = ii.get("mime", "")
-                    if url and "image" in mime and not url.endswith('.svg'):
-                        results.append(url)
+                ii = page.get("imageinfo", [{}])[0]
+                mime = ii.get("mime", "")
+                if not mime.startswith("image/"):
+                    continue
+                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
+                    continue
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "original_url": ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0),
+                    "height": ii.get("height", 0),
+                    "mime": mime
+                })
             if results:
-                print(f"  ✓ Wikimedia Commons found {len(results)} images for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
             return results
     except Exception as e:
         print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
@@ -101,310 +107,371 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
 
 
 def fetch_pexels_image(query):
-    """Search Pexels for an image. Uses curl to avoid 403."""
+    """Search Pexels for an image. Returns URL or None."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
     try:
-        result = subprocess.run(
-            ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-             f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3'],
-            capture_output=True, text=True, timeout=15
+        r = requests.get(
+            "https://api.pexels.com/v1/search",
+            params={"query": query, "per_page": 3, "orientation": "landscape"},
+            headers={"Authorization": PEXELS_KEY},
+            timeout=10
         )
-        data = json.loads(result.stdout)
-        photos = data.get('photos', [])
-        if photos:
-            url = photos[0]['src']['large2x']
-            print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-            return url
+        if r.status_code == 200:
+            photos = r.json().get("photos", [])
+            if photos:
+                url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                return url
     except Exception as e:
         print(f"  ⚠ Pexels error for '{query}': {e}")
     return None
 
 
-def validate_image(url):
-    """Validate that an image URL is accessible and not tiny."""
+def compress_image(img_bytes, max_width=1200, quality=80):
+    """Resize and compress image. Returns JPEG bytes."""
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    return buf.getvalue()
+
+
+def download_and_upload_image(image_url, slug):
+    """Download image, compress, upload to Supabase storage. Returns public URL or None."""
     try:
-        r = requests.head(url, headers={"User-Agent": UA}, timeout=10, allow_redirects=True)
-        content_type = r.headers.get('Content-Type', '')
-        content_length = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in content_type and content_length > 5000:
-            return True
-        # Try GET as fallback for servers that don't support HEAD well
-        r2 = requests.get(url, headers={"User-Agent": UA}, timeout=10, stream=True)
-        ct = r2.headers.get('Content-Type', '')
-        cl = int(r2.headers.get('Content-Length', 0))
-        if r2.status_code == 200 and 'image' in ct:
-            # Read a bit to check size
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                return True
-    except:
-        pass
-    return False
+        r = requests.get(image_url, headers={"User-Agent": UA}, timeout=15)
+        if r.status_code != 200:
+            print(f"  ✗ Download failed ({r.status_code}): {image_url[:80]}")
+            return None
+        ct = r.headers.get("Content-Type", "")
+        if not ct.startswith("image/"):
+            print(f"  ✗ Not an image ({ct}): {image_url[:80]}")
+            return None
+        if len(r.content) < 5000:
+            print(f"  ✗ Image too small ({len(r.content)} bytes)")
+            return None
+
+        compressed = compress_image(r.content)
+        filename = f"{slug}.jpg"
+        print(f"  → Uploading {filename} ({len(compressed)} bytes)...")
+
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        up = requests.post(
+            upload_url,
+            headers={
+                "Authorization": f"Bearer {SUPABASE_KEY}",
+                "Content-Type": "image/jpeg",
+                "x-upsert": "true"
+            },
+            data=compressed,
+            timeout=20
+        )
+        if up.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded: {public_url[:80]}")
+            return public_url
+        else:
+            print(f"  ✗ Upload failed ({up.status_code}): {up.text[:200]}")
+            return None
+    except Exception as e:
+        print(f"  ✗ Image pipeline error: {e}")
+        return None
 
 
-def find_best_image(person_name=None, topic_queries=None, pexels_query=None):
-    """Multi-source image search. Returns (url, attribution) or (None, None)."""
+def source_image(person_names, topic_queries, pexels_query, slug):
+    """Multi-source compare: Wikipedia > Wikimedia Commons > Pexels."""
     candidates = []
 
-    # Wikipedia person image
-    if person_name:
-        wp = fetch_wikipedia_person_image(person_name)
-        if wp and validate_image(wp):
-            candidates.append((wp, "Wikimedia Commons"))
+    # Source 1: Wikipedia person images
+    for name in person_names:
+        img = fetch_wikipedia_person_image(name)
+        if img:
+            candidates.append({"url": img, "source": "wikipedia", "name": name})
+            break  # first found person is usually the main subject
 
-    # Wikimedia Commons search
-    if topic_queries:
-        for q in topic_queries:
-            commons = fetch_wikimedia_commons_images(q, limit=3)
-            for url in commons:
-                if validate_image(url):
-                    candidates.append((url, "Wikimedia Commons"))
-                    break  # Take best per query
+    # Source 2: Wikimedia Commons
+    for q in topic_queries:
+        results = fetch_wikimedia_commons_images(q, limit=3)
+        for r in results[:2]:
+            candidates.append({"url": r["url"], "source": "wikimedia_commons", "title": r.get("title", "")})
+        if results:
+            break
 
-    # Pexels fallback
-    if pexels_query and not candidates:
-        px = fetch_pexels_image(pexels_query)
-        if px and validate_image(px):
-            candidates.append((px, "Pexels"))
+    # Source 3: Pexels
+    pimg = fetch_pexels_image(pexels_query)
+    if pimg:
+        candidates.append({"url": pimg, "source": "pexels"})
 
-    if candidates:
-        return candidates[0]
+    # Pick best: wikipedia > commons > pexels
+    for c in candidates:
+        url = download_and_upload_image(c["url"], slug)
+        if url:
+            attr = "Wikimedia Commons" if c["source"] in ("wikipedia", "wikimedia_commons") else "The Videshi"
+            return url, attr
+
+    print(f"  ✗ No image found for {slug}")
     return None, None
 
 
 def insert_article(article):
-    """Insert article into Supabase."""
+    """Insert an article into Supabase."""
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS_SB,
+        headers=HEADERS,
         json=article,
-        timeout=30
+        timeout=15
     )
     if r.status_code in (200, 201):
         data = r.json()
-        if isinstance(data, list) and data:
-            print(f"  ✓ Published: {data[0].get('headline', '')[:60]}")
-            return True
-        print(f"  ✓ Published (no return data)")
-        return True
+        art_id = data[0]["id"] if isinstance(data, list) and data else "unknown"
+        print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
+        return art_id
     else:
         print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
-        return False
+        return None
 
 
-# ── ARTICLE 1: Peddi — Ram Charan's Biggest Bet ──
+# ── Article definitions ──
 
-def write_peddi_article():
-    print("\n📝 Article 1: Ram Charan's Peddi")
+articles_to_write = []
 
-    # Image: Ram Charan
-    img_url, img_attr = find_best_image(
-        person_name="Ram Charan",
-        topic_queries=["Ram Charan actor", "Ram Charan Peddi film"],
-        pexels_query=None  # No generic stock
-    )
+# ═══════════════════════════════════════════════════════
+# ARTICLE 1: IMAX Returns to Hyderabad
+# ═══════════════════════════════════════════════════════
 
-    headline = "Ram Charan's Peddi Opens in America Before India. The Advance Numbers Suggest Telugu Cinema's Next Blockbuster Has Already Arrived."
-    subheadline = "With ₹40 crore in global pre-sales, 28,000 tickets sold across 533 US locations, and premiere shows starting tonight in North America, Peddi is tracking toward the $1 million premiere club that only a dozen Telugu films have ever entered."
+art1_slug = "imax-returns-hyderabad-amb-cinemas-mahesh-babu-varanasi-nri-20260603"
+art1_headline = "IMAX Is Coming Back to Hyderabad After a Decade. Mahesh Babu's AMB Cinemas Just Made It Official."
+art1_subheadline = "Three new IMAX with Laser screens are on the way — the first timed perfectly for Rajamouli's Varanasi. For the Telugu diaspora, the city that builds India's biggest films finally gets the screen they deserve."
+art1_body = """Hyderabad has not had an IMAX screen in over ten years. For a city that houses Ramoji Film City, anchors the Telugu film industry, and has produced some of the highest-grossing Indian films of the past decade — including the Baahubali franchise and RRR — that absence has been, to put it gently, absurd.
 
-    body = """Ram Charan's new sports-action drama *Peddi* hasn't technically released yet, and it's already breaking records.
+On June 1, IMAX Corporation and Asian Cinemas announced a deal that ends the drought. Three new IMAX with Laser locations will open under the AMB Cinemas brand, the luxury chain co-owned by Mahesh Babu. Two of the three screens will be in Hyderabad. The first, at AMB Classic, will open before the end of 2026. The remaining two are planned for 2028.
 
-As of Tuesday evening, global advance bookings for the film have crossed ₹40 crore. North American premiere pre-sales alone have reached $870,000, with 31,237 tickets sold across hundreds of locations. Trade analysts expect the number to blow past $1 million before the first credit rolls — a milestone that would place Peddi alongside Baahubali 2, RRR, Kalki 2898 AD, and Pushpa 2 in an exclusive club of Telugu films that cracked seven figures in US premiere pre-sales.
+## The Varanasi Connection
 
-The film opens tonight in the United States, hours before Indian audiences get their first look. Premiere shows across North America are scheduled for 9:40 AM EST on June 3, which translates to roughly 7:10 PM IST — giving American Telugu audiences a full night's head start on the verdict. In the Telugu states, first-day-first-show screenings begin at 7 AM on June 4. At one point during the booking window, BookMyShow was selling over 40,000 tickets per hour.
+The timing is not accidental. SS Rajamouli's Varanasi — the globe-spanning epic starring Mahesh Babu, Priyanka Chopra, and Prithviraj Sukumaran — is scheduled for worldwide release on April 7, 2027. The film was shot on IMAX-certified digital cameras. Rajamouli himself, during the Varanasi glimpse launch, had publicly called it "surprising" that Hyderabad lacked an IMAX screen despite producing some of India's biggest cinematic spectacles.
 
-## Three Athletes, One Actor
+Now his own lead actor's cinema chain is solving that problem. The Varanasi official X account confirmed the news immediately: "Experience VARANASI in IMAX in HYDERABAD and worldwide on April 7th, 2027."
 
-Directed by Buchi Babu Sana, Peddi casts Ram Charan in three distinct crossover athlete avatars — cricketer, runner, and wrestler — all woven into a story set in rural Andhra Pradesh. The film reportedly draws inspiration from sporting legends including MS Dhoni and Sachin Tendulkar. Ram Charan spent nearly a month filming wrestling sequences with real pehelwans rather than stunt doubles, and reportedly suffered a cartilage tear in the process. The final cut runs a meaty 3 hours and 9 minutes — a bet on audience patience that Telugu cinema's biggest blockbusters have historically rewarded.
+## Why This Matters Beyond One Film
 
-The supporting cast is stacked: Janhvi Kapoor plays the female lead opposite Charan, with Kannada icon Shiva Rajkumar in a key role alongside Jagapathi Babu, Divyenndu Sharma, and Boman Irani. A.R. Rahman handles the music — his tracks "Chikiri Chikiri," "Rai Rai Rae Raa," and the newly released "Massa Massa" and "Hellallallo" have already generated significant pre-release buzz.
+IMAX's return to Hyderabad signals something larger about the economics of Indian exhibition. Rich Gelfond, the CEO of IMAX, said in his announcement that 2025 was IMAX's best year ever at the Indian box office, "powered by a dynamic slate of Hollywood and Indian films." The demand, according to Gelfond, is coming from both filmmakers and audiences.
 
-## The Diaspora Angle
+That demand is not abstract. Films like Toxic (Yash), Raaka (Allu Arjun with Atlee), Kalki 2, and the rumored God of War adaptation are all high-visual-ambition projects that would benefit enormously from IMAX presentations. Telugu cinema has been making films at global scale for years. It just hasn't had the local screens to match.
 
-For NRIs, Peddi's release strategy is unusually telling. The film's US premiere precedes India's, a move that underscores just how critical the North American Telugu diaspora has become to a big-budget film's financial calculus. Texas alone has contributed over $164,000 in advance sales, followed by California and Virginia — the three states with the largest Telugu-speaking populations in America.
+Sunil Narang and Bharat Narang, the managing directors of AMB Cinemas, called the IMAX partnership "a matter of great honour and pride" and described it as the natural next step in AMB's push for cinematic excellence.
 
-Cinemark is leading the chain-by-chain breakdown with nearly $300,000 in sales, followed by Regal and AMC. Premium format screenings — IMAX, XD, RPX, and D-Box — account for a disproportionate share of revenue, suggesting audiences are treating this less as a casual weeknight outing and more as an event.
+## The NRI Viewing Gap
 
-## What's at Stake
+For the Telugu diaspora in the United States, United Kingdom, and the Middle East, this story cuts both ways. NRIs have long had access to IMAX screenings of Telugu blockbusters in their local markets — from AMC and Regal chains in the US to Cineworld in the UK. The irony was always that you could watch a Tollywood spectacle in IMAX in New Jersey but not in Hyderabad.
 
-Peddi is Ram Charan's first release since Game Changer, and the expectations are immense. The film is produced by Vriddhi Cinemas and IVY Entertainment, presented by Mythri Movie Makers and Sukumar Writings — a production pedigree that signals confidence. Cinematography by Ratnavelu, editing by Navin Nooli, and visual effects by Sanath PC round out a technical team assembled for scale.
+That gap is now closing. And for the diaspora community that regularly travels back to India and follows Telugu cinema culture as closely as cricket, the upgrade of the home market's exhibition infrastructure matters. A first-run IMAX experience in Hyderabad will change how Telugu films are marketed, screened, and talked about — on both sides of the ocean.
 
-For Buchi Babu Sana, this is a career-defining moment. His debut film, *Uppena*, was a modest hit. This is something else entirely — a ₹200+ crore bet on whether a rural sports drama can hold its own in a summer crowded with franchise sequels and OTT drops.
+## What Comes Next
 
-The American audience gets to decide first. By tomorrow morning IST, the world will know whether Peddi delivers on its promise or whether the advance numbers were writing checks the film couldn't cash.
+The first AMB Classic IMAX screen is expected to be operational by late 2026, well ahead of Varanasi's April 2027 date. The two additional screens arriving by 2028 will further expand Hyderabad's premium exhibition capacity during a period when Telugu cinema's global footprint is at its highest point.
 
-**Sources:** ZoomTV Entertainment, Sacnilk (Venky Box Office tracking), Filmibeat, SpotboyE"""
+For a city that has quietly become the epicentre of India's most commercially ambitious filmmaking, the return of IMAX is not just an upgrade. It is a correction long overdue.
 
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": "ram-charan-peddi-advance-booking-usa-premiere-north-america-1-million-nri-20260603",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "is_editorial": False,
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url,
-        "image_attribution": img_attr,
-        "sources": json.dumps(["ZoomTV Entertainment", "Sacnilk", "Filmibeat", "SpotboyE"]),
-    }
-    if not img_url:
-        print("  ⚠ No valid image found — skipping image_url")
-        del article["image_url"]
-        del article["image_attribution"]
+*Sources: IMAX Corporation press release (June 1, 2026); Bollywood Hungama; Hollywood Reporter India; Gulte*"""
 
-    return insert_article(article)
+art1_sources = ["IMAX Corporation press release (June 1, 2026)", "Bollywood Hungama", "Hollywood Reporter India", "Gulte"]
 
+articles_to_write.append({
+    "slug": art1_slug,
+    "headline": art1_headline,
+    "subheadline": art1_subheadline,
+    "body": art1_body,
+    "person_names": ["Mahesh Babu"],
+    "topic_queries": ["IMAX Hyderabad cinema", "AMB Cinemas Hyderabad"],
+    "pexels_query": "IMAX cinema theater screen",
+    "sources": art1_sources
+})
 
-# ── ARTICLE 2: Mindy Kaling's Not Suitable for Work ──
+# ═══════════════════════════════════════════════════════
+# ARTICLE 2: Drishyam 3 Hindi Wraps Shoot
+# ═══════════════════════════════════════════════════════
 
-def write_mindy_kaling_article():
-    print("\n📝 Article 2: Mindy Kaling's Not Suitable for Work")
+art2_slug = "drishyam-3-hindi-wraps-shoot-ajay-devgn-october-2-jaideep-ahlawat-nri-20260603"
+art2_headline = "Drishyam 3 Has Wrapped. Ajay Devgn's Version Promises a Very Different Film From the One Mohanlal Just Made."
+art2_subheadline = "Director Abhishek Pathak says the Hindi adaptation leans into family thriller territory, not the drama-heavy approach of the Malayalam original. October 2 is the date. Jaideep Ahlawat and Prakash Raj are the new additions."
+art2_body = """The Hindi Drishyam 3 has finished filming. Director Abhishek Pathak confirmed the wrap on June 2 with an emotional Instagram post, bringing to a close months of production across Mumbai and Goa. The film is now in post-production with a confirmed theatrical release on October 2, 2026 — the Gandhi Jayanti holiday window that Bollywood has traditionally treated as prime territory.
 
-    img_url, img_attr = find_best_image(
-        person_name="Mindy Kaling",
-        topic_queries=["Mindy Kaling actress"],
-        pexels_query=None
-    )
+The announcement arrives at a uniquely interesting moment. The Malayalam Drishyam 3, starring Mohanlal and directed by Jeethu Joseph, released recently and has already crossed ₹225 crore worldwide. Audiences who have seen it know how that story ends. The question now is how different the Hindi version will be — and Pathak has been surprisingly direct about the answer.
 
-    headline = "Mindy Kaling's New Show Has an Indian-American Lead, a 56% on Rotten Tomatoes, and the Weight of a Generation's Expectations."
-    subheadline = "Not Suitable for Work premiered on Hulu this week with Avantika playing Abhinaya 'Abby' Chilukuri — a rare South Asian lead in a mainstream network comedy. Critics are divided. The audience hasn't decided yet."
+## A Different Track for Hindi Audiences
 
-    body = """Mindy Kaling has made a career out of putting brown faces in rooms where Hollywood traditionally didn't seat them. Her latest attempt is *Not Suitable for Work*, a nine-episode comedy about five 20-somethings navigating careers and love in Manhattan's Murray Hill. It premiered on Hulu on June 2 — and landed with a thud on the review aggregators.
+In an interview with Pinkvilla, Pathak and producer Kumar Mangat Pathak revealed that the Hindi version will chart its own path. "What people are seeing right now in Malayalam Drishyam is different," the director said. "For the Hindi audience, I have created a completely different track that will work beautifully here. The Malayalam version focuses more on family drama, while the Hindi version will lean more towards a family thriller. That's the fabric of the film."
 
-At the time of writing, the show sits at 56% on Rotten Tomatoes. That's a notable step down from Kaling's track record: *Never Have I Ever* earned a 94% across four seasons, *The Sex Lives of College Girls* held at 73%, and *Running Point* opened at 84%. The audience score hasn't fully materialized yet, but early viewer reactions range from enthusiastic ("Mindy has a way of writing characters that feel real but also very funny") to dismissive ("I don't know if this generation is actually this lame and dorky or if it's just this show").
+This is significant. The first two Hindi Drishyam films closely followed the Malayalam originals, with adjustments for tone and cultural context. A deliberate departure in the third installment suggests that Pathak is treating the franchise as its own entity now — one that can take narrative risks without being judged purely as a remake.
 
-## What It Is
+## The Cast Additions
 
-The show follows two sets of roommates living in the same Manhattan apartment building. In one unit: AJ Pascarelli (Ella Hunt), a laser-focused finance newcomer from Boston, and Abhinaya "Abby" Chilukuri (Avantika), an assistant to a demanding celebrity stylist played by Constance Wu. Across the hall: three men including Josh Haywood (Jack Martin), the secretly privileged son of a media CEO, and Davis Cooper (Nicholas Duvernay), a finance professional who immediately falls for AJ.
+Ajay Devgn returns as Vijay Salgaonkar, the small-town cable operator whose extraordinary ability to think under pressure has turned him into one of Bollywood's most unusual protagonists. Tabu reprises her role as Inspector General Meera Deshmukh, and Shriya Saran returns as Nandini Salgaonkar. Ishita Dutt and Rajat Kapoor round out the returning ensemble.
 
-For the Indian diaspora, the casting is the headline. Avantika — who broke through in *Mean Girls* (2024) — plays a fully written South Asian character whose identity isn't the joke, the obstacle, or the lesson. Abby's Indianness is present without being performed. It's the kind of representation Kaling has been building toward for over a decade, and it's worth noting even if the vehicle isn't perfect.
+The new additions are where it gets interesting. Jaideep Ahlawat — last seen dominating the screen in Paatal Lok and earning a National Award for his performance — joins in a pivotal role that has not yet been revealed. Prakash Raj, who recently completed his portions, expressed confidence that the film would resonate with audiences.
 
-## What Critics Are Saying
+The Ahlawat casting is particularly intriguing. Known for playing layered, morally complex characters, his presence suggests that Drishyam 3 will introduce a new adversary or complication that goes beyond the police procedural dynamic of the first two films.
 
-The notices are genuinely split. *The Hollywood Reporter* called it "a nice hang" with "an ensemble that is broadly appealing." *The LA Times* praised it as "an amiable, sweet-tempered romantic ensemble comedy with a heftier than usual emphasis on professional ambition." *The Wrap* described it as "lightweight, frothy" — a compliment and a caveat in the same breath.
+## The Box Office Context
 
-The negative reviews are more pointed. *The Guardian* gave it two out of five stars, writing that "Kaling's scripts try hard but rarely shine, let alone dazzle as *Friends*' dialogue almost unfailingly did." *RogerEbert.com* called it "too many clichés to result in anything other than mediocrity." *The A.V. Club* noted it isn't "particularly hilarious" but acknowledged enough "bright spots" to suggest a better show might be hiding inside this one.
+Drishyam 2 (Hindi) was a massive commercial success, earning over ₹240 crore worldwide against a modest budget. It proved that mid-budget, story-driven thrillers could compete with tentpole spectacles — a lesson the industry has repeatedly forgotten and relearned.
 
-*USA Today* identified what might be the core problem: the show's "innocent and sunny version of Gen Z young adulthood is beautiful but unrealistic," in a way that feels "unmistakably phony" against 2026's economic backdrop.
+The October 2 release places Drishyam 3 in a window with relatively thin competition. The Gandhi Jayanti holiday provides a four-day opening weekend, and the film's franchise value ensures strong advance booking interest, particularly in multiplexes.
 
-## Why It Matters for the Diaspora
+## For the Diaspora
 
-Kaling's work has always functioned as a barometer for South Asian representation in American pop culture. *The Mindy Project* proved a brown woman could headline a network sitcom. *Never Have I Ever* gave a generation of first-gen kids a mirror. *Not Suitable for Work* is trying something subtler — making an Indian-American character part of the ensemble without the show being "about" being Indian-American.
+The Drishyam franchise has a unique position in the NRI market. It is one of the few Hindi-language properties that consistently draws non-traditional Bollywood audiences — older viewers, couples, families — who might not turn up for a Yash action film or a Ranveer Singh spectacle but will absolutely show up for Ajay Devgn quietly outsmarting the law for two hours.
 
-Whether it works is a different question. Kaling created the show and executive produces alongside Charlie Grandy, her longtime collaborator from *The Mindy Project* and *Sex Lives*. New episodes drop in pairs every Tuesday through the season finale on June 23. There's time for the show to find its footing — and time for diaspora audiences to decide whether this particular mirror reflects anything they recognize.
+With the Malayalam version already in circulation and widely discussed in diaspora WhatsApp groups, the Hindi adaptation faces an unusual challenge: audiences who already know the broad strokes but are being promised a different experience. Pathak is betting that the "family thriller" pivot will be enough to justify the ticket. October 2 will tell us if he is right.
 
-**Sources:** Rotten Tomatoes, The Hollywood Reporter, The Guardian, USA Today, Decider, The A.V. Club, CBR, The Wrap"""
+*Sources: Pinkvilla; Bollywood Hungama; Sacnilk; Zoom TV Entertainment*"""
 
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": "mindy-kaling-not-suitable-for-work-hulu-avantika-indian-american-representation-nri-20260603",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "is_editorial": False,
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url,
-        "image_attribution": img_attr,
-        "sources": json.dumps(["Rotten Tomatoes", "The Hollywood Reporter", "The Guardian", "USA Today", "Decider", "The A.V. Club"]),
-    }
-    if not img_url:
-        del article["image_url"]
-        del article["image_attribution"]
+art2_sources = ["Pinkvilla", "Bollywood Hungama", "Sacnilk", "Zoom TV Entertainment"]
 
-    return insert_article(article)
+articles_to_write.append({
+    "slug": art2_slug,
+    "headline": art2_headline,
+    "subheadline": art2_subheadline,
+    "body": art2_body,
+    "person_names": ["Ajay Devgn", "Jaideep Ahlawat"],
+    "topic_queries": ["Drishyam 3 Hindi film", "Ajay Devgn Drishyam"],
+    "pexels_query": "Indian cinema thriller suspense",
+    "sources": art2_sources
+})
 
+# ═══════════════════════════════════════════════════════
+# ARTICLE 3: Jee Le Zaraa Is Finally Happening
+# ═══════════════════════════════════════════════════════
 
-# ── ARTICLE 3: Governor — Manoj Bajpayee as RBI Governor ──
+art3_slug = "jee-le-zaraa-farhan-akhtar-priyanka-alia-katrina-road-trip-nri-20260603"
+art3_headline = "Farhan Akhtar Is Location Scouting in Rajasthan. After Five Years of Delays, Jee Le Zaraa Looks Like It's Actually Happening."
+art3_subheadline = "The Priyanka Chopra-Alia Bhatt-Katrina Kaif road trip film that was announced in 2021 is finally in active pre-production. Farhan Akhtar has shared scouting photos from the desert. There are even Shah Rukh Khan cameo rumours."
+art3_body = """There is a long list of Bollywood films that were announced with great fanfare and then quietly disappeared into development limbo. Jee Le Zaraa has spent the last five years near the top of that list. But as of late May 2026, there are concrete signs that Farhan Akhtar's female-led road trip drama is finally moving beyond the idea stage.
 
-def write_governor_article():
-    print("\n📝 Article 3: Governor — Manoj Bajpayee as RBI Governor")
+Akhtar recently posted a photograph from what appears to be the Rajasthan desert, captioned simply: "Searching for gold." The post confirmed what industry sources had been reporting for weeks — that he has begun active location scouting for the film, with shooting expected to begin soon.
 
-    img_url, img_attr = find_best_image(
-        person_name="Manoj Bajpayee",
-        topic_queries=["Manoj Bajpayee actor", "Reserve Bank of India 1991 crisis gold"],
-        pexels_query=None
-    )
+## The Long Road to Here
 
-    headline = "Manoj Bajpayee Plays the Man Who Secretly Airlifted India's Gold. Governor Opens June 12."
-    subheadline = "The film dramatizes the real story of RBI Governor S. Venkitaramanan, who pledged 60 tons of gold to foreign banks in 1991 to save India from sovereign default — the crisis that opened the door to liberalization and, for millions of NRIs, to the career paths that brought them abroad."
+Jee Le Zaraa was announced in August 2021 with a cast that seemed almost too good to be real: Priyanka Chopra, Alia Bhatt, and Katrina Kaif, together for the first time, in a road trip film directed by Farhan Akhtar and co-written by Zoya Akhtar and Reema Kagti. Production was supposed to start in 2022.
 
-    body = """In 1991, India had roughly two weeks of foreign exchange reserves left. The country was days from defaulting on its international obligations. What happened next — a classified operation to airlift 60 tons of gold from the Reserve Bank of India's vaults and pledge it to the Bank of England and the Union Bank of Switzerland — is one of the most dramatic episodes in modern Indian economic history. It is also, somehow, a story most Indians under 40 have never heard in detail.
+It did not. The three leads had wildly conflicting schedules. Priyanka was between Citadel seasons in the US and UK. Alia was navigating motherhood and a packed Bollywood slate. Katrina married Vicky Kaushal and stepped back from the spotlight. At one point, there were reports that the original cast might not return at all.
 
-*Governor*, starring Manoj Bajpayee, is about to change that. The film opens in theaters on June 12.
+By September 2025, Farhan addressed the speculation directly. "I can't comment on the cast anymore," he told a podcast, "but will the film happen? The film will happen." He confirmed that location scouting and music recording had already been completed, calling the script "too delicious" to abandon.
 
-## The Real Story
+## What's Happening Now
 
-S. Venkitaramanan became RBI Governor in December 1990, walking into what was arguably the worst economic crisis independent India had ever faced. Oil prices had spiked after Iraq's invasion of Kuwait, remittances from the Gulf had collapsed, and India's foreign exchange reserves had fallen below $1 billion — not enough to cover two weeks of imports.
+The latest developments suggest the cast question has been resolved — or at least resolved enough to move forward. Alia and Priyanka are both between major projects (Alia just wrapped Alpha; Priyanka has Varanasi in post-production). Katrina, who has been the quietest of the three publicly, appears to have cleared her schedule as well.
 
-Venkitaramanan's solution was as radical as it was desperate: pledge the nation's gold reserves to international banks to raise approximately $405 million in emergency loans. The operation was carried out in secrecy. Gold was physically transported from RBI vaults to airports and shipped overseas. When word leaked, the political backlash was immediate and brutal — critics called it a national humiliation. But it worked. The emergency liquidity bought time for the broader reforms that Finance Minister Manmohan Singh would announce months later, reforms that opened India's economy to the world.
+The most tantalising development is the rumour that Shah Rukh Khan may appear in a cameo. SRK has form here — his brief appearances in Brahmastra and Rocketry were among the most talked-about moments in those films. A cameo in a Farhan Akhtar-directed film would fit neatly into the Excel Entertainment universe that includes Don, Don 2, and the original Dil Chahta Hai.
 
-Venkitaramanan passed away in November 2023 at the age of 92. His obituaries noted the irony: the man who helped save the Indian economy from collapse is far less remembered than the politicians who took credit for the reforms that followed.
+Neither the Khan camp nor the producers have confirmed the cameo. But the rumour alone tells you something about the scale of expectation around this project.
 
-## What the Film Does With It
+## The Zindagi Na Milegi Dobara Parallel
 
-Director Chinmay Mandlekar — best known as an actor in *The Kashmir Files* — has structured *Governor* as a political thriller, not a biopic. Bajpayee plays the RBI Governor as an outsider to the political establishment, a technocrat forced to make decisions that the politicians around him are too afraid or too compromised to make.
+Jee Le Zaraa exists in the shadow of Zindagi Na Milegi Dobara, Zoya Akhtar's 2011 masterpiece about three friends on a road trip through Spain. That film was not just a box office hit — it became a cultural touchstone for an entire generation of Indian travellers, credited with single-handedly boosting tourism to Spain from India.
 
-Adah Sharma plays a journalist who uncovers the secret gold operation and threatens to blow it open, adding a ticking-clock element to the narrative. The ensemble includes Madhoo and Noushad Mohamed Kunju. Javed Akhtar has written the lyrics, and Amit Trivedi has composed the score — a pairing that hasn't worked together in years and signals creative ambition.
-
-The screenplay is credited to Suvendu Bhattacharyjee, Saurabh Bharat, Ravi Asrani, and producer Vipul Amrutlal Shah. Shah's Sunshine Pictures previously produced *The Kerala Story* franchise, which means *Governor* arrives with both commercial credibility and a certain political charge.
+Jee Le Zaraa is being positioned as the female counterpart to that legacy. The idea, reportedly, originated with Katrina Kaif during the making of ZNMD, when she suggested a version with women in the lead. Fifteen years later, the concept has not lost its appeal. If anything, the hunger for a female-led ensemble film with actual star power — not a token indie casting — has only grown.
 
 ## Why NRIs Should Pay Attention
 
-For the Indian diaspora — particularly the wave of professionals who left India in the 1990s and 2000s — the 1991 crisis isn't ancient history. It's origin story. The liberalization that followed Venkitaramanan's gold gambit is what created the IT boom, the outsourcing industry, the H-1B pipeline, and the economic conditions that made emigration viable for millions of middle-class Indians. The Infosys IPO, the Wipro expansion, the Bangalore tech corridor — none of it happens without the reforms that the gold airlift made possible.
+Priyanka Chopra is the most globally visible Indian actress of her generation. Her involvement automatically gives Jee Le Zaraa a diaspora marketing footprint that few Bollywood films can match. Add Alia Bhatt — who has her own significant NRI fanbase — and Katrina Kaif, whose appeal with diaspora audiences has been consistent since Namastey London, and you have a film that could be one of the biggest diaspora events of 2027.
 
-*Governor* releases on June 12, the same day as Imtiaz Ali's *Main Vaapas Aaunga* starring Diljit Dosanjh and Kangana Ranaut's *Bharat Bhhagya Viddhaata*. It's a crowded corridor, but Bajpayee's box office track record with smart mid-budget films — from *12th Fail* to *Sirf Ek Bandaa Kaafi Hai* — suggests there's an audience hungry for stories about real people who made real decisions under impossible pressure.
+For NRI audiences who have watched Bollywood's promised female ensemble projects fall apart before (Veere Di Wedding aside), Jee Le Zaraa's tortured journey to the starting line actually adds to the stakes. This is not a film that was casually greenlit. It has been fought for, delayed, defended, and now — apparently — rescued.
 
-Whether the film lives up to the source material is for audiences to decide. But the story it's telling — of a country on the brink, a bureaucrat who bet everything, and a secret operation that changed the course of a nation — is one the diaspora should know, whether or not they buy a ticket.
+The desert photos suggest that Rajasthan will be a key location, fitting the road trip genre perfectly. If Farhan can capture even a fraction of the wanderlust that made ZNMD iconic, this time through a female lens, the film could become the defining Bollywood ensemble of the decade.
 
-**Sources:** Bollywood Hungama, Filmfare, Cinema Express, IANS"""
+Shooting is expected to begin in the coming months, with a 2027 release likely.
 
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": "governor-manoj-bajpayee-rbi-gold-1991-crisis-venkitaramanan-nri-20260603",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "is_editorial": False,
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url,
-        "image_attribution": img_attr,
-        "sources": json.dumps(["Bollywood Hungama", "Filmfare", "Cinema Express", "IANS"]),
-    }
-    if not img_url:
-        del article["image_url"]
-        del article["image_attribution"]
+*Sources: Sacnilk; Pinkvilla; Bollywood Hungama; Zoom TV Entertainment*"""
 
-    return insert_article(article)
+art3_sources = ["Sacnilk", "Pinkvilla", "Bollywood Hungama", "Zoom TV Entertainment"]
+
+articles_to_write.append({
+    "slug": art3_slug,
+    "headline": art3_headline,
+    "subheadline": art3_subheadline,
+    "body": art3_body,
+    "person_names": ["Farhan Akhtar", "Priyanka Chopra"],
+    "topic_queries": ["Jee Le Zaraa Bollywood film", "Farhan Akhtar road trip film"],
+    "pexels_query": "Rajasthan desert road trip India",
+    "sources": art3_sources
+})
 
 
-# ── Main ──
+# ── MAIN EXECUTION ──
+
+def main():
+    now = datetime.now(timezone.utc)
+    published_at = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    for i, art in enumerate(articles_to_write):
+        print(f"\n{'='*60}")
+        print(f"Article {i+1}: {art['headline'][:60]}...")
+        print(f"{'='*60}")
+
+        # Image sourcing
+        print("\n📷 Sourcing image...")
+        image_url, image_attr = source_image(
+            art["person_names"],
+            art["topic_queries"],
+            art["pexels_query"],
+            art["slug"]
+        )
+
+        # Build article payload
+        payload = {
+            "headline": art["headline"],
+            "subheadline": art["subheadline"],
+            "body": art["body"],
+            "slug": art["slug"],
+            "category": "entertainment",
+            "vertical": "entertainment",
+            "status": "published",
+            "published_at": published_at,
+            "is_editorial": False,
+            "sources": art["sources"]
+        }
+
+        if image_url:
+            payload["image_url"] = image_url
+            payload["image_attribution"] = image_attr
+
+        # Validate
+        word_count = len(art["body"].split())
+        if word_count < 400:
+            print(f"  ✗ REJECTED: body too short ({word_count} words)")
+            continue
+        if len(art["headline"]) > 200:
+            print(f"  ✗ REJECTED: headline too long ({len(art['headline'])} chars)")
+            continue
+        if len(art["subheadline"]) < 15:
+            print(f"  ✗ REJECTED: subheadline too short")
+            continue
+
+        print(f"  Word count: {word_count}")
+        print(f"  Headline: {len(art['headline'])} chars")
+        print(f"  Image: {'✓' if image_url else '✗ none'}")
+
+        # Insert
+        print("\n📝 Publishing...")
+        art_id = insert_article(payload)
+        if art_id:
+            print(f"  ✓ DONE: {art['slug']}")
+        else:
+            print(f"  ✗ FAILED: {art['slug']}")
+
+        time.sleep(1)  # small delay between inserts
+
+    print(f"\n{'='*60}")
+    print("Entertainment writer run complete.")
+    print(f"{'='*60}")
+
 
 if __name__ == "__main__":
-    print("🎬 The Videshi Entertainment Writer — June 3, 2026")
-    print(f"   Time: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-    print()
-
-    results = []
-    results.append(("Peddi", write_peddi_article()))
-    results.append(("Mindy Kaling", write_mindy_kaling_article()))
-    results.append(("Governor", write_governor_article()))
-
-    print("\n" + "="*50)
-    print("📊 Results:")
-    for name, ok in results:
-        status = "✓" if ok else "✗"
-        print(f"  {status} {name}")
-
-    successes = sum(1 for _, ok in results if ok)
-    print(f"\n  {successes}/{len(results)} articles published")
-
-    if successes == 0:
-        sys.exit(1)
+    main()
