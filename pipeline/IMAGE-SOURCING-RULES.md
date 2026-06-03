@@ -227,12 +227,38 @@ if candidates:
 - **NEVER use any URL with `_nc_ht=`, `_nc_cat=`, `ccb=` query params** — these are signed Meta CDN URLs that expire
 - **NEVER download social media photos as hero images** — use social embeds in the body instead (copyright-safe)
 
-## MANDATORY: Re-upload ALL images to Supabase storage
-**Every image MUST be downloaded and re-uploaded to Supabase storage**, regardless of source. This includes Wikipedia, Wikimedia Commons, Pexels — everything. The `image_url` in the database must ALWAYS be a Supabase storage URL (`lboecaekpynbpyijrbfz.supabase.co/storage/...`).
+## MANDATORY: Re-upload ALL images to Supabase storage (COMPRESSED)
+**Every image MUST be downloaded, resized/compressed, and re-uploaded to Supabase storage.** The `image_url` in the database must ALWAYS be a Supabase storage URL.
 
-Why: Social autopost scripts (X, Facebook, Threads, Instagram) download the image to attach it. Wikimedia blocks requests without User-Agent headers. Pexels could change policies. Only Supabase URLs are guaranteed to work everywhere.
+**Size rules:**
+- Max width: **1200px** (resize down if larger, preserve aspect ratio)
+- JPEG quality: **80** (good balance of quality vs file size)
+- Target file size: **100-300 KB** (flag anything over 500 KB)
+- Minimum: **10 KB** (anything smaller is probably a tiny thumbnail — go back and get a larger version)
+
+**When downloading from Wikimedia Commons**, use the thumbnail API with `iiurlwidth=1200` — this returns a pre-resized URL in the `thumburl` field. Do NOT use the `originalimage` URL for hero images (those can be 5+ MB).
+
+**When downloading from Pexels**, append `?auto=compress&cs=tinysrgb&w=1200` to constrain size.
 
 **When downloading from any source**, always include: `headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}`
+
+**Compression before upload** (Python example):
+```python
+from PIL import Image
+import io
+
+def compress_image(img_bytes, max_width=1200, quality=80):
+    """Resize and compress image. Returns JPEG bytes."""
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    return buf.getvalue()
+```
 
 Upload to Supabase bucket `article-images` with filename `{slug}.jpg` (or `{article_id}.jpg`).
 
