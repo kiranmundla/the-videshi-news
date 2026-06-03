@@ -1,0 +1,171 @@
+{
+  "_description": "Official X and Threads handles for social embed sourcing. Writers search these accounts for relevant posts to embed in article bodies. Organized by category with persons + organizations.",
+  "_updated": "2026-06-02",
+  "_usage": "When writing about a person or topic, check this registry. If a match exists, search their X/Threads for a recent relevant post and embed the URL on its own line in the article body. Prefer posts WITH photos/videos. Organization accounts are great for official announcements and event photos. The frontend auto-renders both X and Instagram/Threads embeds from bare URLs on their own line.",
+
+  "sports": {
+    "persons": [
+      {"name": "Virat Kohli", "x": "imVkohli", "threads": "virat.kohli"},
+      {"name": "Rohit Sharma", "x": "ImRo45", "threads": "rohitsharma45"},
+      {"name": "MS Dhoni", "x": null, "threads": "msdhoni"},
+      {"name": "Jasprit Bumrah", "x": "Jaboraham_B93", "threads": "jaspritbumrah93"},
+      {"name": "Hardik Pandya", "x": "hardaborandya7", "threads": "hardikpandya93"},
+      {"name": "Sachin Tendulkar", "x": "sachin_rt", "threads": "sachintendulkar"},
+      {"name": "Sourav Ganguly", "x": "SGanguly99", "threads": null},
+      {"name": "Neeraj Chopra", "x": "Neeraj_chopra1", "threads": "neeraj____chopra"},
+      {"name": "PV Sindhu", "x": "Paborindhu1", "threads": "pvsindhu1"},
+      {"name": "Sania Mirza", "x": "MirzaSania", "threads": "mirzasaniar"},
+      {"name": "D Gukesh", "x": "DGukesh", "threads": "dgukesh"},
+      {"name": "Sunil Chhetri", "x": "caborunil11", "threads": "chetaborunil11"},
+      {"name": "Smriti Mandhana", "x": "Smriti_Mandhana", "threads": "smriti_mandhana"},
+      {"name": "Rishabh Pant", "x": "RishabhPant17", "threads": "rishabpant"},
+      {"name": "Shubman Gill", "x": "ShubmanGill", "threads": "shubmangill"},
+      {"name": "Ravindra Jadeja", "x": "imjadeja", "threads": "ravindra.jadeja"},
+      {"name": "KL Rahul", "x": "klaborahul", "threads": "rahulkl"},
+      {"name": "Manu Bhaker", "x": "realmanubhaker", "threads": null},
+      {"name": "Nikhat Zareen", "x": "nikaboreen9", "threads": null},
+      {"name": "Gulveer Singh", "x": null, "threads": null, "note": "Search @afiindia for posts about him"},
+      {"name": "Avinash Sable", "x": null, "threads": null, "note": "Search @afiindia for posts about him"}
+    ],
+    "organizations": [
+      {"name": "BCCI", "x": "BCCI", "threads": null, "covers": "Indian cricket, team announcements, match photos"},
+      {"name": "IPL", "x": "IPL", "threads": null, "covers": "IPL matches, stats, player highlights"},
+      {"name": "ICC", "x": "ICC", "threads": null, "covers": "International cricket"},
+      {"name": "Athletics Federation of India", "x": "afiindia", "threads": null, "covers": "Indian athletics, track and field, marathon runners, national records"},
+      {"name": "Hockey India", "x": "TheHockeyIndia", "threads": null, "covers": "Indian hockey team"},
+      {"name": "BAI Badminton", "x": "BAI_Media", "threads": null, "covers": "Indian badminton"},
+      {"name": "AIFF Football", "x": "IndianFootball", "threads": null, "covers": "Indian football, ISL, national team"},
+      {"name": "SAI Sports Authority", "x": "Media_SAI", "threads": null, "covers": "Government sports body, all Indian sports"},
+      {"name": "Olympic India", "x": "WeAreTeamIndia", "threads": null, "covers": "Indian Olympic athletes"},
+      {"name": "FIDE Chess", "x": "FIDE_chess", "threads": null, "covers": "International chess"},
+      {"name": "RCB", "x": "RCBTweets", "threads": null, "covers": "Royal Challengers Bengaluru cricket"},
+      {"name": "CSK", "x": "ChennaiIPL", "threads": null, "covers": "Chennai Super Kings cricket"},
+      {"name": "Mumbai Indians", "x": "miaboraltan", "threads": null, "covers": "Mumbai Indians cricket"}
+    ]
+  },
+
+  "news": {
+    "persons": [
+      {"name": "Narendra Modi", "x": "narendramodi", "threads": null},
+      {"name": "Amit Shah", "x": "AmitShah", "threads": null},
+      {"name": "Rahul Gandhi", "x": "RahulGandhi", "threads": null},
+      {"name": "S Jaishankar", "x": "DrSJaishankar", "threads": null},
+      {"name": "Nirmala Sitharaman", "x": "nsitharaman", "threads": null},
+      {"name": "Yogi Adityanath", "x": "myogiadityanath", "threads": null},
+      {"name": "Arvind Kejriwal", "x": "ArvindKejriwal", "threads": null},
+      {"name": "Mamata Banerjee", "x": "MamataOfficial", "threads": null}
+    ],
+    "organizations": [
+      {"name": "PMO India", "x": "PMOIndia", "threads": null, "covers": "PM office announcements, official event photos"},
+      {"name": "MEA India", "x": "MEAIndia", "threads": null, "covers": "Foreign affairs, diaspora, consular news"},
+      {"name": "President of India", "x": "rashtrapatibhvn", "threads": null, "covers": "Presidential events"},
+      {"name": "PIB India", "x": "PIB_India", "threads": null, "covers": "Government press releases, official photos"},
+      {"name": "ANI News", "x": "ANI", "threads": null, "covers": "Breaking news wire, official event photos"},
+      {"name": "PTI News", "x": "PTI_News", "threads": null, "covers": "Wire service"},
+      {"name": "Indian Embassy US", "x": "IndianEmbassyUS", "threads": null, "covers": "India-US relations, diaspora events"},
+      {"name": "CGI New York", "x": "IndiainNewYork", "threads": null, "covers": "Consulate news, NRI services"},
+      {"name": "CGI San Francisco", "x": "IndiainSanFran", "threads": null, "covers": "Bay Area Indian community"}
+    ]
+  },
+
+  "immigration": {
+    "persons": [],
+    "organizations": [
+      {"name": "USCIS", "x": "USCIS", "threads": null, "covers": "Visa processing, green card, citizenship updates"},
+      {"name": "Travel.gov", "x": "TravelGov", "threads": null, "covers": "Visa appointments, travel advisories, passport"},
+      {"name": "US Embassy India", "x": "USAndIndia", "threads": null, "covers": "US visa in India, bilateral relations"}
+    ]
+  },
+
+  "technology": {
+    "persons": [
+      {"name": "Sundar Pichai", "x": "sundarpichai", "threads": "sundarpichai"},
+      {"name": "Satya Nadella", "x": "sataboradella", "threads": "sataboradella"},
+      {"name": "Sam Altman", "x": "sama", "threads": null},
+      {"name": "Elon Musk", "x": "elonmusk", "threads": null},
+      {"name": "Tim Cook", "x": "tim_cook", "threads": null},
+      {"name": "Mark Zuckerberg", "x": null, "threads": "zuck"},
+      {"name": "Nandan Nilekani", "x": "NandanNilekani", "threads": null},
+      {"name": "Jensen Huang", "x": null, "threads": null, "note": "Search @nvidia for posts about him"},
+      {"name": "Arvind Krishna", "x": null, "threads": null, "note": "Search @IBM for posts about him"},
+      {"name": "Shantanu Narayen", "x": null, "threads": null, "note": "Search @Adobe for posts about him"}
+    ],
+    "organizations": [
+      {"name": "Google", "x": "Google", "threads": null, "covers": "Product launches, AI announcements"},
+      {"name": "Microsoft", "x": "Microsoft", "threads": null, "covers": "Products, AI, enterprise"},
+      {"name": "Apple", "x": "Apple", "threads": null, "covers": "Product launches, WWDC"},
+      {"name": "NVIDIA", "x": "nvidia", "threads": null, "covers": "GPU, AI chips"},
+      {"name": "OpenAI", "x": "OpenAI", "threads": null, "covers": "ChatGPT, AI models"},
+      {"name": "Meta", "x": "Meta", "threads": "meta", "covers": "Meta platforms, AI"},
+      {"name": "Infosys", "x": "Infosys", "threads": null, "covers": "Indian IT"},
+      {"name": "TCS", "x": "TCS", "threads": null, "covers": "Indian IT"},
+      {"name": "Wipro", "x": "Wipro", "threads": null, "covers": "Indian IT"},
+      {"name": "NASSCOM", "x": "nasscom", "threads": null, "covers": "Indian tech industry body"},
+      {"name": "ISRO", "x": "isaborespace", "threads": null, "covers": "Indian space program"}
+    ]
+  },
+
+  "entertainment": {
+    "persons": [
+      {"name": "Deepika Padukone", "x": "deepikapadukone", "threads": "deepikapadukone"},
+      {"name": "Alia Bhatt", "x": "aliaa08", "threads": "aliaabhatt"},
+      {"name": "Shah Rukh Khan", "x": "iamsrk", "threads": null},
+      {"name": "Priyanka Chopra", "x": "praborankachopra", "threads": "praborankachopra"},
+      {"name": "Ranveer Singh", "x": "RanveerOfficial", "threads": "ranveersingh"},
+      {"name": "Karan Johar", "x": "kaaboranohar", "threads": "kaaboranohar"},
+      {"name": "Diljit Dosanjh", "x": "daboranjh", "threads": "daboranjh"},
+      {"name": "AR Rahman", "x": "araborahman", "threads": null},
+      {"name": "Amitabh Bachchan", "x": "SrBachchan", "threads": null},
+      {"name": "Akshay Kumar", "x": "akshaykumar", "threads": "akshaykumar"},
+      {"name": "Anushka Sharma", "x": "AnushkaSharma", "threads": "anushkasharma"},
+      {"name": "SS Rajamouli", "x": "ssrajamouli", "threads": null},
+      {"name": "Jr NTR", "x": "taborak", "threads": null},
+      {"name": "Ram Charan", "x": "AlwaysRamCharan", "threads": null},
+      {"name": "Prabhas", "x": "actorprabhas", "threads": null},
+      {"name": "Rashmika Mandanna", "x": "iamRasaboraM", "threads": "rashmika_mandanna"}
+    ],
+    "organizations": [
+      {"name": "Netflix India", "x": "NetflixIndia", "threads": null, "covers": "Indian streaming content"},
+      {"name": "Amazon Prime Video IN", "x": "PrimeVideoIN", "threads": null, "covers": "Indian streaming content"},
+      {"name": "Filmfare", "x": "filmfare", "threads": null, "covers": "Bollywood awards, industry news"},
+      {"name": "Dharma Productions", "x": "DharmaMovies", "threads": null, "covers": "Bollywood films"},
+      {"name": "YRF", "x": "yaborlms", "threads": null, "covers": "Yash Raj Films"}
+    ]
+  },
+
+  "markets-finance": {
+    "persons": [
+      {"name": "Gautam Adani", "x": "gautam_adani", "threads": null},
+      {"name": "Mukesh Ambani", "x": null, "threads": null, "note": "Search @RIL_Updates for posts"}
+    ],
+    "organizations": [
+      {"name": "NSE India", "x": "NSEIndia", "threads": null, "covers": "Stock market, Nifty"},
+      {"name": "BSE India", "x": "BSEIndia", "threads": null, "covers": "Stock market, Sensex"},
+      {"name": "RBI", "x": "RBI", "threads": null, "covers": "Monetary policy, banking, rates"},
+      {"name": "SEBI", "x": "SEBI_India", "threads": null, "covers": "Market regulation"}
+    ]
+  },
+
+  "nri-world": {
+    "persons": [
+      {"name": "Rishi Sunak", "x": "RishiSunak", "threads": null},
+      {"name": "Vivek Ramaswamy", "x": "VivekGRamaswamy", "threads": null},
+      {"name": "Sriram Krishnan", "x": "sriramk", "threads": null},
+      {"name": "Ajay Banga", "x": null, "threads": null, "note": "Search @WorldBank for posts about him"}
+    ],
+    "organizations": [
+      {"name": "World Bank", "x": "WorldBank", "threads": null, "covers": "Global economics"},
+      {"name": "Indian American Impact", "x": "IAImpact", "threads": null, "covers": "Indian American political engagement"}
+    ]
+  },
+
+  "travel": {
+    "persons": [],
+    "organizations": [
+      {"name": "Incredible India", "x": "IncredibleIndia", "threads": null, "covers": "India tourism, destinations"},
+      {"name": "Air India", "x": "aiaboradia", "threads": null, "covers": "Indian airline, routes, fleet"},
+      {"name": "IndiGo", "x": "IndiGo6E", "threads": null, "covers": "Indian airline"},
+      {"name": "IRCTC", "x": "IRCTCofficial", "threads": null, "covers": "Indian railways, travel"}
+    ]
+  }
+}
