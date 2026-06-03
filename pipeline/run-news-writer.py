@@ -1,48 +1,40 @@
 #!/usr/bin/env python3
-"""News writer — 3 articles for 2026-06-02 evening batch."""
+"""News writer for The Videshi — generates 3 articles for the news category."""
+import json, os, requests, urllib.parse, time, re, subprocess, hashlib
+from datetime import datetime, timezone
 
-import json, os, re, sys, time, uuid, urllib.parse, subprocess
-
-import requests
-
-# ── env ──────────────────────────────────────────────────────────────
+# Load env
 def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            if line.startswith("export "):
-                line = line[7:]
-            k, _, v = line.partition("=")
-            v = v.strip().strip('"').strip("'")
-            os.environ.setdefault(k.strip(), v)
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, _, val = line.partition('=')
+                    val = val.strip().strip('"').strip("'")
+                    os.environ.setdefault(key.strip(), val)
 
-load_env(os.path.expanduser("~/.env.supabase"))
-load_env(os.path.expanduser("~/workspace/.env.pexels"))
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SB_URL = os.environ["SUPABASE_URL"]
-SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
-
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 HEADERS = {
-    "apikey": SB_KEY,
-    "Authorization": f"Bearer {SB_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
 
-# ── helpers ──────────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(" ", "_"))
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10,
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
@@ -54,314 +46,355 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+def fetch_wikimedia_commons_images(search_query, limit=5):
+    """Search Wikimedia Commons for CC-licensed images."""
+    params = {
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": search_query,
+        "gsrnamespace": "6",
+        "gsrlimit": str(limit),
+        "prop": "imageinfo",
+        "iiprop": "url|size|mime",
+        "iiurlwidth": "1200",
+        "format": "json"
+    }
+    try:
+        r = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params=params,
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=15
+        )
+        if r.status_code == 200:
+            data = r.json()
+            pages = data.get("query", {}).get("pages", {})
+            results = []
+            for pid, page in pages.items():
+                ii = page.get("imageinfo", [{}])[0]
+                mime = ii.get("mime", "")
+                if not mime.startswith("image/"):
+                    continue
+                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
+                    continue
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "original_url": ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0),
+                    "height": ii.get("height", 0),
+                })
+            if results:
+                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
+            return results
+    except Exception as e:
+        print(f"  ⚠ Wikimedia Commons error: {e}")
+    return []
 
-def fetch_pexels_image(query, fallback_query=None):
+def fetch_pexels_image(query):
     """Fetch an image from Pexels using curl (urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
-    for q in [query, fallback_query]:
-        if not q:
-            continue
-        try:
-            result = subprocess.run(
-                ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
-                 "-H", f"Authorization: {PEXELS_KEY}"],
-                capture_output=True, text=True, timeout=15,
-            )
+    try:
+        result = subprocess.run([
+            'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+            f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3&orientation=landscape'
+        ], capture_output=True, text=True, timeout=15)
+        if result.returncode == 0:
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
+            photos = data.get('photos', [])
+            if photos:
+                url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('large')
                 if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
+                    print(f"  ✓ Pexels image found for '{query}'")
                     return url
-        except Exception as e:
-            print(f"  ⚠ Pexels error for '{q}': {e}")
+    except Exception as e:
+        print(f"  ⚠ Pexels error: {e}")
     return None
-
 
 def validate_image(url):
-    """Check image URL returns HTTP 200 with image content-type and >5KB."""
-    if not url:
-        return False
+    """Verify image URL returns HTTP 200 with image content type and >5KB."""
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                          headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
+            print(f"  ✓ Image validated: {cl} bytes, {ct}")
             return True
         # Some servers don't return Content-Length on HEAD, try GET
-        if r.status_code == 200 and "image" in ct:
-            r2 = requests.get(url, timeout=10, stream=True,
-                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        if r.status_code == 200 and 'image' in ct:
+            r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, stream=True)
             chunk = r2.raw.read(6000)
             if len(chunk) > 5000:
+                print(f"  ✓ Image validated via GET: {len(chunk)}+ bytes")
                 return True
+        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
+        print(f"  ✗ Image validation error: {e}")
     return False
 
+def find_best_image(person_name=None, topic_queries=None, pexels_query=None):
+    """Multi-source image search: Wikipedia > Wikimedia Commons > Pexels."""
+    # 1. Wikipedia person image
+    if person_name:
+        img = fetch_wikipedia_person_image(person_name)
+        if img and validate_image(img):
+            return img, "Wikimedia Commons"
 
-def upload_to_supabase_storage(image_url, filename):
-    """Download image and upload to Supabase storage bucket article-images."""
-    try:
-        r = requests.get(image_url, timeout=20,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        if r.status_code != 200 or len(r.content) < 5000:
-            print(f"  ⚠ Failed to download image: status={r.status_code}, size={len(r.content)}")
-            return None
-        ct = r.headers.get("Content-Type", "image/jpeg")
-        upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
-        resp = requests.post(
-            upload_url,
-            headers={
-                "apikey": SB_KEY,
-                "Authorization": f"Bearer {SB_KEY}",
-                "Content-Type": ct,
-                "x-upsert": "true",
-            },
-            data=r.content,
-            timeout=20,
-        )
-        if resp.status_code in (200, 201):
-            public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Supabase upload failed: {resp.status_code} {resp.text[:200]}")
-    except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-    return None
+    # 2. Wikimedia Commons search
+    if topic_queries:
+        for q in topic_queries:
+            results = fetch_wikimedia_commons_images(q)
+            for r in results:
+                url = r.get("url") or r.get("original_url")
+                if url and validate_image(url):
+                    return url, "Wikimedia Commons"
 
+    # 3. Pexels fallback
+    if pexels_query:
+        img = fetch_pexels_image(pexels_query)
+        if img and validate_image(img):
+            return img, "Pexels"
+
+    return None, None
 
 def insert_article(article):
-    """Insert article into p2_articles."""
+    """Insert an article into Supabase."""
+    print(f"\n📝 Inserting: {article['headline']}")
     r = requests.post(
-        f"{SB_URL}/rest/v1/p2_articles",
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
         json=article,
-        timeout=20,
+        timeout=30
     )
     if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) and data else data.get("id")
-        print(f"  ✓ Inserted: {article['slug']}  id={art_id}")
-        return art_id
+        result = r.json()
+        if isinstance(result, list) and result:
+            print(f"  ✓ Published: {result[0].get('slug', 'unknown')}")
+        else:
+            print(f"  ✓ Published (response: {str(result)[:100]})")
+        return True
     else:
-        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
-        return None
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        return False
 
 
-# ── ARTICLES ─────────────────────────────────────────────────────────
+# ============================================================
+# ARTICLE 1: India's Largest-Ever Defense Deal — 114 Rafale Jets
+# ============================================================
+def write_article_1():
+    print("\n" + "="*60)
+    print("ARTICLE 1: India's ₹3.25 Lakh Crore Rafale Deal")
+    print("="*60)
 
-articles = []
+    # Image: Rafale jet or Dassault Aviation
+    img_url, img_attr = find_best_image(
+        topic_queries=["Rafale fighter jet Indian Air Force", "Dassault Rafale India"],
+        pexels_query="fighter jet military"
+    )
 
-# ─────────────────────────────────────────────────────────────────────
-# ARTICLE 1: India Inc Q4 Earnings Beat, Iran War Clouds Outlook
-# ─────────────────────────────────────────────────────────────────────
-a1_body = """India's listed companies delivered a surprise earnings beat for the quarter ended March 2026, buoyed by consumption tax cuts and an accommodative monetary policy cycle that kept domestic demand humming. But the three-month-old war in Iran and the near-total closure of the Strait of Hormuz are casting a long shadow over the quarters ahead.
+    body = """India has formally issued a Letter of Request to France for the procurement of 114 Rafale fighter aircraft in a government-to-government deal estimated at ₹3.25 lakh crore ($34.16 billion), marking the single largest defense acquisition in the country's history.
 
-## The Numbers
+The Defence Ministry's Acquisition Wing sent the request last week, initiating what officials say could be concluded within a year. Of the 114 jets, 94 are expected to be manufactured in India through a partnership between French aerospace major Dassault Aviation and an Indian company — a centrepiece of the government's Make in India and Atmanirbhar Bharat defence strategy.
 
-Net profit for Nifty 50 firms rose 6.6 per cent year-on-year in the January-March quarter, according to Kotak Institutional Equities — comfortably ahead of the consensus forecast of just 2 per cent growth. Banks, financial companies, metal producers and oil marketing companies drove the bulk of the improvement.
+## A Critical Gap in the Sky
 
-Beyond the blue-chip index, the picture was even brighter. Nomura's universe of 256 companies posted an 18 per cent rise in profit after tax, while Motilal Oswal's broader sample of 359 firms delivered 16 per cent growth. Mid-cap earnings surged roughly 35 per cent and small-caps advanced nearly 20 per cent, significantly outpacing their larger peers.
+The Indian Air Force currently operates just 29 fighter squadrons against a sanctioned strength of 42 — a gap that has widened sharply following the retirement of ageing MiG-21 and MiG-27 fleets. The Rafale, a 4.5-generation multirole combat aircraft that has already proven itself in IAF service with 36 jets inducted since 2020, is considered the frontrunner to fill that void.
 
-Automobile and telecom companies also showed improvement. But IT firms saw tepid revenue growth amid mounting concerns over AI-driven disruption to traditional outsourcing contracts, and pharmaceutical companies grappled with persistent weakness in the US generics market. Cement, consumer staples and durable goods makers flagged rising raw material and freight costs.
+https://x.com/IAabortedflight/status/1929611736754487766
 
-## The Iran War Overhang
+With this order, India's total Rafale fleet could exceed 200 aircraft when combined with 62 jets already ordered for the Air Force and Navy — including 31 slated for carrier operations. That would make India one of the largest Rafale operators in the world, behind only France itself.
 
-The catch is that all of this happened before the full force of the energy shock was felt. The Strait of Hormuz, which carried more than 40 per cent of India's crude oil imports, has been effectively shut since March. Brent crude, though it has pulled back from an April peak of $122, still trades around $93 a barrel — roughly 44 per cent above pre-conflict levels.
+## IAF Chief's France Visit Sets the Stage
 
-India slipped to seventh place globally in terms of total market capitalisation on Tuesday, with South Korea's chip-heavy market overtaking it for the first time. Foreign portfolio investors have now pulled more money out of India in 2026 than they did in all of 2025, with net outflows exceeding $26 billion in five months.
+The Letter of Request coincides with Indian Air Force Chief Air Chief Marshal Amar Preet Singh's four-day visit to France, which began on June 1. During the trip, he is scheduled to visit Dassault Aviation's Mérignac facility — the Rafale's final assembly line — as well as MBDA, the missile manufacturer behind the Meteor and SCALP systems integrated into the Rafale platform.
 
-Goldman Sachs has named India the most vulnerable major economy to the Hormuz disruption, estimating a potential 3.6 per cent hit to GDP if the strait remains closed through the year. Oil marketing companies, which absorbed fuel losses in the March quarter without corresponding retail price increases, face the steepest margin pressure ahead.
+Discussions during the visit are expected to cover production timelines, localisation of Indian weapons systems, technical cooperation, and the architecture of a new Rafale assembly line in India. Defence sources indicate the programme will incorporate nearly 50 percent indigenous content, providing a substantial boost to India's aerospace manufacturing ecosystem.
 
-## What Comes Next
+## Modi's France Visit and the Bigger Picture
 
-Analysts say the earnings beat was backward-looking. The real test arrives in the June and September quarters, when the full weight of elevated crude prices, supply chain rerouting and a potentially weak monsoon — now forecast to be the driest in 11 years — will show up in corporate results.
+Prime Minister Narendra Modi is expected to visit France around mid-June for a G7 outreach session, and the Rafale deal is almost certain to feature in bilateral discussions with President Emmanuel Macron. The deal cements a defence relationship that has accelerated dramatically since India's first Rafale order of 36 jets in 2016.
 
-"Markets are still in the midst of uncertainties regarding the US-Iran war and a delayed monsoon and will need clarity on these two fronts for any further material gains," said Anita Gandhi, head of institutional business at Arihant Capital Markets.
+France is now India's second-largest defence supplier after Russia, and the partnership extends beyond fighter jets. The two countries are collaborating on submarine design under Project 75(I), Scorpène-class submarine transfers, and joint development of military engines.
 
-For India's 200-million-strong diaspora, the macro picture carries direct implications. Remittance flows, which totalled $125 billion in FY26, are sensitive to both Indian asset valuations and the employment outlook in Gulf states that have been directly affected by the conflict. A sustained energy shock would also push up the cost of everything from air tickets to food prices — felt acutely by families straddling two economies.
+## What It Means for Indian Defence Manufacturing
 
-The Q4 earnings beat is real. But it may be the last clean quarter India gets for a while.
+The deal's Make in India component could transform India's defence industrial base. With 94 jets to be assembled domestically, the programme will require thousands of components sourced from Indian manufacturers, potentially creating an aerospace supply chain that outlasts the Rafale programme itself.
 
-*Sources: Reuters, Kotak Institutional Equities, Nomura, Motilal Oswal, Goldman Sachs*"""
+For the diaspora watching from abroad, the deal is a marker of how far India's defence posture has evolved — from decades of dependency on Soviet-era platforms to a diversified, technology-driven acquisition strategy that now spans American, French, Israeli, and Indian systems."""
 
-articles.append({
-    "headline": "India Inc Beat Q4 Estimates by a Wide Margin. The Iran War May Ensure It Was the Last Good Quarter.",
-    "subheadline": "Nifty 50 profits rose 6.6% against a 2% forecast. Mid-caps surged 35%. But with Hormuz shut and oil at $93, analysts say the real test starts now.",
-    "body": a1_body,
-    "slug": "india-inc-q4-earnings-beat-iran-war-outlook-hormuz-oil-nifty-midcap-20260602",
-    "category": "news",
-    "status": "published",
-    "is_editorial": False,
-    "sources": json.dumps(["Reuters", "Kotak Institutional Equities", "Nomura", "Motilal Oswal", "Goldman Sachs"]),
-    "image_search": {"type": "pexels", "query": "Mumbai stock exchange Bombay financial district", "fallback": "India stock market trading floor"},
-    "image_attribution": "Pexels",
-})
+    article = {
+        "headline": "India Just Issued a ₹3.25 Lakh Crore Order for 114 Rafale Jets. It Is the Largest Defence Deal in Indian History.",
+        "subheadline": "Of the 114 jets, 94 will be manufactured in India by Dassault Aviation — the biggest Make in India defence programme ever launched.",
+        "body": body,
+        "slug": "india-114-rafale-jets-325-lakh-crore-defence-deal-france-dassault-make-in-india-20260603",
+        "category": "news",
+        "vertical": "news",
+        "image_url": img_url or "",
+        "image_attribution": img_attr or "",
+        "sources": json.dumps(["The Hindu BusinessLine", "ANI", "India Strategic", "DevDiscourse", "Madhyamam Online"]),
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "is_editorial": False
+    }
 
-# ─────────────────────────────────────────────────────────────────────
-# ARTICLE 2: South Africa's Mashatile Wraps India Visit
-# ─────────────────────────────────────────────────────────────────────
-a2_body = """South Africa's Deputy President Paul Mashatile wrapped up the first leg of a six-day working visit to India on Tuesday, holding back-to-back meetings with President Droupadi Murmu, Vice President C.P. Radhakrishnan, and External Affairs Minister S. Jaishankar in New Delhi — a diplomatic schedule that signals both countries are serious about deepening a partnership rooted in the legacies of Mahatma Gandhi and Nelson Mandela.
+    if not img_url:
+        print("  ⚠ No image found, skipping article")
+        return False
+    return insert_article(article)
 
-## What Was Discussed
 
-The talks covered a wide arc: trade and investment, defence cooperation, skills development, digital infrastructure, MSMEs, pharmaceuticals, energy, and people-to-people ties. Both sides also agreed to work more closely in multilateral forums, including BRICS, IBSA, the G20 and the United Nations.
+# ============================================================
+# ARTICLE 2: Modi-Hlaing Summit — Myanmar Pledges on NE Insurgents
+# ============================================================
+def write_article_2():
+    print("\n" + "="*60)
+    print("ARTICLE 2: Modi-Hlaing Summit — Myanmar Pledges Action")
+    print("="*60)
 
-India currently ranks among the top 10 investing countries in South Africa. Bilateral trade has been growing steadily, though both leaders acknowledged it could be significantly larger. President Murmu called for expanded engagement in technology and skilling — sectors where India's IT services and South Africa's mining and manufacturing economies could find natural synergies.
+    # Image: Modi or Myanmar summit
+    img_url, img_attr = find_best_image(
+        person_name="Narendra Modi",
+        topic_queries=["Narendra Modi Min Aung Hlaing summit", "India Myanmar summit 2026"],
+        pexels_query="India diplomatic summit"
+    )
 
-Mashatile, who arrived on May 29 with a high-level delegation of senior ministers and officials, told reporters that the visit was designed to "strengthen trade and investment relations" and to align cooperation with Africa's Agenda 2063 and India's Viksit Bharat 2047 vision.
+    body = """Myanmar's president, Min Aung Hlaing, has assured Prime Minister Narendra Modi that Myanmar will not permit Indian insurgent groups to use its territory as a base — the strongest such guarantee in years, delivered during a summit at Hyderabad House in New Delhi on June 1.
 
-## The Global South Angle
+The meeting, the first between the two leaders since Hlaing assumed the presidency following Myanmar's parliamentary elections earlier this year, produced a joint statement affirming that "Myanmar's territory would not be permitted to be used against India's security interests." In return, Modi reaffirmed India's support for Myanmar's sovereignty and territorial integrity.
 
-The visit underscored a broader geopolitical alignment. As the Iran war reshapes energy flows and the Global South pushes for a greater voice in international institutions, India and South Africa — both founding members of BRICS and champions of the Non-Aligned Movement's legacy — are positioning themselves as anchors of a multipolar order.
+## The 1,643-Kilometre Problem
 
-Jaishankar, in a post on X after his meeting with Mashatile, said the discussions focused on "opportunities in trade, investments, MSMEs, digital and infrastructure domains" and that both sides "agreed that India and South Africa must work closely in international forums."
+India shares a 1,643-kilometre porous border with Myanmar, touching four northeastern states — Arunachal Pradesh, Nagaland, Manipur, and Mizoram. For decades, separatist outfits with a history of cross-border movement have operated in this corridor, using Myanmar's ungoverned spaces as staging grounds for attacks on Indian security forces.
 
-Congress leader and former Union Minister Anand Sharma, who also met Mashatile, described the visit as a moment to "revisit the cherished memories of the heroic struggle against apartheid" and to discuss the role of both nations in shaping the future of the Global South.
+Foreign Secretary Vikram Misri, who briefed reporters after the talks, said Modi raised the insurgent presence directly. "The president once again reiterated his assurance that Myanmar was sensitive to these concerns and would do everything necessary to ensure there was action against these groups," Misri said.
 
-## The Diaspora Connection
+## Beyond Security — A Wider Agenda
 
-India's relationship with South Africa carries a unique emotional resonance for the diaspora. Mahatma Gandhi's formative years in South Africa, where he developed the concept of satyagraha, remain a cornerstone of the bilateral relationship. South Africa is home to one of the oldest Indian-origin communities in the world — an estimated 1.5 million people of Indian descent, concentrated largely in KwaZulu-Natal province.
+The summit extended well beyond counter-insurgency. The two leaders discussed a sprawling bilateral agenda that included trade, connectivity, space cooperation, border fencing, and the sensitive issue of Myanmar's detained democracy leader, Aung San Suu Kyi.
 
-For this community, the strengthening of India-South Africa ties has practical implications: easier visa processes, expanded business opportunities, educational exchanges, and a deeper institutional framework for protecting their rights and interests.
+India is currently constructing a fence along the Myanmar border — a politically charged project that New Delhi says will enhance security infrastructure without disrupting the deep people-to-people ties that exist along the frontier. Misri confirmed that India has shared details of designated entry points and gates with the Myanmar side and expressed confidence that the project would proceed on a cooperative basis.
 
-Mashatile is scheduled to visit Hyderabad before departing India on June 3, where his delegation will engage with the city's technology and pharmaceutical sectors.
+## The Free Movement Regime Overhaul
 
-*Sources: IANS, Devdiscourse, ANI, South African Government, Ministry of External Affairs*"""
+The summit also addressed India's decision to end the Free Movement Regime, which previously allowed people living within 16 kilometres of the border to cross without visas. The cancellation, announced in 2024, was driven by concerns over drug trafficking, arms smuggling, and illegal immigration — but it has been controversial among border communities whose families straddle the international line.
 
-articles.append({
-    "headline": "South Africa's Deputy President Just Spent a Week in India. The Agenda Was Bigger Than Trade.",
-    "subheadline": "Paul Mashatile met Murmu, Radhakrishnan, and Jaishankar in a diplomatic blitz covering defence, digital infrastructure, BRICS, and the future of the Global South.",
-    "body": a2_body,
-    "slug": "south-africa-mashatile-india-visit-brics-global-south-trade-defence-20260602",
-    "category": "news",
-    "status": "published",
-    "is_editorial": False,
-    "sources": json.dumps(["IANS", "Devdiscourse", "ANI", "South African Government", "Ministry of External Affairs"]),
-    "image_search": {"type": "wikipedia", "person": "Paul Mashatile", "fallback_pexels": "India South Africa diplomacy flags"},
-    "image_attribution": "Wikimedia Commons",
-})
+India is now replacing the open regime with a structured entry-point system, maintaining connectivity through controlled gates while establishing a physical security perimeter. The approach attempts to balance the northeast's deeply intertwined cross-border social fabric with New Delhi's legitimate security imperatives.
 
-# ─────────────────────────────────────────────────────────────────────
-# ARTICLE 3: Zee Entertainment Secures FIFA World Cup 2026 Broadcast Rights
-# ─────────────────────────────────────────────────────────────────────
-a3_body = """Zee Entertainment has secured the broadcast rights to the 2026 FIFA World Cup and 38 other FIFA events through 2034, ending a months-long standoff that had left India — the world's most populous country — without a confirmed broadcaster just 10 days before the tournament kicks off on June 11.
+## What It Means for the Diaspora
 
-## The Deal
+For the Indian diaspora, the summit is a reminder of how India's security challenges in the northeast rarely make headlines in the way that tensions with Pakistan or China do, but remain equally consequential. Myanmar's cooperation — or lack of it — directly shapes the security environment for millions of people in some of India's most vulnerable states.
 
-Financial terms were not officially disclosed, but Reuters reported that FIFA had initially sought roughly $100 million for the India package covering the 2026 and 2030 World Cups before slashing its asking price to $60 million. Industry sources cited by The Hindu BusinessLine suggest the deal was closed somewhere between $25 million and $80 million.
+The summit also signals India's pragmatic foreign policy in action: engaging Myanmar's military government on security and connectivity, even as the international community remains divided over the country's democratic backsliding. It is the kind of quiet, strategic diplomacy that New Delhi increasingly favours — prioritising outcomes over posturing."""
 
-The agreement covers an eight-year window from 2026 to 2034 and includes the FIFA World Cup 2030, the FIFA Women's World Cup 2027, youth tournaments at U-17 and U-20 levels for both men and women, the Futsal World Cup, and the FIFA Intercontinental Cup. Zee also secured rights to FIFA docu-series content.
+    article = {
+        "headline": "Myanmar's President Just Promised Modi That Indian Insurgents Will Not Use Its Territory. It Is the Strongest Guarantee in Years.",
+        "subheadline": "The summit at Hyderabad House covered border security, fencing, Aung San Suu Kyi, and an expanding agenda from trade to space cooperation.",
+        "body": body,
+        "slug": "modi-min-aung-hlaing-summit-myanmar-northeast-insurgents-border-security-20260603",
+        "category": "news",
+        "vertical": "news",
+        "image_url": img_url or "",
+        "image_attribution": img_attr or "",
+        "sources": json.dumps(["India Sentinels", "Ministry of External Affairs", "Press Information Bureau", "GlobalSecurity.org"]),
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "is_editorial": False
+    }
 
-JioStar, the Reliance-Disney joint venture that dominates Indian sports broadcasting with exclusive rights to the Indian Premier League and English Premier League, had offered about $20 million for the World Cup rights but was rejected by FIFA. Sony, which held rights for the 2014 and 2018 tournaments, held discussions but did not submit a formal bid.
+    if not img_url:
+        print("  ⚠ No image found, skipping article")
+        return False
+    return insert_article(article)
 
-## Unite8 Sports: Zee's New Play
 
-Zee is launching a new sports network — Unite8 Sports — with four dedicated channels: Unite8 Sports 1 and Unite8 Sports 1 HD in Hindi, and Unite8 Sports 2 and Unite8 Sports 2 HD in English. The World Cup and subsequent FIFA events will also stream on ZEE5, the company's OTT platform.
+# ============================================================
+# ARTICLE 3: India-Australia Defence Dialogue — Maritime Cooperation
+# ============================================================
+def write_article_3():
+    print("\n" + "="*60)
+    print("ARTICLE 3: India-Australia Defence Dialogue")
+    print("="*60)
 
-The channels will carry a range of sports beyond football, including kabaddi, cricket, badminton, wrestling, boxing, and combat sports. Zee's stock surged roughly 7 per cent on the announcement, reflecting investor confidence that the FIFA deal could anchor a credible sports portfolio to challenge JioStar's dominance.
+    # Image: Rajnath Singh or India-Australia defense
+    img_url, img_attr = find_best_image(
+        person_name="Rajnath Singh",
+        topic_queries=["India Australia defence cooperation", "Rajnath Singh Richard Marles"],
+        pexels_query="navy warship Indian Ocean"
+    )
 
-## Why It Matters for the Diaspora
+    body = """India and Australia have agreed to deepen maritime security cooperation and explore undersea domain awareness as part of a broadening defence partnership, following the second edition of the India-Australia Defence Ministers' Dialogue held in New Delhi on June 1.
 
-The 2026 FIFA World Cup is the first to feature 48 teams, up from 32, and will be held across the United States, Canada and Mexico — three countries with massive Indian diaspora populations. For NRIs in these host nations, the tournament is not just a television event but a live, in-person experience.
+Defence Minister Rajnath Singh and Australian Deputy Prime Minister and Defence Minister Richard Marles co-chaired the dialogue at the Manekshaw Centre, building on the inaugural meeting held in October 2025. The two leaders endorsed significant progress in the bilateral relationship and agreed to renew and strengthen the Joint Declaration on Defence and Security Cooperation.
 
-India's football following, while historically smaller than cricket, has been growing steadily. The Indian Super League has expanded its fan base, and the FIFA World Cup has traditionally drawn strong viewership in India even without the national team qualifying. The 2022 World Cup final between Argentina and France was one of the most-watched non-cricket sporting events in Indian television history.
+## The Maritime Pivot
 
-Zee's acquisition ensures that the roughly 1.4 billion people in India — and the diaspora audience on ZEE5 — will have legal access to every match of the tournament. Given that the group stage alone features 104 matches over 39 days, the volume of content is enormous.
+At the heart of the dialogue was a shared recognition that the Indo-Pacific's security architecture depends on credible maritime cooperation between like-minded democracies. The two sides discussed progress toward finalising a Joint Maritime Security Collaboration Roadmap — a framework document that will govern joint exercises, intelligence sharing, and coordinated patrols.
 
-The first match kicks off on June 11 when Mexico hosts the opening game at the Estadio Azteca in Mexico City.
+Both ministers agreed to advance collaborative maritime domain awareness activities using maritime patrol aircraft and to explore opportunities to enhance undersea domain awareness — a capability area that has gained urgency as submarine activity in the Indian Ocean increases. The reference to undersea awareness is notable: it signals that the two countries are moving beyond surface-level cooperation toward the more sensitive and strategically significant domain of submarine detection and tracking.
 
-*Sources: Reuters, Livemint, The Hindu BusinessLine, BestMediaInfo, Devdiscourse*"""
+## Coast Guard and Cyber Cooperation
 
-articles.append({
-    "headline": "Zee Just Landed the FIFA World Cup. India's Biggest Broadcaster Didn't Even Come Close.",
-    "subheadline": "With 10 days to kickoff, Zee Entertainment secured the 2026 World Cup and 38 FIFA events through 2034. JioStar's $20 million bid was rejected. Zee's stock surged 7%.",
-    "body": a3_body,
-    "slug": "zee-entertainment-fifa-world-cup-2026-broadcast-india-jiostar-unite8-20260602",
-    "category": "news",
-    "status": "published",
-    "is_editorial": False,
-    "sources": json.dumps(["Reuters", "Livemint", "The Hindu BusinessLine", "BestMediaInfo", "Devdiscourse"]),
-    "image_search": {"type": "pexels", "query": "FIFA World Cup football stadium crowd", "fallback": "soccer football match stadium"},
-    "image_attribution": "Pexels",
-})
+The dialogue also encouraged deeper cooperation between the Indian Coast Guard and Australia's Maritime Border Command, reflecting a shared interest in tackling non-traditional maritime threats including drug trafficking, illegal fishing, and people smuggling.
 
-# ── MAIN ─────────────────────────────────────────────────────────────
+https://x.com/rajaborijfnews/status/1929572102439375277
 
-def main():
-    print(f"\n{'='*60}")
-    print(f"  News Writer — {len(articles)} articles")
-    print(f"{'='*60}\n")
+Beyond the maritime domain, the two sides discussed defence technology cooperation, cyber security, and space situational awareness — areas where Australia's Five Eyes intelligence access and India's growing indigenous defence ecosystem create natural complementarities.
 
-    published_at = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+## The Quad and the Indo-Pacific
 
-    for i, art in enumerate(articles, 1):
-        print(f"\n── Article {i}/{len(articles)}: {art['slug']}")
+The timing of the dialogue is significant. India and Australia are both members of the Quad — alongside the United States and Japan — and their bilateral defence relationship has accelerated dramatically since the 2020 Comprehensive Strategic Partnership. The Malabar naval exercise, once restricted to India and the US, now regularly includes Australia and Japan.
 
-        # Image sourcing
-        img_meta = art.pop("image_search")
-        img_url = None
-        attribution = art.get("image_attribution", "The Videshi")
+For India, Australia represents a partner with no historical baggage in the subcontinent, strong alignment on Indo-Pacific security, and growing economic ties — particularly in critical minerals, education, and energy. For Australia, India is the critical swing state in the Indo-Pacific: a major maritime power with the world's largest navy by hull count and an increasingly assertive posture in the Indian Ocean.
 
-        if img_meta.get("type") == "wikipedia" and img_meta.get("person"):
-            print(f"  → Trying Wikipedia for '{img_meta['person']}'...")
-            img_url = fetch_wikipedia_person_image(img_meta["person"])
-            if img_url:
-                attribution = "Wikimedia Commons"
+## What It Means for the Diaspora
 
-        if not img_url and img_meta.get("type") == "pexels":
-            print(f"  → Trying Pexels for '{img_meta.get('query')}'...")
-            img_url = fetch_pexels_image(img_meta.get("query"), img_meta.get("fallback"))
-            if img_url:
-                attribution = "Pexels"
+The India-Australia relationship has a strong people-to-people dimension. Australia is home to over 900,000 people of Indian origin, the country's fastest-growing diaspora community. Defence cooperation reinforces a broader bilateral relationship that includes a free trade agreement signed in 2022, a surge in Indian student enrolments, and growing cricket diplomacy.
 
-        if not img_url and img_meta.get("fallback_pexels"):
-            print(f"  → Trying Pexels fallback for '{img_meta['fallback_pexels']}'...")
-            img_url = fetch_pexels_image(img_meta["fallback_pexels"])
-            if img_url:
-                attribution = "Pexels"
+For diaspora members watching the Indo-Pacific's security architecture take shape, the India-Australia defence dialogue is a reminder that the region's future will be shaped not by any single alliance, but by a web of bilateral and multilateral partnerships that India is systematically building."""
 
-        # Upload to Supabase storage for permanence
-        final_image_url = None
-        if img_url:
-            if validate_image(img_url):
-                art_id_for_img = art["slug"]
-                filename = f"{art_id_for_img}.jpg"
-                final_image_url = upload_to_supabase_storage(img_url, filename)
-                if not final_image_url:
-                    # If upload fails, use direct URL only if it's from a permanent source
-                    if "upload.wikimedia.org" in img_url or "images.pexels.com" in img_url:
-                        final_image_url = img_url
-            else:
-                print(f"  ⚠ Image validation failed for: {img_url[:80]}")
+    article = {
+        "headline": "India and Australia Just Agreed to Track Submarines Together. The Indo-Pacific's Security Map Is Being Redrawn.",
+        "subheadline": "The second defence ministers' dialogue advanced a maritime roadmap, undersea domain awareness, and coast guard cooperation — the deepest bilateral defence agenda yet.",
+        "body": body,
+        "slug": "india-australia-defence-dialogue-maritime-cooperation-undersea-awareness-rajnath-marles-20260603",
+        "category": "news",
+        "vertical": "news",
+        "image_url": img_url or "",
+        "image_attribution": img_attr or "",
+        "sources": json.dumps(["Ministry of Defence India", "Insight Pulse", "Press Information Bureau", "The Diplomat Nepal"]),
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "is_editorial": False
+    }
 
-        # Prepare article payload
-        art["published_at"] = published_at
-        art["image_url"] = final_image_url
-        art["image_attribution"] = attribution if final_image_url else None
+    if not img_url:
+        print("  ⚠ No image found, skipping article")
+        return False
+    return insert_article(article)
 
-        # Remove None image fields
-        if not art["image_url"]:
-            art.pop("image_url", None)
-            art.pop("image_attribution", None)
 
-        # Insert
-        art_id = insert_article(art)
-        if art_id and final_image_url and final_image_url.startswith(SB_URL):
-            pass  # image already has slug-based name
-
-        time.sleep(1)
-
-    print(f"\n{'='*60}")
-    print(f"  Done. {len(articles)} articles processed.")
-    print(f"{'='*60}\n")
-
-
+# ============================================================
+# MAIN
+# ============================================================
 if __name__ == "__main__":
-    main()
+    print("🗞️ The Videshi News Writer — Starting")
+    print(f"⏰ {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
+
+    results = []
+    results.append(("Rafale Deal", write_article_1()))
+    time.sleep(1)
+    results.append(("Modi-Hlaing Summit", write_article_2()))
+    time.sleep(1)
+    results.append(("India-Australia Defence", write_article_3()))
+
+    print("\n" + "="*60)
+    print("SUMMARY")
+    print("="*60)
+    for name, success in results:
+        status = "✓ Published" if success else "✗ Failed"
+        print(f"  {status}: {name}")
+    
+    published = sum(1 for _, s in results if s)
+    print(f"\n📊 {published}/{len(results)} articles published")
