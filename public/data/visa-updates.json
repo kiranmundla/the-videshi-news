@@ -9,6 +9,15 @@
     "source": "US State Department / USTravelDocs"
   },
   {
+    "id": "embassy-continuous-screening-warning",
+    "date": "2026-06-01",
+    "label": "Jun 1, 2026",
+    "headline": "US Embassy India warns: visa screening continues after issuance \u2014 violators face revocation & deportation",
+    "summary": "@USAndIndia posted that screening does not stop once a visa is issued. Holders are continuously monitored for compliance with US laws and immigration rules \u2014 visas will be revoked and holders deported if found in violation. Part of broader enforcement posture alongside expanded social media vetting.",
+    "severity": "medium",
+    "source": "US Embassy India (@USAndIndia)"
+  },
+  {
     "id": "gc-return-home-walkback",
     "date": "2026-05-30",
     "label": "May 30, 2026",
@@ -56,6 +65,15 @@
     "severity": "high",
     "source": "US State Department",
     "url": "/immigration"
+  },
+  {
+    "id": "ice-day1-cpt-crackdown",
+    "date": "2026-05-12",
+    "label": "May 12, 2026",
+    "headline": "ICE launches nationwide crackdown on Day 1 CPT and OPT fraud",
+    "summary": "ICE announced coordinated enforcement targeting schools, students, and employers involved in fraudulent CPT/OPT programs. Thousands of Indian professionals who used Day 1 CPT to maintain F-1 status between H-1B lottery attempts now face scrutiny \u2014 prior CPT use may affect pending H-1B petitions.",
+    "severity": "high",
+    "source": "ICE / DHS"
   },
   {
     "id": "kolkata-priority-50",
