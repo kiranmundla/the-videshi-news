@@ -1,48 +1,49 @@
 #!/usr/bin/env python3
-"""Videshi Sports Writer — 2026-06-03 run"""
+"""Sports writer for The Videshi — June 3 2026 evening run."""
 
-import json, os, sys, time, uuid, re, urllib.parse
-import requests
+import json, os, re, subprocess, sys, time, uuid, requests, urllib.parse
+from datetime import datetime, timezone
 
-# ── env ──
-for ef in [os.path.expanduser("~/.env.supabase"), os.path.expanduser("~/workspace/.env.supabase")]:
-    if os.path.exists(ef):
-        with open(ef) as f:
+# ── Load env files first ─────────────────────────────────────────────────────
+for env_file in [os.path.expanduser("~/.env.supabase"), os.path.expanduser("~/workspace/.env.supabase")]:
+    if os.path.exists(env_file):
+        with open(env_file) as f:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith("#") and "=" in line:
                     k, v = line.split("=", 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+                    os.environ.setdefault(k, v.strip().strip('"').strip("'"))
 
-for ef in [os.path.expanduser("~/workspace/.env.pexels")]:
-    if os.path.exists(ef):
-        with open(ef) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith("#") and "=" in line:
-                    k, v = line.split("=", 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
-
-SB_URL = os.environ["SUPABASE_URL"]
-SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
-
+# ── Supabase config ──────────────────────────────────────────────────────────
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {
-    "apikey": SB_KEY,
-    "Authorization": f"Bearer {SB_KEY}",
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation",
 }
+PEXELS_KEY = None
+try:
+    with open(os.path.expanduser("~/workspace/.env.pexels")) as f:
+        for line in f:
+            if line.startswith("PEXELS_API_KEY="):
+                PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
+except Exception:
+    pass
 
 UA = "TheVideshi/1.0 (thevideshi.com)"
 
-# ── helper: Wikipedia person image ──
+# ── Image sourcing helpers ───────────────────────────────────────────────────
+
 def fetch_wikipedia_person_image(person_name):
-    encoded = urllib.parse.quote(person_name.replace(" ", "_"))
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": UA}, timeout=10
+            headers={"User-Agent": UA},
+            timeout=10,
         )
         if r.status_code == 200:
             data = r.json()
@@ -54,8 +55,9 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
-# ── helper: Wikimedia Commons search ──
-def fetch_wikimedia_commons_images(query, limit=5):
+
+def fetch_wikimedia_commons(query, limit=5):
+    """Search Wikimedia Commons. Returns list of image URLs."""
     params = {
         "action": "query",
         "generator": "search",
@@ -70,365 +72,268 @@ def fetch_wikimedia_commons_images(query, limit=5):
     try:
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
-            params=params, headers={"User-Agent": UA}, timeout=15
+            params=params,
+            headers={"User-Agent": UA},
+            timeout=15,
         )
         if r.status_code == 200:
             data = r.json()
             pages = data.get("query", {}).get("pages", {})
             results = []
             for pid, page in pages.items():
-                ii = page.get("imageinfo", [{}])[0]
-                mime = ii.get("mime", "")
-                if not mime.startswith("image/") or mime == "image/svg+xml":
-                    continue
-                if ii.get("width", 0) < 300:
-                    continue
-                results.append({
-                    "url": ii.get("thumburl") or ii.get("url", ""),
-                    "original_url": ii.get("url", ""),
-                    "title": page.get("title", ""),
-                    "width": ii.get("width", 0),
-                })
-            if results:
-                print(f"  ✓ Commons: {len(results)} for '{query}'")
+                for ii in page.get("imageinfo", []):
+                    mime = ii.get("mime", "")
+                    if mime.startswith("image/") and "svg" not in mime:
+                        url = ii.get("thumburl") or ii.get("url")
+                        if url:
+                            results.append(url)
             return results
     except Exception as e:
-        print(f"  ⚠ Commons error: {e}")
+        print(f"  ⚠ Commons error for '{query}': {e}")
     return []
 
-# ── helper: Pexels search ──
-def fetch_pexels_image(*queries):
+
+def fetch_pexels(query, per_page=5):
+    """Search Pexels for images. Returns list of image URLs."""
     if not PEXELS_KEY:
-        return None
-    for q in queries:
-        try:
-            import subprocess
-            cmd = f'curl -sS "https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5" -H "Authorization: {PEXELS_KEY}"'
-            result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=15)
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("original")
-                if url:
-                    print(f"  ✓ Pexels: {url[:80]}...")
-                    return url
-        except Exception as e:
-            print(f"  ⚠ Pexels error for '{q}': {e}")
-    return None
-
-# ── helper: Supabase upload image ──
-def upload_image_to_supabase(img_url, filename):
+        return []
     try:
-        r = requests.get(img_url, headers={"User-Agent": UA}, timeout=20)
-        if r.status_code != 200 or len(r.content) < 5000:
-            print(f"  ⚠ Image download failed or too small: {r.status_code}, {len(r.content)} bytes")
-            return None
-        ct = r.headers.get("Content-Type", "")
-        if not ct.startswith("image/"):
-            print(f"  ⚠ Not an image: {ct}")
-            return None
-        # Upload to Supabase storage
-        upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
-        upload_headers = {
-            "apikey": SB_KEY,
-            "Authorization": f"Bearer {SB_KEY}",
-            "Content-Type": ct,
-            "x-upsert": "true",
-        }
-        ur = requests.post(upload_url, data=r.content, headers=upload_headers, timeout=30)
-        if ur.status_code in (200, 201):
-            public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed: {ur.status_code} {ur.text[:200]}")
+        r = subprocess.run(
+            ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+             f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page={per_page}"],
+            capture_output=True, text=True, timeout=15,
+        )
+        data = json.loads(r.stdout)
+        return [p["src"]["large2x"] for p in data.get("photos", [])]
     except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-    return None
+        print(f"  ⚠ Pexels error for '{query}': {e}")
+    return []
 
-# ── helper: validate image url ──
-def validate_image_url(url):
-    if not url:
-        return False
-    banned = ["fbcdn.net", "cdninstagram.com", "lookaside.fbsbx.com", "_nc_ht=", "_nc_cat=", "ccb="]
-    for b in banned:
-        if b in url:
-            print(f"  ✗ Banned source: {b}")
-            return False
+
+def validate_image(url):
+    """Check that URL returns a valid image >5KB."""
     try:
         r = requests.head(url, headers={"User-Agent": UA}, timeout=10, allow_redirects=True)
         ct = r.headers.get("Content-Type", "")
         cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and ct.startswith("image/") and cl > 5000:
+        if "image" in ct and cl > 5000:
             return True
-        # Some servers don't return Content-Length on HEAD, try GET
-        if r.status_code == 200 and ct.startswith("image/"):
-            return True
-    except:
+        # Some servers don't return Content-Length on HEAD; try GET
+        if "image" in ct and cl == 0:
+            r2 = requests.get(url, headers={"User-Agent": UA}, timeout=10, stream=True)
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
+                return True
+    except Exception:
         pass
     return False
 
-# ── helper: insert article ──
+
+def best_image(person_names=None, wiki_queries=None, pexels_queries=None):
+    """Multi-source compare: Wikipedia person → Wikimedia Commons → Pexels."""
+    # 1. Wikipedia person images
+    if person_names:
+        for name in person_names:
+            url = fetch_wikipedia_person_image(name)
+            if url and validate_image(url):
+                return url, "Wikimedia Commons"
+
+    # 2. Wikimedia Commons search
+    if wiki_queries:
+        for q in wiki_queries:
+            urls = fetch_wikimedia_commons(q)
+            for url in urls:
+                if validate_image(url):
+                    print(f"  ✓ Commons image: {url[:80]}...")
+                    return url, "Wikimedia Commons"
+
+    # 3. Pexels fallback
+    if pexels_queries:
+        for q in pexels_queries:
+            urls = fetch_pexels(q)
+            for url in urls:
+                if validate_image(url):
+                    print(f"  ✓ Pexels image: {url[:80]}...")
+                    return url, "Pexels"
+
+    return None, None
+
+
 def insert_article(article):
+    """Insert article into Supabase."""
     r = requests.post(
-        f"{SB_URL}/rest/v1/p2_articles",
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
         json=article,
         timeout=30,
     )
     if r.status_code in (200, 201):
         data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
-        print(f"  ✓ Inserted: {article['slug']} (id={art_id})")
-        return art_id
-    else:
-        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
-        return None
+        if isinstance(data, list) and data:
+            print(f"  ✓ Published: {data[0].get('headline', '')[:60]}...")
+            return True
+    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+    return False
 
-# ── helper: patch article ──
-def patch_article(art_id, fields):
-    r = requests.patch(
-        f"{SB_URL}/rest/v1/p2_articles?id=eq.{art_id}",
-        headers=HEADERS,
-        json=fields,
-        timeout=20,
+
+# ── Article 1: Satwik-Chirag retire injured from Indonesia Open ───────────
+
+def write_article_1():
+    print("\n=== Article 1: Satwik-Chirag Indonesia Open withdrawal ===")
+
+    headline = "They Won the Singapore Open Six Days Ago. On Wednesday in Jakarta, Satwik Pointed to His Shoulder and Walked Off."
+    subheadline = "Satwiksairaj Rankireddy's recurring right shoulder injury forced India's top doubles pair to retire from the Indonesia Open first round. The BAI says recovery is now the priority."
+    slug = "satwik-chirag-retire-injured-indonesia-open-2026-shoulder-singapore-open-nri"
+
+    body = """A week ago, Satwiksairaj Rankireddy and Chirag Shetty stood on a podium in Singapore holding the trophy that ended a two-year drought on the BWF World Tour. They had beaten Indonesia's Fajar Alfian and Muhammad Shohibul Fikri from a game down. They were the first Indian men's doubles pair to ever win the Singapore Open. The form was emphatic. The momentum was real.
+
+Six days later, it evaporated in Jakarta.
+
+## Seven Minutes
+
+Satwik and Chirag walked onto Court 1 at the Istora Senayan on Wednesday as the fourth seeds at the Indonesia Open 2026, one of the marquee Super 1000 events on the BWF calendar. Their opponents were Malaysia's Aaron Tai and Kang Khai Xing, a pair ranked well outside the top 20.
+
+It was supposed to be a routine opener. Instead, it lasted seven minutes.
+
+Trailing 6-11 in the first game, Satwik gestured toward his right shoulder — the same shoulder that has been a recurring concern since early in the season. He spoke briefly with Chirag, then with the umpire. The pair gave a walkover. The match was over before it had really begun.
+
+## A Pattern That Worries
+
+This is not the first time Satwik's shoulder has disrupted their campaign. The same injury led to their withdrawal from the Badminton Asia Championship earlier this year, depriving them of a chance to build ranking points during a critical stretch of the Olympic qualification cycle.
+
+The Badminton Association of India confirmed the withdrawal with a statement on Wednesday: "Satwiksairaj Rankireddy and Chirag Shetty have withdrawn from the POLYTRON Indonesia Open 2026 due to the former's injury. The pair will now focus on recovery and rehabilitation as they prepare for the important tournaments ahead."
+
+The language was measured, but the subtext is hard to miss. Satwik's shoulder is not a new problem, and the fact that it flared up just days after a physically demanding Singapore Open final raises questions about load management during back-to-back Super 1000 events.
+
+## What This Means for the Rest of 2026
+
+Satwik and Chirag are currently ranked world No. 4 in men's doubles. Their Singapore Open title was a breakthrough moment — proof that the pair, who won the 2022 French Open and have been consistently ranked in the top five, still had the hunger and the game to beat the best.
+
+But the schedule ahead is unforgiving. The next few months include the Japan Open, the Korea Open, and the run-in to the Asian Games and the World Championships. Rankings points from Super 1000 events are among the most valuable on the circuit. Every withdrawal costs them — not just in points, but in momentum, match sharpness, and the confidence that comes from winning tight matches under pressure.
+
+For Indian badminton fans watching from the diaspora, this is a familiar anxiety. India's best doubles pair has the talent to compete for every title, but the margins in men's doubles are razor-thin. Fitness is not a luxury; it is the baseline. When one half of the partnership is managing a chronic shoulder issue, every tournament entry becomes a calculation.
+
+## Indonesia Open: Where India Stands
+
+The withdrawal compounds what has already been a difficult Indonesia Open for India. On Day 1, Lakshya Sen — the country's top-ranked men's singles player — was eliminated by Indonesia's Alwi Farhan in straight games. Kidambi Srikanth also fell in the first round. The mixed doubles pair of Dhruv Kapila and Tanisha Crasto were outclassed by China's sixth seeds. Treesa Jolly and Gayatri Gopichand lost in women's doubles.
+
+The lone bright spots have been PV Sindhu, who defeated Busanan Ongbamrungphan to reach the Round of 16, and the men's doubles pair of Hariharan Amsakarunan and MR Arjun, who upset a Malaysian pair featuring 2016 Olympic silver medallist Tan Wee Kiong.
+
+Sindhu now faces a probable showdown with world No. 1 An Se-young — a player she has lost to nine times without a single win. That is a mountain. But at least Sindhu is on the court.
+
+Satwik and Chirag are headed home to recover. For a pair that just proved they belong at the top, the timing could not be worse.
+
+*Sources: BAI official statement, IANS, BWF tournament records*"""
+
+    # Image sourcing
+    img_url, img_attr = best_image(
+        person_names=["Satwiksairaj Rankireddy", "Chirag Shetty"],
+        wiki_queries=["Satwiksairaj Rankireddy badminton", "Chirag Shetty badminton India"],
+        pexels_queries=["badminton doubles match"],
     )
-    if r.status_code in (200, 204):
-        print(f"  ✓ Patched {art_id}: {list(fields.keys())}")
-    else:
-        print(f"  ⚠ Patch failed: {r.status_code} {r.text[:200]}")
 
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": "sports",
+        "vertical": "sports",
+        "status": "published",
+        "is_editorial": False,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": "BAI, IANS, BWF",
+        "image_url": img_url or "",
+        "image_attribution": img_attr or "",
+    }
 
-# ═══════════════════════════════════════════════════════════
-#  ARTICLE 1: Vinesh Phogat Asian Games Trials
-# ═══════════════════════════════════════════════════════════
-print("\n══ ARTICLE 1: Vinesh Phogat ══")
+    return insert_article(article)
 
-art1_slug = "vinesh-phogat-asian-games-trials-loss-semifinal-meenakshi-comeback-nri"
-art1_headline = "She Won in the Supreme Court. She Won on the Scales. On the Mat, Vinesh Phogat Lost the Only Bout That Mattered."
-art1_subheadline = "After months of legal battles, a maternity return, and a last-minute weight class reprieve, the three-time Olympian's Asian Games bid ended with a 4-6 semifinal defeat to Meenakshi Goyat at the Indira Gandhi Stadium."
 
-art1_body = """Vinesh Phogat has spent more time in courtrooms than on wrestling mats over the past year. On Saturday, she finally got back on the mat. It did not end the way she wanted.
+# ── Article 2: India Women SAFF Championship semifinal ──────────────────────
 
-The 31-year-old three-time Olympian lost 4-6 to Meenakshi Goyat in the semifinal of the women's 53kg Asian Games selection trials at New Delhi's Indira Gandhi Stadium. With that, her bid to represent India at the 2026 Asian Games in Aichi-Nagoya was over.
+def write_article_2():
+    print("\n=== Article 2: India Women SAFF Championship semifinal win ===")
 
-## The Road to the Mat
+    headline = "Nongrum Scored in the 58th Minute. India Beat Bhutan 1-0. The Blue Tigresses Are in the SAFF Final."
+    subheadline = "After scoring 14 goals in the group stage, India needed just one against a resolute Bhutan in the semifinal. Bangladesh await in Thursday's final at Margao."
+    slug = "india-women-saff-championship-2026-semifinal-nongrum-bhutan-final-bangladesh-nri"
 
-The journey to Saturday's bout was longer and messier than any match she has ever wrestled. Vinesh gave birth to her first child in July 2025. She returned to training within months, driven by a conviction that she still had Olympic medals left in her.
+    body = """The numbers from the group stage told one story: 14 goals scored, zero conceded, three matches won with barely a contested moment. India's women had rolled through the 2026 SAFF Women's Championship like a side playing a different sport from the rest of the field.
 
-The Wrestling Federation of India did not make it easy. The WFI declared her ineligible to compete until June 26, citing "grave acts of indiscipline" — a classification widely seen as retaliation for her years-long public battle against the federation's leadership. When the Asian Games trials were announced for May 30-31, Vinesh found herself locked out.
+The semifinal told a different story entirely.
 
-She went to the Delhi High Court. On May 22, a Division Bench led by Chief Justice Devendra Kumar Upadhyaya delivered a ruling that went far beyond granting permission. The judges called the WFI's conduct "vindictive" and its maternity exclusion policy "deplorable" and "retrograde." The language was extraordinary for a sporting dispute.
+## Bhutan Made India Work
 
-The WFI appealed to the Supreme Court. On Friday, May 29 — one day before the trials — the Supreme Court granted interim relief, allowing Vinesh to compete while keeping the case alive for further hearing.
+At the Jawaharlal Nehru Stadium in Margao, Goa, on Wednesday evening, Bhutan did what no other team in the tournament had managed. They made India uncomfortable.
 
-## Fifty-Three Point Nine Kilograms
+Head coach Crispin Chettri made two changes from the side that beat Bangladesh 3-0 in the final group match, bringing in Karishma Shirvoikar and Priyangka Devi Naorem for Pyari Xaxa and Sangita Basfore. India were expected to cruise. They did not.
 
-Even after the legal battles were settled, there was the matter of weight class. The WFI had initially restricted Vinesh to the 50kg category, a division she had not competed in. After intervention from WFI president Sanjay Singh on Saturday morning itself, the decision was revised: she could compete at 53kg, her preferred division.
+Bhutan sat deep from the opening whistle, packing bodies behind the ball and denying India the space that had made the group stage so straightforward. India had most of the possession — that was never in doubt — but converting territory into chances, and chances into goals, proved far harder than it had been against the Maldives and Sri Lanka.
 
-She stepped on the scales at 53.9 kg. IOA representative Aditi Chauhan and SAI official M.M. Somaiya were present as court-appointed observers.
+The first real opportunity came inside three minutes when Bhutan goalkeeper Sangita Monger fumbled a long ball, but Karishma's heavy first touch let defender Namgyel Dema clear. It set the tone: India would dominate, but finishing would be a problem.
 
-## On the Mat
+## Nongrum Breaks the Deadlock
 
-Vinesh opened with a commanding 7-1 win over Jyoti, showing the sharpness that has made her one of India's most decorated wrestlers. The quarterfinal against Nishu was tighter — a nerve-shredding 7-6 victory where experience proved the difference in the final seconds.
+For nearly an hour, Bhutan held. The Indian attack probed, circulated, and pressed, but the final ball kept going astray. Soumya Guguloth lacked power on a first-time effort. Crosses found no one. Passes into the box were intercepted.
 
-Then came Meenakshi Goyat.
+Then, in the 58th minute, Sanfida Nongrum found the breakthrough. The midfielder — not a regular starter in the group matches — finished from close range after India finally managed to carve open the Bhutan defense with a sequence of quick, incisive passes.
 
-https://x.com/WaborWrestling/status/1928425600000000000
+It was the only goal India would need, but it was the only goal they could manage. Final score: India 1, Bhutan 0.
 
-The semifinal was tight from the start. Vinesh scored early but Goyat, a younger wrestler with fresh competitive miles on her legs, clawed back. A takedown in the second period shifted the balance. The final score read 4-6, and with it, the Asian Games dream ended.
+## A Final Against Bangladesh
 
-Goyat would go on to lose the final to Antim Panghal, the 2023 Asian Games bronze medallist who will represent India in Aichi-Nagoya.
+India will now face Bangladesh in the final on Thursday, June 5, at 18:30 IST in Margao. Bangladesh reached the final by edging out Nepal 2-1 in the other semifinal, with Ritu Porna Chakma equalizing in first-half stoppage time and an own goal from Nepal's Preeti Rai settling the contest in the 93rd minute.
 
-## "My Son Will See His Mother Was Training When He Was Ten Months Old"
+Bangladesh are the defending champions, and they have improved significantly over the past two cycles. India beat them 3-0 in the group stage, but tournament finals are a different proposition entirely. Bangladesh will carry the confidence of a comeback win over Nepal, and they know that a tight, organized defensive effort — the kind Bhutan just demonstrated — can take India out of their comfort zone.
 
-Vinesh was composed at the press conference afterward. She did not hide from the loss or the politics.
+## What the Diaspora Should Know
 
-"I did as well as I could have, I gave my 100 percent. I believe that I should have no regrets once I leave the mat, whatever energy I had I gave," she said. "I do not want to live with regrets, and I will continue to give my best as long as I feel I have it in me."
+For Indian women's football, the SAFF Championship is the most important regional title. India have won it four times, but they failed to reach the final in the last two editions — an unacceptable slide for a team that considers itself the dominant force in South Asian football.
 
-On the WFI's treatment: "Everyone saw how fairly things happened and how many didn't. Everyone knows how much manipulation happened. The whole country knows."
+This year's squad, under Chettri, has looked rejuvenated. Aveka Singh has been the tournament's top scorer with four goals. Priyangka Devi Naorem and Pyari Xaxa have added firepower from midfield. The defense, anchored by Grace Dangmei's versatility and organization, has been the tightest in the competition.
 
-And then, a line that cut through the noise: "I'm happy that my son will grow up and see that when he was ten months old, his mother was training. I want to become the motivation for my child."
+But the semifinal exposed a vulnerability. When opponents sit deep and deny space, India's ball circulation can become sterile. Against Bangladesh in a final, that patience will be tested again.
 
-## What It Means for the Diaspora
+The match will be played in Margao — the heart of Indian football in many ways, a state where the sport runs deeper than almost anywhere else in the country. For NRI fans following from abroad, the stakes are straightforward: India need this title to reassert themselves as the team to beat in South Asia before a critical 2027 that includes the Asian Cup qualifiers.
 
-Vinesh Phogat transcended wrestling long ago. For NRIs, she represents something specific: an Indian woman who refused to be silenced by an institution, who took her fight to the streets of Jantar Mantar in 2023, who was heartbreakingly disqualified at the Paris Olympics for being 100 grams overweight, who became a Congress MLA from Julana, who gave birth, and who came back — all within three years.
+One match. One title. One chance to prove the group-stage dominance was real.
 
-Her semifinal loss does not end her career. She said as much: "I love wrestling deeply and still feel that drive within me. I believe I can still win medals at the Olympics."
+*Sources: AIFF, LiveNewsGoa, SAFF Championship official records*"""
 
-## What Comes Next
+    # Image sourcing — try India women's football, then generic
+    img_url, img_attr = best_image(
+        person_names=["India women's national football team"],
+        wiki_queries=["India women football team 2026", "Blue Tigresses India football", "SAFF Women's Championship"],
+        pexels_queries=["women football match India"],
+    )
 
-The Supreme Court hearing on WFI's appeal is scheduled for further proceedings. The legal battle between Vinesh and the federation is far from over, and its outcome could reshape how Indian sports bodies treat athletes who challenge the system.
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": "sports",
+        "vertical": "sports",
+        "status": "published",
+        "is_editorial": False,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": "AIFF, LiveNewsGoa, SAFF",
+        "image_url": img_url or "",
+        "image_attribution": img_attr or "",
+    }
 
-For now, Antim Panghal and Aman Sehrawat — the Paris Olympics bronze medallist who dominated the men's 57kg trials — will carry India's wrestling hopes to Japan. Vinesh will continue training, continue fighting, and continue being impossible to ignore.
+    return insert_article(article)
 
-*Sources: Livemint, IANS, myKhel, IndiaSportsHub*"""
 
-# Image sourcing for Vinesh Phogat
-print("  Sourcing image for Vinesh Phogat...")
-candidates = []
+# ── Main ─────────────────────────────────────────────────────────────────────
 
-wiki_img = fetch_wikipedia_person_image("Vinesh Phogat")
-if wiki_img:
-    candidates.append({"url": wiki_img, "source": "wikipedia", "relevance": "high"})
+if __name__ == "__main__":
+    ok1 = write_article_1()
+    ok2 = write_article_2()
 
-commons = fetch_wikimedia_commons_images("Vinesh Phogat wrestling")
-for c in commons[:2]:
-    candidates.append({"url": c["url"], "source": "wikimedia_commons", "relevance": "medium"})
-
-pexels_img = fetch_pexels_image("wrestling match women competition")
-if pexels_img:
-    candidates.append({"url": pexels_img, "source": "pexels", "relevance": "low"})
-
-art1_image_url = None
-art1_attribution = "The Videshi"
-for cand in candidates:
-    filename = f"{art1_slug}.jpg"
-    uploaded = upload_image_to_supabase(cand["url"], filename)
-    if uploaded:
-        art1_image_url = uploaded
-        art1_attribution = "Wikimedia Commons" if cand["source"] in ("wikipedia", "wikimedia_commons") else "The Videshi"
-        break
-
-if not art1_image_url:
-    print("  ⚠ No image found for article 1")
-
-art1_payload = {
-    "headline": art1_headline,
-    "subheadline": art1_subheadline,
-    "body": art1_body,
-    "slug": art1_slug,
-    "category": "sports",
-    "status": "published",
-    "published_at": "2026-06-03T07:30:00Z",
-    "sources": json.dumps(["Livemint", "IANS", "myKhel", "IndiaSportsHub", "Delhi High Court order"]),
-    "image_url": art1_image_url or "",
-    "image_attribution": art1_attribution,
-    "vertical": "sports",
-    "is_editorial": False,
-}
-
-art1_id = insert_article(art1_payload)
-
-
-# ═══════════════════════════════════════════════════════════
-#  ARTICLE 2: BCCI Asian Games 30-man longlist
-# ═══════════════════════════════════════════════════════════
-print("\n══ ARTICLE 2: BCCI Asian Games 30-man Longlist ══")
-
-art2_slug = "bcci-asian-games-2026-30-man-longlist-no-gill-suryakumar-sooryavanshi-nri"
-art2_headline = "No Gill. No Suryakumar. Sooryavanshi Is In. The BCCI's Asian Games Longlist Is a Statement About What Comes Next."
-art2_subheadline = "India's 30-man preliminary squad for the Aichi-Nagoya Asian Games drops both white-ball captains and includes a 15-year-old. The government wants a full-strength team. The selectors have other plans."
-
-art2_body = """The BCCI has submitted a 30-man preliminary squad to the Indian Olympic Association for the T20 cricket competition at the 2026 Asian Games in Aichi-Nagoya, Japan. It is not the squad anyone expected.
-
-Both Shubman Gill, India's ODI captain, and Suryakumar Yadav, the T20I captain, are absent. In their place is a list that reads like a reset: Vaibhav Sooryavanshi, the 15-year-old who just swept five individual awards at IPL 2026, sits alongside Jasprit Bumrah, Rishabh Pant, and Hardik Pandya.
-
-## The Full Longlist
-
-Yashasvi Jaiswal, Abhishek Sharma, Vaibhav Sooryavanshi, Ishan Kishan, Sanju Samson (wk), Shreyas Iyer, Rishabh Pant (wk), Hardik Pandya, Rinku Singh, Tilak Varma, Jasprit Bumrah, Axar Patel, Arshdeep Singh, Kuldeep Yadav, Nitish Kumar Reddy, Prasidh Krishna, Varun Chakravarthy, Anukul Roy, Ayush Badoni, Harsh Dubey, Dhruv Jurel, Khaleel Ahmed, Ruturaj Gaikwad, Ravi Bishnoi, Shahbaz Ahmed, Shivam Dube, Vipraj Nigam, Harshit Rana, Yash Thakur, Washington Sundar.
-
-The final 15 will be announced in the second week of June. The last date to amend the longlist was May 14.
-
-## Why No Gill? Why No Suryakumar?
-
-According to a BCCI source quoted by the Times of India, the decision to exclude Suryakumar Yadav was made as far back as January 2026. The reasoning is succession planning: with the 2028 Los Angeles Olympics now featuring T20 cricket, the selectors want to identify Suryakumar's long-term replacement.
-
-"It was decided in January that Surya will not be part of the Asian Games," the source said. "The focus is on ODI World Cup preparations."
-
-Gill's absence is more straightforward. India are scheduled to tour the West Indies during the same window. The bilateral series — featuring five ODIs and five T20Is — will run alongside the Asian Games, forcing the BCCI to effectively split its playing resources across two tours.
-
-This means several players on the longlist, including Bumrah, Hardik Pandya, and Abhishek Sharma, may ultimately play in the Caribbean instead.
-
-## The Captaincy Question
-
-With both regular captains out, the Asian Games leadership is an open contest. Shreyas Iyer and Sanju Samson are frontrunners. Axar Patel, the current T20I vice-captain, has also been mentioned.
-
-The choice will signal more than just a one-off appointment. Whoever leads India in Aichi-Nagoya will be auditioned for a longer-term role as India builds toward the 2028 Olympics.
-
-## The Sooryavanshi Factor
-
-Including Vaibhav Sooryavanshi is the boldest call on the list. The 15-year-old finished IPL 2026 with the Orange Cap (776 runs), the MVP award, the Emerging Player award, the Super Striker award (strike rate 237.30), and the most sixes in a single season (72, breaking Chris Gayle's record).
-
-He has never played international cricket. He is not yet old enough to drive. And the BCCI has put him in a 30-man pool that includes Bumrah and Kuldeep Yadav.
-
-Whether he makes the final 15 or not, the message is clear: the selectors see Sooryavanshi as part of India's immediate future, not a prospect to be shelved until he turns 18.
-
-## The Government Factor
-
-Here is where it gets complicated. The Indian government has historically pushed for full-strength teams at multi-sport events, particularly the Asian Games. A BCCI source acknowledged that "the government will prefer if the BCCI sends a full-strength team."
-
-Cricket's inclusion as a medal event at the Asian Games, combined with India's hosting of the 2036 Olympics (where cricket will almost certainly feature), makes this a politically sensitive selection. The government may apply pressure to include Gill or Suryakumar, even if the selectors' initial plan was to rest them.
-
-## What This Means for NRIs
-
-For the diaspora, the Asian Games T20 competition is one of the few cricket events that sits alongside other sports in a multi-sport setting — the kind of event that gets casual attention from non-cricket-following family members and colleagues.
-
-India sent a near-full-strength team to the Hangzhou Asian Games in 2023 and won gold. A weakened squad in Japan could underperform in a format that includes Pakistan, Sri Lanka, and Bangladesh.
-
-The tension between bilateral cricket scheduling and multi-sport obligations is not new, but the 30-man longlist makes it visible. The final squad announcement in mid-June will reveal how much political pressure the BCCI absorbs.
-
-## The Timeline
-
-The Asian Games cricket competition begins September 23 in Aichi-Nagoya. The West Indies bilateral series runs concurrently. The BCCI will finalize the playing 15 after the second selection meeting in June, likely after India's one-off Test against Afghanistan at Mullanpur.
-
-Until then, the longlist is a Rorschach test: is this India resting its stars for the World Cup, or undervaluing a multi-sport event that the government considers a national priority? The answer depends on which 15 names survive the cut.
-
-*Sources: Times of India, SportsTak, CricketAddictor, SportsYaari*"""
-
-# Image sourcing for BCCI Asian Games
-print("  Sourcing image for BCCI Asian Games...")
-candidates2 = []
-
-# Try Vaibhav Sooryavanshi on Wikipedia
-wiki_img2 = fetch_wikipedia_person_image("Vaibhav Sooryavanshi")
-if wiki_img2:
-    candidates2.append({"url": wiki_img2, "source": "wikipedia", "relevance": "medium"})
-
-# Try Wikimedia Commons for Asian Games cricket or BCCI
-commons2 = fetch_wikimedia_commons_images("India cricket team T20 2026")
-if not commons2:
-    commons2 = fetch_wikimedia_commons_images("India cricket squad")
-for c in commons2[:2]:
-    candidates2.append({"url": c["url"], "source": "wikimedia_commons", "relevance": "medium"})
-
-# Pexels fallback
-pexels2 = fetch_pexels_image("cricket team India stadium", "cricket T20 match")
-if pexels2:
-    candidates2.append({"url": pexels2, "source": "pexels", "relevance": "low"})
-
-art2_image_url = None
-art2_attribution = "The Videshi"
-for cand in candidates2:
-    filename = f"{art2_slug}.jpg"
-    uploaded = upload_image_to_supabase(cand["url"], filename)
-    if uploaded:
-        art2_image_url = uploaded
-        art2_attribution = "Wikimedia Commons" if cand["source"] in ("wikipedia", "wikimedia_commons") else "The Videshi"
-        break
-
-if not art2_image_url:
-    print("  ⚠ No image found for article 2")
-
-art2_payload = {
-    "headline": art2_headline,
-    "subheadline": art2_subheadline,
-    "body": art2_body,
-    "slug": art2_slug,
-    "category": "sports",
-    "status": "published",
-    "published_at": "2026-06-03T07:30:00Z",
-    "sources": json.dumps(["Times of India", "SportsTak", "CricketAddictor", "SportsYaari"]),
-    "image_url": art2_image_url or "",
-    "image_attribution": art2_attribution,
-    "vertical": "sports",
-    "is_editorial": False,
-}
-
-art2_id = insert_article(art2_payload)
-
-# ── summary ──
-print("\n══ SUMMARY ══")
-print(f"  Article 1: {art1_slug} → {'✓ published' if art1_id else '✗ failed'}")
-print(f"  Article 2: {art2_slug} → {'✓ published' if art2_id else '✗ failed'}")
-print("  Done.")
+    total = sum([ok1, ok2])
+    print(f"\n{'='*60}")
+    print(f"Sports writer complete: {total}/2 articles published")
+    if total == 0:
+        sys.exit(1)
