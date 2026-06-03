@@ -33,5 +33,10 @@
     "date": "2026-06-01",
     "daily_pct_used": 0,
     "monthly_pct_used": 103
+  },
+  {
+    "date": "2026-06-02",
+    "daily_pct_used": 0,
+    "monthly_pct_used": 103
   }
 ]
