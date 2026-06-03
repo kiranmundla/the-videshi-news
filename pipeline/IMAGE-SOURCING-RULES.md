@@ -227,13 +227,14 @@ if candidates:
 - **NEVER use any URL with `_nc_ht=`, `_nc_cat=`, `ccb=` query params** — these are signed Meta CDN URLs that expire
 - **NEVER download social media photos as hero images** — use social embeds in the body instead (copyright-safe)
 
-## Allowed image sources (permanent URLs only)
-- **Supabase storage** (our own bucket — best option, always works)
-- **Pexels** (`images.pexels.com` — permanent hotlinks allowed by their license)
-- **Wikipedia/Wikimedia** (`upload.wikimedia.org` — permanent)
-- **Unsplash** (`images.unsplash.com` — permanent)
+## MANDATORY: Re-upload ALL images to Supabase storage
+**Every image MUST be downloaded and re-uploaded to Supabase storage**, regardless of source. This includes Wikipedia, Wikimedia Commons, Pexels — everything. The `image_url` in the database must ALWAYS be a Supabase storage URL (`lboecaekpynbpyijrbfz.supabase.co/storage/...`).
 
-If sourcing from any other domain, **download the image and re-upload to Supabase storage** to guarantee permanence.
+Why: Social autopost scripts (X, Facebook, Threads, Instagram) download the image to attach it. Wikimedia blocks requests without User-Agent headers. Pexels could change policies. Only Supabase URLs are guaranteed to work everywhere.
+
+**When downloading from any source**, always include: `headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}`
+
+Upload to Supabase bucket `article-images` with filename `{slug}.jpg` (or `{article_id}.jpg`).
 
 ## Skip list
 Check `pipeline/image-skip-list.json` before sourcing. Articles in this list had images manually removed — don't re-source them.
