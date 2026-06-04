@@ -1,466 +1,445 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — June 1, 2026 batch."""
+"""
+The Videshi — Entertainment Writer (scheduled run)
+Writes 3 articles on fresh entertainment topics with proper image sourcing.
+"""
 
-import json, os, re, sys, time, uuid, urllib.parse
+import json
+import os
+import sys
+import uuid
+import time
+import io
+import subprocess
+from datetime import datetime, timezone
+
 import requests
+from PIL import Image
 
-# Load env
+# ─── env ───────────────────────────────────────────────────────────────────────
 def load_env(path):
     if not os.path.exists(path):
         return
     with open(path) as f:
         for line in f:
             line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                if line.startswith('export '):
-                    line = line[7:]
-                key, val = line.split('=', 1)
-                val = val.strip().strip('"').strip("'")
-                os.environ[key] = val
+            if line.startswith("#") or "=" not in line:
+                continue
+            if line.startswith("export "):
+                line = line[7:]
+            k, v = line.split("=", 1)
+            v = v.strip().strip('"').strip("'")
+            os.environ[k] = v
 
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
+load_env(os.path.expanduser("~/.env.supabase"))
+load_env(os.path.expanduser("~/workspace/.env.supabase"))
+load_env(os.path.expanduser("~/workspace/.env.pexels"))
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+SB_URL = os.environ.get("SUPABASE_URL", "")
+SB_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
 HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SB_KEY,
+    "Authorization": f"Bearer {SB_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation",
 }
+
+UA = {"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
+
+
+# ─── image helpers ─────────────────────────────────────────────────────────────
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            headers=UA, timeout=10
         )
         if r.status_code == 200:
             data = r.json()
-            # Prefer thumbnail (330px, always works) over originalimage (may 429 on download)
-            img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
-        elif r.status_code == 429:
-            print(f"  ⚠ Wikipedia rate limited for '{person_name}', retrying in 3s...")
-            time.sleep(3)
-            r = requests.get(
-                f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-                headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-                timeout=10
-            )
-            if r.status_code == 200:
-                data = r.json()
-                img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
-                if img:
-                    print(f"  ✓ Wikipedia image found (retry) for '{person_name}': {img[:80]}...")
-                    return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-def fetch_pexels_image(query, fallback_query=None):
-    """Fetch an image from Pexels using curl (urllib gets 403)."""
-    import subprocess
-    for q in [query, fallback_query]:
-        if not q:
-            continue
+
+def fetch_wikimedia_commons_images(search_query, limit=5):
+    """Search Wikimedia Commons. Returns list of dicts."""
+    import urllib.parse
+    params = {
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": search_query,
+        "gsrnamespace": "6",
+        "gsrlimit": str(limit),
+        "prop": "imageinfo",
+        "iiprop": "url|size|mime",
+        "iiurlwidth": "1200",
+        "format": "json"
+    }
+    try:
+        r = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params=params, headers=UA, timeout=15
+        )
+        if r.status_code == 200:
+            data = r.json()
+            pages = data.get("query", {}).get("pages", {})
+            results = []
+            for pid, page in pages.items():
+                ii = page.get("imageinfo", [{}])[0]
+                mime = ii.get("mime", "")
+                if not mime.startswith("image/"):
+                    continue
+                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
+                    continue
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "original_url": ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0),
+                    "height": ii.get("height", 0),
+                })
+            if results:
+                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
+            return results
+    except Exception as e:
+        print(f"  ⚠ Wikimedia Commons error: {e}")
+    return []
+
+
+def fetch_pexels_image(*queries):
+    """Search Pexels with multiple fallback queries. Returns URL or None."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
+        return None
+    for q in queries:
         try:
-            result = subprocess.run([
-                'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                f'https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape'
-            ], capture_output=True, text=True, timeout=15)
+            result = subprocess.run(
+                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+                 f"https://api.pexels.com/v1/search?query={requests.utils.quote(q)}&per_page=3&orientation=landscape"],
+                capture_output=True, text=True, timeout=15
+            )
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
+            photos = data.get("photos", [])
             if photos:
-                url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('original')
-                if url:
-                    print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                    return url
+                url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels image found for '{q}': {url[:70]}...")
+                return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
+
+def compress_image(img_bytes, max_width=1200, quality=80):
+    """Resize and compress image. Returns JPEG bytes."""
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    result = buf.getvalue()
+    print(f"  → Compressed: {len(img_bytes)//1024}KB → {len(result)//1024}KB ({img.width}x{img.height})")
+    return result
+
+
 def upload_image_to_supabase(image_url, filename):
-    """Download image and upload to Supabase storage bucket."""
+    """Download image, compress, upload to Supabase article-images bucket. Returns public URL."""
     try:
-        resp = requests.get(image_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=30)
-        if resp.status_code == 429:
-            print(f"  ⚠ Rate limited downloading image, using direct URL")
-            if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
-                return image_url
+        r = requests.get(image_url, headers=UA, timeout=20)
+        if r.status_code != 200:
+            print(f"  ✗ Failed to download image: HTTP {r.status_code}")
             return None
-        if resp.status_code != 200:
-            print(f"  ⚠ Failed to download image: HTTP {resp.status_code}")
-            return image_url  # fallback to original
-        
-        content_type = resp.headers.get('Content-Type', 'image/jpeg')
-        if 'image' not in content_type:
-            print(f"  ⚠ Not an image: {content_type}")
-            return image_url
-        
-        if len(resp.content) < 5000:
-            print(f"  ⚠ Image too small: {len(resp.content)} bytes")
-            return image_url
-        
-        # Upload to Supabase storage
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        upload_resp = requests.post(
+        raw = r.content
+        if len(raw) < 5000:
+            print(f"  ✗ Image too small ({len(raw)} bytes), skipping")
+            return None
+
+        compressed = compress_image(raw)
+
+        upload_url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
+        resp = requests.post(
             upload_url,
             headers={
-                'apikey': SUPABASE_KEY,
-                'Authorization': f'Bearer {SUPABASE_KEY}',
-                'Content-Type': content_type,
-                'x-upsert': 'true'
+                "Authorization": f"Bearer {SB_KEY}",
+                "Content-Type": "image/jpeg",
+                "x-upsert": "true",
             },
-            data=resp.content,
-            timeout=30
+            data=compressed,
+            timeout=20,
         )
-        if upload_resp.status_code in [200, 201]:
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+        if resp.status_code in (200, 201):
+            public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
             print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ⚠ Upload failed: {upload_resp.status_code} {upload_resp.text[:200]}")
-            # Return original URL only if it's from a permanent source
-            if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
-                return image_url
-            return None
+            print(f"  ✗ Upload failed: {resp.status_code} {resp.text[:200]}")
     except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-        if 'upload.wikimedia.org' in image_url or 'images.pexels.com' in image_url:
-            return image_url
-        return None
+        print(f"  ✗ Image upload error: {e}")
+    return None
 
-def validate_image_url(url):
-    """Validate an image URL returns HTTP 200 with image content."""
-    if not url:
-        return False
-    try:
-        resp = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
-        if resp.status_code == 200:
-            ct = resp.headers.get('Content-Type', '')
-            cl = int(resp.headers.get('Content-Length', '0'))
-            if 'image' in ct and cl > 5000:
-                return True
-            # Some servers don't return Content-Length on HEAD
-            if 'image' in ct:
-                return True
-        # Try GET for servers that don't support HEAD well
-        resp = requests.get(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, stream=True)
-        ct = resp.headers.get('Content-Type', '')
-        cl = int(resp.headers.get('Content-Length', '0'))
-        resp.close()
-        return 'image' in ct and cl > 5000
-    except:
-        return False
+
+def source_image(person_names, topic_queries, pexels_queries, slug):
+    """Multi-source image sourcing. Returns (url, attribution) or (None, None)."""
+    candidates = []
+
+    # Source 1: Wikipedia (for person articles)
+    for name in person_names:
+        wiki_img = fetch_wikipedia_person_image(name)
+        if wiki_img:
+            candidates.append({"url": wiki_img, "source": "wikipedia", "priority": 1})
+            break
+
+    # Source 2: Wikimedia Commons
+    for query in topic_queries:
+        commons = fetch_wikimedia_commons_images(query, limit=3)
+        for c in commons[:2]:
+            candidates.append({"url": c["url"], "source": "wikimedia_commons", "priority": 2})
+        if commons:
+            break
+
+    # Source 3: Pexels
+    pexels_img = fetch_pexels_image(*pexels_queries)
+    if pexels_img:
+        candidates.append({"url": pexels_img, "source": "pexels", "priority": 3})
+
+    if not candidates:
+        print(f"  ✗ No image candidates found for {slug}")
+        return None, None
+
+    # Pick best: prefer wikipedia > commons > pexels
+    candidates.sort(key=lambda x: x["priority"])
+    best = candidates[0]
+
+    filename = f"{slug}.jpg"
+    final_url = upload_image_to_supabase(best["url"], filename)
+    if final_url:
+        attr = "Wikimedia Commons" if best["source"] in ("wikipedia", "wikimedia_commons") else "The Videshi"
+        return final_url, attr
+
+    # Try next candidates
+    for c in candidates[1:]:
+        final_url = upload_image_to_supabase(c["url"], filename)
+        if final_url:
+            attr = "Wikimedia Commons" if c["source"] in ("wikipedia", "wikimedia_commons") else "The Videshi"
+            return final_url, attr
+
+    return None, None
+
+
+# ─── article insertion ─────────────────────────────────────────────────────────
 
 def insert_article(article):
-    """Insert article into Supabase."""
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    resp = requests.post(url, headers=HEADERS, json=article, timeout=30)
-    if resp.status_code in [200, 201]:
-        data = resp.json()
-        art_id = data[0]['id'] if isinstance(data, list) else data.get('id')
-        print(f"  ✓ Inserted: {article['headline'][:60]}... (id: {art_id})")
+    """Insert article to Supabase p2_articles."""
+    art_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
+
+    payload = {
+        "id": art_id,
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "slug": article["slug"],
+        "body": article["body"],
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": now,
+        "source": "The Videshi Editorial",
+        "sources": json.dumps(article.get("sources", [])),
+        "image_url": article.get("image_url", ""),
+        "image_attribution": article.get("image_attribution", ""),
+        "is_editorial": False,
+    }
+
+    r = requests.post(
+        f"{SB_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload,
+        timeout=15,
+    )
+    if r.status_code in (200, 201):
+        print(f"✅ Published: {article['headline'][:60]}... (slug: {article['slug']})")
         return art_id
     else:
-        print(f"  ✗ Insert failed: {resp.status_code} {resp.text[:300]}")
+        print(f"❌ Insert failed [{r.status_code}]: {r.text[:300]}")
         return None
 
 
-# ============================================================
-# ARTICLE 1: Diljit Dosanjh Wembley Stadium announcement
-# ============================================================
-def write_article_1():
-    print("\n=== Article 1: Diljit Dosanjh Wembley Stadium ===")
-    
-    slug = "diljit-dosanjh-wembley-stadium-london-first-south-asian-artist-nri-20260601"
-    
-    headline = "Diljit Dosanjh Just Announced a Wembley Stadium Show. No South Asian Artist Has Ever Headlined There."
-    
-    subheadline = "The Punjabi superstar broke the news mid-concert in Toronto, adding September 12 to his Aura World Tour. Michael Jackson, Prince, and Queen have played the venue. Now Diljit."
-    
-    body = """The announcement came where all the best Diljit moments come from — on stage, mid-show, in a stadium full of people losing their minds.
+# ─── articles ──────────────────────────────────────────────────────────────────
 
-During his sold-out performance at Rogers Centre in Toronto on May 31, the final North American stop of his Aura World Tour, Diljit Dosanjh told the crowd he was adding a show at Wembley Stadium in London on September 12, 2026. And then he let the fact speak for itself: no South Asian artist has ever headlined the venue.
+ARTICLES = [
+    {
+        "headline": "Cocktail 2 Trailer Is Here. Shahid Kapoor, Kriti Sanon, and Rashmika Mandanna Are Doing What Bollywood Does Best When It Stops Trying So Hard.",
+        "subheadline": "The spiritual sequel to the 2012 sleeper hit arrives June 19, and for the diaspora, it's the kind of summer escapism that plays just as well in Edison as it does in Bandra.",
+        "slug": "cocktail-2-trailer-shahid-kapoor-kriti-sanon-rashmika-mandanna-june-19-nri-20260604",
+        "body": """The trailer for *Cocktail 2* dropped on June 2, and within hours it had done exactly what a Bollywood romantic comedy trailer is supposed to do: it made people argue about which character they identified with most.
 
-"Michael Jackson performed there. Prince performed there. The Queen's Band performs there," Diljit said from the stage. "Wembley Stadium, for the first time in the history of South Asian artists, especially Punjabis — Wembley Stadium London."
+Shahid Kapoor plays Kunal, Kriti Sanon is Ally, and Rashmika Mandanna is Diya. Three people. One friendship. The kind of romantic geometry that the original *Cocktail* made unexpectedly resonant back in 2012, when Deepika Padukone walked away with the film and a career-defining turn as Veronica.
 
-## A Tour That Keeps Getting Bigger
+This time, the equation is different. Director Homi Adajania returns, but the writing credits now include Luv Ranjan and Tarun Jain, which signals a film that wants to be both commercially accessible and emotionally grounded. The trailer gives glimpses of Sicily (shot with Italian line producers, no less), Delhi, and Chandigarh, hopping between locations with the kind of casual affluence that Bollywood rom-coms have turned into an art form.
 
-The Wembley addition caps what has already been the most commercially dominant tour by an Indian artist in history. The Aura World Tour, which launched in Vancouver in April, has sold out arenas across 13 North American cities — including two nights at Madison Square Garden, a venue that South Asian acts couldn't reliably fill five years ago.
+## What the Trailer Tells Us
 
-In Vancouver, he drew over 50,000 fans to BC Place, making it the largest Punjabi concert ever held outside India. The tour still has California dates remaining — Crypto.com Arena in Los Angeles on June 18, and two nights at Chase Center in San Francisco on June 20-21.
+The three-minute preview lays out a familiar but well-executed premise: two people who are clearly meant for each other, one person who complicates things, and a city that provides the backdrop for all the confusion. What separates this from the assembly-line rom-com is tone. There are moments of genuine humor — Shahid's delivery has always been underrated in comedy — and the editing suggests a film that knows when to linger and when to cut.
 
-Wembley Stadium seats 90,000. The London date, if it sells anywhere near capacity, would be the single largest ticketed event by an Indian artist anywhere in the world.
+Kriti Sanon gets the showier moments in the trailer, playing a character who seems to carry the story's emotional center. Rashmika Mandanna, in what the producers are calling a role of "beautiful flaws," appears to bring a vulnerability that her Telugu and Kannada fans already know well but Hindi audiences are only beginning to see.
 
-## What This Means for the Diaspora
+Pritam handles the music, which in a *Cocktail* film is half the marketing. Two tracks have already been previewed to media — *Mashooka*, described as an energetic romantic number shot in Sicily, and *Tujhko*, an Arijit Singh ballad that reportedly moved journalists at a recent preview event. If Pritam delivers even half the impact of *Tumhi Ho Bandhu* or *Daaru Desi* from the original, the soundtrack alone will carry the film through its promotional cycle.
 
-For NRI audiences — especially the Punjabi and broader South Asian communities in the UK, where an estimated 1.8 million people of Indian origin live — this isn't just a concert announcement. It's a cultural marker. The UK has the largest Indian diaspora outside of the US, and Wembley has been the symbolic peak of live performance since it was rebuilt in 2007.
+## The Diaspora Calculation
 
-Diljit's crossover from Punjabi music star to global touring phenomenon has been building since his Coachella set in 2024, which made him the first Punjabi artist to perform at the festival. The Dil-Luminati Tour that followed set North American records. Now with the Aura tour, he's not just repeating the feat — he's scaling it.
+For the Indian diaspora, *Cocktail 2* lands in a June window that is already stacked with heavier fare. *Peddi* opened this week, *Governor* arrives June 12, and *Welcome To The Jungle* closes out the month on June 26. In that landscape, a breezy, music-driven romance with three bankable stars is not just counterprogramming — it is exactly the kind of film that NRI families default to when they want an evening out without the emotional weight of a period drama or the volume of an action spectacle.
 
-## His Mother Called It
+The original *Cocktail* did ₹120 crore worldwide, a substantial portion from overseas markets where its London setting and modern relationship dynamics played exceptionally well. This sequel, produced by Maddock Films, seems designed to replicate that audience — young professionals in the US, UK, Canada, and the Gulf who want Indian cinema to meet them where they actually are: dating apps, complicated friendships, commitment anxiety, and the quiet terror of being in your thirties without a plan.
 
-In a moment that resonated with fans who shared the clip thousands of times overnight, Diljit recalled what his mother told him growing up.
+## Why It Matters
 
-"She used to say, whenever you have a problem, something good is going to happen," he said. "I used to say, mom, I am going to a big place. I am going to Wembley Stadium. She doesn't know what Wembley Stadium is."
+In a year where Bollywood's calendar is dominated by franchise actioners, biographical dramas, and high-concept thrillers, *Cocktail 2* is a bet on something simpler: that people still want to watch attractive people fall in love to good music. It is not reinventing anything. It is just doing the old thing with enough craft and star power to make it feel worthwhile.
 
-The quote landed because it captures something the Indian diaspora understands intuitively — the gap between where our parents imagined we could go and where some of us have actually landed.
+The film hits theaters on June 19. In the meantime, the trailer is doing its job — it has people talking about Shahid's comic timing, Kriti's wardrobe, Rashmika's eyes, and whether a film about messy modern love can hold its own against superheroes and sports dramas. The early signs suggest it can.""",
+        "sources": [
+            "Filmfare – Cocktail 2 Trailer: Shahid Kapoor, Kriti Sanon & Rashmika Mandanna Navigate Love & Friendship (Jun 2, 2026)",
+            "The Hollywood Reporter India – Cocktail 2 Trailer: Shahid, Kriti & Rashmika Return With Messy Modern Romance (Jun 2, 2026)",
+            "Bollywood Hungama – Cocktail 2 Official Trailer details (Jun 2, 2026)"
+        ],
+        "person_names": ["Shahid Kapoor", "Kriti Sanon"],
+        "topic_queries": ["Cocktail 2 Bollywood film", "Shahid Kapoor actor Bollywood"],
+        "pexels_queries": ["Bollywood film romance couple", "modern love couple city"],
+    },
+    {
+        "headline": "Manoj Bajpayee Is Playing the Man Who Stopped India From Going Bankrupt. Most Indians Have Never Heard of Him.",
+        "subheadline": "Governor, releasing June 12, dramatizes the 1991 economic crisis through the story of RBI Governor S. Venkitaramanan — the bureaucrat who shipped India's gold overseas to save the nation.",
+        "slug": "governor-manoj-bajpayee-rbi-venkitaramanan-1991-economic-crisis-nri-20260604",
+        "body": """There is an irony at the heart of *Governor* that the film's makers are counting on audiences to notice: the very economic liberalization that created the Indian diaspora — the IT boom, the H-1B pipeline, the NRI property market, the remittance economy — was enabled by a man most Indians could not name if asked.
 
-## What's Next
+S. Venkitaramanan became the 18th Governor of the Reserve Bank of India in December 1990, inheriting a nation that was weeks away from defaulting on its sovereign debt. Foreign exchange reserves had dwindled to roughly two weeks of import cover. The country's credit rating was in freefall. And the solution Venkitaramanan authorized — airlifting 47 tonnes of gold from the RBI's vaults to the Bank of England and the Union Bank of Switzerland as collateral for emergency loans — remains one of the most dramatic economic maneuvers in Indian history.
 
-Diljit's acting schedule is equally packed. His next film, *Main Vaapas Aaunga*, directed by Imtiaz Ali and co-starring Naseeruddin Shah, Sharvari, and Vedang Raina, releases theatrically in June. The film is already the most anticipated Indian title on IMDb for 2026.
+Manoj Bajpayee plays the fictional counterpart of this man, and if the trailer is any indication, he has found the role's center: a quiet, methodical civil servant who understood that the country's survival required decisions that no politician would publicly endorse.
 
-Tickets and on-sale details for the Wembley show have not been announced yet, but given the pace at which his recent dates have sold, NRIs in the UK would be wise to set their alarms early.
+## The Film's Architecture
 
-*Sources: IANS, Ticketmaster, SeatGeek, Diljit Dosanjh's official Instagram*"""
+Directed by Chinmay Mandlekar — best known for his Marathi-language work and making his Hindi directorial debut here — *Governor* is structured as a political thriller set entirely during the crisis months of 1990-91. The screenplay, written by Suvendu Bhattacharyjee, Saurabh Bharat, Ravi Asrani, and producer Vipul Amrutlal Shah, draws from documented accounts of what happened inside the RBI and the Finance Ministry during those weeks.
 
-    # Image: Wikipedia for Diljit Dosanjh
-    img_url = fetch_wikipedia_person_image("Diljit Dosanjh")
-    if not img_url:
-        img_url = fetch_pexels_image("Wembley Stadium London concert", "music concert stadium crowd")
-    
-    final_img = None
-    attribution = "Wikimedia Commons"
-    if img_url:
-        if 'upload.wikimedia.org' in img_url:
-            final_img = upload_image_to_supabase(img_url, f"{slug}.jpg")
-            attribution = "Wikimedia Commons"
-        elif 'images.pexels.com' in img_url:
-            final_img = img_url
-            attribution = "Pexels"
-        else:
-            final_img = upload_image_to_supabase(img_url, f"{slug}.jpg")
-    
-    article = {
-        'headline': headline,
-        'subheadline': subheadline,
-        'body': body,
-        'slug': slug,
-        'category': 'entertainment',
-        'status': 'published',
-        'published_at': '2026-06-01T13:00:00Z',
-        'sources': json.dumps([{'name': 'IANS'}, {'name': 'Ticketmaster'}, {'name': 'SeatGeek'}, {'name': 'Diljit Dosanjh Instagram'}]),
-        'vertical': 'entertainment',
-        'image_url': final_img,
-        'image_attribution': attribution,
-        'is_editorial': False
-    }
-    
-    art_id = insert_article(article)
-    return art_id
+Bajpayee has spoken publicly about the challenges. He could not visit the RBI's offices — they remain restricted zones. He did not meet any serving or former governors. Instead, he worked from whatever documentation and published accounts were available, carrying reference pages with him on set to ensure factual accuracy.
 
+Adah Sharma appears in a supporting role, and the technical crew includes Javed Akhtar (lyrics) and Amit Trivedi (music). Trivedi's involvement is noteworthy — he has consistently delivered atmospheric, era-appropriate scores, and a film set in the bureaucratic corridors of early-1990s India needs precisely that register: tense, institutional, and human.
 
-# ============================================================
-# ARTICLE 2: Peddi $700K US advance booking
-# ============================================================
-def write_article_2():
-    print("\n=== Article 2: Peddi USA Advance Booking ===")
-    
-    slug = "peddi-ram-charan-usa-advance-booking-700k-north-america-nri-20260601"
-    
-    headline = "Ram Charan's Peddi Is at $700K in US Advance Booking. NRI Audiences Are Driving a Telugu Pre-Sale Record."
-    
-    subheadline = "With three days left before its June 4 release, Peddi has crossed $767K in North American premiere bookings — the strongest pre-sale for a Telugu film since RRR."
-    
-    body = """Three days before its theatrical debut, Ram Charan's *Peddi* has quietly become the pre-sale story of the summer for Indian cinema — and the numbers are being written entirely by audiences overseas.
+## Why the Diaspora Should Pay Attention
 
-As of Sunday morning, the Telugu sports action drama had crossed $692,000 in US premiere advance sales, with total North American premiere bookings reaching approximately $767,000 (roughly ₹7.33 crore), according to box office tracker Jerin Georgekutty. The film releases worldwide on June 4, with US premiere shows on June 3.
+For NRIs in the US, UK, and Canada, the 1991 crisis is not ancient history. It is origin story. The liberalization policies that followed Venkitaramanan's emergency measures — implemented by Manmohan Singh as Finance Minister — are directly responsible for the economic conditions that made mass Indian emigration to the West possible. The IT outsourcing boom, the opening of Indian markets to foreign investment, the creation of a new professional middle class that could afford US university tuition — all of it traces back to those months.
 
-## The Numbers in Context
+A film that dramatizes this moment is, for the diaspora, something closer to autobiography than political thriller. Every NRI software engineer in the Bay Area, every doctor in the NHS, every accountant in Toronto owes something to the decisions made inside the RBI in 1991. *Governor* is asking them to understand the cost.
 
-To understand what $700K in US pre-sales means, consider the recent landscape. *Peddi* crossed $100K in North American advance bookings within four hours of tickets going live in early May — a record for any Indian film. By mid-May, it had sold 10,000 premiere tickets.
+## The Production Challenge
 
-The film's advance trajectory puts it in conversation with Ram Charan's own *RRR*, which remains the benchmark for Telugu cinema's overseas performance. If the current pace holds through Tuesday, Peddi could register one of the biggest premiere grossers for any Indian film in North America this year.
+Recreating 1990s India on film is harder than it sounds. A source close to the production told Bollywood Hungama that the team spent significant resources eliminating modern anachronisms from real outdoor locations — mobile towers, LED billboards, contemporary cars, even hairstyles in crowd scenes had to be period-accurate. The attention to detail suggests a production that takes its historical material seriously, which is not always a given in Hindi cinema's treatment of recent history.
 
-## Why NRIs Are Buying Early
+The film releases on June 12, sharing the week with *Main Vaapas Aaunga* (Imtiaz Ali's Partition drama) and *Hai Jawani Toh Ishq Hona Hai* (David Dhawan's comedy). In that company, *Governor* is the most unusual proposition — a political drama about monetary policy and institutional courage. It is the kind of film that Manoj Bajpayee has spent his career making possible: the one that should not work commercially but might, because the actor at its center refuses to let it be anything less than compelling.""",
+        "sources": [
+            "Bollywood Hungama – Makers of Governor had a major challenge of recreating a bygone era (Jun 3, 2026)",
+            "Cinema Express – Who is S Venkitaramanan, the real-life inspiration for Manoj Bajpayee's protagonist in Governor? (Jun 1, 2026)",
+            "Bollywood Hungama – Manoj Bajpayee on finally working with Vipul Amrutlal Shah in Governor (May 28, 2026)"
+        ],
+        "person_names": ["Manoj Bajpayee"],
+        "topic_queries": ["Manoj Bajpayee Governor film", "Reserve Bank India 1991 gold crisis"],
+        "pexels_queries": ["Reserve Bank India building", "India financial crisis economics"],
+    },
+    {
+        "headline": "Welcome To The Jungle Has Fifteen Stars, One Jungle, and the Weight of Akshay Kumar's Entire Comeback Riding on a Punch Line.",
+        "subheadline": "The third Welcome film arrives June 26 with the biggest Bollywood ensemble cast in years. After Bhooth Bangla crossed ₹267 crore, Akshay Kumar is betting that slapstick is the genre the audience actually wants.",
+        "slug": "welcome-to-the-jungle-akshay-kumar-suniel-shetty-franchise-june-26-nri-20260604",
+        "body": """Count them: Akshay Kumar, Suniel Shetty, Paresh Rawal, Sanjay Dutt, Arshad Warsi, Raveena Tandon, Lara Dutta, Jacqueline Fernandez, Disha Patani, Johnny Lever, Rajpal Yadav, Tusshar Kapoor, Shreyas Talpade, Krushna Abhishek, Kiku Sharda, Daler Mehndi, Mika Singh, Rahul Dev, and Mukesh Tiwari. That is not a film. That is a census.
 
-The overseas appetite for *Peddi* reflects several converging factors. Ram Charan's post-RRR star power in North America has been well-documented — Telugu audiences in the US, concentrated in metros like Dallas, Chicago, the Bay Area, and the New Jersey corridor, have become the most reliable overseas ticket buyers for any Indian-language cinema.
+*Welcome To The Jungle*, the third installment of the *Welcome* franchise, arrives in cinemas on June 26. Directed by Ahmed Khan and produced by Firoz Nadiadwala, it is positioned as the summer's biggest family entertainer — a phrase that in Bollywood means loud, broad, and engineered to make a family of four in a multiplex forget that the world outside is complicated.
 
-The film also has A.R. Rahman scoring the music and background, with Buchi Babu Sana (who directed the acclaimed *Uppena*) helming the project. The rural sports drama genre — a combination that worked spectacularly for *Dangal* and *83* — has cross-demographic appeal.
+The teaser dropped on May 15 and did exactly what it needed to do: it showed Akshay Kumar in a dark suit walking down a red carpet laid in the middle of a jungle, surrounded by chaos. That single image — the absurd juxtaposition of formality and wilderness — is the franchise's entire thesis statement.
 
-## A Packed Weekend Ahead
+## The Franchise Equation
 
-*Peddi* releases into a June first week that's already one of the busiest of 2026. Varun Dhawan's *Hai Jawani Toh Ishq Hona Hai* moved to June 12 to avoid the clash. But the Telugu film still faces holdover competition from *Drishyam 3* (which has crossed ₹225 crore worldwide) and the Hollywood slate.
+The original *Welcome* (2007) was a gangster comedy that nobody expected to become a cultural touchstone. Directed by Anees Bazmee, it made ₹108 crore worldwide — enormous for its time — and embedded itself into the Indian diaspora's reference vocabulary. Lines from that film still circulate on WhatsApp forwards. *Welcome Back* (2015) made ₹137 crore despite mixed reviews, proving that the franchise was less about quality and more about occasion.
 
-The real question isn't whether *Peddi* will open big — it will. With a reported ₹350 crore budget, the question is whether it can sustain past the premiere rush. To break even, trade analysts estimate the film needs approximately ₹450 crore worldwide.
+*Welcome To The Jungle* changes the director (Ahmed Khan replaces Bazmee), the setting (a jungle backdrop instead of Dubai penthouses), and the tone (more physical comedy, if the teaser is any indication). What it keeps is the franchise's central promise: you will not have to think, and you will laugh anyway.
 
-The cast — which includes Janhvi Kapoor, Shiva Rajkumar, Jagapathi Babu, Divyenndu, and Boman Irani — gives it multi-market appeal. The film releases in standard, IMAX, Dolby Cinema, 4DX, and several premium formats, maximizing per-ticket revenue.
+## Akshay Kumar's Year
 
-## What Peddi Tells Us About the NRI Box Office
+The timing matters. Akshay Kumar enters *Welcome To The Jungle* on the back of *Bhooth Bangla*, which has crossed ₹267 crore worldwide in its seventh week — a number that seemed impossible a year ago, when his box office track record was a running industry joke. Priyadarshan's horror comedy proved that Akshay's audience had not disappeared; it had simply been waiting for him to return to the genre where his instincts are sharpest.
 
-For the diaspora audience, especially Telugu-speaking families in the US, premiere night has evolved from a movie outing into a community event. Theatres in cities like Frisco, Dallas, and Edison now routinely program 4 AM and 7 AM fan shows for Indian tentpoles. *Peddi* is no exception — many of these early shows are already sold out.
+Comedy has always been Akshay Kumar's superpower. Before action franchises and patriotic dramas became his brand, he was the man behind *Hera Pheri*, *Garam Masala*, *Bhagam Bhag*, and *Housefull*. His ability to play straight while everything around him descends into chaos is a specific skill — not all actors have it, and the ones who do rarely get credit for it. *Welcome To The Jungle* is designed to showcase precisely that register.
 
-It's a dynamic that Indian studios have learned to engineer for, and it's reshaping how films are marketed, released, and monetized in North America.
+## The NRI Appeal
 
-*Sources: Filmibeat, Sacnilk, ZoomTV Entertainment, Wikipedia*"""
+For the Indian diaspora, the *Welcome* franchise occupies a particular cultural niche: it is the film you watch when you want to feel Indian without the emotional labor of engaging with India's complexities. There are no partition stories, no caste narratives, no political statements. There is only Paresh Rawal doing Paresh Rawal things, Johnny Lever finding comedy in physical impossibilities, and Akshay Kumar navigating absurd situations with a deadpan that would make Buster Keaton nod in recognition.
 
-    # Image: Wikipedia for Ram Charan
-    img_url = fetch_wikipedia_person_image("Ram Charan")
-    if not img_url:
-        img_url = fetch_wikipedia_person_image("Ram Charan (actor)")
-    if not img_url:
-        img_url = fetch_pexels_image("Indian cinema movie premiere", "Telugu cinema audience")
-    
-    final_img = None
-    attribution = "Wikimedia Commons"
-    if img_url:
-        if 'upload.wikimedia.org' in img_url:
-            final_img = upload_image_to_supabase(img_url, f"{slug}.jpg")
-            attribution = "Wikimedia Commons"
-        elif 'images.pexels.com' in img_url:
-            final_img = img_url
-            attribution = "Pexels"
-        else:
-            final_img = upload_image_to_supabase(img_url, f"{slug}.jpg")
-    
-    article = {
-        'headline': headline,
-        'subheadline': subheadline,
-        'body': body,
-        'slug': slug,
-        'category': 'entertainment',
-        'status': 'published',
-        'published_at': '2026-06-01T13:05:00Z',
-        'sources': json.dumps([{'name': 'Filmibeat'}, {'name': 'Sacnilk'}, {'name': 'ZoomTV Entertainment'}, {'name': 'Wikipedia'}]),
-        'vertical': 'entertainment',
-        'image_url': final_img,
-        'image_attribution': attribution,
-        'is_editorial': False,
-        
-    }
-    
-    art_id = insert_article(article)
-    return art_id
+JioStar has reportedly acquired the domestic theatrical rights along with satellite and OTT rights, meaning the film will eventually stream on JioHotstar — a platform that has become the default for diaspora families who want Hindi content without navigating multiple subscription tiers. That distribution strategy ensures *Welcome To The Jungle* will have a long tail well beyond its theatrical run.
+
+## What to Expect
+
+Do not expect a good film. Expect a *fun* film. The *Welcome* franchise has never trafficked in craft; it traffics in volume. The humor is broad, the plot is incidental, the performances are pitched at a register that prioritizes energy over subtlety. And for an audience that has spent the first half of 2026 processing spy thrillers, biographical dramas, and epic period films, that might be exactly the right prescription.
+
+June 26. Fifteen stars. One jungle. Zero pretense. The math works.""",
+        "sources": [
+            "Bollywood Hungama – Welcome To The Jungle is not just a comedy; it's Bollywood's biggest stressbuster of 2026 (Jun 2, 2026)",
+            "Sacnilk – Welcome To The Jungle Teaser: Akshay Kumar and Gang Promise A Laugh Riot (May 15, 2026)",
+            "Filmfare – Upcoming Bollywood Movies To Watch In June 2026 (Jun 1, 2026)"
+        ],
+        "person_names": ["Akshay Kumar"],
+        "topic_queries": ["Akshay Kumar Welcome To The Jungle film", "Welcome Bollywood comedy franchise"],
+        "pexels_queries": ["Bollywood comedy film set", "jungle adventure movie set"],
+    },
+]
 
 
-# ============================================================
-# ARTICLE 3: Drishyam 3 overseas vs domestic — NRI angle
-# ============================================================
-def write_article_3():
-    print("\n=== Article 3: Drishyam 3 Box Office NRI angle ===")
-    
-    slug = "drishyam-3-overseas-beats-domestic-225-crore-worldwide-mohanlal-nri-20260601"
-    
-    headline = "Drishyam 3's Overseas Collections Have Outpaced India. That's Never Happened for a Malayalam Thriller."
-    
-    subheadline = "Mohanlal's franchise closer has crossed ₹225 crore worldwide in 11 days. The diaspora — Gulf, US, UK, Australia — has contributed more than Kerala."
-    
-    body = """Here's a statistic that would have been inconceivable five years ago: *Drishyam 3*, a Malayalam-language crime thriller, has earned more money outside India than inside it.
+# ─── main ──────────────────────────────────────────────────────────────────────
 
-After 11 days of theatrical release, Jeethu Joseph's franchise closer has grossed approximately ₹228.95 crore worldwide. Of that, overseas markets — led by the Gulf, North America, the UK, and Australia — have contributed roughly ₹114 crore. The India gross stands at about ₹110 crore (₹96.70 crore net). It's the first time a Malayalam thriller has had its overseas total outpace its domestic one.
+def main():
+    if not SB_URL or not SB_KEY:
+        print("❌ Missing Supabase env vars")
+        sys.exit(1)
 
-## The Gulf Connection
+    print(f"\n{'='*60}")
+    print(f"The Videshi — Entertainment Writer")
+    print(f"Run: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
+    print(f"{'='*60}\n")
 
-The numbers make sense when you map them against the Malayalam-speaking diaspora. The Gulf Cooperation Council countries alone are home to an estimated 2.5 million Malayalis — nurses, engineers, IT workers, and business owners who have been the bedrock of Kerala's remittance economy for decades. For this audience, *Drishyam 3* isn't just a movie. It's a shared cultural text.
+    published = 0
 
-The franchise has a unique relationship with overseas audiences. The original *Drishyam* (2013) became one of the most remade Indian films — spawning Hindi, Telugu, Tamil, Kannada, and even Chinese adaptations. Its premise — a working-class father who outsmarts the police to protect his family — resonated universally, but it hit particularly hard in the Gulf, where many viewers saw their own vulnerability and resourcefulness mirrored in Georgekutty.
+    for i, article in enumerate(ARTICLES, 1):
+        print(f"\n── Article {i}/{len(ARTICLES)}: {article['headline'][:55]}... ──\n")
 
-## A Mixed-Reviews Blockbuster
+        # Source image
+        print("  Sourcing image...")
+        img_url, img_attr = source_image(
+            article["person_names"],
+            article["topic_queries"],
+            article["pexels_queries"],
+            article["slug"],
+        )
 
-What makes the commercial performance more remarkable is that *Drishyam 3* has received mixed critical reception. Unlike the universally acclaimed first two installments, reviews for the third chapter have been divided. Yet the audience has shown up regardless — opening day alone saw 587,000 tickets sold on BookMyShow, shattering the previous Day 1 record held by *Thudarum* (430,000).
+        article["image_url"] = img_url or ""
+        article["image_attribution"] = img_attr or ""
 
-The film has crossed the 3 million ticket mark on BookMyShow in just 11 days, placing it among the top seven Malayalam films ever on the platform. Only *Lokah Chapter 1* (5.5 million) sits significantly ahead.
+        # Insert
+        art_id = insert_article(article)
+        if art_id:
+            published += 1
 
-## What It Means for Malayalam Cinema's Business Model
+        time.sleep(1)
 
-The overseas-heavy revenue split signals a structural shift. Malayalam cinema has traditionally been a domestic-first industry, with the Gulf as a reliable but secondary market. But a succession of global hits — *Manjummel Boys*, *Lokah Chapter 1*, *Thudarum*, *Vaazha 2*, and now *Drishyam 3* — has established a new paradigm where overseas revenue can match or exceed India collections.
-
-For NRI audiences, the implication is straightforward: studios are now marketing and releasing with you in mind, not as an afterthought. Simultaneous dubbed releases in Tamil, Telugu, and Kannada — which *Drishyam 3* has for the first time — are designed to capture pan-Indian diaspora audiences who might not speak Malayalam but know the franchise from its remakes.
-
-## The Hindi Remake Is Coming
-
-The financial success of the original virtually guarantees that Ajay Devgn's *Drishyam 3* Hindi remake, which is already in production, will arrive as scheduled on October 2, 2026. The remake franchise has its own massive following — the Hindi *Drishyam 2* earned over ₹240 crore worldwide.
-
-But the Malayalam original has now established that it doesn't need the Hindi version to access a global audience. That's the real story.
-
-## Box Office Breakdown (11 Days)
-
-- **India Net**: ₹96.70 crore
-- **India Gross**: ~₹110.75 crore
-- **Overseas Gross**: ~₹114.10 crore
-- **Worldwide Gross**: ₹228.95 crore (approx.)
-- **Budget**: ₹60 crore (reported)
-- **ROI**: ~275%
-
-*Sources: Sacnilk, BoxOfficeWala, Hollywood Reporter India, Livemint, Wikipedia*"""
-
-    # Image: Wikipedia for Mohanlal
-    img_url = fetch_wikipedia_person_image("Mohanlal")
-    if not img_url:
-        img_url = fetch_pexels_image("Indian cinema audience theater", "movie theater audience India")
-    
-    final_img = None
-    attribution = "Wikimedia Commons"
-    if img_url:
-        if 'upload.wikimedia.org' in img_url:
-            final_img = upload_image_to_supabase(img_url, f"{slug}.jpg")
-            attribution = "Wikimedia Commons"
-        elif 'images.pexels.com' in img_url:
-            final_img = img_url
-            attribution = "Pexels"
-        else:
-            final_img = upload_image_to_supabase(img_url, f"{slug}.jpg")
-    
-    article = {
-        'headline': headline,
-        'subheadline': subheadline,
-        'body': body,
-        'slug': slug,
-        'category': 'entertainment',
-        'status': 'published',
-        'published_at': '2026-06-01T13:10:00Z',
-        'sources': json.dumps([{'name': 'Sacnilk'}, {'name': 'BoxOfficeWala'}, {'name': 'Hollywood Reporter India'}, {'name': 'Livemint'}, {'name': 'Wikipedia'}]),
-        'vertical': 'entertainment',
-        'image_url': final_img,
-        'image_attribution': attribution,
-        'is_editorial': False,
-        
-    }
-    
-    art_id = insert_article(article)
-    return art_id
+    print(f"\n{'='*60}")
+    print(f"Done. Published {published}/{len(ARTICLES)} articles.")
+    print(f"{'='*60}\n")
 
 
-# ============================================================
-# Run all
-# ============================================================
-if __name__ == '__main__':
-    print("=" * 60)
-    print("The Videshi Entertainment Writer — June 1, 2026")
-    print("=" * 60)
-    
-    results = []
-    
-    art1 = write_article_1()
-    results.append(('Diljit Wembley', art1))
-    
-    time.sleep(2)  # Avoid Wikipedia rate limiting
-    
-    art2 = write_article_2()
-    results.append(('Peddi USA Booking', art2))
-    
-    time.sleep(2)  # Avoid Wikipedia rate limiting
-    
-    art3 = write_article_3()
-    results.append(('Drishyam 3 Overseas', art3))
-    
-    print("\n" + "=" * 60)
-    print("RESULTS:")
-    for name, aid in results:
-        status = "✓" if aid else "✗"
-        print(f"  {status} {name}: {aid}")
-    
-    successes = sum(1 for _, a in results if a)
-    print(f"\n{successes}/{len(results)} articles published successfully.")
-    print("=" * 60)
+if __name__ == "__main__":
+    main()
