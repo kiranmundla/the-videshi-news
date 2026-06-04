@@ -393,7 +393,14 @@ def main():
         print(f"  Unexpected response: {str(missing)[:200]}")
         return
 
-    print(f"  {len(missing)} events need geocoding")
+    # Cap geocoding to 75 per run to stay within cron timeout (Nominatim: 1 req/sec)
+    GEOCODE_BATCH = 75
+    total_missing = len(missing)
+    if total_missing > GEOCODE_BATCH:
+        print(f"  {total_missing} events need geocoding, processing batch of {GEOCODE_BATCH}")
+        missing = missing[:GEOCODE_BATCH]
+    else:
+        print(f"  {total_missing} events need geocoding")
     geocoded = 0
     failed = 0
 
