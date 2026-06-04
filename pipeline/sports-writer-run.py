@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
-"""
-Sports writer — June 4, 2026 run
-Two articles:
-1. Ashwin backs Dubey for India debut — the spin battle for the Afghanistan Test
-2. Sooryavanshi effect — Sony broadcasts A-team tri-series live for the first time
-"""
+"""Sports writer for The Videshi - June 4, 2026 evening run"""
 
-import json, os, sys, time, uuid, re, subprocess
+import json
+import os
 import requests
+import subprocess
 import urllib.parse
 from datetime import datetime, timezone
 
@@ -19,7 +16,9 @@ def load_env(path):
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
                     key, val = line.split('=', 1)
-                    os.environ[key.strip()] = val.strip().strip('"').strip("'")
+                    key = key.replace('export ', '').strip()
+                    val = val.strip().strip('"').strip("'")
+                    os.environ[key] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.supabase'))
@@ -36,15 +35,13 @@ HEADERS = {
     "Prefer": "return=representation"
 }
 
-UA = "TheVideshi/1.0 (thevideshi.com)"
-
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns (url, attribution) or (None, None)."""
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": UA},
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
             timeout=10
         )
         if r.status_code == 200:
@@ -52,10 +49,10 @@ def fetch_wikipedia_person_image(person_name):
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
-                return img, "Wikimedia Commons"
+                return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
-    return None, None
+    return None
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
@@ -66,7 +63,7 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         "gsrnamespace": "6",
         "gsrlimit": str(limit),
         "prop": "imageinfo",
-        "iiprop": "url|size|mime",
+        "iiprop": "url|size|mime|extmetadata",
         "iiurlwidth": "1200",
         "format": "json"
     }
@@ -74,284 +71,278 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
             params=params,
-            headers={"User-Agent": UA},
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
             timeout=15
         )
         if r.status_code == 200:
             data = r.json()
             pages = data.get("query", {}).get("pages", {})
             results = []
-            for page_id, page in pages.items():
+            for pid, page in pages.items():
                 ii = page.get("imageinfo", [{}])[0]
-                url = ii.get("thumburl") or ii.get("url")
                 mime = ii.get("mime", "")
-                if url and "image" in mime:
-                    results.append({
-                        "url": url,
-                        "title": page.get("title", ""),
-                        "width": ii.get("width", 0),
-                        "height": ii.get("height", 0)
-                    })
+                if not mime.startswith("image/"):
+                    continue
+                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
+                    continue
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "original_url": ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0),
+                    "height": ii.get("height", 0),
+                    "mime": mime
+                })
             if results:
-                print(f"  ✓ Wikimedia Commons found {len(results)} images for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
             return results
     except Exception as e:
         print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
     return []
 
 def fetch_pexels_image(query):
-    """Fetch image from Pexels using curl (Python urllib gets 403)."""
+    """Fetch an image from Pexels using curl (Python urllib gets 403)."""
     try:
         result = subprocess.run(
-            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=5",
-             "-H", f"Authorization: {PEXELS_KEY}"],
+            ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+             f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3'],
             capture_output=True, text=True, timeout=15
         )
         if result.returncode == 0:
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
+            photos = data.get('photos', [])
             if photos:
-                best = photos[0]
-                url = best.get("src", {}).get("large2x") or best.get("src", {}).get("large")
+                url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('large')
                 if url:
                     print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                    return url, "Pexels"
+                    return url
     except Exception as e:
         print(f"  ⚠ Pexels error for '{query}': {e}")
-    return None, None
+    return None
 
 def validate_image(url):
-    """Validate image URL returns HTTP 200 with image content and >5KB."""
+    """Validate that a URL returns a real image."""
     try:
-        r = requests.head(url, headers={"User-Agent": UA}, timeout=10, allow_redirects=True)
-        content_type = r.headers.get("Content-Type", "")
-        content_length = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in content_type and content_length > 5000:
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
+        content_type = r.headers.get('Content-Type', '')
+        content_length = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in content_type and content_length > 5000:
             print(f"  ✓ Image validated: {content_length} bytes, {content_type}")
             return True
-        # Try GET if HEAD didn't return content-length
-        if r.status_code == 200 and "image" in content_type and content_length == 0:
-            r2 = requests.get(url, headers={"User-Agent": UA}, timeout=10, stream=True)
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                print(f"  ✓ Image validated via GET: >5KB")
-                return True
-        print(f"  ✗ Image failed validation: status={r.status_code}, type={content_type}, size={content_length}")
+        else:
+            print(f"  ✗ Image validation failed: status={r.status_code}, type={content_type}, size={content_length}")
+            return False
     except Exception as e:
         print(f"  ✗ Image validation error: {e}")
-    return False
-
-def get_best_image(person_name=None, wiki_search=None, pexels_query=None):
-    """Multi-source image search. Returns (url, caption_hint, attribution)."""
-    candidates = []
-    
-    # Source 1: Wikipedia person image
-    if person_name:
-        url, attr = fetch_wikipedia_person_image(person_name)
-        if url and validate_image(url):
-            candidates.append(("wikipedia", url, attr))
-    
-    # Source 2: Wikimedia Commons
-    if wiki_search:
-        commons = fetch_wikimedia_commons_images(wiki_search)
-        for img in commons[:3]:
-            if validate_image(img["url"]):
-                candidates.append(("commons", img["url"], "Wikimedia Commons"))
-                break
-    
-    # Source 3: Pexels
-    if pexels_query:
-        url, attr = fetch_pexels_image(pexels_query)
-        if url and validate_image(url):
-            candidates.append(("pexels", url, attr))
-    
-    # Prefer: wikipedia > commons > pexels
-    for source_type in ["wikipedia", "commons", "pexels"]:
-        for c in candidates:
-            if c[0] == source_type:
-                return c[1], c[2]
-    
-    return None, None
+        return False
 
 def publish_article(article):
     """Insert article into Supabase."""
-    payload = {
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "body": article["body"],
-        "slug": article["slug"],
-        "category": "sports",
-        "vertical": "sports",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": article.get("image_url"),
-        "image_caption": article.get("image_caption"),
-        "image_attribution": article.get("image_attribution"),
-        "sources": json.dumps(article.get("sources", [])),
-        "is_editorial": False,
-    }
-    
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=payload,
-        timeout=15
-    )
-    if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            print(f"  ✓ Published: {result[0].get('id', 'unknown')} — {article['headline'][:60]}...")
-            return True
-        print(f"  ✓ Published (no ID returned)")
-        return True
-    else:
-        print(f"  ✗ Publish failed: {r.status_code} — {r.text[:200]}")
-        return False
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
+    try:
+        r = requests.post(url, headers=HEADERS, json=article, timeout=30)
+        if r.status_code in (200, 201):
+            result = r.json()
+            if isinstance(result, list) and result:
+                print(f"  ✓ Published: {result[0].get('headline', 'unknown')[:60]}...")
+                return True
+        print(f"  ✗ Publish failed: {r.status_code} - {r.text[:200]}")
+    except Exception as e:
+        print(f"  ✗ Publish error: {e}")
+    return False
 
 
-###############################################################################
-# ARTICLE 1: Ashwin backs Dubey for Test debut
-###############################################################################
-print("\n=== ARTICLE 1: Ashwin backs Dubey for Afghanistan Test ===")
+# ============================================================
+# ARTICLE 1: Hariharan-Arjun reach maiden Super 1000 QF
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 1: Hariharan-Arjun Indonesia Open QF")
+print("="*60)
 
-# Image: Try Harsh Dubey (likely no Wikipedia page), then R Ashwin
-img1_url, img1_attr = get_best_image(
-    person_name="Ravichandran Ashwin",
-    wiki_search="Ravichandran Ashwin cricket India",
-    pexels_query="cricket bowling India"
-)
+# Image sourcing - try multiple approaches
+art1_image_url = None
+art1_image_caption = None
+art1_image_attribution = None
 
-article1 = {
-    "headline": "Ashwin Has His Eyes on Dubey. Kumble Wants Kuldeep. The Afghanistan Test Has a Spin Selection Puzzle Nobody Agrees On.",
-    "subheadline": "With four spinners in a fifteen-man squad, India's greatest modern spinner says the uncapped left-armer from Vidarbha is the one he wants to see bowl first.",
-    "slug": "ashwin-backs-harsh-dubey-test-debut-kuldeep-kumble-afghanistan-india-spin-puzzle-nri",
-    "image_url": img1_url,
-    "image_caption": "R. Ashwin, India's all-time leading off-spinner, has backed Harsh Dubey for a Test debut",
-    "image_attribution": img1_attr,
-    "sources": [
-        {"name": "Khel Ja", "url": "https://khelja.in"},
-        {"name": "Fox Sports Australia", "url": "https://foxsports.com.au"},
-        {"name": "Sportskeeda", "url": "https://sportskeeda.com"},
-        {"name": "ICC Cricket", "url": "https://icc-cricket.com"}
-    ],
-    "body": """India have four frontline spinners in a fifteen-man squad for a single Test match. That is two too many for a playing eleven, and the debate over which pair gets the nod against Afghanistan in Mullanpur on Saturday has now pulled in the sharpest voice in Indian spin bowling: Ravichandran Ashwin.
+# Try Wikimedia Commons for Indonesia Open / badminton
+commons_results = fetch_wikimedia_commons_images("Indonesia Open badminton 2024 doubles")
+if not commons_results:
+    commons_results = fetch_wikimedia_commons_images("badminton doubles men")
+if not commons_results:
+    commons_results = fetch_wikimedia_commons_images("Istora Senayan Jakarta badminton")
 
-## Ashwin's Pick Is Dubey
+for img in commons_results:
+    if validate_image(img["url"]):
+        art1_image_url = img["url"]
+        art1_image_caption = "Badminton doubles action at the Istora Senayan in Jakarta"
+        art1_image_attribution = "Wikimedia Commons"
+        break
 
-Speaking to JioStar ahead of the one-off Test, Ashwin made his preference clear. "My eyes will be on Harsh Dubey," the retired off-spinner said. "I am curious whether he will get a chance. We will have to wait and see if the team goes with Manav Suthar or Harsh Dubey. But I am particularly interested in Dubey because of his strong domestic season."
+if not art1_image_url:
+    pexels_url = fetch_pexels_image("badminton doubles match professional")
+    if pexels_url and validate_image(pexels_url):
+        art1_image_url = pexels_url
+        art1_image_caption = "Badminton doubles players in action during a professional tournament"
+        art1_image_attribution = "Pexels"
 
-That domestic season was extraordinary. Dubey finished as the leading wicket-taker in the 2025-26 Ranji Trophy with 69 wickets at 16.98, bowling left-arm orthodox spin for Vidarbha. At twenty-three, he carried an entire state's red-ball campaign on his shoulders. He followed that with a strong IPL stint for Sunrisers Hyderabad, where Virat Kohli was among his white-ball victims. The combination of domestic dominance and franchise exposure has made him, in Ashwin's view, the more compelling debutant.
+art1_body = """Hariharan Amsakarunan and MR Arjun have reached the quarterfinals of the Indonesia Open 2026, the first time an Indian men's doubles pair other than Satwiksairaj Rankireddy and Chirag Shetty has advanced this deep at a BWF Super 1000 event.
 
-Manav Suthar, the other uncapped left-armer, brings a different resume. The Rajasthan spinner has 129 first-class wickets at 25.76 and took eight wickets in an unofficial India A Test against Australia A, dismissing Oliver Peake, Will Sutherland, Cooper Connolly, and Josh Philippe. He also showed batting ability, scoring 82 in a Duleep Trophy match. His case is built on consistency across formats rather than a single breakout season.
+The milestone came at the Istora Senayan in Jakarta on Thursday, where the Indian duo fought back from a game down to beat Malaysia's Aaron Tai and Kang Khai Xing 16–21, 21–15, 21–19 in one hour and 12 minutes.
 
-## The Kumble-Pathan Split
+## A Comeback Built on Nerve
 
-The disagreement goes beyond Ashwin. On Star Sports' *Follow the Blues*, Anil Kumble and Irfan Pathan offered directly opposing compositions.
+The opening game was all Malaysia. Tai and Kang controlled the net, forcing Hariharan and Arjun into defensive positions with sharp smashes and deceptive drops. The Indians lost the first game 16–21 and looked under pressure.
 
-Kumble picked Kuldeep Yadav and Harsh Dubey as his two specialist spinners, with Gurnoor Brar and Mohammed Siraj forming the seam attack. He went further, arguing that Nitish Kumar Reddy must be treated as a bowling option rather than a specialist batter. "If Gurnoor has been picked, there is a reason. Play him. If it means Prasidh misses out, he misses out, unfortunately."
+The second game told a different story. Arjun stepped up his service returns, and Hariharan began finding angles past the Malaysian front court. The Indian pair won 21–15, levelling the match with noticeably better control of the rallies.
 
-Pathan agreed on three of four bowlers but replaced Kuldeep with Washington Sundar. His reasoning was structural: "The Indian team likes to bat till Number 8. That is how they play." Washington at Number 7, with Dhruv Jurel at 6 and Nitish Kumar Reddy at 8, gives India a deep batting tail that has served them well in home Tests. Dubey, in Pathan's eleven, bowls at Number 9.
+The decider was tense. The Malaysians led 11–8 at the interval, and for five minutes after the change of ends, every point mattered. Trailing 8–11, Hariharan and Arjun won four consecutive points to draw level at 12–12. That sequence — patient defence followed by sudden aggression — encapsulated how the pair has been playing through the 2026 season. They never trailed again, closing out the game 21–19.
 
-## The Kuldeep Question
+## Why This Matters for Indian Badminton
 
-Kuldeep Yadav's place looked automatic until the IPL intervened. A forgettable season with Delhi Capitals has invited scrutiny, even though his Test record in India remains formidable — eight wickets at 28.63 in the most recent home series against South Africa. Ashwin acknowledged this directly: "Kuldeep Yadav will lead the spin attack against Afghanistan in the absence of Ravindra Jadeja. He has been bowling with great rhythm and confidence."
+India's men's doubles programme has been a one-pair story for the better part of four years. Satwik and Chirag have been magnificent — world No. 4, Singapore Open champions last week, Olympic medallists — but they retired hurt from their opening-round match at this very tournament after Satwik aggravated a shoulder injury.
 
-The implication is that Kuldeep plays, and the real battle is for the second spinner's slot. If captain Shubman Gill prefers batting depth, Washington Sundar at Number 7 is the safer pick. If the team wants two attacking spinners on a Mullanpur track that will turn, Dubey or Suthar comes in alongside Kuldeep.
+That meant India's doubles hopes in Jakarta rested entirely on Hariharan and Arjun. The pair, both still in their early twenties, answered the call.
 
-## What the Pitch Says
+They had already won their first-round match against the unranked pairing of Ade Tan and Nicky Azriyn 21–18, 21–10 on Tuesday. But the Round of 16 was a different test — Aaron Tai and Kang Khai Xing had beaten the fourth-seeded Satwik-Chirag pair's replacements in the draw to reach that stage and brought genuine attacking intent to every rally.
 
-The Maharaja Yadavindra Singh International Cricket Stadium in Mullanpur is new to Test cricket. Its IPL surface offered turn and variable bounce, conditions that favour spin bowling. Sairaj Bahutule, the newly appointed spin bowling coach, will have his first assignment mentoring two uncapped spinners through what could be their debut match.
+## A Breakthrough at the Right Time
 
-Afghanistan, without Rashid Khan who has been rested from long-format cricket, will be led by Hashmatullah Shahidi. India have played one Test against Afghanistan previously — an innings defeat inside two days in Bengaluru in 2018. The match begins on June 6 at Mullanpur, with India's first red-ball assignment in five months.
+Hariharan and Arjun had been building quietly. They reached the second round at the Swiss Open earlier this year and had shown improved consistency across mid-tier events. But a Super 1000 quarterfinal — at the Indonesia Open, one of the five marquee stops on the World Tour — is a different calibre entirely.
+
+They will next face the seventh-seeded Malaysian pair of Goh Sze Fei and Nur Izzuddin, former world No. 1 contenders who are comfortable playing at this level. Regardless of that result, the milestone has already been reached.
 
 ## The Diaspora Angle
 
-For NRI fans watching from abroad, this Test is available on FanCode in India and Fox Cricket in Australia. The match starts at 9:30 PM EDT on Friday night, a convenient time for East Coast viewers. With India resting Jasprit Bumrah and Ravindra Jadeja, the spotlight falls entirely on the next generation — and on which version of India's spin future the selectors and captain choose to put on the field first.
+For Indian badminton fans in the US, UK, and Canada, the development of a second competitive men's doubles pair is long overdue. India has historically produced strong singles players — Saina Nehwal, PV Sindhu, Kidambi Srikanth — but depth in doubles has been thin. The success of Hariharan and Arjun at this level suggests the coaching infrastructure at the Gopichand Academy and elsewhere is beginning to produce results beyond the established names.
 
-The answer arrives Saturday. Ashwin already knows who he wants to see."""
+## Singles Campaign Over
+
+India's singles challenge ended on the same day. PV Sindhu lost to world No. 1 An Se Young 17–21, 15–21 — extending her winless record against the Korean to ten consecutive matches. Ayush Shetty fell to Hong Kong's Lee Cheuk Yiu 21–16, 13–21, 14–21, unable to sustain his first-game momentum.
+
+With both singles players eliminated, Hariharan and Arjun carry the last Indian flag still flying in Jakarta.
+
+*Sources: Badminton World Federation official results; Revsportz; The Bridge*"""
+
+article1 = {
+    "headline": "Satwik and Chirag Were Out. Hariharan and Arjun Stepped In. India Has a Second Doubles Pair at the Super 1000 Level.",
+    "subheadline": "MR Arjun and Hariharan Amsakarunan fought back from a game down to reach the Indonesia Open quarterfinals — a first for any Indian men's doubles pair outside the Satwik-Chirag partnership at a BWF Super 1000 event.",
+    "slug": "hariharan-arjun-indonesia-open-2026-quarterfinal-maiden-super-1000-doubles-nri",
+    "body": art1_body,
+    "category": "sports",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "is_editorial": False,
+    "image_url": art1_image_url,
+    "image_caption": art1_image_caption,
+    "image_attribution": art1_image_attribution,
+    "sources": json.dumps(["Badminton World Federation", "Revsportz", "The Bridge"]),
+    "vertical": "sports",
 }
 
-print(f"  Article 1 body word count: {len(article1['body'].split())}")
-publish_article(article1)
+if art1_image_url:
+    print("\n→ Publishing Article 1...")
+    publish_article(article1)
+else:
+    print("\n✗ Skipping Article 1 — no valid image found")
 
 
-###############################################################################
-# ARTICLE 2: Sooryavanshi effect — Sony broadcasts A-team tri-series live
-###############################################################################
-print("\n=== ARTICLE 2: Sooryavanshi effect forces live broadcast ===")
+# ============================================================
+# ARTICLE 2: KS Bharat retires from international cricket
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 2: KS Bharat Retires from International Cricket")
+print("="*60)
 
-# Image: Try Vaibhav Sooryavanshi on Wikipedia (may not exist), then generic cricket
-img2_url, img2_attr = get_best_image(
-    person_name="Vaibhav Sooryavanshi",
-    wiki_search="Vaibhav Suryavanshi cricketer",
-    pexels_query="cricket stadium broadcast television"
-)
+# Image sourcing - Wikipedia first for person article
+art2_image_url = fetch_wikipedia_person_image("KS Bharat")
+if not art2_image_url:
+    art2_image_url = fetch_wikipedia_person_image("KS Bharat (cricketer)")
+if not art2_image_url:
+    art2_image_url = fetch_wikipedia_person_image("Kona Srikar Bharat")
 
-# If no Sooryavanshi image, try alternate name
-if not img2_url:
-    print("  Trying alternate name: Vaibhav Suryavanshi")
-    img2_url, img2_attr = get_best_image(
-        person_name="Vaibhav Suryavanshi",
-        wiki_search="IPL 2026 cricket youngest",
-        pexels_query="cricket bat young player"
-    )
+art2_image_caption = None
+art2_image_attribution = None
+
+if art2_image_url and validate_image(art2_image_url):
+    art2_image_caption = "KS Bharat during an international match for India"
+    art2_image_attribution = "Wikimedia Commons"
+else:
+    art2_image_url = None
+    # Try Wikimedia Commons
+    commons_results = fetch_wikimedia_commons_images("KS Bharat India cricket")
+    if not commons_results:
+        commons_results = fetch_wikimedia_commons_images("India Test cricket wicketkeeper")
+    for img in commons_results:
+        if validate_image(img["url"]):
+            art2_image_url = img["url"]
+            art2_image_caption = "India's Test cricket wicketkeeper in action"
+            art2_image_attribution = "Wikimedia Commons"
+            break
+
+    if not art2_image_url:
+        pexels_url = fetch_pexels_image("cricket wicketkeeper India test match")
+        if pexels_url and validate_image(pexels_url):
+            art2_image_url = pexels_url
+            art2_image_caption = "A wicketkeeper in action during a cricket test match"
+            art2_image_attribution = "Pexels"
+
+art2_body = """KS Bharat announced his retirement from international cricket on Thursday, stepping away from the game at the age of 32 with seven Test caps, 221 runs, and the memory of keeping wicket for India in a World Test Championship final.
+
+The Visakhapatnam-born wicketkeeper-batter shared an emotional farewell note on Instagram, thanking his family, the BCCI, Virat Kohli, Rohit Sharma, and former head coach Rahul Dravid. It was a quiet ending for a player whose career was shaped more by timing and circumstance than by any deficiency in his craft.
+
+## The Path That Almost Wasn't
+
+Bharat's route to international cricket was anything but linear. He first received an India call-up in 2019 but did not make his debut for four more years. It was Rishabh Pant's devastating car accident in December 2022 that opened the door — Bharat was selected for the home Border-Gavaskar Trophy against Australia in early 2023 and played all four Tests of the series.
+
+He then made the squad for the World Test Championship final at The Oval against Australia in June 2023. Standing behind the stumps on that stage, with Pat Cummins and Steve Smith at the crease, was the culmination of more than a decade of domestic cricket.
+
+His final international appearance came against England in his hometown of Visakhapatnam in February 2024. After that, the door that Pant's absence had opened quietly closed again as Pant returned and Dhruv Jurel emerged as another option.
+
+## Seven Tests, One Final, No Regrets
+
+The numbers are modest: 221 runs at 20.09, with a highest score of 44. Eighteen catches and one stumping. But statistics tell an incomplete story. Bharat's value lay in his reliability behind the stumps, honed through more than a hundred First-Class matches for Andhra, where he accumulated 6,102 runs at 36.53 with eleven centuries and 380 catches.
+
+"In a family of four, we all lived the same dream over two decades," Bharat wrote. "A big heart to my sister, Mom and Dad for creating an environment and support system they have been. I am a product of their love, discipline and hard work."
+
+He singled out Kohli for giving him his IPL opportunity with Royal Challengers Bengaluru in 2021, where he memorably hit a last-ball six to beat Delhi Capitals — a knock that brought him into national conversation. He thanked Rohit Sharma, under whose captaincy he made his Test debut, and Dravid, whose mentorship stretched back to India A tours.
+
+## What It Means for the Wicketkeeping Debate
+
+Bharat's retirement does not alter India's immediate plans. Pant is the first-choice keeper across formats, and Jurel — selected in the squad for Friday's Test against Afghanistan at Mullanpur — is the established backup. Ishan Kishan, recalled for the ODI leg against Afghanistan, adds a third option.
+
+But Bharat's career underscores a broader truth about Indian cricket's wicketkeeping depth. Between Dhoni's retirement and Pant's emergence, the position churned through Saha, Bharat, Samson, and Kishan with no settled hierarchy. Bharat happened to be the one holding the gloves at one of India's most significant moments — the WTC final — and he performed with composure.
+
+## The Diaspora Connection
+
+For NRI cricket fans, Bharat's story is familiar in a different way. The idea of waiting years for a chance, finally getting it under unexpected circumstances, and then performing with quiet professionalism resonates beyond cricket. His farewell note — humble, family-centred, grateful — reads like a letter many first-generation diaspora professionals might write.
+
+His journey in the game continues. At 32, with over 6,000 First-Class runs and elite domestic pedigree, Bharat will remain a fixture in the Andhra setup and could still contribute at the IPL level. The India cap is put away, but the cricket goes on.
+
+*Sources: BCCI; CricTracker; Khel Now; ESPN Cricinfo*"""
 
 article2 = {
-    "headline": "Sony Will Broadcast the Sri Lanka Tri-Series Live. They Are Doing It Because a Fifteen-Year-Old Is in the Squad.",
-    "subheadline": "A-team cricket does not get televised. Vaibhav Sooryavanshi's inclusion in the India A squad for the Dambulla tri-series changed that overnight.",
-    "slug": "vaibhav-sooryavanshi-sony-broadcast-india-a-tri-series-sri-lanka-dambulla-live-tv-nri",
-    "image_url": img2_url,
-    "image_caption": "The India A tri-series in Dambulla will be broadcast live on Sony Sports, driven by Sooryavanshi's star power",
-    "image_attribution": img2_attr,
-    "sources": [
-        {"name": "Cricbuzz", "url": "https://cricbuzz.com"},
-        {"name": "CricTracker", "url": "https://crictracker.com"},
-        {"name": "Sports Yaari", "url": "https://sportsyaari.com"},
-        {"name": "The Sports Tak", "url": "https://thesportstak.com"}
-    ],
-    "body": """There is no precedent for what just happened. Sony Sports Network has announced that it will broadcast the upcoming India A tri-series against Sri Lanka A and Afghanistan A live on television and its digital platform, SonyLIV. A-team tri-series in the subcontinent do not get televised. This one will, for a single reason: Vaibhav Sooryavanshi is in the squad.
-
-## The Sooryavanshi Effect
-
-The fifteen-year-old sensation, who lit up IPL 2026 with a staggering 776 runs to win the Orange Cap, has turned an otherwise routine developmental tournament into a commercial proposition that broadcasters cannot ignore. Sony, which holds the rights to cricket played in Sri Lanka, moved quickly once the BCCI announced the India A squad with Sooryavanshi's name in it.
-
-"The Sooryavanshi Express is coming to light up the stage in a high-octane Tri-series," Sony's social media accounts announced, framing the tournament entirely around one player. The network has been looking for cricket content after rival Jio Hotstar secured the IPL and ICC World Cup properties, and Sooryavanshi's global appeal handed them an opportunity on a platter.
-
-The tri-series, scheduled for June 9 to 21 at the Rangiri Dambulla International Stadium, will feature seven matches including a final. All matches start at 10:00 AM IST, which translates to 12:30 AM EDT and 9:30 PM PDT the previous night — a late evening slot for NRI fans on the West Coast of the United States.
-
-## More Than One Star
-
-While Sooryavanshi commands the headlines, the India A squad has genuine depth. Tilak Varma, fresh from a strong IPL campaign, leads the side. Ruturaj Gaikwad, who replaced Riyan Parag in a late squad change, brings the experience of leading Chennai Super Kings and scoring heavily in domestic cricket. Priyansh Arya, Ayush Badoni, and Suryansh Shedge represent a generation of batters pushing for senior team spots.
-
-The bowling unit features Anshul Kamboj, Yash Thakur, and Arshad Khan — names that may mean little today but could feature prominently in India's 2027 ODI World Cup plans. Anukul Roy, who replaced Harsh Dubey after the latter was called up to the senior squad for the Afghanistan Test, adds left-arm spin options.
-
-Sri Lanka A will be no pushovers. Their squad includes experienced internationals like Niroshan Dickwella, Avishka Fernando, and Chamika Karunaratne. Afghanistan A, led by Darwish Rasooli, bring quality spinners in Qais Ahmad and Sharafuddin Ashraf.
-
-## Why This Matters for the Diaspora
-
-For NRI cricket fans, this broadcast decision carries significance beyond one tournament. It establishes that Indian cricket's second tier can generate enough commercial interest to warrant live television coverage — something that was unthinkable even a year ago. The precedent is Sooryavanshi-specific for now, but it opens the door for more developmental cricket to reach screens in living rooms across the United States, the United Kingdom, Canada, and the Gulf.
-
-The timing is deliberate. Between the conclusion of IPL 2026 and the India-Afghanistan senior series, there is a gap in marquee cricket. Sony saw a window, and Sooryavanshi gave them the justification to fill it.
-
-## The IIM Connection
-
-The Sooryavanshi phenomenon has already transcended cricket. IIM Indore announced it would study the "Vaibhav Model" as a management case study — examining how a fifteen-year-old prodigy navigated the pressures of a senior professional league while maintaining performance consistency. His five individual awards at IPL 2026 — Orange Cap (776 runs), MVP, Emerging Player, Super Striker (strike rate 237.30), and Most Sixes (72, breaking Chris Gayle's all-time record) — represent a dataset that business schools find genuinely worth analysing.
-
-## What to Watch
-
-The first match, India A versus Sri Lanka A, takes place on Tuesday, June 9. For NRI fans:
-
-- **TV in India**: Sony Sports Network
-- **Streaming**: SonyLIV app and website
-- **Time**: 10:00 AM IST (12:30 AM EDT / 9:30 PM PDT the previous night)
-- **Venue**: Rangiri Dambulla International Stadium, Sri Lanka
-
-The full schedule runs across seven matches. India A play Sri Lanka A on June 9 and 15, Afghanistan A on June 11 and 17, with the final on June 21.
-
-Sony is investing in production values typically reserved for senior international cricket. For a network looking to reclaim cricket relevance, and for fans looking to watch the most talked-about teenager in world cricket, the investment makes mutual sense. The question is no longer whether Sooryavanshi deserves the attention. It is whether the cricketing infrastructure around him can scale fast enough to keep up."""
+    "headline": "'In a Family of Four, We All Lived the Same Dream.' KS Bharat Retires From International Cricket at 32.",
+    "subheadline": "The Visakhapatnam wicketkeeper-batter played seven Tests for India, including the 2023 WTC final at The Oval, before stepping away with an emotional note thanking Kohli, Rohit, and Dravid.",
+    "slug": "ks-bharat-retirement-international-cricket-seven-tests-wtc-final-nri",
+    "body": art2_body,
+    "category": "sports",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "is_editorial": False,
+    "image_url": art2_image_url,
+    "image_caption": art2_image_caption,
+    "image_attribution": art2_image_attribution,
+    "sources": json.dumps(["BCCI", "CricTracker", "Khel Now", "ESPN Cricinfo"]),
+    "vertical": "sports",
 }
 
-print(f"  Article 2 body word count: {len(article2['body'].split())}")
-publish_article(article2)
+if art2_image_url:
+    print("\n→ Publishing Article 2...")
+    publish_article(article2)
+else:
+    print("\n✗ Skipping Article 2 — no valid image found")
 
-print("\n=== Sports writer run complete ===")
+
+print("\n" + "="*60)
+print("Sports writer run complete.")
+print("="*60)
