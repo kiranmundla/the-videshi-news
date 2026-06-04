@@ -3,13 +3,13 @@
 
 import json
 import os
-import re
 import sys
 import time
 import tempfile
 import requests
+from datetime import datetime, timezone
+
 import tweepy
-from datetime import datetime
 
 # --- Config ---
 SUPABASE_URL = "https://lboecaekpynbpyijrbfz.supabase.co"
@@ -33,6 +33,12 @@ ACCESS_TOKEN = twitter_env["TWITTER_ACCESS_TOKEN"]
 ACCESS_TOKEN_SECRET = twitter_env["TWITTER_ACCESS_TOKEN_SECRET"]
 SUPABASE_KEY = supabase_env["SUPABASE_SERVICE_ROLE_KEY"]
 
+SB_HEADERS = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+}
+
 CATEGORY_EMOJI = {
     "news": "🇮🇳",
     "immigration": "🛂",
@@ -40,7 +46,9 @@ CATEGORY_EMOJI = {
     "travel": "✈️",
     "lifestyle": "🧘",
     "culture": "🧘",
+    "lifestyle-health": "🧘",
     "markets": "📈",
+    "markets-finance": "📈",
     "economy": "📈",
     "technology": "💻",
     "sports": "🏏",
@@ -53,9 +61,11 @@ CATEGORY_LABEL = {
     "immigration": "IMMIGRATION",
     "nri-world": "NRI WORLD",
     "travel": "TRAVEL",
-    "lifestyle": "LIFESTYLE & HEALTH",
+    "lifestyle": "LIFESTYLE",
     "culture": "LIFESTYLE & HEALTH",
+    "lifestyle-health": "LIFESTYLE & HEALTH",
     "markets": "MARKETS & FINANCE",
+    "markets-finance": "MARKETS & FINANCE",
     "economy": "MARKETS & FINANCE",
     "technology": "TECHNOLOGY",
     "sports": "SPORTS",
@@ -63,336 +73,289 @@ CATEGORY_LABEL = {
     "food": "FOOD",
 }
 
-def strip_markdown(text):
-    """Remove markdown formatting for clean plaintext."""
-    if not text:
-        return ""
-    # Remove images
-    text = re.sub(r'!\[.*?\]\(.*?\)', '', text)
-    # Remove links but keep text
-    text = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', text)
-    # Remove headers
-    text = re.sub(r'^#{1,6}\s+', '', text, flags=re.MULTILINE)
-    # Remove bold/italic
-    text = re.sub(r'\*{1,3}(.*?)\*{1,3}', r'\1', text)
-    text = re.sub(r'_{1,3}(.*?)_{1,3}', r'\1', text)
-    # Remove blockquotes
-    text = re.sub(r'^>\s*', '', text, flags=re.MULTILINE)
-    # Remove horizontal rules
-    text = re.sub(r'^[-*_]{3,}\s*$', '', text, flags=re.MULTILINE)
-    # Remove HTML tags
-    text = re.sub(r'<[^>]+>', '', text)
-    # Collapse whitespace
-    text = re.sub(r'\n{3,}', '\n\n', text)
-    return text.strip()
+# --- Init tweepy ---
+client = tweepy.Client(
+    consumer_key=CONSUMER_KEY,
+    consumer_secret=CONSUMER_SECRET,
+    access_token=ACCESS_TOKEN,
+    access_token_secret=ACCESS_TOKEN_SECRET,
+)
 
-def extract_key_facts(body_text, headline, subheadline):
-    """Extract concrete facts (numbers, names, dates) from article body."""
-    # Get sentences with numbers, percentages, dollar amounts
-    sentences = re.split(r'(?<=[.!?])\s+', body_text)
-    fact_sentences = []
-    for s in sentences:
-        s = s.strip()
-        if len(s) < 20 or len(s) > 200:
-            continue
-        # Prioritize sentences with concrete data
-        has_number = bool(re.search(r'\d+', s))
-        has_money = bool(re.search(r'\$[\d,.]+', s))
-        has_percent = bool(re.search(r'\d+%', s))
-        has_name = bool(re.search(r'[A-Z][a-z]+\s[A-Z][a-z]+', s))
-        score = has_number + has_money * 2 + has_percent * 2 + has_name
-        if score >= 1:
-            fact_sentences.append((score, s))
-    
-    fact_sentences.sort(key=lambda x: -x[0])
+auth = tweepy.OAuth1UserHandler(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+api_v1 = tweepy.API(auth)
+
+# --- Fetch articles ---
+print("Fetching unpublished-to-X articles...")
+resp = requests.get(
+    f"{SUPABASE_URL}/rest/v1/p2_articles",
+    params={
+        "status": "eq.published",
+        "tweeted_at": "is.null",
+        "order": "published_at.desc",
+        "limit": "20",
+        "select": "id,slug,headline,subheadline,category,tags,image_url,body",
+    },
+    headers=SB_HEADERS,
+)
+resp.raise_for_status()
+articles = resp.json()
+print(f"Found {len(articles)} untweeted articles")
+
+# Filter articles with image_url and pick up to 4
+candidates = [a for a in articles if a.get("image_url")]
+to_post = candidates[:4]
+print(f"Will post {len(to_post)} articles (with images)")
+
+if not to_post:
+    print("Nothing to post. Done.")
+    sys.exit(0)
+
+# --- Compose and post ---
+LOG_PATH = os.path.expanduser("~/workspace/the-videshi-news/pipeline/tweet-log.json")
+
+def load_tweet_log():
+    if os.path.exists(LOG_PATH):
+        with open(LOG_PATH) as f:
+            return json.load(f)
+    return {}
+
+def save_tweet_log(log):
+    os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
+    with open(LOG_PATH, 'w') as f:
+        json.dump(log, f, indent=2)
+
+def extract_summary(body, max_words=250):
+    """Extract a clean text summary from markdown body."""
+    if not body:
+        return ""
+    import re
+    # Remove markdown images, links, headers, bold, italic
+    text = re.sub(r'!\[.*?\]\(.*?\)', '', body)
+    text = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', text)
+    text = re.sub(r'^#{1,6}\s+', '', text, flags=re.MULTILINE)
+    text = re.sub(r'\*\*([^*]+)\*\*', r'\1', text)
+    text = re.sub(r'\*([^*]+)\*', r'\1', text)
+    text = re.sub(r'<[^>]+>', '', text)
+    # Split into paragraphs, take first few
+    paragraphs = [p.strip() for p in text.split('\n\n') if p.strip() and len(p.strip()) > 40]
+    result = []
+    word_count = 0
+    for p in paragraphs:
+        words = p.split()
+        if word_count + len(words) > max_words:
+            break
+        result.append(p)
+        word_count += len(words)
+        if len(result) >= 3:
+            break
+    return '\n\n'.join(result)
+
+def extract_takeaways(body, subheadline):
+    """Extract key facts for takeaways."""
+    import re
     facts = []
-    seen_starts = set()
-    for _, s in fact_sentences:
-        start = s[:30].lower()
-        if start not in seen_starts and len(facts) < 4:
-            # Truncate long facts
-            if len(s) > 150:
-                s = s[:147] + "..."
-            facts.append(s)
-            seen_starts.add(start)
-    
-    return facts
+    if subheadline:
+        # Split subheadline on common delimiters
+        parts = re.split(r'[;|•]', subheadline)
+        for p in parts:
+            p = p.strip()
+            if len(p) > 15:
+                facts.append(p)
+    if body:
+        # Look for bullet points or numbered lists in body
+        lines = body.split('\n')
+        for line in lines:
+            line = line.strip()
+            if re.match(r'^[-*▸•]\s+', line):
+                clean = re.sub(r'^[-*▸•]\s+', '', line).strip()
+                clean = re.sub(r'\*\*([^*]+)\*\*', r'\1', clean)
+                clean = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', clean)
+                if 20 < len(clean) < 200:
+                    facts.append(clean)
+            if len(facts) >= 6:
+                break
+    # Deduplicate and return top 4
+    seen = set()
+    unique = []
+    for f in facts:
+        key = f.lower()[:30]
+        if key not in seen:
+            seen.add(key)
+            unique.append(f)
+    return unique[:4]
 
 def compose_post(article):
-    """Compose a long-form X post from article data."""
-    cat = article.get("category", "news")
-    emoji = CATEGORY_EMOJI.get(cat, "📰")
-    label = CATEGORY_LABEL.get(cat, cat.upper())
-    
-    headline = article["headline"]
+    cat = (article.get("category") or "news").lower()
+    emoji = CATEGORY_EMOJI.get(cat, "🇮🇳")
+    label = CATEGORY_LABEL.get(cat, "NEWS")
+    headline = article.get("headline", "").strip()
+    slug = article.get("slug", "")
+    body = article.get("body", "")
     subheadline = article.get("subheadline", "")
-    slug = article["slug"]
-    body = strip_markdown(article.get("body", "") or "")
-    
-    # Build summary from body - first few meaningful paragraphs
-    paragraphs = [p.strip() for p in body.split('\n\n') if p.strip() and len(p.strip()) > 40]
-    
-    # Skip any paragraph that looks like a header or metadata
-    content_paragraphs = []
-    for p in paragraphs:
-        if p.startswith('Published') or p.startswith('By ') or p.startswith('Source'):
-            continue
-        if len(p) < 50:
-            continue
-        content_paragraphs.append(p)
-    
-    # Take 2-3 paragraphs for summary, targeting 150-250 words
-    summary_parts = []
-    word_count = 0
-    for p in content_paragraphs:
-        words = len(p.split())
-        if word_count + words > 280:
-            break
-        summary_parts.append(p)
-        word_count += words
-        if word_count >= 150 and len(summary_parts) >= 2:
-            break
-    
-    summary = "\n\n".join(summary_parts)
-    
-    # If summary is too short, add subheadline context
-    if word_count < 80 and subheadline:
-        summary = subheadline + "\n\n" + summary
-    
-    # Extract key takeaways
-    facts = extract_key_facts(body, headline, subheadline)
-    
-    # If we couldn't extract enough facts, use subheadline pieces
-    if len(facts) < 3 and subheadline:
-        # Split subheadline on common separators
-        sub_parts = re.split(r'[;.—–]', subheadline)
-        for sp in sub_parts:
-            sp = sp.strip()
-            if sp and len(sp) > 15 and len(facts) < 4:
-                if sp not in facts:
-                    facts.append(sp)
-    
+
+    summary = extract_summary(body, max_words=200)
+    takeaways = extract_takeaways(body, subheadline)
+
     # Build the post
-    separator = "━━━━━━━━━━━━━━━━━━━━━━━━"
-    
-    # Punchy headline - make it impactful
-    display_headline = headline.strip()
-    if not display_headline.isupper() and len(display_headline) < 80:
-        display_headline = display_headline.upper()
-    
-    parts = [
-        f"{emoji} {label} | The Videshi",
-        "",
-        separator,
-        "",
-        display_headline,
-        "",
-        summary,
-    ]
-    
-    if facts:
-        parts.extend([
-            "",
-            separator,
-            "",
-            "Key Takeaways:",
-            "",
-        ])
-        for f in facts[:4]:
-            parts.append(f"▸ {f}")
-    
-    parts.extend([
-        "",
-        separator,
-        "",
-        f"📰 Full story: thevideshi.com/articles/{slug}",
-        "",
-        "The Videshi — Your daily source for Indian diaspora news",
-        "🌐 thevideshi.com",
-    ])
-    
-    post_text = "\n".join(parts)
-    
-    # Ensure we're within 4000 chars
+    lines = []
+    lines.append(f"{emoji} {label} | The Videshi")
+    lines.append("")
+    lines.append("━━━━━━━━━━━━━━━━━━━━━━━━")
+    lines.append("")
+    lines.append(headline.upper() if len(headline) < 80 else headline)
+    lines.append("")
+    if summary:
+        lines.append(summary)
+        lines.append("")
+    lines.append("━━━━━━━━━━━━━━━━━━━━━━━━")
+    lines.append("")
+    if takeaways:
+        lines.append("Key Takeaways:")
+        lines.append("")
+        for t in takeaways:
+            lines.append(f"▸ {t}")
+        lines.append("")
+        lines.append("━━━━━━━━━━━━━━━━━━━━━━━━")
+        lines.append("")
+    lines.append(f"📰 Full story: thevideshi.com/articles/{slug}")
+    lines.append("")
+    lines.append("The Videshi — Your daily source for Indian diaspora news")
+    lines.append("🌐 thevideshi.com")
+
+    post_text = '\n'.join(lines)
+
+    # Trim if over 4000 chars
     if len(post_text) > 3900:
-        # Trim summary
-        while len(post_text) > 3900 and len(summary_parts) > 1:
-            summary_parts.pop()
-            summary = "\n\n".join(summary_parts)
-            parts[6] = summary
-            post_text = "\n".join(parts)
-    
+        # Shorten summary
+        summary = extract_summary(body, max_words=120)
+        lines_short = []
+        lines_short.append(f"{emoji} {label} | The Videshi")
+        lines_short.append("")
+        lines_short.append("━━━━━━━━━━━━━━━━━━━━━━━━")
+        lines_short.append("")
+        lines_short.append(headline.upper() if len(headline) < 80 else headline)
+        lines_short.append("")
+        if summary:
+            lines_short.append(summary)
+            lines_short.append("")
+        lines_short.append("━━━━━━━━━━━━━━━━━━━━━━━━")
+        lines_short.append("")
+        if takeaways:
+            lines_short.append("Key Takeaways:")
+            lines_short.append("")
+            for t in takeaways[:3]:
+                lines_short.append(f"▸ {t}")
+            lines_short.append("")
+            lines_short.append("━━━━━━━━━━━━━━━━━━━━━━━━")
+            lines_short.append("")
+        lines_short.append(f"📰 Full story: thevideshi.com/articles/{slug}")
+        lines_short.append("")
+        lines_short.append("The Videshi — Your daily source for Indian diaspora news")
+        lines_short.append("🌐 thevideshi.com")
+        post_text = '\n'.join(lines_short)
+
     return post_text
 
-def download_image(image_url):
-    """Download article image to temp file. Returns path or None."""
+def download_image(url):
+    """Download image to temp file, return path or None."""
     try:
-        resp = requests.get(
-            image_url,
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=15,
-            stream=True
-        )
-        resp.raise_for_status()
-        
-        # Determine extension
-        content_type = resp.headers.get('Content-Type', '')
-        ext = '.jpg'
-        if 'png' in content_type:
-            ext = '.png'
-        elif 'webp' in content_type:
-            ext = '.webp'
-        elif 'gif' in content_type:
-            ext = '.gif'
-        
+        r = requests.get(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=15)
+        r.raise_for_status()
+        ct = r.headers.get("Content-Type", "image/jpeg")
+        ext = ".jpg"
+        if "png" in ct:
+            ext = ".png"
+        elif "webp" in ct:
+            ext = ".webp"
+        elif "gif" in ct:
+            ext = ".gif"
         tmp = tempfile.NamedTemporaryFile(suffix=ext, delete=False)
-        for chunk in resp.iter_content(8192):
-            tmp.write(chunk)
+        tmp.write(r.content)
         tmp.close()
-        
-        # Check file size
-        fsize = os.path.getsize(tmp.name)
-        if fsize < 1000:  # Too small, likely an error page
-            os.unlink(tmp.name)
-            return None
-        
         return tmp.name
     except Exception as e:
-        print(f"  ⚠ Image download failed: {e}")
+        print(f"  Image download failed: {e}")
         return None
 
-def main():
-    # Set up tweepy clients
-    client = tweepy.Client(
-        consumer_key=CONSUMER_KEY,
-        consumer_secret=CONSUMER_SECRET,
-        access_token=ACCESS_TOKEN,
-        access_token_secret=ACCESS_TOKEN_SECRET,
-    )
-    
-    auth = tweepy.OAuth1UserHandler(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
-    api_v1 = tweepy.API(auth)
-    
-    # Fetch untweeted articles
-    sb_headers = {
-        "apikey": SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-    }
-    
-    resp = requests.get(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        params={
-            "status": "eq.published",
-            "tweeted_at": "is.null",
-            "order": "published_at.desc",
-            "limit": "20",
-            "select": "id,slug,headline,subheadline,category,tags,image_url,body"
-        },
-        headers=sb_headers,
-    )
-    resp.raise_for_status()
-    articles = resp.json()
-    print(f"Found {len(articles)} untweeted articles")
-    
-    # Filter: must have image_url, pick up to 4
-    candidates = [a for a in articles if a.get("image_url")]
-    to_post = candidates[:4]
-    print(f"Selected {len(to_post)} articles to post")
-    
-    posted = 0
-    errors = []
-    tweet_urls = []
-    
-    log_path = os.path.expanduser("~/workspace/the-videshi-news/pipeline/tweet-log.json")
-    tweet_log = {}
-    if os.path.exists(log_path):
-        with open(log_path) as f:
-            tweet_log = json.load(f)
-    
-    for i, article in enumerate(to_post):
-        print(f"\n--- [{i+1}/{len(to_post)}] {article['headline'][:70]}...")
-        
-        try:
-            # Compose the long-form post
-            post_text = compose_post(article)
-            print(f"  Post length: {len(post_text)} chars")
-            
-            # Download and upload image
-            media_ids = None
-            img_path = None
-            if article.get("image_url"):
-                img_path = download_image(article["image_url"])
-                if img_path:
-                    try:
-                        media = api_v1.media_upload(filename=img_path)
-                        media_ids = [media.media_id]
-                        print(f"  ✓ Image uploaded (media_id: {media.media_id})")
-                    except Exception as e:
-                        print(f"  ⚠ Image upload to X failed: {e}")
-                        media_ids = None
-                    finally:
-                        if img_path and os.path.exists(img_path):
-                            os.unlink(img_path)
-            
-            # Post tweet
-            kwargs = {"text": post_text}
-            if media_ids:
-                kwargs["media_ids"] = media_ids
-            
-            tweet_resp = client.create_tweet(**kwargs)
-            tweet_id = tweet_resp.data["id"]
-            tweet_url = f"https://x.com/thevideshi/status/{tweet_id}"
-            print(f"  ✓ Posted: {tweet_url}")
-            tweet_urls.append(tweet_url)
-            
-            # Update Supabase
-            now_utc = datetime.utcnow().isoformat() + "Z"
-            patch_resp = requests.patch(
-                f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article['id']}",
-                json={"tweeted_at": now_utc},
-                headers={
-                    **sb_headers,
-                    "Content-Type": "application/json",
-                    "Prefer": "return=minimal",
-                },
-            )
-            if patch_resp.status_code < 300:
-                print(f"  ✓ Supabase updated (tweeted_at)")
-            else:
-                print(f"  ⚠ Supabase update failed: {patch_resp.status_code} {patch_resp.text}")
-            
-            # Log tweet
-            tweet_log[str(tweet_id)] = {
-                "article_id": article["id"],
-                "slug": article["slug"],
-                "posted_at": now_utc,
-            }
-            with open(log_path, "w") as f:
-                json.dump(tweet_log, f, indent=2)
-            
-            posted += 1
-            
-            # Wait between posts
-            if i < len(to_post) - 1:
-                print("  ⏳ Waiting 30s before next post...")
-                time.sleep(30)
-                
-        except Exception as e:
-            err_msg = f"{article['headline'][:50]}: {e}"
-            errors.append(err_msg)
-            print(f"  ✗ ERROR: {e}")
-    
-    # Summary
-    print(f"\n{'='*50}")
-    print(f"SUMMARY: {posted}/{len(to_post)} articles posted to X")
-    if tweet_urls:
-        print("Tweet URLs:")
-        for url in tweet_urls:
-            print(f"  {url}")
-    if errors:
-        print(f"Errors ({len(errors)}):")
-        for e in errors:
-            print(f"  - {e}")
+posted = 0
+errors = []
+tweet_log = load_tweet_log()
 
-if __name__ == "__main__":
-    main()
+for i, article in enumerate(to_post):
+    headline = article.get("headline", "N/A")
+    slug = article.get("slug", "")
+    article_id = article["id"]
+    print(f"\n--- [{i+1}/{len(to_post)}] {headline[:80]} ---")
+
+    post_text = compose_post(article)
+    print(f"  Post length: {len(post_text)} chars")
+
+    # Try to attach image
+    media_ids = None
+    image_url = article.get("image_url", "")
+    tmp_path = None
+    if image_url:
+        tmp_path = download_image(image_url)
+        if tmp_path:
+            try:
+                media = api_v1.media_upload(filename=tmp_path)
+                media_ids = [media.media_id]
+                print(f"  Image uploaded: media_id={media.media_id}")
+            except Exception as e:
+                print(f"  Image upload to X failed: {e}")
+                media_ids = None
+
+    # Post tweet
+    try:
+        kwargs = {"text": post_text}
+        if media_ids:
+            kwargs["media_ids"] = media_ids
+        tweet_resp = client.create_tweet(**kwargs)
+        tweet_id = tweet_resp.data["id"]
+        tweet_url = f"https://x.com/thevideshi/status/{tweet_id}"
+        print(f"  ✅ Posted: {tweet_url}")
+
+        # Update Supabase
+        now_utc = datetime.now(timezone.utc).isoformat()
+        patch_resp = requests.patch(
+            f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}",
+            headers=SB_HEADERS,
+            json={"tweeted_at": now_utc},
+        )
+        if patch_resp.status_code < 300:
+            print(f"  Supabase updated: tweeted_at={now_utc}")
+        else:
+            print(f"  Supabase update warning: {patch_resp.status_code} {patch_resp.text}")
+
+        # Log tweet
+        tweet_log[str(tweet_id)] = {
+            "article_id": article_id,
+            "slug": slug,
+            "posted_at": datetime.utcnow().isoformat() + "Z",
+        }
+        save_tweet_log(tweet_log)
+
+        posted += 1
+
+    except Exception as e:
+        err_msg = f"Tweet failed for '{headline[:50]}': {e}"
+        print(f"  ❌ {err_msg}")
+        errors.append(err_msg)
+
+    finally:
+        if tmp_path and os.path.exists(tmp_path):
+            os.unlink(tmp_path)
+
+    # Wait between posts
+    if i < len(to_post) - 1:
+        print("  Waiting 30s...")
+        time.sleep(30)
+
+# --- Summary ---
+print(f"\n{'='*50}")
+print(f"SUMMARY: Posted {posted}/{len(to_post)} articles to X")
+if errors:
+    print(f"Errors ({len(errors)}):")
+    for e in errors:
+        print(f"  - {e}")
+print(f"{'='*50}")
