@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Tweet } from "react-tweet";
 
 interface SocialEmbedProps {
   platform: "instagram" | "twitter";
@@ -16,46 +16,13 @@ function extractInstaShortcode(url: string): string | null {
 }
 
 /**
- * Normalise a tweet URL so it always uses x.com and strips query params.
+ * Extract tweet ID from a URL like
+ * https://x.com/SpaceX/status/1234567890  or
+ * https://twitter.com/SpaceX/status/1234567890
  */
-function normaliseTweetUrl(url: string): string {
-  return url
-    .replace(/^https?:\/\/(mobile\.)?twitter\.com/, "https://x.com")
-    .split("?")[0];
-}
-
-/* ------------------------------------------------------------------ */
-
-declare global {
-  interface Window {
-    twttr?: { widgets: { load: (el?: HTMLElement) => void } };
-  }
-}
-
-let twitterScriptLoading = false;
-
-function ensureTwitterWidgets(cb: () => void) {
-  if (window.twttr?.widgets) {
-    cb();
-    return;
-  }
-  if (!twitterScriptLoading) {
-    twitterScriptLoading = true;
-    const s = document.createElement("script");
-    s.src = "https://platform.twitter.com/widgets.js";
-    s.async = true;
-    s.charset = "utf-8";
-    s.onload = () => cb();
-    document.head.appendChild(s);
-  } else {
-    // Script is loading — poll until ready
-    const iv = setInterval(() => {
-      if (window.twttr?.widgets) {
-        clearInterval(iv);
-        cb();
-      }
-    }, 200);
-  }
+function extractTweetId(url: string): string | null {
+  const m = url.match(/(?:twitter\.com|x\.com)\/\w+\/status\/(\d+)/);
+  return m ? m[1] : null;
 }
 
 /* ------------------------------------------------------------------ */
@@ -85,31 +52,13 @@ function InstagramEmbed({ url, caption }: { url: string; caption?: string }) {
 }
 
 function TwitterEmbed({ url, caption }: { url: string; caption?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    ensureTwitterWidgets(() => {
-      if (ref.current) {
-        window.twttr?.widgets.load(ref.current);
-        setLoaded(true);
-      }
-    });
-  }, [url]);
-
-  const tweetUrl = normaliseTweetUrl(url);
+  const tweetId = extractTweetId(url);
+  if (!tweetId) return null;
 
   return (
     <figure className="my-8 flex flex-col items-center">
-      <div ref={ref} className="w-full max-w-[550px]">
-        <blockquote className="twitter-tweet" data-dnt="true">
-          <a href={tweetUrl}>{tweetUrl}</a>
-        </blockquote>
-        {!loaded && (
-          <div className="animate-pulse h-48 bg-secondary/40 rounded flex items-center justify-center text-muted-foreground text-sm">
-            Loading post…
-          </div>
-        )}
+      <div className="w-full max-w-[550px]">
+        <Tweet id={tweetId} />
       </div>
       {caption && (
         <figcaption className="mt-2 text-sm text-muted-foreground text-center">
