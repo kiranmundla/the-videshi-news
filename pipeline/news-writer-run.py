@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
-"""News writer for The Videshi - June 3, 2026 evening run."""
-
-import requests
-import json
-import os
-import io
-import uuid
-import re
+"""
+The Videshi — News Writer
+Generates 3 news articles, sources images, inserts to Supabase.
+"""
+import os, json, requests, urllib.parse, time, sys
 from datetime import datetime, timezone
+from PIL import Image
+import io, subprocess
 
-# Load env
+# === ENV ===
 def load_env(path):
     if os.path.exists(path):
         with open(path) as f:
@@ -17,66 +16,55 @@ def load_env(path):
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
                     k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+                    os.environ.setdefault(k.strip(), v.strip())
 
-load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+SB_URL = os.environ['SUPABASE_URL']
+SB_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
+SB_HEADERS = {
+    'apikey': SB_KEY,
+    'Authorization': f'Bearer {SB_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
 
-UA = {"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
+UA = 'TheVideshi/1.0 (thevideshi.com)'
 
-# --- Image sourcing functions ---
+# === IMAGE SOURCING ===
 
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers=UA, timeout=10
+            headers={"User-Agent": UA}, timeout=10
         )
         if r.status_code == 200:
             data = r.json()
-            # Prefer thumbnail (safe size), fall back to original
+            # Use thumbnail as-is (330px, always works) for the image_url
             img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
-    """Search Wikimedia Commons for CC-licensed images."""
     params = {
-        "action": "query",
-        "generator": "search",
-        "gsrsearch": search_query,
-        "gsrnamespace": "6",
-        "gsrlimit": str(limit),
-        "prop": "imageinfo",
-        "iiprop": "url|size|mime",
-        "iiurlwidth": "1200",
+        "action": "query", "generator": "search",
+        "gsrsearch": search_query, "gsrnamespace": "6", "gsrlimit": str(limit),
+        "prop": "imageinfo", "iiprop": "url|size|mime", "iiurlwidth": "1200",
         "format": "json"
     }
     try:
-        r = requests.get(
-            "https://commons.wikimedia.org/w/api.php",
-            params=params, headers=UA, timeout=15
-        )
+        r = requests.get("https://commons.wikimedia.org/w/api.php",
+                         params=params, headers={"User-Agent": UA}, timeout=15)
         if r.status_code == 200:
             data = r.json()
             pages = data.get("query", {}).get("pages", {})
@@ -88,403 +76,357 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
                     continue
                 if ii.get("width", 0) < 300:
                     continue
-                results.append({
-                    "url": ii.get("thumburl") or ii.get("url", ""),
-                    "title": page.get("title", ""),
-                    "width": ii.get("width", 0),
-                })
+                url = ii.get("thumburl") or ii.get("url", "")
+                results.append({"url": url, "title": page.get("title", "")})
             if results:
                 print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+        print(f"  ⚠ Wikimedia Commons error: {e}")
     return []
 
 
 def fetch_pexels_image(query):
-    """Fetch image from Pexels. Returns URL or None."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
         return None
     try:
-        r = requests.get(
-            "https://api.pexels.com/v1/search",
-            params={"query": query, "per_page": 3, "orientation": "landscape"},
-            headers={"Authorization": PEXELS_KEY},
-            timeout=10
+        result = subprocess.run(
+            ['curl', '-sS', f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3',
+             '-H', f'Authorization: {PEXELS_KEY}'],
+            capture_output=True, text=True, timeout=15
         )
-        if r.status_code == 200:
-            photos = r.json().get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+        data = json.loads(result.stdout)
+        for p in data.get('photos', []):
+            url = p.get('src', {}).get('large2x') or p.get('src', {}).get('large')
+            if url:
+                print(f"  ✓ Pexels image for '{query}': {url[:80]}...")
                 return url
     except Exception as e:
-        print(f"  ⚠ Pexels error for '{query}': {e}")
+        print(f"  ⚠ Pexels error: {e}")
     return None
 
 
-def compress_image(img_bytes, max_width=1200, quality=80):
-    """Resize and compress image. Returns JPEG bytes."""
-    from PIL import Image
-    img = Image.open(io.BytesIO(img_bytes))
-    if img.mode in ('RGBA', 'P'):
-        img = img.convert('RGB')
-    if img.width > max_width:
-        ratio = max_width / img.width
-        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-    buf = io.BytesIO()
-    img.save(buf, format='JPEG', quality=quality, optimize=True)
-    return buf.getvalue()
-
-
-def download_and_upload(img_url, filename):
-    """Download image, compress, upload to Supabase storage. Returns public URL or None."""
+def validate_image_url(url):
+    """Check the URL returns an image > 5KB."""
     try:
-        r = requests.get(img_url, headers=UA, timeout=20)
-        if r.status_code != 200:
-            print(f"  ⚠ Download failed ({r.status_code}): {img_url[:80]}")
-            return None
+        r = requests.head(url, headers={"User-Agent": UA}, timeout=10, allow_redirects=True)
         ct = r.headers.get('Content-Type', '')
-        if 'image' not in ct:
-            print(f"  ⚠ Not an image ({ct}): {img_url[:80]}")
-            return None
-        raw = r.content
-        if len(raw) < 5000:
-            print(f"  ⚠ Image too small ({len(raw)} bytes): {img_url[:80]}")
-            return None
-
-        compressed = compress_image(raw)
-        print(f"  📦 Compressed: {len(raw)} → {len(compressed)} bytes")
-
-        # Upload to Supabase storage
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        upload_headers = {
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": "image/jpeg",
-            "x-upsert": "true"
-        }
-        ur = requests.post(upload_url, headers=upload_headers, data=compressed, timeout=30)
-        if ur.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✅ Uploaded: {public_url}")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed ({ur.status_code}): {ur.text[:200]}")
-            return None
+        cl = int(r.headers.get('Content-Length', '0'))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
+            print(f"  ✓ Image validated: {cl//1024}KB, {ct}")
+            return True
+        # Some servers don't support HEAD, try GET
+        if r.status_code >= 400:
+            r2 = requests.get(url, headers={"User-Agent": UA}, timeout=10, stream=True)
+            if r2.status_code == 200:
+                ct2 = r2.headers.get('Content-Type', '')
+                if 'image' in ct2:
+                    print(f"  ✓ Image validated via GET: {ct2}")
+                    return True
     except Exception as e:
-        print(f"  ⚠ Download/upload error: {e}")
-        return None
+        print(f"  ⚠ Validation error: {e}")
+    return False
 
 
-def source_image(person_name=None, search_terms=None, pexels_query=None, slug="article"):
-    """Multi-source image search: Wikipedia → Wikimedia Commons → Pexels. Returns (url, attribution)."""
+def source_image(person_name=None, topic_queries=None, pexels_query=None):
+    """Multi-source image sourcing. Returns (url, attribution) or (None, None)."""
     candidates = []
 
-    # 1. Wikipedia person image
+    # Source 1: Wikipedia
     if person_name:
         wiki_img = fetch_wikipedia_person_image(person_name)
         if wiki_img:
-            candidates.append({"url": wiki_img, "source": "wikipedia", "priority": 1})
+            candidates.append({"url": wiki_img, "source": "wikipedia", "priority": 3})
 
-    # 2. Wikimedia Commons
-    if search_terms:
-        for term in (search_terms if isinstance(search_terms, list) else [search_terms]):
-            commons = fetch_wikimedia_commons_images(term, limit=3)
-            for c in commons[:2]:
-                candidates.append({"url": c["url"], "source": "wikimedia_commons", "priority": 2})
+    # Source 2: Wikimedia Commons
+    if topic_queries:
+        for tq in topic_queries:
+            commons = fetch_wikimedia_commons_images(tq)
+            for r in commons[:2]:
+                candidates.append({"url": r["url"], "source": "wikimedia_commons", "priority": 2})
+            if commons:
+                break
 
-    # 3. Pexels
+    # Source 3: Pexels
     if pexels_query:
-        px = fetch_pexels_image(pexels_query)
-        if px:
-            candidates.append({"url": px, "source": "pexels", "priority": 3})
+        pex = fetch_pexels_image(pexels_query)
+        if pex:
+            candidates.append({"url": pex, "source": "pexels", "priority": 1})
 
-    # Sort by priority and try to download/upload
-    candidates.sort(key=lambda x: x["priority"])
+    candidates.sort(key=lambda x: x["priority"], reverse=True)
     for c in candidates:
-        filename = f"{slug}.jpg"
-        uploaded = download_and_upload(c["url"], filename)
-        if uploaded:
-            attr = "Wikimedia Commons" if c["source"] in ("wikipedia", "wikimedia_commons") else "The Videshi"
-            return uploaded, attr
+        if validate_image_url(c["url"]):
+            attr = "Wikimedia Commons" if c["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
+            return c["url"], attr
 
-    print(f"  ❌ No image found for {slug}")
     return None, None
 
 
 def insert_article(article):
-    """Insert article into Supabase."""
     r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article,
-        timeout=30
+        f"{SB_URL}/rest/v1/p2_articles",
+        headers=SB_HEADERS, json=article, timeout=30
     )
     if r.status_code in (200, 201):
         data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) and data else "unknown"
-        print(f"  ✅ Published: {article['headline'][:60]}... (id: {art_id})")
+        art_id = data[0]['id'] if isinstance(data, list) and data else 'unknown'
+        print(f"  ✓ Published: {article['headline'][:60]}... (id={art_id})")
         return art_id
     else:
-        print(f"  ❌ Insert failed ({r.status_code}): {r.text[:300]}")
+        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
         return None
 
 
-def validate_article(a):
-    """Validate article meets quality bar."""
-    errors = []
-    if len(a.get("headline", "")) < 20: errors.append("headline too short")
-    if len(a.get("headline", "")) > 200: errors.append("headline too long")
-    if len(a.get("subheadline", "")) < 15: errors.append("subheadline too short")
-    body = a.get("body", "")
-    wc = len(body.split())
-    if wc < 400: errors.append(f"body too short ({wc} words)")
-    if not a.get("slug"): errors.append("no slug")
-    if not a.get("image_url"): errors.append("no image")
-    if a.get("category") != "news": errors.append(f"wrong category: {a.get('category')}")
-    if errors:
-        print(f"  ⚠ Validation errors for '{a.get('slug', '?')}': {', '.join(errors)}")
-        return False
-    print(f"  ✓ Validation passed: {wc} words, slug={a['slug']}")
-    return True
+# === ARTICLES ===
 
+def article_modi_tour():
+    print("\n=== Article 1: Modi's Five-Nation Tour ===")
+    
+    slug = "modi-five-nation-tour-uae-europe-energy-diplomacy-iran-crisis-20260604"
+    headline = "Modi's Five-Nation Tour Is Not Ceremonial Diplomacy. It Is a Supply-Chain Emergency."
+    subheadline = "With Hormuz choked, crude at $97 and the rupee near record lows, India's prime minister is racing through the UAE and four European capitals to lock down energy, tech and trade alternatives."
+    
+    body = """India imports more than 80 per cent of its crude oil. When the Strait of Hormuz — the corridor through which a fifth of the world's oil and gas once flowed freely — is contested and partially closed, that is not a foreign policy problem for New Delhi. It is an economic emergency.
 
-# ===== ARTICLES =====
+Prime Minister Narendra Modi's five-country diplomatic tour this week — spanning the United Arab Emirates, the Netherlands, Sweden, Norway and Italy — is the clearest sign yet that India's leadership sees the Iran war not as a distant conflict but as a direct threat to the country's growth, inflation trajectory and fiscal stability. The tour comes as Brent crude sits near $97 a barrel, the rupee trades at 95.75 per dollar after touching a record low of 96.96 in mid-May, and the Reserve Bank of India prepares for one of its most consequential policy decisions on Friday.
 
-now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+## The Gulf First
 
-articles_data = []
+Modi's stop in the UAE carried the most strategic weight. India and the UAE signed several defence and strategic cooperation agreements in the presence of UAE President Sheikh Mohamed bin Zayed Al Nahyan. Modi publicly condemned the Iranian attacks on the UAE and praised Abu Dhabi's "restraint, courage, and wisdom" during the regional crisis.
 
-# --- ARTICLE 1: Modi to become India's longest-serving elected PM ---
-print("\n" + "="*60)
-print("ARTICLE 1: Modi to become India's longest-serving elected PM")
-print("="*60)
+The relationship now stretches well beyond oil supply. India maintains strategic petroleum reserves in the UAE, has renewable energy co-investments, and operates logistics and port infrastructure through Indian companies. The UAE has steadily become one of India's most dependable energy partners — and in the current environment, dependability is the commodity in shortest supply.
 
-art1_slug = "modi-longest-serving-elected-pm-june-10-nehru-record-4399-days-20260603"
-art1_headline = "Modi Will Surpass Nehru on June 10 to Become India's Longest-Serving Elected Prime Minister."
-art1_subheadline = "After 4,399 consecutive days in office, the man from Vadnagar will hold a record that has stood since 1964. The country he governs looks nothing like the one Nehru left behind."
+For the roughly 3.5 million Indians living in Gulf states, the visit also carried an implicit message of diplomatic protection. The killing of an Indian national in the Iranian drone strike on Kuwait's airport on Tuesday night made that concern visceral. India's Ministry of External Affairs confirmed the death and said it was in contact with Kuwaiti authorities.
 
-art1_body = """On June 10, Narendra Damodardas Modi will complete 4,399 consecutive days as Prime Minister of India, surpassing the 4,398-day record set by Jawaharlal Nehru between his first oath after the 1952 general election and his death on May 27, 1964. It will be the quietest milestone in a career built on spectacle.
+## The European Pivot
 
-Modi was sworn in for his first term on May 26, 2014, leading the Bharatiya Janata Party to its first outright majority in three decades. He won again in 2019 with an even larger mandate, and secured an unprecedented third consecutive term in 2024 — matching Nehru himself as the only leader to achieve that feat. Last July, he passed Indira Gandhi's longest uninterrupted tenure of 4,077 days. Now he stands a week from overtaking the man whose name is synonymous with the republic itself.
+If the UAE leg was about securing existing energy lines, the European segment is about building new ones. In Sweden, Modi addressed a CEO roundtable and repeatedly highlighted global supply-chain disruptions, technological competition and energy insecurity. The visit to Norway — a significant oil and gas producer outside OPEC — signals India's intent to diversify sourcing beyond its traditional Gulf and Russian suppliers.
 
-## A Country Transformed Beyond Recognition
+The Netherlands, one of Europe's largest trading partners with India, featured discussions on semiconductor supply chains, logistics, and agricultural technology. In Italy, the agenda centred on defence industrial cooperation and G7 coordination on the Middle East.
 
-The comparison between the two tenures is a story of how profoundly India has changed. When Nehru led the country through its first general election in 1951-52, the electorate numbered roughly 17 crore voters. By the time Modi took office, that figure had swelled past 83 crore. In the 2024 elections, 744 political parties contested — up from just 53 in Nehru's era.
+India's approach reflects a strategic calculation that the Iran war has permanently altered the energy landscape. Even if a ceasefire holds and the Strait of Hormuz eventually reopens, the era of assuming free passage through the world's most critical chokepoint is over. Iran has established a toll authority — the Persian Gulf Strait Authority — that has already processed applications from 300 ships, and roughly 65 per cent of outbound laden tankers are now transiting in "dark" mode with tracking systems switched off.
 
-India's population has more than quadrupled, from around 36 crore at independence to over 146 crore today. The economy that Nehru nurtured through five-year plans and state-led industrialisation has given way to one that grew at an estimated 7.2 percent in the most recent quarter — still the fastest among major economies on Earth, even as war in the Gulf and a sinking rupee threaten the outlook.
+## What It Means for the Diaspora
 
-## The Distinctions Modi Already Holds
+For the Indian diaspora, the tour matters on two levels. Energy prices feed directly into the cost of living in India, affecting remittance calculations and family budgets back home. And the diplomatic infrastructure being built through tours like this one shapes the security environment for millions of Indians working and living across the Gulf and Europe.
 
-The longevity record will add to a list of firsts that no other Indian leader can claim. Modi is the only Prime Minister born after independence. He is the longest-serving non-Congress PM in Indian history. He is the first and only non-Congress leader to complete two full terms and to win re-election twice with a majority of his own.
+External Affairs Minister S. Jaishankar spoke with his Iranian counterpart Abbas Araghchi this week specifically about shipping safety in the Strait of Hormuz — a conversation that underscores just how directly the war has intruded into India's daily diplomatic agenda.
 
-He is also the only leader — among all Prime Ministers and Chief Ministers — to win six consecutive elections as the head of a political party: Gujarat in 2002, 2007 and 2012, and the Lok Sabha in 2014, 2019 and 2024. That is nearly 24 unbroken years at the helm of a democratically elected government, a record unmatched in Indian democratic history.
+Modi's five-country sprint is not a victory lap. It is a scramble — methodical, calculated, but undeniably urgent — to build the economic resilience India needs to weather a crisis that shows no sign of ending soon.
 
-## What the Record Means for the Diaspora
+**Sources:** The Indian Eye, Reuters, CNN, Ministry of External Affairs"""
 
-For the estimated 32 million members of the Indian diaspora, Modi's tenure has been defined by a level of engagement no previous leader attempted. From the sold-out Madison Square Garden address in 2014 to the Howdy Modi rally in Houston to the global yoga campaigns, he has treated the diaspora not as a sentimental afterthought but as a strategic asset.
+    print("  Sourcing image...")
+    img_url, img_attr = source_image(
+        person_name="Narendra Modi",
+        topic_queries=["Modi UAE visit diplomatic", "Narendra Modi press conference"],
+        pexels_query="Indian prime minister diplomatic summit"
+    )
 
-That relationship has deepened during his third term. The ongoing Iran war has put millions of Indian workers in the Gulf at direct risk — one Indian national was killed in the Kuwait airport drone strike this week — and Modi's five-nation outreach to UAE, Saudi Arabia, Qatar, Bahrain and Oman has been driven in part by the need to protect those communities.
+    sources = json.dumps([
+        {"name": "The Indian Eye", "url": "https://theindianeye.com/iran-war-shock-pm-modi-takes-five-nation-outreach/"},
+        {"name": "Reuters", "url": "https://reuters.com"},
+        {"name": "CNN", "url": "https://cnn.com"},
+        {"name": "MEA India", "url": "https://www.mea.gov.in/"}
+    ])
 
-For NRIs in the United States, the record coincides with a moment of acute uncertainty. The Department of Homeland Security has proposed eliminating "duration of status" for student visas, a change that would affect Indian graduates more than any other group. H-1B application fees have crossed $100,000 for many applicants. The diaspora that has thrived under the frameworks of previous decades now faces questions about whether those frameworks will survive.
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "news",
+        "vertical": "news",
+        "sources": sources,
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "is_editorial": False
+    }
+    if img_url:
+        article["image_url"] = img_url
+        article["image_caption"] = "Prime Minister Narendra Modi during his five-nation diplomatic tour"
+        article["image_attribution"] = img_attr
+    
+    return insert_article(article)
 
-## The Weight of Comparison
 
-Nehru built institutions: the Indian Institutes of Technology, the Planning Commission, the Non-Aligned Movement, the temples of modern India. Modi has built infrastructure: highways, airports, digital payment systems and a biometric identity layer that reaches every citizen. Both were polarising in their time. Both believed deeply in India's civilisational role in the world.
+def article_online_gaming():
+    print("\n=== Article 2: Supreme Court Online Gaming Ruling ===")
+    
+    slug = "supreme-court-online-gaming-virtual-gambling-house-dream11-gst-20260604"
+    headline = "India's Supreme Court Just Called Every Mobile Phone a 'Virtual Gambling House.' The Online Gaming Industry Is Reeling."
+    subheadline = "The court upheld state bans on online betting — even on games of skill — and backed 28% GST on the full value of bets. Dream11, MPL and 27 other companies face an existential reckoning."
+    
+    body = """The judgment landed like a controlled demolition. In a ruling formally cited as State of Tamil Nadu & Ors. v. Junglee Games India Pvt. Ltd. & Ors. (2026 INSC 594), a bench of Justice JB Pardiwala and Justice R Mahadevan did something India's online gaming industry had spent years and hundreds of crores of rupees trying to prevent. They held that states can ban betting on games of skill — and that the Constitution offers no protection for it.
 
-The difference is that Nehru's record ended with his death. Modi's will continue to grow, and how long it extends will depend on the same volatile forces — a war-disrupted global economy, a fractious opposition, and a public that has now chosen him three times — that have defined his tenure from the start.
+The observation that will define the case, and probably the industry's next decade, was this: technological developments have transformed every mobile phone into a "virtual common gambling house."
 
-On June 10, the count will tick over to 4,399. The country will barely pause. Modi himself is unlikely to mark it with much fanfare. The record, like most records that matter, will simply become a fact — one more data point in a career that has already rewritten most of India's political arithmetic.
+## What the Court Actually Held
 
-*Sources: Inshorts, Global India Broadcast News, Wikipedia, IANS*"""
+The legal architecture is important. Tamil Nadu and Karnataka had amended their police and gaming laws to criminalise online betting, including on skill-based games like rummy and poker. Both the Madras High Court and Karnataka courts had sided with the industry, striking down the amendments on the ground that "betting" under Entry 34 of List II could not cover games of skill.
 
-img1_url, img1_attr = source_image(
-    person_name="Narendra Modi",
-    search_terms=["Narendra Modi Prime Minister India 2026", "Modi Parliament India"],
-    pexels_query="India parliament government",
-    slug=art1_slug
-)
+The Supreme Court reversed those findings entirely. It held that staking money on the uncertain outcome of any game — regardless of the skill involved in playing it — amounts to "betting" within the meaning of Entry 34. Playing a game of skill is protected commercial activity under Article 19(1)(g), the bench held. But wagering on its outcome is *res extra commercium* — outside the domain of protected trade — and therefore subject to state prohibition.
 
-art1 = {
-    "headline": art1_headline,
-    "subheadline": art1_subheadline,
-    "body": art1_body,
-    "slug": art1_slug,
-    "category": "news",
-    "vertical": "news",
-    "status": "published",
-    "published_at": now_iso,
-    "image_url": img1_url,
-    "image_attribution": img1_attr or "Wikimedia Commons",
-    "is_editorial": False,
-    "sources": json.dumps(["Inshorts", "Global India Broadcast News", "Wikipedia", "IANS"]),
-}
-articles_data.append(art1)
+The distinction is surgical and devastating. You can play rummy. You cannot bet on rummy. And any platform that facilitates the bet is now operating in a space where states have full legislative authority to shut it down.
 
+## The GST Hammer
 
-# --- ARTICLE 2: Supreme Court landmark ruling on sex work ---
-print("\n" + "="*60)
-print("ARTICLE 2: Supreme Court ruling on voluntary sex work")
-print("="*60)
+In a related but separate blow, the court also upheld the 28% GST levy on the full face value of deposits made on gaming platforms. This was not on the platform's commission or service fee alone — it was on the entire amount a user stakes.
 
-art2_slug = "supreme-court-voluntary-sex-work-not-illegal-trafficking-consent-ruling-20260603"
-art2_headline = "India's Supreme Court Just Drew a Line Between Sex Work and Trafficking. The Distinction Changes Everything."
-art2_subheadline = "In a landmark ruling, Justices Pardiwala and Mahadevan held that adult women who choose sex work cannot be arrested, harassed or forcibly rehabilitated. The 70-year-old law stays. The way it is enforced does not."
+The ruling covers retrospective demands as well. For companies like Dream11, Games24x7, and Mobile Premier League, this means past tax liabilities that could run into thousands of crores are now enforceable. The industry had argued that taxing the full bet value, rather than just the platform fee, was discriminatory and unconstitutional. The court disagreed.
 
-art2_body = """The Supreme Court of India has issued one of the most consequential rulings on personal liberty in recent years, holding that adult women who voluntarily engage in sex work cannot be treated as criminals, subjected to police harassment, or forcibly placed in rehabilitation facilities against their will.
+## Public Health, Not Just Regulation
 
-The ruling, delivered by a bench of Justice J.B. Pardiwala and Justice R. Mahadevan in *Prajwala v. Union of India*, draws an explicit and legally binding distinction between voluntary adult sex work and human trafficking for commercial sexual exploitation. Consent, the Court declared, is the central factor in determining which side of that line a case falls on.
+What makes this ruling particularly potent is its framing. The court did not treat online gaming as a narrow regulatory matter. It classified it as a public health and public order concern. The bench observed that online money gaming has "a definite impact on the public in terms of addiction, financial losses and resultant suicides."
 
-## What the Court Actually Said
+By linking online betting to Entry 1 of List II — "public order" — rather than just Entry 34, the court opened additional legislative pathways for both states and the central government. Public order, the bench held, includes not just violence or disorder but also "activities that impair public health, create widespread fear or panic, disrupt ordinary life or cause social and economic instability."
 
-The bench held that the Immoral Traffic (Prevention) Act (ITPA), enacted in 1956, was designed to combat trafficking, exploitation and commercial profiteering from prostitution — not to criminalise adults who engage in sex work of their own free will. While operating brothels, trafficking persons, and profiting from another's sexual labour remain illegal, the act of consensual sex work by an adult is not a criminal offence under Indian law.
+This came months after Parliament passed the Promotion and Regulation of Online Gaming Act in 2025, which imposed a nationwide prohibition on real-money games and related advertising. Several platforms, including Dream11 and MPL, had already suspended their wagering features in response. The Supreme Court's ruling now makes a successful constitutional challenge to that central legislation considerably harder.
 
-The Court directed law enforcement agencies across the country to stop targeting, arresting or penalising adults engaged in voluntary sex work. During raids — which have historically swept up trafficking victims and voluntary sex workers alike — police must focus specifically on identifying coercion, trafficking, abuse and exploitation, rather than treating everyone found in a prostitution-related setting as either a criminal or a helpless victim.
+## What Happens Next
 
-"It is the victim's life, liberty, and future that the order will determine," the Court observed, "and thus it would be incongruous to hold that all of this can be decided without any regard for what the victim wants."
+More than 27 online gaming companies are directly affected. The industry, valued at billions of dollars before the regulatory crackdown began, faces a fundamental question: can it survive as a business if users cannot stake real money?
 
-## The Victim Protection Plan
+For the diaspora, the implications extend to investment. Several NRI-backed venture funds had significant exposure to India's online gaming sector, which had been one of the fastest-growing segments of the country's startup ecosystem. Those bets — financial and strategic — now look very different.
 
-The ruling went beyond declaration and into prescription. The Court framed a detailed Victim Protection Plan that fundamentally restructures how rescued persons are handled under Section 17 of the ITPA.
+The court's observation about virtual gambling houses will likely echo far beyond India. Regulators in Southeast Asia, Africa, and Latin America have been watching India's approach to online gaming closely. What India's highest court has now said is that the smartphone in your pocket is not just a device. In the wrong hands, at the wrong stakes, it is a casino.
 
-Under the new framework, when an adult is produced before a magistrate following a raid, a threshold inquiry must first establish whether the individual considers herself a voluntary sex worker and whether she wishes to be placed in protective custody. If the answer to either question is no, the state cannot compel her into long-term detention in a protective home.
+**Sources:** LiveLaw, The Indian Eye, Asia Gaming Brief, Supreme Court Observer"""
 
-The Court explicitly rejected the paternalistic "one-size-fits-all" approach that has governed enforcement for decades, under which every person found in a prostitution-related situation was funnelled through the same rescue-and-rehabilitate pipeline regardless of their circumstances.
+    print("  Sourcing image...")
+    img_url, img_attr = source_image(
+        person_name=None,
+        topic_queries=["Supreme Court India building New Delhi", "Supreme Court of India exterior"],
+        pexels_query="supreme court building India"
+    )
 
-Additional directions include: rescued persons must not be detained overnight at police stations under any circumstances; statements must be recorded only after a person's safety is ensured and initial trauma has subsided; and protection must not be made conditional on a victim's willingness to cooperate with law enforcement or participate in legal proceedings.
+    sources = json.dumps([
+        {"name": "LiveLaw", "url": "https://livelaw.in"},
+        {"name": "The Indian Eye", "url": "https://theindianeye.com/supreme-court-upholds-28-gst-on-online-gaming/"},
+        {"name": "Asia Gaming Brief", "url": "https://agbrief.com"},
+        {"name": "Supreme Court Observer", "url": "https://scobserver.in"}
+    ])
 
-## Why This Matters Beyond India's Borders
-
-The ruling has direct implications for how India is assessed on global anti-trafficking indices, including the U.S. State Department's annual Trafficking in Persons (TIP) Report. India has oscillated between Tier 2 and the Tier 2 Watch List for years, with enforcement practices — particularly the conflation of voluntary sex work with trafficking — cited as a persistent weakness.
-
-By mandating a consent-first framework and separating voluntary sex work from trafficking in operational terms, the Court has aligned Indian jurisprudence more closely with the approach recommended by UNAIDS, the World Health Organization, and Amnesty International, all of which have called for the decriminalisation of consensual adult sex work as a public health and human rights imperative.
-
-For the Indian diaspora, the ruling is part of a broader pattern of judicial activism that has defined the Pardiwala Court's recent term. The same bench that delivered this ruling also permitted passive euthanasia for the first time earlier this year in *Harish Rana v. Union of India*. Together, these decisions mark a Court that is willing to engage with questions of bodily autonomy, dignity and the limits of state power in ways that previous benches avoided.
-
-## The Gap Between Law and Practice
-
-The challenge, as with most progressive Supreme Court rulings in India, will be enforcement. The ITPA remains unreformed. Police forces across states operate under varying levels of training and political pressure. Anti-trafficking NGOs — some of which have been criticised for conducting coercive "rescues" of their own — will need to recalibrate their operations to respect the autonomy the Court has now formally protected.
-
-The Court acknowledged this gap implicitly by directing that its guidelines be circulated to all state police forces and that compliance be monitored. Whether that monitoring materialises with any teeth remains the open question.
-
-What is no longer an open question is the legal principle. Voluntary adult sex work is not illegal in India. The Supreme Court has said so, not for the first time, but with a clarity and a set of enforceable directions that leave no room for the studied ambiguity that has governed this space for seven decades.
-
-*Sources: LiveLaw, Bar and Bench, The CSR Journal, News18*"""
-
-img2_url, img2_attr = source_image(
-    person_name=None,
-    search_terms=["Supreme Court of India building 2024", "Supreme Court India exterior"],
-    pexels_query="India Supreme Court justice building",
-    slug=art2_slug
-)
-
-art2 = {
-    "headline": art2_headline,
-    "subheadline": art2_subheadline,
-    "body": art2_body,
-    "slug": art2_slug,
-    "category": "news",
-    "vertical": "news",
-    "status": "published",
-    "published_at": now_iso,
-    "image_url": img2_url,
-    "image_attribution": img2_attr or "Wikimedia Commons",
-    "is_editorial": False,
-    "sources": json.dumps(["LiveLaw", "Bar and Bench", "The CSR Journal", "News18"]),
-}
-articles_data.append(art2)
-
-
-# --- ARTICLE 3: Trump confirms calling Netanyahu "crazy" ---
-print("\n" + "="*60)
-print("ARTICLE 3: Trump-Netanyahu phone call fallout")
-print("="*60)
-
-art3_slug = "trump-confirms-netanyahu-crazy-call-iran-ceasefire-india-oil-20260603"
-art3_headline = "Trump Just Confirmed He Called Netanyahu 'Crazy.' The Ceasefire India Needs Is Nowhere Close."
-art3_subheadline = "The leaked phone call, the stalled talks with Iran, and the overnight strikes on Kuwait and Bahrain reveal a war that is fracturing the alliances meant to end it. India, with 9 million workers in the Gulf, has no good options."
-
-art3_body = """Donald Trump has confirmed that he called Israeli Prime Minister Benjamin Netanyahu "fucking crazy" in a phone call on Monday, in what may be the most candid public acknowledgement of friction between the two leaders since they launched the war on Iran in late February.
-
-"I did," Trump told the *Pod Force One* podcast when asked about the exchange, first reported by Axios. According to the report, Trump told Netanyahu: "You're fucking crazy. You'd be in prison if it weren't for me. I'm saving your ass. Everybody hates you now. Everybody hates Israel because of this."
-
-Trump characterised the call as a necessary intervention to stop Israel from escalating operations in Lebanon, where Israeli ground forces had made their deepest incursion in 26 years. He said Netanyahu "turned his troops around" after the conversation. Netanyahu, in a CNBC interview, played it down as a "tactical disagreement" between close allies.
-
-## The Ceasefire Is Collapsing in Real Time
-
-The phone call matters because it landed in the middle of the most fragile moment in the three-month-old conflict. Within hours of Trump's claimed success in de-escalating Lebanon, Iranian drones and missiles struck Kuwait International Airport, killing one person — confirmed as an Indian national — and injuring more than 60. Bahrain said it intercepted missiles and drones targeting U.S. military positions. The U.S. military responded with strikes on an Iranian ground control station on Qeshm Island near the Strait of Hormuz.
-
-Iran's Revolutionary Guards acknowledged attacking the headquarters of the U.S. Fifth Fleet in Bahrain, though U.S. Central Command denied its bases had been hit. Both sides said they were retaliating for earlier attacks. Iran's Foreign Ministry called the U.S. strikes "acts of aggression" that violated the ceasefire. A senior Emirati diplomat called for "a firm, unified, and cohesive Gulf position" against Iran.
-
-The ceasefire, announced with fanfare weeks ago, now exists in name only. Iran's negotiators have stopped communicating with ceasefire mediators, Iranian media reported, linking the suspension to Israel's continued operations in Lebanon and Gaza. Trump called reports of a halt in talks "false and erroneous." The gap between what the White House says and what is happening on the ground has never been wider.
-
-## India's Nine Million People in the Danger Zone
-
-For India, the disintegration of the ceasefire is not an abstract diplomatic problem. An estimated 8.9 million Indian nationals live and work in the Gulf states, concentrated in the UAE, Saudi Arabia, Kuwait, Qatar, Bahrain and Oman. The Indian killed at Kuwait airport this week was a worker — one of hundreds of thousands who staff the airports, construction sites, hospitals and service industries that keep these economies running.
-
-India's Shipping Ministry has said all Indian seafarers in West Asia are safe but acknowledged it would send a vessel to the Strait of Hormuz only "when the situation is conducive." The strait, through which nearly 40 percent of India's oil imports passed before the war, remains largely closed. Oil hit $97 a barrel this week. India imports roughly 90 percent of the crude it consumes.
-
-Prime Minister Modi has responded with an unprecedented five-nation Gulf outreach — meetings with the leaders of the UAE, Saudi Arabia, Qatar, Bahrain and Oman — driven by two calculations: securing alternative energy supplies and protecting Indian workers. Venezuela's acting President Delcy Rodriguez arrived in India this week for talks focused on energy, as Indian imports of Venezuelan crude have climbed to 380,000 barrels a day, the highest since 2020.
-
-## Why the Trump-Netanyahu Rift Matters for New Delhi
-
-The revealed tension between Trump and Netanyahu introduces a new variable into India's calculations. New Delhi has maintained careful relations with both Washington and Tel Aviv, and has avoided taking a public position on the war itself. But if the two architects of the conflict cannot agree on how to fight it — let alone how to end it — the prospect of a negotiated resolution that reopens the Strait of Hormuz recedes further.
-
-An interim deal, Reuters reported, is the most likely outcome: a framework that reopens the strait, provides Iran with limited sanctions relief, and gives Trump a political off-ramp. But even that modest agreement remains unsigned. Iran has demanded that any deal include Lebanon. Netanyahu has said Israel will continue operations in Lebanon. Trump says he started the war to prevent Iran from acquiring nuclear weapons and insists "there would be no Israel" without him.
-
-For the diaspora, the situation is double-edged. NRIs in the Gulf face direct physical risk from a conflict that shows no sign of ending. NRIs in the United States face the economic consequences of a prolonged oil shock that is already driving inflation, complicating the Federal Reserve's rate decisions, and weakening the rupee. The RBI's upcoming rate decision — its hardest in years, by most accounts — will be shaped in large part by how far this war spirals.
-
-The phone call between Trump and Netanyahu was not a breakthrough. It was a symptom: of a war without a strategy, an alliance under strain, and a ceasefire that no one on any side seems willing or able to enforce.
-
-*Sources: Reuters, Axios, AP, NPR, The Times, Energy Connects*"""
-
-img3_url, img3_attr = source_image(
-    person_name="Donald Trump",
-    search_terms=["Trump Netanyahu meeting 2025", "Donald Trump White House 2026"],
-    pexels_query="White House Washington politics",
-    slug=art3_slug
-)
-
-art3 = {
-    "headline": art3_headline,
-    "subheadline": art3_subheadline,
-    "body": art3_body,
-    "slug": art3_slug,
-    "category": "news",
-    "vertical": "news",
-    "status": "published",
-    "published_at": now_iso,
-    "image_url": img3_url,
-    "image_attribution": img3_attr or "Wikimedia Commons",
-    "is_editorial": False,
-    "sources": json.dumps(["Reuters", "Axios", "Associated Press", "NPR", "The Times", "Energy Connects"]),
-}
-articles_data.append(art3)
-
-
-# ===== PUBLISH ALL =====
-print("\n" + "="*60)
-print("PUBLISHING ARTICLES")
-print("="*60)
-
-published = 0
-for art in articles_data:
-    print(f"\n--- {art['slug'][:60]} ---")
-    if not art.get("image_url"):
-        print("  ⚠ Skipping: no image found")
-        continue
-    if not validate_article(art):
-        # Try to publish anyway if body is decent
-        wc = len(art.get("body", "").split())
-        if wc < 400:
-            print("  ❌ Skipping: body too short")
-            continue
-    result = insert_article(art)
-    if result:
-        published += 1
-
-print(f"\n{'='*60}")
-print(f"DONE: {published}/{len(articles_data)} articles published")
-print(f"{'='*60}")
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "news",
+        "vertical": "news",
+        "sources": sources,
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "is_editorial": False
+    }
+    if img_url:
+        article["image_url"] = img_url
+        article["image_caption"] = "The Supreme Court of India in New Delhi"
+        article["image_attribution"] = img_attr
+    
+    return insert_article(article)
+
+
+def article_drone_order():
+    print("\n=== Article 3: India's $2 Billion Drone Order ===")
+    
+    slug = "india-2-billion-military-drone-order-domestic-manufacturers-defence-20260604"
+    headline = "India Is About to Place Its Largest-Ever Military Drone Order. The $2 Billion Will Go Entirely to Domestic Firms."
+    subheadline = "Lessons from the Pakistan confrontation and the Iran war have fast-tracked India's biggest unmanned systems purchase. Deliveries are expected within 18 to 24 months."
+    
+    body = """India is preparing to order more than $2 billion worth of military drones from domestic manufacturers this year, in what would be the country's largest-ever procurement of unmanned aerial systems. The plans are in advanced stages and deliveries are expected over 18 to 24 months, according to Smit Shah, president of the Drone Federation of India.
+
+The order is expected to move through a fast-track procurement route, reflecting the urgency with which India's defence establishment has reassessed its drone capabilities following two recent conflicts that demonstrated their strategic value on an industrial scale.
+
+## The Lessons That Forced the Pivot
+
+The confrontation with Pakistan in May 2025 — Operation Sindoor — was the immediate catalyst. Both countries deployed unmanned aerial vehicles at a scale never before seen in a South Asian conflict. The episode exposed gaps in India's drone inventory, particularly in tactical-class systems that can be produced cheaply and deployed at volume.
+
+The ongoing Iran war reinforced the lesson on a global stage. Iranian drones have struck targets across the Gulf, including Kuwait's airport this week. The war in Ukraine before it had already demonstrated that low-cost unmanned systems can neutralise platforms costing orders of magnitude more. Military planners in New Delhi have concluded that drone warfare is no longer a niche capability — it is the baseline.
+
+"Drones are force multipliers on the modern battlefields," said Ramesh Chandra Padhi of IG Defence, a manufacturer of unmanned aerial vehicles and short-range missiles. "In the next phase, tactical drone procurements in India may exceed 200 billion rupees."
+
+## The Domestic Industrial Base
+
+The order's most significant feature is that it will go entirely to Indian companies. India now has more than 600 drone firms, many of them incubated through the government's iDEX (Innovations for Defence Excellence) programme, which funds startups developing military-grade technology.
+
+The procurement aligns with a broader defence capital allocation. In March, the Ministry of Defence approved approximately 2.38 trillion rupees for acquisitions including transport aircraft, missile systems, and armed drones. The specific drone allocation was not disclosed, but the $2 billion figure cited by the Drone Federation represents the single largest category within that envelope.
+
+The Indian Army has declared 2026 the "Year of Networking and Data Centricity," with unmanned aerial systems and counter-drone capabilities identified as key focus areas. The doctrine draws directly from Operation Sindoor, with emphasis on AI integration, real-time battlefield data, and swarm tactics that require large fleets of relatively inexpensive platforms.
+
+## Why Domestic Matters
+
+India's push to source drones domestically is not purely ideological. Global supply chains for military-grade components have been severely disrupted by the Iran war and earlier by the Ukraine conflict. Countries that depend on imported drone systems are finding deliveries delayed, prices inflated, and access to critical subsystems — particularly semiconductors and advanced sensors — constrained.
+
+By building a domestic manufacturing base, India aims to insulate its military from these disruptions. The strategy also feeds into the government's broader Aatmanirbhar Bharat initiative, which has set ambitious targets for defence exports. The Indian Army's planning documents project that data-centric defence modernisation could contribute to 50,000 crore rupees in defence exports over the next few years.
+
+The timing is also driven by the recognition that India's neighbourhood is not getting calmer. China continues to expand its military footprint along the Line of Actual Control, Pakistan's drone capabilities were demonstrated more recently than anyone in Delhi is comfortable admitting, and the Indian Ocean is increasingly a zone of great-power competition. A $2 billion drone order is an investment in the principle that the next conflict will be fought by machines as much as by soldiers — and India intends to build those machines itself.
+
+## Diaspora Dimension
+
+For the Indian diaspora, particularly those in the technology and defence sectors abroad, the order opens a new corridor. Several US and Israel-based Indian-origin entrepreneurs have stakes in drone component companies that could benefit from India's procurement surge. The iDEX programme has already attracted diaspora engineers back to India, and a $2 billion domestic order substantially raises the commercial incentive to build defence technology for the Indian market.
+
+India's defence ministry has not officially confirmed the $2 billion figure. But the Drone Federation's confidence in the number, combined with the advanced procurement stage and the strategic urgency driving it, suggests the order is not a matter of if but when.
+
+**Sources:** Reuters, Outlook Business, The Hindu BusinessLine, Drone Federation of India"""
+
+    print("  Sourcing image...")
+    img_url, img_attr = source_image(
+        person_name=None,
+        topic_queries=["Indian military drone UAV India", "India armed forces drone"],
+        pexels_query="military drone unmanned aerial vehicle"
+    )
+
+    sources = json.dumps([
+        {"name": "Reuters", "url": "https://reuters.com"},
+        {"name": "Outlook Business", "url": "https://www.outlookbusiness.com"},
+        {"name": "The Hindu BusinessLine", "url": "https://thehindubusinessline.com"},
+        {"name": "Drone Federation of India", "url": "https://dronefederationofindia.org"}
+    ])
+
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "news",
+        "vertical": "news",
+        "sources": sources,
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "is_editorial": False
+    }
+    if img_url:
+        article["image_url"] = img_url
+        article["image_caption"] = "An Indian military unmanned aerial vehicle during a defence exercise"
+        article["image_attribution"] = img_attr
+    
+    return insert_article(article)
+
+
+# === MAIN ===
+if __name__ == "__main__":
+    print(f"=== The Videshi News Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} ===")
+    
+    results = []
+    
+    for name, fn in [
+        ("Modi Five-Nation Tour", article_modi_tour),
+        ("SC Online Gaming Ruling", article_online_gaming),
+        ("India $2B Drone Order", article_drone_order),
+    ]:
+        try:
+            r = fn()
+            results.append((name, r))
+        except Exception as e:
+            print(f"  ✗ {name} failed: {e}")
+            import traceback; traceback.print_exc()
+            results.append((name, None))
+
+    print("\n=== SUMMARY ===")
+    for title, art_id in results:
+        status = f"✓ {art_id}" if art_id else "✗ FAILED"
+        print(f"  {title}: {status}")
+    
+    successful = sum(1 for _, r in results if r)
+    print(f"\n  {successful}/3 articles published.")
