@@ -1,29 +1,26 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-06-04 run"""
+"""Entertainment writer for The Videshi - June 4, 2026"""
 
-import json, os, sys, time, uuid, subprocess, re, io
+import json, os, sys, time, uuid, io, re
 import requests
-import urllib.parse
 from datetime import datetime, timezone
 
-# Load environment
-def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
+# Load env
+def load_env(filepath):
+    if os.path.exists(filepath):
+        with open(filepath) as f:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
-                    if line.startswith('export '):
-                        line = line[7:]
                     key, _, val = line.partition('=')
-                    val = val.strip('"').strip("'")
+                    val = val.strip().strip('"').strip("'")
                     os.environ[key.strip()] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
 HEADERS = {
@@ -35,10 +32,10 @@ HEADERS = {
 
 UA = "TheVideshi/1.0 (thevideshi.com)"
 
-# ─── Image sourcing functions ──────────────────────────────────────────
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -66,7 +63,7 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         "gsrnamespace": "6",
         "gsrlimit": str(limit),
         "prop": "imageinfo",
-        "iiprop": "url|size|mime",
+        "iiprop": "url|size|mime|extmetadata",
         "iiurlwidth": "1200",
         "format": "json"
     }
@@ -84,9 +81,9 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
             for pid, page in pages.items():
                 ii = page.get("imageinfo", [{}])[0]
                 mime = ii.get("mime", "")
-                if not mime.startswith("image/") or mime == "image/svg+xml":
+                if not mime.startswith("image/"):
                     continue
-                if ii.get("width", 0) < 300:
+                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
                     continue
                 results.append({
                     "url": ii.get("thumburl") or ii.get("url", ""),
@@ -94,86 +91,75 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
                     "title": page.get("title", ""),
                     "width": ii.get("width", 0),
                     "height": ii.get("height", 0),
+                    "mime": mime
                 })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error: {e}")
+        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
     return []
 
 
 def fetch_pexels_image(query):
-    """Search Pexels for an image. Returns URL or None."""
+    """Fetch an image from Pexels using requests."""
     if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
         return None
     try:
-        result = subprocess.run(
-            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=5",
-             "-H", f"Authorization: {PEXELS_KEY}"],
-            capture_output=True, text=True, timeout=15
+        r = requests.get(
+            "https://api.pexels.com/v1/search",
+            params={"query": query, "per_page": 3, "orientation": "landscape"},
+            headers={"Authorization": PEXELS_KEY},
+            timeout=10
         )
-        data = json.loads(result.stdout)
-        photos = data.get("photos", [])
-        for p in photos:
-            src = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
-            if src:
-                print(f"  ✓ Pexels image found for '{query}': {src[:80]}...")
-                return src
+        if r.status_code == 200:
+            photos = r.json().get("photos", [])
+            if photos:
+                url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels image found for '{query}': {url[:60]}...")
+                return url
     except Exception as e:
-        print(f"  ⚠ Pexels error: {e}")
+        print(f"  ⚠ Pexels error for '{query}': {e}")
     return None
 
 
-def compress_and_upload(img_url, slug):
-    """Download, compress, and upload image to Supabase. Returns public URL or None."""
-    try:
-        from PIL import Image
-    except ImportError:
-        subprocess.run([sys.executable, "-m", "pip", "install", "Pillow", "-q"], check=True)
-        from PIL import Image
+def compress_image(img_bytes, max_width=1200, quality=80):
+    """Resize and compress image. Returns JPEG bytes."""
+    from PIL import Image
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    return buf.getvalue()
 
-    print(f"  📥 Downloading: {img_url[:80]}...")
+
+def upload_to_supabase(img_url, filename):
+    """Download image, compress, upload to Supabase storage."""
     try:
-        r = requests.get(img_url, headers={"User-Agent": UA}, timeout=20)
+        r = requests.get(img_url, headers={"User-Agent": UA}, timeout=30)
         if r.status_code != 200:
-            print(f"  ❌ Download failed: HTTP {r.status_code}")
+            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
             return None
-        ct = r.headers.get("Content-Type", "")
-        if not ct.startswith("image/"):
-            print(f"  ❌ Not an image: {ct}")
+        content_type = r.headers.get("Content-Type", "")
+        if not content_type.startswith("image/"):
+            print(f"  ⚠ Not an image: {content_type}")
             return None
-        raw = r.content
-        if len(raw) < 5000:
-            print(f"  ❌ Too small: {len(raw)} bytes")
+        raw_bytes = r.content
+        if len(raw_bytes) < 5000:
+            print(f"  ⚠ Image too small: {len(raw_bytes)} bytes")
             return None
-    except Exception as e:
-        print(f"  ❌ Download error: {e}")
-        return None
 
-    # Compress
-    try:
-        img = Image.open(io.BytesIO(raw))
-        if img.mode in ('RGBA', 'P'):
-            img = img.convert('RGB')
-        max_w = 1200
-        if img.width > max_w:
-            ratio = max_w / img.width
-            img = img.resize((max_w, int(img.height * ratio)), Image.LANCZOS)
-        buf = io.BytesIO()
-        img.save(buf, format='JPEG', quality=80, optimize=True)
-        compressed = buf.getvalue()
-        print(f"  📦 Compressed: {len(raw)} → {len(compressed)} bytes ({img.width}x{img.height})")
-    except Exception as e:
-        print(f"  ⚠ Compression failed, using raw: {e}")
-        compressed = raw
+        compressed = compress_image(raw_bytes)
+        print(f"  📦 Compressed: {len(raw_bytes)} → {len(compressed)} bytes")
 
-    # Upload
-    filename = f"{slug}.jpg"
-    upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-    try:
-        # Try upsert
-        resp = requests.post(
+        # Upload to Supabase storage
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        upload_r = requests.post(
             upload_url,
             headers={
                 "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -183,317 +169,369 @@ def compress_and_upload(img_url, slug):
             data=compressed,
             timeout=30
         )
-        if resp.status_code in (200, 201):
+        if upload_r.status_code in (200, 201):
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✅ Uploaded: {public_url}")
+            print(f"  ✅ Uploaded to Supabase: {public_url[:60]}...")
             return public_url
         else:
-            print(f"  ❌ Upload failed: {resp.status_code} - {resp.text[:200]}")
+            print(f"  ⚠ Upload failed: {upload_r.status_code} {upload_r.text[:200]}")
             return None
     except Exception as e:
-        print(f"  ❌ Upload error: {e}")
+        print(f"  ⚠ Upload error: {e}")
         return None
-
-
-def source_image(person_names, topic_queries, pexels_query, slug):
-    """Multi-source image search. Returns (url, attribution) or (None, None)."""
-    candidates = []
-
-    # Wikipedia for person articles
-    for name in person_names:
-        wiki_img = fetch_wikipedia_person_image(name)
-        if wiki_img:
-            candidates.append({"url": wiki_img, "source": "wikipedia", "priority": 1})
-            break
-
-    # Wikimedia Commons
-    for q in topic_queries:
-        commons = fetch_wikimedia_commons_images(q, limit=3)
-        for c in commons[:2]:
-            candidates.append({"url": c["url"], "source": "wikimedia_commons", "priority": 2})
-        if commons:
-            break
-
-    # Pexels fallback
-    if pexels_query:
-        pex = fetch_pexels_image(pexels_query)
-        if pex:
-            candidates.append({"url": pex, "source": "pexels", "priority": 3})
-
-    # Pick best and upload
-    candidates.sort(key=lambda x: x["priority"])
-    for c in candidates:
-        final_url = compress_and_upload(c["url"], slug)
-        if final_url:
-            attr = "Wikimedia Commons" if c["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
-            return final_url, attr
-
-    print("  ⚠ No usable image found")
-    return None, None
 
 
 def insert_article(article):
     """Insert article into Supabase."""
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    resp = requests.post(url, headers=HEADERS, json=article, timeout=30)
-    if resp.status_code in (200, 201):
-        data = resp.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
-        print(f"  ✅ Published: {article['headline'][:60]}... (id={art_id})")
-        return art_id
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article,
+        timeout=30
+    )
+    if r.status_code in (200, 201):
+        data = r.json()
+        if isinstance(data, list) and data:
+            return data[0].get("id")
+        return True
     else:
-        print(f"  ❌ Insert failed: {resp.status_code} - {resp.text[:300]}")
+        print(f"  ❌ Insert failed: {r.status_code} {r.text[:300]}")
         return None
 
 
-# ─── Articles ──────────────────────────────────────────────────────────
+# ============================================================================
+# ARTICLE 1: Lagaan 25th Anniversary Re-Release
+# ============================================================================
+def write_lagaan_article():
+    print("\n📝 Article 1: Lagaan 25th Anniversary Re-Release")
 
-articles = []
+    slug = "lagaan-25th-anniversary-re-release-june-12-aamir-khan-theaters-nri-20260604"
+    headline = "Lagaan Returns to Theaters for Three Days. Twenty-Five Years Later, the Film That Almost Bankrupted Aamir Khan Is India's Most Beloved Underdog Story."
+    subheadline = "The Oscar-nominated cricket drama re-releases on June 12-14 with a new trailer and a poster design contest. For NRIs who grew up on this film, the timing could not be better."
 
-# ═══════════════════════════════════════════════════════════════════════
-# ARTICLE 1: Peddi Day 1 Box Office
-# ═══════════════════════════════════════════════════════════════════════
-print("\n" + "="*60)
-print("ARTICLE 1: Peddi Opening Day Box Office")
-print("="*60)
+    body = """Aamir Khan Productions has announced that Lagaan: Once Upon a Time in India will return to Indian cinemas for a special three-day theatrical run on June 12, 13, and 14, marking the film's 25th anniversary. A new trailer was released on June 3, and a creative campaign called #LagaanPosterChallenge has been launched, inviting fans to reimagine the film's iconic poster in their own style. Winners will receive an invitation to a special screening with the original cast and crew.
 
-slug1 = "peddi-ram-charan-opening-day-box-office-100-crore-worldwide-nri-20260604"
+## The Film That Changed Everything
 
-headline1 = "Ram Charan's Peddi Just Opened Across 4,293 Screens. The Numbers Are Tracking Toward a ₹100-Crore Worldwide Day One."
+When Lagaan released on June 15, 2001, it was the most expensive Indian film ever made. Its budget had ballooned from ₹12 crore to ₹24 crore during production, and the entire financial risk sat on Aamir Khan's shoulders. The film's producer, the late Jhamu Sughand, never once questioned the cost overruns — a detail Khan has spoken about with deep gratitude in recent years. The gamble paid off. Lagaan became a cultural phenomenon, won eight Filmfare Awards, multiple National Film Awards, and earned India its third-ever Academy Award nomination for Best Foreign Language Film.
 
-subheadline1 = "The Telugu sports drama's ₹50-crore advance and massive North American premiere pre-sales signal that post-RRR, Ram Charan's solo stardom is no longer a question — it's a fact."
+Directed by Ashutosh Gowariker, Lagaan is set in 1893 during British colonial rule. The residents of drought-hit Champaner are crushed under heavy taxation. When a British officer challenges them to a cricket match — win and the taxes are waived for three years, lose and they triple — a young villager named Bhuvan rallies his community to learn a game they have never played. The cast included Gracy Singh, Rachel Shelley, Paul Blackthorne, Kulbhushan Kharbanda, Raghubir Yadav, and Rajesh Vivek. The soundtrack by A.R. Rahman, featuring "Ghanan Ghanan," "Mitwa," "Radha Kaise Na Jale," and "O Rey Chhori," remains one of Hindi cinema's most beloved albums.
 
-body1 = """Ram Charan needed this.
+## Why This Matters for the Diaspora
 
-Not the validation — his career has never lacked for that. But the solo proof. After RRR turned him into a global name alongside Jr. NTR, and after Game Changer stumbled in January, the question hovered: could Ram Charan open a film on his own name, without Rajamouli, without a multi-starrer safety net, and make the kind of numbers that justify a ₹300-crore budget?
+For millions of NRIs, Lagaan was the first Indian film they felt they could proudly show to non-Indian friends and colleagues. Its underdog narrative, rooted in anti-colonial resistance and village unity, carried a universality that transcended language and geography. The Oscar nomination in 2002 was a watershed moment — Indian cinema was being seen, judged, and respected on the world's biggest stage. The film's cricket match, with its motley crew of villagers taking on the Empire, became a metaphor that resonated far beyond sport.
 
-Peddi is answering that question in real time.
+The re-release arrives at an interesting moment for Bollywood. Re-releases have become a significant revenue stream over the past two years, with films like Tumbbad, Rockstar, and Laila Majnu finding new life in theaters. For Lagaan, the calculus is different. This is not a cult film being rediscovered. This is a film that an entire generation already knows by heart, being given a chance to experience on the big screen for the first time — or the first time in a quarter century.
 
-## The Numbers So Far
+## The Poster Challenge
 
-The Buchi Babu Sana-directed sports action drama opened on Thursday, June 4, across 4,293 shows in India. By early afternoon, live tracking showed the film had already netted ₹12.49 crore domestically, with total India gross at ₹14.74 crore and climbing fast. These are partial-day figures — the evening and night shows, which typically account for 50-60 percent of a day's total, had barely begun.
+The #LagaanPosterChallenge is a smart piece of engagement. Fans are invited to reinterpret the film's original poster in any artistic style — illustration, photography, collage, or digital art. The contest is being run through Aamir Khan Productions' social channels. The best entries will be showcased, and select winners will be invited to a special anniversary screening alongside the original cast and crew. It is the kind of campaign that plays perfectly to the diaspora's deep emotional connection with the film and the visual creativity of a generation raised on both Bollywood and internet culture.
 
-Worldwide advance bookings had already crossed ₹50 crore before the first show rolled. Trade projections now point to a global opening-day gross exceeding ₹100 crore, which would make Peddi one of the biggest openers of 2026 so far.
+## What to Expect
 
-## The North American Story
+The three-day window — Thursday through Saturday — is designed for event-style screenings rather than a traditional box office run. Exhibitors in major metros are expected to program the film in premium formats. Whether the re-release extends to international markets has not been confirmed, but given the film's iconic status among the Indian diaspora, demand from NRI audiences in the US, UK, and Canada is virtually guaranteed.
 
-For the diaspora, the numbers tell a specific story. In North America, Peddi racked up over $1.5 million in premiere and opening-day pre-sales across 533 locations and 1,647 shows. That is 28,037 tickets sold before a single review dropped. Cinemark alone contributed $466,707 from 16,344 tickets. Premium formats — IMAX, XD, RPX, D-Box — accounted for nearly 18 percent of overseas revenue, a pattern typically associated with event-scale releases.
+Twenty-five years ago, Lagaan asked a simple question: what happens when ordinary people refuse to accept the rules imposed on them? The answer, told through cricket and set to one of the greatest soundtracks ever composed for an Indian film, has not aged a day.
 
-This is not Pushpa 2 territory ($3 million premiere), but it is comfortably in the top tier for a Telugu-language solo vehicle. For context, Peddi entered the top 10 all-time Tollywood pre-sales on BookMyShow with 600,000 tickets — ahead of The RajaSaab and Hari Hara Veera Mallu.
+Sources: Bollywood Hungama, Filmfare, Aamir Khan Productions"""
 
-## What the Film Actually Is
+    # Image sourcing
+    print("  🔍 Searching for images...")
+    candidates = []
 
-Set in 1980s rural Andhra Pradesh, Peddi follows a spirited villager who unites his community through sports — wrestling, cricket, running — to defend local pride against a powerful rival. The film runs a hefty three hours with a U/A certificate, and features an ensemble including Janhvi Kapoor, Shiva Rajkumar, Jagapathi Babu, Divyenndu, and Boman Irani. A.R. Rahman composed the score, his first collaboration with Ram Charan.
+    # Wikipedia: Aamir Khan
+    wiki_img = fetch_wikipedia_person_image("Aamir Khan")
+    if wiki_img:
+        candidates.append({"url": wiki_img, "source": "wikipedia", "caption": "Aamir Khan, producer and star of Lagaan", "attribution": "Wikimedia Commons"})
 
-Director Buchi Babu Sana, whose debut Uppena was a surprise hit in 2021, has built Peddi as a rural sports epic rather than a typical masala action film. The Telugu theatrical version is the primary release, with dubbed versions in Hindi, Tamil, Kannada, and Malayalam expanding the footprint.
+    # Wikimedia Commons: Lagaan
+    commons = fetch_wikimedia_commons_images("Lagaan film Aamir Khan cricket")
+    if not commons:
+        commons = fetch_wikimedia_commons_images("Aamir Khan actor")
+    for c in commons[:2]:
+        candidates.append({"url": c["url"], "source": "wikimedia_commons", "caption": "Aamir Khan at a public event", "attribution": "Wikimedia Commons"})
 
-## Why It Matters to NRIs
+    # Pexels fallback
+    pexels = fetch_pexels_image("village cricket India")
+    if pexels:
+        candidates.append({"url": pexels, "source": "pexels", "caption": "Village cricket in India", "attribution": "Pexels"})
 
-The film's North American performance is worth watching not just for its numbers but for what it represents. Telugu cinema's overseas market has grown from a niche into a primary revenue stream. The Gulf region, North America, and Australia now collectively account for 25-30 percent of a major Telugu film's lifetime gross. When NRI audiences show up in these numbers for a premiere, they are not just watching a movie — they are voting on the commercial viability of an entire production model.
+    # Pick best
+    img_url = None
+    img_caption = "Aamir Khan, producer and star of Lagaan"
+    img_attribution = "Wikimedia Commons"
+    if candidates:
+        best = candidates[0]  # Wikipedia > Commons > Pexels
+        filename = f"{slug}.jpg"
+        uploaded = upload_to_supabase(best["url"], filename)
+        if uploaded:
+            img_url = uploaded
+            img_caption = best["caption"]
+            img_attribution = best["attribution"]
 
-Ram Charan's trajectory post-RRR mirrors a pattern familiar across South Indian cinema: the international breakout creates expectations that the next solo outing must meet. Allu Arjun did it with Pushpa 2. Prabhas struggled with Adipurush and Salaar. Now it is Ram Charan's turn with Peddi, and the early data suggests the bet is paying off.
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attribution,
+        "is_editorial": False,
+        "sources": json.dumps(["Bollywood Hungama", "Filmfare", "Aamir Khan Productions"]),
+    }
 
-## What Comes Next
+    if not img_url:
+        print("  ⚠ No image found, publishing without image")
+        article.pop("image_url")
+        article.pop("image_caption")
+        article.pop("image_attribution")
 
-The evening shows will determine whether Peddi cracks the ₹100-crore worldwide mark on Day 1. Word-of-mouth from afternoon audiences is already filtering onto social media, and the trajectory of the weekend — particularly Saturday family audiences — will decide if this becomes a ₹500-crore film or a ₹300-crore one. For a ₹300-crore production, the breakeven requires roughly ₹450 crore worldwide.
-
-The first real test is over. The screens are booked. The tickets are sold. Now it is about whether the film itself can carry the opening into a sustained run."""
-
-# Image sourcing for Peddi
-img1_url, img1_attr = source_image(
-    person_names=["Ram Charan"],
-    topic_queries=["Ram Charan actor Telugu cinema", "Ram Charan film"],
-    pexels_query="Indian cinema sports drama",
-    slug=slug1
-)
-
-articles.append({
-    "headline": headline1,
-    "subheadline": subheadline1,
-    "body": body1,
-    "slug": slug1,
-    "category": "entertainment",
-    "vertical": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img1_url,
-    "image_caption": "Ram Charan in a still from Peddi, the Telugu sports drama that opened across 4,293 screens on June 4",
-    "image_attribution": img1_attr or "Wikimedia Commons",
-    "sources": json.dumps([
-        {"name": "Sacnilk", "url": "https://sacnilk.com"},
-        {"name": "Filmibeat", "url": "https://filmibeat.com"},
-        {"name": "Koimoi", "url": "https://koimoi.com"}
-    ]),
-    "is_editorial": False
-})
-
-
-# ═══════════════════════════════════════════════════════════════════════
-# ARTICLE 2: Bandar CBFC Censorship
-# ═══════════════════════════════════════════════════════════════════════
-print("\n" + "="*60)
-print("ARTICLE 2: Bandar CBFC Censorship")
-print("="*60)
-
-slug2 = "bandar-anurag-kashyap-cbfc-censorship-bobby-deol-cuss-words-tiff-nri-20260604"
-
-headline2 = "The CBFC Just Turned Anurag Kashyap's Bandar Into a Different Film. TIFF Audiences Saw the Original. Indian Theaters Will Not."
-
-subheadline2 = "Extreme cuss words replaced with milder alternatives, a #MeToo drama softened for theatrical release — the gap between what international festival audiences get and what Indian moviegoers receive has never been more visible."
-
-body2 = """When Bandar premiered at the Toronto International Film Festival in September 2025, the audience experienced Anurag Kashyap's film exactly as he made it. The language was raw. The characters spoke the way people in crisis actually speak — with profanity that carried weight, not shock value.
-
-The version releasing in Indian theaters on June 5 is not that film.
-
-## What the CBFC Changed
-
-According to an exclusive report by Bollywood Hungama, the Central Board of Film Certification replaced multiple instances of extreme profanity in Bandar with milder alternatives. The most striking substitution: a particularly graphic Hindi abuse was replaced with "banjo." Other cuss words were softened throughout the film, with the CBFC systematically swapping out the sharpest edges of the dialogue while granting the film a theatrical release certificate.
-
-This is not a case of a few bleeps. When you replace the language in a film specifically about power, accusation, and the collapse of a man's public identity, you are changing the texture of the storytelling itself. Kashyap's cinema has always derived its authenticity from characters who sound like real people — not like people performing for a censor board.
-
-## What the Film Is About
-
-Bandar — subtitled Monkey in a Cage for international markets — stars Bobby Deol as Samar Mehra, a washed-up television actor living on the margins. He cannot afford back surgery. He performs at weddings to pay his mortgage. When police arrive at his door one night and arrest him on rape charges filed by a woman he met on a dating app, his already diminished life disintegrates entirely.
-
-The film is written by Sudip Sharma and Abhishek Banerjee — the team behind Paatal Lok and Kohrra — and produced by Nikhil Dwivedi with Zee Studios backing. Sanya Malhotra, Raj B Shetty, Jitendra Joshi, Sapna Pabbi, Indrajith Sukumaran, and Riddhi Sen round out the cast.
-
-At TIFF, critics described Bobby Deol's performance as the finest of his career. Variety noted that Kashyap built the film around the ambiguity of the #MeToo landscape — the impossibility of certainty, the way accusation alone can destroy a life, and the question of whether redemption is even available in the age of cancellation. Kashyap himself said at the premiere: "I grew up in a world where we made mistakes and we were given opportunities to redeem ourselves or correct ourselves. Today, the world is not the same."
-
-## The Diaspora Sees Two Versions
-
-Here is where it gets uncomfortable for NRI audiences. If you watched Bandar at TIFF, you saw one film. If you watch it in Mumbai or Delhi on June 5, you will see another. The international festival circuit — Cannes, Venice, Toronto, Berlin — has become the place where Indian filmmakers can present their unmediated vision. The domestic theatrical release increasingly becomes the compromise.
-
-This is not new. The CBFC has a decades-long history of softening, cutting, and reshaping Indian cinema for domestic consumption. But the gap has grown wider as Indian films gain international prestige. Kashyap's own Gangs of Wasseypur faced similar scrutiny. Dev D was trimmed. Udta Punjab became a political battle. Each time, the version that Indian audiences pay to see in theaters is not the version that the filmmaker intended.
-
-For the diaspora — who often have access to both the festival cut and the theatrical release — the disparity is increasingly visible. When a film built on the raw reality of language, power, and accusation has its language sanded down, the question is not whether the censor board has the authority. It always has. The question is what the audience loses.
-
-## What Remains
-
-The good news: Bandar's core story, performances, and directorial craft survive the cuts. Bobby Deol's transformation from matinee filler to genuine dramatic actor was the story of TIFF 2025, and that performance does not depend on any single word. The ensemble — particularly Raj B Shetty and Sanya Malhotra — delivers regardless of what the CBFC chose to soften.
-
-But somewhere between Toronto and Andheri, a film became a little less itself. That gap is worth noticing."""
-
-# Image sourcing for Bandar
-img2_url, img2_attr = source_image(
-    person_names=["Bobby Deol", "Anurag Kashyap"],
-    topic_queries=["Bobby Deol actor Bollywood", "Anurag Kashyap director"],
-    pexels_query="Indian cinema courtroom drama",
-    slug=slug2
-)
-
-articles.append({
-    "headline": headline2,
-    "subheadline": subheadline2,
-    "body": body2,
-    "slug": slug2,
-    "category": "entertainment",
-    "vertical": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img2_url,
-    "image_caption": "Bobby Deol stars as a washed-up actor accused of rape in Anurag Kashyap's Bandar, releasing June 5",
-    "image_attribution": img2_attr or "Wikimedia Commons",
-    "sources": json.dumps([
-        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-        {"name": "Variety", "url": "https://variety.com"},
-        {"name": "The Nod Mag", "url": "https://thenodmag.com"}
-    ]),
-    "is_editorial": False
-})
+    result = insert_article(article)
+    if result:
+        print(f"  ✅ Published: {headline[:60]}...")
+    return result
 
 
-# ═══════════════════════════════════════════════════════════════════════
-# ARTICLE 3: Gram Chikitsalay Season 2
-# ═══════════════════════════════════════════════════════════════════════
-print("\n" + "="*60)
-print("ARTICLE 3: Gram Chikitsalay Season 2")
-print("="*60)
+# ============================================================================
+# ARTICLE 2: Shilpa Shinde Admits False Harassment Case
+# ============================================================================
+def write_shilpa_shinde_article():
+    print("\n📝 Article 2: Shilpa Shinde False Harassment Admission")
 
-slug3 = "gram-chikitsalay-season-2-prime-video-tvf-rural-india-comedy-nri-20260604"
+    slug = "shilpa-shinde-admits-false-sexual-harassment-case-bhabiji-ghar-par-hain-producer-nri-20260604"
+    headline = "Shilpa Shinde Just Admitted Her Sexual Harassment Case Against a Producer Was False. The Fallout Has Been Immediate."
+    subheadline = "The Bhabiji Ghar Par Hain actress confessed on a podcast that she filed a fabricated complaint against producer Sanjay Kohli a decade ago. Men's rights groups want her arrested. Others are asking harder questions."
 
-headline3 = "TVF's Gram Chikitsalay Is Coming Back. The Show About a Doctor Who Cannot Leave His Village Just Became Prime Video's Quietest Bet on Rural India."
+    body = """Actress Shilpa Shinde, best known for her role in the long-running comedy Bhabiji Ghar Par Hain, has publicly admitted that the sexual harassment case she filed against the show's producer Sanjay Kohli in 2017 was false. The confession, made during a podcast appearance with Bharti Singh and Haarsh Limbachiyaa, has triggered immediate backlash — including demands from men's rights organizations for her arrest under laws governing false complaints.
 
-subheadline3 = "Season 2 drops June 23 with the original cast returning. For the diaspora, a show set in fictional Bhathkandi hits closer to home than most urban dramas ever will."
+## What She Said
 
-body3 = """There is a particular kind of Indian story that streaming platforms have only recently figured out how to tell. Not the glossy Mumbai thriller. Not the period epic. Not the crime drama set in a dusty North Indian town where everyone speaks in menacing whispers. The other kind — the one about ordinary people in ordinary places, where the stakes are a broken X-ray machine and the villain is bureaucratic indifference.
+Shinde's admission was remarkably candid. "Nobody knows this. I'm not afraid of telling the truth now," she said. "I filed a sexual harassment case against my producer because I had no other option. I eventually got out of that situation after reaching a settlement."
 
-Gram Chikitsalay is that story. And it is coming back.
+She explained the mechanics of how the complaint was constructed. "The police directly tell you that if you want an FIR registered, you have to write serious allegations. I come from a law background," she said. She also expressed regret over the damage done to Kohli's reputation: "Bechara woh usme badnaam hogaya" — the poor man ended up being defamed because of it.
 
-## What Is Returning
+The actress described the circumstances that led to her decision. She was in a contractual dispute with the show's producers, felt cornered professionally, and saw the harassment complaint as the only leverage available to her. "Mujhe tang kiya jaa raha tha," she told Zoom TV in a follow-up interview. "The entire industry was against me, while I stood alone."
 
-Prime Video has officially announced that the second season of Gram Chikitsalay will premiere worldwide on June 23, 2026. The Hindi-language comedy-drama, produced by The Viral Fever (TVF) and directed by Lalitam Tiwari, picks up where Season 1 left off: Dr. Prabhat is still in Bhathkandi, still trying to revive the village's struggling Primary Health Centre, and still discovering that idealism and reality are not always on speaking terms.
+## The Backlash
 
-The original cast returns — Amol Parashar, Akash Makhija, Anandeshwar Dwivedi, Vinay Pathak, Akansha Ranjan Kapoor, and Garima Vikrant Singh. Actor Dinesh Lal Yadav, a major name in Bhojpuri cinema, joins the ensemble for Season 2, adding a new dimension to the show's already warm and lived-in world.
+The response has been swift and polarizing. A men's rights NGO has publicly demanded Shinde's arrest, arguing that her confession constitutes an admission of filing a false FIR — a criminal offense under Indian law. "If false cases go unpunished, genuine victims suffer," the group stated, calling on producer Kohli to pursue legal action and seek compensation.
 
-## Why the First Season Worked
+Television actress and columnist Pooja Bedi weighed in, saying the admission "validates what many people have always feared about the weaponization of harassment laws," while emphasizing that genuine victims suffer the most when such cases come to light.
 
-When Gram Chikitsalay debuted in 2025, it entered a streaming landscape dominated by crime thrillers and urban relationship dramas. A show about a young doctor in a fictional village could have been dismissed as too niche, too slow, too unglamorous for the algorithm. Instead, it found an audience — quietly, steadily, through word of mouth rather than marketing blitzes.
+## The Uncomfortable Middle Ground
 
-The show works because it refuses to condescend to its setting. Rural India in Indian cinema has traditionally been either romanticized or pitied. Gram Chikitsalay does neither. The village of Bhathkandi is not a backdrop for someone else's redemption arc. It is a place where people live, argue, scheme, help each other, and resist change and embrace it in equal measure. Dr. Prabhat is not a savior. He is a man who took a job he did not fully understand and is now figuring it out alongside the people who have lived there their entire lives.
+Shinde's confession sits at the intersection of several uncomfortable realities. The first is that the legal system, as she describes it, incentivized escalation — she claims the police themselves guided her toward making the allegations more severe in order for an FIR to be registered. The second is that for a decade, an innocent producer carried the stigma of a sexual harassment accusation. The third is that every false case, by Shinde's own logic, makes it harder for women with legitimate complaints to be believed.
 
-Vinay Pathak, one of Hindi cinema's most underrated actors, brings a gravitational warmth to the ensemble that keeps the show grounded even in its more comedic moments. The writing — by Vaibhav Suman and Shreya Srivastava — finds humor in specificity rather than stereotype.
+The timing is especially pointed. Her confession has arrived just days after Marathi actress Priya Bapat shared a detailed account of being harassed by a male co-star early in her career — a story that involves an actor repeatedly kissing her beyond what was agreed upon, messaging her relentlessly, and only backing off after her husband flew from Mumbai to the set in Bhopal to physically intervene. Bapat's account is the kind of experience that false cases actively undermine.
+
+## What Happens Now
+
+Shinde has said that her relationship with Kohli and the Bhabiji team has since been repaired, and she returned to the show after nearly a decade. "Our relationship is very good now," she said. Whether Kohli or the show's producers choose to pursue legal remedies remains to be seen.
+
+For the Indian entertainment industry, the episode is a reminder that workplace protections and the abuse of those protections are not separate conversations — they are the same conversation. Strengthening one requires honestly confronting the other.
+
+For NRIs watching from abroad, the story cuts particularly close. Many in the diaspora followed the original controversy in 2017 and formed opinions based on incomplete information. Shinde's confession does not undo the structural problems that make harassment common in the industry. But it does complicate the narrative — and in that complication, there may be an opportunity for more honest discourse about how India's entertainment workplace actually functions.
+
+Sources: Bollywood Hungama, MensXP, India Forums, Zoom TV, Bollywood Bubble"""
+
+    # Image sourcing
+    print("  🔍 Searching for images...")
+    candidates = []
+
+    # Wikipedia: Shilpa Shinde
+    wiki_img = fetch_wikipedia_person_image("Shilpa Shinde")
+    if wiki_img:
+        candidates.append({"url": wiki_img, "source": "wikipedia", "caption": "Shilpa Shinde, actress known for Bhabiji Ghar Par Hain", "attribution": "Wikimedia Commons"})
+
+    # Wikimedia Commons
+    commons = fetch_wikimedia_commons_images("Shilpa Shinde actress")
+    for c in commons[:2]:
+        candidates.append({"url": c["url"], "source": "wikimedia_commons", "caption": "Shilpa Shinde at a public event", "attribution": "Wikimedia Commons"})
+
+    if not candidates:
+        commons = fetch_wikimedia_commons_images("Bhabiji Ghar Par Hain")
+        for c in commons[:2]:
+            candidates.append({"url": c["url"], "source": "wikimedia_commons", "caption": "Scene from Bhabiji Ghar Par Hain", "attribution": "Wikimedia Commons"})
+
+    # Pexels fallback
+    if not candidates:
+        pexels = fetch_pexels_image("Indian television studio microphone")
+        if pexels:
+            candidates.append({"url": pexels, "source": "pexels", "caption": "A television studio setting", "attribution": "Pexels"})
+
+    # Pick best
+    img_url = None
+    img_caption = "Shilpa Shinde, actress known for Bhabiji Ghar Par Hain"
+    img_attribution = "Wikimedia Commons"
+    if candidates:
+        best = candidates[0]
+        filename = f"{slug}.jpg"
+        uploaded = upload_to_supabase(best["url"], filename)
+        if uploaded:
+            img_url = uploaded
+            img_caption = best["caption"]
+            img_attribution = best["attribution"]
+
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attribution,
+        "is_editorial": False,
+        "sources": json.dumps(["Bollywood Hungama", "MensXP", "India Forums", "Zoom TV", "Bollywood Bubble"]),
+    }
+
+    if not img_url:
+        print("  ⚠ No image found, publishing without image")
+        article.pop("image_url")
+        article.pop("image_caption")
+        article.pop("image_attribution")
+
+    result = insert_article(article)
+    if result:
+        print(f"  ✅ Published: {headline[:60]}...")
+    return result
+
+
+# ============================================================================
+# ARTICLE 3: Priya Bapat Harassment Revelation
+# ============================================================================
+def write_priya_bapat_article():
+    print("\n📝 Article 3: Priya Bapat Workplace Harassment Revelation")
+
+    slug = "priya-bapat-co-star-harassment-kissing-scene-husband-flew-set-bhopal-nri-20260604"
+    headline = "Priya Bapat Said Her Co-Star Kept Kissing Her Beyond What the Script Required. Her Husband Flew to the Set to Make It Stop."
+    subheadline = "The Marathi actress's detailed account of on-set harassment — improvised physical contact, persistent messaging, and the intervention that finally drew a line — is sparking a necessary conversation about boundaries in Indian film."
+
+    body = """Marathi actress Priya Bapat has shared a detailed and deeply personal account of being harassed by a male co-star during the early days of her career. In a recent interview that has since gone viral, Bapat described an experience that began with unwanted physical contact during a scene and escalated into persistent off-set advances — one that was only resolved when her husband, actor Umesh Kamat, flew from Mumbai to the shoot location in Bhopal to intervene.
+
+## What Happened on Set
+
+Bapat explained that the film required a single kissing scene, which she had agreed to after discussion. The problems began during rehearsals and the shoot itself. "There were moments where the actor kept improvising in the song. And he kept kissing me," she recounted. "I didn't take a stand for myself at that point of time. Because I didn't know how to deal with this."
+
+The situation did not remain confined to the set. The actor and Bapat were staying at the same hotel, and he began messaging her repeatedly. "He kept messaging me and asking me to come. 'Let me teach you how to swim.' 'Let's go out for dinner.' 'Can I meet you for breakfast?'" she recalled. "I said, I don't want any of this. This has never happened in my life before. And it shouldn't happen ever again."
+
+## The Intervention
+
+Bapat said she would call Kamat every night from Bhopal to describe what she was experiencing. Eventually, without being asked, he booked a flight and arrived on set. "He just came on the set. And he stayed with me for three days. Just so that the actor gets some understanding. And he kind of backs off. And he kind of understands the boundaries."
+
+The approach worked. The co-star's behavior changed after Kamat's presence. Bapat noted that this remains the only such experience in her acting career. She did not name the actor involved.
+
+## Why This Account Is Different
+
+Most conversations about harassment in Indian entertainment have centered on Bollywood's biggest names and the most egregious cases — the kind that make national headlines and trigger industry-wide upheaval. Bapat's account describes something more insidious: the kind of boundary violation that happens quietly, in the gray zone between what was agreed upon and what was actually done, on sets where the power dynamics are not extreme enough to make someone walk away, but uncomfortable enough to leave a lasting mark.
+
+Her description of not knowing how to respond in the moment is especially telling. Bapat is an accomplished actress with a strong body of work in both Marathi and Hindi industries. She appeared in Munna Bhai MBBS, Lage Raho Munna Bhai, and multiple acclaimed Marathi films. If someone of her stature felt paralyzed in the moment, the experience of younger, less established actresses can only be imagined.
 
 ## The Diaspora Connection
 
-For NRI audiences, shows like Gram Chikitsalay occupy a peculiar emotional space. The village is not where most diaspora Indians live, but it is often where their families come from. The small-town doctor, the crumbling health center, the committee meeting where nothing gets decided — these are not abstract settings. They are the stories parents and grandparents tell. They are the WhatsApp photos from cousins. They are the reality that exists alongside the India of tech parks and startup unicorns.
+For NRIs, conversations about workplace culture in India often feel distant — abstractions filtered through headlines. Bapat's account is concrete, specific, and uncomfortably relatable to anyone who has navigated a professional environment where informal power structures override formal protections.
 
-Prime Video's Manish Menghani, who oversees content licensing for India, noted the shift in audience appetite: "We are seeing a growing appetite not just for authentic urban narratives, but increasingly for stories rooted in rural India as well." That is corporate language for something simpler — people want to see their whole country on screen, not just the parts that look good in a Netflix thumbnail.
+The timing of her revelation is notable. It arrives alongside Shilpa Shinde's admission that she filed a false harassment case against a producer, creating a juxtaposition that the Indian entertainment industry has long struggled to hold simultaneously — that harassment is real, pervasive, and destructive, and that the mechanisms meant to address it can also be misused. Both truths exist. Both demand attention.
 
-## What Season 2 Promises
+## What It Means
 
-The second season continues Dr. Prabhat's efforts at the PHC while introducing fresh obstacles. The writers have indicated that the tension between idealism and systemic reality will deepen — Prabhat has earned some trust in Bhathkandi, but trust does not fix a broken system. New characters, new complications, and the same fundamental question: what does it take to build something meaningful in a place the system has forgotten?
+Bapat's account is not a call for industry-wide reform or a legal complaint. It is a personal testimony shared with clarity and restraint. The fact that her resolution came not from an industry body or a legal process, but from her husband showing up on set to physically signal that boundaries existed, says something about the gap between the protections that should exist in Indian film production and the ones that actually do.
 
-TVF has built its reputation on shows that find the extraordinary in the ordinary — Kota Factory, Panchayat, Gullak. Gram Chikitsalay fits squarely in that tradition. Season 2 does not need to be louder or bigger. It just needs to be as honest as the first.
+The response on social media has been largely supportive, with many pointing out the courage it takes to speak about these experiences even without naming the person involved. The conversation it has sparked — about consent, improvisation, and the line between creative collaboration and personal violation — is one that Indian cinema has needed to have for a long time.
 
-June 23. Prime Video. Bhathkandi is still there. Dr. Prabhat is still trying."""
+Sources: Bollywood Hungama, Inshorts, Filmfare"""
 
-# Image sourcing for Gram Chikitsalay
-img3_url, img3_attr = source_image(
-    person_names=["Amol Parashar", "Vinay Pathak"],
-    topic_queries=["rural India village doctor", "Indian village healthcare"],
-    pexels_query="rural India village clinic doctor",
-    slug=slug3
-)
+    # Image sourcing
+    print("  🔍 Searching for images...")
+    candidates = []
 
-articles.append({
-    "headline": headline3,
-    "subheadline": subheadline3,
-    "body": body3,
-    "slug": slug3,
-    "category": "entertainment",
-    "vertical": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img3_url,
-    "image_caption": "Amol Parashar stars as Dr. Prabhat in TVF's Gram Chikitsalay, returning for Season 2 on Prime Video",
-    "image_attribution": img3_attr or "Wikimedia Commons",
-    "sources": json.dumps([
-        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-        {"name": "Prime Video India", "url": "https://primevideo.com"}
-    ]),
-    "is_editorial": False
-})
+    # Wikipedia: Priya Bapat
+    wiki_img = fetch_wikipedia_person_image("Priya Bapat")
+    if wiki_img:
+        candidates.append({"url": wiki_img, "source": "wikipedia", "caption": "Priya Bapat, Marathi and Hindi film actress", "attribution": "Wikimedia Commons"})
+
+    # Wikimedia Commons
+    commons = fetch_wikimedia_commons_images("Priya Bapat actress Marathi")
+    for c in commons[:2]:
+        candidates.append({"url": c["url"], "source": "wikimedia_commons", "caption": "Priya Bapat at a public event", "attribution": "Wikimedia Commons"})
+
+    if not candidates:
+        commons = fetch_wikimedia_commons_images("Marathi film actress")
+        for c in commons[:2]:
+            candidates.append({"url": c["url"], "source": "wikimedia_commons", "caption": "Indian film industry event", "attribution": "Wikimedia Commons"})
+
+    # Pexels fallback
+    if not candidates:
+        pexels = fetch_pexels_image("film set clapperboard cinema India")
+        if pexels:
+            candidates.append({"url": pexels, "source": "pexels", "caption": "A film production set", "attribution": "Pexels"})
+
+    # Pick best
+    img_url = None
+    img_caption = "Priya Bapat, Marathi and Hindi film actress"
+    img_attribution = "Wikimedia Commons"
+    if candidates:
+        best = candidates[0]
+        filename = f"{slug}.jpg"
+        uploaded = upload_to_supabase(best["url"], filename)
+        if uploaded:
+            img_url = uploaded
+            img_caption = best["caption"]
+            img_attribution = best["attribution"]
+
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attribution,
+        "is_editorial": False,
+        "sources": json.dumps(["Bollywood Hungama", "Inshorts", "Filmfare"]),
+    }
+
+    if not img_url:
+        print("  ⚠ No image found, publishing without image")
+        article.pop("image_url")
+        article.pop("image_caption")
+        article.pop("image_attribution")
+
+    result = insert_article(article)
+    if result:
+        print(f"  ✅ Published: {headline[:60]}...")
+    return result
 
 
-# ─── Publish all articles ─────────────────────────────────────────────
+# ============================================================================
+# MAIN
+# ============================================================================
+if __name__ == "__main__":
+    print("=" * 60)
+    print("THE VIDESHI — Entertainment Writer")
+    print(f"Run time: {datetime.now(timezone.utc).isoformat()}")
+    print("=" * 60)
 
-print("\n" + "="*60)
-print("PUBLISHING ARTICLES")
-print("="*60)
+    results = []
+    results.append(("Lagaan 25th Anniversary", write_lagaan_article()))
+    results.append(("Shilpa Shinde", write_shilpa_shinde_article()))
+    results.append(("Priya Bapat", write_priya_bapat_article()))
 
-success_count = 0
-for i, art in enumerate(articles):
-    print(f"\n--- Article {i+1} ---")
-    if not art.get("image_url"):
-        print("  ⚠ No image — publishing without hero image")
-        art.pop("image_url", None)
-        art.pop("image_caption", None)
-        art.pop("image_attribution", None)
-
-    art_id = insert_article(art)
-    if art_id:
-        success_count += 1
-
-print(f"\n{'='*60}")
-print(f"DONE: {success_count}/{len(articles)} articles published")
-print(f"{'='*60}")
+    print("\n" + "=" * 60)
+    print("SUMMARY")
+    for name, r in results:
+        status = "✅" if r else "❌"
+        print(f"  {status} {name}")
+    print("=" * 60)
