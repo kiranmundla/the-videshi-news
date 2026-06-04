@@ -188,7 +188,7 @@ def insert_article(article):
         return None
 
 def source_best_image(person_names, topic_terms, slug):
-    """Multi-source image sourcing: Wikipedia → Wikimedia Commons → Pexels."""
+    """Multi-source image sourcing: Wikipedia → Wikimedia Commons → Pexels. Tries multiple candidates."""
     candidates = []
 
     # Source 1: Wikipedia for person articles
@@ -201,7 +201,7 @@ def source_best_image(person_names, topic_terms, slug):
     # Source 2: Wikimedia Commons
     for term in topic_terms:
         commons = fetch_wikimedia_commons_images(term)
-        for c in commons[:2]:
+        for c in commons[:3]:
             candidates.append({"url": c["url"], "source": "wikimedia_commons", "relevance": "medium", "caption_hint": term})
         if commons:
             break
@@ -217,12 +217,18 @@ def source_best_image(person_names, topic_terms, slug):
         print("  ⚠ No image candidates found")
         return None, None, None
 
-    # Pick best: prefer wikipedia/commons over pexels
-    best = candidates[0]
-    filename = f"{slug}.jpg"
-    final_url = upload_to_supabase_storage(best["url"], filename)
-    attribution = "Wikimedia Commons" if best["source"] == "wikimedia_commons" else "Pexels"
-    return final_url, attribution, best.get("caption_hint", "")
+    # Try each candidate until one uploads successfully
+    for best in candidates:
+        filename = f"{slug}.jpg"
+        final_url = upload_to_supabase_storage(best["url"], filename)
+        if final_url:
+            attribution = "Wikimedia Commons" if best["source"] == "wikimedia_commons" else "Pexels"
+            return final_url, attribution, best.get("caption_hint", "")
+        print(f"  Trying next candidate...")
+        time.sleep(1)
+
+    print("  ⚠ All image candidates failed")
+    return None, None, None
 
 
 # ============================================================
@@ -290,7 +296,7 @@ The traditional Indian pantry — dal, sabzi, roti, rice, seasonal fruits — is
         "vertical": "culture",
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "source_urls": json.dumps([
+        "sources": json.dumps([
             "https://ajph.aphapublications.org/",
             "https://www.cnn.com/2026/06/03/health/ultraprocessed-food-scientists-fed-up/",
             "https://news-medical.net/news/20260603/Americans-view-ultraprocessed-foods-as-addictive-and-harmful.aspx"
@@ -457,7 +463,7 @@ The most likely outcome is a hold with hawkish commentary. But in a year where w
         "vertical": "economy",
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "source_urls": json.dumps([
+        "sources": json.dumps([
             "https://www.thehindubusinessline.com/money-and-banking/rbi-mpc-meet-june-2026/article69652345.ece",
             "https://www.reuters.com/world/india/indian-rupee-dips-rbi-led-relief-may-fade-without-inflow-measures-2026-06-04/",
             "https://www.outlookmoney.com/banking/rbi-likely-to-hold-repo-rate-in-june-mpc"

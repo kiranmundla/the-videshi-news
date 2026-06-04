@@ -54,9 +54,20 @@ def compress_image(img_bytes, max_width=1200, quality=80):
 
 def upload_to_supabase(img_url, filename):
     """Download image, compress, upload to Supabase storage bucket article-images."""
+    import time
     print(f"  Downloading: {img_url[:80]}...")
-    r = requests.get(img_url, headers=UA, timeout=30)
-    r.raise_for_status()
+    for attempt in range(3):
+        r = requests.get(img_url, headers=UA, timeout=30)
+        if r.status_code == 429:
+            wait = 5 * (attempt + 1)
+            print(f"  ⚠ Rate limited, waiting {wait}s...")
+            time.sleep(wait)
+            continue
+        r.raise_for_status()
+        break
+    else:
+        print("  ❌ Failed after 3 retries")
+        return None
     raw = r.content
     if len(raw) < 5000:
         print(f"  ⚠ Image too small ({len(raw)} bytes), skipping upload")
@@ -122,7 +133,7 @@ print("=" * 60)
 
 # Image: Kedarnath Temple at Dawn from Commons (beautiful, specific)
 art1_img_url = upload_to_supabase(
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Kedarnath_Temple_at_Dawn_-_OCT_2014.jpg/1200px-Kedarnath_Temple_at_Dawn_-_OCT_2014.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Kedarnath_Temple_at_Dawn_-_OCT_2014.jpg/1280px-Kedarnath_Temple_at_Dawn_-_OCT_2014.jpg",
     f"{art1_slug}.jpg",
 )
 
@@ -205,7 +216,7 @@ print("=" * 60)
 
 # Image: Agatti Island, Lakshadweep from Wikimedia Commons
 art2_img_url = upload_to_supabase(
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Agatti_Island%2C_Lakshadweep%2C_India_20160325-_DSC1718.jpg/1200px-Agatti_Island%2C_Lakshadweep%2C_India_20160325-_DSC1718.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Agatti_Island%2C_Lakshadweep%2C_India_20160325-_DSC1718.jpg/1280px-Agatti_Island%2C_Lakshadweep%2C_India_20160325-_DSC1718.jpg",
     f"{art2_slug}.jpg",
 )
 
