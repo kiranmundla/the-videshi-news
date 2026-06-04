@@ -251,6 +251,7 @@ For a community that is disproportionately affected by diabetes, heart disease, 
         "image_url": image_url,
         "image_caption": image_caption,
         "image_attribution": image_attribution,
+        "vertical": "culture",
         "is_editorial": False,
         "sources": json.dumps([
             {"name": "Depression and Anxiety (journal)", "url": "https://onlinelibrary.wiley.com/journal/15206394"},
@@ -366,6 +367,7 @@ For NRI investors, business owners, and families with a foot in both economies, 
         "image_url": image_url,
         "image_caption": image_caption,
         "image_attribution": image_attribution,
+        "vertical": "economy",
         "is_editorial": False,
         "sources": json.dumps([
             {"name": "The Indian EYE", "url": "https://theindianeye.com"},
@@ -461,6 +463,7 @@ For now, the immediate impact is on patients with recurrent *C. difficile* — a
         "image_url": image_url,
         "image_caption": image_caption,
         "image_attribution": image_attribution,
+        "vertical": "culture",
         "is_editorial": False,
         "sources": json.dumps([
             {"name": "Nature Medicine", "url": "https://nature.com/nm"},
