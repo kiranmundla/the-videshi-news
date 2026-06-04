@@ -1,70 +1,81 @@
 #!/usr/bin/env python3
-"""
-The Videshi — News Writer
-Generates 3 news articles, sources images, inserts to Supabase.
-"""
-import os, json, requests, urllib.parse, time, sys
-from datetime import datetime, timezone
-from PIL import Image
-import io, subprocess
+"""News writer for The Videshi — June 4, 2026 batch"""
 
-# === ENV ===
+import json, os, sys, uuid, requests, io, time, subprocess
+from datetime import datetime, timezone
+from urllib.parse import quote
+
+# Load env
 def load_env(path):
     if os.path.exists(path):
         with open(path) as f:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
+                    if line.startswith('export '):
+                        line = line[7:]
                     k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip())
+                    v = v.strip().strip('"').strip("'")
+                    os.environ[k] = v
 
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
+load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SB_URL = os.environ['SUPABASE_URL']
-SB_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+SB_URL = os.environ.get('SUPABASE_URL', '')
+SB_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-SB_HEADERS = {
-    'apikey': SB_KEY,
-    'Authorization': f'Bearer {SB_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+HEADERS = {
+    "apikey": SB_KEY,
+    "Authorization": f"Bearer {SB_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
 }
 
-UA = 'TheVideshi/1.0 (thevideshi.com)'
+UA = "TheVideshi/1.0 (thevideshi.com)"
 
-# === IMAGE SOURCING ===
+# ---- Image sourcing functions ----
 
 def fetch_wikipedia_person_image(person_name):
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    """Fetch a person's actual photo from Wikipedia."""
+    encoded = quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": UA}, timeout=10
+            headers={"User-Agent": UA},
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
-            # Use thumbnail as-is (330px, always works) for the image_url
-            img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
+    """Search Wikimedia Commons for CC-licensed images."""
     params = {
-        "action": "query", "generator": "search",
-        "gsrsearch": search_query, "gsrnamespace": "6", "gsrlimit": str(limit),
-        "prop": "imageinfo", "iiprop": "url|size|mime", "iiurlwidth": "1200",
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": search_query,
+        "gsrnamespace": "6",
+        "gsrlimit": str(limit),
+        "prop": "imageinfo",
+        "iiprop": "url|size|mime",
+        "iiurlwidth": "1200",
         "format": "json"
     }
     try:
-        r = requests.get("https://commons.wikimedia.org/w/api.php",
-                         params=params, headers={"User-Agent": UA}, timeout=15)
+        r = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params=params,
+            headers={"User-Agent": UA},
+            timeout=15
+        )
         if r.status_code == 200:
             data = r.json()
             pages = data.get("query", {}).get("pages", {})
@@ -76,357 +87,388 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
                     continue
                 if ii.get("width", 0) < 300:
                     continue
-                url = ii.get("thumburl") or ii.get("url", "")
-                results.append({"url": url, "title": page.get("title", "")})
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "original_url": ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0),
+                    "height": ii.get("height", 0)
+                })
             if results:
                 print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error: {e}")
+        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
     return []
 
 
 def fetch_pexels_image(query):
-    if not PEXELS_KEY:
-        return None
+    """Fetch an image from Pexels using curl (urllib gets 403)."""
     try:
         result = subprocess.run(
-            ['curl', '-sS', f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3',
-             '-H', f'Authorization: {PEXELS_KEY}'],
+            ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+             f"https://api.pexels.com/v1/search?query={quote(query)}&per_page=3&orientation=landscape"],
             capture_output=True, text=True, timeout=15
         )
-        data = json.loads(result.stdout)
-        for p in data.get('photos', []):
-            url = p.get('src', {}).get('large2x') or p.get('src', {}).get('large')
-            if url:
-                print(f"  ✓ Pexels image for '{query}': {url[:80]}...")
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            if photos:
+                url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
                 return url
     except Exception as e:
-        print(f"  ⚠ Pexels error: {e}")
+        print(f"  ⚠ Pexels error for '{query}': {e}")
     return None
 
 
-def validate_image_url(url):
-    """Check the URL returns an image > 5KB."""
+def compress_image(img_bytes, max_width=1200, quality=80):
+    """Resize and compress image. Returns JPEG bytes."""
+    from PIL import Image
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    return buf.getvalue()
+
+
+def download_image(url):
+    """Download image bytes from URL."""
     try:
-        r = requests.head(url, headers={"User-Agent": UA}, timeout=10, allow_redirects=True)
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', '0'))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
-            print(f"  ✓ Image validated: {cl//1024}KB, {ct}")
-            return True
-        # Some servers don't support HEAD, try GET
-        if r.status_code >= 400:
-            r2 = requests.get(url, headers={"User-Agent": UA}, timeout=10, stream=True)
-            if r2.status_code == 200:
-                ct2 = r2.headers.get('Content-Type', '')
-                if 'image' in ct2:
-                    print(f"  ✓ Image validated via GET: {ct2}")
-                    return True
+        r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
+        if r.status_code == 200 and r.headers.get('Content-Type', '').startswith('image'):
+            if len(r.content) > 5000:
+                return r.content
+            else:
+                print(f"  ⚠ Image too small: {len(r.content)} bytes")
+        else:
+            print(f"  ⚠ Image download failed: HTTP {r.status_code}")
     except Exception as e:
-        print(f"  ⚠ Validation error: {e}")
-    return False
+        print(f"  ⚠ Image download error: {e}")
+    return None
 
 
-def source_image(person_name=None, topic_queries=None, pexels_query=None):
-    """Multi-source image sourcing. Returns (url, attribution) or (None, None)."""
+def upload_to_supabase(img_bytes, filename):
+    """Upload image to Supabase storage bucket 'article-images'."""
+    url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
+    headers = {
+        "Authorization": f"Bearer {SB_KEY}",
+        "Content-Type": "image/jpeg",
+        "x-upsert": "true"
+    }
+    try:
+        r = requests.post(url, headers=headers, data=img_bytes, timeout=30)
+        if r.status_code in (200, 201):
+            public_url = f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {filename}")
+            return public_url
+        else:
+            print(f"  ⚠ Supabase upload failed: {r.status_code} {r.text[:200]}")
+    except Exception as e:
+        print(f"  ⚠ Supabase upload error: {e}")
+    return None
+
+
+def source_image(person_names, wiki_queries, pexels_query, slug):
+    """Multi-source image search: Wikipedia person → Wikimedia Commons → Pexels."""
     candidates = []
-
-    # Source 1: Wikipedia
-    if person_name:
-        wiki_img = fetch_wikipedia_person_image(person_name)
-        if wiki_img:
-            candidates.append({"url": wiki_img, "source": "wikipedia", "priority": 3})
-
+    
+    # Source 1: Wikipedia person images
+    for name in person_names:
+        url = fetch_wikipedia_person_image(name)
+        if url:
+            candidates.append({"url": url, "source": "wikipedia", "desc": f"Photo of {name}"})
+            break
+    
     # Source 2: Wikimedia Commons
-    if topic_queries:
-        for tq in topic_queries:
-            commons = fetch_wikimedia_commons_images(tq)
-            for r in commons[:2]:
-                candidates.append({"url": r["url"], "source": "wikimedia_commons", "priority": 2})
-            if commons:
-                break
-
+    for q in wiki_queries:
+        results = fetch_wikimedia_commons_images(q)
+        for r in results[:2]:
+            candidates.append({"url": r["url"], "source": "wikimedia_commons", "desc": r["title"]})
+        if results:
+            break
+    
     # Source 3: Pexels
     if pexels_query:
-        pex = fetch_pexels_image(pexels_query)
-        if pex:
-            candidates.append({"url": pex, "source": "pexels", "priority": 1})
-
-    candidates.sort(key=lambda x: x["priority"], reverse=True)
-    for c in candidates:
-        if validate_image_url(c["url"]):
-            attr = "Wikimedia Commons" if c["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
-            return c["url"], attr
-
+        url = fetch_pexels_image(pexels_query)
+        if url:
+            candidates.append({"url": url, "source": "pexels", "desc": pexels_query})
+    
+    # Pick best: Wikipedia > Wikimedia Commons > Pexels
+    for cand in candidates:
+        raw = download_image(cand["url"])
+        if raw:
+            compressed = compress_image(raw)
+            if len(compressed) > 5000:
+                filename = f"{slug}.jpg"
+                public_url = upload_to_supabase(compressed, filename)
+                if public_url:
+                    attribution = "Wikimedia Commons" if cand["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
+                    return public_url, attribution
+    
+    print("  ⚠ No valid image found from any source")
     return None, None
 
 
 def insert_article(article):
-    r = requests.post(
-        f"{SB_URL}/rest/v1/p2_articles",
-        headers=SB_HEADERS, json=article, timeout=30
-    )
+    """Insert article into Supabase."""
+    url = f"{SB_URL}/rest/v1/p2_articles"
+    r = requests.post(url, headers=HEADERS, json=article, timeout=30)
     if r.status_code in (200, 201):
         data = r.json()
-        art_id = data[0]['id'] if isinstance(data, list) and data else 'unknown'
-        print(f"  ✓ Published: {article['headline'][:60]}... (id={art_id})")
+        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
+        print(f"  ✓ Article inserted: {article['slug']} (id: {art_id})")
         return art_id
     else:
         print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
         return None
 
 
-# === ARTICLES ===
+# ---- ARTICLES ----
 
-def article_modi_tour():
-    print("\n=== Article 1: Modi's Five-Nation Tour ===")
+articles = []
+now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+# ========== ARTICLE 1: India-Oman CEPA ==========
+print("\n=== ARTICLE 1: India-Oman CEPA ===")
+
+art1_slug = "india-oman-cepa-trade-pact-hormuz-bypass-gulf-gateway-20260604"
+art1_headline = "India's New Trade Pact With Oman Bypasses the Strait of Hormuz. That May Matter More Than the Tariff Cuts."
+art1_subheadline = "The India-Oman CEPA grants duty-free access to 99% of Indian exports — but the agreement's real strategic value lies in Oman's coastline, which sits outside the world's most dangerous chokepoint."
+
+art1_body = """The India-Oman Comprehensive Economic Partnership Agreement came into force on June 1, 2026, and the headline numbers are impressive enough. Oman has granted duty-free access across 98% of its tariff lines, covering 99.38% of Indian exports by value. That is a leap from the previous arrangement, under which only about 15% of Indian goods entered Oman at zero duty.
+
+But reduce this to pure trade economics and you miss the point. India's bilateral trade with Oman — $4 billion in exports, $7.16 billion in imports in FY26 — is a rounding error next to its commerce with the UAE or Saudi Arabia. Oman's GDP of $110 billion and population of 5.5 million make it a modest market. The Global Trade Research Initiative, a Delhi-based think tank, said as much: the direct trade gains will remain limited.
+
+## Why Oman Is Not Just Another Gulf Market
+
+The strategic calculation is geographic. Unlike every other Gulf Cooperation Council member, most of Oman's coastline lies outside the Strait of Hormuz. Its major ports — Salalah, Duqm, and Sohar — face the Arabian Sea and the Indian Ocean directly. They do not depend on passage through the narrow waterway that Iran has repeatedly threatened and that has been functionally disrupted since the U.S.-Israeli strikes began in late February.
+
+The data makes the case. India's imports from major Gulf economies collapsed from $15 billion in April 2025 to $9.8 billion in April 2026 as the Hormuz crisis choked trade flows. Exports to the region fell from $4.4 billion to $2.7 billion over the same period.
+
+Oman was the outlier. India's imports from Oman surged 246% year-on-year, driven almost entirely by crude oil and urea purchases rerouted away from Hormuz-dependent suppliers. India's exports to Oman declined by only 10.3% — a fraction of the regional average.
+
+"As a result, Oman can continue serving as a reliable trade and energy gateway during periods of conflict or instability in the Gulf," said Ajay Srivastava, founder of GTRI. "The ongoing Gulf conflict has clearly demonstrated this advantage."
+
+## What the Diaspora Gains
+
+Nearly seven lakh Indians live and work in Oman, making the Indian community one of the largest expatriate groups in the sultanate. The CEPA includes provisions that go beyond goods, covering services, investment, and professional mobility.
+
+Indian professionals in healthcare, architecture, taxation, and accountancy will benefit from streamlined entry and work provisions. Indian companies gain 100% foreign direct investment access in several key services sectors. A fast-track pharmaceutical approval mechanism allows drugs already cleared by the USFDA, the European Medicines Agency, or the UK's MHRA to receive accelerated regulatory clearance in Oman.
+
+Commerce Minister Piyush Goyal described Oman as "more than a market" — a gateway to the wider GCC, East Africa, and the Indian Ocean economy. "As we speak, more than 10 consignments are being shipped availing preferential duty access in Oman from different parts of India," he said at the CEPA launch ceremony.
+
+## The Sectors That Stand to Gain
+
+The immediate beneficiaries are India's labour-intensive export sectors. Oman has eliminated its 5% MFN duty across all 945 textile and apparel tariff lines. Gems and jewellery, leather, footwear, pharmaceuticals, engineering goods, processed foods, and marine products all gain preferential access.
+
+India's textile exports to Oman stood at $95.1 million in FY26 against Oman's total textile imports of $598 million, leaving substantial room for market share growth. The handicrafts sector benefits similarly, with immediate zero-duty access replacing the previous 5% levy.
+
+Oman has also committed to lifting a decades-old ban on exporting unpolished marble, which will allow craftsmen in Rajasthan and Andhra Pradesh to source raw material directly — a niche but significant concession that reflects the agreement's attention to artisan industries.
+
+## The Bigger Picture
+
+The CEPA is part of a broader acceleration in India's trade diplomacy. New Delhi signed a landmark free trade agreement with the European Union in January 2026 and is now in what both sides describe as the final stages of a bilateral trade agreement with the United States.
+
+But the Oman pact stands apart because it serves a dual purpose that no other recent agreement matches. It is simultaneously a conventional trade deal — expanding market access, reducing tariffs, opening services — and a strategic hedge against the single largest vulnerability in India's energy supply chain: the Strait of Hormuz.
+
+The agreement was signed in Muscat in December 2025, in the presence of Prime Minister Modi and Sultan Haitham bin Tarik. At the time, the Hormuz crisis was already underway but not yet at its current intensity. Four months later, with the strait still largely closed, the timing looks less like foresight and more like necessity.
+
+*Sources: Reuters, The Hindu BusinessLine, DevDiscourse, Global Trade Research Initiative, Ministry of Commerce and Industry*"""
+
+img1_url, img1_attr = source_image(
+    person_names=["Piyush Goyal"],
+    wiki_queries=["Oman port Muscat trade", "Port of Salalah Oman"],
+    pexels_query="Oman port shipping trade",
+    slug=art1_slug
+)
+
+articles.append({
+    "headline": art1_headline,
+    "subheadline": art1_subheadline,
+    "body": art1_body,
+    "slug": art1_slug,
+    "category": "news",
+    "vertical": "news",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": now,
+    "sources": json.dumps(["Reuters", "The Hindu BusinessLine", "DevDiscourse", "GTRI"]),
+    "image_url": img1_url,
+    "image_caption": "The Port of Salalah in Oman, located outside the Strait of Hormuz on the Arabian Sea coastline",
+    "image_attribution": img1_attr or "Wikimedia Commons"
+})
+
+
+# ========== ARTICLE 2: Clean Energy Grid Rules ==========
+print("\n=== ARTICLE 2: Clean Energy Grid Rules ===")
+
+art2_slug = "india-clean-energy-grid-rules-kkr-cppib-actis-investor-alarm-20260604"
+art2_headline = "India's New Grid Rules Could Cut Solar Revenues by 11% and Wind by 48%. The Investors Are Already Walking."
+art2_subheadline = "KKR, Canada Pension Plan, Actis, and Macquarie-backed Blueleaf have warned Indian officials that tighter power grid penalties are advancing faster than the infrastructure to support them."
+
+art2_body = """India's renewable energy sector is facing a regulatory collision. Tougher grid discipline rules, set to take full effect in April 2027, will sharply increase penalties when solar and wind producers fail to deliver electricity matching their commitments — and the investors who have poured billions into the sector say the country is not ready for them.
+
+Industry groups estimate the revised framework could cut revenue by approximately 11% for solar projects and as much as 48% for wind farms, according to investor presentations and documents reviewed by Reuters. The potential impact has turned what was a technical regulatory dispute into a full-blown investor confidence crisis.
+
+## Who Raised the Alarm
+
+The scale of concern became clear in April, when a group of major foreign investors met with Indian officials to deliver a blunt warning. KKR, Canada Pension Plan Investment Board, and Actis — three of the largest institutional investors in India's clean energy sector — raised concerns about lower returns, policy unpredictability, and financial stress from the tighter rules, according to five industry sources familiar with the discussions.
+
+Their core argument: regulatory tightening is advancing faster than improvements in transmission infrastructure and battery storage capacity. The grid itself cannot absorb what the new rules demand.
+
+Blueleaf Energy, a clean energy producer backed by Australia's Macquarie Asset Management, put the tension in practical terms. "The market has not yet developed for generators to be that accurate," said Pratyush Thakur, Blueleaf's India country head. The company plans to deploy about $3 billion in India, including $1 billion in equity over the next three years, but now expects grid-related constraints to delay that equity deployment by two to three additional years.
+
+## What the Rules Actually Do
+
+Under the revised framework, penalties escalate based on the gap between scheduled and actual power supplied to the grid. Solar and wind generators are inherently variable — output depends on weather conditions that cannot be perfectly predicted. The current penalty regime accommodates that variability. The new rules tighten the tolerance bands significantly.
+
+"Developers will face very high penalties even when deviations are small. This tightens margins, revenues will shrink and project viability will be affected," said Debabrat Ghosh, India head at Aurora Energy Research.
+
+The federal power regulator has defended the tighter framework as essential for grid stability. As renewable capacity expands — India had 288 GW of non-fossil fuel capacity as of March, with wind and solar accounting for 73% — the grid faces increasing challenges managing intermittent supply. In the first quarter of 2026 alone, curtailments due to grid and transmission constraints reached 300 GWh, representing two-thirds of total curtailments in the period, according to climate think tank Ember.
+
+## The Infrastructure Gap
+
+Developers say India lacks several tools needed to meet the tighter standards. Weather forecasts are typically updated only a few times daily, compared with near-real-time forecasting in European power markets. Battery storage remains limited. Transmission infrastructure has not kept pace with the renewable capacity buildout.
+
+Industry groups have appealed directly to the Prime Minister's Office for relief, according to two sources. The Ministry of New and Renewable Energy has held discussions with industry groups and appears open to easing implementation of the rules.
+
+But the Ministry of Power, the Central Electricity Authority, and Grid India — the country's grid operator — have maintained that stricter enforcement is necessary to prevent grid instability. None responded to Reuters' requests for comment.
+
+## Why It Matters for India's Climate Targets
+
+India has committed to installing 500 GW of non-fossil fuel capacity by 2030. Reaching that target from the current 288 GW requires sustained annual additions of roughly 50 GW — a pace that demands billions of dollars in foreign capital flowing steadily into the sector.
+
+The risk is straightforward: if the regulatory environment makes renewable investments less attractive relative to other markets, capital will redirect elsewhere. India is competing for the same pool of institutional clean energy investment as Southeast Asia, the Middle East, and Latin America.
+
+Actis said India remained one of its preferred investment destinations. KKR and Canada Pension Plan Investment Board did not respond to Reuters' requests for comment. But the very fact that these investors felt compelled to raise concerns directly with government officials — rather than simply adjusting their portfolios quietly — signals the severity of their alarm.
+
+The clean energy ministry's willingness to engage suggests the government recognises the tension. The question is whether the easing comes quickly enough to prevent commitments from being deferred — or quietly redirected to markets where the rules of the game are not changing mid-play.
+
+*Sources: Reuters, OilPrice.com, Ember, The Hindu BusinessLine*"""
+
+img2_url, img2_attr = source_image(
+    person_names=[],
+    wiki_queries=["India solar energy farm renewable", "solar panels India"],
+    pexels_query="solar energy farm India",
+    slug=art2_slug
+)
+
+articles.append({
+    "headline": art2_headline,
+    "subheadline": art2_subheadline,
+    "body": art2_body,
+    "slug": art2_slug,
+    "category": "news",
+    "vertical": "news",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": now,
+    "sources": json.dumps(["Reuters", "OilPrice.com", "Ember", "The Hindu BusinessLine"]),
+    "image_url": img2_url,
+    "image_caption": "A solar energy installation in India, part of the country's push toward 500 GW of non-fossil fuel capacity by 2030",
+    "image_attribution": img2_attr or "Pexels"
+})
+
+
+# ========== ARTICLE 3: Rubio Testimony - India in US Foreign Policy ==========
+print("\n=== ARTICLE 3: Rubio Testimony — India in US Foreign Policy ===")
+
+art3_slug = "rubio-congress-testimony-india-central-us-foreign-policy-quad-trade-20260604"
+art3_headline = "Rubio Told Congress That India Is Central to American Foreign Policy. He Was Not Exaggerating."
+art3_subheadline = "In a marathon Congressional testimony, the Secretary of State cited India more than any other partner — on trade, the Quad, de-escalation with Pakistan, and the Indo-Pacific strategy that now anchors Washington's Asia doctrine."
+
+art3_body = """Secretary of State Marco Rubio appeared before the House Foreign Affairs Committee on Wednesday to defend the State Department's Fiscal Year 2027 budget. The hearing was combative, interrupted by partisan clashes over Iran, Trump's financial dealings, and the appointment of loyalists to national security posts. But buried in the noise was a signal that mattered more than the fireworks: Rubio cited India more often than any other country when listing what he called the administration's diplomatic achievements.
+
+The testimony was not a courtesy mention. It was a strategic positioning of India at the centre of the Trump administration's foreign policy architecture — across trade, defence, multilateral frameworks, and regional crisis management.
+
+## The Trade Deal
+
+The most immediate takeaway for New Delhi was Rubio's disclosure that the U.S.-India bilateral trade agreement is now weeks away from conclusion.
+
+"The hopes that we can wrap up the negotiations on our trade agreement, which we think were a few weeks away from being able to conclude," Rubio told lawmakers, responding to questions from Rep. Bill Huizenga about his recent India visit. "Both sides want to see it done."
+
+India's Commerce Minister Piyush Goyal offered a parallel confirmation on Thursday, announcing that an American trade delegation would travel to India next month for critical bilateral discussions. "There is some plan for them to come next month," Goyal said, clarifying that the delegation would be separate from Rubio's own diplomatic schedule.
+
+India's Ambassador to the U.S., Sergio Gor, expressed confidence that the deal would be finalised in the "coming weeks and months," drawing a pointed comparison with the EU-India trade agreement that took nearly 19 years to close.
+
+## The Quad and Indo-Pacific
+
+Rubio used his testimony to elevate the Quad — the grouping of India, the United States, Japan, and Australia — as a cornerstone of the administration's Indo-Pacific strategy.
+
+"The Quad, an important alliance in the Indo-Pacific between India, Japan, Australia — we've had multiple meetings of that group, including a meeting just last week in India and a follow-up that's going to occur later this year, including a leaders' meeting before the end of the year," Rubio told the committee.
+
+The framing was deliberate. At a moment when the administration faces Congressional scrutiny over its handling of the Iran conflict and its commitment to Ukraine, Rubio positioned the Indo-Pacific — and India specifically — as the arena where American diplomacy is producing tangible results without military escalation.
+
+## India-Pakistan De-escalation
+
+Rubio opened his testimony by listing the State Department's recent achievements. The first item on his list was not Iran, not Ukraine, not China. It was India and Pakistan.
+
+"India and Pakistan were on the verge of an all-out war. The State Department and I personally were involved in de-escalating that conflict and bringing it to an end — a war between two nuclear powers," Rubio said.
+
+The reference was brief and offered no operational details, but its placement at the top of the administration's diplomatic achievements list was notable. It suggests the White House views the India-Pakistan de-escalation as one of its strongest foreign policy credentials — and one it is prepared to cite in domestic political arguments.
+
+## What This Means for the Diaspora
+
+For the estimated 4.4 million Indian Americans, the Congressional hearing carried a practical message: India's centrality in Washington's strategic calculations translates into sustained policy attention on issues that directly affect the diaspora — trade facilitation, visa regimes, defence cooperation, and the diplomatic bandwidth allocated to India-related concerns.
+
+The trade deal, if concluded as Rubio suggested, would reshape the tariff landscape for goods flowing between the two countries. It would also provide a framework for addressing long-standing irritants, including market access restrictions, intellectual property disputes, and agricultural trade barriers that have festered through multiple administrations.
+
+The Quad elevation matters differently. It locks India into a multilateral security architecture that both parties have an interest in maintaining, reducing the risk that India becomes collateral damage in Washington's other geopolitical confrontations — whether with China over Taiwan or with Iran over the strait.
+
+## The Hearing's Other Moments
+
+The India content competed for attention with sharp exchanges over the administration's conduct of the Iran war, the appointment of Bill Pulte as acting Director of National Intelligence, and accusations by Rep. Ted Lieu that Trump had fallen asleep during meetings.
+
+Rubio grew visibly frustrated with the partisan tone. "Is this the Foreign Affairs Committee, or is this like a circus? What is this?" he asked at one point. He defended Trump's work ethic by saying the president "literally doesn't sleep" and "works day and night."
+
+But the substantive content of the testimony — the items Rubio chose to lead with, the countries he cited as evidence of success — told a clearer story than the confrontations. India was not mentioned as a challenge, a problem, or a complication. It was mentioned as a partnership that is delivering results. In a hearing where almost everything else was contested, that positioning was not accidental.
+
+*Sources: U.S. Department of State, IANS, The Indian EYE, Fox News, Washington Examiner*"""
+
+img3_url, img3_attr = source_image(
+    person_names=["Marco Rubio"],
+    wiki_queries=["Marco Rubio Secretary of State", "US India diplomacy"],
+    pexels_query="US Congress hearing diplomacy",
+    slug=art3_slug
+)
+
+articles.append({
+    "headline": art3_headline,
+    "subheadline": art3_subheadline,
+    "body": art3_body,
+    "slug": art3_slug,
+    "category": "news",
+    "vertical": "news",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": now,
+    "sources": json.dumps(["U.S. Department of State", "IANS", "The Indian EYE", "Fox News", "Washington Examiner"]),
+    "image_url": img3_url,
+    "image_caption": "U.S. Secretary of State Marco Rubio, who cited India as central to American foreign policy during Congressional testimony",
+    "image_attribution": img3_attr or "Wikimedia Commons"
+})
+
+
+# ---- Insert all articles ----
+print("\n=== INSERTING ARTICLES ===")
+for art in articles:
+    if not art.get("image_url"):
+        print(f"  ⚠ Skipping image for {art['slug']} — no valid image found")
+        del art["image_caption"]
+        del art["image_attribution"]
+        art.pop("image_url", None)
     
-    slug = "modi-five-nation-tour-uae-europe-energy-diplomacy-iran-crisis-20260604"
-    headline = "Modi's Five-Nation Tour Is Not Ceremonial Diplomacy. It Is a Supply-Chain Emergency."
-    subheadline = "With Hormuz choked, crude at $97 and the rupee near record lows, India's prime minister is racing through the UAE and four European capitals to lock down energy, tech and trade alternatives."
-    
-    body = """India imports more than 80 per cent of its crude oil. When the Strait of Hormuz — the corridor through which a fifth of the world's oil and gas once flowed freely — is contested and partially closed, that is not a foreign policy problem for New Delhi. It is an economic emergency.
-
-Prime Minister Narendra Modi's five-country diplomatic tour this week — spanning the United Arab Emirates, the Netherlands, Sweden, Norway and Italy — is the clearest sign yet that India's leadership sees the Iran war not as a distant conflict but as a direct threat to the country's growth, inflation trajectory and fiscal stability. The tour comes as Brent crude sits near $97 a barrel, the rupee trades at 95.75 per dollar after touching a record low of 96.96 in mid-May, and the Reserve Bank of India prepares for one of its most consequential policy decisions on Friday.
-
-## The Gulf First
-
-Modi's stop in the UAE carried the most strategic weight. India and the UAE signed several defence and strategic cooperation agreements in the presence of UAE President Sheikh Mohamed bin Zayed Al Nahyan. Modi publicly condemned the Iranian attacks on the UAE and praised Abu Dhabi's "restraint, courage, and wisdom" during the regional crisis.
-
-The relationship now stretches well beyond oil supply. India maintains strategic petroleum reserves in the UAE, has renewable energy co-investments, and operates logistics and port infrastructure through Indian companies. The UAE has steadily become one of India's most dependable energy partners — and in the current environment, dependability is the commodity in shortest supply.
-
-For the roughly 3.5 million Indians living in Gulf states, the visit also carried an implicit message of diplomatic protection. The killing of an Indian national in the Iranian drone strike on Kuwait's airport on Tuesday night made that concern visceral. India's Ministry of External Affairs confirmed the death and said it was in contact with Kuwaiti authorities.
-
-## The European Pivot
-
-If the UAE leg was about securing existing energy lines, the European segment is about building new ones. In Sweden, Modi addressed a CEO roundtable and repeatedly highlighted global supply-chain disruptions, technological competition and energy insecurity. The visit to Norway — a significant oil and gas producer outside OPEC — signals India's intent to diversify sourcing beyond its traditional Gulf and Russian suppliers.
-
-The Netherlands, one of Europe's largest trading partners with India, featured discussions on semiconductor supply chains, logistics, and agricultural technology. In Italy, the agenda centred on defence industrial cooperation and G7 coordination on the Middle East.
-
-India's approach reflects a strategic calculation that the Iran war has permanently altered the energy landscape. Even if a ceasefire holds and the Strait of Hormuz eventually reopens, the era of assuming free passage through the world's most critical chokepoint is over. Iran has established a toll authority — the Persian Gulf Strait Authority — that has already processed applications from 300 ships, and roughly 65 per cent of outbound laden tankers are now transiting in "dark" mode with tracking systems switched off.
-
-## What It Means for the Diaspora
-
-For the Indian diaspora, the tour matters on two levels. Energy prices feed directly into the cost of living in India, affecting remittance calculations and family budgets back home. And the diplomatic infrastructure being built through tours like this one shapes the security environment for millions of Indians working and living across the Gulf and Europe.
-
-External Affairs Minister S. Jaishankar spoke with his Iranian counterpart Abbas Araghchi this week specifically about shipping safety in the Strait of Hormuz — a conversation that underscores just how directly the war has intruded into India's daily diplomatic agenda.
-
-Modi's five-country sprint is not a victory lap. It is a scramble — methodical, calculated, but undeniably urgent — to build the economic resilience India needs to weather a crisis that shows no sign of ending soon.
-
-**Sources:** The Indian Eye, Reuters, CNN, Ministry of External Affairs"""
-
-    print("  Sourcing image...")
-    img_url, img_attr = source_image(
-        person_name="Narendra Modi",
-        topic_queries=["Modi UAE visit diplomatic", "Narendra Modi press conference"],
-        pexels_query="Indian prime minister diplomatic summit"
-    )
-
-    sources = json.dumps([
-        {"name": "The Indian Eye", "url": "https://theindianeye.com/iran-war-shock-pm-modi-takes-five-nation-outreach/"},
-        {"name": "Reuters", "url": "https://reuters.com"},
-        {"name": "CNN", "url": "https://cnn.com"},
-        {"name": "MEA India", "url": "https://www.mea.gov.in/"}
-    ])
-
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "news",
-        "vertical": "news",
-        "sources": sources,
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "is_editorial": False
-    }
-    if img_url:
-        article["image_url"] = img_url
-        article["image_caption"] = "Prime Minister Narendra Modi during his five-nation diplomatic tour"
-        article["image_attribution"] = img_attr
-    
-    return insert_article(article)
-
-
-def article_online_gaming():
-    print("\n=== Article 2: Supreme Court Online Gaming Ruling ===")
-    
-    slug = "supreme-court-online-gaming-virtual-gambling-house-dream11-gst-20260604"
-    headline = "India's Supreme Court Just Called Every Mobile Phone a 'Virtual Gambling House.' The Online Gaming Industry Is Reeling."
-    subheadline = "The court upheld state bans on online betting — even on games of skill — and backed 28% GST on the full value of bets. Dream11, MPL and 27 other companies face an existential reckoning."
-    
-    body = """The judgment landed like a controlled demolition. In a ruling formally cited as State of Tamil Nadu & Ors. v. Junglee Games India Pvt. Ltd. & Ors. (2026 INSC 594), a bench of Justice JB Pardiwala and Justice R Mahadevan did something India's online gaming industry had spent years and hundreds of crores of rupees trying to prevent. They held that states can ban betting on games of skill — and that the Constitution offers no protection for it.
-
-The observation that will define the case, and probably the industry's next decade, was this: technological developments have transformed every mobile phone into a "virtual common gambling house."
-
-## What the Court Actually Held
-
-The legal architecture is important. Tamil Nadu and Karnataka had amended their police and gaming laws to criminalise online betting, including on skill-based games like rummy and poker. Both the Madras High Court and Karnataka courts had sided with the industry, striking down the amendments on the ground that "betting" under Entry 34 of List II could not cover games of skill.
-
-The Supreme Court reversed those findings entirely. It held that staking money on the uncertain outcome of any game — regardless of the skill involved in playing it — amounts to "betting" within the meaning of Entry 34. Playing a game of skill is protected commercial activity under Article 19(1)(g), the bench held. But wagering on its outcome is *res extra commercium* — outside the domain of protected trade — and therefore subject to state prohibition.
-
-The distinction is surgical and devastating. You can play rummy. You cannot bet on rummy. And any platform that facilitates the bet is now operating in a space where states have full legislative authority to shut it down.
-
-## The GST Hammer
-
-In a related but separate blow, the court also upheld the 28% GST levy on the full face value of deposits made on gaming platforms. This was not on the platform's commission or service fee alone — it was on the entire amount a user stakes.
-
-The ruling covers retrospective demands as well. For companies like Dream11, Games24x7, and Mobile Premier League, this means past tax liabilities that could run into thousands of crores are now enforceable. The industry had argued that taxing the full bet value, rather than just the platform fee, was discriminatory and unconstitutional. The court disagreed.
-
-## Public Health, Not Just Regulation
-
-What makes this ruling particularly potent is its framing. The court did not treat online gaming as a narrow regulatory matter. It classified it as a public health and public order concern. The bench observed that online money gaming has "a definite impact on the public in terms of addiction, financial losses and resultant suicides."
-
-By linking online betting to Entry 1 of List II — "public order" — rather than just Entry 34, the court opened additional legislative pathways for both states and the central government. Public order, the bench held, includes not just violence or disorder but also "activities that impair public health, create widespread fear or panic, disrupt ordinary life or cause social and economic instability."
-
-This came months after Parliament passed the Promotion and Regulation of Online Gaming Act in 2025, which imposed a nationwide prohibition on real-money games and related advertising. Several platforms, including Dream11 and MPL, had already suspended their wagering features in response. The Supreme Court's ruling now makes a successful constitutional challenge to that central legislation considerably harder.
-
-## What Happens Next
-
-More than 27 online gaming companies are directly affected. The industry, valued at billions of dollars before the regulatory crackdown began, faces a fundamental question: can it survive as a business if users cannot stake real money?
-
-For the diaspora, the implications extend to investment. Several NRI-backed venture funds had significant exposure to India's online gaming sector, which had been one of the fastest-growing segments of the country's startup ecosystem. Those bets — financial and strategic — now look very different.
-
-The court's observation about virtual gambling houses will likely echo far beyond India. Regulators in Southeast Asia, Africa, and Latin America have been watching India's approach to online gaming closely. What India's highest court has now said is that the smartphone in your pocket is not just a device. In the wrong hands, at the wrong stakes, it is a casino.
-
-**Sources:** LiveLaw, The Indian Eye, Asia Gaming Brief, Supreme Court Observer"""
-
-    print("  Sourcing image...")
-    img_url, img_attr = source_image(
-        person_name=None,
-        topic_queries=["Supreme Court India building New Delhi", "Supreme Court of India exterior"],
-        pexels_query="supreme court building India"
-    )
-
-    sources = json.dumps([
-        {"name": "LiveLaw", "url": "https://livelaw.in"},
-        {"name": "The Indian Eye", "url": "https://theindianeye.com/supreme-court-upholds-28-gst-on-online-gaming/"},
-        {"name": "Asia Gaming Brief", "url": "https://agbrief.com"},
-        {"name": "Supreme Court Observer", "url": "https://scobserver.in"}
-    ])
-
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "news",
-        "vertical": "news",
-        "sources": sources,
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "is_editorial": False
-    }
-    if img_url:
-        article["image_url"] = img_url
-        article["image_caption"] = "The Supreme Court of India in New Delhi"
-        article["image_attribution"] = img_attr
-    
-    return insert_article(article)
-
-
-def article_drone_order():
-    print("\n=== Article 3: India's $2 Billion Drone Order ===")
-    
-    slug = "india-2-billion-military-drone-order-domestic-manufacturers-defence-20260604"
-    headline = "India Is About to Place Its Largest-Ever Military Drone Order. The $2 Billion Will Go Entirely to Domestic Firms."
-    subheadline = "Lessons from the Pakistan confrontation and the Iran war have fast-tracked India's biggest unmanned systems purchase. Deliveries are expected within 18 to 24 months."
-    
-    body = """India is preparing to order more than $2 billion worth of military drones from domestic manufacturers this year, in what would be the country's largest-ever procurement of unmanned aerial systems. The plans are in advanced stages and deliveries are expected over 18 to 24 months, according to Smit Shah, president of the Drone Federation of India.
-
-The order is expected to move through a fast-track procurement route, reflecting the urgency with which India's defence establishment has reassessed its drone capabilities following two recent conflicts that demonstrated their strategic value on an industrial scale.
-
-## The Lessons That Forced the Pivot
-
-The confrontation with Pakistan in May 2025 — Operation Sindoor — was the immediate catalyst. Both countries deployed unmanned aerial vehicles at a scale never before seen in a South Asian conflict. The episode exposed gaps in India's drone inventory, particularly in tactical-class systems that can be produced cheaply and deployed at volume.
-
-The ongoing Iran war reinforced the lesson on a global stage. Iranian drones have struck targets across the Gulf, including Kuwait's airport this week. The war in Ukraine before it had already demonstrated that low-cost unmanned systems can neutralise platforms costing orders of magnitude more. Military planners in New Delhi have concluded that drone warfare is no longer a niche capability — it is the baseline.
-
-"Drones are force multipliers on the modern battlefields," said Ramesh Chandra Padhi of IG Defence, a manufacturer of unmanned aerial vehicles and short-range missiles. "In the next phase, tactical drone procurements in India may exceed 200 billion rupees."
-
-## The Domestic Industrial Base
-
-The order's most significant feature is that it will go entirely to Indian companies. India now has more than 600 drone firms, many of them incubated through the government's iDEX (Innovations for Defence Excellence) programme, which funds startups developing military-grade technology.
-
-The procurement aligns with a broader defence capital allocation. In March, the Ministry of Defence approved approximately 2.38 trillion rupees for acquisitions including transport aircraft, missile systems, and armed drones. The specific drone allocation was not disclosed, but the $2 billion figure cited by the Drone Federation represents the single largest category within that envelope.
-
-The Indian Army has declared 2026 the "Year of Networking and Data Centricity," with unmanned aerial systems and counter-drone capabilities identified as key focus areas. The doctrine draws directly from Operation Sindoor, with emphasis on AI integration, real-time battlefield data, and swarm tactics that require large fleets of relatively inexpensive platforms.
-
-## Why Domestic Matters
-
-India's push to source drones domestically is not purely ideological. Global supply chains for military-grade components have been severely disrupted by the Iran war and earlier by the Ukraine conflict. Countries that depend on imported drone systems are finding deliveries delayed, prices inflated, and access to critical subsystems — particularly semiconductors and advanced sensors — constrained.
-
-By building a domestic manufacturing base, India aims to insulate its military from these disruptions. The strategy also feeds into the government's broader Aatmanirbhar Bharat initiative, which has set ambitious targets for defence exports. The Indian Army's planning documents project that data-centric defence modernisation could contribute to 50,000 crore rupees in defence exports over the next few years.
-
-The timing is also driven by the recognition that India's neighbourhood is not getting calmer. China continues to expand its military footprint along the Line of Actual Control, Pakistan's drone capabilities were demonstrated more recently than anyone in Delhi is comfortable admitting, and the Indian Ocean is increasingly a zone of great-power competition. A $2 billion drone order is an investment in the principle that the next conflict will be fought by machines as much as by soldiers — and India intends to build those machines itself.
-
-## Diaspora Dimension
-
-For the Indian diaspora, particularly those in the technology and defence sectors abroad, the order opens a new corridor. Several US and Israel-based Indian-origin entrepreneurs have stakes in drone component companies that could benefit from India's procurement surge. The iDEX programme has already attracted diaspora engineers back to India, and a $2 billion domestic order substantially raises the commercial incentive to build defence technology for the Indian market.
-
-India's defence ministry has not officially confirmed the $2 billion figure. But the Drone Federation's confidence in the number, combined with the advanced procurement stage and the strategic urgency driving it, suggests the order is not a matter of if but when.
-
-**Sources:** Reuters, Outlook Business, The Hindu BusinessLine, Drone Federation of India"""
-
-    print("  Sourcing image...")
-    img_url, img_attr = source_image(
-        person_name=None,
-        topic_queries=["Indian military drone UAV India", "India armed forces drone"],
-        pexels_query="military drone unmanned aerial vehicle"
-    )
-
-    sources = json.dumps([
-        {"name": "Reuters", "url": "https://reuters.com"},
-        {"name": "Outlook Business", "url": "https://www.outlookbusiness.com"},
-        {"name": "The Hindu BusinessLine", "url": "https://thehindubusinessline.com"},
-        {"name": "Drone Federation of India", "url": "https://dronefederationofindia.org"}
-    ])
-
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "news",
-        "vertical": "news",
-        "sources": sources,
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "is_editorial": False
-    }
-    if img_url:
-        article["image_url"] = img_url
-        article["image_caption"] = "An Indian military unmanned aerial vehicle during a defence exercise"
-        article["image_attribution"] = img_attr
-    
-    return insert_article(article)
-
-
-# === MAIN ===
-if __name__ == "__main__":
-    print(f"=== The Videshi News Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} ===")
-    
-    results = []
-    
-    for name, fn in [
-        ("Modi Five-Nation Tour", article_modi_tour),
-        ("SC Online Gaming Ruling", article_online_gaming),
-        ("India $2B Drone Order", article_drone_order),
-    ]:
-        try:
-            r = fn()
-            results.append((name, r))
-        except Exception as e:
-            print(f"  ✗ {name} failed: {e}")
-            import traceback; traceback.print_exc()
-            results.append((name, None))
-
-    print("\n=== SUMMARY ===")
-    for title, art_id in results:
-        status = f"✓ {art_id}" if art_id else "✗ FAILED"
-        print(f"  {title}: {status}")
-    
-    successful = sum(1 for _, r in results if r)
-    print(f"\n  {successful}/3 articles published.")
+    art_id = insert_article(art)
+    if art_id:
+        print(f"  ✅ Published: {art['headline'][:60]}...")
+    else:
+        print(f"  ❌ Failed: {art['headline'][:60]}...")
+    time.sleep(1)
+
+print("\n=== NEWS WRITER COMPLETE ===")
+print(f"Total articles attempted: {len(articles)}")
