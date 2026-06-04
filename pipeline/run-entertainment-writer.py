@@ -31,8 +31,10 @@ def load_env(path):
             v = v.strip().strip('"').strip("'")
             os.environ[k] = v
 
-load_env(os.path.expanduser("~/.env.supabase"))
+# Load workspace env first (has GOOGLE_PLACES_API_KEY etc.)
+# Then home env last so JWT-format keys override the shorter workspace keys
 load_env(os.path.expanduser("~/workspace/.env.supabase"))
+load_env(os.path.expanduser("~/.env.supabase"))
 load_env(os.path.expanduser("~/workspace/.env.pexels"))
 
 SB_URL = os.environ.get("SUPABASE_URL", "")
@@ -255,8 +257,7 @@ def insert_article(article):
         "vertical": "entertainment",
         "status": "published",
         "published_at": now,
-        "source": "The Videshi Editorial",
-        "sources": json.dumps(article.get("sources", [])),
+        "sources": [{"name": s, "url": ""} for s in article.get("sources", [])],
         "image_url": article.get("image_url", ""),
         "image_attribution": article.get("image_attribution", ""),
         "is_editorial": False,
