@@ -16,7 +16,7 @@ export default function ImageCaption({
   const trimmed = (caption ?? "").trim();
   // Hide caption entirely if it exceeds 8 words — never truncate.
   const wordCount = trimmed ? trimmed.split(/\s+/).length : 0;
-  const showCaption = trimmed.length > 0 && wordCount <= 8;
+  const showCaption = trimmed.length > 0 && wordCount <= 25;
 
   if (!showCaption && !credit) return null;
 

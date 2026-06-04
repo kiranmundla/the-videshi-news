@@ -575,7 +575,7 @@ export default function ArticlePage() {
 .article-prose table { overflow-x: auto; display: block; }`}</style>
             <PhotoScrollStrip
               photos={[
-                ...(article.hero_image_url ? [{ src: article.hero_image_url, caption: article.image_caption || article.image_credit || "" }] : []),
+                ...(article.hero_image_url ? [{ src: article.hero_image_url, caption: article.image_caption || article.image_attribution || "" }] : []),
                 ...article.gallery_images
                   .filter((img: { url: string }) => img.url !== article.hero_image_url)
                   .map((img: { url: string; caption: string }) => ({ src: img.url, caption: img.caption })),
@@ -590,7 +590,7 @@ export default function ArticlePage() {
           <HeroMedia
             url={article.hero_image_url}
             alt={article.title}
-            credit={article.image_credit ?? null}
+            credit={article.image_attribution ?? null}
             caption={article.image_caption ?? null}
             category={article.category}
           />
