@@ -78,13 +78,15 @@ Check `~/workspace/the-videshi-news/pipeline/social-embed-registry.json` for ver
 
 ## Rules
 
-1. **Only embed REAL posts** — verify the URL exists. Never fabricate a URL.
-2. **Prefer posts with photos/videos** — they add visual value.
-3. **Use the official account** — not fan pages or reshares.
-4. **Recent posts only** — within 7 days for news, 30 days for features.
-5. **Place the URL on its own line** — not inline with other text.
-6. **Add context before the embed** — one sentence explaining what it shows.
-7. **The embed is supplementary** — the article stands on its own without it.
+1. **NEVER fabricate a URL.** Do NOT guess or construct tweet/post IDs. If you cannot find a real, verified post URL via web search, DO NOT include an embed. A missing embed is fine. A fake URL shows "Tweet not found" to readers and damages credibility.
+2. **Verify every URL exists** — search for it (e.g. `site:x.com @BCCI IPL`). Only use URLs you found in search results. If your search returns no relevant posts, skip the embed entirely.
+3. **No embed is better than a fake embed.** Articles work perfectly without embeds. Only add one when you find a real, relevant post.
+4. **Prefer posts with photos/videos** — they add visual value.
+5. **Use the official account** — not fan pages or reshares.
+6. **Recent posts only** — within 7 days for news, 30 days for features.
+7. **Place the URL on its own line** — not inline with other text.
+8. **Add context before the embed** — one sentence explaining what it shows.
+9. **The embed is supplementary** — the article stands on its own without it.
 
 ## URL Formats
 
