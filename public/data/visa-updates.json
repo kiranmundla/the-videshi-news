@@ -9,6 +9,15 @@
     "source": "US State Department / USTravelDocs"
   },
   {
+    "id": "h1b-100k-premium-processing",
+    "date": "2026-06-02",
+    "label": "Jun 2, 2026",
+    "headline": "200K+ H-1B applicants paid $100K each for 15-day processing \u2014 standard wait now 7.5 months",
+    "summary": "DHS Secretary Mullin testified before Senate that of 286,000 H-1B applications in FY2026, over 200,000 paid $100,000 for expedited 15-day processing. Standard processing now takes 7.5 months. Senators pushing for exemptions for doctors and teachers in rural/underserved communities.",
+    "severity": "high",
+    "source": "DHS / Senate Appropriations Subcommittee"
+  },
+  {
     "id": "embassy-continuous-screening-warning",
     "date": "2026-06-01",
     "label": "Jun 1, 2026",
