@@ -1,51 +1,55 @@
 #!/usr/bin/env python3
 """
-News Writer — June 4, 2026 run
-Writes 3 news articles, sources images from Wikipedia/Wikimedia/Pexels,
-uploads to Supabase storage, inserts articles.
+The Videshi — News Writer (2026-06-04 run)
+Writes 3 news articles with multi-source image compare.
 """
 
-import json, os, sys, time, uuid, re, subprocess
 import requests
+import json
+import os
+import uuid
+import urllib.parse
+import time
 from datetime import datetime, timezone
-from io import BytesIO
 from PIL import Image
+import io
 
-# === ENV ===
+# ─── ENV ──────────────────────────────────────────────────────────────────────
 def load_env(path):
     if not os.path.exists(path):
         return
     with open(path) as f:
         for line in f:
             line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                if line.startswith('export '):
-                    line = line[7:]
-                k, v = line.split('=', 1)
-                v = v.strip('"').strip("'")
-                os.environ[k] = v
+            if line.startswith('#') or '=' not in line:
+                continue
+            if line.startswith('export '):
+                line = line[7:]
+            key, _, val = line.partition('=')
+            val = val.strip('"').strip("'")
+            os.environ[key.strip()] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
 SUPABASE_URL = os.environ['SUPABASE_URL']
 SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
+SB_HEADERS = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': f'Bearer {SUPABASE_KEY}',
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
 }
 
-UA = "TheVideshi/1.0 (thevideshi.com)"
+UA = 'TheVideshi/1.0 (thevideshi.com)'
 
-# === IMAGE HELPERS ===
+# ─── IMAGE HELPERS ────────────────────────────────────────────────────────────
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -66,7 +70,6 @@ def fetch_wikipedia_person_image(person_name):
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
-    import urllib.parse
     params = {
         "action": "query",
         "generator": "search",
@@ -105,30 +108,32 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
                     "mime": mime
                 })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+        print(f"  ⚠ Wikimedia Commons error: {e}")
     return []
 
 
 def fetch_pexels_image(*queries):
-    """Search Pexels for an image using curl (urllib gets 403)."""
+    """Fetch best Pexels image from multiple query attempts."""
     if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
         return None
     for q in queries:
         try:
-            result = subprocess.run(
-                ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
-                 f"https://api.pexels.com/v1/search?query={requests.utils.requote_uri(q)}&per_page=3&orientation=landscape"],
-                capture_output=True, text=True, timeout=15
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                params={"query": q, "per_page": 3, "orientation": "landscape"},
+                headers={"Authorization": PEXELS_KEY},
+                timeout=10
             )
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image found for '{q}': {url[:80]}...")
-                return url
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                if photos:
+                    url = photos[0]["src"]["large2x"]
+                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                    return url
         except Exception as e:
             print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
@@ -136,13 +141,13 @@ def fetch_pexels_image(*queries):
 
 def compress_image(img_bytes, max_width=1200, quality=80):
     """Resize and compress image. Returns JPEG bytes."""
-    img = Image.open(BytesIO(img_bytes))
-    if img.mode != 'RGB':
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
         img = img.convert('RGB')
     if img.width > max_width:
         ratio = max_width / img.width
         img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-    buf = BytesIO()
+    buf = io.BytesIO()
     img.save(buf, format='JPEG', quality=quality, optimize=True)
     return buf.getvalue()
 
@@ -151,284 +156,315 @@ def download_image(url):
     """Download image bytes."""
     try:
         r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
-        if r.status_code == 200 and len(r.content) > 5000:
-            ct = r.headers.get('Content-Type', '')
-            if 'image' in ct or len(r.content) > 10000:
+        if r.status_code == 200 and r.headers.get('Content-Type', '').startswith('image'):
+            if len(r.content) > 5000:
                 return r.content
+            else:
+                print(f"  ⚠ Image too small: {len(r.content)} bytes")
     except Exception as e:
-        print(f"  ⚠ Download error: {e}")
+        print(f"  ⚠ Download failed: {e}")
     return None
 
 
-def upload_to_supabase(img_bytes, filename):
-    """Upload image to Supabase storage bucket 'article-images'."""
+def upload_to_supabase(image_bytes, filename):
+    """Upload compressed image to Supabase storage bucket 'article-images'."""
+    compressed = compress_image(image_bytes)
+    size_kb = len(compressed) / 1024
+    print(f"  📦 Compressed to {size_kb:.0f} KB")
+    
     url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
     headers = {
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Content-Type": "image/jpeg",
-        "x-upsert": "true"
+        'Authorization': f'Bearer {SUPABASE_KEY}',
+        'Content-Type': 'image/jpeg',
+        'x-upsert': 'true'
     }
-    try:
-        r = requests.post(url, headers=headers, data=img_bytes, timeout=30)
-        if r.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {filename} ({len(img_bytes)} bytes)")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed ({r.status_code}): {r.text[:200]}")
-    except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-    return None
+    r = requests.post(url, headers=headers, data=compressed, timeout=30)
+    if r.status_code in (200, 201):
+        public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+        print(f"  ✓ Uploaded: {public_url[:80]}...")
+        return public_url
+    else:
+        print(f"  ✗ Upload failed ({r.status_code}): {r.text[:200]}")
+        return None
 
 
-def source_image(person_names=None, topic_queries=None, pexels_queries=None, slug="article"):
-    """Multi-source image search, compare, pick best. Returns (url, attribution)."""
+def source_image(slug, person_name=None, topic_queries=None, pexels_queries=None):
+    """Multi-source image pipeline. Returns (url, attribution) or (None, None)."""
     candidates = []
-
-    # Source 1: Wikipedia person images
-    if person_names:
-        for name in person_names:
-            wiki_img = fetch_wikipedia_person_image(name)
-            if wiki_img:
-                candidates.append({"url": wiki_img, "source": "wikipedia", "relevance": 3, "name": name})
-
+    
+    # Source 1: Wikipedia (for person articles)
+    if person_name:
+        wiki_url = fetch_wikipedia_person_image(person_name)
+        if wiki_url:
+            candidates.append({"url": wiki_url, "source": "wikipedia", "relevance": 3})
+    
     # Source 2: Wikimedia Commons
     if topic_queries:
-        for q in topic_queries:
-            commons = fetch_wikimedia_commons_images(q, limit=3)
+        for tq in topic_queries[:2]:
+            commons = fetch_wikimedia_commons_images(tq)
             for c in commons[:2]:
-                candidates.append({"url": c["url"], "source": "wikimedia_commons", "relevance": 2, "name": q})
-
+                candidates.append({"url": c["url"], "source": "wikimedia_commons", "relevance": 2})
+    
     # Source 3: Pexels
     if pexels_queries:
-        pexels_img = fetch_pexels_image(*pexels_queries)
-        if pexels_img:
-            candidates.append({"url": pexels_img, "source": "pexels", "relevance": 1, "name": "pexels"})
-
+        pexels_url = fetch_pexels_image(*pexels_queries)
+        if pexels_url:
+            candidates.append({"url": pexels_url, "source": "pexels", "relevance": 1})
+    
     # Sort by relevance (highest first)
-    candidates.sort(key=lambda x: x["relevance"], reverse=True)
-
-    # Try to download, compress, upload the best candidate
-    for cand in candidates:
-        print(f"  Trying {cand['source']}: {cand['url'][:80]}...")
-        raw = download_image(cand["url"])
-        if raw:
-            compressed = compress_image(raw)
-            if len(compressed) > 5000:
-                filename = f"{slug}.jpg"
-                public_url = upload_to_supabase(compressed, filename)
-                if public_url:
-                    attr = "Wikimedia Commons" if cand["source"] in ("wikipedia", "wikimedia_commons") else "The Videshi"
-                    return public_url, attr
-
-    print("  ✗ No suitable image found")
+    candidates.sort(key=lambda c: c["relevance"], reverse=True)
+    
+    # Try downloading and uploading each candidate
+    for c in candidates:
+        print(f"  Trying {c['source']}: {c['url'][:80]}...")
+        img_bytes = download_image(c["url"])
+        if img_bytes:
+            filename = f"{slug}.jpg"
+            final_url = upload_to_supabase(img_bytes, filename)
+            if final_url:
+                attribution = "Wikimedia Commons" if c["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
+                return final_url, attribution
+    
     return None, None
 
 
-# === ARTICLE INSERTION ===
+# ─── SUPABASE INSERT ──────────────────────────────────────────────────────────
 
 def insert_article(article):
-    """Insert article into Supabase p2_articles."""
+    """Insert article into p2_articles."""
     url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    r = requests.post(url, headers=HEADERS, json=article, timeout=30)
+    r = requests.post(url, headers=SB_HEADERS, json=article, timeout=30)
     if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
-        print(f"  ✓ Inserted: {article['headline'][:60]}... (id={art_id})")
+        result = r.json()
+        art_id = result[0]['id'] if isinstance(result, list) and result else 'unknown'
+        print(f"  ✓ Inserted: {article['headline'][:60]}... (id: {art_id})")
         return art_id
     else:
         print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
         return None
 
 
-# === ARTICLES ===
+# ─── ARTICLES ─────────────────────────────────────────────────────────────────
 
-def write_articles():
+ARTICLES = [
+    # Article 1: SEBI Rajesh Exports fraud
+    {
+        "headline": "SEBI Just Accused India's Biggest Gold Refiner of Fabricating $158 Billion in Revenue. The Numbers Were Never Real.",
+        "subheadline": "Rajesh Exports and its chairman have been barred from the securities market after the regulator found that 99.8 per cent of the company's consolidated revenue came from subsidiaries whose books could not be verified.",
+        "slug": "sebi-rajesh-exports-158-billion-revenue-fraud-rajesh-mehta-barred-20260604",
+        "category": "news",
+        "vertical": "news",
+        "status": "published",
+        "is_editorial": False,
+        "sources": json.dumps([
+            {"name": "Reuters", "url": "https://www.reuters.com"},
+            {"name": "SEBI Order", "url": "https://www.sebi.gov.in"},
+            {"name": "The Hindu Business Line", "url": "https://www.thehindubusinessline.com"},
+            {"name": "BizzBuzz", "url": "https://bizzbuzz.news"}
+        ]),
+        "image_person": "Rajesh Exports",
+        "image_topic_queries": ["SEBI India securities regulator", "Rajesh Exports gold refinery Bangalore"],
+        "image_pexels_queries": ["gold refinery India", "gold bars refinery"],
+        "image_caption": "Rajesh Exports, headquartered in Bengaluru, is known as the world's largest gold processor by volume",
+        "body": """India's markets regulator has issued one of its most devastating corporate orders in years. The Securities and Exchange Board of India on Wednesday barred Bengaluru-based Rajesh Exports and its chairman and managing director Rajesh Mehta from the securities market, alleging that the company fabricated consolidated revenues worth ₹15.15 lakh crore — roughly $158 billion — over five fiscal years.
+
+The figure is staggering not just in absolute terms but in proportion. SEBI alleges that 99.8 per cent of the revenue Rajesh Exports reported through its subsidiaries and step-down subsidiaries between FY2020-21 and FY2024-25 was misrepresented. The company, once held up as the world's largest gold processor by volume, now faces an investigation that could rewrite how India's corporate governance regime handles multinational structures.
+
+## The Swiss Connection That Did Not Add Up
+
+At the centre of SEBI's 109-page interim order is Valcambi SA, a Switzerland-based gold refinery that Rajesh Exports projected as its principal operating entity. According to the regulator, 97 to 99 per cent of the group's consolidated revenue was attributed to overseas subsidiaries, with Valcambi the largest among them.
+
+The problem: Valcambi's own standalone audited financial statements showed revenue equal to less than 0.5 per cent of what Rajesh Exports claimed at the consolidated level. The numbers, SEBI concluded, simply did not reconcile. The company had never publicly disclosed the detailed financials of these overseas entities, despite them accounting for virtually all its reported revenue.
+
+Global Gold Refineries AG, the holding company through which Rajesh Exports controlled Valcambi, was similarly opaque. SEBI found that the group systematically avoided providing financial statements, ERP system access, and transaction-level data to investigators and forensic auditors.
+
+## Personal Trades Disguised as Corporate Revenue
+
+The standalone books told their own story. SEBI alleged that Rajesh Exports recorded ₹114.87 billion in sales and ₹114.88 billion in purchases with a single entity, Affluence Shares and Stocks Private Limited. When SEBI approached Affluence, the firm denied any such transactions had taken place.
+
+The regulator's conclusion: these were non-genuine entries linked to Rajesh Mehta's personal derivative trades, logged into the company's ledger to inflate turnover without any real economic activity. Each leg of the derivative trade was booked as a corporate transaction, inflating the books by more than ₹11,400 crore.
+
+SEBI further alleged that ₹3.39 billion in company funds was routed directly into Mehta's personal bank accounts, including for derivative trading, without board or audit committee approval. The total amount moved without proper authorisation or disclosure reached ₹9.26 billion.
+
+## Why NRIs Should Watch This Closely
+
+For the Indian diaspora, the Rajesh Exports case is a reminder that India's corporate disclosure regime still has blind spots, particularly when subsidiaries are domiciled abroad. The company appeared on multiple institutional portfolios and was part of BSE and NSE indices. Retail and foreign institutional investors who bought into the stock were, according to SEBI, presented with a fundamentally misleading picture of the group's operational scale.
+
+The stock fell 5 per cent on Wednesday after the order was made public. SEBI's interim directive bars both the company and Mehta from buying, selling, or dealing in securities until the investigation is complete. The regulator has also referred the matter to India's Financial Reporting Authority for further action.
+
+## What Happens Next
+
+The order is interim and ex-parte, meaning Rajesh Exports has not yet been given the opportunity to formally respond. The company and its chairman did not comment on Wednesday. But the scope of the alleged fabrication — ₹15.15 lakh crore across five years — makes this one of the largest accounting fraud investigations India has seen since the Satyam scandal in 2009.
+
+For SEBI, the case is also a test of its own investigative capacity. The regulator acknowledged in its order that Rajesh Exports systematically refused to cooperate, declining to provide access to books, records, and forensic audit materials. Whether the regulator can now compel full disclosure and hold the promoters accountable will determine whether this becomes a watershed moment for Indian corporate governance or another case that drags through tribunals for years."""
+    },
+    
+    # Article 2: Indian national killed in Kuwait
+    {
+        "headline": "An Indian Worker Was Killed When Iranian Drones Hit Kuwait's Airport. The Gulf Is No Longer Safe Ground for the Diaspora.",
+        "subheadline": "India condemned the attack and said its embassy was assisting the family, as Kuwait expelled two Iranian diplomats and the airport resumed flights from a backup terminal after severe damage to Terminal 1.",
+        "slug": "indian-national-killed-kuwait-airport-iranian-drone-strike-diaspora-gulf-20260604",
+        "category": "news",
+        "vertical": "news",
+        "status": "published",
+        "is_editorial": False,
+        "sources": json.dumps([
+            {"name": "Reuters", "url": "https://www.reuters.com"},
+            {"name": "The Wall Street Journal", "url": "https://www.wsj.com"},
+            {"name": "Gulte", "url": "https://www.gulte.com"},
+            {"name": "The Kashmir Horizon", "url": "https://thekashmirhorizon.com"}
+        ]),
+        "image_person": None,
+        "image_topic_queries": ["Kuwait International Airport", "Kuwait airport terminal"],
+        "image_pexels_queries": ["Kuwait airport", "airport damage"],
+        "image_caption": "Kuwait International Airport's Terminal 1 sustained severe damage in the Iranian drone and missile attack on June 3, 2026",
+        "body": """An Indian national was killed on Wednesday when Iranian drones and missiles struck Kuwait International Airport, the Indian Embassy in Kuwait confirmed. At least 63 others were injured in what was one of the most damaging attacks on a Gulf state since the shaky ceasefire between the United States and Iran was declared on April 8.
+
+The embassy said it was deeply saddened by the death and was in direct contact with the bereaved family, extending full support. India's Ministry of External Affairs separately condemned the attack and said its mission in Kuwait was providing all necessary assistance to the injured.
+
+The dead Indian national has not been publicly identified. But for the estimated 1 million Indians living and working in Kuwait — and the roughly 9 million across the Gulf Cooperation Council states — the attack is a visceral reminder that the Iran war's collateral damage now reaches civilian infrastructure in countries that have tried to stay neutral.
+
+## Terminal 1 Destroyed, Flights Diverted
+
+The attack struck Kuwait International Airport in the early hours of Wednesday morning. Iranian drones and missiles hit airport facilities and nearby diplomatic missions, causing what Kuwaiti authorities described as severe damage to Terminal 1. Flights were immediately suspended and diverted.
+
+Kuwait's health ministry said 63 people were injured, with seven requiring emergency surgery. The Kuwaiti military reported intercepting 13 ballistic missiles and 17 drones since dawn, but debris fell across several residential areas.
+
+Kuwait Airways and Jazeera Airways resumed limited operations from Terminal 4 later in the day, after technical assessments confirmed it was safe to operate.
+
+Iran's Revolutionary Guards denied targeting the airport, claiming the damage was caused by American interceptor missiles that missed their targets. The U.S. military said that claim was false and that Iranian drones had deliberately targeted the airport.
+
+## Kuwait Expels Iranian Diplomats
+
+Kuwait's response was swift. The foreign ministry summoned Iran's top envoy to lodge a formal protest and expelled two lower-ranking Iranian diplomats. Saudi Arabia issued a statement condemning the attacks on both Kuwait and Bahrain as a "clear violation of international law."
+
+This was not the first time Kuwait's airport has been hit. In March and early April, near-daily drone attacks destroyed fuel tanks and a radar system. Officials estimate at least half those earlier strikes originated from Shia militias in Iraq backed by Iran. Kuwait, which shares a border with Iraq, is considered particularly vulnerable.
+
+The airport had only fully reopened in late April, weeks after its Gulf neighbours, reflecting what observers described as Kuwaiti authorities' extreme aversion to risk. Wednesday's attack will test whether that caution was warranted — and whether the airport can sustain operations under continuing threat.
+
+## The Diaspora Dimension
+
+India has the largest expatriate population in the Gulf. Roughly 8.9 million Indian nationals live across the six GCC states, with Kuwait hosting around 1 million. Many work in construction, retail, hospitality, and services — sectors that place them at airports, malls, and other soft targets.
+
+The Indian government has not issued a fresh travel advisory for Kuwait, though the MEA said it was monitoring the situation closely. During the initial phase of the Iran war in March, India evacuated several thousand nationals from Iran and coordinated with Gulf embassies on contingency plans.
+
+For NRIs with family in the Gulf, the calculus has shifted. The April ceasefire was supposed to bring stability. Instead, it has produced a pattern of periodic escalation — each flare-up demonstrating that the ceasefire is a holding pattern, not a resolution.
+
+## The Broader Picture
+
+The Kuwait airport strike came on the same day that Israel and Lebanon agreed to implement a ceasefire, a development that briefly lowered Brent crude by 1.3 per cent to $96.59 a barrel. But the renewed fighting between the U.S. and Iran overshadowed that progress, with Asian stocks falling sharply on Thursday and the S&P 500 dropping 0.7 per cent overnight.
+
+The U.S. responded to the Kuwait and Bahrain attacks by striking Iranian military positions on Qeshm Island near the Strait of Hormuz. The waterway, which handled roughly a fifth of global oil shipments before the war, remains largely closed.
+
+Trump told reporters on Wednesday that a deal with Iran could come "as soon as this weekend." Iran's foreign minister said talks had not been cut off but no progress had been made. For the Indian worker who lost their life at a Kuwaiti airport terminal on Wednesday morning, the geopolitics arrived without warning."""
+    },
+    
+    # Article 3: India lithium/nickel processing incentives
+    {
+        "headline": "India Is About to Offer ₹3,000 Crore to Build Its Own Lithium and Nickel Processing Industry. The EV Race Demands It.",
+        "subheadline": "The Ministry of Mines will shortly unveil an incentive policy for processing lithium and nickel domestically, with minimum capacity thresholds designed to attract industrial-scale operations.",
+        "slug": "india-lithium-nickel-processing-incentives-ev-battery-critical-minerals-20260604",
+        "category": "news",
+        "vertical": "news",
+        "status": "published",
+        "is_editorial": False,
+        "sources": json.dumps([
+            {"name": "Reuters", "url": "https://www.reuters.com"},
+            {"name": "Ministry of Mines, Government of India", "url": "https://mines.gov.in"}
+        ]),
+        "image_person": None,
+        "image_topic_queries": ["lithium battery processing plant", "lithium mining India critical minerals"],
+        "image_pexels_queries": ["lithium battery factory", "electric vehicle battery manufacturing"],
+        "image_caption": "India aims to build domestic lithium and nickel processing capacity to secure its electric vehicle supply chain",
+        "body": """India's federal Ministry of Mines is preparing to unveil a policy offering financial incentives to companies that process lithium and nickel domestically, with an outlay of approximately ₹3,000 crore ($313 million), according to two people familiar with the matter who spoke to Reuters.
+
+The policy, which has been in development since January, is designed to anchor a domestic critical minerals processing industry — an essential step if India is to meet its own electric vehicle targets without remaining permanently dependent on Chinese supply chains.
+
+## What the Policy Includes
+
+The incentive structure will cover lithium and nickel processing, the two minerals most critical to the battery value chain that powers electric vehicles. To qualify, lithium processing plants must have a minimum capacity of 30,000 metric tons, while nickel plants must meet a threshold of 50,000 metric tons.
+
+Those thresholds are deliberate. They are large enough to discourage token facilities and attract only companies prepared to build at industrial scale. The policy signals that New Delhi wants processing hubs, not pilot projects.
+
+In April, the mines secretary confirmed that the government had shortlisted two critical minerals tied to securing an electric vehicle value system for the processing policy, without naming them. Reuters' reporting now confirms they are lithium and nickel.
+
+## Why It Matters for India's EV Ambitions
+
+India has set itself an aggressive target: 30 per cent electric car penetration and 80 per cent for two-wheelers by 2030. Today, those numbers stand at 6 per cent and 9 per cent respectively. The gap is enormous, and closing it requires not just assembling batteries but processing the raw materials that go into them.
+
+Currently, China controls roughly 70 per cent of global lithium processing and more than 60 per cent of nickel refining. India imports nearly all its lithium and processed nickel. A supply disruption — whether from trade restrictions, geopolitical tension, or competition for limited global capacity — could cripple India's EV manufacturing ambitions before they get off the ground.
+
+The new policy is part of a broader push that began with India's 2023 critical minerals strategy, which identified 30 minerals essential to national security and economic growth. Lithium and nickel were at the top of that list.
+
+## The Diaspora Angle
+
+For NRI investors and entrepreneurs watching India's clean energy transition, the incentive policy opens a new industrial corridor. India's production-linked incentive schemes in semiconductors and electronics manufacturing have already drawn significant interest from the diaspora and from multinational firms. A similar scheme for critical minerals processing could attract both capital and technical expertise from Indians working in the battery and mining sectors globally.
+
+India discovered lithium reserves in Jammu and Kashmir in 2023, estimating 5.9 million tonnes of inferred resources. Argentina, Chile, and Australia remain the dominant global producers, but having domestic reserves gives India a starting point — provided it builds the refining capacity to convert raw ore into battery-grade lithium compounds.
+
+Nickel is equally strategic. Indonesia dominates global nickel supply and has restricted raw ore exports to force domestic processing. India, which has limited nickel deposits, will need to secure processing agreements with resource-rich countries while building its own refining infrastructure.
+
+## The Global Context
+
+The timing is not accidental. The United States, European Union, and Japan have all launched their own critical minerals strategies in the past three years, each aimed at reducing dependence on Chinese processing. India's entry into this space positions it as both a potential partner and a competitor.
+
+The Iran war has added urgency. Elevated crude oil prices have made the economic case for EVs stronger, while supply chain disruptions across the Gulf have underscored the risks of energy dependence on a single region. A domestic lithium and nickel processing industry would not eliminate those risks, but it would reduce India's exposure at the most vulnerable point in the EV supply chain.
+
+The Ministry of Mines did not respond to a request for comment. But with the policy expected shortly, India is about to signal whether it is serious about building the industrial backbone for its electric future — or whether the ambition will remain, like so many previous targets, a number on a government slide deck."""
+    },
+]
+
+
+# ─── MAIN ─────────────────────────────────────────────────────────────────────
+
+def main():
     now = datetime.now(timezone.utc).isoformat()
-    articles = []
-
-    # ─── ARTICLE 1: EB-2 Visa Limit Exhausted for Indians ───
-    print("\n=== Article 1: EB-2 Visa Limit Exhausted ===")
-
-    slug1 = "us-eb2-visa-limit-exhausted-indians-fy2026-october-green-card-backlog"
-    img1_url, img1_attr = source_image(
-        topic_queries=["US visa immigration office", "US Citizenship and Immigration Services"],
-        pexels_queries=["US immigration visa passport", "US embassy visa appointment"],
-        slug=slug1
-    )
-
-    body1 = """The United States has officially exhausted its entire allocation of Employment-Based Second Preference (EB-2) immigrant visas for Indian nationals for Fiscal Year 2026, shutting down one of the most critical pathways to permanent residency for tens of thousands of highly skilled professionals already living and working in America.
-
-The Department of State confirmed in a notice issued on May 22 that all available EB-2 visas allocated to applicants chargeable to India have been fully used, in coordination with US Citizenship and Immigration Services (USCIS). As a result, US embassies and consulates worldwide have been instructed not to issue additional EB-2 visas to Indian applicants for the remainder of the fiscal year. Processing will not resume until October 1, when FY 2027 begins and annual limits reset.
-
-## Who Gets Hurt
-
-The EB-2 category is the primary immigration channel for professionals holding advanced degrees or demonstrating exceptional ability — software engineers, data scientists, physicians, researchers, senior executives, and other specialists who form the backbone of America's knowledge economy. Under current law, the EB-2 allocation accounts for 28.6 percent of the worldwide employment-based immigration quota, while a per-country cap limits any single nation to no more than seven percent of total employment-based and family-sponsored visas combined.
-
-For Indian nationals, who represent the single largest source country for employment-based immigration, this statutory cap has created a backlog stretching over a decade. The June 2026 Visa Bulletin shows the EB-2 India filing cut-off date sitting at July 15, 2014 — meaning applicants who filed twelve years ago are only now becoming eligible for final adjudication. USCIS has also announced it will use the more restrictive Final Action Dates chart for June, rather than the Dates for Filing chart, further tightening the pipeline.
-
-## A Pattern That Repeats
-
-This is not an anomaly. The EB-2 cap was exhausted for Indian applicants in FY 2024 (September 2024), FY 2025 (September 2025), and now FY 2026 — each year hitting the ceiling earlier. In FY 2026, the quota ran dry in May, the earliest exhaustion in recent memory. Immigration attorneys say the accelerating timeline reflects both rising demand from India's growing technology workforce and the structural inadequacy of a per-country cap system that treats India — with 1.4 billion people — the same as countries with populations a fraction of its size.
-
-## What Applicants Can Do
-
-For the estimated hundreds of thousands of Indian professionals caught in the backlog, the options are limited but not nonexistent. Applicants with approved I-140 petitions can continue to maintain their H-1B status and accrue time toward the six-year limit. Those eligible for a National Interest Waiver (NIW) under EB-2 may file independently without employer sponsorship, though the underlying backlog still applies. Some may explore EB-1 classification, which has a separate and typically more current priority date, though the qualifications are significantly more demanding.
-
-The Biden-era executive actions that temporarily eased processing have not been renewed under the current administration, and legislative reform — including proposals to eliminate per-country caps entirely — remains stalled in Congress despite bipartisan support in previous sessions.
-
-## The Diaspora Impact
-
-For Indian families in the US, the EB-2 freeze is not an abstract policy matter. It determines whether a spouse can work, whether children age out of dependent status before a green card materialises, and whether a decade of building a life in America leads to permanence or forced departure. Advocacy groups including the Immigration Voice coalition have renewed calls for Congress to pass the EAGLE Act, which would phase out per-country caps over nine years, but the bill has not advanced in the current session.
-
-The annual limits will reset on October 1, 2026, when FY 2027 begins. Until then, the pipeline is frozen — and the line just got longer.
-
-*Sources: US Department of State, USCIS June 2026 Visa Bulletin, Berry Appleman & Leiden LLP, Manifest Law*"""
-
-    articles.append({
-        "headline": "The US Just Froze EB-2 Visas for Indians. The Backlog Now Stretches Back to 2014.",
-        "subheadline": "All employment-based second-preference visas for Indian nationals have been exhausted for FY 2026. Processing will not resume until October.",
-        "slug": slug1,
-        "body": body1,
-        "category": "news",
-        "vertical": "news",
-        "status": "published",
-        "published_at": now,
-        "image_url": img1_url,
-        "image_attribution": img1_attr,
-        "is_editorial": False,
-        "source": "videshi-news-writer",
-        "sources": json.dumps(["US Department of State", "USCIS Visa Bulletin June 2026", "Berry Appleman & Leiden LLP", "Bharat Horizon"])
-    })
-
-    # ─── ARTICLE 2: New York State Senate India Independence Day Resolution ───
-    print("\n=== Article 2: NY Senate India Independence Day Resolution ===")
-
-    slug2 = "new-york-senate-resolution-india-independence-day-august-2026-jeremy-cooney"
-    img2_url, img2_attr = source_image(
-        person_names=["Jeremy Cooney"],
-        topic_queries=["New York State Senate chamber", "New York State Capitol Albany"],
-        pexels_queries=["New York State Capitol building Albany", "government senate legislative chamber"],
-        slug=slug2
-    )
-
-    body2 = """The New York State Senate has adopted Resolution J1935, urging Governor Kathy Hochul to proclaim August 15, 2026, as India Independence Day in the State of New York — a formal legislative recognition that reflects the growing political weight of the Indian-American community in one of America's most influential states.
-
-The resolution was sponsored by State Senator Jeremy Cooney, a Democrat from Rochester who made history in 2020 as the first Asian American elected to state office from upstate New York. Cooney, who was adopted from an orphanage in Kolkata and raised by a single mother in Rochester, has become one of the most prominent advocates for Indian-American interests in New York's legislature.
-
-## What the Senators Said
-
-During deliberations on the resolution, multiple senators offered remarks that went beyond pro-forma ceremony. Senator Joseph P. Addabbo Jr. quoted Mahatma Gandhi — "the future depends on what we do in the present" — calling the message an enduring inspiration for Indian Americans. Senator John C. Liu noted that India has been "a model of democracy for actually a lot longer than our country," and praised the Indian-American community's contributions across New York.
-
-Senator Jeremy Zellner described the Indian-American community as "woven into the fabric of our everyday life" in his district. "They are our neighbours raising families here, working in critical professions, and helping shape the character of our region," he said.
-
-Senator Toby Ann Stavisky called for continuing the "tradition of friendship" between India and the United States, noting that the similarities between the two democracies outweigh their differences.
-
-## Why It Matters for the Diaspora
-
-New York is home to one of the largest Indian-American populations in the Western Hemisphere, with particularly dense communities in Queens, Jersey City, and the wider metropolitan area. The resolution explicitly acknowledged the community's contributions to STEM, business, the arts, philanthropy, defence, and government at all levels — a legislative record that carries weight in future policy debates around immigration, trade, and cultural recognition.
-
-The Consulate General of India in New York issued a statement expressing "sincere gratitude" to Senator Cooney and the full chamber, noting that the senators' remarks reflected the "deep people-to-people bonds" between the two nations and the "growing role of the Indian-American diaspora in strengthening communities across New York."
-
-## A Growing Pattern of Recognition
-
-The resolution follows a broader trend of American legislatures formally recognising Indian heritage. New York adopted a similar resolution commemorating the 75th anniversary of the Indian Constitution in November 2025, also sponsored by Cooney. Several other states, including New Jersey, Texas, and California, have adopted their own Indian Independence Day proclamations in recent years, reflecting the community's demographic growth and increasing civic engagement.
-
-India will celebrate its 80th Independence Day on August 15, 2026. For the nearly 4.5 million Indian Americans across the country — and the estimated 700,000 in New York State alone — the Senate resolution is not just a symbolic gesture. It is a legislative acknowledgement that the community's presence has moved from the margins to the mainstream of American public life.
-
-*Sources: New York State Senate Resolution J1935, The Indian EYE, hi INDiA, India Weekly*"""
-
-    articles.append({
-        "headline": "New York's Senate Just Voted to Recognise India's Independence Day. The Man Behind It Was Adopted From Kolkata.",
-        "subheadline": "Resolution J1935 urges the governor to proclaim August 15, 2026, as India Independence Day across New York State. The sponsor, Jeremy Cooney, is the first Asian American elected to state office from upstate New York.",
-        "slug": slug2,
-        "body": body2,
-        "category": "news",
-        "vertical": "news",
-        "status": "published",
-        "published_at": now,
-        "image_url": img2_url,
-        "image_attribution": img2_attr,
-        "is_editorial": False,
-        "source": "videshi-news-writer",
-        "sources": json.dumps(["New York State Senate", "The Indian EYE", "hi INDiA", "India Weekly"])
-    })
-
-    # ─── ARTICLE 3: India's Consumer Watchdog Fines PhysicsWallah and McAfee for Dark Patterns ───
-    print("\n=== Article 3: PhysicsWallah / McAfee Dark Patterns Fine ===")
-
-    slug3 = "ccpa-fines-physicswallah-mcafee-dark-patterns-consumer-protection-india"
-    img3_url, img3_attr = source_image(
-        person_names=["Alakh Pandey"],
-        topic_queries=["PhysicsWallah edtech India", "Central Consumer Protection Authority India"],
-        pexels_queries=["consumer protection digital dark patterns", "online checkout manipulation interface"],
-        slug=slug3
-    )
-
-    body3 = """India's consumer watchdog has imposed its most high-profile penalties yet under the country's dark patterns framework, fining edtech giant PhysicsWallah ₹5 lakh and cybersecurity firm McAfee Software India ₹1 lakh for deploying manipulative interface designs that steered users into purchases and subscriptions they did not explicitly choose.
-
-The Central Consumer Protection Authority (CCPA), in orders issued on Wednesday by Chief Commissioner Nidhi Khare and Commissioner Anupam Mishra, directed both companies to immediately discontinue the identified practices and ensure consumers can make decisions "without manipulation or pressure."
-
-## What PhysicsWallah Did
-
-The CCPA took suo motu cognisance of practices on PhysicsWallah's platform and identified three distinct violations — all textbook examples of the design tricks that India's 2023 dark patterns guidelines were written to prevent.
-
-The most striking finding involved a ₹10 donation to the PW Foundation that was automatically pre-selected during checkout and bundled into the final payment amount without explicit consumer consent. This practice — known as "basket sneaking" in regulatory parlance — meant users were paying for something they never chose.
-
-When users attempted to remove the ₹10 charge, the platform displayed emotionally manipulative messages about children's education, healthcare, and marriages — a technique classified as "confirm shaming," designed to make consumers feel guilty about protecting their own wallets.
-
-The regulator also flagged courses advertised as "free" that required users to hand over their mobile numbers and email addresses before access was granted. The CCPA noted that the course material was identical across accounts, meaning the personal data collection served no functional purpose for delivering the service.
-
-The authority emphasised that a large proportion of PhysicsWallah's users are students, including minors, making the violations "particularly significant" from a consumer protection standpoint.
-
-## What McAfee Did
-
-McAfee's violations were simpler but no less calculated. The CCPA examined the company's subscription renewal interface and found it presented two options to users: "Renew Now" and "Accept Risk." The second option — the one that would let a consumer decline renewal — was framed as a dangerous choice, implying that users would be exposed to immediate cybersecurity threats if they did not continue paying.
-
-The regulator identified four overlapping dark patterns in McAfee's interface: confirm shaming (making non-renewal feel irresponsible), interface interference (giving visual prominence to the renewal button), trick questions (using emotionally loaded language instead of neutral options), and forced action (not providing a clearly visible opt-out).
-
-## Why the Fines Are Small but the Signal Is Loud
-
-At ₹5 lakh and ₹1 lakh respectively, the penalties are trivially small for companies of this scale — PhysicsWallah was valued at over $1 billion at its last funding round, and McAfee is a global cybersecurity corporation. But regulatory observers say the real significance lies in the precedent.
-
-These are among the first enforcement actions under the Guidelines for Prevention and Regulation of Dark Patterns, 2023 — a framework that India adopted ahead of most countries. The guidelines define 13 categories of dark patterns, from drip pricing and subscription traps to bait-and-switch and disguised advertising. The CCPA's willingness to act suo motu, without waiting for consumer complaints, signals that the regulator intends to be proactive rather than reactive.
-
-For India's booming edtech, SaaS, and e-commerce sectors — where pre-ticked checkboxes, forced data collection, and guilt-tripping cancellation flows are standard practice — the message is clear: the 2023 rules have teeth, and the regulator is now using them.
-
-## What It Means for NRIs
-
-For Indian professionals working in technology abroad, the CCPA's enforcement is a notable development. India is building a consumer protection regime that in some areas now exceeds what exists in the US, where the Federal Trade Commission has pursued dark patterns cases but Congress has not enacted comprehensive legislation equivalent to India's 2023 guidelines. The approach offers a model that other countries, including those with large Indian diaspora populations, may follow.
-
-*Sources: CCPA Order, Storyboard18, Livemint, Exchange4Media, BizzBuzz*"""
-
-    articles.append({
-        "headline": "India Just Fined PhysicsWallah for Sneaking a ₹10 Donation Into Every Checkout. McAfee Got Caught Too.",
-        "subheadline": "The consumer watchdog penalised both companies for dark patterns — auto-added charges, guilt-tripping cancellation screens, and data harvesting disguised as free courses.",
-        "slug": slug3,
-        "body": body3,
-        "category": "news",
-        "vertical": "news",
-        "status": "published",
-        "published_at": now,
-        "image_url": img3_url,
-        "image_attribution": img3_attr,
-        "is_editorial": False,
-        "source": "videshi-news-writer",
-        "sources": json.dumps(["CCPA", "Storyboard18", "Livemint", "Exchange4Media", "BizzBuzz"])
-    })
-
-    # === INSERT ALL ===
-    print("\n=== Inserting articles ===")
-    for art in articles:
-        # Remove None image fields
-        if art["image_url"] is None:
-            del art["image_url"]
-        if art["image_attribution"] is None:
-            del art["image_attribution"]
-        insert_article(art)
-
-    print(f"\n✓ Done. {len(articles)} articles processed.")
+    
+    for i, art in enumerate(ARTICLES, 1):
+        print(f"\n{'='*60}")
+        print(f"Article {i}: {art['headline'][:70]}...")
+        print(f"{'='*60}")
+        
+        # Extract image-related fields (not for Supabase)
+        person_name = art.pop("image_person", None)
+        topic_queries = art.pop("image_topic_queries", None)
+        pexels_queries = art.pop("image_pexels_queries", None)
+        caption = art.pop("image_caption", "")
+        
+        # Source image
+        print("\n📸 Sourcing image...")
+        img_url, attribution = source_image(
+            art["slug"],
+            person_name=person_name,
+            topic_queries=topic_queries,
+            pexels_queries=pexels_queries,
+        )
+        
+        if img_url:
+            art["image_url"] = img_url
+            art["image_caption"] = caption
+            art["image_attribution"] = attribution
+        else:
+            print("  ⚠ No suitable image found — publishing without hero image")
+        
+        # Set timestamps
+        art["published_at"] = now
+        art["created_at"] = now
+        
+        # Insert
+        print("\n📝 Inserting article...")
+        result = insert_article(art)
+        if result:
+            print(f"  ✅ Article {i} published successfully")
+        else:
+            print(f"  ❌ Article {i} FAILED to publish")
+        
+        time.sleep(1)
+    
+    print(f"\n{'='*60}")
+    print("Done. Published 3 news articles.")
+    print(f"{'='*60}")
 
 
 if __name__ == "__main__":
-    write_articles()
+    main()
