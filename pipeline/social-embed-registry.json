@@ -7,12 +7,14 @@
       {
         "name": "Virat Kohli",
         "x": "imVkohli",
-        "threads": "virat.kohli"
+        "threads": "virat.kohli",
+        "instagram": "virat.kohli"
       },
       {
         "name": "Rohit Sharma",
         "x": "ImRo45",
-        "threads": "rohitsharma45"
+        "threads": "rohitsharma45",
+        "instagram": "rohitsharma45"
       },
       {
         "name": "MS Dhoni",
@@ -27,12 +29,14 @@
       {
         "name": "Hardik Pandya",
         "x": "hardikpandya7",
-        "threads": "hardikpandya93"
+        "threads": "hardikpandya93",
+        "instagram": "hardikpandya93"
       },
       {
         "name": "Sachin Tendulkar",
         "x": "sachin_rt",
-        "threads": "sachintendulkar"
+        "threads": "sachintendulkar",
+        "instagram": "sachintendulkar"
       },
       {
         "name": "Sourav Ganguly",
@@ -446,27 +450,32 @@
       {
         "name": "Deepika Padukone",
         "x": "deepikapadukone",
-        "threads": "deepikapadukone"
+        "threads": "deepikapadukone",
+        "instagram": "deepikapadukone"
       },
       {
         "name": "Alia Bhatt",
         "x": "aliaa08",
-        "threads": "aliaabhatt"
+        "threads": "aliaabhatt",
+        "instagram": "aliaabhatt"
       },
       {
         "name": "Shah Rukh Khan",
         "x": "iamsrk",
-        "threads": null
+        "threads": null,
+        "instagram": "iamsrk"
       },
       {
         "name": "Priyanka Chopra",
         "x": "priyankachopra",
-        "threads": "priyankachopra"
+        "threads": "priyankachopra",
+        "instagram": "priyankachopra"
       },
       {
         "name": "Ranveer Singh",
         "x": "RanveerOfficial",
-        "threads": "ranveersingh"
+        "threads": "ranveersingh",
+        "instagram": "ranveersingh"
       },
       {
         "name": "Karan Johar",
@@ -476,7 +485,8 @@
       {
         "name": "Diljit Dosanjh",
         "x": "diljitdosanjh",
-        "threads": "diljitdosanjh"
+        "threads": "diljitdosanjh",
+        "instagram": "diljitdosanjh"
       },
       {
         "name": "AR Rahman",
@@ -486,12 +496,14 @@
       {
         "name": "Amitabh Bachchan",
         "x": "SrBachchan",
-        "threads": null
+        "threads": null,
+        "instagram": "amitabhbachchan"
       },
       {
         "name": "Akshay Kumar",
         "x": "akshaykumar",
-        "threads": "akshaykumar"
+        "threads": "akshaykumar",
+        "instagram": "akshaykumar"
       },
       {
         "name": "Anushka Sharma",
@@ -529,13 +541,15 @@
         "name": "Netflix India",
         "x": "NetflixIndia",
         "threads": null,
-        "covers": "Indian streaming content"
+        "covers": "Indian streaming content",
+        "instagram": "netflix_in"
       },
       {
         "name": "Amazon Prime Video IN",
         "x": "PrimeVideoIN",
         "threads": null,
-        "covers": "Indian streaming content"
+        "covers": "Indian streaming content",
+        "instagram": "primevideoin"
       },
       {
         "name": "Filmfare",
