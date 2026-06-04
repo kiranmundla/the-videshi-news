@@ -1,31 +1,23 @@
 #!/usr/bin/env python3
-"""Entertainment Writer - June 4, 2026"""
+"""Entertainment writer - June 4, 2026 evening run"""
 
-import json, os, re, sys, uuid, requests, urllib.parse
+import requests, json, os, io, uuid, urllib.parse, time
 from datetime import datetime, timezone
+from PIL import Image
 
-# Load env
-def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    if line.startswith('export '):
-                        line = line[7:]
-                    key, _, val = line.partition('=')
-                    val = val.strip('"').strip("'")
-                    os.environ[key.strip()] = val
+# === ENV ===
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
+PEXELS_KEY = None
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+if os.path.exists(pexels_env):
+    with open(pexels_env) as f:
+        for line in f:
+            if line.startswith("PEXELS_API_KEY="):
+                PEXELS_KEY = line.strip().split("=", 1)[1]
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
-HEADERS = {
+HEADERS_SB = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
@@ -34,372 +26,401 @@ HEADERS = {
 
 UA = "TheVideshi/1.0 (thevideshi.com)"
 
+# === IMAGE HELPERS ===
+
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": UA},
-            timeout=10
+            headers={"User-Agent": UA}, timeout=10
         )
         if r.status_code == 200:
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
-    """Search Wikimedia Commons for CC-licensed images."""
     params = {
-        "action": "query",
-        "generator": "search",
-        "gsrsearch": search_query,
-        "gsrnamespace": "6",
-        "gsrlimit": str(limit),
-        "prop": "imageinfo",
-        "iiprop": "url|size|mime",
-        "iiurlwidth": "1200",
-        "format": "json"
+        "action": "query", "generator": "search",
+        "gsrsearch": search_query, "gsrnamespace": "6", "gsrlimit": str(limit),
+        "prop": "imageinfo", "iiprop": "url|size|mime",
+        "iiurlwidth": "1200", "format": "json"
     }
     try:
-        r = requests.get(
-            "https://commons.wikimedia.org/w/api.php",
-            params=params,
-            headers={"User-Agent": UA},
-            timeout=15
-        )
+        r = requests.get("https://commons.wikimedia.org/w/api.php",
+                         params=params, headers={"User-Agent": UA}, timeout=15)
         if r.status_code == 200:
             data = r.json()
             pages = data.get("query", {}).get("pages", {})
             results = []
             for pid, page in pages.items():
                 ii = page.get("imageinfo", [{}])[0]
-                url = ii.get("thumburl") or ii.get("url")
                 mime = ii.get("mime", "")
-                if url and "image" in mime:
-                    results.append({
-                        "url": url,
-                        "title": page.get("title", ""),
-                        "width": ii.get("width", 0),
-                        "height": ii.get("height", 0)
-                    })
+                if not mime.startswith("image/") or mime == "image/svg+xml":
+                    continue
+                if ii.get("width", 0) < 300:
+                    continue
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "original_url": ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0),
+                    "height": ii.get("height", 0)
+                })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
+                print(f"  ✓ Commons: {len(results)} images for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error: {e}")
+        print(f"  ⚠ Commons error: {e}")
     return []
 
 def fetch_pexels_image(query):
-    """Search Pexels for an image."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
         return None
+    import subprocess
     try:
-        r = requests.get(
-            "https://api.pexels.com/v1/search",
-            params={"query": query, "per_page": 3, "orientation": "landscape"},
-            headers={"Authorization": PEXELS_KEY},
-            timeout=10
-        )
-        if r.status_code == 200:
-            photos = r.json().get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image found for '{query}'")
-                return url
+        cmd = f'curl -sS -H "Authorization: {PEXELS_KEY}" "https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3&orientation=landscape"'
+        result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=15)
+        data = json.loads(result.stdout)
+        photos = data.get("photos", [])
+        if photos:
+            url = photos[0]["src"]["large2x"]
+            print(f"  ✓ Pexels image for '{query}': {url[:60]}...")
+            return url
     except Exception as e:
         print(f"  ⚠ Pexels error: {e}")
     return None
 
-def validate_image(url):
-    """Validate that URL returns a real image > 5KB."""
-    try:
-        r = requests.head(url, headers={"User-Agent": UA}, timeout=10, allow_redirects=True)
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", "0"))
-        if "image" in ct and cl > 5000:
-            return True
-        # Try GET for servers that don't support HEAD properly
-        if "image" in ct or cl == 0:
-            r2 = requests.get(url, headers={"User-Agent": UA}, timeout=10, stream=True)
-            ct2 = r2.headers.get("Content-Type", "")
-            if "image" in ct2:
-                chunk = r2.raw.read(6000)
-                if len(chunk) > 5000:
-                    return True
-    except:
-        pass
-    return False
+def compress_image(img_bytes, max_width=1200, quality=80):
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    return buf.getvalue()
 
-def get_best_image(person_name=None, wiki_search=None, pexels_query=None):
-    """Multi-source image search. Returns (url, attribution) or (None, None)."""
+def download_image(url):
+    try:
+        r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
+        if r.status_code == 200 and r.headers.get("Content-Type", "").startswith("image"):
+            if len(r.content) > 5000:
+                return r.content
+            else:
+                print(f"  ⚠ Image too small ({len(r.content)} bytes)")
+    except Exception as e:
+        print(f"  ⚠ Download error: {e}")
+    return None
+
+def upload_to_supabase(img_bytes, filename):
+    compressed = compress_image(img_bytes)
+    size_kb = len(compressed) / 1024
+    print(f"  Compressed to {size_kb:.0f} KB")
+    
+    url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+    headers = {
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "image/jpeg",
+        "x-upsert": "true"
+    }
+    r = requests.post(url, headers=headers, data=compressed, timeout=30)
+    if r.status_code in (200, 201):
+        public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+        print(f"  ✓ Uploaded: {public_url[:60]}...")
+        return public_url
+    else:
+        print(f"  ⚠ Upload failed: {r.status_code} {r.text[:100]}")
+        return None
+
+def source_image(person_name, topic_terms, slug):
+    """Multi-source image search: Wikipedia -> Commons -> Pexels"""
     candidates = []
     
     # Source 1: Wikipedia person image
     if person_name:
-        img = fetch_wikipedia_person_image(person_name)
-        if img and validate_image(img):
-            candidates.append(("wikipedia", img, "Wikimedia Commons"))
+        wiki_img = fetch_wikipedia_person_image(person_name)
+        if wiki_img:
+            candidates.append({"url": wiki_img, "source": "wikipedia", "relevance": 3})
     
     # Source 2: Wikimedia Commons
-    if wiki_search:
-        commons = fetch_wikimedia_commons_images(wiki_search)
-        for c in commons[:3]:
-            if validate_image(c["url"]):
-                candidates.append(("commons", c["url"], "Wikimedia Commons"))
-                break
+    search_terms = f"{person_name} {topic_terms}" if person_name else topic_terms
+    commons = fetch_wikimedia_commons_images(search_terms)
+    if not commons and person_name:
+        commons = fetch_wikimedia_commons_images(topic_terms)
+    for c in commons[:2]:
+        candidates.append({"url": c["url"], "source": "wikimedia_commons", "relevance": 2})
     
-    # Source 3: Pexels
-    if pexels_query:
-        img = fetch_pexels_image(pexels_query)
-        if img and validate_image(img):
-            candidates.append(("pexels", img, "Pexels"))
+    # Source 3: Pexels fallback
+    if not candidates:
+        pexels_url = fetch_pexels_image(topic_terms)
+        if pexels_url:
+            candidates.append({"url": pexels_url, "source": "pexels", "relevance": 1})
     
-    # Prefer Wikipedia for person articles, then Commons, then Pexels
-    for source_type in ["wikipedia", "commons", "pexels"]:
-        for s, url, attr in candidates:
-            if s == source_type:
-                print(f"  → Selected {source_type} image: {url[:80]}...")
-                return url, attr
+    # Pick best and upload
+    candidates.sort(key=lambda x: x["relevance"], reverse=True)
+    for c in candidates:
+        raw = download_image(c["url"])
+        if raw:
+            filename = f"{slug}.jpg"
+            public_url = upload_to_supabase(raw, filename)
+            if public_url:
+                attr = "Pexels" if c["source"] == "pexels" else "Wikimedia Commons"
+                return public_url, attr
     
+    print("  ⚠ No image found for this article")
     return None, None
 
 def insert_article(article):
-    """Insert article into Supabase."""
+    """Insert article into Supabase"""
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
+        headers=HEADERS_SB,
         json=article,
         timeout=30
     )
-    if r.status_code in [200, 201]:
-        result = r.json()
-        if isinstance(result, list) and result:
-            print(f"  ✓ Published: {result[0].get('headline', '')[:60]}...")
-            return True
-    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
-    return False
+    if r.status_code in (200, 201):
+        data = r.json()
+        aid = data[0]["id"] if isinstance(data, list) else data.get("id")
+        print(f"  ✓ Inserted article: {article['slug']} (id={aid})")
+        return aid
+    else:
+        print(f"  ⚠ Insert failed: {r.status_code} {r.text[:200]}")
+        return None
 
-# ============================================================
-# ARTICLE 1: Pahlaj Nihalani obituary
-# ============================================================
-def write_pahlaj_nihalani():
-    print("\n📝 Article 1: Pahlaj Nihalani obituary")
-    
-    # Image sourcing
-    img_url, img_attr = get_best_image(
-        person_name="Pahlaj Nihalani",
-        wiki_search="Pahlaj Nihalani film producer CBFC",
-        pexels_query="Indian film industry Bollywood producer"
-    )
-    
-    body = """Pahlaj Nihalani, the veteran film producer who introduced Govinda to Hindi cinema and later became one of India's most polarising censorship chiefs, died on Thursday morning at Mumbai's Nanavati Hospital. He was 76. His family confirmed that he had been battling liver cirrhosis for the past four months and had been moved between hospitals over the last thirty days as doctors worked to stabilise his condition.
 
-## The Producer Who Built Careers
+# ================================================================
+# ARTICLE 1: Alpha - YRF Spy Universe's First Female-Led Film
+# ================================================================
 
-Nihalani entered film production in 1982 with Haathkadi and spent the next two decades backing commercially successful Hindi films. His 1986 production Ilzaam launched Govinda, then a complete unknown, into mainstream Bollywood. The following year, he introduced Chunky Pandey with Aag Hi Aag. His most significant commercial hit came with Aankhen in 1993, a film that cemented his reputation as a producer who could deliver mass entertainment.
+print("\n" + "="*60)
+print("ARTICLE 1: Alpha - YRF's First Female-Led Spy Film")
+print("="*60)
 
-His partnership with director David Dhawan produced a string of comedies that defined 1990s Bollywood — films that played on loop in NRI households from New Jersey to London, becoming cultural shorthand for a particular era of Hindi cinema.
+art1_slug = "alpha-alia-bhatt-sharvari-yrf-spy-universe-first-female-led-july-3-nri-20260604"
+art1_headline = "Alpha Just Became the Most Important Film in YRF's Spy Universe. And It Has Not Even Released a Trailer Yet."
+art1_subheadline = "Alia Bhatt and Sharvari Wagh begin their promotional campaign for the franchise's first female-led instalment, arriving July 3 with Bobby Deol and Anil Kapoor"
 
-## The Censor Board Years
+art1_body = """Yash Raj Films has officially kicked off the promotional campaign for Alpha, the most anticipated addition to its blockbuster Spy Universe franchise. With just under a month left before its July 3 theatrical release, the studio is signaling that this is not just another entry in the series. It is the entry that changes what the series means.
 
-Nihalani's appointment as chairman of the Central Board of Film Certification in January 2015 marked the beginning of a turbulent chapter. His tenure, which lasted until August 2017, was defined by an approach to censorship that drew fierce criticism from filmmakers and free-speech advocates alike.
+Headlined by Alia Bhatt and Sharvari Wagh, Alpha is the first film in the Spy Universe to place women at its centre. The franchise that gave us Pathaan, War, and Tiger — all anchored by male superstars operating in the familiar grammar of the Indian action blockbuster — is now handing the keys to two female agents. The shift is not cosmetic. According to reports, Alia's character is not a conventional spy but a deadly assassin, raised and built to kill from a young age. This is a darker, more emotionally layered origin story than anything the franchise has attempted before.
 
-Under his watch, the CBFC ordered cuts to films like Udta Punjab and refused certification to others. He mandated the replacement of the word "Bombay" with "Mumbai" in a Marathi film's title and demanded over 90 cuts to the adult drama Lipstick Under My Burkha, a decision that was later overturned by the Film Certification Appellate Tribunal. Directors accused him of imposing personal moral standards on Indian cinema. Nihalani defended his decisions as being in line with Indian cultural values.
+## Why This Matters for the Franchise
 
-The irony was not lost on the industry when Nihalani himself produced the erotic thriller Julie 2 shortly after leaving the CBFC, a film whose content sat uncomfortably next to his censorship record.
+The YRF Spy Universe has been one of Indian cinema's most commercially successful experiments. Pathaan crossed ₹1,000 crore worldwide. War rewrote action cinema conventions. Tiger 3, despite mixed reviews, maintained the brand's pull. But each of those films followed a recognisable template: a male superstar, a geopolitical antagonist, and set pieces designed for maximum spectacle. Alpha breaks the template. Directed by Shiv Rawail, who helmed The Railway Men for YRF, the film pairs Alia with Sharvari in what is being described as a full-fledged female-driven action spectacle. Bobby Deol reportedly plays the primary antagonist, and Anil Kapoor appears in a pivotal role.
 
-## What It Means for the Diaspora
+Reports also suggest that Hrithik Roshan will make a special appearance as Kabir, his character from War, further anchoring Alpha within the broader Spy Universe continuity. For fans who have been tracking the interconnected storyline, this is a significant connective thread.
 
-For NRIs who grew up watching the films Nihalani produced, his death closes a chapter of Bollywood history. The Govinda comedies, the Aankhen-era popcorn films — these were the DVDs that circulated through Indian grocery stores in the United States and the UK in the 1990s and early 2000s, the films that kept a generation connected to Hindi cinema before streaming made everything accessible.
+## The Promotional Push Has a Smart Hook
 
-His censorship legacy is more complicated. Many diaspora viewers experienced his CBFC tenure primarily through the controversies that made international headlines — the Udta Punjab battle, the Lipstick Under My Burkha refusal — episodes that raised questions about artistic freedom in the world's largest film industry.
+YRF's opening salvo in the campaign is not a trailer. It is a tie-in with the ICC Women's T20 World Cup, which starts on June 12. On June 4, the studio released a promotional clip linking Alpha's two female leads with the Indian women's cricket team, carrying the tagline: "From 2 Alphas to Team India's 15 Alphas." The timing is deliberate. By associating the film with a live sporting event that celebrates women performing at the highest competitive level, YRF is positioning Alpha not just as a movie but as a cultural statement.
 
-## Industry Reactions
+Character posters, songs, interviews, and the theatrical trailer are all expected in the coming weeks. The studio is reportedly preparing a large-scale marketing campaign that matches the film's ambitious scale and franchise value.
 
-IMPPA President Abhay Sinha confirmed the news, calling Nihalani an industry leader. Filmmaker Ashoke Pandit posted on Instagram, writing that Nihalani was "a man who stood by the Industry causes and somebody who is responsible for making many hit films." Current CBFC Chairperson Shashi Shekhar Vempati offered condolences on behalf of the CBFC family.
+## The Release Strategy
 
-Nihalani also served as president of the Association of Motion Pictures and TV Programme Producers for 29 years before stepping down in 2009. His last rites were scheduled for Thursday afternoon at the Santacruz Hindu Crematorium in Mumbai.
+Alpha was originally slated for a Christmas 2025 release, then pushed to April 2026, and later to July 10. The final date was preponed by a week to July 3 to secure a longer uninterrupted box office window before Christopher Nolan's The Odyssey and Dhamaal 4 crowd the calendar. That kind of strategic jockeying signals the film's commercial stakes: YRF cannot afford a middling result here. A strong opening would validate the franchise's expansion beyond its established male-led formula. A weak one would raise questions about whether Indian audiences are ready to buy tickets for a female-fronted action spectacle at this scale.
 
-He is survived by his wife Nita, who was his childhood sweetheart. The couple celebrated their 50th wedding anniversary in 2023."""
+## What NRI Audiences Should Watch For
 
-    article = {
-        "headline": "Pahlaj Nihalani, the Producer Who Launched Govinda and Then Tried to Censor Bollywood, Has Died at 76",
-        "subheadline": "The former CBFC chairman spent four decades shaping Hindi cinema from both sides — making the films and then deciding what audiences could see.",
-        "body": body,
-        "slug": "pahlaj-nihalani-death-producer-cbfc-chairman-govinda-bollywood-nri-20260604",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "image_url": img_url or "",
-        "image_caption": "Pahlaj Nihalani, veteran Bollywood producer and former CBFC chairman" if img_url else "",
-        "image_attribution": img_attr or "",
-        "sources": json.dumps(["Bollywood Hungama", "Exchange4Media", "IANS", "Filmibeat"]),
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "is_editorial": False
-    }
-    
-    if not img_url:
-        print("  ⚠ No image found, publishing without image")
-        article.pop("image_url")
-        article.pop("image_caption")
-        article.pop("image_attribution")
-    
-    return insert_article(article)
+The Spy Universe has consistently overperformed in overseas markets, particularly in North America, the UK, and the Middle East. Pathaan's overseas numbers were historic. Alpha, with its global action setting and its departure from the usual spy-film tropes of India-Pakistan joint missions, could appeal to a broader diaspora audience that has been watching the franchise evolve. The combination of Alia Bhatt's global name recognition and the Spy Universe brand should give the film significant built-in demand.
 
-# ============================================================
-# ARTICLE 2: Dhurandhar 2 arrives on JioHotstar
-# ============================================================
-def write_dhurandhar_2_ott():
-    print("\n📝 Article 2: Dhurandhar 2 arrives on JioHotstar")
-    
-    # Image sourcing
-    img_url, img_attr = get_best_image(
-        person_name="Ranveer Singh",
-        wiki_search="Dhurandhar film Ranveer Singh",
-        pexels_query="Indian spy thriller action"
-    )
-    
-    body = """The wait is over. Dhurandhar 2: The Revenge, the spy action blockbuster that grossed ₹1,800 crore worldwide and became the second-highest-grossing Indian film of all time, started streaming on JioHotstar in India today. For NRIs in North America, the UK, and Canada who missed the theatrical run or want to watch it again, this is the one to queue up this weekend.
+For the diaspora, the real question is not whether Alpha will be entertaining. It is whether Indian cinema's biggest franchise can convincingly rewrite its own rules with women at the centre. The answer arrives on July 3."""
 
-## The Numbers That Got Us Here
+print("Sourcing image...")
+art1_img_url, art1_img_attr = source_image("Alia Bhatt", "Alia Bhatt spy action film", art1_slug)
 
-Directed by Aditya Dhar, Dhurandhar 2 opened on March 19 and spent eleven weeks in theatres, still earning over ₹30 lakh daily in its ninth week when the OTT date was finally confirmed. The film's extended theatrical window — well beyond the standard eight-week digital holdback — reflected just how much money it was still making on the big screen.
+art1_caption = "Alia Bhatt at a promotional event in Mumbai"
+art1_sources = json.dumps([
+    {"name": "Sacnilk", "url": "https://sacnilk.com"},
+    {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
+    {"name": "YRF Official", "url": "https://x.com/yrf"}
+])
 
-Ranveer Singh reprises his role as Jaskirat Singh Rangi, an undercover operative now known as Hamza Ali Mazari, navigating organised crime networks in Karachi while targeting terror cells linked to the 26/11 attacks. The sequel scales up the original's intimate spy thriller framework into a large-scale action spectacle, with set pieces that drew comparisons to Hollywood franchise filmmaking.
+art1 = {
+    "headline": art1_headline,
+    "subheadline": art1_subheadline,
+    "body": art1_body,
+    "slug": art1_slug,
+    "category": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": art1_sources,
+    "is_editorial": False,
+    "image_url": art1_img_url,
+    "image_caption": art1_caption,
+    "image_attribution": art1_img_attr
+}
+if not art1_img_url:
+    del art1["image_url"]
+    del art1["image_caption"]
+    del art1["image_attribution"]
 
-R. Madhavan, Sanjay Dutt, and Arjun Rampal round out a cast that leans into the film's ambition. A.R. Rahman's score carries the emotional weight between the action sequences.
+print("Inserting article 1...")
+insert_article(art1)
 
-## The Streaming Strategy
+# ================================================================
+# ARTICLE 2: Ramayana's Global Ambitions
+# ================================================================
 
-JioHotstar secured the Indian digital rights in what industry insiders describe as a premium deal, marking a platform shift from the first film, which premiered on Netflix. But the streaming strategy does not end with JioHotstar alone. Netflix India will receive the film on June 19, two weeks after the JioHotstar premiere, giving both platforms a window to capitalise on different subscriber bases.
+print("\n" + "="*60)
+print("ARTICLE 2: Ramayana's Global Push")
+print("="*60)
 
-Internationally, the film has already been available on Netflix in several markets, making it accessible to diaspora audiences who could not catch it in theatres. The staggered domestic rollout is an attempt to replicate the theatrical strategy of building sustained momentum across weeks.
+art2_slug = "ramayana-ranbir-kapoor-cinemacon-sdcc-trailer-hans-zimmer-ar-rahman-global-nri-20260604"
+art2_headline = "Ramayana Is Being Sold to the World Like No Indian Film Before It. CinemaCon Was Just the Beginning."
+art2_subheadline = "With a San Diego Comic-Con trailer planned for July, a Hans Zimmer–AR Rahman score, DNEG visual effects, and an October release window, India's most expensive film is playing by Hollywood's playbook"
 
-## Why NRIs Should Care
+art2_body = """There is a particular moment in the life of every big-budget film when it stops being a production and becomes a campaign. For Ramayana, that moment arrived at CinemaCon 2026 in Las Vegas, where producer Namit Malhotra and Yash took over the Milano III Ballroom to showcase the film to the global exhibition industry. What they presented was not a trailer. It was a declaration of intent: this is not an Indian film seeking a global audience. This is a global film that happens to be Indian.
 
-Dhurandhar 2 is not just a box office story. It is a cultural event that shifted conversations about what Indian cinema can achieve at scale. The film's ₹1,800-crore worldwide haul places it in territory previously occupied only by Baahubali 2, and it did so with a Hindi-language spy franchise rather than a Telugu-origin epic.
+That distinction matters. And if you are tracking what it means for Indian cinema's place in the world, what is happening with Ramayana over the next five months deserves your attention.
 
-For diaspora viewers, the film's themes — intelligence operations, cross-border conflict, national security — resonate differently when watched from abroad. The franchise has become a reference point in conversations about Indian soft power and the globalisation of Bollywood beyond the song-and-dance formula.
+## The CinemaCon Play
 
-The JioHotstar release also means the film is now available with subtitles in multiple Indian languages — Telugu, Tamil, Kannada, and Malayalam — making it accessible to South Indian diaspora communities who may not have watched it theatrically in Hindi.
+CinemaCon is where studios make their pitch to the people who control the world's movie screens. Hollywood majors have owned this space for decades. An Indian film securing a private showcase at CinemaCon is not just rare — it is essentially unprecedented at this scale. The Ramayana team hosted private previews and open-house conversations with key distributors and exhibitors from North America, Europe, Latin America, and Australia. Posters and banner-style reveals were positioned at the centre of the venue. The messaging was clear: "one of the most ambitious theatrical productions currently in post-production, a sweeping mythological epic filmed for IMAX and designed as a global tentpole event."
 
-## What to Expect
+The feedback, according to trade sources, was enthusiastic. Attendees were reportedly impressed by costume design, world-building, and the quality of the visual effects — all handled by DNEG, the eight-time Academy Award-winning studio.
 
-The theatrical cut runs just under four hours. Reports suggest Netflix will eventually release an extended version internationally, though JioHotstar is streaming the theatrical cut for now. If you are planning a watch party, clear the evening."""
+## The SDCC Trailer
 
-    article = {
-        "headline": "Dhurandhar 2 Is Finally Streaming. India's ₹1,800-Crore Spy Blockbuster Just Landed on JioHotstar.",
-        "subheadline": "The second-highest-grossing Indian film of all time arrives on OTT after eleven weeks in theatres. Netflix India gets it on June 19.",
-        "body": body,
-        "slug": "dhurandhar-2-the-revenge-jiohotstar-ott-release-ranveer-singh-streaming-nri-20260604",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "image_url": img_url or "",
-        "image_caption": "Ranveer Singh stars as undercover operative Jaskirat Singh Rangi in the Dhurandhar franchise" if img_url else "",
-        "image_attribution": img_attr or "",
-        "sources": json.dumps(["SacNilk", "Filmibeat", "JioHotstar"]),
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "is_editorial": False
-    }
-    
-    if not img_url:
-        print("  ⚠ No image found, publishing without image")
-        article.pop("image_url")
-        article.pop("image_caption")
-        article.pop("image_attribution")
-    
-    return insert_article(article)
+If CinemaCon was the industry pitch, San Diego Comic-Con in July is the consumer one. Reports indicate that the team is in advanced talks with SDCC organisers to debut the full theatrical trailer there. This follows a successful focus group screening in Los Angeles, where an early cut received highly positive feedback from a diverse audience. The choice of SDCC is strategic: it is where Marvel, DC, and the biggest Hollywood franchises unveil their tentpoles. An Indian film launching its trailer alongside them is a statement about where Ramayana sees itself in the hierarchy.
 
-# ============================================================
-# ARTICLE 3: Patriot arrives on ZEE5 — Mammootty + Mohanlal
-# ============================================================
-def write_patriot_zee5():
-    print("\n📝 Article 3: Patriot arrives on ZEE5")
-    
-    # Image sourcing - try Mammootty first
-    img_url, img_attr = get_best_image(
-        person_name="Mammootty",
-        wiki_search="Patriot Malayalam film Mammootty Mohanlal 2026",
-        pexels_query=None
-    )
-    
-    body = """Mammootty and Mohanlal sharing the screen is the kind of event that stops Malayalam cinema in its tracks. It has happened exactly once in seventeen years. Tomorrow, that film — Patriot — arrives on ZEE5, and for the millions of Malayali diaspora scattered across the Gulf, North America, and Europe, it removes the last barrier between them and the most anticipated Malayalam film of the decade.
+## The Score: Hans Zimmer Meets AR Rahman
 
-## The Reunion That Took Seventeen Years
+The musical collaboration alone would be headline news. Hans Zimmer, the man behind the scores of Inception, Interstellar, Gladiator, and Dune, is working alongside AR Rahman, India's greatest film composer and a two-time Academy Award winner, on the Ramayana soundtrack. A live musical event is reportedly planned for October to showcase the score — an event designed to generate its own wave of global attention ahead of the theatrical release.
 
-The last time Mammootty and Mohanlal appeared together in substantial roles was Twenty:20 in 2008, a charity film that brought together virtually every name in Malayalam cinema. Before that, their collaborations were the stuff of 1990s legend — films that defined an era when Kerala's two superstars were rivals and collaborators in equal measure.
+## The Cast and the Scale
 
-Patriot is different. Director Mahesh Narayanan has built a spy action drama around both actors, not as cameo appearances or extended guest spots, but as full-fledged characters central to the narrative. Mammootty plays Dr. Daniel James, a scientist who stumbles onto a massive surveillance conspiracy involving a spyware programme called Periscope and a tech conglomerate named Shakthi Solutions. After leaking classified data and fleeing to London, he builds an online platform to continue exposing the network.
+Ranbir Kapoor plays Lord Rama. Sai Pallavi is Sita. Yash is Ravana. Sunny Deol is Hanuman. Ravi Dubey is Lakshman. The budget is reported to be among the highest ever for an Indian production, with a distribution deal reportedly valued at ₹450 crore. The film is being developed as a two-part saga, with Part 1 now eyeing an October 30 release — a week before Diwali — to build word-of-mouth before the extended holiday window.
 
-Mohanlal enters as Colonel Rahim Naik, a retired military officer who becomes an unlikely ally. The film's supporting cast reads like a who's who of Malayalam cinema: Fahadh Faasil, Kunchacko Boban, Nayanthara, Revathi, and Rajiv Menon.
+Director Nitesh Tiwari, who directed Dangal, India's highest-grossing film in China, brings a track record of making big stories feel emotionally intimate. Early glimpses suggest the film emphasises character presence and emotional depth over spectacle alone, with parallel narrative arcs in Part 1 and limited direct interaction between key characters early on.
 
-## Why the Diaspora Angle Matters
+## What This Means for the Diaspora
 
-Patriot's surveillance themes — spyware, tech companies weaponising user data, whistleblowers fleeing across borders — hit differently for NRIs working in Silicon Valley, London's tech corridor, and the Gulf's growing tech hubs. The film's premise borrows from real-world controversies around programmes like Pegasus, and its London-set narrative places Indian intelligence operations in the global context that diaspora audiences navigate daily.
+For NRI audiences, Ramayana represents something specific. It is the first Indian film to be positioned, from the ground up, as what producer Namit Malhotra calls "India's Avatar" — a visual effects–driven spectacle designed for IMAX that carries a story with deep cultural resonance for hundreds of millions of people worldwide. The LA IMAX screening, the CinemaCon showcase, the SDCC trailer launch — these are not add-ons. They are the core strategy. DNEG's Brahma AI unit is being used for lip-sync dubbing technology to present the film seamlessly in multiple languages for international audiences.
 
-The film opened theatrically on May 1 and performed strongly in Kerala and in the Middle East, where Mammootty and Mohanlal command fanatical followings. The ZEE5 release makes it available across all five South Indian languages — Malayalam, Hindi, Tamil, Telugu, and Kannada — as well as in India and international markets.
+The film arrives at a moment when Indian cinema's global footprint is expanding rapidly. Dhurandhar 2 crossed ₹1,800 crore worldwide. Peddi just opened to ₹100 crore on day one. But Ramayana is playing a different game entirely. It is not trying to be the biggest Indian film. It is trying to be a film that happens to be Indian and also happens to be one of the biggest in the world."""
 
-## The Verdict From Theatres
+print("Sourcing image...")
+art2_img_url, art2_img_attr = source_image("Ranbir Kapoor", "Ramayana Ranbir Kapoor film", art2_slug)
 
-Critics praised the ambition. A three-hour spy drama that tackles surveillance, civil liberties, and state power is not typical Malayalam commercial fare, even by the standards of an industry that has spent the last five years producing some of the most adventurous cinema in India. Mammootty's performance as a man torn between patriotism and principle was singled out. Mohanlal brings gravitas to a role that is smaller in screen time but pivotal in the narrative's architecture.
+art2_caption = "Ranbir Kapoor, who plays Lord Rama in the upcoming Ramayana epic"
+art2_sources = json.dumps([
+    {"name": "Sacnilk", "url": "https://sacnilk.com"},
+    {"name": "Filmfare", "url": "https://filmfare.com"},
+    {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"}
+])
 
-Sushin Shyam's score — the composer behind the music of Bougainvillea and other recent Malayalam hits — anchors the film's emotional register. The soundtrack, including the singles Kaattu Thottappol and Manushyan, has already found a life of its own on streaming platforms.
+art2 = {
+    "headline": art2_headline,
+    "subheadline": art2_subheadline,
+    "body": art2_body,
+    "slug": art2_slug,
+    "category": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": art2_sources,
+    "is_editorial": False,
+    "image_url": art2_img_url,
+    "image_caption": art2_caption,
+    "image_attribution": art2_img_attr
+}
+if not art2_img_url:
+    del art2["image_url"]
+    del art2["image_caption"]
+    del art2["image_attribution"]
 
-## What to Know Before Watching
+print("Inserting article 2...")
+insert_article(art2)
 
-Clear three hours. Patriot is not a lean thriller. It is a dense, layered narrative that rewards patience. The film's structure moves between timelines and continents. If you are a Malayali in the diaspora, this is appointment viewing. If you are not, and you have been curious about why Malayalam cinema keeps producing the most talked-about films in India, this is as good a starting point as any.
+# ================================================================
+# ARTICLE 3: AA23 - Allu Arjun + Lokesh Kanagaraj Still On Track
+# ================================================================
 
-ZEE5 begins streaming Patriot on June 5."""
+print("\n" + "="*60)
+print("ARTICLE 3: Allu Arjun + Lokesh Kanagaraj AA23")
+print("="*60)
 
-    article = {
-        "headline": "Patriot Arrives on ZEE5 Tomorrow. Mammootty and Mohanlal Together After Seventeen Years Is Exactly as Big as It Sounds.",
-        "subheadline": "The spy drama that reunites Malayalam cinema's two greatest stars tackles surveillance, whistleblowing, and state power. The diaspora has been waiting.",
-        "body": body,
-        "slug": "patriot-zee5-ott-mammootty-mohanlal-fahadh-faasil-spy-drama-malayalam-nri-20260604",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "image_url": img_url or "",
-        "image_caption": "Mammootty stars as Dr. Daniel James in the spy drama Patriot" if img_url else "",
-        "image_attribution": img_attr or "",
-        "sources": json.dumps(["Pinkvilla", "Wikipedia", "Hollywood Reporter India", "ZEE5"]),
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "is_editorial": False
-    }
-    
-    if not img_url:
-        print("  ⚠ No image found, publishing without image")
-        article.pop("image_url")
-        article.pop("image_caption")
-        article.pop("image_attribution")
-    
-    return insert_article(article)
+art3_slug = "allu-arjun-lokesh-kanagaraj-aa23-not-shelved-lcu-rathna-kumar-nri-20260604"
+art3_headline = "AA23 Is Not Dead. The Most Anticipated Collaboration in South Indian Cinema Just Got Its Loudest Confirmation Yet."
+art3_subheadline = "LCU writer Rathna Kumar shuts down budget-constraint rumors about Allu Arjun and Lokesh Kanagaraj's pan-India project, confirming pre-production is firmly on track"
 
-# ============================================================
-# MAIN
-# ============================================================
-if __name__ == "__main__":
-    print("🎬 Entertainment Writer — June 4, 2026")
-    print("=" * 50)
-    
-    results = []
-    results.append(("Pahlaj Nihalani obituary", write_pahlaj_nihalani()))
-    results.append(("Dhurandhar 2 OTT", write_dhurandhar_2_ott()))
-    results.append(("Patriot ZEE5", write_patriot_zee5()))
-    
-    print("\n" + "=" * 50)
-    print("📊 Results:")
-    for name, success in results:
-        status = "✓" if success else "✗"
-        print(f"  {status} {name}")
-    
-    succeeded = sum(1 for _, s in results if s)
-    print(f"\n  {succeeded}/{len(results)} articles published")
+art3_body = """For forty-eight hours, a section of the internet convinced itself that the most exciting announcement in South Indian cinema this year had quietly collapsed. On Tuesday, an unverified post on X claimed that "a big-budget pan-India movie announced in a very celebrating manner is now stuck in a limbo over budget constraints." It did not name the film. It did not need to. Fans immediately connected it to AA23, the untitled collaboration between Allu Arjun and director Lokesh Kanagaraj.
+
+The panic was swift, loud, and — as it turns out — entirely unnecessary.
+
+## What Actually Happened
+
+On June 3, Rathna Kumar, the screenwriter who has been part of every significant film in the Lokesh Cinematic Universe — Kaithi, Vikram, Leo, and Master — posted a tribute on X marking four years since Vikram's release. At the end of his message, he added five words that ended the speculation: "Can't wait for #AA23."
+
+It was not a press release. It was not a studio clarification. It was better than both. Rathna Kumar is not a publicist managing damage control. He is a creative collaborator who knows exactly where the project stands because he is actively involved in building it. When he says he cannot wait for AA23, it means the project is alive, progressing, and generating the kind of creative excitement that makes a writer post about it voluntarily.
+
+Industry tracker Ramesh Bala confirmed separately that all rumors about the project being shelved are "completely baseless." Pre-production, including script development, is continuing as planned.
+
+## Why AA23 Matters
+
+This is not just another film. This is the collision of two of Indian cinema's most powerful creative forces.
+
+Allu Arjun spent five years building the Pushpa franchise into a national phenomenon. The sequel, Pushpa 2: The Rule, became the highest-grossing Telugu film of all time. His screen presence has evolved from regional superstar to pan-India icon, with a National Award to cement the transition.
+
+Lokesh Kanagaraj, meanwhile, has built the most ambitious shared cinematic universe in Indian cinema history. The Lokesh Cinematic Universe — spanning Kaithi, Vikram, and Leo — has demonstrated that Indian audiences will follow interconnected narratives with the same enthusiasm they bring to Marvel films. His directorial grammar is distinctive: tight plotting, morally complex characters, and action choreography that serves the story rather than interrupting it.
+
+AA23 was announced on January 14, 2026, by Mythri Movie Makers. The announcement teaser — featuring Allu Arjun's silhouette managing a horse, accompanied by an Anirudh Ravichander score — caught fire on Instagram Reels. Reports suggest the film could be Lokesh's long-cherished sci-fi project, tentatively known as Irumbu Kai Mayavi, adapted for Allu Arjun's star persona.
+
+This would be Lokesh's first direct collaboration with a Telugu superstar in a primary lead role, marking a historic bridge between the Tamil and Telugu industries. The music is being composed by Anirudh Ravichander, whose scores for Vikram and Leo helped define the sonic identity of the LCU.
+
+## The Budget Question
+
+The shelving rumor specifically cited "budget constraints" as the reason. For context: AA23 is being produced by Mythri Movie Makers, the same studio behind Pushpa 2, which was one of the most expensive Telugu films ever made. Mythri has the financial infrastructure to handle projects at this scale. The rumor appears to have originated from confusion about an entirely different project.
+
+That said, the economics of pan-India filmmaking are genuinely challenging. Budgets above ₹300 crore require significant overseas revenue to break even, and the margin for error has shrunk. Every major star vehicle now needs to perform in Hindi-speaking markets in addition to its home territory. AA23, with Allu Arjun's proven pan-India pull and Lokesh's growing national audience, is better positioned than most.
+
+## What to Watch For
+
+Shooting is expected to commence later in 2026 after pre-production wraps. There are unconfirmed reports that Shraddha Kapoor may be cast as the female lead. A formal shooting commencement announcement from Mythri would be the next milestone to watch for.
+
+For the diaspora audience that has been tracking the LCU's growth — from Kaithi's modest theatrical run to Vikram's blockbuster overseas numbers — AA23 represents the universe's biggest bet yet. And as of today, it is very much on."""
+
+print("Sourcing image...")
+art3_img_url, art3_img_attr = source_image("Allu Arjun", "Allu Arjun Telugu actor", art3_slug)
+
+art3_caption = "Allu Arjun, whose collaboration with Lokesh Kanagaraj remains on track despite shelving rumors"
+art3_sources = json.dumps([
+    {"name": "Gulte", "url": "https://gulte.com"},
+    {"name": "Hindustan Times", "url": "https://hindustantimes.com"},
+    {"name": "LatestLY", "url": "https://latestly.com"},
+    {"name": "Zoom TV Entertainment", "url": "https://zoomtventertainment.com"}
+])
+
+art3 = {
+    "headline": art3_headline,
+    "subheadline": art3_subheadline,
+    "body": art3_body,
+    "slug": art3_slug,
+    "category": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": art3_sources,
+    "is_editorial": False,
+    "image_url": art3_img_url,
+    "image_caption": art3_caption,
+    "image_attribution": art3_img_attr
+}
+if not art3_img_url:
+    del art3["image_url"]
+    del art3["image_caption"]
+    del art3["image_attribution"]
+
+print("Inserting article 3...")
+insert_article(art3)
+
+print("\n" + "="*60)
+print("ENTERTAINMENT WRITER COMPLETE - 3 articles published")
+print("="*60)
