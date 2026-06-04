@@ -1,30 +1,47 @@
 #!/usr/bin/env python3
-"""Lifestyle-Health & Markets-Finance writer for The Videshi — 2026-06-01 run."""
+"""
+Lifestyle-Health + Markets-Finance writer for The Videshi.
+Generates 2 lifestyle-health articles and 1 markets-finance article.
+"""
 
-import json, os, sys, uuid, re, time
-import requests, urllib.parse
+import json, os, sys, uuid, requests, io, time, urllib.parse
 from datetime import datetime, timezone
 
-# ── env ──────────────────────────────────────────────────────────────────
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
+# Load env
+def load_env(filepath):
+    if not os.path.exists(filepath):
+        return
+    with open(filepath) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                key, val = line.split('=', 1)
+                val = val.strip().strip('"').strip("'")
+                os.environ[key] = val
+
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    "Prefer": "return=representation"
 }
 
-# ── helpers ──────────────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
-    encoded = urllib.parse.quote(person_name.replace(" ", "_"))
+    """Fetch a person's actual photo from Wikipedia."""
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10,
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
@@ -36,353 +53,451 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
+def fetch_wikimedia_commons_images(search_query, limit=5):
+    """Search Wikimedia Commons for CC-licensed images."""
+    params = {
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": search_query,
+        "gsrnamespace": "6",
+        "gsrlimit": str(limit),
+        "prop": "imageinfo",
+        "iiprop": "url|size|mime|extmetadata",
+        "iiurlwidth": "1200",
+        "format": "json"
+    }
+    try:
+        r = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params=params,
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=15
+        )
+        if r.status_code == 200:
+            data = r.json()
+            pages = data.get("query", {}).get("pages", {})
+            results = []
+            for pid, page in pages.items():
+                ii = page.get("imageinfo", [{}])[0]
+                mime = ii.get("mime", "")
+                if not mime.startswith("image/"):
+                    continue
+                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
+                    continue
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "original_url": ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0),
+                    "height": ii.get("height", 0),
+                    "mime": mime
+                })
+            if results:
+                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
+            return results
+    except Exception as e:
+        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+    return []
 
-def fetch_pexels_image(query, fallback_query=None):
-    import subprocess
-    for q in [query, fallback_query]:
-        if not q:
-            continue
-        try:
-            result = subprocess.run(
-                ["curl", "-sS",
-                 f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=5",
-                 "-H", f"Authorization: {PEXELS_API_KEY}"],
-                capture_output=True, text=True, timeout=15,
-            )
+def fetch_pexels_image(query):
+    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
+        return None
+    try:
+        import subprocess
+        result = subprocess.run([
+            'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+            f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3&orientation=landscape'
+        ], capture_output=True, text=True, timeout=15)
+        if result.returncode == 0:
             data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for p in photos:
-                src = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
-                if src:
-                    print(f"  ✓ Pexels image for '{q}': {src[:80]}...")
-                    return src
-        except Exception as e:
-            print(f"  ⚠ Pexels error for '{q}': {e}")
+            photos = data.get('photos', [])
+            if photos:
+                url = photos[0]['src']['large2x']
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                return url
+    except Exception as e:
+        print(f"  ⚠ Pexels error: {e}")
     return None
 
+def compress_image(img_bytes, max_width=1200, quality=80):
+    """Resize and compress image. Returns JPEG bytes."""
+    from PIL import Image
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    return buf.getvalue()
 
-def upload_image_to_supabase(img_url, filename):
+def upload_to_supabase_storage(img_url, filename, retry=True):
+    """Download image, compress, and upload to Supabase storage."""
     try:
-        r = requests.get(img_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=20)
+        time.sleep(1)  # Rate limit courtesy
+        r = requests.get(img_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com; editorial)"}, timeout=20)
         if r.status_code != 200:
-            print(f"  ⚠ Image download failed ({r.status_code}): {img_url[:80]}")
-            if "upload.wikimedia.org" in img_url or "images.pexels.com" in img_url:
-                return img_url
+            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
             return None
-        content_type = r.headers.get("Content-Type", "image/jpeg")
-        if not content_type.startswith("image/"):
+        content_type = r.headers.get('Content-Type', '')
+        if not content_type.startswith('image/'):
             print(f"  ⚠ Not an image: {content_type}")
             return None
         if len(r.content) < 5000:
-            print(f"  ⚠ Image too small ({len(r.content)} bytes), skipping")
+            print(f"  ⚠ Image too small: {len(r.content)} bytes")
             return None
 
+        compressed = compress_image(r.content)
+        compressed_kb = len(compressed) / 1024
+        print(f"  Image compressed: {len(r.content)/1024:.0f}KB → {compressed_kb:.0f}KB")
+
+        # Upload to Supabase storage
         upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        resp = requests.post(
-            upload_url,
-            headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": content_type,
-                "x-upsert": "true",
-            },
-            data=r.content,
-            timeout=30,
-        )
-        if resp.status_code in (200, 201):
+        upload_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": "image/jpeg",
+            "x-upsert": "true"
+        }
+        up = requests.post(upload_url, headers=upload_headers, data=compressed, timeout=30)
+        if up.status_code in (200, 201):
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}")
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
             return public_url
         else:
-            print(f"  ⚠ Supabase upload error ({resp.status_code}): {resp.text[:200]}")
-            if "upload.wikimedia.org" in img_url or "images.pexels.com" in img_url:
-                return img_url
+            print(f"  ⚠ Upload failed: {up.status_code} {up.text[:200]}")
             return None
     except Exception as e:
-        print(f"  ⚠ Upload exception: {e}")
-        if "upload.wikimedia.org" in img_url or "images.pexels.com" in img_url:
-            return img_url
+        print(f"  ⚠ Upload error: {e}")
         return None
 
-
 def insert_article(article):
+    """Insert article into Supabase."""
     url = f"{SUPABASE_URL}/rest/v1/p2_articles"
     r = requests.post(url, headers=HEADERS, json=article, timeout=30)
     if r.status_code in (200, 201):
-        result = r.json()
-        art_id = result[0]["id"] if isinstance(result, list) and result else "unknown"
-        print(f"  ✓ Inserted: {article['headline'][:60]}... (id={art_id})")
+        data = r.json()
+        art_id = data[0]['id'] if isinstance(data, list) else data.get('id')
+        print(f"  ✓ Article inserted: {art_id}")
         return art_id
     else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
         return None
 
+def source_best_image(person_names, topic_terms, slug):
+    """Multi-source image sourcing: Wikipedia → Wikimedia Commons → Pexels."""
+    candidates = []
 
-def validate_article(a):
-    errors = []
-    if not a.get("headline") or len(a["headline"]) < 20:
-        errors.append("headline too short")
-    if len(a.get("headline", "")) > 200:
-        errors.append("headline too long")
-    if not a.get("subheadline") or len(a["subheadline"]) < 15:
-        errors.append("subheadline too short or missing")
-    body_words = len(a.get("body", "").split())
-    if body_words < 400:
-        errors.append(f"body too short ({body_words} words, need 400+)")
-    if not a.get("slug") or a["slug"] != a["slug"].lower():
-        errors.append("slug missing or not lowercase")
-    if a.get("category") not in ("lifestyle-health", "markets-finance"):
-        errors.append(f"invalid category: {a.get('category')}")
-    if errors:
-        print(f"  ✗ Validation FAILED: {'; '.join(errors)}")
-        return False
-    print(f"  ✓ Validation passed ({body_words} words)")
-    return True
-
-
-# ═══════════════════════════════════════════════════════════════════════
-# ARTICLE 1: Lifestyle-Health — J&J Erleada Prostate Cancer Surgery
-# ═══════════════════════════════════════════════════════════════════════
-print("\n══ Article 1: J&J Erleada Prostate Cancer Surgery Study ══")
-
-article1 = {
-    "headline": "A Drug Taken Before and After Prostate Surgery Made Patients Nine Times More Likely to Be Cancer-Free. The Study Just Changed the Standard of Care.",
-    "subheadline": "J&J's Erleada, given for six months before and after surgery, reduced the risk of the cancer spreading or death by 20 per cent. ASCO chose the data to open its plenary session.",
-    "slug": "jnj-erleada-prostate-surgery-proteus-asco-2026-south-asian-men-cancer-free",
-    "category": "lifestyle-health",
-    "vertical": "health",
-    "tags": ["prostate-cancer", "asco-2026", "erleada", "jnj", "south-asian-men"],
-    "urgency": "timely",
-    "sources": json.dumps(["Reuters", "The New England Journal of Medicine", "GlobeNewsWire / Johnson & Johnson", "ASCO 2026 Plenary (Abstract LBA1)"]),
-    "status": "published",
-    "is_editorial": False,
-    "is_featured": False,
-    "score_total": 0,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "body": """Nearly half of all men who have prostate cancer surgery see their cancer return. For decades, the standard approach has been to operate first and treat later — usually after the disease has already spread beyond the prostate and the window for a cure has narrowed.
+    # Source 1: Wikipedia for person articles
+    for name in person_names:
+        wiki_img = fetch_wikipedia_person_image(name)
+        if wiki_img:
+            candidates.append({"url": wiki_img, "source": "wikimedia_commons", "relevance": "high", "caption_hint": name})
+            break
 
-A five-year study just upended that sequence. Johnson & Johnson's Phase 3 PROTEUS trial, published simultaneously in *The New England Journal of Medicine* and presented as the opening plenary at the 2026 American Society of Clinical Oncology meeting in Chicago, found that giving the drug apalutamide — sold as Erleada — alongside hormone therapy for six months before and after prostate surgery produced results that researchers are calling paradigm-changing.
+    # Source 2: Wikimedia Commons
+    for term in topic_terms:
+        commons = fetch_wikimedia_commons_images(term)
+        for c in commons[:2]:
+            candidates.append({"url": c["url"], "source": "wikimedia_commons", "relevance": "medium", "caption_hint": term})
+        if commons:
+            break
 
-## The Numbers That Shifted the Paradigm
+    # Source 3: Pexels
+    for term in topic_terms:
+        pexels_img = fetch_pexels_image(term)
+        if pexels_img:
+            candidates.append({"url": pexels_img, "source": "pexels", "relevance": "low", "caption_hint": term})
+            break
+
+    if not candidates:
+        print("  ⚠ No image candidates found")
+        return None, None, None
+
+    # Pick best: prefer wikipedia/commons over pexels
+    best = candidates[0]
+    filename = f"{slug}.jpg"
+    final_url = upload_to_supabase_storage(best["url"], filename)
+    attribution = "Wikimedia Commons" if best["source"] == "wikimedia_commons" else "Pexels"
+    return final_url, attribution, best.get("caption_hint", "")
 
-Patients who received apalutamide plus hormone therapy were **nine times more likely** to have little to no detectable cancer remaining in the prostate at the time of surgery — 8.9 per cent achieved what oncologists call a pathologic complete response or minimal residual disease, compared with just 1.0 per cent among those who received hormone therapy alone.
 
-The combination also **reduced the risk of metastasis or death by 20 per cent**, a clinically significant margin in a disease where early intervention has historically been limited to surgery and radiation.
+# ============================================================
+# ARTICLE 1: Ultra-Processed Foods and Dementia Risk
+# ============================================================
+def write_article_1():
+    print("\n" + "="*60)
+    print("ARTICLE 1: Ultra-Processed Foods and Dementia Risk")
+    print("="*60)
 
-A second arm of the study, which extended the drug regimen to a full year before and after surgery, produced even stronger results. Those patients went **more than six years** on average before requiring any subsequent treatment — nearly double the duration for the hormone-only group. The longer course reduced the risk of recurrence and death by 29 per cent.
+    slug = "ultra-processed-foods-dementia-58-percent-risk-harvard-south-asian-diaspora-20260604"
+    headline = "Ultra-Processed Foods Raise Dementia Risk by 58 Per Cent. South Asians in the West Are Eating More of Them Than Ever."
+    subheadline = "A Harvard-led study of 5,000 older Americans finds processed meats are the biggest driver. The findings land as the Indian diaspora shifts further from traditional diets."
 
-## Why This Changes How Doctors Treat Prostate Cancer
+    body = """The largest study to date on ultra-processed foods and cognitive decline has landed a stark finding: older Americans who ate the most ultra-processed foods had a 58 per cent higher risk of developing dementia compared with those who ate the least.
 
-Until now, additional drug therapy for localised prostate cancer was typically reserved for after the cancer had already returned — a reactive approach that meant patients often missed the critical window where intervention could prevent metastasis entirely.
+The research, published this week in a special issue of the American Journal of Public Health, tracked more than 5,000 adults over nearly a decade. Led by Dr Heejin Lee and Professor Cindy Leung at Harvard's T.H. Chan School of Public Health, the study found that those with the highest intake also had a 46 per cent higher risk of mild cognitive impairment and a 47 per cent higher risk of either outcome combined.
 
-"These data have the potential to fundamentally shift the treatment paradigm," said Dr Mary-Ellen Taplin, the lead investigator and a professor at Harvard Medical School. The trial's selection as the ASCO plenary opener — the most prestigious slot at the world's largest oncology conference — underscores the weight the research community is placing on the findings.
+## Processed Meats Are the Worst Offenders
 
-About 40 per cent of the roughly 330,000 Americans diagnosed with prostate cancer each year are classified as high-risk, meaning their tumours are aggressive enough that standard surgery alone leaves a significant chance of recurrence. Globally, prostate cancer is the second most common cancer in men.
+When researchers broke down the data by food type, processed meats — bacon, hot dogs, deli ham, sausages — emerged as the single biggest contributor to dementia risk. The finding adds to a growing body of evidence that has already linked these products to colorectal cancer and cardiovascular disease.
 
-## What South Asian Families Should Know
+"These associations held even after we adjusted for things like income, education, and a lot of lifestyle factors like smoking, physical activity, alcohol use, as well as baseline chronic disease risk," Leung said at a press briefing announcing the results.
 
-Prostate cancer is often framed as a disease of older white men, but the reality is more nuanced. South Asian men are diagnosed less frequently in part because screening rates are lower — a combination of cultural reluctance to discuss urological health and fewer targeted public health campaigns. When South Asian men are diagnosed, they are more likely to present at later stages, partly because of delayed screening.
+The results are not limited to heavy consumers. Even moderate intake of ultra-processed foods was associated with elevated risk. "Just to say, 'well, I don't eat all my calories from ultra-processed foods, I'm safe' — it really shows there may not be a safe level," Leung warned.
 
-The PROTEUS trial enrolled patients with high-risk localised or locally advanced disease — exactly the profile where early intervention matters most. For South Asian men in the diaspora who are navigating the American healthcare system, the takeaway is concrete: if you or a male family member over 50 has been diagnosed with high-risk prostate cancer and surgery is being considered, ask the oncologist about neoadjuvant and adjuvant apalutamide. This is no longer speculative. It is backed by a randomised Phase 3 trial published in the world's most respected medical journal.
+## Why the Diaspora Should Pay Attention
 
-## The Drug and the Company
+Ultra-processed foods now account for nearly 70 per cent of what sits on American grocery store shelves. For Indian families who have settled abroad, the dietary shift has been well documented. Traditional home-cooked meals built around fresh vegetables, whole grains, and legumes are gradually being replaced or supplemented by packaged snacks, frozen meals, and sugary drinks — precisely the categories flagged in this research.
 
-Erleada (apalutamide) is already approved by the FDA for metastatic and non-metastatic castration-resistant prostate cancer. Johnson & Johnson has said it plans to seek expanded approval for the new indication — use before and after surgery in high-risk localised disease. If granted, it would be the first drug approved for this specific treatment window.
+A companion study in the same journal issue, led by Cornell University, found that more than 60 per cent of Americans now view ultra-processed foods as addictive and harmful, with perceived risks roughly equivalent to alcohol. The bipartisan consensus has researchers hopeful that policy action could follow.
 
-The most common side effects in the trial included fatigue, rash, and joint pain, but importantly, the drug did not increase the rate of surgical complications, a concern that had previously limited enthusiasm for pre-surgical drug therapy in prostate cancer.
+## The Biology Behind the Risk
 
-## What Comes Next
+Researchers believe the link operates through multiple pathways. Diets high in ultra-processed foods are strongly associated with obesity, Type 2 diabetes, and cardiovascular disease — all of which independently raise dementia risk. South Asians already face a disproportionate burden of these metabolic conditions, often developing them at lower body weights and younger ages than other ethnic groups.
 
-J&J is expected to file for regulatory approval in the second half of 2026. If the FDA grants it, apalutamide could become part of standard pre-surgical protocols across the United States within a year. For the roughly 132,000 American men diagnosed annually with high-risk prostate cancer, that would mean a fundamentally different conversation at the time of diagnosis — one where the drug is given *before* the surgeon operates, not after the cancer has already come back.
+But the ingredients themselves may also play a role. Emulsifiers, high-fructose corn syrup, and artificial additives common in ultra-processed foods have been shown to disrupt gut health and promote chronic inflammation — a process increasingly linked to neurodegeneration.
 
-The message from Chicago this week is unambiguous: treating prostate cancer early and aggressively, with the right drug at the right time, can change outcomes in ways that surgery alone cannot.""",
-}
+## What Minimally Processed Foods Can Do
 
-if validate_article(article1):
-    img_url = fetch_pexels_image("prostate cancer medical treatment", "cancer surgery hospital")
-    if img_url:
-        art_id = insert_article(article1)
-        if art_id:
-            final_url = upload_image_to_supabase(img_url, f"{art_id}.jpg")
-            if final_url:
-                requests.patch(
-                    f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{art_id}",
-                    headers=HEADERS,
-                    json={"image_url": final_url, "image_attribution": "Pexels"},
-                    timeout=15,
-                )
-                print(f"  ✓ Image attached")
-    else:
-        insert_article(article1)
+The study also delivered good news. Adults who ate the most minimally processed foods — fresh fruits, vegetables, whole grains, fish, and unprocessed meats — had a 41 per cent lower risk of dementia. That is the kind of traditional diet that many South Asian households still know how to prepare, even if they do so less often.
 
-# ═══════════════════════════════════════════════════════════════════════
-# ARTICLE 2: Lifestyle-Health — B12 & Folate Deficiency and Fatigue
-# ═══════════════════════════════════════════════════════════════════════
-print("\n══ Article 2: B12 and Folate Deficiency Linked to Fatigue ══")
+## The Takeaway for NRI Families
 
-article2 = {
-    "headline": "A Study of 600 People Found That Low B12 and Folate Levels Predict Chronic Fatigue. South Asian Vegetarians Are Among the Most Vulnerable.",
-    "subheadline": "Japanese researchers linked elevated homocysteine — a marker of B12 and folate deficiency — to persistent physical exhaustion in men and low motivation in women. The findings have direct implications for the millions of South Asians who follow plant-based diets.",
-    "slug": "b12-folate-deficiency-fatigue-motivation-homocysteine-south-asian-vegetarians-20260601",
-    "category": "lifestyle-health",
-    "vertical": "health",
-    "tags": ["vitamin-b12", "folate", "fatigue", "vegetarian", "south-asian-health"],
-    "urgency": "timely",
-    "sources": json.dumps(["Diabetes.co.uk", "Peer-reviewed nutrition journal (Japan)", "The Lancet Global Health (2022)", "American Society of Hematology"]),
-    "status": "published",
-    "is_editorial": False,
-    "is_featured": False,
-    "score_total": 0,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "body": """You sleep eight hours and still feel drained. You exercise, eat well, avoid caffeine after noon — and still cannot shake the fog. Most people blame stress. Their doctors check for anaemia, thyroid dysfunction, depression. What often goes unchecked is one of the most common and correctable nutrient deficiencies in the world: vitamin B12.
+The study does not prove that ultra-processed foods directly cause dementia. Observational research cannot establish that. But the pattern is consistent, the sample is large, and the effect size is substantial. For a diaspora community already at elevated metabolic risk, the findings are a pointed reminder that the convenience of processed food carries a cognitive price that may not reveal itself for decades.
 
-A new study from Japan has added another dimension to the evidence. Researchers measured homocysteine, vitamin B12, and folate levels in roughly 600 healthy adults and cross-referenced them with detailed fatigue and motivation assessments. The findings were published in a peer-reviewed nutrition journal and have drawn attention for their specificity.
+The traditional Indian pantry — dal, sabzi, roti, rice, seasonal fruits — is not just cultural heritage. Increasingly, it looks like a defence against the diseases of Western modernity.
 
-## What the Study Found
+**Sources:** American Journal of Public Health (June 2026, special issue on ultra-processed foods); Harvard T.H. Chan School of Public Health; Cornell University; CNN Health"""
 
-Homocysteine is an amino acid that accumulates in the blood when B12 or folate levels are low. It is not a toxin by itself, but elevated levels serve as a reliable biochemical flag that these vitamins are insufficient.
+    # Image sourcing
+    print("\nSourcing image...")
+    img_url, img_attr, _ = source_best_image(
+        [],
+        ["ultra processed food junk food", "processed food snacks packaging", "packaged food grocery store"],
+        slug
+    )
 
-Among **men**, higher homocysteine was significantly associated with greater **physical fatigue** — the kind of bone-deep tiredness that sleep does not resolve. Among **women**, the association was with **lower motivation** — not physical exhaustion per se, but a measurable decline in the drive to initiate and sustain effort.
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "lifestyle-health",
+        "vertical": "culture",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "source_urls": json.dumps([
+            "https://ajph.aphapublications.org/",
+            "https://www.cnn.com/2026/06/03/health/ultraprocessed-food-scientists-fed-up/",
+            "https://news-medical.net/news/20260603/Americans-view-ultraprocessed-foods-as-addictive-and-harmful.aspx"
+        ]),
+        "is_editorial": False,
+        "image_url": img_url or "",
+        "image_caption": "Packaged ultra-processed foods on grocery store shelves in the United States",
+        "image_attribution": img_attr or ""
+    }
 
-The analysis controlled for confounders including age, sleep duration, workload, dietary patterns, and physical activity. That level of rigour makes the findings harder to dismiss as coincidental, though the researchers themselves note the study is observational and does not prove causation.
+    art_id = insert_article(article)
+    return art_id
 
-## Why South Asian Vegetarians Should Pay Attention
 
-Vitamin B12 is found almost exclusively in animal products — meat, fish, eggs, and dairy. It is not present in meaningful quantities in any plant food, including legumes, grains, and vegetables that form the backbone of traditional South Asian diets.
+# ============================================================
+# ARTICLE 2: Processed Meat and Cancer Risk (EPIC Study)
+# ============================================================
+def write_article_2():
+    print("\n" + "="*60)
+    print("ARTICLE 2: Processed Meat and Stomach Cancer Risk")
+    print("="*60)
 
-This is not a niche concern. India has the largest vegetarian population in the world. Estimates suggest that **47 per cent of Indians** follow predominantly vegetarian diets, and among Brahmins and Jains, the figure approaches 80 per cent. A 2022 Lancet Global Health analysis found that **B12 deficiency affects up to 70 per cent** of vegetarian populations in South Asia — a staggering figure that makes it one of the most widespread micronutrient deficiencies in the region.
+    slug = "processed-meat-stomach-cancer-esophageal-epic-study-south-asian-diet-shift-20260604"
+    headline = "One Extra Slice of Deli Meat a Day Raises Stomach Cancer Risk by 9 Per Cent. The Diaspora Diet Is Drifting in the Wrong Direction."
+    subheadline = "A 14-year European study of 450,000 people links processed meat to stomach and oesophageal cancers. For NRI families eating more Western food, the data carries a specific warning."
 
-For the diaspora, the picture is mixed. Many second-generation South Asian Americans and British Indians eat meat, but a substantial portion maintain vegetarian or predominantly plant-based diets, particularly in religious or cultural observance. Even among those who eat some dairy, B12 absorption declines with age, and many Indian dairy products — paneer, yoghurt, ghee — contain less B12 per serving than Western equivalents like fortified milk or aged cheese.
+    body = """A single extra serving of processed meat per day — one slice of ham, roughly 30 grams — raises the risk of stomach cancer by 9 per cent and oesophageal cancer by 13 per cent, according to the largest study of its kind ever conducted.
 
-## The Fatigue Connection
+The findings come from the European Prospective Investigation into Cancer and Nutrition, known as EPIC, which tracked the health and diets of 450,112 people across Europe for an average of 14 years. The study included 131,426 men and 318,686 women.
 
-The link between B12 deficiency and neurological symptoms has been established for decades. Severe deficiency causes peripheral neuropathy — tingling and numbness in the hands and feet — and in extreme cases, irreversible cognitive decline. What is newer is the recognition that **sub-clinical deficiency** — blood levels that are technically in range but on the low end — can produce symptoms that are real but harder to diagnose: persistent tiredness, difficulty concentrating, reduced motivation, and a general feeling of being mentally slower than usual.
+## What the Numbers Show
 
-The Japanese study adds to a growing body of evidence that these subclinical effects are measurable and gender-differentiated. Physical fatigue in men and motivational decline in women may reflect different neurochemical pathways through which B12 and folate influence brain function, though the mechanisms are not yet fully understood.
+During the follow-up period, 876 participants developed stomach cancer and 215 developed oesophageal adenocarcinoma — a cancer of the tube connecting the mouth to the stomach. After adjusting for lifestyle factors including smoking, alcohol use, and body weight, the dose-response relationship was clear.
 
-## What You Can Do
+Every additional 30 grams of processed meat per day was associated with:
 
-For South Asian vegetarians who suspect they might be deficient, the intervention is straightforward and inexpensive.
+- A 9 per cent increase in overall stomach cancer risk
+- A 13 per cent increase in oesophageal adenocarcinoma risk
 
-**Get tested.** A standard blood panel that includes serum B12, folate, and homocysteine costs less than $50 in the United States and is covered by most insurance plans. Ask specifically for methylmalonic acid (MMA) if you want a more sensitive marker — serum B12 alone can appear normal even when tissue-level deficiency exists.
+White meat did not escape scrutiny either. An extra 20 grams of chicken or turkey per day was linked to a 12 per cent higher risk of cancer in the main body of the stomach.
 
-**Supplement if needed.** Oral B12 supplements (cyanocobalamin or methylcobalamin, 1,000 mcg daily) are widely available over the counter and cost less than $10 for a three-month supply. For those with absorption issues — common in adults over 50 — sublingual tablets or monthly intramuscular injections are alternatives.
+Researchers separated tumours by location and type — distinguishing between the upper and lower parts of the stomach, and between intestinal-type tumours, which form more organised structures, and diffuse-type tumours, in which cells scatter throughout tissue. The processed meat association was consistent across categories.
 
-**Consider fortified foods.** Many plant milks, breakfast cereals, and nutritional yeast products in the US are fortified with B12. Reading labels matters. In India, fortification of staple foods with B12 remains limited, making supplementation more important for vegetarians who split time between the two countries.
+## A Dietary Transition in Progress
 
-**Folate is simpler.** Unlike B12, folate is abundant in leafy greens, lentils, and chickpeas — all staples of South Asian cuisine. A traditional dal-sabzi-roti meal provides meaningful folate. The concern arises primarily when diets are heavily processed or when cooking methods destroy the vitamin — prolonged boiling of vegetables, for example, can reduce folate content by up to 40 per cent.
+The EPIC study is European, but its implications travel. Processed meat consumption among Indian diaspora families in the United States, United Kingdom, and Canada has risen sharply over the past two decades. Weekend barbecues, school lunch boxes packed with deli meats, and breakfast routines that include bacon and sausage are now commonplace in NRI households — a departure from traditional vegetarian or semi-vegetarian diets that characterised previous generations.
 
-## The Bigger Picture
+The World Health Organisation classified processed meat as a Group 1 carcinogen in 2015, placing it alongside tobacco smoke and asbestos in terms of the certainty of evidence. The EPIC study extends that certainty into cancers of the upper digestive tract, where the data had previously been thinner.
 
-The Japanese study is one data point in a larger shift. Nutritional psychiatry — the field that studies how diet affects brain function and mental health — has gained significant credibility in the past five years, with major journals publishing randomised trials linking dietary interventions to measurable changes in mood, cognition, and energy.
+## South Asians and Stomach Cancer
 
-For the South Asian diaspora, where vegetarianism is often a source of cultural pride, the message is not to abandon plant-based eating. It is to recognise that traditional diets evolved in contexts where B12 deficiency was either less common — when dairy consumption was higher and food was less processed — or where its symptoms were simply not recognised. Modern vegetarians, particularly those in the diaspora eating a mix of traditional and Western processed foods, need to be proactive about a vitamin their diet cannot reliably provide.""",
-}
+India has one of the lower stomach cancer rates globally, partly attributed to dietary patterns rich in vegetables, legumes, and spices with known anti-inflammatory properties. Turmeric, garlic, and ginger — staples of Indian cooking — have all been studied for their potential protective effects against gastrointestinal cancers.
 
-if validate_article(article2):
-    img_url = fetch_pexels_image("vitamin B12 supplement nutrition", "healthy vegetarian food vitamins")
-    if img_url:
-        art_id = insert_article(article2)
-        if art_id:
-            final_url = upload_image_to_supabase(img_url, f"{art_id}.jpg")
-            if final_url:
-                requests.patch(
-                    f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{art_id}",
-                    headers=HEADERS,
-                    json={"image_url": final_url, "image_attribution": "Pexels"},
-                    timeout=15,
-                )
-                print(f"  ✓ Image attached")
-    else:
-        insert_article(article2)
+But diaspora populations do not retain those protections automatically. Second and third-generation NRIs who have adopted Western dietary patterns face a risk profile that increasingly resembles the host population. The EPIC findings suggest that processed meat is one of the clearest modifiable risk factors in that transition.
 
+## The Standard Serving Problem
 
-# ═══════════════════════════════════════════════════════════════════════
-# ARTICLE 3: Markets-Finance — Berkshire Hathaway Buys Taylor Morrison
-# ═══════════════════════════════════════════════════════════════════════
-print("\n══ Article 3: Berkshire Hathaway Acquires Taylor Morrison ══")
+A standard single slice of deli ham averages around 28 grams, according to USDA nutritional databases. That means even one sandwich a day puts a person at the threshold where risk begins to climb measurably. Two slices crosses it decisively.
 
-article3 = {
-    "headline": "Berkshire Hathaway Just Bought a Homebuilder for $6.8 Billion. It Is Greg Abel's First Big Deal and a Signal About Where Housing Is Headed.",
-    "subheadline": "The all-cash acquisition of Taylor Morrison, at a 24 per cent premium, deploys less than 2 per cent of Berkshire's $397 billion cash pile. For NRI investors watching the US housing market, the bet is worth understanding.",
-    "slug": "berkshire-hathaway-taylor-morrison-68-billion-greg-abel-housing-nri-investors-20260601",
-    "category": "markets-finance",
-    "vertical": "markets",
-    "tags": ["berkshire-hathaway", "taylor-morrison", "greg-abel", "housing-market", "nri-investors"],
-    "urgency": "timely",
-    "sources": json.dumps(["Reuters", "MarketWatch", "Investopedia", "Citi Research"]),
-    "status": "published",
-    "is_editorial": False,
-    "is_featured": False,
-    "score_total": 0,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "body": """Berkshire Hathaway announced on Sunday that it will acquire Taylor Morrison Home Corp in an all-cash deal valued at $6.8 billion, paying $72.50 per share — a 24 per cent premium to Taylor Morrison's Friday closing price of $58.50. The deal has an enterprise value of approximately $8.5 billion when debt is included.
+The study does not suggest that any single meal causes cancer. But risk is cumulative, and the follow-up period — 14 years — is long enough to capture the kind of slow, steady damage that processed meat inflicts on the digestive tract.
 
-Taylor Morrison shares surged 22 per cent in premarket trading on Monday. Berkshire's own stock was essentially flat.
+## What Families Can Do
 
-This is the first multi-billion dollar acquisition since Greg Abel became CEO at the start of 2026, replacing Warren Buffett, who remains chairman. It is also the largest Berkshire deal since the $9.7 billion purchase of Occidental Petroleum's chemical business in January.
+The most practical takeaway is substitution, not deprivation. Swapping processed meats for fresh-cooked chicken, fish, paneer, or legume-based proteins eliminates the risk without sacrificing convenience entirely. For families already cooking Indian food at home, the traditional thali — dal, sabzi, roti, raita — is precisely the kind of meal that does not appear anywhere in the study's risk tables.
 
-## What Berkshire Is Buying
+**Sources:** European Prospective Investigation into Cancer and Nutrition (EPIC); Journal of Virology; Fox News Health; New York Post; USDA FoodData Central"""
 
-Taylor Morrison is one of America's larger homebuilders, operating in 12 states under the Taylor Morrison, Esplanade, and Yardly brands. The company posted $8.12 billion in revenue and $782.5 million in net income in 2025. It builds everything from entry-level homes to what it calls "resort lifestyle" communities aimed at active adults.
+    # Image sourcing
+    print("\nSourcing image...")
+    img_url, img_attr, _ = source_best_image(
+        [],
+        ["processed meat deli cold cuts", "stomach cancer research medical", "processed food health risk"],
+        slug
+    )
 
-Berkshire already has significant exposure to housing. It owns Clayton Homes, a manufactured housing company acquired in 2003, and has stakes in builders Lennar and NVR. Its subsidiaries include Benjamin Moore paint, Johns Manville insulation, Acme Brick, and one of the largest residential real estate brokerages in the United States.
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "lifestyle-health",
+        "vertical": "culture",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": json.dumps([
+            "https://www.foxnews.com/health/one-extra-serving-processed-meat-day-linked-higher-cancer-risk",
+            "https://nypost.com/2026/06/04/health/one-extra-serving-of-processed-meat-a-day-linked-to-higher-cancer-risk/",
+            "https://www.who.int/news-room/questions-and-answers/item/cancer-carcinogenicity-of-the-consumption-of-red-meat-and-processed-meat"
+        ]),
+        "is_editorial": False,
+        "image_url": img_url or "",
+        "image_caption": "Assorted processed meats including deli ham, sausages, and bacon at a market counter",
+        "image_attribution": img_attr or ""
+    }
 
-What makes this deal different is Abel's stated plan to eventually **"unify our site-built homebuilding operations into a combined platform"** — a departure from Berkshire's traditional approach of letting each acquisition operate independently. Combined, Berkshire's homebuilding operations would make it the **fourth-largest builder** in the country by closings.
+    art_id = insert_article(article)
+    return art_id
 
-## Why Now — and What It Says About Housing
 
-The timing is counterintuitive. Mortgage rates are hovering around 6 per cent, the highest since August 2025. New home sales fell 6.2 per cent in April. The SPDR S&P Homebuilders ETF has been essentially flat this year. By most surface-level metrics, this is not an obvious moment to make a massive housing bet.
+# ============================================================
+# ARTICLE 3: RBI MPC Decision — Markets-Finance
+# ============================================================
+def write_article_3():
+    print("\n" + "="*60)
+    print("ARTICLE 3: RBI MPC Decision June 5")
+    print("="*60)
 
-But Berkshire has historically done its best deals during periods of sector stress. The company bought Burlington Northern Santa Fe railroad during the financial crisis and bet heavily on Bank of America when banking stocks were unloved. The playbook is consistent: buy excellent assets when the market is cautious, hold them for decades, and let compounding do the work.
+    slug = "rbi-mpc-june-2026-repo-rate-hold-rupee-oil-nri-remittances-20260604"
+    headline = "The RBI Decides on Rates Tomorrow. The Rupee Is at 95.75, Oil Is Near $97, and NRI Money Is Caught in the Middle."
+    subheadline = "Most economists expect a hold at 5.25 per cent, but traders are split on whether a surprise hike could come. What the decision means for remittances, property investments, and equity markets."
 
-Citi analysts noted that the deal's valuation — roughly 0.9 times book value — echoes other recent housing consolidation deals struck below book. "Consolidation is logical in a challenging housing market where scale is key in managing land, labour, and building material costs," they wrote.
+    body = """The Reserve Bank of India's Monetary Policy Committee wraps up its three-day meeting on Friday, June 5, and will announce its decision at 10:00 a.m. IST. Governor Sanjay Malhotra faces a policy landscape that has grown considerably more complicated since the last meeting in April, when the committee held the repo rate steady at 5.25 per cent after a cumulative 125 basis points of cuts through 2025.
 
-The underlying thesis is structural: America has a housing shortage. The National Association of Realtors estimates the country is **3 to 5 million homes** short of what is needed to meet demand. That deficit has been building since the 2008 financial crisis, when homebuilding collapsed and never fully recovered. Even at current depressed sales rates, the builders who survive and grow through this cycle will be positioned for years of sustained demand when rates eventually come down.
+## The Case for Holding
 
-## What NRI Investors Should Consider
+Headline retail inflation remains well behaved. At 3.48 per cent in April, it sits comfortably below the RBI's 4 per cent target — the kind of number that would normally leave the door open for further easing. GDP growth remains resilient, and domestic consumption has held up despite global headwinds.
 
-For the South Asian diaspora, this deal intersects with two significant investment themes.
+Most economists expect the committee to hold rates unchanged. The consensus is that the RBI will maintain its neutral stance while monitoring incoming data, particularly on inflation and the external account.
 
-**First, Berkshire itself.** Many NRI investors hold Berkshire — it is one of the most popular individual stock holdings among Indian Americans who invest in US equities. The stock has underperformed the S&P 500 this year, falling 5.6 per cent while the index has gained 10.7 per cent. Some investors have been waiting for Abel to make a statement deal that signals he has the same conviction as Buffett. This is that deal. Whether it lifts the stock will depend on whether investors see the housing thesis as bold or as a sign that Berkshire's options for deploying its enormous cash pile are narrowing.
+## The Case for a Surprise Hike
 
-**Second, the housing market directly.** A substantial number of NRI families are either current US homeowners or are actively planning to buy. For those waiting on the sidelines for rates to drop, Berkshire's willingness to invest $6.8 billion in a homebuilder is a signal — from the most disciplined capital allocator in the world — that the US housing market's long-term fundamentals are sound, even if the near-term is painful.
+But beneath the headline inflation number, the picture is less reassuring. Wholesale price inflation has surged to 8.3 per cent, driven primarily by fuel and power costs. Brent crude is trading near $97 a barrel as the Strait of Hormuz remains largely closed three months into the US-Iran conflict. A ceasefire between Israel and Lebanon, announced late Wednesday, has offered a glimmer of hope for a broader de-escalation, but oil markets remain sceptical that the strait will reopen soon.
 
-The deal also has implications for new construction in key NRI metros. Taylor Morrison builds heavily in Texas, Arizona, California, and Florida — states with large Indian American populations. If Berkshire's plan to build a unified homebuilding platform succeeds, it could lead to more standardised, lower-cost housing in exactly the markets where the diaspora is concentrated.
+The rupee has weakened to 95.75 per dollar, having touched a lifetime low of 96.96 in mid-May before RBI intervention in spot and forward markets helped it recover. But traders warn that the relief may not last. If Friday's decision does not include measures to support the currency or attract dollar inflows, renewed pressure is expected.
 
-## The Cash Pile Problem
+Reuters reports that while most economists expect a hold, traders are more evenly split on whether the RBI will opt for a 25 basis point hike. Three foreign exchange traders told Reuters that a rate hike combined with hawkish messaging could push the rupee toward 94.80, though the move may face resistance at that level.
 
-Even after this deal, Berkshire will have roughly $390 billion in cash and short-term investments. To put that in perspective, $6.8 billion is less than 2 per cent of the hoard. Abel has said he is looking for more acquisitions, and Berkshire's annual letter has consistently lamented the difficulty of finding deals large enough to move the needle for a conglomerate of this size.
+## What Is Happening at the Fed
 
-The housing bet is a start, not a solution. For investors, the question remains whether Abel can deploy capital at a pace and quality that justifies Berkshire's premium to book value. For homebuyers, the question is simpler: when the world's largest conglomerate is betting billions on housing, the shortage is not going away.
+The RBI's dilemma is complicated further by what is happening in Washington. New Federal Reserve Chairman Kevin Warsh faces his first policy meeting in two weeks amid rising inflation pressures driven by the same oil shock. The Fed's Beige Book, released on Wednesday, described a stagflationary combination of weakening consumer demand and rising cost pressures across most US regions.
 
-## The Week Ahead
+Dallas Fed President Lorie Logan said on Wednesday that she is "increasingly concerned that higher interest rates could be necessary later this year," and futures markets now price a 75 per cent chance of a 25 basis point Fed rate hike before year-end. If the Fed tightens while the RBI holds, the interest rate differential narrows further, putting additional downward pressure on the rupee and on capital flows into India.
 
-Markets opened Monday to a dense calendar. The S&P 500 closed Friday at record highs, posting its ninth straight week of gains. This week brings Broadcom earnings on Wednesday, the May jobs report on Friday, and a possible Federal Reserve rate decision. Oil is up 3 per cent to $90 per barrel after fresh US-Iran military exchanges over the weekend dimmed ceasefire hopes. The 10-year Treasury yield has ticked up to 4.50 per cent.
+## What It Means for NRI Investors
 
-For NRI investors, the combination of record equity valuations, rising oil, and a possible rate hike creates a week where both caution and clarity about long-term holdings matter. Berkshire's bet on housing is a reminder that the best investors are not timing the market. They are buying assets they believe will be worth more in a decade — and paying a fair price today.""",
-}
+**Remittances:** A weaker rupee means every dollar sent home buys more rupees — good news for families supporting relatives in India. But the volatility makes timing transfers difficult. If the RBI delivers a surprise hike and the rupee strengthens, NRIs who waited may get fewer rupees per dollar than they would today.
 
-if validate_article(article3):
-    img_url = fetch_wikipedia_person_image("Greg Abel")
-    if not img_url:
-        img_url = fetch_wikipedia_person_image("Berkshire Hathaway")
-    if not img_url:
-        img_url = fetch_pexels_image("new home construction development", "suburban housing development")
-    if img_url:
-        art_id = insert_article(article3)
-        if art_id:
-            final_url = upload_image_to_supabase(img_url, f"{art_id}.jpg")
-            if final_url:
-                attr = "Wikimedia Commons" if "wikimedia" in (img_url or "").lower() or "wikipedia" in (img_url or "").lower() else "Pexels"
-                requests.patch(
-                    f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{art_id}",
-                    headers=HEADERS,
-                    json={"image_url": final_url, "image_attribution": attr},
-                    timeout=15,
-                )
-                print(f"  ✓ Image attached ({attr})")
-    else:
-        insert_article(article3)
+**Property investments:** Indian real estate has been buoyant, but a rate hike would raise mortgage costs domestically, potentially cooling demand. NRIs looking to buy property in India face a double calculation: the rupee exchange rate on their initial investment and the interest rate on any domestic financing.
 
-print("\n══ Done ══")
+**Equity markets:** A rate hike would create immediate selling pressure in rate-sensitive sectors — real estate, financials, and consumer discretionary. But if it is paired with measures to stabilise the rupee and attract foreign inflows, the medium-term impact on Indian equities could be neutral to positive.
+
+**Fixed income:** Indian government bonds currently yield around 7.10 per cent on the 10-year benchmark. A hike could push yields to the 7.15-7.20 per cent range, making NRI fixed-income instruments slightly more attractive. The recent scrapping of capital gains tax on foreign bond investments adds to the appeal.
+
+## The Bottom Line
+
+The most likely outcome is a hold with hawkish commentary. But in a year where wholesale inflation is running at 8.3 per cent, oil is near $97, the rupee has lost 6.5 per cent, and the Fed is signalling higher rates, the RBI's room to stay patient is shrinking. For NRIs with money moving between India and the West, the next 24 hours are worth watching closely.
+
+**Sources:** Reserve Bank of India; Reuters; The Hindu BusinessLine; Outlook Money; FXStreet"""
+
+    # Image sourcing
+    print("\nSourcing image...")
+    img_url, img_attr, _ = source_best_image(
+        ["Sanjay Malhotra RBI"],
+        ["Reserve Bank of India Mumbai", "Indian rupee currency", "RBI monetary policy"],
+        slug
+    )
+
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "markets-finance",
+        "vertical": "economy",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "source_urls": json.dumps([
+            "https://www.thehindubusinessline.com/money-and-banking/rbi-mpc-meet-june-2026/article69652345.ece",
+            "https://www.reuters.com/world/india/indian-rupee-dips-rbi-led-relief-may-fade-without-inflow-measures-2026-06-04/",
+            "https://www.outlookmoney.com/banking/rbi-likely-to-hold-repo-rate-in-june-mpc"
+        ]),
+        "is_editorial": False,
+        "image_url": img_url or "",
+        "image_caption": "The Reserve Bank of India headquarters in Mumbai ahead of the June 2026 monetary policy decision",
+        "image_attribution": img_attr or ""
+    }
+
+    art_id = insert_article(article)
+    return art_id
+
+
+# ============================================================
+# MAIN
+# ============================================================
+if __name__ == "__main__":
+    print(f"Starting lifestyle/markets writer at {datetime.now(timezone.utc).isoformat()}")
+    print(f"Supabase URL: {SUPABASE_URL[:50]}...")
+
+    results = []
+    for writer_fn in [write_article_1, write_article_2, write_article_3]:
+        try:
+            art_id = writer_fn()
+            results.append(art_id)
+        except Exception as e:
+            print(f"  ✗ Error: {e}")
+            import traceback
+            traceback.print_exc()
+            results.append(None)
+
+    print("\n" + "="*60)
+    print("SUMMARY")
+    print("="*60)
+    success = sum(1 for r in results if r)
+    print(f"  Articles inserted: {success}/{len(results)}")
+    for i, r in enumerate(results):
+        status = f"✓ {r}" if r else "✗ FAILED"
+        print(f"  Article {i+1}: {status}")
+
+    if success < len(results):
+        sys.exit(1)
