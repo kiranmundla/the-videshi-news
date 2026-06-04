@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Tweet } from "react-tweet";
 import HeroImage from "@/components/HeroImage";
 import ImageCaption from "@/components/ImageCaption";
 
@@ -22,7 +23,7 @@ type EmbedType = "twitter" | "instagram" | "youtube" | null;
 
 declare global {
   interface Window {
-    twttr?: { widgets: { load: (el?: HTMLElement) => void } };
+
     instgrm?: { Embeds: { process: () => void } };
   }
 }
@@ -76,28 +77,13 @@ function extractYouTubeId(url: string): string | null {
 /* ------------------------------------------------------------------ */
 
 function TwitterEmbed({ url, attribution }: { url: string; attribution: string | null }) {
-  useEffect(() => {
-    if (window.twttr) {
-      window.twttr.widgets.load();
-      return;
-    }
-    const existing = document.querySelector(
-      'script[src="https://platform.twitter.com/widgets.js"]'
-    );
-    if (!existing) {
-      const script = document.createElement("script");
-      script.src = "https://platform.twitter.com/widgets.js";
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }, [url]);
+  const tweetId = url.match(/\/status\/(\d+)/)?.[1];
+  if (!tweetId) return null;
 
   return (
     <figure className="mt-10 w-full max-w-full md:max-w-[780px] md:mx-auto">
       <div className="flex justify-center">
-        <blockquote className="twitter-tweet" data-theme="light">
-          <a href={url}>Loading tweet…</a>
-        </blockquote>
+        <Tweet id={tweetId} />
       </div>
       {attribution && (
         <p
