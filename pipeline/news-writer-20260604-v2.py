@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
 """
-News writer for The Videshi - 2026-06-04 evening run
-Articles:
-1. Delhi hotel fire kills 21 including 17 foreign nationals
-2. OECD warns one month to reopen Hormuz or global recession
-3. Calcutta HC rules ChatGPT is originator, not intermediary
+News writer for The Videshi - 2026-06-04 evening run (v2 - fixed)
 """
 
-import json, os, sys, uuid, subprocess, io, time
+import json, os, sys, io, time, subprocess
 from datetime import datetime, timezone
 
-# Load env
+# Load env - IMPORTANT: load ~/.env.supabase LAST so JWT key wins
 def load_env(path):
     if not os.path.exists(path):
         return
@@ -24,13 +20,17 @@ def load_env(path):
                 v = v.strip().strip('"').strip("'")
                 os.environ[k] = v
 
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
+load_env(os.path.expanduser('~/.env.supabase'))  # LAST - has full JWT
 
 SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
 SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
+print(f"SUPABASE_URL: {SUPABASE_URL[:40]}...")
+print(f"SUPABASE_KEY starts with: {SUPABASE_KEY[:20]}...")
+print(f"PEXELS_KEY starts with: {PEXELS_KEY[:10]}...")
 
 import requests
 from PIL import Image
@@ -45,7 +45,6 @@ HEADERS_SB = {
 UA = 'TheVideshi/1.0 (thevideshi.com)'
 
 def compress_image(img_bytes, max_width=1200, quality=80):
-    """Resize and compress image. Returns JPEG bytes."""
     img = Image.open(io.BytesIO(img_bytes))
     if img.mode in ('RGBA', 'P'):
         img = img.convert('RGB')
@@ -57,46 +56,32 @@ def compress_image(img_bytes, max_width=1200, quality=80):
     return buf.getvalue()
 
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": UA},
-            timeout=10
+            headers={"User-Agent": UA}, timeout=10
         )
         if r.status_code == 200:
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
-    """Search Wikimedia Commons for CC-licensed images."""
-    import urllib.parse
     params = {
-        "action": "query",
-        "generator": "search",
-        "gsrsearch": search_query,
-        "gsrnamespace": "6",
-        "gsrlimit": str(limit),
-        "prop": "imageinfo",
-        "iiprop": "url|size|mime",
-        "iiurlwidth": "1200",
-        "format": "json"
+        "action": "query", "generator": "search", "gsrsearch": search_query,
+        "gsrnamespace": "6", "gsrlimit": str(limit),
+        "prop": "imageinfo", "iiprop": "url|size|mime", "iiurlwidth": "1200", "format": "json"
     }
     try:
-        r = requests.get(
-            "https://commons.wikimedia.org/w/api.php",
-            params=params,
-            headers={"User-Agent": UA},
-            timeout=15
-        )
+        r = requests.get("https://commons.wikimedia.org/w/api.php",
+                         params=params, headers={"User-Agent": UA}, timeout=15)
         if r.status_code == 200:
             data = r.json()
             pages = data.get("query", {}).get("pages", {})
@@ -104,60 +89,56 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
             for pid, page in pages.items():
                 ii = page.get("imageinfo", [{}])[0]
                 mime = ii.get("mime", "")
-                if not mime.startswith("image/"):
+                if not mime.startswith("image/") or mime == "image/svg+xml":
                     continue
-                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
+                if ii.get("width", 0) < 300:
                     continue
                 results.append({
                     "url": ii.get("thumburl") or ii.get("url", ""),
-                    "original_url": ii.get("url", ""),
                     "title": page.get("title", ""),
-                    "width": ii.get("width", 0),
-                    "height": ii.get("height", 0),
-                    "mime": mime
+                    "width": ii.get("width", 0)
                 })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+        print(f"  ⚠ Wikimedia Commons error: {e}")
     return []
 
 def fetch_pexels_image(*queries):
-    """Search Pexels for an image using curl (urllib gets 403)."""
     for query in queries:
         try:
+            import urllib.parse
+            encoded_q = urllib.parse.quote(query)
             result = subprocess.run([
-                'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-                f'https://api.pexels.com/v1/search?query={query}&per_page=3&size=large'
+                'curl', '-sS', '--max-time', '10',
+                '-H', f'Authorization: {PEXELS_KEY}',
+                f'https://api.pexels.com/v1/search?query={encoded_q}&per_page=3&size=large'
             ], capture_output=True, text=True, timeout=15)
-            data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            if photos:
-                url = photos[0]['src']['large2x']
-                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                return url
+            if result.stdout.strip():
+                data = json.loads(result.stdout)
+                photos = data.get('photos', [])
+                if photos:
+                    url = photos[0]['src']['large2x']
+                    print(f"  ✓ Pexels image for '{query}': {url[:80]}...")
+                    return url, photos[0].get('alt', '')
         except Exception as e:
             print(f"  ⚠ Pexels error for '{query}': {e}")
-    return None
+    return None, None
 
 def download_image(url):
-    """Download image bytes."""
     try:
-        r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
+        r = requests.get(url, headers={"User-Agent": UA}, timeout=20, allow_redirects=True)
         if r.status_code == 200 and len(r.content) > 5000:
-            ct = r.headers.get('Content-Type', '')
-            if 'image' in ct or url.endswith(('.jpg', '.jpeg', '.png', '.webp')):
-                print(f"  ✓ Downloaded {len(r.content)} bytes")
-                return r.content
+            print(f"  ✓ Downloaded {len(r.content)} bytes from {url[:60]}...")
+            return r.content
         else:
-            print(f"  ⚠ Download failed: status={r.status_code}, size={len(r.content)}")
+            print(f"  ⚠ Download: status={r.status_code}, size={len(r.content)}")
     except Exception as e:
         print(f"  ⚠ Download error: {e}")
     return None
 
 def upload_to_supabase(img_bytes, filename):
-    """Upload image to Supabase storage bucket 'article-images'."""
     url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
     headers = {
         'Authorization': f'Bearer {SUPABASE_KEY}',
@@ -168,7 +149,7 @@ def upload_to_supabase(img_bytes, filename):
         r = requests.post(url, headers=headers, data=img_bytes, timeout=30)
         if r.status_code in (200, 201):
             public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            print(f"  ✓ Uploaded to Supabase: {filename}")
             return public_url
         else:
             print(f"  ⚠ Upload failed: {r.status_code} {r.text[:200]}")
@@ -176,17 +157,14 @@ def upload_to_supabase(img_bytes, filename):
         print(f"  ⚠ Upload error: {e}")
     return None
 
-def source_image(article_slug, person_name=None, search_terms=None, pexels_queries=None):
-    """Multi-source image search. Returns (url, attribution, caption) or (None, None, None)."""
+def source_image(slug, person_name=None, search_terms=None, pexels_queries=None):
     candidates = []
     
-    # Source 1: Wikipedia (for person articles)
     if person_name:
         wiki_img = fetch_wikipedia_person_image(person_name)
         if wiki_img:
             candidates.append({"url": wiki_img, "source": "wikipedia", "priority": 1})
     
-    # Source 2: Wikimedia Commons
     if search_terms:
         for term in search_terms:
             commons = fetch_wikimedia_commons_images(term)
@@ -195,13 +173,11 @@ def source_image(article_slug, person_name=None, search_terms=None, pexels_queri
             if candidates:
                 break
     
-    # Source 3: Pexels
     if pexels_queries:
-        pexels_img = fetch_pexels_image(*pexels_queries)
+        pexels_img, pexels_alt = fetch_pexels_image(*pexels_queries)
         if pexels_img:
             candidates.append({"url": pexels_img, "source": "pexels", "priority": 3})
     
-    # Pick best candidate (lowest priority number = best)
     candidates.sort(key=lambda c: c["priority"])
     
     for candidate in candidates:
@@ -209,25 +185,23 @@ def source_image(article_slug, person_name=None, search_terms=None, pexels_queri
         if img_bytes:
             compressed = compress_image(img_bytes)
             if len(compressed) < 5000:
-                print(f"  ⚠ Compressed image too small ({len(compressed)} bytes), skipping")
                 continue
-            filename = f"{article_slug}.jpg"
+            filename = f"{slug}.jpg"
             final_url = upload_to_supabase(compressed, filename)
             if final_url:
                 attribution = "Wikimedia Commons" if candidate["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
-                return final_url, attribution, candidate["source"]
+                return final_url, attribution
     
-    return None, None, None
+    return None, None
 
 def insert_article(article):
-    """Insert article into Supabase."""
     url = f"{SUPABASE_URL}/rest/v1/p2_articles"
     try:
         r = requests.post(url, headers=HEADERS_SB, json=article, timeout=30)
         if r.status_code in (200, 201):
             result = r.json()
             art_id = result[0]['id'] if isinstance(result, list) and result else 'unknown'
-            print(f"  ✓ Article inserted: {art_id}")
+            print(f"  ✓ Inserted: {art_id}")
             return art_id
         else:
             print(f"  ✗ Insert failed: {r.status_code} {r.text[:500]}")
@@ -240,7 +214,6 @@ def insert_article(article):
 # ============================================================
 # ARTICLE 1: Delhi Hotel Fire
 # ============================================================
-
 def write_article_1():
     print("\n" + "="*60)
     print("ARTICLE 1: Delhi Hotel Fire Kills 21")
@@ -248,12 +221,11 @@ def write_article_1():
     
     slug = "delhi-malviya-nagar-hotel-fire-21-dead-foreign-nationals-medical-tourism-20260604"
     
-    # Image sourcing
     print("\n📸 Sourcing image...")
-    img_url, img_attr, img_source = source_image(
+    img_url, img_attr = source_image(
         slug,
-        search_terms=["Delhi fire Malviya Nagar 2026", "Delhi fire rescue", "fire brigade India rescue"],
-        pexels_queries=["fire rescue building India", "building fire emergency"]
+        search_terms=["Delhi fire 2026", "Delhi fire rescue operation"],
+        pexels_queries=["building fire emergency rescue", "fire rescue apartment"]
     )
     
     body = """A fire that ripped through a six-storey building in south Delhi's Malviya Nagar on Wednesday morning killed 21 people, at least 17 of them foreign nationals who had come to India for medical treatment. It is the deadliest blaze the capital has witnessed since 2022, and it has forced an uncomfortable reckoning with the infrastructure that surrounds India's booming medical tourism industry.
@@ -282,9 +254,9 @@ For the Indian diaspora and the families across Africa and South Asia who rely o
 
 Max Healthcare's Medical Director, Dr Sandeep Budhiraja, said eight survivors remained on ventilator support. Most suffered severe smoke inhalation rather than burns. Several patients had fractured bones after jumping from upper floors to escape the flames.
 
-*Sources: Reuters, Livemint, Dainik Jagran, NDTV*"""
+*Sources: Reuters, Livemint, Dainik Jagran, NDTV, India Today*"""
 
-    image_caption = "Rescue operations at the Flourish Stay hotel in Delhi's Malviya Nagar after a fire killed 21 people"
+    caption = "Rescue operations underway after a fire at a hotel in Delhi's Malviya Nagar killed 21 people"
     
     article = {
         "headline": "A Fire in a Delhi Hotel Killed 21 People. Most Were Foreigners Who Came to India for Medical Care.",
@@ -292,23 +264,29 @@ Max Healthcare's Medical Director, Dr Sandeep Budhiraja, said eight survivors re
         "slug": slug,
         "body": body,
         "category": "news",
+        "vertical": "news",
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
         "image_url": img_url or "",
-        "image_caption": image_caption if img_url else "",
+        "image_caption": caption if img_url else "",
         "image_attribution": img_attr or "",
         "is_editorial": False,
-        "sources": json.dumps(["Reuters", "Livemint", "Dainik Jagran", "NDTV", "India Today"]),
+        "sources": [
+            {"name": "Reuters", "url": "https://www.reuters.com"},
+            {"name": "Livemint", "url": "https://www.livemint.com"},
+            {"name": "Dainik Jagran", "url": "https://english.dainikjagranmpcg.com"},
+            {"name": "NDTV", "url": "https://www.ndtv.com"},
+            {"name": "India Today", "url": "https://www.indiatoday.in"}
+        ]
     }
     
-    print(f"\n📝 Inserting article: {article['headline'][:60]}...")
+    print(f"\n📝 Inserting: {article['headline'][:60]}...")
     return insert_article(article)
 
 
 # ============================================================
-# ARTICLE 2: OECD Warns of Global Recession
+# ARTICLE 2: OECD Warns on Hormuz
 # ============================================================
-
 def write_article_2():
     print("\n" + "="*60)
     print("ARTICLE 2: OECD Warns on Hormuz Closure")
@@ -316,13 +294,12 @@ def write_article_2():
     
     slug = "oecd-warns-hormuz-closure-global-recession-india-asia-hardest-hit-20260604"
     
-    # Image sourcing
     print("\n📸 Sourcing image...")
-    img_url, img_attr, img_source = source_image(
+    img_url, img_attr = source_image(
         slug,
         person_name="Mathias Cormann",
-        search_terms=["OECD headquarters Paris", "OECD economic outlook report", "Strait of Hormuz shipping"],
-        pexels_queries=["oil tanker shipping strait", "global economy crisis"]
+        search_terms=["OECD headquarters Paris 2026", "Strait of Hormuz oil tanker"],
+        pexels_queries=["oil tanker ocean shipping", "global economy stock market"]
     )
     
     body = """The Organisation for Economic Co-operation and Development has issued its starkest warning yet on the Iran war's economic fallout: if the Strait of Hormuz is not reopened within a month, the world faces a prolonged slowdown that could push multiple economies into recession by 2027. For India, the third-largest oil importer on the planet, the forecast is a direct threat to the growth story its government has spent a decade building.
@@ -351,9 +328,9 @@ For India's 1.8 million NRIs in the Gulf states — many of whom have already be
 
 The negotiations between the United States and Iran over the war's terms remain stalled. Iran suspended talks on June 1, ostensibly over Israeli operations in Lebanon. The IRGC continues to enforce its claim over the strait. The OECD's one-month window is not a diplomatic guideline. It is an economic warning with a hard deadline.
 
-*Sources: OECD Economic Outlook, Reuters, AP, New York Post, ISW-CTP*"""
+*Sources: OECD Economic Outlook, Reuters, AP, New York Post, Wall Street Next*"""
 
-    image_caption = "OECD Secretary-General Mathias Cormann presenting the global economic outlook"
+    caption = "OECD Secretary-General Mathias Cormann at a press conference"
     
     article = {
         "headline": "The OECD Just Gave the World One Month to Reopen the Strait of Hormuz. India Cannot Afford to Wait.",
@@ -361,23 +338,29 @@ The negotiations between the United States and Iran over the war's terms remain 
         "slug": slug,
         "body": body,
         "category": "news",
+        "vertical": "news",
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
         "image_url": img_url or "",
-        "image_caption": image_caption if img_url else "",
+        "image_caption": caption if img_url else "",
         "image_attribution": img_attr or "",
         "is_editorial": False,
-        "sources": json.dumps(["OECD Economic Outlook", "Reuters", "AP", "New York Post", "ISW-CTP"]),
+        "sources": [
+            {"name": "OECD Economic Outlook", "url": "https://www.oecd.org/economic-outlook/"},
+            {"name": "Reuters", "url": "https://www.reuters.com"},
+            {"name": "AP", "url": "https://apnews.com"},
+            {"name": "New York Post", "url": "https://nypost.com"},
+            {"name": "Wall Street Next", "url": "https://wsnext.com"}
+        ]
     }
     
-    print(f"\n📝 Inserting article: {article['headline'][:60]}...")
+    print(f"\n📝 Inserting: {article['headline'][:60]}...")
     return insert_article(article)
 
 
 # ============================================================
-# ARTICLE 3: Calcutta HC ChatGPT Ruling
+# ARTICLE 3: Calcutta HC ChatGPT
 # ============================================================
-
 def write_article_3():
     print("\n" + "="*60)
     print("ARTICLE 3: Calcutta HC ChatGPT Ruling")
@@ -385,12 +368,11 @@ def write_article_3():
     
     slug = "calcutta-high-court-chatgpt-originator-not-intermediary-indiamart-openai-20260604"
     
-    # Image sourcing
     print("\n📸 Sourcing image...")
-    img_url, img_attr, img_source = source_image(
+    img_url, img_attr = source_image(
         slug,
-        search_terms=["Calcutta High Court building", "Kolkata High Court India", "Indian judiciary court"],
-        pexels_queries=["artificial intelligence law regulation", "courthouse India"]
+        search_terms=["Calcutta High Court building", "Kolkata High Court"],
+        pexels_queries=["artificial intelligence technology law", "AI robot judge gavel"]
     )
     
     body = """The Calcutta High Court has ruled, in what may become one of the most consequential technology decisions in Indian jurisprudence, that ChatGPT is not an intermediary under the Information Technology Act. It is an originator — a generator of content, not a conduit for it. The distinction sounds technical. Its implications are enormous.
@@ -423,7 +405,7 @@ For India's millions of small and medium enterprises that increasingly rely on d
 
 *Sources: SCC Times, LiveLaw, Inc42, Tax Concept*"""
 
-    image_caption = "The Calcutta High Court, where Justice Ravi Krishan Kapur ruled on ChatGPT's legal classification"
+    caption = "The Calcutta High Court, where Justice Ravi Krishan Kapur issued the landmark AI classification ruling"
     
     article = {
         "headline": "An Indian Court Just Ruled That ChatGPT Is Not an Intermediary. It Is a Creator.",
@@ -431,26 +413,28 @@ For India's millions of small and medium enterprises that increasingly rely on d
         "slug": slug,
         "body": body,
         "category": "news",
+        "vertical": "news",
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
         "image_url": img_url or "",
-        "image_caption": image_caption if img_url else "",
+        "image_caption": caption if img_url else "",
         "image_attribution": img_attr or "",
         "is_editorial": False,
-        "sources": json.dumps(["SCC Times", "LiveLaw", "Inc42", "Tax Concept"]),
+        "sources": [
+            {"name": "SCC Times", "url": "https://scconline.com"},
+            {"name": "LiveLaw", "url": "https://www.livelaw.in"},
+            {"name": "Inc42", "url": "https://inc42.com"},
+            {"name": "Tax Concept", "url": "https://taxconcept.net"}
+        ]
     }
     
-    print(f"\n📝 Inserting article: {article['headline'][:60]}...")
+    print(f"\n📝 Inserting: {article['headline'][:60]}...")
     return insert_article(article)
 
 
-# ============================================================
-# MAIN
-# ============================================================
-
 if __name__ == '__main__':
     print("="*60)
-    print("THE VIDESHI — News Writer Run")
+    print("THE VIDESHI — News Writer Run v2")
     print(f"Date: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     print("="*60)
     
