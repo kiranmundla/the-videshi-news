@@ -1,4 +1,5 @@
 import { Tweet } from "react-tweet";
+import "react-tweet/theme.css";
 
 interface SocialEmbedProps {
   platform: "instagram" | "twitter";
