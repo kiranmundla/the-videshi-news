@@ -268,5 +268,27 @@ Check `pipeline/image-skip-list.json` before sourcing. Articles in this list had
 ## Upload format
 - Hero: `{article_id}.jpg` to Supabase bucket `article-images`
 - Gallery: `{article_id}_g1.jpg`, `{article_id}_g2.jpg` etc
-- Set `image_attribution` = "Wikimedia Commons" (for Wikipedia/Commons images) or "The Videshi" (for Pexels)
+- Set `image_attribution` = "Wikimedia Commons" (for Wikipedia/Commons images) or "Pexels" (for Pexels images)
 - Set `gallery_images` = JSON array of `[{"url": "...", "caption": "..."}]`
+
+## Image caption — MANDATORY
+Every article MUST have an `image_caption` that describes what the image actually shows. This appears below the hero image on the article page, like a newspaper photo caption.
+
+**Format**: Short, factual, present tense. Describe the scene or identify the person. 5-20 words.
+
+**Examples**:
+- ✅ "Prime Minister Modi meets Australian Defence Minister Richard Marles at Hyderabad House, New Delhi"
+- ✅ "Vicky Kaushal at the premiere of Zara Hatke Zara Bachke in Mumbai"
+- ✅ "Traders on the floor of the Bombay Stock Exchange"
+- ✅ "A Dassault Rafale fighter jet during a flyover at Republic Day 2025"
+- ❌ "Image of a person" — too vague
+- ❌ "" — never leave it blank
+
+**When inserting/updating the article**, always include:
+```python
+{
+    "image_url": final_url,
+    "image_caption": "Description of what the image shows",
+    "image_attribution": "Wikimedia Commons"  # or "Pexels"
+}
+```
