@@ -1,339 +1,357 @@
 #!/usr/bin/env python3
-"""Sports writer for The Videshi — June 3 2026 evening run."""
+"""
+Sports writer — June 4, 2026 run
+Two articles:
+1. Ashwin backs Dubey for India debut — the spin battle for the Afghanistan Test
+2. Sooryavanshi effect — Sony broadcasts A-team tri-series live for the first time
+"""
 
-import json, os, re, subprocess, sys, time, uuid, requests, urllib.parse
+import json, os, sys, time, uuid, re, subprocess
+import requests
+import urllib.parse
 from datetime import datetime, timezone
 
-# ── Load env files first ─────────────────────────────────────────────────────
-for env_file in [os.path.expanduser("~/.env.supabase"), os.path.expanduser("~/workspace/.env.supabase")]:
-    if os.path.exists(env_file):
-        with open(env_file) as f:
+# Load env
+def load_env(path):
+    if os.path.exists(path):
+        with open(path) as f:
             for line in f:
                 line = line.strip()
-                if line and not line.startswith("#") and "=" in line:
-                    k, v = line.split("=", 1)
-                    os.environ.setdefault(k, v.strip().strip('"').strip("'"))
+                if line and not line.startswith('#') and '=' in line:
+                    key, val = line.split('=', 1)
+                    os.environ[key.strip()] = val.strip().strip('"').strip("'")
 
-# ── Supabase config ──────────────────────────────────────────────────────────
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation",
+    "Prefer": "return=representation"
 }
-PEXELS_KEY = None
-try:
-    with open(os.path.expanduser("~/workspace/.env.pexels")) as f:
-        for line in f:
-            if line.startswith("PEXELS_API_KEY="):
-                PEXELS_KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
-except Exception:
-    pass
 
 UA = "TheVideshi/1.0 (thevideshi.com)"
 
-# ── Image sourcing helpers ───────────────────────────────────────────────────
-
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    """Fetch a person's actual photo from Wikipedia. Returns (url, attribution) or (None, None)."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": UA},
-            timeout=10,
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
-                return img
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                return img, "Wikimedia Commons"
     except Exception as e:
-        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
-    return None
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+    return None, None
 
-
-def fetch_wikimedia_commons(query, limit=5):
-    """Search Wikimedia Commons. Returns list of image URLs."""
+def fetch_wikimedia_commons_images(search_query, limit=5):
+    """Search Wikimedia Commons for CC-licensed images."""
     params = {
         "action": "query",
         "generator": "search",
-        "gsrsearch": query,
+        "gsrsearch": search_query,
         "gsrnamespace": "6",
         "gsrlimit": str(limit),
         "prop": "imageinfo",
         "iiprop": "url|size|mime",
         "iiurlwidth": "1200",
-        "format": "json",
+        "format": "json"
     }
     try:
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
             params=params,
             headers={"User-Agent": UA},
-            timeout=15,
+            timeout=15
         )
         if r.status_code == 200:
             data = r.json()
             pages = data.get("query", {}).get("pages", {})
             results = []
-            for pid, page in pages.items():
-                for ii in page.get("imageinfo", []):
-                    mime = ii.get("mime", "")
-                    if mime.startswith("image/") and "svg" not in mime:
-                        url = ii.get("thumburl") or ii.get("url")
-                        if url:
-                            results.append(url)
+            for page_id, page in pages.items():
+                ii = page.get("imageinfo", [{}])[0]
+                url = ii.get("thumburl") or ii.get("url")
+                mime = ii.get("mime", "")
+                if url and "image" in mime:
+                    results.append({
+                        "url": url,
+                        "title": page.get("title", ""),
+                        "width": ii.get("width", 0),
+                        "height": ii.get("height", 0)
+                    })
+            if results:
+                print(f"  ✓ Wikimedia Commons found {len(results)} images for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Commons error for '{query}': {e}")
+        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
     return []
 
-
-def fetch_pexels(query, per_page=5):
-    """Search Pexels for images. Returns list of image URLs."""
-    if not PEXELS_KEY:
-        return []
+def fetch_pexels_image(query):
+    """Fetch image from Pexels using curl (Python urllib gets 403)."""
     try:
-        r = subprocess.run(
-            ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
-             f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page={per_page}"],
-            capture_output=True, text=True, timeout=15,
+        result = subprocess.run(
+            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=5",
+             "-H", f"Authorization: {PEXELS_KEY}"],
+            capture_output=True, text=True, timeout=15
         )
-        data = json.loads(r.stdout)
-        return [p["src"]["large2x"] for p in data.get("photos", [])]
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            if photos:
+                best = photos[0]
+                url = best.get("src", {}).get("large2x") or best.get("src", {}).get("large")
+                if url:
+                    print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                    return url, "Pexels"
     except Exception as e:
         print(f"  ⚠ Pexels error for '{query}': {e}")
-    return []
-
+    return None, None
 
 def validate_image(url):
-    """Check that URL returns a valid image >5KB."""
+    """Validate image URL returns HTTP 200 with image content and >5KB."""
     try:
         r = requests.head(url, headers={"User-Agent": UA}, timeout=10, allow_redirects=True)
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if "image" in ct and cl > 5000:
+        content_type = r.headers.get("Content-Type", "")
+        content_length = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in content_type and content_length > 5000:
+            print(f"  ✓ Image validated: {content_length} bytes, {content_type}")
             return True
-        # Some servers don't return Content-Length on HEAD; try GET
-        if "image" in ct and cl == 0:
+        # Try GET if HEAD didn't return content-length
+        if r.status_code == 200 and "image" in content_type and content_length == 0:
             r2 = requests.get(url, headers={"User-Agent": UA}, timeout=10, stream=True)
             chunk = r2.raw.read(6000)
             if len(chunk) > 5000:
+                print(f"  ✓ Image validated via GET: >5KB")
                 return True
-    except Exception:
-        pass
+        print(f"  ✗ Image failed validation: status={r.status_code}, type={content_type}, size={content_length}")
+    except Exception as e:
+        print(f"  ✗ Image validation error: {e}")
     return False
 
-
-def best_image(person_names=None, wiki_queries=None, pexels_queries=None):
-    """Multi-source compare: Wikipedia person → Wikimedia Commons → Pexels."""
-    # 1. Wikipedia person images
-    if person_names:
-        for name in person_names:
-            url = fetch_wikipedia_person_image(name)
-            if url and validate_image(url):
-                return url, "Wikimedia Commons"
-
-    # 2. Wikimedia Commons search
-    if wiki_queries:
-        for q in wiki_queries:
-            urls = fetch_wikimedia_commons(q)
-            for url in urls:
-                if validate_image(url):
-                    print(f"  ✓ Commons image: {url[:80]}...")
-                    return url, "Wikimedia Commons"
-
-    # 3. Pexels fallback
-    if pexels_queries:
-        for q in pexels_queries:
-            urls = fetch_pexels(q)
-            for url in urls:
-                if validate_image(url):
-                    print(f"  ✓ Pexels image: {url[:80]}...")
-                    return url, "Pexels"
-
+def get_best_image(person_name=None, wiki_search=None, pexels_query=None):
+    """Multi-source image search. Returns (url, caption_hint, attribution)."""
+    candidates = []
+    
+    # Source 1: Wikipedia person image
+    if person_name:
+        url, attr = fetch_wikipedia_person_image(person_name)
+        if url and validate_image(url):
+            candidates.append(("wikipedia", url, attr))
+    
+    # Source 2: Wikimedia Commons
+    if wiki_search:
+        commons = fetch_wikimedia_commons_images(wiki_search)
+        for img in commons[:3]:
+            if validate_image(img["url"]):
+                candidates.append(("commons", img["url"], "Wikimedia Commons"))
+                break
+    
+    # Source 3: Pexels
+    if pexels_query:
+        url, attr = fetch_pexels_image(pexels_query)
+        if url and validate_image(url):
+            candidates.append(("pexels", url, attr))
+    
+    # Prefer: wikipedia > commons > pexels
+    for source_type in ["wikipedia", "commons", "pexels"]:
+        for c in candidates:
+            if c[0] == source_type:
+                return c[1], c[2]
+    
     return None, None
 
-
-def insert_article(article):
+def publish_article(article):
     """Insert article into Supabase."""
+    payload = {
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": "sports",
+        "vertical": "sports",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": article.get("image_url"),
+        "image_caption": article.get("image_caption"),
+        "image_attribution": article.get("image_attribution"),
+        "sources": json.dumps(article.get("sources", [])),
+        "is_editorial": False,
+    }
+    
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=article,
-        timeout=30,
+        json=payload,
+        timeout=15
     )
     if r.status_code in (200, 201):
-        data = r.json()
-        if isinstance(data, list) and data:
-            print(f"  ✓ Published: {data[0].get('headline', '')[:60]}...")
+        result = r.json()
+        if isinstance(result, list) and result:
+            print(f"  ✓ Published: {result[0].get('id', 'unknown')} — {article['headline'][:60]}...")
             return True
-    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
-    return False
+        print(f"  ✓ Published (no ID returned)")
+        return True
+    else:
+        print(f"  ✗ Publish failed: {r.status_code} — {r.text[:200]}")
+        return False
 
 
-# ── Article 1: Satwik-Chirag retire injured from Indonesia Open ───────────
+###############################################################################
+# ARTICLE 1: Ashwin backs Dubey for Test debut
+###############################################################################
+print("\n=== ARTICLE 1: Ashwin backs Dubey for Afghanistan Test ===")
 
-def write_article_1():
-    print("\n=== Article 1: Satwik-Chirag Indonesia Open withdrawal ===")
+# Image: Try Harsh Dubey (likely no Wikipedia page), then R Ashwin
+img1_url, img1_attr = get_best_image(
+    person_name="Ravichandran Ashwin",
+    wiki_search="Ravichandran Ashwin cricket India",
+    pexels_query="cricket bowling India"
+)
 
-    headline = "They Won the Singapore Open Six Days Ago. On Wednesday in Jakarta, Satwik Pointed to His Shoulder and Walked Off."
-    subheadline = "Satwiksairaj Rankireddy's recurring right shoulder injury forced India's top doubles pair to retire from the Indonesia Open first round. The BAI says recovery is now the priority."
-    slug = "satwik-chirag-retire-injured-indonesia-open-2026-shoulder-singapore-open-nri"
+article1 = {
+    "headline": "Ashwin Has His Eyes on Dubey. Kumble Wants Kuldeep. The Afghanistan Test Has a Spin Selection Puzzle Nobody Agrees On.",
+    "subheadline": "With four spinners in a fifteen-man squad, India's greatest modern spinner says the uncapped left-armer from Vidarbha is the one he wants to see bowl first.",
+    "slug": "ashwin-backs-harsh-dubey-test-debut-kuldeep-kumble-afghanistan-india-spin-puzzle-nri",
+    "image_url": img1_url,
+    "image_caption": "R. Ashwin, India's all-time leading off-spinner, has backed Harsh Dubey for a Test debut",
+    "image_attribution": img1_attr,
+    "sources": [
+        {"name": "Khel Ja", "url": "https://khelja.in"},
+        {"name": "Fox Sports Australia", "url": "https://foxsports.com.au"},
+        {"name": "Sportskeeda", "url": "https://sportskeeda.com"},
+        {"name": "ICC Cricket", "url": "https://icc-cricket.com"}
+    ],
+    "body": """India have four frontline spinners in a fifteen-man squad for a single Test match. That is two too many for a playing eleven, and the debate over which pair gets the nod against Afghanistan in Mullanpur on Saturday has now pulled in the sharpest voice in Indian spin bowling: Ravichandran Ashwin.
 
-    body = """A week ago, Satwiksairaj Rankireddy and Chirag Shetty stood on a podium in Singapore holding the trophy that ended a two-year drought on the BWF World Tour. They had beaten Indonesia's Fajar Alfian and Muhammad Shohibul Fikri from a game down. They were the first Indian men's doubles pair to ever win the Singapore Open. The form was emphatic. The momentum was real.
+## Ashwin's Pick Is Dubey
 
-Six days later, it evaporated in Jakarta.
+Speaking to JioStar ahead of the one-off Test, Ashwin made his preference clear. "My eyes will be on Harsh Dubey," the retired off-spinner said. "I am curious whether he will get a chance. We will have to wait and see if the team goes with Manav Suthar or Harsh Dubey. But I am particularly interested in Dubey because of his strong domestic season."
 
-## Seven Minutes
+That domestic season was extraordinary. Dubey finished as the leading wicket-taker in the 2025-26 Ranji Trophy with 69 wickets at 16.98, bowling left-arm orthodox spin for Vidarbha. At twenty-three, he carried an entire state's red-ball campaign on his shoulders. He followed that with a strong IPL stint for Sunrisers Hyderabad, where Virat Kohli was among his white-ball victims. The combination of domestic dominance and franchise exposure has made him, in Ashwin's view, the more compelling debutant.
 
-Satwik and Chirag walked onto Court 1 at the Istora Senayan on Wednesday as the fourth seeds at the Indonesia Open 2026, one of the marquee Super 1000 events on the BWF calendar. Their opponents were Malaysia's Aaron Tai and Kang Khai Xing, a pair ranked well outside the top 20.
+Manav Suthar, the other uncapped left-armer, brings a different resume. The Rajasthan spinner has 129 first-class wickets at 25.76 and took eight wickets in an unofficial India A Test against Australia A, dismissing Oliver Peake, Will Sutherland, Cooper Connolly, and Josh Philippe. He also showed batting ability, scoring 82 in a Duleep Trophy match. His case is built on consistency across formats rather than a single breakout season.
 
-It was supposed to be a routine opener. Instead, it lasted seven minutes.
+## The Kumble-Pathan Split
 
-Trailing 6-11 in the first game, Satwik gestured toward his right shoulder — the same shoulder that has been a recurring concern since early in the season. He spoke briefly with Chirag, then with the umpire. The pair gave a walkover. The match was over before it had really begun.
+The disagreement goes beyond Ashwin. On Star Sports' *Follow the Blues*, Anil Kumble and Irfan Pathan offered directly opposing compositions.
 
-## A Pattern That Worries
+Kumble picked Kuldeep Yadav and Harsh Dubey as his two specialist spinners, with Gurnoor Brar and Mohammed Siraj forming the seam attack. He went further, arguing that Nitish Kumar Reddy must be treated as a bowling option rather than a specialist batter. "If Gurnoor has been picked, there is a reason. Play him. If it means Prasidh misses out, he misses out, unfortunately."
 
-This is not the first time Satwik's shoulder has disrupted their campaign. The same injury led to their withdrawal from the Badminton Asia Championship earlier this year, depriving them of a chance to build ranking points during a critical stretch of the Olympic qualification cycle.
+Pathan agreed on three of four bowlers but replaced Kuldeep with Washington Sundar. His reasoning was structural: "The Indian team likes to bat till Number 8. That is how they play." Washington at Number 7, with Dhruv Jurel at 6 and Nitish Kumar Reddy at 8, gives India a deep batting tail that has served them well in home Tests. Dubey, in Pathan's eleven, bowls at Number 9.
 
-The Badminton Association of India confirmed the withdrawal with a statement on Wednesday: "Satwiksairaj Rankireddy and Chirag Shetty have withdrawn from the POLYTRON Indonesia Open 2026 due to the former's injury. The pair will now focus on recovery and rehabilitation as they prepare for the important tournaments ahead."
+## The Kuldeep Question
 
-The language was measured, but the subtext is hard to miss. Satwik's shoulder is not a new problem, and the fact that it flared up just days after a physically demanding Singapore Open final raises questions about load management during back-to-back Super 1000 events.
+Kuldeep Yadav's place looked automatic until the IPL intervened. A forgettable season with Delhi Capitals has invited scrutiny, even though his Test record in India remains formidable — eight wickets at 28.63 in the most recent home series against South Africa. Ashwin acknowledged this directly: "Kuldeep Yadav will lead the spin attack against Afghanistan in the absence of Ravindra Jadeja. He has been bowling with great rhythm and confidence."
 
-## What This Means for the Rest of 2026
+The implication is that Kuldeep plays, and the real battle is for the second spinner's slot. If captain Shubman Gill prefers batting depth, Washington Sundar at Number 7 is the safer pick. If the team wants two attacking spinners on a Mullanpur track that will turn, Dubey or Suthar comes in alongside Kuldeep.
 
-Satwik and Chirag are currently ranked world No. 4 in men's doubles. Their Singapore Open title was a breakthrough moment — proof that the pair, who won the 2022 French Open and have been consistently ranked in the top five, still had the hunger and the game to beat the best.
+## What the Pitch Says
 
-But the schedule ahead is unforgiving. The next few months include the Japan Open, the Korea Open, and the run-in to the Asian Games and the World Championships. Rankings points from Super 1000 events are among the most valuable on the circuit. Every withdrawal costs them — not just in points, but in momentum, match sharpness, and the confidence that comes from winning tight matches under pressure.
+The Maharaja Yadavindra Singh International Cricket Stadium in Mullanpur is new to Test cricket. Its IPL surface offered turn and variable bounce, conditions that favour spin bowling. Sairaj Bahutule, the newly appointed spin bowling coach, will have his first assignment mentoring two uncapped spinners through what could be their debut match.
 
-For Indian badminton fans watching from the diaspora, this is a familiar anxiety. India's best doubles pair has the talent to compete for every title, but the margins in men's doubles are razor-thin. Fitness is not a luxury; it is the baseline. When one half of the partnership is managing a chronic shoulder issue, every tournament entry becomes a calculation.
+Afghanistan, without Rashid Khan who has been rested from long-format cricket, will be led by Hashmatullah Shahidi. India have played one Test against Afghanistan previously — an innings defeat inside two days in Bengaluru in 2018. The match begins on June 6 at Mullanpur, with India's first red-ball assignment in five months.
 
-## Indonesia Open: Where India Stands
+## The Diaspora Angle
 
-The withdrawal compounds what has already been a difficult Indonesia Open for India. On Day 1, Lakshya Sen — the country's top-ranked men's singles player — was eliminated by Indonesia's Alwi Farhan in straight games. Kidambi Srikanth also fell in the first round. The mixed doubles pair of Dhruv Kapila and Tanisha Crasto were outclassed by China's sixth seeds. Treesa Jolly and Gayatri Gopichand lost in women's doubles.
+For NRI fans watching from abroad, this Test is available on FanCode in India and Fox Cricket in Australia. The match starts at 9:30 PM EDT on Friday night, a convenient time for East Coast viewers. With India resting Jasprit Bumrah and Ravindra Jadeja, the spotlight falls entirely on the next generation — and on which version of India's spin future the selectors and captain choose to put on the field first.
 
-The lone bright spots have been PV Sindhu, who defeated Busanan Ongbamrungphan to reach the Round of 16, and the men's doubles pair of Hariharan Amsakarunan and MR Arjun, who upset a Malaysian pair featuring 2016 Olympic silver medallist Tan Wee Kiong.
+The answer arrives Saturday. Ashwin already knows who he wants to see."""
+}
 
-Sindhu now faces a probable showdown with world No. 1 An Se-young — a player she has lost to nine times without a single win. That is a mountain. But at least Sindhu is on the court.
+print(f"  Article 1 body word count: {len(article1['body'].split())}")
+publish_article(article1)
 
-Satwik and Chirag are headed home to recover. For a pair that just proved they belong at the top, the timing could not be worse.
 
-*Sources: BAI official statement, IANS, BWF tournament records*"""
+###############################################################################
+# ARTICLE 2: Sooryavanshi effect — Sony broadcasts A-team tri-series live
+###############################################################################
+print("\n=== ARTICLE 2: Sooryavanshi effect forces live broadcast ===")
 
-    # Image sourcing
-    img_url, img_attr = best_image(
-        person_names=["Satwiksairaj Rankireddy", "Chirag Shetty"],
-        wiki_queries=["Satwiksairaj Rankireddy badminton", "Chirag Shetty badminton India"],
-        pexels_queries=["badminton doubles match"],
+# Image: Try Vaibhav Sooryavanshi on Wikipedia (may not exist), then generic cricket
+img2_url, img2_attr = get_best_image(
+    person_name="Vaibhav Sooryavanshi",
+    wiki_search="Vaibhav Suryavanshi cricketer",
+    pexels_query="cricket stadium broadcast television"
+)
+
+# If no Sooryavanshi image, try alternate name
+if not img2_url:
+    print("  Trying alternate name: Vaibhav Suryavanshi")
+    img2_url, img2_attr = get_best_image(
+        person_name="Vaibhav Suryavanshi",
+        wiki_search="IPL 2026 cricket youngest",
+        pexels_query="cricket bat young player"
     )
 
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "slug": slug,
-        "body": body,
-        "category": "sports",
-        "vertical": "sports",
-        "status": "published",
-        "is_editorial": False,
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": "BAI, IANS, BWF",
-        "image_url": img_url or "",
-        "image_attribution": img_attr or "",
-    }
+article2 = {
+    "headline": "Sony Will Broadcast the Sri Lanka Tri-Series Live. They Are Doing It Because a Fifteen-Year-Old Is in the Squad.",
+    "subheadline": "A-team cricket does not get televised. Vaibhav Sooryavanshi's inclusion in the India A squad for the Dambulla tri-series changed that overnight.",
+    "slug": "vaibhav-sooryavanshi-sony-broadcast-india-a-tri-series-sri-lanka-dambulla-live-tv-nri",
+    "image_url": img2_url,
+    "image_caption": "The India A tri-series in Dambulla will be broadcast live on Sony Sports, driven by Sooryavanshi's star power",
+    "image_attribution": img2_attr,
+    "sources": [
+        {"name": "Cricbuzz", "url": "https://cricbuzz.com"},
+        {"name": "CricTracker", "url": "https://crictracker.com"},
+        {"name": "Sports Yaari", "url": "https://sportsyaari.com"},
+        {"name": "The Sports Tak", "url": "https://thesportstak.com"}
+    ],
+    "body": """There is no precedent for what just happened. Sony Sports Network has announced that it will broadcast the upcoming India A tri-series against Sri Lanka A and Afghanistan A live on television and its digital platform, SonyLIV. A-team tri-series in the subcontinent do not get televised. This one will, for a single reason: Vaibhav Sooryavanshi is in the squad.
 
-    return insert_article(article)
+## The Sooryavanshi Effect
 
+The fifteen-year-old sensation, who lit up IPL 2026 with a staggering 776 runs to win the Orange Cap, has turned an otherwise routine developmental tournament into a commercial proposition that broadcasters cannot ignore. Sony, which holds the rights to cricket played in Sri Lanka, moved quickly once the BCCI announced the India A squad with Sooryavanshi's name in it.
 
-# ── Article 2: India Women SAFF Championship semifinal ──────────────────────
+"The Sooryavanshi Express is coming to light up the stage in a high-octane Tri-series," Sony's social media accounts announced, framing the tournament entirely around one player. The network has been looking for cricket content after rival Jio Hotstar secured the IPL and ICC World Cup properties, and Sooryavanshi's global appeal handed them an opportunity on a platter.
 
-def write_article_2():
-    print("\n=== Article 2: India Women SAFF Championship semifinal win ===")
+The tri-series, scheduled for June 9 to 21 at the Rangiri Dambulla International Stadium, will feature seven matches including a final. All matches start at 10:00 AM IST, which translates to 12:30 AM EDT and 9:30 PM PDT the previous night — a late evening slot for NRI fans on the West Coast of the United States.
 
-    headline = "Nongrum Scored in the 58th Minute. India Beat Bhutan 1-0. The Blue Tigresses Are in the SAFF Final."
-    subheadline = "After scoring 14 goals in the group stage, India needed just one against a resolute Bhutan in the semifinal. Bangladesh await in Thursday's final at Margao."
-    slug = "india-women-saff-championship-2026-semifinal-nongrum-bhutan-final-bangladesh-nri"
+## More Than One Star
 
-    body = """The numbers from the group stage told one story: 14 goals scored, zero conceded, three matches won with barely a contested moment. India's women had rolled through the 2026 SAFF Women's Championship like a side playing a different sport from the rest of the field.
+While Sooryavanshi commands the headlines, the India A squad has genuine depth. Tilak Varma, fresh from a strong IPL campaign, leads the side. Ruturaj Gaikwad, who replaced Riyan Parag in a late squad change, brings the experience of leading Chennai Super Kings and scoring heavily in domestic cricket. Priyansh Arya, Ayush Badoni, and Suryansh Shedge represent a generation of batters pushing for senior team spots.
 
-The semifinal told a different story entirely.
+The bowling unit features Anshul Kamboj, Yash Thakur, and Arshad Khan — names that may mean little today but could feature prominently in India's 2027 ODI World Cup plans. Anukul Roy, who replaced Harsh Dubey after the latter was called up to the senior squad for the Afghanistan Test, adds left-arm spin options.
 
-## Bhutan Made India Work
+Sri Lanka A will be no pushovers. Their squad includes experienced internationals like Niroshan Dickwella, Avishka Fernando, and Chamika Karunaratne. Afghanistan A, led by Darwish Rasooli, bring quality spinners in Qais Ahmad and Sharafuddin Ashraf.
 
-At the Jawaharlal Nehru Stadium in Margao, Goa, on Wednesday evening, Bhutan did what no other team in the tournament had managed. They made India uncomfortable.
+## Why This Matters for the Diaspora
 
-Head coach Crispin Chettri made two changes from the side that beat Bangladesh 3-0 in the final group match, bringing in Karishma Shirvoikar and Priyangka Devi Naorem for Pyari Xaxa and Sangita Basfore. India were expected to cruise. They did not.
+For NRI cricket fans, this broadcast decision carries significance beyond one tournament. It establishes that Indian cricket's second tier can generate enough commercial interest to warrant live television coverage — something that was unthinkable even a year ago. The precedent is Sooryavanshi-specific for now, but it opens the door for more developmental cricket to reach screens in living rooms across the United States, the United Kingdom, Canada, and the Gulf.
 
-Bhutan sat deep from the opening whistle, packing bodies behind the ball and denying India the space that had made the group stage so straightforward. India had most of the possession — that was never in doubt — but converting territory into chances, and chances into goals, proved far harder than it had been against the Maldives and Sri Lanka.
+The timing is deliberate. Between the conclusion of IPL 2026 and the India-Afghanistan senior series, there is a gap in marquee cricket. Sony saw a window, and Sooryavanshi gave them the justification to fill it.
 
-The first real opportunity came inside three minutes when Bhutan goalkeeper Sangita Monger fumbled a long ball, but Karishma's heavy first touch let defender Namgyel Dema clear. It set the tone: India would dominate, but finishing would be a problem.
+## The IIM Connection
 
-## Nongrum Breaks the Deadlock
+The Sooryavanshi phenomenon has already transcended cricket. IIM Indore announced it would study the "Vaibhav Model" as a management case study — examining how a fifteen-year-old prodigy navigated the pressures of a senior professional league while maintaining performance consistency. His five individual awards at IPL 2026 — Orange Cap (776 runs), MVP, Emerging Player, Super Striker (strike rate 237.30), and Most Sixes (72, breaking Chris Gayle's all-time record) — represent a dataset that business schools find genuinely worth analysing.
 
-For nearly an hour, Bhutan held. The Indian attack probed, circulated, and pressed, but the final ball kept going astray. Soumya Guguloth lacked power on a first-time effort. Crosses found no one. Passes into the box were intercepted.
+## What to Watch
 
-Then, in the 58th minute, Sanfida Nongrum found the breakthrough. The midfielder — not a regular starter in the group matches — finished from close range after India finally managed to carve open the Bhutan defense with a sequence of quick, incisive passes.
+The first match, India A versus Sri Lanka A, takes place on Tuesday, June 9. For NRI fans:
 
-It was the only goal India would need, but it was the only goal they could manage. Final score: India 1, Bhutan 0.
+- **TV in India**: Sony Sports Network
+- **Streaming**: SonyLIV app and website
+- **Time**: 10:00 AM IST (12:30 AM EDT / 9:30 PM PDT the previous night)
+- **Venue**: Rangiri Dambulla International Stadium, Sri Lanka
 
-## A Final Against Bangladesh
+The full schedule runs across seven matches. India A play Sri Lanka A on June 9 and 15, Afghanistan A on June 11 and 17, with the final on June 21.
 
-India will now face Bangladesh in the final on Thursday, June 5, at 18:30 IST in Margao. Bangladesh reached the final by edging out Nepal 2-1 in the other semifinal, with Ritu Porna Chakma equalizing in first-half stoppage time and an own goal from Nepal's Preeti Rai settling the contest in the 93rd minute.
+Sony is investing in production values typically reserved for senior international cricket. For a network looking to reclaim cricket relevance, and for fans looking to watch the most talked-about teenager in world cricket, the investment makes mutual sense. The question is no longer whether Sooryavanshi deserves the attention. It is whether the cricketing infrastructure around him can scale fast enough to keep up."""
+}
 
-Bangladesh are the defending champions, and they have improved significantly over the past two cycles. India beat them 3-0 in the group stage, but tournament finals are a different proposition entirely. Bangladesh will carry the confidence of a comeback win over Nepal, and they know that a tight, organized defensive effort — the kind Bhutan just demonstrated — can take India out of their comfort zone.
+print(f"  Article 2 body word count: {len(article2['body'].split())}")
+publish_article(article2)
 
-## What the Diaspora Should Know
-
-For Indian women's football, the SAFF Championship is the most important regional title. India have won it four times, but they failed to reach the final in the last two editions — an unacceptable slide for a team that considers itself the dominant force in South Asian football.
-
-This year's squad, under Chettri, has looked rejuvenated. Aveka Singh has been the tournament's top scorer with four goals. Priyangka Devi Naorem and Pyari Xaxa have added firepower from midfield. The defense, anchored by Grace Dangmei's versatility and organization, has been the tightest in the competition.
-
-But the semifinal exposed a vulnerability. When opponents sit deep and deny space, India's ball circulation can become sterile. Against Bangladesh in a final, that patience will be tested again.
-
-The match will be played in Margao — the heart of Indian football in many ways, a state where the sport runs deeper than almost anywhere else in the country. For NRI fans following from abroad, the stakes are straightforward: India need this title to reassert themselves as the team to beat in South Asia before a critical 2027 that includes the Asian Cup qualifiers.
-
-One match. One title. One chance to prove the group-stage dominance was real.
-
-*Sources: AIFF, LiveNewsGoa, SAFF Championship official records*"""
-
-    # Image sourcing — try India women's football, then generic
-    img_url, img_attr = best_image(
-        person_names=["India women's national football team"],
-        wiki_queries=["India women football team 2026", "Blue Tigresses India football", "SAFF Women's Championship"],
-        pexels_queries=["women football match India"],
-    )
-
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "slug": slug,
-        "body": body,
-        "category": "sports",
-        "vertical": "sports",
-        "status": "published",
-        "is_editorial": False,
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": "AIFF, LiveNewsGoa, SAFF",
-        "image_url": img_url or "",
-        "image_attribution": img_attr or "",
-    }
-
-    return insert_article(article)
-
-
-# ── Main ─────────────────────────────────────────────────────────────────────
-
-if __name__ == "__main__":
-    ok1 = write_article_1()
-    ok2 = write_article_2()
-
-    total = sum([ok1, ok2])
-    print(f"\n{'='*60}")
-    print(f"Sports writer complete: {total}/2 articles published")
-    if total == 0:
-        sys.exit(1)
+print("\n=== Sports writer run complete ===")
