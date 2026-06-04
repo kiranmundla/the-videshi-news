@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import SocialEmbed, { detectSocialUrl } from "@/components/SocialEmbed";
+import SocialPhotoStrip, { parseSocialPhotos } from "@/components/SocialPhotoStrip";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import NewsletterSignup from "@/components/NewsletterSignup";
@@ -226,7 +227,32 @@ function MarkdownWithEmbeds({
     }
   };
 
+  let socialPhotosBuf: string[] | null = null;
+
   for (const line of lines) {
+    // Accumulate <!-- social-photos ... --> blocks
+    if (line.trim().startsWith("<!-- social-photos")) {
+      flush();
+      // Check if single-line (unlikely but handle it)
+      if (line.trim().endsWith("-->")) {
+        const sp = parseSocialPhotos(line.trim());
+        if (sp) chunks.push({ kind: "social-photos", ...sp });
+      } else {
+        socialPhotosBuf = [line];
+      }
+      continue;
+    }
+    if (socialPhotosBuf !== null) {
+      socialPhotosBuf.push(line);
+      if (line.trim().endsWith("-->")) {
+        const block = socialPhotosBuf.join("\n");
+        const sp = parseSocialPhotos(block);
+        if (sp) chunks.push({ kind: "social-photos", ...sp });
+        socialPhotosBuf = null;
+      }
+      continue;
+    }
+
     if (line.trim() === "<!-- champions-timeline -->") {
       flush();
       chunks.push({ kind: "champions-timeline" });
@@ -285,7 +311,9 @@ function MarkdownWithEmbeds({
   return (
     <>
       {(chunks as any[]).map((chunk, i) =>
-        chunk.kind === "embed" ? (
+        chunk.kind === "social-photos" ? (
+          <SocialPhotoStrip key={i} images={chunk.images} via={chunk.via} platform={chunk.platform} postUrl={chunk.postUrl} />
+        ) : chunk.kind === "embed" ? (
           <SocialEmbed key={i} platform={chunk.platform} url={chunk.url} />
         ) : chunk.kind === "youtube" ? (
           <YouTubeEmbed key={i} url={chunk.url} />
