@@ -1,47 +1,48 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-06-04 batch"""
+"""Entertainment writer for The Videshi — 2026-06-04 run"""
 
-import json, os, re, sys, time, uuid, hashlib
+import json, os, sys, time, uuid, subprocess, re, io
+import requests
+import urllib.parse
 from datetime import datetime, timezone
 
-import requests
-from PIL import Image
-import io
-
-# Load env
+# Load environment
 def load_env(path):
     if os.path.exists(path):
         with open(path) as f:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+                    if line.startswith('export '):
+                        line = line[7:]
+                    key, _, val = line.partition('=')
+                    val = val.strip('"').strip("'")
+                    os.environ[key.strip()] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
 SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
 SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-UA = "TheVideshi/1.0 (thevideshi.com)"
 
-HEADERS_SB = {
+HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation"
 }
 
-# ─── Image helpers ───
+UA = "TheVideshi/1.0 (thevideshi.com)"
+
+# ─── Image sourcing functions ──────────────────────────────────────────
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = person_name.replace(' ', '_')
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
-            f"https://en.wikipedia.org/api/rest_v1/page/summary/{requests.utils.quote(encoded)}",
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": UA},
             timeout=10
         )
@@ -54,6 +55,7 @@ def fetch_wikipedia_person_image(person_name):
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
+
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
@@ -92,413 +94,406 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
                     "title": page.get("title", ""),
                     "width": ii.get("width", 0),
                     "height": ii.get("height", 0),
-                    "mime": mime
                 })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+        print(f"  ⚠ Wikimedia Commons error: {e}")
     return []
+
 
 def fetch_pexels_image(query):
     """Search Pexels for an image. Returns URL or None."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
         return None
     try:
-        r = requests.get(
-            "https://api.pexels.com/v1/search",
-            params={"query": query, "per_page": 3, "orientation": "landscape"},
-            headers={"Authorization": PEXELS_KEY},
-            timeout=10
+        result = subprocess.run(
+            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=5",
+             "-H", f"Authorization: {PEXELS_KEY}"],
+            capture_output=True, text=True, timeout=15
         )
-        if r.status_code == 200:
-            photos = r.json().get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                return url
+        data = json.loads(result.stdout)
+        photos = data.get("photos", [])
+        for p in photos:
+            src = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+            if src:
+                print(f"  ✓ Pexels image found for '{query}': {src[:80]}...")
+                return src
     except Exception as e:
-        print(f"  ⚠ Pexels error for '{query}': {e}")
+        print(f"  ⚠ Pexels error: {e}")
     return None
 
-def compress_image(img_bytes, max_width=1200, quality=80):
-    """Resize and compress image. Returns JPEG bytes."""
-    img = Image.open(io.BytesIO(img_bytes))
-    if img.mode in ('RGBA', 'P'):
-        img = img.convert('RGB')
-    if img.width > max_width:
-        ratio = max_width / img.width
-        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-    buf = io.BytesIO()
-    img.save(buf, format='JPEG', quality=quality, optimize=True)
-    return buf.getvalue()
 
-def upload_to_supabase(img_bytes, filename):
-    """Upload image bytes to Supabase storage article-images bucket."""
-    compressed = compress_image(img_bytes)
-    size_kb = len(compressed) / 1024
-    if size_kb < 10:
-        print(f"  ⚠ Compressed image too small ({size_kb:.0f} KB), skipping upload")
-        return None
-    print(f"  📦 Uploading {filename} ({size_kb:.0f} KB)...")
-    
-    url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-    r = requests.post(url, data=compressed, headers={
-        "apikey": SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Content-Type": "image/jpeg",
-        "x-upsert": "true"
-    }, timeout=30)
-    
-    if r.status_code in (200, 201):
-        public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-        print(f"  ✓ Uploaded: {public_url[:80]}...")
-        return public_url
-    else:
-        print(f"  ⚠ Upload failed ({r.status_code}): {r.text[:200]}")
-        return None
-
-def download_image(url):
-    """Download image bytes from URL."""
+def compress_and_upload(img_url, slug):
+    """Download, compress, and upload image to Supabase. Returns public URL or None."""
     try:
-        r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
-        if r.status_code == 200 and r.headers.get('Content-Type', '').startswith('image/'):
-            if len(r.content) > 5000:
-                return r.content
-            else:
-                print(f"  ⚠ Image too small ({len(r.content)} bytes)")
-        else:
-            print(f"  ⚠ Download failed: status={r.status_code}, type={r.headers.get('Content-Type')}")
-    except Exception as e:
-        print(f"  ⚠ Download error: {e}")
-    return None
+        from PIL import Image
+    except ImportError:
+        subprocess.run([sys.executable, "-m", "pip", "install", "Pillow", "-q"], check=True)
+        from PIL import Image
 
-def source_image(person_name=None, topic_queries=None, pexels_query=None, slug="article"):
-    """Multi-source image search. Returns (url, attribution, caption_hint) or (None, None, None)."""
+    print(f"  📥 Downloading: {img_url[:80]}...")
+    try:
+        r = requests.get(img_url, headers={"User-Agent": UA}, timeout=20)
+        if r.status_code != 200:
+            print(f"  ❌ Download failed: HTTP {r.status_code}")
+            return None
+        ct = r.headers.get("Content-Type", "")
+        if not ct.startswith("image/"):
+            print(f"  ❌ Not an image: {ct}")
+            return None
+        raw = r.content
+        if len(raw) < 5000:
+            print(f"  ❌ Too small: {len(raw)} bytes")
+            return None
+    except Exception as e:
+        print(f"  ❌ Download error: {e}")
+        return None
+
+    # Compress
+    try:
+        img = Image.open(io.BytesIO(raw))
+        if img.mode in ('RGBA', 'P'):
+            img = img.convert('RGB')
+        max_w = 1200
+        if img.width > max_w:
+            ratio = max_w / img.width
+            img = img.resize((max_w, int(img.height * ratio)), Image.LANCZOS)
+        buf = io.BytesIO()
+        img.save(buf, format='JPEG', quality=80, optimize=True)
+        compressed = buf.getvalue()
+        print(f"  📦 Compressed: {len(raw)} → {len(compressed)} bytes ({img.width}x{img.height})")
+    except Exception as e:
+        print(f"  ⚠ Compression failed, using raw: {e}")
+        compressed = raw
+
+    # Upload
+    filename = f"{slug}.jpg"
+    upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+    try:
+        # Try upsert
+        resp = requests.post(
+            upload_url,
+            headers={
+                "Authorization": f"Bearer {SUPABASE_KEY}",
+                "Content-Type": "image/jpeg",
+                "x-upsert": "true"
+            },
+            data=compressed,
+            timeout=30
+        )
+        if resp.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✅ Uploaded: {public_url}")
+            return public_url
+        else:
+            print(f"  ❌ Upload failed: {resp.status_code} - {resp.text[:200]}")
+            return None
+    except Exception as e:
+        print(f"  ❌ Upload error: {e}")
+        return None
+
+
+def source_image(person_names, topic_queries, pexels_query, slug):
+    """Multi-source image search. Returns (url, attribution) or (None, None)."""
     candidates = []
-    
-    # Source 1: Wikipedia person image
-    if person_name:
-        wiki_img = fetch_wikipedia_person_image(person_name)
+
+    # Wikipedia for person articles
+    for name in person_names:
+        wiki_img = fetch_wikipedia_person_image(name)
         if wiki_img:
             candidates.append({"url": wiki_img, "source": "wikipedia", "priority": 1})
-    
-    # Source 2: Wikimedia Commons
-    if topic_queries:
-        for q in topic_queries[:2]:
-            results = fetch_wikimedia_commons_images(q)
-            for r in results[:2]:
-                candidates.append({"url": r["url"], "source": "wikimedia_commons", "priority": 2})
-    
-    # Source 3: Pexels
+            break
+
+    # Wikimedia Commons
+    for q in topic_queries:
+        commons = fetch_wikimedia_commons_images(q, limit=3)
+        for c in commons[:2]:
+            candidates.append({"url": c["url"], "source": "wikimedia_commons", "priority": 2})
+        if commons:
+            break
+
+    # Pexels fallback
     if pexels_query:
-        pexels_img = fetch_pexels_image(pexels_query)
-        if pexels_img:
-            candidates.append({"url": pexels_img, "source": "pexels", "priority": 3})
-    
-    # Pick best and upload to Supabase
-    for cand in sorted(candidates, key=lambda c: c["priority"]):
-        img_bytes = download_image(cand["url"])
-        if img_bytes:
-            filename = f"{slug}.jpg"
-            final_url = upload_to_supabase(img_bytes, filename)
-            if final_url:
-                attr = "Wikimedia Commons" if cand["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
-                return final_url, attr, cand["source"]
-    
-    print("  ⚠ No suitable image found from any source")
-    return None, None, None
+        pex = fetch_pexels_image(pexels_query)
+        if pex:
+            candidates.append({"url": pex, "source": "pexels", "priority": 3})
+
+    # Pick best and upload
+    candidates.sort(key=lambda x: x["priority"])
+    for c in candidates:
+        final_url = compress_and_upload(c["url"], slug)
+        if final_url:
+            attr = "Wikimedia Commons" if c["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
+            return final_url, attr
+
+    print("  ⚠ No usable image found")
+    return None, None
+
 
 def insert_article(article):
     """Insert article into Supabase."""
-    print(f"\n📝 Inserting: {article['headline'][:60]}...")
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        json=article,
-        headers=HEADERS_SB,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            art_id = result[0].get('id', 'unknown')
-            print(f"  ✓ Published: {art_id}")
-            return art_id
-        print(f"  ✓ Published (response: {str(r.text)[:100]})")
-        return True
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
+    resp = requests.post(url, headers=HEADERS, json=article, timeout=30)
+    if resp.status_code in (200, 201):
+        data = resp.json()
+        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
+        print(f"  ✅ Published: {article['headline'][:60]}... (id={art_id})")
+        return art_id
     else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        print(f"  ❌ Insert failed: {resp.status_code} - {resp.text[:300]}")
         return None
 
-# ─── Articles ───
 
-def write_aishwarya_jw_marriott():
-    """Article 1: Aishwarya Rai named JW Marriott Global Brand Ambassador"""
-    print("\n" + "="*60)
-    print("ARTICLE 1: Aishwarya Rai × JW Marriott")
-    print("="*60)
-    
-    slug = "aishwarya-rai-jw-marriott-global-brand-ambassador-stay-in-the-moment-nri-20260604"
-    
-    # Image sourcing
-    img_url, img_attr, img_src = source_image(
-        person_name="Aishwarya Rai",
-        topic_queries=["Aishwarya Rai Bachchan actress", "Aishwarya Rai Cannes"],
-        pexels_query="luxury hotel lobby elegant",
-        slug=slug
-    )
-    
-    headline = "Aishwarya Rai Just Became the Global Face of JW Marriott. For the Diaspora, the Appointment Says More Than the Press Release."
-    
-    subheadline = "The hotel chain's 'Stay in the Moment' campaign now has a face that NRIs have watched evolve from Miss World to Cannes regular to a Bollywood icon who chooses her battles. Here's why the partnership matters."
-    
-    body = """When JW Marriott announced Aishwarya Rai Bachchan as its Global Brand Ambassador on June 3, the press release did what press releases do — it talked about "mindful travel," "intentional luxury," and "meaningful connections." Strip away the corporate poetry, and what remains is a statement of reach that neither party could make alone.
+# ─── Articles ──────────────────────────────────────────────────────────
 
-## The Appointment
+articles = []
 
-Aishwarya will front JW Marriott's global "Stay in the Moment" campaign across film, print, and digital platforms. She will also participate in curated brand experiences in India and select international markets. The partnership positions her not as a regional celebrity lending her face to a Western brand, but as a global figure extending a global brand's relevance into a market that is rewriting the rules of luxury travel.
+# ═══════════════════════════════════════════════════════════════════════
+# ARTICLE 1: Peddi Day 1 Box Office
+# ═══════════════════════════════════════════════════════════════════════
+print("\n" + "="*60)
+print("ARTICLE 1: Peddi Opening Day Box Office")
+print("="*60)
 
-"Travel has always been an important part of my life, both personally and professionally," Aishwarya said in the announcement. "The most meaningful experiences are often the quietest ones, when you are fully aware of where you are and who you are with."
+slug1 = "peddi-ram-charan-opening-day-box-office-100-crore-worldwide-nri-20260604"
 
-Bruce Rohr, Vice President and Global Brand Leader of JW Marriott, called her "a natural embodiment of JW Marriott and an ideal partner for the brand."
+headline1 = "Ram Charan's Peddi Just Opened Across 4,293 Screens. The Numbers Are Tracking Toward a ₹100-Crore Worldwide Day One."
 
-## Why This Matters for Indian Travellers
+subheadline1 = "The Telugu sports drama's ₹50-crore advance and massive North American premiere pre-sales signal that post-RRR, Ram Charan's solo stardom is no longer a question — it's a fact."
 
-The numbers behind the appointment tell their own story. Indian travellers are now the fastest-growing outbound luxury segment globally. JW Marriott operates more than 130 properties worldwide, and India is one of its most dynamic portfolios. The demand is being driven by rising affluence, multigenerational journeys, and a generational shift toward experience-led stays over transactional ones.
+body1 = """Ram Charan needed this.
 
-For decades, luxury hospitality marketed to Indians followed a familiar formula: show marble lobbies, mention thread counts, and assume aspiration would do the rest. That playbook is aging. Today's Indian luxury traveller — particularly the NRI who splits time between continents — wants what Marriott's campaign language actually describes: presence, purpose, and connection. They have already stayed at the marble lobbies. Now they want to feel something.
+Not the validation — his career has never lacked for that. But the solo proof. After RRR turned him into a global name alongside Jr. NTR, and after Game Changer stumbled in January, the question hovered: could Ram Charan open a film on his own name, without Rajamouli, without a multi-starrer safety net, and make the kind of numbers that justify a ₹300-crore budget?
 
-## The Diaspora Angle
+Peddi is answering that question in real time.
 
-For NRIs, Aishwarya Rai occupies a peculiar and specific space. She is not the Bollywood star you discovered last year. She is the one your parents watched win Miss World in 1994, the one your aunties debated over at every family gathering for two decades, the one who showed up at Cannes year after year until the West stopped treating her presence as a novelty and started treating it as a fixture.
+## The Numbers So Far
 
-That kind of longevity is exactly what a hotel brand trading on permanence needs. JW Marriott is not selling flash. It is selling the idea that luxury is a posture, not a purchase. In Aishwarya, they have found someone whose public life has been an exercise in exactly that discipline.
+The Buchi Babu Sana-directed sports action drama opened on Thursday, June 4, across 4,293 shows in India. By early afternoon, live tracking showed the film had already netted ₹12.49 crore domestically, with total India gross at ₹14.74 crore and climbing fast. These are partial-day figures — the evening and night shows, which typically account for 50-60 percent of a day's total, had barely begun.
 
-## The Business Context
+Worldwide advance bookings had already crossed ₹50 crore before the first show rolled. Trade projections now point to a global opening-day gross exceeding ₹100 crore, which would make Peddi one of the biggest openers of 2026 so far.
 
-The appointment arrives at a moment when India's luxury travel market is undergoing structural change. Domestic premium travel is rising as fast as outbound, driven by wellness retreats, heritage properties, and experience-first booking behaviour. The Indian luxury traveller no longer fits a single profile. They could be a tech founder from Bengaluru booking a weekend at a JW in Mussoorie, or a second-generation NRI in New Jersey choosing between a Maldives villa and a Rajasthan palace.
+## The North American Story
 
-Marriott's bet is that Aishwarya bridges both segments. She is familiar enough to resonate with the domestic market and global enough to anchor a campaign that runs from New York to Dubai to Tokyo.
+For the diaspora, the numbers tell a specific story. In North America, Peddi racked up over $1.5 million in premiere and opening-day pre-sales across 533 locations and 1,647 shows. That is 28,037 tickets sold before a single review dropped. Cinemark alone contributed $466,707 from 16,344 tickets. Premium formats — IMAX, XD, RPX, D-Box — accounted for nearly 18 percent of overseas revenue, a pattern typically associated with event-scale releases.
+
+This is not Pushpa 2 territory ($3 million premiere), but it is comfortably in the top tier for a Telugu-language solo vehicle. For context, Peddi entered the top 10 all-time Tollywood pre-sales on BookMyShow with 600,000 tickets — ahead of The RajaSaab and Hari Hara Veera Mallu.
+
+## What the Film Actually Is
+
+Set in 1980s rural Andhra Pradesh, Peddi follows a spirited villager who unites his community through sports — wrestling, cricket, running — to defend local pride against a powerful rival. The film runs a hefty three hours with a U/A certificate, and features an ensemble including Janhvi Kapoor, Shiva Rajkumar, Jagapathi Babu, Divyenndu, and Boman Irani. A.R. Rahman composed the score, his first collaboration with Ram Charan.
+
+Director Buchi Babu Sana, whose debut Uppena was a surprise hit in 2021, has built Peddi as a rural sports epic rather than a typical masala action film. The Telugu theatrical version is the primary release, with dubbed versions in Hindi, Tamil, Kannada, and Malayalam expanding the footprint.
+
+## Why It Matters to NRIs
+
+The film's North American performance is worth watching not just for its numbers but for what it represents. Telugu cinema's overseas market has grown from a niche into a primary revenue stream. The Gulf region, North America, and Australia now collectively account for 25-30 percent of a major Telugu film's lifetime gross. When NRI audiences show up in these numbers for a premiere, they are not just watching a movie — they are voting on the commercial viability of an entire production model.
+
+Ram Charan's trajectory post-RRR mirrors a pattern familiar across South Indian cinema: the international breakout creates expectations that the next solo outing must meet. Allu Arjun did it with Pushpa 2. Prabhas struggled with Adipurush and Salaar. Now it is Ram Charan's turn with Peddi, and the early data suggests the bet is paying off.
 
 ## What Comes Next
 
-The campaign will roll out across international markets in the coming months. For NRIs who have watched Aishwarya Rai evolve through every possible phase of Indian public life, the JW Marriott partnership is less a surprise than a confirmation. She has always been the one who understood that the most powerful move in a noisy room is stillness.
+The evening shows will determine whether Peddi cracks the ₹100-crore worldwide mark on Day 1. Word-of-mouth from afternoon audiences is already filtering onto social media, and the trajectory of the weekend — particularly Saturday family audiences — will decide if this becomes a ₹500-crore film or a ₹300-crore one. For a ₹300-crore production, the breakeven requires roughly ₹450 crore worldwide.
 
-JW Marriott is hoping that philosophy sells suites. Based on the trajectory of Indian luxury travel, they are probably right."""
-    
-    image_caption = "Aishwarya Rai Bachchan, newly appointed Global Brand Ambassador for JW Marriott"
-    
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url,
-        "image_caption": image_caption,
-        "image_attribution": img_attr or "Wikimedia Commons",
-        "sources": json.dumps([
-            "https://hollywoodreporterindia.com",
-            "https://bollywoodhungama.com",
-            "https://restaurantindia.in"
-        ]),
-        "is_editorial": False
-    }
-    
-    return insert_article(article)
+The first real test is over. The screens are booked. The tickets are sold. Now it is about whether the film itself can carry the opening into a sustained run."""
 
+# Image sourcing for Peddi
+img1_url, img1_attr = source_image(
+    person_names=["Ram Charan"],
+    topic_queries=["Ram Charan actor Telugu cinema", "Ram Charan film"],
+    pexels_query="Indian cinema sports drama",
+    slug=slug1
+)
 
-def write_made_in_india_titan():
-    """Article 2: Made in India: A Titan Story — Jim Sarbh, Naseeruddin Shah"""
-    print("\n" + "="*60)
-    print("ARTICLE 2: Made in India: A Titan Story")
-    print("="*60)
-    
-    slug = "made-in-india-titan-story-jim-sarbh-naseeruddin-shah-amazon-mx-player-nri-20260604"
-    
-    # Image sourcing — Jim Sarbh is the lead
-    img_url, img_attr, img_src = source_image(
-        person_name="Jim Sarbh",
-        topic_queries=["Jim Sarbh actor", "Titan watches India", "Naseeruddin Shah actor"],
-        pexels_query="vintage wristwatch elegant",
-        slug=slug
-    )
-    
-    headline = "Made in India: A Titan Story Is the Show Nobody Expected to Be This Good. Jim Sarbh and Naseeruddin Shah Make Watchmaking Feel Like War."
-    
-    subheadline = "A six-episode series about how Xerxes Desai built India's first world-class watch brand just dropped on Amazon MX Player. For NRIs who grew up with a Titan on their wrist, this one hits different."
-    
-    body = """The pitch sounds like a corporate PowerPoint brought to life: a series about the founding of Titan, India's iconic watch brand, produced in partnership with the Tata legacy, streaming on Amazon MX Player. Every instinct says it should be branded content dressed up as drama. Every instinct is wrong.
-
-*Made in India: A Titan Story*, directed by Robbie Grewal and adapted from Vinay Kamath's book *Titan: India's Most Successful Consumer Brand*, is drawing 3.5 to 4-star reviews across the board. The consensus is unanimous and slightly bewildered: a series about making watches in pre-liberalisation India has no business being this compelling.
-
-## The Story
-
-The series opens with two pivotal moments. Xerxes Desai, a forward-thinking Tata Group executive played by Jim Sarbh, is returning to the company after a successful stint elsewhere. Meanwhile, JRD Tata — played by Naseeruddin Shah with a gravitas that makes you forget you are watching an actor — sits across from a Swiss watchmaker who tells him, more or less, that India cannot make a world-class watch.
-
-Rather than accept the insult, JRD channels it into a mission. Desai becomes the man tasked with proving Switzerland wrong. What follows is six episodes of bureaucratic warfare, financial brinkmanship, technological setbacks, and the slow, grinding work of building something from nothing in a country that had not yet learned to believe in its own manufacturing ambitions.
-
-## The Performances
-
-Jim Sarbh, who nailed Homi J Bhabha in *Rocket Boys* and played a ruthless billionaire in *Kuberaa*, delivers another shape-shifting performance. His Xerxes Desai is not a shouting visionary. He is a quiet operator who understands that building a watch brand requires convincing everyone around you — the government, the financiers, the skeptics, your own team — to believe in an idea that sounds impossible until the day it isn't.
-
-Naseeruddin Shah as JRD Tata is perfect casting. Every time Sarbh's Desai seems cornered, Shah appears on screen with the kind of calm authority that makes you feel things will work out. He does not dominate scenes. He steadies them.
-
-Vaibhav Tatwawadi as Akash Dikshit, Desai's friend and collaborator, turns out to be the series' quiet surprise. The supporting cast — Kaveri Seth, Lakshvir Saran, Joy Sengupta, and Paresh Ganatra — fills out the world around the central mission without ever feeling like decoration.
-
-## Why NRIs Will Feel This
-
-There is a particular sensation that Indian diaspora audiences know well. You are standing in a store somewhere in America or London, you see a Titan watch in someone's collection or in an old photo, and you feel a flash of something that has nothing to do with horology. It is pride, and it is memory, and it is the knowledge that the object in front of you was built by people who were told it could not be done.
-
-*Made in India* captures the origin of that feeling. It does not wave flags or manufacture patriotism. It shows the work — the late nights, the failed prototypes, the licence raj that treated ambition as a threat — and trusts the audience to understand what was at stake. For NRIs who grew up in households where a Titan Raga was the graduation gift and a Titan Edge was the promotion reward, this series is personal history presented as drama.
-
-## The Verdict
-
-The show is not perfect. Six episodes at 55 minutes each occasionally let the pacing drift, and some of the period detail feels more functional than immersive. But these are minor complaints against a show that takes a corporate origin story and makes it feel urgent, human, and emotionally earned.
-
-In a streaming landscape crowded with dark thrillers and franchise sequels, *Made in India: A Titan Story* is a reminder that the most gripping stories are sometimes the ones about people who simply refused to quit. It is streaming now on Amazon MX Player. If you have ever worn a Titan watch, you owe it to yourself to understand how it got to your wrist."""
-
-    image_caption = "Jim Sarbh stars as Xerxes Desai in Made in India: A Titan Story"
-    
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url,
-        "image_caption": image_caption,
-        "image_attribution": img_attr or "Wikimedia Commons",
-        "sources": json.dumps([
-            "https://indiaforums.com",
-            "https://koimoi.com",
-            "https://hollywoodreporterindia.com",
-            "https://mensxp.com"
-        ]),
-        "is_editorial": False
-    }
-    
-    return insert_article(article)
+articles.append({
+    "headline": headline1,
+    "subheadline": subheadline1,
+    "body": body1,
+    "slug": slug1,
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": img1_url,
+    "image_caption": "Ram Charan in a still from Peddi, the Telugu sports drama that opened across 4,293 screens on June 4",
+    "image_attribution": img1_attr or "Wikimedia Commons",
+    "sources": json.dumps([
+        {"name": "Sacnilk", "url": "https://sacnilk.com"},
+        {"name": "Filmibeat", "url": "https://filmibeat.com"},
+        {"name": "Koimoi", "url": "https://koimoi.com"}
+    ]),
+    "is_editorial": False
+})
 
 
-def write_hai_jawani():
-    """Article 3: Hai Jawani Toh Ishq Hona Hai — David Dhawan's final film"""
-    print("\n" + "="*60)
-    print("ARTICLE 3: Hai Jawani Toh Ishq Hona Hai — David Dhawan's Last Film")
-    print("="*60)
-    
-    slug = "hai-jawani-toh-ishq-hona-hai-david-dhawan-final-film-varun-dhawan-june-5-nri-20260604"
-    
-    # Image sourcing
-    img_url, img_attr, img_src = source_image(
-        person_name="David Dhawan",
-        topic_queries=["David Dhawan director Bollywood", "Varun Dhawan actor"],
-        pexels_query="cinema director movie set Bollywood",
-        slug=slug
-    )
-    
-    headline = "David Dhawan Is Retiring After This Film. For a Generation of NRIs, He Taught Them How to Laugh in Hindi."
-    
-    subheadline = "Hai Jawani Toh Ishq Hona Hai, starring Varun Dhawan, Mrunal Thakur, and Pooja Hegde, releases June 5. It is the last directorial venture of the man who made Govinda a god and made every Indian living room a comedy club."
-    
-    body = """There is a version of this story that is just a release-date article. Hai Jawani Toh Ishq Hona Hai, a romantic comedy directed by David Dhawan, starring his son Varun Dhawan alongside Mrunal Thakur and Pooja Hegde, releases in theatres on June 5. Budget is reasonable. CBFC rating is U/A. Runtime is a brisk two hours and sixteen minutes. Fifty percent off on first-day tickets. Move on.
+# ═══════════════════════════════════════════════════════════════════════
+# ARTICLE 2: Bandar CBFC Censorship
+# ═══════════════════════════════════════════════════════════════════════
+print("\n" + "="*60)
+print("ARTICLE 2: Bandar CBFC Censorship")
+print("="*60)
 
-But this is not just a release. This is the last time David Dhawan will sit in the director's chair. He has announced his retirement after this film. And for a generation of Indians who grew up on his work — particularly those who now live thousands of miles from the country where they first watched *Hero No. 1* on a pirated VHS — that carries weight.
+slug2 = "bandar-anurag-kashyap-cbfc-censorship-bobby-deol-cuss-words-tiff-nri-20260604"
 
-## The Film
+headline2 = "The CBFC Just Turned Anurag Kashyap's Bandar Into a Different Film. TIFF Audiences Saw the Original. Indian Theaters Will Not."
 
-The plot follows Jass, played by Varun Dhawan, and Bani, played by Mrunal Thakur. They have been married for five years. The marriage crumbles over the usual fault lines — career versus family, ambition versus domesticity. After the split, Jass travels abroad and meets a new woman, played by Pooja Hegde. What follows is the David Dhawan formula in its final form: situational chaos, mistaken identities, romantic entanglements, and a resolution that believes love — however messy — eventually finds its way.
+subheadline2 = "Extreme cuss words replaced with milder alternatives, a #MeToo drama softened for theatrical release — the gap between what international festival audiences get and what Indian moviegoers receive has never been more visible."
 
-The cast also includes Mouni Roy, Jimmy Shergill, Chunky Panday, Maniesh Paul, Kubbra Sait, Rakesh Bedi, and Ali Asgar. It is the kind of ensemble that David Dhawan has always preferred — comedians who understand timing, actors who are willing to look ridiculous, and a leading man who can carry both the romance and the slapstick.
+body2 = """When Bandar premiered at the Toronto International Film Festival in September 2025, the audience experienced Anurag Kashyap's film exactly as he made it. The language was raw. The characters spoke the way people in crisis actually speak — with profanity that carried weight, not shock value.
 
-## The Legacy Being Retired
+The version releasing in Indian theaters on June 5 is not that film.
 
-David Dhawan directed 45 films over four decades. He made Govinda into a comedy institution. He gave Bollywood *Coolie No. 1*, *Hero No. 1*, *Bade Miyan Chote Miyan*, *Haseena Maan Jaayegi*, and *Partner*. He did not invent the Hindi film comedy, but he industrialised it — built a machine that could reliably produce two hours of laughter without pretending to be anything other than entertainment.
+## What the CBFC Changed
 
-His critics always said the same things: the films were formulaic, the jokes were broad, the plots were interchangeable. His audience never cared. They showed up because David Dhawan understood something most filmmakers do not — that making someone laugh is harder than making them cry, and that there is no shame in optimising for joy.
+According to an exclusive report by Bollywood Hungama, the Central Board of Film Certification replaced multiple instances of extreme profanity in Bandar with milder alternatives. The most striking substitution: a particularly graphic Hindi abuse was replaced with "banjo." Other cuss words were softened throughout the film, with the CBFC systematically swapping out the sharpest edges of the dialogue while granting the film a theatrical release certificate.
 
-## The NRI Connection
+This is not a case of a few bleeps. When you replace the language in a film specifically about power, accusation, and the collapse of a man's public identity, you are changing the texture of the storytelling itself. Kashyap's cinema has always derived its authenticity from characters who sound like real people — not like people performing for a censor board.
 
-For Indians in the diaspora, David Dhawan comedies occupied a very specific role. They were the films you watched when you were homesick. Not the Yash Chopra romances that made you ache for Switzerland standing in for India, not the Karan Johar dramas that turned family dysfunction into spectacle. David Dhawan films were simpler than that. They were the cinematic equivalent of dal chawal — unambitious, reliable, and exactly what you needed.
+## What the Film Is About
 
-In rented apartments in New Jersey, in student housing in London, in tech corridors in the Bay Area, Indian families gathered around television sets and watched Govinda dance in colours that did not exist in nature, and they laughed. The laughter was not ironic. It was not guilty. It was the specific, uncomplicated laughter of people who needed two hours of not thinking about visas, mortgages, or the distance between who they were becoming and who they had been.
+Bandar — subtitled Monkey in a Cage for international markets — stars Bobby Deol as Samar Mehra, a washed-up television actor living on the margins. He cannot afford back surgery. He performs at weddings to pay his mortgage. When police arrive at his door one night and arrest him on rape charges filed by a woman he met on a dating app, his already diminished life disintegrates entirely.
 
-## The Father-Son Angle
+The film is written by Sudip Sharma and Abhishek Banerjee — the team behind Paatal Lok and Kohrra — and produced by Nikhil Dwivedi with Zee Studios backing. Sanya Malhotra, Raj B Shetty, Jitendra Joshi, Sapna Pabbi, Indrajith Sukumaran, and Riddhi Sen round out the cast.
 
-This is Varun Dhawan's fourth film with his father, after *Main Tera Hero* (2014), *Judwaa 2* (2017), and *Coolie No. 1* (2020). The earlier collaborations were attempts to transplant the classic David Dhawan formula into a new generation. Some worked better than others. None had the stakes that this one carries.
+At TIFF, critics described Bobby Deol's performance as the finest of his career. Variety noted that Kashyap built the film around the ambiguity of the #MeToo landscape — the impossibility of certainty, the way accusation alone can destroy a life, and the question of whether redemption is even available in the age of cancellation. Kashyap himself said at the premiere: "I grew up in a world where we made mistakes and we were given opportunities to redeem ourselves or correct ourselves. Today, the world is not the same."
 
-Varun has spoken publicly about what it means to close this chapter. He has described the film as a gift — from son to father, from father to audience. Whether it works commercially or not, the emotional mathematics of the project are unmistakable: the son is starring in the last thing his father will ever make.
+## The Diaspora Sees Two Versions
 
-## What to Expect
+Here is where it gets uncomfortable for NRI audiences. If you watched Bandar at TIFF, you saw one film. If you watch it in Mumbai or Delhi on June 5, you will see another. The international festival circuit — Cannes, Venice, Toronto, Berlin — has become the place where Indian filmmakers can present their unmediated vision. The domestic theatrical release increasingly becomes the compromise.
 
-Advance reports suggest the film has been positioned carefully. The 50% ticket discount on opening day is designed to fill theatres. The U/A rating ensures family audiences can attend without hesitation. The 2-hour-16-minute runtime is tight by Bollywood standards, suggesting the edit was disciplined.
+This is not new. The CBFC has a decades-long history of softening, cutting, and reshaping Indian cinema for domestic consumption. But the gap has grown wider as Indian films gain international prestige. Kashyap's own Gangs of Wasseypur faced similar scrutiny. Dev D was trimmed. Udta Punjab became a political battle. Each time, the version that Indian audiences pay to see in theaters is not the version that the filmmaker intended.
 
-Whether *Hai Jawani Toh Ishq Hona Hai* is a fitting final chapter or a standard David Dhawan outing that happens to be the last one, only Thursday will tell. But for the audience that grew up on his films, the verdict is almost beside the point. You show up because he showed up for you, for forty years, every single time you needed to laugh."""
+For the diaspora — who often have access to both the festival cut and the theatrical release — the disparity is increasingly visible. When a film built on the raw reality of language, power, and accusation has its language sanded down, the question is not whether the censor board has the authority. It always has. The question is what the audience loses.
 
-    image_caption = "Director David Dhawan, whose final film Hai Jawani Toh Ishq Hona Hai releases June 5"
-    
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url,
-        "image_caption": image_caption,
-        "image_attribution": img_attr or "Wikimedia Commons",
-        "sources": json.dumps([
-            "https://sacnilk.com",
-            "https://bollywoodhungama.com",
-            "https://koimoi.com"
-        ]),
-        "is_editorial": False
-    }
-    
-    return insert_article(article)
+## What Remains
+
+The good news: Bandar's core story, performances, and directorial craft survive the cuts. Bobby Deol's transformation from matinee filler to genuine dramatic actor was the story of TIFF 2025, and that performance does not depend on any single word. The ensemble — particularly Raj B Shetty and Sanya Malhotra — delivers regardless of what the CBFC chose to soften.
+
+But somewhere between Toronto and Andheri, a film became a little less itself. That gap is worth noticing."""
+
+# Image sourcing for Bandar
+img2_url, img2_attr = source_image(
+    person_names=["Bobby Deol", "Anurag Kashyap"],
+    topic_queries=["Bobby Deol actor Bollywood", "Anurag Kashyap director"],
+    pexels_query="Indian cinema courtroom drama",
+    slug=slug2
+)
+
+articles.append({
+    "headline": headline2,
+    "subheadline": subheadline2,
+    "body": body2,
+    "slug": slug2,
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": img2_url,
+    "image_caption": "Bobby Deol stars as a washed-up actor accused of rape in Anurag Kashyap's Bandar, releasing June 5",
+    "image_attribution": img2_attr or "Wikimedia Commons",
+    "sources": json.dumps([
+        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
+        {"name": "Variety", "url": "https://variety.com"},
+        {"name": "The Nod Mag", "url": "https://thenodmag.com"}
+    ]),
+    "is_editorial": False
+})
 
 
-# ─── Main ───
+# ═══════════════════════════════════════════════════════════════════════
+# ARTICLE 3: Gram Chikitsalay Season 2
+# ═══════════════════════════════════════════════════════════════════════
+print("\n" + "="*60)
+print("ARTICLE 3: Gram Chikitsalay Season 2")
+print("="*60)
 
-if __name__ == "__main__":
-    print("="*60)
-    print("The Videshi — Entertainment Writer")
-    print(f"Run: {datetime.now(timezone.utc).isoformat()}")
-    print("="*60)
-    
-    results = []
-    
-    r1 = write_aishwarya_jw_marriott()
-    results.append(("Aishwarya Rai × JW Marriott", r1))
-    time.sleep(1)
-    
-    r2 = write_made_in_india_titan()
-    results.append(("Made in India: A Titan Story", r2))
-    time.sleep(1)
-    
-    r3 = write_hai_jawani()
-    results.append(("Hai Jawani Toh Ishq Hona Hai", r3))
-    
-    print("\n" + "="*60)
-    print("SUMMARY")
-    print("="*60)
-    for name, result in results:
-        status = "✓ Published" if result else "✗ Failed"
-        print(f"  {status}: {name}")
-    
-    failed = sum(1 for _, r in results if not r)
-    if failed:
-        print(f"\n⚠ {failed} article(s) failed")
-        sys.exit(1)
-    else:
-        print(f"\n✓ All {len(results)} articles published successfully")
+slug3 = "gram-chikitsalay-season-2-prime-video-tvf-rural-india-comedy-nri-20260604"
+
+headline3 = "TVF's Gram Chikitsalay Is Coming Back. The Show About a Doctor Who Cannot Leave His Village Just Became Prime Video's Quietest Bet on Rural India."
+
+subheadline3 = "Season 2 drops June 23 with the original cast returning. For the diaspora, a show set in fictional Bhathkandi hits closer to home than most urban dramas ever will."
+
+body3 = """There is a particular kind of Indian story that streaming platforms have only recently figured out how to tell. Not the glossy Mumbai thriller. Not the period epic. Not the crime drama set in a dusty North Indian town where everyone speaks in menacing whispers. The other kind — the one about ordinary people in ordinary places, where the stakes are a broken X-ray machine and the villain is bureaucratic indifference.
+
+Gram Chikitsalay is that story. And it is coming back.
+
+## What Is Returning
+
+Prime Video has officially announced that the second season of Gram Chikitsalay will premiere worldwide on June 23, 2026. The Hindi-language comedy-drama, produced by The Viral Fever (TVF) and directed by Lalitam Tiwari, picks up where Season 1 left off: Dr. Prabhat is still in Bhathkandi, still trying to revive the village's struggling Primary Health Centre, and still discovering that idealism and reality are not always on speaking terms.
+
+The original cast returns — Amol Parashar, Akash Makhija, Anandeshwar Dwivedi, Vinay Pathak, Akansha Ranjan Kapoor, and Garima Vikrant Singh. Actor Dinesh Lal Yadav, a major name in Bhojpuri cinema, joins the ensemble for Season 2, adding a new dimension to the show's already warm and lived-in world.
+
+## Why the First Season Worked
+
+When Gram Chikitsalay debuted in 2025, it entered a streaming landscape dominated by crime thrillers and urban relationship dramas. A show about a young doctor in a fictional village could have been dismissed as too niche, too slow, too unglamorous for the algorithm. Instead, it found an audience — quietly, steadily, through word of mouth rather than marketing blitzes.
+
+The show works because it refuses to condescend to its setting. Rural India in Indian cinema has traditionally been either romanticized or pitied. Gram Chikitsalay does neither. The village of Bhathkandi is not a backdrop for someone else's redemption arc. It is a place where people live, argue, scheme, help each other, and resist change and embrace it in equal measure. Dr. Prabhat is not a savior. He is a man who took a job he did not fully understand and is now figuring it out alongside the people who have lived there their entire lives.
+
+Vinay Pathak, one of Hindi cinema's most underrated actors, brings a gravitational warmth to the ensemble that keeps the show grounded even in its more comedic moments. The writing — by Vaibhav Suman and Shreya Srivastava — finds humor in specificity rather than stereotype.
+
+## The Diaspora Connection
+
+For NRI audiences, shows like Gram Chikitsalay occupy a peculiar emotional space. The village is not where most diaspora Indians live, but it is often where their families come from. The small-town doctor, the crumbling health center, the committee meeting where nothing gets decided — these are not abstract settings. They are the stories parents and grandparents tell. They are the WhatsApp photos from cousins. They are the reality that exists alongside the India of tech parks and startup unicorns.
+
+Prime Video's Manish Menghani, who oversees content licensing for India, noted the shift in audience appetite: "We are seeing a growing appetite not just for authentic urban narratives, but increasingly for stories rooted in rural India as well." That is corporate language for something simpler — people want to see their whole country on screen, not just the parts that look good in a Netflix thumbnail.
+
+## What Season 2 Promises
+
+The second season continues Dr. Prabhat's efforts at the PHC while introducing fresh obstacles. The writers have indicated that the tension between idealism and systemic reality will deepen — Prabhat has earned some trust in Bhathkandi, but trust does not fix a broken system. New characters, new complications, and the same fundamental question: what does it take to build something meaningful in a place the system has forgotten?
+
+TVF has built its reputation on shows that find the extraordinary in the ordinary — Kota Factory, Panchayat, Gullak. Gram Chikitsalay fits squarely in that tradition. Season 2 does not need to be louder or bigger. It just needs to be as honest as the first.
+
+June 23. Prime Video. Bhathkandi is still there. Dr. Prabhat is still trying."""
+
+# Image sourcing for Gram Chikitsalay
+img3_url, img3_attr = source_image(
+    person_names=["Amol Parashar", "Vinay Pathak"],
+    topic_queries=["rural India village doctor", "Indian village healthcare"],
+    pexels_query="rural India village clinic doctor",
+    slug=slug3
+)
+
+articles.append({
+    "headline": headline3,
+    "subheadline": subheadline3,
+    "body": body3,
+    "slug": slug3,
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": img3_url,
+    "image_caption": "Amol Parashar stars as Dr. Prabhat in TVF's Gram Chikitsalay, returning for Season 2 on Prime Video",
+    "image_attribution": img3_attr or "Wikimedia Commons",
+    "sources": json.dumps([
+        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
+        {"name": "Prime Video India", "url": "https://primevideo.com"}
+    ]),
+    "is_editorial": False
+})
+
+
+# ─── Publish all articles ─────────────────────────────────────────────
+
+print("\n" + "="*60)
+print("PUBLISHING ARTICLES")
+print("="*60)
+
+success_count = 0
+for i, art in enumerate(articles):
+    print(f"\n--- Article {i+1} ---")
+    if not art.get("image_url"):
+        print("  ⚠ No image — publishing without hero image")
+        art.pop("image_url", None)
+        art.pop("image_caption", None)
+        art.pop("image_attribution", None)
+
+    art_id = insert_article(art)
+    if art_id:
+        success_count += 1
+
+print(f"\n{'='*60}")
+print(f"DONE: {success_count}/{len(articles)} articles published")
+print(f"{'='*60}")
