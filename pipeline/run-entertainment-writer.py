@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-"""
-The Videshi Entertainment Writer — June 4, 2026
-Writes 3 articles: Aamir Khan wedding, Varun Dhawan AI deepfakes ruling, FWICE withdraws Ranveer ban
-"""
-import json, os, sys, uuid, requests, subprocess, io, urllib.parse
+"""Entertainment Writer - June 4, 2026"""
+
+import json, os, re, sys, uuid, requests, urllib.parse
 from datetime import datetime, timezone
 
 # Load env
@@ -34,9 +32,7 @@ HEADERS = {
     "Prefer": "return=representation"
 }
 
-UA = {"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
-
-# ── Image sourcing functions ──
+UA = "TheVideshi/1.0 (thevideshi.com)"
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -44,7 +40,8 @@ def fetch_wikipedia_person_image(person_name):
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers=UA, timeout=10
+            headers={"User-Agent": UA},
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
@@ -59,31 +56,38 @@ def fetch_wikipedia_person_image(person_name):
 def fetch_wikimedia_commons_images(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
     params = {
-        "action": "query", "generator": "search",
-        "gsrsearch": search_query, "gsrnamespace": "6", "gsrlimit": str(limit),
-        "prop": "imageinfo", "iiprop": "url|size|mime",
-        "iiurlwidth": "1200", "format": "json"
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": search_query,
+        "gsrnamespace": "6",
+        "gsrlimit": str(limit),
+        "prop": "imageinfo",
+        "iiprop": "url|size|mime",
+        "iiurlwidth": "1200",
+        "format": "json"
     }
     try:
-        r = requests.get("https://commons.wikimedia.org/w/api.php", params=params, headers=UA, timeout=15)
+        r = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params=params,
+            headers={"User-Agent": UA},
+            timeout=15
+        )
         if r.status_code == 200:
             data = r.json()
             pages = data.get("query", {}).get("pages", {})
             results = []
             for pid, page in pages.items():
                 ii = page.get("imageinfo", [{}])[0]
+                url = ii.get("thumburl") or ii.get("url")
                 mime = ii.get("mime", "")
-                if not mime.startswith("image/") or mime == "image/svg+xml":
-                    continue
-                if ii.get("width", 0) < 300:
-                    continue
-                results.append({
-                    "url": ii.get("thumburl") or ii.get("url", ""),
-                    "original_url": ii.get("url", ""),
-                    "title": page.get("title", ""),
-                    "width": ii.get("width", 0),
-                    "height": ii.get("height", 0)
-                })
+                if url and "image" in mime:
+                    results.append({
+                        "url": url,
+                        "title": page.get("title", ""),
+                        "width": ii.get("width", 0),
+                        "height": ii.get("height", 0)
+                    })
             if results:
                 print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
             return results
@@ -92,122 +96,78 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
     return []
 
 def fetch_pexels_image(query):
-    """Fetch a relevant image from Pexels using curl."""
+    """Search Pexels for an image."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
     try:
-        r = subprocess.run(
-            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3",
-             "-H", f"Authorization: {PEXELS_KEY}"],
-            capture_output=True, text=True, timeout=15
+        r = requests.get(
+            "https://api.pexels.com/v1/search",
+            params={"query": query, "per_page": 3, "orientation": "landscape"},
+            headers={"Authorization": PEXELS_KEY},
+            timeout=10
         )
-        data = json.loads(r.stdout)
-        photos = data.get("photos", [])
-        if photos:
-            url = photos[0]["src"]["large2x"]
-            print(f"  ✓ Pexels image for '{query}': {url[:60]}...")
-            return url
+        if r.status_code == 200:
+            photos = r.json().get("photos", [])
+            if photos:
+                url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels image found for '{query}'")
+                return url
     except Exception as e:
         print(f"  ⚠ Pexels error: {e}")
     return None
 
-def compress_image(img_bytes, max_width=1200, quality=80):
-    """Resize and compress image to JPEG."""
-    from PIL import Image
-    img = Image.open(io.BytesIO(img_bytes))
-    if img.mode in ('RGBA', 'P'):
-        img = img.convert('RGB')
-    if img.width > max_width:
-        ratio = max_width / img.width
-        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-    buf = io.BytesIO()
-    img.save(buf, format='JPEG', quality=quality, optimize=True)
-    return buf.getvalue()
-
-def upload_to_supabase(img_url, filename):
-    """Download image, compress, upload to Supabase storage bucket."""
+def validate_image(url):
+    """Validate that URL returns a real image > 5KB."""
     try:
-        r = requests.get(img_url, headers=UA, timeout=20)
-        if r.status_code != 200:
-            print(f"  ✗ Download failed ({r.status_code}): {img_url[:60]}")
-            return None
-        content_type = r.headers.get('Content-Type', '')
-        if 'image' not in content_type and len(r.content) < 5000:
-            print(f"  ✗ Not a valid image or too small")
-            return None
-        compressed = compress_image(r.content)
-        size_kb = len(compressed) / 1024
-        print(f"  📦 Compressed to {size_kb:.0f} KB")
-        if size_kb < 10:
-            print(f"  ✗ Too small after compression ({size_kb:.0f} KB)")
-            return None
+        r = requests.head(url, headers={"User-Agent": UA}, timeout=10, allow_redirects=True)
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", "0"))
+        if "image" in ct and cl > 5000:
+            return True
+        # Try GET for servers that don't support HEAD properly
+        if "image" in ct or cl == 0:
+            r2 = requests.get(url, headers={"User-Agent": UA}, timeout=10, stream=True)
+            ct2 = r2.headers.get("Content-Type", "")
+            if "image" in ct2:
+                chunk = r2.raw.read(6000)
+                if len(chunk) > 5000:
+                    return True
+    except:
+        pass
+    return False
 
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        resp = requests.post(upload_url, data=compressed, headers={
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": "image/jpeg",
-            "x-upsert": "true"
-        }, timeout=20)
-        if resp.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {filename}")
-            return public_url
-        else:
-            print(f"  ✗ Upload failed ({resp.status_code}): {resp.text[:100]}")
-    except Exception as e:
-        print(f"  ✗ Upload error: {e}")
-    return None
-
-def source_image(person_name, topic_queries, slug):
-    """Multi-source image comparison. Returns (url, attribution) or (None, None)."""
+def get_best_image(person_name=None, wiki_search=None, pexels_query=None):
+    """Multi-source image search. Returns (url, attribution) or (None, None)."""
     candidates = []
-
-    # Source 1: Wikipedia (for person articles)
+    
+    # Source 1: Wikipedia person image
     if person_name:
-        wiki_img = fetch_wikipedia_person_image(person_name)
-        if wiki_img:
-            candidates.append({"url": wiki_img, "source": "wikipedia", "relevance": 3})
-
+        img = fetch_wikipedia_person_image(person_name)
+        if img and validate_image(img):
+            candidates.append(("wikipedia", img, "Wikimedia Commons"))
+    
     # Source 2: Wikimedia Commons
-    for q in topic_queries:
-        commons = fetch_wikimedia_commons_images(q, limit=3)
-        for c in commons[:2]:
-            candidates.append({"url": c["url"], "source": "wikimedia_commons", "relevance": 2})
-        if commons:
-            break
-
+    if wiki_search:
+        commons = fetch_wikimedia_commons_images(wiki_search)
+        for c in commons[:3]:
+            if validate_image(c["url"]):
+                candidates.append(("commons", c["url"], "Wikimedia Commons"))
+                break
+    
     # Source 3: Pexels
-    for q in topic_queries:
-        pexels = fetch_pexels_image(q)
-        if pexels:
-            candidates.append({"url": pexels, "source": "pexels", "relevance": 1})
-            break
-
-    # Pick best and upload
-    if not candidates:
-        print("  ✗ No image found from any source")
-        return None, None
-
-    candidates.sort(key=lambda x: x["relevance"], reverse=True)
-    best = candidates[0]
-    print(f"  → Best source: {best['source']} (relevance={best['relevance']})")
-
-    filename = f"{slug}.jpg"
-    uploaded_url = upload_to_supabase(best["url"], filename)
-    if uploaded_url:
-        attr = "Wikimedia Commons" if best["source"] in ("wikipedia", "wikimedia_commons") else "The Videshi"
-        return uploaded_url, attr
-
-    # Try next candidate if first failed
-    for fallback in candidates[1:]:
-        print(f"  → Trying fallback: {fallback['source']}")
-        uploaded_url = upload_to_supabase(fallback["url"], filename)
-        if uploaded_url:
-            attr = "Wikimedia Commons" if fallback["source"] in ("wikipedia", "wikimedia_commons") else "The Videshi"
-            return uploaded_url, attr
-
+    if pexels_query:
+        img = fetch_pexels_image(pexels_query)
+        if img and validate_image(img):
+            candidates.append(("pexels", img, "Pexels"))
+    
+    # Prefer Wikipedia for person articles, then Commons, then Pexels
+    for source_type in ["wikipedia", "commons", "pexels"]:
+        for s, url, attr in candidates:
+            if s == source_type:
+                print(f"  → Selected {source_type} image: {url[:80]}...")
+                return url, attr
+    
     return None, None
 
 def insert_article(article):
@@ -216,289 +176,230 @@ def insert_article(article):
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
         json=article,
-        timeout=15
+        timeout=30
     )
-    if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
-        print(f"  ✓ Inserted article: {article['slug']} (id={art_id})")
-        return art_id
-    else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
-        return None
+    if r.status_code in [200, 201]:
+        result = r.json()
+        if isinstance(result, list) and result:
+            print(f"  ✓ Published: {result[0].get('headline', '')[:60]}...")
+            return True
+    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+    return False
 
-# ──────────────────────────────────────────────
-# ARTICLE 1: Aamir Khan & Gauri Spratt Wedding
-# ──────────────────────────────────────────────
-def write_article_1():
-    print("\n" + "="*60)
-    print("ARTICLE 1: Aamir Khan & Gauri Spratt Wedding")
-    print("="*60)
-
-    slug = "aamir-khan-gauri-spratt-wedding-july-5-third-marriage-nri-20260604"
-    headline = "Aamir Khan Is Getting Married Again. The Story of the Woman He Chose Starts in 1920s Colonial India."
-    subheadline = "Gauri Spratt's grandfather was a British Communist who came to India to fight for its freedom. Now his granddaughter is marrying Bollywood's most private superstar in a registered ceremony on July 5."
-
-    body = """Aamir Khan, 60, is getting married for the third time. His partner, Gauri Spratt, 47, will formally become his wife on July 5, 2026, in a registered ceremony at his Mumbai residence. Only close family and a handful of friends will be present. There will be no Bollywood-scale reception. No spectacle. Just two families, a signing, and a new chapter that — by most accounts — has already been unfolding quietly for over a year.
-
-The news, first reported by Filmfare and confirmed by multiple sources close to the couple, carries a kind of understatement that is distinctly Aamir. "They have built a happy, stable life together and simply decided to mark it formally with their families present," a family source told Filmfare. Aamir himself, in a recent interview with Screen, had already signaled this. "In my heart, I'm already married to her," he said. "Whether we formalize it or not is something I will decide as we go along."
-
-He decided.
-
-## A Friendship of Twenty-Five Years
-
-What makes this story unusual, even by Bollywood standards, is its timeline. Aamir and Gauri have known each other for roughly 25 years. They were friends — just friends — for the vast majority of that time. Romantic feelings developed only in recent years, long after Aamir's second marriage to filmmaker Kiran Rao ended in 2021. He introduced Gauri publicly during his 60th birthday celebrations in March 2025, in a characteristically low-key moment during a media interaction. Since then, they have been seen together at family events, and Aamir has spoken about the relationship with a frankness that surprised many who know his famously guarded personality.
-
-Gauri, who is originally from Bengaluru, runs a hair salon in Mumbai. She has a seven-year-old son, Quinn, from a previous marriage. She is, by design and temperament, not a public figure. But her family story is anything but ordinary.
-
-## The Grandfather Who Crossed an Ocean
-
-Gauri's grandfather, Philip Spratt, was born in England. In the 1920s, he traveled to India as a young Communist, sent by the Communist Party of Great Britain to support the Indian independence movement. He didn't come as a tourist or an academic. He came as an organizer, working alongside Indian trade unionists and political activists at a time when doing so carried real risk under British colonial law.
-
-Spratt was arrested and tried in the famous Meerut Conspiracy Case of 1929, one of the landmark trials of the independence era, in which the British colonial government prosecuted labor leaders and Communists for attempting to overthrow the Crown. He spent years in Indian prisons. And then, after release, he stayed. He married an Indian woman, raised a family, and spent the rest of his life in the country he had chosen over the one he was born in.
-
-There is something quietly fitting about his granddaughter now building her own life in India, on her own terms, with a man who has built one of the most singular careers in Indian cinema.
-
-## A Pattern of Privacy
-
-For the NRI community, which has followed Aamir's personal life across continents and decades, this wedding will carry a particular resonance. Aamir has always been the Bollywood star who does things differently. His first marriage to Reena Dutta, his teenage sweetheart, lasted from 1986 to 2002 and produced two children — Junaid and Ira. His second marriage to Kiran Rao, whom he met on the set of Lagaan, lasted 15 years. Both relationships ended with unusual grace and continued co-parenting.
-
-This third chapter follows the same pattern: considered, unhurried, and stubbornly private. In an era where celebrity weddings are content events, Aamir's decision to sign papers in his living room feels like a statement in itself.
-
-## What Comes Next
-
-Professionally, Aamir is deep into pre-production on his next film — a biopic about Lala Amarnath, India's first Test centurion, directed by Ashutosh Gowariker. The film is set during Partition, and reunites the director-actor pair behind Lagaan. Whether the July 5 wedding will disrupt that schedule remains to be seen, though knowing Aamir, the disruption will be measured in hours, not weeks.
-
-Both families have given their full support, and no public confirmation has been issued — because, in Aamir's world, the absence of a denial is confirmation enough."""
-
-    # Source image
-    print("Sourcing image...")
-    img_url, attr = source_image(
-        "Aamir Khan",
-        ["Aamir Khan actor Bollywood", "Aamir Khan 2025 2026"],
-        slug
+# ============================================================
+# ARTICLE 1: Pahlaj Nihalani obituary
+# ============================================================
+def write_pahlaj_nihalani():
+    print("\n📝 Article 1: Pahlaj Nihalani obituary")
+    
+    # Image sourcing
+    img_url, img_attr = get_best_image(
+        person_name="Pahlaj Nihalani",
+        wiki_search="Pahlaj Nihalani film producer CBFC",
+        pexels_query="Indian film industry Bollywood producer"
     )
+    
+    body = """Pahlaj Nihalani, the veteran film producer who introduced Govinda to Hindi cinema and later became one of India's most polarising censorship chiefs, died on Thursday morning at Mumbai's Nanavati Hospital. He was 76. His family confirmed that he had been battling liver cirrhosis for the past four months and had been moved between hospitals over the last thirty days as doctors worked to stabilise his condition.
+
+## The Producer Who Built Careers
+
+Nihalani entered film production in 1982 with Haathkadi and spent the next two decades backing commercially successful Hindi films. His 1986 production Ilzaam launched Govinda, then a complete unknown, into mainstream Bollywood. The following year, he introduced Chunky Pandey with Aag Hi Aag. His most significant commercial hit came with Aankhen in 1993, a film that cemented his reputation as a producer who could deliver mass entertainment.
+
+His partnership with director David Dhawan produced a string of comedies that defined 1990s Bollywood — films that played on loop in NRI households from New Jersey to London, becoming cultural shorthand for a particular era of Hindi cinema.
+
+## The Censor Board Years
+
+Nihalani's appointment as chairman of the Central Board of Film Certification in January 2015 marked the beginning of a turbulent chapter. His tenure, which lasted until August 2017, was defined by an approach to censorship that drew fierce criticism from filmmakers and free-speech advocates alike.
+
+Under his watch, the CBFC ordered cuts to films like Udta Punjab and refused certification to others. He mandated the replacement of the word "Bombay" with "Mumbai" in a Marathi film's title and demanded over 90 cuts to the adult drama Lipstick Under My Burkha, a decision that was later overturned by the Film Certification Appellate Tribunal. Directors accused him of imposing personal moral standards on Indian cinema. Nihalani defended his decisions as being in line with Indian cultural values.
+
+The irony was not lost on the industry when Nihalani himself produced the erotic thriller Julie 2 shortly after leaving the CBFC, a film whose content sat uncomfortably next to his censorship record.
+
+## What It Means for the Diaspora
+
+For NRIs who grew up watching the films Nihalani produced, his death closes a chapter of Bollywood history. The Govinda comedies, the Aankhen-era popcorn films — these were the DVDs that circulated through Indian grocery stores in the United States and the UK in the 1990s and early 2000s, the films that kept a generation connected to Hindi cinema before streaming made everything accessible.
+
+His censorship legacy is more complicated. Many diaspora viewers experienced his CBFC tenure primarily through the controversies that made international headlines — the Udta Punjab battle, the Lipstick Under My Burkha refusal — episodes that raised questions about artistic freedom in the world's largest film industry.
+
+## Industry Reactions
+
+IMPPA President Abhay Sinha confirmed the news, calling Nihalani an industry leader. Filmmaker Ashoke Pandit posted on Instagram, writing that Nihalani was "a man who stood by the Industry causes and somebody who is responsible for making many hit films." Current CBFC Chairperson Shashi Shekhar Vempati offered condolences on behalf of the CBFC family.
+
+Nihalani also served as president of the Association of Motion Pictures and TV Programme Producers for 29 years before stepping down in 2009. His last rites were scheduled for Thursday afternoon at the Santacruz Hindu Crematorium in Mumbai.
+
+He is survived by his wife Nita, who was his childhood sweetheart. The couple celebrated their 50th wedding anniversary in 2023."""
 
     article = {
-        "headline": headline,
-        "subheadline": subheadline,
+        "headline": "Pahlaj Nihalani, the Producer Who Launched Govinda and Then Tried to Censor Bollywood, Has Died at 76",
+        "subheadline": "The former CBFC chairman spent four decades shaping Hindi cinema from both sides — making the films and then deciding what audiences could see.",
         "body": body,
-        "slug": slug,
+        "slug": "pahlaj-nihalani-death-producer-cbfc-chairman-govinda-bollywood-nri-20260604",
         "category": "entertainment",
         "vertical": "entertainment",
+        "image_url": img_url or "",
+        "image_caption": "Pahlaj Nihalani, veteran Bollywood producer and former CBFC chairman" if img_url else "",
+        "image_attribution": img_attr or "",
+        "sources": json.dumps(["Bollywood Hungama", "Exchange4Media", "IANS", "Filmibeat"]),
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url or "",
-        "image_attribution": attr or "",
-        "is_editorial": False,
-        "sources": json.dumps([
-            {"name": "Filmfare", "url": "https://www.filmfare.com"},
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-            {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"},
-            {"name": "India Forums", "url": "https://www.indiaforums.com"}
-        ])
+        "is_editorial": False
     }
+    
+    if not img_url:
+        print("  ⚠ No image found, publishing without image")
+        article.pop("image_url")
+        article.pop("image_caption")
+        article.pop("image_attribution")
+    
+    return insert_article(article)
 
-    art_id = insert_article(article)
-    return art_id
-
-# ──────────────────────────────────────────────
-# ARTICLE 2: Delhi HC Varun Dhawan AI Deepfakes
-# ──────────────────────────────────────────────
-def write_article_2():
-    print("\n" + "="*60)
-    print("ARTICLE 2: Delhi HC Protects Varun Dhawan's Personality Rights")
-    print("="*60)
-
-    slug = "delhi-hc-varun-dhawan-personality-rights-ai-deepfakes-takedown-nri-20260604"
-    headline = "A Delhi Court Just Told the Internet to Stop Stealing Varun Dhawan's Face. The Ruling Matters Beyond Bollywood."
-    subheadline = "The Delhi High Court ordered the takedown of AI-generated deepfakes, fake endorsements, and unauthorized merchandise using Dhawan's likeness — setting a precedent that could reshape how Indian celebrities fight back against synthetic media."
-
-    body = """On May 29, Justice Jyoti Singh of the Delhi High Court issued an interim order that does something Indian law has struggled to do for years: protect a living person's face from being used without their consent in an age where artificial intelligence can replicate anyone.
-
-The order was passed in a suit filed by actor Varun Dhawan, who alleged that multiple websites, e-commerce platforms, and social media accounts had been exploiting his name, image, voice, and likeness — including AI-generated deepfakes depicting him in pornographic scenarios. The court agreed he had a prima facie case and granted immediate relief.
-
-## What the Court Actually Ordered
-
-The ruling is specific and sweeping. Justice Singh restrained all named defendants from utilizing, exploiting, or misappropriating Dhawan's name, image, voice, likeness, or any other identifiable element of his persona, through technologies including artificial intelligence, generative AI, machine learning, deepfakes, AI chatbots, and face-morphing tools.
-
-The order goes further. E-commerce platforms, social media intermediaries, and websites must take down offending content within 36 hours of being notified. The restraint covers fake endorsements, unauthorized merchandise — posters, mugs, phone cases, calendars, towels — and any commercial use of Dhawan's persona without explicit authorization.
-
-"The plaintiff is entitled to protection against dissemination of pornographic content as well as AI-generated images portraying him in an inappropriate scenario," Justice Singh observed. "Such distasteful content is harming and damaging the reputation of the plaintiff and may mislead the public into believing what is depicted may be true."
-
-## The Defendants Tell the Story
-
-Dhawan's lawsuit named several categories of offenders: Artist Booking Company and Hire4Event, which were allegedly offering bookings for his appearances without authorization. E-commerce platforms including Iceposter, Amazon, Redbubble, and Desertcart, which were selling merchandise featuring his likeness. And digital platforms creating AI-generated content — including explicit material — using his face and name for commercial gain.
-
-The lawsuit described Iceposter as a "habitual infringer," citing prior lawsuits by other celebrities. Dhawan also holds trademark registrations for his name and signature, which the court noted gave him additional legal standing.
-
-## Why This Matters for the Diaspora
-
-For NRIs working in tech, this ruling lands at an interesting intersection. India's current legal framework does not explicitly define "personality rights." The Information Technology Act, 2000, and the 2026 Intermediary Guidelines address synthetic media and deepfakes, but the protections are reactive rather than preventive. This case pushes the boundaries.
-
-The ruling follows a similar recent case involving Telugu actor Naga Chaitanya, who also sought personality rights protection from the Delhi High Court. Together, these cases are building a body of precedent that Indian courts are willing to act decisively when AI technology is used to exploit celebrity identities — even before the legislature catches up with specific laws.
-
-For the Indian tech community in Silicon Valley, Seattle, and beyond — where many work on the AI tools that enable this kind of content creation — the tension is real. The same generative models that power creative tools and enterprise products can, with minimal effort, produce synthetic celebrity content that Indian courts now consider harmful.
-
-## The Bigger Pattern
-
-Varun Dhawan is not the first Indian actor to fight this battle. Anil Kapoor secured a landmark personality rights order in 2023. Amitabh Bachchan has pursued similar protections. But the Dhawan case is notable for how explicitly it addresses AI-generated content, including deepfakes and face-morphing, as distinct categories of infringement.
-
-The 36-hour takedown mandate is particularly significant. It imposes a timeline that platforms must meet, creating operational obligations that go beyond a simple cease-and-desist. For platforms operating globally but serving Indian users, this creates compliance complexity.
-
-The next hearing in the case will determine whether these interim protections become permanent. But the signal is clear: Indian courts are treating AI-generated exploitation of celebrity identity as a serious, actionable harm — and they expect platforms to respond fast.
-
-The question, as always, is enforcement. The internet moves faster than any court order. But for now, at least on paper, Varun Dhawan's face belongs to him."""
-
-    # Source image
-    print("Sourcing image...")
-    img_url, attr = source_image(
-        "Varun Dhawan",
-        ["Varun Dhawan actor", "Delhi High Court"],
-        slug
+# ============================================================
+# ARTICLE 2: Dhurandhar 2 arrives on JioHotstar
+# ============================================================
+def write_dhurandhar_2_ott():
+    print("\n📝 Article 2: Dhurandhar 2 arrives on JioHotstar")
+    
+    # Image sourcing
+    img_url, img_attr = get_best_image(
+        person_name="Ranveer Singh",
+        wiki_search="Dhurandhar film Ranveer Singh",
+        pexels_query="Indian spy thriller action"
     )
+    
+    body = """The wait is over. Dhurandhar 2: The Revenge, the spy action blockbuster that grossed ₹1,800 crore worldwide and became the second-highest-grossing Indian film of all time, started streaming on JioHotstar in India today. For NRIs in North America, the UK, and Canada who missed the theatrical run or want to watch it again, this is the one to queue up this weekend.
+
+## The Numbers That Got Us Here
+
+Directed by Aditya Dhar, Dhurandhar 2 opened on March 19 and spent eleven weeks in theatres, still earning over ₹30 lakh daily in its ninth week when the OTT date was finally confirmed. The film's extended theatrical window — well beyond the standard eight-week digital holdback — reflected just how much money it was still making on the big screen.
+
+Ranveer Singh reprises his role as Jaskirat Singh Rangi, an undercover operative now known as Hamza Ali Mazari, navigating organised crime networks in Karachi while targeting terror cells linked to the 26/11 attacks. The sequel scales up the original's intimate spy thriller framework into a large-scale action spectacle, with set pieces that drew comparisons to Hollywood franchise filmmaking.
+
+R. Madhavan, Sanjay Dutt, and Arjun Rampal round out a cast that leans into the film's ambition. A.R. Rahman's score carries the emotional weight between the action sequences.
+
+## The Streaming Strategy
+
+JioHotstar secured the Indian digital rights in what industry insiders describe as a premium deal, marking a platform shift from the first film, which premiered on Netflix. But the streaming strategy does not end with JioHotstar alone. Netflix India will receive the film on June 19, two weeks after the JioHotstar premiere, giving both platforms a window to capitalise on different subscriber bases.
+
+Internationally, the film has already been available on Netflix in several markets, making it accessible to diaspora audiences who could not catch it in theatres. The staggered domestic rollout is an attempt to replicate the theatrical strategy of building sustained momentum across weeks.
+
+## Why NRIs Should Care
+
+Dhurandhar 2 is not just a box office story. It is a cultural event that shifted conversations about what Indian cinema can achieve at scale. The film's ₹1,800-crore worldwide haul places it in territory previously occupied only by Baahubali 2, and it did so with a Hindi-language spy franchise rather than a Telugu-origin epic.
+
+For diaspora viewers, the film's themes — intelligence operations, cross-border conflict, national security — resonate differently when watched from abroad. The franchise has become a reference point in conversations about Indian soft power and the globalisation of Bollywood beyond the song-and-dance formula.
+
+The JioHotstar release also means the film is now available with subtitles in multiple Indian languages — Telugu, Tamil, Kannada, and Malayalam — making it accessible to South Indian diaspora communities who may not have watched it theatrically in Hindi.
+
+## What to Expect
+
+The theatrical cut runs just under four hours. Reports suggest Netflix will eventually release an extended version internationally, though JioHotstar is streaming the theatrical cut for now. If you are planning a watch party, clear the evening."""
 
     article = {
-        "headline": headline,
-        "subheadline": subheadline,
+        "headline": "Dhurandhar 2 Is Finally Streaming. India's ₹1,800-Crore Spy Blockbuster Just Landed on JioHotstar.",
+        "subheadline": "The second-highest-grossing Indian film of all time arrives on OTT after eleven weeks in theatres. Netflix India gets it on June 19.",
         "body": body,
-        "slug": slug,
+        "slug": "dhurandhar-2-the-revenge-jiohotstar-ott-release-ranveer-singh-streaming-nri-20260604",
         "category": "entertainment",
         "vertical": "entertainment",
+        "image_url": img_url or "",
+        "image_caption": "Ranveer Singh stars as undercover operative Jaskirat Singh Rangi in the Dhurandhar franchise" if img_url else "",
+        "image_attribution": img_attr or "",
+        "sources": json.dumps(["SacNilk", "Filmibeat", "JioHotstar"]),
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url or "",
-        "image_attribution": attr or "",
-        "is_editorial": False,
-        "sources": json.dumps([
-            {"name": "Bar and Bench", "url": "https://www.barandbench.com"},
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-            {"name": "MediaNama", "url": "https://www.medianama.com"},
-            {"name": "Devdiscourse", "url": "https://www.devdiscourse.com"}
-        ])
+        "is_editorial": False
     }
+    
+    if not img_url:
+        print("  ⚠ No image found, publishing without image")
+        article.pop("image_url")
+        article.pop("image_caption")
+        article.pop("image_attribution")
+    
+    return insert_article(article)
 
-    art_id = insert_article(article)
-    return art_id
-
-# ──────────────────────────────────────────────
-# ARTICLE 3: FWICE Withdraws Ranveer Ban
-# ──────────────────────────────────────────────
-def write_article_3():
-    print("\n" + "="*60)
-    print("ARTICLE 3: FWICE Withdraws Directive Against Ranveer Singh")
-    print("="*60)
-
-    slug = "fwice-withdraws-non-cooperation-directive-ranveer-singh-don-3-resolution-nri-20260604"
-    headline = "FWICE Blinked First. The Non-Cooperation Directive Against Ranveer Singh Is Over. The Don 3 Fight Is Not."
-    subheadline = "Nine days after issuing an industry-wide directive against Ranveer Singh for walking out of Don 3, FWICE withdrew it under pressure from producers' bodies and a legal notice. Nobody won. But the power balance in Bollywood just shifted."
-
-    body = """The Federation of Western India Cine Employees announced on June 3 that it has withdrawn, with immediate effect, the non-cooperation directive it had issued against Ranveer Singh. The withdrawal comes nine days after FWICE ordered its members across all crafts to refuse work on any project involving the actor — and just days after Singh served the federation with a formal legal notice.
-
-FWICE President BN Tiwari announced the decision at a press conference in Mumbai. "No one has emerged victorious or defeated in this situation," he said, a line that managed to be both diplomatic and revealing. "Our legal team will address his legal notice."
-
-The backstory: On May 25, FWICE issued the directive following a complaint from filmmaker Farhan Akhtar and producer Ritesh Sidhwani. They alleged that Ranveer had withdrawn from Don 3 — the franchise reboot that Excel Entertainment had been developing with him since 2023 — at an advanced stage of pre-production, after approximately ₹45 crore had already been spent. FWICE described the walkout as a violation of "industry ethics and longstanding professional norms" and called on producers to take a collective stand.
-
-## What Actually Happened
-
-Ranveer Singh's response was not public contrition. It was a legal notice. While the actor himself maintained a deliberate silence — his team had earlier released a statement saying he believed "professional discussions and personal relationships should be managed with dignity, mutual respect, and maturity" — his lawyers challenged FWICE's jurisdiction head-on.
-
-The legal footing was not new. In 2017, the Competition Commission of India had ruled in a case filed by producer Vipul Amrutlal Shah that FWICE's practice of mandating producers to work exclusively with its members violated the Competition Act, 2002. The CCI issued a cease-and-desist order, effectively limiting FWICE's enforcement powers. Singh's legal team reportedly invoked this precedent.
-
-The intervention of the Indian Motion Picture Producers' Association (IMPPA) and the producers' guild was the final push. According to Tiwari, these bodies advised FWICE to resolve the matter through dialogue rather than directives that could set uncomfortable precedents for producers, directors, and actors alike.
-
-## Why This Matters
-
-The Don 3 episode exposed a structural tension that Bollywood has long preferred to manage quietly: who bears the risk when a star exits a project?
-
-From Excel Entertainment's perspective, the numbers are straightforward. ₹45 crore in pre-production costs, committed schedules, location bookings, and crew allocations — all disrupted by one actor's decision. FWICE's directive, whatever its legal validity, was meant to signal that such walkouts carry consequences.
-
-From Ranveer's perspective, the directive amounted to an industry body punishing an actor for what is ultimately a contractual dispute between two private parties. His refusal to appear before FWICE's committee — and his insistence that the federation lacked structural jurisdiction — challenged the body's authority in a way that few A-list actors have done publicly.
-
-## The NRI Angle
-
-For the diaspora, this story mirrors debates that play out in every industry where talent and capital negotiate power. In Hollywood, similar disputes are handled through binding contracts, arbitration clauses, and studio insurance. In Bollywood, where deal structures remain more informal, industry bodies like FWICE have historically filled the enforcement gap. The Don 3 episode suggests that gap is closing — or at least that the enforcement tools are inadequate.
-
-The CCI's 2017 ruling already established that FWICE cannot function as a cartel. Singh's legal notice reinforced the point. And the federation's withdrawal, regardless of how it was framed, confirmed it. When a star has lawyers and precedent on his side, a press conference is not enough.
-
-## What Happens Next
-
-The directive is withdrawn, but the underlying dispute is not resolved. Farhan Akhtar and Ritesh Sidhwani's complaint about the ₹45 crore loss remains. Whether they pursue a civil claim, seek arbitration, or let the matter dissolve into Bollywood's long tradition of quiet settlements is an open question.
-
-Ranveer, meanwhile, has Dhurandhar in theaters and Pralay reportedly beginning production in August. His calendar does not suggest a man in crisis. Farhan Akhtar's Don 3, however, remains in limbo — a franchise without its lead actor and a production without a clear path forward.
-
-The federation blinked. The industry noticed."""
-
-    # Source image
-    print("Sourcing image...")
-    img_url, attr = source_image(
-        "Ranveer Singh",
-        ["Ranveer Singh Bollywood actor", "FWICE Bollywood federation"],
-        slug
+# ============================================================
+# ARTICLE 3: Patriot arrives on ZEE5 — Mammootty + Mohanlal
+# ============================================================
+def write_patriot_zee5():
+    print("\n📝 Article 3: Patriot arrives on ZEE5")
+    
+    # Image sourcing - try Mammootty first
+    img_url, img_attr = get_best_image(
+        person_name="Mammootty",
+        wiki_search="Patriot Malayalam film Mammootty Mohanlal 2026",
+        pexels_query=None
     )
+    
+    body = """Mammootty and Mohanlal sharing the screen is the kind of event that stops Malayalam cinema in its tracks. It has happened exactly once in seventeen years. Tomorrow, that film — Patriot — arrives on ZEE5, and for the millions of Malayali diaspora scattered across the Gulf, North America, and Europe, it removes the last barrier between them and the most anticipated Malayalam film of the decade.
+
+## The Reunion That Took Seventeen Years
+
+The last time Mammootty and Mohanlal appeared together in substantial roles was Twenty:20 in 2008, a charity film that brought together virtually every name in Malayalam cinema. Before that, their collaborations were the stuff of 1990s legend — films that defined an era when Kerala's two superstars were rivals and collaborators in equal measure.
+
+Patriot is different. Director Mahesh Narayanan has built a spy action drama around both actors, not as cameo appearances or extended guest spots, but as full-fledged characters central to the narrative. Mammootty plays Dr. Daniel James, a scientist who stumbles onto a massive surveillance conspiracy involving a spyware programme called Periscope and a tech conglomerate named Shakthi Solutions. After leaking classified data and fleeing to London, he builds an online platform to continue exposing the network.
+
+Mohanlal enters as Colonel Rahim Naik, a retired military officer who becomes an unlikely ally. The film's supporting cast reads like a who's who of Malayalam cinema: Fahadh Faasil, Kunchacko Boban, Nayanthara, Revathi, and Rajiv Menon.
+
+## Why the Diaspora Angle Matters
+
+Patriot's surveillance themes — spyware, tech companies weaponising user data, whistleblowers fleeing across borders — hit differently for NRIs working in Silicon Valley, London's tech corridor, and the Gulf's growing tech hubs. The film's premise borrows from real-world controversies around programmes like Pegasus, and its London-set narrative places Indian intelligence operations in the global context that diaspora audiences navigate daily.
+
+The film opened theatrically on May 1 and performed strongly in Kerala and in the Middle East, where Mammootty and Mohanlal command fanatical followings. The ZEE5 release makes it available across all five South Indian languages — Malayalam, Hindi, Tamil, Telugu, and Kannada — as well as in India and international markets.
+
+## The Verdict From Theatres
+
+Critics praised the ambition. A three-hour spy drama that tackles surveillance, civil liberties, and state power is not typical Malayalam commercial fare, even by the standards of an industry that has spent the last five years producing some of the most adventurous cinema in India. Mammootty's performance as a man torn between patriotism and principle was singled out. Mohanlal brings gravitas to a role that is smaller in screen time but pivotal in the narrative's architecture.
+
+Sushin Shyam's score — the composer behind the music of Bougainvillea and other recent Malayalam hits — anchors the film's emotional register. The soundtrack, including the singles Kaattu Thottappol and Manushyan, has already found a life of its own on streaming platforms.
+
+## What to Know Before Watching
+
+Clear three hours. Patriot is not a lean thriller. It is a dense, layered narrative that rewards patience. The film's structure moves between timelines and continents. If you are a Malayali in the diaspora, this is appointment viewing. If you are not, and you have been curious about why Malayalam cinema keeps producing the most talked-about films in India, this is as good a starting point as any.
+
+ZEE5 begins streaming Patriot on June 5."""
 
     article = {
-        "headline": headline,
-        "subheadline": subheadline,
+        "headline": "Patriot Arrives on ZEE5 Tomorrow. Mammootty and Mohanlal Together After Seventeen Years Is Exactly as Big as It Sounds.",
+        "subheadline": "The spy drama that reunites Malayalam cinema's two greatest stars tackles surveillance, whistleblowing, and state power. The diaspora has been waiting.",
         "body": body,
-        "slug": slug,
+        "slug": "patriot-zee5-ott-mammootty-mohanlal-fahadh-faasil-spy-drama-malayalam-nri-20260604",
         "category": "entertainment",
         "vertical": "entertainment",
+        "image_url": img_url or "",
+        "image_caption": "Mammootty stars as Dr. Daniel James in the spy drama Patriot" if img_url else "",
+        "image_attribution": img_attr or "",
+        "sources": json.dumps(["Pinkvilla", "Wikipedia", "Hollywood Reporter India", "ZEE5"]),
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url or "",
-        "image_attribution": attr or "",
-        "is_editorial": False,
-        "sources": json.dumps([
-            {"name": "Zoom TV Entertainment", "url": "https://www.zoomtventertainment.com"},
-            {"name": "Hollywood Reporter India", "url": "https://www.hollywoodreporterindia.com"},
-            {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
-            {"name": "PTI", "url": "https://www.ptinews.com"}
-        ])
+        "is_editorial": False
     }
+    
+    if not img_url:
+        print("  ⚠ No image found, publishing without image")
+        article.pop("image_url")
+        article.pop("image_caption")
+        article.pop("image_attribution")
+    
+    return insert_article(article)
 
-    art_id = insert_article(article)
-    return art_id
-
-# ── Main ──
+# ============================================================
+# MAIN
+# ============================================================
 if __name__ == "__main__":
-    print("="*60)
-    print("THE VIDESHI — Entertainment Writer")
-    print(f"Run time: {datetime.now(timezone.utc).isoformat()}")
-    print("="*60)
-
+    print("🎬 Entertainment Writer — June 4, 2026")
+    print("=" * 50)
+    
     results = []
-
-    try:
-        art1 = write_article_1()
-        results.append(("Aamir Khan Wedding", art1))
-    except Exception as e:
-        print(f"✗ Article 1 failed: {e}")
-        import traceback; traceback.print_exc()
-
-    try:
-        art2 = write_article_2()
-        results.append(("Varun Dhawan AI Deepfakes", art2))
-    except Exception as e:
-        print(f"✗ Article 2 failed: {e}")
-        import traceback; traceback.print_exc()
-
-    try:
-        art3 = write_article_3()
-        results.append(("FWICE Ranveer Withdrawal", art3))
-    except Exception as e:
-        print(f"✗ Article 3 failed: {e}")
-        import traceback; traceback.print_exc()
-
-    print("\n" + "="*60)
-    print("RESULTS SUMMARY")
-    print("="*60)
-    for title, art_id in results:
-        status = "✓" if art_id else "✗"
-        print(f"  {status} {title}: {art_id or 'FAILED'}")
+    results.append(("Pahlaj Nihalani obituary", write_pahlaj_nihalani()))
+    results.append(("Dhurandhar 2 OTT", write_dhurandhar_2_ott()))
+    results.append(("Patriot ZEE5", write_patriot_zee5()))
     
-    successes = sum(1 for _, aid in results if aid)
-    print(f"\n  Published: {successes}/{len(results)} articles")
+    print("\n" + "=" * 50)
+    print("📊 Results:")
+    for name, success in results:
+        status = "✓" if success else "✗"
+        print(f"  {status} {name}")
     
-    if successes == 0:
-        sys.exit(1)
+    succeeded = sum(1 for _, s in results if s)
+    print(f"\n  {succeeded}/{len(results)} articles published")
