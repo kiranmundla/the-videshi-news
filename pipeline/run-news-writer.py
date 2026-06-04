@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""News writer for The Videshi — generates 3 articles for the news category."""
-import json, os, requests, urllib.parse, time, re, subprocess, hashlib
+"""News writer for The Videshi — generates 3 articles with multi-source image sourcing."""
+
+import json, os, sys, time, uuid, subprocess, urllib.parse, io, re
 from datetime import datetime, timezone
 
 # Load env
@@ -10,9 +11,11 @@ def load_env(path):
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
-                    key, _, val = line.partition('=')
+                    if line.startswith('export '):
+                        line = line[7:]
+                    key, val = line.split('=', 1)
                     val = val.strip().strip('"').strip("'")
-                    os.environ.setdefault(key.strip(), val)
+                    os.environ[key] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
@@ -20,52 +23,51 @@ load_env(os.path.expanduser('~/workspace/.env.pexels'))
 SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
 SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+
+import requests
+from PIL import Image
+
+HEADERS_SB = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
 }
 
+UA = "TheVideshi/1.0 (thevideshi.com)"
+
+# ─── Image sourcing functions ───
+
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    """Fetch a person's actual photo from Wikipedia."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            headers={"User-Agent": UA}, timeout=10
         )
         if r.status_code == 200:
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
-def fetch_wikimedia_commons_images(search_query, limit=5):
+
+def fetch_wikimedia_commons(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
     params = {
-        "action": "query",
-        "generator": "search",
-        "gsrsearch": search_query,
-        "gsrnamespace": "6",
-        "gsrlimit": str(limit),
-        "prop": "imageinfo",
-        "iiprop": "url|size|mime",
-        "iiurlwidth": "1200",
-        "format": "json"
+        "action": "query", "generator": "search",
+        "gsrsearch": search_query, "gsrnamespace": "6", "gsrlimit": str(limit),
+        "prop": "imageinfo", "iiprop": "url|size|mime",
+        "iiurlwidth": "1200", "format": "json"
     }
     try:
-        r = requests.get(
-            "https://commons.wikimedia.org/w/api.php",
-            params=params,
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=15
-        )
+        r = requests.get("https://commons.wikimedia.org/w/api.php",
+                         params=params, headers={"User-Agent": UA}, timeout=15)
         if r.status_code == 200:
             data = r.json()
             pages = data.get("query", {}).get("pages", {})
@@ -73,328 +75,377 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
             for pid, page in pages.items():
                 ii = page.get("imageinfo", [{}])[0]
                 mime = ii.get("mime", "")
-                if not mime.startswith("image/"):
+                if not mime.startswith("image/") or mime == "image/svg+xml":
                     continue
-                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
+                if ii.get("width", 0) < 300:
                     continue
                 results.append({
                     "url": ii.get("thumburl") or ii.get("url", ""),
                     "original_url": ii.get("url", ""),
                     "title": page.get("title", ""),
                     "width": ii.get("width", 0),
-                    "height": ii.get("height", 0),
+                    "height": ii.get("height", 0)
                 })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
+                print(f"  ✓ Commons: {len(results)} images for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error: {e}")
+        print(f"  ⚠ Commons error: {e}")
     return []
 
-def fetch_pexels_image(query):
-    """Fetch an image from Pexels using curl (urllib gets 403)."""
+
+def fetch_pexels_image(*queries):
+    """Search Pexels using curl (urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
-    try:
-        result = subprocess.run([
-            'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-            f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3&orientation=landscape'
-        ], capture_output=True, text=True, timeout=15)
-        if result.returncode == 0:
+    for q in queries:
+        try:
+            result = subprocess.run([
+                "curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+                f"https://api.pexels.com/v1/search?query={urllib.parse.quote(q)}&per_page=3&orientation=landscape"
+            ], capture_output=True, text=True, timeout=15)
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
+            photos = data.get("photos", [])
             if photos:
-                url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('large')
-                if url:
-                    print(f"  ✓ Pexels image found for '{query}'")
-                    return url
-    except Exception as e:
-        print(f"  ⚠ Pexels error: {e}")
+                url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels: found for '{q}'")
+                return url
+        except Exception as e:
+            print(f"  ⚠ Pexels error for '{q}': {e}")
     return None
 
-def validate_image(url):
-    """Verify image URL returns HTTP 200 with image content type and >5KB."""
+
+def compress_image(img_bytes, max_width=1200, quality=80):
+    """Resize and compress image to JPEG."""
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P', 'LA'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    compressed = buf.getvalue()
+    print(f"  📦 Compressed: {len(img_bytes)//1024}KB → {len(compressed)//1024}KB ({img.width}x{img.height})")
+    return compressed
+
+
+def upload_to_supabase(img_bytes, filename):
+    """Upload image to Supabase storage bucket article-images."""
+    url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+    headers = {
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "image/jpeg",
+        "x-upsert": "true"
+    }
+    r = requests.post(url, headers=headers, data=img_bytes, timeout=30)
+    if r.status_code in (200, 201):
+        public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+        print(f"  ✓ Uploaded to Supabase: {filename}")
+        return public_url
+    else:
+        print(f"  ⚠ Upload failed ({r.status_code}): {r.text[:200]}")
+        return None
+
+
+def download_image(url):
+    """Download image bytes."""
     try:
-        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
-            print(f"  ✓ Image validated: {cl} bytes, {ct}")
-            return True
-        # Some servers don't return Content-Length on HEAD, try GET
-        if r.status_code == 200 and 'image' in ct:
-            r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, stream=True)
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                print(f"  ✓ Image validated via GET: {len(chunk)}+ bytes")
-                return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
+        r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
+        if r.status_code == 200 and len(r.content) > 5000:
+            ct = r.headers.get("Content-Type", "")
+            if "image" in ct or len(r.content) > 10000:
+                print(f"  ✓ Downloaded {len(r.content)//1024}KB from {url[:60]}...")
+                return r.content
+        else:
+            print(f"  ⚠ Download issue: status={r.status_code}, size={len(r.content)}")
     except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
-    return False
+        print(f"  ⚠ Download error: {e}")
+    return None
 
-def find_best_image(person_name=None, topic_queries=None, pexels_query=None):
-    """Multi-source image search: Wikipedia > Wikimedia Commons > Pexels."""
-    # 1. Wikipedia person image
+
+def source_image(slug, person_name=None, topic_queries=None, pexels_queries=None):
+    """Multi-source image search: Wikipedia → Wikimedia Commons → Pexels. Returns (public_url, attribution)."""
+    candidates = []
+
+    # Source 1: Wikipedia (person articles)
     if person_name:
-        img = fetch_wikipedia_person_image(person_name)
-        if img and validate_image(img):
-            return img, "Wikimedia Commons"
+        wiki_url = fetch_wikipedia_person_image(person_name)
+        if wiki_url:
+            candidates.append({"url": wiki_url, "source": "Wikimedia Commons", "priority": 1})
 
-    # 2. Wikimedia Commons search
+    # Source 2: Wikimedia Commons
     if topic_queries:
-        for q in topic_queries:
-            results = fetch_wikimedia_commons_images(q)
-            for r in results:
-                url = r.get("url") or r.get("original_url")
-                if url and validate_image(url):
-                    return url, "Wikimedia Commons"
+        for tq in topic_queries:
+            results = fetch_wikimedia_commons(tq)
+            for r in results[:2]:
+                candidates.append({"url": r["url"], "source": "Wikimedia Commons", "priority": 2})
+            if results:
+                break
 
-    # 3. Pexels fallback
-    if pexels_query:
-        img = fetch_pexels_image(pexels_query)
-        if img and validate_image(img):
-            return img, "Pexels"
+    # Source 3: Pexels
+    if pexels_queries:
+        pexels_url = fetch_pexels_image(*pexels_queries)
+        if pexels_url:
+            candidates.append({"url": pexels_url, "source": "Pexels", "priority": 3})
 
+    # Pick best and upload
+    candidates.sort(key=lambda c: c["priority"])
+    for cand in candidates:
+        print(f"  🎯 Trying {cand['source']}: {cand['url'][:70]}...")
+        img_bytes = download_image(cand["url"])
+        if img_bytes:
+            compressed = compress_image(img_bytes)
+            if len(compressed) > 5000:
+                filename = f"{slug}.jpg"
+                public_url = upload_to_supabase(compressed, filename)
+                if public_url:
+                    return public_url, cand["source"]
+
+    print("  ❌ No suitable image found")
     return None, None
 
+
 def insert_article(article):
-    """Insert an article into Supabase."""
-    print(f"\n📝 Inserting: {article['headline']}")
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article,
-        timeout=30
-    )
+    """Insert article into Supabase."""
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
+    r = requests.post(url, headers=HEADERS_SB, json=article, timeout=30)
     if r.status_code in (200, 201):
         result = r.json()
-        if isinstance(result, list) and result:
-            print(f"  ✓ Published: {result[0].get('slug', 'unknown')}")
-        else:
-            print(f"  ✓ Published (response: {str(result)[:100]})")
-        return True
+        art_id = result[0]["id"] if isinstance(result, list) else result.get("id")
+        print(f"  ✓ Inserted article: {article['slug']} (id: {art_id})")
+        return art_id
     else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
-        return False
+        print(f"  ❌ Insert failed ({r.status_code}): {r.text[:300]}")
+        return None
 
 
-# ============================================================
-# ARTICLE 1: India's Largest-Ever Defense Deal — 114 Rafale Jets
-# ============================================================
-def write_article_1():
-    print("\n" + "="*60)
-    print("ARTICLE 1: India's ₹3.25 Lakh Crore Rafale Deal")
-    print("="*60)
+# ─── Articles ───
 
-    # Image: Rafale jet or Dassault Aviation
-    img_url, img_attr = find_best_image(
-        topic_queries=["Rafale fighter jet Indian Air Force", "Dassault Rafale India"],
-        pexels_query="fighter jet military"
-    )
+now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    body = """India has formally issued a Letter of Request to France for the procurement of 114 Rafale fighter aircraft in a government-to-government deal estimated at ₹3.25 lakh crore ($34.16 billion), marking the single largest defense acquisition in the country's history.
+articles = []
 
-The Defence Ministry's Acquisition Wing sent the request last week, initiating what officials say could be concluded within a year. Of the 114 jets, 94 are expected to be manufactured in India through a partnership between French aerospace major Dassault Aviation and an Indian company — a centrepiece of the government's Make in India and Atmanirbhar Bharat defence strategy.
+# ── ARTICLE 1: H-1B $100K fee ──
+print("\n" + "="*60)
+print("ARTICLE 1: H-1B $100,000 fee — 200,000+ applicants")
+print("="*60)
 
-## A Critical Gap in the Sky
+slug1 = "h1b-100000-fee-200000-applicants-dhs-mullin-senate-fy2026"
 
-The Indian Air Force currently operates just 29 fighter squadrons against a sanctioned strength of 42 — a gap that has widened sharply following the retirement of ageing MiG-21 and MiG-27 fleets. The Rafale, a 4.5-generation multirole combat aircraft that has already proven itself in IAF service with 36 jets inducted since 2020, is considered the frontrunner to fill that void.
+img1_url, img1_attr = source_image(
+    slug1,
+    person_name="Markwayne Mullin",
+    topic_queries=["H-1B visa United States", "US Capitol Senate hearing"],
+    pexels_queries=["US Capitol building Washington", "immigration visa passport"]
+)
 
-https://x.com/IAabortedflight/status/1929611736754487766
+body1 = """More than 200,000 applicants paid $100,000 each to fast-track their H-1B visa applications in fiscal year 2026, the US Department of Homeland Security has confirmed — a figure that reveals just how far employers and skilled workers are willing to go to navigate an immigration system that now charges a premium for basic functionality.
 
-With this order, India's total Rafale fleet could exceed 200 aircraft when combined with 62 jets already ordered for the Air Force and Navy — including 31 slated for carrier operations. That would make India one of the largest Rafale operators in the world, behind only France itself.
+DHS Secretary Markwayne Mullin disclosed the numbers during testimony before the Senate Appropriations Subcommittee on Homeland Security on Tuesday, telling lawmakers that the department received approximately 286,000 H-1B applications in the current fiscal year. Of those, over 200,000 — more than 70 percent — opted to pay the $100,000 expedited processing fee introduced by President Trump's September 2025 executive proclamation.
 
-## IAF Chief's France Visit Sets the Stage
+## Fifteen Days Versus Seven and a Half Months
 
-The Letter of Request coincides with Indian Air Force Chief Air Chief Marshal Amar Preet Singh's four-day visit to France, which began on June 1. During the trip, he is scheduled to visit Dassault Aviation's Mérignac facility — the Rafale's final assembly line — as well as MBDA, the missile manufacturer behind the Meteor and SCALP systems integrated into the Rafale platform.
+The arithmetic behind the surge is straightforward. Applicants who pay the fee have their cases processed in roughly 15 days. Everyone else waits an average of seven and a half months — a timeline that can derail hiring schedules, disrupt project timelines and leave foreign workers in legal limbo while their paperwork sits in a queue.
 
-Discussions during the visit are expected to cover production timelines, localisation of Indian weapons systems, technical cooperation, and the architecture of a new Rafale assembly line in India. Defence sources indicate the programme will incorporate nearly 50 percent indigenous content, providing a substantial boost to India's aerospace manufacturing ecosystem.
+For Indian professionals, who constitute the largest single nationality among H-1B holders, the stakes are particularly acute. Many are already caught in a green card backlog that stretches back over a decade, and delays in H-1B processing compound an already precarious immigration status. The $100,000 fee, typically borne by sponsoring employers, effectively creates a two-tier system in which speed is a luxury reserved for those who can afford it.
 
-## Modi's France Visit and the Bigger Picture
+## Rural Hospitals and Schools Left Behind
 
-Prime Minister Narendra Modi is expected to visit France around mid-June for a G7 outreach session, and the Rafale deal is almost certain to feature in bilateral discussions with President Emmanuel Macron. The deal cements a defence relationship that has accelerated dramatically since India's first Rafale order of 36 jets in 2016.
+The hearing exposed a sharp divide between the programme's largest beneficiaries — technology companies recruiting skilled engineers in Silicon Valley and other tech hubs — and institutions serving communities that cannot absorb the cost.
 
-France is now India's second-largest defence supplier after Russia, and the partnership extends beyond fighter jets. The two countries are collaborating on submarine design under Project 75(I), Scorpène-class submarine transfers, and joint development of military engines.
+Senator Susan Collins of Maine told the subcommittee that a hospital in Presque Isle, a rural community in the state's north, recently had to pay the full $100,000 to secure a surgeon from overseas. She argued that medical providers serving remote areas should be treated differently from employers recruiting in sectors with larger domestic labour pools.
 
-## What It Means for Indian Defence Manufacturing
+"I would suggest that there's a huge difference between bringing in a computer expert from another country to work in wealthy California and Silicon Valley versus a much-needed surgeon to work at a rural hospital in northern Maine," Collins said.
 
-The deal's Make in India component could transform India's defence industrial base. With 94 jets to be assembled domestically, the programme will require thousands of components sourced from Indian manufacturers, potentially creating an aerospace supply chain that outlasts the Rafale programme itself.
+Mullin told Collins he would explore whether such applications could receive flexibility on a case-by-case basis, though he stopped short of committing to a formal exemption. Senator Lisa Murkowski of Alaska raised similar concerns about the shortage of teachers in rural school districts, signalling that the pressure for carve-outs extends beyond healthcare.
 
-For the diaspora watching from abroad, the deal is a marker of how far India's defence posture has evolved — from decades of dependency on Soviet-era platforms to a diversified, technology-driven acquisition strategy that now spans American, French, Israeli, and Indian systems."""
+## What It Means for Indian Tech Workers
 
-    article = {
-        "headline": "India Just Issued a ₹3.25 Lakh Crore Order for 114 Rafale Jets. It Is the Largest Defence Deal in Indian History.",
-        "subheadline": "Of the 114 jets, 94 will be manufactured in India by Dassault Aviation — the biggest Make in India defence programme ever launched.",
-        "body": body,
-        "slug": "india-114-rafale-jets-325-lakh-crore-defence-deal-france-dassault-make-in-india-20260603",
-        "category": "news",
-        "vertical": "news",
-        "image_url": img_url or "",
-        "image_attribution": img_attr or "",
-        "sources": json.dumps(["The Hindu BusinessLine", "ANI", "India Strategic", "DevDiscourse", "Madhyamam Online"]),
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "is_editorial": False
-    }
+The $100,000 fee has reshaped the economics of H-1B sponsorship. For large technology firms and well-funded startups, the cost is a manageable line item that buys certainty in hiring timelines. For smaller companies, universities, research institutions and non-profits — many of which employ Indian workers — the fee is prohibitive.
 
-    if not img_url:
-        print("  ⚠ No image found, skipping article")
-        return False
-    return insert_article(article)
+Immigration attorneys have noted that the fee is triggering a shift in sponsorship patterns, with some employers reconsidering or delaying H-1B filings altogether. The Murthy Law Firm, a prominent immigration practice, observed in April that the practical application of the fee has diverged from published guidance, creating additional uncertainty for applicants and their employers.
 
+The broader picture for Indian nationals is one of compounding costs. Beyond the $100,000 expedited fee, H-1B applicants face standard filing fees, premium processing charges, legal costs and, for many, the indefinite expense of maintaining status while waiting for an employment-based green card. The EB-2 visa category for Indians was effectively frozen earlier this year, with the backlog now stretching to 2014.
 
-# ============================================================
-# ARTICLE 2: Modi-Hlaing Summit — Myanmar Pledges on NE Insurgents
-# ============================================================
-def write_article_2():
-    print("\n" + "="*60)
-    print("ARTICLE 2: Modi-Hlaing Summit — Myanmar Pledges Action")
-    print("="*60)
+## A System That Works for Those Who Can Pay
 
-    # Image: Modi or Myanmar summit
-    img_url, img_attr = find_best_image(
-        person_name="Narendra Modi",
-        topic_queries=["Narendra Modi Min Aung Hlaing summit", "India Myanmar summit 2026"],
-        pexels_query="India diplomatic summit"
-    )
+The DHS testimony laid bare a system operating under enormous demand. The 286,000 applications received in FY2026 represent a modest decline from previous years' initial registration totals, reflecting the chilling effect of higher costs. But the overwhelming willingness of applicants to pay $100,000 suggests that demand for US work visas remains structurally robust, driven by wage differentials, career opportunities and the sheer depth of the American technology economy.
 
-    body = """Myanmar's president, Min Aung Hlaing, has assured Prime Minister Narendra Modi that Myanmar will not permit Indian insurgent groups to use its territory as a base — the strongest such guarantee in years, delivered during a summit at Hyderabad House in New Delhi on June 1.
+For the Indian diaspora, the H-1B programme remains the primary legal pathway into the American workforce. Whether the current fee structure survives legal challenges or congressional scrutiny is an open question. What is clear is that 200,000 applicants — and the companies behind them — decided that $100,000 was a price worth paying to avoid a seven-month wait. That calculation, more than any policy statement, tells you what the system has become."""
 
-The meeting, the first between the two leaders since Hlaing assumed the presidency following Myanmar's parliamentary elections earlier this year, produced a joint statement affirming that "Myanmar's territory would not be permitted to be used against India's security interests." In return, Modi reaffirmed India's support for Myanmar's sovereignty and territorial integrity.
-
-## The 1,643-Kilometre Problem
-
-India shares a 1,643-kilometre porous border with Myanmar, touching four northeastern states — Arunachal Pradesh, Nagaland, Manipur, and Mizoram. For decades, separatist outfits with a history of cross-border movement have operated in this corridor, using Myanmar's ungoverned spaces as staging grounds for attacks on Indian security forces.
-
-Foreign Secretary Vikram Misri, who briefed reporters after the talks, said Modi raised the insurgent presence directly. "The president once again reiterated his assurance that Myanmar was sensitive to these concerns and would do everything necessary to ensure there was action against these groups," Misri said.
-
-## Beyond Security — A Wider Agenda
-
-The summit extended well beyond counter-insurgency. The two leaders discussed a sprawling bilateral agenda that included trade, connectivity, space cooperation, border fencing, and the sensitive issue of Myanmar's detained democracy leader, Aung San Suu Kyi.
-
-India is currently constructing a fence along the Myanmar border — a politically charged project that New Delhi says will enhance security infrastructure without disrupting the deep people-to-people ties that exist along the frontier. Misri confirmed that India has shared details of designated entry points and gates with the Myanmar side and expressed confidence that the project would proceed on a cooperative basis.
-
-## The Free Movement Regime Overhaul
-
-The summit also addressed India's decision to end the Free Movement Regime, which previously allowed people living within 16 kilometres of the border to cross without visas. The cancellation, announced in 2024, was driven by concerns over drug trafficking, arms smuggling, and illegal immigration — but it has been controversial among border communities whose families straddle the international line.
-
-India is now replacing the open regime with a structured entry-point system, maintaining connectivity through controlled gates while establishing a physical security perimeter. The approach attempts to balance the northeast's deeply intertwined cross-border social fabric with New Delhi's legitimate security imperatives.
-
-## What It Means for the Diaspora
-
-For the Indian diaspora, the summit is a reminder of how India's security challenges in the northeast rarely make headlines in the way that tensions with Pakistan or China do, but remain equally consequential. Myanmar's cooperation — or lack of it — directly shapes the security environment for millions of people in some of India's most vulnerable states.
-
-The summit also signals India's pragmatic foreign policy in action: engaging Myanmar's military government on security and connectivity, even as the international community remains divided over the country's democratic backsliding. It is the kind of quiet, strategic diplomacy that New Delhi increasingly favours — prioritising outcomes over posturing."""
-
-    article = {
-        "headline": "Myanmar's President Just Promised Modi That Indian Insurgents Will Not Use Its Territory. It Is the Strongest Guarantee in Years.",
-        "subheadline": "The summit at Hyderabad House covered border security, fencing, Aung San Suu Kyi, and an expanding agenda from trade to space cooperation.",
-        "body": body,
-        "slug": "modi-min-aung-hlaing-summit-myanmar-northeast-insurgents-border-security-20260603",
-        "category": "news",
-        "vertical": "news",
-        "image_url": img_url or "",
-        "image_attribution": img_attr or "",
-        "sources": json.dumps(["India Sentinels", "Ministry of External Affairs", "Press Information Bureau", "GlobalSecurity.org"]),
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "is_editorial": False
-    }
-
-    if not img_url:
-        print("  ⚠ No image found, skipping article")
-        return False
-    return insert_article(article)
+articles.append({
+    "headline": "Over 200,000 H-1B Applicants Paid $100,000 Each to Skip the Queue. The System Now Has a Price Tag.",
+    "subheadline": "DHS Secretary Mullin told Congress that 70 percent of this year's H-1B applicants chose the expedited route, while rural hospitals and schools struggle to compete.",
+    "slug": slug1,
+    "body": body1,
+    "category": "news",
+    "vertical": "news",
+    "status": "published",
+    "published_at": now_iso,
+    "sources": json.dumps(["The Hindu BusinessLine / PTI", "Reuters", "DHS Senate Appropriations Testimony (June 2, 2026)", "Murthy Law Firm"]),
+    "image_url": img1_url,
+    "image_caption": "DHS Secretary Markwayne Mullin testifies before the Senate Appropriations Subcommittee in Washington",
+    "image_attribution": img1_attr or "Wikimedia Commons",
+    "is_editorial": False
+})
 
 
-# ============================================================
-# ARTICLE 3: India-Australia Defence Dialogue — Maritime Cooperation
-# ============================================================
-def write_article_3():
-    print("\n" + "="*60)
-    print("ARTICLE 3: India-Australia Defence Dialogue")
-    print("="*60)
+# ── ARTICLE 2: India-Africa Summit Postponed / Ebola ──
+print("\n" + "="*60)
+print("ARTICLE 2: India-Africa Summit Postponed Amid Ebola")
+print("="*60)
 
-    # Image: Rajnath Singh or India-Australia defense
-    img_url, img_attr = find_best_image(
-        person_name="Rajnath Singh",
-        topic_queries=["India Australia defence cooperation", "Rajnath Singh Richard Marles"],
-        pexels_query="navy warship Indian Ocean"
-    )
+slug2 = "india-africa-forum-summit-postponed-ebola-congo-outbreak-bundibugyo-20260604"
 
-    body = """India and Australia have agreed to deepen maritime security cooperation and explore undersea domain awareness as part of a broadening defence partnership, following the second edition of the India-Australia Defence Ministers' Dialogue held in New Delhi on June 1.
+img2_url, img2_attr = source_image(
+    slug2,
+    person_name=None,
+    topic_queries=["India Africa Forum Summit", "Ebola outbreak Congo 2026", "World Health Organization Ebola response"],
+    pexels_queries=["Africa summit diplomacy", "medical health workers protective equipment"]
+)
 
-Defence Minister Rajnath Singh and Australian Deputy Prime Minister and Defence Minister Richard Marles co-chaired the dialogue at the Manekshaw Centre, building on the inaugural meeting held in October 2025. The two leaders endorsed significant progress in the bilateral relationship and agreed to renew and strengthen the Joint Declaration on Defence and Security Cooperation.
+body2 = """India and the African Union have quietly postponed one of the most significant diplomatic gatherings on their shared calendar — the Fourth India-Africa Forum Summit — after concluding that an Ebola outbreak spreading across eastern Congo made it inadvisable to bring dozens of heads of state and hundreds of delegates to New Delhi. No new dates have been set.
 
-## The Maritime Pivot
+The summit, originally scheduled for May 28 to 31 in the Indian capital, was expected to convene leaders from across the African continent alongside Indian officials for discussions on trade, development finance, health cooperation and strategic alignment. Its postponement, announced jointly by the Government of India and the African Union Commission, was framed as a precautionary public health measure rather than a diplomatic setback.
 
-At the heart of the dialogue was a shared recognition that the Indo-Pacific's security architecture depends on credible maritime cooperation between like-minded democracies. The two sides discussed progress toward finalising a Joint Maritime Security Collaboration Roadmap — a framework document that will govern joint exercises, intelligence sharing, and coordinated patrols.
+## The Outbreak India Is Watching
 
-Both ministers agreed to advance collaborative maritime domain awareness activities using maritime patrol aircraft and to explore opportunities to enhance undersea domain awareness — a capability area that has gained urgency as submarine activity in the Indian Ocean increases. The reference to undersea awareness is notable: it signals that the two countries are moving beyond surface-level cooperation toward the more sensitive and strategically significant domain of submarine detection and tracking.
+The Ebola outbreak that forced the postponement is not an ordinary one. It is caused by the Bundibugyo strain of the virus, for which there is no approved vaccine and no specific treatment — a complication that has alarmed epidemiologists and slowed the containment response.
 
-## Coast Guard and Cyber Cooperation
+As of this week, the Democratic Republic of Congo has recorded 363 confirmed cases and 62 deaths since the outbreak was officially declared on May 15, according to the country's health ministry. The virus has spread across 17 health zones in Ituri province, seven in North Kivu and one in South Kivu. It has also crossed into Uganda, where 15 cases have been confirmed.
 
-The dialogue also encouraged deeper cooperation between the Indian Coast Guard and Australia's Maritime Border Command, reflecting a shared interest in tackling non-traditional maritime threats including drug trafficking, illegal fishing, and people smuggling.
+The World Health Organization has acknowledged progress in testing and surveillance but conceded that the response is still playing catch-up. "The outbreak had a big head start, and we're still behind," WHO Director-General Tedros Adhanom Ghebreyesus said this week, "but under the leadership of the government of DRC, we're catching up."
 
-https://x.com/rajaborijfnews/status/1929572102439375277
+Complicating matters further, the outbreak has reached territory controlled by the Allied Democratic Forces, an Islamic State affiliate operating in eastern Congo. Health workers cannot safely enter the area, and volunteers have reportedly had to smuggle blood samples out of militant-held zones for laboratory testing.
 
-Beyond the maritime domain, the two sides discussed defence technology cooperation, cyber security, and space situational awareness — areas where Australia's Five Eyes intelligence access and India's growing indigenous defence ecosystem create natural complementarities.
+## India's Ebola Calculus
 
-## The Quad and the Indo-Pacific
+India's decision to defer the summit reflects a calculation that extends beyond protocol. The country has a significant diaspora in Africa — an estimated three million Indians live and work across the continent — and maintains commercial interests in mining, pharmaceuticals, infrastructure and energy across several African nations. An outbreak that spills beyond Congo and Uganda would directly affect Indian communities and trade routes.
 
-The timing of the dialogue is significant. India and Australia are both members of the Quad — alongside the United States and Japan — and their bilateral defence relationship has accelerated dramatically since the 2020 Comprehensive Strategic Partnership. The Malabar naval exercise, once restricted to India and the US, now regularly includes Australia and Japan.
+The Ministry of External Affairs has issued health advisories and maintained contact with African health authorities as the situation develops. Diplomats involved in the planning noted that postponement also creates space for India and the African Union to coordinate on outbreak response, including vaccine research and treatment supply chains, before resuming summit-level engagement.
 
-For India, Australia represents a partner with no historical baggage in the subcontinent, strong alignment on Indo-Pacific security, and growing economic ties — particularly in critical minerals, education, and energy. For Australia, India is the critical swing state in the Indo-Pacific: a major maritime power with the world's largest navy by hull count and an increasingly assertive posture in the Indian Ocean.
+India's pharmaceutical industry is a critical supplier of generic medicines to the African continent. Indian vaccine manufacturers, including the Serum Institute of India, played a central role in supplying COVID-19 doses to African nations through the COVAX facility and bilateral agreements. Whether India will step into a similar role for Ebola therapeutics or future vaccines remains an open question, but the institutional infrastructure exists.
 
-## What It Means for the Diaspora
+## What the Summit Was Supposed to Deliver
 
-The India-Australia relationship has a strong people-to-people dimension. Australia is home to over 900,000 people of Indian origin, the country's fastest-growing diaspora community. Defence cooperation reinforces a broader bilateral relationship that includes a free trade agreement signed in 2022, a surge in Indian student enrolments, and growing cricket diplomacy.
+The India-Africa Forum Summit is the flagship platform for India's engagement with the continent. The last edition was held in 2015, when Prime Minister Narendra Modi hosted leaders from 54 African nations in New Delhi — the largest gathering of its kind at the time. Since then, India has expanded its development finance commitments, opened new diplomatic missions and increased trade volumes, though the relationship has been overshadowed by China's far larger financial footprint in Africa.
 
-For diaspora members watching the Indo-Pacific's security architecture take shape, the India-Australia defence dialogue is a reminder that the region's future will be shaped not by any single alliance, but by a web of bilateral and multilateral partnerships that India is systematically building."""
+The fourth summit was expected to focus on digital infrastructure, healthcare partnerships, critical mineral supply chains and climate finance — areas where India is positioning itself as an alternative to both Chinese lending and Western conditionality. Its indefinite postponement leaves a gap in India's continental strategy at a time when several African nations are actively renegotiating their external partnerships.
 
-    article = {
-        "headline": "India and Australia Just Agreed to Track Submarines Together. The Indo-Pacific's Security Map Is Being Redrawn.",
-        "subheadline": "The second defence ministers' dialogue advanced a maritime roadmap, undersea domain awareness, and coast guard cooperation — the deepest bilateral defence agenda yet.",
-        "body": body,
-        "slug": "india-australia-defence-dialogue-maritime-cooperation-undersea-awareness-rajnath-marles-20260603",
-        "category": "news",
-        "vertical": "news",
-        "image_url": img_url or "",
-        "image_attribution": img_attr or "",
-        "sources": json.dumps(["Ministry of Defence India", "Insight Pulse", "Press Information Bureau", "The Diplomat Nepal"]),
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "is_editorial": False
-    }
+## No Vaccine, No Timeline
 
-    if not img_url:
-        print("  ⚠ No image found, skipping article")
-        return False
-    return insert_article(article)
+The absence of a vaccine for the Bundibugyo strain is the single factor that makes this outbreak different from Congo's previous Ebola emergencies, several of which were contained with the help of the rVSV-ZEBOV vaccine developed during the 2014-2016 West Africa crisis. That vaccine targets the Zaire strain and is ineffective against Bundibugyo.
+
+Researchers are working to adapt existing vaccine candidates and test experimental treatments, but no clinical trials have begun at scale. Until a medical countermeasure is available, containment depends entirely on surveillance, contact tracing, isolation and community engagement — precisely the measures that armed conflict in eastern Congo continues to undermine.
+
+For India, the postponement is a setback measured in months, not years. For the communities in eastern Congo living alongside both the virus and armed insurgents, the timeline is far less forgiving."""
+
+articles.append({
+    "headline": "India Postpones Its Flagship Africa Summit Indefinitely. The Reason Is an Ebola Strain No Vaccine Can Stop.",
+    "subheadline": "The Fourth India-Africa Forum Summit, planned for New Delhi, was shelved after a Bundibugyo Ebola outbreak in Congo reached 363 cases with no approved vaccine or treatment in sight.",
+    "slug": slug2,
+    "body": body2,
+    "category": "news",
+    "vertical": "news",
+    "status": "published",
+    "published_at": now_iso,
+    "sources": json.dumps(["The Indian EYE", "Reuters", "World Health Organization", "Wall Street Journal", "US State Department"]),
+    "image_url": img2_url,
+    "image_caption": "Health workers during an Ebola response operation in the Democratic Republic of Congo",
+    "image_attribution": img2_attr or "Wikimedia Commons",
+    "is_editorial": False
+})
 
 
-# ============================================================
-# MAIN
-# ============================================================
-if __name__ == "__main__":
-    print("🗞️ The Videshi News Writer — Starting")
-    print(f"⏰ {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
+# ── ARTICLE 3: Iran oil exports crash ──
+print("\n" + "="*60)
+print("ARTICLE 3: Iran Oil Exports Crash to Six-Year Low")
+print("="*60)
 
-    results = []
-    results.append(("Rafale Deal", write_article_1()))
-    time.sleep(1)
-    results.append(("Modi-Hlaing Summit", write_article_2()))
-    time.sleep(1)
-    results.append(("India-Australia Defence", write_article_3()))
+slug3 = "iran-oil-exports-six-year-low-us-blockade-hormuz-india-energy-crisis-20260604"
 
-    print("\n" + "="*60)
-    print("SUMMARY")
-    print("="*60)
-    for name, success in results:
-        status = "✓ Published" if success else "✗ Failed"
-        print(f"  {status}: {name}")
-    
-    published = sum(1 for _, s in results if s)
-    print(f"\n📊 {published}/{len(results)} articles published")
+img3_url, img3_attr = source_image(
+    slug3,
+    person_name=None,
+    topic_queries=["Strait of Hormuz oil tanker", "Iran oil tanker Persian Gulf", "oil tanker shipping"],
+    pexels_queries=["oil tanker ship ocean", "crude oil refinery industrial"]
+)
+
+body3 = """Iran's crude oil and condensate exports collapsed to their lowest level in at least six years in May, averaging just 209,000 barrels per day — down from 1.9 million barrels per day in March — as the US naval blockade and the effective closure of the Strait of Hormuz strangled what remains of Tehran's petroleum lifeline.
+
+The figures, published by shipping analytics firm Vortexa and confirmed by separate data from Kpler, represent a steeper decline than most market analysts anticipated. Iran's exports are now below the levels reached during the first Trump administration's "maximum pressure" campaign in late 2019, when sanctions alone — without a shooting war — had squeezed shipments to roughly 300,000 barrels per day.
+
+## The Blockade Is Working. The Strait Is Not.
+
+The US began enforcing a naval blockade of Iranian ports on April 13, targeting vessels entering or departing Iranian waters. The result has been a near-total shutdown of Iran's ability to move oil by sea. But the blockade is only part of the story.
+
+The Strait of Hormuz, through which roughly a fifth of the world's oil and liquefied natural gas supplies normally flow, remains largely closed more than three months after the US and Israel launched strikes on Iran at the end of February. The closure has cut off not just Iranian exports but shipments from Saudi Arabia, Kuwait, Iraq and the UAE — producers that collectively account for a far larger share of global supply than Iran alone.
+
+"The key drivers appear to be the disruption around the Strait of Hormuz, the US naval blockade targeting vessels entering or departing Iranian ports, and the broader unwillingness of owners, operators, insurers and counterparties to expose vessels and crews to the current security environment," said Vortexa analyst Claire Jungman.
+
+## India's Energy Bind Tightens
+
+For India, which imports over 80 percent of its crude oil, the compounding effects of the Hormuz closure and the Iranian blockade have created what policymakers in New Delhi are treating as a slow-moving energy emergency.
+
+India had largely stopped buying Iranian crude after previous rounds of US sanctions, but the broader disruption to Gulf shipping has constrained supplies from Iraq, Saudi Arabia and the UAE — countries that collectively account for roughly 60 percent of India's oil imports. With Brent crude hovering near $96 a barrel and the rupee under sustained pressure, the cost of India's import bill has ballooned.
+
+The Reserve Bank of India's monetary policy decision on Friday will be shaped in part by the energy shock. Inflation driven by higher fuel and transport costs has complicated the central bank's calculus, with most economists expecting the RBI to hold rates steady while signalling readiness to tighten if price pressures intensify. The rupee has weakened more than 5 percent since the war began.
+
+Prime Minister Narendra Modi's ongoing five-nation diplomatic tour — which has already taken him to the UAE and will include Saudi Arabia — is explicitly designed to secure alternative energy supply arrangements. The strategic petroleum reserves agreement signed with Abu Dhabi's ADNOC during Modi's stopover, and the framework for long-term LNG supply to Hindustan Petroleum, are direct responses to the Hormuz disruption.
+
+## Floating Storage and Stranded Barrels
+
+Of the roughly 147 million barrels of Iranian crude and condensate currently sitting in floating storage on tankers, approximately 67 million barrels are stranded inside the Gulf and the Gulf of Oman, unable to move through the blocked strait. The total volume of floating storage has fallen from a peak of 190 million barrels in late April as some tankers have discharged cargo in China, but the pace of drawdown is slow.
+
+China remains Iran's primary customer, though even Chinese imports of Iranian crude fell to 1.1 million barrels per day in May — the lowest since January 2025 — as independent refiners in Shandong province cut processing rates in response to weak domestic fuel demand and elevated costs.
+
+The pricing has shifted accordingly. Iranian Light crude is now being offered at a discount of 50 cents to $1 per barrel to ICE Brent for delivery to Shandong, down from premiums of $1 to $2 in recent months. When the only buyer left is offering less, the economics of sanctions enforcement start to bite in ways that export statistics alone do not capture.
+
+## No Clear Path to Recovery
+
+The prospect of reopening the Strait of Hormuz remains the central variable in global energy markets. Iran has made a ceasefire in Lebanon and the lifting of the US blockade preconditions for any deal to restore normal shipping. Hezbollah's rejection on Thursday of a US-brokered Lebanon ceasefire — and Israel's declaration that it would not withdraw troops — pushed that prospect further away.
+
+Even if a political breakthrough were to materialise, the recovery of normal shipping through Hormuz would take months. Producers have shut in roughly 11 million barrels per day of capacity during the conflict and will not restart without confidence that exports can flow reliably. Shipowners remain reluctant to send empty tankers into the Gulf, and insurance premiums continue to reflect wartime risk.
+
+For India, the arithmetic is unforgiving. Every week the strait remains closed costs the economy billions in higher energy imports, feeds inflation and weakens the rupee. The diplomatic scramble for alternative supplies is rational but insufficient to replace the volumes that normally transit Hormuz. India's energy security, for all the strategic petroleum reserve agreements and LNG contracts being signed on Modi's tour, ultimately depends on a resolution that no one in New Delhi can control."""
+
+articles.append({
+    "headline": "Iran's Oil Exports Have Collapsed to a Six-Year Low. India Cannot Afford to Wait for a Recovery.",
+    "subheadline": "Shipping data shows Iranian crude shipments fell to 209,000 barrels per day in May, down 89 percent from March, as the US blockade and Hormuz closure strangle Gulf energy flows.",
+    "slug": slug3,
+    "body": body3,
+    "category": "news",
+    "vertical": "news",
+    "status": "published",
+    "published_at": now_iso,
+    "sources": json.dumps(["Reuters", "Vortexa", "Kpler", "The Hindu BusinessLine"]),
+    "image_url": img3_url,
+    "image_caption": "An oil tanker near the Strait of Hormuz, where shipping remains severely disrupted by the US-Iran conflict",
+    "image_attribution": img3_attr or "Wikimedia Commons",
+    "is_editorial": False
+})
+
+
+# ─── Publish all articles ───
+print("\n" + "="*60)
+print("PUBLISHING ARTICLES")
+print("="*60)
+
+success_count = 0
+for i, art in enumerate(articles):
+    print(f"\n--- Article {i+1}: {art['slug']} ---")
+    if not art.get("image_url"):
+        print("  ⚠ No image — publishing without hero image")
+        art.pop("image_url", None)
+        art.pop("image_caption", None)
+        art.pop("image_attribution", None)
+
+    art_id = insert_article(art)
+    if art_id:
+        success_count += 1
+
+print(f"\n{'='*60}")
+print(f"DONE: {success_count}/{len(articles)} articles published")
+print(f"{'='*60}")
