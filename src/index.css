@@ -164,23 +164,65 @@ html, body { overflow-x: hidden; }
 /* ── react-tweet embed overrides ── */
 .tweet-embed-wrapper .react-tweet-theme {
   --tweet-container-margin: 0 !important;
-  --tweet-body-font-size: 0.938rem;
-  --tweet-body-line-height: 1.25rem;
   --tweet-header-font-size: 0.8125rem;
   --tweet-header-line-height: 1rem;
   --tweet-info-font-size: 0.8125rem;
   --tweet-info-line-height: 1rem;
-  --tweet-actions-font-size: 0.75rem;
-  --tweet-actions-line-height: 0.875rem;
-  --tweet-replies-font-size: 0.75rem;
-  --tweet-replies-line-height: 0.875rem;
-  --tweet-quoted-body-font-size: 0.8125rem;
-  --tweet-quoted-body-line-height: 1rem;
+  --tweet-body-font-size: 0.938rem;
+  --tweet-body-line-height: 1.25rem;
 }
-@media (max-width: 480px) {
-  .tweet-embed-wrapper .react-tweet-theme {
-    --tweet-body-font-size: 0.875rem;
-    --tweet-body-line-height: 1.2rem;
-    --tweet-header-font-size: 0.75rem;
-  }
+
+/* Collapsed: hide body text, actions, replies */
+.tweet-collapsed .react-tweet-theme article > p {
+  display: none;
+}
+.tweet-collapsed .react-tweet-theme article > div:last-child,
+.tweet-collapsed .react-tweet-theme article > div:nth-last-child(2) {
+  display: none;
+}
+
+/* Expanded: show everything */
+.tweet-expanded .react-tweet-theme article > p {
+  display: block;
+}
+
+/* Toggle bar below the tweet card */
+.tweet-toggle-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  border: 1px solid rgb(207, 217, 222);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  background: #f7f9f9;
+}
+.tweet-toggle-btn {
+  background: none;
+  border: none;
+  color: rgb(83, 100, 113);
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 4px 0;
+  font-family: inherit;
+}
+.tweet-toggle-btn:hover {
+  color: rgb(29, 155, 240);
+}
+.tweet-view-x-link {
+  color: rgb(29, 155, 240);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+.tweet-view-x-link:hover {
+  text-decoration: underline;
+}
+
+/* Round only top corners on the card when toggle bar is present */
+.tweet-embed-wrapper .react-tweet-theme > div {
+  border-radius: 12px 12px 0 0 !important;
+  border-bottom: none !important;
 }

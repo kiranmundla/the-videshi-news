@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect } from "react";
 import { Tweet } from "react-tweet";
 import "react-tweet/theme.css";
 
@@ -47,10 +48,47 @@ function TwitterEmbed({ url, caption }: { url: string; caption?: string }) {
   const tweetId = extractTweetId(url);
   if (!tweetId) return null;
 
+  const [expanded, setExpanded] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  // After mount, add a "View on 𝕏" link at the bottom if not already present
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+    // Observe for when react-tweet finishes rendering
+    const observer = new MutationObserver(() => {
+      const article = wrapperRef.current?.querySelector("article");
+      if (article && !wrapperRef.current?.querySelector(".tweet-view-on-x")) {
+        observer.disconnect();
+      }
+    });
+    observer.observe(wrapperRef.current, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <figure className="my-6 flex flex-col items-center tweet-embed-wrapper">
-      <div className="w-full max-w-[550px]" data-theme="light">
+    <figure className="my-6 flex flex-col items-center">
+      <div
+        ref={wrapperRef}
+        className={`tweet-embed-wrapper w-full max-w-[550px] ${expanded ? "tweet-expanded" : "tweet-collapsed"}`}
+        data-theme="light"
+      >
         <Tweet id={tweetId} />
+        <div className="tweet-toggle-bar">
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="tweet-toggle-btn"
+          >
+            {expanded ? "Hide text ▲" : "Show text ▼"}
+          </button>
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="tweet-view-x-link"
+          >
+            View on 𝕏 →
+          </a>
+        </div>
       </div>
       {caption && (
         <figcaption className="mt-2 text-sm text-muted-foreground text-center">
