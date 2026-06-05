@@ -1,53 +1,42 @@
 #!/usr/bin/env python3
-"""
-Sports writer — 2026-06-05 batch
-Articles:
-1. Indian Boxing World Rankings — Minakshi Hooda & Jaismine Lamboria at World No. 1
-2. World Yogasana Championship 2026 — Modi inaugurates first-ever event in Ahmedabad
-"""
+"""Sports writer for The Videshi - June 5, 2026 batch"""
 
-import os, sys, json, uuid, requests, io, subprocess, time
+import json, os, sys, time, re, uuid, urllib.parse
+import requests
 from datetime import datetime, timezone
-from PIL import Image
 
-# ── env ──────────────────────────────────────────────────────────────
+# Load env
 def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if line.startswith("#") or "=" not in line:
-                continue
-            line = line.replace("export ", "")
-            k, v = line.split("=", 1)
-            v = v.strip('"').strip("'")
-            os.environ[k] = v
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, val = line.split('=', 1)
+                    os.environ[key.strip()] = val.strip().strip('"').strip("'")
 
-load_env(os.path.expanduser("~/.env.supabase"))
-load_env(os.path.expanduser("~/workspace/.env.pexels"))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SB_URL = os.environ["SUPABASE_URL"]
-SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
-UA = "TheVideshi/1.0 (thevideshi.com)"
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-HEADERS_SB = {
-    "apikey": SB_KEY,
-    "Authorization": f"Bearer {SB_KEY}",
+HEADERS = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation"
 }
 
-# ── image helpers ────────────────────────────────────────────────────
+# Image sourcing functions
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": UA},
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
             timeout=10
         )
         if r.status_code == 200:
@@ -63,22 +52,22 @@ def fetch_wikipedia_person_image(person_name):
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
+    params = {
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": search_query,
+        "gsrnamespace": "6",
+        "gsrlimit": str(limit),
+        "prop": "imageinfo",
+        "iiprop": "url|size|mime|extmetadata",
+        "iiurlwidth": "1200",
+        "format": "json"
+    }
     try:
-        params = {
-            "action": "query",
-            "generator": "search",
-            "gsrsearch": search_query,
-            "gsrnamespace": "6",
-            "gsrlimit": str(limit),
-            "prop": "imageinfo",
-            "iiprop": "url|size|mime|extmetadata",
-            "iiurlwidth": "1200",
-            "format": "json"
-        }
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
             params=params,
-            headers={"User-Agent": UA},
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
             timeout=15
         )
         if r.status_code == 200:
@@ -101,383 +90,312 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
                     "mime": mime
                 })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Commons error for '{search_query}': {e}")
+        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
     return []
 
 
 def fetch_pexels_image(query):
-    """Search Pexels using curl (urllib gets 403)."""
+    """Search Pexels for a relevant image. Returns URL or None."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
     try:
-        import urllib.parse
-        url = f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3"
-        result = subprocess.run(
-            ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}", url],
-            capture_output=True, text=True, timeout=15
+        r = requests.get(
+            "https://api.pexels.com/v1/search",
+            params={"query": query, "per_page": 5, "orientation": "landscape"},
+            headers={"Authorization": PEXELS_KEY},
+            timeout=10
         )
-        data = json.loads(result.stdout)
-        photos = data.get("photos", [])
-        if photos:
-            src = photos[0]["src"]["large2x"]
-            print(f"  ✓ Pexels image found for '{query}': {src[:80]}...")
-            return src
+        if r.status_code == 200:
+            photos = r.json().get("photos", [])
+            if photos:
+                url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                return url
     except Exception as e:
         print(f"  ⚠ Pexels error for '{query}': {e}")
     return None
 
 
-def compress_image(img_bytes, max_width=1200, quality=80):
-    """Resize and compress image. Returns JPEG bytes."""
-    img = Image.open(io.BytesIO(img_bytes))
-    if img.mode in ('RGBA', 'P', 'LA'):
-        img = img.convert('RGB')
-    if img.width > max_width:
-        ratio = max_width / img.width
-        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-    buf = io.BytesIO()
-    img.save(buf, format='JPEG', quality=quality, optimize=True)
-    return buf.getvalue()
-
-
-def download_image(url):
-    """Download image bytes from URL."""
+def validate_image(url):
+    """Verify image URL returns HTTP 200 with image content > 5KB."""
     try:
-        r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
-        if r.status_code == 200 and r.headers.get("Content-Type", "").startswith("image"):
-            return r.content
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
+            print(f"  ✓ Image validated: {cl} bytes, {ct}")
+            return True
+        # Try GET if HEAD doesn't give content-length
+        if r.status_code == 200 and "image" in ct and cl == 0:
+            r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, stream=True)
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
+                print(f"  ✓ Image validated via GET: >5KB")
+                return True
+        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
-        print(f"  ⚠ Download error: {e}")
-    return None
+        print(f"  ✗ Image validation error: {e}")
+    return False
 
 
-def upload_to_supabase(img_bytes, filename):
-    """Upload image to Supabase storage bucket 'article-images'. Returns public URL."""
-    bucket = "article-images"
-    upload_url = f"{SB_URL}/storage/v1/object/{bucket}/{filename}"
-    headers = {
-        "Authorization": f"Bearer {SB_KEY}",
-        "Content-Type": "image/jpeg",
-        "x-upsert": "true"
-    }
-    r = requests.post(upload_url, data=img_bytes, headers=headers, timeout=30)
-    if r.status_code in (200, 201):
-        public_url = f"{SB_URL}/storage/v1/object/public/{bucket}/{filename}"
-        print(f"  ✓ Uploaded to Supabase: {filename} ({len(img_bytes)} bytes)")
-        return public_url
-    else:
-        print(f"  ⚠ Upload failed ({r.status_code}): {r.text[:200]}")
-        return None
-
-
-def source_image(slug, person_name=None, wiki_search=None, pexels_query=None):
-    """Multi-source image pipeline. Returns (url, attribution) or (None, None)."""
-    candidates = []
-
-    # Source 1: Wikipedia person image
-    if person_name:
-        wiki_img = fetch_wikipedia_person_image(person_name)
-        if wiki_img:
-            candidates.append({"url": wiki_img, "source": "wikipedia", "relevance": "high"})
-
-    # Source 2: Wikimedia Commons
-    if wiki_search:
-        searches = wiki_search if isinstance(wiki_search, list) else [wiki_search]
-        for q in searches:
-            commons = fetch_wikimedia_commons_images(q)
-            for r in commons[:2]:
-                candidates.append({"url": r["url"], "source": "wikimedia_commons", "relevance": "medium"})
-            if candidates:
-                break
-
-    # Source 3: Pexels
-    if pexels_query:
-        pex = fetch_pexels_image(pexels_query)
-        if pex:
-            candidates.append({"url": pex, "source": "pexels", "relevance": "low"})
-
-    # Pick best and upload
-    for c in candidates:
-        raw = download_image(c["url"])
-        if raw and len(raw) > 5000:
-            compressed = compress_image(raw)
-            if len(compressed) > 10000:
-                filename = f"{slug}.jpg"
-                pub_url = upload_to_supabase(compressed, filename)
-                if pub_url:
-                    attr = "Wikimedia Commons" if c["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
-                    return pub_url, attr
-
-    print(f"  ⚠ No suitable image found for {slug}")
-    return None, None
-
-
-# ── topic + article insertion ─────────────────────────────────────────
-def create_topic(title, category):
-    """Create a topic in p2_topics. Returns topic UUID."""
-    cat_to_vertical = {
-        "sports": "sports", "news": "politics", "entertainment": "entertainment",
-        "technology": "tech", "markets-finance": "economy", "travel": "travel",
-        "food": "food", "nri-world": "immigration"
-    }
-    topic = {
-        "canonical_title": title,
-        "vertical": cat_to_vertical.get(category, "sports"),
-        "urgency": "daily",
-        "score_total": 70,
-        "score_diaspora": 70,
-        "score_significance": 70,
-        "score_recency": 80,
-        "score_source_avail": 80,
-        "signal_count": 1,
+def publish_article(article):
+    """Insert article into Supabase p2_articles table."""
+    payload = {
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "slug": article["slug"],
+        "body": article["body"],
+        "category": "sports",
+        "vertical": "sports",
         "status": "published",
-        "keywords": [],
-        "category": category
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": article.get("image_url", ""),
+        "image_caption": article.get("image_caption", ""),
+        "image_attribution": article.get("image_attribution", ""),
+        "sources": json.dumps(article.get("sources", [])),
+        "is_editorial": False
     }
-    url = f"{SB_URL}/rest/v1/p2_topics"
-    r = requests.post(url, json=topic, headers=HEADERS_SB, timeout=30)
-    if r.status_code in (200, 201):
-        data = r.json()
-        tid = data[0]["id"] if isinstance(data, list) else data.get("id", "")
-        print(f"  ✓ Topic created: {tid}")
-        return tid
-    else:
-        print(f"  ⚠ Topic creation failed ({r.status_code}): {r.text[:200]}")
-        return None
-
-
-def insert_article(article):
-    """Insert article into p2_articles."""
-    url = f"{SB_URL}/rest/v1/p2_articles"
-    r = requests.post(url, json=article, headers=HEADERS_SB, timeout=30)
-    if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data.get("id", "?")
-        print(f"  ✓ Inserted: {article['headline'][:60]}... (id={art_id})")
-        return art_id
-    else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
-        return None
-
-
-# ──────────────────────────────────────────────────────────────────────
-# ARTICLE 1: Indian Boxing World Rankings
-# ──────────────────────────────────────────────────────────────────────
-def write_boxing_article():
-    print("\n═══ Article 1: Indian Boxing World Rankings ═══")
-
-    slug = "india-boxing-world-rankings-minakshi-jaismine-world-no-1-asian-games-2026-nri"
-
-    # Image sourcing
-    print("  Sourcing image...")
-    img_url, img_attr = source_image(
-        slug,
-        person_name="Jaismine Lamboria",
-        wiki_search=["Indian women boxing championship", "India boxing Asian Games", "boxing ring India women"],
-        pexels_query="boxing ring women athlete competition"
+    
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=payload
     )
+    if r.status_code in (200, 201):
+        result = r.json()
+        aid = result[0]["id"] if isinstance(result, list) and result else "unknown"
+        print(f"  ✓ Published: '{article['headline']}' (id: {aid})")
+        return True
+    else:
+        print(f"  ✗ Failed to publish: {r.status_code} — {r.text[:300]}")
+        return False
 
-    headline = "Two World No. 1 Rankings. Seventeen Top-10 Finishes Across Twenty Weight Classes. Indian Boxing Has Never Been This Deep."
 
-    subheadline = "Minakshi Hooda and Jaismine Lamboria both hold the top spot in their divisions. India now features in the top 10 of nine of ten women's and eight of ten men's weight categories."
+# ============================================================
+# ARTICLE 1: BCCI Five-Year Cooling-Off Period
+# ============================================================
+def write_article_1():
+    print("\n=== Article 1: BCCI Five-Year Cooling-Off Period ===")
+    
+    # Image: Vijay Shankar from Wikipedia (triggered the story)
+    print("Sourcing image...")
+    image_url = fetch_wikipedia_person_image("Vijay Shankar (cricketer)")
+    if not image_url:
+        image_url = fetch_wikipedia_person_image("Vijay Shankar cricketer")
+    
+    image_caption = "Vijay Shankar, whose retirement and signing with Lanka Premier League's Kandy Royals triggered the BCCI's cooling-off discussion"
+    image_attribution = "Wikimedia Commons"
+    
+    # Try Wikimedia Commons if Wikipedia fails
+    if not image_url:
+        commons = fetch_wikimedia_commons_images("Vijay Shankar cricketer India")
+        if commons:
+            image_url = commons[0]["url"]
+    
+    # Pexels fallback: BCCI cricket board
+    if not image_url or not validate_image(image_url):
+        print("  Trying BCCI/cricket fallback...")
+        commons2 = fetch_wikimedia_commons_images("BCCI cricket India board")
+        if commons2:
+            image_url = commons2[0]["url"]
+            image_caption = "The BCCI headquarters in Mumbai, where the Apex Council met to discuss the proposed cooling-off policy"
+        else:
+            image_url = fetch_pexels_image("cricket stadium India")
+            image_caption = "A cricket stadium in India"
+            image_attribution = "Pexels"
+    
+    if image_url and not validate_image(image_url):
+        print("  Image validation failed, trying Pexels...")
+        image_url = fetch_pexels_image("cricket bat ball")
+        image_caption = "The BCCI is proposing new rules to discourage early retirement from Indian cricket"
+        image_attribution = "Pexels"
+    
+    body = """The Board of Control for Cricket in India is considering a five-year cooling-off period for cricketers who retire from domestic or international cricket and then seek a return. The proposal, discussed at an online Apex Council meeting on Thursday, is the board's most direct response yet to a growing trend: Indian players retiring early to become eligible for overseas T20 franchise leagues.
 
-    body = """For years, Indian boxing lived and died by the fortune of one or two individuals at a time. Mary Kom carried the sport alone for the better part of a decade. Vijender Singh's bronze in Beijing opened a door. Lovlina Borgohain's medal in Tokyo confirmed the trend was real.
+"The idea is to send a message to the players to be sure of their decision," a BCCI official told Hindustan Times. "Modalities will be worked out before rules are framed, looking at all parameters."
 
-But the latest World Boxing Rankings, released on Thursday, tell a different story entirely. This is no longer a one-name sport. India now has two women ranked World No. 1, top-10 boxers in nine of ten women's weight categories, and men in eight of ten divisions. The depth is unprecedented.
+The BCCI has authorised its president and secretary to finalise the policy before sending it back to the Apex Council for formal approval.
 
-## The Two at the Top
+## What Triggered the Proposal
 
-Minakshi Hooda retained her World No. 1 ranking in the women's 48kg category, a position she has held since winning gold at the Asian Boxing Championships in Mongolia in March. At 48kg, the lightest Olympic weight class, she has become a fixture at the top of the rankings through consistent performances across World Boxing Cup events over the past two years.
+The immediate trigger is Vijay Shankar. The 35-year-old all-rounder, who represented India in the 2019 World Cup and played 12 internationals, recently announced his retirement from domestic cricket and the Indian Premier League. Days later, he signed with the Kandy Royals in the Lanka Premier League. He has indicated interest in other overseas competitions as well, including the Bangladesh Premier League, Canada's Global T20, and Major League Cricket in the United States.
 
-Jaismine Lamboria climbed to No. 1 in the women's 57kg division, overtaking Poland's Julia Szeremeta following her silver medal at the Asian Championships. Jaismine, who made her mark at the 2022 Commonwealth Games in Birmingham, has steadily risen through the rankings and now leads a weight class that has historically been dominated by boxers from Kazakhstan, China, and Eastern Europe.
+Shankar went unsold in the IPL 2026 auction. His retirement note was gracious — "Cricket is my life. I started playing when I was 10, and 25 years later, I am grateful and blessed to have played at every level, and to the highest level." But the BCCI sees his decision as part of a larger pattern it wants to discourage.
 
-The rankings are based on results from major international competitions held between July 2024 and May 2026, and they will play a significant role in determining seedings for the 2026 Asian Games in Aichi-Nagoya and the upcoming Commonwealth Games.
+## The Exodus That Worries the BCCI
 
-## Depth, Not Just Headlines
+Over the past several years, a steady stream of Indian cricketers has retired from domestic cricket specifically to play in overseas franchise leagues. BCCI regulations bar active Indian cricketers — at any level — from participating in foreign leagues without board clearance, which is almost never granted.
 
-What makes these rankings remarkable is not the two No. 1 spots alone but the breadth behind them.
+The workaround is simple: retire from Indian cricket, and you are no longer bound by BCCI rules.
 
-Preeti Pawar climbed to No. 3 in the 54kg category. Priya Ghanghas, the Asian champion, achieved the same ranking at 60kg. Three Indian women — Arundhati Choudhary (70kg), Pooja Rani (80kg), and Nupur (+80kg) — are all ranked World No. 2 in their respective divisions, a sweep across the heavier weight classes that would have been unthinkable five years ago.
+Dinesh Karthik retired from all forms of Indian cricket in 2024 and moved to commentary and overseas leagues. Yuvraj Singh, after his international career ended, played in the Global T20 Canada and other exhibitions. Unmukt Chand, the former India U-19 World Cup-winning captain, retired from Indian cricket entirely to play in the United States, eventually representing the USA in international cricket. Pravin Tambe, the leg-spinner who made his IPL debut at 41, retired from Indian cricket to play in the Caribbean Premier League. Irfan Pathan played in the Lanka Premier League after retirement.
 
-Established stars Nikhat Zareen (51kg) and Lovlina Borgohain (75kg) retained their places among the world's elite. Together with the newer names, they form a roster where virtually every weight class has a contender.
+For NRI fans who follow cricket across multiple leagues and time zones, these players have been familiar faces in tournaments from Durban to Dallas. But for the BCCI, the trend represents a leakage of talent and, more critically, a diversion of the commercial surplus generated by the IPL into rival ecosystems.
 
-The men's contingent mirrors that consistency. Sachin Siwach and Narender broke into the top five following a sustained run of international success. Vishvanath Suresh, the Asian champion at 50kg, surged into the top three. Hitesh Gulia retained his No. 6 ranking at 70kg. Abhinash Jamwal sits eighth at 65kg. Akash (75kg) and Lokesh (85kg) also entered the top 10.
+## The Broader Context: An IPL Ecosystem Under Pressure
+
+The BCCI's concern is not purely about player loyalty. Many of the T20 leagues that attract retired Indian cricketers — the SA20 in South Africa, the ILT20 in the UAE, the Lanka Premier League, Major League Cricket — are owned or funded by the same Indian investors who own IPL franchises.
+
+"The surplus from the IPL is being diverted towards other leagues, thus swelling the coffers of other boards," a BCCI source told Cricbuzz during a previous discussion on the same issue in 2023. That concern has only intensified as more leagues have launched and more Indian players have found their way there.
+
+A five-year cooling-off period would effectively end the retire-and-play-abroad pipeline for most cricketers. A player who retires at 32 would not be eligible to return to Indian cricket until 37, by which point a competitive comeback is nearly impossible for most athletes.
 
 ## What It Means for the Diaspora
 
-For NRI fans, the implications extend beyond rankings. The 2026 Asian Games in Aichi-Nagoya, Japan, will use these standings to determine seedings. India entering with two No. 1 seeds, multiple top-three placements, and at least one contender in almost every division means a medal haul that could rival or exceed the Tokyo Olympics cycle.
+For NRIs in the US, UK, Canada, and the Gulf, the presence of Indian cricketers in local or regional leagues has been a significant draw. Unmukt Chand playing for the Silicon Valley Strikers in Major League Cricket, or Irfan Pathan turning up in Colombo, adds a layer of connection for fans who may not travel to India for domestic cricket but can watch these leagues locally or on streaming platforms.
 
-Ajay Singh, the president of the Boxing Federation of India, said the rankings reflected the investments made across grassroots development, high-performance training, and talent identification systems. "It is encouraging to see that today, almost every weight category features a strong Indian presence at the global level, firmly establishing India as one of the leading boxing nations in the world," he said.
+If the cooling-off policy is implemented, the flow of Indian talent into these leagues could slow dramatically. Players who might have retired at 30 or 31 to chase opportunities abroad may instead stay in the Indian system longer, knowing that a return would require a five-year wait.
 
-## The Pipeline Is the Point
-
-The real shift is structural. India's boxing infrastructure now produces contenders across weight classes, genders, and age groups rather than relying on the occasional prodigy to carry the sport. The BFI's systematic development of training academies across Haryana, Assam, Manipur, and other states has created a pipeline that feeds directly into international competition.
-
-For a sport that once celebrated a single medal as a generational achievement, having seventeen top-10 boxers across twenty weight classes is a statement of arrival. The next test comes at the Asian Games in September. The rankings suggest India will arrive not hoping for medals, but expecting them.
-
-*Sources: Boxing Federation of India, Olympics.com, IANS*"""
-
-    image_caption = "Jaismine Lamboria during an international boxing competition" if img_url else None
-
-    # Create topic first
-    topic_id = create_topic("Indian Boxing World Rankings: Minakshi and Jaismine at No. 1", "sports")
-    if not topic_id:
-        print("  ✗ Failed to create topic, skipping article")
-        return None
+The BCCI has not set a timeline for finalising the rules, but the authorisation given to its office-bearers suggests the policy could be ready before the next domestic season begins."""
 
     article = {
-        "headline": headline,
-        "subheadline": subheadline,
+        "headline": "Retire From Indian Cricket and You Wait Five Years to Come Back. The BCCI Wants to Make That the Rule.",
+        "subheadline": "The board's Apex Council discussed a cooling-off period for players who leave domestic cricket to chase overseas franchise leagues. Vijay Shankar's Lanka Premier League move is the latest trigger.",
+        "slug": "bcci-five-year-cooling-off-period-retired-players-overseas-leagues-vijay-shankar-lpl-nri",
         "body": body,
-        "slug": slug,
-        "category": "sports",
-        "vertical": "sports",
-        "topic_id": topic_id,
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "is_editorial": False,
-        "diaspora_angle": "For NRI fans tracking India's Olympic medal prospects, the rankings signal unprecedented depth across weight classes. With Asian Games seedings in Aichi-Nagoya determined by these standings, Indian boxers enter with two No. 1 seeds and multiple top-three placements.",
-        "tags": ["boxing", "world rankings", "Minakshi Hooda", "Jaismine Lamboria", "Asian Games 2026", "Indian boxing", "Olympics"],
-        "urgency": "daily",
-        "sources": [
-            {"name": "Boxing Federation of India", "url": "https://bfi.org.in"},
-            {"name": "Olympics.com", "url": "https://olympics.com/en/sports/boxing"},
-            {"name": "IANS", "url": "https://ianslive.in"}
-        ],
-        "word_count": len(body.split()),
-        "score_total": 75,
-        "image_url": img_url,
+        "image_url": image_url or "",
         "image_caption": image_caption,
-        "image_attribution": img_attr,
+        "image_attribution": image_attribution,
+        "sources": [
+            {"name": "Cricbuzz", "url": "https://www.cricbuzz.com"},
+            {"name": "Hindustan Times", "url": "https://www.hindustantimes.com"},
+            {"name": "Cricket Addictor", "url": "https://cricketaddictor.com"},
+            {"name": "Crex", "url": "https://crex.com"}
+        ]
     }
+    
+    wc = len(body.split())
+    print(f"  Word count: {wc}")
+    if wc < 400:
+        print(f"  ✗ Article too short ({wc} words), skipping")
+        return False
+    
+    return publish_article(article)
 
-    # Remove None values
-    article = {k: v for k, v in article.items() if v is not None}
 
-    return insert_article(article)
+# ============================================================
+# ARTICLE 2: Afghanistan Without Rashid Khan for India Test
+# ============================================================
+def write_article_2():
+    print("\n=== Article 2: Afghanistan Without Rashid Khan for India Test ===")
+    
+    # Image: Rashid Khan from Wikipedia
+    print("Sourcing image...")
+    image_url = fetch_wikipedia_person_image("Rashid Khan (cricketer)")
+    if not image_url:
+        image_url = fetch_wikipedia_person_image("Rashid Khan cricketer")
+    
+    image_caption = "Rashid Khan will miss Afghanistan's Test against India due to workload management"
+    image_attribution = "Wikimedia Commons"
+    
+    # Try Wikimedia Commons for Rashid Khan
+    if not image_url:
+        commons = fetch_wikimedia_commons_images("Rashid Khan Afghanistan cricket")
+        if commons:
+            image_url = commons[0]["url"]
+    
+    if image_url and not validate_image(image_url):
+        print("  Image validation failed, trying alternatives...")
+        # Try Hashmatullah Shahidi (Afghanistan captain)
+        image_url = fetch_wikipedia_person_image("Hashmatullah Shahidi")
+        if image_url and validate_image(image_url):
+            image_caption = "Hashmatullah Shahidi will captain Afghanistan in the one-off Test against India at Mohali"
+        else:
+            commons2 = fetch_wikimedia_commons_images("Afghanistan cricket team")
+            if commons2:
+                image_url = commons2[0]["url"]
+                image_caption = "The Afghanistan cricket team faces India in only their second Test encounter"
+                image_attribution = "Wikimedia Commons"
+            else:
+                image_url = fetch_pexels_image("cricket test match")
+                image_caption = "Afghanistan will play their second-ever Test against India starting June 6 at Mohali"
+                image_attribution = "Pexels"
+    
+    body = """Rashid Khan will not play the one-off Test against India starting Saturday at the Maharaja Yadavindra Singh International Cricket Stadium in Mohali. Afghanistan's most recognisable cricketer has been advised to limit his red-ball workload to protect his body for the T20 franchise circuit and ODI commitments that define his year.
 
+It is a notable absence. Afghanistan have played India in Tests exactly once before — in Bengaluru in 2018 — and lost by an innings in two days. Eight years later, they return without their best player.
 
-# ──────────────────────────────────────────────────────────────────────
-# ARTICLE 2: World Yogasana Championship 2026
-# ──────────────────────────────────────────────────────────────────────
-def write_yogasana_article():
-    print("\n═══ Article 2: World Yogasana Championship 2026 ═══")
+## Who Leads Afghanistan in Mohali
 
-    slug = "world-yogasana-championship-2026-ahmedabad-modi-60-countries-olympic-pathway-nri"
+Hashmatullah Shahidi, the 29-year-old left-hander and Afghanistan's Test captain, will lead a squad that mixes experience with new faces. Rahmanullah Gurbaz, the explosive wicketkeeper-batter who has become one of the most sought-after players on the T20 circuit, is in the squad. So is the experienced Rahmat Shah and all-rounder Azmatullah Omarzai, whose ability to bowl fast and bat in the middle order makes him Afghanistan's most complete player in any format.
 
-    # Image sourcing
-    print("  Sourcing image...")
-    img_url, img_attr = source_image(
-        slug,
-        person_name=None,
-        wiki_search=["Yogasana competition India", "yoga championship India international", "yoga sport competition"],
-        pexels_query="yoga competition athletes stretching performance"
-    )
+Three uncapped players have been selected: fast bowler Bilal Sami, leg-spinner Nangyal Kharoti, and middle-order batter Rahmanullah Zadran. Qais Ahmad, the young leg-spinner, also returns to the Test setup.
 
-    headline = "Sixty Countries. Four Hundred Athletes. India Just Turned Yoga Into a Competitive Sport With an Olympic Ambition."
+Without Rashid, Afghanistan's spin attack will lean on the unorthodox left-arm spin of Sharafuddin Ashraf and whatever Kharoti and Qais Ahmad can produce on a Mohali pitch that has historically assisted both pace and spin.
 
-    subheadline = "The first World Yogasana Championship opened in Ahmedabad on Thursday, with electronic scoring, six age categories, and a clear pitch for Olympic recognition."
+**Afghanistan Test squad:** Hashmatullah Shahidi (c), Abdul Malik, Sediqullah Atal, Rahmat Shah, Rahmanullah Gurbaz, Rahmanullah Zadran, Afsar Zazai (wk), Ikram Alikhil (wk), Azmatullah Omarzai, Sharafuddin Ashraf, Nangyal Kharoti, Qais Ahmad, Bilal Sami, Zia Ur Rahman Sharifi, Saleem Safi.
 
-    body = """The mat is not typically a place where medals are contested. For millennia, yoga has been understood as a private discipline — breath, posture, stillness. On Thursday, in Ahmedabad, it became something else entirely: a scored, judged, internationally contested competitive sport with more than 400 athletes from over 60 countries, electronic scoring systems, and the explicit backing of the Indian government.
+## India's New-Look Test Side
 
-Prime Minister Narendra Modi virtually inaugurated the first World Yogasana Championship at the Eka Arena, calling it "the beginning of a new phase" for yoga. "Through this championship, yogasana will gain recognition as a competitive sport," he said. "I am confident that in the future, yogasana will secure its place in international sporting events, whether in the Olympics or other multi-sport competitions."
+India's squad carries its own storylines. Shubman Gill captains the Test side with KL Rahul as his vice-captain. Virat Kohli is out, recovering from the hamstring strain he played through in the IPL final. Rishabh Pant is in the squad but no longer the vice-captain, a quiet demotion that followed questions about his shot selection under pressure. Jasprit Bumrah is rested entirely.
 
-## How It Works
+The most anticipated selections are the uncapped spinners. Harsh Dubey, the left-arm orthodox spinner who dismissed Kohli and Gill in IPL 2026, is in line for a Test debut. Manav Suthar, a 22-year-old left-arm spinner from Rajasthan who has torn through domestic cricket with 129 wickets at 25.76 in first-class cricket, is the other debutant candidate. Gurnoor Brar, the left-arm seamer from Punjab, adds a local flavour to a squad playing in his home state.
 
-The championship, running from June 4 to 8, is organised by the International Yogasana Sports Federation under the aegis of the Ministry of Youth Affairs and Sports, the Ministry of Ayush, and the Sports Authority of India. Competitors will perform across two formats — individual events and artistic events — in six age categories ranging from sub-junior (10–14 years) to senior C (45–55 years).
+The big question is whether India will play Kuldeep Yadav alongside Dubey or Suthar, or whether they will opt for two new faces and Washington Sundar as the senior spin option. Ashwin's recent retirement has left a hole in the Test spin department that the BCCI is filling through exposure and opportunity.
 
-For the first time at the global level, an electronic scoring system is being used, a deliberate move to bring transparency and consistency to judging. "This is meant to improve transparency in marking and bring greater consistency and stronger judging standards," officials said. The framework mirrors what other non-traditional sports — rhythmic gymnastics, artistic swimming, breaking — have done to build credibility with the International Olympic Committee.
+**India Test squad:** Shubman Gill (c), Yashasvi Jaiswal, KL Rahul (vc), Sai Sudharsan, Rishabh Pant (wk), Devdutt Padikkal, Nitish Kumar Reddy, Washington Sundar, Kuldeep Yadav, Mohammed Siraj, Prasidh Krishna, Manav Suthar, Gurnoor Brar, Harsh Dubey, Dhruv Jurel (wk).
 
-## India's 122-Member Contingent
+## The Last Time They Met
 
-As the host nation, India has fielded its largest yogasana contingent ever: 122 athletes across all six age categories. The size of the squad reflects years of domestic competition infrastructure that most outsiders are unaware of. National-level yogasana championships have been held in India for over a decade, with state-level qualifiers feeding into national events. The World Championship adds an international tier to a system that already has depth.
+The 2018 Test in Bengaluru was Afghanistan's only previous Test against India, and it was brutal. India scored 474 in their only innings — Ajinkya Rahane made 110, Murali Vijay 105. Afghanistan were bowled out for 109 and 103. The match lasted less than two days. Ravindra Jadeja took seven wickets; Umesh Yadav took four.
 
-Athletes from the United States, Ghana, Kenya, Malaysia, Sri Lanka, Uzbekistan, and dozens of other nations are participating, a signal of how far the practice has spread beyond its South Asian roots. For Indian diaspora communities in the US, UK, and Canada, where yoga studios outnumber cricket clubs, the championship reframes a cultural practice they have long practiced recreationally as something competitive and internationally legitimate.
+Afghanistan cricket has matured significantly since then. The success of players like Rashid Khan, Gurbaz, and Omarzai in global T20 leagues has raised the country's profile and developed individual skills. But Test cricket remains their weakest format. They have played only nine Tests since gaining full-member status, winning three (against Zimbabwe, Ireland, and Bangladesh) and losing the rest.
 
-## The Olympic Question
+## The Diaspora Angle
 
-Modi's reference to the Olympics was not casual. The International Yogasana Sports Federation has been steadily building the case for yogasana's inclusion in the Olympic program, following the pathway that sports like skateboarding, surfing, and breaking used to gain entry in recent Games.
+For NRI fans in North America, the UK, and the Gulf, the match arrives during a packed week of Indian sports. The T20 World Cup 2026 is under way in Sri Lanka, India A are in Dambulla for a tri-series, and the Norway Chess final round is being played simultaneously. The Test starts at 9:30 AM IST on Saturday — Friday evening for fans on the US East Coast, and early afternoon in London.
 
-The requirements are well-defined: an international governing body, standardised rules, anti-doping compliance, a minimum number of participating countries across multiple continents, and competitive events that can be objectively scored. Thursday's championship checked several of those boxes simultaneously — 60-plus countries, electronic scoring, official government support, and a format that can be broadcast and understood by non-practitioners.
-
-Dr Jaideep Arya, general secretary of World Yogasana, called the championship "a defining moment in the evolution of yogasana as a global sport." Whether it reaches the Olympics within one cycle or two, the infrastructure being laid in Ahmedabad this week is designed to make the question "when," not "if."
-
-## Why It Matters Beyond the Mat
-
-For India, the championship serves a dual purpose. Domestically, it validates yogasana as a sporting discipline, opening doors for government funding, institutional recognition, and athlete development pathways that parallel those for cricket, badminton, and athletics.
-
-Internationally, it positions India as the undisputed home of a sport that carries enormous cultural soft power. In a world where countries compete fiercely to own sporting narratives — South Korea with taekwondo, Japan with judo and karate, Brazil with capoeira — India has a plausible claim to do the same with yogasana.
-
-The championship runs through June 8. By the time it ends, the medals will be the least important outcome. The real achievement will be whether 60 countries competing under standardised rules, with electronic scores and international judges, is enough to move the Olympic needle. Modi seems to think so. The athletes on the mat in Ahmedabad are betting their practice on it.
-
-*Sources: Press Trust of India, Ministry of Youth Affairs & Sports, DevDiscourse*"""
-
-    image_caption = "Athletes performing yogasana during a competitive event" if img_url else None
-
-    # Create topic first
-    topic_id = create_topic("World Yogasana Championship 2026 in Ahmedabad", "sports")
-    if not topic_id:
-        print("  ✗ Failed to create topic, skipping article")
-        return None
+The match will be broadcast on Sony Sports Network in India and streamed on various platforms internationally. It is Afghanistan's chance to prove that eight years of growth has closed the gap. Without Rashid Khan, they will need someone unexpected to step up."""
 
     article = {
-        "headline": headline,
-        "subheadline": subheadline,
+        "headline": "Afghanistan Will Play India at Mohali Without Rashid Khan. It Is Their First Test Against India in Eight Years.",
+        "subheadline": "The star leg-spinner has been rested for workload management. Hashmatullah Shahidi leads a squad with three uncapped players into only Afghanistan's second Test against India.",
+        "slug": "afghanistan-india-test-mohali-2026-rashid-khan-absent-shahidi-squad-debut-nri",
         "body": body,
-        "slug": slug,
-        "category": "sports",
-        "vertical": "sports",
-        "topic_id": topic_id,
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "is_editorial": False,
-        "diaspora_angle": "For the Indian diaspora in the US, UK, and Canada — where yoga studios outnumber cricket clubs — the World Yogasana Championship reframes a cultural practice they have long practiced recreationally as an internationally competitive sport with Olympic aspirations.",
-        "tags": ["yogasana", "World Yogasana Championship", "Modi", "Ahmedabad", "Olympics", "competitive yoga", "India sports"],
-        "urgency": "daily",
-        "sources": [
-            {"name": "Press Trust of India", "url": "https://ptinews.com"},
-            {"name": "Ministry of Youth Affairs & Sports", "url": "https://yas.nic.in"},
-            {"name": "DevDiscourse", "url": "https://devdiscourse.com"}
-        ],
-        "word_count": len(body.split()),
-        "score_total": 72,
-        "image_url": img_url,
+        "image_url": image_url or "",
         "image_caption": image_caption,
-        "image_attribution": img_attr,
+        "image_attribution": image_attribution,
+        "sources": [
+            {"name": "Fox Sports Australia", "url": "https://foxsports.com.au"},
+            {"name": "CricTracker", "url": "https://crictracker.com"},
+            {"name": "Sportskeeda", "url": "https://sportskeeda.com"},
+            {"name": "Cricket World", "url": "https://cricketworld.com"}
+        ]
     }
+    
+    wc = len(body.split())
+    print(f"  Word count: {wc}")
+    if wc < 400:
+        print(f"  ✗ Article too short ({wc} words), skipping")
+        return False
+    
+    return publish_article(article)
 
-    article = {k: v for k, v in article.items() if v is not None}
 
-    return insert_article(article)
-
-
-# ──────────────────────────────────────────────────────────────────────
-# MAIN
-# ──────────────────────────────────────────────────────────────────────
+# ============================================================
+# Main
+# ============================================================
 if __name__ == "__main__":
-    print("═══ Videshi Sports Writer — 2026-06-05 ═══")
-    print(f"  Time: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-
-    results = []
-
-    art1 = write_boxing_article()
-    results.append(("Boxing Rankings", art1))
-
-    art2 = write_yogasana_article()
-    results.append(("Yogasana Championship", art2))
-
-    print("\n═══ Summary ═══")
-    for name, art_id in results:
-        status = f"✓ {art_id}" if art_id else "✗ FAILED"
-        print(f"  {name}: {status}")
-
-    failed = sum(1 for _, r in results if r is None)
-    if failed:
-        print(f"\n  ⚠ {failed} article(s) failed!")
+    print(f"Sports Writer - {datetime.now(timezone.utc).isoformat()}")
+    print(f"Supabase URL: {SUPABASE_URL[:30]}..." if SUPABASE_URL else "ERROR: No Supabase URL")
+    print(f"Pexels key: {'set' if PEXELS_KEY else 'NOT SET'}")
+    
+    if not SUPABASE_URL or not SUPABASE_KEY:
+        print("FATAL: Missing Supabase credentials")
         sys.exit(1)
-    else:
-        print(f"\n  ✓ All {len(results)} articles published successfully!")
+    
+    results = []
+    results.append(("BCCI Cooling-Off Period", write_article_1()))
+    results.append(("Afghanistan Without Rashid Khan", write_article_2()))
+    
+    print("\n=== Summary ===")
+    for title, success in results:
+        status = "✓ Published" if success else "✗ Failed"
+        print(f"  {status}: {title}")
+    
+    published = sum(1 for _, s in results if s)
+    print(f"\nTotal: {published}/{len(results)} articles published")
