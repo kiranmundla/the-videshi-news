@@ -1,37 +1,33 @@
 #!/usr/bin/env python3
 """
-News Writer — The Videshi
-Generates 3 articles, sources images, inserts to Supabase.
+Videshi News Writer - June 5, 2026 batch
+Writes 3 news articles with proper image sourcing and inserts into Supabase.
 """
-import json, os, re, time, subprocess, urllib.parse, uuid
+
+import json, os, subprocess, time, re, urllib.parse, sys
 from datetime import datetime, timezone
 
 # Load env
 def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                if line.startswith('export '):
-                    line = line[7:]
-                key, _, val = line.partition('=')
-                val = val.strip('"').strip("'")
-                os.environ[key.strip()] = val
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    k, v = line.split('=', 1)
+                    os.environ[k.strip()] = v.strip()
 
 load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
 
 SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
 SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-import requests
-
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns (url, attribution) or (None, None)."""
+    import requests
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -41,7 +37,10 @@ def fetch_wikipedia_person_image(person_name):
         )
         if r.status_code == 200:
             data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            # Use thumbnail source AS-IS (330px, reliable)
+            img = data.get("thumbnail", {}).get("source")
+            if not img:
+                img = data.get("originalimage", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img, "Wikimedia Commons"
@@ -49,9 +48,9 @@ def fetch_wikipedia_person_image(person_name):
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None, None
 
-
-def fetch_wikimedia_commons_images(search_query, limit=5):
+def fetch_wikimedia_commons(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
+    import requests
     params = {
         "action": "query",
         "generator": "search",
@@ -59,7 +58,7 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         "gsrnamespace": "6",
         "gsrlimit": str(limit),
         "prop": "imageinfo",
-        "iiprop": "url|size|mime|extmetadata",
+        "iiprop": "url|size|mime",
         "iiurlwidth": "1200",
         "format": "json"
     }
@@ -74,339 +73,423 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
             data = r.json()
             pages = data.get("query", {}).get("pages", {})
             results = []
-            for pid, page in pages.items():
-                ii = page.get("imageinfo", [{}])[0]
-                mime = ii.get("mime", "")
-                if not mime.startswith("image/"):
-                    continue
-                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
-                    continue
-                results.append({
-                    "url": ii.get("thumburl") or ii.get("url", ""),
-                    "original_url": ii.get("url", ""),
-                    "title": page.get("title", ""),
-                    "width": ii.get("width", 0),
-                    "height": ii.get("height", 0),
-                    "mime": mime
-                })
+            for page_id, page in pages.items():
+                info = page.get("imageinfo", [{}])[0]
+                url = info.get("thumburl") or info.get("url")
+                mime = info.get("mime", "")
+                width = info.get("thumbwidth") or info.get("width", 0)
+                if url and mime.startswith("image/") and width >= 200:
+                    results.append({
+                        "url": url,
+                        "title": page.get("title", ""),
+                        "width": width,
+                        "mime": mime
+                    })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} results for '{search_query}'")
             return results
     except Exception as e:
         print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
     return []
 
-
 def fetch_pexels_image(query):
-    """Search Pexels for an image. Returns (url, attribution) or (None, None)."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None, None
+    """Fetch relevant image from Pexels using curl."""
     try:
-        # Use curl since urllib gets 403
+        encoded = urllib.parse.quote(query)
         result = subprocess.run(
-            ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-             f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3'],
+            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={encoded}&per_page=5&orientation=landscape",
+             "-H", f"Authorization: {PEXELS_KEY}"],
             capture_output=True, text=True, timeout=15
         )
-        data = json.loads(result.stdout)
-        photos = data.get('photos', [])
-        if photos:
-            photo = photos[0]
-            url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
-            if url:
-                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                return url, "Pexels"
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            if photos:
+                # Pick best photo (largest landscape)
+                best = max(photos, key=lambda p: p.get("width", 0))
+                url = best.get("src", {}).get("large2x") or best.get("src", {}).get("large")
+                if url:
+                    print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                    return url, "Pexels"
     except Exception as e:
         print(f"  ⚠ Pexels error for '{query}': {e}")
     return None, None
 
-
 def validate_image(url):
-    """Verify URL returns a valid image >5KB."""
+    """Validate image URL returns HTTP 200 with image content type and >5KB."""
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-        content_type = r.headers.get('Content-Type', '')
-        content_length = int(r.headers.get('Content-Length', 0))
-        if 'image' in content_type and content_length > 5000:
-            print(f"  ✓ Image validated: {content_length} bytes, {content_type}")
+        result = subprocess.run(
+            ["curl", "-sS", "-I", "-L", "--max-time", "10", url],
+            capture_output=True, text=True, timeout=15
+        )
+        headers = result.stdout.lower()
+        if "200" in headers and "content-type: image/" in headers:
+            # Check content-length
+            for line in headers.split('\n'):
+                if 'content-length:' in line:
+                    size = int(line.split(':')[1].strip())
+                    if size > 5000:
+                        return True
+                    else:
+                        print(f"  ⚠ Image too small: {size} bytes")
+                        return False
+            # No content-length header but 200 OK with image type - accept
             return True
-        elif 'image' in content_type and content_length == 0:
-            # Some servers don't return Content-Length on HEAD; try GET
-            r2 = requests.get(url, timeout=10, stream=True,
-                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                print(f"  ✓ Image validated via GET: {len(chunk)}+ bytes")
-                return True
-        print(f"  ✗ Image validation failed: type={content_type}, size={content_length}")
     except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
+        print(f"  ⚠ Image validation error: {e}")
     return False
-
 
 def insert_article(article):
     """Insert article into Supabase."""
+    import requests
     headers = {
         "apikey": SUPABASE_KEY,
         "Authorization": f"Bearer {SUPABASE_KEY}",
         "Content-Type": "application/json",
         "Prefer": "return=representation"
     }
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=headers,
-        json=article,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            print(f"  ✓ Article inserted: {result[0].get('id', 'unknown')}")
+    try:
+        r = requests.post(
+            f"{SUPABASE_URL}/rest/v1/p2_articles",
+            headers=headers,
+            json=article,
+            timeout=30
+        )
+        if r.status_code in (200, 201):
+            result = r.json()
+            if isinstance(result, list) and result:
+                print(f"  ✓ Inserted: {result[0].get('headline', 'unknown')[:60]}...")
+                return True
+            print(f"  ✓ Inserted article")
             return True
-        print(f"  ✓ Article inserted (no ID returned)")
-        return True
-    else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        else:
+            print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+            return False
+    except Exception as e:
+        print(f"  ✗ Insert error: {e}")
         return False
 
+# ===== ARTICLE 1: Indian-born founders built 96 US unicorns =====
+def write_article_1():
+    print("\n=== Article 1: Indian-Born Founders Built 96 US Unicorns ===")
+    
+    headline = "Indian Immigrants Built 96 Billion-Dollar Startups in America. The Combined Value Exceeds Germany's Stock Market."
+    subheadline = "A new NFAP study finds that 59 percent of US unicorns have at least one immigrant founder. India leads all 76 source countries by a wide margin."
+    slug = "indian-immigrants-96-unicorns-america-nfap-study-5-trillion-valuation-20260605"
+    
+    body = """The next time someone asks what the Indian diaspora has done for America, the answer is now a number: 96.
+
+That is how many privately held US companies valued at a billion dollars or more trace their founding to an Indian-born entrepreneur, according to a new analysis by the National Foundation for American Policy released this week. No other country comes close. Israel is second with 60. The United Kingdom follows with 47. China, once considered the main rival pipeline, has 41.
+
+## The Scale of It
+
+The NFAP study examined all 775 active US unicorn companies as of April 2026. It found that immigrants from 76 countries have founded or co-founded 455 of them — 59 percent of the total. The combined valuation of those 455 companies exceeds five trillion dollars. To put that in perspective, the entire DAX index — Germany's benchmark stock market — is valued at roughly 2.3 trillion dollars.
+
+Indian founders alone account for more than a fifth of all immigrant-founded unicorns. Among the five million Indian-born residents in the United States, roughly one in every 50,000 has gone on to build a billion-dollar company. That ratio — a measure of entrepreneurial density rather than raw population — is striking by any standard.
+
+A parallel analysis by Stanford University's Venture Capital Initiative arrived at a similar conclusion, counting 90 Indian-born unicorn founders across the US startup landscape. The slight difference in methodology only reinforces the underlying finding: India is the single largest external source of high-growth entrepreneurship in the American economy.
+
+## Why It Matters Now
+
+The study lands at a moment of acute tension between two forces shaping the American innovation economy. On one side, the Trump administration has imposed a 100,000-dollar fee on new H-1B petitions, tightened scrutiny of employer-sponsored visas, and proposed legislation that would end the visa lottery system entirely. On the other, the data shows that immigrant founders are not marginal participants in the US economy — they are responsible for the majority of its most valuable private companies.
+
+Each immigrant-founded unicorn employs an average of 833 people, the NFAP found. That translates into roughly 379,000 jobs across all 455 companies. These are not theoretical projections. They are existing positions at companies like Databricks, Figma, and Notion — household names in Silicon Valley that were started by people who came to America on student or work visas.
+
+## The Diaspora Divide
+
+For the Indian diaspora, the NFAP numbers are a source of pride and a point of anxiety in equal measure. The 96 unicorns represent the visible peak of a much larger ecosystem of Indian-founded companies, angel investors, and venture capital networks that have become central to how Silicon Valley operates.
+
+But the pipeline that produced these founders is under pressure. The H-1B program, which has historically served as the primary entry point for skilled Indian workers, now faces its most restrictive policy environment in decades. Denial rates, which fell to 2 percent under the Biden administration, have been climbing again. The new weighted lottery system, which took effect in February, favours higher-salaried applicants — a shift that disproportionately affects early-career professionals from India who often enter the workforce at lower salary bands before rising rapidly.
+
+The Brookings Institution warned this week that the cumulative effect of these policy changes is not just a reduction in visa approvals but an erosion of the broader talent pipeline. International student enrolments — the first step for many future founders — have already declined sharply, with F-1 visa issuances falling more steeply than at any point since the pandemic.
+
+## What Comes Next
+
+The NFAP study does not make policy recommendations, but its implications are difficult to ignore. If the conditions that enabled 96 Indian-born entrepreneurs to build billion-dollar companies in America are systematically dismantled, the question is not whether the next generation of unicorn founders will emerge — it is where they will choose to build.
+
+Canada, the United Kingdom, the UAE and Singapore have all expanded their startup visa and entrepreneur programmes in the past two years, explicitly targeting the same pool of talent that once flowed almost exclusively to the United States. India itself has produced 131 domestic unicorns, a number that is growing faster than any country outside America and China.
 
-def source_image(person_name=None, wiki_search=None, pexels_query=None):
-    """Multi-source image search. Returns (url, caption_hint, attribution) or (None, None, None)."""
-    # 1. Wikipedia person image
-    if person_name:
-        url, attr = fetch_wikipedia_person_image(person_name)
-        if url and validate_image(url):
-            return url, person_name, attr
+For NRIs in the United States, the NFAP data is both validation and warning. The contribution is undeniable. The question is whether the country that benefited most from it still wants it to continue.
 
-    # 2. Wikimedia Commons
-    if wiki_search:
-        results = fetch_wikimedia_commons_images(wiki_search)
-        for r in results:
-            img_url = r.get('url') or r.get('original_url')
-            if img_url and validate_image(img_url):
-                return img_url, r.get('title', '').replace('File:', ''), "Wikimedia Commons"
+*Sources: National Foundation for American Policy (April 2026 analysis), Stanford Venture Capital Initiative, Brookings Institution, Bloomberg*"""
+    
+    # Image sourcing - try Wikimedia Commons for startup/Silicon Valley
+    image_url = None
+    image_caption = None
+    image_attribution = None
+    
+    # Try Wikimedia Commons for startup/venture capital imagery
+    commons_results = fetch_wikimedia_commons("Silicon Valley startup office technology")
+    if commons_results:
+        for r in commons_results:
+            if validate_image(r["url"]):
+                image_url = r["url"]
+                image_caption = "Silicon Valley, the epicenter of America's billion-dollar startup ecosystem"
+                image_attribution = "Wikimedia Commons"
+                break
+    
+    if not image_url:
+        # Try Pexels
+        image_url, image_attribution = fetch_pexels_image("silicon valley startup technology office")
+        if image_url and validate_image(image_url):
+            image_caption = "Silicon Valley, the epicenter of America's billion-dollar startup ecosystem"
+        else:
+            image_url = None
+    
+    if not image_url:
+        # Final fallback - Pexels with different query
+        image_url, image_attribution = fetch_pexels_image("technology innovation business")
+        if image_url and validate_image(image_url):
+            image_caption = "The American technology sector owes much of its growth to immigrant entrepreneurs"
+        else:
+            image_url = None
+            image_caption = None
+            image_attribution = None
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": "news",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": image_url,
+        "image_caption": image_caption,
+        "image_attribution": image_attribution,
+        "vertical": "economy",
+        "is_editorial": False,
+        "sources": "National Foundation for American Policy, Stanford Venture Capital Initiative, Brookings Institution, Bloomberg",
+        "tags": ["unicorns", "indian-diaspora", "silicon-valley", "startups", "h1b", "immigration", "nfap"]
+    }
+    
+    return insert_article(article)
+
+# ===== ARTICLE 2: Federal judge strikes down Trump immigration freeze =====
+def write_article_2():
+    print("\n=== Article 2: Federal Judge Strikes Down Immigration Freeze ===")
+    
+    headline = "A Federal Judge Just Struck Down Trump's Immigration Freeze on 39 Countries. The Ruling Is 135 Pages Long."
+    subheadline = "The court found that USCIS acted without legal authority and was driven by anti-immigrant animus, not national security. Indians on pending applications should take note."
+    slug = "federal-judge-strikes-trump-immigration-freeze-39-countries-uscis-ruling-20260605"
+    
+    body = """A federal judge in Rhode Island has dismantled the Trump administration's sweeping immigration freeze in a 135-page ruling that accused US Citizenship and Immigration Services of acting illegally, ignoring Congress, and masking discrimination as national security.
+
+Chief US District Judge John McConnell ruled on Friday that USCIS had "thrown the lives of countless immigrants living in the United States into indeterminate legal limbo" by categorically barring people from 39 countries from receiving decisions on their asylum, work permit, green card and citizenship applications.
+
+The ruling is the most significant judicial rebuke of the administration's immigration agenda since the travel ban litigation of Trump's first term.
+
+## What USCIS Did
+
+The policies struck down on Friday were enacted after an Afghan national shot two National Guard members in Washington, DC last year. In the weeks that followed, the administration froze immigration benefit adjudications for applicants from 39 African, Asian, Latin American and Middle Eastern countries. It also suspended asylum processing nationwide and ordered a review of immigration benefits previously granted during the Biden administration.
+
+The effect was immediate and far-reaching. Hundreds of thousands of immigrants who had filed applications through lawful channels — in many cases years earlier — found themselves unable to receive any decision at all. Work permits expired without renewal. Green card interviews were cancelled. Citizenship ceremonies were postponed indefinitely.
+
+"Over six months later, many of those individuals remain without work, without legal status, and without any meaningful ability to plan for their futures," Judge McConnell wrote.
+
+## The Court's Finding
+
+McConnell did not merely rule that the policies were procedurally flawed. He found that they were driven by "anti-immigrant animus" — a legal finding that goes to the heart of the government's motivation.
+
+"The Government effectively invites the Court to shut its eyes and ignore the strong evidence of anti-immigrant animus before it," he wrote. "Doing so would require profound naïveté on the Court's part. Unfortunately for the Government, that is an invitation that this Court will have to decline."
+
+The judge found that USCIS had acted without the statutory or regulatory authority it claimed, had failed to provide reasoned explanations for its decisions, and had ignored the reliance interests of applicants who had followed every rule the government had set.
+
+"In legal terms, that means USCIS's actions are contrary to law and arbitrary and capricious," he wrote.
+
+## What It Means for Indians in America
+
+India is not among the 39 countries on the travel ban list, so the direct impact of this ruling on Indian nationals is limited. But the broader implications are significant.
 
-    # 3. Pexels
-    if pexels_query:
-        url, attr = fetch_pexels_image(pexels_query)
-        if url and validate_image(url):
-            return url, pexels_query, attr
+First, the ruling reinforces the principle that the executive branch cannot unilaterally freeze lawful immigration pathways without congressional authorisation. This matters for Indian H-1B holders, green card applicants and naturalisation candidates whose processing timelines have also been affected by the administration's broader slowdown of USCIS operations.
 
-    return None, None, None
+Second, the finding of anti-immigrant animus could strengthen legal challenges to other immigration restrictions — including the 100,000-dollar H-1B fee and the new weighted lottery system — that disproportionately affect Indian applicants.
 
+Third, the ruling orders USCIS to resume processing the frozen applications, which could free up agency resources that have been diverted from other caseloads, including the employment-based green card backlog where Indian applicants face the longest wait times in the system.
 
-# ===================== ARTICLES =====================
+## What Happens Next
 
-now_utc = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+The Department of Homeland Security did not immediately respond to requests for comment. The administration is expected to appeal the ruling, which could reach the First Circuit Court of Appeals and potentially the Supreme Court.
 
-articles = []
+Democracy Forward, the legal organisation that brought the lawsuit on behalf of immigrant service groups and labour unions, called the ruling a vindication of the rule of law.
 
-# ---- ARTICLE 1: NY State Senate India Independence Day Resolution ----
-print("\n=== ARTICLE 1: NY State Senate India Independence Day Resolution ===")
+"This ruling reaffirms a basic principle: the federal government cannot shut down lawful immigration pathways or discriminate against people based on where they come from," said Skye Perryman, the group's president and CEO.
 
-img1_url, img1_hint, img1_attr = source_image(
-    person_name="Jeremy Cooney (politician)",
-    wiki_search="New York State Senate chamber",
-    pexels_query="Indian American celebration flag"
-)
-# Fallback search
-if not img1_url:
-    img1_url, img1_hint, img1_attr = source_image(
-        wiki_search="India Independence Day celebration",
-        pexels_query="India independence day flag"
-    )
+For the millions of immigrants caught in the freeze — and for the broader immigrant community watching from the sidelines — the ruling is a reminder that the courts remain a check on executive overreach, even in an era of maximum immigration enforcement.
 
-article1 = {
-    "vertical": "news",
-    "headline": "New York's State Senate Just Declared August 15 India Independence Day. The Man Behind It Was Adopted From Kolkata.",
-    "subheadline": "Resolution J1935 urges Governor Kathy Hochul to formally recognise India's 79th Independence Day across the state — sponsored by the first Asian American elected to state office from upstate New York.",
-    "slug": "new-york-state-senate-india-independence-day-resolution-jeremy-cooney-kolkata-20260605",
-    "category": "news",
-    "status": "published",
-    "is_editorial": False,
-    "published_at": now_utc,
-    "body": """The New York State Senate has adopted Resolution J1935, urging Governor Kathy Hochul to proclaim August 15, 2026, as India Independence Day in the State of New York. The resolution, which passed with bipartisan support, paves the way for formal statewide celebrations marking India's independence — a first for the state legislature's annual calendar.
-
-The resolution was sponsored by State Senator Jeremy Cooney, a Democrat representing Rochester. Cooney's personal story gives the measure an unusual emotional weight. Adopted from an orphanage in Kolkata and raised by a single mother in upstate New York, he made history in 2020 as the first Asian American elected to state office from outside New York City.
-
-"Across the globe, Indians are making lasting impacts in their communities, and this is an opportunity to join together and celebrate and reflect on our shared history, culture, and heritage," Cooney told the Senate during deliberations.
-
-## A Chorus of Recognition
-
-Several senators used the floor debate to speak about India's civilisational heritage and the growing influence of the Indian American community across New York.
-
-Senator Joseph P. Addabbo Jr. invoked Mahatma Gandhi, noting that his message that "the future depends on what we do in the present" continues to inspire Indian Americans and future generations. Senator John C. Liu offered a broader historical frame: "India has been around for thousands of years. It has been a civilisation. It has been a country. It has been a model of democracy for actually a lot longer than our country."
-
-Senator Jeremy Zellner said the Indian American community is "woven into the fabric of our everyday life" in his district. "They are our neighbours raising families here, working in critical professions, and helping shape the character of our region," he added.
-
-## What the Resolution Says
-
-The text of Resolution J1935 notes that India's independence "is enormously important to people around the world" and that it "marks the end of a 90-year struggle to achieve stronger civil, political, and economic rights along with self-determination." It follows the legislature's tradition of recognising official days significant to the cultural heritage of New York's citizens.
-
-The resolution does not have the force of law. It memorialises the Governor — effectively requesting, rather than requiring, the proclamation. But the symbolic weight is significant. Indian Americans are among the fastest-growing demographic groups in New York, with a community concentrated in Queens that is among the largest in the Western Hemisphere.
-
-## The Consulate Responds
-
-The Consulate General of India in New York welcomed the Senate's decision. "The Consulate General of India, New York, expresses its sincere gratitude to Senator Jeremy Cooney for sponsoring the adopted resolution," the office said in a statement. It noted that the remarks by senators "reflected the deep people-to-people bonds between India and the United States and the growing role of the Indian American diaspora in strengthening communities across New York."
-
-## Why It Matters for the Diaspora
-
-India will mark its 79th Independence Day on August 15, 2026. The New York resolution arrives at a moment when Indian Americans are more visible in American public life than at any point in the country's history. From Usha Vance in the White House to Kash Patel at the FBI, from Sriram Krishnan advising on AI policy to Ajay Banga leading the World Bank, the community's footprint extends well beyond traditional strongholds in medicine and technology.
-
-For the estimated 900,000 Indian Americans living in New York — and for the millions more across the country — a formal recognition from one of America's most powerful state legislatures is not merely ceremonial. It is an acknowledgement that the community's contributions have become too significant to ignore.
-
-The resolution now awaits Governor Hochul's response. If she issues the proclamation, August 15 will join a roster of cultural heritage days formally recognised across New York State.
-
-*Sources: PTI, hi INDiA, The Indian Eye, New York State Senate records*""",
-    "sources": json.dumps(["PTI", "hi INDiA", "The Indian Eye", "New York State Senate"]),
-    "image_url": img1_url,
-    "image_caption": "The New York State Senate adopted Resolution J1935 recognising India Independence Day",
-    "image_attribution": img1_attr or "Wikimedia Commons"
-}
-articles.append(article1)
-
-
-# ---- ARTICLE 2: India AI Hiring Crisis ----
-print("\n=== ARTICLE 2: India AI Hiring Crisis ===")
-
-img2_url, img2_hint, img2_attr = source_image(
-    person_name="Mukesh Ambani",
-    wiki_search="Reliance Industries headquarters Mumbai",
-    pexels_query="India technology office workers"
-)
-
-article2 = {
-    "vertical": "news",
-    "headline": "Reliance's Hiring Has Slowed to a Crawl. AI Is About to Make It Worse.",
-    "subheadline": "India's largest private employer grew headcount by just 4% last year, one quarter of the previous year's pace. At TCS and Infosys, the workforce has already shrunk. The AI squeeze is only beginning.",
-    "slug": "reliance-ai-hiring-slump-india-tcs-infosys-youth-unemployment-20260605",
-    "category": "news",
-    "status": "published",
-    "is_editorial": False,
-    "published_at": now_utc,
-    "body": """Finding a good job in India is about to get significantly harder. A convergence of slowing investment cycles and accelerating AI adoption is squeezing employment at the country's most powerful private companies — and the structural nature of the shift means the pressure is unlikely to ease.
-
-Reliance Industries, India's biggest private company by market capitalisation at $190 billion, employed over 419,000 people as of March 2026. That represents headcount growth of just 4% year-on-year — one quarter of its expansion rate the previous year. The company has also grown less transparent about its workforce: it quietly discontinued a detailed breakdown of employees by division in last year's annual report.
-
-The slowdown at Reliance is partly cyclical. A phase of aggressive recruitment for its renewable energy business has wound down. But the deeper signal is structural. Reliance has said it is "building talent fluent in leveraging AI to enhance decision-making, productivity and purpose-driven work" — language that signals fewer humans per unit of output going forward.
-
-## The IT Outsourcers Are Already Shrinking
-
-The pattern is more advanced at India's IT outsourcing giants, the companies that built the country's middle class and powered an entire generation of NRI migration to the West.
-
-Tata Consultancy Services and Infosys, India's second- and third-largest companies by market capitalisation, have seen their headcounts fall to as much as 5% below their March 2023 peaks. Revenue growth has slowed. And the rise of AI-powered coding tools — GitHub Copilot, Amazon CodeWhisperer, and their successors — is eroding the demand for the entry-level programming work that once employed hundreds of thousands of fresh graduates each year.
-
-The Forum for IT Employees (FITE) in Maharashtra has documented the damage at the ground level. "Earlier, large IT companies hired freshers in huge numbers every year, especially from top colleges, which created a ripple effect across the market," Pavanjit Mane, FITE's Maharashtra president, told Outlook Business. "That pipeline has now weakened significantly."
-
-Thousands of graduates from the 2023, 2024, and 2025 batches are still waiting for jobs. Joining dates have been delayed by six to ten months. Campus intake has been slashed.
-
-## The Youth Unemployment Crisis
-
-India's Chief Economic Advisor, V. Anantha Nageswaran, warned in February that future job growth is a bigger concern than headline layoffs. His call on the private sector to hire more and balance capital-intensive growth with labour-intensive employment has gone largely unanswered.
-
-The numbers bear out the anxiety. Urban youth unemployment stands at 13.6%. It is common for college graduates to queue up for janitorial roles in the public sector. The aspirational promise of the IT industry — stable incomes, overseas assignments, upward social mobility — is dimming for an entire generation.
-
-## What This Means for the Diaspora
-
-The implications extend well beyond India's borders. The IT outsourcing model was the engine that drove Indian migration to the United States, Britain, Canada, and Australia for three decades. H-1B visas, L-1 transfers, and onsite assignments at client offices built the economic foundation of the Indian diaspora in the West.
-
-If the volume of entry-level IT hiring continues to fall, fewer Indians will get the corporate launchpad that historically led to overseas postings. The pipeline that produced NRI professionals — and the remittances, investments, and cultural exchange that followed — could narrow significantly.
-
-Reuters' Breakingviews analysis warns that the current hiring squeeze may be "the calm before the AI storm." The real impact of AI on India's job market, the analysis suggests, will become clearer in the next 12 to 18 months, as companies move from AI pilots to full deployment.
-
-## A Consumption Crisis in Waiting
-
-The economic ripple effects could be severe. A potential 30% reduction in the 15-million-strong outsourcing and global capability centre workforce over the next two years could shrink India's top consuming class by about 5 million people, according to estimates from Blume Ventures. At an estimated annual income of $15,000 per person, that would reduce total spending power by roughly $75 billion a year.
-
-Household savings are already declining. Indians saved barely 23% of their disposable income in the year to March 2025, down from nearly 30% two decades earlier. Debt as a share of disposable income has surged to 55% from 31% over the same period.
-
-The AI revolution may create new jobs in time. But the transition will be painful — and for millions of young Indians who bet their futures on the IT dream, the window may be closing faster than anyone expected.
-
-*Sources: Reuters Breakingviews, Outlook Business, National Stock Exchange data, CLSA, Blume Ventures*""",
-    "sources": json.dumps(["Reuters Breakingviews", "Outlook Business", "NSE data", "CLSA"]),
-    "image_url": img2_url,
-    "image_caption": "Reliance Industries chairman Mukesh Ambani at a company event in Mumbai",
-    "image_attribution": img2_attr or "Wikimedia Commons"
-}
-articles.append(article2)
-
-
-# ---- ARTICLE 3: PhysicsWallah Reverses Lending Strategy ----
-print("\n=== ARTICLE 3: PhysicsWallah Reverses Lending Strategy ===")
-
-img3_url, img3_hint, img3_attr = source_image(
-    person_name="Alakh Pandey",
-    wiki_search="PhysicsWallah edtech India",
-    pexels_query="India students education classroom"
-)
-
-article3 = {
-    "vertical": "news",
-    "headline": "PhysicsWallah Killed Its Lending Plan One Week After Announcing It. The Stock Surged 18%.",
-    "subheadline": "The edtech giant scrapped a ₹120 crore student lending bet after investors revolted — and the market rewarded the U-turn instantly.",
-    "slug": "physicswallah-reverses-finz-finance-lending-nbfc-partnership-stock-surge-20260605",
-    "category": "news",
-    "status": "published",
-    "is_editorial": False,
-    "published_at": now_utc,
-    "body": """PhysicsWallah, one of India's most watched edtech companies, has abruptly abandoned its plan to lend directly to students — just one week after announcing a ₹120 crore infusion into its lending subsidiary. The reversal sent the company's shares surging nearly 18% in a single session, a striking market verdict on the original decision.
-
-The Alakh Pandey-led company said on Thursday that it has restructured its lending strategy and will now partner with multiple regulated non-banking financial companies (NBFCs) instead of building an in-house lending book through its subsidiary, FinZ Finance Private Limited.
-
-"We received feedback from our partners that our core strength lies in building communities and our online business," co-founder Prateek Maheshwari said. "Our lending business is best left to regulated third-party NBFCs who have created robust underwriting capabilities."
-
-## The Week That Changed Everything
-
-The U-turn was swift even by startup standards. Last week, PhysicsWallah had filed an exchange disclosure announcing a ₹120 crore equity infusion into FinZ Finance, signalling ambitious plans to enter student financing directly. The market's response was immediate and negative: shares fell steadily as investors questioned why an education platform was taking on credit risk.
-
-The backlash came from multiple directions. Long-term investors and strategic partners reportedly advised the company to stick to its core education business rather than diversify into a domain that requires specialised underwriting capabilities and regulatory expertise. The message was clear: build courses, not loan books.
-
-By Thursday morning, the reversal was official. PhysicsWallah said it would function as a technology platform connecting students to a "curated set of regulated lending partners," with financing decisions tied to students' learning lifecycle and academic outcomes. The asset-light model eliminates balance sheet exposure and credit risk.
-
-## What Happens to FinZ Finance
-
-The ₹120 crore already invested in FinZ Finance now needs to be recovered. According to people familiar with the matter, PhysicsWallah is weighing several options: a potential sale of the subsidiary, transfer of its existing loan book, or surrender of its lending-related licences. The final decision will follow a board review and regulatory approval.
-
-The rapid pivot reflects a broader maturation in India's startup ecosystem, where investors are increasingly intolerant of mission creep. The days when venture-backed companies could expand into adjacent businesses without scrutiny are over. Capital efficiency and focus are the new watchwords.
-
-## The Market's Verdict
-
-The stock market's reaction was unambiguous. PhysicsWallah shares opened at ₹91 on Thursday and surged to an intraday high of ₹108.45, eventually closing at ₹106.50 — up 15.6% from the previous session. Trading volume was extraordinary, with approximately 562 lakh shares changing hands worth ₹583 crore.
-
-The surge partially reversed a 20% year-to-date decline in the stock, which had been under sustained pressure. The company's market capitalisation recovered to approximately ₹30,764 crore (about $3.2 billion).
-
-## The Edtech Lending Dilemma
-
-PhysicsWallah's brief lending experiment highlights a tension that runs through India's edtech sector. The companies that serve aspirational students — many from Tier-2 and Tier-3 cities — are acutely aware that affordability is the single biggest barrier to education. The temptation to solve the financing problem in-house is powerful.
-
-But lending is a fundamentally different business from education. It requires regulatory compliance, credit risk assessment, collections infrastructure, and capital reserves that sit uneasily alongside the high-growth, technology-first culture of a startup. Companies like Byju's learned this lesson at great cost. PhysicsWallah, to its credit, learned it in a week.
-
-The new NBFC partnership model represents a compromise: PhysicsWallah keeps its students within its ecosystem while outsourcing the financial risk to institutions built for it. If the partnerships work, students get access to financing without the company betting its balance sheet on their repayment.
-
-For Alakh Pandey, whose YouTube-to-unicorn journey has made him one of India's most recognised entrepreneurs, the episode is a reminder that markets reward discipline as readily as they punish overreach.
-
-*Sources: Inc42, The Hindu BusinessLine, LiveMint, Reuters, Storyboard18*""",
-    "sources": json.dumps(["Inc42", "The Hindu BusinessLine", "LiveMint", "Reuters", "Storyboard18"]),
-    "image_url": img3_url,
-    "image_caption": "PhysicsWallah co-founder Alakh Pandey built the edtech platform from a YouTube channel",
-    "image_attribution": img3_attr or "Pexels"
-}
-articles.append(article3)
-
-
-# ===================== INSERT ALL =====================
-print("\n=== INSERTING ARTICLES ===")
-success_count = 0
-for i, article in enumerate(articles):
-    print(f"\nArticle {i+1}: {article['headline'][:60]}...")
-    if not article.get('image_url'):
-        print("  ⚠ No image found — inserting without image")
-        article.pop('image_url', None)
-        article.pop('image_caption', None)
-        article.pop('image_attribution', None)
-    if insert_article(article):
-        success_count += 1
-
-print(f"\n=== DONE: {success_count}/{len(articles)} articles inserted ===")
+*Sources: Reuters, CNN, Washington Examiner, Associated Press*"""
+    
+    # Image sourcing - try to get Judge McConnell or courthouse image
+    image_url = None
+    image_caption = None
+    image_attribution = None
+    
+    # Try Wikimedia Commons for US federal courthouse or immigration
+    commons_results = fetch_wikimedia_commons("US federal courthouse Providence Rhode Island")
+    if commons_results:
+        for r in commons_results:
+            if validate_image(r["url"]):
+                image_url = r["url"]
+                image_caption = "A federal courthouse in Providence, Rhode Island, where the ruling was issued"
+                image_attribution = "Wikimedia Commons"
+                break
+    
+    if not image_url:
+        commons_results = fetch_wikimedia_commons("USCIS immigration United States")
+        if commons_results:
+            for r in commons_results:
+                if validate_image(r["url"]):
+                    image_url = r["url"]
+                    image_caption = "The US Citizenship and Immigration Services headquarters"
+                    image_attribution = "Wikimedia Commons"
+                    break
+    
+    if not image_url:
+        image_url, image_attribution = fetch_pexels_image("US federal courthouse justice gavel")
+        if image_url and validate_image(image_url):
+            image_caption = "A federal judge ruled that USCIS immigration policies were unlawful and discriminatory"
+        else:
+            image_url = None
+            image_caption = None
+            image_attribution = None
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": "news",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": image_url,
+        "image_caption": image_caption,
+        "image_attribution": image_attribution,
+        "vertical": "politics",
+        "is_editorial": False,
+        "sources": "Reuters, CNN, Washington Examiner, Associated Press",
+        "tags": ["immigration", "trump", "uscis", "travel-ban", "federal-court", "nri", "green-card"]
+    }
+    
+    return insert_article(article)
+
+# ===== ARTICLE 3: H-1B crackdown tanks Dallas housing =====
+def write_article_3():
+    print("\n=== Article 3: H-1B Crackdown Tanks Dallas Housing ===")
+    
+    headline = "Indian Buyers Once Made Up 70 Percent of Sales in North Dallas. The H-1B Crackdown Changed That Overnight."
+    subheadline = "Home prices in Collin County have fallen nearly 9 percent year-over-year. Over 100 luxury homes sit unsold. The suburbs that Indian tech workers built are learning what happens when they leave."
+    slug = "h1b-crackdown-dallas-housing-crash-indian-buyers-collin-county-texas-20260605"
+    
+    body = """For the better part of a decade, the suburbs north of Dallas were the most reliable real estate bet in America. Frisco, Prosper, Celina, McKinney — names that meant little outside Texas became shorthand for a very specific kind of boom. New subdivisions went up faster than the roads that connected them. Schools filled before they opened. Home prices climbed with the certainty of a fixed deposit.
+
+The engine behind all of it was Indian money. Specifically, Indian H-1B visa holders who had followed corporate America's relocation wave into the Dallas-Fort Worth corridor and decided to stay.
+
+Now that engine has stalled. And the numbers are starting to show it.
+
+## The Scale of the Retreat
+
+In Collin County — the suburban epicentre of the North Texas boom — home prices fell nearly 9 percent year-over-year as of February, according to Redfin data. That is more than double the 4 percent decline recorded across the broader Dallas-Fort Worth metro area.
+
+At Tradition Homes, a luxury builder that once counted on South Asian buyers for roughly 70 percent of its sales, that share has dropped below 30 percent. More than 100 high-end homes are sitting unsold on the company's books, according to Bloomberg.
+
+The retreat is not a mystery. It is the direct, measurable consequence of the Trump administration's escalating crackdown on the H-1B visa programme — the permit that brought most of these buyers to Texas in the first place.
+
+## What Changed
+
+The policy shifts have been rapid and cumulative. In September 2025, Trump signed a proclamation imposing a 100,000-dollar fee on new H-1B petitions — a move that effectively priced out the staffing firms and mid-tier tech contractors that had been the biggest sponsors of Indian workers in markets like Dallas.
+
+In February 2026, the Department of Homeland Security replaced the random H-1B lottery with a weighted system that favours higher-salaried applicants. In May, a new USCIS policy memo reframed adjustment of status inside the United States as "extraordinary relief" rather than a routine path — effectively telling visa holders that they may need to leave the country to pursue permanent residence.
+
+Texas added its own layer. Governor Greg Abbott ordered a freeze on new H-1B petitions by state agencies and public universities in January. Attorney General Ken Paxton launched an investigation into nearly 30 North Texas businesses suspected of visa fraud or abuse.
+
+The cumulative effect has been a sharp reduction in the number of Indian professionals arriving in, or staying in, the Dallas area.
+
+## The Housing Math
+
+The connection between H-1B policy and housing prices is not abstract in North Texas. It is arithmetic.
+
+During the pandemic boom, South Asian buyers — predominantly Indian families on H-1B or L-1 visas — became the dominant force in new home sales across Collin and Denton Counties. They were drawn by the same things that drew their employers: good schools, relatively affordable land, no state income tax, and a growing concentration of tech and corporate headquarters.
+
+Between 2018 and 2025, the Dallas-Fort Worth metro attracted more corporate headquarters relocations than any other metro area in the country, according to CBRE. Each relocation brought a wave of transferred employees, many of them visa holders. Each wave brought new demand for three-bedroom homes in the 400,000 to 800,000-dollar range.
+
+When the policy environment shifted, the pipeline did not slow — it froze. FHA-insured mortgages, which some visa holders had used, became unavailable after the administration barred non-permanent residents from the programme in May 2025. The share of FHA loans issued to non-permanent residents fell from 6 percent to virtually zero within months, according to John Burns Research and Consulting.
+
+## What It Means for NRIs
+
+For Indian families already settled in North Dallas, the housing correction is a mixed signal. Those who bought at the peak of the boom are watching their home values decline. Those who waited may now find better prices — if their visa status allows them to stay long enough to buy.
+
+For the broader Indian community in Texas, the story is a case study in how immigration policy can reshape local economies in ways that the policymakers who enacted it may not have anticipated — or may not care about.
+
+The irony is not lost on anyone. The same communities that Indian tech workers built — the schools, the temples, the grocery stores, the cricket leagues — are now facing the economic consequences of their departure. The homes they bought are now the homes no one is buying.
+
+*Sources: Bloomberg, Redfin, New York Post, Brookings Institution, John Burns Research and Consulting, CBRE*"""
+    
+    # Image sourcing
+    image_url = None
+    image_caption = None
+    image_attribution = None
+    
+    # Try Wikimedia Commons for Dallas suburbs / Texas housing
+    commons_results = fetch_wikimedia_commons("Frisco Texas suburb housing development")
+    if commons_results:
+        for r in commons_results:
+            if validate_image(r["url"]):
+                image_url = r["url"]
+                image_caption = "Suburban housing in the Dallas-Fort Worth metro area"
+                image_attribution = "Wikimedia Commons"
+                break
+    
+    if not image_url:
+        commons_results = fetch_wikimedia_commons("Dallas Fort Worth Texas skyline")
+        if commons_results:
+            for r in commons_results:
+                if validate_image(r["url"]):
+                    image_url = r["url"]
+                    image_caption = "The Dallas-Fort Worth metro area attracted more corporate relocations than any other US city"
+                    image_attribution = "Wikimedia Commons"
+                    break
+    
+    if not image_url:
+        image_url, image_attribution = fetch_pexels_image("Dallas Texas suburb houses neighborhood")
+        if image_url and validate_image(image_url):
+            image_caption = "Suburban housing developments in the Dallas-Fort Worth corridor"
+        else:
+            image_url = None
+            image_caption = None
+            image_attribution = None
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": "news",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": image_url,
+        "image_caption": image_caption,
+        "image_attribution": image_attribution,
+        "vertical": "economy",
+        "is_editorial": False,
+        "sources": "Bloomberg, Redfin, New York Post, Brookings Institution, John Burns Research and Consulting, CBRE",
+        "tags": ["h1b", "dallas", "texas", "housing", "real-estate", "immigration", "nri", "indian-diaspora"]
+    }
+    
+    return insert_article(article)
+
+# ===== MAIN =====
+if __name__ == "__main__":
+    print(f"=== Videshi News Writer - {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} ===")
+    
+    results = []
+    results.append(("Article 1 (96 Unicorns)", write_article_1()))
+    results.append(("Article 2 (Immigration Ruling)", write_article_2()))
+    results.append(("Article 3 (Dallas Housing)", write_article_3()))
+    
+    print("\n=== SUMMARY ===")
+    for name, success in results:
+        status = "✓ SUCCESS" if success else "✗ FAILED"
+        print(f"  {status}: {name}")
+    
+    total_success = sum(1 for _, s in results if s)
+    print(f"\n  {total_success}/{len(results)} articles published")
