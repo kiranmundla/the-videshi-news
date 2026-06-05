@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import SocialEmbed, { detectSocialUrl } from "@/components/SocialEmbed";
+import XOfficialEmbed from "@/components/XOfficialEmbed";
 import SocialPhotoStrip, { parseSocialPhotos } from "@/components/SocialPhotoStrip";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
@@ -259,7 +260,12 @@ function MarkdownWithEmbeds({
       continue;
     }
     const embed = detectSocialUrl(line);
-    if (embed) {
+    // Official X embed: x-official:URL or x-video:URL
+    const xOfficialMatch = line.trim().match(/^x-(official|video):(.+)$/);
+    if (xOfficialMatch) {
+      flush();
+      chunks.push({ kind: "x-official", url: xOfficialMatch[2].trim(), video: xOfficialMatch[1] === "video" });
+    } else if (embed) {
       flush();
       chunks.push({ kind: "embed", ...embed });
     } else {
@@ -315,6 +321,8 @@ function MarkdownWithEmbeds({
           <SocialPhotoStrip key={i} images={chunk.images} via={chunk.via} platform={chunk.platform} postUrl={chunk.postUrl} />
         ) : chunk.kind === "embed" ? (
           <SocialEmbed key={i} platform={chunk.platform} url={chunk.url} />
+        ) : chunk.kind === "x-official" ? (
+          <XOfficialEmbed key={i} url={chunk.url} video={chunk.video} />
         ) : chunk.kind === "youtube" ? (
           <YouTubeEmbed key={i} url={chunk.url} />
         ) : chunk.kind === "champions-timeline" ? (
