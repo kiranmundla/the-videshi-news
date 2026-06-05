@@ -108,7 +108,7 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
   if (isLoading) {
     return (
       <div style={{
-        background: "#fff", border: "1px solid #e1e8ed", borderTop: "3px solid #1DA1F2",
+        background: "#fff", border: "1px solid #e1e8ed",
         borderRadius: 14, padding: 32, textAlign: "center", color: "#9ca3af", fontSize: 13,
       }}>
         Loading post…
@@ -138,7 +138,6 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
     <div style={{
       background: "#fff",
       border: "1px solid #e1e8ed",
-      borderTop: "3px solid #1DA1F2",
       borderRadius: 14,
       overflow: "hidden",
       boxShadow: "0 1px 8px rgba(0,0,0,0.06)",
