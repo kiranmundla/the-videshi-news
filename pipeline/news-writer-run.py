@@ -1,50 +1,42 @@
 #!/usr/bin/env python3
 """
-News writer — 2026-06-04 run
-3 articles: US forced labor tariffs, UK-India FTA steel dispute, Foreign investors short India debt
+News Writer — The Videshi
+Generates 3 articles, sources images, inserts to Supabase.
 """
-import requests
-import json
-import os
-import uuid
-import time
+import json, os, re, time, subprocess, urllib.parse, uuid
 from datetime import datetime, timezone
-from PIL import Image
-import io
 
 # Load env
 def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    key, _, val = line.partition('=')
-                    val = val.strip().strip('"').strip("'")
-                    os.environ.setdefault(key.strip(), val)
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                if line.startswith('export '):
+                    line = line[7:]
+                key, _, val = line.partition('=')
+                val = val.strip('"').strip("'")
+                os.environ[key.strip()] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-UA = "TheVideshi/1.0 (thevideshi.com)"
-HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
-}
+
+import requests
 
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    import urllib.parse
+    """Fetch a person's actual photo from Wikipedia. Returns (url, attribution) or (None, None)."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": UA},
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
             timeout=10
         )
         if r.status_code == 200:
@@ -52,10 +44,11 @@ def fetch_wikipedia_person_image(person_name):
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
-                return img
+                return img, "Wikimedia Commons"
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
-    return None
+    return None, None
+
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
@@ -66,7 +59,7 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         "gsrnamespace": "6",
         "gsrlimit": str(limit),
         "prop": "imageinfo",
-        "iiprop": "url|size|mime",
+        "iiprop": "url|size|mime|extmetadata",
         "iiurlwidth": "1200",
         "format": "json"
     }
@@ -74,7 +67,7 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
             params=params,
-            headers={"User-Agent": UA},
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
             timeout=15
         )
         if r.status_code == 200:
@@ -97,374 +90,323 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
                     "mime": mime
                 })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
             return results
     except Exception as e:
         print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
     return []
 
+
 def fetch_pexels_image(query):
-    """Search Pexels for a relevant image. Returns URL or None."""
+    """Search Pexels for an image. Returns (url, attribution) or (None, None)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
-        return None
-    import subprocess
+        return None, None
     try:
-        import urllib.parse
-        encoded = urllib.parse.quote(query)
-        cmd = f'curl -sS "https://api.pexels.com/v1/search?query={encoded}&per_page=3" -H "Authorization: {PEXELS_KEY}"'
-        result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=15)
-        if result.returncode == 0:
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image found for '{query}': {url[:60]}...")
-                return url
+        # Use curl since urllib gets 403
+        result = subprocess.run(
+            ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+             f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3'],
+            capture_output=True, text=True, timeout=15
+        )
+        data = json.loads(result.stdout)
+        photos = data.get('photos', [])
+        if photos:
+            photo = photos[0]
+            url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
+            if url:
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                return url, "Pexels"
     except Exception as e:
         print(f"  ⚠ Pexels error for '{query}': {e}")
-    return None
-
-def compress_image(img_bytes, max_width=1200, quality=80):
-    """Resize and compress image. Returns JPEG bytes."""
-    img = Image.open(io.BytesIO(img_bytes))
-    if img.mode in ('RGBA', 'P'):
-        img = img.convert('RGB')
-    if img.width > max_width:
-        ratio = max_width / img.width
-        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-    buf = io.BytesIO()
-    img.save(buf, format='JPEG', quality=quality, optimize=True)
-    return buf.getvalue()
-
-def download_image(url):
-    """Download image bytes."""
-    try:
-        r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
-        if r.status_code == 200 and 'image' in r.headers.get('Content-Type', ''):
-            if len(r.content) > 5000:
-                return r.content
-            else:
-                print(f"  ⚠ Image too small: {len(r.content)} bytes")
-    except Exception as e:
-        print(f"  ⚠ Download error: {e}")
-    return None
-
-def upload_to_supabase(img_bytes, filename):
-    """Upload image to Supabase storage bucket 'article-images'."""
-    url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-    headers = {
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Content-Type": "image/jpeg",
-        "x-upsert": "true"
-    }
-    try:
-        r = requests.post(url, headers=headers, data=img_bytes, timeout=30)
-        if r.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {filename}")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed: {r.status_code} {r.text[:200]}")
-    except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-    return None
-
-def source_image(slug, person_name=None, wiki_search=None, pexels_query=None):
-    """Multi-source image search: Wikipedia → Wikimedia Commons → Pexels. Returns (url, attribution) or (None, None)."""
-    candidates = []
-    
-    # Source 1: Wikipedia person image
-    if person_name:
-        wiki_img = fetch_wikipedia_person_image(person_name)
-        if wiki_img:
-            candidates.append({"url": wiki_img, "source": "wikipedia", "priority": 1})
-    
-    # Source 2: Wikimedia Commons
-    if wiki_search:
-        commons = fetch_wikimedia_commons_images(wiki_search)
-        for c in commons[:3]:
-            candidates.append({"url": c["url"], "source": "wikimedia_commons", "priority": 2})
-    
-    # Source 3: Pexels
-    if pexels_query:
-        pexels_img = fetch_pexels_image(pexels_query)
-        if pexels_img:
-            candidates.append({"url": pexels_img, "source": "pexels", "priority": 3})
-    
-    # Try each candidate in priority order
-    for cand in sorted(candidates, key=lambda x: x["priority"]):
-        img_bytes = download_image(cand["url"])
-        if img_bytes:
-            compressed = compress_image(img_bytes)
-            if len(compressed) >= 10000:
-                filename = f"{slug}.jpg"
-                final_url = upload_to_supabase(compressed, filename)
-                if final_url:
-                    attr = "Wikimedia Commons" if cand["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
-                    print(f"  ✓ Selected image from {cand['source']}: {len(compressed)} bytes")
-                    return final_url, attr
-            else:
-                print(f"  ⚠ Compressed image too small: {len(compressed)} bytes, skipping")
-    
-    print(f"  ⚠ No suitable image found for {slug}")
     return None, None
+
+
+def validate_image(url):
+    """Verify URL returns a valid image >5KB."""
+    try:
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        content_type = r.headers.get('Content-Type', '')
+        content_length = int(r.headers.get('Content-Length', 0))
+        if 'image' in content_type and content_length > 5000:
+            print(f"  ✓ Image validated: {content_length} bytes, {content_type}")
+            return True
+        elif 'image' in content_type and content_length == 0:
+            # Some servers don't return Content-Length on HEAD; try GET
+            r2 = requests.get(url, timeout=10, stream=True,
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
+                print(f"  ✓ Image validated via GET: {len(chunk)}+ bytes")
+                return True
+        print(f"  ✗ Image validation failed: type={content_type}, size={content_length}")
+    except Exception as e:
+        print(f"  ✗ Image validation error: {e}")
+    return False
+
 
 def insert_article(article):
     """Insert article into Supabase."""
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    r = requests.post(url, headers=HEADERS, json=article, timeout=30)
+    headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "application/json",
+        "Prefer": "return=representation"
+    }
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=headers,
+        json=article,
+        timeout=30
+    )
     if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
-        print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
-        return art_id
+        result = r.json()
+        if isinstance(result, list) and result:
+            print(f"  ✓ Article inserted: {result[0].get('id', 'unknown')}")
+            return True
+        print(f"  ✓ Article inserted (no ID returned)")
+        return True
     else:
-        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
-        return None
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        return False
 
-# ============================================================
-# ARTICLE 1: US proposes 12.5% forced labor tariffs on India
-# ============================================================
-print("\n" + "="*60)
-print("ARTICLE 1: US Section 301 forced labor tariffs")
-print("="*60)
 
-art1_slug = "us-section-301-forced-labor-tariffs-india-12-percent-60-countries-20260604"
-art1_headline = "Trump Just Proposed a 12.5% Tariff on India Over Forced Labour. Sixty Countries Are in the Crosshairs."
-art1_subheadline = "The Section 301 investigation is designed to rebuild the tariff architecture the Supreme Court dismantled in February. India rejected the allegations and said it would seek resolution through trade talks."
+def source_image(person_name=None, wiki_search=None, pexels_query=None):
+    """Multi-source image search. Returns (url, caption_hint, attribution) or (None, None, None)."""
+    # 1. Wikipedia person image
+    if person_name:
+        url, attr = fetch_wikipedia_person_image(person_name)
+        if url and validate_image(url):
+            return url, person_name, attr
 
-art1_body = """The Trump administration proposed tariffs of up to 12.5 per cent on imports from 60 countries on Tuesday, citing their failure to curb trade in goods made with forced labour. India, placed in the higher-tariff tier alongside China, Japan, South Korea and Brazil, dismissed the allegations and said it would address the issue through ongoing bilateral trade negotiations.
+    # 2. Wikimedia Commons
+    if wiki_search:
+        results = fetch_wikimedia_commons_images(wiki_search)
+        for r in results:
+            img_url = r.get('url') or r.get('original_url')
+            if img_url and validate_image(img_url):
+                return img_url, r.get('title', '').replace('File:', ''), "Wikimedia Commons"
 
-The proposal, issued by the Office of the United States Trade Representative under Section 301 of the Trade Act of 1974, is an attempt to reconstruct the tariff regime that collapsed after the Supreme Court struck down Trump's emergency tariffs in February. Unlike the earlier tariffs, which relied on broad executive authority, Section 301 provides a more durable legal foundation — these tariffs have no statutory expiration dates or maximum percentage caps.
+    # 3. Pexels
+    if pexels_query:
+        url, attr = fetch_pexels_image(pexels_query)
+        if url and validate_image(url):
+            return url, pexels_query, attr
 
-## What the Proposal Covers
+    return None, None, None
 
-The USTR divided the 60 countries into two tiers. Fourteen economies — including Canada, the European Union, Britain, Mexico, Indonesia, Pakistan, Argentina, Bangladesh and Taiwan — would face 10 per cent additional duties. These countries were credited with having partial enforcement frameworks or commitments under existing trade agreements.
 
-The remaining 45 countries, including India, China, Nigeria, Japan, South Korea, Vietnam, Australia and New Zealand, would face 12.5 per cent duties. The USTR determined these nations had not taken adequate steps to prohibit or enforce bans on imports of goods produced with forced labour.
+# ===================== ARTICLES =====================
 
-For India specifically, the USTR identified exposure across sectors including aluminium, cotton, fish, coffee, nickel, palm oil and rice. The allegation is that India imported forced-labour-linked inputs and exported downstream products to the United States.
+now_utc = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
-Certain categories — energy, pharmaceuticals, beef, coffee and some fruits and vegetables — are exempt from the proposed tariffs.
+articles = []
 
-## The Legal Architecture
+# ---- ARTICLE 1: NY State Senate India Independence Day Resolution ----
+print("\n=== ARTICLE 1: NY State Senate India Independence Day Resolution ===")
 
-The shift from emergency tariffs to Section 301 is strategic. Trade lawyers have noted that Section 301 tariffs have been far less vulnerable to judicial challenge. The tariffs imposed on Chinese goods under this mechanism during Trump's first term remain in place years later.
-
-"Section 301 allows the government to investigate foreign nations suspected of violating trade agreements or engaging in practices that systematically disadvantage American businesses," noted legal analysts tracking the case. "Crucially, tariffs implemented under Section 301 have no statutory expiration dates."
-
-The proposed tariffs will not take effect immediately. The USTR has opened a formal public comment period running through 6 July, with public hearings scheduled for 7 July.
-
-## India's Response
-
-India rejected the forced-labour allegations and signalled it would seek resolution through the bilateral trade agreement currently under negotiation. The timing is significant: US chief negotiator Brendan Lynch visited New Delhi from 1 to 4 June for talks on the proposed interim agreement, and both sides have described the deal as "99 per cent done."
-
-Commerce Minister Piyush Goyal has repeatedly said India is seeking a fair, balanced agreement that provides a competitive advantage over other Asian manufacturing hubs. The forced-labour tariffs could complicate those negotiations, adding a new layer of friction just as the two governments appeared close to a framework deal.
-
-## What It Means for the Diaspora
-
-For Indian exporters and NRI business owners with supply chains spanning both countries, the proposed tariffs threaten to raise costs across multiple sectors. Aluminium, cotton textiles and processed food products — categories where Indian exports to the US are substantial — could face immediate price pressure.
-
-The tariffs also arrive at a delicate moment for the rupee, which has already weakened 6.5 per cent this year under pressure from the Iran-war-driven oil shock and sustained foreign portfolio outflows. Additional trade friction with the United States would add to the headwinds facing India's external accounts.
-
-Human Rights Watch noted that forced labour is embedded in supply chains globally, including in the United States itself. "Singling out some countries just based on trade volumes is questionable and may even be counterproductive," said Helene de Rengerve, a corporate responsibility official at the organisation.
-
-The proposal remains open for public comment. Whether it ultimately takes effect will depend on the hearings, the trajectory of the bilateral trade deal, and the broader geopolitical calculus between Washington and New Delhi.
-
-**Sources**: Reuters, Barron's, GKToday, Office of the US Trade Representative"""
-
-# Source image
-print("  Sourcing image...")
-art1_img_url, art1_img_attr = source_image(
-    art1_slug,
-    person_name="Jamieson Greer",
-    wiki_search="US Trade Representative Section 301 tariffs",
-    pexels_query="US trade tariffs shipping containers"
+img1_url, img1_hint, img1_attr = source_image(
+    person_name="Jeremy Cooney (politician)",
+    wiki_search="New York State Senate chamber",
+    pexels_query="Indian American celebration flag"
 )
+# Fallback search
+if not img1_url:
+    img1_url, img1_hint, img1_attr = source_image(
+        wiki_search="India Independence Day celebration",
+        pexels_query="India independence day flag"
+    )
 
-art1 = {
-    "headline": art1_headline,
-    "subheadline": art1_subheadline,
-    "body": art1_body,
-    "slug": art1_slug,
-    "category": "news",
+article1 = {
     "vertical": "news",
+    "headline": "New York's State Senate Just Declared August 15 India Independence Day. The Man Behind It Was Adopted From Kolkata.",
+    "subheadline": "Resolution J1935 urges Governor Kathy Hochul to formally recognise India's 79th Independence Day across the state — sponsored by the first Asian American elected to state office from upstate New York.",
+    "slug": "new-york-state-senate-india-independence-day-resolution-jeremy-cooney-kolkata-20260605",
+    "category": "news",
     "status": "published",
     "is_editorial": False,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": art1_img_url,
-    "image_caption": "US Trade Representative Jamieson Greer announced the proposed tariffs under Section 301",
-    "image_attribution": art1_img_attr or "Pexels",
-    "sources": json.dumps(["Reuters", "Barron's", "GKToday", "Office of the US Trade Representative"])
+    "published_at": now_utc,
+    "body": """The New York State Senate has adopted Resolution J1935, urging Governor Kathy Hochul to proclaim August 15, 2026, as India Independence Day in the State of New York. The resolution, which passed with bipartisan support, paves the way for formal statewide celebrations marking India's independence — a first for the state legislature's annual calendar.
+
+The resolution was sponsored by State Senator Jeremy Cooney, a Democrat representing Rochester. Cooney's personal story gives the measure an unusual emotional weight. Adopted from an orphanage in Kolkata and raised by a single mother in upstate New York, he made history in 2020 as the first Asian American elected to state office from outside New York City.
+
+"Across the globe, Indians are making lasting impacts in their communities, and this is an opportunity to join together and celebrate and reflect on our shared history, culture, and heritage," Cooney told the Senate during deliberations.
+
+## A Chorus of Recognition
+
+Several senators used the floor debate to speak about India's civilisational heritage and the growing influence of the Indian American community across New York.
+
+Senator Joseph P. Addabbo Jr. invoked Mahatma Gandhi, noting that his message that "the future depends on what we do in the present" continues to inspire Indian Americans and future generations. Senator John C. Liu offered a broader historical frame: "India has been around for thousands of years. It has been a civilisation. It has been a country. It has been a model of democracy for actually a lot longer than our country."
+
+Senator Jeremy Zellner said the Indian American community is "woven into the fabric of our everyday life" in his district. "They are our neighbours raising families here, working in critical professions, and helping shape the character of our region," he added.
+
+## What the Resolution Says
+
+The text of Resolution J1935 notes that India's independence "is enormously important to people around the world" and that it "marks the end of a 90-year struggle to achieve stronger civil, political, and economic rights along with self-determination." It follows the legislature's tradition of recognising official days significant to the cultural heritage of New York's citizens.
+
+The resolution does not have the force of law. It memorialises the Governor — effectively requesting, rather than requiring, the proclamation. But the symbolic weight is significant. Indian Americans are among the fastest-growing demographic groups in New York, with a community concentrated in Queens that is among the largest in the Western Hemisphere.
+
+## The Consulate Responds
+
+The Consulate General of India in New York welcomed the Senate's decision. "The Consulate General of India, New York, expresses its sincere gratitude to Senator Jeremy Cooney for sponsoring the adopted resolution," the office said in a statement. It noted that the remarks by senators "reflected the deep people-to-people bonds between India and the United States and the growing role of the Indian American diaspora in strengthening communities across New York."
+
+## Why It Matters for the Diaspora
+
+India will mark its 79th Independence Day on August 15, 2026. The New York resolution arrives at a moment when Indian Americans are more visible in American public life than at any point in the country's history. From Usha Vance in the White House to Kash Patel at the FBI, from Sriram Krishnan advising on AI policy to Ajay Banga leading the World Bank, the community's footprint extends well beyond traditional strongholds in medicine and technology.
+
+For the estimated 900,000 Indian Americans living in New York — and for the millions more across the country — a formal recognition from one of America's most powerful state legislatures is not merely ceremonial. It is an acknowledgement that the community's contributions have become too significant to ignore.
+
+The resolution now awaits Governor Hochul's response. If she issues the proclamation, August 15 will join a roster of cultural heritage days formally recognised across New York State.
+
+*Sources: PTI, hi INDiA, The Indian Eye, New York State Senate records*""",
+    "sources": json.dumps(["PTI", "hi INDiA", "The Indian Eye", "New York State Senate"]),
+    "image_url": img1_url,
+    "image_caption": "The New York State Senate adopted Resolution J1935 recognising India Independence Day",
+    "image_attribution": img1_attr or "Wikimedia Commons"
 }
-if not art1_img_url:
-    art1.pop("image_url")
-    art1.pop("image_caption")
-    art1.pop("image_attribution")
+articles.append(article1)
 
-insert_article(art1)
-time.sleep(1)
 
-# ============================================================
-# ARTICLE 2: UK-India FTA stalls over steel
-# ============================================================
-print("\n" + "="*60)
-print("ARTICLE 2: UK-India FTA steel dispute")
-print("="*60)
+# ---- ARTICLE 2: India AI Hiring Crisis ----
+print("\n=== ARTICLE 2: India AI Hiring Crisis ===")
 
-art2_slug = "uk-india-trade-deal-steel-dispute-whisky-tariff-delay-autumn-20260604"
-art2_headline = "India's Trade Deal With Britain Is Stuck on Steel. Scotch Whisky Is Being Used as Leverage."
-art2_subheadline = "Britain's new steel safeguards cut tariff-free imports by 60 per cent. India is now reviewing the duty concessions it offered on whisky, automobiles and medical devices as a countermeasure."
-
-art2_body = """Britain's trade minister Peter Kyle returned from Delhi on Wednesday insisting the UK-India free trade deal would not be reopened. But he also conceded, almost in the same breath, that implementation might slip to autumn — months later than India had expected and well past the anniversary of the agreement's signing.
-
-The free trade agreement, hailed as a landmark when it was signed in July 2025, was supposed to enter force within about a year. Britain would slash 99 per cent of its tariffs on Indian goods. India would cut 90 per cent of its tariffs on British products. But a steel dispute has pulled the deal into a holding pattern, and both sides are now using their best bargaining chips as leverage.
-
-## The Steel Problem
-
-At the heart of the impasse is Britain's decision to introduce stricter steel safeguard measures effective 1 July. The new policy would cut tariff-free steel import quotas by 60 per cent compared to current levels and impose a 50 per cent duty on volumes exceeding the cap.
-
-For Indian steel exporters, the measures represent a fundamental disruption. India has emerged as a significant exporter of finished and semi-finished steel to the UK market, and the safeguards would sharply limit that access — despite the free trade agreement's explicit promise of liberalised trade.
-
-The British government framed the move as domestic industrial policy, citing the need to protect UK steelmaking capacity at a time when it has already nationalised British Steel to prevent job losses. A British official said the implementation talks were "separate" from the steel measures, though Indian officials clearly disagree.
-
-## India's Counter-Move
-
-New Delhi has responded by reviewing the tariff concessions it offered Britain on Scotch whisky, automobiles, medical devices and other products. Under the deal, India had agreed to cut import duties on UK whisky and gin from 150 per cent to 75 per cent immediately, with phased reductions to 40 per cent over ten years.
-
-That whisky concession was one of Britain's most visible commercial wins in the entire agreement. India is one of the world's largest and most attractive spirits markets, and Scotch producers had been lobbying for decades for lower duties. If India withdraws or modifies the concession, the political fallout in Britain would be substantial.
-
-"India argues that such measures could hurt Indian steel exporters and undermine market access promised under the trade deal," trade analysts noted. "The immediate issue is Scotch whisky versus steel. The larger issue is whether each side believes the agreement remains commercially balanced once domestic protection measures are introduced."
-
-## The Timing Problem
-
-Kyle's acknowledgement that autumn implementation would still represent "the fastest implementation period of any trade deal that Britain has ever signed" is accurate but misses the broader context. India had been operating on a May timeline. A slip of several months, driven by British domestic protectionism, risks eroding trust between the two governments at a moment when both face separate trade pressures from the United States.
-
-The US forced-labour tariff proposal, announced the same day Kyle was briefing reporters in London, adds another dimension. Britain was placed in the lower 10 per cent tariff tier — a vindication Kyle pointed to. India faces 12.5 per cent. The divergence means both countries now have reason to ensure their bilateral deal works, even as their respective trade relationships with Washington grow more complicated.
-
-## Why NRIs Should Pay Attention
-
-The UK-India FTA matters directly to the 1.9 million people of Indian heritage living in Britain. The deal was designed to lower costs on everything from Indian textiles and food products entering the UK to British financial services and education exports reaching India.
-
-A delayed or weakened implementation would postpone those benefits. For NRI business owners operating in both markets — particularly in sectors like food, fashion, pharmaceuticals and professional services — the uncertainty around steel safeguards and retaliatory tariff reviews creates planning headaches that a signed deal was supposed to eliminate.
-
-**Sources**: Reuters, Financial News, Global Banking and Finance, Whalesbook, Business News Today"""
-
-# Source image
-print("  Sourcing image...")
-art2_img_url, art2_img_attr = source_image(
-    art2_slug,
-    person_name="Peter Kyle",
-    wiki_search="UK India free trade agreement steel",
-    pexels_query="steel factory industrial UK"
+img2_url, img2_hint, img2_attr = source_image(
+    person_name="Mukesh Ambani",
+    wiki_search="Reliance Industries headquarters Mumbai",
+    pexels_query="India technology office workers"
 )
 
-art2 = {
-    "headline": art2_headline,
-    "subheadline": art2_subheadline,
-    "body": art2_body,
-    "slug": art2_slug,
-    "category": "news",
+article2 = {
     "vertical": "news",
+    "headline": "Reliance's Hiring Has Slowed to a Crawl. AI Is About to Make It Worse.",
+    "subheadline": "India's largest private employer grew headcount by just 4% last year, one quarter of the previous year's pace. At TCS and Infosys, the workforce has already shrunk. The AI squeeze is only beginning.",
+    "slug": "reliance-ai-hiring-slump-india-tcs-infosys-youth-unemployment-20260605",
+    "category": "news",
     "status": "published",
     "is_editorial": False,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": art2_img_url,
-    "image_caption": "UK Trade Minister Peter Kyle after returning from trade talks in New Delhi",
-    "image_attribution": art2_img_attr or "Pexels",
-    "sources": json.dumps(["Reuters", "Financial News", "Global Banking and Finance", "Whalesbook", "Business News Today"])
+    "published_at": now_utc,
+    "body": """Finding a good job in India is about to get significantly harder. A convergence of slowing investment cycles and accelerating AI adoption is squeezing employment at the country's most powerful private companies — and the structural nature of the shift means the pressure is unlikely to ease.
+
+Reliance Industries, India's biggest private company by market capitalisation at $190 billion, employed over 419,000 people as of March 2026. That represents headcount growth of just 4% year-on-year — one quarter of its expansion rate the previous year. The company has also grown less transparent about its workforce: it quietly discontinued a detailed breakdown of employees by division in last year's annual report.
+
+The slowdown at Reliance is partly cyclical. A phase of aggressive recruitment for its renewable energy business has wound down. But the deeper signal is structural. Reliance has said it is "building talent fluent in leveraging AI to enhance decision-making, productivity and purpose-driven work" — language that signals fewer humans per unit of output going forward.
+
+## The IT Outsourcers Are Already Shrinking
+
+The pattern is more advanced at India's IT outsourcing giants, the companies that built the country's middle class and powered an entire generation of NRI migration to the West.
+
+Tata Consultancy Services and Infosys, India's second- and third-largest companies by market capitalisation, have seen their headcounts fall to as much as 5% below their March 2023 peaks. Revenue growth has slowed. And the rise of AI-powered coding tools — GitHub Copilot, Amazon CodeWhisperer, and their successors — is eroding the demand for the entry-level programming work that once employed hundreds of thousands of fresh graduates each year.
+
+The Forum for IT Employees (FITE) in Maharashtra has documented the damage at the ground level. "Earlier, large IT companies hired freshers in huge numbers every year, especially from top colleges, which created a ripple effect across the market," Pavanjit Mane, FITE's Maharashtra president, told Outlook Business. "That pipeline has now weakened significantly."
+
+Thousands of graduates from the 2023, 2024, and 2025 batches are still waiting for jobs. Joining dates have been delayed by six to ten months. Campus intake has been slashed.
+
+## The Youth Unemployment Crisis
+
+India's Chief Economic Advisor, V. Anantha Nageswaran, warned in February that future job growth is a bigger concern than headline layoffs. His call on the private sector to hire more and balance capital-intensive growth with labour-intensive employment has gone largely unanswered.
+
+The numbers bear out the anxiety. Urban youth unemployment stands at 13.6%. It is common for college graduates to queue up for janitorial roles in the public sector. The aspirational promise of the IT industry — stable incomes, overseas assignments, upward social mobility — is dimming for an entire generation.
+
+## What This Means for the Diaspora
+
+The implications extend well beyond India's borders. The IT outsourcing model was the engine that drove Indian migration to the United States, Britain, Canada, and Australia for three decades. H-1B visas, L-1 transfers, and onsite assignments at client offices built the economic foundation of the Indian diaspora in the West.
+
+If the volume of entry-level IT hiring continues to fall, fewer Indians will get the corporate launchpad that historically led to overseas postings. The pipeline that produced NRI professionals — and the remittances, investments, and cultural exchange that followed — could narrow significantly.
+
+Reuters' Breakingviews analysis warns that the current hiring squeeze may be "the calm before the AI storm." The real impact of AI on India's job market, the analysis suggests, will become clearer in the next 12 to 18 months, as companies move from AI pilots to full deployment.
+
+## A Consumption Crisis in Waiting
+
+The economic ripple effects could be severe. A potential 30% reduction in the 15-million-strong outsourcing and global capability centre workforce over the next two years could shrink India's top consuming class by about 5 million people, according to estimates from Blume Ventures. At an estimated annual income of $15,000 per person, that would reduce total spending power by roughly $75 billion a year.
+
+Household savings are already declining. Indians saved barely 23% of their disposable income in the year to March 2025, down from nearly 30% two decades earlier. Debt as a share of disposable income has surged to 55% from 31% over the same period.
+
+The AI revolution may create new jobs in time. But the transition will be painful — and for millions of young Indians who bet their futures on the IT dream, the window may be closing faster than anyone expected.
+
+*Sources: Reuters Breakingviews, Outlook Business, National Stock Exchange data, CLSA, Blume Ventures*""",
+    "sources": json.dumps(["Reuters Breakingviews", "Outlook Business", "NSE data", "CLSA"]),
+    "image_url": img2_url,
+    "image_caption": "Reliance Industries chairman Mukesh Ambani at a company event in Mumbai",
+    "image_attribution": img2_attr or "Wikimedia Commons"
 }
-if not art2_img_url:
-    art2.pop("image_url")
-    art2.pop("image_caption")
-    art2.pop("image_attribution")
+articles.append(article2)
 
-insert_article(art2)
-time.sleep(1)
 
-# ============================================================
-# ARTICLE 3: Foreign investors pivot to short India debt
-# ============================================================
-print("\n" + "="*60)
-print("ARTICLE 3: Foreign investors short India debt")
-print("="*60)
+# ---- ARTICLE 3: PhysicsWallah Reverses Lending Strategy ----
+print("\n=== ARTICLE 3: PhysicsWallah Reverses Lending Strategy ===")
 
-art3_slug = "foreign-investors-pivot-short-india-bonds-rbi-rate-decision-rupee-20260604"
-art3_headline = "Foreign Investors Are Quietly Shifting to Short-Term Indian Bonds. The Signal Is Hard to Ignore."
-art3_subheadline = "Two-thirds of top foreign bond purchases in March through May were in maturities under five years. The front end of the curve now offers better risk-adjusted carry — and the back end is a bet most fund managers do not want to take."
-
-art3_body = """Overseas investors are staging a quiet but significant shift in the way they hold Indian government debt. Over the past three months, they have moved decisively toward short-term bonds, abandoning the long end of the yield curve as inflation risks mount and the Reserve Bank of India faces its most difficult policy decision in years.
-
-Bonds with maturities of less than five years made up over two-thirds of the top ten notes foreign investors purchased during March through May, according to clearing house data compiled by Reuters. That is a sharp increase from less than half in January and February. The rebalancing happened as yields climbed, the rupee fell, and the Iran-war-driven energy shock upended the inflation outlook.
-
-## The Math Behind the Move
-
-The ten-year benchmark bond yield has risen 34 basis points from March to May. The five-year yield has risen 55 basis points. The spread between the two dropped to an eight-month low of 15 basis points, a textbook signal that the market expects tighter monetary policy and is front-loading that bet by buying the short end.
-
-"In such an environment, the front end offers more attractive risk-adjusted carry with lower duration risk, while the long end remains vulnerable to further repricing if the tightening cycle materialises," said Krishna Bhimavarapu, APAC economist at State Street Investment Management.
-
-The logic is straightforward. Short-term bonds lock in higher yields while limiting the losses that would come from a rate hike. If the RBI raises rates — as Standard Chartered has predicted with a 25-basis-point increase — holders of ten-year or longer bonds would see their prices fall more sharply than holders of three-year or five-year paper.
-
-## The RBI's Dilemma
-
-The Reserve Bank of India will announce its rate decision on Friday morning. Most economists polled by Reuters expect Governor Sanjay Malhotra to hold the repo rate at 5.25 per cent, but the decision is anything but routine.
-
-Brent crude remains elevated near $96 a barrel. The rupee has fallen 6.5 per cent this year, making it one of the weakest-performing Asian currencies. Foreign portfolio investors have been pulling money out of Indian equities for weeks. And overnight indexed swaps — a forward-looking market indicator — are already pricing in a rate hike.
-
-"We expect the RBI to hold rates steady, while signalling readiness to respond, should inflation risks intensify and second-round pressures begin to emerge," said Madhavi Arora of Emkay Global Financial Services.
-
-A more hawkish guidance without an actual hike would likely push the rupee lower in the short term, according to traders, but the central bank's aggressive FX swap operations over the past ten days suggest it is prepared to intervene. One-year hedging costs have already dropped from a mid-May peak of 3.50 per cent to 2.92 per cent, compressed by RBI's buy-sell dollar-rupee swaps.
-
-## What Changed the Calculus
-
-Foreign investors had been net buyers of Indian bonds through early 2026, attracted by the country's inclusion in major global bond indices and yields that looked generous compared with developed markets. In January and February, overseas investors bought bonds worth 221 billion rupees.
-
-Then came March. As the Iran crisis escalated and crude prices surged, foreign investors sold a record 177 billion rupees in Indian bonds in a single month. They turned buyers again in April and May, but the composition of their purchases had changed — shorter maturities, less duration risk, a more defensive posture.
-
-"The curve has bear-flattened with short-end yields rising more than the long-end yields. This has created a valuations-driven opportunity for foreign investors to buy short-end bonds," said Nagaraj Kulkarni, chief rates strategist for South Asia and Indonesia at Standard Chartered.
-
-## The Diaspora Angle
-
-For NRIs with investments in Indian fixed-income markets — whether through NRE or NRO deposits, mutual fund debt schemes, or direct government bond holdings — the bond market dynamics carry practical implications. Short-term deposit rates are likely to rise if the RBI turns hawkish, making fresh deposits more attractive. But existing long-duration bond holdings could lose value if a tightening cycle begins.
-
-The government's recent decision to scrap capital gains tax on foreign investment in government bonds — announced earlier this week in a bid to stem rupee outflows — may attract some fresh inflows. But the structural picture is clear: investors are positioning for a world in which Indian interest rates go up, not down.
-
-Friday's decision will reveal whether the central bank agrees.
-
-**Sources**: Reuters, Outlook Money, The Hindu BusinessLine, ANZ Research, Standard Chartered"""
-
-# Source image
-print("  Sourcing image...")
-art3_img_url, art3_img_attr = source_image(
-    art3_slug,
-    person_name="Sanjay Malhotra RBI",
-    wiki_search="Reserve Bank of India Mumbai building",
-    pexels_query="Indian stock market trading bonds"
+img3_url, img3_hint, img3_attr = source_image(
+    person_name="Alakh Pandey",
+    wiki_search="PhysicsWallah edtech India",
+    pexels_query="India students education classroom"
 )
 
-art3 = {
-    "headline": art3_headline,
-    "subheadline": art3_subheadline,
-    "body": art3_body,
-    "slug": art3_slug,
-    "category": "news",
+article3 = {
     "vertical": "news",
+    "headline": "PhysicsWallah Killed Its Lending Plan One Week After Announcing It. The Stock Surged 18%.",
+    "subheadline": "The edtech giant scrapped a ₹120 crore student lending bet after investors revolted — and the market rewarded the U-turn instantly.",
+    "slug": "physicswallah-reverses-finz-finance-lending-nbfc-partnership-stock-surge-20260605",
+    "category": "news",
     "status": "published",
     "is_editorial": False,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": art3_img_url,
-    "image_caption": "The Reserve Bank of India headquarters in Mumbai, where the MPC will announce its rate decision on Friday",
-    "image_attribution": art3_img_attr or "Wikimedia Commons",
-    "sources": json.dumps(["Reuters", "Outlook Money", "The Hindu BusinessLine", "ANZ Research", "Standard Chartered"])
+    "published_at": now_utc,
+    "body": """PhysicsWallah, one of India's most watched edtech companies, has abruptly abandoned its plan to lend directly to students — just one week after announcing a ₹120 crore infusion into its lending subsidiary. The reversal sent the company's shares surging nearly 18% in a single session, a striking market verdict on the original decision.
+
+The Alakh Pandey-led company said on Thursday that it has restructured its lending strategy and will now partner with multiple regulated non-banking financial companies (NBFCs) instead of building an in-house lending book through its subsidiary, FinZ Finance Private Limited.
+
+"We received feedback from our partners that our core strength lies in building communities and our online business," co-founder Prateek Maheshwari said. "Our lending business is best left to regulated third-party NBFCs who have created robust underwriting capabilities."
+
+## The Week That Changed Everything
+
+The U-turn was swift even by startup standards. Last week, PhysicsWallah had filed an exchange disclosure announcing a ₹120 crore equity infusion into FinZ Finance, signalling ambitious plans to enter student financing directly. The market's response was immediate and negative: shares fell steadily as investors questioned why an education platform was taking on credit risk.
+
+The backlash came from multiple directions. Long-term investors and strategic partners reportedly advised the company to stick to its core education business rather than diversify into a domain that requires specialised underwriting capabilities and regulatory expertise. The message was clear: build courses, not loan books.
+
+By Thursday morning, the reversal was official. PhysicsWallah said it would function as a technology platform connecting students to a "curated set of regulated lending partners," with financing decisions tied to students' learning lifecycle and academic outcomes. The asset-light model eliminates balance sheet exposure and credit risk.
+
+## What Happens to FinZ Finance
+
+The ₹120 crore already invested in FinZ Finance now needs to be recovered. According to people familiar with the matter, PhysicsWallah is weighing several options: a potential sale of the subsidiary, transfer of its existing loan book, or surrender of its lending-related licences. The final decision will follow a board review and regulatory approval.
+
+The rapid pivot reflects a broader maturation in India's startup ecosystem, where investors are increasingly intolerant of mission creep. The days when venture-backed companies could expand into adjacent businesses without scrutiny are over. Capital efficiency and focus are the new watchwords.
+
+## The Market's Verdict
+
+The stock market's reaction was unambiguous. PhysicsWallah shares opened at ₹91 on Thursday and surged to an intraday high of ₹108.45, eventually closing at ₹106.50 — up 15.6% from the previous session. Trading volume was extraordinary, with approximately 562 lakh shares changing hands worth ₹583 crore.
+
+The surge partially reversed a 20% year-to-date decline in the stock, which had been under sustained pressure. The company's market capitalisation recovered to approximately ₹30,764 crore (about $3.2 billion).
+
+## The Edtech Lending Dilemma
+
+PhysicsWallah's brief lending experiment highlights a tension that runs through India's edtech sector. The companies that serve aspirational students — many from Tier-2 and Tier-3 cities — are acutely aware that affordability is the single biggest barrier to education. The temptation to solve the financing problem in-house is powerful.
+
+But lending is a fundamentally different business from education. It requires regulatory compliance, credit risk assessment, collections infrastructure, and capital reserves that sit uneasily alongside the high-growth, technology-first culture of a startup. Companies like Byju's learned this lesson at great cost. PhysicsWallah, to its credit, learned it in a week.
+
+The new NBFC partnership model represents a compromise: PhysicsWallah keeps its students within its ecosystem while outsourcing the financial risk to institutions built for it. If the partnerships work, students get access to financing without the company betting its balance sheet on their repayment.
+
+For Alakh Pandey, whose YouTube-to-unicorn journey has made him one of India's most recognised entrepreneurs, the episode is a reminder that markets reward discipline as readily as they punish overreach.
+
+*Sources: Inc42, The Hindu BusinessLine, LiveMint, Reuters, Storyboard18*""",
+    "sources": json.dumps(["Inc42", "The Hindu BusinessLine", "LiveMint", "Reuters", "Storyboard18"]),
+    "image_url": img3_url,
+    "image_caption": "PhysicsWallah co-founder Alakh Pandey built the edtech platform from a YouTube channel",
+    "image_attribution": img3_attr or "Pexels"
 }
-if not art3_img_url:
-    art3.pop("image_url")
-    art3.pop("image_caption")
-    art3.pop("image_attribution")
+articles.append(article3)
 
-insert_article(art3)
 
-print("\n" + "="*60)
-print("Done! All 3 articles published.")
-print("="*60)
+# ===================== INSERT ALL =====================
+print("\n=== INSERTING ARTICLES ===")
+success_count = 0
+for i, article in enumerate(articles):
+    print(f"\nArticle {i+1}: {article['headline'][:60]}...")
+    if not article.get('image_url'):
+        print("  ⚠ No image found — inserting without image")
+        article.pop('image_url', None)
+        article.pop('image_caption', None)
+        article.pop('image_attribution', None)
+    if insert_article(article):
+        success_count += 1
+
+print(f"\n=== DONE: {success_count}/{len(articles)} articles inserted ===")
