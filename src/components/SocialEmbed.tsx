@@ -108,8 +108,8 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
   if (isLoading) {
     return (
       <div style={{
-        background: "#fff", border: "1px solid #e1e8ed",
-        borderRadius: 14, padding: 32, textAlign: "center", color: "#9ca3af", fontSize: 13,
+        background: "#0f0f0f", border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: 14, padding: 32, textAlign: "center", color: "rgba(255,255,255,0.4)", fontSize: 13,
       }}>
         Loading post…
       </div>
@@ -119,7 +119,7 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
   if (error || !tweet) {
     return (
       <div style={{
-        background: "#fff", border: "1px solid #e1e8ed", borderRadius: 14, padding: 20, textAlign: "center",
+        background: "#0f0f0f", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 20, textAlign: "center",
       }}>
         <a href={url} target="_blank" rel="noopener noreferrer" style={{ color: "#1DA1F2", fontSize: 13 }}>
           View post on 𝕏 →
@@ -136,11 +136,10 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
 
   return (
     <div style={{
-      background: "#fff",
-      border: "1px solid #e1e8ed",
+      background: "#0f0f0f",
       borderRadius: 14,
       overflow: "hidden",
-      boxShadow: "0 1px 8px rgba(0,0,0,0.06)",
+      border: "1px solid rgba(255,255,255,0.08)",
       fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
     }}>
       {/* Header — matches X embed: avatar | name+handle | X icon */}
@@ -155,26 +154,26 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
             style={{
               width: 48, height: 48, minWidth: 48, minHeight: 48, maxWidth: 48, maxHeight: 48,
               borderRadius: "50%", objectFit: "cover",
-              border: "1px solid rgba(0,0,0,0.08)",
+              border: "2px solid rgba(255,255,255,0.12)",
             }}
           />
         </a>
         <div style={{ flex: 1, minWidth: 0, overflow: "hidden" }}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <a href={tweetUrl} target="_blank" rel="noopener noreferrer"
-               style={{ color: "#0f1419", textDecoration: "none", fontWeight: 700, fontSize: 15, lineHeight: 1.3 }}>
+               style={{ color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 15, lineHeight: 1.3 }}>
               {user.name}
             </a>
             {(user.is_blue_verified || user.verified_type) && (
               <VerifiedBadge type={user.verified_type} />
             )}
           </div>
-          <div style={{ color: "#536471", fontSize: 14, lineHeight: 1.3, display: "flex", alignItems: "center", gap: 2 }}>
+          <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 14, lineHeight: 1.3, display: "flex", alignItems: "center", gap: 2 }}>
             <a href={`https://x.com/${user.screen_name}`} target="_blank" rel="noopener noreferrer"
-               style={{ color: "inherit", textDecoration: "none" }}>
+               style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>
               @{user.screen_name}
             </a>
-            <span style={{ color: "#536471" }}> · </span>
+            <span style={{ color: "rgba(255,255,255,0.35)" }}> · </span>
             <a href={tweetUrl} target="_blank" rel="noopener noreferrer"
                style={{ color: "#1DA1F2", textDecoration: "none", fontWeight: 500, fontSize: 14 }}>
               Follow
@@ -182,7 +181,7 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
           </div>
         </div>
         <a href={tweetUrl} target="_blank" rel="noopener noreferrer"
-           style={{ color: "#0f1419", flexShrink: 0, marginLeft: "auto" }}>
+           style={{ color: "rgba(255,255,255,0.7)", flexShrink: 0, marginLeft: "auto" }}>
           <XIcon />
         </a>
       </div>
@@ -195,7 +194,7 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
         <div style={{ padding: "0 16px" }}>
           {expanded && (
             <p style={{
-              fontSize: 15, lineHeight: 1.55, color: "#0f1419",
+              fontSize: 15, lineHeight: 1.55, color: "rgba(255,255,255,0.85)",
               margin: "0 0 8px", whiteSpace: "pre-wrap", wordWrap: "break-word",
             }}>
               {bodyText}
@@ -216,21 +215,20 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
       {/* Footer with stats + View on X */}
       <div style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: "8px 16px 12px", borderTop: "1px solid #f0f0f0",
-        background: "linear-gradient(to bottom, #fafbfc, #f5f7f9)",
+        padding: "8px 16px 12px", borderTop: "1px solid rgba(255,255,255,0.08)",
       }}>
-        <div style={{ display: "flex", gap: 14, fontSize: 13, color: "#536471" }}>
+        <div style={{ display: "flex", gap: 14, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>
           {tweet.favorite_count > 0 && <span>❤️ {formatCount(tweet.favorite_count)}</span>}
           {tweet.conversation_count > 0 && <span>💬 {formatCount(tweet.conversation_count)}</span>}
           {tweet.created_at && (
-            <span style={{ color: "#8899a6" }}>{timeAgo(tweet.created_at)}</span>
+            <span style={{ color: "rgba(255,255,255,0.3)" }}>{timeAgo(tweet.created_at)}</span>
           )}
         </div>
         <a
           href={tweetUrl} target="_blank" rel="noopener noreferrer"
           style={{
             display: "inline-flex", alignItems: "center", color: "#fff", textDecoration: "none",
-            fontWeight: 600, fontSize: 12, background: "#0f1419", padding: "6px 16px",
+            fontWeight: 600, fontSize: 12, background: "rgba(255,255,255,0.12)", padding: "6px 16px",
             borderRadius: 20, transition: "background 0.15s",
           }}
           onMouseOver={(e) => (e.currentTarget.style.background = "#333")}
