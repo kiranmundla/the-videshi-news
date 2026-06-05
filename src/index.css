@@ -161,88 +161,166 @@
 /* Prevent horizontal page overflow on mobile */
 html, body { overflow-x: hidden; }
 
-/* ── react-tweet embed overrides ── */
-.tweet-embed-wrapper .react-tweet-theme {
-  --tweet-container-margin: 0 !important;
-  --tweet-header-font-size: 0.8125rem;
-  --tweet-header-line-height: 1rem;
-  --tweet-info-font-size: 0.8125rem;
-  --tweet-info-line-height: 1rem;
-  --tweet-body-font-size: 0.938rem;
-  --tweet-body-line-height: 1.25rem;
-  --tweet-border: 1px solid #e1e8ed;
-  --tweet-bg-color: #fff;
+/* ── Custom tweet card ── */
+.tweet-card {
+  background: #fff;
+  border: 1px solid #e1e8ed;
+  border-top: 3px solid #1DA1F2;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Card container — accent top border + shadow */
-.tweet-embed-wrapper .react-tweet-theme > div {
-  border-radius: 12px 12px 0 0 !important;
-  border-bottom: none !important;
-  border-top: 3px solid #1DA1F2 !important;
-  box-shadow: 0 1px 8px rgba(0,0,0,0.08) !important;
+/* Header */
+.tweet-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px 8px;
+}
+.tweet-card-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid #f0f0f0;
+}
+.tweet-card-author {
+  flex: 1;
+  min-width: 0;
+}
+.tweet-card-name {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f1419;
+  line-height: 1.3;
+}
+.tweet-card-name a { color: inherit; text-decoration: none; }
+.tweet-card-name a:hover { text-decoration: underline; }
+.tweet-card-handle {
+  font-size: 13px;
+  color: #536471;
+  line-height: 1.3;
+}
+.tweet-card-handle a { color: inherit; text-decoration: none; }
+.tweet-card-time { color: #8899a6; }
+.tweet-card-x-icon {
+  color: #0f1419;
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background 0.15s;
+}
+.tweet-card-x-icon:hover { background: rgba(15,20,25,0.08); }
+
+/* Body text */
+.tweet-card-body {
+  padding: 0 16px 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #0f1419;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
-/* Collapsed: hide body text, actions, replies */
-.tweet-collapsed .react-tweet-theme article > p {
-  display: none !important;
+/* Photo grid */
+.tweet-card-photo-grid {
+  display: grid;
+  gap: 2px;
+  margin: 0 16px 8px;
+  border-radius: 12px;
+  overflow: hidden;
 }
-.tweet-collapsed .react-tweet-theme article > div:last-child,
-.tweet-collapsed .react-tweet-theme article > div:nth-last-child(2) {
-  display: none !important;
-}
-/* Tighten gap between header and photos when text is hidden */
-.tweet-collapsed .react-tweet-theme article > :first-child {
-  padding-bottom: 0.25rem !important;
-}
-.tweet-collapsed .react-tweet-theme article > p + div {
-  margin-top: 0.25rem !important;
-}
-
-/* Expanded: show everything */
-.tweet-expanded .react-tweet-theme article > p {
+.tweet-card-photo-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
+.tweet-card-grid-1 {
+  grid-template-columns: 1fr;
+}
+.tweet-card-grid-1 img {
+  max-height: 360px;
+}
+.tweet-card-grid-2 {
+  grid-template-columns: 1fr 1fr;
+  aspect-ratio: 16 / 9;
+}
+.tweet-card-grid-3 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.tweet-card-grid-3 img:first-child {
+  grid-row: 1 / 3;
+}
+.tweet-card-grid-4 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  aspect-ratio: 16 / 9;
+}
 
-/* Toggle bar below the tweet card */
-.tweet-toggle-bar {
+/* Footer */
+.tweet-card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 14px;
-  font-size: 0.8rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  border: 1px solid #e1e8ed;
-  border-top: none;
-  border-radius: 0 0 12px 12px;
-  background: linear-gradient(to bottom, #f8fafc, #f0f4f8);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  padding: 8px 16px 12px;
+  border-top: 1px solid #f0f0f0;
 }
-.tweet-toggle-btn {
+.tweet-card-stats {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #536471;
+}
+.tweet-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tweet-card-toggle {
   background: none;
   border: none;
   color: #536471;
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 12px;
   padding: 4px 8px;
   font-family: inherit;
   border-radius: 6px;
-  transition: all 0.15s ease;
+  transition: all 0.15s;
 }
-.tweet-toggle-btn:hover {
+.tweet-card-toggle:hover {
   color: #1DA1F2;
   background: rgba(29, 155, 240, 0.08);
 }
-.tweet-view-x-link {
+.tweet-card-view-x {
+  display: inline-flex;
+  align-items: center;
   color: #fff;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.75rem;
+  font-size: 12px;
   background: #0f1419;
   padding: 5px 14px;
   border-radius: 20px;
-  transition: background 0.15s ease;
-  letter-spacing: 0.01em;
+  transition: background 0.15s;
 }
-.tweet-view-x-link:hover {
-  background: #333;
+.tweet-card-view-x:hover { background: #333; }
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+  .tweet-card-avatar { width: 40px; height: 40px; }
+  .tweet-card-name { font-size: 13px; }
+  .tweet-card-handle { font-size: 12px; }
+  .tweet-card-body { font-size: 13px; }
+  .tweet-card-photo-grid { margin: 0 12px 8px; }
+  .tweet-card-header { padding: 12px 12px 6px; }
+  .tweet-card-footer { padding: 8px 12px 10px; }
 }
