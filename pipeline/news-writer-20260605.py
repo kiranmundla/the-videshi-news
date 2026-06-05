@@ -1,50 +1,54 @@
 #!/usr/bin/env python3
 """
-The Videshi — News Writer (2026-06-05 batch)
-Publishes 3 news articles:
-1. Trump confirms India-US trade deal is coming
-2. Delhi hotel fire kills 21 including 17 foreign nationals
-3. India's free trade blitz — 6-7 new FTAs expected next year
+News writer for The Videshi — 2026-06-05 batch
+Writes 3 articles:
+1. Georgia Indian American political wave (nri-world)
+2. India's clean energy grid penalty crisis (news)
+3. RBI's NRI-focused rupee defense playbook (news)
 """
 
 import json, os, sys, time, uuid, re
 from datetime import datetime, timezone
 import requests
-import urllib.parse
+import subprocess
 
-# Load environment
+# --- ENV ---
 def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    key, val = line.split('=', 1)
-                    os.environ[key.strip()] = val.strip()
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            if '=' in line:
+                key, val = line.split('=', 1)
+                key = key.replace('export ', '').strip()
+                os.environ[key] = val.strip()
 
-load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
 SUPABASE_URL = os.environ['SUPABASE_URL']
 SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
 HEADERS = {
     'apikey': SUPABASE_KEY,
     'Authorization': f'Bearer {SUPABASE_KEY}',
     'Content-Type': 'application/json',
     'Prefer': 'return=representation'
 }
+WIKI_UA = 'TheVideshi/1.0 (thevideshi.com)'
 
-# ====== IMAGE SOURCING ======
-
+# --- IMAGE FUNCTIONS ---
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            headers={"User-Agent": WIKI_UA},
             timeout=10
         )
         if r.status_code == 200:
@@ -59,22 +63,22 @@ def fetch_wikipedia_person_image(person_name):
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
-    params = {
-        "action": "query",
-        "generator": "search",
-        "gsrsearch": search_query,
-        "gsrnamespace": "6",
-        "gsrlimit": str(limit),
-        "prop": "imageinfo",
-        "iiprop": "url|size|mime|extmetadata",
-        "iiurlwidth": "1200",
-        "format": "json"
-    }
     try:
+        params = {
+            "action": "query",
+            "generator": "search",
+            "gsrsearch": search_query,
+            "gsrnamespace": "6",
+            "gsrlimit": str(limit),
+            "prop": "imageinfo",
+            "iiprop": "url|size|mime|extmetadata",
+            "iiurlwidth": "1200",
+            "format": "json"
+        }
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
             params=params,
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            headers={"User-Agent": WIKI_UA},
             timeout=15
         )
         if r.status_code == 200:
@@ -100,348 +104,364 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
                 print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+        print(f"  ⚠ Wikimedia Commons error: {e}")
     return []
 
 def fetch_pexels_image(query):
-    """Search Pexels for a relevant image. Returns URL or None."""
+    """Search Pexels for an image using curl (Python urllib gets 403)."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
     try:
-        r = requests.get(
-            "https://api.pexels.com/v1/search",
-            params={"query": query, "per_page": 5, "orientation": "landscape"},
-            headers={"Authorization": PEXELS_KEY},
-            timeout=10
+        result = subprocess.run(
+            ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+             f'https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page=3&orientation=landscape'],
+            capture_output=True, text=True, timeout=15
         )
-        if r.status_code == 200:
-            data = r.json()
-            photos = data.get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                return url
+        data = json.loads(result.stdout)
+        photos = data.get('photos', [])
+        if photos:
+            img_url = photos[0]['src']['large2x']
+            print(f"  ✓ Pexels image found for '{query}': {img_url[:80]}...")
+            return img_url
     except Exception as e:
-        print(f"  ⚠ Pexels error for '{query}': {e}")
+        print(f"  ⚠ Pexels error: {e}")
     return None
 
 def validate_image(url):
-    """Validate image URL returns 200 with image content type and > 5KB."""
+    """Validate image URL returns HTTP 200 with image content-type and >5KB."""
     try:
-        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            print(f"  ✓ Image validated: {r.status_code}, {ct}, {cl} bytes")
+        r = requests.head(url, headers={"User-Agent": WIKI_UA}, timeout=10, allow_redirects=True)
+        ct = r.headers.get('Content-Type', '')
+        cl = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in ct and cl > 5000:
+            print(f"  ✓ Image validated: {cl} bytes, {ct}")
             return True
-        # Try GET if HEAD doesn't return Content-Length
-        if r.status_code == 200 and "image" in ct and cl == 0:
-            r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, stream=True)
-            size = len(r2.content)
-            if size > 5000:
-                print(f"  ✓ Image validated via GET: {size} bytes")
+        # Sometimes HEAD doesn't return Content-Length; try GET
+        if r.status_code == 200 and 'image' in ct and cl == 0:
+            r2 = requests.get(url, headers={"User-Agent": WIKI_UA}, timeout=10, stream=True)
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
+                print(f"  ✓ Image validated via GET: >{len(chunk)} bytes")
                 return True
-        print(f"  ✗ Image validation failed: {r.status_code}, {ct}, {cl} bytes")
+        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
         print(f"  ✗ Image validation error: {e}")
     return False
 
+def source_image(person_name=None, wiki_searches=None, pexels_query=None):
+    """Multi-source image search. Returns (url, caption, attribution) or (None,None,None)."""
+    # 1. Wikipedia person image
+    if person_name:
+        url = fetch_wikipedia_person_image(person_name)
+        if url and validate_image(url):
+            return url, None, "Wikimedia Commons"
+    
+    # 2. Wikimedia Commons
+    if wiki_searches:
+        for q in wiki_searches:
+            results = fetch_wikimedia_commons_images(q, limit=3)
+            for r in results:
+                url = r.get('url') or r.get('original_url')
+                if url and validate_image(url):
+                    return url, r.get('title', ''), "Wikimedia Commons"
+    
+    # 3. Pexels fallback
+    if pexels_query:
+        url = fetch_pexels_image(pexels_query)
+        if url and validate_image(url):
+            return url, None, "Pexels"
+    
+    return None, None, None
 
-# ====== ARTICLE PUBLISHING ======
 
-def publish_article(article):
-    """Insert article into Supabase p2_articles table."""
+def insert_article(article):
+    """Insert article into Supabase p2_articles."""
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
-        json=article,
-        timeout=30
+        json=article
     )
     if r.status_code in (200, 201):
         result = r.json()
         if isinstance(result, list) and result:
-            print(f"  ✓ Published: {result[0].get('headline', 'unknown')[:60]}...")
-            return result[0]
-        print(f"  ✓ Published (raw response)")
-        return result
+            print(f"  ✓ Article inserted: {result[0].get('id', 'unknown')}")
+            return True
+        print(f"  ✓ Article inserted (response: {r.text[:100]})")
+        return True
     else:
-        print(f"  ✗ Publish failed: {r.status_code} — {r.text[:300]}")
-        return None
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        return False
 
 
-# ====== ARTICLES ======
-
-def build_articles():
-    articles = []
-    now_iso = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-
-    # ---- ARTICLE 1: Trump-India Trade Deal ----
-    print("\n=== Article 1: Trump-India Trade Deal ===")
-
-    # Image: Trump — try Wikipedia
-    img1 = fetch_wikipedia_person_image("Donald Trump")
-    img1_caption = "US President Donald Trump speaks to reporters in the Oval Office"
-    img1_attr = "Wikimedia Commons"
-
-    # Also try Wikimedia Commons for Trump+Modi
-    commons1 = fetch_wikimedia_commons_images("Trump Modi bilateral meeting", limit=3)
-    # Prefer a Trump-Modi image if available and valid
-    if commons1:
-        for c in commons1:
-            if validate_image(c["url"]):
-                img1 = c["url"]
-                img1_caption = "US President Donald Trump and Indian Prime Minister Narendra Modi at a bilateral meeting"
-                break
-
-    if not img1 or not validate_image(img1):
-        img1 = fetch_pexels_image("US India trade diplomacy")
-        img1_attr = "Pexels"
-        img1_caption = "US and India flags symbolizing bilateral trade negotiations"
-        if img1 and not validate_image(img1):
-            img1 = None
-
-    body1 = """The India-US trade deal that has eluded negotiators for the better part of two decades may finally be within reach. US President Donald Trump confirmed on Thursday that he expects the two countries to strike an agreement, calling Prime Minister Narendra Modi "a good friend" and expressing confidence that a deal is imminent.
-
-"We will get to a deal because I like your prime minister a lot. He is a good friend of mine. We get along great, and we are gonna make a deal," Trump told reporters at the Oval Office on June 4.
-
-The president's remarks came hours after a three-day round of face-to-face negotiations in New Delhi wrapped up between US Chief Negotiator Brendan Lynch and India's Additional Secretary of Commerce Darpan Jain. The talks, held from June 1 to 4, focused on giving final legal shape to an interim trade agreement whose framework was agreed upon in February.
-
-## The Ambassador Says 99%
-
-Trump's comments reinforced what US Ambassador to India Sergio Gor had said earlier in the week at CITI's 2026 India Conference in Mumbai. Gor revealed that the trade deal is "99% there," with only technical legal phrasing and implementation timelines left to resolve.
-
-"We are 99% there, the last 1% we are working on. We are very optimistic that this will get done. It will be a win-win situation for both the US and India," Gor said, noting that the negotiations had progressed faster in 18 months than India's trade pact with the European Union, which took nearly 19 years.
-
-Gor praised India's "incredible negotiators" and emphasized that the strong personal rapport between Trump and Modi has been the primary driver behind the deal's rapid advancement.
-
-## What the Deal Covers
-
-The interim agreement spans six critical areas: market access, non-tariff measures, customs and trade facilitation, investment promotion, economic security alignment, and broader bilateral trade framework issues. India's Commerce Ministry described the discussions as positive, with both sides committed to a mutually beneficial outcome.
-
-Union Commerce Minister Piyush Goyal confirmed that the US delegation met with him on June 4 to review progress. India and the US are targeting bilateral trade of $500 billion by 2030, roughly double the current levels.
-
-## The Shadow of New Tariffs
-
-Yet even as the deal nears completion, a fresh challenge has surfaced. The US has proposed a 12.5% tariff on imports from countries it believes are not doing enough to address forced labour concerns. India has been included in the proposed list of 60 countries, a move that could make Indian exports more expensive in the American market if implemented.
-
-Indian officials have clarified that no final decision has been taken on the forced-labour tariffs, and the US is expected to seek public feedback before acting. The proposal sits awkwardly alongside the trade deal's stated goal of reducing barriers between the two economies.
-
-## A Broader Trade Blitz
-
-The India-US talks are part of a larger trade push by New Delhi. The India-Oman Comprehensive Economic Partnership Agreement entered into force on June 1, offering duty-free access to nearly 98% of Indian exports. India has signed nine free trade agreements in the last three and a half years, covering 38 developed economies, and plans to roll out another six to seven FTAs in the coming year.
-
-For the millions of Indians in the US — tech workers, entrepreneurs, students, and business owners — the trade deal carries direct implications. Lower tariffs, smoother customs procedures, and aligned investment frameworks could reshape how Indian businesses access the American market and how American companies invest in India.
-
-The signing could come within weeks. The 99% may not be the hardest part — but in trade negotiations, the last 1% often is.
-
-*Sources: Reuters, The Hindu BusinessLine, The Indian Eye, Dainik Bhaskar English, Bloomberg Law*"""
-
-    articles.append({
-        "headline": "Trump Says a Trade Deal With India Is Coming. The US Ambassador Says It Is 99% Done.",
-        "subheadline": "Three days of face-to-face talks in New Delhi wrapped up on June 4. Both sides say only technical legal language remains before the interim pact can be signed.",
-        "body": body1,
-        "slug": "trump-india-us-trade-deal-99-percent-sergio-gor-brendan-lynch-20260605",
-        "category": "news",
-        "vertical": "news",
-        "image_url": img1,
-        "image_caption": img1_caption,
-        "image_attribution": img1_attr,
-        "status": "published",
-        "published_at": now_iso,
-        "is_editorial": False,
-        "sources": json.dumps(["Reuters", "The Hindu BusinessLine", "The Indian Eye", "Dainik Bhaskar English", "Bloomberg Law"])
-    })
-
-    # ---- ARTICLE 2: Delhi Hotel Fire ----
-    print("\n=== Article 2: Delhi Hotel Fire ===")
-
-    # Image: Search Wikimedia Commons for Delhi fire / Malviya Nagar
-    img2 = None
-    commons2 = fetch_wikimedia_commons_images("Delhi fire building rescue 2026", limit=5)
-    if not commons2:
-        commons2 = fetch_wikimedia_commons_images("Delhi fire rescue", limit=5)
+# =============================================================================
+# ARTICLE 1: Georgia Indian American Political Wave
+# =============================================================================
+def write_georgia_article():
+    print("\n=== ARTICLE 1: Georgia Indian American Political Wave ===")
     
-    for c in commons2:
-        if validate_image(c["url"]):
-            img2 = c["url"]
-            break
-
-    img2_caption = "Rescue operations at a fire scene in Delhi"
-    img2_attr = "Wikimedia Commons"
+    # Image sourcing: Try Georgia State Capitol from Wikimedia
+    img_url, img_title, img_attr = source_image(
+        wiki_searches=["Georgia State Capitol Atlanta", "Georgia state legislature"],
+        pexels_query="Georgia State Capitol Atlanta"
+    )
     
-    if not img2:
-        # Try Pexels for Delhi fire rescue
-        img2 = fetch_pexels_image("fire rescue building smoke")
-        img2_attr = "Pexels"
-        img2_caption = "Firefighters battling a building fire during rescue operations"
-        if img2 and not validate_image(img2):
-            img2 = None
-
-    body2 = """A fire at a budget hotel in south Delhi's Malviya Nagar neighbourhood on June 3 killed 21 people, including 17 foreign nationals who had come to India for medical treatment. It was the deadliest blaze the capital had seen since 2022, and it has renewed a familiar reckoning with the city's building safety failures.
-
-The fire broke out around 8:48 in the morning at Flourish Stay B&B, a five-storey structure that housed a restaurant called Lemon Green on its ground floor and hotel rooms on the upper levels. Delhi Fire Services dispatched eight trucks and multiple rescue units after receiving the distress call. By the time the search-and-rescue operation was declared complete at 12:12 p.m., 47 people had been pulled from the building. Twenty-one were dead.
-
-## Victims From Four Countries
-
-The foreign nationals killed in the fire came from Liberia, Nigeria, Mozambique, and Bangladesh, according to police. Most had been staying at the hotel because of its proximity to a nearby private hospital where they or their relatives were receiving treatment. The hotel's listing as an affordable option near medical facilities had made it popular among international patients — a grim detail that now defines the scale of the tragedy.
-
-Max Healthcare Group Medical Director Dr Sandeep Budhiraja said eight patients remained on ventilator support in critical condition. Most suffered severe asphyxiation from smoke inhalation rather than burns. Several sustained fractures after jumping from upper floors in desperation as the fire engulfed the building.
-
-Video footage from the scene showed two women leaping from upper storeys as flames and thick black smoke billowed behind them. Bystanders rushed to catch them and carry survivors to safety as rescue teams worked their way through the structure.
-
-## A Single Staircase and Sealed Windows
-
-Investigators have identified a catalogue of safety violations that turned the building into a death trap. The hotel had only one staircase serving all five floors — no secondary exit, no fire escape. Some windows were found sealed shut, trapping occupants who might otherwise have reached safety. There was no internal fire protection system in place. The building's fire No Objection Certificate is now under scrutiny.
-
-Police have lodged a criminal case and arrested the building's owner. The Sub-Divisional Magistrate of South Delhi confirmed that 26 of the 47 people rescued were still undergoing hospital treatment as investigations continued.
-
-## Crackdown Promised, Again
-
-Delhi's Chief Minister announced a city-wide crackdown against guest houses and commercial establishments operating in violation of fire safety norms and building by-laws. Non-compliant premises will be sealed and those responsible prosecuted, the Chief Minister's Office said in a post on X.
-
-Prime Minister Narendra Modi offered condolences and announced financial assistance of ₹2 lakh to the families of the deceased. Home Minister Amit Shah said local authorities were engaged in relief operations. Foreign Minister S. Jaishankar confirmed that the Ministry of External Affairs was in contact with the embassies of the countries whose citizens were killed.
-
-The Delhi fire follows a drearily familiar pattern. A 2019 fire at a factory in Anaj Mandi killed 43 people in a building with similarly illegal partitions and a single exit. In 2022, a fire at a commercial building near Mundka metro station killed 27. Each tragedy has been followed by promises of enforcement, inspections, and prosecutions. Each time, the enforcement has proven temporary and the violations have returned.
-
-AIIMS Delhi received 13 patients from the fire, including 10 police personnel who were among the first to enter the building. Three bodies were transferred to the Burns and Plastic Surgery Department.
-
-The fire at Flourish Stay B&B is not just a story about a building that burned. It is a story about a system that knew the building was unsafe and allowed it to operate anyway — because that is what the system does, until the next time.
-
-*Sources: Reuters, Livemint, People, Latestly, NDTV, NewKerala*"""
-
-    articles.append({
-        "headline": "A Delhi Hotel Fire Killed 21 People. Seventeen Were Foreign Nationals Who Came for Medical Care.",
-        "subheadline": "Flourish Stay B&B in Malviya Nagar had one staircase, sealed windows, and no fire protection. Victims came from Liberia, Nigeria, Mozambique, and Bangladesh.",
-        "body": body2,
-        "slug": "delhi-malviya-nagar-hotel-fire-21-dead-17-foreign-nationals-20260605",
-        "category": "news",
-        "vertical": "news",
-        "image_url": img2,
-        "image_caption": img2_caption,
-        "image_attribution": img2_attr,
-        "status": "published",
-        "published_at": now_iso,
-        "is_editorial": False,
-        "sources": json.dumps(["Reuters", "Livemint", "People", "Latestly", "NDTV", "NewKerala"])
-    })
-
-    # ---- ARTICLE 3: India's FTA Blitz ----
-    print("\n=== Article 3: India FTA Blitz ===")
-
-    # Image: India trade / commerce
-    commons3 = fetch_wikimedia_commons_images("India trade commerce port", limit=5)
-    img3 = None
-    for c in commons3:
-        if validate_image(c["url"]):
-            img3 = c["url"]
-            break
+    img_caption = "The Georgia State Capitol in Atlanta, where a new generation of Indian American lawmakers is headed"
+    if not img_url:
+        print("  ⚠ No image found, skipping article")
+        return False
     
-    img3_caption = "Indian commercial port handling international trade cargo"
-    img3_attr = "Wikimedia Commons"
+    headline = "Five Indian Americans Just Won Primaries Across Georgia. One Could Become the State's First South Asian Lieutenant Governor."
+    subheadline = "From a Sikh first-time candidate to the youngest state legislator in Georgia, South Asian Americans are reshaping the political map of a state that already has 600,000 Asian American residents."
+    
+    slug = "indian-americans-georgia-primaries-nabilah-parkes-jyot-singh-saira-draper-20260605"
+    
+    body = """Georgia's primary elections this week delivered a wave of historic results for Indian and South Asian American candidates, signaling a shift in political representation in a state where Asian Americans now number more than 600,000.
 
-    if not img3:
-        commons3b = fetch_wikimedia_commons_images("India commerce ministry New Delhi", limit=5)
-        for c in commons3b:
-            if validate_image(c["url"]):
-                img3 = c["url"]
-                img3_caption = "India's Commerce Ministry building in New Delhi"
-                break
+Five candidates endorsed by Indian American Impact, the largest political organization dedicated to South Asian American representation, either won outright or advanced to runoff elections. The breadth of their victories — spanning a lieutenant governor race, two state senate seats, and two state house districts — marks the most significant single-night haul for Indian American candidates in Georgia's history.
 
-    if not img3:
-        img3 = fetch_pexels_image("India shipping port trade containers")
-        img3_attr = "Pexels"
-        img3_caption = "A commercial port handling trade cargo"
-        if img3 and not validate_image(img3):
-            img3 = None
+## The Lieutenant Governor Race
 
-    body3 = """India is in the middle of the most aggressive trade diplomacy push in its history. Nine free trade agreements signed in three and a half years. The India-Oman deal that went live on June 1. A US trade pact that the American ambassador says is 99% done. And now, six to seven more FTAs expected to come into force in the next twelve months.
+The most closely watched result was Nabilah Islam Parkes's advance to a runoff in the Democratic primary for lieutenant governor. If she wins the runoff and the general election, Parkes would become the first South Asian and Asian American to hold the office in Georgia — and one of only a handful of South Asian lieutenant governors in American history.
 
-The numbers mark a sharp departure from a country that spent decades treating trade liberalisation with deep suspicion. India's previous record was the India-EU Free Trade Agreement signed in January 2026 — a deal that took 19 years of negotiations to close. The current pace is unrecognisable.
+Parkes, a Bangladeshi American organizer who built her profile through voter registration drives in suburban Atlanta, ran on a platform of lowering costs for working families and defending immigrant communities. Her advance to the runoff reflects the growing electoral muscle of South Asian voters in metro Atlanta's rapidly diversifying suburbs.
 
-## The Oman Deal Sets the Template
+## Georgia's First Sikh Elected Official
 
-The India-Oman Comprehensive Economic Partnership Agreement, which entered into force on June 1, 2026, offers duty-free access to nearly 98% of Indian exports. In return, India has reduced tariffs on Omani petrochemicals, minerals, and select industrial goods. The agreement is expected to benefit Indian exporters in textiles, gems and jewellery, food processing, and pharmaceuticals — sectors that employ millions of workers and anchor the export economy of several Indian states.
+Jyot Singh's outright victory in State House District 97 puts him on track to become the first Sikh elected official in Georgia history. Singh's win is part of a broader pattern of Sikh Americans entering electoral politics across the country, from Sukh Kaur's city council seat in San Antonio to the growing Sikh caucus in state legislatures nationwide.
 
-Oman is a relatively small trading partner, but the deal matters for what it signals. India is now willing to offer deep market access in exchange for reciprocal concessions — a negotiating posture that would have been politically unthinkable a decade ago.
+His district, in the suburban Atlanta corridor, has seen a significant influx of Indian American families over the past decade. Singh's campaign focused on education, infrastructure, and community engagement — issues that resonate in fast-growing suburban districts where many residents are first-generation immigrants or their children.
 
-## The US Deal: Eighteen Months vs Nineteen Years
+## Three More Victories
 
-The India-US Bilateral Trade Agreement is the centrepiece of the current strategy. US Ambassador Sergio Gor confirmed this week that the deal is "99% there," with only technical legal phrasing left to resolve. A US delegation led by Chief Negotiator Brendan Lynch spent June 1 to 4 in New Delhi hammering out the details with India's chief negotiator, Additional Secretary Darpan Jain.
-
-The interim agreement covers market access, non-tariff measures, customs and trade facilitation, investment promotion, and economic security alignment. India and the US are targeting bilateral trade of $500 billion by 2030, roughly double the current level.
-
-President Trump confirmed on June 4 that he expects a deal, calling Prime Minister Modi "a good friend." Commerce Minister Piyush Goyal described the talks as productive.
-
-## The Broader Picture: 38 Countries and Counting
-
-India's nine recent FTAs cover 38 developed economies. The roster includes the UK Comprehensive Economic and Trade Agreement, the New Zealand FTA, and the EFTA Trade and Economic Partnership Agreement with Switzerland, Norway, Iceland, and Liechtenstein — the last of which includes a $100 billion investment commitment over 15 years.
-
-Three to four more agreements are expected to be executed in the coming year. Another two to three are set to come into force within six months. Commerce Ministry officials have signalled that negotiations are underway with multiple partners across the Middle East, Southeast Asia, and Latin America.
+Saira Draper won the Democratic primary for State Senate District 44, securing her nomination in a competitive race. Rahul Garabadu advanced to a runoff in the State Senate District 7 race, one of the most contested seats in the state. And Akbar Ali secured the Democratic nomination for House District 106, where he will continue serving as the youngest state legislator in Georgia.
 
 ## What It Means for the Diaspora
 
-For the 18 million-strong Indian diaspora, the FTA blitz carries immediate consequences. Lower tariffs make Indian goods — from spices and textiles to pharmaceuticals and IT services — cheaper and more accessible in overseas markets. Investment frameworks aligned under bilateral agreements create smoother pathways for diaspora entrepreneurs to operate across borders.
+The results in Georgia are not an anomaly. Indian American political engagement has been accelerating for years, driven by demographic growth, organizational infrastructure, and a generation of candidates who grew up in the communities they now seek to represent.
 
-The India-Oman CEPA, for instance, benefits the estimated 780,000 Indians living in Oman, many of whom work in construction, retail, and services. The US deal, once signed, could reshape the economics of Indian-American businesses that depend on cross-border trade in technology, manufacturing, and professional services.
+Indian American Impact, which has endorsed and supported more than 200 candidates since its founding in 2016, has channeled upwards of $20 million into campaigns and voter mobilization. The organization's executive director, Chintan Patel, called Tuesday's results evidence of "the growing political power and representation of our communities."
 
-India's trade strategy has shifted from cautious protectionism to something closer to strategic ambition. The next 12 months will test whether the ambition can hold — against domestic opposition to imported goods, against the complications of forced-labour tariff proposals from Washington, and against the geopolitical headwinds of a war that has reshaped global energy markets.
+Georgia is a particularly significant battleground. The state's Asian American population has grown by more than 40 percent over the past decade, concentrated in the suburban counties ringing Atlanta — Gwinnett, Forsyth, Fulton, and DeKalb. These are the same counties that tipped Georgia to Democrats in 2020 and have remained fiercely competitive since.
 
-But the trajectory is clear. India is trading faster, wider, and deeper than at any point in its post-independence history.
+For Indian American voters watching from California, New Jersey, Texas, or anywhere else in the diaspora, Georgia's primary results offer a template: invest in local races, build organizational capacity, and run candidates who reflect the communities they serve. The returns, as Tuesday showed, are already arriving.
 
-*Sources: Reuters, The Indian Eye, AInvest, Dainik Bhaskar English, The Hindu BusinessLine*"""
+*Sources: Indian American Impact, The Indian Eye, Georgia Secretary of State*"""
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "nri-world",
+        "vertical": "nri-world",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attr,
+        "is_editorial": False,
+        "sources": json.dumps(["Indian American Impact", "The Indian Eye", "Georgia Secretary of State"])
+    }
+    
+    return insert_article(article)
 
-    articles.append({
-        "headline": "India Has Signed Nine Trade Deals in Three Years. Six More Are Coming.",
-        "subheadline": "The India-Oman CEPA went live on June 1, the US deal is 99% done, and Commerce Ministry officials say three to four more agreements will be executed in the next twelve months.",
-        "body": body3,
-        "slug": "india-free-trade-agreements-fta-blitz-oman-us-uk-eu-20260605",
+
+# =============================================================================
+# ARTICLE 2: India's Clean Energy Grid Penalty Crisis
+# =============================================================================
+def write_grid_article():
+    print("\n=== ARTICLE 2: India Clean Energy Grid Penalty Crisis ===")
+    
+    # Image: solar panels in India from Wikimedia
+    img_url, img_title, img_attr = source_image(
+        wiki_searches=["solar power plant India", "India solar farm Rajasthan", "wind farm India"],
+        pexels_query="solar panels India farm"
+    )
+    
+    img_caption = "A solar power installation in India, where new grid rules threaten to slash developer revenues"
+    if not img_url:
+        print("  ⚠ No image found, trying harder...")
+        img_url, img_title, img_attr = source_image(
+            pexels_query="solar panels field"
+        )
+        if not img_url:
+            print("  ⚠ Still no image, skipping")
+            return False
+    
+    headline = "India's New Grid Rules Could Cut Wind Farm Revenue by 48 Percent. A Court Just Hit Pause."
+    subheadline = "Tougher penalties for solar and wind producers who miss delivery targets have alarmed investors and forced a legal standoff — just as India needs billions to reach its 500 GW clean energy goal."
+    
+    slug = "india-grid-penalty-rules-solar-wind-500gw-cerc-karnataka-court-20260605"
+    
+    body = """India's push to tighten power grid discipline has collided with its clean energy ambitions. New regulations that sharply increase penalties for renewable energy producers who miss their delivery commitments have unsettled investors, drawn a legal challenge, and exposed the tension at the heart of the country's energy transition.
+
+The rules, drafted by the Central Electricity Regulatory Commission and originally due to take effect in April 2026 before being pushed to April 2027, penalize solar and wind operators when the electricity they actually deliver to the grid deviates from what they scheduled. The penalties escalate with the size of the gap.
+
+Industry groups estimate the tougher regime could cut revenue by roughly 11 percent for solar projects and as much as 48 percent for wind farms. For an industry where developers typically target an internal rate of return of 10 percent on solar and 12 to 13 percent on hybrid projects, those numbers are existential.
+
+## The Problem the Rules Are Trying to Solve
+
+India's power grid is changing faster than most people realize. Renewable energy's share of generation is projected to rise from 13.9 percent in the current fiscal year to 17.5 percent in the next. At those levels, weather-driven surges and shortfalls in solar and wind output create real-time balancing problems that the transmission system must manage far more tightly than before.
+
+The CERC's position is straightforward: as renewables take up a larger share of the grid, they must behave more like conventional power plants. Predictability is not optional when a fifth of the grid depends on the weather.
+
+As of March, India had 288 gigawatts of non-fossil fuel capacity, with wind and solar accounting for 73 percent of the total. The government's target is 500 GW by 2030 — a goal that requires sustained investment at a scale India has never achieved.
+
+## The Investor Backlash
+
+The developer community has pushed back hard. "Developers will face very high penalties even when deviations are small. This tightens margins, revenues will shrink and project viability will be affected," said Debabrat Ghosh, India head at Aurora Energy Research.
+
+The backlash was strong enough to trigger a legal intervention. A Karnataka court temporarily blocked the tougher penalties, allowing developers to operate under the older, more lenient deviation-charging system until a hearing scheduled after June 10, when the government and regulator must file their response.
+
+The injunction buys time, but it does not resolve the underlying conflict. Policymakers want grid reliability. Investors want stable returns. The two are currently on a collision course.
+
+## A Deeper Constraint
+
+The penalty debate may actually be obscuring a more fundamental problem: transmission bottlenecks. Before deviation fines become the primary concern, many renewable projects face the risk that they cannot move their generated power onto the grid at all.
+
+Adani Green, one of India's largest renewable developers, has publicly acknowledged that it could add seven to eight gigawatts of capacity per year but is limiting annual additions to roughly 4.5 to 5 GW because of transmission constraints. If the country's largest developer is throttling itself, smaller operators face even steeper odds.
+
+Solar curtailments — instances where generated power is wasted because the grid cannot absorb it — reached 300 gigawatt-hours in the first quarter of this year alone, according to climate think tank Ember. That represented two-thirds of all curtailments in the period.
+
+## What Comes Next
+
+The June 10 deadline will be the next signal. If the government softens the proposed penalties or phases them in more gradually, investor confidence could stabilize. If it holds firm, the clean energy financing pipeline — already strained by rising interest rates and geopolitical uncertainty — could face a material slowdown.
+
+India's 500 GW target was always ambitious. It now faces a credibility test that has nothing to do with technology or willpower, and everything to do with whether regulation can keep pace with a grid that is being remade in real time.
+
+*Sources: Reuters, OilPrice.com, Ember Climate, Aurora Energy Research, AInvest*"""
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
         "category": "news",
         "vertical": "news",
-        "image_url": img3,
-        "image_caption": img3_caption,
-        "image_attribution": img3_attr,
         "status": "published",
-        "published_at": now_iso,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attr,
         "is_editorial": False,
-        "sources": json.dumps(["Reuters", "The Indian Eye", "AInvest", "Dainik Bhaskar English", "The Hindu BusinessLine"])
-    })
+        "sources": json.dumps(["Reuters", "OilPrice.com", "Ember Climate", "Aurora Energy Research"])
+    }
+    
+    return insert_article(article)
 
-    return articles
+
+# =============================================================================
+# ARTICLE 3: RBI's NRI-Focused Rupee Defense
+# =============================================================================
+def write_rbi_nri_article():
+    print("\n=== ARTICLE 3: RBI NRI Rupee Defense Measures ===")
+    
+    # Image: RBI building or Sanjay Malhotra
+    img_url, img_title, img_attr = source_image(
+        person_name="Sanjay Malhotra (Reserve Bank of India)",
+        wiki_searches=["Reserve Bank of India building Mumbai", "Reserve Bank of India headquarters"],
+        pexels_query="Reserve Bank of India Mumbai"
+    )
+    
+    img_caption = "The Reserve Bank of India headquarters in Mumbai, where policymakers unveiled measures targeting diaspora deposits"
+    if not img_url:
+        img_url, img_title, img_attr = source_image(
+            wiki_searches=["Indian rupee currency", "Mumbai financial district"],
+            pexels_query="Indian rupee currency notes"
+        )
+        if img_url:
+            img_caption = "Indian rupee currency notes — the RBI's measures target diaspora deposits to shore up the weakened currency"
+    
+    if not img_url:
+        print("  ⚠ No image found, skipping")
+        return False
+    
+    headline = "The RBI Just Made It Cheaper for NRIs to Park Dollars in India. Here Is What Changed."
+    subheadline = "India's central bank will cover the full hedging cost for banks raising diaspora deposits, raise NRI equity investment limits, and scrap capital gains tax on foreign-held government bonds — a package analysts say could pull in $40 billion."
+    
+    slug = "rbi-nri-deposits-fcnr-hedging-rupee-defense-diaspora-dollar-inflows-20260605"
+    
+    body = """The Reserve Bank of India on Friday rolled out a coordinated package of measures designed to attract dollar inflows from the Indian diaspora and foreign investors, marking the most aggressive currency defense since the rupee began its slide in February.
+
+The rupee has lost nearly 5 percent this year, pushed to successive record lows by a surge in crude oil prices driven by the Middle East conflict, record foreign portfolio outflows from Indian equities, and a widening balance of payments gap that analysts estimate could reach $65 billion this fiscal year. On Friday, the currency gained 0.9 percent to close at 94.9450 per dollar — its best single-day performance in two months — as markets reacted to the measures.
+
+## What Changes for NRIs
+
+The most consequential measure for diaspora Indians is the RBI's decision to bear the full hedging cost for authorized dealer banks raising fresh three-to-five-year deposits under the Foreign Currency Non-Resident (Bank) scheme, known as FCNR(B). The facility runs until September 30, 2026.
+
+FCNR(B) deposits allow NRIs to park foreign currency in Indian banks without exchange-rate risk — the deposit is denominated in dollars, pounds, euros, or other currencies and returned in the same currency at maturity. The catch has always been that the hedging cost for banks made these deposits expensive to offer at competitive rates. By absorbing that cost, the RBI is effectively subsidizing a channel for diaspora dollars to flow into India.
+
+Banks will also be exempt from statutory fund requirements — the cash reserve ratio and statutory liquidity ratio — for these deposits, freeing up more of the inflow for productive lending.
+
+## NRI Equity Limits Raised
+
+The RBI also raised the limits for investment by NRIs and Overseas Citizens of India in equity instruments traded on Indian stock exchanges without requiring registration with the Securities and Exchange Board of India. The same facility is being extended to all individual Persons Resident Outside India at par with NRIs and OCIs — a significant expansion that opens Indian equity markets to a broader pool of overseas individual investors.
+
+## Capital Gains Tax Scrapped on Government Bonds
+
+In a parallel move announced by the Finance Ministry, India scrapped capital gains tax for foreign investors on interest or gains from the sale of government securities. Foreign investors were previously subject to a 12.5 percent long-term capital gains tax on listed bonds held for more than 12 months. The 20 percent tax on interest income has also been removed, effective from April 1, 2026.
+
+The tax exemption applies to government bonds under the Fully Accessible Route, which the RBI expanded on Friday to include all new issuances of 15-year, 30-year, and 40-year government securities. These bonds are part of three global bond indexes, making them visible to institutional allocators worldwide.
+
+## The Dollar Target
+
+The RBI set no official dollar-inflow target, but Governor Sanjay Malhotra said the central bank expects "healthy" inflows. Analysts were more specific: Sachchidanand Shukla, group chief economist at Larsen & Toubro, estimated the measures could draw $40 to $60 billion. Kunal Sodhani, head of treasury at Shinhan Bank, called FCNR flows and the expanded bond access "the most likely to deliver the largest and fastest inflows," with a base-case estimate of $25 to $30 billion.
+
+The combined effect matters because India's balance of payments is under unusual strain. Brent crude remains elevated near $96 a barrel, and foreign portfolio investors have pulled out record sums from Indian equities. The rupee's 5 percent decline this year follows a similar drop in 2025, making it one of the worst-performing emerging market currencies over the past 18 months.
+
+## What It Means for the Diaspora
+
+For NRIs weighing where to park savings, the calculus has shifted. FCNR(B) deposits now come with a central bank subsidy on hedging, no regulatory reserve requirements for banks, and a window that closes in September. The expanded equity access means NRIs can invest more in Indian markets without the friction of SEBI registration.
+
+The question is whether these measures are sufficient or whether they are a down payment on more aggressive intervention later. RBI Governor Malhotra said curbs on capital outflows "are not under discussion," signaling that the central bank prefers to attract inflows rather than restrict them.
+
+For now, the market has voted. The rupee posted its strongest session in two months, forward premiums plunged to the lowest level this fiscal year, and bank stocks rallied on expectations of cheaper funding.
+
+*Sources: Reserve Bank of India, Reuters, The Hindu BusinessLine, HDFC Bank Research, Shinhan Bank*"""
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "news",
+        "vertical": "news",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attr,
+        "is_editorial": False,
+        "sources": json.dumps(["Reserve Bank of India", "Reuters", "The Hindu BusinessLine", "HDFC Bank Research"])
+    }
+    
+    return insert_article(article)
 
 
-def main():
-    print("=" * 60)
-    print("The Videshi — News Writer Run")
-    print(f"Time: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}")
-    print("=" * 60)
-
-    articles = build_articles()
-
-    print(f"\n{'='*60}")
-    print(f"Publishing {len(articles)} articles...")
-    print(f"{'='*60}")
-
-    published = 0
-    for i, article in enumerate(articles):
-        print(f"\n--- Publishing Article {i+1}/{len(articles)} ---")
-        print(f"  Headline: {article['headline'][:80]}...")
-        print(f"  Slug: {article['slug']}")
-        print(f"  Category: {article['category']}")
-        print(f"  Image URL: {str(article.get('image_url', 'None'))[:80]}...")
-
-        if not article.get('image_url'):
-            print("  ⚠ No image found — publishing without image")
-
-        result = publish_article(article)
-        if result:
-            published += 1
-        else:
-            print(f"  ✗ FAILED to publish article {i+1}")
-
-    print(f"\n{'='*60}")
-    print(f"DONE: {published}/{len(articles)} articles published")
-    print(f"{'='*60}")
-
-if __name__ == "__main__":
-    main()
+# =============================================================================
+# MAIN
+# =============================================================================
+if __name__ == '__main__':
+    results = []
+    
+    r1 = write_georgia_article()
+    results.append(("Georgia Indian Americans", r1))
+    
+    r2 = write_grid_article()
+    results.append(("Grid Penalty Crisis", r2))
+    
+    r3 = write_rbi_nri_article()
+    results.append(("RBI NRI Rupee Defense", r3))
+    
+    print("\n=== SUMMARY ===")
+    for name, success in results:
+        status = "✓ Published" if success else "✗ Failed"
+        print(f"  {status}: {name}")
+    
+    failed = sum(1 for _, s in results if not s)
+    if failed:
+        print(f"\n{failed} article(s) failed")
+        sys.exit(1)
+    else:
+        print(f"\nAll {len(results)} articles published successfully")
