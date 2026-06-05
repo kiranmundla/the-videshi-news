@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Sports writer for The Videshi — June 5, 2026 run."""
+"""Sports writer — June 5, 2026 run. Generates 3 articles with proper images."""
 
-import json, os, sys, time, uuid, re, urllib.parse
+import json, os, sys, time, uuid, re, io
 import requests
 from datetime import datetime, timezone
 
@@ -12,28 +12,36 @@ def load_env(path):
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
+                    if line.startswith('export '):
+                        line = line[7:]
                     k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+                    v = v.strip().strip('"').strip("'")
+                    os.environ[k] = v
 
 load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-HEADERS = {
+HEADERS_SB = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation"
 }
+
 UA = {"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
 
+##############################################################################
+# Image sourcing functions
+##############################################################################
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    encoded = requests.utils.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
@@ -41,14 +49,13 @@ def fetch_wikipedia_person_image(person_name):
         )
         if r.status_code == 200:
             data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            img = data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
-
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
@@ -59,7 +66,7 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         "gsrnamespace": "6",
         "gsrlimit": str(limit),
         "prop": "imageinfo",
-        "iiprop": "url|size|mime|extmetadata",
+        "iiprop": "url|size|mime",
         "iiurlwidth": "1200",
         "format": "json"
     }
@@ -74,303 +81,402 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
             results = []
             for pid, page in pages.items():
                 ii = page.get("imageinfo", [{}])[0]
-                thumb = ii.get("thumburl") or ii.get("url")
-                if thumb and ii.get("mime", "").startswith("image/"):
-                    results.append({
-                        "url": thumb,
-                        "title": page.get("title", ""),
-                        "width": ii.get("thumbwidth", ii.get("width", 0)),
-                        "height": ii.get("thumbheight", ii.get("height", 0))
-                    })
+                mime = ii.get("mime", "")
+                if not mime.startswith("image/"):
+                    continue
+                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
+                    continue
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "original_url": ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0),
+                    "height": ii.get("height", 0),
+                    "mime": mime
+                })
+            if results:
+                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Commons search error: {e}")
+        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
     return []
 
-
 def fetch_pexels_image(query):
-    """Search Pexels for an image. Returns URL or None."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
+    """Fetch a Pexels image using curl (urllib gets 403)."""
+    import subprocess
     try:
-        r = requests.get(
-            "https://api.pexels.com/v1/search",
-            params={"query": query, "per_page": 3, "orientation": "landscape"},
-            headers={"Authorization": PEXELS_KEY, **UA},
-            timeout=10
+        result = subprocess.run(
+            ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+             f"https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page=3"],
+            capture_output=True, text=True, timeout=15
         )
-        if r.status_code == 200:
-            photos = r.json().get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image: {url[:80]}...")
-                return url
+        data = json.loads(result.stdout)
+        photos = data.get("photos", [])
+        if photos:
+            url = photos[0]["src"]["large2x"]
+            print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+            return url
     except Exception as e:
-        print(f"  ⚠ Pexels error: {e}")
+        print(f"  ⚠ Pexels error for '{query}': {e}")
     return None
 
-
-def validate_image(url):
-    """Verify image URL returns 200 with image content-type and reasonable size."""
+def download_and_compress_image(url, max_width=1200, quality=80):
+    """Download image, resize/compress, return JPEG bytes."""
+    from PIL import Image
     try:
-        r = requests.head(url, headers=UA, timeout=10, allow_redirects=True)
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            return True
-        # Try GET if HEAD doesn't return Content-Length
-        if r.status_code == 200 and "image" in ct and cl == 0:
-            r2 = requests.get(url, headers=UA, timeout=10, stream=True)
-            chunk = r2.raw.read(6000)
-            r2.close()
-            if len(chunk) > 5000:
-                return True
+        r = requests.get(url, headers=UA, timeout=20)
+        if r.status_code != 200:
+            print(f"  ⚠ Image download failed: HTTP {r.status_code}")
+            return None
+        if len(r.content) < 5000:
+            print(f"  ⚠ Image too small: {len(r.content)} bytes")
+            return None
+        img = Image.open(io.BytesIO(r.content))
+        if img.mode in ('RGBA', 'P'):
+            img = img.convert('RGB')
+        if img.width > max_width:
+            ratio = max_width / img.width
+            img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+        buf = io.BytesIO()
+        img.save(buf, format='JPEG', quality=quality, optimize=True)
+        compressed = buf.getvalue()
+        print(f"  ✓ Image compressed: {len(r.content)} → {len(compressed)} bytes, {img.width}x{img.height}")
+        return compressed
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-    return False
-
-
-def find_best_image(person_name=None, commons_query=None, pexels_query=None):
-    """Multi-source image search. Returns (url, attribution, caption) or (None, None, None)."""
-    # 1. Wikipedia person image
-    if person_name:
-        wp_img = fetch_wikipedia_person_image(person_name)
-        if wp_img and validate_image(wp_img):
-            return wp_img, "Wikimedia Commons", f"{person_name}"
-    
-    # 2. Wikimedia Commons
-    if commons_query:
-        commons_results = fetch_wikimedia_commons_images(commons_query)
-        for r in commons_results:
-            if r["width"] >= 400 and validate_image(r["url"]):
-                title = r["title"].replace("File:", "").rsplit(".", 1)[0].replace("_", " ")
-                return r["url"], "Wikimedia Commons", title[:80]
-    
-    # 3. Pexels
-    if pexels_query:
-        px_img = fetch_pexels_image(pexels_query)
-        if px_img and validate_image(px_img):
-            return px_img, "Pexels", pexels_query.title()
-    
-    return None, None, None
-
-
-def insert_article(article):
-    """Insert article into Supabase."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        data = r.json()
-        if isinstance(data, list) and data:
-            return data[0].get("id")
-        return True
-    else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+        print(f"  ⚠ Image processing error: {e}")
         return None
 
-
-# ============================================================
-# ARTICLE 1: Norway Chess Final Round Preview
-# ============================================================
-def write_norway_chess_article():
-    print("\n=== Article 1: Norway Chess Final Round ===")
-    
-    # Image: Try Wesley So (tournament leader), then Praggnanandhaa
-    img_url, img_attr, img_cap = find_best_image(
-        person_name="Wesley So",
-        commons_query="Wesley So chess 2024",
-        pexels_query="chess grandmaster tournament"
-    )
-    
-    # If Wesley So image fails, try Praggnanandhaa
-    if not img_url:
-        img_url, img_attr, img_cap = find_best_image(
-            person_name="Rameshbabu Praggnanandhaa",
-            commons_query="Praggnanandhaa chess",
-            pexels_query="chess tournament pieces"
-        )
-    
-    if img_url:
-        print(f"  Using image: {img_url[:80]}...")
-    else:
-        print("  ⚠ No suitable image found")
-    
-    slug = "norway-chess-2026-final-round-so-praggnanandhaa-firouzja-title-race-nri"
-    headline = "Half a Point Separates First and Second. Norway Chess Will Be Decided in the Final Round Today."
-    subheadline = "Wesley So leads Praggnanandhaa by the thinnest margin. Firouzja is a point behind. Three pairings on Friday will determine who takes home the title and the $100,000 prize."
-    
-    body = """The 14th edition of Norway Chess will come down to its final three games on Friday in Oslo. Wesley So leads with 15.5 points, Praggnanandhaa Rameshbabu is half a point behind at 15, and Alireza Firouzja sits at 14.5. All three can still win the tournament. Magnus Carlsen and Gukesh Dommaraju cannot.
-
-## The Title Permutations
-
-The math is simple but the chess will not be. So faces Firouzja in the round that could make or break both their campaigns. A classical win for So would seal the title regardless of other results. A classical win for Firouzja, combined with a Praggnanandhaa draw or loss, would give the French grandmaster the crown. If So and Firouzja draw and head to Armageddon, the door stays open for Praggnanandhaa.
-
-Praggnanandhaa plays Vincent Keymer, the German who has gone unbeaten in classical games throughout the tournament. The 19-year-old Indian has been the form player of the last three rounds, winning three consecutive classical games against Carlsen, Keymer's compatriot, and Gukesh. A fourth straight classical win would guarantee at least a share of first place if So falters.
-
-The third pairing pits Carlsen against Gukesh in what amounts to a pride match for both. Carlsen sits fifth with 10 points, his worst showing at his home tournament. Gukesh is last with 8 points, a dismal result for the reigning World Champion. The two have not met since their World Championship match in December.
-
-## Praggnanandhaa's Extraordinary Run
-
-The story of this tournament's second half belongs to Praggnanandhaa. After losing to So in the opening round and to Firouzja in round three, the Chennai-born teenager has been near-flawless. He beat Carlsen with the white pieces. Then he beat Carlsen with the black pieces. In round nine, he completed a hat trick against Gukesh, outplaying the World Champion in a sharp tactical battle where Gukesh sacrificed material for initiative but found no breakthrough.
-
-Three consecutive classical wins at a Category XXI event is a feat that few players in history have managed. Praggnanandhaa's ability to thrive under tournament pressure, shifting gears between classical and Armageddon play, has been the defining narrative of this event. He has scored 9 out of a possible 12 points over the last four rounds.
-
-## So's Steady Hand
-
-Wesley So has led this tournament since round two and has not relinquished the top spot. His strategy has been disciplined: he has avoided classical losses, and when games have gone to Armageddon, he has consistently converted. In round nine, he drew Carlsen in classical and then won the tiebreaker, extending his lead at a moment when Praggnanandhaa was closing in.
-
-The Filipino-American grandmaster's last classical win came in round five against Gukesh. Since then, he has relied on the Armageddon format to accumulate the half-points that have kept him ahead. Against Firouzja on Friday, he faces the one opponent who has beaten him in classical at this event.
-
-## The Indian Contingent's Mixed Tournament
-
-For the Indian diaspora, this tournament has been a study in contrasts. Praggnanandhaa has been spectacular, but Gukesh has endured his worst elite tournament since becoming World Champion. The 19-year-old has lost three classical games, including back-to-back defeats to Carlsen and Praggnanandhaa, and sits at the bottom of the standings.
-
-In the Women's section, Bibisara Assaubayeva of Kazakhstan clinched the title with a round to spare. India's Divya Deshmukh and Koneru Humpy finish in the bottom half of the standings, with Humpy losing seven consecutive Armageddon games at one point during the event.
-
-## What NRI Fans Should Watch For
-
-The final round begins at 5:00 PM CEST on Friday, which translates to 8:30 AM on the West Coast and 11:30 AM on the East Coast. The So-Firouzja and Praggnanandhaa-Keymer games will run simultaneously, and the title could be decided by a single Armageddon game. NRI chess fans who have followed Praggnanandhaa's journey from prodigy to elite contender have rarely had a more dramatic stage to watch.
-
-The tournament uses a scoring system where a classical win earns 3 points, an Armageddon win earns 1.5 points, and an Armageddon loss earns 1 point. A classical loss earns nothing. This means Praggnanandhaa needs either a classical win combined with a So draw or loss, or any win combined with a So classical loss, to overtake the leader.
-
-For a nation that produced the current World Champion and now watches two of its teenagers fight for a super-tournament title, Friday in Oslo is appointment viewing."""
-
-    sources = [
-        "chess.com — Norway Chess 2026 Round 9 coverage",
-        "ChessBase India — Pragg defeats Gukesh, Assaubayeva wins title",
-        "Wikipedia — Norway Chess 2026 standings",
-        "Rook Review — Norway Chess Day 9 analysis"
-    ]
-    
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "sports",
-        "vertical": "sports",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps(sources),
-        "is_editorial": False,
-        "image_url": img_url,
-        "image_caption": img_cap if img_cap else "Wesley So at a chess tournament",
-        "image_attribution": img_attr if img_attr else "Wikimedia Commons"
+def upload_to_supabase_storage(img_bytes, filename):
+    """Upload image bytes to Supabase storage bucket 'article-images'."""
+    url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+    headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "image/jpeg",
+        "x-upsert": "true"
     }
-    
-    result = insert_article(article)
-    if result:
-        print(f"  ✓ Published: {headline}")
-        print(f"    Slug: {slug}")
-    return result
+    try:
+        r = requests.post(url, headers=headers, data=img_bytes, timeout=30)
+        if r.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Upload failed: {r.status_code} {r.text[:200]}")
+    except Exception as e:
+        print(f"  ⚠ Upload error: {e}")
+    return None
 
+def source_image(person_name=None, topic_queries=None, pexels_query=None, slug="article"):
+    """Multi-source image pipeline. Returns (url, attribution) or (None, None)."""
+    candidates = []
 
-# ============================================================
-# ARTICLE 2: India U-18 Hockey Asia Cup Semifinals
-# ============================================================
-def write_hockey_article():
-    print("\n=== Article 2: India U-18 Hockey Asia Cup Semifinals ===")
-    
-    # Image: Try Sardar Singh (coach), then hockey commons
-    img_url, img_attr, img_cap = find_best_image(
-        person_name="Sardar Singh (field hockey)",
-        commons_query="India hockey team 2024",
-        pexels_query="field hockey India"
-    )
-    
-    if not img_url:
-        # Try broader commons search
-        img_url, img_attr, img_cap = find_best_image(
-            commons_query="India field hockey national team",
-            pexels_query="field hockey match"
-        )
-    
-    if img_url:
-        print(f"  Using image: {img_url[:80]}...")
+    # Source 1: Wikipedia person image
+    if person_name:
+        wiki_img = fetch_wikipedia_person_image(person_name)
+        if wiki_img:
+            candidates.append({"url": wiki_img, "source": "wikipedia", "priority": 1})
+
+    # Source 2: Wikimedia Commons
+    if topic_queries:
+        for q in topic_queries:
+            commons = fetch_wikimedia_commons_images(q, limit=3)
+            for c in commons[:2]:
+                candidates.append({"url": c["url"], "source": "wikimedia_commons", "priority": 2})
+            if candidates:
+                break
+            time.sleep(1)
+
+    # Source 3: Pexels
+    if pexels_query and PEXELS_KEY:
+        pex = fetch_pexels_image(pexels_query)
+        if pex:
+            candidates.append({"url": pex, "source": "pexels", "priority": 3})
+
+    # Pick best and upload
+    if not candidates:
+        print("  ✗ No image candidates found")
+        return None, None
+
+    # Sort by priority
+    candidates.sort(key=lambda x: x["priority"])
+
+    for cand in candidates:
+        img_bytes = download_and_compress_image(cand["url"])
+        if img_bytes:
+            filename = f"{slug}.jpg"
+            final_url = upload_to_supabase_storage(img_bytes, filename)
+            if final_url:
+                attr = "Wikimedia Commons" if cand["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
+                return final_url, attr
+
+    print("  ✗ All image candidates failed")
+    return None, None
+
+##############################################################################
+# Article insertion
+##############################################################################
+
+def insert_article(article):
+    """Insert article into Supabase p2_articles."""
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
+    r = requests.post(url, headers=HEADERS_SB, json=article, timeout=30)
+    if r.status_code in (200, 201):
+        data = r.json()
+        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
+        print(f"  ✓ Article inserted: {art_id}")
+        return art_id
     else:
-        print("  ⚠ No suitable image found")
-    
-    slug = "india-u18-hockey-asia-cup-2026-semifinals-pakistan-china-kakamigahara-nri"
-    headline = "India Face Pakistan and China in the U-18 Asia Cup Semifinals Today. Sardar Singh Says His Team Is Ready."
-    subheadline = "The U-18 men take on Pakistan at 3:30 PM IST in Kakamigahara. The women, unbeaten with a 25-0 rout in the group stage, face China at 9:30 AM. Both squads have outscored opponents by a combined 57-7."
-    
-    body = """India's U-18 hockey teams will play the most consequential matches of their young careers on Thursday in Kakamigahara, Japan. The women face China in the first semifinal at 9:30 AM IST. The men face Pakistan at 3:30 PM IST. Both teams have been dominant through the group stage, and both now face opponents who can genuinely trouble them.
+        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
+        return None
 
-## The Women's Side: 55 Goals in Three Games
+##############################################################################
+# Article definitions
+##############################################################################
 
-The Indian U-18 women's team has not simply won their group — they have dismantled it. In three Pool A matches, they beat Malaysia, Korea, and Singapore while scoring a combined total that is difficult to contextualize at any level of hockey. Their 25-0 demolition of Singapore in the final group game saw ten different players score, with striker Nousheen Naz netting seven goals in a single match.
+def write_articles():
+    now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    articles_written = 0
 
-Captain Sweety Kujur has led from the front with consistent scoring, while Geethasri Nammi earned the Player of the Match award against Singapore for her five-goal performance. The depth of India's attacking options has been remarkable: Priyanka Minz contributed a hat trick, and players from every line of the team have found the net.
+    # ========================================================================
+    # ARTICLE 1: Praggnanandhaa Wins Norway Chess 2026
+    # ========================================================================
+    print("\n=== Article 1: Praggnanandhaa Wins Norway Chess 2026 ===")
 
-China, their semifinal opponents, topped Pool B and present a fundamentally different challenge from anyone India have faced so far. Where Singapore, Malaysia, and Korea were overwhelmed by India's pace and technical superiority, China will match them physically and bring structured defensive discipline. This is where India's tournament truly begins.
+    slug1 = "praggnanandhaa-wins-norway-chess-2026-carlsen-gukesh-oslo-champion-nri"
 
-## The Men's Side: Sardar Singh's Blueprint
+    body1 = """Rameshbabu Praggnanandhaa has won Norway Chess 2026, the biggest title of his career so far. The 20-year-old from Chennai beat world number one Magnus Carlsen in the classical game in the final round to finish on 18 points, one clear of Wesley So, who had led for most of the tournament.
 
-The U-18 men's team finished second in Pool A, behind hosts Japan, with three wins and one loss. Their 4-2 defeat to Japan in the second group match remains the only blemish on an otherwise commanding campaign. India scored 32 goals in the group stage, with captain Ketan Kushwaha contributing seven and Ashish Tani Purti adding six.
+## Four Classical Wins in Ten Rounds
 
-The 13-1 win over Chinese Taipei and the 13-0 opening victory against Kazakhstan demonstrated the team's attacking firepower. But it is the Japan loss that has defined their preparation for the semifinal. Coach Sardar Singh, the former India captain who represented the country in over 300 international matches, said his staff reviewed all four games and identified penalty corner attack and defence as the areas needing improvement.
+Praggnanandhaa's run through Oslo was relentless. He scored four classical victories in a six-player, double round-robin field that included the reigning world champion, the world number one, and three other top-fifteen players. In a format where most games end in a draw and head to armageddon, that is an extraordinary return.
 
-"The aim is to be fully ready for the semifinal," Sardar Singh said, adding that training has been split into separate groups of defenders, midfielders, and forwards. He emphasized disciplined hockey and trust in passing, while also urging skillful players to express themselves when the situation demands it.
+His most talked-about sequence came in the final three rounds. In round eight, he beat Carlsen with the white pieces. In round nine, he beat world champion Gukesh Dommaraju with the black pieces. In round ten, he beat Carlsen again, this time with black, to clinch the title.
 
-## India vs Pakistan: History and Context
+No one else in the field managed more than two classical wins.
 
-The men's semifinal carries weight that extends beyond age-group hockey. India-Pakistan hockey rivalries have shaped the sport's identity in South Asia for decades. At the senior level, India's dominance has fluctuated, but at U-18 level, both teams bring raw talent and emotional intensity that can make these encounters unpredictable.
+## The Final Round
 
-Pakistan topped Pool B in the men's event with two wins and one defeat. They are a physical side with strong counter-attacking instincts. For India, the key will be converting the penalty corners that Sardar Singh has been drilling into his players. Gazee Khan and Shahrukh Ali, who scored three goals each in the group stage, provide India with options from set pieces and open play.
+Going into the last day, So led with 15.5 points to Praggnanandhaa's 15, with Alireza Firouzja still alive at 14.5. Praggnanandhaa needed a result against Carlsen and got one. He seized the initiative in the middlegame and converted with confidence, earning the full three points.
 
-## What It Means for Indian Hockey's Pipeline
+So drew his classical game and won the armageddon to finish on 17 points. Firouzja also picked up 1.5 points to finish third on 15.5. It was not enough to catch Praggnanandhaa.
 
-These U-18 tournaments are where Indian hockey identifies the players who will eventually represent the senior team at the Asian Games and the Olympics. The current senior women's squad, which reached the Olympic quarterfinals, was built on players who came through exactly this pathway. The men's senior team, which won Asian Games gold, relies on talent spotted and developed at this level.
+The final standings told the story of a tournament that belonged to one player from the moment he found his rhythm in the middle rounds.
 
-For NRI fans, the significance is dual. These young athletes represent the depth of India's investment in hockey infrastructure, particularly the academies in Odisha, Punjab, and Jharkhand that have become production lines for international talent. The results in Kakamigahara will signal whether the next generation is ready to sustain what the current senior teams have built.
+**Final Standings:**
 
-Both semifinals will be streamed live on the Asian Hockey Federation's official YouTube channel. The women's semifinal begins at 9:30 AM IST on Thursday, with the men's match following at 3:30 PM IST. The finals are scheduled for Saturday."""
+1. R Praggnanandhaa (India) — 18 points
+2. Wesley So (USA) — 17 points
+3. Alireza Firouzja (France) — 15.5 points
+4. Magnus Carlsen (Norway) — 13 points
+5. Vincent Keymer (Germany) — 11 points
+6. Gukesh Dommaraju (India) — 8 points
 
-    sources = [
-        "Mykhel.com — India U-18 teams advance to Asia Cup semifinals",
-        "India Sports Hub — India 25-0 Singapore match report",
-        "Sports Digest India — India 13-1 Chinese Taipei report",
-        "Nagaland Post — U18 Asia Cup group stage coverage"
-    ]
-    
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
+## Gukesh's Difficult Tournament
+
+For Gukesh, who won the World Championship just seven months ago, Norway Chess was a chastening experience. He finished last on 8 points, losing 11.3 Elo rating points and dropping to 25th in the live world rankings. Among Indian players, he is now only fifth, behind Arjun Erigaisi, Praggnanandhaa, Viswanathan Anand, and Nihal Sarin.
+
+His head-to-head record against Praggnanandhaa in Oslo was particularly painful: 0-3 across their two meetings, including two classical losses.
+
+## What It Means for the Diaspora
+
+Praggnanandhaa's victory continues Indian chess's dominance of the elite circuit. India now has the world champion (Gukesh), the former world champion (Anand), and the Norway Chess champion (Praggnanandhaa), along with a deep bench of young talent that includes Arjun Erigaisi and Nihal Sarin.
+
+For NRI fans who have followed Praggnanandhaa's rise since he became the youngest international master in history at age ten, the Norway Chess title is confirmation that he belongs at the very top. He climbed four spots to 12th in the live ratings during the tournament and, at 20, has time and trajectory on his side.
+
+The $75,000 first prize is a nice bonus. The statement he made by beating Carlsen twice in classical chess at his home tournament is worth considerably more.
+
+## Sources
+
+- Wikipedia: Norway Chess 2026 final standings
+- ChessBase: Round-by-round coverage
+- ESPN India: Indian sports roundup, June 5, 2026
+- Chess.com: Norway Chess Round 9 and Round 10 reports"""
+
+    # Image sourcing
+    print("  Sourcing image...")
+    img_url1, img_attr1 = source_image(
+        person_name="Rameshbabu Praggnanandhaa",
+        topic_queries=["Praggnanandhaa chess", "Praggnanandhaa Norway Chess 2026"],
+        pexels_query="chess grandmaster tournament",
+        slug=slug1
+    )
+
+    art1 = {
+        "headline": "Praggnanandhaa Beat Carlsen in the Final Round. He Won Norway Chess. He Is Twenty.",
+        "subheadline": "The Chennai grandmaster scored four classical wins in ten rounds, beating the world champion and the world number one to claim the biggest title of his career in Oslo.",
+        "slug": slug1,
+        "body": body1.strip(),
         "category": "sports",
-        "vertical": "sports",
         "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps(sources),
+        "published_at": now_utc,
+        "sources": json.dumps(["Wikipedia", "ChessBase", "ESPN India", "Chess.com"]),
+        "vertical": "sports",
         "is_editorial": False,
-        "image_url": img_url,
-        "image_caption": img_cap if img_cap else "India U-18 hockey team at the Asia Cup 2026 in Kakamigahara, Japan",
-        "image_attribution": img_attr if img_attr else "Wikimedia Commons"
+        "image_url": img_url1 or "",
+        "image_caption": "R Praggnanandhaa during a classical chess game at the tournament in Oslo",
+        "image_attribution": img_attr1 or ""
     }
-    
-    result = insert_article(article)
-    if result:
-        print(f"  ✓ Published: {headline}")
-        print(f"    Slug: {slug}")
-    return result
 
+    if insert_article(art1):
+        articles_written += 1
 
-# ============================================================
-# MAIN
-# ============================================================
+    time.sleep(2)
+
+    # ========================================================================
+    # ARTICLE 2: Rohit Sharma Fitness Doubt
+    # ========================================================================
+    print("\n=== Article 2: Rohit Sharma Fitness Doubt ===")
+
+    slug2 = "rohit-sharma-fitness-doubt-afghanistan-odi-series-kohli-out-india-without-pillars-nri"
+
+    body2 = """India could be without both Rohit Sharma and Virat Kohli for the three-match ODI series against Afghanistan, starting June 13 in Dharamsala. Kohli has already been ruled out with a hamstring injury sustained in the IPL 2026 final. Now Rohit's participation is in serious doubt after he failed to report to the BCCI Centre of Excellence in Bengaluru for the mandatory fitness clearance.
+
+## The Hamstring Problem
+
+Rohit injured his hamstring during the IPL 2026 season while playing for the Mumbai Indians. He missed a stretch of matches midway through the campaign, and when he returned toward the end, it was only as an impact player. Mumbai finished ninth on the points table. His last IPL innings was a duck against the Rajasthan Royals at the Wankhede.
+
+The selection committee, led by chief selector Ajit Agarkar, included Rohit in the Afghanistan ODI squad but made his selection conditional on passing a fitness test at the Centre of Excellence. As of June 5, that test has not happened.
+
+## Training in Mohali, Not Bengaluru
+
+According to a Times of India report, Rohit has informed the Punjab Cricket Association that he intends to train at the IS Bindra Stadium in Mohali on June 8 and 9, ahead of the squad assembling in the city. He has asked for specific training slots. But Mohali is not Bengaluru, and the BCCI protocol for injured contracted players requires them to report to the Centre of Excellence for assessment, rehabilitation, and fitness clearance before rejoining the squad.
+
+The disconnect has raised questions about whether Rohit is in a position to play or is managing expectations ahead of a formal announcement.
+
+## India Without Its Two Pillars
+
+If Rohit joins Kohli on the sidelines, India will enter their first bilateral ODI series against Afghanistan without the two batsmen who have defined their white-ball cricket for the better part of a decade.
+
+Rohit, 38, now plays only ODI cricket after retiring from T20Is and Tests. His last ODI series as captain was the ICC Champions Trophy 2025, where he scored 76 in the final against New Zealand. His last ODI appearance produced just 61 runs across three innings. He ended 2025 as India's second-highest ODI run-scorer with 650 runs at an average of 50.
+
+Kohli, meanwhile, was in superb form during the IPL, scoring over 650 runs and hitting an unbeaten 75 off 42 balls in the final. His hamstring gave way in that very innings.
+
+## A Depleted Squad
+
+The injury list does not end with the two senior batsmen. All-rounder Hardik Pandya, who suffered a back spasm during the IPL, is also undergoing assessment at the Centre of Excellence. His clearance is pending.
+
+Agarkar has already rested Jasprit Bumrah and Mohammed Siraj for workload management. Ravindra Jadeja and Axar Patel are also absent. In their place, the selectors have turned to fresh faces: Harsh Dubey, Prince Yadav, and Gurnoor Brar.
+
+Ruturaj Gaikwad has been named as Kohli's replacement. If Rohit also misses out, India will likely lean on the likes of Shubman Gill, Ishan Kishan — who was recently recalled after a three-year absence — and KL Rahul to carry the batting.
+
+## What NRI Fans Should Know
+
+The Afghanistan ODI series starts June 13 in Dharamsala, followed by matches in Lucknow and Chennai. It follows the one-off Test against Afghanistan at the new Mullanpur stadium near Mohali, which begins June 6. An official announcement on Rohit's availability is expected before the squad assembles on June 9.
+
+For fans in the diaspora who tune in to ODI cricket specifically for Rohit and Kohli, the message is straightforward: prepare for the possibility of watching neither.
+
+## Sources
+
+- CricketAddictor: Rohit Sharma fitness clearance report
+- CricTracker: Rohit Sharma fitness concerns
+- Sportskeeda: Rohit Sharma Mohali training plan
+- Inside Sport India: Rohit fitness test status"""
+
+    print("  Sourcing image...")
+    img_url2, img_attr2 = source_image(
+        person_name="Rohit Sharma",
+        topic_queries=["Rohit Sharma cricket", "Rohit Sharma batting"],
+        pexels_query="cricket batsman India",
+        slug=slug2
+    )
+
+    art2 = {
+        "headline": "Rohit Has Not Reported to the Centre of Excellence. He Wants to Train in Mohali Instead. India May Be Without Both Him and Kohli.",
+        "subheadline": "With Virat Kohli already ruled out of the Afghanistan ODI series, Rohit Sharma's failure to appear for the mandatory BCCI fitness test raises the prospect of India losing both batting pillars.",
+        "slug": slug2,
+        "body": body2.strip(),
+        "category": "sports",
+        "status": "published",
+        "published_at": now_utc,
+        "sources": json.dumps(["CricketAddictor", "CricTracker", "Sportskeeda", "Inside Sport India"]),
+        "vertical": "sports",
+        "is_editorial": False,
+        "image_url": img_url2 or "",
+        "image_caption": "Rohit Sharma during an international cricket match for India",
+        "image_attribution": img_attr2 or ""
+    }
+
+    if insert_article(art2):
+        articles_written += 1
+
+    time.sleep(2)
+
+    # ========================================================================
+    # ARTICLE 3: India Lose 3-1 to Tajikistan
+    # ========================================================================
+    print("\n=== Article 3: India Lose 3-1 to Tajikistan ===")
+
+    slug3 = "india-lose-3-1-tajikistan-friendly-tursunzoda-khalid-jamil-world-cup-nri"
+
+    body3 = """India lost 3-1 to Tajikistan in a FIFA international friendly at the TALCO Arena in Tursunzoda on Thursday. It was the latest in a string of poor results for Khalid Jamil's side, who now have a 20 percent win rate under the interim head coach after ten matches in charge.
+
+## How the Match Unfolded
+
+Tajikistan took the lead early through Komron Boboev in the ninth minute, setting the tone for a match India would spend most of chasing. The hosts doubled their advantage through Ehson Karimov in the 62nd minute before Shahrom Panjshanbe made it 3-0 in the 68th.
+
+India's consolation came from Farukh Choudhary in the 89th minute, a goal that did little to disguise the extent of the defeat. The final whistle at the TALCO Arena confirmed what the scoreline suggested: India were second-best in every phase.
+
+## A Pattern of Decline
+
+The result extends India's dismal run of form. Under Khalid Jamil, the senior men's team has won just two of their last ten matches. Their most recent competitive campaign, the AFC Asian Cup qualifiers, ended in humiliation. Despite being top seeds and favourites to qualify, India finished bottom of their group after losses to Bangladesh, Hong Kong, and Singapore.
+
+A trip to the Unity Cup 2026 offered no relief. India lost to Jamaica and Zimbabwe in consecutive matches. Now, a defeat to Tajikistan, a team ranked well below them in the FIFA standings, adds another chapter to a troubling narrative.
+
+Khalid Jamil was appointed as interim manager after the departure of Igor Stimac. The results have not improved. The question of whether he will be given a permanent contract, or replaced before India's next meaningful fixtures, hangs over the program.
+
+## Context: The World Cup Begins in Six Days
+
+The timing of this defeat makes it sting more. The FIFA World Cup kicks off on June 11 in North America. India, as usual, are not in it. But the diaspora's connection to the tournament is stronger than ever: four players of Indian origin — Sarpreet Singh (New Zealand), Tahsin Mohammed Jamshid (Qatar), Nishan Velupillay (Australia), and Samuel Moutoussamy (DR Congo) — will represent other nations on football's biggest stage.
+
+While those players prepare for World Cup group matches, the Indian senior team is losing 3-1 to Tajikistan in a friendly that few outside the most committed fans will have watched.
+
+## The Second Friendly
+
+India will face Tajikistan again on June 9 at the Central Stadium in Hisor. It is the last match before the international window closes. For Khalid Jamil, it represents an opportunity to salvage something from the trip. For the players, it is a chance to show the kind of fight that was absent in Tursunzoda.
+
+## What NRI Fans Are Asking
+
+The disconnect between Indian football's ambitions and its results is a recurring source of frustration for the diaspora. The AIFF has set targets for World Cup qualification. Grassroots programs have been funded. The Indian Super League has raised the standard of domestic football. But at the international level, the results are going backward.
+
+NRI fans who follow Indian football from abroad — and there are more of them than the AIFF's ticket sales suggest — are left with a familiar question: when does investment start translating into competitive performances? The loss to Tajikistan provides no answer.
+
+## Sources
+
+- Wikipedia: Tajikistan national football team results
+- ESPN India: Indian sports roundup, June 5, 2026
+- Khel Now: India vs Tajikistan preview and head-to-head
+- Oddslot: Match result tracker"""
+
+    print("  Sourcing image...")
+    img_url3, img_attr3 = source_image(
+        person_name="Khalid Jamil football",
+        topic_queries=["India national football team", "India football team 2026"],
+        pexels_query="football soccer match stadium",
+        slug=slug3
+    )
+
+    art3 = {
+        "headline": "India Lost 3-1 to Tajikistan. Khalid Jamil Has Won Two of His Ten Matches in Charge.",
+        "subheadline": "A ninth-minute goal set the tone in Tursunzoda as India conceded three before Farukh Choudhary's consolation. The World Cup starts in six days. India are going backward.",
+        "slug": slug3,
+        "body": body3.strip(),
+        "category": "sports",
+        "status": "published",
+        "published_at": now_utc,
+        "sources": json.dumps(["Wikipedia", "ESPN India", "Khel Now", "Oddslot"]),
+        "is_editorial": False,
+        "image_url": img_url3 or "",
+        "image_caption": "The Indian football team during an international match",
+        "image_attribution": img_attr3 or ""
+    }
+
+    if insert_article(art3):
+        articles_written += 1
+
+    print(f"\n{'='*60}")
+    print(f"Sports writer complete: {articles_written}/3 articles published")
+    print(f"{'='*60}")
+
 if __name__ == "__main__":
-    print(f"Sports writer run — {datetime.now(timezone.utc).isoformat()}")
-    
-    results = []
-    results.append(write_norway_chess_article())
-    results.append(write_hockey_article())
-    
-    published = sum(1 for r in results if r)
-    print(f"\n=== Done: {published}/{len(results)} articles published ===")
-    sys.exit(0 if published > 0 else 1)
+    write_articles()
