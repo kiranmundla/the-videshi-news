@@ -48,37 +48,8 @@ function TwitterEmbed({ url, caption }: { url: string; caption?: string }) {
   if (!tweetId) return null;
 
   return (
-    <figure className="my-6">
-      <style>{`
-        .tweet-container {
-          max-width: 550px;
-          margin: 0 auto;
-          overflow: hidden;
-          border-radius: 12px;
-        }
-        .tweet-container [data-theme] {
-          --tweet-container-margin: 0 !important;
-        }
-        .tweet-container > div {
-          margin: 0 !important;
-        }
-        /* Scale down on mobile for compact fit */
-        @media (max-width: 480px) {
-          .tweet-container {
-            transform: scale(0.85);
-            transform-origin: top center;
-            margin-bottom: -10%;
-          }
-        }
-        @media (min-width: 481px) and (max-width: 640px) {
-          .tweet-container {
-            transform: scale(0.9);
-            transform-origin: top center;
-            margin-bottom: -5%;
-          }
-        }
-      `}</style>
-      <div className="tweet-container">
+    <figure className="my-6 flex flex-col items-center tweet-embed-wrapper">
+      <div className="w-full max-w-[550px]" data-theme="light">
         <Tweet id={tweetId} />
       </div>
       {caption && (
