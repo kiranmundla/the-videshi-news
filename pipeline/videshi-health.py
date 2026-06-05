@@ -538,6 +538,131 @@ def check_article_quality():
     }
 
 
+# ─── Tweet embed health ────────────────────────────────────────────────────────
+
+def check_tweet_embeds(fix=False):
+    """
+    Find all articles with X/Twitter embed URLs, verify each tweet still resolves,
+    and report/fix broken ones.
+    """
+    import re
+    import subprocess
+
+    VERIFY_SCRIPT = os.path.expanduser("~/workspace/the-videshi-news/pipeline/verify-tweet.sh")
+
+    tweet_url_re = re.compile(
+        r'^(https?://(?:www\.)?(?:twitter|x)\.com/(\w+)/status/(\d+))\s*$',
+        re.MULTILINE
+    )
+
+    # Fetch articles that contain x.com or twitter.com URLs in their body
+    hdrs = {"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"}
+    articles_x = requests.get(
+        f"{REST}/p2_articles",
+        params={
+            "select": "id,headline,slug,body,category",
+            "status": "eq.published",
+            "body": "ilike.*x.com*",
+            "order": "published_at.desc",
+            "limit": "200",
+        },
+        headers=hdrs, timeout=15
+    ).json()
+    articles_tw = requests.get(
+        f"{REST}/p2_articles",
+        params={
+            "select": "id,headline,slug,body,category",
+            "status": "eq.published",
+            "body": "ilike.*twitter.com*",
+            "order": "published_at.desc",
+            "limit": "200",
+        },
+        headers=hdrs, timeout=15
+    ).json()
+
+    # Merge and dedup, then filter to only those with actual status URLs in body
+    seen = set()
+    articles = []
+    for a in (articles_x if isinstance(articles_x, list) else []) + \
+             (articles_tw if isinstance(articles_tw, list) else []):
+        if a["id"] not in seen:
+            seen.add(a["id"])
+            body = a.get("body", "") or ""
+            # Only include if body contains an actual status URL
+            if tweet_url_re.search(body):
+                articles.append(a)
+
+    if not articles:
+        return {
+            "name": "tweet_embeds",
+            "total_articles_with_embeds": 0,
+            "broken": [],
+            "count": 0,
+        }
+
+    broken = []
+    valid_count = 0
+    total_embeds = 0
+
+    for a in articles:
+        body = a.get("body", "") or ""
+        matches = tweet_url_re.findall(body)
+        for full_url, handle, tweet_id in matches:
+            total_embeds += 1
+            try:
+                result = subprocess.run(
+                    ["bash", VERIFY_SCRIPT, tweet_id],
+                    capture_output=True, text=True, timeout=10
+                )
+                if result.returncode == 0 and result.stdout.strip().startswith("VALID"):
+                    valid_count += 1
+                else:
+                    broken.append({
+                        "article_id": a["id"],
+                        "headline": a["headline"][:80],
+                        "slug": a.get("slug", ""),
+                        "tweet_url": full_url,
+                        "tweet_id": tweet_id,
+                        "error": result.stdout.strip() or "verification failed",
+                    })
+                    if fix:
+                        # Remove the broken tweet URL from the article body
+                        new_body = body.replace(full_url, "").replace("\n\n\n\n", "\n\n")
+                        if new_body != body:
+                            requests.patch(
+                                f"{REST}/p2_articles?id=eq.{a['id']}",
+                                headers={**hdrs, "Content-Type": "application/json",
+                                         "Prefer": "return=minimal"},
+                                json={"body": new_body},
+                                timeout=10
+                            )
+                            body = new_body  # update for subsequent matches in same article
+            except Exception as e:
+                broken.append({
+                    "article_id": a["id"],
+                    "headline": a["headline"][:80],
+                    "tweet_url": full_url,
+                    "tweet_id": tweet_id,
+                    "error": str(e),
+                })
+
+    return {
+        "name": "tweet_embeds",
+        "total_articles_with_embeds": len(articles),
+        "total_embeds": total_embeds,
+        "valid": valid_count,
+        "broken": broken,
+        "count": len(broken),
+        "fixed": len(broken) if fix and broken else 0,
+        "alert": len(broken) > 0,
+        "action_needed": (
+            f"{len(broken)} broken tweet embed(s) found"
+            + (" — auto-removed" if fix else " — need removal")
+            if broken else None
+        ),
+    }
+
+
 # ─── Run all ───────────────────────────────────────────────────────────────────
 
 def run_all(fix=False):
@@ -548,6 +673,7 @@ def run_all(fix=False):
         check_ingest_health(),
         check_article_quality(),
         check_image_health(),
+        check_tweet_embeds(fix=fix),
         check_duplicates(),
         check_missing_images(),
         check_broken_slugs(fix=fix),
