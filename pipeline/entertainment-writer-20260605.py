@@ -1,45 +1,54 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-06-05 batch"""
+"""Entertainment writer for The Videshi - June 5, 2026"""
 
-import json, os, sys, time, uuid, re
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+import uuid
 from datetime import datetime, timezone
 import requests
-from urllib.parse import quote
+import urllib.parse
 
 # Load env
-def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
+env_path = os.path.expanduser("~/workspace/.env.supabase")
+with open(env_path) as f:
+    for line in f:
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            key, val = line.split("=", 1)
+            os.environ[key.strip()] = val.strip().strip('"').strip("'")
+
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+
+# Pexels
+pexels_env = os.path.expanduser("~/workspace/.env.pexels")
+PEXELS_KEY = None
+if os.path.exists(pexels_env):
+    with open(pexels_env) as f:
         for line in f:
             line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                key, _, val = line.partition('=')
-                val = val.strip().strip('"').strip("'")
-                os.environ.setdefault(key.strip(), val)
+            if line and not line.startswith("#") and "=" in line:
+                key, val = line.split("=", 1)
+                if "PEXELS" in key.upper():
+                    PEXELS_KEY = val.strip().strip('"').strip("'")
 
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
-
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
-HEADERS_SB = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+HEADERS = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
 }
 
-UA = 'TheVideshi/1.0 (thevideshi.com)'
+UA = "TheVideshi/1.0 (thevideshi.com)"
 
-# ── Image helpers ───────────────────────────────────────────────
 
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = quote(person_name.replace(' ', '_'))
+    """Fetch a person's actual photo from Wikipedia. Returns (url, attribution) or (None, None)."""
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
@@ -51,13 +60,13 @@ def fetch_wikipedia_person_image(person_name):
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
-                return img
+                return img, "Wikimedia Commons"
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
-    return None
+    return None, None
 
 
-def fetch_wikimedia_commons_images(search_query, limit=5):
+def fetch_wikimedia_commons(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
     params = {
         "action": "query",
@@ -82,22 +91,18 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
             pages = data.get("query", {}).get("pages", {})
             results = []
             for pid, page in pages.items():
-                ii = page.get("imageinfo", [{}])[0]
-                mime = ii.get("mime", "")
-                if not mime.startswith("image/"):
-                    continue
-                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
-                    continue
-                results.append({
-                    "url": ii.get("thumburl") or ii.get("url", ""),
-                    "original_url": ii.get("url", ""),
-                    "title": page.get("title", ""),
-                    "width": ii.get("width", 0),
-                    "height": ii.get("height", 0),
-                    "mime": mime
-                })
+                info = page.get("imageinfo", [{}])[0]
+                url = info.get("thumburl") or info.get("url")
+                mime = info.get("mime", "")
+                if url and "image" in mime:
+                    results.append({
+                        "url": url,
+                        "title": page.get("title", ""),
+                        "width": info.get("width", 0),
+                        "height": info.get("height", 0)
+                    })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} results for '{search_query}'")
             return results
     except Exception as e:
         print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
@@ -105,301 +110,309 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
 
 
 def fetch_pexels_image(query):
-    """Search Pexels for a relevant image. Returns URL or None."""
+    """Search Pexels for a relevant image using curl (urllib gets 403)."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
+        return None, None
     try:
-        r = requests.get(
-            "https://api.pexels.com/v1/search",
-            params={"query": query, "per_page": 5, "orientation": "landscape"},
-            headers={"Authorization": PEXELS_KEY},
-            timeout=10
+        result = subprocess.run(
+            ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
+             f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=5&orientation=landscape"],
+            capture_output=True, text=True, timeout=15
         )
-        if r.status_code == 200:
-            photos = r.json().get("photos", [])
-            for p in photos:
-                url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
-                if url:
-                    print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                    return url
+        data = json.loads(result.stdout)
+        photos = data.get("photos", [])
+        for photo in photos:
+            url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("large")
+            if url:
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                return url, "Pexels"
     except Exception as e:
         print(f"  ⚠ Pexels error for '{query}': {e}")
-    return None
-
-
-def validate_image(url):
-    """Validate an image URL returns HTTP 200 with image content > 5KB."""
-    try:
-        r = requests.head(url, headers={"User-Agent": UA}, timeout=10, allow_redirects=True)
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            return True
-        # Try GET if HEAD doesn't have Content-Length
-        if r.status_code == 200 and "image" in ct and cl == 0:
-            r2 = requests.get(url, headers={"User-Agent": UA}, timeout=10, stream=True)
-            chunk = r2.raw.read(6000)
-            r2.close()
-            if len(chunk) > 5000:
-                return True
-    except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-    return False
-
-
-def get_best_image(person_name=None, search_terms=None):
-    """Multi-source image search. Returns (url, attribution) or (None, None)."""
-    candidates = []
-    
-    # Wikipedia person image
-    if person_name:
-        wiki_url = fetch_wikipedia_person_image(person_name)
-        if wiki_url and validate_image(wiki_url):
-            candidates.append((wiki_url, "Wikimedia Commons", "wikipedia"))
-    
-    # Wikimedia Commons
-    if search_terms:
-        for term in (search_terms if isinstance(search_terms, list) else [search_terms]):
-            commons = fetch_wikimedia_commons_images(term, limit=3)
-            for c in commons:
-                url = c.get("url") or c.get("original_url")
-                if url and validate_image(url):
-                    candidates.append((url, "Wikimedia Commons", "commons"))
-                    break
-            if any(c[2] == "commons" for c in candidates):
-                break
-    
-    # Pexels fallback
-    if search_terms:
-        pexels_query = search_terms[0] if isinstance(search_terms, list) else search_terms
-        pex_url = fetch_pexels_image(pexels_query)
-        if pex_url and validate_image(pex_url):
-            candidates.append((pex_url, "Pexels", "pexels"))
-    
-    # Pick best: Wikipedia > Commons > Pexels
-    priority = {"wikipedia": 0, "commons": 1, "pexels": 2}
-    candidates.sort(key=lambda x: priority.get(x[2], 99))
-    
-    if candidates:
-        print(f"  ★ Selected image from {candidates[0][2]}: {candidates[0][0][:80]}...")
-        return candidates[0][0], candidates[0][1]
-    
     return None, None
 
 
-# ── Article insertion ───────────────────────────────────────────
+def validate_image(url):
+    """Validate image URL returns 200 with image content type and > 5KB."""
+    try:
+        r = requests.head(url, headers={"User-Agent": UA}, timeout=10, allow_redirects=True)
+        content_type = r.headers.get("Content-Type", "")
+        content_length = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in content_type and content_length > 5000:
+            print(f"  ✓ Image validated: {content_length} bytes, {content_type}")
+            return True
+        # Try GET if HEAD didn't return content-length
+        if r.status_code == 200 and "image" in content_type and content_length == 0:
+            r2 = requests.get(url, headers={"User-Agent": UA}, timeout=10, stream=True)
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
+                print(f"  ✓ Image validated via GET: {len(chunk)}+ bytes")
+                return True
+        print(f"  ✗ Image validation failed: status={r.status_code}, type={content_type}, size={content_length}")
+    except Exception as e:
+        print(f"  ✗ Image validation error: {e}")
+    return False
+
+
+def source_image(person_name=None, wiki_search=None, pexels_query=None):
+    """Multi-source image search: Wikipedia person → Wikimedia Commons → Pexels."""
+    # Try Wikipedia person image first
+    if person_name:
+        url, attr = fetch_wikipedia_person_image(person_name)
+        if url and validate_image(url):
+            return url, attr
+
+    # Try Wikimedia Commons
+    if wiki_search:
+        results = fetch_wikimedia_commons(wiki_search)
+        for r in results:
+            if validate_image(r["url"]):
+                return r["url"], "Wikimedia Commons"
+
+    # Fallback to Pexels
+    if pexels_query:
+        url, attr = fetch_pexels_image(pexels_query)
+        if url and validate_image(url):
+            return url, attr
+
+    return None, None
+
 
 def insert_article(article):
-    """Insert an article into Supabase."""
+    """Insert article into Supabase."""
+    payload = {
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "slug": article["slug"],
+        "body": article["body"],
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "source_urls": json.dumps(article.get("sources", [])),
+        "image_url": article.get("image_url"),
+        "image_caption": article.get("image_caption"),
+        "image_attribution": article.get("image_attribution"),
+        "is_editorial": False,
+        "social_embed_url": article.get("social_embed_url")
+    }
+    # Remove None values
+    payload = {k: v for k, v in payload.items() if v is not None}
+
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS_SB,
-        json=article,
+        headers=HEADERS,
+        json=payload,
         timeout=30
     )
     if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            print(f"  ✓ Inserted: {result[0].get('slug', 'unknown')}")
-            return True
-        print(f"  ✓ Inserted (no body returned)")
+        data = r.json()
+        article_id = data[0]["id"] if isinstance(data, list) and data else "unknown"
+        print(f"  ✓ Published: {article['headline'][:60]}... (ID: {article_id})")
         return True
     else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        print(f"  ✗ Failed to publish: {r.status_code} - {r.text[:200]}")
         return False
 
 
-# ── Articles ────────────────────────────────────────────────────
+def count_words(text):
+    """Count words in markdown text, excluding markup."""
+    clean = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', text)
+    clean = re.sub(r'[#*_`>]', '', clean)
+    return len(clean.split())
 
-def write_articles():
-    now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
-    articles = []
 
-    # ─── Article 1: Aishwarya Rai Bachchan JW Marriott ───
-    print("\n=== Article 1: Aishwarya Rai Bachchan JW Marriott ===")
-    img1_url, img1_attr = get_best_image(
-        person_name="Aishwarya Rai",
-        search_terms=["Aishwarya Rai Bachchan", "Aishwarya Rai Cannes"]
-    )
-    
-    article1_body = """JW Marriott has named Aishwarya Rai Bachchan as its Global Brand Ambassador. The announcement, made on June 3, positions the internationally acclaimed actor at the center of the luxury hotel brand's worldwide "Stay in the Moment" campaign — a platform built around mindful travel, well-being, and presence.
+# ============================================================
+# ARTICLE 1: Vicky Kaushal blocks 18 months for Mahavatar
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 1: Vicky Kaushal / Mahavatar")
+print("="*60)
 
-This is not a regional endorsement or a limited-run campaign. Aishwarya will front international brand campaigns spanning film, print, and digital platforms, and will participate in curated brand experiences across India and select global markets. The creative direction centers on moments of reflection and quiet sophistication within JW Marriott spaces, designed to foster clarity and calm.
+img1_url, img1_attr = source_image(
+    person_name="Vicky Kaushal",
+    wiki_search="Vicky Kaushal actor Bollywood",
+    pexels_query=None  # No generic stock for person articles
+)
 
-## Why This Partnership Matters for Indian Travelers
+article1 = {
+    "headline": "Vicky Kaushal Has Blocked Eighteen Months of His Life for One Role. The Scale of Mahavatar Is Unlike Anything Bollywood Has Attempted.",
+    "subheadline": "Six months of physical transformation, twelve months of shooting, no other projects in between — and Shraddha Kapoor may be joining him.",
+    "slug": "vicky-kaushal-mahavatar-parashurama-18-months-shraddha-kapoor-maddock-nri-20260605",
+    "body": """When Vicky Kaushal wraps his final scenes on Sanjay Leela Bhansali's *Love and War* later this month, he will not move on to the next film on his calendar. He will move into a training facility. For six months, starting in June 2026, the actor will undergo a physical and psychological transformation designed by director Amar Kaushik to prepare him for the role of Chiranjeevi Parashurama in *Mahavatar*, Maddock Films' most ambitious production to date.
 
-The timing is deliberate. Indian travelers are now the fastest-growing outbound luxury segment globally, and domestic demand for premium travel continues to accelerate. JW Marriott currently operates more than 130 properties worldwide, with India representing one of its most dynamic portfolios and development pipelines. The brand is betting that as India's influence on global hospitality deepens, having Aishwarya as its face makes strategic sense beyond mere celebrity association.
+The numbers are staggering. Kaushal has blocked a total of eighteen months exclusively for this one project — six months of intensive preparation followed by twelve months of continuous filming, with no other commitments permitted during the entire window. In an industry where leading men routinely juggle three or four productions simultaneously, this is an extraordinary bet on a single performance.
 
-"Travel has always been an important part of my life, both personally and professionally," Aishwarya said in the official statement. "The most meaningful experiences are often the quietest ones, when you are fully aware of where you are and who you are with. JW Marriott's philosophy of being present and in the moment speaks to that awareness."
+## The Preparation Module
 
-Bruce Rohr, Vice President and Global Brand Leader at JW Marriott, framed the choice as intentional: "Aishwarya's global stature, warmth, and authenticity make her a natural embodiment of JW Marriott. She brings a thoughtful, grounded presence that reflects the way our guests seek to travel — with intention and a sense of connection."
+According to reports from Pinkvilla and Sacnilk, the preparatory phase is not a simple gym routine. Amar Kaushik has designed a comprehensive module that includes rigorous physical bulking to match the mythological scale of Parashurama, alongside acting workshops, weapon training, and deep immersion into the spiritual and emotional dimensions of the character. Kaushal is portraying one of the Chiranjivi — the immortals of Hindu mythology — a figure known for immense physical strength and profound spiritual depth.
+
+The director, who delivered back-to-back blockbusters with *Stree* and *Stree 2*, has been quietly working on pre-production for seven months already. Set design, weapon design, character looks, and the complete script have all been locked. "The prep is going on for 6-7 months," Kaushik told Bollywood Hungama in an earlier interview. "We have worked on the set design, weapon design, how every character would look. Yet, we need more time."
+
+## Shraddha Kapoor in Talks
+
+Adding fuel to the anticipation, Mid-Day has reported that Shraddha Kapoor is in advanced talks to play the female lead opposite Kaushal. If she signs on, this would be their first on-screen collaboration — a pairing the makers believe will bring both star power and box office pull to what is already shaping up to be a tentpole release.
+
+The film is part of a broader mythological cinematic universe being built by Maddock Films. The animated *Mahavatar Narsimha*, released in 2025, became the highest-grossing Indian animated film of all time at ₹325 crore worldwide, proving that audiences have an appetite for this mythology-driven storytelling. *Mahavatar* is the live-action expansion of that universe, with Parashurama's story set to connect to the wider narrative across multiple installments.
+
+## What This Means for Bollywood's New Era
+
+Kaushal's commitment reflects a seismic shift in how Bollywood's biggest actors are approaching their careers. The era of churning out three films a year is giving way to singular, high-investment performances that demand total immersion. It is a strategy borrowed from Hollywood's franchise ecosystem and South Indian cinema's recent mega-productions, and it signals that the Indian film industry is betting bigger than ever on event-level storytelling.
+
+The film was originally announced for a Christmas 2026 release, but the extended preparation timeline has pushed it to 2027 — with Independence Day weekend emerging as the likely target. For Kaushal, the gamble is simple: one role, eighteen months, and the kind of physical and emotional transformation that could define a career.
 
 ## The Diaspora Angle
 
-For NRI travelers — many of whom already frequent JW Marriott properties from New York to Mumbai to Dubai — the appointment carries cultural weight. Aishwarya has spent over two decades representing India on the global stage, from Cannes to international fashion weeks, and her public image has consistently carried a sense of composure rather than spectacle. That alignment with "intentional luxury" is what separates this from a typical celebrity deal.
+For the Indian diaspora, *Mahavatar* represents the kind of globally ambitious mythological storytelling that has long been a source of cultural pride and frustration in equal measure. If Maddock Films can execute at the scale they are promising — and early signs suggest they are sparing nothing — this could be the film that finally bridges the gap between India's mythology and Hollywood's visual spectacle. The eighteen-month commitment from its lead actor suggests everyone involved believes it can.""",
+    "sources": [
+        "https://www.sacnilk.com/articles/love-and-war-starrer-vicky-kaushal-blocks-18-months-for-amar-kaushik-mahavatar",
+        "https://www.sacnilk.com/articles/shraddha-kapoor-to-play-female-lead-in-vicky-kaushal-fronted-mahavatar",
+        "https://www.bollywoodhungama.com"
+    ],
+    "image_url": img1_url,
+    "image_caption": "Vicky Kaushal at a film event in Mumbai",
+    "image_attribution": img1_attr
+}
 
-The partnership also reflects a broader industry shift. Indian luxury consumers no longer simply want five-star amenities. They want experiences that feel personal and culturally grounded. JW Marriott is signaling that it understands this evolution, and it is using India's most globally recognized female face to say so.
-
-## What This Means Going Forward
-
-As Marriott International strengthens its presence across India's key cities and resort destinations, this appointment is part of a longer play. The brand is expanding rapidly in markets shaped by Indian travelers — the Middle East, Southeast Asia, Europe — and Aishwarya's name opens doors across all of them. The collaboration is expected to unfold over a sustained period, with new campaign content rolling out across platforms through 2026 and beyond.
-
-For a brand built on the legacy of J. Willard Marriott and a philosophy of holistic well-being, the choice of Aishwarya Rai Bachchan is less about star power and more about what she represents: presence, balance, and a life that has stayed grounded despite the spotlight. In the crowded landscape of celebrity endorsements, that distinction matters."""
-
-    articles.append({
-        "headline": "Aishwarya Rai Bachchan Is Now the Global Face of JW Marriott. The Deal Says More About India's Luxury Travelers Than About the Star.",
-        "subheadline": "The hotel chain's 'Stay in the Moment' campaign targets India's fastest-growing luxury travel segment — and Aishwarya embodies the pitch.",
-        "body": article1_body,
-        "slug": "aishwarya-rai-bachchan-jw-marriott-global-brand-ambassador-luxury-travel-nri-20260605",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "is_editorial": False,
-        "image_url": img1_url,
-        "image_caption": "Aishwarya Rai Bachchan at a public appearance",
-        "image_attribution": img1_attr,
-        "sources": json.dumps([
-            {"name": "Hollywood Reporter India", "url": "https://hollywoodreporterindia.com"},
-            {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-            {"name": "Femina", "url": "https://femina.in"}
-        ])
-    })
-
-    # ─── Article 2: Ranveer Singh Don 3 FWICE ───
-    print("\n=== Article 2: Ranveer Singh Don 3 FWICE ===")
-    img2_url, img2_attr = get_best_image(
-        person_name="Ranveer Singh",
-        search_terms=["Ranveer Singh actor Bollywood", "Ranveer Singh film"]
-    )
-
-    article2_body = """The Federation of Western India Cine Employees has withdrawn its non-cooperation directive against Ranveer Singh. The reversal, announced on June 3, came after the actor sent a formal legal notice to FWICE and multiple industry bodies — including the Indian Motion Picture Producers' Association, the Producers Guild of India, and the Cine & TV Artistes' Association — intervened to broker a resolution.
-
-The directive had been issued on May 25 after Farhan Akhtar and producer Ritesh Sidhwani filed a complaint with the Indian Film and Television Directors' Association, which then referred the matter to FWICE. The complaint alleged that Ranveer's abrupt exit from Don 3, which had been in development for three years, had caused financial losses estimated at ₹45 crore in pre-production costs. FWICE had instructed all its members across every craft and department not to work on any project involving Ranveer Singh.
-
-## What Happened Behind the Scenes
-
-The public back-and-forth between FWICE and Ranveer's team lasted roughly ten days. FWICE advisor Ashoke Pandit had initially struck a hard line: "None of our workers or members, across all crafts, will work on any of his projects. We have requested that all producers take a stand, join us in solidarity." The language was aggressive, even if FWICE later clarified it should not be called a "ban."
-
-Ranveer's team responded with a measured official statement: "Ranveer Singh holds the highest regard for the film fraternity and for everyone associated with the Don franchise. He has consciously chosen to maintain silence, believing that professional discussions and personal equations are best handled with dignity, maturity and mutual respect."
-
-Behind that public restraint, however, came a formal legal notice. The details of the notice have not been made public, but it was effective. FWICE president BN Tiwari announced the withdrawal shortly after: "We are taking back our non-cooperative directive from immediate effect. No one has won or lost in this matter."
-
-## The Kangana Ranaut Subplot
-
-The controversy also drew Kangana Ranaut into the conversation. At the trailer launch of her upcoming film Bharat Bhhagya Viddhaata, Kangana offered an unexpected defense of Ranveer: "It's impossible not to make enemies when you are successful. Today, Ranveer Singh should think about what he has achieved in his career. When a person moves forward, they will face numerous obstacles."
-
-Ashoke Pandit was unimpressed. Speaking at a FWICE press conference, he fired back directly: "Kangana also said something. I said, 'You talk nonsense, that's why I banned you.' There is a big issue of the industry here. You don't even know the issue."
-
-Ram Gopal Varma and Sanjay Gupta also voiced support for Ranveer during the standoff, adding to the sense that FWICE's directive was creating fault lines across the industry rather than building consensus.
-
-## Why the Timing Mattered
-
-The withdrawal came just one day before Dhurandhar 2 — Ranveer's massive blockbuster sequel — began streaming on JioHotstar. With the film having earned ₹1,850 crore at the worldwide box office, Ranveer's commercial position made the non-cooperation directive difficult to sustain. No producer in the industry would voluntarily walk away from the biggest male star at the box office over a dispute that had not gone through formal arbitration.
-
-## What It Means for the Industry
-
-The Don 3 saga is far from over. Farhan Akhtar's ₹45 crore claim remains unresolved, and the project's future is uncertain. But FWICE's rapid retreat — from aggressive directive to quiet withdrawal in under two weeks — exposes a structural weakness in how the Indian film industry handles contractual disputes. The federation's tools are blunt instruments: public shaming and work stoppages that collapse the moment a star's legal team pushes back.
-
-For NRI audiences watching from abroad, the episode is a reminder of how much Bollywood still runs on relationships and informal agreements rather than the contractual frameworks that govern Hollywood productions. The industry is getting bigger — Dhurandhar 2 just proved that — but its dispute resolution mechanisms have not kept pace.
-
-The legal notice from Ranveer's camp will still need a formal response from FWICE. But for now, the directive is gone, the star is back in business, and Don 3 remains a franchise looking for its next chapter."""
-
-    articles.append({
-        "headline": "FWICE Just Backed Down on Ranveer Singh. The Don 3 Dispute Is Not Over, but the Non-Cooperation Directive Is.",
-        "subheadline": "A legal notice, four industry bodies, and Kangana Ranaut's unsolicited opinion later, the ten-day standoff has ended — with no resolution on the ₹45-crore claim.",
-        "body": article2_body,
-        "slug": "ranveer-singh-fwice-non-cooperation-withdrawn-don-3-legal-notice-kangana-nri-20260605",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "is_editorial": False,
-        "image_url": img2_url,
-        "image_caption": "Ranveer Singh at a film event",
-        "image_attribution": img2_attr,
-        "sources": json.dumps([
-            {"name": "Filmfare", "url": "https://filmfare.com"},
-            {"name": "Livemint", "url": "https://livemint.com"},
-            {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-            {"name": "LatestLY / ANI", "url": "https://latestly.com"}
-        ])
-    })
-
-    # ─── Article 3: Netflix South Indian Mega Slate 2026 ───
-    print("\n=== Article 3: Netflix South Indian Slate 2026 ===")
-    img3_url, img3_attr = get_best_image(
-        person_name=None,
-        search_terms=["Netflix India streaming", "Indian cinema theater", "South Indian film industry"]
-    )
-    
-    article3_body = """Netflix has unveiled its Telugu and Tamil slates for 2026, and the lineup reads like a who's who of South Indian cinema. Across the two announcements, the platform confirmed post-theatrical streaming deals with nearly every major star in the South — Nani, Pawan Kalyan, Venkatesh, Vijay Deverakonda, Suriya, Dhanush, and Karthi among them. For NRI audiences who have historically relied on delayed digital premieres and region-locked platforms, this is the clearest signal yet that Netflix is treating South Indian cinema as a primary content vertical, not a secondary acquisition.
-
-## The Telugu Slate
-
-The Telugu lineup anchors around four marquee projects. First is Nani's Paradise, a collaboration that signals Netflix's confidence in the actor's crossover appeal. Then there is Adarsha Kutumbam (commonly called AK47), pairing Venkatesh Daggubati with director Trivikram Srinivas for a family entertainer backed by Haarika & Hassine Creations, with Srinidhi Shetty as the female lead and music by Harshavardhan Rameshwar.
-
-The most ambitious project on the Telugu list may be VD14, Vijay Deverakonda's reunion with Taxiwala director Rahul Sankrityan. The film is a period epic set between 1854 and 1878 during British colonial rule in the Rayalaseema region, produced by Mythri Movie Makers on a budget exceeding ₹100 crore. South African actor Arnold Vosloo — best known for The Mummy franchise — is reported to play a British officer, while Rashmika Mandanna and Amitabh Bachchan are linked to pivotal roles. Ajay-Atul are composing the score. This is Pan-India scale, and Netflix has already locked the post-theatrical rights.
-
-Rounding out the slate is 418 from director Charan Lakkaraju, and Pawan Kalyan's Ustaad, adding political star power to the lineup.
-
-## The Tamil Slate
-
-Netflix's Tamil announcements are equally stacked. Suriya dominates with two projects: Suriya 46 (the previously rumored KGF-producer collaboration) and S47, a quirky action-comedy thriller directed by Aavesham fame Jithu Madhavan, where Suriya plays a suspended police officer who relocates to Kerala with an incompetent team. Nazriya Nazim and Naslen round out the cast.
-
-Karthi brings Marshal, a pirate-themed period action-adventure set in 1960s-70s Rameswaram, directed by Tamizh of Taanakkaran fame. The ensemble includes Kalyani Priyadarshan, Sathyaraj, and Prabhu, with production by Dream Warrior Pictures. And Dhanush's Kara completes the high-profile Tamil slate.
-
-## What This Means for the Diaspora
-
-For NRI viewers, the implications are practical. These streaming deals mean guaranteed digital access to the biggest South Indian films within weeks of their theatrical runs. The days of waiting months for an OTT release, or worse, relying on pirated prints, are effectively ending for top-tier content. Netflix is positioning itself as the definitive post-theatrical home for both Telugu and Tamil cinema's biggest productions.
-
-The financial scale is notable too. When Netflix locks streaming rights for a film like VD14 — budgeted at ₹100 crore with international cast members — the deal sizes are approaching Hollywood territory. These are not bargain acquisitions. Netflix is paying premium prices because the South Indian diaspora is one of its fastest-growing subscriber bases, and theatrical windows for these films generate genuine excitement that drives streaming subscriptions.
-
-## The Platform Wars Context
-
-Netflix's aggressive South Indian push comes as JioHotstar continues to hold the Dhurandhar franchise and other major Hindi-language titles, while Amazon Prime Video has its own Tamil and Telugu pipeline. The platform fragmentation means NRI audiences may need multiple subscriptions to cover the full spectrum — but it also means more content is getting premium treatment.
-
-The 2026 slates also reflect a structural shift in how South Indian films are financed. OTT deals are now factored into production budgets from day one, allowing filmmakers to greenlight more ambitious projects. A film like Marshal — a pirate period drama that would have been considered too risky a decade ago — gets made because Netflix's streaming floor reduces the downside risk.
-
-For South Indian cinema, the Netflix slates represent legitimacy on a global platform. For Netflix, they represent a bet on the audience that has been the most consistent theatrical force in Indian cinema for the past five years. For the diaspora, they represent something simpler: the best South Indian films of the year, available everywhere, on time."""
-
-    articles.append({
-        "headline": "Netflix Just Announced Its Telugu and Tamil Slates for 2026. Every Major South Indian Star Is on the List.",
-        "subheadline": "Nani, Pawan Kalyan, Vijay Deverakonda, Suriya, Dhanush, Karthi, and Venkatesh — the streaming giant is treating South Indian cinema as a primary content vertical.",
-        "body": article3_body,
-        "slug": "netflix-telugu-tamil-2026-slate-nani-suriya-dhanush-vijay-deverakonda-nri-20260605",
-        "category": "entertainment",
-        "vertical": "entertainment",
-        "status": "published",
-        "published_at": now,
-        "is_editorial": False,
-        "image_url": img3_url,
-        "image_caption": "A cinema screen representing the new wave of South Indian streaming content",
-        "image_attribution": img3_attr,
-        "sources": json.dumps([
-            {"name": "Sacnilk", "url": "https://sacnilk.com"},
-            {"name": "Sacnilk - Tamil Slate", "url": "https://sacnilk.com"},
-            {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"}
-        ])
-    })
-
-    # ── Insert all articles ──
-    print("\n=== Inserting articles ===")
-    success_count = 0
-    for i, a in enumerate(articles):
-        print(f"\nArticle {i+1}: {a['headline'][:60]}...")
-        if not a.get('image_url'):
-            print(f"  ⚠ No image found, skipping article")
-            continue
-        ok = insert_article(a)
-        if ok:
-            success_count += 1
-        time.sleep(1)
-    
-    print(f"\n=== Done: {success_count}/{len(articles)} articles published ===")
-    return success_count
+wc1 = count_words(article1["body"])
+print(f"  Word count: {wc1}")
+if wc1 >= 400 and img1_url:
+    insert_article(article1)
+elif not img1_url:
+    print("  ✗ Skipping: no valid image found")
+else:
+    print(f"  ✗ Skipping: word count {wc1} below minimum")
 
 
-if __name__ == '__main__':
-    write_articles()
+# ============================================================
+# ARTICLE 2: Ranveer Singh's Pralay
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 2: Ranveer Singh / Pralay")
+print("="*60)
+
+img2_url, img2_attr = source_image(
+    person_name="Ranveer Singh",
+    wiki_search="Ranveer Singh actor Indian",
+    pexels_query=None
+)
+
+article2 = {
+    "headline": "Pralay Is a ₹300-Crore Post-Apocalyptic Thriller. Ranveer Singh Starts Shooting in August.",
+    "subheadline": "A South Indian star makes her Hindi debut, AI-driven visual effects replace traditional CGI, and Bollywood's biggest action star enters a genre India has never attempted at this scale.",
+    "slug": "ranveer-singh-pralay-300-crore-post-apocalyptic-kalyani-priyadarshan-hindi-debut-nri-20260605",
+    "body": """The rumours of a creative fallout were just that — rumours. Ranveer Singh's next film after the record-shattering *Dhurandhar* franchise is not only alive, it has a budget of ₹300 crore, a confirmed August 2026 start date, and a genre that Indian cinema has never attempted at this scale.
+
+*Pralay*, directed by Jai Mehta, is a post-apocalyptic survival thriller — a genre virtually non-existent in Bollywood's playbook. According to a Variety India report confirmed by Sacnilk, the production plans to merge physical sets with cutting-edge AI-driven visual effects to create a dystopian atmosphere that the makers describe as unlike anything previously seen in Indian cinema. This is not the VFX-heavy spectacle of *Brahmastra* or *Adipurush*. This is an entirely new visual language being built from scratch.
+
+## Kalyani Priyadarshan's Hindi Debut
+
+Perhaps the most intriguing casting choice is Kalyani Priyadarshan, who has been finalised as the female lead. The daughter of legendary Malayalam filmmaker Priyadarshan, Kalyani has built a quietly impressive career in South Indian cinema with films across Telugu, Tamil, and Malayalam. *Pralay* will be her Hindi film debut — a crossover move that reflects Bollywood's increasing willingness to look beyond its traditional star system for talent.
+
+The pairing of Ranveer, coming off India's highest-grossing film ever, with a South Indian actress making her Hindi debut is a deliberate creative decision. The makers are reportedly confident that the fresh combination will serve the film's tone — a survival story that requires vulnerability and grit rather than conventional star dynamics.
+
+## The Post-Dhurandhar Pivot
+
+For Ranveer Singh, *Pralay* represents a calculated departure from the spy-action universe that made him India's biggest box office draw. After *Dhurandhar 2: The Revenge* crossed ₹1,800 crore worldwide — shattering records that had stood since *Baahubali 2* — the actor has reportedly stepped away from the *Don* franchise entirely to explore new genres.
+
+This is not a retreat. It is a pivot. Reports suggest that Singh, much like his contemporary Vicky Kaushal, is choosing to invest deeply in singular projects rather than spreading himself across multiple films. The ₹300-crore budget of *Pralay* — comparable to the biggest productions in Indian cinema history — underscores the kind of confidence producers are placing in both the actor and the genre.
+
+## AI-Driven Visual Effects: A New Frontier
+
+The most technically ambitious aspect of *Pralay* is its approach to visual effects. Rather than the traditional VFX pipeline that Indian films have relied on — often with uneven results — the production is integrating AI-driven visual generation into its workflow from the pre-production stage itself. While details remain closely guarded, industry sources suggest this could dramatically reduce the gap between concept and execution that has plagued Indian sci-fi and fantasy films.
+
+If the AI integration works as planned, *Pralay* could become a proof-of-concept for an entirely new way of making visually complex Indian films — one where the technology serves the story rather than becoming a visible, distracting layer on top of it.
+
+## Why Diaspora Audiences Should Pay Attention
+
+The Indian diaspora has long wished for homegrown genre films that can hold their own alongside Hollywood spectacles. Post-apocalyptic narratives — from *Mad Max* to *The Last of Us* — have massive global appeal but zero Indian entries worth mentioning. If *Pralay* delivers on its ambitions, it could open a door that the Indian film industry has never walked through. The ₹300-crore investment suggests the producers are betting it will.""",
+    "sources": [
+        "https://www.sacnilk.com/articles/bollywood-buzz-ranveer-singh-pralay-shoot-begins-august-2026",
+        "https://www.sacnilk.com/articles/ranveer-singh-fwice-non-cooperation-withdrawn",
+        "https://boxoffy.com"
+    ],
+    "image_url": img2_url,
+    "image_caption": "Ranveer Singh at a promotional event in Mumbai",
+    "image_attribution": img2_attr
+}
+
+wc2 = count_words(article2["body"])
+print(f"  Word count: {wc2}")
+if wc2 >= 400 and img2_url:
+    insert_article(article2)
+elif not img2_url:
+    print("  ✗ Skipping: no valid image found")
+else:
+    print(f"  ✗ Skipping: word count {wc2} below minimum")
+
+
+# ============================================================
+# ARTICLE 3: Drishyam 3 at 230 Crore, heading to Amazon Prime
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 3: Drishyam 3 / OTT + Box Office")
+print("="*60)
+
+img3_url, img3_attr = source_image(
+    person_name="Mohanlal",
+    wiki_search="Mohanlal actor Malayalam",
+    pexels_query=None
+)
+
+article3 = {
+    "headline": "Drishyam 3 Has Crossed ₹230 Crore Worldwide. The Diaspora Is Still Waiting to Stream It.",
+    "subheadline": "Georgekutty's final chapter is the highest-grossing installment in the franchise, but a legal dispute with Amazon Prime Video delayed the OTT deal — and the Hindi remake with Ajay Devgn is already dated for October.",
+    "slug": "drishyam-3-230-crore-worldwide-amazon-prime-ott-hindi-remake-ajay-devgn-nri-20260605",
+    "body": """Fifteen days into its theatrical run, *Drishyam 3* has cemented itself as one of the biggest Malayalam films ever made. Mohanlal's final chapter as Georgekutty — the quiet cable operator whose lies became an entire nation's obsession — has grossed ₹230.47 crore worldwide, crossed ₹100 crore net in India, and become the first South Indian film of 2026 to hit $10 million in overseas markets.
+
+The numbers tell a story of a franchise that has only grown more powerful with each installment. The original *Drishyam* in 2013 was a sleeper hit. *Drishyam 2* in 2021, released directly on Amazon Prime Video during the pandemic, became a global streaming sensation. Now, *Drishyam 3* has proven that the saga's audience was always bigger than any single platform could capture.
+
+## The Legal Dispute That Clouded the OTT Deal
+
+But for millions of Indian diaspora viewers who have been waiting to stream the film, the biggest story is not the box office. It is the legal battle that has delayed clarity on when and where *Drishyam 3* will be available digitally.
+
+Amazon Prime Video went to the Delhi High Court claiming exclusive streaming rights to the *Drishyam* franchise under an earlier agreement with producer Aashirvad Cinemas. Amazon argued that its deal included either first preference or outright exclusivity for future installments. The Delhi High Court granted interim relief in Amazon's favour, temporarily restraining the makers from negotiating OTT deals with third parties.
+
+The court order put the digital rights deal in limbo. In an era where post-theatrical streaming windows are often locked months before a film even releases, this uncertainty is unusual — and for a franchise as commercially valuable as *Drishyam*, it created a standoff worth hundreds of crores.
+
+Current reports indicate that Amazon Prime Video has ultimately secured the digital streaming rights, with a June 2026 OTT debut expected. But the dispute exposed a tension that the Indian film industry is only beginning to grapple with: who owns the digital future of a franchise, and can a streaming deal signed for one film bind the creators for all subsequent installments?
+
+## The Box Office Breakdown
+
+On Day 15 (June 4), *Drishyam 3* collected ₹1.05 crore net across 1,341 shows in India. The India net total stands at ₹102.75 crore, the India gross at ₹119.22 crore, and the overseas gross at ₹111.25 crore — an extraordinary international performance driven by strong demand in the Gulf countries, North America, and the United Kingdom.
+
+Kerala remains the film's strongest domestic market, with Kochi and Thrissur leading footfalls. Evening and night screenings continue to draw solid occupancy even in the third week, suggesting that word-of-mouth has sustained interest beyond the opening surge.
+
+Directed by Jeethu Joseph, the film stars Mohanlal alongside Meena, Ansiba Hassan, Esther Anil, Kalabhavan Shajon, Siddique, Murali Gopy, and Asha Sarath. The narrative picks up from the devastating revelations of the second film and brings the Georgekutty saga to what has been described as a definitive, unforgettable conclusion.
+
+## The Hindi Remake Is Already Coming
+
+While diaspora audiences wait for the Malayalam original to hit streaming, the Hindi machine is already in motion. A *Drishyam 3* Hindi remake starring Ajay Devgn is slated for release on October 2, 2026. The previous two Hindi remakes — produced by Panorama Studios — were both significant box office hits, with the second installment grossing over ₹300 crore worldwide.
+
+For NRI audiences, this creates an unusual viewing calculus. Watch the Malayalam original with subtitles the moment it drops on Prime Video, or wait four more months for the Hindi version on the big screen? The franchise's history suggests most will not wait. The original *Drishyam 2* became a massive crossover streaming hit precisely because diaspora viewers, regardless of language preference, wanted to see Georgekutty's story before the rest of the world caught up.
+
+## Why This Franchise Still Matters
+
+At its core, the *Drishyam* series resonated with Indian audiences — at home and abroad — because it was about an ordinary man navigating an extraordinary lie to protect his family. That premise is universal, but the execution was specifically, unmistakably Indian: the textures of Kerala life, the dynamics of a joint family under pressure, the way the legal system both fails and functions. Three films later, it remains one of the few Indian franchises that has genuinely grown with its audience rather than coasting on familiarity.""",
+    "sources": [
+        "https://www.sacnilk.com/articles/drishyam-3-ott-rights-put-on-hold-legal-dispute-clouds-digital-deal",
+        "https://www.thedailyjagran.com/entertainment/drishyam-3-box-office-collection-day-15",
+        "https://www.bombaytimes.com/entertainment/box-office-collection-june-4-2026",
+        "https://keralatv.in/june-2026-malayalam-ott-releases"
+    ],
+    "image_url": img3_url,
+    "image_caption": "Mohanlal at a film premiere in Kochi",
+    "image_attribution": img3_attr
+}
+
+wc3 = count_words(article3["body"])
+print(f"  Word count: {wc3}")
+if wc3 >= 400 and img3_url:
+    insert_article(article3)
+elif not img3_url:
+    print("  ✗ Skipping: no valid image found")
+else:
+    print(f"  ✗ Skipping: word count {wc3} below minimum")
+
+print("\n" + "="*60)
+print("Entertainment writer run complete")
+print("="*60)
