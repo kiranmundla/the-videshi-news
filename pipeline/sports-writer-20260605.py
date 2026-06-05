@@ -1,74 +1,81 @@
 #!/usr/bin/env python3
-"""Sports writer for The Videshi - June 5, 2026 batch"""
+"""Sports writer — June 5 2026 run. Two articles."""
 
-import json, os, sys, time, re, uuid, urllib.parse
-import requests
+import json, os, sys, time, uuid, re, io
 from datetime import datetime, timezone
 
-# Load env
+import requests
+from PIL import Image
+
+# ── env ──────────────────────────────────────────────────────────────────
 def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    key, val = line.split('=', 1)
-                    os.environ[key.strip()] = val.strip().strip('"').strip("'")
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line.startswith("#") or "=" not in line:
+                continue
+            line = line.replace("export ", "", 1)
+            k, v = line.split("=", 1)
+            v = v.strip().strip('"').strip("'")
+            os.environ.setdefault(k, v)
 
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
+load_env(os.path.expanduser("~/.env.supabase"))
+load_env(os.path.expanduser("~/workspace/.env.supabase"))
+load_env(os.path.expanduser("~/workspace/.env.pexels"))
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+PEXELS_KEY = os.environ.get("PEXELS_API_KEY", "")
 
-HEADERS = {
+HEADERS_SB = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
-    "Prefer": "return=representation"
+    "Prefer": "return=representation",
 }
 
-# Image sourcing functions
+UA = "TheVideshi/1.0 (thevideshi.com)"
+
+# ── helpers ──────────────────────────────────────────────────────────────
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    encoded = person_name.replace(" ", "_")
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            headers={"User-Agent": UA},
+            timeout=10,
         )
         if r.status_code == 200:
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
 
-def fetch_wikimedia_commons_images(search_query, limit=5):
-    """Search Wikimedia Commons for CC-licensed images."""
+def fetch_wikimedia_commons_images(query, limit=5):
     params = {
         "action": "query",
         "generator": "search",
-        "gsrsearch": search_query,
+        "gsrsearch": query,
         "gsrnamespace": "6",
         "gsrlimit": str(limit),
         "prop": "imageinfo",
         "iiprop": "url|size|mime|extmetadata",
         "iiurlwidth": "1200",
-        "format": "json"
+        "format": "json",
     }
     try:
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
             params=params,
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=15
+            headers={"User-Agent": UA},
+            timeout=15,
         )
         if r.status_code == 200:
             data = r.json()
@@ -87,315 +94,338 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
                     "title": page.get("title", ""),
                     "width": ii.get("width", 0),
                     "height": ii.get("height", 0),
-                    "mime": mime
                 })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+        print(f"  ⚠ Commons error: {e}")
     return []
 
 
-def fetch_pexels_image(query):
-    """Search Pexels for a relevant image. Returns URL or None."""
+def fetch_pexels_image(*queries):
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
         return None
-    try:
-        r = requests.get(
-            "https://api.pexels.com/v1/search",
-            params={"query": query, "per_page": 5, "orientation": "landscape"},
-            headers={"Authorization": PEXELS_KEY},
-            timeout=10
-        )
-        if r.status_code == 200:
-            photos = r.json().get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                return url
-    except Exception as e:
-        print(f"  ⚠ Pexels error for '{query}': {e}")
+    for q in queries:
+        try:
+            r = requests.get(
+                "https://api.pexels.com/v1/search",
+                params={"query": q, "per_page": 3, "orientation": "landscape"},
+                headers={"Authorization": PEXELS_KEY},
+                timeout=10,
+            )
+            if r.status_code == 200:
+                photos = r.json().get("photos", [])
+                for p in photos:
+                    url = p["src"]["large2x"]
+                    print(f"  ✓ Pexels image for '{q}': {url[:80]}...")
+                    return url
+        except Exception as e:
+            print(f"  ⚠ Pexels error: {e}")
     return None
 
 
-def validate_image(url):
-    """Verify image URL returns HTTP 200 with image content > 5KB."""
-    try:
-        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            print(f"  ✓ Image validated: {cl} bytes, {ct}")
-            return True
-        # Try GET if HEAD doesn't give content-length
-        if r.status_code == 200 and "image" in ct and cl == 0:
-            r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, stream=True)
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                print(f"  ✓ Image validated via GET: >5KB")
-                return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
-    except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
-    return False
+def compress_image(img_bytes, max_width=1200, quality=80):
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ("RGBA", "P"):
+        img = img.convert("RGB")
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format="JPEG", quality=quality, optimize=True)
+    return buf.getvalue()
 
 
-def publish_article(article):
-    """Insert article into Supabase p2_articles table."""
-    payload = {
-        "headline": article["headline"],
-        "subheadline": article["subheadline"],
-        "slug": article["slug"],
-        "body": article["body"],
+def upload_image_to_supabase(img_url, filename):
+    print(f"  ⬇ Downloading {img_url[:80]}...")
+    r = requests.get(img_url, headers={"User-Agent": UA}, timeout=20)
+    if r.status_code != 200:
+        print(f"  ✗ Download failed: HTTP {r.status_code}")
+        return None
+    raw = r.content
+    if len(raw) < 5000:
+        print(f"  ✗ Image too small ({len(raw)} bytes)")
+        return None
+
+    compressed = compress_image(raw)
+    print(f"  📦 Compressed: {len(raw)} → {len(compressed)} bytes")
+
+    upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+    resp = requests.post(
+        upload_url,
+        headers={
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": "image/jpeg",
+            "x-upsert": "true",
+        },
+        data=compressed,
+        timeout=30,
+    )
+    if resp.status_code in (200, 201):
+        public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+        print(f"  ✓ Uploaded to Supabase: {public_url}")
+        return public_url
+    else:
+        print(f"  ✗ Upload failed: {resp.status_code} {resp.text[:200]}")
+        return None
+
+
+def insert_article(article):
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS_SB,
+        json=article,
+        timeout=30,
+    )
+    if r.status_code in (200, 201):
+        data = r.json()
+        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
+        print(f"  ✓ Article inserted: {art_id}")
+        return art_id
+    else:
+        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
+        return None
+
+
+def source_best_image(person_name=None, topic_queries=None, pexels_queries=None):
+    """Multi-source image search. Returns (url, attribution) or (None, None)."""
+    candidates = []
+
+    # Wikipedia person image
+    if person_name:
+        img = fetch_wikipedia_person_image(person_name)
+        if img:
+            candidates.append({"url": img, "source": "wikipedia", "priority": 1})
+
+    # Wikimedia Commons
+    if topic_queries:
+        for q in topic_queries:
+            results = fetch_wikimedia_commons_images(q)
+            for r in results[:2]:
+                candidates.append({"url": r["url"], "source": "wikimedia_commons", "priority": 2})
+
+    # Pexels fallback
+    if pexels_queries:
+        img = fetch_pexels_image(*pexels_queries)
+        if img:
+            candidates.append({"url": img, "source": "pexels", "priority": 3})
+
+    if not candidates:
+        return None, None
+
+    # Sort by priority (lower is better)
+    candidates.sort(key=lambda x: x["priority"])
+    best = candidates[0]
+    attribution = "Wikimedia Commons" if best["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
+    return best["url"], attribution
+
+
+# ══════════════════════════════════════════════════════════════════════════
+# ARTICLE 1: India U-18 Men Beat Pakistan 5-3, Reach Hockey Asia Cup Final
+# ══════════════════════════════════════════════════════════════════════════
+def write_article_1():
+    print("\n" + "=" * 60)
+    print("ARTICLE 1: India U-18 Hockey — Beat Pakistan 5-3, reach final")
+    print("=" * 60)
+
+    slug = "india-u18-hockey-beat-pakistan-5-3-asia-cup-final-purti-hat-trick-japan-nri"
+    headline = "India Beat Pakistan 5-3 To Reach the U-18 Hockey Asia Cup Final. Purti Ashish Tani Scored Four."
+    subheadline = "Trailing 2-3 going into the final quarter, India scored three unanswered goals in Kakamigahara. They will face hosts Japan in Saturday's final."
+
+    body = """India's U-18 men's hockey team produced a stunning comeback to beat Pakistan 5-3 in the semifinal of the Hockey U-18 Asia Cup 2026 at the Kawasaki Heavy Industries Hockey Stadium in Kakamigahara, Japan, on Friday.
+
+Trailing 2-3 entering the final quarter, India scored three unanswered goals to seal a place in Saturday's final against hosts Japan. The hero was Purti Ashish Tani, who scored four of India's five goals, including a hat-trick in the second half that broke the match open.
+
+## A Pulsating Contest From the Start
+
+Both teams began with intensity and attacking intent. India drew first blood in the 12th minute when a penalty stroke was awarded after Pakistan's video referral failed to overturn the on-field decision. Purti Ashish Tani stepped up and converted with composure, giving India the lead heading into the second quarter.
+
+Pakistan responded strongly, creating multiple chances from penalty corners in the second quarter but failing to convert either opportunity. It was Adeel who finally found the equaliser in the 27th minute, finishing clinically to send the teams into the break level at 1-1.
+
+## Pakistan Take the Lead, India Refuse to Fold
+
+The third quarter produced a flurry of goals. Ali Shahrukh restored India's lead in the 35th minute with a well-taken strike, but Pakistan hit back almost immediately through Muhammad Farhan Aslam in the 37th minute to make it 2-2.
+
+Pakistan then went ahead for the first time when Uzair Ahmed converted a penalty corner in the 42nd minute. At 3-2 down heading into the final quarter, India faced the prospect of elimination against their fiercest rivals.
+
+## Purti Ashish Tani Takes Over
+
+The final fifteen minutes belonged entirely to India, and specifically to Purti Ashish Tani. He levelled the score from a penalty corner, then completed his hat-trick in the 53rd minute to put India 4-3 ahead. With Pakistan pushing forward desperately, Purti added a fourth goal in the closing stages to seal a comprehensive 5-3 victory.
+
+## A Tournament of Dominance
+
+India's run through the tournament has been formidable. They opened with a 13-0 demolition of Kazakhstan, lost 2-4 to hosts Japan in the group stage, then beat Korea 4-1 and Chinese Taipei 13-1. Captain Ketan Kushwaha leads the tournament's scoring charts with seven goals, while Purti Ashish Tani now has ten across pool and knockout stages.
+
+The semifinal victory also carries special significance given the India-Pakistan sporting rivalry. In hockey, the two nations share a deep and storied history, and for these young players, beating Pakistan in a knockout match at an Asian championship will be a defining memory.
+
+## Women's Team Falls in Shootout
+
+The day brought mixed fortunes for India. Earlier, the U-18 women's team suffered a heartbreaking 1-3 shootout defeat to China after regulation time ended 2-2. Captain Sweety Kujur's setup for Nousheen Naz had given India an early lead in the third minute, but China equalised through Li ZeYan in the 24th minute. China took a 2-1 lead via Zhang Yuzheng in the 48th minute before Kiran Ekka's penalty corner conversion in the 54th minute forced the shootout.
+
+Chinese goalkeeper Liu Xue was the difference in the tiebreaker, allowing only Sandeepa Kumari to score for India while three Chinese shooters converted. The women's team will now play in the bronze medal match.
+
+## What It Means for Indian Hockey
+
+For NRI fans following Indian hockey's youth pipeline, the men's result is a significant marker. Coach Sardar Singh, the former India captain who has been instrumental in developing this group, has built a team that combines penalty corner expertise with composure under pressure. Saturday's final against Japan, who beat India 4-2 in the group stage, offers a chance at redemption and a continental title.
+
+**Sources:** Asian Hockey Federation, Sports 247 News, Mykhel, The Trending People"""
+
+    # Image sourcing
+    print("\n📷 Sourcing image...")
+    img_url, attribution = source_best_image(
+        person_name="Sardar Singh (field hockey)",
+        topic_queries=["India junior hockey team", "India Pakistan hockey Asia Cup"],
+        pexels_queries=["field hockey match India", "hockey players match"],
+    )
+
+    final_img_url = None
+    if img_url:
+        final_img_url = upload_image_to_supabase(img_url, f"{slug}.jpg")
+
+    image_caption = "Indian junior hockey players celebrate during the U-18 Asia Cup in Kakamigahara, Japan"
+    if not final_img_url:
+        # Try one more Pexels search
+        img_url = fetch_pexels_image("field hockey match players", "hockey sport turf")
+        if img_url:
+            final_img_url = upload_image_to_supabase(img_url, f"{slug}.jpg")
+            attribution = "Pexels"
+
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
         "category": "sports",
         "vertical": "sports",
         "status": "published",
+        "is_editorial": False,
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": article.get("image_url", ""),
-        "image_caption": article.get("image_caption", ""),
-        "image_attribution": article.get("image_attribution", ""),
-        "sources": json.dumps(article.get("sources", [])),
-        "is_editorial": False
+        "sources": json.dumps([
+            "Asian Hockey Federation",
+            "Sports 247 News Pakistan",
+            "Mykhel",
+            "The Trending People"
+        ]),
     }
-    
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=payload
-    )
-    if r.status_code in (200, 201):
-        result = r.json()
-        aid = result[0]["id"] if isinstance(result, list) and result else "unknown"
-        print(f"  ✓ Published: '{article['headline']}' (id: {aid})")
-        return True
-    else:
-        print(f"  ✗ Failed to publish: {r.status_code} — {r.text[:300]}")
-        return False
+
+    if final_img_url:
+        article["image_url"] = final_img_url
+        article["image_caption"] = image_caption
+        article["image_attribution"] = attribution
+
+    return insert_article(article)
 
 
-# ============================================================
-# ARTICLE 1: BCCI Five-Year Cooling-Off Period
-# ============================================================
-def write_article_1():
-    print("\n=== Article 1: BCCI Five-Year Cooling-Off Period ===")
-    
-    # Image: Vijay Shankar from Wikipedia (triggered the story)
-    print("Sourcing image...")
-    image_url = fetch_wikipedia_person_image("Vijay Shankar (cricketer)")
-    if not image_url:
-        image_url = fetch_wikipedia_person_image("Vijay Shankar cricketer")
-    
-    image_caption = "Vijay Shankar, whose retirement and signing with Lanka Premier League's Kandy Royals triggered the BCCI's cooling-off discussion"
-    image_attribution = "Wikimedia Commons"
-    
-    # Try Wikimedia Commons if Wikipedia fails
-    if not image_url:
-        commons = fetch_wikimedia_commons_images("Vijay Shankar cricketer India")
-        if commons:
-            image_url = commons[0]["url"]
-    
-    # Pexels fallback: BCCI cricket board
-    if not image_url or not validate_image(image_url):
-        print("  Trying BCCI/cricket fallback...")
-        commons2 = fetch_wikimedia_commons_images("BCCI cricket India board")
-        if commons2:
-            image_url = commons2[0]["url"]
-            image_caption = "The BCCI headquarters in Mumbai, where the Apex Council met to discuss the proposed cooling-off policy"
-        else:
-            image_url = fetch_pexels_image("cricket stadium India")
-            image_caption = "A cricket stadium in India"
-            image_attribution = "Pexels"
-    
-    if image_url and not validate_image(image_url):
-        print("  Image validation failed, trying Pexels...")
-        image_url = fetch_pexels_image("cricket bat ball")
-        image_caption = "The BCCI is proposing new rules to discourage early retirement from Indian cricket"
-        image_attribution = "Pexels"
-    
-    body = """The Board of Control for Cricket in India is considering a five-year cooling-off period for cricketers who retire from domestic or international cricket and then seek a return. The proposal, discussed at an online Apex Council meeting on Thursday, is the board's most direct response yet to a growing trend: Indian players retiring early to become eligible for overseas T20 franchise leagues.
-
-"The idea is to send a message to the players to be sure of their decision," a BCCI official told Hindustan Times. "Modalities will be worked out before rules are framed, looking at all parameters."
-
-The BCCI has authorised its president and secretary to finalise the policy before sending it back to the Apex Council for formal approval.
-
-## What Triggered the Proposal
-
-The immediate trigger is Vijay Shankar. The 35-year-old all-rounder, who represented India in the 2019 World Cup and played 12 internationals, recently announced his retirement from domestic cricket and the Indian Premier League. Days later, he signed with the Kandy Royals in the Lanka Premier League. He has indicated interest in other overseas competitions as well, including the Bangladesh Premier League, Canada's Global T20, and Major League Cricket in the United States.
-
-Shankar went unsold in the IPL 2026 auction. His retirement note was gracious — "Cricket is my life. I started playing when I was 10, and 25 years later, I am grateful and blessed to have played at every level, and to the highest level." But the BCCI sees his decision as part of a larger pattern it wants to discourage.
-
-## The Exodus That Worries the BCCI
-
-Over the past several years, a steady stream of Indian cricketers has retired from domestic cricket specifically to play in overseas franchise leagues. BCCI regulations bar active Indian cricketers — at any level — from participating in foreign leagues without board clearance, which is almost never granted.
-
-The workaround is simple: retire from Indian cricket, and you are no longer bound by BCCI rules.
-
-Dinesh Karthik retired from all forms of Indian cricket in 2024 and moved to commentary and overseas leagues. Yuvraj Singh, after his international career ended, played in the Global T20 Canada and other exhibitions. Unmukt Chand, the former India U-19 World Cup-winning captain, retired from Indian cricket entirely to play in the United States, eventually representing the USA in international cricket. Pravin Tambe, the leg-spinner who made his IPL debut at 41, retired from Indian cricket to play in the Caribbean Premier League. Irfan Pathan played in the Lanka Premier League after retirement.
-
-For NRI fans who follow cricket across multiple leagues and time zones, these players have been familiar faces in tournaments from Durban to Dallas. But for the BCCI, the trend represents a leakage of talent and, more critically, a diversion of the commercial surplus generated by the IPL into rival ecosystems.
-
-## The Broader Context: An IPL Ecosystem Under Pressure
-
-The BCCI's concern is not purely about player loyalty. Many of the T20 leagues that attract retired Indian cricketers — the SA20 in South Africa, the ILT20 in the UAE, the Lanka Premier League, Major League Cricket — are owned or funded by the same Indian investors who own IPL franchises.
-
-"The surplus from the IPL is being diverted towards other leagues, thus swelling the coffers of other boards," a BCCI source told Cricbuzz during a previous discussion on the same issue in 2023. That concern has only intensified as more leagues have launched and more Indian players have found their way there.
-
-A five-year cooling-off period would effectively end the retire-and-play-abroad pipeline for most cricketers. A player who retires at 32 would not be eligible to return to Indian cricket until 37, by which point a competitive comeback is nearly impossible for most athletes.
-
-## What It Means for the Diaspora
-
-For NRIs in the US, UK, Canada, and the Gulf, the presence of Indian cricketers in local or regional leagues has been a significant draw. Unmukt Chand playing for the Silicon Valley Strikers in Major League Cricket, or Irfan Pathan turning up in Colombo, adds a layer of connection for fans who may not travel to India for domestic cricket but can watch these leagues locally or on streaming platforms.
-
-If the cooling-off policy is implemented, the flow of Indian talent into these leagues could slow dramatically. Players who might have retired at 30 or 31 to chase opportunities abroad may instead stay in the Indian system longer, knowing that a return would require a five-year wait.
-
-The BCCI has not set a timeline for finalising the rules, but the authorisation given to its office-bearers suggests the policy could be ready before the next domestic season begins."""
-
-    article = {
-        "headline": "Retire From Indian Cricket and You Wait Five Years to Come Back. The BCCI Wants to Make That the Rule.",
-        "subheadline": "The board's Apex Council discussed a cooling-off period for players who leave domestic cricket to chase overseas franchise leagues. Vijay Shankar's Lanka Premier League move is the latest trigger.",
-        "slug": "bcci-five-year-cooling-off-period-retired-players-overseas-leagues-vijay-shankar-lpl-nri",
-        "body": body,
-        "image_url": image_url or "",
-        "image_caption": image_caption,
-        "image_attribution": image_attribution,
-        "sources": [
-            {"name": "Cricbuzz", "url": "https://www.cricbuzz.com"},
-            {"name": "Hindustan Times", "url": "https://www.hindustantimes.com"},
-            {"name": "Cricket Addictor", "url": "https://cricketaddictor.com"},
-            {"name": "Crex", "url": "https://crex.com"}
-        ]
-    }
-    
-    wc = len(body.split())
-    print(f"  Word count: {wc}")
-    if wc < 400:
-        print(f"  ✗ Article too short ({wc} words), skipping")
-        return False
-    
-    return publish_article(article)
-
-
-# ============================================================
-# ARTICLE 2: Afghanistan Without Rashid Khan for India Test
-# ============================================================
+# ══════════════════════════════════════════════════════════════════════════
+# ARTICLE 2: Ishan Kishan Returns to India Squad After Nearly Three Years
+# ══════════════════════════════════════════════════════════════════════════
 def write_article_2():
-    print("\n=== Article 2: Afghanistan Without Rashid Khan for India Test ===")
-    
-    # Image: Rashid Khan from Wikipedia
-    print("Sourcing image...")
-    image_url = fetch_wikipedia_person_image("Rashid Khan (cricketer)")
-    if not image_url:
-        image_url = fetch_wikipedia_person_image("Rashid Khan cricketer")
-    
-    image_caption = "Rashid Khan will miss Afghanistan's Test against India due to workload management"
-    image_attribution = "Wikimedia Commons"
-    
-    # Try Wikimedia Commons for Rashid Khan
-    if not image_url:
-        commons = fetch_wikimedia_commons_images("Rashid Khan Afghanistan cricket")
-        if commons:
-            image_url = commons[0]["url"]
-    
-    if image_url and not validate_image(image_url):
-        print("  Image validation failed, trying alternatives...")
-        # Try Hashmatullah Shahidi (Afghanistan captain)
-        image_url = fetch_wikipedia_person_image("Hashmatullah Shahidi")
-        if image_url and validate_image(image_url):
-            image_caption = "Hashmatullah Shahidi will captain Afghanistan in the one-off Test against India at Mohali"
-        else:
-            commons2 = fetch_wikimedia_commons_images("Afghanistan cricket team")
-            if commons2:
-                image_url = commons2[0]["url"]
-                image_caption = "The Afghanistan cricket team faces India in only their second Test encounter"
-                image_attribution = "Wikimedia Commons"
-            else:
-                image_url = fetch_pexels_image("cricket test match")
-                image_caption = "Afghanistan will play their second-ever Test against India starting June 6 at Mohali"
-                image_attribution = "Pexels"
-    
-    body = """Rashid Khan will not play the one-off Test against India starting Saturday at the Maharaja Yadavindra Singh International Cricket Stadium in Mohali. Afghanistan's most recognisable cricketer has been advised to limit his red-ball workload to protect his body for the T20 franchise circuit and ODI commitments that define his year.
+    print("\n" + "=" * 60)
+    print("ARTICLE 2: Ishan Kishan ODI Comeback")
+    print("=" * 60)
 
-It is a notable absence. Afghanistan have played India in Tests exactly once before — in Bengaluru in 2018 — and lost by an innings in two days. Eight years later, they return without their best player.
+    slug = "ishan-kishan-india-odi-comeback-afghanistan-three-years-bcci-contract-mental-health-nri"
+    headline = "Ishan Kishan Is Back in India's ODI Squad. His Last Game Was Against Afghanistan, Nearly Three Years Ago."
+    subheadline = "He lost his BCCI contract, missed the T20 World Cup, and spent months away from international cricket. Now the selectors have called him back for the same opponent."
 
-## Who Leads Afghanistan in Mohali
+    body = """When Ishan Kishan walks out for India during the three-match ODI series against Afghanistan starting June 14 in Dharamsala, it will close one of Indian cricket's most turbulent chapters of exile and return.
 
-Hashmatullah Shahidi, the 29-year-old left-hander and Afghanistan's Test captain, will lead a squad that mixes experience with new faces. Rahmanullah Gurbaz, the explosive wicketkeeper-batter who has become one of the most sought-after players on the T20 circuit, is in the squad. So is the experienced Rahmat Shah and all-rounder Azmatullah Omarzai, whose ability to bowl fast and bat in the middle order makes him Afghanistan's most complete player in any format.
+The left-handed wicketkeeper-batter has been named in India's ODI squad for the Afghanistan tour, his first call-up to the fifty-over format since the 2023 Cricket World Cup. Coincidentally, his last ODI appearance came against Afghanistan during that very tournament, making this recall a symmetry that feels almost scripted.
 
-Three uncapped players have been selected: fast bowler Bilal Sami, leg-spinner Nangyal Kharoti, and middle-order batter Rahmanullah Zadran. Qais Ahmad, the young leg-spinner, also returns to the Test setup.
+## The Fall
 
-Without Rashid, Afghanistan's spin attack will lean on the unorthodox left-arm spin of Sharafuddin Ashraf and whatever Kharoti and Qais Ahmad can produce on a Mohali pitch that has historically assisted both pace and spin.
+Kishan's descent from India's inner circle was as swift as it was public. After scoring a double century against Bangladesh in December 2022 and cementing his place as India's backup wicketkeeper-batter, everything unravelled during the South Africa tour in late 2023.
 
-**Afghanistan Test squad:** Hashmatullah Shahidi (c), Abdul Malik, Sediqullah Atal, Rahmat Shah, Rahmanullah Gurbaz, Rahmanullah Zadran, Afsar Zazai (wk), Ikram Alikhil (wk), Azmatullah Omarzai, Sharafuddin Ashraf, Nangyal Kharoti, Qais Ahmad, Bilal Sami, Zia Ur Rahman Sharifi, Saleem Safi.
+He left the series midway, citing mental health concerns. What followed made the situation worse. Instead of returning to domestic cricket as the BCCI expected, Kishan was spotted training with Hardik Pandya in Baroda. He did not play in the Ranji Trophy 2024. The BCCI was furious. His central contract was revoked, and the doors to international cricket slammed shut.
 
-## India's New-Look Test Side
+For the better part of two years, Kishan was on the outside looking in. He watched from the margins as India won the T20 World Cup 2024, cycled through wicketkeeping options, and moved forward without him.
 
-India's squad carries its own storylines. Shubman Gill captains the Test side with KL Rahul as his vice-captain. Virat Kohli is out, recovering from the hamstring strain he played through in the IPL final. Rishabh Pant is in the squad but no longer the vice-captain, a quiet demotion that followed questions about his shot selection under pressure. Jasprit Bumrah is rested entirely.
+## The Climb Back
 
-The most anticipated selections are the uncapped spinners. Harsh Dubey, the left-arm orthodox spinner who dismissed Kohli and Gill in IPL 2026, is in line for a Test debut. Manav Suthar, a 22-year-old left-arm spinner from Rajasthan who has torn through domestic cricket with 129 wickets at 25.76 in first-class cricket, is the other debutant candidate. Gurnoor Brar, the left-arm seamer from Punjab, adds a local flavour to a squad playing in his home state.
+What changed was domestic cricket. Kishan returned to playing for Jharkhand with a quiet determination that gradually rebuilt his case. Consistent performances in domestic one-day and T20 competitions caught the selectors' attention. His name resurfaced in India A squads and T20I series against New Zealand, where he showed he had lost none of his explosive ability.
 
-The big question is whether India will play Kuldeep Yadav alongside Dubey or Suthar, or whether they will opt for two new faces and Washington Sundar as the senior spin option. Ashwin's recent retirement has left a hole in the Test spin department that the BCCI is filling through exposure and opportunity.
+"There is so much healthy competition that you start enjoying it and don't take it as additional pressure," Kishan told The Times of India recently, reflecting on the challenge of competing for a spot in a squad brimming with talent. The maturity in his words suggests the time away has reshaped more than just his technique.
 
-**India Test squad:** Shubman Gill (c), Yashasvi Jaiswal, KL Rahul (vc), Sai Sudharsan, Rishabh Pant (wk), Devdutt Padikkal, Nitish Kumar Reddy, Washington Sundar, Kuldeep Yadav, Mohammed Siraj, Prasidh Krishna, Manav Suthar, Gurnoor Brar, Harsh Dubey, Dhruv Jurel (wk).
+## Why the Selectors Picked Him Now
 
-## The Last Time They Met
+India's ODI squad for the Afghanistan series features Shubman Gill as captain, with Rohit Sharma and Hardik Pandya's participation subject to fitness clearance. Virat Kohli, already ruled out of the preceding Test with a hamstring injury sustained during the IPL final, is expected to be available for the ODIs.
 
-The 2018 Test in Bengaluru was Afghanistan's only previous Test against India, and it was brutal. India scored 474 in their only innings — Ajinkya Rahane made 110, Murali Vijay 105. Afghanistan were bowled out for 109 and 103. The match lasted less than two days. Ravindra Jadeja took seven wickets; Umesh Yadav took four.
+Kishan enters a squad where KL Rahul is the first-choice wicketkeeper. But the selectors clearly see value in having a left-handed explosive option who can bat anywhere in the top order and keep wickets when needed. With the 2027 Cricket World Cup cycle in full swing, this series against Afghanistan is as much about auditions as it is about results.
 
-Afghanistan cricket has matured significantly since then. The success of players like Rashid Khan, Gurbaz, and Omarzai in global T20 leagues has raised the country's profile and developed individual skills. But Test cricket remains their weakest format. They have played only nine Tests since gaining full-member status, winning three (against Zimbabwe, Ireland, and Bangladesh) and losing the rest.
+Prince Yadav, the tall right-arm pacer from Lucknow Super Giants, has also earned a maiden ODI call-up, while uncapped all-rounders Gurnoor Brar and Harsh Dubey feature in both the Test and ODI squads.
 
-## The Diaspora Angle
+## What NRI Fans Should Know
 
-For NRI fans in North America, the UK, and the Gulf, the match arrives during a packed week of Indian sports. The T20 World Cup 2026 is under way in Sri Lanka, India A are in Dambulla for a tri-series, and the Norway Chess final round is being played simultaneously. The Test starts at 9:30 AM IST on Saturday — Friday evening for fans on the US East Coast, and early afternoon in London.
+For diaspora cricket followers, Kishan's story resonates beyond the boundary. His exile raised important questions about how Indian cricket handles mental health, the rigidity of the BCCI's domestic-cricket mandate, and whether players who step away deserve a path back. His return suggests the answer, at least in this case, is yes, provided the runs come.
 
-The match will be broadcast on Sony Sports Network in India and streamed on various platforms internationally. It is Afghanistan's chance to prove that eight years of growth has closed the gap. Without Rashid Khan, they will need someone unexpected to step up."""
+The three ODIs will be played in Dharamsala (June 14), Lucknow (June 17), and Chennai (June 20), all starting at 1:30 PM IST. For NRI fans in the US, that means early morning viewing on the East Coast and pre-dawn starts on the West.
+
+The Afghanistan squad, meanwhile, will have Rashid Khan available for the ODIs after being rested from the preceding Test. Mohammad Nabi, Rahmanullah Gurbaz, and Ibrahim Zadran form the spine of a side that clean-swept Bangladesh in ODIs last October and will not be taken lightly.
+
+Kishan's last ODI innings against Afghanistan in the 2023 World Cup was forgettable. This time, he has the weight of a redemption arc and the freedom of having nothing left to lose.
+
+**Sources:** CricTracker, The Times of India, Wisden, The Indian EYE, SportsKeeda"""
+
+    # Image sourcing
+    print("\n📷 Sourcing image...")
+    img_url, attribution = source_best_image(
+        person_name="Ishan Kishan",
+        topic_queries=["Ishan Kishan cricket India"],
+        pexels_queries=["cricket batsman India", "cricket match batsman"],
+    )
+
+    final_img_url = None
+    if img_url:
+        final_img_url = upload_image_to_supabase(img_url, f"{slug}.jpg")
+
+    image_caption = "Ishan Kishan during an international match for India"
 
     article = {
-        "headline": "Afghanistan Will Play India at Mohali Without Rashid Khan. It Is Their First Test Against India in Eight Years.",
-        "subheadline": "The star leg-spinner has been rested for workload management. Hashmatullah Shahidi leads a squad with three uncapped players into only Afghanistan's second Test against India.",
-        "slug": "afghanistan-india-test-mohali-2026-rashid-khan-absent-shahidi-squad-debut-nri",
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
         "body": body,
-        "image_url": image_url or "",
-        "image_caption": image_caption,
-        "image_attribution": image_attribution,
-        "sources": [
-            {"name": "Fox Sports Australia", "url": "https://foxsports.com.au"},
-            {"name": "CricTracker", "url": "https://crictracker.com"},
-            {"name": "Sportskeeda", "url": "https://sportskeeda.com"},
-            {"name": "Cricket World", "url": "https://cricketworld.com"}
-        ]
+        "category": "sports",
+        "vertical": "sports",
+        "status": "published",
+        "is_editorial": False,
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": json.dumps([
+            "CricTracker",
+            "The Times of India",
+            "Wisden",
+            "The Indian EYE",
+            "SportsKeeda"
+        ]),
     }
-    
-    wc = len(body.split())
-    print(f"  Word count: {wc}")
-    if wc < 400:
-        print(f"  ✗ Article too short ({wc} words), skipping")
-        return False
-    
-    return publish_article(article)
+
+    if final_img_url:
+        article["image_url"] = final_img_url
+        article["image_caption"] = image_caption
+        article["image_attribution"] = attribution
+
+    return insert_article(article)
 
 
-# ============================================================
-# Main
-# ============================================================
+# ══════════════════════════════════════════════════════════════════════════
+# MAIN
+# ══════════════════════════════════════════════════════════════════════════
 if __name__ == "__main__":
-    print(f"Sports Writer - {datetime.now(timezone.utc).isoformat()}")
-    print(f"Supabase URL: {SUPABASE_URL[:30]}..." if SUPABASE_URL else "ERROR: No Supabase URL")
-    print(f"Pexels key: {'set' if PEXELS_KEY else 'NOT SET'}")
-    
-    if not SUPABASE_URL or not SUPABASE_KEY:
-        print("FATAL: Missing Supabase credentials")
-        sys.exit(1)
-    
+    print(f"Sports Writer — {datetime.now(timezone.utc).isoformat()}")
+    print(f"Supabase: {SUPABASE_URL}")
+
     results = []
-    results.append(("BCCI Cooling-Off Period", write_article_1()))
-    results.append(("Afghanistan Without Rashid Khan", write_article_2()))
-    
-    print("\n=== Summary ===")
-    for title, success in results:
-        status = "✓ Published" if success else "✗ Failed"
-        print(f"  {status}: {title}")
-    
-    published = sum(1 for _, s in results if s)
-    print(f"\nTotal: {published}/{len(results)} articles published")
+    art1 = write_article_1()
+    if art1:
+        results.append(art1)
+
+    art2 = write_article_2()
+    if art2:
+        results.append(art2)
+
+    print(f"\n{'=' * 60}")
+    print(f"Done. {len(results)} articles published.")
+    if not results:
+        print("⚠ No articles were published!")
+        sys.exit(1)
