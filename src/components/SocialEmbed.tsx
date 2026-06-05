@@ -145,7 +145,7 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
       fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
     }}>
       {/* Header — matches X embed: avatar | name+handle | X icon */}
-      <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "14px 16px 10px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "14px 16px 6px" }}>
         <a href={`https://x.com/${user.screen_name}`} target="_blank" rel="noopener noreferrer"
            style={{ flexShrink: 0 }}>
           <img
@@ -188,20 +188,33 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
         </a>
       </div>
 
-      {/* Body text (collapsible) */}
-      {bodyText && expanded && (
-        <p style={{
-          padding: "0 16px 10px", fontSize: 15, lineHeight: 1.55, color: "#0f1419",
-          margin: 0, whiteSpace: "pre-wrap", wordWrap: "break-word",
-        }}>
-          {bodyText}
-        </p>
-      )}
-
       {/* Photos */}
       {hasPhotos && <PhotoGrid photos={tweet.photos!} tweetUrl={tweetUrl} />}
 
-      {/* Footer with stats + actions */}
+      {/* Collapsible text below photos */}
+      {bodyText && (
+        <div style={{ padding: "0 16px" }}>
+          {expanded && (
+            <p style={{
+              fontSize: 15, lineHeight: 1.55, color: "#0f1419",
+              margin: "0 0 8px", whiteSpace: "pre-wrap", wordWrap: "break-word",
+            }}>
+              {bodyText}
+            </p>
+          )}
+          <button
+            onClick={() => setExpanded(!expanded)}
+            style={{
+              background: "none", border: "none", color: "#1DA1F2", cursor: "pointer",
+              fontSize: 13, padding: "2px 0 8px", fontFamily: "inherit", fontWeight: 500,
+            }}
+          >
+            {expanded ? "Hide text ▲" : "Show text ▼"}
+          </button>
+        </div>
+      )}
+
+      {/* Footer with stats + View on X */}
       <div style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: "8px 16px 12px", borderTop: "1px solid #f0f0f0",
@@ -214,33 +227,18 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
             <span style={{ color: "#8899a6" }}>{timeAgo(tweet.created_at)}</span>
           )}
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          {bodyText && (
-            <button
-              onClick={() => setExpanded(!expanded)}
-              style={{
-                background: "none", border: "none", color: "#536471", cursor: "pointer",
-                fontSize: 12, padding: "4px 8px", fontFamily: "inherit", borderRadius: 6,
-              }}
-              onMouseOver={(e) => { e.currentTarget.style.color = "#1DA1F2"; e.currentTarget.style.background = "rgba(29,155,240,0.08)"; }}
-              onMouseOut={(e) => { e.currentTarget.style.color = "#536471"; e.currentTarget.style.background = "none"; }}
-            >
-              {expanded ? "Hide text ▲" : "Show text ▼"}
-            </button>
-          )}
-          <a
-            href={tweetUrl} target="_blank" rel="noopener noreferrer"
-            style={{
-              display: "inline-flex", alignItems: "center", color: "#fff", textDecoration: "none",
-              fontWeight: 600, fontSize: 12, background: "#0f1419", padding: "6px 16px",
-              borderRadius: 20, transition: "background 0.15s",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.background = "#333")}
-            onMouseOut={(e) => (e.currentTarget.style.background = "#0f1419")}
-          >
-            View on 𝕏
-          </a>
-        </div>
+        <a
+          href={tweetUrl} target="_blank" rel="noopener noreferrer"
+          style={{
+            display: "inline-flex", alignItems: "center", color: "#fff", textDecoration: "none",
+            fontWeight: 600, fontSize: 12, background: "#0f1419", padding: "6px 16px",
+            borderRadius: 20, transition: "background 0.15s",
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.background = "#333")}
+          onMouseOut={(e) => (e.currentTarget.style.background = "#0f1419")}
+        >
+          View on 𝕏
+        </a>
       </div>
     </div>
   );
