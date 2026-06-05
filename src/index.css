@@ -174,11 +174,18 @@ html, body { overflow-x: hidden; }
 
 /* Collapsed: hide body text, actions, replies */
 .tweet-collapsed .react-tweet-theme article > p {
-  display: none;
+  display: none !important;
 }
 .tweet-collapsed .react-tweet-theme article > div:last-child,
 .tweet-collapsed .react-tweet-theme article > div:nth-last-child(2) {
-  display: none;
+  display: none !important;
+}
+/* Tighten gap between header and photos when text is hidden */
+.tweet-collapsed .react-tweet-theme article > :first-child {
+  padding-bottom: 0.25rem !important;
+}
+.tweet-collapsed .react-tweet-theme article > p + div {
+  margin-top: 0.25rem !important;
 }
 
 /* Expanded: show everything */
