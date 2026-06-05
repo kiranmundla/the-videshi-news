@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, type ImgHTMLAttributes } from "react";
 import { Tweet } from "react-tweet";
 import "react-tweet/theme.css";
 
@@ -16,6 +16,23 @@ function extractInstaShortcode(url: string): string | null {
 function extractTweetId(url: string): string | null {
   const m = url.match(/(?:twitter\.com|x\.com)\/\w+\/status\/(\d+)/);
   return m ? m[1] : null;
+}
+
+/* ── Higher-res avatar (swap _normal → _200x200) ── */
+function HiResAvatar(props: ImgHTMLAttributes<HTMLImageElement>) {
+  const src = (props.src || "").replace(/_normal\./, "_200x200.");
+  return (
+    <img
+      {...props}
+      src={src}
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        objectPosition: "center 20%",
+      }}
+    />
+  );
 }
 
 /* ------------------------------------------------------------------ */
@@ -49,30 +66,14 @@ function TwitterEmbed({ url, caption }: { url: string; caption?: string }) {
   if (!tweetId) return null;
 
   const [expanded, setExpanded] = useState(false);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
-  // After mount, add a "View on 𝕏" link at the bottom if not already present
-  useEffect(() => {
-    if (!wrapperRef.current) return;
-    // Observe for when react-tweet finishes rendering
-    const observer = new MutationObserver(() => {
-      const article = wrapperRef.current?.querySelector("article");
-      if (article && !wrapperRef.current?.querySelector(".tweet-view-on-x")) {
-        observer.disconnect();
-      }
-    });
-    observer.observe(wrapperRef.current, { childList: true, subtree: true });
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <figure className="my-6 flex flex-col items-center">
       <div
-        ref={wrapperRef}
         className={`tweet-embed-wrapper w-full max-w-[550px] ${expanded ? "tweet-expanded" : "tweet-collapsed"}`}
         data-theme="light"
       >
-        <Tweet id={tweetId} />
+        <Tweet id={tweetId} components={{ AvatarImg: HiResAvatar }} />
         <div className="tweet-toggle-bar">
           <button
             onClick={() => setExpanded(!expanded)}

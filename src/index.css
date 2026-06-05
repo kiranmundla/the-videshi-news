@@ -170,6 +170,16 @@ html, body { overflow-x: hidden; }
   --tweet-info-line-height: 1rem;
   --tweet-body-font-size: 0.938rem;
   --tweet-body-line-height: 1.25rem;
+  --tweet-border: 1px solid #e1e8ed;
+  --tweet-bg-color: #fff;
+}
+
+/* Card container — accent top border + shadow */
+.tweet-embed-wrapper .react-tweet-theme > div {
+  border-radius: 12px 12px 0 0 !important;
+  border-bottom: none !important;
+  border-top: 3px solid #1DA1F2 !important;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.08) !important;
 }
 
 /* Collapsed: hide body text, actions, replies */
@@ -198,38 +208,41 @@ html, body { overflow-x: hidden; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 12px;
+  padding: 8px 14px;
   font-size: 0.8rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  border: 1px solid rgb(207, 217, 222);
+  border: 1px solid #e1e8ed;
   border-top: none;
   border-radius: 0 0 12px 12px;
-  background: #f7f9f9;
+  background: linear-gradient(to bottom, #f8fafc, #f0f4f8);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 .tweet-toggle-btn {
   background: none;
   border: none;
-  color: rgb(83, 100, 113);
+  color: #536471;
   cursor: pointer;
   font-size: 0.8rem;
-  padding: 4px 0;
+  padding: 4px 8px;
   font-family: inherit;
+  border-radius: 6px;
+  transition: all 0.15s ease;
 }
 .tweet-toggle-btn:hover {
-  color: rgb(29, 155, 240);
+  color: #1DA1F2;
+  background: rgba(29, 155, 240, 0.08);
 }
 .tweet-view-x-link {
-  color: rgb(29, 155, 240);
+  color: #fff;
   text-decoration: none;
-  font-weight: 500;
-  font-size: 0.8rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+  background: #0f1419;
+  padding: 5px 14px;
+  border-radius: 20px;
+  transition: background 0.15s ease;
+  letter-spacing: 0.01em;
 }
 .tweet-view-x-link:hover {
-  text-decoration: underline;
-}
-
-/* Round only top corners on the card when toggle bar is present */
-.tweet-embed-wrapper .react-tweet-theme > div {
-  border-radius: 12px 12px 0 0 !important;
-  border-bottom: none !important;
+  background: #333;
 }
