@@ -1,320 +1,503 @@
 #!/usr/bin/env python3
 """
-Videshi Lifestyle & Markets Writer — Run 2026-06-05
-Produces 1 lifestyle-health article + 1 markets-finance article.
+Videshi Lifestyle-Health & Markets-Finance Writer
+Run: 2026-06-05 18:00 UTC
+Articles:
+  1. India GDP 7.8% Q4 FY26 — strong backward data, but Iran war clouds FY27 (markets-finance)
+  2. WHO: Unsafe food kills 1.5M/year, South-East Asia hardest hit (lifestyle-health)
+  3. India heatwave: 56 dead, 25K heatstroke cases — NRI summer travel risks (lifestyle-health)
 """
 
-import json, os, sys, uuid, requests, io
+import json, os, sys, time, subprocess, re, uuid
 from datetime import datetime, timezone
-from PIL import Image
 
 # Load env
 def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                if line.startswith('export '):
+                    line = line[7:]
+                key, _, val = line.partition('=')
+                val = val.strip().strip('"').strip("'")
+                os.environ[key.strip()] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-UA = "TheVideshi/1.0 (thevideshi.com)"
 
-HEADERS_SB = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
-}
+import requests
 
-def compress_image(img_bytes, max_width=1200, quality=80):
-    img = Image.open(io.BytesIO(img_bytes))
-    if img.mode in ('RGBA', 'P'):
-        img = img.convert('RGB')
-    if img.width > max_width:
-        ratio = max_width / img.width
-        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-    buf = io.BytesIO()
-    img.save(buf, format='JPEG', quality=quality, optimize=True)
-    return buf.getvalue()
+def fetch_wikipedia_person_image(person_name):
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
+    try:
+        r = requests.get(
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
+        )
+        if r.status_code == 200:
+            data = r.json()
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            if img:
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                return img
+    except Exception as e:
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
+    return None
 
-def download_image(url):
-    r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
-    r.raise_for_status()
-    ct = r.headers.get('Content-Type', '')
-    if not ct.startswith('image/'):
-        raise ValueError(f"Not an image: {ct}")
-    if len(r.content) < 5000:
-        raise ValueError(f"Image too small: {len(r.content)} bytes")
-    return r.content
-
-def upload_to_supabase(img_bytes, filename):
-    """Upload image to Supabase storage bucket 'article-images'."""
-    url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-    headers = {
-        "apikey": SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Content-Type": "image/jpeg",
-        "x-upsert": "true"
+def fetch_wikimedia_commons_images(search_query, limit=5):
+    """Search Wikimedia Commons for CC-licensed images."""
+    import urllib.parse
+    params = {
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": search_query,
+        "gsrnamespace": "6",
+        "gsrlimit": str(limit),
+        "prop": "imageinfo",
+        "iiprop": "url|size|mime|extmetadata",
+        "iiurlwidth": "1200",
+        "format": "json"
     }
-    r = requests.post(url, headers=headers, data=img_bytes, timeout=30)
-    if r.status_code not in (200, 201):
-        # Try PUT for upsert
-        r = requests.put(url, headers=headers, data=img_bytes, timeout=30)
-    r.raise_for_status()
-    public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-    print(f"  ✓ Uploaded to Supabase: {public_url}")
-    return public_url
+    try:
+        r = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params=params,
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=15
+        )
+        if r.status_code == 200:
+            data = r.json()
+            pages = data.get("query", {}).get("pages", {})
+            results = []
+            for pid, page in pages.items():
+                ii = page.get("imageinfo", [{}])[0]
+                mime = ii.get("mime", "")
+                if not mime.startswith("image/"):
+                    continue
+                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
+                    continue
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "original_url": ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0),
+                    "height": ii.get("height", 0),
+                    "mime": mime
+                })
+            if results:
+                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
+            return results
+    except Exception as e:
+        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+    return []
+
+def fetch_pexels_image(query):
+    """Search Pexels for a relevant image using curl (urllib gets 403)."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
+        return None
+    try:
+        result = subprocess.run(
+            ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+             f'https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page=5&orientation=landscape'],
+            capture_output=True, text=True, timeout=15
+        )
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            if photos:
+                url = photos[0].get('src', {}).get('large2x') or photos[0].get('src', {}).get('large')
+                if url:
+                    print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                    return url
+    except Exception as e:
+        print(f"  ⚠ Pexels error for '{query}': {e}")
+    return None
+
+def validate_image(url):
+    """Validate image URL returns 200 with image content-type and >5KB."""
+    try:
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, allow_redirects=True)
+        content_type = r.headers.get('Content-Type', '')
+        content_length = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in content_type and content_length > 5000:
+            print(f"  ✓ Image validated: {r.status_code}, {content_type}, {content_length} bytes")
+            return True
+        # Try GET if HEAD fails (some servers don't support HEAD well)
+        if r.status_code != 200:
+            r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, stream=True)
+            content_type = r2.headers.get('Content-Type', '')
+            content_length = int(r2.headers.get('Content-Length', 0))
+            if r2.status_code == 200 and 'image' in content_type:
+                # Read a bit to check size
+                chunk = r2.raw.read(6000)
+                if len(chunk) > 5000:
+                    print(f"  ✓ Image validated via GET: {content_type}, {len(chunk)}+ bytes")
+                    return True
+        print(f"  ✗ Image validation failed: {r.status_code}, {content_type}, {content_length}")
+        return False
+    except Exception as e:
+        print(f"  ✗ Image validation error: {e}")
+        return False
 
 def insert_article(article):
     """Insert article into Supabase."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS_SB,
-        json=article,
-        timeout=30
-    )
-    if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]['id'] if isinstance(data, list) else data.get('id', 'unknown')
-        print(f"  ✓ Inserted article: {article['headline'][:60]}... (ID: {art_id})")
-        return art_id
+    payload = {
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": article["category"],
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": article.get("image_url", ""),
+        "image_caption": article.get("image_caption", ""),
+        "image_attribution": article.get("image_attribution", ""),
+        "sources": json.dumps(article.get("sources", [])),
+        "is_editorial": False
+    }
+    
+    try:
+        r = requests.post(
+            f"{SUPABASE_URL}/rest/v1/p2_articles",
+            headers={
+                "apikey": SUPABASE_KEY,
+                "Authorization": f"Bearer {SUPABASE_KEY}",
+                "Content-Type": "application/json",
+                "Prefer": "return=representation"
+            },
+            json=payload,
+            timeout=30
+        )
+        if r.status_code in (200, 201):
+            result = r.json()
+            article_id = result[0]["id"] if isinstance(result, list) and result else "unknown"
+            print(f"  ✓ Published: {article['headline'][:60]}... (id: {article_id})")
+            return True
+        else:
+            print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+            return False
+    except Exception as e:
+        print(f"  ✗ Insert error: {e}")
+        return False
+
+# ============================================================
+# ARTICLE 1: Markets-Finance — India GDP 7.8% Q4 FY26
+# ============================================================
+print("\n=== Article 1: India GDP 7.8% (markets-finance) ===")
+
+# Image sourcing
+print("Sourcing image...")
+# Try Wikipedia for RBI / India economy
+img1_url = None
+img1_caption = ""
+img1_attribution = ""
+
+# Try Wikimedia Commons for India economy / RBI
+commons_results = fetch_wikimedia_commons_images("Reserve Bank of India building Mumbai")
+time.sleep(1)
+if commons_results:
+    for r in commons_results:
+        url = r.get("url") or r.get("original_url")
+        if url and validate_image(url):
+            img1_url = url
+            img1_caption = "The Reserve Bank of India headquarters in Mumbai"
+            img1_attribution = "Wikimedia Commons"
+            break
+        time.sleep(1)
+
+if not img1_url:
+    commons_results = fetch_wikimedia_commons_images("India GDP economy growth")
+    time.sleep(1)
+    if commons_results:
+        for r in commons_results:
+            url = r.get("url") or r.get("original_url")
+            if url and validate_image(url):
+                img1_url = url
+                img1_caption = "India's economy continues to be among the world's fastest-growing"
+                img1_attribution = "Wikimedia Commons"
+                break
+            time.sleep(1)
+
+if not img1_url:
+    img1_url = fetch_pexels_image("India economy financial district Mumbai")
+    if img1_url and validate_image(img1_url):
+        img1_caption = "India's financial district in Mumbai, hub of the country's economic activity"
+        img1_attribution = "Pexels"
     else:
-        print(f"  ✗ Failed to insert: {r.status_code} {r.text[:200]}")
-        return None
-
-# ─────────────────────────────────────────────────────
-# ARTICLE 1: Lifestyle-Health — Meditation brain changes
-# ─────────────────────────────────────────────────────
-
-article1_slug = "meditation-brain-changes-two-minutes-peak-seven-nimhans-isha-yoga-south-asian-20260605"
-article1_headline = "Your Brain Starts Changing Within Two Minutes of Meditation. By Seven Minutes, It Peaks."
-article1_subheadline = "A study from India's NIMHANS, using the Isha Yoga breath-watching tradition, shows measurable neural shifts happen faster than anyone assumed. For time-starved diaspora professionals, the science says even brief practice works."
-
-article1_body = """India gave the world meditation more than five thousand years ago. Now a team of Indian neuroscientists has produced some of the most precise evidence yet for why even a few minutes of it rewires the brain.
-
-A study published in the journal *Mindfulness* by researchers at the National Institute of Mental Health and Neuro Sciences (NIMHANS) in Bengaluru has mapped, minute by minute, exactly when and how the brain changes during a single session of breath-watching meditation drawn from the Isha Yoga tradition. The findings are striking: measurable neural changes begin within two minutes and reach peak intensity at around seven minutes — regardless of whether the practitioner is a complete novice or a seasoned meditator with years of silent retreats behind them.
-
-## What the Study Did
-
-Lead researcher Malipeddi Saketh and his colleagues recruited 103 participants across three groups: 28 people who had never meditated, 33 novice practitioners who had completed Isha Yoga's foundational Shambhavi Mahamudra training, and 42 advanced meditators who had completed an intensive eight-day silent retreat called Samyama.
-
-Each participant sat in a temperature-controlled, soundproof room at NIMHANS with a 128-electrode EEG net recording their brainwaves at 1,000 measurements per second. They performed a simple breath-watching meditation — focusing on the natural flow of their breathing and gently returning attention when the mind wandered.
-
-Rather than averaging brainwave data over the full session (the standard approach that flattens out moment-to-moment detail), the researchers tracked changes in one-minute intervals against the first 30 seconds as a baseline.
-
-## The Seven-Minute Threshold
-
-The results revealed a consistent temporal pattern across all three groups. Around the two-to-three-minute mark, participants showed increases in theta, theta-alpha, alpha, and beta1 brainwave power — frequencies associated with deep relaxation, calm focus, and sustained attention. Simultaneously, delta power (linked to drowsiness and mind-wandering) and gamma1 power (associated with active sensory processing) decreased.
-
-These shifts peaked between seven and ten minutes into the session, suggesting the brain transitions into what researchers describe as a stable state of "relaxed alertness." After this peak, the neural signatures plateaued rather than continuing to intensify.
-
-"One surprising finding was the consistency of the temporal pattern across multiple EEG measures," Saketh said. "We observed that several neural changes appeared to intensify around a similar time window rather than increasing linearly throughout the session."
-
-## Beginners and Experts Differ in Interesting Ways
-
-While the general pattern held across all groups, the details varied. Novice meditators showed delta and beta1 wave changes as early as the one-minute mark. Advanced meditators displayed a distinctive theta wave pattern: a brief initial decrease at one minute — interpreted as rapid neural reorganisation — before a sustained rise from the second minute onward.
-
-The most revealing finding was that advanced practitioners carried distinct neural signatures from the very start of each session. Even during the first 30 seconds, before any deliberate practice began, they showed significantly higher theta and theta-alpha power than the other groups. This suggests long-term practice produces lasting structural or functional changes in the brain that persist outside meditation.
-
-## Why This Matters for the Diaspora
-
-For the millions of South Asians living abroad — many of them working long hours in demanding professional environments — the practical message is powerful. You do not need a 45-minute session, a silent retreat, or a teacher sitting beside you to access real neurological benefit. Seven minutes of focused breathing produces measurable changes in brain dynamics.
-
-This is particularly relevant given the mental health landscape of the diaspora. Studies consistently show that South Asian immigrants in the United States, United Kingdom, and Canada face elevated rates of anxiety and depression, compounded by professional stress, cultural dislocation, and the quiet weight of intergenerational expectations. Yet mental health help-seeking remains stigmatised in many South Asian communities, with surveys indicating less than a third of South Asian Americans would consider professional therapy.
-
-Meditation — especially the kind rooted in traditions many diaspora families already recognise — offers a scientifically validated, culturally familiar entry point. The NIMHANS study, conducted at one of India's most prestigious neuroscience institutions using a practice from the Isha Yoga lineage, adds institutional credibility within a framework the community already respects.
-
-## The Broader Scientific Context
-
-The study builds on a growing body of research linking meditation to neuroplasticity. A separate 2026 study from the University of California San Diego, published in *Communications Biology*, found that a seven-day residential retreat combining meditation with other mind-body techniques produced measurable changes in both brain activity and blood biology, activating pathways involved in brain flexibility, metabolism, and immune function.
-
-And a seven-year follow-up from UC Davis's Shamatha Project showed that sustained attention gains from intensive meditation training persisted years after the retreat ended — suggesting these are not fleeting effects but durable changes in how the brain allocates resources.
-
-The NIMHANS contribution is distinctive because it pinpoints the temporal dynamics — the when, not just the whether — and does so using a practice that emerged from Indian tradition and was tested on Indian participants in an Indian laboratory.
-
-## What Comes Next
-
-The research team plans to extend the work by combining EEG with MRI and autonomic measures to understand how short-term brain changes relate to long-term psychological and behavioural outcomes. They are particularly interested in identifying neural markers of advanced meditative states, including non-dual awareness and equanimity.
-
-For now, the practical takeaway is simple and scientifically grounded: sit down, close your eyes, watch your breath. By the time two minutes pass, your brain has already begun to change. By seven minutes, it has reached its peak shift for that session. That is a powerful return on a very small investment of time — and a reminder that one of India's oldest exports may also be its most practical."""
-
-article1_sources = json.dumps([
-    "Saketh M. et al., 'Temporal EEG Signatures of Meditation Experience: Peak Brainwave Changes at 7 Minutes During Isha Yoga Breath Watching,' Mindfulness (2026)",
-    "PsyPost, 'Brain changes during meditation begin within minutes and peak around the 7-minute mark, study finds' (May 2026)",
-    "Patel H.H. et al., University of California San Diego, 'Mind-body retreat produces changes in brain activity and blood biology,' Communications Biology (2026)",
-    "UC Davis Shamatha Project, 'Seven-Year Follow-Up Shows Lasting Cognitive Gains From Meditation,' Journal of Cognitive Enhancement"
-])
-
-# ─────────────────────────────────────────────────────
-# ARTICLE 2: Markets-Finance — India IPO exits
-# ─────────────────────────────────────────────────────
-
-article2_slug = "foreign-firms-india-ipo-boom-ofs-exit-5-billion-nri-investors-20260605"
-article2_headline = "Foreign Firms Are Using India's IPO Boom to Send $5 Billion Back to HQ. NRI Investors Should Understand Why."
-article2_subheadline = "Five of six foreign companies that listed Indian units since 2024 raised zero new capital. The IPOs were structured purely as exits. For NRIs holding these stocks — or eyeing the next wave — the pattern matters."
-
-article2_body = """India was the world's second-largest IPO market in 2025, with 367 listings raising $21.8 billion. The pipeline for 2026 is even deeper, with a record $26 billion worth of IPOs awaiting regulatory approval. To anyone tracking the numbers, the Indian public market looks like a machine for growth capital.
-
-But a Reuters analysis published this week reveals a pattern that complicates that narrative considerably: for foreign companies listing their Indian units, the IPO boom is not about raising money to expand. It is about taking money out.
-
-## The Numbers Tell the Story
-
-Of the six foreign-based companies that listed their Indian subsidiaries on the Bombay Stock Exchange since 2024, only one — Britain's Bupa, through its unit Niva Bupa Health Insurance — structured the IPO to include fresh fundraising. And even there, the fresh component ($84 million) was dwarfed by the secondary offering ($146 million) that allowed existing shareholders to cash out.
-
-The other five — the Indian units of Hyundai Motor, LG Electronics, Italy's Carraro, Norway's Orkla, and America's Tenneco Clean Air — were structured purely as offer-for-sale (OFS) IPOs. In an OFS, existing shareholders sell their holdings to the public. No new capital flows into the company. Every rupee raised goes to the parent.
-
-In total, foreign parents pocketed nearly $5 billion through these secondary-offering IPOs, with Hyundai and LG accounting for more than 80 per cent of the take. According to Prime Database, for every dollar raised in these IPOs collectively, more than $59 left the country.
-
-And the trend is accelerating. Walmart's Indian payments arm PhonePe is planning a $1 billion IPO that will follow the OFS route. Modern Times Group's $335 million IPO of its Indian gaming unit will do the same. Coca-Cola announced this week that its planned listing of its Indian bottler will include the American parent selling a portion of its stake. Banking sources say Carlsberg's Indian IPO will also raise no new funds.
-
-## The Valuation Arbitrage
-
-The economic logic is straightforward, and it runs on a single insight: Indian-listed subsidiaries consistently trade at enormous premiums to their foreign parents.
-
-Nestle India carries a price-to-earnings ratio of nearly 77 times, versus 22 times for its Swiss parent. LG Electronics India, listed last year, trades at nearly 59 times earnings against 44 times for its South Korean parent. When Hyundai listed its Indian unit in 2024, the subsidiary was valued at approximately $18 billion — roughly 40 per cent of Hyundai Motor's entire global market capitalisation.
-
-"What's driving this is smart capital allocation — asset owners capitalising on cross-market valuation arbitrage," said Abhishek Gang, a director at U.S.-based investment bank Houlihan Lokey.
-
-For the parent companies, the calculation is irresistible. Sell a minority stake in your Indian subsidiary at Indian multiples, take the cash back to headquarters where your shares trade at a fraction of those multiples, and the transaction looks like financial alchemy.
-
-## The Rupee Problem
-
-The OFS trend intersects uncomfortably with another story NRI investors know well: the rupee's persistent weakness.
-
-The Indian currency has fallen 13 per cent against the US dollar since 2024 and 6 per cent in 2026 alone, under pressure from the Iran-war-driven oil shock, heavy foreign portfolio outflows, and now IPO-linked capital repatriation. Foreign portfolio investors have sold more than $23 billion of their Indian equity holdings so far this year, surpassing 2025's full-year record outflows of $18.9 billion.
-
-In January, MUFG Bank's analysis identified the IPO market as "one important contributor to Indian rupee weakness." Axis Bank's Tanay Dalal called IPO-linked capital outflows a "steady, though not abrupt, depreciation bias on the rupee."
-
-India's Chief Economic Advisor V. Anantha Nageswaran has warned that IPOs had "increasingly become exit vehicles for early investors rather than mechanisms for raising long-term capital," adding bluntly: "This undermines the spirit of public markets."
-
-## What This Means for NRI Investors
-
-For NRIs considering Indian equity exposure — whether through direct investment, GIFT City, or mutual funds — the pattern deserves close attention.
-
-First, not every IPO is an investment opportunity. When the structure is pure OFS, you are buying shares from someone who has decided to sell, not from a company that needs capital to grow. The company's future operations receive nothing from the listing. That does not automatically make the stock a bad buy, but it does change the incentive structure on day one.
-
-Second, the valuation premium that Indian subsidiaries command over their parents is real but potentially fragile. It is sustained by domestic liquidity, a growing base of retail investors (India's demat accounts have crossed 150 million), and a bull market mindset that has survived multiple corrections. But if India's growth trajectory hits sustained headwinds — from higher oil, tighter monetary policy, or slowing consumption — those premium multiples could compress.
-
-Third, the rupee effect magnifies the risk for NRIs earning in dollars, pounds, or dirhams. Even if the stock price holds steady in rupee terms, a weakening currency erodes the dollar-equivalent return. And the very mechanism of OFS IPOs contributes to that weakness by adding to capital outflows.
-
-Fourth, the structural trend tells you something about how global capital views India right now. Foreign firms are not doubling down. They are monetising. That is not a crisis signal — India's domestic investment story remains strong — but it is a signal that the smart money from Seoul, Stockholm, and Atlanta is taking profit at Indian valuations rather than deploying fresh capital at them.
-
-## The Regulatory Question
-
-Government officials and regulators have not moved to curb the OFS trend. India's securities regulator, SEBI, approved these structures without public objection. But the Chief Economic Advisor's warning — that public markets are becoming exit ramps rather than capital-raising platforms — suggests the conversation is shifting.
-
-For NRIs watching from abroad, the bottom line is this: India's IPO boom is real, and the opportunities within it are real. But the next time a high-profile foreign subsidiary lists in Mumbai, ask the simplest question first. Where does the money go?
-
-If the answer is "back to headquarters," adjust your expectations accordingly."""
-
-article2_sources = json.dumps([
-    "Reuters, 'Global firms exploit India's IPO boom to take profits back to home countries' (June 4, 2026)",
-    "The Hindu BusinessLine, 'Global firms exploit India's IPO boom to take profits back to home countries' (June 4, 2026)",
-    "Prime Database (Indian market research firm), IPO secondary offering data",
-    "MUFG Bank analysis on IPO-linked rupee weakness (January 2026)",
-    "Reuters, 'Indian shares muted ahead of crucial RBI policy decision' (June 4, 2026)"
-])
-
-# ─────────────────────────────────────────────────────
-# IMAGE SOURCING AND UPLOAD
-# ─────────────────────────────────────────────────────
-
-print("\n=== IMAGE SOURCING ===\n")
-
-# Article 1: Meditation - use Wikimedia Commons "Yoga at school" (1600x1102, JPEG)
-# Actually better to use NIMHANS building or something more specific. Let me use Pexels meditation close-up
-art1_image_url = None
-art1_image_caption = "A person practicing breath-focused meditation outdoors at sunset"
-art1_image_attribution = "Pexels"
-
-try:
-    print("Article 1: Downloading meditation image from Pexels...")
-    img_url = "https://images.pexels.com/photos/8964948/pexels-photo-8964948.jpeg?auto=compress&cs=tinysrgb&w=1200"
-    img_bytes = download_image(img_url)
-    print(f"  Downloaded: {len(img_bytes)} bytes")
-    compressed = compress_image(img_bytes)
-    print(f"  Compressed: {len(compressed)} bytes")
-    art1_image_url = upload_to_supabase(compressed, f"{article1_slug}.jpg")
-except Exception as e:
-    print(f"  ✗ Image sourcing failed: {e}")
-
-# Article 2: IPO - use Wikimedia Commons BSE building (2291x1917, JPEG)
-art2_image_url = None
-art2_image_caption = "The Bombay Stock Exchange building in Mumbai, India's oldest and largest stock exchange"
-art2_image_attribution = "Wikimedia Commons"
-
-try:
-    print("\nArticle 2: Downloading BSE building image from Wikimedia Commons...")
-    img_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/BSE_-_Bombay_Stock_Exchange_Building.jpg/1280px-BSE_-_Bombay_Stock_Exchange_Building.jpg"
-    img_bytes = download_image(img_url)
-    print(f"  Downloaded: {len(img_bytes)} bytes")
-    compressed = compress_image(img_bytes)
-    print(f"  Compressed: {len(compressed)} bytes")
-    art2_image_url = upload_to_supabase(compressed, f"{article2_slug}.jpg")
-except Exception as e:
-    print(f"  ✗ Image sourcing failed: {e}")
-
-# ─────────────────────────────────────────────────────
-# INSERT ARTICLES
-# ─────────────────────────────────────────────────────
-
-print("\n=== INSERTING ARTICLES ===\n")
-
-now_iso = datetime.now(timezone.utc).isoformat()
-
-# Article 1
-a1 = {
-    "headline": article1_headline,
-    "subheadline": article1_subheadline,
-    "body": article1_body,
-    "slug": article1_slug,
-    "category": "lifestyle-health",
-    "status": "published",
-    "published_at": now_iso,
-    "sources": article1_sources,
-    "is_editorial": False,
-    "image_url": art1_image_url,
-    "image_caption": art1_image_caption,
-    "image_attribution": art1_image_attribution,
-}
-if not art1_image_url:
-    del a1["image_url"]
-    del a1["image_caption"]
-    del a1["image_attribution"]
-
-a1_id = insert_article(a1)
-
-# Article 2
-a2 = {
-    "headline": article2_headline,
-    "subheadline": article2_subheadline,
-    "body": article2_body,
-    "slug": article2_slug,
+        img1_url = None
+
+article1 = {
+    "headline": "India's Economy Grew 7.8 Per Cent Last Quarter. The RBI Just Cut This Year's Forecast to 6.6 Per Cent. Here Is Why Both Numbers Matter for NRIs.",
+    "subheadline": "Strong backward-looking GDP data masks a sharp slowdown ahead as the Iran war pushes oil past $96, the rupee slides 5 per cent, and $28 billion leaves Indian equities. New measures targeting diaspora deposits could draw $40 billion in relief.",
+    "slug": "india-gdp-78-percent-q4-fy26-rbi-cuts-fy27-forecast-66-iran-war-nri-deposits-20260605",
     "category": "markets-finance",
-    "status": "published",
-    "published_at": now_iso,
-    "sources": article2_sources,
-    "is_editorial": False,
-    "image_url": art2_image_url,
-    "image_caption": art2_image_caption,
-    "image_attribution": art2_image_attribution,
+    "image_url": img1_url or "",
+    "image_caption": img1_caption,
+    "image_attribution": img1_attribution,
+    "sources": [
+        "Reuters — India's GDP grows 7.8% in January-March on resilient farm, construction output (June 5, 2026)",
+        "Reuters — India ramps up defence of faltering rupee after holding fire on rates (June 5, 2026)",
+        "Morningstar — India's Economy Continues to Post Robust Growth Amid Mideast Energy Shock (June 5, 2026)",
+        "The Hindu BusinessLine — FY26 GDP growth beats estimates to reach 7.7% (June 5, 2026)",
+        "Reuters — India's measures to protect rupee seen drawing about $40 billion (June 5, 2026)"
+    ],
+    "body": """India's economy grew 7.8 per cent in the January–March quarter of FY26, comfortably beating the 7.2 per cent consensus forecast compiled by Reuters and capping a full-year expansion of 7.7 per cent — the strongest in two years. Hours later, the Reserve Bank of India cut its growth projection for the current fiscal year to 6.6 per cent from 6.9 per cent. For the roughly five million NRIs with money, property, or family in India, both numbers demand attention.
+
+## The Backward-Looking Strength
+
+The Q4 print was driven by resilient farm output, an 8.4 per cent jump in construction activity, and 7.1 per cent growth in private consumption. Manufacturing expanded 7.3 per cent, and gross value added — a cleaner measure that strips out volatile tax and subsidy swings — came in at 7.9 per cent. The full-year GDP of ₹323.12 lakh crore made India comfortably the world's fastest-growing large economy for the second consecutive year.
+
+The government had initially estimated FY26 growth at 7.6 per cent in February. The upward revision to 7.7 per cent, combined with the October–December quarter being nudged up to 8.0 per cent from 7.8 per cent, suggests the domestic engine was running hotter than anyone measured at the time.
+
+## The Forward-Looking Risk
+
+But the numbers belong to a world that no longer exists. The U.S.–Iran conflict, now in its fourth month with no peace deal in sight, has pushed Brent crude to roughly $96 a barrel. India — the world's third-largest crude importer — is absorbing the shock through every layer of its economy: higher industrial input costs, rising food and transport inflation, and a rupee that has weakened more than 5 per cent this year, touching record lows near 96 to the dollar.
+
+Foreign portfolio investors have pulled $28 billion out of Indian equities since the conflict escalated, making India one of the hardest-hit emerging markets by capital flight. The RBI acknowledged this reality on Friday by raising its inflation projection for FY27 to 5.1 per cent from 4.6 per cent while trimming growth expectations.
+
+"Activity has already started slowing and will remain soft," said Alexandra Hermann Prasad, lead economist at Oxford Economics. "The RBI's dovish hold will cushion financing conditions, but not enough to prevent growth from undershooting."
+
+## The Rate Decision
+
+The central bank held its repo rate steady at 5.25 per cent, as widely expected. But Governor Sanjay Malhotra's language signalled a possible hawkish turn if inflation pressures deepen. With food and fuel prices climbing, a rate hike before year-end is now the base case for most economists, including Standard Chartered, which had called for an immediate 25-basis-point increase.
+
+For NRIs with home loans in India or exposure to Indian fixed-income instruments, this is the pivotal signal. A hold preserves the status quo on EMIs and deposit rates for now. A hike later this year would push borrowing costs higher but also improve returns on NRI fixed deposits.
+
+## The Rupee Rescue Package
+
+Alongside the rate decision, India announced its most aggressive package of measures to defend the rupee in over a decade. The key provisions include scrapping capital gains tax on foreign investments in government bonds, offering concessional forex swaps for state-owned firms tapping dollar borrowings, and — most relevant for the diaspora — compensating banks for hedging costs on three-to-five-year foreign currency non-resident (FCNR) deposits.
+
+Analysts at HDFC Bank, YES Bank, and Emkay Global estimate the combined measures could attract $40 billion to $50 billion in inflows over the next four months. "The combined impact could certainly help bridge the $40–50 billion gap on the balance of payments estimated for FY27," said Sakshi Gupta, principal economist at HDFC Bank.
+
+## What NRIs Should Watch
+
+**Remittances**: The rupee at 95–96 means every dollar remitted converts to more rupees than at any point in history. NRIs sending money to family in India are getting peak value, but this also signals stress in the Indian economy that could affect property values and local purchasing power.
+
+**FCNR deposits**: The RBI's hedging subsidy makes FCNR deposits temporarily more attractive for banks to offer competitive rates. If your bank announces higher FCNR rates in the coming weeks, the RBI is footing part of the bill — a window that closes at September end.
+
+**Equity exposure**: With $28 billion gone from Indian stocks and more outflows likely if oil stays elevated, current prices reflect genuine fear. For long-term NRI investors, the 7.7 per cent underlying growth rate suggests fundamentals remain strong even as the cyclical picture darkens.
+
+The GDP data tells you India's economy was strong. The RBI's actions tell you the people running it are worried about what comes next. Both can be true at the same time."""
 }
-if not art2_image_url:
-    del a2["image_url"]
-    del a2["image_caption"]
-    del a2["image_attribution"]
 
-a2_id = insert_article(a2)
+print(f"  Headline: {article1['headline'][:80]}...")
+print(f"  Body words: {len(article1['body'].split())}")
+insert_article(article1)
 
-print("\n=== SUMMARY ===")
-print(f"Article 1 (lifestyle-health): {'✓' if a1_id else '✗'} — {article1_headline[:70]}...")
-print(f"Article 2 (markets-finance):  {'✓' if a2_id else '✗'} — {article2_headline[:70]}...")
-print(f"Images: Art1={'✓' if art1_image_url else '✗'} Art2={'✓' if art2_image_url else '✗'}")
-print("Done.")
+# ============================================================
+# ARTICLE 2: Lifestyle-Health — WHO Unsafe Food Report
+# ============================================================
+print("\n=== Article 2: WHO Unsafe Food (lifestyle-health) ===")
+
+# Image sourcing
+print("Sourcing image...")
+img2_url = None
+img2_caption = ""
+img2_attribution = ""
+
+commons_results = fetch_wikimedia_commons_images("food safety inspection hygiene")
+time.sleep(1)
+if commons_results:
+    for r in commons_results:
+        url = r.get("url") or r.get("original_url")
+        if url and validate_image(url):
+            img2_url = url
+            img2_caption = "Food safety inspection — the WHO says unsafe food causes 866 million illnesses annually"
+            img2_attribution = "Wikimedia Commons"
+            break
+        time.sleep(1)
+
+if not img2_url:
+    commons_results = fetch_wikimedia_commons_images("street food market India food stall")
+    time.sleep(1)
+    if commons_results:
+        for r in commons_results:
+            url = r.get("url") or r.get("original_url")
+            if url and validate_image(url):
+                img2_url = url
+                img2_caption = "A street food stall — the WHO finds South-East Asia bears the heaviest foodborne disease burden"
+                img2_attribution = "Wikimedia Commons"
+                break
+            time.sleep(1)
+
+if not img2_url:
+    img2_url = fetch_pexels_image("food market street vendor cooking")
+    if img2_url and validate_image(img2_url):
+        img2_caption = "Street food vendors prepare meals — unsafe food causes 866 million illnesses a year globally"
+        img2_attribution = "Pexels"
+    else:
+        img2_url = None
+
+article2 = {
+    "headline": "Unsafe Food Kills 1.5 Million People a Year. South-East Asia and Africa Bear Three Quarters of the Burden.",
+    "subheadline": "A WHO report covering 194 countries finds that chemical contamination from arsenic and lead now causes 73 per cent of foodborne deaths, children under five face triple the risk, and the global productivity cost exceeds $300 billion annually. The diaspora implications are personal.",
+    "slug": "who-unsafe-food-866-million-illnesses-south-east-asia-africa-chemical-lead-arsenic-diaspora-20260605",
+    "category": "lifestyle-health",
+    "image_url": img2_url or "",
+    "image_caption": img2_caption,
+    "image_attribution": img2_attribution,
+    "sources": [
+        "World Health Organization — Unsafe food causes 866 million illnesses and 1.5 million deaths annually, young children at highest risk (June 4, 2026)",
+        "The Lancet Global Health — WHO estimates of the global burden of foodborne diseases 2000–2021 (June 2026)",
+        "WHO — World Food Safety Day 2026: From burden to solutions – safe food everywhere"
+    ],
+    "body": """The World Health Organization released its most comprehensive assessment of global food safety on Wednesday, and the numbers should make every NRI planning a summer trip home pause before they eat. Unsafe food causes roughly 866 million illnesses and 1.5 million deaths every year, with South-East Asia and Africa accounting for nearly three quarters of all foodborne illnesses and 60 per cent of deaths.
+
+The report, published in *The Lancet Global Health* ahead of World Food Safety Day on 7 June, assessed 42 major foodborne hazards across 194 countries from 2000 to 2021 — the broadest analysis the WHO has ever conducted. Its findings upend a common assumption about what makes contaminated food deadly.
+
+## The Chemical Surprise
+
+Most people picture food poisoning as a stomach bug. Bacteria and viruses do cause the vast majority of foodborne illnesses — roughly 860 million of the 866 million total. But chemical contamination is what actually kills. Chemical hazards accounted for a staggering 73 per cent of all foodborne deaths in 2021. Inorganic arsenic was responsible for 42 per cent of those deaths, lead for 31 per cent.
+
+These are not exotic industrial pollutants. Arsenic enters food through contaminated groundwater used to irrigate rice paddies — a staple crop across South Asia. Lead accumulates in soil from decades of leaded petrol, industrial runoff, and old plumbing. Once these metals enter the food chain, they are often impossible to remove.
+
+The health consequences are not limited to acute poisoning. Chronic exposure to arsenic and lead increases the risk of cardiovascular disease and cancers. Together, these two metals are linked to more than one million deaths in a single year. For South Asians — who consume more rice per capita than almost any other population and whose home regions have documented arsenic contamination in groundwater from West Bengal to Bangladesh — the relevance is direct.
+
+## Children Bear the Worst of It
+
+Children under five make up just 9 per cent of the global population but suffer nearly one third of all foodborne disease cases. The WHO found they face almost three times the risk of illness compared with older children and adults, with diarrhoeal diseases posing the greatest threat.
+
+But the longer-term damage may be even more consequential. Methylmercury — found in fish and seafood — can cross the placental barrier and harm the developing brain. The WHO report documents lifelong neurological and developmental problems linked to childhood exposure. For diaspora families feeding young children during visits to India, or importing traditional foods that may not meet Western safety standards, these are not abstract risks.
+
+## The Equity Gap
+
+The geographic concentration of foodborne disease mirrors global inequality. Africa and South-East Asia together bear roughly 75 per cent of the global illness burden despite representing a smaller share of the world's population. Within India, the burden falls disproportionately on communities with limited access to clean water, sanitation, and refrigeration.
+
+The economic toll is enormous. The WHO estimates that foodborne illness caused $310 billion in lost productivity in 2021 — time people spent sick instead of working. When adjusted for cost-of-living differences between countries, the figure rises to $647 billion.
+
+"Food safety is not an abstract issue — it touches every meal, every family, every day," said WHO Director-General Tedros Adhanom Ghebreyesus. "For the first time, countries have their own data to see where the burden is highest."
+
+## What the Diaspora Should Know
+
+For the millions of NRIs who travel to India each summer, the report carries practical weight. Street food is a cornerstone of Indian culture and a highlight of any visit home. But the WHO data suggests that the risks are not evenly distributed: water quality, cold chain integrity, and pesticide regulation all vary dramatically between regions.
+
+**Water and ice**: Contaminated water remains the single largest vector for biological foodborne hazards. Avoid ice from unknown sources, even in restaurants that appear clean.
+
+**Rice and grains**: South Asian rice varieties have among the highest inorganic arsenic concentrations globally. Washing rice thoroughly and cooking in excess water (then draining) reduces arsenic by up to 60 per cent, according to prior research.
+
+**Children's meals**: If you are travelling with children under five, the WHO data is unambiguous about their elevated risk. Stick to freshly cooked, hot food. Avoid raw salads, cut fruit from vendors, and unpasteurised dairy.
+
+**Imported foods at home**: NRIs who import spices, pickles, or snacks from India should be aware that not all products meet the food safety standards of the country they live in. Lead contamination in spices — particularly turmeric — has been documented in FDA testing.
+
+The WHO frames its report as a call for governments to invest in surveillance, regulation, and multisectoral collaboration. For individual families, the message is simpler: the food you love can still hurt you, and the youngest members of your family are the most vulnerable."""
+}
+
+print(f"  Headline: {article2['headline'][:80]}...")
+print(f"  Body words: {len(article2['body'].split())}")
+insert_article(article2)
+
+# ============================================================
+# ARTICLE 3: Lifestyle-Health — India Heatwave Deaths + NRI Travel
+# ============================================================
+print("\n=== Article 3: India Heatwave (lifestyle-health) ===")
+
+# Image sourcing
+print("Sourcing image...")
+img3_url = None
+img3_caption = ""
+img3_attribution = ""
+
+commons_results = fetch_wikimedia_commons_images("India heatwave summer heat")
+time.sleep(1)
+if commons_results:
+    for r in commons_results:
+        url = r.get("url") or r.get("original_url")
+        if url and validate_image(url):
+            img3_url = url
+            img3_caption = "Extreme heat across northern India has killed dozens and hospitalised thousands"
+            img3_attribution = "Wikimedia Commons"
+            break
+        time.sleep(1)
+
+if not img3_url:
+    commons_results = fetch_wikimedia_commons_images("heat wave India water summer")
+    time.sleep(1)
+    if commons_results:
+        for r in commons_results:
+            url = r.get("url") or r.get("original_url")
+            if url and validate_image(url):
+                img3_url = url
+                img3_caption = "People seek relief from scorching temperatures in northern India"
+                img3_attribution = "Wikimedia Commons"
+                break
+            time.sleep(1)
+
+if not img3_url:
+    img3_url = fetch_pexels_image("extreme heat sun scorching summer India")
+    if img3_url and validate_image(img3_url):
+        img3_caption = "Scorching temperatures across India have caused 25,000 suspected heatstroke cases since March"
+        img3_attribution = "Pexels"
+    else:
+        img3_url = None
+
+article3 = {
+    "headline": "India's Heatwave Has Killed 56 People and Caused 25,000 Cases of Suspected Heatstroke Since March. If You Are Visiting This Summer, Read This.",
+    "subheadline": "Thirty-four people died in a single district in Uttar Pradesh in two days — all over 60 with preexisting conditions. Temperatures have breached 42°C across northern India while power outages leave families without fans or running water. The diaspora's summer travel season has collided with a public health emergency.",
+    "slug": "india-heatwave-56-dead-25000-heatstroke-cases-up-ballia-nri-summer-travel-risks-20260605",
+    "category": "lifestyle-health",
+    "image_url": img3_url or "",
+    "image_caption": img3_caption,
+    "image_attribution": img3_attribution,
+    "sources": [
+        "The Indian Eye — Heat wave kills 56 in India; 25,000 cases of suspected heatstroke registered from March-May (June 5, 2026)",
+        "Associated Press — Doctors advise people over 60 to stay indoors as India's northern state swelters in extreme heat (June 4, 2026)",
+        "Outlook Business — How Parametric Insurance Is Emerging as a Safety Net Against Heatwaves (June 1, 2026)",
+        "India Meteorological Department — Heatwave advisory data, June 2026"
+    ],
+    "body": """Fifty-six people have died from heat-related causes in India since March, and 25,000 cases of suspected heatstroke have been registered across the country from March through May, according to official data released this week. For the millions of NRIs who travel to India every summer with elderly parents, young children, and school-age kids in tow, this is not a weather story. It is a medical one.
+
+The deadliest cluster occurred in Ballia district, Uttar Pradesh, where 34 people died in just two days — 23 on Thursday and 11 on Friday. Every single victim was over 60 years old and had preexisting health conditions that worsened in the extreme heat. Heart attacks, brain strokes, and severe diarrhoea were the primary causes of death, according to Ballia's Chief Medical Officer Jayant Kumar.
+
+Ballia recorded a maximum temperature of 42.2°C (108°F) on Friday — 4.7°C above normal. But this is not an outlier. Parts of Madhya Pradesh, Rajasthan, Uttar Pradesh, and Haryana have seen temperatures soar past 45°C (113°F) in recent weeks. The India Meteorological Department has issued heatwave and severe heatwave warnings across northern, central, and eastern India.
+
+## The Nighttime Problem
+
+What makes this summer's heat especially dangerous is not just the daytime peaks — it is the loss of nighttime cooling. The IMD reports that India's average nighttime temperatures are rising by approximately 0.21°C per decade. In urban areas with dense concrete construction, temperatures barely drop after sunset.
+
+This matters because the human body relies on cooler nights to recover from daytime heat stress. When nighttime temperatures stay elevated, the body accumulates stress over consecutive days, leading to chronic heat exhaustion that can trigger organ failure in vulnerable individuals — particularly the elderly, young children, and anyone with cardiovascular or kidney conditions.
+
+The problem is compounded by power outages. Uttar Pradesh, India's most populous state with over 240 million people, has experienced widespread electricity failures, leaving families without fans, air conditioners, or running water. Protests have broken out across the state. Chief Minister Yogi Adityanath issued a statement urging citizens to use electricity judiciously — cold comfort for families in villages where the grid has been down for hours.
+
+## The Scale of the Crisis
+
+A study by the India Energy and Climate Centre at the University of California, Berkeley estimates that a single day of extreme heat causes approximately 3,400 excess deaths nationally. A five-day heatwave causes nearly 30,000. These figures count deaths above what would normally be expected — meaning the official toll of 56 almost certainly understates the true impact.
+
+The World Bank has warned that heat stress could cost India up to 4.5 per cent of GDP by 2030 through reduced working hours, infrastructure damage, and direct productivity losses. India's electricity demand has already crossed an unprecedented 270 gigawatts during recent peak heat days, straining a grid that was not built for this load.
+
+## What NRI Families Should Know Before Travelling
+
+The diaspora's summer travel season — June through August, aligned with American and British school holidays — coincides directly with India's most dangerous heat period. Here is what medical professionals and public health officials are advising:
+
+**Elderly relatives**: If your parents or grandparents are over 60 and living in northern or central India, the Ballia deaths are a direct warning. Doctors are advising all people over 60 to stay indoors between 11 AM and 4 PM. If your relatives lack reliable air conditioning or uninterrupted power, this is not a lifestyle inconvenience — it is a survival risk. Consider whether a visit during peak heat is wise, or whether you can time your travel for September.
+
+**Children under five**: Young children are disproportionately vulnerable to heat because their bodies regulate temperature less efficiently than adults. Keep them hydrated with oral rehydration solution, not just water. Avoid outdoor activities during peak hours. Watch for warning signs: irritability, rapid breathing, hot dry skin, and refusal to drink.
+
+**Hydration and diet**: Drink before you are thirsty. The traditional Indian approach of *nimbu pani* (lemon water with salt and sugar) is medically sound — it replaces both electrolytes and fluids. Avoid alcohol, caffeine, and heavy meals during peak heat hours. Fresh curd, buttermilk, and watermelon are not just cultural staples — they are evidence-based cooling strategies.
+
+**Power outages and planning**: If you are staying in a city or town with unreliable electricity, pack a battery-operated fan, ensure you have access to bottled water, and identify the nearest hospital with a dedicated heat stroke ward. Many state governments have set these up, but they are often overwhelmed during peak events.
+
+**Travel timing**: If your itinerary is flexible, the medical advice is clear. Avoid northern India in June and early July. Coastal and southern destinations — Kerala, Goa, Karnataka — are typically cooler and have more reliable infrastructure. If you must be in the north, travel during early morning or evening hours and rest indoors during the day.
+
+## A Structural Problem
+
+India's heatwave crisis is not an anomaly. It is a structural consequence of climate change, urbanisation, and infrastructure that has not kept pace with rising temperatures. The country created South Asia's first heat action plan after a deadly 2010 heatwave in Ahmedabad — a programme that saves an estimated 1,190 lives per year. But coverage remains patchy, and enforcement is inconsistent.
+
+For NRIs, the emotional pull of summer in India — family weddings, temple visits, the mango season — is powerful. But this year, the data is asking you to plan differently. Check the IMD's heatwave forecasts before you book. Talk to your relatives about their cooling infrastructure. And if someone over 60 or under five is in your travel party, treat the heat as a medical condition, not a weather complaint."""
+}
+
+print(f"  Headline: {article3['headline'][:80]}...")
+print(f"  Body words: {len(article3['body'].split())}")
+insert_article(article3)
+
+print("\n=== Writer run complete ===")
