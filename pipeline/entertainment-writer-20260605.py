@@ -1,433 +1,241 @@
 #!/usr/bin/env python3
 """Entertainment writer for The Videshi — 2026-06-05 batch"""
 
-import json, os, sys, time, re, urllib.parse, uuid
+import json, os, sys, uuid, requests
 from datetime import datetime, timezone
 
-import requests
+# Load Supabase creds
+env_path = os.path.expanduser("~/.env.supabase")
+with open(env_path) as f:
+    for line in f:
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            key, val = line.split("=", 1)
+            key = key.replace("export ", "").strip()
+            val = val.strip().strip('"').strip("'")
+            os.environ[key] = val
 
-# Load env
-def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    k, v = line.split('=', 1)
-                    os.environ.setdefault(k.strip(), v.strip())
-
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
-
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 
 HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
 }
 
-UA = 'TheVideshi/1.0 (thevideshi.com)'
-
-
-# ── Image sourcing ──────────────────────────────────────────────
-
-def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia."""
-    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
-    try:
-        r = requests.get(
-            f'https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}',
-            headers={'User-Agent': UA}, timeout=10
-        )
-        if r.status_code == 200:
-            data = r.json()
-            img = data.get('originalimage', {}).get('source') or data.get('thumbnail', {}).get('source')
-            if img:
-                print(f'  ✓ Wikipedia image for "{person_name}": {img[:80]}...')
-                return img
-    except Exception as e:
-        print(f'  ⚠ Wikipedia error for "{person_name}": {e}')
-    return None
-
-
-def fetch_wikimedia_commons(query, limit=5):
-    """Search Wikimedia Commons for CC-licensed images."""
-    try:
-        r = requests.get(
-            'https://commons.wikimedia.org/w/api.php',
-            params={
-                'action': 'query', 'generator': 'search',
-                'gsrsearch': query, 'gsrnamespace': '6', 'gsrlimit': str(limit),
-                'prop': 'imageinfo', 'iiprop': 'url|size|mime',
-                'iiurlwidth': '1200', 'format': 'json'
-            },
-            headers={'User-Agent': UA}, timeout=15
-        )
-        if r.status_code == 200:
-            data = r.json()
-            pages = data.get('query', {}).get('pages', {})
-            results = []
-            for pid, page in pages.items():
-                ii = page.get('imageinfo', [{}])[0]
-                url = ii.get('thumburl') or ii.get('url')
-                mime = ii.get('mime', '')
-                if url and 'image' in mime:
-                    results.append({'url': url, 'title': page.get('title', ''), 'width': ii.get('width', 0)})
-            if results:
-                print(f'  ✓ Commons found {len(results)} images for "{query}"')
-            return results
-    except Exception as e:
-        print(f'  ⚠ Commons error for "{query}": {e}')
-    return []
-
-
-def fetch_pexels(query):
-    """Search Pexels for a relevant image."""
-    if not PEXELS_KEY:
-        return None
-    try:
-        r = requests.get(
-            'https://api.pexels.com/v1/search',
-            params={'query': query, 'per_page': 5, 'orientation': 'landscape'},
-            headers={'Authorization': PEXELS_KEY},
-            timeout=10
-        )
-        if r.status_code == 200:
-            photos = r.json().get('photos', [])
-            for p in photos:
-                url = p.get('src', {}).get('large2x') or p.get('src', {}).get('original')
-                if url:
-                    print(f'  ✓ Pexels image: {url[:80]}...')
-                    return url
-    except Exception as e:
-        print(f'  ⚠ Pexels error: {e}')
-    return None
-
-
-def validate_image(url):
-    """Validate an image URL returns 200 with image content > 5KB."""
-    try:
-        r = requests.head(url, headers={'User-Agent': UA}, timeout=10, allow_redirects=True)
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if r.status_code == 200 and 'image' in ct and cl > 5000:
-            return True
-        # Try GET if HEAD doesn't give content-length
-        if r.status_code == 200 and 'image' in ct and cl == 0:
-            r2 = requests.get(url, headers={'User-Agent': UA}, timeout=10, stream=True)
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                return True
-    except Exception as e:
-        print(f'  ⚠ Image validation failed: {e}')
-    return False
-
-
-def find_best_image(person_name=None, commons_query=None, pexels_query=None):
-    """Multi-source image search: Wikipedia → Commons → Pexels."""
-    candidates = []
-
-    # Wikipedia person image
-    if person_name:
-        wp = fetch_wikipedia_person_image(person_name)
-        if wp and validate_image(wp):
-            candidates.append(('wikipedia', wp))
-
-    # Wikimedia Commons
-    if commons_query:
-        commons = fetch_wikimedia_commons(commons_query)
-        for c in commons[:3]:
-            if validate_image(c['url']):
-                candidates.append(('commons', c['url']))
-                break
-
-    # Pexels fallback
-    if pexels_query:
-        px = fetch_pexels(pexels_query)
-        if px and validate_image(px):
-            candidates.append(('pexels', px))
-
-    # Pick best: Wikipedia person > Commons specific > Pexels
-    for source, url in candidates:
-        attr = 'Wikimedia Commons' if source in ('wikipedia', 'commons') else 'Pexels'
-        return url, attr
-
-    return None, None
-
-
-# ── Article insertion ───────────────────────────────────────────
-
-def insert_article(article):
-    """Insert an article into Supabase."""
-    r = requests.post(
-        f'{SUPABASE_URL}/rest/v1/p2_articles',
+def publish_article(article):
+    """Insert an article into Supabase"""
+    resp = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS,
         json=article,
         timeout=30
     )
-    if r.status_code in (200, 201):
-        data = r.json()
-        aid = data[0]['id'] if isinstance(data, list) and data else 'unknown'
-        print(f'  ✅ Published: "{article["headline"]}" (id: {aid})')
+    if resp.status_code in (200, 201):
+        data = resp.json()
+        if isinstance(data, list) and data:
+            print(f"  ✓ Published: {data[0].get('headline', '')[:60]}... (id: {data[0].get('id', '')})")
+        else:
+            print(f"  ✓ Published: {article['headline'][:60]}...")
         return True
     else:
-        print(f'  ❌ Insert failed ({r.status_code}): {r.text[:200]}')
+        print(f"  ✗ FAILED ({resp.status_code}): {resp.text[:200]}")
         return False
 
+now_utc = datetime.now(timezone.utc).isoformat()
 
-# ── Articles ────────────────────────────────────────────────────
+articles = []
 
-def article_preity_zinta_jacarti():
-    """Preity Zinta launches Jacarti luxury jewellery brand."""
-    print('\n📝 Article 1: Preity Zinta — Jacarti Jewellery')
+# ============================================================
+# ARTICLE 1: Aamir Khan confirms wedding with Gauri Spratt
+# ============================================================
+articles.append({
+    "headline": "Aamir Khan Will Marry Gauri Spratt on July 5. It Will Be a Registered Marriage at Home.",
+    "subheadline": "The actor confirmed the date to Variety India. No grand reception, no industry guest list — just two families, a handful of friends, and a quiet signing at his Mumbai residence.",
+    "slug": "aamir-khan-gauri-spratt-wedding-july-5-registered-marriage-home-nri-20260605",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": now_utc,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Aamir_Khan_at_the_success_bash_of_Secret_Superstar.jpg",
+    "image_caption": "Aamir Khan at a film event in Mumbai",
+    "image_attribution": "Wikimedia Commons",
+    "body": """Aamir Khan has confirmed he is getting married for the third time.
 
-    img_url, img_attr = find_best_image(
-        person_name='Preity Zinta',
-        commons_query='Preity Zinta',
-        pexels_query='luxury Indian polki jewellery'
-    )
+The 60-year-old actor told Variety India this week that he and his partner Gauri Spratt will formalise their relationship on July 5, 2026. "The news about the marriage is true. It's on July 5," he said, bringing months of speculation to a definitive end.
 
-    if not img_url:
-        print('  ⚠ No valid image found, skipping article')
-        return False
+The ceremony will not be the kind Bollywood is used to producing. There will be no multi-day celebrations across five-star ballrooms. No curated guest list running into hundreds. No designer mandap or an army of wedding planners. Instead, according to sources close to the family, Aamir and Gauri will hold a registered marriage at his Mumbai residence with only their two families and a small circle of close friends present. A grand industry reception is not being planned.
 
-    headline = "Preity Zinta Just Launched a Luxury Jewellery Brand. It Is Not What You Would Expect from a Bollywood Star."
-    subheadline = "Jacarti Jewellery reimagines heritage Polki as modern heirloom pieces, backed by a co-founder from Dubai's Timeless Group and the Arvind Mafatlal family."
+## A Relationship Built Over Twenty-Five Years
 
-    body = """Preity Zinta has spent two decades in Bollywood, owned an IPL franchise, and built a life between Los Angeles and Mumbai. On June 4, she added a new line to that resume: fine jewellery entrepreneur.
+The couple's story reaches further back than most of their fans realise. Aamir and Gauri first met nearly 25 years ago, long before their relationship became romantic. They were friends for decades, lost touch, and reconnected in recent years. What followed was a slow, deliberate progression from friendship to partnership.
 
-Jacarti Jewellery, co-founded by Zinta alongside Samara Punjabi of the Dubai-based Timeless Group and Priyavrata Mafatlal, Vice-Chairman of the Arvind Mafatlal Group, launched with a flagship store in Bandra, Mumbai, and an e-commerce platform at jacarti.com. The brand specialises in Polki jewellery — uncut diamond pieces set in gold — but with a design language that leans contemporary rather than bridal.
+On the occasion of his 60th birthday in March 2025, Aamir surprised the media by introducing Gauri as his partner. At the time, he was careful to manage expectations, saying that marriage was not a pressing issue. But by June 2026, his position had evolved. "Now we both feel we are ready to take our relationship to the next level," he told Variety India.
 
-## A Brand Built on Three Continents
+In a separate conversation with Raj Shamani's podcast, Aamir offered a rare window into the emotional journey that led him to this point. "Before I met Gauri, I felt like I had aged, and who will I find at this age," he said. "Also, my therapy started, and I understood that I need to love myself first and make myself healthy. So I worked on that."
 
-What makes Jacarti unusual is its founding team. Zinta brings celebrity reach and a dual life between India and the United States. Punjabi brings luxury retail experience from the UAE, where Timeless Group has built a significant presence. Mafatlal brings industrial heritage and capital from one of India's oldest business families. The combination is deliberate: a jewellery brand with roots in Indian craft, Gulf-market luxury sensibility, and global distribution ambitions.
+## Gauri Spratt's Quietly Remarkable Story
 
-The launch event in Bandra drew a mix of industry friends and business partners. Celina Jaitly, Bobby Deol, and Iulia Vantur were among those present. Jaitly called the collection "absolutely phenomenal" and posted what she described as the "mother of all selfies" from the evening.
+Gauri, 47, is originally from Bengaluru and works in the fashion, beauty, and wellness industry. She has a seven-year-old son named Quinn from a previous marriage. What makes her family story particularly striking is the thread that runs through it: her grandfather, Philip Spratt, was a British-born Communist who sailed to India in the 1920s to support the independence movement and eventually made the country his permanent home. He chose India not by birth but by conviction. There is something poetically fitting about his granddaughter now building a life in Mumbai with one of its most prominent citizens.
 
-## Polki, Reimagined
+Both families are said to be fully supportive of the marriage, which those close to the couple describe as a formalisation of a reality that has been in place for over a year. "They have built a happy, stable life together and decided to mark it formally with their families present," a source told Filmfare.
 
-Jacarti's signature line is called 'Merai,' a collection that reinterprets traditional Polki techniques for a younger, globally mobile buyer. The brand positions its pieces as "contemporary heritage heirlooms" — jewellery meant to be passed across generations but designed for everyday luxury rather than locked in a vault between weddings.
+## What This Means for the Diaspora
 
-The timing is strategic. India's luxury jewellery market is expanding rapidly, driven by a new generation of buyers who want provenance and craftsmanship but not the aesthetic of their grandmother's wedding set. NRI buyers, particularly in the Gulf, UK, and North America, have become a significant driver of high-end Indian jewellery sales, often purchasing during trips home or through online platforms.
+For NRIs who grew up watching Aamir Khan navigate love, loss, and identity across decades of cinema — from Dil Chahta Hai to Laal Singh Chaddha — this announcement carries a personal resonance. His willingness to speak openly about therapy, ageing, and the courage it takes to love again after two divorces is a kind of vulnerability that Bollywood's leading men rarely model in real life.
 
-## The Diaspora Connection
+That the wedding itself will be a registered ceremony rather than a production is its own kind of statement. In an industry where weddings regularly double as brand activations, Aamir and Gauri are choosing privacy over performance.
 
-For NRIs watching from abroad, the launch taps into a familiar tension. Indian fine jewellery has always carried cultural weight — it is gifted at weddings, passed between mothers and daughters, used to mark milestones. But the designs have often felt locked in time. Jacarti's bet is that there is a market for pieces that carry the emotional resonance of heritage jewellery without the heavy, ornate aesthetic that can feel disconnected from daily life in New York, London, or Dubai.
+## His Previous Marriages
 
-Zinta herself embodies this audience. She has lived in Los Angeles since marrying American consultant Gene Goodenough in 2016. She co-owns the Punjab Kings IPL franchise. She moves between two worlds, and Jacarti is built to sell to people who do the same.
+Aamir's first marriage was to his childhood sweetheart, Reena Dutta, in 1986. They have two children — actor Junaid Khan and Ira Khan — and divorced in 2002. In 2005, he married filmmaker Kiran Rao, with whom he has a son, Azad Rao Khan. That marriage ended amicably in 2021, and the two continue to co-parent Azad.
 
-## What Comes Next
+With July 5 now confirmed, the only remaining question is whether Mr. Perfectionist — a man who has always done things on his own terms — will manage to keep his own wedding as quiet as he intends.
 
-The brand is available online globally through jacarti.com and at its Bandra flagship on Waterfield Road. Whether Jacarti can compete in a market dominated by Tanishq, Sabyasachi's jewellery line, and heritage houses like Birdhichand Ghanshyamdas will depend on whether the design proposition resonates beyond the launch-night headlines.
+*Sources: Variety India, Bollywood Hungama, Filmfare, Pinkvilla*""",
+    "sources": json.dumps([
+        {"name": "Variety India", "url": "https://variety.com"},
+        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+        {"name": "Filmfare", "url": "https://www.filmfare.com"},
+        {"name": "Pinkvilla", "url": "https://www.pinkvilla.com"}
+    ])
+})
 
-But the founding team is not treating this as a celebrity vanity project. With Mafatlal's manufacturing depth and Punjabi's Gulf retail network, Jacarti has the infrastructure to scale. The question is whether a Bollywood star can build a brand that is taken seriously for its craft rather than its celebrity. Zinta, characteristically, is betting she can.
+# ============================================================
+# ARTICLE 2: Pahlaj Nihalani passes away at 76
+# ============================================================
+articles.append({
+    "headline": "Pahlaj Nihalani Has Died at 76. Govinda Broke Down at His Funeral. The Industry He Built Around Himself Came to Say Goodbye.",
+    "subheadline": "The producer who launched Govinda, bankrolled Aankhen, and ran the CBFC during its most controversial years died in Mumbai after battling liver cirrhosis for four months. The tributes tell the story of a man who opened doors.",
+    "slug": "pahlaj-nihalani-death-76-govinda-funeral-cbfc-producer-legacy-nri-20260605",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": now_utc,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Lachhman_Chatnani%2CRam_Jawhrani%2CAnthony_Arun_Biswas%2CPahlaj_Nihalani%2CGovinda%2CChandru_Punjabi_From_The_Govinda_graces_Mother_Teresa_International_Award_%2815%29.jpg",
+    "image_caption": "Pahlaj Nihalani with Govinda at the Mother Teresa International Award ceremony",
+    "image_attribution": "Wikimedia Commons",
+    "body": """Pahlaj Nihalani, the veteran Bollywood producer and former chairman of the Central Board of Film Certification, died on June 4, 2026, at Mumbai's Nanavati Hospital. He was 76.
 
-*Sources: Bollywood Hungama, Gujarat Watch, India Reporter Live, ANI*"""
+The cause was liver cirrhosis, which had kept him in and out of hospitals for four months. His family confirmed the news in a statement: "With profound grief, we inform you of the passing of our beloved Pahlaj Nihalani on 4th June 2026."
 
-    return insert_article({
-        'headline': headline,
-        'subheadline': subheadline,
-        'body': body,
-        'slug': 'preity-zinta-jacarti-jewellery-polki-luxury-brand-bandra-mumbai-nri-20260605',
-        'category': 'entertainment',
-        'vertical': 'entertainment',
-        'image_url': img_url,
-        'image_caption': 'Preity Zinta at a public event in Mumbai',
-        'image_attribution': img_attr,
-        'status': 'published',
-        'published_at': datetime.now(timezone.utc).isoformat(),
-        'is_editorial': False,
-        'sources': json.dumps([
-            {'name': 'Bollywood Hungama', 'url': 'https://www.bollywoodhungama.com'},
-            {'name': 'Gujarat Watch', 'url': 'https://gujaratwatch.co.in'},
-            {'name': 'India Reporter Live', 'url': 'https://indiareporterlive.co.in'}
-        ])
-    })
+The cremation was held the same afternoon at the Santacruz Hindu Crematorium. By the time the industry arrived, the grief was already visible. Govinda, the actor whose career Nihalani helped create, broke down in tears at the funeral. Malaika Arora and her sister Amruta were among the first to reach the family's residence. Farhan Akhtar, David Dhawan and his son Varun Dhawan, Shatrughan Sinha, Anees Bazmee, Ramesh Taurani, and Neha Dhupia all came to pay their respects.
 
+## The Man Who Made Govinda
 
-def article_titan_story():
-    """Made In India: A Titan Story on Amazon Prime Video."""
-    print('\n📝 Article 2: Made In India: A Titan Story')
+Nihalani's name will always be tethered to Govinda's rise. He produced several of the actor's most commercially successful films in the late 1980s and 1990s — Shola Aur Shabnam, Aankhen, and later Rangeela Raja. These were not prestige pictures. They were the kind of crowd-pleasing, mass-market entertainers that filled single-screen theatres across India and were the backbone of the home-video market that NRI families in the Gulf, UK, and US relied on to stay connected to Bollywood.
 
-    img_url, img_attr = find_best_image(
-        person_name='Jim Sarbh',
-        commons_query='Jim Sarbh actor',
-        pexels_query='vintage Indian watch craftsmanship'
-    )
+Govinda's tribute reflected that debt. "Pahlaj Nihalani Ji was a foundational figure for us," the actor said. "For me and for numerous other artists who overcame the challenges of hardship, he provided essential support, allowing us to establish ourselves as artists in this country."
 
-    if not img_url:
-        # Try Naseeruddin Shah
-        img_url, img_attr = find_best_image(
-            person_name='Naseeruddin Shah',
-            commons_query='Naseeruddin Shah',
-            pexels_query=None
-        )
-    if not img_url:
-        # Try Titan watch as fallback
-        img_url, img_attr = find_best_image(
-            person_name=None,
-            commons_query='Titan watches India',
-            pexels_query='luxury Indian watch'
-        )
+## A Career That Spanned Four Decades
 
-    if not img_url:
-        print('  ⚠ No valid image found, skipping article')
-        return False
+Nihalani began producing films in the early 1980s with Haathkadi. Through the next two decades, he backed Aandhi-Toofan, Ilzaam, Aag Hi Aag, Paap Ki Duniya, and the hit comedy Aankhen. His filmography was not art-house, but it was relentlessly commercial, and it kept an entire ecosystem of actors, directors, technicians, and distributors working. He was also president of the Association of Pictures and TV Programme Producers for 29 years, making him one of the industry's longest-serving trade body leaders.
 
-    headline = "Made In India: A Titan Story Is the Series Every NRI Should Be Streaming Right Now"
-    subheadline = "Jim Sarbh and Naseeruddin Shah turn the origin story of India's most beloved watch brand into one of 2026's most compelling shows on Amazon Prime Video."
+His last film as a producer was Julie 2, released in 2017.
 
-    body = """There is a Titan watch in nearly every Indian household. For the diaspora, it is often the watch your father wore, the one your uncle gifted at a graduation, the brand that meant something before you learned to care about brands. Now, the story of how it came to exist is streaming on Amazon MX Player, and it is significantly better than it has any right to be.
+## The CBFC Years
 
-*Made In India: A Titan Story*, a six-episode series directed by Robbie Grewal, adapts journalist Vinay Kamath's book *Titan: Inside India's Most Successful Consumer Brand* into a narrative that feels less like a corporate hagiography and more like a drama about what it took to build something in pre-liberalisation India.
+For many Indians, Nihalani became most recognisable not as a producer but as the man who ran the censor board from January 2015 to August 2017. His tenure was defined by conflict. He ordered cuts to films that filmmakers saw as arbitrary, demanded the removal of words and scenes that had cleared previous boards, and became a lightning rod for national debates about censorship, artistic freedom, and the limits of state control over cinema.
 
-## The Story
+His critics called him authoritarian. His supporters said he was enforcing rules that had been ignored for years. Either way, his time at the CBFC was the most publicly contentious period in the body's modern history, and it ended with his replacement by lyricist Prasoon Joshi.
 
-Jim Sarbh plays Xerxes Desai, the visionary Tata executive who took on the seemingly impossible task of creating an Indian watch brand that could compete globally. Naseeruddin Shah plays J.R.D. Tata, the patriarch whose faith and resources made the dream viable. The series opens in the late 1970s, when a Swiss watchmaker dismisses India's ability to produce a quality timepiece. Rather than accept the insult, Tata channels it into a mandate.
+For the diaspora audience that had grown up watching the films he produced, the CBFC chapter was a jarring pivot from the man who had given them Aankhen and Shola Aur Shabnam.
 
-What follows is a story about bureaucratic obstacles, funding crises, internal disagreements, and the kind of patient, grinding effort that rarely makes for compelling television. Except here, it does. Grewal wisely focuses on the human cost — the marriages strained by obsessive work, the friendships tested by professional disagreements, the quiet moments of doubt that preceded every breakthrough.
+## How the Industry Responded
 
-## Why the Reviews Are Glowing
+The tributes from the industry were not performative. They carried the texture of real relationships.
 
-Critics have been nearly unanimous. India Forums gave it 4 out of 5 stars, calling it "one of 2026's best shows." The Hollywood Reporter India praised Sarbh and Shah for getting "the timing right." Koimoi awarded 3.5 stars, noting that the series is "obsessed with people, not numbers." Bollywood Shaadis called it a "must-watch" that "manages to make the rise of one of India's most iconic brands into an engaging and surprisingly emotional watch."
+Suniel Shetty, whose early career Nihalani supported, wrote: "Pahlaj ji was among the first to have faith in me. When I was trying to find my place in the industry, he opened doors, guided me, and consistently supported me with kindness and encouragement."
 
-The consensus is that the series avoids the trap of corporate worship. It does not pretend that Titan succeeded through pure genius. It shows the mess, the luck, the compromises, and the sheer stubbornness that built a brand.
+Sunny Deol called him "a very dear friend, family, a gem of a person always ready to help anyone." Anil Kapoor, Kangana Ranaut, Shatrughan Sinha, Sanjay Gupta, and filmmaker Anees Bazmee all posted tributes. Bazmee, who had worked closely with Nihalani over many years, described the loss as personal: "This is very sad news. We have worked together for a long time and were very close to each other."
 
-## The Diaspora Angle
+Moshumi Chatterjee, who collaborated with him decades ago, said simply: "He has given us so many remarkable films. He contributed immensely to the entertainment industry."
 
-For Indians living abroad, *Made In India* carries a particular weight. Titan is not just a watch company. It is one of a handful of Indian brands that successfully became aspirational in a market where "imported" was synonymous with quality. If you grew up in India in the 1980s or 1990s, or your parents did, the Titan jingle is embedded in your memory. The series gives that nostalgia a narrative context.
+## He Leaves Behind a Complex Legacy
 
-It also tells a story that resonates with the immigrant experience more broadly: the conviction that you can build something world-class despite being dismissed, the long struggle for credibility, and the eventual pride of proving the doubters wrong. Xerxes Desai's journey mirrors, in its emotional arc, the journey of every NRI who left India carrying the same stubborn belief.
+Nihalani is survived by his wife Nita and three sons — Vishal, Deepesh, and Chirag. His legacy is complicated in the way that most long careers in Indian cinema are: simultaneously built on populist entertainment and marked by a period of polarising public authority. But on the day he died, it was the first part of the story — the producer who believed in people and put his money where his faith was — that the industry chose to remember.
 
-## The Details
+*Sources: Filmfare, Bollywood Hungama, Zoom TV, Cinema Express, Devdiscourse*""",
+    "sources": json.dumps([
+        {"name": "Filmfare", "url": "https://www.filmfare.com"},
+        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+        {"name": "Zoom TV", "url": "https://www.zoomtventertainment.com"},
+        {"name": "Cinema Express", "url": "https://www.cinemaexpress.com"},
+        {"name": "Devdiscourse", "url": "https://www.devdiscourse.com"}
+    ])
+})
 
-All six episodes are now streaming on Amazon MX Player and Amazon Prime Video, available in Hindi. Each episode runs approximately 55 minutes. The supporting cast includes Vaibhav Tatwawadi, Namita Dubey, Kaveri Seth, and Lakshvir Saran.
+# ============================================================
+# ARTICLE 3: Karisma Kapoor's Brown drops on ZEE5
+# ============================================================
+articles.append({
+    "headline": "Karisma Kapoor's Brown Is Now Streaming on ZEE5. The Reviews Say She Is the Best Thing in a Series That Cannot Keep Up with Her.",
+    "subheadline": "A Kolkata-set neo-noir thriller gives the 90s star her grittiest role yet — a suspended, alcoholic cop investigating a brutal murder. Critics praise the performance but question everything around it.",
+    "slug": "karisma-kapoor-brown-zee5-review-kolkata-neo-noir-thriller-nri-20260605",
+    "category": "entertainment",
+    "vertical": "entertainment",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": now_utc,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/KarismaKapoor02.jpg",
+    "image_caption": "Karisma Kapoor at a public appearance in Mumbai",
+    "image_attribution": "Wikimedia Commons",
+    "body": """Brown, the seven-episode neo-noir crime thriller starring Karisma Kapoor, began streaming on ZEE5 on June 5, 2026. The series, directed by Abhinay Deo (Delhi Belly, Blackmail), is adapted from Abheek Barua's novel City of Death and is set in modern-day Kolkata.
 
-If you are looking for a binge that will make you proud, nostalgic, and slightly emotional about a watch company, this is the one.
-
-*Sources: Bollywood Hungama, India Forums, Koimoi, Hollywood Reporter India, Gadgets 360*"""
-
-    return insert_article({
-        'headline': headline,
-        'subheadline': subheadline,
-        'body': body,
-        'slug': 'made-in-india-titan-story-jim-sarbh-naseeruddin-shah-amazon-review-nri-20260605',
-        'category': 'entertainment',
-        'vertical': 'entertainment',
-        'image_url': img_url,
-        'image_caption': 'Jim Sarbh, who plays Xerxes Desai in Made In India: A Titan Story',
-        'image_attribution': img_attr,
-        'status': 'published',
-        'published_at': datetime.now(timezone.utc).isoformat(),
-        'is_editorial': False,
-        'sources': json.dumps([
-            {'name': 'India Forums', 'url': 'https://www.indiaforums.com'},
-            {'name': 'Koimoi', 'url': 'https://www.koimoi.com'},
-            {'name': 'Hollywood Reporter India', 'url': 'https://www.hollywoodreporterindia.com'},
-            {'name': 'Gadgets 360', 'url': 'https://www.gadgets360.com'}
-        ])
-    })
-
-
-def article_gram_chikitsalay():
-    """Gram Chikitsalay Season 2 on Prime Video."""
-    print('\n📝 Article 3: Gram Chikitsalay Season 2')
-
-    img_url, img_attr = find_best_image(
-        person_name='Amol Parashar',
-        commons_query='Amol Parashar actor India',
-        pexels_query='rural India village healthcare doctor'
-    )
-
-    if not img_url:
-        img_url, img_attr = find_best_image(
-            person_name=None,
-            commons_query='rural health centre India village',
-            pexels_query='rural Indian village doctor'
-        )
-
-    if not img_url:
-        print('  ⚠ No valid image found, skipping article')
-        return False
-
-    headline = "Gram Chikitsalay Season 2 Drops June 23. TVF's Quiet Hit Is About to Go Global."
-    subheadline = "The rural healthcare comedy-drama returns on Prime Video with Amol Parashar, Vinay Pathak, and a new addition that has Bhojpuri fans paying attention."
-
-    body = """If you spent the last year telling friends that *Gram Chikitsalay* is the TVF show they should be watching instead of just rewatching *Panchayat*, your vindication arrives on June 23. Prime Video has confirmed that Season 2 of the rural healthcare comedy-drama will premiere globally, available in Hindi across more than 240 countries and territories.
-
-The show, created by The Viral Fever and directed by Lalitam Tiwari, returns with its full ensemble: Amol Parashar as Dr. Prabhat, alongside Vinay Pathak, Akansha Ranjan Kapoor, Akash Makhija, Anandeshwar Dwivedi, and Garima Vikrant Singh. The notable new addition is Bhojpuri superstar Dinesh Lal Yadav, whose casting signals the show's ambition to broaden its audience beyond the urban-educated TVF core.
+The reviews have arrived, and they tell a consistent story: Karisma Kapoor is excellent, the series around her is not.
 
 ## The Premise
 
-Set in the fictional village of Bhathkandi, the series follows Dr. Prabhat, an idealistic young doctor assigned to a crumbling Primary Health Centre. Season 1 established the show's tone — a blend of situational comedy, gentle satire, and genuine empathy for the people navigating India's rural healthcare crisis. It drew comparisons to *Panchayat* for its village setting but distinguished itself by anchoring its comedy in the specific absurdities of a medical system designed to fail.
+Karisma plays Rita Brown, a suspended police officer battling alcoholism and unresolved trauma. She is brought back to active duty when a young woman named Ahana is found murdered inside her home. The investigation spirals into political connections, family secrets, power structures, and personal histories. The supporting cast includes Jisshu Sengupta, veteran Helen, Soni Razdan, and Surya Sharma, who plays Rita's grief-stricken deputy Arjun Sinha.
 
-Season 2 picks up where the first left off. Dr. Prabhat has begun earning the trust of his sceptical patients, but fresh obstacles keep arriving. The show deepens its exploration of the gap between idealism and reality, examining what happens when a well-meaning outsider tries to fix a system that has been broken for decades.
+On paper, this is a strong setup. A disgraced cop. A Kolkata that looks and feels like its own character. A murder that connects to every layer of the city's elite. The problem, according to nearly every critic who has reviewed it, is what happens between that setup and its payoff.
 
-## Why Diaspora Audiences Should Care
+## What the Critics Are Saying
 
-TVF has built something remarkable over the past few years: a slate of shows that make Indians abroad feel seen in a way that big-budget Bollywood rarely manages. *Panchayat*, *Kota Factory*, *Aspirants* — these are not just popular shows. They are cultural touchstones for a generation of Indians who grew up in small towns, went through the competitive exam system, and eventually scattered across the world.
+Bollywood Hungama gave it 2 out of 5 stars, writing that Brown "benefits from Karisma Kapoor's powerful, deeply felt performance and an atmospheric depiction of Kolkata, but the series is let down by predictable twists, inconsistent writing and a mystery that lacks the required shock value."
 
-*Gram Chikitsalay* fits squarely in that tradition. If your parents are doctors, or if you spent childhood summers visiting relatives in villages where the nearest hospital was an hour away, this show will feel uncomfortably familiar. It captures the texture of rural India without romanticising it or reducing it to poverty porn.
+India Forums was similarly blunt with a 2 out of 5 rating: "Brown is so busy trying to be many things at once that it forgets to be an engaging thriller." The review noted that the narrative constantly introduces new characters, subplots, and emotional detours that add little to the central investigation. "The result is a series that constantly moves but rarely progresses."
 
-The global Prime Video release means NRIs in the US, UK, Canada, and beyond can watch it on premiere day — a small thing that still matters when you are trying to stay culturally connected from ten time zones away.
+The Hollywood Reporter India described it as "middling at best" and criticised the series for using ornate world-building to disguise a hollow core. "I like atmospheric shows as much as the next tired film critic," the review reads, "but Brown uses waves of texture and social fabric to offset a standard premise with no surprises and clichés galore."
 
-## Alia Bhatt's Endorsement
+MensXP called it "watchable" but said the execution follows familiar tropes so closely that "it fails to forge its own path." The review singled out the trailer as having revealed too many key plot points, undermining the show's suspense.
 
-In a notable moment of cross-industry support, Alia Bhatt shared a poster of the show on her Instagram Stories this week, writing "My fav doctor is back!" with a tag to Akansha Ranjan Kapoor, her close friend and the show's co-lead. For a TVF production, that kind of A-list endorsement is unusual and suggests the show has broken through beyond its core audience.
+## Why Karisma Matters Here
 
-## The Bigger TVF Picture
+What unites the reviews is a shared assessment of Karisma Kapoor herself. Even the harshest critics acknowledge that she delivers something genuinely new in her career — a de-glam, restrained, internalized performance that is nothing like the song-and-dance roles that defined her 1990s prime. She rolls her own cigarettes. She drinks. She carries a grief that is never explained with dialogue but is always visible in her posture and eyes.
 
-The Gram Chikitsalay renewal was announced alongside a broader TVF slate on Prime Video, including new seasons of *Aspirants*, *Panchayat*, and *Sapne vs Everyone*, plus new shows *Pyramid* and *Vansh*, and films *Vvan* and *College Fest*. TVF has effectively become the HBO of Indian digital content — a studio whose brand alone signals quality to a specific audience. For NRIs who have watched the Indian OTT space fill with loud, overproduced content, TVF's continued commitment to grounded, character-driven storytelling is a relief.
+For NRI audiences who grew up with her in Dil To Pagal Hai, Raja Hindustani, and Haseena Maan Jaayegi, Brown is Karisma's most serious attempt to prove she can operate in the prestige-OTT space that Bollywood has increasingly pivoted toward. The performance lands. The vehicle, apparently, does not.
 
-*Gram Chikitsalay* Season 2 premieres June 23 on Prime Video.
+## The Kolkata Factor
 
-*Sources: Bollywood Hungama, Hollywood Reporter India, Filmfare, Gadgets 360*"""
+The series was shot extensively in Kolkata, and Amogh Deshpande's cinematography is one of its few universally praised elements. The city's crumbling architecture, its rain-drenched streets, and its old-money homes function as more than set dressing — they impose a mood that the script itself struggles to sustain. For diaspora viewers who have visited or have roots in West Bengal, the visual immersion will be familiar and atmospheric. But critics warn that the aesthetic ambition is not matched by narrative precision.
 
-    return insert_article({
-        'headline': headline,
-        'subheadline': subheadline,
-        'body': body,
-        'slug': 'gram-chikitsalay-season-2-tvf-prime-video-june-23-amol-parashar-nri-20260605',
-        'category': 'entertainment',
-        'vertical': 'entertainment',
-        'image_url': img_url,
-        'image_caption': 'Amol Parashar, who plays Dr. Prabhat in Gram Chikitsalay',
-        'image_attribution': img_attr,
-        'status': 'published',
-        'published_at': datetime.now(timezone.utc).isoformat(),
-        'is_editorial': False,
-        'sources': json.dumps([
-            {'name': 'Bollywood Hungama', 'url': 'https://www.bollywoodhungama.com'},
-            {'name': 'Hollywood Reporter India', 'url': 'https://www.hollywoodreporterindia.com'},
-            {'name': 'Filmfare', 'url': 'https://www.filmfare.com'},
-            {'name': 'Gadgets 360', 'url': 'https://www.gadgets360.com'}
-        ])
-    })
+## The Verdict for Streaming Audiences
 
+Brown is available now on ZEE5, which is accessible to viewers in the US, UK, Canada, and other diaspora markets through the platform's international subscription. At seven episodes, it is a compact binge — the kind of series you can finish in a weekend. Whether you should depends on what you are watching for. If it is Karisma Kapoor proving she has another act in her, Brown delivers. If it is a tightly constructed murder mystery, the reviews suggest you will spend more time admiring the wallpaper than solving the case.
 
-# ── Main ────────────────────────────────────────────────────────
+*Sources: Bollywood Hungama, India Forums, Hollywood Reporter India, MensXP*""",
+    "sources": json.dumps([
+        {"name": "Bollywood Hungama", "url": "https://www.bollywoodhungama.com"},
+        {"name": "India Forums", "url": "https://www.indiaforums.com"},
+        {"name": "Hollywood Reporter India", "url": "https://www.hollywoodreporterindia.com"},
+        {"name": "MensXP", "url": "https://www.mensxp.com"}
+    ])
+})
 
-if __name__ == '__main__':
-    print(f'🎬 Entertainment Writer — {datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}')
-    print('=' * 60)
+# ============================================================
+# PUBLISH ALL
+# ============================================================
+print(f"\n=== Publishing {len(articles)} entertainment articles ===\n")
+success_count = 0
+for i, article in enumerate(articles, 1):
+    print(f"[{i}/{len(articles)}] {article['headline'][:70]}...")
+    if publish_article(article):
+        success_count += 1
+    print()
 
-    results = []
-    results.append(('Preity Zinta / Jacarti', article_preity_zinta_jacarti()))
-    results.append(('Titan Story', article_titan_story()))
-    results.append(('Gram Chikitsalay S2', article_gram_chikitsalay()))
-
-    print('\n' + '=' * 60)
-    print('📊 Summary:')
-    for name, ok in results:
-        print(f'  {"✅" if ok else "❌"} {name}')
-    
-    success = sum(1 for _, ok in results if ok)
-    print(f'\n  Published: {success}/3')
-    
-    if success == 0:
-        sys.exit(1)
+print(f"\n=== Done: {success_count}/{len(articles)} published successfully ===")
