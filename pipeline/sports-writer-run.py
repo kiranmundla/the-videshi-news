@@ -1,34 +1,31 @@
 #!/usr/bin/env python3
 """Sports writer - June 6, 2026 run"""
 
-import json, os, sys, time, re, uuid
+import json
+import os
+import sys
+import uuid
+import time
 import requests
-import subprocess
+from io import BytesIO
 from datetime import datetime, timezone
 
 # Load env
-env_path = os.path.expanduser("~/.env.supabase")
-with open(env_path) as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith('#') and '=' in line:
-            key, val = line.split('=', 1)
-            os.environ[key.strip()] = val.strip().strip('"').strip("'")
+def load_env(path):
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, val = line.split('=', 1)
+                    os.environ.setdefault(key.strip(), val.strip().strip('"').strip("'"))
 
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-# Load Pexels key
-pexels_path = os.path.expanduser("~/workspace/.env.pexels")
-PEXELS_KEY = ""
-if os.path.exists(pexels_path):
-    with open(pexels_path) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                key, val = line.split('=', 1)
-                if 'PEXELS' in key.upper():
-                    PEXELS_KEY = val.strip().strip('"').strip("'")
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
 HEADERS = {
     "apikey": SUPABASE_KEY,
@@ -37,6 +34,10 @@ HEADERS = {
     "Prefer": "return=representation"
 }
 
+UA = "TheVideshi/1.0 (thevideshi.com)"
+
+# ==================== IMAGE SOURCING ====================
+
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     import urllib.parse
@@ -44,13 +45,12 @@ def fetch_wikipedia_person_image(person_name):
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            headers={"User-Agent": UA},
             timeout=10
         )
         if r.status_code == 200:
             data = r.json()
-            # Use thumbnail.source AS-IS (330px) - do NOT modify
-            img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
@@ -69,7 +69,7 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         "gsrnamespace": "6",
         "gsrlimit": str(limit),
         "prop": "imageinfo",
-        "iiprop": "url|size|mime|extmetadata",
+        "iiprop": "url|size|mime",
         "iiurlwidth": "1200",
         "format": "json"
     }
@@ -77,7 +77,7 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
             params=params,
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            headers={"User-Agent": UA},
             timeout=15
         )
         if r.status_code == 200:
@@ -108,312 +108,394 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
 
 
 def fetch_pexels_image(query):
-    """Search Pexels for a relevant image."""
+    """Fetch from Pexels."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
         return None
+    import subprocess
     try:
-        result = subprocess.run(
-            ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
-             f"https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page=3"],
-            capture_output=True, text=True, timeout=15
-        )
-        data = json.loads(result.stdout)
-        photos = data.get("photos", [])
-        if photos:
-            url = photos[0]["src"]["large2x"]
-            print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-            return url
+        import urllib.parse
+        q = urllib.parse.quote(query)
+        cmd = f'curl -sS "https://api.pexels.com/v1/search?query={q}&per_page=5" -H "Authorization: {PEXELS_KEY}"'
+        result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=15)
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            if photos:
+                url = photos[0].get("src", {}).get("large2x") or photos[0].get("src", {}).get("original")
+                if url:
+                    print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                    return url
     except Exception as e:
         print(f"  ⚠ Pexels error for '{query}': {e}")
     return None
 
 
-def validate_image_url(url):
-    """Validate that URL returns a real image > 5KB."""
-    if not url:
-        return False
+def compress_image(img_bytes, max_width=1200, quality=80):
+    """Resize and compress image. Returns JPEG bytes."""
+    from PIL import Image
+    img = Image.open(BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    result = buf.getvalue()
+    print(f"  ✓ Compressed image: {len(result)} bytes ({img.width}x{img.height})")
+    return result
+
+
+def upload_to_supabase(img_bytes, filename):
+    """Upload image to Supabase storage bucket 'article-images'."""
+    url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+    headers = {
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "image/jpeg",
+        "x-upsert": "true"
+    }
+    r = requests.post(url, headers=headers, data=img_bytes, timeout=30)
+    if r.status_code in (200, 201):
+        public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+        print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+        return public_url
+    else:
+        print(f"  ⚠ Upload failed ({r.status_code}): {r.text[:200]}")
+        return None
+
+
+def download_image(url):
+    """Download image bytes."""
     try:
-        r = subprocess.run(
-            ["curl", "-sS", "-o", "/dev/null", "-w", "%{http_code} %{content_type} %{size_download}",
-             "-L", "--max-time", "10", url],
-            capture_output=True, text=True, timeout=15
-        )
-        parts = r.stdout.strip().split()
-        if len(parts) >= 3:
-            status = parts[0]
-            content_type = parts[1]
-            size = float(parts[2])
-            if status == "200" and "image" in content_type and size > 5000:
-                print(f"  ✓ Image validated: {status}, {content_type}, {size:.0f} bytes")
-                return True
-            else:
-                print(f"  ✗ Image validation failed: {status}, {content_type}, {size:.0f} bytes")
+        r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
+        if r.status_code == 200 and len(r.content) > 5000:
+            ct = r.headers.get('Content-Type', '')
+            if 'image' in ct or len(r.content) > 10000:
+                print(f"  ✓ Downloaded image: {len(r.content)} bytes")
+                return r.content
+        print(f"  ⚠ Image download issue: status={r.status_code}, size={len(r.content)}")
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-    return False
+        print(f"  ⚠ Download error: {e}")
+    return None
+
+
+def source_image(person_name=None, topic_terms=None, pexels_query=None, slug="article"):
+    """Multi-source image search. Returns (supabase_url, attribution) or (None, None)."""
+    candidates = []
+
+    # Source 1: Wikipedia (for person articles)
+    if person_name:
+        wiki_img = fetch_wikipedia_person_image(person_name)
+        if wiki_img:
+            candidates.append({"url": wiki_img, "source": "wikimedia", "relevance": 3})
+
+    # Source 2: Wikimedia Commons
+    search_terms = []
+    if person_name and topic_terms:
+        search_terms.append(f"{person_name} {topic_terms}")
+    elif topic_terms:
+        search_terms.append(topic_terms)
+    if person_name:
+        search_terms.append(person_name)
+
+    for term in search_terms[:2]:
+        commons = fetch_wikimedia_commons_images(term)
+        for r in commons[:2]:
+            candidates.append({"url": r["url"], "source": "wikimedia", "relevance": 2})
+        if commons:
+            break
+
+    # Source 3: Pexels
+    if pexels_query:
+        pexels_img = fetch_pexels_image(pexels_query)
+        if pexels_img:
+            candidates.append({"url": pexels_img, "source": "pexels", "relevance": 1})
+
+    # Pick best
+    if not candidates:
+        print("  ✗ No image found from any source")
+        return None, None
+
+    candidates.sort(key=lambda c: c["relevance"], reverse=True)
+    best = candidates[0]
+    print(f"  → Best candidate: {best['source']} (relevance {best['relevance']})")
+
+    # Download, compress, upload
+    img_bytes = download_image(best["url"])
+    if not img_bytes:
+        # Try next candidates
+        for c in candidates[1:]:
+            img_bytes = download_image(c["url"])
+            if img_bytes:
+                best = c
+                break
+    
+    if not img_bytes:
+        print("  ✗ Could not download any candidate image")
+        return None, None
+
+    compressed = compress_image(img_bytes)
+    if len(compressed) < 10000:
+        print(f"  ⚠ Compressed image too small ({len(compressed)} bytes), trying next candidate...")
+        for c in candidates:
+            if c == best:
+                continue
+            img_bytes2 = download_image(c["url"])
+            if img_bytes2:
+                compressed2 = compress_image(img_bytes2)
+                if len(compressed2) >= 10000:
+                    compressed = compressed2
+                    best = c
+                    print(f"  → Switched to: {c['source']} (relevance {c['relevance']})")
+                    break
+        if len(compressed) < 10000:
+            print("  ✗ All candidate images too small, skipping")
+            return None, None
+
+    filename = f"{slug}.jpg"
+    supabase_url = upload_to_supabase(compressed, filename)
+    attribution = "Wikimedia Commons" if best["source"] == "wikimedia" else "Pexels"
+    return supabase_url, attribution
 
 
 def insert_article(article):
     """Insert article into Supabase."""
-    r = requests.post(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article
-    )
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
+    r = requests.post(url, headers=HEADERS, json=article, timeout=30)
     if r.status_code in (200, 201):
-        data = r.json()
-        if isinstance(data, list) and data:
-            print(f"  ✓ Published: {data[0].get('headline', 'unknown')}")
-            return True
-        elif isinstance(data, dict):
-            print(f"  ✓ Published: {data.get('headline', 'unknown')}")
-            return True
-    print(f"  ✗ Insert failed: {r.status_code} - {r.text[:200]}")
-    return False
-
-
-# ============================================================
-# ARTICLE 1: Manav Suthar Test Debut Profile
-# ============================================================
-
-print("\n" + "="*60)
-print("ARTICLE 1: Manav Suthar Test Debut")
-print("="*60)
-
-# Image sourcing: Try Wikipedia for Manav Suthar, then Commons, then Pexels
-print("\nSourcing image...")
-img1_url = None
-img1_caption = ""
-img1_attribution = ""
-
-# Wikipedia
-img1_url = fetch_wikipedia_person_image("Manav Suthar")
-if img1_url and validate_image_url(img1_url):
-    img1_caption = "Manav Suthar, India's Test cap No. 319"
-    img1_attribution = "Wikimedia Commons"
-else:
-    img1_url = None
-
-# Wikimedia Commons
-if not img1_url:
-    commons = fetch_wikimedia_commons_images("Manav Suthar cricketer India")
-    for c in commons:
-        if validate_image_url(c["url"]):
-            img1_url = c["url"]
-            img1_caption = "Manav Suthar, India's Test cap No. 319"
-            img1_attribution = "Wikimedia Commons"
-            break
-
-# Try Kuldeep Yadav (since he gave the cap) as a related image
-if not img1_url:
-    img1_url = fetch_wikipedia_person_image("Kuldeep Yadav")
-    if img1_url and validate_image_url(img1_url):
-        img1_caption = "Kuldeep Yadav, who presented Manav Suthar his Test cap"
-        img1_attribution = "Wikimedia Commons"
+        result = r.json()
+        art_id = result[0]["id"] if isinstance(result, list) else result.get("id")
+        print(f"  ✓ Article inserted: {art_id}")
+        return art_id
     else:
-        img1_url = None
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
+        return None
 
-# Pexels fallback - cricket spin bowling
-if not img1_url:
-    img1_url = fetch_pexels_image("cricket spin bowling India")
-    if img1_url and validate_image_url(img1_url):
-        img1_caption = "A spinner in action during a cricket match"
-        img1_attribution = "Pexels"
-    else:
-        img1_url = None
 
-if not img1_url:
-    print("  ⚠ No image found for Article 1")
+# ==================== ARTICLES ====================
 
-article1_body = """His father is a school teacher in Sri Ganganagar, a city near the India-Pakistan border in northern Rajasthan. His mother, Sushila Devi, is a homemaker. Cricket was never the family business. But on Saturday, June 6, 2026, at the Maharaja Yadavindra Singh International Cricket Stadium in Mullanpur, their son Manav Suthar walked out as India's Test cap No. 319.
+articles_to_write = []
 
-Kuldeep Yadav, his fellow left-arm spinner, handed him the cap before the toss. The BCCI posted a picture with a simple caption: *"The smile says it all."*
-
-## The Road from Sri Ganganagar
-
-Manav began playing cricket at ten or eleven. He wanted to be a batsman. His coach, Dheeraj Sharma, saw something else — a left arm that could turn the ball sharply and a patience that belied his age. Sharma steered him toward spin, and the move changed his trajectory entirely.
-
-By the time he was captaining the Sriganganagar district team, he had already led them to Under-14 and Under-16 titles. He progressed through Rajasthan's age-group sides — Under-16, Under-19, Under-23 — and made his first-class debut for Rajasthan in the 2021-22 Ranji Trophy season against Andhra in February 2022.
-
-What followed was a relentless accumulation of wickets. In the 2022-23 Ranji Trophy, Suthar finished as Rajasthan's top wicket-taker with 39 scalps from just six matches. Across 29 first-class matches, he has taken 129 wickets at an average of 25.76, with six five-wicket hauls and a best of 8/33. He has also scored 945 runs, including a century, confirming his credentials as a genuine bowling all-rounder.
-
-## The India A Audition
-
-Suthar's big breakthrough came during the unofficial Test series between India A and Australia A in 2025. He finished as joint-highest wicket-taker in the series with eight wickets, matching teammate Gurnoor Brar, and recorded best figures of 5/107 in an innings. That performance, against batters preparing for full international duty, put him firmly in the national selectors' conversation.
-
-He had earlier caught attention at the 2023 ACC Emerging Teams Asia Cup, where he took 10 wickets in five matches and finished as the second-highest wicket-taker of the tournament. Senior players noticed. During India's preparation camp for the 2023 ODI World Cup, both Rohit Sharma and Virat Kohli were reportedly impressed with Suthar's consistency and control in the nets.
-
-## Filling Large Shoes
-
-The timing of Suthar's debut is significant. Ravichandran Ashwin retired from international cricket. Ravindra Jadeja was rested for the Afghanistan Test. For the first time in nearly 16 years and 69 consecutive home Tests, India fielded a home Test XI without either of those two spin giants.
-
-That is the void Suthar is being asked to fill. Head coach Gautam Gambhir was direct about why he got the nod over fellow newcomer Harsh Dubey: *"This is perhaps the only Test match where we can have a look at someone who could be our fourth spinner. Because after this, we go to Sri Lanka, and we might have to carry four spinners. So this is an ideal opportunity to try someone who could be a long-term option as well."*
-
-Suthar played four matches for Gujarat Titans in IPL 2026, picking up two wickets. His T20 numbers are modest — 25 wickets in 29 matches — but in red-ball cricket, where patience and guile outweigh pace and novelty, his record speaks for itself.
-
-## What the NRI Community Should Know
-
-For the Indian diaspora watching from abroad, Suthar's story carries a familiar resonance. A middle-class family in a small city. A son whose passion his parents supported without fully understanding where it could lead. A coach who saw talent that the boy himself did not recognise.
-
-Jagdish Suthar, Manav's father, told Dainik Bhaskar after the call-up: *"My son has been working hard continuously for the last 12-13 years. Initially, he wanted to be a batsman, but coach Dheeraj Sharma recognised his bowling talent and made him a spinner, which later proved to be correct."*
-
-India are building a new spin core. Washington Sundar, Kuldeep Yadav, and now Manav Suthar represent the next generation. At 23, Suthar has time, form, and the backing of a team management that is investing deliberately in youth. Cap 319 is just the beginning.
-
-*Sources: BCCI, Reuters, Dainik Bhaskar, ESPNcricinfo, Sportskeeda*"""
-
-article1 = {
-    "headline": "His Father Is a School Teacher Near the Pakistan Border. On Saturday, He Became India's Cap No. 319.",
-    "subheadline": "Manav Suthar's Test debut in Mullanpur caps a 13-year journey from Sri Ganganagar district cricket to filling the void left by Ashwin and Jadeja.",
-    "body": article1_body,
-    "slug": "manav-suthar-test-debut-cap-319-india-afghanistan-mullanpur-sri-ganganagar-nri",
+# ---- ARTICLE 1: Shreyas Iyer named T20I captain ----
+articles_to_write.append({
+    "headline": "Shreyas Iyer Is India's New T20I Captain. Suryakumar Yadav Has Been Dropped Entirely.",
+    "subheadline": "The selectors have named Iyer captain for the Ireland and England tours, with 15-year-old Sooryavanshi earning his maiden call-up as India begins its rebuild toward the 2028 World Cup.",
+    "slug": "shreyas-iyer-india-t20i-captain-suryakumar-dropped-sooryavanshi-maiden-call-ireland-england-nri",
     "category": "sports",
-    "image_url": img1_url or "",
-    "image_caption": img1_caption,
-    "image_attribution": img1_attribution,
-    "vertical": "sports",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "is_editorial": False,
-    "sources": json.dumps(["BCCI", "Reuters", "Dainik Bhaskar", "ESPNcricinfo", "Sportskeeda"])
-}
+    "person_name": "Shreyas Iyer",
+    "topic_terms": "Shreyas Iyer cricket India captain",
+    "pexels_query": "cricket captain india",
+    "image_caption": "Shreyas Iyer, India's newly appointed T20I captain",
+    "body": """Three months after leading India to a T20 World Cup title on home soil, Suryakumar Yadav has lost not just the captaincy but his place in the squad entirely. The Board of Control for Cricket in India announced on Saturday that Shreyas Iyer will captain India's T20I side for the upcoming tours of Ireland and England, marking one of the most decisive leadership transitions in Indian white-ball cricket.
 
-if img1_url:
-    insert_article(article1)
-else:
-    print("  ⚠ Skipping article 1 - no valid image found")
-    # Try one more time with a generic cricket-related image
-    img1_url = fetch_pexels_image("cricket stadium India")
-    if img1_url and validate_image_url(img1_url):
-        article1["image_url"] = img1_url
-        article1["image_caption"] = "The Maharaja Yadavindra Singh International Cricket Stadium in Mullanpur hosted its first Test match"
-        article1["image_attribution"] = "Pexels"
-        insert_article(article1)
-    else:
-        print("  ✗ Cannot publish article 1 without image")
+The announcement, made by selection panel chairman Ajit Agarkar during a press conference held at the Maharaja Yadavindra Singh Stadium in New Chandigarh, signals the beginning of India's rebuild toward the 2028 T20 World Cup in Australia and New Zealand and the Los Angeles Olympics the same year.
 
+## A World Cup Winner Sacked
 
-# ============================================================
-# ARTICLE 2: India Without Ashwin and Jadeja - Historic Transition
-# ============================================================
+Suryakumar's exit follows a now-familiar BCCI pattern. In 2025, Rohit Sharma was removed as captain after leading India to the Champions Trophy title. Suryakumar has now suffered a similar fate — a trophy-winning captain discarded while the selectors look ahead.
 
-print("\n" + "="*60)
-print("ARTICLE 2: India Without Ashwin and Jadeja")
-print("="*60)
+The numbers, however, tell a story of diminishing returns. Since 2024, Suryakumar has scored 1,131 runs in 50 T20I innings at an average of 26.30, a sharp decline from his career average of 36.35. His IPL 2026 campaign was equally modest: 270 runs in 13 innings at a strike rate of 147.54. At 35, the Mumbai batter's best years in the shortest format appear to be behind him.
 
-# Image sourcing for transition article
-print("\nSourcing image...")
-img2_url = None
-img2_caption = ""
-img2_attribution = ""
+"Led a team to the IPL title, his own performances have been good. He was close to being part of the World Cup squad. In my opinion, he was a stand-out candidate," Agarkar said of Iyer's appointment.
 
-# Try Ashwin from Wikipedia
-img2_url = fetch_wikipedia_person_image("Ravichandran Ashwin")
-if img2_url and validate_image_url(img2_url):
-    img2_caption = "Ravichandran Ashwin, who retired from international cricket after 106 Tests and 537 wickets"
-    img2_attribution = "Wikimedia Commons"
-else:
-    img2_url = None
+## Iyer's Long Road Back
 
-# Try Jadeja
-if not img2_url:
-    img2_url = fetch_wikipedia_person_image("Ravindra Jadeja")
-    if img2_url and validate_image_url(img2_url):
-        img2_caption = "Ravindra Jadeja was rested for the one-off Test against Afghanistan"
-        img2_attribution = "Wikimedia Commons"
-    else:
-        img2_url = None
+Shreyas Iyer's return to T20I cricket is a story of patience. He last played a T20I for India in December 2023, unable to find a place in the squad with Suryakumar and Tilak Varma occupying middle-order positions. He was called up as an injury replacement during the home series against New Zealand in January 2026 but did not play a single match.
 
-# Commons fallback
-if not img2_url:
-    commons = fetch_wikimedia_commons_images("Indian cricket test match spin bowling")
-    for c in commons:
-        if validate_image_url(c["url"]):
-            img2_url = c["url"]
-            img2_caption = "India's spin department faces a generational shift"
-            img2_attribution = "Wikimedia Commons"
-            break
+Yet his credentials are hard to ignore. He led Kolkata Knight Riders to the IPL title in 2024 and guided Punjab Kings to the final in 2025. In IPL 2026, he scored 498 runs at a strike rate of 168.81, consistently among the tournament's most impactful batters. At 31, the selectors clearly see him as the man to bridge the gap between India's current transition and the next major cycle.
 
-# Pexels fallback
-if not img2_url:
-    img2_url = fetch_pexels_image("cricket test match India")
-    if img2_url and validate_image_url(img2_url):
-        img2_caption = "India's spin department faces a generational shift"
-        img2_attribution = "Pexels"
-    else:
-        img2_url = None
+Iyer will captain the side for two T20Is against Ireland in Belfast on June 26 and 28, followed by a five-match series against England from July 1 to 11.
 
-if not img2_url:
-    print("  ⚠ No image found for Article 2")
+## The Sooryavanshi Moment
 
+The headline within the headline is the maiden call-up of Vaibhav Sooryavanshi, the 15-year-old who demolished IPL 2026 with 776 runs in 16 matches for the Rajasthan Royals. He broke Chris Gayle's record for the most sixes in an IPL season, swept the Orange Cap, MVP, and Emerging Player awards, and carried his franchise almost single-handedly into the playoffs.
 
-article2_body = """For 69 consecutive home Tests — a span covering more than 15 years — at least one of Ravichandran Ashwin or Ravindra Jadeja walked out in India whites whenever India played at home. That streak ended on Saturday, June 6, 2026, at the Maharaja Yadavindra Singh International Cricket Stadium in Mullanpur.
+Should Sooryavanshi debut against Ireland or England, he would become the youngest player to represent India's senior men's team, breaking a record held by Sachin Tendulkar since 1989. "We've seen what he can do — towards the playoffs, he almost single-handedly carried Rajasthan Royals," Agarkar said. "He's a game-changer. He has picked himself."
 
-The one-off Test against Afghanistan is India's first home Test without either spinner since late 2010. Ashwin has retired. Jadeja was rested. In their place: Washington Sundar, Kuldeep Yadav, and debutant Manav Suthar — a 23-year-old left-arm orthodox spinner from Rajasthan who received his cap from Kuldeep before the match.
+## The Full Squad
 
-The numbers those two compiled together are staggering.
+India's T20I squad for Ireland and England: Shreyas Iyer (captain), Tilak Varma (vice-captain), Abhishek Sharma, Sanju Samson, Ishan Kishan, Vaibhav Sooryavanshi, Shivam Dube, Nitish Kumar Reddy, Axar Patel, Washington Sundar, Ravi Bishnoi, Varun Chakaravarthy, Arshdeep Singh, Mohammed Siraj, Harshit Rana, and Prince Yadav.
 
-## What India Loses — By the Numbers
+The BCCI also named the squad for the men's cricket competition at the Asian Games in Japan later this year, which includes veteran fast bowler Jasprit Bumrah.
 
-During those 69 home Tests featuring at least one of Ashwin or Jadeja, India won 49 and lost only 11. That is a win rate of 71 per cent. Ashwin alone played 65 home Tests, taking 383 wickets at home — the bedrock of India's fortress reputation. He registered 29 five-wicket hauls at home, six ten-wicket matches, seven Player of the Match awards and 11 Player of the Series honours. No Indian spinner in the modern era dominated home conditions as thoroughly.
+## What It Means for NRIs
 
-Jadeja, meanwhile, evolved from a containing left-arm spinner into one of Test cricket's most valuable all-rounders. His batting, particularly from No. 7 and No. 8, regularly rescued India from precarious positions, and his fielding was among the best in the world.
+For the Indian diaspora in the UK and Ireland, the timing is significant. The Belfast T20Is and the England series will offer NRI fans in Britain and Northern Ireland a rare chance to watch India's next generation live. With Sooryavanshi, Tilak Varma, and Abhishek Sharma all under 25, and Iyer leading a squad built for 2028, these tours are the first chapter of a new era.
 
-"His consistency and accuracy were remarkable," former India bowling coach Bharat Arun told Cricbuzz of Ashwin. "He had this uncanny knack for bowling straighter deliveries even on turning tracks, which is never easy. The batsman would be playing for the turn and the ball goes straight."
+The message from the selectors is clear: winning a World Cup no longer guarantees your place. The future starts now."""
+})
 
-## The New Spin Core
-
-India's selection for the Afghanistan Test signals the direction of travel. Three spinners were named in the XI — Washington Sundar, who offers batting depth and off-spin at a tight economy; Kuldeep Yadav, whose wrist spin and left-arm variations make him India's primary attacking option; and Manav Suthar, a bowling all-rounder with 129 first-class wickets at 25.76 from 29 matches.
-
-Gambhir was explicit about the reasoning. "This is perhaps the only Test match where we can have a look at someone who could be our fourth spinner," he said. "Because after this, we go to Sri Lanka, and we might have to carry four spinners."
-
-India's next red-ball assignment after this Test is a series in Sri Lanka, where pitches historically assist slow bowlers from the first session. Building a deep spin roster is not a luxury — it is a strategic necessity. The management wants to know whether Suthar can complement Kuldeep and Sundar, or whether Harsh Dubey, who missed out this time, should be the preferred option.
-
-## Why It Matters Beyond Cricket
-
-The Ashwin-Jadeja era represented something broader than wickets and averages. It represented an era in which India's home dominance was taken as a given. Visiting teams arrived expecting to lose. The pitch, the crowd, and the two spinners formed a combination that broke batting lineups season after season.
-
-That certainty is gone. India's recent home record has been turbulent — a 0-3 whitewash by New Zealand, a 2-0 defeat to South Africa, and a Test championship position that has slid to sixth. The team that once made home soil feel like an impregnable fortress has been breached repeatedly.
-
-"A Test match is a Test match," Gambhir said when asked about the importance of the Afghanistan game, which does not carry World Test Championship points. "I know people say this isn't part of the World Test Championship, but for me, it is a Test match. We need to win for the country."
-
-## For the Diaspora
-
-For NRIs who grew up watching Ashwin orchestrate home victories, this transition is both uncomfortable and overdue. India's cricket team is doing what every great institution must eventually do: trusting the next generation before it feels safe.
-
-Ashwin, characteristically thoughtful about his own exit, offered his blessing. "I enjoyed every moment under the sun playing at home. It's like you are defending your territory," he told Cricbuzz. "Good luck to all the boys who will play to defend their territory."
-
-The territory is unchanged. The defenders have not yet proven themselves. That is what makes this Test, against a modest Afghanistan side on a hot afternoon in Mullanpur, more significant than its billing suggests. Nine more Tests are scheduled for India this year, including the Sri Lanka and New Zealand series and a tour to England. The spin department that takes the field in those series is being shaped right now.
-
-*Sources: CricketAddictor, Cricbuzz, Reuters, ESPNcricinfo, BCCI*"""
-
-article2 = {
-    "headline": "Sixty-Nine Home Tests. At Least One of Them Always Played. On Saturday in Mullanpur, Neither Did.",
-    "subheadline": "Ashwin has retired. Jadeja was rested. India's first home Test without either in 16 years marks the end of a spin era and the start of an uncertain transition.",
-    "body": article2_body,
-    "slug": "india-without-ashwin-jadeja-69-home-tests-spin-transition-afghanistan-mullanpur-nri",
+# ---- ARTICLE 2: India vs Afghanistan Test Day 1 ----
+articles_to_write.append({
+    "headline": "Rahul Made a Hundred. Gill Made a Hundred. India Are 368 for 3 at Stumps Against Afghanistan.",
+    "subheadline": "KL Rahul scored 100 off 165 balls and Shubman Gill struck an unbeaten 103 as India dominated the opening day of the one-off Test at Mullanpur. Rishabh Pant is 50 not out.",
+    "slug": "india-afghanistan-test-day-1-kl-rahul-gill-centuries-pant-fifty-mullanpur-368-3-nri",
     "category": "sports",
-    "image_url": img2_url or "",
-    "image_caption": img2_caption,
-    "image_attribution": img2_attribution,
-    "vertical": "sports",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "is_editorial": False,
-    "sources": json.dumps(["CricketAddictor", "Cricbuzz", "Reuters", "ESPNcricinfo", "BCCI"])
-}
+    "person_name": "KL Rahul",
+    "topic_terms": "KL Rahul cricket test century India",
+    "pexels_query": "cricket test match batting India",
+    "image_caption": "KL Rahul scored his 12th Test century against Afghanistan at Mullanpur",
+    "body": """India's first Test of 2026 began exactly the way the team needed it to. On a hot Saturday in New Chandigarh, KL Rahul scored his 12th Test century, captain Shubman Gill struck an unbeaten 103, and Rishabh Pant added an aggressive 50 not out as India reached 368 for 3 at stumps on the opening day of the one-off Test against Afghanistan.
 
-if img2_url:
-    insert_article(article2)
-else:
-    print("  ⚠ Skipping article 2 - no valid image found")
-    img2_url = fetch_pexels_image("cricket spin bowler")
-    if img2_url and validate_image_url(img2_url):
-        article2["image_url"] = img2_url
-        article2["image_caption"] = "India's spin department enters a new era without Ashwin and Jadeja"
-        article2["image_attribution"] = "Pexels"
-        insert_article(article2)
+The Maharaja Yadavindra Singh International Cricket Stadium in Mullanpur hosted its first-ever Test match, and the home team ensured the venue's maiden day in red-ball cricket would be remembered for all the right reasons.
+
+## The Morning: A Cautious Start
+
+India won the toss and chose to bat on a pitch that showed a green tinge on the eve of the match but was expected to dry out quickly in temperatures pushing past 40 degrees Celsius. Manav Suthar, the young left-arm spinner from Rajasthan, earned his Test cap.
+
+Yashasvi Jaiswal and KL Rahul opened the batting. The morning session was marked by caution, with both batters taking their time against Afghanistan's pace attack. Jaiswal, however, fell in the 11th over for 24, caught behind off Mohammad Saleem Safi.
+
+Rahul had survived a significant reprieve on the first ball of the 11th over when Afghanistan declined to review a caught-behind appeal. UltraEdge later confirmed there was a deflection. It was a decision that would prove costly.
+
+## The Afternoon: Rahul and Sudharsan Build
+
+After lunch, KL Rahul and Sai Sudharsan settled into a partnership that took the game away from Afghanistan. Sudharsan, playing in only his fourth Test, looked composed from the start. Both batters brought up their half-centuries within two overs of each other in the afternoon session, with Sudharsan reaching his third Test fifty with back-to-back boundaries.
+
+The pair added 139 runs in 184 balls for the second wicket before Saleem Safi broke through again, drawing an edge from Sudharsan that carried to wicketkeeper Afsar Zazai. Sudharsan departed for 81, having struck 13 fours in a mature innings that confirmed his growing stature at number three.
+
+Captain Gill joined Rahul, and the pair took India to 209 for 2 at tea in 50 overs.
+
+## The Evening: Centuries and Intent
+
+The final session belonged to Gill and then Pant. Rahul, increasingly confident after his reprieve, reached his 12th Test century off 165 balls, drawing warm applause from the Mullanpur crowd. But he fell on the very next delivery, caught by Gurbaz off Ziaur Rahman Sharifi for exactly 100. The dismissal, coming on the ball after his milestone, was a cruel twist.
+
+Captain Gill, however, was in imperious form. He brought up his ninth Test fifty and then pressed on to three figures, reaching 103 off 143 balls with 11 fours and a six. It was a captain's knock — patient when the situation demanded it, aggressive when the bowlers faltered.
+
+Rishabh Pant joined Gill and played with characteristic intent. The wicketkeeper-batter raced to 50 off 70 balls, clearing the boundary three times, and was 50 not out at stumps alongside Gill. Their unbroken fourth-wicket stand was worth 121 runs in 151 balls.
+
+## Afghanistan's Struggle
+
+For Afghanistan, playing their second-ever Test against India — and their first in eight years — the day was punishing. Captain Hashmatullah Shahidi bowled 17 overs of spin himself for 61 runs but could not find a breakthrough. Nangeyalia Kharote, the left-arm spinner, went for 95 in 20 wicketless overs. Only Mohammad Saleem Safi, who returned figures of 2 for 67, provided any control.
+
+The absence of Rashid Khan, arguably the finest Afghan cricketer of his generation, was felt acutely. Without his leg-spin, Afghanistan lacked the wicket-taking threat needed to contain India's batting depth.
+
+## What It Means
+
+This was India's first home Test since the painful whitewashes by New Zealand and South Africa. Though the match sits outside the World Test Championship cycle, it carries symbolic weight. The top three — Jaiswal, Rahul, and Sudharsan — are the same unit that was battered in those defeats. On Saturday, at least two of them answered emphatically.
+
+For NRI fans following from abroad, the scorecard reads like a statement of intent. India are building again, and on Day 1 at Mullanpur, the foundations looked solid."""
+})
+
+# ---- ARTICLE 3: Indian-origin players at FIFA World Cup 2026 ----
+articles_to_write.append({
+    "headline": "India Are Not at the World Cup. But Four Players With Indian Roots Will Be.",
+    "subheadline": "When the FIFA World Cup kicks off on June 11, players tracing their heritage to Kerala, Punjab, and Tamil Nadu will represent four different nations — the first time this has happened since 2006.",
+    "slug": "four-indian-origin-players-fifa-world-cup-2026-sarpreet-tahsin-velupillay-moutoussamy-nri",
+    "category": "sports",
+    "person_name": "Sarpreet Singh",
+    "topic_terms": "FIFA World Cup 2026 Indian origin players",
+    "pexels_query": "football soccer world cup stadium",
+    "image_caption": "Sarpreet Singh of New Zealand, one of four Indian-origin players at the 2026 FIFA World Cup",
+    "sources": [
+        {"name": "Mint", "url": "https://livemint.com"},
+        {"name": "Dainik Bhaskar", "url": "https://bhaskarenglish.in"},
+        {"name": "FIFA", "url": "https://fifa.com"}
+    ],
+    "body": """India has never played at a senior men's FIFA World Cup. They qualified once, for the 1950 tournament in Brazil, but withdrew, citing travel costs and a preference for the 1952 Olympics. Seventy-six years later, the Indian national team is nowhere near the expanded 48-team field that will contest the 2026 edition across the United States, Canada, and Mexico starting June 11.
+
+But for the first time since Vikash Dhorasoo wore France's blue shirt in Germany in 2006, the World Cup will feature players with Indian roots — and this time, there are four of them, representing four different nations.
+
+## Tahsin Mohammed Jamshid — Qatar
+
+The youngest of the four is Tahsin Mohammed Jamshid, a 19-year-old winger born in Doha to parents from Kannur, Kerala. His father, Jamshid, played football for the University of Calicut before moving to Qatar in 1996 to work as an accountant. Tahsin joined the Aspire Academy as a teenager and emerged as one of Qatar's most explosive young attackers at Al Duhail.
+
+His pace and dribbling drew comparisons to more established players, and he caught the eye of Spanish coach Julen Lopetegui, who trusted him ahead of veteran forward Sebastian Soria. Spanish football analyst Alfonso Perez has described him as a player with "raw pace" who could one day move to a major European club.
+
+Tahsin made his senior debut for Qatar during a World Cup qualifier against Afghanistan in June 2024. He has since represented Qatar at senior, U-23, U-20, and youth levels. He is also, notably, the first player with an Indian passport to be named in a World Cup squad.
+
+## Sarpreet Singh — New Zealand
+
+Sarpreet Singh was born in Auckland to Punjabi parents from Jalandhar. He broke through at Wellington Phoenix before earning a move to Bayern Munich in 2019, becoming the first player of Indian descent to play in the German Bundesliga.
+
+His career since has been itinerant — stints in Germany, Portugal, and a return to Wellington Phoenix on loan from Serbian club TSC — but his talent has never been in question. At 27, Singh has 24 international caps and recovered from a knee injury earlier this year to make New Zealand's final squad. The All Whites open their campaign against Iran in Inglewood, California, on June 16, with Singh expected to be a central creative presence.
+
+## Nishan Velupillay — Australia
+
+Nishan Velupillay, born in Melbourne, traces his heritage to Sri Lankan Tamil roots through his Malaysian-born father, Sasinath, and an Anglo-Indian mother, Gillian. The 25-year-old winger has been a mainstay at Melbourne Victory, scoring 19 goals in 128 appearances since 2021.
+
+He made his senior Australia debut during a World Cup qualifier against China in 2024 and has earned six international caps. His blistering pace on the wing gives Australia a counter-attacking dimension that coach Graham Arnold has relied on through the qualification campaign. The Socceroos face Denmark, France, and Peru in what promises to be one of the tournament's toughest groups.
+
+## Samuel Moutoussamy — DR Congo
+
+The most experienced of the four is Samuel Moutoussamy, a 29-year-old defensive midfielder born in Paris. His connection to India runs through his Indo-Guadeloupean father, whose family traces its origins to Tamil Nadu. Indo-Guadeloupeans are largely descendants of South Indian workers who migrated to the Caribbean island in the late nineteenth century.
+
+Moutoussamy built his career at French club Nantes, where he made over 140 appearances and won the Coupe de France in 2021-22. He currently plays for Greek side Atromitos. Though born and raised in France, he chose to represent DR Congo through his Congolese mother and has earned 57 caps since 2019. Congo open against Portugal, with Moutoussamy expected to anchor their midfield.
+
+## What It Means for the Diaspora
+
+For Indian football fans — and for the broader NRI community — the presence of four players with Indian roots at a single World Cup is without precedent. Their backgrounds span three continents and trace back to Kerala, Punjab, and Tamil Nadu, the very regions that define much of the Indian diaspora's geography.
+
+None of these players grew up in India. Each was shaped by the football infrastructure of the country they represent. But their success carries a message: that talent from the Indian diaspora can thrive at the highest level when given the right development pathway.
+
+The FIFA World Cup 2026 runs from June 11 to July 19. India may not be playing. But Indians, in a sense, will be there."""
+})
+
+# ==================== MAIN EXECUTION ====================
+
+print("=" * 60)
+print("SPORTS WRITER - June 6, 2026")
+print("=" * 60)
+
+published_count = 0
+
+for i, article_data in enumerate(articles_to_write):
+    print(f"\n{'='*60}")
+    print(f"ARTICLE {i+1}: {article_data['headline'][:60]}...")
+    print(f"{'='*60}")
+
+    slug = article_data["slug"]
+
+    # Source image
+    print("\n📸 Sourcing image...")
+    img_url, img_attr = source_image(
+        person_name=article_data.get("person_name"),
+        topic_terms=article_data.get("topic_terms"),
+        pexels_query=article_data.get("pexels_query"),
+        slug=slug
+    )
+
+    # Build article payload
+    article_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    payload = {
+        "id": article_id,
+        "headline": article_data["headline"],
+        "subheadline": article_data["subheadline"],
+        "slug": slug,
+        "body": article_data["body"].strip(),
+        "category": "sports",
+        "vertical": "sports",
+        "status": "published",
+        "published_at": now,
+        "is_editorial": False,
+        "is_featured": False,
+        "score_total": 0,
+        "sources": json.dumps(article_data.get("sources", [
+            {"name": "Reuters", "url": "https://reuters.com"},
+            {"name": "BCCI", "url": "https://bcci.tv"},
+            {"name": "ESPNcricinfo", "url": "https://espncricinfo.com"}
+        ]))
+    }
+
+    if img_url:
+        payload["image_url"] = img_url
+        payload["image_caption"] = article_data.get("image_caption", "")
+        payload["image_attribution"] = img_attr
     else:
-        print("  ✗ Cannot publish article 2 without image")
+        print("  ⚠ No image — publishing without hero image")
 
-print("\n✓ Sports writer run complete")
+    # Insert
+    print("\n📝 Inserting article...")
+    art_id = insert_article(payload)
+    if art_id:
+        published_count += 1
+        print(f"  ✓ Published: {slug}")
+    else:
+        print(f"  ✗ Failed: {slug}")
+
+    time.sleep(1)
+
+print(f"\n{'='*60}")
+print(f"DONE: {published_count}/{len(articles_to_write)} articles published")
+print(f"{'='*60}")
