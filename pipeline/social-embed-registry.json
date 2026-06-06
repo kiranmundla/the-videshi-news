@@ -480,7 +480,8 @@
       {
         "name": "Karan Johar",
         "x": "karanjohar",
-        "threads": "karanjohar"
+        "threads": "karanjohar",
+        "instagram": "karanjohar"
       },
       {
         "name": "Diljit Dosanjh",
@@ -491,7 +492,8 @@
       {
         "name": "AR Rahman",
         "x": "arrahman",
-        "threads": null
+        "threads": null,
+        "instagram": "araboriginals"
       },
       {
         "name": "Amitabh Bachchan",
@@ -508,32 +510,152 @@
       {
         "name": "Anushka Sharma",
         "x": "AnushkaSharma",
-        "threads": "anushkasharma"
+        "threads": "anushkasharma",
+        "instagram": "anushkasharma"
       },
       {
         "name": "SS Rajamouli",
         "x": "ssrajamouli",
-        "threads": null
+        "threads": null,
+        "instagram": "ssrajamouli"
       },
       {
         "name": "Jr NTR",
         "x": "tarak9999",
-        "threads": null
+        "threads": null,
+        "instagram": "jrntr"
       },
       {
         "name": "Ram Charan",
         "x": "AlwaysRamCharan",
-        "threads": null
+        "threads": null,
+        "instagram": "alwaysramcharan"
       },
       {
         "name": "Prabhas",
         "x": "actorprabhas",
-        "threads": null
+        "threads": null,
+        "instagram": "actorprabhas"
       },
       {
         "name": "Rashmika Mandanna",
         "x": "iamRashmika",
-        "threads": "rashmika_mandanna"
+        "threads": "rashmika_mandanna",
+        "instagram": "rashmika_mandanna"
+      },
+      {
+        "name": "Salman Khan",
+        "x": "BeingSalmanKhan",
+        "threads": null,
+        "instagram": "beingsalmankhan"
+      },
+      {
+        "name": "Nayanthara",
+        "x": null,
+        "threads": null,
+        "instagram": "nayanthara"
+      },
+      {
+        "name": "Vicky Kaushal",
+        "x": "vabornskyzhal09",
+        "threads": null,
+        "instagram": "vickykaushal09"
+      },
+      {
+        "name": "Shahid Kapoor",
+        "x": "shahidkapoor",
+        "threads": null,
+        "instagram": "shahidkapoor"
+      },
+      {
+        "name": "Kriti Sanon",
+        "x": "kritisanon",
+        "threads": null,
+        "instagram": "kritisanon"
+      },
+      {
+        "name": "Samantha Ruth Prabhu",
+        "x": "Samantha4u",
+        "threads": null,
+        "instagram": "samantharuthprabhuoffl"
+      },
+      {
+        "name": "Anupam Kher",
+        "x": "AnupamPKher",
+        "threads": null,
+        "instagram": "anupamkher"
+      },
+      {
+        "name": "Hrithik Roshan",
+        "x": "iHrithik",
+        "threads": null,
+        "instagram": "hrithikroshan"
+      },
+      {
+        "name": "Katrina Kaif",
+        "x": null,
+        "threads": null,
+        "instagram": "katrinakaif"
+      },
+      {
+        "name": "Ranbir Kapoor",
+        "x": null,
+        "threads": null,
+        "instagram": "ranbirtankapoor"
+      },
+      {
+        "name": "Varun Dhawan",
+        "x": "Varun_dvn",
+        "threads": null,
+        "instagram": "varundhawan"
+      },
+      {
+        "name": "Tiger Shroff",
+        "x": null,
+        "threads": null,
+        "instagram": "tigerjackieshroff"
+      },
+      {
+        "name": "Allu Arjun",
+        "x": "alabornskyrjun",
+        "threads": null,
+        "instagram": "alluarjunonline"
+      },
+      {
+        "name": "Vijay Thalapathy",
+        "x": null,
+        "threads": null,
+        "instagram": "actorvijay"
+      },
+      {
+        "name": "Rajinikanth",
+        "x": null,
+        "threads": null,
+        "instagram": "rajinikanth"
+      },
+      {
+        "name": "Kamal Haasan",
+        "x": "ikaabornskyhaasan",
+        "threads": null,
+        "instagram": "ikaabornskyhaasan"
+      },
+      {
+        "name": "Tamannaah Bhatia",
+        "x": null,
+        "threads": null,
+        "instagram": "tamannaahspeaks"
+      },
+      {
+        "name": "Janhvi Kapoor",
+        "x": null,
+        "threads": null,
+        "instagram": "janhvikapoor"
+      },
+      {
+        "name": "Sara Ali Khan",
+        "x": null,
+        "threads": null,
+        "instagram": "saraalikhan95"
       }
     ],
     "organizations": [
