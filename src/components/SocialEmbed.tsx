@@ -189,10 +189,10 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
       {/* Photos */}
       {hasPhotos && <PhotoGrid photos={tweet.photos!} tweetUrl={tweetUrl} />}
 
-      {/* Collapsible text below photos */}
+      {/* Text — always visible when no photos, collapsible when photos present */}
       {bodyText && (
         <div style={{ padding: "0 16px" }}>
-          {expanded && (
+          {(!hasPhotos || expanded) && (
             <p style={{
               fontSize: 15, lineHeight: 1.55, color: "rgba(255,255,255,0.85)",
               margin: "0 0 8px", whiteSpace: "pre-wrap", wordWrap: "break-word",
@@ -200,15 +200,17 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
               {bodyText}
             </p>
           )}
-          <button
-            onClick={() => setExpanded(!expanded)}
-            style={{
-              background: "none", border: "none", color: "#1DA1F2", cursor: "pointer",
-              fontSize: 13, padding: "2px 0 8px", fontFamily: "inherit", fontWeight: 500,
-            }}
-          >
-            {expanded ? "Hide text ▲" : "Show text ▼"}
-          </button>
+          {hasPhotos && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              style={{
+                background: "none", border: "none", color: "#1DA1F2", cursor: "pointer",
+                fontSize: 13, padding: "2px 0 8px", fontFamily: "inherit", fontWeight: 500,
+              }}
+            >
+              {expanded ? "Hide text ▲" : "Show text ▼"}
+            </button>
+          )}
         </div>
       )}
 
