@@ -227,10 +227,14 @@ art1 = {
     "image_url": art1_image,
     "image_caption": art1_caption,
     "image_attribution": art1_attribution,
-    "sources": json.dumps(["The Hindu BusinessLine", "Daily Caller", "VisaVerge", "NY Post", "Rep. Chip Roy official press release"]),
+    "sources": json.dumps([{"name": "The Hindu BusinessLine", "url": "https://www.thehindubusinessline.com"}, {"name": "Daily Caller", "url": "https://www.dailycaller.com"}, {"name": "VisaVerge", "url": "https://www.visaverge.com"}, {"name": "Rep. Chip Roy press release", "url": "https://roy.house.gov"}]),
     "status": "published",
     "is_editorial": False,
-    "published_at": datetime.now(timezone.utc).isoformat()
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "vertical": "immigration",
+    "tags": ["h1b", "immigration", "opt", "chip-roy", "green-card", "dual-intent"],
+    "urgency": "high",
+    "score_total": 85
 }
 
 if art1_image:
@@ -312,10 +316,14 @@ art2 = {
     "image_url": art2_image,
     "image_caption": art2_caption,
     "image_attribution": art2_attribution,
-    "sources": json.dumps(["Times of India", "Reuters", "currato.com", "AirTrunk official statement"]),
+    "sources": json.dumps([{"name": "Times of India", "url": "https://timesofindia.indiatimes.com"}, {"name": "Reuters", "url": "https://www.reuters.com"}, {"name": "AirTrunk official statement", "url": "https://www.airtrunk.com"}]),
     "status": "published",
     "is_editorial": False,
-    "published_at": datetime.now(timezone.utc).isoformat()
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "vertical": "technology",
+    "tags": ["data-centres", "ai", "airtrunk", "blackstone", "investment", "modi"],
+    "urgency": "medium",
+    "score_total": 75
 }
 
 if art2_image:
@@ -397,10 +405,14 @@ art3 = {
     "image_url": art3_image,
     "image_caption": art3_caption,
     "image_attribution": art3_attribution,
-    "sources": json.dumps(["Reuters", "The Hindu BusinessLine", "State Street Investment Management", "360 ONE Asset"]),
+    "sources": json.dumps([{"name": "Reuters", "url": "https://www.reuters.com"}, {"name": "The Hindu BusinessLine", "url": "https://www.thehindubusinessline.com"}, {"name": "State Street Investment Management", "url": "https://www.ssga.com"}, {"name": "360 ONE Asset", "url": "https://www.360.one"}]),
     "status": "published",
     "is_editorial": False,
-    "published_at": datetime.now(timezone.utc).isoformat()
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "vertical": "economy",
+    "tags": ["rbi", "bonds", "capital-gains-tax", "rupee", "foreign-investment", "nri"],
+    "urgency": "high",
+    "score_total": 80
 }
 
 if art3_image:
