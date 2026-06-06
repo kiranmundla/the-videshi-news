@@ -1,302 +1,238 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi — 2026-06-06 batch"""
-
-import json, os, sys, time, uuid, re, subprocess, io
+"""Entertainment writer for The Videshi - June 6, 2026 batch"""
+import requests
+import json
+import os
+import urllib.parse
+import subprocess
+import time
+import uuid
 from datetime import datetime, timezone
 
-import requests
-from PIL import Image
+# Load env
+def load_env(path):
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, val = line.split('=', 1)
+                    os.environ[key.strip()] = val.strip().strip('"').strip("'")
 
-# ── env ──
-def source_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith('#') or '=' not in line:
-                continue
-            k, v = line.split('=', 1)
-            k = k.replace('export ', '').strip()
-            v = v.strip().strip('"').strip("'")
-            os.environ[k] = v
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-source_env(os.path.expanduser('~/.env.supabase'))
-source_env(os.path.expanduser('~/workspace/.env.supabase'))
-source_env(os.path.expanduser('~/workspace/.env.pexels'))
+SUPABASE_URL = os.environ.get('SUPABASE_URL')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY')
 
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-UA = "TheVideshi/1.0 (thevideshi.com)"
-
-HEADERS_SB = {
+HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation"
 }
 
-# ── Image helpers ──
 def fetch_wikipedia_person_image(person_name):
-    """Fetch actual photo from Wikipedia. Returns URL or None."""
-    import urllib.parse
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": UA}, timeout=10
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
-            # Prefer thumbnail (330px, reliable) over original (may 429)
+            # Prefer thumbnail (330px, reliable), fall back to originalimage
             img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
-
-def fetch_wikimedia_commons(query, limit=5):
-    """Search Wikimedia Commons. Returns list of dicts with url, title."""
+def fetch_wikimedia_commons_images(search_query, limit=5):
+    """Search Wikimedia Commons for CC-licensed images."""
+    params = {
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": search_query,
+        "gsrnamespace": "6",
+        "gsrlimit": str(limit),
+        "prop": "imageinfo",
+        "iiprop": "url|size|mime",
+        "iiurlwidth": "1200",
+        "format": "json"
+    }
     try:
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
-            params={
-                "action": "query", "generator": "search",
-                "gsrsearch": query, "gsrnamespace": "6", "gsrlimit": str(limit),
-                "prop": "imageinfo", "iiprop": "url|size|mime",
-                "iiurlwidth": "1200", "format": "json"
-            },
-            headers={"User-Agent": UA}, timeout=15
+            params=params,
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=15
         )
         if r.status_code == 200:
-            pages = r.json().get("query", {}).get("pages", {})
+            data = r.json()
+            pages = data.get("query", {}).get("pages", {})
             results = []
             for pid, page in pages.items():
                 ii = page.get("imageinfo", [{}])[0]
                 mime = ii.get("mime", "")
-                if not mime.startswith("image/") or mime == "image/svg+xml":
+                if not mime.startswith("image/"):
                     continue
-                if ii.get("width", 0) < 300:
+                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
                     continue
                 results.append({
                     "url": ii.get("thumburl") or ii.get("url", ""),
                     "original_url": ii.get("url", ""),
                     "title": page.get("title", ""),
-                    "width": ii.get("width", 0)
+                    "width": ii.get("width", 0),
+                    "height": ii.get("height", 0),
                 })
             if results:
-                print(f"  ✓ Commons: {len(results)} images for '{query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Commons error: {e}")
+        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
     return []
 
-
-def fetch_pexels(query):
-    """Fetch best Pexels image via curl. Returns URL or None."""
-    if not PEXELS_KEY:
-        return None
+def fetch_pexels_image(query):
+    """Fetch image from Pexels using curl (Python requests gets 403)."""
     try:
-        result = subprocess.run([
-            'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-            f'https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page=3'
-        ], capture_output=True, text=True, timeout=15)
-        data = json.loads(result.stdout)
-        photos = data.get('photos', [])
-        if photos:
-            url = photos[0]['src']['large2x']
-            print(f"  ✓ Pexels image for '{query}': {url[:60]}...")
-            return url
+        result = subprocess.run(
+            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=5",
+             "-H", f"Authorization: {PEXELS_KEY}"],
+            capture_output=True, text=True, timeout=15
+        )
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            if photos:
+                url = photos[0].get("src", {}).get("large2x") or photos[0].get("src", {}).get("large")
+                if url:
+                    print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                    return url
     except Exception as e:
-        print(f"  ⚠ Pexels error: {e}")
+        print(f"  ⚠ Pexels error for '{query}': {e}")
     return None
 
-
-def compress_image(img_bytes, max_width=1200, quality=80):
-    """Resize and compress to JPEG."""
-    img = Image.open(io.BytesIO(img_bytes))
-    if img.mode in ('RGBA', 'P'):
-        img = img.convert('RGB')
-    if img.width > max_width:
-        ratio = max_width / img.width
-        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-    buf = io.BytesIO()
-    img.save(buf, format='JPEG', quality=quality, optimize=True)
-    return buf.getvalue()
-
-
-def download_and_upload(image_url, slug):
-    """Download image, compress, upload to Supabase article-images bucket. Returns public URL."""
+def validate_image(url):
+    """Validate that URL returns a real image >5KB."""
     try:
-        r = requests.get(image_url, headers={"User-Agent": UA}, timeout=20)
-        if r.status_code != 200:
-            print(f"  ⚠ Download failed ({r.status_code}): {image_url[:60]}")
-            return None
-        ct = r.headers.get('Content-Type', '')
-        if not ct.startswith('image/'):
-            print(f"  ⚠ Not an image: {ct}")
-            return None
-        if len(r.content) < 5000:
-            print(f"  ⚠ Too small ({len(r.content)} bytes)")
-            return None
-
-        compressed = compress_image(r.content)
-        filename = f"{slug}.jpg"
-        
-        # Upload to Supabase storage
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        upload_headers = {
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": "image/jpeg",
-            "x-upsert": "true"
-        }
-        ur = requests.post(upload_url, headers=upload_headers, data=compressed, timeout=30)
-        if ur.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded: {filename} ({len(compressed)//1024}KB)")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed ({ur.status_code}): {ur.text[:100]}")
-            return None
-    except Exception as e:
-        print(f"  ⚠ Download/upload error: {e}")
-        return None
-
-
-def source_image(person_name, topic_terms, slug):
-    """Multi-source image: Wikipedia → Commons → Pexels. Returns (url, attribution) or (None, None)."""
-    candidates = []
-    
-    # Source 1: Wikipedia (for person articles)
-    if person_name:
-        wiki = fetch_wikipedia_person_image(person_name)
-        if wiki:
-            candidates.append({"url": wiki, "source": "Wikimedia Commons", "priority": 1})
-    
-    # Source 2: Wikimedia Commons
-    for q in topic_terms[:2]:
-        commons = fetch_wikimedia_commons(q, limit=3)
-        for c in commons[:2]:
-            candidates.append({"url": c["url"], "source": "Wikimedia Commons", "priority": 2})
-    
-    # Source 3: Pexels
-    for q in topic_terms[:1]:
-        pex = fetch_pexels(q)
-        if pex:
-            candidates.append({"url": pex, "source": "Pexels", "priority": 3})
-    
-    # Pick best and upload
-    for c in sorted(candidates, key=lambda x: x["priority"]):
-        final_url = download_and_upload(c["url"], slug)
-        if final_url:
-            return final_url, c["source"]
-    
-    return None, None
-
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", "0"))
+        if "image" in ct and cl > 5000:
+            return True
+        # Some servers don't return Content-Length on HEAD, try GET
+        if "image" in ct:
+            r2 = requests.get(url, timeout=10, stream=True,
+                             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            chunk = r2.raw.read(6000)
+            if len(chunk) > 5000:
+                return True
+    except:
+        pass
+    return False
 
 def insert_article(article):
     """Insert article into Supabase."""
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS_SB,
-        json=article,
-        timeout=30
+        headers=HEADERS,
+        json=article
     )
     if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]['id'] if isinstance(data, list) else data.get('id')
-        print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
-        return art_id
-    else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
-        return None
+        result = r.json()
+        if isinstance(result, list) and result:
+            print(f"  ✓ Published: {result[0].get('headline', '')[:60]}...")
+            return True
+    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+    return False
 
 
-# ═══════════════════════════════════════
-# ARTICLE 1: Shilpa Shinde False Harassment Confession
-# ═══════════════════════════════════════
+# ============================================================
+# ARTICLE 1: Hai Jawani Toh Ishq Hona Hai Day 1
+# ============================================================
 def write_article_1():
-    print("\n═══ Article 1: Shilpa Shinde False Harassment Confession ═══")
+    print("\n=== Article 1: Hai Jawani Toh Ishq Hona Hai ===")
     
-    slug = "shilpa-shinde-false-harassment-confession-sanjay-kohli-backlash-nri-20260606"
+    # Image sourcing: Varun Dhawan
+    img_url = None
+    img_caption = ""
+    img_attribution = ""
     
-    headline = "Shilpa Shinde Has Confessed to Filing a False Harassment Case. The Man She Accused Died Three Years Ago."
+    # Try Wikipedia for Varun Dhawan
+    wiki_img = fetch_wikipedia_person_image("Varun Dhawan")
+    if wiki_img and validate_image(wiki_img):
+        img_url = wiki_img
+        img_caption = "Varun Dhawan at a promotional event"
+        img_attribution = "Wikimedia Commons"
     
-    subheadline = "The Bigg Boss winner admitted on a podcast that her 2016 sexual harassment complaint against Bhabiji Ghar Par Hain producer Sanjay Kohli was fabricated. Men's rights groups want her arrested. The industry is split."
+    # Try Wikimedia Commons
+    if not img_url:
+        commons = fetch_wikimedia_commons_images("Varun Dhawan actor Bollywood")
+        for c in commons:
+            if validate_image(c["url"]):
+                img_url = c["url"]
+                img_caption = "Varun Dhawan at a film event"
+                img_attribution = "Wikimedia Commons"
+                break
     
-    body = """Shilpa Shinde sat across from Bharti Singh and Harsh Limbachiyaa on their podcast and said the thing she had been carrying for nearly a decade. The sexual harassment allegations she had levelled against Bhabiji Ghar Par Hain producer Sanjay Kohli in 2016 — the complaint that consumed headlines, ended her run on one of Indian television's most-watched shows, and triggered legal battles that dragged on for years — were not true.
-
-"The person on whom I put the blame knows what happened. I am sorry," Shinde said. "The word 'sorry' is very small, but he also knows the situation I was in. At that time, I felt I had no other option."
-
-Except Sanjay Kohli does not know. He died in 2023. He is not alive to accept the apology, dispute her account, or speak for himself. That detail has turned what might have been a complicated conversation about truth and pressure into something far more combustible.
-
-## The Fallout Was Immediate
-
-Within hours, the National Council for Men Affairs, a Delhi-based NGO, demanded Mumbai Police arrest Shinde for filing a false complaint. The All India Cine Workers Association has asked the Chief Minister to intervene. On X, the discourse split predictably: some praised her for finally telling the truth, others asked why she waited until the accused was dead to tell it.
-
-Hina Khan, who clashed with Shinde during Bigg Boss 11, issued a pointed response. Without naming Shinde directly, she called the confession "a crime, not courage," and accused her of using the revelation as a publicity stunt. Khan, who has been public about her battle with stage 3 breast cancer, appeared to reference Shinde's subsequent video in which the actress made what many interpreted as a veiled dig at colleagues who "use their own illnesses and the deaths of their family members" for attention.
-
-Shinde did not back down. In an Instagram video posted the same day, she said the backlash was being driven by "paid PR" and that critics were "passing judgment on a single line without watching the entire podcast."
-
-## What She Says Happened
-
-Shinde's account, pieced together from the podcast and her subsequent video, describes a woman who felt cornered. By 2016, she had left Bhabiji Ghar Par Hain amid disputes over her contract and working conditions. She says the production house had turned the industry against her, and no one was willing to support her publicly.
-
-Drawing on the traditional Indian framework of Saam, Daam, Dand, and Bhed — persuasion, inducement, punishment, and division — she said she had exhausted every avenue and resorted to the harassment complaint as a last weapon. She described being in a mental state where she was "contemplating suicide."
-
-She said a turning point came years later, after winning Bigg Boss, when a man told her his father had died by suicide after being falsely accused. That encounter, she said, planted the seed for her eventual confession.
-
-## The Larger Reckoning
-
-The timing has made this more than a celebrity scandal. India's entertainment industry has spent the last several years grappling with its own version of the #MeToo movement, where accusations against powerful men were met with a mix of solidarity, scepticism, and legal threats. Shinde's confession hands ammunition to those who argue that false allegations undermine genuine survivors — an argument that has been wielded, sometimes cynically, to discredit women who come forward.
-
-Karan Oberoi, an actor who was himself falsely accused of sexual assault in 2019, weighed in. "A false case is more anti-women than anti-men," he said. "One false case has the propensity to cast aspersions on a hundred genuine cases."
-
-The counterargument, made by several commentators and women's rights advocates, is equally sharp: Shinde's case is the exception, not the rule, and treating it as representative of a systemic pattern of false accusations is both statistically wrong and dangerous for the women who are still fighting to be believed.
-
-## What Happens Next
-
-Whether Shinde faces legal consequences remains unclear. Filing a false police complaint is a criminal offence under Indian law, punishable by up to seven years in prison. But prosecuting a case where the complainant has voluntarily recanted, the accused is dead, and the original complaint was filed a decade ago presents obvious legal complications.
-
-For the Indian diaspora watching from abroad, the case touches on something that resonates beyond Bollywood gossip. The tension between false accusations and genuine harassment is not unique to India, but the visibility of this case — a nationally known actress, a deceased producer, a confession delivered as content on a comedy podcast — makes it impossible to ignore.
-
-Shinde, for her part, says she is done caring. "Nobody supported me then, so I don't expect anyone's support now," she said. "I am ready to face all of this."
-
-The question is whether the system is ready to face her."""
-
-    sources = json.dumps([
-        {"name": "IANS", "url": "https://ianslive.in"},
-        {"name": "MensXP", "url": "https://mensxp.com"},
-        {"name": "Bollywood Life", "url": "https://bollywoodlife.com"},
-        {"name": "India Forums", "url": "https://indiaforums.com"},
-        {"name": "The Bridge Chronicle", "url": "https://thebridgechronicle.com"}
-    ])
+    # Try David Dhawan
+    if not img_url:
+        wiki_img2 = fetch_wikipedia_person_image("David Dhawan")
+        if wiki_img2 and validate_image(wiki_img2):
+            img_url = wiki_img2
+            img_caption = "David Dhawan, veteran comedy director"
+            img_attribution = "Wikimedia Commons"
     
-    # Image sourcing
-    print("  Sourcing image...")
-    img_url, img_attr = source_image(
-        "Shilpa Shinde",
-        ["Shilpa Shinde actress", "Shilpa Shinde Bigg Boss"],
-        slug
-    )
+    # Pexels fallback
+    if not img_url:
+        pexels = fetch_pexels_image("Bollywood comedy film theatre")
+        if pexels and validate_image(pexels):
+            img_url = pexels
+            img_caption = "A cinema hall screening a Bollywood film"
+            img_attribution = "Pexels"
     
+    if not img_url:
+        print("  ✗ No valid image found, skipping article")
+        return False
+    
+    body = """David Dhawan has directed his last film. Whether or not *Hai Jawani Toh Ishq Hona Hai* becomes a box office success, it marks the end of a directorial career that gave Hindi cinema some of its most unapologetically entertaining comedies — from *Coolie No. 1* and *Hero No. 1* to *Biwi No. 1* and the original *Partner*.
+
+The film, which opened in theatres on June 5, collected an estimated ₹7.5 to ₹8.5 crore on its first day, according to early trade estimates from Bollywood Hungama and Sacnilk. It managed around ₹4.25 crore from PVRInox and Cinepolis alone, with single screens and non-national chains contributing a higher-than-expected share. For a comedy without a massive pre-release campaign, those numbers represent a solid, if not spectacular, start.
+
+Varun Dhawan, who stars alongside Mrunal Thakur and Pooja Hegde, is back in the territory his father made him for — loud, colourful, unabashedly mass entertainers. The supporting cast is stacked: Jimmy Shergill, Mouni Roy, Rakesh Bedi, Chunky Pandey, and Maniesh Paul. Trade analyst Taran Adarsh gave the film 3.5 stars, calling it a "fun-filled entertainer" driven by Varun's energy. Sumit Kadel called it a "paisa vasool entertainer" that "delivers exactly what it promises — laughter, romance, music, confusion and unlimited fun."
+
+Not everyone agrees. India Today's review argued the film "mistakes loud volume for genuine humour" and described it as "a desperate attempt to recreate a very specific kind of 90s Bollywood hero: part Salman Khan, part Govinda, and entirely fabricated." The film also faced a pre-release legal tussle when producer Vashu Bhagnani challenged the use of songs 'Chunari Chunari' and 'Ishq Sona Hai' from *Biwi No. 1*, though Tips Films maintained they hold the rights.
+
+The critical divide speaks to a larger question about what still works in Bollywood comedy. David Dhawan's formula — mistaken identities, romantic confusion, ensemble chaos — was the dominant mode of Hindi commercial cinema through the 1990s and early 2000s. It made household names of Govinda and Salman Khan in a register that was neither art-house nor action blockbuster. Whether that formula can still draw audiences in 2026, when the Hindi belt is increasingly saturated with thrillers and spectacle-driven tentpoles, is what this opening weekend will test.
+
+For the Indian diaspora, the film carries a particular kind of nostalgia. David Dhawan comedies were a staple of weekend VHS and DVD rentals in NRI households across the US, UK, and Canada. Films like *Judwaa*, *Haseena Maan Jaayegi*, and *No. 1 Punjabi* were family-viewing defaults at a time when Indian content abroad was limited to whatever the local video store stocked. The announcement that this is his final directorial outing adds a bittersweet layer to the experience.
+
+The film needs to hit approximately ₹70 crore in India to break even, a target that is achievable if the weekend delivers a meaningful jump. Advance bookings for Saturday and Sunday look healthy, and family audiences are expected to come in larger numbers over the weekend. The real test arrives on Monday, when weekday collections will determine whether word-of-mouth is strong enough to sustain a long theatrical run.
+
+*Hai Jawani Toh Ishq Hona Hai* opened alongside Ram Charan's *Peddi*, which has already crossed ₹96 crore net in India after two days, and Bobby Deol's *Bandar*, which collected just ₹30 lakh on its opening day despite positive reviews. In a month where nine major releases are competing across four Fridays for screen space, the margins are thin and the stakes are real.
+
+David Dhawan is not reinventing anything with this film. He is doing exactly what he has always done — delivering a two-and-a-half-hour escape built on comic timing, catchy music, and the belief that audiences will always show up for a good laugh. Whether they still do, in the numbers that matter, is the question this weekend will answer."""
+
     article = {
-        "headline": headline,
-        "subheadline": subheadline,
+        "headline": "David Dhawan Has Directed His Last Film. Hai Jawani Toh Ishq Hona Hai Collected ₹8 Crore on Day One.",
+        "subheadline": "Varun Dhawan's comedy opened solidly but not spectacularly in a week dominated by Peddi. The real test begins this weekend.",
         "body": body,
-        "slug": slug,
+        "slug": "hai-jawani-toh-ishq-hona-hai-david-dhawan-last-film-day-1-box-office-nri-20260606",
         "category": "entertainment",
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attribution,
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": sources,
-        "image_url": img_url,
-        "image_caption": "Shilpa Shinde at a public event in Mumbai" if img_url else None,
-        "image_attribution": img_attr,
+        "sources": json.dumps(["Bollywood Hungama", "Sacnilk", "India Today", "Pinkvilla"]),
         "is_editorial": False,
         "vertical": "entertainment"
     }
@@ -304,80 +240,81 @@ The question is whether the system is ready to face her."""
     return insert_article(article)
 
 
-# ═══════════════════════════════════════
-# ARTICLE 2: Bobby Deol's Bandar — The Dark Horse
-# ═══════════════════════════════════════
+# ============================================================
+# ARTICLE 2: Gullak Season 5
+# ============================================================
 def write_article_2():
-    print("\n═══ Article 2: Bobby Deol's Bandar ═══")
+    print("\n=== Article 2: Gullak Season 5 ===")
     
-    slug = "bobby-deol-bandar-anurag-kashyap-tiff-reviews-dark-horse-nri-20260606"
+    img_url = None
+    img_caption = ""
+    img_attribution = ""
     
-    headline = "Bobby Deol Just Delivered the Performance of His Career. The Film Got 500 Screens. It Might Not Need More."
+    # Try Wikimedia Commons for Gullak or TVF
+    commons = fetch_wikimedia_commons_images("Gullak TV series India")
+    for c in commons:
+        if validate_image(c["url"]):
+            img_url = c["url"]
+            img_caption = "A scene from Gullak, TVF's beloved family drama"
+            img_attribution = "Wikimedia Commons"
+            break
     
-    subheadline = "Anurag Kashyap's Bandar premiered at TIFF, earned four-star reviews, and opened to rave word-of-mouth. But in a week dominated by Peddi and franchise sequels, it is fighting for every screen it can get."
+    # Try Jameel Khan (lead actor)
+    if not img_url:
+        wiki_img = fetch_wikipedia_person_image("Jameel Khan (actor)")
+        if wiki_img and validate_image(wiki_img):
+            img_url = wiki_img
+            img_caption = "Jameel Khan, who plays Santosh Mishra in Gullak"
+            img_attribution = "Wikimedia Commons"
     
-    body = """Bobby Deol has made more than 30 films. Most of them are forgettable. A few — Gupt, Soldier, a cameo in Animal that became a cultural moment — punctuated an otherwise unremarkable career with flashes of something harder and more interesting than the roles he was typically given. Bandar is the film that finally gives him the full canvas.
-
-Directed by Anurag Kashyap and co-written by Sudip Sharma and Abhishek Banerjee, Bandar tells the story of Samar, a fading television star whose life collapses when his ex-girlfriend accuses him of rape. The film is not interested in making the audience comfortable. It is interested in making them think.
-
-## What the Critics Are Saying
-
-The early reviews have been striking. Multiple critics have awarded the film four stars or higher. The consensus: Kashyap has delivered one of his most disciplined films, and Deol has given a performance that rewrites what anyone thought he was capable of.
-
-The supporting cast — Sanya Malhotra, Sapna Pabbi, Saba Azad, Indrajith Sukumaran, Jitendra Joshi, Raj B. Shetty — has been praised for bringing texture to a narrative that could have easily become one-note. At 2 hours and 16 minutes, the film apparently does not waste a frame.
-
-Bandar had its world premiere at the Toronto International Film Festival in September 2025, where it drew significant attention for its subject matter and performances. For Indian cinema to send a film this thematically confrontational to one of the world's most prestigious festivals, and for that festival to programme it prominently, says something about where the industry's best work is heading.
-
-## The Screen Battle
-
-The problem, as always, is distribution. Bandar released on June 5 alongside Ram Charan's Peddi and Varun Dhawan's Hai Jawani Toh Ishq Hona Hai. In the screen allocation war, a mid-budget Anurag Kashyap film about sexual assault and a corrupt justice system was never going to win against a ₹100-crore Telugu action film.
-
-Zee Studios, which is distributing Bandar, made a calculated decision. Rather than chase a wide release and get crushed in the first weekend, the studio is rolling out in 500-600 screens with a strategy built around word-of-mouth. Girish Johar, the studio's distribution and revenue head, said they asked multiplexes for 3-4 shows per screen post 1 PM — a modest request that still met resistance from chains packed with bigger-budget releases.
-
-The production budget is estimated at ₹10-15 crore, which means the film needs roughly ₹25 crore at the box office to be considered a hit. That is a reachable target if the word-of-mouth holds — and so far, it is holding.
-
-## Why the Diaspora Should Care
-
-For NRI audiences who have spent years complaining that Bollywood only exports franchise sequels and song-and-dance spectacles, Bandar is the kind of film that makes the complaint look lazy. It is a tightly constructed crime thriller with real performances, a real director, and a willingness to sit with moral ambiguity.
-
-The international title — Monkey in a Cage — signals the kind of audience Kashyap is after. This is not a film designed to be streamed as background noise. It is designed to leave the audience arguing about it in the parking lot.
-
-Whether that audience shows up in theatres during one of the most crowded release weeks of the year is another question. But if Bandar finds its legs — and the critical response suggests it will — it could become 2026's defining sleeper hit.
-
-## The Bobby Deol Question
-
-There is something worth noting about the trajectory. After years of direct-to-streaming obscurity, Deol reinvented himself through the web series Ashram, found a second wind through a brief but unforgettable turn in Animal, and is now anchoring a film that serious critics are calling one of the year's best.
-
-He is 57 years old. His career should, by any conventional measure, be winding down. Instead, it appears to be starting over. That might be the most interesting story Bandar tells — not the one on screen, but the one behind it."""
-
-    sources = json.dumps([
-        {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
-        {"name": "Gadgets360", "url": "https://gadgets360.com"},
-        {"name": "Sacnilk", "url": "https://sacnilk.com"},
-        {"name": "Zoom TV Entertainment", "url": "https://zoomtventertainment.com"},
-        {"name": "Bollywood Life", "url": "https://bollywoodlife.com"}
-    ])
+    if not img_url:
+        commons2 = fetch_wikimedia_commons_images("Indian middle class family home")
+        for c in commons2:
+            if validate_image(c["url"]):
+                img_url = c["url"]
+                img_caption = "A middle-class Indian household, the world Gullak inhabits"
+                img_attribution = "Wikimedia Commons"
+                break
     
-    # Image sourcing
-    print("  Sourcing image...")
-    img_url, img_attr = source_image(
-        "Bobby Deol",
-        ["Bobby Deol actor Bollywood", "Anurag Kashyap director"],
-        slug
-    )
+    if not img_url:
+        pexels = fetch_pexels_image("Indian family watching television home")
+        if pexels and validate_image(pexels):
+            img_url = pexels
+            img_caption = "An Indian family at home, the kind of world Gullak brings to screen"
+            img_attribution = "Pexels"
     
+    if not img_url:
+        print("  ✗ No valid image found, skipping article")
+        return False
+    
+    body = """Five seasons in, Gullak still feels like walking into a house you grew up in. The furniture is rearranged — literally, this time, as Santosh Mishra applies for a housing loan to renovate the family home — but the warmth is exactly where you left it.
+
+The fifth season of TVF's quiet masterpiece premiered on SonyLIV on June 5, and the reviews are in. Filmfare called it "a warm return to the Mishra household." India Forums gave it 3 out of 5 stars, noting that "the familiarity remains one of the show's biggest strengths — ironically, it is also becoming one of its biggest challenges." MensXP's reviewer admitted to being left "emotional, teary-eyed, and deeply satisfied" by the finale. The consensus is clear: Gullak has not lost its soul, even as it navigates the inevitable growing pains of a long-running series.
+
+The biggest question hanging over this season was the recasting of Annu Bhaiya. Vaibhav Raj Gupta, who played the elder Mishra son across four seasons, has been replaced by Anant V. Joshi, known for *12th Fail* and *Maamla Legal Hai*. The decision sparked genuine anxiety among the show's devoted fanbase. But the reviews are unanimous: Joshi earns his place. Rather than imitating Gupta, he brings a fresh interpretation while retaining the character's defining traits — the quiet frustration, the restrained anger, the weight of being the responsible elder sibling. His chemistry with Harsh Mayar's Aman feels organic, and by the second episode, the recasting stops being a distraction.
+
+Jameel Khan and Geetanjali Kulkarni remain the show's emotional anchors. Khan's Santosh Mishra — the government employee navigating financial anxieties with quiet dignity — is one of Indian streaming's most achingly real characters. Kulkarni's Shanti is sharper than ever this season, exploring what happens when a woman who has spent decades as the family's emotional anchor starts questioning her own identity. Sunita Rajwar's Bittu Ki Mummy gets a notable upgrade too: the nosy neighbour has discovered social media and reinvented herself as a content creator, a subplot that lands its comedy without sacrificing the character's depth.
+
+New additions include Gopal Dutt as Pinky Mama, Shanti's visiting brother who brings chaos to the Mishra household, and Helly Shah as Dr. Preeti, whose romantic track with Annu hints at possibilities for future seasons. The writing, by Vidit Tripathi, remains the show's backbone — rooted in specificity, unafraid of silence, and trusting the audience to find meaning in the smallest domestic exchanges.
+
+What makes Gullak essential viewing for the Indian diaspora is precisely what makes it difficult to describe to anyone who hasn't watched it. It is not plot-driven. There are no twists, no cliffhangers, no manufactured drama. It is a show about a lower-middle-class family in a small Indian town living their lives — worrying about money, arguing about dinner, navigating the gap between what they can afford and what they aspire to. For NRIs who grew up in similar households before moving to the US, UK, or Canada, each episode is a minor act of time travel. The dialogue rhythms, the family dynamics, the specific texture of an Indian home where nothing dramatic happens but everything matters — it is all there, rendered with a precision that big-budget productions rarely achieve.
+
+Season 5 grapples with contemporary concerns — hustle culture, social media validation, the anxieties of ageing parents watching their children face a world more uncertain than the one they navigated — without ever losing its grounding. The ending, some reviewers note, wraps up a little too neatly. But in a streaming landscape dominated by darkness and spectacle, Gullak's insistence on gentleness is itself a kind of defiance.
+
+All eight episodes are streaming now on SonyLIV, which is available internationally."""
+
     article = {
-        "headline": headline,
-        "subheadline": subheadline,
+        "headline": "Gullak Season 5 Is Now Streaming. The Mishra Family Still Feels Like Home.",
+        "subheadline": "TVF's beloved slice-of-life drama returns on SonyLIV with a new Annu Bhaiya, a housing loan, and the same quiet emotional precision that made it a modern classic.",
         "body": body,
-        "slug": slug,
+        "slug": "gullak-season-5-sonyliv-review-tvf-mishra-family-anant-joshi-nri-20260606",
         "category": "entertainment",
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attribution,
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": sources,
-        "image_url": img_url,
-        "image_caption": "Bobby Deol at a film event" if img_url else None,
-        "image_attribution": img_attr,
+        "sources": json.dumps(["Filmfare", "India Forums", "MensXP", "Bollywood Shaadis", "Indian Community"]),
         "is_editorial": False,
         "vertical": "entertainment"
     }
@@ -385,84 +322,66 @@ He is 57 years old. His career should, by any conventional measure, be winding d
     return insert_article(article)
 
 
-# ═══════════════════════════════════════
-# ARTICLE 3: Main Vaapas Aaunga — Diljit's Partition Film
-# ═══════════════════════════════════════
+# ============================================================
+# ARTICLE 3: Anushka Sharma Homeopathy Controversy
+# ============================================================
 def write_article_3():
-    print("\n═══ Article 3: Main Vaapas Aaunga ═══")
+    print("\n=== Article 3: Anushka Sharma Homeopathy Controversy ===")
     
-    slug = "main-vaapas-aaunga-diljit-dosanjh-imtiaz-ali-ar-rahman-partition-nri-20260606"
+    img_url = None
+    img_caption = ""
+    img_attribution = ""
     
-    headline = "Diljit Dosanjh Premiered the Trailer of His Partition Film at a Packed Toronto Stadium. Advance Bookings Have Opened in North America First."
+    # Try Wikipedia for Anushka Sharma
+    wiki_img = fetch_wikipedia_person_image("Anushka Sharma")
+    if wiki_img and validate_image(wiki_img):
+        img_url = wiki_img
+        img_caption = "Anushka Sharma at a public event"
+        img_attribution = "Wikimedia Commons"
     
-    subheadline = "Imtiaz Ali's Main Vaapas Aaunga reunites Diljit with A.R. Rahman after Chamkila, tells a love story across 1947 and the present, and is releasing in North American theatres a week before India. The diaspora is the audience."
+    if not img_url:
+        commons = fetch_wikimedia_commons_images("Anushka Sharma actress")
+        for c in commons:
+            if validate_image(c["url"]):
+                img_url = c["url"]
+                img_caption = "Anushka Sharma at an industry event"
+                img_attribution = "Wikimedia Commons"
+                break
     
-    body = """During a stop on his ongoing AURA Tour 2026, Diljit Dosanjh did something that has become increasingly common for Indian stars playing to diaspora crowds but has never been done quite like this. He played the trailer of his upcoming film Main Vaapas Aaunga on the giant screens of a packed Toronto stadium. The crowd roared. Videos went viral. And within days, the film's producers announced that advance bookings in the United States and Canada would open a full week before India.
-
-That sequencing is not accidental. It is a statement about who this film is for.
-
-## The Film
-
-Main Vaapas Aaunga — I Will Return — is directed by Imtiaz Ali and is set across two timelines: pre-Partition Punjab and the present day. It stars Diljit Dosanjh, Naseeruddin Shah, Vedang Raina, and Sharvari. The score is by A.R. Rahman, with lyrics by Irshad Kamil. If you are counting collaborations, this is Imtiaz and Diljit's second film together after Amar Singh Chamkila, their 2024 Netflix biographical drama that became one of the most acclaimed Indian films of that year.
-
-The trailer, which dropped in late May and has been gathering momentum since, paints a picture of lives torn apart by the Partition of 1947 — families separated, memories frozen, promises that survived decades even as the people who made them did not. The emotional register is unmistakably Imtiaz Ali: yearning, displacement, love that outlasts geography.
-
-## The Music
-
-Four songs have been released so far, and the album is already building the kind of conversation that A.R. Rahman's best work generates. The latest single, Ishq Mastana, dropped on Vedang Raina's birthday and blends Punjabi folk traditions with 1940s jazz and swing influences. Its central refrain draws from the verses of Sant Kabir — "Haman Hai Ishq Mastana, Haman Ko Hoshiyari Kya" — and the result is a track that feels both historical and immediate.
-
-Mohit Chauhan returns to an Imtiaz Ali soundtrack for the first time in years. If you were there for Rockstar, you know what that means.
-
-The earlier tracks — Kya Kamaal Hai (sung by Diljit), Maskara, and Vo Nahin — have each carved their own space. What is emerging is not just a collection of songs but a sonic world: undivided India before the line was drawn, rendered in melody.
-
-## Why the Diaspora Gets It First
-
-The decision to open North American advance bookings before India is commercially pragmatic — the NRI market for Hindi films has never been larger — but it also reflects something deeper about the film's subject matter. Partition is not ancient history for the Indian diaspora. It is the reason many of them exist where they do.
-
-The story of families split between India and Pakistan, of ancestral villages that became foreign countries overnight, of promises to return that were never kept — this is the living memory of millions of people in the US, Canada, and the UK. A film called I Will Return, set against Partition and screened first for the diaspora, knows exactly what it is doing.
-
-## The June 12 Clash
-
-Main Vaapas Aaunga releases on June 12 alongside Kangana Ranaut's 26/11 thriller Bharat Bhhagya Vidhaata, Manoj Bajpayee's Governor, and the postponed David Dhawan comedy Hai Jawani Toh Ishq Hona Hai. It is, by any measure, one of the most crowded release weeks in recent Bollywood history.
-
-The irony of Diljit and Kangana releasing on the same day has not been lost on anyone. The two had a public and acrimonious clash on Twitter in 2020 over the farmers' protests, a confrontation that turned both of them into avatars for opposing political positions. Five and a half years later, they are competing for the same screens on the same Friday.
-
-Trade analysts give Main Vaapas Aaunga the advantage. The Imtiaz Ali-Diljit-Rahman combination is commercially proven, the trailer has generated genuine excitement, and the music is already working. But June 2026 is a month where ₹1,400 crore is reportedly at stake across nine major releases, and no one is safe from the screen-sharing bloodbath.
-
-## What Is at Stake
-
-For Imtiaz Ali, this is a return to the theatrical canvas after years of mixed results. For Diljit, it is a chance to prove that Chamkila was not a one-off and that he can carry a Hindi-language theatrical release with the same authority he brings to a stadium. For Rahman, it is another chapter in a filmography that has defined what Indian cinema sounds like.
-
-And for the diaspora audience watching from Toronto and New Jersey and the Bay Area, it is a film that says: this story is yours, and we are telling it for you first."""
-
-    sources = json.dumps([
-        {"name": "Filmfare", "url": "https://filmfare.com"},
-        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-        {"name": "BollySpice", "url": "https://bollyspice.com"},
-        {"name": "India Forums", "url": "https://indiaforums.com"},
-        {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Main_Vaapas_Aaunga"}
-    ])
+    if not img_url:
+        print("  ✗ No valid image found, skipping article")
+        return False
     
-    # Image sourcing
-    print("  Sourcing image...")
-    img_url, img_attr = source_image(
-        "Diljit Dosanjh",
-        ["Diljit Dosanjh singer actor", "Imtiaz Ali director Bollywood"],
-        slug
-    )
-    
+    body = """Anushka Sharma shared a video about homeopathy on her Instagram Story. Within hours, a hepatologist had called her an "illiterate celeb," a doctor had labeled the entire exchange a "triangle of shame," and the internet had split into camps with the ferocity usually reserved for cricket rivalries.
+
+The sequence of events is straightforward. On June 3, Sharma reposted a video featuring homeopathic physician Rajan Sankaran in conversation with Shark Tank India judge Namita Thapar. She wrote: "Homeopathy has played an important role in my life, and Dr. Rajan Sankaran has been a key part of that journey. I deeply value his insights on health and mindful living." In the video, Sankaran argued for integrated medicine, stating that "homeopathy doesn't treat conditions, it treats people" and that modern medical practitioners sometimes refer patients for homeopathic treatment for conditions like multiple sclerosis and eczema.
+
+Cyriac Abby Philips — the hepatologist known online as The Liver Doc and a persistent critic of alternative medicine — responded with a post calling Sharma, Sankaran, and Thapar a "triangle of shame" and describing them as "Supplement Seller – Legalized Quack – Illiterate Celeb." He wrote: "Homeopathy is 'medicine' made of water, alcohol, and sugar. So you're paying premium prices for fancy sugar pills containing precisely no medicine at all." The response was blunt, medically pointed, and — in several places — personally insulting.
+
+The backlash against Sharma was swift but not one-sided. Many social media users echoed Philips's concerns, arguing that a celebrity with over 60 million followers endorsing a system whose core claims remain scientifically unverified is irresponsible, particularly when her audience includes people who may lack access to evidence-based healthcare. "She is getting the best medical treatment available while promoting sugar pills to millions," one widely shared post read. Others pointed out that Sharma's post came a day after she visited the ashram of Vrindavan-based Sant Premanand Maharaj with Virat Kohli, framing it as part of a broader pattern of wellness endorsements.
+
+But a significant portion of the Indian internet pushed back against the criticism. Homeopathy occupies a unique position in Indian healthcare — it is a legally recognized system of medicine in the country, taught in accredited colleges, and practiced by hundreds of thousands of registered practitioners. For many Indian families, homeopathy is not an alternative; it is the default first response for chronic conditions, childhood ailments, and allergies. Multiple users shared their own positive experiences and questioned why Philips's critique relied on personal attacks rather than measured scientific disagreement.
+
+For the diaspora, this debate touches something more layered than a simple science-versus-pseudoscience binary. Many NRIs in the US, UK, and Canada grew up in households where homeopathic remedies sat alongside allopathic prescriptions. Moving to countries where homeopathy is either unavailable, unregulated, or actively dismissed by the medical establishment creates a specific kind of dissonance. The attachment to these practices is often less about rejecting modern medicine and more about maintaining a connection to familial healthcare traditions — the small white pills from a neighbourhood practitioner who knew your family's medical history across generations.
+
+None of which excuses the responsibility that comes with Sharma's platform. The central criticism — that a public figure with her reach should exercise caution when endorsing a medical system whose foundational claims are not supported by robust clinical evidence — is legitimate and important, regardless of how intemperately it was made.
+
+The episode also raises questions about India's regulatory framework. Homeopathy is governed by the Central Council of Homoeopathy and the Ministry of AYUSH, which gives it institutional legitimacy even as the global scientific consensus remains skeptical. This regulatory position means that Indian celebrities endorsing homeopathy are not, strictly speaking, promoting an unregulated practice — even if the evidence base remains contested.
+
+Sharma has not responded to the backlash. The original Instagram Story has since expired. The debate, as always with these cycles, will move on. But the underlying tension — between evidence-based medicine and traditional practice, between celebrity influence and personal choice, between the healthcare systems people grew up with and the ones they now live under — is not going anywhere."""
+
     article = {
-        "headline": headline,
-        "subheadline": subheadline,
+        "headline": "Anushka Sharma Endorsed Homeopathy. A Doctor Called Her an 'Illiterate Celeb.' The Internet Did the Rest.",
+        "subheadline": "A routine Instagram Story about a homeopathic physician turned into a full-blown debate about celebrity influence, medical evidence, and the healthcare traditions NRI families carry across borders.",
         "body": body,
-        "slug": slug,
+        "slug": "anushka-sharma-homeopathy-controversy-liver-doc-cyriac-philips-celebrity-health-nri-20260606",
         "category": "entertainment",
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attribution,
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": sources,
-        "image_url": img_url,
-        "image_caption": "Diljit Dosanjh performing during his AURA Tour" if img_url else None,
-        "image_attribution": img_attr,
+        "sources": json.dumps(["Livemint", "Zoom TV", "Bollywood Hungama", "NewsPoint", "Indian Witness"]),
         "is_editorial": False,
         "vertical": "entertainment"
     }
@@ -470,29 +389,22 @@ And for the diaspora audience watching from Toronto and New Jersey and the Bay A
     return insert_article(article)
 
 
-# ═══════════════════════════════════════
+# ============================================================
 # MAIN
-# ═══════════════════════════════════════
+# ============================================================
 if __name__ == "__main__":
-    print(f"Entertainment writer run: {datetime.now(timezone.utc).isoformat()}")
+    print(f"Entertainment writer starting at {datetime.now(timezone.utc).isoformat()}")
+    print(f"Supabase URL: {SUPABASE_URL[:30]}..." if SUPABASE_URL else "ERROR: No SUPABASE_URL")
     
     results = []
+    results.append(("Hai Jawani Toh Ishq Hona Hai", write_article_1()))
+    results.append(("Gullak Season 5", write_article_2()))
+    results.append(("Anushka Sharma Homeopathy", write_article_3()))
     
-    aid1 = write_article_1()
-    results.append(("Shilpa Shinde Confession", aid1))
-    time.sleep(1)
+    print("\n=== Summary ===")
+    for title, success in results:
+        status = "✓" if success else "✗"
+        print(f"  {status} {title}")
     
-    aid2 = write_article_2()
-    results.append(("Bobby Deol Bandar", aid2))
-    time.sleep(1)
-    
-    aid3 = write_article_3()
-    results.append(("Main Vaapas Aaunga", aid3))
-    
-    print("\n═══ SUMMARY ═══")
-    for title, aid in results:
-        status = "✓" if aid else "✗"
-        print(f"  {status} {title}: {aid}")
-    
-    success = sum(1 for _, a in results if a)
-    print(f"\nPublished {success}/{len(results)} articles")
+    published = sum(1 for _, s in results if s)
+    print(f"\nPublished: {published}/{len(results)} articles")
