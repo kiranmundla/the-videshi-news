@@ -1,43 +1,46 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi - June 6, 2026 - Fixed"""
+"""Entertainment writer for The Videshi — 2026-06-06 batch"""
 
-import json
-import os
-import subprocess
-import sys
-import urllib.parse
-import requests
+import json, os, sys, time, uuid, re, subprocess, io
 from datetime import datetime, timezone
 
-# Load env
-env_path = os.path.expanduser("~/workspace/.env.supabase")
-with open(env_path) as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1)
-            os.environ[k] = v
+import requests
+from PIL import Image
 
-SUPABASE_URL = os.environ["SUPABASE_URL"]
-SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-
-# Load Pexels key
-pexels_path = os.path.expanduser("~/workspace/.env.pexels")
-PEXELS_KEY = None
-if os.path.exists(pexels_path):
-    with open(pexels_path) as f:
+# ── env ──
+def source_env(path):
+    if not os.path.exists(path):
+        return
+    with open(path) as f:
         for line in f:
             line = line.strip()
-            if line and not line.startswith("#") and "=" in line:
-                k, v = line.split("=", 1)
-                if "PEXELS" in k.upper():
-                    PEXELS_KEY = v
-                    break
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            k, v = line.split('=', 1)
+            k = k.replace('export ', '').strip()
+            v = v.strip().strip('"').strip("'")
+            os.environ[k] = v
 
+source_env(os.path.expanduser('~/.env.supabase'))
+source_env(os.path.expanduser('~/workspace/.env.supabase'))
+source_env(os.path.expanduser('~/workspace/.env.pexels'))
+
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 UA = "TheVideshi/1.0 (thevideshi.com)"
 
+HEADERS_SB = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
+}
 
+# ── Image helpers ──
 def fetch_wikipedia_person_image(person_name):
+    """Fetch actual photo from Wikipedia. Returns URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -46,349 +49,450 @@ def fetch_wikipedia_person_image(person_name):
         )
         if r.status_code == 200:
             data = r.json()
-            img = data.get("thumbnail", {}).get("source")
-            if not img:
-                img = data.get("originalimage", {}).get("source")
+            # Prefer thumbnail (330px, reliable) over original (may 429)
+            img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia: {img[:80]}...")
+                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia error: {e}")
+        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
     return None
 
 
-def fetch_wikimedia_commons(search_query, limit=5):
-    params = {
-        "action": "query", "generator": "search",
-        "gsrsearch": search_query, "gsrnamespace": "6",
-        "gsrlimit": str(limit), "prop": "imageinfo",
-        "iiprop": "url|size|mime", "iiurlwidth": "1200", "format": "json"
-    }
+def fetch_wikimedia_commons(query, limit=5):
+    """Search Wikimedia Commons. Returns list of dicts with url, title."""
     try:
-        r = requests.get("https://commons.wikimedia.org/w/api.php",
-                         params=params, headers={"User-Agent": UA}, timeout=15)
+        r = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params={
+                "action": "query", "generator": "search",
+                "gsrsearch": query, "gsrnamespace": "6", "gsrlimit": str(limit),
+                "prop": "imageinfo", "iiprop": "url|size|mime",
+                "iiurlwidth": "1200", "format": "json"
+            },
+            headers={"User-Agent": UA}, timeout=15
+        )
         if r.status_code == 200:
             pages = r.json().get("query", {}).get("pages", {})
+            results = []
             for pid, page in pages.items():
                 ii = page.get("imageinfo", [{}])[0]
-                url = ii.get("thumburl") or ii.get("url")
                 mime = ii.get("mime", "")
-                if url and "image" in mime:
-                    return url
+                if not mime.startswith("image/") or mime == "image/svg+xml":
+                    continue
+                if ii.get("width", 0) < 300:
+                    continue
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "original_url": ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0)
+                })
+            if results:
+                print(f"  ✓ Commons: {len(results)} images for '{query}'")
+            return results
     except Exception as e:
         print(f"  ⚠ Commons error: {e}")
-    return None
+    return []
 
 
 def fetch_pexels(query):
+    """Fetch best Pexels image via curl. Returns URL or None."""
     if not PEXELS_KEY:
         return None
     try:
-        result = subprocess.run(
-            ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
-             f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3"],
-            capture_output=True, text=True, timeout=15
-        )
-        if result.returncode == 0:
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            if photos:
-                return photos[0]["src"]["large"]
+        result = subprocess.run([
+            'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+            f'https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page=3'
+        ], capture_output=True, text=True, timeout=15)
+        data = json.loads(result.stdout)
+        photos = data.get('photos', [])
+        if photos:
+            url = photos[0]['src']['large2x']
+            print(f"  ✓ Pexels image for '{query}': {url[:60]}...")
+            return url
     except Exception as e:
         print(f"  ⚠ Pexels error: {e}")
     return None
 
 
-def validate_image(url):
-    """Validate with retry and 2s delay for Wikimedia 429s."""
-    for attempt in range(2):
-        try:
-            r = requests.head(url, headers={"User-Agent": UA}, timeout=10, allow_redirects=True)
-            if r.status_code == 200:
-                ct = r.headers.get("Content-Type", "")
-                cl = int(r.headers.get("Content-Length", 0))
-                if "image" in ct and cl > 5000:
-                    return True
-                if "image" in ct and cl == 0:
-                    r2 = requests.get(url, headers={"User-Agent": UA}, timeout=10, stream=True)
-                    chunk = r2.raw.read(6000)
-                    if len(chunk) > 5000:
-                        return True
-            elif r.status_code == 429 and attempt == 0:
-                import time
-                print(f"  ⏳ 429, retrying in 3s...")
-                time.sleep(3)
-                continue
-            return False
-        except:
-            return False
-    return False
+def compress_image(img_bytes, max_width=1200, quality=80):
+    """Resize and compress to JPEG."""
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    return buf.getvalue()
 
 
-def find_image(person_name=None, wiki_search=None, pexels_query=None):
-    # Wikipedia person image first
+def download_and_upload(image_url, slug):
+    """Download image, compress, upload to Supabase article-images bucket. Returns public URL."""
+    try:
+        r = requests.get(image_url, headers={"User-Agent": UA}, timeout=20)
+        if r.status_code != 200:
+            print(f"  ⚠ Download failed ({r.status_code}): {image_url[:60]}")
+            return None
+        ct = r.headers.get('Content-Type', '')
+        if not ct.startswith('image/'):
+            print(f"  ⚠ Not an image: {ct}")
+            return None
+        if len(r.content) < 5000:
+            print(f"  ⚠ Too small ({len(r.content)} bytes)")
+            return None
+
+        compressed = compress_image(r.content)
+        filename = f"{slug}.jpg"
+        
+        # Upload to Supabase storage
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        upload_headers = {
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": "image/jpeg",
+            "x-upsert": "true"
+        }
+        ur = requests.post(upload_url, headers=upload_headers, data=compressed, timeout=30)
+        if ur.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded: {filename} ({len(compressed)//1024}KB)")
+            return public_url
+        else:
+            print(f"  ⚠ Upload failed ({ur.status_code}): {ur.text[:100]}")
+            return None
+    except Exception as e:
+        print(f"  ⚠ Download/upload error: {e}")
+        return None
+
+
+def source_image(person_name, topic_terms, slug):
+    """Multi-source image: Wikipedia → Commons → Pexels. Returns (url, attribution) or (None, None)."""
+    candidates = []
+    
+    # Source 1: Wikipedia (for person articles)
     if person_name:
-        img = fetch_wikipedia_person_image(person_name)
-        if img and validate_image(img):
-            return img, "Wikimedia Commons"
-
-    # Wikimedia Commons
-    if wiki_search:
-        import time
-        time.sleep(2)  # Rate limit
-        img = fetch_wikimedia_commons(wiki_search)
-        if img and validate_image(img):
-            return img, "Wikimedia Commons"
-
-    # Pexels
-    if pexels_query:
-        img = fetch_pexels(pexels_query)
-        if img and validate_image(img):
-            return img, "Pexels"
-
+        wiki = fetch_wikipedia_person_image(person_name)
+        if wiki:
+            candidates.append({"url": wiki, "source": "Wikimedia Commons", "priority": 1})
+    
+    # Source 2: Wikimedia Commons
+    for q in topic_terms[:2]:
+        commons = fetch_wikimedia_commons(q, limit=3)
+        for c in commons[:2]:
+            candidates.append({"url": c["url"], "source": "Wikimedia Commons", "priority": 2})
+    
+    # Source 3: Pexels
+    for q in topic_terms[:1]:
+        pex = fetch_pexels(q)
+        if pex:
+            candidates.append({"url": pex, "source": "Pexels", "priority": 3})
+    
+    # Pick best and upload
+    for c in sorted(candidates, key=lambda x: x["priority"]):
+        final_url = download_and_upload(c["url"], slug)
+        if final_url:
+            return final_url, c["source"]
+    
     return None, None
 
 
-def insert_article_curl(article):
-    """Insert using curl to avoid potential Python requests encoding issues."""
-    payload = json.dumps(article, ensure_ascii=False)
-    tmp_file = "/tmp/article_payload.json"
-    with open(tmp_file, "w", encoding="utf-8") as f:
-        f.write(payload)
-
-    result = subprocess.run(
-        ["curl", "-sS", "-w", "\n%{http_code}",
-         f"{SUPABASE_URL}/rest/v1/p2_articles",
-         "-H", f"apikey: {SUPABASE_KEY}",
-         "-H", f"Authorization: Bearer {SUPABASE_KEY}",
-         "-H", "Content-Type: application/json",
-         "-H", "Prefer: return=representation",
-         "-d", f"@{tmp_file}"],
-        capture_output=True, text=True, timeout=30
+def insert_article(article):
+    """Insert article into Supabase."""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS_SB,
+        json=article,
+        timeout=30
     )
-    lines = result.stdout.strip().split("\n")
-    status_code = lines[-1] if lines else "0"
-    body = "\n".join(lines[:-1])
-
-    if status_code in ("200", "201"):
-        try:
-            data = json.loads(body)
-            if isinstance(data, list) and data:
-                print(f"  ✓ Published: {data[0].get('headline', '')[:60]}...")
-        except:
-            print(f"  ✓ Published (status {status_code})")
-        return True
+    if r.status_code in (200, 201):
+        data = r.json()
+        art_id = data[0]['id'] if isinstance(data, list) else data.get('id')
+        print(f"  ✓ Published: {article['headline'][:60]}... (id: {art_id})")
+        return art_id
     else:
-        print(f"  ✗ Insert failed ({status_code}): {body[:300]}")
-        return False
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+        return None
 
 
-# ============================================================
-# ARTICLE 1: Peddi Director Apologizes
-# ============================================================
-print("\n=== Article 1: Peddi Director Buchi Babu Apology ===")
+# ═══════════════════════════════════════
+# ARTICLE 1: Shilpa Shinde False Harassment Confession
+# ═══════════════════════════════════════
+def write_article_1():
+    print("\n═══ Article 1: Shilpa Shinde False Harassment Confession ═══")
+    
+    slug = "shilpa-shinde-false-harassment-confession-sanjay-kohli-backlash-nri-20260606"
+    
+    headline = "Shilpa Shinde Has Confessed to Filing a False Harassment Case. The Man She Accused Died Three Years Ago."
+    
+    subheadline = "The Bigg Boss winner admitted on a podcast that her 2016 sexual harassment complaint against Bhabiji Ghar Par Hain producer Sanjay Kohli was fabricated. Men's rights groups want her arrested. The industry is split."
+    
+    body = """Shilpa Shinde sat across from Bharti Singh and Harsh Limbachiyaa on their podcast and said the thing she had been carrying for nearly a decade. The sexual harassment allegations she had levelled against Bhabiji Ghar Par Hain producer Sanjay Kohli in 2016 — the complaint that consumed headlines, ended her run on one of Indian television's most-watched shows, and triggered legal battles that dragged on for years — were not true.
 
-img1, attr1 = find_image(person_name="Ram Charan", pexels_query="cricket India sports")
-if not img1:
-    img1, attr1 = find_image(person_name="Janhvi Kapoor")
+"The person on whom I put the blame knows what happened. I am sorry," Shinde said. "The word 'sorry' is very small, but he also knows the situation I was in. At that time, I felt I had no other option."
 
-caption1 = "Ram Charan in a promotional appearance" if img1 and "Ram" in str(img1) else "Janhvi Kapoor at a media event"
+Except Sanjay Kohli does not know. He died in 2023. He is not alive to accept the apology, dispute her account, or speak for himself. That detail has turned what might have been a complicated conversation about truth and pressure into something far more combustible.
 
-body1 = """Buchi Babu Sana's *Peddi* crossed ₹150 crore worldwide in its first two days. By the end of day two, its director was apologising for how he made it.
+## The Fallout Was Immediate
 
-In an interview with SCREEN published on June 6, Buchi Babu acknowledged the fierce backlash against the depiction of Janhvi Kapoor's character Achiyyamma in the Ram Charan-led sports drama. "I did not foresee that audiences would react so negatively to certain scenes," he said. He promised that the experience "will influence his future approach to female characters" and added that the team would "take more care to ensure better representation in our storytelling."
+Within hours, the National Council for Men Affairs, a Delhi-based NGO, demanded Mumbai Police arrest Shinde for filing a false complaint. The All India Cine Workers Association has asked the Chief Minister to intervene. On X, the discourse split predictably: some praised her for finally telling the truth, others asked why she waited until the accused was dead to tell it.
 
-More significantly, the director indicated that changes would be made to "concerned portions" of the film — a rare mid-run editorial admission for a major Telugu release.
+Hina Khan, who clashed with Shinde during Bigg Boss 11, issued a pointed response. Without naming Shinde directly, she called the confession "a crime, not courage," and accused her of using the revelation as a publicity stunt. Khan, who has been public about her battle with stage 3 breast cancer, appeared to reference Shinde's subsequent video in which the actress made what many interpreted as a veiled dig at colleagues who "use their own illnesses and the deaths of their family members" for attention.
 
-## What Audiences Objected To
+Shinde did not back down. In an Instagram video posted the same day, she said the backlash was being driven by "paid PR" and that critics were "passing judgment on a single line without watching the entire podcast."
 
-The controversy centres on the first half of the film, which is set in the Vizianagaram district of Andhra Pradesh. Critics and social media users identified a pattern they called the objectification of the female lead. Kapoor's character is introduced in a scene where the camera lingers on her body without showing her face for an extended period. The courtship that follows includes the hero openly telling his friends he intends to touch Achiyyamma without consent, proceeding to do so, and later framing the physical aggression as an expression of love. The arc concludes with a kiss, with no narrative consequences for the behaviour.
+## What She Says Happened
 
-The response was swift. Social media users, critics, and Kapoor herself appeared to weigh in — she reportedly liked a post calling the film "the most expensive disrespect" to its leading woman, then unliked it, drawing more attention to the debate. Reviewers at Firstpost called it a "muddled sports drama" that "suffers from too many subplots and an objectified Janhvi Kapoor." News18 noted the film "does not understand 'no means no.'"
+Shinde's account, pieced together from the podcast and her subsequent video, describes a woman who felt cornered. By 2016, she had left Bhabiji Ghar Par Hain amid disputes over her contract and working conditions. She says the production house had turned the industry against her, and no one was willing to support her publicly.
 
-## The Box Office Contradiction
+Drawing on the traditional Indian framework of Saam, Daam, Dand, and Bhed — persuasion, inducement, punishment, and division — she said she had exhausted every avenue and resorted to the harassment complaint as a last weapon. She described being in a mental state where she was "contemplating suicide."
 
-None of this has dented the film's commercial performance. After ₹18.5 crore in paid previews and a ₹51 crore opening day, *Peddi* added ₹26.9 crore net on day two, bringing its India net total to ₹96.4 crore. The worldwide gross has crossed ₹150 crore. Advance bookings for Saturday already exceeded ₹13.87 crore gross with over five lakh tickets sold.
+She said a turning point came years later, after winning Bigg Boss, when a man told her his father had died by suicide after being falsely accused. That encounter, she said, planted the seed for her eventual confession.
 
-The Telugu market continues to drive the numbers — Andhra Pradesh and Telangana contributed ₹25 crore gross on day two alone. The Hindi version added ₹2.25 crore, while Tamil, Kannada, and Malayalam combined for under ₹0.5 crore.
+## The Larger Reckoning
 
-## Why This Matters for the Diaspora
+The timing has made this more than a celebrity scandal. India's entertainment industry has spent the last several years grappling with its own version of the #MeToo movement, where accusations against powerful men were met with a mix of solidarity, scepticism, and legal threats. Shinde's confession hands ammunition to those who argue that false allegations undermine genuine survivors — an argument that has been wielded, sometimes cynically, to discredit women who come forward.
 
-For NRI audiences, the debate has a particular charge. Many in the diaspora have watched Indian cinema evolve from the casual misogyny of the 1990s toward more progressive storytelling, and *Peddi* reads to some as a regression. The film is a multi-language release available in Telugu, Tamil, Hindi, Malayalam, and Kannada — meaning the portrayal is reaching the widest possible audience, including significant diaspora markets in the US, UK, and the Gulf.
+Karan Oberoi, an actor who was himself falsely accused of sexual assault in 2019, weighed in. "A false case is more anti-women than anti-men," he said. "One false case has the propensity to cast aspersions on a hundred genuine cases."
 
-The fact that a director is acknowledging the problem mid-run, rather than dismissing it as western sensibility or jealous trolling, is itself a development worth tracking. Whether the promised cuts actually materialise — and whether they arrive before the Netflix streaming window — will be the real test of whether the apology was contrition or crisis management.
+The counterargument, made by several commentators and women's rights advocates, is equally sharp: Shinde's case is the exception, not the rule, and treating it as representative of a systemic pattern of false accusations is both statistically wrong and dangerous for the women who are still fighting to be believed.
 
 ## What Happens Next
 
-*Peddi* still has the weekend to consolidate. With Saturday bookings pointing to a ₹30 crore-plus day, the film could cross ₹125 crore India net by Sunday. The creative conversation and the commercial trajectory are running on entirely separate tracks — which, depending on your perspective, is either the industry's oldest tension or its newest reckoning.
+Whether Shinde faces legal consequences remains unclear. Filing a false police complaint is a criminal offence under Indian law, punishable by up to seven years in prison. But prosecuting a case where the complainant has voluntarily recanted, the accused is dead, and the original complaint was filed a decade ago presents obvious legal complications.
 
-*Sources: SCREEN interview via News Dive, Bollywood Hungama, Sacnilk box office data, Filmibeat, Firstpost review, News18 review*"""
+For the Indian diaspora watching from abroad, the case touches on something that resonates beyond Bollywood gossip. The tension between false accusations and genuine harassment is not unique to India, but the visibility of this case — a nationally known actress, a deceased producer, a confession delivered as content on a comedy podcast — makes it impossible to ignore.
 
-article1 = {
-    "headline": "Peddi Director Buchi Babu Sana Has Apologised. He Has Also Promised to Cut Scenes.",
-    "subheadline": "Two days after release, the filmmaker acknowledged the backlash over Janhvi Kapoor's portrayal and pledged changes while the film crossed ₹150 crore worldwide",
-    "slug": "peddi-buchi-babu-apology-janhvi-kapoor-hypersexualisation-controversy-cuts-nri-20260606",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "is_editorial": False,
-    "vertical": "entertainment",
-    "image_url": img1,
-    "image_caption": caption1,
-    "image_attribution": attr1,
-    "body": body1,
-    "sources": json.dumps([
-        {"name": "SCREEN / News Dive", "url": "https://newsdive.net"},
-        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
+Shinde, for her part, says she is done caring. "Nobody supported me then, so I don't expect anyone's support now," she said. "I am ready to face all of this."
+
+The question is whether the system is ready to face her."""
+
+    sources = json.dumps([
+        {"name": "IANS", "url": "https://ianslive.in"},
+        {"name": "MensXP", "url": "https://mensxp.com"},
+        {"name": "Bollywood Life", "url": "https://bollywoodlife.com"},
+        {"name": "India Forums", "url": "https://indiaforums.com"},
+        {"name": "The Bridge Chronicle", "url": "https://thebridgechronicle.com"}
+    ])
+    
+    # Image sourcing
+    print("  Sourcing image...")
+    img_url, img_attr = source_image(
+        "Shilpa Shinde",
+        ["Shilpa Shinde actress", "Shilpa Shinde Bigg Boss"],
+        slug
+    )
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": sources,
+        "image_url": img_url,
+        "image_caption": "Shilpa Shinde at a public event in Mumbai" if img_url else None,
+        "image_attribution": img_attr,
+        "is_editorial": False,
+        "vertical": "entertainment"
+    }
+    
+    return insert_article(article)
+
+
+# ═══════════════════════════════════════
+# ARTICLE 2: Bobby Deol's Bandar — The Dark Horse
+# ═══════════════════════════════════════
+def write_article_2():
+    print("\n═══ Article 2: Bobby Deol's Bandar ═══")
+    
+    slug = "bobby-deol-bandar-anurag-kashyap-tiff-reviews-dark-horse-nri-20260606"
+    
+    headline = "Bobby Deol Just Delivered the Performance of His Career. The Film Got 500 Screens. It Might Not Need More."
+    
+    subheadline = "Anurag Kashyap's Bandar premiered at TIFF, earned four-star reviews, and opened to rave word-of-mouth. But in a week dominated by Peddi and franchise sequels, it is fighting for every screen it can get."
+    
+    body = """Bobby Deol has made more than 30 films. Most of them are forgettable. A few — Gupt, Soldier, a cameo in Animal that became a cultural moment — punctuated an otherwise unremarkable career with flashes of something harder and more interesting than the roles he was typically given. Bandar is the film that finally gives him the full canvas.
+
+Directed by Anurag Kashyap and co-written by Sudip Sharma and Abhishek Banerjee, Bandar tells the story of Samar, a fading television star whose life collapses when his ex-girlfriend accuses him of rape. The film is not interested in making the audience comfortable. It is interested in making them think.
+
+## What the Critics Are Saying
+
+The early reviews have been striking. Multiple critics have awarded the film four stars or higher. The consensus: Kashyap has delivered one of his most disciplined films, and Deol has given a performance that rewrites what anyone thought he was capable of.
+
+The supporting cast — Sanya Malhotra, Sapna Pabbi, Saba Azad, Indrajith Sukumaran, Jitendra Joshi, Raj B. Shetty — has been praised for bringing texture to a narrative that could have easily become one-note. At 2 hours and 16 minutes, the film apparently does not waste a frame.
+
+Bandar had its world premiere at the Toronto International Film Festival in September 2025, where it drew significant attention for its subject matter and performances. For Indian cinema to send a film this thematically confrontational to one of the world's most prestigious festivals, and for that festival to programme it prominently, says something about where the industry's best work is heading.
+
+## The Screen Battle
+
+The problem, as always, is distribution. Bandar released on June 5 alongside Ram Charan's Peddi and Varun Dhawan's Hai Jawani Toh Ishq Hona Hai. In the screen allocation war, a mid-budget Anurag Kashyap film about sexual assault and a corrupt justice system was never going to win against a ₹100-crore Telugu action film.
+
+Zee Studios, which is distributing Bandar, made a calculated decision. Rather than chase a wide release and get crushed in the first weekend, the studio is rolling out in 500-600 screens with a strategy built around word-of-mouth. Girish Johar, the studio's distribution and revenue head, said they asked multiplexes for 3-4 shows per screen post 1 PM — a modest request that still met resistance from chains packed with bigger-budget releases.
+
+The production budget is estimated at ₹10-15 crore, which means the film needs roughly ₹25 crore at the box office to be considered a hit. That is a reachable target if the word-of-mouth holds — and so far, it is holding.
+
+## Why the Diaspora Should Care
+
+For NRI audiences who have spent years complaining that Bollywood only exports franchise sequels and song-and-dance spectacles, Bandar is the kind of film that makes the complaint look lazy. It is a tightly constructed crime thriller with real performances, a real director, and a willingness to sit with moral ambiguity.
+
+The international title — Monkey in a Cage — signals the kind of audience Kashyap is after. This is not a film designed to be streamed as background noise. It is designed to leave the audience arguing about it in the parking lot.
+
+Whether that audience shows up in theatres during one of the most crowded release weeks of the year is another question. But if Bandar finds its legs — and the critical response suggests it will — it could become 2026's defining sleeper hit.
+
+## The Bobby Deol Question
+
+There is something worth noting about the trajectory. After years of direct-to-streaming obscurity, Deol reinvented himself through the web series Ashram, found a second wind through a brief but unforgettable turn in Animal, and is now anchoring a film that serious critics are calling one of the year's best.
+
+He is 57 years old. His career should, by any conventional measure, be winding down. Instead, it appears to be starting over. That might be the most interesting story Bandar tells — not the one on screen, but the one behind it."""
+
+    sources = json.dumps([
+        {"name": "Pinkvilla", "url": "https://pinkvilla.com"},
+        {"name": "Gadgets360", "url": "https://gadgets360.com"},
         {"name": "Sacnilk", "url": "https://sacnilk.com"},
-        {"name": "Firstpost", "url": "https://firstpost.com"}
+        {"name": "Zoom TV Entertainment", "url": "https://zoomtventertainment.com"},
+        {"name": "Bollywood Life", "url": "https://bollywoodlife.com"}
     ])
-}
+    
+    # Image sourcing
+    print("  Sourcing image...")
+    img_url, img_attr = source_image(
+        "Bobby Deol",
+        ["Bobby Deol actor Bollywood", "Anurag Kashyap director"],
+        slug
+    )
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": sources,
+        "image_url": img_url,
+        "image_caption": "Bobby Deol at a film event" if img_url else None,
+        "image_attribution": img_attr,
+        "is_editorial": False,
+        "vertical": "entertainment"
+    }
+    
+    return insert_article(article)
 
-if img1:
-    insert_article_curl(article1)
-else:
-    print("  ✗ No image found, skipping")
 
+# ═══════════════════════════════════════
+# ARTICLE 3: Main Vaapas Aaunga — Diljit's Partition Film
+# ═══════════════════════════════════════
+def write_article_3():
+    print("\n═══ Article 3: Main Vaapas Aaunga ═══")
+    
+    slug = "main-vaapas-aaunga-diljit-dosanjh-imtiaz-ali-ar-rahman-partition-nri-20260606"
+    
+    headline = "Diljit Dosanjh Premiered the Trailer of His Partition Film at a Packed Toronto Stadium. Advance Bookings Have Opened in North America First."
+    
+    subheadline = "Imtiaz Ali's Main Vaapas Aaunga reunites Diljit with A.R. Rahman after Chamkila, tells a love story across 1947 and the present, and is releasing in North American theatres a week before India. The diaspora is the audience."
+    
+    body = """During a stop on his ongoing AURA Tour 2026, Diljit Dosanjh did something that has become increasingly common for Indian stars playing to diaspora crowds but has never been done quite like this. He played the trailer of his upcoming film Main Vaapas Aaunga on the giant screens of a packed Toronto stadium. The crowd roared. Videos went viral. And within days, the film's producers announced that advance bookings in the United States and Canada would open a full week before India.
 
-# ============================================================
-# ARTICLE 2: Drishyam 3 Hindi
-# ============================================================
-print("\n=== Article 2: Drishyam 3 Hindi Goes Its Own Way ===")
+That sequencing is not accidental. It is a statement about who this film is for.
 
-import time
-time.sleep(2)
-img2, attr2 = find_image(person_name="Ajay Devgn", pexels_query="Indian thriller mystery")
+## The Film
 
-caption2 = "Ajay Devgn, who reprises his role as Vijay Salgaonkar in Drishyam 3"
+Main Vaapas Aaunga — I Will Return — is directed by Imtiaz Ali and is set across two timelines: pre-Partition Punjab and the present day. It stars Diljit Dosanjh, Naseeruddin Shah, Vedang Raina, and Sharvari. The score is by A.R. Rahman, with lyrics by Irshad Kamil. If you are counting collaborations, this is Imtiaz and Diljit's second film together after Amar Singh Chamkila, their 2024 Netflix biographical drama that became one of the most acclaimed Indian films of that year.
 
-body2 = """For the first time in its Hindi run, *Drishyam* is not a remake. It is a reimagining.
+The trailer, which dropped in late May and has been gathering momentum since, paints a picture of lives torn apart by the Partition of 1947 — families separated, memories frozen, promises that survived decades even as the people who made them did not. The emotional register is unmistakably Imtiaz Ali: yearning, displacement, love that outlasts geography.
 
-The first two Hindi instalments of the franchise — *Drishyam* (2015) and *Drishyam 2* (2022) — were faithful adaptations of Jeethu Joseph's Malayalam originals, down to their structural beats and emotional textures. The third will not be. Director Abhishek Pathak confirmed that the Hindi *Drishyam 3*, which wrapped shooting recently and is scheduled for release on October 2, 2026, has "drastically altered the plot and twists" from the Malayalam version that released on May 21.
+## The Music
 
-"The Malayalam film is an emotional family drama, while ours is a family thriller," Pathak told Bollywood Hungama.
+Four songs have been released so far, and the album is already building the kind of conversation that A.R. Rahman's best work generates. The latest single, Ishq Mastana, dropped on Vedang Raina's birthday and blends Punjabi folk traditions with 1940s jazz and swing influences. Its central refrain draws from the verses of Sant Kabir — "Haman Hai Ishq Mastana, Haman Ko Hoshiyari Kya" — and the result is a track that feels both historical and immediate.
 
-## New Additions, New Energy
+Mohit Chauhan returns to an Imtiaz Ali soundtrack for the first time in years. If you were there for Rockstar, you know what that means.
 
-The most significant change is in the cast. Jaideep Ahlawat and Prakash Raj join the returning ensemble of Ajay Devgn, Tabu, Shriya Saran, Akshaye Khanna, Ishita Dutta, Rajat Kapoor, and others. Both actors bring a specific kind of intensity that signals the film's tonal shift — Ahlawat's recent work in *Paatal Lok* and *An Action Hero* has made him one of Hindi cinema's most reliable antagonists, while Prakash Raj's career-long command of authority roles adds pan-Indian gravitas.
+The earlier tracks — Kya Kamaal Hai (sung by Diljit), Maskara, and Vo Nahin — have each carved their own space. What is emerging is not just a collection of songs but a sonic world: undivided India before the line was drawn, rendered in melody.
 
-Trade sources say the additions are not cameos. "Jaideep Ahlawat and Prakash Raj have put up great acts," a source told Bollywood Hungama. "At the same time, Ajay Devgn, Tabu, Shriya Saran and others have once again delivered fine performances."
+## Why the Diaspora Gets It First
 
-## The KGF Connection
+The decision to open North American advance bookings before India is commercially pragmatic — the NRI market for Hindi films has never been larger — but it also reflects something deeper about the film's subject matter. Partition is not ancient history for the Indian diaspora. It is the reason many of them exist where they do.
 
-In another departure, the franchise has brought in Ravi Basrur for the score. The composer behind *KGF*, *Salaar*, and *Marco* replaces Devi Sri Prasad, who scored *Drishyam 2* (Vishal Bhardwaj handled the first film). Basrur has worked with Devgn before, on *Bholaa* (2023) and *Singham Again* (2024), but his hiring here sends a clear signal: this *Drishyam* is louder, harder, and less interested in the quiet unease that defined the originals.
+The story of families split between India and Pakistan, of ancestral villages that became foreign countries overnight, of promises to return that were never kept — this is the living memory of millions of people in the US, Canada, and the UK. A film called I Will Return, set against Partition and screened first for the diaspora, knows exactly what it is doing.
 
-Each Hindi *Drishyam* has now had a different composer. The rotation has become an unintentional tradition — and a marker of how much the franchise reinvents itself with each chapter.
+## The June 12 Clash
 
-## The Stakes for October 2
+Main Vaapas Aaunga releases on June 12 alongside Kangana Ranaut's 26/11 thriller Bharat Bhhagya Vidhaata, Manoj Bajpayee's Governor, and the postponed David Dhawan comedy Hai Jawani Toh Ishq Hona Hai. It is, by any measure, one of the most crowded release weeks in recent Bollywood history.
 
-The October 2 release date — Gandhi Jayanti, a national holiday — is prime real estate in the Bollywood calendar. *Drishyam 2* was one of the biggest Hindi hits of 2022, collecting over ₹342 crore worldwide and proving that Vijay Salgaonkar's cat-and-mouse game had become a genuinely beloved franchise. The third film carries the pressure of that success alongside the risk of diverging from the story that built it.
+The irony of Diljit and Kangana releasing on the same day has not been lost on anyone. The two had a public and acrimonious clash on Twitter in 2020 over the farmers' protests, a confrontation that turned both of them into avatars for opposing political positions. Five and a half years later, they are competing for the same screens on the same Friday.
 
-## Why the Diaspora Should Pay Attention
+Trade analysts give Main Vaapas Aaunga the advantage. The Imtiaz Ali-Diljit-Rahman combination is commercially proven, the trailer has generated genuine excitement, and the music is already working. But June 2026 is a month where ₹1,400 crore is reportedly at stake across nine major releases, and no one is safe from the screen-sharing bloodbath.
 
-For NRI audiences who followed the Malayalam originals on OTT and then watched the Hindi versions theatrically, the break from source material introduces a new dynamic. You can watch both versions and get genuinely different stories — something no previous *Drishyam* cycle offered. The Malayalam *Drishyam 3*, which hit theatres on May 21, reportedly takes an emotional, family-centred route. The Hindi version, by contrast, appears to lean into the tension and paranoia that makes Vijay Salgaonkar a compelling protagonist in the first place.
+## What Is at Stake
 
-Presented by Star Studios and produced under the Panorama Studios banner, *Drishyam 3* is written by Abhishek Pathak, Aamil Keeyan Khan, and Parveez Shaikh. The film arrives in cinemas on October 2, 2026.
+For Imtiaz Ali, this is a return to the theatrical canvas after years of mixed results. For Diljit, it is a chance to prove that Chamkila was not a one-off and that he can carry a Hindi-language theatrical release with the same authority he brings to a stadium. For Rahman, it is another chapter in a filmography that has defined what Indian cinema sounds like.
 
-*Sources: Bollywood Hungama exclusive, Sacnilk, BlazeeTrends, SAIndia Magazine*"""
+And for the diaspora audience watching from Toronto and New Jersey and the Bay Area, it is a film that says: this story is yours, and we are telling it for you first."""
 
-article2 = {
-    "headline": "Drishyam 3 Hindi Will Not Follow the Malayalam Film. Ajay Devgn's Version Is a Thriller Now.",
-    "subheadline": "The franchise's first original Hindi script adds Jaideep Ahlawat and Prakash Raj, replaces the emotional drama with a family thriller, and brings KGF composer Ravi Basrur on board for October 2",
-    "slug": "drishyam-3-hindi-different-from-malayalam-ajay-devgn-jaideep-ahlawat-ravi-basrur-nri-20260606",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "is_editorial": False,
-    "vertical": "entertainment",
-    "image_url": img2,
-    "image_caption": caption2,
-    "image_attribution": attr2,
-    "body": body2,
-    "sources": json.dumps([
+    sources = json.dumps([
+        {"name": "Filmfare", "url": "https://filmfare.com"},
         {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-        {"name": "Sacnilk", "url": "https://sacnilk.com"},
-        {"name": "BlazeeTrends", "url": "https://blazetrends.com"},
-        {"name": "SAIndia Magazine", "url": "https://saindiamagazine.com"}
+        {"name": "BollySpice", "url": "https://bollyspice.com"},
+        {"name": "India Forums", "url": "https://indiaforums.com"},
+        {"name": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Main_Vaapas_Aaunga"}
     ])
-}
-
-if img2:
-    insert_article_curl(article2)
-else:
-    print("  ✗ No image found, skipping")
-
-
-# ============================================================
-# ARTICLE 3: The Odyssey IMAX Ticket Frenzy
-# ============================================================
-print("\n=== Article 3: The Odyssey IMAX Frenzy ===")
-
-time.sleep(2)
-img3, attr3 = find_image(person_name="Christopher Nolan", pexels_query="movie theater cinema IMAX screen")
-
-caption3 = "Christopher Nolan, director of The Odyssey" if img3 and "Nolan" in str(img3) else "An IMAX cinema auditorium"
-
-body3 = """On June 4, AMC Theatres' ticketing system collapsed. Fandango queued users for hours. Regal went down. Kiosks at AMC Lincoln Square in New York — the legendary IMAX 70mm screen — were surrounded by lines that wrapped through the building. And on eBay, tickets for a single screening were being listed for $1,500.
-
-The cause was not a concert or a sporting event. It was advance booking for a movie about a man trying to sail home from war — Christopher Nolan's *The Odyssey*.
-
-## The Scale of the Frenzy
-
-*The Odyssey*, based on Homer's ancient Greek epic, is the first feature film in cinema history shot entirely with IMAX cameras. That distinction alone has turned it into an event. But the combination of Nolan's track record — *Oppenheimer* earned $952 million worldwide — and a cast that includes Matt Damon, Tom Holland, Anne Hathaway, Zendaya, Robert Pattinson, Charlize Theron, and Lupita Nyong'o has created demand that outstrips any recent film release.
-
-AMC's ticketing app had to be temporarily paused due to overwhelming traffic. Some fans reported hour-long waits before they could complete a purchase. On eBay, IMAX 70mm tickets for screenings in New York, Arizona, Florida, and Texas were being resold at $500 to $1,500 — prices more commonly associated with Taylor Swift concerts than cinema.
-
-## India Enters the Race on June 8
-
-Indian fans will get their shot starting June 8, when IMAX advance bookings open across participating theatres and ticketing platforms. Warner Bros. Discovery India confirmed the date, making Indian audiences among the first in the world to reserve seats alongside global Nolan fans.
-
-"For the first time, Indian fans book their seats alongside the rest of the world, for the first film in history made entirely on IMAX cameras," said Denzil Dias, Vice President and Managing Director of Warner Bros. Discovery India.
-
-The move reflects both IMAX's confidence in India's market and Nolan's outsized popularity in the country. *Oppenheimer* performed exceptionally well across Indian IMAX screens in 2023, and exhibitors expect *The Odyssey* to deliver an even larger event-level experience. The film opens in cinemas worldwide, including across India, on July 17, 2026.
-
-## Why This Is an NRI Event
-
-For the Indian diaspora, *The Odyssey* sits at the intersection of two cultural commitments — Hollywood spectacle and the communal theatre experience. NRI audiences in the US are already navigating the same crashed booking systems and inflated prices as everyone else. The India booking window opening on June 8 creates a parallel opportunity for family members back home to participate in the same opening-weekend event.
-
-The film will be available in IMAX 70mm film, IMAX digital and laser, standard 70mm film, 35mm film, and digital large format. For viewers in cities with IMAX screens — Mumbai, Delhi, Bengaluru, Hyderabad, Chennai, and several tier-two cities — the June 8 booking window is likely to see heavy traffic. *Oppenheimer* set the template; *The Odyssey* is testing whether that template has a ceiling.
-
-## What Nolan Built
-
-*The Odyssey* follows Odysseus (Matt Damon) on his perilous journey home to his wife Penelope (Anne Hathaway) after the fall of Troy. Tom Holland plays Telemachus. The film is produced by Emma Thomas and Christopher Nolan for Syncopy, distributed by Universal Pictures internationally and Warner Bros. Discovery in India.
-
-The production used brand-new IMAX film technology developed specifically for this project. Nolan has pushed large-format filmmaking further with each release — from *The Dark Knight* to *Dunkirk* to *Oppenheimer* — but *The Odyssey* is the first to commit entirely to the format, with every frame captured on IMAX cameras.
-
-Whether the film justifies $1,500 ticket prices remains to be seen. Whether the booking systems can handle June 8 in India is a more immediate question.
-
-*Sources: Bollywood Hungama, Sacnilk, ZoomTV Entertainment, Gulte, Consequence, IndulgeExpress*"""
-
-article3 = {
-    "headline": "Nolan's The Odyssey Crashed AMC's Servers and Created a $1,500 Scalping Market. India Opens Bookings on June 8.",
-    "subheadline": "The first film ever shot entirely on IMAX cameras has generated a global ticket frenzy, with Indian fans joining the race as advance sales launch this weekend",
-    "slug": "christopher-nolan-the-odyssey-imax-india-booking-june-8-ticket-frenzy-nri-20260606",
-    "category": "entertainment",
-    "status": "published",
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "is_editorial": False,
-    "vertical": "entertainment",
-    "image_url": img3,
-    "image_caption": caption3,
-    "image_attribution": attr3,
-    "body": body3,
-    "sources": json.dumps([
-        {"name": "Bollywood Hungama", "url": "https://bollywoodhungama.com"},
-        {"name": "ZoomTV Entertainment", "url": "https://zoomtventertainment.com"},
-        {"name": "Gulte", "url": "https://gulte.com"},
-        {"name": "Consequence", "url": "https://consequence.net"},
-        {"name": "IndulgeExpress", "url": "https://indulgexpress.com"}
-    ])
-}
-
-if img3:
-    insert_article_curl(article3)
-else:
-    print("  ✗ No image found, skipping")
+    
+    # Image sourcing
+    print("  Sourcing image...")
+    img_url, img_attr = source_image(
+        "Diljit Dosanjh",
+        ["Diljit Dosanjh singer actor", "Imtiaz Ali director Bollywood"],
+        slug
+    )
+    
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "body": body,
+        "slug": slug,
+        "category": "entertainment",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "sources": sources,
+        "image_url": img_url,
+        "image_caption": "Diljit Dosanjh performing during his AURA Tour" if img_url else None,
+        "image_attribution": img_attr,
+        "is_editorial": False,
+        "vertical": "entertainment"
+    }
+    
+    return insert_article(article)
 
 
-print("\n=== Entertainment writer complete ===")
+# ═══════════════════════════════════════
+# MAIN
+# ═══════════════════════════════════════
+if __name__ == "__main__":
+    print(f"Entertainment writer run: {datetime.now(timezone.utc).isoformat()}")
+    
+    results = []
+    
+    aid1 = write_article_1()
+    results.append(("Shilpa Shinde Confession", aid1))
+    time.sleep(1)
+    
+    aid2 = write_article_2()
+    results.append(("Bobby Deol Bandar", aid2))
+    time.sleep(1)
+    
+    aid3 = write_article_3()
+    results.append(("Main Vaapas Aaunga", aid3))
+    
+    print("\n═══ SUMMARY ═══")
+    for title, aid in results:
+        status = "✓" if aid else "✗"
+        print(f"  {status} {title}: {aid}")
+    
+    success = sum(1 for _, a in results if a)
+    print(f"\nPublished {success}/{len(results)} articles")
