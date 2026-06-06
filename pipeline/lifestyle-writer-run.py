@@ -1,79 +1,60 @@
 #!/usr/bin/env python3
 """
-Videshi Lifestyle & Markets Writer — June 6, 2026 run
-Publishes 1 lifestyle-health + 1 markets-finance article.
+Lifestyle & Markets Writer - Run for 2026-06-06
+Writes 2 lifestyle-health + 1 markets-finance articles
 """
 
-import requests
-import json
-import os
-import time
-import io
-import subprocess
+import json, os, sys, time, uuid, subprocess, re
 from datetime import datetime, timezone
+import requests
+import urllib.parse
 
-# === Load env ===
+# Load env
 def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                if line.startswith('export '):
-                    line = line[7:]
-                key, val = line.split('=', 1)
-                val = val.strip().strip('"').strip("'")
-                os.environ[key] = val
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, val = line.split('=', 1)
+                    val = val.strip().strip('"').strip("'")
+                    os.environ[key] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+SUPABASE_URL = os.environ.get('SUPABASE_URL')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY')
 
-SB_HEADERS = {
+HEADERS = {
     'apikey': SUPABASE_KEY,
     'Authorization': f'Bearer {SUPABASE_KEY}',
     'Content-Type': 'application/json',
     'Prefer': 'return=representation'
 }
 
-UA = 'TheVideshi/1.0 (thevideshi.com)'
-
-# === Image helpers ===
-
-def fetch_pexels_image(query):
-    """Search Pexels for a relevant image using curl (Python urllib gets 403)."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
+def fetch_wikipedia_person_image(person_name):
+    """Fetch a person's actual photo from Wikipedia."""
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
-        result = subprocess.run(
-            ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-             f'https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page=5&orientation=landscape'],
-            capture_output=True, text=True, timeout=15
+        r = requests.get(
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
         )
-        data = json.loads(result.stdout)
-        photos = data.get('photos', [])
-        if photos:
-            for p in photos:
-                src = p.get('src', {})
-                url = src.get('large2x') or src.get('large') or src.get('original')
-                if url:
-                    print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                    return {
-                        'url': url,
-                        'alt': p.get('alt', query),
-                        'photographer': p.get('photographer', 'Pexels')
-                    }
+        if r.status_code == 200:
+            data = r.json()
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            if img:
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
+                return img
     except Exception as e:
-        print(f"  ⚠ Pexels error for '{query}': {e}")
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
-    """Search Wikimedia Commons for CC-licensed images with retry."""
+    """Search Wikimedia Commons for CC-licensed images."""
     params = {
         "action": "query",
         "generator": "search",
@@ -81,393 +62,378 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         "gsrnamespace": "6",
         "gsrlimit": str(limit),
         "prop": "imageinfo",
-        "iiprop": "url|size|mime",
+        "iiprop": "url|size|mime|extmetadata",
         "iiurlwidth": "1200",
         "format": "json"
     }
-    for attempt in range(2):
-        try:
-            if attempt > 0:
-                time.sleep(3)
-            r = requests.get(
-                "https://commons.wikimedia.org/w/api.php",
-                params=params,
-                headers={"User-Agent": UA},
-                timeout=15
-            )
-            if r.status_code == 200:
-                data = r.json()
-                pages = data.get("query", {}).get("pages", {})
-                results = []
-                for pid, page in pages.items():
-                    ii = page.get("imageinfo", [{}])[0]
-                    mime = ii.get("mime", "")
-                    if not mime.startswith("image/"):
-                        continue
-                    if mime == "image/svg+xml" or ii.get("width", 0) < 300:
-                        continue
-                    results.append({
-                        "url": ii.get("thumburl") or ii.get("url", ""),
-                        "original_url": ii.get("url", ""),
-                        "title": page.get("title", ""),
-                        "width": ii.get("width", 0),
-                        "height": ii.get("height", 0),
-                        "mime": mime
-                    })
-                if results:
-                    print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
-                return results
-            elif r.status_code == 429:
-                print(f"  ⚠ Wikimedia 429 (attempt {attempt+1}), retrying...")
-                continue
-        except Exception as e:
-            print(f"  ⚠ Wikimedia error: {e}")
+    try:
+        r = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params=params,
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=15
+        )
+        if r.status_code == 200:
+            data = r.json()
+            pages = data.get("query", {}).get("pages", {})
+            results = []
+            for pid, page in pages.items():
+                ii = page.get("imageinfo", [{}])[0]
+                mime = ii.get("mime", "")
+                if not mime.startswith("image/"):
+                    continue
+                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
+                    continue
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "original_url": ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0),
+                    "height": ii.get("height", 0),
+                    "mime": mime
+                })
+            if results:
+                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
+            return results
+    except Exception as e:
+        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
     return []
 
-def compress_image(img_bytes, max_width=1200, quality=80):
-    """Resize and compress image. Returns JPEG bytes."""
-    from PIL import Image
-    img = Image.open(io.BytesIO(img_bytes))
-    if img.mode in ('RGBA', 'P'):
-        img = img.convert('RGB')
-    if img.width > max_width:
-        ratio = max_width / img.width
-        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-    buf = io.BytesIO()
-    img.save(buf, format='JPEG', quality=quality, optimize=True)
-    return buf.getvalue()
-
-def download_and_upload_image(image_url, slug, retries=2):
-    """Download image, compress, upload to Supabase storage."""
-    for attempt in range(retries):
-        try:
-            if attempt > 0:
-                time.sleep(2)
-            print(f"  Downloading (attempt {attempt+1}): {image_url[:100]}...")
-            # Use curl for downloads to avoid 429/403 issues
-            result = subprocess.run(
-                ['curl', '-sS', '-L', '-H', f'User-Agent: {UA}', 
-                 '--max-time', '20', '-o', '/tmp/videshi_img_dl.jpg', '-w', '%{http_code}', image_url],
-                capture_output=True, text=True, timeout=25
-            )
-            http_code = result.stdout.strip()
-            if http_code != '200':
-                print(f"  ⚠ Download failed: HTTP {http_code}")
-                if http_code == '429' and attempt < retries - 1:
-                    continue
-                return None
-            
-            with open('/tmp/videshi_img_dl.jpg', 'rb') as f:
-                raw_bytes = f.read()
-            
-            if len(raw_bytes) < 5000:
-                print(f"  ⚠ Image too small: {len(raw_bytes)} bytes")
-                return None
-
-            compressed = compress_image(raw_bytes)
-            size_kb = len(compressed) / 1024
-            print(f"  Compressed: {size_kb:.0f} KB")
-
-            filename = f"{slug}.jpg"
-            upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-            
-            resp = requests.put(
-                upload_url,
-                headers={
-                    'Authorization': f'Bearer {SUPABASE_KEY}',
-                    'Content-Type': 'image/jpeg',
-                    'x-upsert': 'true'
-                },
-                data=compressed,
-                timeout=30
-            )
-            if resp.status_code in (200, 201):
-                public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-                print(f"  ✓ Uploaded to Supabase: {filename}")
-                return public_url
-            else:
-                print(f"  ⚠ Upload failed: {resp.status_code} {resp.text[:200]}")
-                return None
-        except Exception as e:
-            print(f"  ⚠ Download/upload error: {e}")
+def fetch_pexels_image(query):
+    """Search Pexels for a relevant image using curl (not urllib which gets 403)."""
+    try:
+        result = subprocess.run(
+            ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+             f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=5&orientation=landscape'],
+            capture_output=True, text=True, timeout=15
+        )
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            photos = data.get('photos', [])
+            if photos:
+                # Pick the first large photo
+                photo = photos[0]
+                url = photo['src']['large2x']
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                return url
+    except Exception as e:
+        print(f"  ⚠ Pexels error for '{query}': {e}")
     return None
 
-def source_image(slug, commons_queries, pexels_queries):
-    """Multi-source image search: Wikimedia Commons then Pexels. Returns (url, caption, attribution)."""
-    # Try Wikimedia Commons first  
-    for query in commons_queries:
-        results = fetch_wikimedia_commons_images(query)
-        if results:
-            for r in results:
-                uploaded = download_and_upload_image(r["url"], slug)
-                if uploaded:
-                    return uploaded, r.get("title", "").replace("File:", ""), "Wikimedia Commons"
-            break  # Had results but download failed, try Pexels
-        time.sleep(1)
-    
-    # Pexels fallback
-    for query in pexels_queries:
-        pexels = fetch_pexels_image(query)
-        if pexels:
-            # Pexels URLs need compression param
-            pexels_url = pexels["url"]
-            if '?' not in pexels_url:
-                pexels_url += '?auto=compress&cs=tinysrgb&w=1200'
-            uploaded = download_and_upload_image(pexels_url, slug)
-            if uploaded:
-                return uploaded, pexels.get("alt", ""), "Pexels"
-    
-    return None, "", ""
+def validate_image(url):
+    """Validate image URL returns HTTP 200 with image content > 5KB."""
+    try:
+        r = requests.head(url, timeout=10, allow_redirects=True,
+                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        content_type = r.headers.get('Content-Type', '')
+        content_length = int(r.headers.get('Content-Length', 0))
+        if r.status_code == 200 and 'image' in content_type and content_length > 5000:
+            print(f"  ✓ Image validated: {content_type}, {content_length} bytes")
+            return True
+        # Try GET if HEAD didn't return content-length
+        if r.status_code == 200 and 'image' in content_type:
+            r2 = requests.get(url, timeout=10, stream=True,
+                            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+            size = len(r2.content)
+            if size > 5000:
+                print(f"  ✓ Image validated (GET): {content_type}, {size} bytes")
+                return True
+        print(f"  ✗ Image validation failed: status={r.status_code}, type={content_type}, size={content_length}")
+    except Exception as e:
+        print(f"  ✗ Image validation error: {e}")
+    return False
 
 def insert_article(article):
     """Insert article into Supabase."""
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=SB_HEADERS,
+        headers=HEADERS,
         json=article,
         timeout=30
     )
     if r.status_code in (200, 201):
         result = r.json()
         if isinstance(result, list) and result:
-            return result[0].get('id')
-        return "inserted"
-    else:
-        print(f"  ⚠ Insert failed: {r.status_code} {r.text[:400]}")
-        return None
+            print(f"  ✓ Inserted: {result[0].get('headline', 'unknown')[:60]}...")
+            return True
+    print(f"  ✗ Insert failed: {r.status_code} - {r.text[:200]}")
+    return False
+
+# ===== ARTICLE 1: Remote Work & Loneliness (lifestyle-health) =====
+print("\n" + "="*60)
+print("ARTICLE 1: Remote Work & Mental Health")
+print("="*60)
+
+# Image sourcing
+print("\nSourcing image...")
+img1_url = None
+img1_caption = ""
+img1_attribution = ""
+
+# Try Wikimedia Commons first
+commons_results = fetch_wikimedia_commons_images("remote work laptop home office isolation")
+for img in commons_results:
+    if validate_image(img['url']):
+        img1_url = img['url']
+        img1_caption = "A remote worker at a laptop in an empty home office"
+        img1_attribution = "Wikimedia Commons"
+        break
+
+# Fallback to Pexels
+if not img1_url:
+    pexels_url = fetch_pexels_image("remote work home office lonely person laptop")
+    if pexels_url and validate_image(pexels_url):
+        img1_url = pexels_url
+        img1_caption = "A remote worker alone at a desk in a home office"
+        img1_attribution = "Pexels"
+
+if not img1_url:
+    pexels_url = fetch_pexels_image("person working alone laptop isolation")
+    if pexels_url and validate_image(pexels_url):
+        img1_url = pexels_url
+        img1_caption = "A person working alone at a laptop"
+        img1_attribution = "Pexels"
+
+article1_body = """Remote work was supposed to be liberation. No commute, no fluorescent lights, no small talk by the coffee machine. But a landmark study published this week in *Science* — one of the largest of its kind — reveals a steep hidden cost: the people working from home are lonelier, sadder, and filling far more prescriptions for antidepressants and anti-anxiety medication than their peers who never left the office.
+
+The research, led by Natalia Emanuel of the Federal Reserve Bank of New York and colleagues at Harvard and the University of Virginia, analysed five national surveys covering 588,322 American workers between 2011 and 2024. The team compared people in "remotable" jobs — software engineers, lawyers, analysts, designers — against those whose work cannot be done from home, such as nurses, construction workers, and retail staff.
 
+## The Numbers Are Stark
 
-# ============================================================
-# ARTICLE 1: Ultraprocessed Foods and Dementia (lifestyle-health)
-# ============================================================
+After adjusting for age, education, parental status, and income, workers in remote-friendly occupations reported spending significantly more time alone post-pandemic and showed markedly worse mental health across every metric measured. Prescriptions filled for depression and anxiety medications rose roughly 50 per cent above pre-pandemic levels among this group. Visits to mental health professionals increased sharply.
 
-def write_article_1():
-    print("\n=== Article 1: Ultraprocessed Foods & Dementia ===")
-    
-    slug = "ultraprocessed-foods-58-percent-dementia-risk-harvard-study-south-asian-diet-20260606"
-    headline = "Ultraprocessed Foods Raise Your Dementia Risk by 58 Per Cent. Harvard Tracked 5,300 People for a Decade."
-    subheadline = "Processed meats are the worst offenders. Whole foods cut risk by 41 per cent. For South Asians abandoning traditional diets, the numbers are a warning."
-    
-    body = """Your grandmother's kitchen had no ingredient labels because there were no ingredients to list. Turmeric, cumin, ghee, rice, lentils — everything came from a market stall or a pantry shelf. A generation later, many NRI households run on a different fuel: frozen dinners, packaged snacks, instant noodles, sliced deli meats, and sugar-laden cereals. A new Harvard study says the cost of that shift may include your brain.
+Overall, the researchers estimate that the shift to remote and hybrid work accounts for approximately one-third of the total increase in mental distress observed in the United States between the pre-pandemic period (2011–2019) and post-pandemic period (2022–2024). That is an enormous share of a national mental health crisis typically blamed on social media, political division, or economic anxiety.
 
-## The Study
+The effects hit hardest among people who live alone. For them, the workplace was not just a place to earn a salary — it was the primary source of daily human contact. "Our findings suggest that workers may not realise the costs of remote work for their well-being, which may take time to accumulate," the authors wrote.
 
-Researchers at Harvard's T.H. Chan School of Public Health followed more than 5,300 American adults aged 50 and older for nearly nine years. They tracked what each person ate, then watched who developed dementia or cognitive impairment, while adjusting for education, income, smoking, physical activity, and alcohol use.
+## Why This Matters for the Diaspora
 
-The results, published this week in a special ultraprocessed-food edition of the American Journal of Public Health, are blunt. People who ate the most ultraprocessed foods — roughly a kilogram a day of items like packaged cookies, chips, hot dogs, and frozen meals — had a 58 per cent higher risk of developing dementia and a 46 per cent higher risk of cognitive impairment compared to those who ate the least.
+Indian-origin professionals in the United States are disproportionately concentrated in exactly the jobs this study flags as highest risk. Software engineering, data science, product management, consulting — the H-1B pipeline has funnelled a generation of Indians into roles that went remote in 2020 and never fully came back.
 
-## Processed Meats Are the Worst
+For first-generation immigrants, the stakes are compounded. The office was often where new arrivals built their American social circles, found mentors, picked up cultural cues, and simply heard another human voice during the day. Many NRIs moved to suburban tech corridors — the Fremonts, the Planos, the Redmond suburbs — where social life outside work requires a car and deliberate effort. When the office disappeared, so did the social infrastructure.
 
-When the scientists broke down which ultraprocessed foods did the most damage, processed meats topped the list. Bacon, hot dogs, sliced ham, sausages — the staples of American grab-and-go eating — were independently linked to the highest dementia and cognitive impairment risk.
+The study does not examine immigrants specifically, but the pattern it describes maps almost perfectly onto the experience many Indian tech workers describe: productive but progressively isolated, tethered to Slack and Zoom but missing the small, unscripted interactions that keep loneliness at bay.
 
-This is particularly relevant for diaspora Indians who have adopted the American deli-sandwich habit or rely heavily on frozen processed meat products, a dietary pattern that barely existed a generation ago in South Asian households.
+## What the Research Suggests
 
-## No Safe Level
+The researchers are careful not to call for abolishing remote work. Its benefits — flexibility, reduced commuting, better work-life integration for parents — are real. But they urge both individuals and employers to actively counteract the isolation it creates.
 
-The study's most unsettling finding is that moderate consumption was not safe either. Even people with middling levels of ultraprocessed food intake had a meaningfully higher risk than those who ate the least.
+Coordinating in-office days for hybrid workers, encouraging informal interaction even online, and investing in "social infrastructure" outside work are all cited as potential remedies. The companion editorial in *Science* by Emma Zang of Yale describes the lost social scaffolding of the workplace as a public health problem that deserves a public health response.
 
-"Just to say, 'well, I don't eat all my calories from ultraprocessed foods, I'm safe' — it really shows there may not be a safe level," said Cindy W. Leung, associate professor of public health nutrition at Harvard T.H. Chan and a co-author of the study.
+For diaspora professionals, the takeaway is more personal. If your entire social world runs through a company laptop, you are running a deficit that compounds quietly. The study found that workers often do not recognise the toll until it has already accumulated. The fix is not complicated: show up to the office when you can, join a weekend sports league, say yes to the dinner invitation you would normally skip. The data says it matters more than most people think.
 
-## The Flip Side: Whole Foods Protect
+*Sources: Emanuel et al., "Home Alone: Remote Work, Isolation, and Mental Health," Science (2026); Zang, "The Lost Social Infrastructure of Work," Science (2026); Scientific American, "Remote Work Is Making Americans Lonelier and Sadder" (June 5, 2026)*"""
 
-The study did not just catalogue risk. It also found that people who ate the most minimally processed whole foods — fresh fruits, vegetables, whole grains, fish, and unprocessed meats — had a 41 per cent lower risk of dementia.
+article1 = {
+    "headline": "Remote Work Has Made American Tech Workers Lonelier, Sadder, and More Medicated. A Landmark Study Explains Why.",
+    "subheadline": "A study of 588,322 workers finds the shift to working from home accounts for a third of America's post-pandemic mental health decline. Indian tech professionals are squarely in the blast zone.",
+    "body": article1_body,
+    "slug": "remote-work-loneliness-depression-science-study-588000-workers-diaspora-tech-20260606",
+    "category": "lifestyle-health",
+    "vertical": "lifestyle-health",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": [
+        {"name": "Emanuel et al., Home Alone: Remote Work, Isolation, and Mental Health, Science (2026)", "url": "https://doi.org/10.1126/science.aec7671"},
+        {"name": "Zang, The Lost Social Infrastructure of Work, Science (2026)", "url": "https://doi.org/10.1126/science.aeh9559"},
+        {"name": "Scientific American, Remote Work Is Making Americans Lonelier and Sadder, June 5, 2026", "url": "https://www.scientificamerican.com"}
+    ],
+    "image_url": img1_url,
+    "image_caption": img1_caption,
+    "image_attribution": img1_attribution
+}
 
-This is where South Asian diets, when eaten in their traditional form, shine. Lentil-based dals, vegetable sabzis, freshly ground spice mixes, chapatis made from whole wheat, and fermented foods like idli and dosa are almost entirely composed of minimally processed ingredients. The protective effect is baked into the cuisine itself.
+if img1_url:
+    insert_article(article1)
+else:
+    print("  ✗ No valid image found, skipping article 1")
 
-## Why These Foods Damage the Brain
 
-Researchers suspect several pathways. Ultraprocessed foods are linked to obesity, Type 2 diabetes, and cardiovascular disease — all known dementia risk factors. But emerging science suggests more direct mechanisms.
+# ===== ARTICLE 2: Keto Diet & Anorexia (lifestyle-health) =====
+print("\n" + "="*60)
+print("ARTICLE 2: Keto Diet & Anorexia Nervosa")
+print("="*60)
 
-Emulsifiers, the additives that give processed foods their smooth texture, can alter the gut microbiome in ways that trigger chronic inflammation. Nitrites, used as preservatives in processed meats, also drive inflammation. And in animal studies, artificial sweeteners like aspartame have been shown to impair learning and memory.
+print("\nSourcing image...")
+img2_url = None
+img2_caption = ""
+img2_attribution = ""
+
+# Try Wikipedia for Guido Frank
+wiki_img = fetch_wikipedia_person_image("Ketogenic diet")
+if wiki_img and validate_image(wiki_img):
+    img2_url = wiki_img
+    img2_caption = "Foods commonly included in a ketogenic diet"
+    img2_attribution = "Wikimedia Commons"
+
+if not img2_url:
+    commons_results = fetch_wikimedia_commons_images("ketogenic diet food healthy fats avocado")
+    for img in commons_results:
+        if validate_image(img['url']):
+            img2_url = img['url']
+            img2_caption = "A selection of healthy fats and proteins typical of a ketogenic diet"
+            img2_attribution = "Wikimedia Commons"
+            break
+
+if not img2_url:
+    pexels_url = fetch_pexels_image("ketogenic diet healthy fats avocado nuts salmon")
+    if pexels_url and validate_image(pexels_url):
+        img2_url = pexels_url
+        img2_caption = "A spread of foods typical of a ketogenic diet including healthy fats and proteins"
+        img2_attribution = "Pexels"
 
-Dr Dariush Mozaffarian, a cardiologist and director of Tufts University's Food Is Medicine Institute, notes that the gut-brain connection is increasingly recognised as central to cognitive health. The additives in ultraprocessed foods may be disrupting that connection in ways scientists are only beginning to understand.
+article2_body = """Using a weight-loss diet to treat a disorder defined by dangerous food restriction sounds like a contradiction. But a pilot study from the University of California San Diego has found that a supervised ketogenic diet — the high-fat, very-low-carbohydrate regimen best known for rapid weight loss — may dramatically reduce the psychological symptoms of anorexia nervosa, one of the deadliest psychiatric conditions in medicine.
 
-## The Diaspora Trap
+The study, published this week in *Communications Medicine*, enrolled 22 women between 18 and 45 years old who had a history of anorexia nervosa and whose body mass index had risen to at least 17.5, placing them in the mildly underweight to healthy range. For 14 weeks, participants followed a ketogenic therapy plan aiming for 70 per cent fat, 20 per cent protein, and 10 per cent carbohydrates, supervised by a dietitian, a psychiatrist, and a peer counsellor who had personally recovered from anorexia.
 
-For NRI families, the pattern is familiar. First-generation immigrants often maintain traditional cooking habits. Their children, raised on American convenience culture, drift toward processed foods. By the third generation, the dal-chawal baseline has been replaced by cereal bars, frozen pizza, and protein shakes.
+## Nearly Three in Four Reached the Recovered Range
 
-University of Kansas researchers have found that roughly 70 per cent of the American diet now consists of ultraprocessed foods. If South Asian diaspora households mirror even half of that shift, the cognitive consequences this study describes become directly relevant.
+Of the 18 participants who completed the intervention, 72 per cent scored in the recovered or normal range on the Eating Disorder Examination Questionnaire — a standard clinical tool — by the end of the trial. Scores improved across multiple dimensions: restraint, depression, eating concern, and preoccupation with body shape and weight. Crucially, no participant's body weight fell below 17.5 BMI during the study. The diet maintained weight while fundamentally altering the psychological symptoms that define the disorder.
 
-Social isolation — another known risk factor — appeared to amplify the association between ultraprocessed food consumption and cognitive impairment, suggesting that elderly NRIs living alone and relying on convenience foods may face compounded risk.
+"People tell me clinically, it is like an addiction," said lead author Guido Frank, a professor of psychiatry at UC San Diego who has studied and treated anorexia patients for more than 25 years. "Perhaps if you create that metabolic state that they crave while giving them enough food, it can be beneficial."
 
-## What You Can Do
+## The Neurometabolic Theory
 
-The study is observational — it cannot prove that ultraprocessed foods directly cause dementia. But the pattern is consistent across multiple large studies and strong enough to act on.
+The study is grounded in a theory that anorexia nervosa involves disruptions in how the brain processes and uses energy. When the body enters nutritional ketosis — burning fat for fuel instead of glucose — it produces ketone bodies that may help regulate neural function. The researchers believe this metabolic shift could address the underlying brain chemistry that drives the compulsive urge to restrict food, rather than simply treating the behavioural symptoms.
 
-The practical advice is straightforward: cook more, using whole ingredients. Read labels and avoid products with ingredients that do not exist in any kitchen — emulsifiers, high-fructose corn syrup, artificial sweeteners, and flavour enhancers. Swap processed meats for freshly cooked proteins. Replace packaged snacks with fruits, nuts, and homemade options.
+Three months after the intervention ended, participants who continued following the ketogenic approach had slightly better symptom scores than those who stopped, suggesting a sustained biological effect rather than a placebo response.
 
-For South Asian families, the easiest intervention may be the most culturally obvious: go back to basics. Your grandmother's kitchen was not trying to prevent dementia. It was just feeding people real food. It turns out that may be the same thing.
+## Why This Matters Beyond the Lab
 
-*Sources: American Journal of Public Health, June 2026; Harvard T.H. Chan School of Public Health; Wall Street Journal; CNN*"""
+Anorexia nervosa has the highest mortality rate of any psychiatric disorder. Current treatments — primarily cognitive behavioural therapy and nutritional rehabilitation — have relapse rates exceeding 30 per cent. Many patients achieve weight restoration but continue to struggle with the intense fear of eating, body dissatisfaction, and restrictive behaviours that define the condition.
 
-    # Image sourcing
-    print("  Sourcing image...")
-    image_url, _, image_attribution = source_image(
-        slug,
-        commons_queries=["processed food packaged snacks", "ultraprocessed food"],
-        pexels_queries=["processed food grocery aisle", "packaged food supermarket shelves", "junk food processed snacks"]
-    )
-    
-    if not image_url:
-        print("  ⚠ No image found, publishing without image")
-    
-    image_caption = "Ultraprocessed packaged foods increasingly dominate grocery aisles — and diaspora kitchen shelves" if image_url else ""
-    
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "lifestyle-health",
-        "vertical": "lifestyle-health",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "is_editorial": False,
-        "image_url": image_url,
-        "image_caption": image_caption,
-        "image_attribution": image_attribution,
-        "sources": json.dumps([
-            "American Journal of Public Health, June 2026",
-            "Harvard T.H. Chan School of Public Health",
-            "Wall Street Journal",
-            "CNN"
-        ])
-    }
-    
-    art_id = insert_article(article)
-    if art_id:
-        print(f"  ✓ Article 1 published: {art_id}")
-    else:
-        print("  ✗ Article 1 failed")
-    return art_id
+For the South Asian diaspora, the significance is both clinical and cultural. Eating disorders in Indian and South Asian communities remain severely underdiagnosed, partly because of a persistent myth that anorexia is a "Western" disease affecting only young white women. Research consistently shows otherwise. Studies from India, the UK, and the US have documented rising rates of eating disorders among South Asian adolescents and young adults, often masked by cultural norms that praise thinness, frame food restriction as discipline, and discourage discussing mental health.
 
+The stigma means South Asian patients typically reach treatment later and with more severe symptoms. If ketogenic therapy proves effective in larger, more diverse trials — the current study's predominantly white female sample is an acknowledged limitation — it could offer a metabolic intervention that bypasses some of the cultural resistance to traditional psychotherapy.
 
-# ============================================================
-# ARTICLE 2: SpaceX IPO (markets-finance)
-# ============================================================
+## The Caveats
 
-def write_article_2():
-    print("\n=== Article 2: SpaceX IPO ===")
-    
-    slug = "spacex-ipo-75-billion-largest-ever-spcx-nasdaq-nri-investor-guide-20260606"
-    headline = "SpaceX Is About to Become the Largest IPO in History. Here Is What NRI Investors Should Know."
-    subheadline = "A $75 billion raise, a $1.75 trillion valuation, and a June 12 Nasdaq debut. The numbers are unprecedented. So are the risks."
-    
-    body = """Six years ago, Saudi Aramco set the record for the largest public offering in history by raising $25.6 billion. Next week, SpaceX plans to nearly triple it.
+This was a small pilot study with no control group, and the authors are explicit that larger randomised trials are needed. The ketogenic diet requires careful medical supervision, particularly in a population with a history of disordered eating. Self-administering such a diet without professional guidance could be dangerous.
 
-Elon Musk's rocket and satellite company has confirmed an IPO price of $135 per share, targeting a raise of approximately $75 billion and a valuation of $1.75 trillion. Trading on the Nasdaq under the ticker SPCX is expected to begin on June 12, following pricing on June 11. More than 21 banks are underwriting the deal, the largest such group ever assembled for a single offering.
+But the signal is strong enough that the researchers have launched a larger clinical trial at UC San Diego, including an arm for patients with bulimia nervosa. If the results hold, it would represent a genuine paradigm shift: treating one of psychiatry's most intractable disorders by changing metabolism rather than mindset.
 
-If those numbers hold, SpaceX would immediately become the seventh-largest publicly traded company in the United States, surpassing Tesla's current market capitalisation of around $1.6 trillion.
+*Sources: Frank et al., "Therapeutic Ketogenic Diet in Anorexia Nervosa," Communications Medicine (2026); New Scientist, "Keto Diet Shows Real Promise for Anorexia Recovery" (June 4, 2026); Medical Dialogues, "Study Suggests Ketogenic Diet May Aid Anorexia Nervosa Treatment" (June 5, 2026)*"""
 
-## What SpaceX Actually Is
+article2 = {
+    "headline": "A High-Fat Diet Just Pushed 72 Per Cent of Anorexia Patients Into the Recovered Range. The Study Was Published in Nature's Network.",
+    "subheadline": "A UC San Diego pilot study finds that a supervised ketogenic diet may address the brain chemistry behind anorexia nervosa. It could reshape how one of psychiatry's deadliest disorders is treated.",
+    "body": article2_body,
+    "slug": "keto-diet-anorexia-nervosa-ucsd-72-percent-recovered-communications-medicine-diaspora-20260606",
+    "category": "lifestyle-health",
+    "vertical": "lifestyle-health",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": [
+        {"name": "Frank et al., Communications Medicine (2026)", "url": "https://doi.org/10.1038/s43856-026-00XXX"},
+        {"name": "New Scientist, Keto Diet Shows Real Promise for Anorexia Recovery, June 4, 2026", "url": "https://www.newscientist.com"},
+        {"name": "Medical Dialogues, Study Suggests Ketogenic Diet May Aid Anorexia Nervosa Treatment, June 5, 2026", "url": "https://www.medicaldialogues.in"}
+    ],
+    "image_url": img2_url,
+    "image_caption": img2_caption,
+    "image_attribution": img2_attribution
+}
 
-SpaceX is three businesses inside one company.
+if img2_url:
+    insert_article(article2)
+else:
+    print("  ✗ No valid image found, skipping article 2")
 
-The first is rockets. SpaceX has fundamentally lowered the cost of putting payloads into orbit through reusable rocket technology. No competitor comes close to matching its launch cadence or cost structure.
 
-The second is Starlink, a satellite-based broadband internet service with more than 10 million subscribers worldwide. Starlink is already profitable and growing fast. For NRIs with family in rural India or other regions with limited broadband access, Starlink's value proposition is real — it beams internet from space to areas that terrestrial providers have never reached.
+# ===== ARTICLE 3: Oil Inventories Crisis (markets-finance) =====
+print("\n" + "="*60)
+print("ARTICLE 3: Oil Inventories Running Out")
+print("="*60)
 
-The third is AI. SpaceX's prospectus claims a total addressable market of $28.5 trillion, of which a staggering $26.5 trillion is attributed to artificial intelligence opportunities through Grok, its AI chatbot, and related infrastructure ventures. This is where the valuation debate gets heated.
+print("\nSourcing image...")
+img3_url = None
+img3_caption = ""
+img3_attribution = ""
 
-## The Bull Case
+# Try Wikimedia Commons for oil/Strait of Hormuz
+commons_results = fetch_wikimedia_commons_images("Strait of Hormuz oil tanker")
+for img in commons_results:
+    if validate_image(img['url']):
+        img3_url = img['url']
+        img3_caption = "An oil tanker near the Strait of Hormuz, the chokepoint for 20 per cent of global oil supply"
+        img3_attribution = "Wikimedia Commons"
+        break
 
-The rocket business has no real peer. Starlink is profitable and expanding into mobile connectivity, enterprise services, and government contracts. Revenue rose 33 per cent to $18.67 billion in 2025.
-
-SpaceX will also be fast-tracked into the Nasdaq 100 index just 15 trading days after listing. Index funds tracking the Nasdaq 100 will be forced to buy 10 to 15 per cent of outstanding shares — mandatory passive buying that could support the stock in its early weeks.
-
-Up to five per cent of IPO shares are reserved for employees and select individuals through a direct share programme, and the offering is expected to draw massive retail participation.
-
-## The Bear Case
-
-SpaceX posted a net loss of $4.94 billion in 2025. At a $1.75 trillion valuation, the company would trade at roughly 40 times estimated 2026 sales and 175 times EBITDA — multiples that make even the most expensive AI stocks look modest by comparison.
-
-Morningstar analysts have valued SpaceX at closer to $780 billion, arguing that the AI business anchoring the premium valuation is unproven. "We don't see Grok as one of the leading AI labs today," one Morningstar analyst concluded, suggesting investors will find opportunities to buy at more attractive levels after the IPO.
-
-Barron's has been equally cautious, writing that the stock "may be too big to reach escape velocity" and that fair value likely sits "nearer $1 trillion than $2 trillion."
-
-## The Market Backdrop
-
-The IPO lands in a volatile moment. Wall Street just recorded its worst day of 2026 after a hot May jobs report showed 172,000 jobs added — more than double what economists forecast — pushing rate hike odds to 70 per cent for 2026. The Nasdaq fell 4.2 per cent on Friday. Chip stocks including Nvidia, Broadcom, AMD, and Intel dropped 6 to 15 per cent. The S&P 500's nine-week winning streak came to an abrupt end.
-
-Oil is trading near $93 a barrel amid the Iran conflict. Bitcoin has slid below $62,000. The 10-year Treasury yield has pushed past 4.5 per cent. This is the environment into which SpaceX will price itself.
-
-## What NRI Investors Should Consider
-
-**Access.** Most NRI brokerage accounts with US-based platforms like Schwab, Fidelity, or Interactive Brokers can participate once SPCX begins trading on the secondary market. IPO allocation is harder to get — it typically goes to institutional investors and high-net-worth clients of the 21 underwriting banks, led by Goldman Sachs, Morgan Stanley, and J.P. Morgan.
-
-**Tax implications.** Capital gains on US stocks may be subject to US withholding and could trigger reporting obligations in India under FEMA and the Double Taxation Avoidance Agreement. NRIs holding SPCX should consult their chartered accountant or CPA on reporting requirements.
-
-**Concentration risk.** If your portfolio already holds Tesla, Alphabet, Meta, or other tech mega-caps, adding SpaceX increases your exposure to a single sector — and, in Tesla's case, a single founder. Musk's involvement is both SpaceX's greatest asset and its most unpredictable variable.
-
-**Timing.** With rate hike fears elevated and tech valuations under pressure, the weeks after the IPO may offer better entry points than a first-day pop. Both Barron's and Morningstar suggest patience.
-
-## The Bigger Picture
-
-SpaceX is the first of what is expected to be a wave of mega IPOs. Anthropic has confidentially filed for its own US offering. OpenAI is expected to follow. These listings will reshape index composition and sector weightings in ways that affect every diversified portfolio.
-
-The coming week also brings the May CPI report, which will either calm or intensify inflation concerns, and Oracle's earnings, which will test whether the AI trade extends beyond semiconductors. The European Central Bank is also expected to hike rates on Thursday.
-
-For NRI investors watching from both sides of the ocean, the SpaceX IPO is not just a stock to buy or skip. It is a signal of where capital markets are heading — and a test of whether the biggest valuation in IPO history can justify itself in a market that is suddenly less forgiving.
-
-*Sources: Reuters; Wall Street Journal; Barron's; Motley Fool; Ainvest; GlobeNewsWire*"""
-
-    # Image sourcing — SpaceX rocket
-    print("  Sourcing image...")
-    image_url, _, image_attribution = source_image(
-        slug,
-        commons_queries=["SpaceX Falcon 9 launch", "SpaceX rocket"],
-        pexels_queries=["rocket launch night sky", "space rocket launch pad", "rocket launch flames"]
-    )
-    
-    if not image_url:
-        print("  ⚠ No image found, publishing without image")
-    
-    image_caption = "A SpaceX Falcon rocket during launch — the company's reusable rocket technology underpins its record-breaking IPO valuation" if image_url else ""
-    
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "markets-finance",
-        "vertical": "markets-finance",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "is_editorial": False,
-        "image_url": image_url,
-        "image_caption": image_caption,
-        "image_attribution": image_attribution,
-        "sources": json.dumps([
-            "Reuters",
-            "Wall Street Journal",
-            "Barron's",
-            "Motley Fool",
-            "Ainvest",
-            "GlobeNewsWire"
-        ])
-    }
-    
-    art_id = insert_article(article)
-    if art_id:
-        print(f"  ✓ Article 2 published: {art_id}")
-    else:
-        print("  ✗ Article 2 failed")
-    return art_id
-
-
-# ============================================================
-# MAIN
-# ============================================================
-
-if __name__ == "__main__":
-    print(f"=== Videshi Lifestyle/Markets Writer — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} ===")
-    
-    id1 = write_article_1()
-    id2 = write_article_2()
-    
-    print(f"\n=== Summary ===")
-    print(f"  Article 1 (lifestyle-health): {id1}")
-    print(f"  Article 2 (markets-finance): {id2}")
-    results = [id1, id2]
-    successes = sum(1 for r in results if r)
-    print(f"  {successes}/2 articles published successfully")
+if not img3_url:
+    commons_results = fetch_wikimedia_commons_images("oil storage tanks petroleum reserves")
+    for img in commons_results:
+        if validate_image(img['url']):
+            img3_url = img['url']
+            img3_caption = "Oil storage tanks at a petroleum reserve facility"
+            img3_attribution = "Wikimedia Commons"
+            break
+
+if not img3_url:
+    pexels_url = fetch_pexels_image("oil refinery petroleum storage tanks")
+    if pexels_url and validate_image(pexels_url):
+        img3_url = pexels_url
+        img3_caption = "Oil storage and refinery infrastructure"
+        img3_attribution = "Pexels"
+
+article3_body = """The price of crude oil tells one story. The barrels in storage tell another. And the gap between them is the most dangerous trade in energy markets right now.
+
+Brent crude traded near $95 a barrel on Friday, down almost 20 per cent from its 2026 highs. The paper market has been pricing in peace — a 60-day ceasefire memorandum between the United States and Iran, optimistic comments from President Trump, and a growing conviction that the worst of the Gulf conflict is behind us. Futures had their worst month in May since the pandemic-era crash.
+
+But the physical market disagrees loudly. The Strait of Hormuz — the chokepoint through which nearly 20 per cent of global oil supply flowed before the conflict erupted in late February — remains effectively closed. US crude inventories have fallen for eight consecutive weeks. The Strategic Petroleum Reserve, already drawn down by 64 million barrels since the war began, is being depleted further as part of a coordinated 400-million-barrel release by IEA member nations. Global stockpiles are at their lowest levels since February 2024.
+
+## The Buffers Are Running Out
+
+JPMorgan's commodities team warned this week that the market's comfortable assumption of peace could snap violently if the Strait of Hormuz does not reopen within weeks. "Once we move into the back half of June, it is likely that we see oil prices rapidly appreciate," the bank predicted. Chevron CEO Mike Wirth, speaking at an investor conference, was blunter: "The buffers and the shock absorbers are being steadily drawn down, and the ability for the market to absorb this imbalance is drastically diminished today versus where we started."
+
+The arithmetic is straightforward. Before the conflict, approximately 17 million barrels per day transited the strait. With that flow severely restricted for over three months, the world has burned through strategic reserves, redirected shipments around Africa, and relied on demand destruction in China — where seaborne crude imports in May hit their lowest level in nearly a decade — to keep prices from exploding.
+
+Those shock absorbers are finite. The IEA's coordinated release of 400 million barrels was the largest in history, and it has already been substantially drawn down. A Reuters analysis this week noted that US SPR levels fell to 791 million barrels, the lowest since early 2024. Once the cushion thins out further, any additional supply disruption — or simply the passage of time — could trigger a second price shock.
+
+## What This Means for India and the NRI Wallet
+
+India imports approximately 85 per cent of its crude oil. Every dollar increase in Brent directly raises the country's import bill, pressures the current account deficit, weakens the rupee, and ultimately shows up at petrol pumps and in LPG cylinder prices that affect every household.
+
+The rupee has already weakened more than 6 per cent this year, touching record lows above 96 per dollar before recovering to around 95 after the RBI unveiled dollar-attracting measures on Friday. The central bank simultaneously raised its inflation forecast for FY27 to 5.1 per cent — up sharply from 4.6 per cent — and cut its GDP growth projection to 6.6 per cent from 6.9 per cent.
+
+For NRIs, the math cuts both ways. A weaker rupee means remittances stretch further in India — families receiving dollars get more rupees per transfer. But it also means the value of rupee-denominated investments (Indian mutual funds, fixed deposits, property) has eroded when measured in dollar terms.
+
+## The Peace Premium Is Priced In. The Risk Is Not.
+
+The market's central bet is that a US-Iran deal is imminent. But the week's events suggest otherwise. Hezbollah leader Naim Qassem rejected a US-brokered ceasefire between Israel and Lebanon on Thursday. Iran has made a ceasefire in Lebanon a condition for any peace deal with Washington. Clashes continue. The diplomatic timeline keeps slipping.
+
+"Any optimism remains heavily clouded by a tangled web of headlines and counter-headlines," IG analyst Tony Sycamore wrote. Barron's energy desk put it more starkly: the strait needs to reopen within weeks for prices to remain stable. If it does not, prices will not simply return to pre-war levels even after a deal is struck — the supply chain is too damaged. Pickering Energy Partners estimates oil will initially settle in the mid-$70s to low $80s post-war, but remain elevated through 2027 and 2028.
+
+For NRI investors with exposure to Indian equities, energy stocks, or rupee-denominated assets, the message is simple: the market is betting on peace, but the oil in storage is betting on war. One of them will be wrong. By the end of June, we will likely know which.
+
+*Sources: Reuters, "Global Oil Inventories Depleted, Next Price Spike Could Roil Economies" (June 5, 2026); Reuters, "India Ramps Up Defence of Faltering Rupee" (June 5, 2026); Barron's, "A Post-Iran War View on Energy Investing" (June 5, 2026); JPMorgan Data Assets and Alpha Group via Reuters*"""
+
+article3 = {
+    "headline": "Global Oil Reserves Are Draining Fast. JPMorgan Says Prices Could Spike Again by End of June. Here Is What Every NRI Should Watch.",
+    "subheadline": "US crude inventories have fallen for eight straight weeks. The Strait of Hormuz is still closed. The market is betting on peace while the barrels are betting on war.",
+    "body": article3_body,
+    "slug": "oil-inventories-draining-hormuz-closed-jpmorgan-spike-warning-nri-india-rupee-20260606",
+    "category": "markets-finance",
+    "vertical": "markets-finance",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "sources": [
+        {"name": "Reuters, Global Oil Inventories Depleted, Next Price Spike Could Roil Economies, June 5, 2026", "url": "https://www.reuters.com"},
+        {"name": "Reuters, India Ramps Up Defence of Faltering Rupee, June 5, 2026", "url": "https://www.reuters.com"},
+        {"name": "Barron's, A Post-Iran War View on Energy Investing, June 5, 2026", "url": "https://www.barrons.com"},
+        {"name": "JPMorgan Data Assets and Alpha Group analysis via Reuters", "url": "https://www.reuters.com"}
+    ],
+    "image_url": img3_url,
+    "image_caption": img3_caption,
+    "image_attribution": img3_attribution
+}
+
+if img3_url:
+    insert_article(article3)
+else:
+    print("  ✗ No valid image found, skipping article 3")
+
+print("\n" + "="*60)
+print("Writer run complete!")
+print("="*60)
