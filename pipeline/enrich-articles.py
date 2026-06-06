@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 """
 Article enrichment pipeline:
-1. Replace generic Pexels hero images with better CC-licensed images (Openverse + Wikimedia Commons)
-2. Add Instagram embeds for entertainment articles with matching celebrity handles
-3. Add X/Twitter embeds for articles with matching registry handles (calls tweet-enricher)
+1. Replace generic Pexels hero images with better CC-licensed images (Openverse + Wikimedia Commons + Google CSE)
+2. Add YouTube trailer embeds for movie/series articles
+3. Add Instagram embeds for entertainment articles with matching celebrity handles
+4. Add X/Twitter embeds for articles with matching registry handles (calls tweet-enricher)
 
 Usage:
   python3 enrich-articles.py --hours 24 --dry-run    # preview changes
   python3 enrich-articles.py --hours 24 --apply       # apply changes
   python3 enrich-articles.py --images-only --apply     # only fix images
   python3 enrich-articles.py --embeds-only --apply     # only add embeds
+  python3 enrich-articles.py --trailers-only --apply   # only add YouTube trailers
 """
 
 import os, sys, json, re, time, argparse, subprocess
@@ -17,6 +19,10 @@ import requests
 from urllib.parse import quote
 
 PIPELINE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, PIPELINE_DIR)
+
+from importlib.machinery import SourceFileLoader
+media_sources = SourceFileLoader("media_sources", os.path.join(PIPELINE_DIR, "media-sources.py")).load_module()
 
 # ── Load env ──
 def load_env(path):
@@ -306,6 +312,8 @@ def article_has_social_embed(body, platform):
         return bool(re.search(r'instagram\.com/(?:p|reel|tv)/', body or ""))
     elif platform in ("twitter", "x"):
         return bool(re.search(r'(?:twitter|x)\.com/\w+/status/', body or ""))
+    elif platform == "youtube":
+        return bool(re.search(r'<youtube>.*?</youtube>', body or ""))
     return False
 
 
@@ -362,14 +370,21 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Preview only")
     parser.add_argument("--images-only", action="store_true", help="Only enrich images")
     parser.add_argument("--embeds-only", action="store_true", help="Only add embeds")
+    parser.add_argument("--trailers-only", action="store_true", help="Only add YouTube trailers")
     parser.add_argument("--max", type=int, default=10, help="Max articles to enrich per run")
     args = parser.parse_args()
 
     apply = args.apply and not args.dry_run
     registry = load_registry()
 
+    # Scope control
+    only_mode = args.images_only or args.embeds_only or args.trailers_only
+    run_images = not only_mode or args.images_only
+    run_trailers = not only_mode or args.trailers_only
+    run_embeds = not only_mode or args.embeds_only
+
     # ── 1. IMAGE ENRICHMENT ──
-    if not args.embeds_only:
+    if run_images:
         print("\n══ Image Enrichment ══")
         articles = get_recent_articles(hours=args.hours)
         pexels_articles = [a for a in articles if "pexels.com" in (a.get("image_url") or "")]
@@ -400,8 +415,66 @@ def main():
 
         print(f"\n  Image enrichment: {enriched} articles {'updated' if apply else 'would update'}")
 
-    # ── 2. SOCIAL EMBED ENRICHMENT ──
-    if not args.images_only:
+    # ── 2. YOUTUBE TRAILER ENRICHMENT ──
+    if run_trailers:
+        print("\n══ YouTube Trailer Enrichment ══")
+        all_articles = get_recent_articles(hours=args.hours)
+        # Filter to entertainment articles (movies/series most likely)
+        ent_articles_for_trailers = [
+            a for a in all_articles
+            if a.get("category") in ("entertainment",)
+        ]
+        print(f"Found {len(ent_articles_for_trailers)} entertainment articles to check for trailers")
+
+        trailer_enriched = 0
+        for article in ent_articles_for_trailers:
+            if trailer_enriched >= args.max:
+                break
+            body = article.get("body", "")
+            headline = article.get("headline", "")
+
+            # Skip if already has a YouTube embed
+            if article_has_social_embed(body, "youtube"):
+                continue
+
+            # Detect content type
+            ctype = media_sources.detect_content_type(headline, body)
+            if ctype not in ("movie", "series"):
+                continue
+
+            print(f"\n  🎬 [{ctype}] {headline[:65]}")
+
+            # Search for trailer
+            trailer_url = media_sources.search_youtube_trailer(headline, ctype, body)
+            if not trailer_url:
+                print(f"     — No trailer found")
+                continue
+
+            print(f"     → Trailer: {trailer_url}")
+            if apply:
+                # Insert <youtube> tag after the first paragraph
+                embed_tag = f"\n\n<youtube>{trailer_url}</youtube>\n"
+                paras = body.split("\n\n", 2)
+                if len(paras) >= 3:
+                    new_body = paras[0] + "\n\n" + paras[1] + embed_tag + "\n\n" + paras[2]
+                elif len(paras) == 2:
+                    new_body = paras[0] + "\n\n" + paras[1] + embed_tag
+                else:
+                    new_body = body + embed_tag
+
+                if update_article(article["id"], {"body": new_body}):
+                    print(f"     ✅ Trailer embedded!")
+                    trailer_enriched += 1
+                else:
+                    print(f"     ❌ Embed failed")
+            else:
+                print(f"     [DRY RUN] Would embed trailer")
+                trailer_enriched += 1
+
+        print(f"\n  Trailer enrichment: {trailer_enriched} articles {'updated' if apply else 'would update'}")
+
+    # ── 3. SOCIAL EMBED ENRICHMENT ──
+    if run_embeds:
         # Run tweet enricher
         run_tweet_enricher(hours=args.hours, apply=apply)
 
