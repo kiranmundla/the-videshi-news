@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-06-06T00:55:34.710026+00:00",
+  "last_updated": "2026-06-06T01:55:26.637128+00:00",
   "indices": [
     {
       "symbol": "SENSEX",
       "name": "Sensex",
       "flag": "\ud83c\uddee\ud83c\uddf3",
       "value": 74243.34,
-      "change": -116.6,
+      "change": -116.59,
       "change_pct": -0.16
     },
     {
