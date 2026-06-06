@@ -19,6 +19,14 @@ import re
 import argparse
 import requests
 from datetime import datetime, timezone, timedelta
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+# ─── Resilient HTTP session ───────────────────────────────────────────────────
+
+_session = requests.Session()
+_retry = Retry(total=3, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
+_session.mount("https://", HTTPAdapter(max_retries=_retry))
 
 # ─── Auth ──────────────────────────────────────────────────────────────────────
 
@@ -44,7 +52,7 @@ def get_bearer_token():
     secret = os.environ.get("TWITTER_CONSUMER_SECRET", "")
     if not key or not secret:
         raise RuntimeError("Missing TWITTER_CONSUMER_KEY / TWITTER_CONSUMER_SECRET")
-    resp = requests.post("https://api.twitter.com/oauth2/token",
+    resp = _session.post("https://api.twitter.com/oauth2/token",
                          auth=(key, secret),
                          data={"grant_type": "client_credentials"})
     resp.raise_for_status()
@@ -73,7 +81,7 @@ def get_user_id(handle):
         return cache[handle_lower]
 
     bearer = get_bearer_token()
-    resp = requests.get(
+    resp = _session.get(
         f"https://api.twitter.com/2/users/by/username/{handle}",
         headers={"Authorization": f"Bearer {bearer}"},
         timeout=10,
@@ -110,7 +118,7 @@ def fetch_recent_tweets(handle, hours=48, max_results=10):
         "exclude": "retweets,replies",
     }
 
-    resp = requests.get(
+    resp = _session.get(
         f"https://api.twitter.com/2/users/{uid}/tweets",
         headers={"Authorization": f"Bearer {bearer}"},
         params=params,
