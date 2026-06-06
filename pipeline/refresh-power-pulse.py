@@ -18,13 +18,13 @@ LEADERS = [
     {"name": "PMO India", "handle": "PMOIndia", "category": "india"},
     {"name": "Amit Shah", "handle": "AmitShah", "category": "india"},
     {"name": "Rahul Gandhi", "handle": "RahulGandhi", "category": "india"},
-    {"name": "Yogi Adityanath", "handle": "myabordityanath", "category": "india"},
+    {"name": "Yogi Adityanath", "handle": "myogiadityanath", "category": "india"},
     {"name": "Arvind Kejriwal", "handle": "ArvindKejriwal", "category": "india"},
     {"name": "S Jaishankar", "handle": "DrSJaishankar", "category": "india"},
     {"name": "Nirmala Sitharaman", "handle": "nsitharaman", "category": "india"},
     {"name": "Gautam Adani", "handle": "gautam_adani", "category": "india"},
     {"name": "Mukesh Ambani", "handle": "reliancejio", "category": "india"},
-    {"name": "Ratan Tata", "handle": "rataborata", "category": "india"},
+    {"name": "Ratan Tata", "handle": "ratantata", "category": "india"},
     {"name": "President of India", "handle": "rashtrapatibhvn", "category": "india"},
     # ---- Power Pulse / World (11) ----
     {"name": "Donald Trump", "handle": "realDonaldTrump", "category": "world"},
@@ -58,7 +58,7 @@ LEADERS = [
     {"name": "Rohit Sharma", "handle": "ImRo45", "category": "sports"},
     {"name": "MS Dhoni", "handle": "msdhoni", "category": "sports"},
     {"name": "Jasprit Bumrah", "handle": "Jaspritbumrah93", "category": "sports"},
-    {"name": "Hardik Pandya", "handle": "hardaborandya93", "category": "sports"},
+    {"name": "Hardik Pandya", "handle": "hardikpandya93", "category": "sports"},
     {"name": "Sachin Tendulkar", "handle": "sachin_rt", "category": "sports"},
     {"name": "Sourav Ganguly", "handle": "SGanguly99", "category": "sports"},
     {"name": "BCCI", "handle": "BCCI", "category": "sports"},
@@ -68,7 +68,7 @@ LEADERS = [
     {"name": "PV Sindhu", "handle": "Pvsindhu1", "category": "sports"},
     {"name": "Sania Mirza", "handle": "MirzaSania", "category": "sports"},
     {"name": "D Gukesh", "handle": "DGukesh", "category": "sports"},
-    {"name": "Sunil Chhetri", "handle": "caborhetri11", "category": "sports"},
+    {"name": "Sunil Chhetri", "handle": "chetrisunil11", "category": "sports"},
 ]
 
 OUTPUT_PATH = os.path.expanduser("~/workspace/the-videshi-news/public/data/tech-buzz.json")
