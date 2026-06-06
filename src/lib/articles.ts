@@ -36,7 +36,7 @@ type P2Row = {
   slug: string | null;
   headline: string;
   subheadline: string | null;
-  body: string;
+  body?: string;
 
   vertical: string;
   category: string | null;
@@ -44,8 +44,8 @@ type P2Row = {
   is_featured: boolean | null;
   published_at: string | null;
   created_at: string;
-  sources: unknown;
-  diaspora_angle: string | null;
+  sources?: unknown;
+  diaspora_angle?: string | null;
   tags: string[] | null;
   image_url: string | null;
   image_attribution: string | null;
@@ -55,6 +55,9 @@ type P2Row = {
 
 const P2_COLS =
   "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images";
+
+const P2_LIST_COLS =
+  "id, slug, headline, subheadline, vertical, category, status, is_featured, published_at, created_at, tags, image_url, image_attribution, image_caption, gallery_images";
 
 function parseSources(raw: unknown): Article["sources"] {
   // Handle JSON array format
@@ -112,7 +115,7 @@ function mapRow(row: P2Row): Article {
     id: row.id,
     slug: row.slug ?? row.id,
     title: row.headline,
-    excerpt: deriveExcerpt(row.subheadline, row.body),
+    excerpt: deriveExcerpt(row.subheadline, row.body ?? ""),
     body: stripInlineSources(row.body ?? ""),
     category: row.category ?? row.vertical ?? "",
     hero_image_url: row.image_url ?? "",
@@ -337,7 +340,7 @@ export async function getArticlesByCategory(
 
   const { data, error } = await supabase
     .from("p2_articles")
-    .select(P2_COLS)
+    .select(P2_LIST_COLS)
     .eq("status", "published")
     .eq("category", category)
     .gte("published_at", since72h)
@@ -355,7 +358,7 @@ export async function getArticlesByCategory(
     const since7d = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
     const { data: wider, error: widerErr } = await supabase
       .from("p2_articles")
-      .select(P2_COLS)
+      .select(P2_LIST_COLS)
       .eq("status", "published")
       .eq("category", category)
       .gte("published_at", since7d)
