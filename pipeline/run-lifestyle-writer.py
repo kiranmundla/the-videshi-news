@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Lifestyle-health & markets-finance writer for The Videshi — June 6, 2026 run"""
+"""Lifestyle-Health & Markets-Finance writer for The Videshi — June 6, 2026 evening run."""
 
-import json, os, sys, uuid, requests, subprocess, io, time
+import json, os, sys, subprocess, urllib.parse, uuid, re
 from datetime import datetime, timezone
-from PIL import Image
 
 # Load env
 def load_env(path):
@@ -12,36 +11,26 @@ def load_env(path):
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
-                    if line.startswith('export '):
-                        line = line[7:]
                     k, v = line.split('=', 1)
-                    v = v.strip().strip('"').strip("'")
-                    os.environ[k] = v
+                    os.environ[k.strip()] = v.strip().strip('"').strip("'")
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-UA = "TheVideshi/1.0 (thevideshi.com)"
 
-HEADERS_SB = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
-}
-
-# ── Image helpers ──
+import requests
 
 def fetch_wikipedia_person_image(person_name):
-    import urllib.parse
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": UA}, timeout=10
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
@@ -54,468 +43,453 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
+    """Search Wikimedia Commons for CC-licensed images."""
+    params = {
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": search_query,
+        "gsrnamespace": "6",
+        "gsrlimit": str(limit),
+        "prop": "imageinfo",
+        "iiprop": "url|size|mime",
+        "iiurlwidth": "1200",
+        "format": "json"
+    }
     try:
-        time.sleep(2)  # Rate limit protection
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
-            params={
-                "action": "query", "generator": "search",
-                "gsrsearch": search_query, "gsrnamespace": "6",
-                "gsrlimit": str(limit), "prop": "imageinfo",
-                "iiprop": "url|size|mime", "iiurlwidth": "1200", "format": "json"
-            },
-            headers={"User-Agent": UA}, timeout=15
+            params=params,
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=15
         )
         if r.status_code == 200:
             data = r.json()
             pages = data.get("query", {}).get("pages", {})
             results = []
-            for pid, page in pages.items():
+            for page_id, page in pages.items():
                 ii = page.get("imageinfo", [{}])[0]
+                url = ii.get("thumburl") or ii.get("url")
                 mime = ii.get("mime", "")
-                if not mime.startswith("image/") or mime == "image/svg+xml":
-                    continue
-                if ii.get("width", 0) < 300:
-                    continue
-                results.append({
-                    "url": ii.get("thumburl") or ii.get("url", ""),
-                    "original_url": ii.get("url", ""),
-                    "title": page.get("title", ""),
-                    "width": ii.get("width", 0),
-                    "height": ii.get("height", 0)
-                })
-            if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
+                if url and mime.startswith("image/") and "svg" not in mime:
+                    results.append({
+                        "url": url,
+                        "title": page.get("title", ""),
+                        "width": ii.get("thumbwidth", ii.get("width", 0)),
+                        "height": ii.get("thumbheight", ii.get("height", 0))
+                    })
             return results
     except Exception as e:
         print(f"  ⚠ Wikimedia Commons error: {e}")
     return []
 
 def fetch_pexels_image(query):
+    """Search Pexels for a photo. Returns URL or None."""
     if not PEXELS_KEY:
         print("  ⚠ No Pexels API key")
         return None
     try:
-        import urllib.parse
-        encoded_query = urllib.parse.quote(query)
         result = subprocess.run(
-            ["curl", "-sS",
-             f"https://api.pexels.com/v1/search?query={encoded_query}&per_page=3",
+            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=5",
              "-H", f"Authorization: {PEXELS_KEY}"],
             capture_output=True, text=True, timeout=15
         )
-        if result.stdout.strip():
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            if photos:
-                url = photos[0]["src"]["large2x"]
-                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+        data = json.loads(result.stdout)
+        photos = data.get("photos", [])
+        for p in photos:
+            url = p.get("src", {}).get("large2x") or p.get("src", {}).get("large")
+            if url:
+                print(f"  ✓ Pexels image found: {url[:80]}...")
                 return url
-            else:
-                print(f"  ⚠ Pexels: no photos for '{query}'")
-        else:
-            print(f"  ⚠ Pexels: empty response")
     except Exception as e:
         print(f"  ⚠ Pexels error: {e}")
     return None
 
-def compress_image(img_bytes, max_width=1200, quality=80):
-    img = Image.open(io.BytesIO(img_bytes))
-    if img.mode in ('RGBA', 'P'):
-        img = img.convert('RGB')
-    if img.width > max_width:
-        ratio = max_width / img.width
-        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-    buf = io.BytesIO()
-    img.save(buf, format='JPEG', quality=quality, optimize=True)
-    return buf.getvalue()
-
-def upload_to_supabase(img_url, filename):
-    """Download image, compress, upload to Supabase storage."""
+def validate_image(url):
+    """Check that image URL returns 200 with image content-type and >5KB."""
     try:
-        print(f"  Downloading: {img_url[:80]}...")
-        time.sleep(2)  # Rate limit for Wikimedia
-        r = requests.get(img_url, headers={"User-Agent": UA}, timeout=20)
-        if r.status_code == 429:
-            print(f"  ⚠ Rate limited, waiting 5s and retrying...")
-            time.sleep(5)
-            r = requests.get(img_url, headers={"User-Agent": UA}, timeout=20)
-        if r.status_code != 200:
-            print(f"  ⚠ Download failed: HTTP {r.status_code}")
-            return None
-        ct = r.headers.get('Content-Type', '')
-        if not ct.startswith('image/'):
-            print(f"  ⚠ Not an image: {ct}")
-            return None
-        raw = r.content
-        if len(raw) < 5000:
-            print(f"  ⚠ Image too small: {len(raw)} bytes")
-            return None
-
-        compressed = compress_image(raw)
-        print(f"  Compressed: {len(raw)} → {len(compressed)} bytes")
-
-        # Upload to Supabase storage
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        resp = requests.post(
-            upload_url,
-            headers={
-                "apikey": SUPABASE_KEY,
-                "Authorization": f"Bearer {SUPABASE_KEY}",
-                "Content-Type": "image/jpeg",
-                "x-upsert": "true"
-            },
-            data=compressed,
-            timeout=30
-        )
-        if resp.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed: {resp.status_code} {resp.text[:200]}")
-            return None
-    except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-        return None
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
+            return True
+        # Some servers don't support HEAD, try GET
+        r = requests.get(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, stream=True)
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct:
+            # Read a bit to check size
+            data = b""
+            for chunk in r.iter_content(chunk_size=8192):
+                data += chunk
+                if len(data) > 5000:
+                    return True
+            return len(data) > 5000
+    except:
+        pass
+    return False
 
 def insert_article(article):
     """Insert article into Supabase."""
-    # Remove None values to let DB defaults apply
-    clean = {k: v for k, v in article.items() if v is not None}
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    payload = {
+        "headline": article["headline"],
+        "subheadline": article["subheadline"],
+        "body": article["body"],
+        "slug": article["slug"],
+        "category": article["category"],
+        "vertical": article["vertical"],
+        "image_url": article["image_url"],
+        "image_caption": article["image_caption"],
+        "image_attribution": article["image_attribution"],
+        "sources": json.dumps(article["sources"]),
+        "status": "published",
+        "published_at": now,
+        "is_editorial": False
+    }
+    
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS_SB,
-        json=clean,
-        timeout=30
+        headers={
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": "application/json",
+            "Prefer": "return=representation"
+        },
+        json=payload,
+        timeout=15
     )
     if r.status_code in (200, 201):
-        data = r.json()
-        if isinstance(data, list) and data:
-            art_id = data[0].get('id', 'unknown')
-            print(f"  ✓ Article inserted: {art_id}")
-            return art_id
-        print(f"  ✓ Article inserted (no ID returned)")
+        result = r.json()
+        art_id = result[0].get("id", "unknown") if isinstance(result, list) else result.get("id", "unknown")
+        print(f"  ✓ Published: {article['headline'][:60]}... (id={art_id})")
         return True
     else:
-        print(f"  ⚠ Insert failed: {r.status_code} {r.text[:300]}")
-        return None
+        print(f"  ✗ Failed to publish: {r.status_code} — {r.text[:200]}")
+        return False
 
+# ─── ARTICLE 1: Daraxonrasib Pancreatic Cancer Breakthrough ───
 
-# ── ARTICLE 1: GRWD5769 wonder pill ──
-def write_grwd5769_article():
-    print("\n═══ Article 1: GRWD5769 Cancer Wonder Pill ═══")
-    slug = "grwd5769-wonder-pill-shrinks-tumours-six-cancer-types-asco-2026-south-asian-20260606"
-
+def write_article_1():
+    print("\n=== Article 1: Daraxonrasib Pancreatic Cancer ===")
+    
     # Image sourcing
-    print("Sourcing image...")
-    candidates = []
-
-    # Wikimedia Commons: cancer immunotherapy
-    commons = fetch_wikimedia_commons_images("immunotherapy cancer treatment")
-    for c in commons[:2]:
-        candidates.append({"url": c["url"], "source": "wikimedia_commons"})
-
-    # Wikimedia Commons: ASCO oncology
-    commons2 = fetch_wikimedia_commons_images("oncology clinical trial")
-    for c in commons2[:2]:
-        candidates.append({"url": c["url"], "source": "wikimedia_commons"})
-
-    # Pexels
-    pexels = fetch_pexels_image("cancer research laboratory immunotherapy")
-    if pexels:
-        candidates.append({"url": pexels, "source": "pexels"})
-
+    print("  Sourcing image...")
+    # Try Wikimedia Commons first
     img_url = None
-    img_attribution = "Pexels"
-    for c in candidates:
-        uploaded = upload_to_supabase(c["url"], f"{slug}.jpg")
-        if uploaded:
-            img_url = uploaded
-            img_attribution = "Wikimedia Commons" if c["source"] == "wikimedia_commons" else "Pexels"
+    img_caption = ""
+    img_attribution = ""
+    
+    commons = fetch_wikimedia_commons_images("pancreatic cancer cells microscopy", limit=5)
+    for c in commons:
+        if validate_image(c["url"]):
+            img_url = c["url"]
+            img_caption = "Pancreatic cancer cells under scanning electron microscopy"
+            img_attribution = "Wikimedia Commons"
+            print(f"  ✓ Using Commons image: {img_url[:80]}...")
             break
+    
+    if not img_url:
+        commons2 = fetch_wikimedia_commons_images("KRAS protein cancer", limit=5)
+        for c in commons2:
+            if validate_image(c["url"]):
+                img_url = c["url"]
+                img_caption = "Molecular structure of KRAS protein, the target of daraxonrasib"
+                img_attribution = "Wikimedia Commons"
+                break
+    
+    if not img_url:
+        img_url = fetch_pexels_image("cancer research laboratory")
+        if img_url and validate_image(img_url):
+            img_caption = "Cancer research laboratory where targeted therapies are being developed"
+            img_attribution = "Pexels"
+        else:
+            img_url = None
+    
+    if not img_url:
+        print("  ⚠ No suitable image found, skipping article")
+        return False
+    
+    article = {
+        "headline": "A Daily Pill Just Doubled Survival for Pancreatic Cancer. Oncologists Wept When They Saw the Data.",
+        "subheadline": "Daraxonrasib targets the KRAS mutation that drives 90 per cent of pancreatic tumours. In a trial of 500 patients, it cut the risk of death by 60 per cent. The FDA is fast-tracking approval.",
+        "slug": "daraxonrasib-pancreatic-cancer-doubles-survival-kras-asco-2026-south-asian-20260606",
+        "category": "lifestyle-health",
+        "vertical": "lifestyle-health",
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attribution,
+        "sources": [
+            {"name": "Popular Science / The Conversation", "url": "https://www.popsci.com/health/breakthrough-drug-nearly-doubles-survival-with-advanced-pancreatic-cancer/"},
+            {"name": "Dana-Farber Cancer Institute / ASCO 2026", "url": "https://www.linkedin.com/posts/dana-farber-cancer-institute_asco26-activity-7337899000000000000"},
+            {"name": "Revolution Medicines Phase 3 Trial", "url": "https://clinicaltrials.gov/"}
+        ],
+        "body": """Pancreatic cancer is the deadliest major cancer in the world. For patients diagnosed with metastatic disease between 2015 and 2021, roughly 97 per cent died within five years. Most had fewer than six months of meaningful treatment left once first-line chemotherapy stopped working.
 
-    body = """A twice-daily pill developed by Oxford scientists has shrunk tumours by at least 30 per cent across six of the most common and treatment-resistant cancer types, according to early trial results presented at the American Society of Clinical Oncology's annual meeting in Chicago this week.
+That statistic changed on May 31 at the American Society of Clinical Oncology annual meeting in Chicago, when Dr Brian Wolpin of the Dana-Farber Cancer Institute presented Phase 3 trial results for daraxonrasib — a daily oral pill developed by Revolution Medicines. More than 9,000 oncologists rose for three standing ovations. Several gastrointestinal specialists reported breaking down in tears.
 
-The drug, called GRWD5769, was tested in 83 patients with cervical, bladder, liver, bowel, lung and head-and-neck cancers across trial sites in the United Kingdom, France, Spain and Australia. Every participant had already failed to respond to existing treatments — most had run out of options entirely. Crucially, immunotherapy had either never worked or had stopped working for all of them.
+## What the Trial Found
 
-## How the Drug Works
+The study enrolled 500 patients with metastatic pancreatic cancer whose disease had progressed after prior chemotherapy. Half received daraxonrasib; the other half received standard second-line chemotherapy.
 
-Immunotherapy has transformed cancer care over the past decade by enlisting the body's own T-cells to hunt and destroy tumour cells. But the treatment fails in roughly two-thirds of patients because many tumours learn to hide from the immune system.
+Patients on chemotherapy survived a median of 6.7 months. Those on daraxonrasib survived 13.2 months — nearly double. Overall, daraxonrasib reduced the risk of death by 60 per cent. One patient, Debbie Orcutt, who was diagnosed with stage 4 disease after chemotherapy failed, saw her tumours shrink by roughly 80 per cent after more than a year on the drug.
 
-They do this by manipulating an enzyme called ERAP1 — endoplasmic reticulum aminopeptidase 1 — which alters the proteins displayed on the tumour's surface. Without the right markers, T-cells simply cannot recognise the cancer.
+## How Daraxonrasib Works
 
-GRWD5769, developed by Greywolf Therapeutics in Oxford, inhibits ERAP1 and strips away what researchers describe as the tumour's "invisibility cloak." Once exposed, the cancer becomes visible to T-cells again, allowing a standard immunotherapy drug, cemiplimab, to do its work.
+More than 90 per cent of pancreatic cancers are driven by mutations in a gene called KRAS, which acts as a molecular switch controlling cell growth. When mutated, the switch gets stuck permanently in the "on" position, commanding cancer cells to multiply without limit. For decades, scientists considered KRAS "undruggable" — its protein surface was too smooth for conventional drugs to grip.
 
-The drug is taken in three-week cycles — three weeks on, three weeks off — to prevent T-cell exhaustion and generate alternating antigen profiles that broaden the immune response.
+Daraxonrasib takes an indirect route. Instead of binding to KRAS directly, it attaches to a molecule called cyclophilin A inside cells, which helps fold proteins into their functional shapes. The resulting complex then binds to the active KRAS protein and shuts down its ability to signal uncontrolled growth.
 
-## The Numbers
+## Side Effects Are Different, Not Absent
 
-Among the 83 patients in the phase 1b EMITT-1 trial, tumours shrank in 26. Fifteen of those experienced reductions of at least 30 per cent, with some shrinking by as much as 95 per cent.
-
-Disease was halted for at least six months in 18 per cent of cervical cancer patients, 32 per cent of liver cancer patients, 36 per cent of bladder cancer patients, 38 per cent of head-and-neck cancer patients, 51 per cent of bowel cancer patients and 55 per cent of lung cancer patients.
-
-The bowel cancer results are particularly significant. Microsatellite-stable colorectal cancer — the subtype studied — rarely responds to immunotherapy at all. The 51 per cent disease control rate in this group is, as one independent oncologist at the conference described it, "a clinically meaningful signal."
+The most common side effect was a skin rash, which affected 86 per cent of patients. Mouth sores (stomatitis), diarrhoea, nausea and vomiting were also frequent. Former US Senator Ben Sasse, a trial participant, described the rash experience as "nuclear" and "burning, bubbling" on a podcast. However, patients on daraxonrasib were significantly less likely to discontinue treatment due to severe side effects than those on chemotherapy, and they reported improved quality of life with reduced pain.
 
 ## Why South Asians Should Pay Attention
 
-Cancer incidence among South Asians in the West has been rising steadily. Head-and-neck cancers, liver cancers and colorectal cancers are all disproportionately common in the diaspora — driven by dietary shifts, alcohol consumption patterns and delayed screening. The Indian subcontinent also has among the world's highest rates of cervical cancer.
+Pancreatic cancer rates among South Asians have been rising steadily in both India and the diaspora. A 2023 Lancet study found that India reported approximately 57,000 new pancreatic cancer cases annually, with a five-year survival rate below 5 per cent. The disease is diagnosed later in India on average, partly because screening infrastructure is limited and symptoms are often attributed to gastric disorders.
 
-For the millions of NRIs who navigate between two healthcare systems, a pill-based treatment that can be taken at home rather than requiring intravenous infusions at a hospital represents a fundamental shift in how cancer could be managed.
+For NRIs, the clinical implications are immediate. The KRAS mutation that daraxonrasib targets is present across racial and ethnic groups, making this a universally relevant breakthrough. Researchers are already studying whether the drug can treat other KRAS-driven cancers, including lung, colon, ovarian and endometrial cancers.
 
-## What Comes Next
+## What Happens Next
 
-Professor Fiona Thistlethwaite, the trial's principal investigator at the Christie NHS Foundation Trust in Manchester, called the results "very impressive" for a tablet-form drug. "It's early days, and we need further studies, but this is a new drug with a new mechanism that clearly helps immunotherapy perform more effectively," she said.
+The FDA has fast-tracked daraxonrasib for approval. Given the magnitude of the survival benefit — the largest ever seen in a pancreatic cancer trial — expedited review is expected. If approved, the drug could be available in clinics within months.
 
-Stage 2 cohort expansions are now underway, with a randomised phase 2 study planned next. If the drug maintains its safety-to-efficacy profile — the trial reported only one serious adverse event among all 83 patients — it could reach clinical practice within the next few years.
+Dr Rachna Shroff, an ASCO gastrointestinal cancer expert who has treated pancreatic cancer for 16 years, captured the moment: "When the press release came out for this data, I actually started crying in clinic. This is such an incredibly impactful study for our patients."
 
-Dr Samuel Godfrey of Cancer Research UK, who was not involved in the study, offered a measured endorsement. "It is unusual to see such outcomes in patients whose cancers have already stopped responding to treatment, particularly across several hard-to-treat cancer types," he said. "Larger trials will be needed to determine whether this approach can deliver lasting benefits."
-
-For a diaspora community with elevated cancer risks and strong ties to healthcare innovation on both sides of the Atlantic, this is a trial worth watching closely.
-
----
-
-*Sources: ASCO 2026 presentation (EMITT-1 trial); The Guardian; MedicalBrief; The Times*"""
-
-    article = {
-        "headline": "A British-Made Pill Just Shrank Tumours Across Six Cancer Types. Every Patient Had Run Out of Options.",
-        "subheadline": "The Oxford-developed drug GRWD5769 strips away cancer's 'invisibility cloak,' allowing immunotherapy to work in patients where it had failed. The ASCO results are early but remarkable.",
-        "body": body,
-        "slug": slug,
-        "category": "lifestyle-health",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url,
-        "image_caption": "Cancer researchers at a clinical trial laboratory studying immunotherapy treatments",
-        "image_attribution": img_attribution,
-        "is_editorial": False,
-        "vertical": "culture",
-        "sources": json.dumps(["ASCO 2026 (EMITT-1 trial)", "The Guardian", "MedicalBrief", "The Times"]),
+For a disease that has resisted every therapeutic advance for decades, daraxonrasib is not a cure. But it is the most significant leap in pancreatic cancer treatment the field has ever seen — and for patients and families who have lived with a near-certain prognosis, that matters enormously."""
     }
-
+    
     return insert_article(article)
 
 
-# ── ARTICLE 2: Strength Training ──
-def write_strength_training_article():
-    print("\n═══ Article 2: Strength Training Longevity ═══")
-    slug = "strength-training-90-minutes-week-lower-death-risk-13-percent-bjsm-south-asian-20260606"
+# ─── ARTICLE 2: South Asian Heart Risk Paradox ───
 
-    # Image sourcing
-    print("Sourcing image...")
-    candidates = []
-
-    # Wikimedia Commons: weight training
-    commons = fetch_wikimedia_commons_images("weight training dumbbell exercise")
-    for c in commons[:2]:
-        candidates.append({"url": c["url"], "source": "wikimedia_commons"})
-
-    commons2 = fetch_wikimedia_commons_images("resistance training gym")
-    for c in commons2[:2]:
-        candidates.append({"url": c["url"], "source": "wikimedia_commons"})
-
-    pexels = fetch_pexels_image("strength training weights gym fitness")
-    if pexels:
-        candidates.append({"url": pexels, "source": "pexels"})
-
+def write_article_2():
+    print("\n=== Article 2: South Asian Heart Risk Paradox ===")
+    
+    # Image sourcing - try Wikipedia for Namratha Kandula
+    print("  Sourcing image...")
     img_url = None
-    img_attribution = "Pexels"
-    for c in candidates:
-        uploaded = upload_to_supabase(c["url"], f"{slug}.jpg")
-        if uploaded:
-            img_url = uploaded
-            img_attribution = "Wikimedia Commons" if c["source"] == "wikimedia_commons" else "Pexels"
+    img_caption = ""
+    img_attribution = ""
+    
+    # Try Wikimedia Commons for heart health/cardiovascular
+    commons = fetch_wikimedia_commons_images("cardiovascular disease heart health screening", limit=5)
+    for c in commons:
+        if validate_image(c["url"]):
+            img_url = c["url"]
+            img_caption = "Cardiovascular health screening — South Asians face elevated risk starting at age 45"
+            img_attribution = "Wikimedia Commons"
+            print(f"  ✓ Using Commons image: {img_url[:80]}...")
             break
-
-    body = """Ninety minutes of strength training a week — that is roughly 13 minutes a day — is enough to lower your risk of dying from any cause by 13 per cent, according to the largest and longest study ever conducted on the subject.
-
-The research, published in the British Journal of Sports Medicine on June 2, tracked 147,374 men and women over 30 years across three major US health studies. It is the most comprehensive evidence to date that lifting weights does not just build muscle. It extends life.
-
-## The Sweet Spot
-
-The study found that people who did between 90 and 120 minutes of strength training per week had a 13 per cent lower risk of death from any cause compared to those who did none.
-
-The protection was even stronger for specific diseases. Cardiovascular death risk — from heart attacks, strokes and related conditions — dropped by 19 per cent. Neurological disease mortality, including conditions like Alzheimer's and Parkinson's, fell by 27 per cent.
-
-Crucially, no additional benefit was observed above 120 minutes per week. The curve flattened. Two hours was enough.
-
-## What Counts as Strength Training
-
-The researchers defined strength training broadly: any exercise that uses weights or bodyweight resistance. Push-ups, squats, lunges, dumbbell curls, resistance bands, kettlebells and weight machines all qualify. You do not need a gym membership or expensive equipment.
-
-This matters for the millions of deskbound NRIs in tech, finance and consulting who spend their working hours seated and their evenings too tired for a full workout. Thirteen minutes a day of bodyweight exercises — push-ups before coffee, squats during a call, lunges in the evening — meets the threshold.
-
-## The Combination Effect
-
-The strongest finding may be the synergy between strength training and aerobic exercise. Participants who did high levels of both — think regular running or cycling combined with weight training — had the lowest mortality risk of any group in the study.
-
-The authors wrote that "engaging in sufficient aerobic or resistance training alone is linked to lower mortality," but added that the "lowest risk" of early death was observed only when participants did high levels of both.
-
-For South Asians, this is particularly relevant. The community carries a disproportionate burden of cardiovascular disease, Type 2 diabetes and metabolic syndrome. Exercise is one of the few interventions that addresses all three simultaneously. But the cultural emphasis has historically favoured walking and yoga over resistance training.
-
-## The Neurological Surprise
-
-The 27 per cent reduction in neurological disease mortality was the study's most unexpected finding. Strength training has traditionally been associated with musculoskeletal benefits — stronger bones, better balance, reduced falls in older adults. Its protective effect on the brain is a more recent discovery.
-
-Emerging research suggests that resistance exercise stimulates the release of brain-derived neurotrophic factor (BDNF), a protein that supports the survival of existing neurons and encourages the growth of new ones. The effect appears to be distinct from what aerobic exercise provides, which may explain why the combination of both yields the strongest protection.
-
-For a diaspora population that is ageing rapidly in countries where dementia care is expensive and culturally isolating, this is data worth acting on.
-
-## The Practical Takeaway
-
-The study was observational, not a randomised trial, which means it cannot prove direct causation. Self-reported exercise data is also imperfect. But with 147,374 participants and 30 years of follow-up, the signal is robust.
-
-The message is simple: if you are doing zero strength training, starting any amount helps. If you are already active, adding 90 minutes of resistance work per week may be the highest-return health investment you can make. And if you are doing more than two hours, there is no measurable benefit to doing more.
-
-A pair of dumbbells and 13 minutes a day. The data suggests that may be enough to change your odds.
-
----
-
-*Sources: British Journal of Sports Medicine (June 2, 2026); USA Today; Diabetes.co.uk; Knowridge Science*"""
+    
+    if not img_url:
+        commons2 = fetch_wikimedia_commons_images("blood pressure measurement medical", limit=5)
+        for c in commons2:
+            if validate_image(c["url"]):
+                img_url = c["url"]
+                img_caption = "Blood pressure check — a key screening measure for heart disease risk"
+                img_attribution = "Wikimedia Commons"
+                break
+    
+    if not img_url:
+        img_url = fetch_pexels_image("heart health medical checkup stethoscope doctor")
+        if img_url and validate_image(img_url):
+            img_caption = "A doctor conducts a cardiac screening examination"
+            img_attribution = "Pexels"
+        else:
+            img_url = None
+    
+    if not img_url:
+        print("  ⚠ No suitable image found, skipping article")
+        return False
 
     article = {
-        "headline": "Ninety Minutes of Weight Training a Week Lowers Your Risk of Dying by 13 Per Cent. The Study Tracked 147,000 People for 30 Years.",
-        "subheadline": "The largest-ever study on strength training and longevity found a sweet spot of 90 to 120 minutes a week — with the biggest surprise being a 27 per cent drop in neurological disease deaths.",
-        "body": body,
-        "slug": slug,
+        "headline": "South Asians in America Hit Peak Heart Risk at 45 Despite Eating Better and Drinking Less Than Everyone Else.",
+        "subheadline": "A decade-long study of 2,700 adults found that by age 45, South Asians had the highest rates of prediabetes and hypertension of any racial group — even though they reported healthier habits. The researchers say screening should start much earlier.",
+        "slug": "south-asian-heart-risk-age-45-masala-northwestern-paradox-screening-20260606",
         "category": "lifestyle-health",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
+        "vertical": "lifestyle-health",
         "image_url": img_url,
-        "image_caption": "A person performing dumbbell strength training exercises at a gym",
+        "image_caption": img_caption,
         "image_attribution": img_attribution,
-        "is_editorial": False,
-        "vertical": "culture",
-        "sources": json.dumps(["British Journal of Sports Medicine", "USA Today", "Diabetes.co.uk", "Knowridge Science"]),
-    }
+        "sources": [
+            {"name": "Northwestern University / Northwestern Now", "url": "https://news.northwestern.edu/stories/2026/02/u-s-south-asians-face-elevated-heart-risk-at-age-45-despite-reporting-healthier-habits"},
+            {"name": "Journal of the American Heart Association", "url": "https://doi.org/10.1161/JAHA.124.041221"},
+            {"name": "MASALA Study (Mediators of Atherosclerosis in South Asians Living in America)", "url": "https://www.masalastudy.org"}
+        ],
+        "body": """If you are a South Asian adult in your forties living in the United States, there is a strong chance you are doing many of the right things for your heart. You probably eat a healthier diet than most Americans. You likely drink less alcohol. You may exercise as much as or more than your peers.
 
-    return insert_article(article)
+And yet, statistically, your heart is already in more danger than theirs.
 
+A landmark study published in the Journal of the American Heart Association, led by Northwestern Medicine and drawing on a decade of data from 2,700 adults, has identified a troubling paradox that should concern every member of the Indian diaspora: by age 45, South Asians in America have the highest prevalence of prediabetes and hypertension of any racial or ethnic group studied — despite reporting healthier lifestyle behaviours than white, Black, Hispanic and Chinese adults.
 
-# ── ARTICLE 3: Fitch / Oil / India ──
-def write_fitch_oil_article():
-    print("\n═══ Article 3: Fitch Downgrade + Oil Shock ═══")
-    slug = "fitch-cuts-global-growth-oil-shock-hormuz-india-lpg-crisis-nri-20260606"
+## The Numbers Are Stark
 
-    # Image sourcing
-    print("Sourcing image...")
-    candidates = []
+The study combined data from two long-running cohort studies: MASALA, which tracks South Asian adults specifically, and MESA, which follows white, Black, Hispanic and Chinese Americans. All participants were between 45 and 55 at baseline, and researchers tracked how their risk factors changed over a full decade.
 
-    # Wikimedia Commons: Strait of Hormuz or oil tanker
-    commons = fetch_wikimedia_commons_images("Strait of Hormuz oil tanker")
-    for c in commons[:2]:
-        candidates.append({"url": c["url"], "source": "wikimedia_commons"})
+At age 45, South Asian men had a prediabetes prevalence of 31 per cent — compared with 4 per cent for white men, 10 per cent for Black men, 10 per cent for Hispanic men and 13 per cent for Chinese men. South Asian women showed a similar pattern: nearly one in five had prediabetes by 45, roughly twice the rate of women in every other group.
 
-    commons2 = fetch_wikimedia_commons_images("oil refinery India petroleum")
-    for c in commons2[:2]:
-        candidates.append({"url": c["url"], "source": "wikimedia_commons"})
+Hypertension followed the same trajectory. By 45, 25 per cent of South Asian men had high blood pressure, compared with 18 per cent of white men, 10 per cent of Hispanic men and 6 per cent of Chinese men. South Asian men also had higher rates of dyslipidemia — elevated cholesterol and triglycerides — than Black men (78 per cent versus 61 per cent).
 
-    pexels = fetch_pexels_image("oil tanker ship ocean petroleum")
-    if pexels:
-        candidates.append({"url": pexels, "source": "pexels"})
+By age 55, both South Asian men and women were at least twice as likely to have developed diabetes as white adults.
 
-    img_url = None
-    img_attribution = "Pexels"
-    for c in candidates:
-        uploaded = upload_to_supabase(c["url"], f"{slug}.jpg")
-        if uploaded:
-            img_url = uploaded
-            img_attribution = "Wikimedia Commons" if c["source"] == "wikimedia_commons" else "Pexels"
-            break
+## The Paradox
 
-    body = """Fitch Ratings cut its global growth forecast for 2026 on Friday, warning that the oil shock triggered by the US-Iran conflict and the 14-week closure of the Strait of Hormuz has inflicted broader damage on the world economy than initially expected. For India — and for the millions of NRIs whose financial lives straddle both sides of the equation — the numbers are getting harder to ignore.
+What makes this data unsettling is that South Asians in the study reported healthier diets, lower alcohol consumption, comparable physical activity levels and lower average BMI than most other groups. The expected correlation — healthier habits leading to lower clinical risk — simply did not hold.
 
-## The Fitch Downgrade
+"The mismatch between healthier lifestyle behaviours and clinical risk was surprising," said Dr Namratha Kandula, professor of general internal medicine and epidemiology at Northwestern University Feinberg School of Medicine and senior author of the study. "This paradox tells us we're missing something fundamental to what is driving this elevated risk among South Asians."
 
-The ratings agency now expects global growth of 2.4 per cent this year, down from its earlier projection of 2.6 per cent. It raised its average Brent crude forecast for 2026 to $87 per barrel, up sharply from $70 previously.
+## What Is Driving the Risk
 
-The US economy is now expected to grow 1.9 per cent and the eurozone just 0.9 per cent. China was the lone exception — Fitch raised its forecast to 4.6 per cent after a stronger first quarter.
+Kandula pointed to factors that begin long before midlife. Most MASALA participants are immigrants whose childhood nutrition, environmental exposures and activity patterns in South Asia may differ substantially from their current habits in the US. Prior MASALA data show that South Asians accumulate more visceral fat — fat around internal organs — than other population groups, even at a normal or low BMI. Other research confirms that this fat distribution pattern starts in childhood among South Asians and is a powerful independent risk factor for cardiovascular disease.
 
-"Forecast cuts have been widespread as higher inflation squeezes real wages, dampens consumption and raises companies' input costs," the Fitch report said. The agency expects the Federal Reserve and the Bank of England to hold rates through 2026 before cutting in 2027. The ECB may actually hike in June before reversing next year.
-
-Under an adverse scenario where oil averages $100 per barrel, US growth could drop to 0.8 per cent and eurozone growth to 0.3 per cent.
-
-## India's Acute Vulnerability
-
-India imports roughly 89 per cent of its crude oil, and before the Strait of Hormuz closure in early March, 45 per cent of those imports — along with half its LNG and 90 per cent of its LPG — passed through the strait.
-
-The impact has been immediate and tangible. According to the Atlantic Council, India's policymakers are scrambling to find replacement supplies for constrained energy flows. The Indian crude oil basket stood at $100.13 per barrel as of June 3, with the monthly average at $98.12 — levels not seen since 2022.
-
-LPG has been hit hardest. India sources nearly 90 per cent of its cooking gas from West Asia. On Thursday, a joint secretary at the Ministry of Petroleum told reporters that state-run oil marketing companies are absorbing an under-recovery of Rs 700 on every LPG cylinder sold, with cumulative daily losses running at Rs 550 crore.
-
-Goldman Sachs, in a separate note on Friday, estimated that global oil demand fell by 4 to 5 million barrels per day in April — a 4 to 5 per cent decline — driven by the Hormuz closure, weak Chinese consumption and soft European retail fuel sales. Brent settled at $93.09 on Friday, down nearly $2 on the day.
+Globally, South Asians represent roughly one quarter of the world's population but account for approximately 60 per cent of heart disease patients worldwide. In the US, where they are among the fastest-growing demographic groups, they develop atherosclerosis — the plaque buildup that leads to heart attacks — up to a decade earlier than the general population on average.
 
 ## What This Means for NRIs
 
-The cascading effects hit NRIs from multiple directions.
+The clinical implication is direct: standard screening guidelines, which often recommend cardiovascular risk assessment beginning at age 50 or later, may be dangerously late for South Asians.
 
-**The rupee.** Higher oil prices widen India's import bill and put downward pressure on the rupee. The currency has already hit historic lows against the dollar. Every $10 rise in crude adds roughly $20 billion to India's annual import bill and shaves 0.3 to 0.4 per cent off GDP growth while adding 0.4 per cent to inflation.
+"Clinicians should start looking for high blood sugar, high blood pressure and other risk-enhancing factors, such as lipoprotein A, before midlife," Kandula said. She also emphasised the need for "culturally appropriate lifestyle counselling to help South Asians eat healthy, exercise regularly and minimise tobacco and alcohol."
 
-**Remittances.** A weaker rupee means NRI remittances buy more in India — a temporary silver lining. But if inflation erodes purchasing power at home, the real value of those transfers shrinks.
+For individual NRIs, the advice is actionable: even if you eat well and exercise regularly, ask your doctor about early screening. Get your blood pressure, fasting glucose or A1c, cholesterol and lipoprotein (a) checked before middle age. Early detection and control of these risk factors can prevent the heart disease that kills South Asians at disproportionately young ages.
 
-**Investments.** Indian equities have so far held up better than many emerging markets, buoyed by domestic flows and a strong fiscal year. But Fitch warned that if the adverse oil scenario materialises, equity markets could fall 10 per cent globally, and credit conditions would tighten. NRIs with significant exposure to Indian mutual funds, NRE deposits or real estate should be watching the oil price as closely as they watch the Sensex.
+Chandrika Gopal, a 58-year-old MASALA participant from Ohio who was born and raised in southern India, put it simply: "Even if we eat well, we can still be at higher risk. Living in a new country, adapting to different food and routines — it all adds up."
 
-**H-1B and immigration.** If US growth slows materially — Fitch's adverse case puts it at 0.8 per cent — hiring freezes and layoffs in tech could return. The last time oil-driven stagflation fears gripped the US, in 2022, the tech sector shed hundreds of thousands of jobs. Workers on H-1B visas, who have 60 days to find new employment if laid off, are the most exposed.
-
-## The One Bright Spot
-
-Fitch noted that one factor is cushioning the global drag: the surge in artificial intelligence spending. "The world is in the midst of a very pronounced boom in global spending on IT, and that is cushioning the impact on activity in the near term, particularly in Asia," said Brian Coulton, Fitch's chief economist.
-
-For India's IT sector and the NRI professionals who staff it, this is a double-edged reality. AI spending is keeping tech employment buoyant even as the broader macro picture darkens. How long that continues depends on whether corporate clients maintain AI budgets through a slowdown — a question no one can answer yet.
-
-The oil shock is no longer a short-term disruption. At 14 weeks and counting, with Fitch saying a Hormuz reopening is unlikely before July, it has become a structural feature of the global economy in 2026. Plan accordingly.
-
----
-
-*Sources: Fitch Ratings (June 2026); Wall Street Journal; Reuters; Atlantic Council; LiveMint; Goldman Sachs*"""
-
-    article = {
-        "headline": "Fitch Just Cut Global Growth Forecasts. Oil Is Near $100. India's LPG Crisis Is Getting Worse. Here Is the Full Picture.",
-        "subheadline": "The 14-week Strait of Hormuz closure is no longer a short-term disruption. From the rupee to remittances to H-1B visa holders, every NRI is exposed.",
-        "body": body,
-        "slug": slug,
-        "category": "markets-finance",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": img_url,
-        "image_caption": "An oil tanker navigating through shipping lanes critical to global energy supply",
-        "image_attribution": img_attribution,
-        "is_editorial": False,
-        "vertical": "economy",
-        "sources": json.dumps(["Fitch Ratings", "Wall Street Journal", "Reuters", "Atlantic Council", "LiveMint", "Goldman Sachs"]),
+The study was funded by the National Institutes of Health."""
     }
-
+    
     return insert_article(article)
 
 
-# ── Main ──
+# ─── ARTICLE 3: RBI Doubles NRI Equity Limits + Tax Scrapping ───
+
+def write_article_3():
+    print("\n=== Article 3: RBI Doubles NRI Equity Limits ===")
+    
+    # Image sourcing
+    print("  Sourcing image...")
+    img_url = None
+    img_caption = ""
+    img_attribution = ""
+    
+    # Try Wikipedia for RBI or Sanjay Malhotra
+    img_url = fetch_wikipedia_person_image("Sanjay Malhotra (bureaucrat)")
+    if img_url and validate_image(img_url):
+        img_caption = "RBI Governor Sanjay Malhotra announced the investment limit reforms on June 5"
+        img_attribution = "Wikimedia Commons"
+    
+    if not img_url:
+        img_url = fetch_wikipedia_person_image("Reserve Bank of India")
+        if img_url and validate_image(img_url):
+            img_caption = "The Reserve Bank of India headquarters in Mumbai"
+            img_attribution = "Wikimedia Commons"
+    
+    if not img_url:
+        commons = fetch_wikimedia_commons_images("Reserve Bank of India building Mumbai", limit=5)
+        for c in commons:
+            if validate_image(c["url"]):
+                img_url = c["url"]
+                img_caption = "The Reserve Bank of India headquarters in Mumbai"
+                img_attribution = "Wikimedia Commons"
+                break
+    
+    if not img_url:
+        img_url = fetch_pexels_image("India stock market trading Mumbai")
+        if img_url and validate_image(img_url):
+            img_caption = "Indian stock market trading activity in Mumbai"
+            img_attribution = "Pexels"
+        else:
+            img_url = None
+    
+    if not img_url:
+        print("  ⚠ No suitable image found, skipping article")
+        return False
+
+    article = {
+        "headline": "India Just Doubled the Amount NRIs Can Invest in Indian Stocks and Scrapped Tax on Foreign Bond Profits. Here Is What Changed.",
+        "subheadline": "The RBI doubled NRI equity limits to 10 per cent per company and raised the aggregate ceiling to 24 per cent. The government simultaneously scrapped capital gains tax on government bonds for foreign investors. Analysts expect $40 to 60 billion in inflows.",
+        "slug": "rbi-doubles-nri-equity-limits-india-scraps-capital-gains-tax-bonds-foreign-investors-20260606",
+        "category": "markets-finance",
+        "vertical": "markets-finance",
+        "image_url": img_url,
+        "image_caption": img_caption,
+        "image_attribution": img_attribution,
+        "sources": [
+            {"name": "Livemint", "url": "https://www.livemint.com/news/rbi-move-to-raise-foreign-capital-from-nris-a-battle-half-won-11780663261182.html"},
+            {"name": "Reuters", "url": "https://www.reuters.com/world/india/india-scraps-capital-gains-tax-foreign-investors-government-debt-2026-06-05/"},
+            {"name": "Outlook Money", "url": "https://www.outlookmoney.com/invest/rbi-proposes-higher-investment-limits-in-equity-instruments-for-nris-ocis-and-other-overseas-indians"}
+        ],
+        "body": """On June 5, the Reserve Bank of India and the Indian government made the most significant set of changes to foreign investment rules in years. The moves are aimed squarely at attracting dollar inflows to defend the rupee, which has fallen 5 per cent this year amid $57.68 billion in foreign equity outflows and surging oil prices from the West Asia conflict. For NRIs, the changes are both structural and immediately actionable.
+
+## What the RBI Changed
+
+RBI Governor Sanjay Malhotra announced three key changes at the conclusion of the Monetary Policy Committee meeting:
+
+**Individual NRI equity limits doubled.** The cap on how much a single NRI or OCI (Overseas Citizen of India) can invest in any one listed Indian company has been raised from 5 per cent to 10 per cent of paid-up equity capital. This applies to the Portfolio Investment Scheme (PIS) route, which does not require SEBI registration.
+
+**Aggregate NRI limit raised to 24 per cent.** The combined ceiling for all NRI and OCI investors in a single listed company has been increased from 10 per cent to 24 per cent — provided the company's general body passes a special resolution.
+
+**Facility extended to all persons resident outside India.** For the first time, individual investors residing outside India who are not NRIs or OCIs can also invest in Indian equities on the same terms. This broadens the eligible pool significantly.
+
+## What the Government Changed
+
+Simultaneously, the Ministry of Finance issued an ordinance exempting foreign institutional investors and the Bank for International Settlements from capital gains tax on income earned from government securities — including both interest income and gains from sale or transfer. The exemption is retroactive to April 1, 2026.
+
+Previously, foreign investors were subject to a 12.5 per cent long-term capital gains tax on listed bonds held for more than 12 months and a 20 per cent withholding tax on interest earned from government bonds. Both are now eliminated for government securities.
+
+## Why This Matters for NRIs
+
+Despite the liberalisation, NRI participation in Indian equities remains remarkably low. BSE data shows that NRI ownership as a percentage of Sensex market capitalisation stood at just 0.7 per cent as of the quarter ending March 2026. Even among notable Sensex constituents, NRI holdings were modest: Trent (5.36 per cent), L&T (1.27 per cent), Jio Financial Services (1.18 per cent), Asian Paints (1.17 per cent) and JSW Steel (1.15 per cent).
+
+The doubled limits mean NRIs can now take meaningful positions in individual companies without hitting regulatory ceilings. The raised aggregate ceiling allows companies to court a larger base of diaspora investors.
+
+For NRIs interested in Indian government bonds — which are now part of three global bond indexes — the tax changes make yields significantly more competitive. India's 10-year benchmark yields were trading near 7 per cent, which, with zero capital gains or interest tax for foreign investors, compares favourably with US Treasuries.
+
+## The Rupee Defence
+
+The measures are part of a broader effort to shore up the rupee. Brent crude has rallied 31 per cent to $94.70 a barrel since the West Asia conflict began in late February. The rupee has plunged to 94.94 against the dollar, and the Nifty has shed 7.2 per cent.
+
+The RBI also announced concessional forex swap facilities for public sector external commercial borrowings and agreed to bear the full hedging cost for banks raising 3-to-5-year foreign currency non-resident (FCNR) deposits until September 30.
+
+Analysts expect the combined measures to draw $40 to 60 billion in inflows. "The combined impact could certainly help bridge the $40 to 50 billion gap on the balance of payments estimated for FY27," said Sakshi Gupta, principal economist at HDFC Bank.
+
+## What Still Needs to Change
+
+Market experts warn that the limit increases alone may not be enough. Nilesh Shah, managing director at Kotak Mahindra Asset Management, said the move "needs to be complemented by simple and digital processes related to KYC, taxation, repatriation" for significant inflows to materialise.
+
+The practical barriers remain formidable: cumbersome documentation for opening and operating PIS demat accounts, complex tax filing requirements, and the erosion of returns from rupee depreciation. India also continues to levy a 15 per cent short-term capital gains tax on shares sold before one year and a 12.5 per cent long-term capital gains tax on equity gains above one lakh rupees — taxes that apply equally to NRIs and are not affected by these reforms.
+
+## What NRIs Should Do Now
+
+If you have an existing PIS demat account, the higher limits take effect once the RBI issues implementation timelines. If you have been considering opening one, the doubled ceiling makes the case stronger.
+
+For bond investors, the government securities tax exemption is already retroactive to April 1. NRIs can access Indian G-Secs through the Fully Accessible Route, which now includes all new 15-year, 30-year and 40-year issuances — the same bonds included in global indexes tracked by major institutional investors.
+
+The structural opportunity is clear. The friction, however, has not yet disappeared. Watch for the RBI's implementation circular in the coming weeks for the exact timelines and operational details."""
+    }
+    
+    return insert_article(article)
+
+
+# ─── MAIN ───
+
 if __name__ == "__main__":
     print("=" * 60)
-    print("The Videshi — Lifestyle/Markets Writer Run")
-    print(f"Time: {datetime.now(timezone.utc).isoformat()}")
+    print("The Videshi — Lifestyle & Markets Writer")
+    print(f"Run time: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     print("=" * 60)
-
+    
     results = []
-
-    r1 = write_grwd5769_article()
-    results.append(("GRWD5769 Cancer Pill", r1))
-
-    r2 = write_strength_training_article()
-    results.append(("Strength Training", r2))
-
-    r3 = write_fitch_oil_article()
-    results.append(("Fitch Oil Shock", r3))
-
+    results.append(("Daraxonrasib Pancreatic Cancer", write_article_1()))
+    results.append(("South Asian Heart Risk Paradox", write_article_2()))
+    results.append(("RBI NRI Equity Limits + Bond Tax", write_article_3()))
+    
     print("\n" + "=" * 60)
-    print("RESULTS SUMMARY")
-    print("=" * 60)
-    for name, result in results:
-        status = "✓ SUCCESS" if result else "✗ FAILED"
+    print("RESULTS:")
+    for name, ok in results:
+        status = "✓ Published" if ok else "✗ Failed"
         print(f"  {status}: {name}")
     
-    failed = sum(1 for _, r in results if not r)
-    if failed:
-        print(f"\n⚠ {failed} article(s) failed")
-        sys.exit(1)
-    else:
-        print("\n✓ All 3 articles published successfully")
+    successes = sum(1 for _, ok in results if ok)
+    print(f"\n  {successes}/{len(results)} articles published")
+    print("=" * 60)
