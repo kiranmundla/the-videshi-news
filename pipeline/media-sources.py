@@ -241,47 +241,47 @@ def search_youtube_via_google_cse(query):
 
 
 def search_youtube_via_ytdlp(query, max_results=3):
-    """Search YouTube via yt-dlp (no API key needed)."""
+    """Search YouTube via direct page scrape (no API key needed)."""
     try:
-        result = subprocess.run(
-            ["yt-dlp", "-j", "--flat-playlist", "--no-warnings",
-             f"ytsearch{max_results}:{query}"],
-            capture_output=True, text=True, timeout=20,
-        )
-        if result.returncode != 0:
+        search_url = f"https://www.youtube.com/results?search_query={quote_plus(query)}"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+        r = requests.get(search_url, headers=headers, timeout=15)
+        if r.status_code != 200:
             return None
 
-        for line in result.stdout.strip().split("\n"):
-            if not line.strip():
-                continue
-            try:
-                data = json.loads(line)
-                vid_id = data.get("id", "")
-                title = data.get("title", "").lower()
-                if vid_id and ("trailer" in title or "official" in title):
-                    url = f"https://youtube.com/watch?v={vid_id}"
-                    print(f"  ✓ YouTube trailer (yt-dlp): {url}")
-                    return url
-            except json.JSONDecodeError:
-                continue
+        # Extract video IDs and titles from the page JSON
+        video_ids = re.findall(r'"videoId":"([A-Za-z0-9_-]{11})"', r.text)
+        titles = re.findall(r'"title":\{"runs":\[\{"text":"([^"]+)"\}', r.text)
 
-        # Fallback: take first result
-        for line in result.stdout.strip().split("\n"):
-            if not line.strip():
-                continue
-            try:
-                data = json.loads(line)
-                vid_id = data.get("id", "")
-                if vid_id:
-                    url = f"https://youtube.com/watch?v={vid_id}"
-                    print(f"  ✓ YouTube video (yt-dlp): {url}")
-                    return url
-            except json.JSONDecodeError:
-                continue
-    except subprocess.TimeoutExpired:
-        print("  ⚠ yt-dlp search timed out")
+        # Deduplicate while preserving order
+        seen = set()
+        results = []
+        for i, vid in enumerate(video_ids):
+            if vid not in seen:
+                seen.add(vid)
+                title = titles[i] if i < len(titles) else ""
+                results.append({"id": vid, "title": title})
+            if len(results) >= max_results:
+                break
+
+        # Prefer results with "trailer" or "official" in title
+        for r_item in results:
+            title_lower = r_item["title"].lower()
+            if "trailer" in title_lower or "official" in title_lower:
+                url = f"https://youtube.com/watch?v={r_item['id']}"
+                print(f"  ✓ YouTube trailer (scrape): {url}")
+                return url
+
+        # Fallback: first result
+        if results:
+            url = f"https://youtube.com/watch?v={results[0]['id']}"
+            print(f"  ✓ YouTube video (scrape): {url}")
+            return url
+
     except Exception as e:
-        print(f"  ⚠ yt-dlp search error: {e}")
+        print(f"  ⚠ YouTube scrape search error: {e}")
     return None
 
 
@@ -482,6 +482,13 @@ def source_best_image(headline, content_type="general", person_name=None):
             season_match = re.search(r"Season\s*(\d+)", headline, re.IGNORECASE)
             if season_match:
                 queries.insert(0, f"{title} Season {season_match.group(1)}")
+
+        # For series with a season, try Wikipedia with season-specific page first
+        season_match = re.search(r"Season\s*(\d+)", headline, re.IGNORECASE)
+        if season_match:
+            wiki_season = fetch_wikipedia_image(f"{title} season {season_match.group(1)}")
+            if wiki_season:
+                candidates.append({**wiki_season, "relevance": 5})  # Highest priority
     elif person_name:
         queries = [person_name, f"{person_name} actor", f"{person_name} portrait"]
     else:
