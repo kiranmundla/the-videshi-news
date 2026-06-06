@@ -1,76 +1,68 @@
 #!/usr/bin/env python3
-"""
-The Videshi — News Writer (2026-06-06 batch)
-Three articles:
-1. US strikes Iranian radar sites after drone flare-up at Hormuz (breaking, India energy angle)
-2. India quietly rebuilds its oil map — Latin America/Africa pivot (strategic shift)
-3. OPT program faces existential threat after ICE finds 10,000 fraud cases (diaspora/student impact)
-"""
+"""News writer for The Videshi - 2026-06-06 batch"""
 
-import json, os, sys, time, uuid, re, subprocess
+import json, os, re, sys, time, subprocess, urllib.parse, uuid
 from datetime import datetime, timezone
 
 import requests
-import urllib.parse
 
-# ---------- env ----------
+# Load env
 def load_env(path):
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith('#'):
-                continue
-            if line.startswith('export '):
-                line = line[7:]
-            k, _, v = line.partition('=')
-            v = v.strip().strip('"').strip("'")
-            os.environ[k.strip()] = v
+    if os.path.exists(path):
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, _, val = line.partition('=')
+                    val = val.strip().strip('"').strip("'")
+                    os.environ.setdefault(key.strip(), val)
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ['SUPABASE_URL']
-SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-HEADERS = {
+HEADERS_SB = {
     'apikey': SUPABASE_KEY,
     'Authorization': f'Bearer {SUPABASE_KEY}',
     'Content-Type': 'application/json',
     'Prefer': 'return=representation'
 }
-UA = 'TheVideshi/1.0 (thevideshi.com)'
 
-# ---------- image helpers ----------
+# ─── Image sourcing ───
 
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia."""
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": UA}, timeout=10
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
-            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            # Use thumbnail.source AS-IS (330px) — do NOT modify
+            img = data.get("thumbnail", {}).get("source")
+            if not img:
+                img = data.get("originalimage", {}).get("source")
             if img:
-                print(f"  ✓ Wikipedia image for '{person_name}': {img[:80]}...")
+                print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
-        print(f"  ⚠ Wikipedia error for '{person_name}': {e}")
+        print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
 
 
-def fetch_wikimedia_commons(query, limit=5):
+def fetch_wikimedia_commons_images(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
     params = {
         "action": "query",
         "generator": "search",
-        "gsrsearch": query,
+        "gsrsearch": search_query,
         "gsrnamespace": "6",
         "gsrlimit": str(limit),
         "prop": "imageinfo",
@@ -81,421 +73,319 @@ def fetch_wikimedia_commons(query, limit=5):
     try:
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
-            params=params, headers={"User-Agent": UA}, timeout=15
+            params=params,
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=15
         )
         if r.status_code == 200:
             data = r.json()
             pages = data.get("query", {}).get("pages", {})
             results = []
-            for page in pages.values():
-                ii = page.get("imageinfo", [{}])[0]
-                url = ii.get("thumburl") or ii.get("url")
-                mime = ii.get("mime", "")
-                if url and mime.startswith("image/") and "svg" not in mime.lower():
-                    results.append(url)
+            for pid, page in pages.items():
+                info = page.get("imageinfo", [{}])[0]
+                url = info.get("thumburl") or info.get("url", "")
+                w = info.get("width", 0)
+                h = info.get("height", 0)
+                mime = info.get("mime", "")
+                if url and "image" in mime and w > 200:
+                    results.append({"url": url, "title": page.get("title", ""), "width": w, "height": h})
             return results
     except Exception as e:
-        print(f"  ⚠ Commons error for '{query}': {e}")
+        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
     return []
 
 
-def fetch_pexels(query, per_page=5):
-    """Search Pexels for stock photos. Use curl fallback."""
+def fetch_pexels_image(query):
+    """Search Pexels for a relevant image. Returns URL or None."""
     if not PEXELS_KEY:
-        print("  ⚠ No Pexels key")
-        return []
+        print("  ⚠ No Pexels API key")
+        return None
     try:
-        cmd = [
-            'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-            f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page={per_page}'
-        ]
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
-        if result.returncode == 0:
-            data = json.loads(result.stdout)
-            urls = []
-            for photo in data.get('photos', []):
-                url = photo.get('src', {}).get('large2x') or photo.get('src', {}).get('large')
-                if url:
-                    urls.append(url)
-            return urls
+        result = subprocess.run(
+            ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+             f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3'],
+            capture_output=True, text=True, timeout=15
+        )
+        data = json.loads(result.stdout)
+        photos = data.get("photos", [])
+        if photos:
+            url = photos[0].get("src", {}).get("large2x") or photos[0].get("src", {}).get("large")
+            if url:
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                return url
     except Exception as e:
         print(f"  ⚠ Pexels error for '{query}': {e}")
-    return []
-
-
-def validate_image(url):
-    """Validate image URL returns 200 with image content-type and >5KB."""
-    try:
-        r = requests.head(url, headers={"User-Agent": UA}, timeout=10, allow_redirects=True)
-        if r.status_code != 200:
-            # Try GET with stream
-            r = requests.get(url, headers={"User-Agent": UA}, timeout=10, stream=True, allow_redirects=True)
-            if r.status_code != 200:
-                print(f"  ✗ Image HTTP {r.status_code}: {url[:60]}...")
-                return False
-        ct = r.headers.get('Content-Type', '')
-        cl = int(r.headers.get('Content-Length', 0))
-        if 'image' not in ct:
-            print(f"  ✗ Not image content-type: {ct}")
-            return False
-        if cl > 0 and cl < 5000:
-            print(f"  ✗ Image too small: {cl} bytes")
-            return False
-        return True
-    except Exception as e:
-        print(f"  ✗ Validate error: {e}")
-        return False
-
-
-def best_image(candidates):
-    """Pick first valid image from a list."""
-    for url in candidates:
-        if validate_image(url):
-            print(f"  ✓ Selected image: {url[:80]}...")
-            return url
     return None
 
 
-# ---------- article insertion ----------
+def validate_image(url):
+    """Verify image URL returns 200 with image content-type and >5KB."""
+    # Trust well-known image CDNs
+    trusted = ["upload.wikimedia.org", "images.pexels.com"]
+    if any(d in url for d in trusted):
+        print(f"  ✓ Trusted domain, skipping validation: {url[:60]}...")
+        return True
+    try:
+        result = subprocess.run(
+            ['curl', '-sS', '-I', '-L', '-A', 'TheVideshi/1.0', url],
+            capture_output=True, text=True, timeout=15
+        )
+        headers = result.stdout.lower()
+        if '200' in headers and 'image/' in headers:
+            # Check content-length
+            for line in headers.split('\n'):
+                if 'content-length' in line:
+                    cl = int(line.split(':')[1].strip())
+                    if cl > 5000:
+                        return True
+            # No content-length but 200 + image type = assume ok
+            return True
+        print(f"  ✗ Image validation failed for {url[:60]}...")
+    except Exception as e:
+        print(f"  ✗ Image validation error: {e}")
+    return False
+
+
+def find_best_image(person_name=None, wiki_searches=None, pexels_query=None):
+    """Multi-source image search. Returns (url, attribution) or (None, None)."""
+    candidates = []
+
+    # 1. Wikipedia person image
+    if person_name:
+        img = fetch_wikipedia_person_image(person_name)
+        if img:
+            candidates.append((img, "Wikimedia Commons", "wikipedia"))
+
+    # 2. Wikimedia Commons search
+    if wiki_searches:
+        for q in wiki_searches:
+            results = fetch_wikimedia_commons_images(q, limit=3)
+            for r in results:
+                candidates.append((r["url"], "Wikimedia Commons", "commons"))
+            time.sleep(0.5)  # Rate limiting
+
+    # 3. Pexels
+    if pexels_query:
+        img = fetch_pexels_image(pexels_query)
+        if img:
+            candidates.append((img, "Pexels", "pexels"))
+
+    # Validate and pick best (prefer Wikipedia > Commons > Pexels)
+    for url, attr, source in candidates:
+        if validate_image(url):
+            print(f"  ★ Selected image from {source}: {url[:80]}...")
+            return url, attr
+
+    print("  ✗ No valid image found")
+    return None, None
+
+
+# ─── Article insertion ───
 
 def insert_article(article):
-    """Insert article into Supabase p2_articles."""
+    """Insert an article into Supabase."""
     url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    r = requests.post(url, headers=HEADERS, json=article, timeout=30)
+    r = requests.post(url, headers=HEADERS_SB, json=article, timeout=15)
     if r.status_code in (200, 201):
-        data = r.json()
-        if isinstance(data, list) and data:
-            print(f"  ✓ Inserted: {data[0].get('slug', 'unknown')}")
-            return True
-        print(f"  ✓ Inserted (no data returned)")
+        result = r.json()
+        aid = result[0].get("id", "unknown") if isinstance(result, list) else result.get("id", "unknown")
+        print(f"  ✓ Inserted: {article['headline'][:60]}... (id: {aid})")
         return True
     else:
         print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
         return False
 
 
-# ---------- articles ----------
+# ─── Articles ───
 
-def write_article_1():
-    """US Strikes Iranian Radar Sites After Shooting Down Four Drones Over Hormuz"""
-    print("\n=== Article 1: US-Iran Hormuz Escalation ===")
-    
-    headline = "The US Just Struck Iranian Radar Sites After Shooting Down Four Drones Over Hormuz. India's Oil Lifeline Is in the Crossfire."
-    subheadline = "Saturday's exchange marks the sharpest flare-up since the April ceasefire. With Brent crude at $93 and India's LPG under-recovery at ₹700 per cylinder, every escalation lands directly on Indian household budgets."
-    slug = "us-strikes-iran-radar-hormuz-drones-india-oil-lpg-june-2026"
-    
-    body = """The fragile calm over the Strait of Hormuz shattered on Saturday when U.S. Central Command said it shot down four Iranian attack drones and then struck two Iranian coastal surveillance radar installations — one in Goruk, the other on Qeshm Island, both overlooking the waterway through which a fifth of the world's oil once flowed freely.
+def write_articles():
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-The Pentagon described the action as defensive. A U.S. official told Reuters the drones were targeting regional maritime traffic, not American warships. Iran's coastal radar sites, the military said, were taken out to prevent further launches. But defensive or not, the exchange was the most significant since a shaky ceasefire took hold in April, and it immediately complicated an already difficult diplomatic track.
+    articles = []
 
-## A War That Was Supposed to End Weeks Ago
+    # ── Article 1: Cockroach Janta Party ──
+    print("\n=== Article 1: Cockroach Janta Party ===")
 
-The U.S.-Israeli military campaign against Iran began on February 28. Within weeks, most of Iran's drone and missile manufacturing capacity was destroyed. President Trump himself estimated that Iran retains roughly 21 to 22 percent of its pre-war missile inventory. Yet more than three months later, Tehran has not signed a deal.
+    cjp_body = """India's largest online youth protest movement came offline on Saturday when Abhijeet Dipke, the 30-year-old founder of the Cockroach Janta Party, landed in New Delhi to lead the group's first street demonstration at Jantar Mantar.
 
-The sticking points are structural. Iran wants sanctions relief on crude exports, access to frozen oil revenue, the lifting of the U.S. naval blockade on its ports, and — critically — leverage over the Strait of Hormuz itself. Tehran has also made a ceasefire in Lebanon between Israel and Hezbollah a precondition for any broader peace deal with Washington.
+Dipke, who has lived in the United States for the past two years and holds a degree from Boston University, arrived at Indira Gandhi International Airport to a heavy security presence. His family and friends had publicly warned he could be arrested on arrival. He was not — police granted permission for the protest — but the fear itself spoke volumes about the political temperature.
 
-Hezbollah leader Naim Qassem rejected a U.S.-brokered pact with the Lebanese government this week, and Israeli forces continued strikes in southern Lebanon on Friday. The parallel conflicts are feeding each other, and every breakdown on the Lebanon front pushes a Hormuz resolution further away.
+## How a Supreme Court Insult Sparked a Movement
 
-Trump, campaigning in Wisconsin on Friday, vowed a quick end to the war. But the domestic political pressure is real: gas prices have spiked, farmers are feeling the squeeze, and even Republican voters in rural districts are expressing frustration. "The market is much more comfortable, calm, and complacent around the outcome," Dan Pickering of Pickering Energy Partners told Barron's. "That's either going to be right or wrong."
+The movement was born from a single remark. On May 15, Chief Justice of India Surya Kant, during a Supreme Court hearing on fake professional degrees, compared confrontational activists and unemployed youth to "cockroaches" and "parasites of society." Within hours, India's Gen Z had reclaimed the slur. Dipke, a political communications strategist who had previously worked with the Aam Aadmi Party, launched the Cockroach Janta Party on May 16 as a satirical counter-punch. The name is a deliberate parody of the ruling Bharatiya Janata Party.
 
-## What This Means for India
+In three weeks, the movement amassed roughly 22 million Instagram followers and over 350,000 sign-ups. It is now the largest online expression of dissent against Prime Minister Narendra Modi's 12-year-old government.
 
-For India, every day the strait stays closed costs money. The Indian crude oil basket stood at $100.13 per barrel as of June 3, with the monthly average at $98.12, compared with $106.23 in May. Brent crude settled at $93.09 on Friday before the latest strikes were announced.
+## What the Protesters Want
 
-But the headline crude price understates the pain. India's state-run oil marketing companies are absorbing an under-recovery of ₹700 on every LPG cylinder sold, according to Sujata Sharma, joint secretary in the petroleum ministry. The cumulative daily under-recovery across the three OMCs — Indian Oil, Bharat Petroleum, and Hindustan Petroleum — stands at approximately ₹550 crore.
+The CJP's demands go well beyond exam reform. At a press conference at the Constitution Club earlier this week, spokesperson Saurav Das laid out a detailed agenda: the resignation of Union Education Minister Dharmendra Pradhan over the NEET, CBSE, and CUET exam-paper leak scandals; a 50 percent reservation for women in Parliament and all Cabinet positions; a 20-year ban on elected officials who defect from one party to another; and an end to post-retirement rewards for chief justices, a practice the group sees as compromising judicial independence.
 
-India traditionally sourced nearly 90 percent of its cooking gas from West Asia. That supply line is now severely disrupted. Refiners have scrambled to diversify, pulling in cargoes from Venezuela, Brazil, Angola, and Nigeria. But alternative suppliers cannot fully replace the volume, proximity, or pricing that Gulf producers offered.
+The movement has also called for mandatory political and legal literacy — including RTI filing and public budget reading — in secondary school curricula.
 
-Goldman Sachs estimated this week that global oil demand fell by 4 to 5 million barrels per day in April — a 4 to 5 percent decline — driven largely by the Hormuz closure. The bank warned that the longer the strait stays shut, the more volatile prices will become.
+## The Government's Response
 
-## The NRI Angle
+Modi's government has not treated the movement lightly. The CJP's X account has been blocked within India, a decision the group has challenged in a Delhi court. Senior cabinet minister Kiren Rijiju accused the party of seeking followers from Pakistan and the "anti-India gang," framing it as a national security concern rather than a domestic grievance.
 
-For the roughly 4.5 million Indians in the Gulf states, the war is not an abstraction. Shipping disruptions have affected everything from trade flows to remittance corridors. The UAE, Saudi Arabia, and Oman — the three largest sources of NRI remittances to India — are all navigating the fallout.
+Dozens of police officers barricaded roads near Jantar Mantar on Saturday as protesters shouted slogans. Loudspeakers directed crowds to the designated protest site. The government's strategy appears to be containment through controlled permission rather than outright suppression — a calculus shaped, analysts say, by the knowledge that an arrest would almost certainly amplify the movement further.
 
-The India-Oman CEPA, signed just last week with tariffs zeroed out on 98 percent of bilateral trade, was designed for a world in which goods could move freely through Hormuz. That assumption now looks fragile.
+Climate activist Sonam Wangchuk announced his support for the protest and said he would undertake a six-week fast if Dipke were arrested.
 
-## What Comes Next
+## Why NRIs Are Watching
 
-Market analysts increasingly doubt the war will end on Trump's timeline. "If peace is breaking out, that is a good thing," Pickering told Barron's. "But normal is pretty far off." He projected oil prices in the mid-$70s to low-$80s even after a deal, with the supply chain needing months to recover.
+For Indian professionals abroad, the CJP represents a generational fault line that many recognize from their own families. The movement is fueled by two pressures that drive a significant share of Indian emigration: persistently high youth unemployment, which officially hovers above 40 percent for ages 15 to 29, and the recurring collapse of examination integrity that determines access to medicine, engineering, and civil service.
 
-For India, the arithmetic is simple. Every additional week of Hormuz closure adds roughly $1 billion to the national fuel import bill. The government has so far avoided passing the full cost to consumers. How long that lasts depends on whether Saturday's strikes were a one-off, or the start of a new cycle.
+Political analysts say the movement has begun to dent Modi's image even as his party continues to win state elections. The broader frustration — compounded by rising fuel prices and gas shortages from the Iran war — has given the CJP a constituency far wider than its satirical origins would suggest.
 
-*Sources: Reuters, Barron's, Livemint, Goldman Sachs research note, U.S. Central Command statement*"""
+"This is a peaceful movement for the youth of the nation," spokesperson Ashutosh Ranka, an IIT Kanpur and LSE alumnus who previously worked at McKinsey in London, said at the protest. Dipke, he added, was "ready for a long and big day in India's politics."
 
-    # Image sourcing
-    print("  Sourcing image...")
-    candidates = []
-    
-    # Try Wikimedia Commons for Strait of Hormuz
-    commons = fetch_wikimedia_commons("Strait of Hormuz military")
-    candidates.extend(commons)
-    time.sleep(1)
-    
-    commons2 = fetch_wikimedia_commons("USS aircraft carrier Persian Gulf")
-    candidates.extend(commons2)
-    time.sleep(1)
-    
-    # Pexels fallback
-    pexels = fetch_pexels("oil tanker ocean")
-    candidates.extend(pexels)
-    
-    image_url = best_image(candidates)
-    image_caption = "A naval vessel in the Persian Gulf region near the Strait of Hormuz"
-    image_attribution = "Wikimedia Commons"
-    
-    if image_url and 'pexels.com' in image_url:
-        image_attribution = "Pexels"
-        image_caption = "An oil tanker at sea — the Strait of Hormuz normally carries a fifth of global oil traffic"
-    
-    if not image_url:
-        print("  ⚠ No valid image found, trying broader search...")
-        pexels2 = fetch_pexels("military ship navy")
-        image_url = best_image(pexels2)
-        if image_url:
-            image_attribution = "Pexels"
-            image_caption = "A naval vessel at sea in the context of maritime security operations"
+Whether that day lasts beyond the news cycle depends on whether the CJP can convert viral momentum into sustained political pressure. For now, the cockroaches are on the streets, and the government is listening — even if it would rather not be."""
 
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "slug": slug,
-        "body": body,
+    img1, attr1 = find_best_image(
+        person_name=None,
+        wiki_searches=["Jantar Mantar New Delhi protest", "India youth protest 2026"],
+        pexels_query="India protest demonstration youth"
+    )
+
+    articles.append({
+        "headline": "India's Gen Z Just Took the Streets. The Government Blocked Their X Account.",
+        "subheadline": "The Cockroach Janta Party — born from a Supreme Court insult three weeks ago — brought 22 million followers offline for the first time at Jantar Mantar",
+        "body": cjp_body,
+        "slug": "cockroach-janta-party-jantar-mantar-protest-dipke-gen-z-modi-20260606",
         "category": "news",
+        "status": "published",
+        "published_at": now,
+        "image_url": img1,
+        "image_caption": "Jantar Mantar in New Delhi, site of India's largest Gen Z protest",
+        "image_attribution": attr1 or "Wikimedia Commons",
         "vertical": "politics",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": image_url or "",
-        "image_caption": image_caption,
-        "image_attribution": image_attribution,
         "is_editorial": False,
-        "sources": json.dumps(["Reuters", "Barron's", "Livemint", "Goldman Sachs", "U.S. Central Command"])
-    }
-    return insert_article(article)
+        "sources": json.dumps(["Reuters", "CNN", "The Hindu Business Line", "Daily Jagran"])
+    })
 
+    # ── Article 2: JD Vance / Henry Nowak / UK Sikh ──
+    print("\n=== Article 2: JD Vance / Henry Nowak case ===")
 
-def write_article_2():
-    """India Quietly Rebuilds Its Oil Map — Venezuela Is Now Its Fourth-Largest Supplier"""
-    print("\n=== Article 2: India Oil Sourcing Pivot ===")
-    
-    headline = "India Is Quietly Rebuilding Its Oil Map. Venezuela Just Became Its Fourth-Largest Supplier."
-    subheadline = "As Hormuz stays shut, Indian refiners are locking in crude from Latin America and Africa. The shift is starting to look less like a stopgap and more like a structural overhaul of how India buys energy."
-    slug = "india-oil-pivot-venezuela-latin-america-africa-hormuz-crude-sourcing-2026"
-    
-    body = """For decades, India's oil sourcing strategy had a single geographic center of gravity: West Asia. The Persian Gulf states — Saudi Arabia, Iraq, the UAE, Kuwait — supplied the bulk of India's 5 million barrels per day of crude imports. The proximity was unbeatable, the shipping lanes were secure, and the pricing was competitive.
+    vance_body = """JD Vance, the Vice President of the United States, on Friday inserted himself into a British murder case involving a British Sikh man of Indian heritage, calling it proof that Western civilisation is dying. The case has already sparked riots in Southampton. Now it is raising uncomfortable questions for Indian and Sikh communities across the West.
 
-Three months into the Hormuz blockade, that map has been redrawn.
+## What Happened in Southampton
 
-## The New Suppliers
+In December 2025, Henry Nowak, an 18-year-old white university student, was walking home from a night of football with friends in the southern English city of Southampton when he encountered Vickrum Digwa, a 23-year-old British Sikh man wearing a turban and carrying a 21-centimetre dagger.
 
-According to Kpler data cited in industry reports this week, Indian refiners have significantly increased crude purchases from four countries that barely registered in India's import mix a year ago: Venezuela, Brazil, Angola, and Nigeria.
+Digwa stabbed Nowak. When police arrived, Digwa told them Nowak had racially abused him — a claim later proven to be fabricated. Officers handcuffed the dying Nowak as a suspect while attending to his attacker. Bodycam footage showed Nowak repeatedly telling officers he had been stabbed and could not breathe. He died in handcuffs.
 
-Venezuela has emerged as the most striking case. The South American producer is on track to become India's fourth-largest crude supplier in May 2026 — a remarkable ascent for a country that was under sweeping U.S. sanctions just two years ago. The easing of some sanctions, combined with Venezuela's heavy crude grades that suit Indian refinery configurations, has created a natural fit.
+On Monday, Digwa was sentenced to life in prison with a minimum 21-year term. The judge found that the racial abuse claim was false and that Digwa had been in the habit of carrying a second knife beyond the small ceremonial kirpan worn by observant Sikhs.
 
-Brazil, already a growing supplier, has ramped up shipments through Petrobras and independent producers. Angola and Nigeria, both members of OPEC, have found willing buyers in Indian refiners desperate to replace lost Gulf volumes.
+## Vance Escalates
 
-Meanwhile, Russia remains India's dominant alternative supplier. Kpler data shows India is still scheduled to receive approximately 1.9 million barrels per day of Russian oil in May, along with about 41,000 bpd from Iraq — one of the few Gulf producers still managing to get cargoes through.
+Vance's intervention came less than 24 hours after the US State Department issued its own rebuke, calling "ideological conditioning and two-tiered policing" symptoms of "civilizational decline."
 
-## Why This Is Not Temporary
+"Henry Nowak died the same way a civilization dies: abandoned, handcuffed by authorities who neither trusted nor cared for him, and accused of hate crimes he did not commit," Vance wrote on X. He blamed the killing on "the mass invasion of migrants, many of whom despise the West."
 
-There is a growing consensus among Indian energy officials and industry analysts that the current diversification is not a temporary fix. Three factors are driving a more permanent shift.
+Prime Minister Keir Starmer's office pushed back sharply, criticising "people trying to interfere in our democracy and seeking to stir up division on our streets." The Nowak family has asked that his death not be used to create further hatred.
 
-First, the Hormuz crisis has exposed a vulnerability that policymakers have discussed for years but never acted on. India's dependence on a single chokepoint for nearly half its energy imports was a known risk. The war has turned that theoretical risk into a lived reality.
+## The Facts That Complicate the Narrative
 
-Second, the economics have shifted. Russian crude, discounted since the Ukraine war began in 2022, remains the cheapest option for Indian refiners. Latin American heavy crudes, while more expensive to ship, are priced competitively enough to work at current Brent levels above $90.
+Both Nowak and Digwa were British citizens. Digwa was not an immigrant. The Sikh Federation has pointed out that while Sikhs across the Western world are permitted to carry a small kirpan as a religious article, Digwa was carrying a second, larger knife — and the judge explicitly stated the religious exemption made no difference to the verdict.
 
-Third, the geopolitics have evolved. India's willingness to buy from Venezuela — despite American pressure — signals a more assertive posture on energy sovereignty. New Delhi has made it clear that it will buy oil from whoever sells it at reasonable prices, regardless of where Washington draws its red lines.
+The case has nonetheless been seized by anti-immigration figures, including Nigel Farage and Elon Musk, who have amplified claims of a "two-tier policing system." On Tuesday, police in Southampton were pelted with chairs, cans, rocks, and flares during a demonstration attended by far-right figures.
 
-## The LPG Problem
+## What This Means for the Diaspora
 
-Crude is only part of the picture. The sharpest pain point for Indian consumers is liquefied petroleum gas. India traditionally sourced nearly 90 percent of its cooking gas from West Asia, and that supply line has been severely disrupted.
+For Indian and Sikh communities in the UK and the United States, the case sits at an anxious intersection. The policing failure was real — officers made a catastrophic decision by believing an unverified claim of racism over a dying man's pleas. That failure has become legitimate grounds for institutional reform.
 
-Sujata Sharma, joint secretary in the petroleum ministry, told reporters this week that state-run oil marketing companies are absorbing an under-recovery of ₹700 on every LPG cylinder sold. The cumulative daily loss across Indian Oil, Bharat Petroleum, and Hindustan Petroleum is approximately ₹550 crore — more than $65 million per day.
+But the political exploitation of the case has folded it into a broader anti-immigration narrative that makes no distinction between a British-born citizen and a recent arrival, between a convicted murderer and the millions of law-abiding South Asian families who have built lives in the West.
 
-Unlike crude, LPG is harder to diversify. The infrastructure for importing LPG from non-Gulf sources — ships, port terminals, storage — was built for Middle Eastern supply chains. Rebuilding those logistics will take years, not months.
+The Sikh Federation UK issued a statement distancing the community from Digwa's actions, noting that carrying a weapon beyond a small kirpan violates Sikh religious teaching. Sikh community leaders in the US have expressed concern that the case — amplified by the Vice President of the United States — could increase hostility toward turbaned Sikhs who are already disproportionately targeted in hate crimes, often because they are mistaken for Muslims.
 
-## What NRIs Should Watch
+The risk for the diaspora is not abstract. In the wake of the State Department's statement, which was the first time the Trump administration publicly commented on the case, monitoring groups have reported a spike in anti-Sikh rhetoric online.
 
-For the Indian diaspora, the oil map reshuffling has direct economic implications. A sustained period of high crude prices will pressure the rupee, push up inflation, and potentially delay the RBI's rate-cutting cycle. Indian consumers are already paying more for petrol and diesel than they were six months ago, and the subsidy burden on LPG will eventually force a political reckoning.
+For Indian professionals in the UK, the timing is particularly fraught. Net migration from India to Britain has fallen sharply since 2025 amid visa curbs, and the political climate around immigration has hardened across the political spectrum. A case that is fundamentally about one man's violence and one police force's failure is being refracted through the lens of civilisational conflict — and the Indian diaspora is caught in the glare."""
 
-The structural pivot also opens investment opportunities. Indian companies building LNG import terminals, pipeline infrastructure, and strategic storage facilities are likely to see accelerated government support. The India Strategic Petroleum Reserves Limited programme, which currently holds about 36.7 million barrels, is under pressure to expand.
+    img2, attr2 = find_best_image(
+        person_name="JD Vance",
+        wiki_searches=["Southampton England city", "Sikh community United Kingdom"],
+        pexels_query=None
+    )
 
-For India's refining sector — already one of the world's most competitive — the new sourcing mix is a manageable challenge. The question is whether the political will exists to make the diversification permanent, or whether it will be quietly abandoned the moment Hormuz reopens.
-
-*Sources: Kpler data via The Indian Eye, Livemint, Goldman Sachs, Indian petroleum ministry briefing*"""
-
-    # Image sourcing
-    print("  Sourcing image...")
-    candidates = []
-    
-    # Wikimedia Commons: oil tankers, refineries
-    commons = fetch_wikimedia_commons("Indian oil refinery")
-    candidates.extend(commons)
-    time.sleep(1)
-    
-    commons2 = fetch_wikimedia_commons("oil tanker crude carrier")
-    candidates.extend(commons2)
-    time.sleep(1)
-    
-    # Pexels
-    pexels = fetch_pexels("oil refinery industrial")
-    candidates.extend(pexels)
-    
-    image_url = best_image(candidates)
-    image_caption = "An oil refinery — India is restructuring its crude sourcing away from the Persian Gulf"
-    image_attribution = "Wikimedia Commons"
-    
-    if image_url and 'pexels.com' in image_url:
-        image_attribution = "Pexels"
-    
-    if not image_url:
-        pexels2 = fetch_pexels("cargo ship ocean freight")
-        image_url = best_image(pexels2)
-        if image_url:
-            image_attribution = "Pexels"
-            image_caption = "A cargo vessel at sea — India is diversifying oil imports to Latin America and Africa"
-
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "slug": slug,
-        "body": body,
+    articles.append({
+        "headline": "JD Vance Called a British Murder Case a Sign of Civilisational Death. The Killer Was of Indian Heritage.",
+        "subheadline": "The Henry Nowak case has become a flashpoint for anti-immigration politics on both sides of the Atlantic — and the Indian diaspora is caught in the middle",
+        "body": vance_body,
+        "slug": "jd-vance-henry-nowak-uk-sikh-diaspora-two-tier-policing-20260606",
         "category": "news",
-        "vertical": "economy",
         "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": image_url or "",
-        "image_caption": image_caption,
-        "image_attribution": image_attribution,
+        "published_at": now,
+        "image_url": img2,
+        "image_caption": "US Vice President JD Vance, who blamed the murder on civilisational decline and immigration",
+        "image_attribution": attr2 or "Wikimedia Commons",
+        "vertical": "politics",
         "is_editorial": False,
-        "sources": json.dumps(["Kpler", "The Indian Eye", "Livemint", "Goldman Sachs", "Indian petroleum ministry"])
-    }
-    return insert_article(article)
+        "sources": json.dumps(["Reuters", "Fox News", "The Times (UK)", "AP"])
+    })
 
+    # ── Article 3: Himachal Pradesh Earthquake ──
+    print("\n=== Article 3: Himachal Pradesh Earthquake ===")
 
-def write_article_3():
-    """ICE Finds 10,000 OPT Fraud Cases. A Petition to Kill the Program Could Affect 200,000 Indian Graduates."""
-    print("\n=== Article 3: OPT Fraud / Indian Students ===")
-    
-    headline = "ICE Just Found 10,000 Cases of OPT Fraud. A Legal Petition Could Kill the Program Entirely."
-    subheadline = "The Optional Practical Training programme is how most Indian graduates stay in the US after college. A conservative legal foundation has petitioned DHS to shut it down — and the Trump administration may be listening."
-    slug = "opt-fraud-ice-10000-cases-dhs-petition-indian-students-stem-2026"
-    
-    body = """Two weeks ago, Immigration and Customs Enforcement dropped a number that sent a chill through every Indian student visa holder in America: more than 10,000 possible cases of fraud in the Optional Practical Training programme.
+    quake_body = """A magnitude 5.0 earthquake struck Chamba district in Himachal Pradesh late on Friday night, sending tremors across North India and prompting residents in Dharamsala, Chandigarh, and parts of Punjab and Haryana to rush out of their homes.
 
-Acting ICE Director Todd Lyons announced the findings at a press conference after investigators conducted on-site visits to employers participating in the programme. What they found was damning. In some cases, OPT participants were being managed by employees based in India — not by supervisors at the U.S. companies that had ostensibly hired them. In others, shell companies were helping recent graduates remain in the country without genuine sponsorship from a U.S. employer.
+The National Centre for Seismology recorded the quake at 10:37 PM IST on June 5, placing its epicentre near the Kangra-Chamba border, approximately 40 kilometres northeast of Dharamsala. The earthquake occurred at a shallow depth of just five kilometres, which amplified the intensity of shaking felt at the surface.
 
-The findings have energised a legal effort that could go much further than catching individual fraudsters. The Landmark Legal Foundation, a conservative legal organisation, has submitted a formal petition to the Department of Homeland Security asking it to rescind post-completion OPT entirely — not reform it, not tighten oversight, but eliminate it.
+## Multiple Tremors in a Single Day
 
-## What OPT Actually Is
+The Chamba quake was the second significant seismic event in India on Friday. Earlier in the afternoon, a 2.8 magnitude earthquake struck Mangan district in Sikkim at 4:07 PM IST, also at a depth of five kilometres. No casualties or structural damage have been reported from either event.
 
-Optional Practical Training allows international students on F-1 visas to work in the United States for up to 12 months after graduation. Students in STEM fields — science, technology, engineering, and mathematics — get an extension of up to 24 additional months, for a total of 36 months of post-graduation work authorization.
+Kangra and Chamba districts fall within Seismic Zone 5, the highest-risk classification on India's seismic hazard map. The region sits along the Himalayan frontal thrust, where the Indian tectonic plate pushes beneath the Eurasian plate, making it one of the most earthquake-prone areas on the subcontinent.
 
-For Indian students, OPT is not a nice-to-have. It is the bridge between graduation and an H-1B visa. Without it, most international graduates would have to leave the country immediately after completing their degrees, with no legal pathway to gain the work experience that H-1B petitions require.
+## Panic But No Casualties
 
-The numbers are staggering. According to USCIS data, more than 200,000 international students were on OPT or STEM OPT in fiscal year 2025. Indian nationals represent the largest single group, accounting for roughly 40 percent of all OPT participants. Chinese nationals are the second-largest group.
+Residents in Dharamsala and the surrounding hill towns reported several seconds of noticeable shaking that sent people running from multi-storey buildings. The tremor was also felt in Chandigarh, where one resident described a "slight tremor" while preparing for bed around 10 PM.
 
-## The Legal Argument
+Local authorities have confirmed no reports of loss of life or significant property damage. Himachal Pradesh's disaster management cell said monitoring teams were deployed overnight to survey structures in the epicentral zone, particularly older buildings and heritage structures in the Chamba Valley that are more vulnerable to seismic stress.
 
-The Landmark Legal Foundation's petition makes several arguments for why DHS can — and should — kill post-completion OPT without any action from Congress.
+## What the Diaspora Should Know
 
-The centrepiece is the "major questions doctrine," a legal principle the Supreme Court has increasingly relied on to strike down executive actions of broad economic significance that lack clear congressional authorization. The foundation argues that OPT affects large segments of the labour market, involves substantial fiscal consequences including tax exemptions tied to foreign student employment, and operates outside the congressionally set visa caps that govern programmes like H-1B.
+Chamba and the Kangra Valley draw significant tourist traffic, including diaspora visitors during the summer months. The region is home to Dharamsala and McLeod Ganj, the seat of the Tibetan government-in-exile and a popular destination for NRI travellers. While Friday's earthquake caused no damage, seismologists have long warned that the central Himalayas are overdue for a major seismic event — the last significant earthquake in the region was the 1905 Kangra earthquake, a magnitude 7.8 event that killed over 20,000 people.
 
-In other words, OPT functions as an end run around the limits Congress set on work visas. The programme allows hundreds of thousands of foreign workers into the U.S. labour market each year through an administrative mechanism that was never designed for that scale.
+The Indian Meteorological Department has not issued any further alerts, and normal activity has resumed across the affected areas."""
 
-The petition also notes that OPT participants and their employers are exempt from Social Security and Medicare taxes — a subsidy that effectively makes OPT workers cheaper to hire than American citizens or green card holders doing the same job.
+    img3, attr3 = find_best_image(
+        person_name=None,
+        wiki_searches=["Chamba Himachal Pradesh", "Dharamsala Himachal Pradesh landscape"],
+        pexels_query="Himachal Pradesh mountains India"
+    )
 
-## What the Trump Administration Might Do
-
-The Trump administration has already demonstrated its willingness to crack down on immigration programmes through executive action. The $100,000 fee imposed on new H-1B petitions in September 2025 priced out many mid-tier sponsors. The ban on FHA mortgages for non-permanent residents took effect last May. And the administration's broader posture on immigration has been consistently restrictive.
-
-Eliminating OPT would not require legislation. The programme was created through regulation under the Administrative Procedure Act, and it can be rescinded through the same process. DHS would need to go through a notice-and-comment rulemaking period, but the outcome would be within the administration's control.
-
-Whether the administration will act on the petition is unclear. But the ICE fraud findings have given OPT's critics powerful ammunition, and the political environment — with the 2026 midterms approaching and immigration a top voter issue — favours action.
-
-## What Indian Students Should Do Now
-
-Immigration attorneys who work with Indian students say the key is to assume nothing about the programme's future and act accordingly.
-
-Students currently on OPT should ensure their employment is genuine, documented, and with a company that can demonstrate real supervision and a legitimate business purpose. Shell company arrangements, remote management from India, or positions that exist primarily to maintain visa status are exactly the patterns ICE is targeting.
-
-Students approaching graduation should consider whether employer-sponsored H-1B petitions are feasible, and whether their employer is willing to pay the now-$100,000 filing fee. Those in STEM fields should prioritize companies with strong track records of successful H-1B sponsorship.
-
-And every Indian student considering a U.S. degree should factor in the possibility that the post-graduation work pathway may look very different by the time they finish. OPT is not guaranteed. It never was.
-
-*Sources: Washington Examiner, ICE press conference, Landmark Legal Foundation petition, USCIS data, Pew Research Center*"""
-
-    # Image sourcing
-    print("  Sourcing image...")
-    candidates = []
-    
-    # Wikimedia Commons: university, graduation, students
-    commons = fetch_wikimedia_commons("international students university graduation")
-    candidates.extend(commons)
-    time.sleep(1)
-    
-    commons2 = fetch_wikimedia_commons("F-1 visa OPT students United States")
-    candidates.extend(commons2)
-    time.sleep(1)
-    
-    # Pexels
-    pexels = fetch_pexels("university graduation students diverse")
-    candidates.extend(pexels)
-    
-    image_url = best_image(candidates)
-    image_caption = "International graduates at a US university — OPT is the primary post-graduation work pathway"
-    image_attribution = "Wikimedia Commons"
-    
-    if image_url and 'pexels.com' in image_url:
-        image_attribution = "Pexels"
-    
-    if not image_url:
-        pexels2 = fetch_pexels("college campus students")
-        image_url = best_image(pexels2)
-        if image_url:
-            image_attribution = "Pexels"
-            image_caption = "Students on a US college campus — the OPT programme is under unprecedented scrutiny"
-
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "slug": slug,
-        "body": body,
+    articles.append({
+        "headline": "A 5.0 Earthquake Struck Himachal Pradesh on Friday Night. The Region Is Overdue for a Big One.",
+        "subheadline": "The shallow quake near Dharamsala sent tremors across North India but caused no casualties — seismologists warn the Himalayan frontal thrust remains a ticking clock",
+        "body": quake_body,
+        "slug": "himachal-pradesh-earthquake-chamba-dharamsala-seismic-zone-5-20260606",
         "category": "news",
-        "vertical": "education",
         "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "image_url": image_url or "",
-        "image_caption": image_caption,
-        "image_attribution": image_attribution,
+        "published_at": now,
+        "image_url": img3,
+        "image_caption": "The Chamba Valley in Himachal Pradesh, near the epicentre of Friday's earthquake",
+        "image_attribution": attr3 or "Wikimedia Commons",
+        "vertical": "general",
         "is_editorial": False,
-        "sources": json.dumps(["Washington Examiner", "ICE", "Landmark Legal Foundation", "USCIS", "Pew Research Center"])
-    }
-    return insert_article(article)
+        "sources": json.dumps(["National Centre for Seismology", "ANI", "Inshorts", "Tech Word News"])
+    })
+
+    # ── Insert all articles ──
+    print("\n=== Inserting articles ===")
+    success = 0
+    for art in articles:
+        # Remove None image URLs
+        if art["image_url"] is None:
+            del art["image_url"]
+            del art["image_caption"]
+            del art["image_attribution"]
+        if insert_article(art):
+            success += 1
+        time.sleep(0.5)
+
+    print(f"\n✓ Done: {success}/{len(articles)} articles published")
+    return success
 
 
-# ---------- main ----------
-if __name__ == '__main__':
-    print("=" * 60)
-    print("The Videshi — News Writer Batch (2026-06-06)")
-    print("=" * 60)
-    
-    results = []
-    results.append(("US-Iran Hormuz Strikes", write_article_1()))
-    time.sleep(2)
-    results.append(("India Oil Pivot", write_article_2()))
-    time.sleep(2)
-    results.append(("OPT Fraud / Indian Students", write_article_3()))
-    
-    print("\n" + "=" * 60)
-    print("RESULTS:")
-    for name, success in results:
-        status = "✓ PUBLISHED" if success else "✗ FAILED"
-        print(f"  {status}: {name}")
-    print("=" * 60)
-    
-    failures = sum(1 for _, s in results if not s)
-    if failures:
-        print(f"\n⚠ {failures} article(s) failed to publish")
-        sys.exit(1)
-    else:
-        print(f"\n✓ All {len(results)} articles published successfully")
+if __name__ == "__main__":
+    write_articles()
