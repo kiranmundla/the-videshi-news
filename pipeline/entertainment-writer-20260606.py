@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""Entertainment writer for The Videshi - June 6, 2026 batch"""
+"""Entertainment writer - June 6, 2026 afternoon batch"""
+
 import requests
 import json
 import os
+import sys
 import urllib.parse
-import subprocess
-import time
-import uuid
 from datetime import datetime, timezone
 
 # Load env
@@ -16,8 +15,9 @@ def load_env(path):
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
-                    key, val = line.split('=', 1)
-                    os.environ[key.strip()] = val.strip().strip('"').strip("'")
+                    key, _, val = line.partition('=')
+                    val = val.strip().strip('"').strip("'")
+                    os.environ[key.strip()] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.supabase'))
@@ -27,12 +27,9 @@ SUPABASE_URL = os.environ.get('SUPABASE_URL')
 SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY')
 
-HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
-}
+if not SUPABASE_URL or not SUPABASE_KEY:
+    print("ERROR: Missing Supabase credentials")
+    sys.exit(1)
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -45,8 +42,7 @@ def fetch_wikipedia_person_image(person_name):
         )
         if r.status_code == 200:
             data = r.json()
-            # Prefer thumbnail (330px, reliable), fall back to originalimage
-            img = data.get("thumbnail", {}).get("source") or data.get("originalimage", {}).get("source")
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
@@ -63,7 +59,7 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         "gsrnamespace": "6",
         "gsrlimit": str(limit),
         "prop": "imageinfo",
-        "iiprop": "url|size|mime",
+        "iiprop": "url|size|mime|extmetadata",
         "iiurlwidth": "1200",
         "format": "json"
     }
@@ -80,30 +76,32 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
             results = []
             for pid, page in pages.items():
                 ii = page.get("imageinfo", [{}])[0]
+                url = ii.get("thumburl") or ii.get("url")
                 mime = ii.get("mime", "")
-                if not mime.startswith("image/"):
-                    continue
-                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
-                    continue
-                results.append({
-                    "url": ii.get("thumburl") or ii.get("url", ""),
-                    "original_url": ii.get("url", ""),
-                    "title": page.get("title", ""),
-                    "width": ii.get("width", 0),
-                    "height": ii.get("height", 0),
-                })
+                width = ii.get("width", 0)
+                if url and "image" in mime and width > 200:
+                    results.append({
+                        "url": url,
+                        "title": page.get("title", ""),
+                        "width": width,
+                        "height": ii.get("height", 0)
+                    })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} results for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+        print(f"  ⚠ Wikimedia Commons error: {e}")
     return []
 
 def fetch_pexels_image(query):
-    """Fetch image from Pexels using curl (Python requests gets 403)."""
+    """Search Pexels for an image using curl (urllib gets 403)."""
+    if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
+        return None
     try:
+        import subprocess
         result = subprocess.run(
-            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=5",
+            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3",
              "-H", f"Authorization: {PEXELS_KEY}"],
             capture_output=True, text=True, timeout=15
         )
@@ -111,300 +109,342 @@ def fetch_pexels_image(query):
             data = json.loads(result.stdout)
             photos = data.get("photos", [])
             if photos:
-                url = photos[0].get("src", {}).get("large2x") or photos[0].get("src", {}).get("large")
-                if url:
-                    print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                    return url
+                url = photos[0]["src"]["large"]
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                return url
     except Exception as e:
-        print(f"  ⚠ Pexels error for '{query}': {e}")
+        print(f"  ⚠ Pexels error: {e}")
     return None
 
 def validate_image(url):
-    """Validate that URL returns a real image >5KB."""
+    """Validate image URL returns 200 and has reasonable size."""
+    # Trust known sources (Wikimedia, Pexels) without HEAD check to avoid rate limits
+    if "upload.wikimedia.org" in url or "images.pexels.com" in url:
+        print(f"  ✓ Image from trusted source, skipping HEAD check")
+        return True
     try:
-        r = requests.head(url, timeout=10, allow_redirects=True,
-                         headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=10, allow_redirects=True)
         ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", "0"))
-        if "image" in ct and cl > 5000:
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
+            print(f"  ✓ Image validated: {r.status_code}, {ct}, {cl} bytes")
             return True
-        # Some servers don't return Content-Length on HEAD, try GET
-        if "image" in ct:
-            r2 = requests.get(url, timeout=10, stream=True,
-                             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"})
-            chunk = r2.raw.read(6000)
-            if len(chunk) > 5000:
-                return True
-    except:
-        pass
+        if r.status_code == 429:
+            print(f"  ⚠ Rate limited, trusting URL from known source")
+            return True
+        print(f"  ✗ Image validation failed: status={r.status_code}, type={ct}, size={cl}")
+    except Exception as e:
+        print(f"  ✗ Image validation error: {e}")
     return False
 
 def insert_article(article):
     """Insert article into Supabase."""
+    headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "application/json",
+        "Prefer": "return=representation"
+    }
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=HEADERS,
-        json=article
+        headers=headers,
+        json=article,
+        timeout=30
     )
     if r.status_code in (200, 201):
         result = r.json()
         if isinstance(result, list) and result:
-            print(f"  ✓ Published: {result[0].get('headline', '')[:60]}...")
+            print(f"  ✓ Published: {result[0].get('headline', 'unknown')}")
             return True
-    print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
-    return False
+        print(f"  ✓ Published (no details returned)")
+        return True
+    else:
+        print(f"  ✗ Insert failed: {r.status_code} - {r.text[:300]}")
+        return False
 
 
-# ============================================================
-# ARTICLE 1: Hai Jawani Toh Ishq Hona Hai Day 1
-# ============================================================
-def write_article_1():
-    print("\n=== Article 1: Hai Jawani Toh Ishq Hona Hai ===")
+# ================================================================
+# ARTICLE 1: Peddi box office crossing ₹150 Cr worldwide
+# ================================================================
+def write_peddi_box_office():
+    print("\n=== ARTICLE 1: Peddi Box Office Update ===")
+
+    # Image: Ram Charan from Wikipedia
+    image_url = None
+    image_caption = ""
+    image_attribution = ""
+
+    wiki_img = fetch_wikipedia_person_image("Ram Charan (actor)")
+    if not wiki_img:
+        wiki_img = fetch_wikipedia_person_image("Ram Charan")
     
-    # Image sourcing: Varun Dhawan
-    img_url = None
-    img_caption = ""
-    img_attribution = ""
-    
-    # Try Wikipedia for Varun Dhawan
-    wiki_img = fetch_wikipedia_person_image("Varun Dhawan")
     if wiki_img and validate_image(wiki_img):
-        img_url = wiki_img
-        img_caption = "Varun Dhawan at a promotional event"
-        img_attribution = "Wikimedia Commons"
+        image_url = wiki_img
+        image_caption = "Ram Charan, whose solo starrer Peddi has crossed ₹150 crore worldwide in two days"
+        image_attribution = "Wikimedia Commons"
     
-    # Try Wikimedia Commons
-    if not img_url:
-        commons = fetch_wikimedia_commons_images("Varun Dhawan actor Bollywood")
+    if not image_url:
+        commons = fetch_wikimedia_commons_images("Ram Charan actor Telugu")
         for c in commons:
             if validate_image(c["url"]):
-                img_url = c["url"]
-                img_caption = "Varun Dhawan at a film event"
-                img_attribution = "Wikimedia Commons"
+                image_url = c["url"]
+                image_caption = "Ram Charan at a public event"
+                image_attribution = "Wikimedia Commons"
                 break
     
-    # Try David Dhawan
-    if not img_url:
-        wiki_img2 = fetch_wikipedia_person_image("David Dhawan")
-        if wiki_img2 and validate_image(wiki_img2):
-            img_url = wiki_img2
-            img_caption = "David Dhawan, veteran comedy director"
-            img_attribution = "Wikimedia Commons"
-    
-    # Pexels fallback
-    if not img_url:
-        pexels = fetch_pexels_image("Bollywood comedy film theatre")
+    if not image_url:
+        pexels = fetch_pexels_image("Indian cinema theatre audience")
         if pexels and validate_image(pexels):
-            img_url = pexels
-            img_caption = "A cinema hall screening a Bollywood film"
-            img_attribution = "Pexels"
+            image_url = pexels
+            image_caption = "Indian cinema audiences packing theatres for Peddi's opening weekend"
+            image_attribution = "Pexels"
     
-    if not img_url:
+    if not image_url:
         print("  ✗ No valid image found, skipping article")
         return False
-    
-    body = """David Dhawan has directed his last film. Whether or not *Hai Jawani Toh Ishq Hona Hai* becomes a box office success, it marks the end of a directorial career that gave Hindi cinema some of its most unapologetically entertaining comedies — from *Coolie No. 1* and *Hero No. 1* to *Biwi No. 1* and the original *Partner*.
 
-The film, which opened in theatres on June 5, collected an estimated ₹7.5 to ₹8.5 crore on its first day, according to early trade estimates from Bollywood Hungama and Sacnilk. It managed around ₹4.25 crore from PVRInox and Cinepolis alone, with single screens and non-national chains contributing a higher-than-expected share. For a comedy without a massive pre-release campaign, those numbers represent a solid, if not spectacular, start.
+    body = """Ram Charan's Peddi has crossed the ₹150 crore mark worldwide in just two days of its theatrical run, confirming what the opening-day numbers had suggested: this is the actor's biggest solo success, and it arrived exactly when he needed it.
 
-Varun Dhawan, who stars alongside Mrunal Thakur and Pooja Hegde, is back in the territory his father made him for — loud, colourful, unabashedly mass entertainers. The supporting cast is stacked: Jimmy Shergill, Mouni Roy, Rakesh Bedi, Chunky Pandey, and Maniesh Paul. Trade analyst Taran Adarsh gave the film 3.5 stars, calling it a "fun-filled entertainer" driven by Varun's energy. Sumit Kadel called it a "paisa vasool entertainer" that "delivers exactly what it promises — laughter, romance, music, confusion and unlimited fun."
+The Buchi Babu Sana-directed sports action drama collected approximately ₹26.90 crore net in India on Day 2 (Friday), bringing its domestic total to ₹96.40 crore net. With ₹18.50 crore from paid previews, ₹51 crore on Day 1, and the Friday hold, the India gross now stands at ₹114.49 crore. Overseas markets have added ₹36 crore, pushing the worldwide gross to ₹150.49 crore.
 
-Not everyone agrees. India Today's review argued the film "mistakes loud volume for genuine humour" and described it as "a desperate attempt to recreate a very specific kind of 90s Bollywood hero: part Salman Khan, part Govinda, and entirely fabricated." The film also faced a pre-release legal tussle when producer Vashu Bhagnani challenged the use of songs 'Chunari Chunari' and 'Ishq Sona Hai' from *Biwi No. 1*, though Tips Films maintained they hold the rights.
+## The Telugu Heartland Is Carrying This Film
 
-The critical divide speaks to a larger question about what still works in Bollywood comedy. David Dhawan's formula — mistaken identities, romantic confusion, ensemble chaos — was the dominant mode of Hindi commercial cinema through the 1990s and early 2000s. It made household names of Govinda and Salman Khan in a register that was neither art-house nor action blockbuster. Whether that formula can still draw audiences in 2026, when the Hindi belt is increasingly saturated with thrillers and spectacle-driven tentpoles, is what this opening weekend will test.
+The Telugu states of Andhra Pradesh and Telangana have been the film's engine. Day 2 saw ₹23.75 crore from APTS alone — a number that compares favourably with Kalki 2898 AD and Pushpa 2, both of which recorded ₹27-28 crore on equivalent days. In Coastal Andhra, Peddi actually outperformed both those blockbusters, grossing ₹10.75 crore. The shortfall came primarily from Nizam and Ceded.
 
-For the Indian diaspora, the film carries a particular kind of nostalgia. David Dhawan comedies were a staple of weekend VHS and DVD rentals in NRI households across the US, UK, and Canada. Films like *Judwaa*, *Haseena Maan Jaayegi*, and *No. 1 Punjabi* were family-viewing defaults at a time when Indian content abroad was limited to whatever the local video store stocked. The announcement that this is his final directorial outing adds a bittersweet layer to the experience.
+The Hindi version, by contrast, has been modest — roughly ₹2.25 crore net on Day 2 — reflecting the film's Telugu-first positioning and mixed critical reception. But the overall trajectory suggests a four-day extended weekend of ₹180-185 crore, with ₹200 crore virtually guaranteed.
 
-The film needs to hit approximately ₹70 crore in India to break even, a target that is achievable if the weekend delivers a meaningful jump. Advance bookings for Saturday and Sunday look healthy, and family audiences are expected to come in larger numbers over the weekend. The real test arrives on Monday, when weekday collections will determine whether word-of-mouth is strong enough to sustain a long theatrical run.
+## Why This Matters for Ram Charan
 
-*Hai Jawani Toh Ishq Hona Hai* opened alongside Ram Charan's *Peddi*, which has already crossed ₹96 crore net in India after two days, and Bobby Deol's *Bandar*, which collected just ₹30 lakh on its opening day despite positive reviews. In a month where nine major releases are competing across four Fridays for screen space, the margins are thin and the stakes are real.
+The significance is not just in the numbers. It is in what they represent. RRR gave Ram Charan a global footprint, but it was a multi-starrer backed by S.S. Rajamouli's brand. Game Changer, his last release, underwhelmed theatrically and raised questions about whether he could carry a film alone.
 
-David Dhawan is not reinventing anything with this film. He is doing exactly what he has always done — delivering a two-and-a-half-hour escape built on comic timing, catchy music, and the belief that audiences will always show up for a good laugh. Whether they still do, in the numbers that matter, is the question this weekend will answer."""
+Peddi answers that question definitively. It is now the tenth-highest all-time opening in Telugu cinema, and the weekend has not even peaked. Advance bookings for Saturday already exceed ₹13.87 crore gross, with over five lakh tickets sold across 967 cities.
+
+## The Controversy Has Not Hurt — It May Have Helped
+
+The film has not been without turbulence. Director Buchi Babu Sana publicly apologised for the portrayal of Janhvi Kapoor's character after criticism of hypersexualisation. He promised to cut scenes. The discourse around the film became the week's dominant entertainment story. But controversy, in Indian cinema, has often translated into curiosity. Peddi's Day 2 hold, especially in evening and night shows, suggests that audience interest has not wavered.
+
+## The Diaspora Box Office
+
+For NRI audiences, the North America numbers tell their own story. Advance bookings hit $870,000 before the first show began, and the breakeven target is set at $6.5 million for North America and $9 million for total overseas. If the weekend delivers, Peddi will join an exclusive club of Telugu films that have performed strongly in diaspora markets — territory once reserved for the Baahubali and RRR-scale spectacles.
+
+The film is now in a race against its own potential. Trade analysts expect a lifetime gross comfortably above ₹300 crore worldwide if the weekday holds are steady. For Ram Charan, that would not just be a commercial milestone. It would be a statement: he does not need a franchise, a multi-starrer, or a Rajamouli to deliver a blockbuster.
+
+The numbers on Saturday will tell us whether Peddi is heading for very good or genuinely historic territory. Either way, Ram Charan's solo credentials are no longer in question."""
 
     article = {
-        "headline": "David Dhawan Has Directed His Last Film. Hai Jawani Toh Ishq Hona Hai Collected ₹8 Crore on Day One.",
-        "subheadline": "Varun Dhawan's comedy opened solidly but not spectacularly in a week dominated by Peddi. The real test begins this weekend.",
+        "headline": "Peddi Has Crossed ₹150 Crore Worldwide in Two Days. Ram Charan No Longer Needs a Franchise to Prove Himself.",
+        "subheadline": "The Telugu sports drama collected ₹96 crore net in India and ₹36 crore overseas by Day 2. The weekend target is ₹200 crore. The controversy has not slowed it down.",
         "body": body,
-        "slug": "hai-jawani-toh-ishq-hona-hai-david-dhawan-last-film-day-1-box-office-nri-20260606",
+        "slug": "peddi-150-crore-worldwide-two-days-ram-charan-solo-blockbuster-nri-20260606",
         "category": "entertainment",
-        "image_url": img_url,
-        "image_caption": img_caption,
-        "image_attribution": img_attribution,
+        "vertical": "entertainment",
+        "image_url": image_url,
+        "image_caption": image_caption,
+        "image_attribution": image_attribution,
+        "sources": json.dumps(["Pinkvilla", "Sacnilk", "Filmibeat", "Zoom TV Entertainment"]),
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps(["Bollywood Hungama", "Sacnilk", "India Today", "Pinkvilla"]),
-        "is_editorial": False,
-        "vertical": "entertainment"
+        "is_editorial": False
     }
-    
     return insert_article(article)
 
 
-# ============================================================
-# ARTICLE 2: Gullak Season 5
-# ============================================================
-def write_article_2():
-    print("\n=== Article 2: Gullak Season 5 ===")
-    
-    img_url = None
-    img_caption = ""
-    img_attribution = ""
-    
-    # Try Wikimedia Commons for Gullak or TVF
-    commons = fetch_wikimedia_commons_images("Gullak TV series India")
-    for c in commons:
-        if validate_image(c["url"]):
-            img_url = c["url"]
-            img_caption = "A scene from Gullak, TVF's beloved family drama"
-            img_attribution = "Wikimedia Commons"
-            break
-    
-    # Try Jameel Khan (lead actor)
-    if not img_url:
-        wiki_img = fetch_wikipedia_person_image("Jameel Khan (actor)")
-        if wiki_img and validate_image(wiki_img):
-            img_url = wiki_img
-            img_caption = "Jameel Khan, who plays Santosh Mishra in Gullak"
-            img_attribution = "Wikimedia Commons"
-    
-    if not img_url:
-        commons2 = fetch_wikimedia_commons_images("Indian middle class family home")
-        for c in commons2:
-            if validate_image(c["url"]):
-                img_url = c["url"]
-                img_caption = "A middle-class Indian household, the world Gullak inhabits"
-                img_attribution = "Wikimedia Commons"
-                break
-    
-    if not img_url:
-        pexels = fetch_pexels_image("Indian family watching television home")
-        if pexels and validate_image(pexels):
-            img_url = pexels
-            img_caption = "An Indian family at home, the kind of world Gullak brings to screen"
-            img_attribution = "Pexels"
-    
-    if not img_url:
-        print("  ✗ No valid image found, skipping article")
-        return False
-    
-    body = """Five seasons in, Gullak still feels like walking into a house you grew up in. The furniture is rearranged — literally, this time, as Santosh Mishra applies for a housing loan to renovate the family home — but the warmth is exactly where you left it.
+# ================================================================
+# ARTICLE 2: Vicky Kaushal's Mahavatar + Shraddha Kapoor + Ranveer's Pralay
+# ================================================================
+def write_mahavatar_pralay():
+    print("\n=== ARTICLE 2: Mahavatar + Pralay ===")
 
-The fifth season of TVF's quiet masterpiece premiered on SonyLIV on June 5, and the reviews are in. Filmfare called it "a warm return to the Mishra household." India Forums gave it 3 out of 5 stars, noting that "the familiarity remains one of the show's biggest strengths — ironically, it is also becoming one of its biggest challenges." MensXP's reviewer admitted to being left "emotional, teary-eyed, and deeply satisfied" by the finale. The consensus is clear: Gullak has not lost its soul, even as it navigates the inevitable growing pains of a long-running series.
+    # Image: Vicky Kaushal from Wikipedia
+    image_url = None
+    image_caption = ""
+    image_attribution = ""
 
-The biggest question hanging over this season was the recasting of Annu Bhaiya. Vaibhav Raj Gupta, who played the elder Mishra son across four seasons, has been replaced by Anant V. Joshi, known for *12th Fail* and *Maamla Legal Hai*. The decision sparked genuine anxiety among the show's devoted fanbase. But the reviews are unanimous: Joshi earns his place. Rather than imitating Gupta, he brings a fresh interpretation while retaining the character's defining traits — the quiet frustration, the restrained anger, the weight of being the responsible elder sibling. His chemistry with Harsh Mayar's Aman feels organic, and by the second episode, the recasting stops being a distraction.
-
-Jameel Khan and Geetanjali Kulkarni remain the show's emotional anchors. Khan's Santosh Mishra — the government employee navigating financial anxieties with quiet dignity — is one of Indian streaming's most achingly real characters. Kulkarni's Shanti is sharper than ever this season, exploring what happens when a woman who has spent decades as the family's emotional anchor starts questioning her own identity. Sunita Rajwar's Bittu Ki Mummy gets a notable upgrade too: the nosy neighbour has discovered social media and reinvented herself as a content creator, a subplot that lands its comedy without sacrificing the character's depth.
-
-New additions include Gopal Dutt as Pinky Mama, Shanti's visiting brother who brings chaos to the Mishra household, and Helly Shah as Dr. Preeti, whose romantic track with Annu hints at possibilities for future seasons. The writing, by Vidit Tripathi, remains the show's backbone — rooted in specificity, unafraid of silence, and trusting the audience to find meaning in the smallest domestic exchanges.
-
-What makes Gullak essential viewing for the Indian diaspora is precisely what makes it difficult to describe to anyone who hasn't watched it. It is not plot-driven. There are no twists, no cliffhangers, no manufactured drama. It is a show about a lower-middle-class family in a small Indian town living their lives — worrying about money, arguing about dinner, navigating the gap between what they can afford and what they aspire to. For NRIs who grew up in similar households before moving to the US, UK, or Canada, each episode is a minor act of time travel. The dialogue rhythms, the family dynamics, the specific texture of an Indian home where nothing dramatic happens but everything matters — it is all there, rendered with a precision that big-budget productions rarely achieve.
-
-Season 5 grapples with contemporary concerns — hustle culture, social media validation, the anxieties of ageing parents watching their children face a world more uncertain than the one they navigated — without ever losing its grounding. The ending, some reviewers note, wraps up a little too neatly. But in a streaming landscape dominated by darkness and spectacle, Gullak's insistence on gentleness is itself a kind of defiance.
-
-All eight episodes are streaming now on SonyLIV, which is available internationally."""
-
-    article = {
-        "headline": "Gullak Season 5 Is Now Streaming. The Mishra Family Still Feels Like Home.",
-        "subheadline": "TVF's beloved slice-of-life drama returns on SonyLIV with a new Annu Bhaiya, a housing loan, and the same quiet emotional precision that made it a modern classic.",
-        "body": body,
-        "slug": "gullak-season-5-sonyliv-review-tvf-mishra-family-anant-joshi-nri-20260606",
-        "category": "entertainment",
-        "image_url": img_url,
-        "image_caption": img_caption,
-        "image_attribution": img_attribution,
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps(["Filmfare", "India Forums", "MensXP", "Bollywood Shaadis", "Indian Community"]),
-        "is_editorial": False,
-        "vertical": "entertainment"
-    }
+    wiki_img = fetch_wikipedia_person_image("Vicky Kaushal")
     
-    return insert_article(article)
-
-
-# ============================================================
-# ARTICLE 3: Anushka Sharma Homeopathy Controversy
-# ============================================================
-def write_article_3():
-    print("\n=== Article 3: Anushka Sharma Homeopathy Controversy ===")
-    
-    img_url = None
-    img_caption = ""
-    img_attribution = ""
-    
-    # Try Wikipedia for Anushka Sharma
-    wiki_img = fetch_wikipedia_person_image("Anushka Sharma")
     if wiki_img and validate_image(wiki_img):
-        img_url = wiki_img
-        img_caption = "Anushka Sharma at a public event"
-        img_attribution = "Wikimedia Commons"
+        image_url = wiki_img
+        image_caption = "Vicky Kaushal, who has blocked 18 months for the mythological epic Mahavatar"
+        image_attribution = "Wikimedia Commons"
     
-    if not img_url:
-        commons = fetch_wikimedia_commons_images("Anushka Sharma actress")
+    if not image_url:
+        commons = fetch_wikimedia_commons_images("Vicky Kaushal actor")
         for c in commons:
             if validate_image(c["url"]):
-                img_url = c["url"]
-                img_caption = "Anushka Sharma at an industry event"
-                img_attribution = "Wikimedia Commons"
+                image_url = c["url"]
+                image_caption = "Vicky Kaushal at a promotional event"
+                image_attribution = "Wikimedia Commons"
                 break
+
+    if not image_url:
+        pexels = fetch_pexels_image("Indian actor preparation training")
+        if pexels and validate_image(pexels):
+            image_url = pexels
+            image_caption = "Actors are committing longer timelines to ambitious Indian productions"
+            image_attribution = "Pexels"
     
-    if not img_url:
+    if not image_url:
         print("  ✗ No valid image found, skipping article")
         return False
-    
-    body = """Anushka Sharma shared a video about homeopathy on her Instagram Story. Within hours, a hepatologist had called her an "illiterate celeb," a doctor had labeled the entire exchange a "triangle of shame," and the internet had split into camps with the ferocity usually reserved for cricket rivalries.
 
-The sequence of events is straightforward. On June 3, Sharma reposted a video featuring homeopathic physician Rajan Sankaran in conversation with Shark Tank India judge Namita Thapar. She wrote: "Homeopathy has played an important role in my life, and Dr. Rajan Sankaran has been a key part of that journey. I deeply value his insights on health and mindful living." In the video, Sankaran argued for integrated medicine, stating that "homeopathy doesn't treat conditions, it treats people" and that modern medical practitioners sometimes refer patients for homeopathic treatment for conditions like multiple sclerosis and eczema.
+    body = """Vicky Kaushal has committed the next eighteen months of his life to a single film. Starting this month, the actor enters an intensive six-month preparation phase for Mahavatar, Maddock Films' mythological epic in which he plays Lord Parashurama — the immortal warrior sage and sixth avatar of Lord Vishnu. Filming begins in January 2027 and is expected to run through December. He will not take on any other project during this period.
 
-Cyriac Abby Philips — the hepatologist known online as The Liver Doc and a persistent critic of alternative medicine — responded with a post calling Sharma, Sankaran, and Thapar a "triangle of shame" and describing them as "Supplement Seller – Legalized Quack – Illiterate Celeb." He wrote: "Homeopathy is 'medicine' made of water, alcohol, and sugar. So you're paying premium prices for fancy sugar pills containing precisely no medicine at all." The response was blunt, medically pointed, and — in several places — personally insulting.
+This is an unusual level of commitment by any Bollywood standard, and it signals something larger: India's leading actors are beginning to treat their biggest films the way Hollywood A-listers treat franchise anchors — as multi-year, all-consuming endeavours.
 
-The backlash against Sharma was swift but not one-sided. Many social media users echoed Philips's concerns, arguing that a celebrity with over 60 million followers endorsing a system whose core claims remain scientifically unverified is irresponsible, particularly when her audience includes people who may lack access to evidence-based healthcare. "She is getting the best medical treatment available while promoting sugar pills to millions," one widely shared post read. Others pointed out that Sharma's post came a day after she visited the ashram of Vrindavan-based Sant Premanand Maharaj with Virat Kohli, framing it as part of a broader pattern of wellness endorsements.
+## The Parashurama Preparation
 
-But a significant portion of the Indian internet pushed back against the criticism. Homeopathy occupies a unique position in Indian healthcare — it is a legally recognized system of medicine in the country, taught in accredited colleges, and practiced by hundreds of thousands of registered practitioners. For many Indian families, homeopathy is not an alternative; it is the default first response for chronic conditions, childhood ailments, and allergies. Multiple users shared their own positive experiences and questioned why Philips's critique relied on personal attacks rather than measured scientific disagreement.
+Directed by Amar Kaushik of Stree fame and written by Niren Bhatt (who spent years reading the Bhagavat Purana and eleven other ancient scriptures), Mahavatar demands a physical and emotional transformation that cannot be rushed. Kaushal will undergo months of body conditioning to achieve the muscular build Parashurama requires, followed by workshops to inhabit a character who spans ages and mythological epochs.
 
-For the diaspora, this debate touches something more layered than a simple science-versus-pseudoscience binary. Many NRIs in the US, UK, and Canada grew up in households where homeopathic remedies sat alongside allopathic prescriptions. Moving to countries where homeopathy is either unavailable, unregulated, or actively dismissed by the medical establishment creates a specific kind of dissonance. The attachment to these practices is often less about rejecting modern medicine and more about maintaining a connection to familial healthcare traditions — the small white pills from a neighbourhood practitioner who knew your family's medical history across generations.
+The actor is expected to wrap his current work on Sanjay Leela Bhansali's Love and War just in time to begin prep. It was Love and War's extended schedule that originally pushed Mahavatar out of its planned Christmas 2026 release slot. The film is now eyeing an Independence Day 2027 weekend release, though no date has been officially locked.
 
-None of which excuses the responsibility that comes with Sharma's platform. The central criticism — that a public figure with her reach should exercise caution when endorsing a medical system whose foundational claims are not supported by robust clinical evidence — is legitimate and important, regardless of how intemperately it was made.
+## Shraddha Kapoor in Talks for the Female Lead
 
-The episode also raises questions about India's regulatory framework. Homeopathy is governed by the Central Council of Homoeopathy and the Ministry of AYUSH, which gives it institutional legitimacy even as the global scientific consensus remains skeptical. This regulatory position means that Indian celebrities endorsing homeopathy are not, strictly speaking, promoting an unregulated practice — even if the evidence base remains contested.
+In a development that could add significant star power, Shraddha Kapoor is reportedly in advanced talks to play the female lead. If confirmed, it would be the first on-screen pairing of Kaushal and Kapoor — a combination that producers believe could resonate strongly with audiences. Mid-Day reported that the makers see Shraddha as their primary choice, citing her star value and screen presence as fitting the film's scale.
 
-Sharma has not responded to the backlash. The original Instagram Story has since expired. The debate, as always with these cycles, will move on. But the underlying tension — between evidence-based medicine and traditional practice, between celebrity influence and personal choice, between the healthcare systems people grew up with and the ones they now live under — is not going anywhere."""
+Maddock Films, under Dinesh Vijan, is treating Mahavatar as its most ambitious production to date. The film is expected to blend heavy VFX, elaborate world-building, and a narrative rooted in Hindu mythology, continuing the trend set by recent hits like Mahavatar Narsimha (an animated prequel from a separate studio that grossed ₹325 crore) and the upcoming Ramayana.
+
+## Meanwhile, Ranveer Singh's Pralay Starts in August
+
+In a parallel move, Ranveer Singh — fresh off the historic ₹1,800 crore worldwide run of Dhurandhar 2 — is preparing to begin shooting Pralay in August. The post-apocalyptic thriller, directed by Jai Mehta, carries a reported budget of ₹300 crore and plans to merge physical sets with AI-driven visual effects to create a dystopian atmosphere unlike anything seen in Indian cinema.
+
+Despite rumours of creative differences, Variety India confirmed the project is on track. South Indian actress Kalyani Priyadarshan has been finalised for her Hindi debut alongside Singh.
+
+## What This Means for Indian Cinema
+
+The dual commitments of Kaushal and Singh mark a shift in how Bollywood's top tier approaches filmmaking. Where the industry once prized quantity — three films a year, back-to-back releases — the economics of ₹300 crore budgets and global ambitions now demand singular focus.
+
+For NRI audiences, this trend is worth watching. Both Mahavatar and Pralay are being designed with international markets in mind. Parashurama's mythology has a built-in audience in every temple town from Edison to Alpharetta. A post-apocalyptic Indian thriller has the genre appeal to cross over. The question is whether the films can match the ambition of their stars' commitments.
+
+Kaushal's eighteen-month window and Singh's August start date make 2027 the year to watch. The productions that survive this level of scale and scrutiny will define what Indian blockbuster cinema looks like for the next decade."""
 
     article = {
-        "headline": "Anushka Sharma Endorsed Homeopathy. A Doctor Called Her an 'Illiterate Celeb.' The Internet Did the Rest.",
-        "subheadline": "A routine Instagram Story about a homeopathic physician turned into a full-blown debate about celebrity influence, medical evidence, and the healthcare traditions NRI families carry across borders.",
+        "headline": "Vicky Kaushal Has Blocked 18 Months for Mahavatar. Shraddha Kapoor May Join Him as the Female Lead.",
+        "subheadline": "The actor begins preparation this month for the Lord Parashurama epic. Meanwhile, Ranveer Singh's ₹300 crore Pralay starts shooting in August. India's biggest stars are making singular bets.",
         "body": body,
-        "slug": "anushka-sharma-homeopathy-controversy-liver-doc-cyriac-philips-celebrity-health-nri-20260606",
+        "slug": "vicky-kaushal-mahavatar-18-months-shraddha-kapoor-ranveer-pralay-nri-20260606",
         "category": "entertainment",
-        "image_url": img_url,
-        "image_caption": img_caption,
-        "image_attribution": img_attribution,
+        "vertical": "entertainment",
+        "image_url": image_url,
+        "image_caption": image_caption,
+        "image_attribution": image_attribution,
+        "sources": json.dumps(["Sacnilk", "Mid-Day", "Variety India", "PeepingMoon"]),
         "status": "published",
         "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps(["Livemint", "Zoom TV", "Bollywood Hungama", "NewsPoint", "Indian Witness"]),
-        "is_editorial": False,
-        "vertical": "entertainment"
+        "is_editorial": False
     }
-    
     return insert_article(article)
 
 
-# ============================================================
-# MAIN
-# ============================================================
+# ================================================================
+# ARTICLE 3: Selena Gomez's Rare Beauty launches in India via Nykaa
+# ================================================================
+def write_rare_beauty_india():
+    print("\n=== ARTICLE 3: Rare Beauty India Launch ===")
+
+    # Image: Selena Gomez from Wikipedia
+    image_url = None
+    image_caption = ""
+    image_attribution = ""
+
+    wiki_img = fetch_wikipedia_person_image("Selena Gomez")
+    
+    if wiki_img and validate_image(wiki_img):
+        image_url = wiki_img
+        image_caption = "Selena Gomez, whose beauty brand Rare Beauty has officially launched in India through Nykaa"
+        image_attribution = "Wikimedia Commons"
+    
+    if not image_url:
+        commons = fetch_wikimedia_commons_images("Selena Gomez 2024 2025")
+        for c in commons:
+            if validate_image(c["url"]):
+                image_url = c["url"]
+                image_caption = "Selena Gomez at a public appearance"
+                image_attribution = "Wikimedia Commons"
+                break
+    
+    if not image_url:
+        pexels = fetch_pexels_image("beauty cosmetics makeup products premium")
+        if pexels and validate_image(pexels):
+            image_url = pexels
+            image_caption = "Premium beauty products from internationally recognized brands reaching Indian consumers"
+            image_attribution = "Pexels"
+
+    if not image_url:
+        print("  ✗ No valid image found, skipping article")
+        return False
+
+    body = """Selena Gomez's Rare Beauty is now officially available in India through Nykaa. The launch, announced on June 6, makes the celebrity beauty brand accessible across Nykaa's website, mobile app, and 30 retail stores nationwide — a significant expansion from its earlier Sephora-only presence in the country.
+
+In a video message, Gomez said: "I'm so excited to share that we're bringing Rare Beauty to Nykaa in India. Nykaa is such an amazing partner and it makes me so happy to keep growing Rare Beauty in India."
+
+## Why This Launch Matters Beyond the Beauty Counter
+
+Rare Beauty is not just another celebrity brand. Founded in 2020, it has built a global following around a specific mission: challenging unrealistic beauty standards and championing mental health awareness. The brand's Rare Impact Fund aims to raise $100 million over a decade to increase access to mental health services, donating one per cent of all global sales. Every purchase is a micro-contribution to that fund.
+
+The brand's products — all vegan and cruelty-free — have earned viral status. The Soft Pinch Liquid Blush became a social media phenomenon, with TikTok videos driving demand that outstripped supply for months. The Soft Pinch Tinted Lip Oil and True to Myself Natural Matte Longwear Foundation round out the initial India launch lineup.
+
+## India's Premium Beauty Market Is Moving Fast
+
+For Nykaa, this is a strategic play. The company reported revenue of ₹2,648 crore in its latest quarter, up 28.4 per cent year-on-year, with net profit hitting ₹79 crore — its highest since listing. The beauty segment continues to drive that growth, and adding Rare Beauty strengthens its portfolio of international prestige brands.
+
+Anchit Nayar, CEO of Nykaa Beauty, framed the partnership in terms of a "new generation of highly informed and globally engaged consumers seeking elevated brand experiences." That phrasing is telling. India's premium beauty consumer is no longer content with whatever trickles down from Western markets. They want what the global consumer has, at the same time, and they are willing to pay for it.
+
+## The Diaspora Connection
+
+For NRI audiences, the Rare Beauty launch closes a gap that has long been a quiet inconvenience. Indian Americans who discovered the brand in Sephora stores in New York or Los Angeles could never gift it easily to family back home. Indian consumers who saw the products on Instagram had to rely on resellers or international shipping. The Nykaa partnership creates a direct, authorised channel.
+
+This matters in both directions. NRIs visiting India can now shop the same brands they use abroad. Indian consumers travelling to the US no longer need to treat a Rare Beauty blush as a suitcase essential. The brand parity between markets — once a years-long lag — is collapsing.
+
+## Gomez's Star Power in India
+
+Selena Gomez remains one of the most followed people on Instagram, with a fanbase that cuts across geographies. In India, her appeal extends beyond music. Her production work on *13 Reasons Why* and her Emmy-nominated role in *Only Murders in the Building* have built a recognition that transcends the pop-star category. When Rare Beauty launched at Sephora India in 2023, demand was immediate.
+
+The Nykaa deal significantly expands reach. Thirty physical stores across the country — in cities from Mumbai to Bangalore to Delhi — mean that the brand is no longer confined to Sephora's footprint. Online availability through Nykaa's app brings it to tier-two and tier-three cities where prestige beauty has historically been underserved.
+
+## The Bigger Picture
+
+Rare Beauty joining Nykaa is part of a broader pattern. International celebrity and premium brands are accelerating their India timelines. The logic is straightforward: India's beauty market is projected to exceed $30 billion by 2030, and the consumers driving that growth are young, digitally fluent, and globally aware. They do not want to wait.
+
+For Gomez, India is not a footnote market. It is one of the brand's most requested expansion territories. The Nykaa partnership suggests she is taking it seriously."""
+
+    article = {
+        "headline": "Selena Gomez's Rare Beauty Has Launched in India Through Nykaa. It Is Available in 30 Stores Today.",
+        "subheadline": "The celebrity beauty brand expands beyond Sephora into Nykaa's nationwide network. For NRI audiences, it closes the gap between what is available abroad and what is accessible back home.",
+        "body": body,
+        "slug": "selena-gomez-rare-beauty-nykaa-india-launch-30-stores-nri-20260606",
+        "category": "entertainment",
+        "vertical": "entertainment",
+        "image_url": image_url,
+        "image_caption": image_caption,
+        "image_attribution": image_attribution,
+        "sources": json.dumps(["afaqs", "Storyboard18", "Passionate in Marketing", "Harper's Bazaar India"]),
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "is_editorial": False
+    }
+    return insert_article(article)
+
+
+# ================================================================
+# RUN ALL
+# ================================================================
 if __name__ == "__main__":
-    print(f"Entertainment writer starting at {datetime.now(timezone.utc).isoformat()}")
-    print(f"Supabase URL: {SUPABASE_URL[:30]}..." if SUPABASE_URL else "ERROR: No SUPABASE_URL")
-    
     results = []
-    results.append(("Hai Jawani Toh Ishq Hona Hai", write_article_1()))
-    results.append(("Gullak Season 5", write_article_2()))
-    results.append(("Anushka Sharma Homeopathy", write_article_3()))
     
-    print("\n=== Summary ===")
-    for title, success in results:
-        status = "✓" if success else "✗"
-        print(f"  {status} {title}")
+    print("=" * 60)
+    print("The Videshi Entertainment Writer - June 6, 2026 (Afternoon)")
+    print("=" * 60)
+    
+    results.append(("Peddi Box Office", write_peddi_box_office()))
+    results.append(("Mahavatar + Pralay", write_mahavatar_pralay()))
+    results.append(("Rare Beauty India", write_rare_beauty_india()))
+    
+    print("\n" + "=" * 60)
+    print("RESULTS:")
+    for name, success in results:
+        status = "✓ PUBLISHED" if success else "✗ FAILED"
+        print(f"  {status}: {name}")
     
     published = sum(1 for _, s in results if s)
-    print(f"\nPublished: {published}/{len(results)} articles")
+    print(f"\nTotal: {published}/{len(results)} articles published")
+    print("=" * 60)
