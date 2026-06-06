@@ -88,10 +88,10 @@ function PhotoGrid({ photos, tweetUrl }: { photos: { url: string; width: number;
             style={{
               width: "100%",
               height: count === 1 ? "auto" : "100%",
-              maxHeight: count === 1 ? 320 : "none",
+              maxHeight: count === 1 ? 400 : "none",
               objectFit: "cover",
               display: "block",
-              aspectRatio: count === 1 ? undefined : "16/9",
+              aspectRatio: count === 1 ? undefined : "4/3",
             }}
           />
         ))}
