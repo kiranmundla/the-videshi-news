@@ -55,6 +55,7 @@ def fetch_wikipedia_person_image(person_name):
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
     try:
+        time.sleep(2)  # Rate limit protection
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
             params={
@@ -92,19 +93,28 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
 
 def fetch_pexels_image(query):
     if not PEXELS_KEY:
+        print("  ⚠ No Pexels API key")
         return None
     try:
+        import urllib.parse
+        encoded_query = urllib.parse.quote(query)
         result = subprocess.run(
-            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={query}&per_page=3",
+            ["curl", "-sS",
+             f"https://api.pexels.com/v1/search?query={encoded_query}&per_page=3",
              "-H", f"Authorization: {PEXELS_KEY}"],
             capture_output=True, text=True, timeout=15
         )
-        data = json.loads(result.stdout)
-        photos = data.get("photos", [])
-        if photos:
-            url = photos[0]["src"]["large2x"]
-            print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-            return url
+        if result.stdout.strip():
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            if photos:
+                url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                return url
+            else:
+                print(f"  ⚠ Pexels: no photos for '{query}'")
+        else:
+            print(f"  ⚠ Pexels: empty response")
     except Exception as e:
         print(f"  ⚠ Pexels error: {e}")
     return None
@@ -124,7 +134,12 @@ def upload_to_supabase(img_url, filename):
     """Download image, compress, upload to Supabase storage."""
     try:
         print(f"  Downloading: {img_url[:80]}...")
+        time.sleep(2)  # Rate limit for Wikimedia
         r = requests.get(img_url, headers={"User-Agent": UA}, timeout=20)
+        if r.status_code == 429:
+            print(f"  ⚠ Rate limited, waiting 5s and retrying...")
+            time.sleep(5)
+            r = requests.get(img_url, headers={"User-Agent": UA}, timeout=20)
         if r.status_code != 200:
             print(f"  ⚠ Download failed: HTTP {r.status_code}")
             return None
@@ -166,10 +181,12 @@ def upload_to_supabase(img_url, filename):
 
 def insert_article(article):
     """Insert article into Supabase."""
+    # Remove None values to let DB defaults apply
+    clean = {k: v for k, v in article.items() if v is not None}
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS_SB,
-        json=article,
+        json=clean,
         timeout=30
     )
     if r.status_code in (200, 201):
@@ -272,6 +289,7 @@ For a diaspora community with elevated cancer risks and strong ties to healthcar
         "image_caption": "Cancer researchers at a clinical trial laboratory studying immunotherapy treatments",
         "image_attribution": img_attribution,
         "is_editorial": False,
+        "vertical": "culture",
         "sources": json.dumps(["ASCO 2026 (EMITT-1 trial)", "The Guardian", "MedicalBrief", "The Times"]),
     }
 
@@ -367,6 +385,7 @@ A pair of dumbbells and 13 minutes a day. The data suggests that may be enough t
         "image_caption": "A person performing dumbbell strength training exercises at a gym",
         "image_attribution": img_attribution,
         "is_editorial": False,
+        "vertical": "culture",
         "sources": json.dumps(["British Journal of Sports Medicine", "USA Today", "Diabetes.co.uk", "Knowridge Science"]),
     }
 
@@ -462,6 +481,7 @@ The oil shock is no longer a short-term disruption. At 14 weeks and counting, wi
         "image_caption": "An oil tanker navigating through shipping lanes critical to global energy supply",
         "image_attribution": img_attribution,
         "is_editorial": False,
+        "vertical": "economy",
         "sources": json.dumps(["Fitch Ratings", "Wall Street Journal", "Reuters", "Atlantic Council", "LiveMint", "Goldman Sachs"]),
     }
 
