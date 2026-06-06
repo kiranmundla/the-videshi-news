@@ -292,3 +292,117 @@ Every article MUST have an `image_caption` that describes what the image actuall
     "image_attribution": "Wikimedia Commons"  # or "Pexels"
 }
 ```
+
+
+## Source 4: YouTube Trailer Embed — MANDATORY for Movie/Series Articles
+
+If the article is about a **specific movie, film, series, or show** (new release, review, trailer drop, box office, streaming premiere), you MUST search for its official trailer on YouTube and embed it.
+
+**How to detect:** Headlines containing release dates, "trailer", "teaser", "season", "streaming on", "box office", "crore", "OTT release", director/producer names with a film title.
+
+**Search method** — Scrape YouTube search results (no API key needed):
+```python
+import requests, re
+from urllib.parse import quote_plus
+
+def search_youtube_trailer(title, content_type="movie"):
+    """Search YouTube for official trailer. Returns URL or None."""
+    queries = []
+    if content_type == "series":
+        # Try season-specific first
+        import re as _re
+        season_m = _re.search(r"Season\s*(\d+)", title, _re.IGNORECASE)
+        if season_m:
+            queries.append(f"{title} Season {season_m.group(1)} official trailer")
+    queries.append(f"{title} official trailer")
+    queries.append(f"{title} trailer")
+
+    for query in queries:
+        try:
+            url = f"https://www.youtube.com/results?search_query={quote_plus(query)}"
+            headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+            r = requests.get(url, headers=headers, timeout=15)
+            if r.status_code != 200:
+                continue
+            video_ids = re.findall(r'"videoId":"([A-Za-z0-9_-]{11})"', r.text)
+            seen = set()
+            for vid in video_ids:
+                if vid not in seen:
+                    seen.add(vid)
+                    return f"https://youtube.com/watch?v={vid}"
+        except Exception:
+            continue
+    return None
+```
+
+**How to embed:** Insert a `<youtube>` tag after the first or second paragraph:
+```python
+trailer_url = search_youtube_trailer("House of the Dragon", "series")
+if trailer_url:
+    # Insert after first paragraph
+    embed_tag = f"\n\n<youtube>{trailer_url}</youtube>\n"
+    # Split body and insert
+```
+
+**Rules:**
+- Only one YouTube embed per article
+- Place it after the intro paragraph (not at the very top or bottom)
+- Don't embed for general analysis, roundup, or opinion pieces — only for articles about a specific title
+- If no trailer exists (very new announcement), skip — don't embed random videos
+
+## Source 5: Wikipedia Season-Specific Pages — For Series/Show Articles
+
+When the article is about a **specific season** of a TV series, search Wikipedia for the season page, not the show page. The season page usually has the official promotional poster.
+
+```python
+def fetch_wikipedia_season_image(show_name, season_number):
+    """Fetch the season poster from Wikipedia."""
+    slug = f"{show_name.replace(' ', '_')}_season_{season_number}"
+    try:
+        r = requests.get(
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{slug}",
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
+        )
+        if r.status_code == 200:
+            data = r.json()
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
+            if img:
+                return img
+    except Exception:
+        pass
+    return None
+```
+
+**Example:** "House of the Dragon Season 3" → Wikipedia page `House_of_the_Dragon_season_3` → returns the S3 promotional poster (not the show logo).
+
+## Source 6: Google Custom Search (when available)
+
+When the Google CSE API is enabled, use it for the best image results — especially for entertainment, movies, and shows where Wikipedia/Commons may not have great images.
+
+```python
+GOOGLE_CSE_KEY = os.environ.get("GOOGLE_CSE_KEY", "")
+GOOGLE_CSE_ID = os.environ.get("GOOGLE_CSE_ID", "")
+
+def search_google_images(query, cc_only=True, num=5):
+    if not GOOGLE_CSE_KEY or not GOOGLE_CSE_ID:
+        return []
+    params = {
+        "key": GOOGLE_CSE_KEY, "cx": GOOGLE_CSE_ID,
+        "q": query, "searchType": "image", "num": num,
+    }
+    if cc_only:
+        params["rights"] = "cc_publicdomain|cc_attribute|cc_sharealike"
+    r = requests.get("https://www.googleapis.com/customsearch/v1", params=params, timeout=10)
+    if r.status_code != 200:
+        return []
+    return [{"url": i["link"], "title": i["title"]} for i in r.json().get("items", [])]
+```
+
+**Priority order** for image sourcing (highest first):
+1. Google CSE with CC filter (when enabled)
+2. Wikipedia season page (for series)
+3. Wikipedia person page (for person articles)
+4. Wikimedia Commons search
+5. Openverse API
+6. Pexels (last resort)
