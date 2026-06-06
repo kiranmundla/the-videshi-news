@@ -1,44 +1,47 @@
 #!/usr/bin/env python3
-"""
-Videshi Lifestyle-Health & Markets-Finance Writer
-Generates 2 lifestyle-health + 1 markets-finance articles.
-"""
+"""Lifestyle-health & markets-finance writer for The Videshi — June 6, 2026 run"""
 
-import requests
-import json
-import os
-import subprocess
-import urllib.parse
+import json, os, sys, uuid, requests, subprocess, io, time
 from datetime import datetime, timezone
+from PIL import Image
 
 # Load env
-def load_env(filepath):
-    try:
-        with open(os.path.expanduser(filepath)) as f:
+def load_env(path):
+    if os.path.exists(path):
+        with open(path) as f:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
-                    key, val = line.split('=', 1)
-                    val = val.strip().strip('"').strip("'")
-                    os.environ[key] = val
-    except FileNotFoundError:
-        pass
+                    if line.startswith('export '):
+                        line = line[7:]
+                    k, v = line.split('=', 1)
+                    v = v.strip().strip('"').strip("'")
+                    os.environ[k] = v
 
-load_env('~/.env.supabase')
-load_env('~/workspace/.env.pexels')
+load_env(os.path.expanduser('~/.env.supabase'))
+load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY')
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY')
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
+UA = "TheVideshi/1.0 (thevideshi.com)"
+
+HEADERS_SB = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
+}
+
+# ── Image helpers ──
 
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
+    import urllib.parse
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=10
+            headers={"User-Agent": UA}, timeout=10
         )
         if r.status_code == 200:
             data = r.json()
@@ -51,24 +54,16 @@ def fetch_wikipedia_person_image(person_name):
     return None
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
-    """Search Wikimedia Commons for CC-licensed images."""
-    params = {
-        "action": "query",
-        "generator": "search",
-        "gsrsearch": search_query,
-        "gsrnamespace": "6",
-        "gsrlimit": str(limit),
-        "prop": "imageinfo",
-        "iiprop": "url|size|mime",
-        "iiurlwidth": "1200",
-        "format": "json"
-    }
     try:
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
-            params=params,
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-            timeout=15
+            params={
+                "action": "query", "generator": "search",
+                "gsrsearch": search_query, "gsrnamespace": "6",
+                "gsrlimit": str(limit), "prop": "imageinfo",
+                "iiprop": "url|size|mime", "iiurlwidth": "1200", "format": "json"
+            },
+            headers={"User-Agent": UA}, timeout=15
         )
         if r.status_code == 200:
             data = r.json()
@@ -77,335 +72,430 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
             for pid, page in pages.items():
                 ii = page.get("imageinfo", [{}])[0]
                 mime = ii.get("mime", "")
-                if not mime.startswith("image/"):
+                if not mime.startswith("image/") or mime == "image/svg+xml":
                     continue
-                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
+                if ii.get("width", 0) < 300:
                     continue
                 results.append({
                     "url": ii.get("thumburl") or ii.get("url", ""),
                     "original_url": ii.get("url", ""),
                     "title": page.get("title", ""),
                     "width": ii.get("width", 0),
-                    "height": ii.get("height", 0),
+                    "height": ii.get("height", 0)
                 })
             if results:
                 print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Commons search error for '{search_query}': {e}")
+        print(f"  ⚠ Wikimedia Commons error: {e}")
     return []
 
 def fetch_pexels_image(query):
-    """Search Pexels for an image using curl (Python urllib gets 403)."""
+    if not PEXELS_KEY:
+        return None
     try:
         result = subprocess.run(
-            ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-             f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=5'],
+            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={query}&per_page=3",
+             "-H", f"Authorization: {PEXELS_KEY}"],
             capture_output=True, text=True, timeout=15
         )
-        if result.returncode == 0:
-            data = json.loads(result.stdout)
-            photos = data.get("photos", [])
-            for p in photos:
-                src = p.get("src", {})
-                url = src.get("large2x") or src.get("large") or src.get("original")
-                if url:
-                    print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                    return url
+        data = json.loads(result.stdout)
+        photos = data.get("photos", [])
+        if photos:
+            url = photos[0]["src"]["large2x"]
+            print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+            return url
     except Exception as e:
-        print(f"  ⚠ Pexels error for '{query}': {e}")
+        print(f"  ⚠ Pexels error: {e}")
     return None
 
-def validate_image(url):
-    """Validate an image URL returns HTTP 200 with image content type and >5KB."""
+def compress_image(img_bytes, max_width=1200, quality=80):
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    return buf.getvalue()
+
+def upload_to_supabase(img_url, filename):
+    """Download image, compress, upload to Supabase storage."""
     try:
-        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, allow_redirects=True)
-        ct = r.headers.get("Content-Type", "")
-        cl = int(r.headers.get("Content-Length", 0))
-        if r.status_code == 200 and "image" in ct and cl > 5000:
-            print(f"  ✓ Image validated: {url[:60]}... ({cl} bytes)")
-            return True
-        # Try GET as fallback (some servers don't support HEAD properly)
-        r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, stream=True)
-        ct2 = r2.headers.get("Content-Type", "")
-        cl2 = int(r2.headers.get("Content-Length", 0))
-        if r2.status_code == 200 and "image" in ct2:
-            # Read enough to check size
-            chunk = r2.raw.read(6000)
-            if len(chunk) >= 5000:
-                print(f"  ✓ Image validated via GET: {url[:60]}...")
-                return True
-        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
+        print(f"  Downloading: {img_url[:80]}...")
+        r = requests.get(img_url, headers={"User-Agent": UA}, timeout=20)
+        if r.status_code != 200:
+            print(f"  ⚠ Download failed: HTTP {r.status_code}")
+            return None
+        ct = r.headers.get('Content-Type', '')
+        if not ct.startswith('image/'):
+            print(f"  ⚠ Not an image: {ct}")
+            return None
+        raw = r.content
+        if len(raw) < 5000:
+            print(f"  ⚠ Image too small: {len(raw)} bytes")
+            return None
+
+        compressed = compress_image(raw)
+        print(f"  Compressed: {len(raw)} → {len(compressed)} bytes")
+
+        # Upload to Supabase storage
+        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+        resp = requests.post(
+            upload_url,
+            headers={
+                "apikey": SUPABASE_KEY,
+                "Authorization": f"Bearer {SUPABASE_KEY}",
+                "Content-Type": "image/jpeg",
+                "x-upsert": "true"
+            },
+            data=compressed,
+            timeout=30
+        )
+        if resp.status_code in (200, 201):
+            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+            return public_url
+        else:
+            print(f"  ⚠ Upload failed: {resp.status_code} {resp.text[:200]}")
+            return None
     except Exception as e:
-        print(f"  ⚠ Image validation error: {e}")
-    return False
-
-def find_best_image(person_name=None, commons_queries=None, pexels_query=None):
-    """Multi-source image search. Returns (url, attribution) or (None, None)."""
-    # Try Wikipedia person image first
-    if person_name:
-        url = fetch_wikipedia_person_image(person_name)
-        if url and validate_image(url):
-            return url, "Wikimedia Commons"
-
-    # Try Wikimedia Commons
-    if commons_queries:
-        for q in commons_queries:
-            results = fetch_wikimedia_commons_images(q, limit=5)
-            for r in results:
-                url = r.get("url") or r.get("original_url")
-                if url and validate_image(url):
-                    return url, "Wikimedia Commons"
-
-    # Try Pexels
-    if pexels_query:
-        url = fetch_pexels_image(pexels_query)
-        if url and validate_image(url):
-            return url, "Pexels"
-
-    return None, None
+        print(f"  ⚠ Upload error: {e}")
+        return None
 
 def insert_article(article):
     """Insert article into Supabase."""
-    headers = {
-        "apikey": SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Content-Type": "application/json",
-        "Prefer": "return=representation"
-    }
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=headers,
+        headers=HEADERS_SB,
         json=article,
-        timeout=15
+        timeout=30
     )
     if r.status_code in (200, 201):
-        result = r.json()
-        if isinstance(result, list) and result:
-            print(f"  ✓ Published: {result[0].get('headline', '')[:60]}...")
-            return True
-        print(f"  ✓ Published (no return data)")
+        data = r.json()
+        if isinstance(data, list) and data:
+            art_id = data[0].get('id', 'unknown')
+            print(f"  ✓ Article inserted: {art_id}")
+            return art_id
+        print(f"  ✓ Article inserted (no ID returned)")
         return True
     else:
-        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
-        return False
+        print(f"  ⚠ Insert failed: {r.status_code} {r.text[:300]}")
+        return None
 
-# ============================================================
-# ARTICLE 1: Lifestyle-Health — Obesity Drug Race at ADA 2026
-# ============================================================
-print("\n" + "="*60)
-print("ARTICLE 1: Obesity Drug Race at ADA 2026")
-print("="*60)
 
-img1_url, img1_attr = find_best_image(
-    commons_queries=["obesity drug GLP-1", "Roche pharmaceuticals", "American Diabetes Association meeting"],
-    pexels_query="medical research laboratory pharmaceutical"
-)
+# ── ARTICLE 1: GRWD5769 wonder pill ──
+def write_grwd5769_article():
+    print("\n═══ Article 1: GRWD5769 Cancer Wonder Pill ═══")
+    slug = "grwd5769-wonder-pill-shrinks-tumours-six-cancer-types-asco-2026-south-asian-20260606"
 
-article1_body = """The American Diabetes Association's annual meeting in New Orleans this week has turned into a battleground for the next generation of obesity drugs. Three companies presented data that could reshape how South Asians — who develop type 2 diabetes at lower body weights and younger ages than any other ethnic group — manage weight and metabolic risk.
+    # Image sourcing
+    print("Sourcing image...")
+    candidates = []
 
-## Roche's Injection Hits 22.7 Per Cent Weight Loss in Under a Year
+    # Wikimedia Commons: cancer immunotherapy
+    commons = fetch_wikimedia_commons_images("immunotherapy cancer treatment")
+    for c in commons[:2]:
+        candidates.append({"url": c["url"], "source": "wikimedia_commons"})
 
-The biggest headline came from Roche. Its experimental drug enicepatide, a once-weekly injection that mimics both GLP-1 and GIP hormones, helped patients lose 22.7 per cent of their body weight in just 48 weeks. Among those on the highest dose, more than a quarter lost at least 30 per cent. Critically, the weight-loss trajectory showed no sign of a plateau, meaning patients could lose even more with longer treatment.
+    # Wikimedia Commons: ASCO oncology
+    commons2 = fetch_wikimedia_commons_images("oncology clinical trial")
+    for c in commons2[:2]:
+        candidates.append({"url": c["url"], "source": "wikimedia_commons"})
 
-For context, Novo Nordisk's blockbuster Wegovy produces about 15 per cent weight loss over 68 weeks. Eli Lilly's Zepbound, currently the market leader for efficacy, delivered 25.5 per cent over 84 weeks. Roche achieved comparable results in roughly half the time.
+    # Pexels
+    pexels = fetch_pexels_image("cancer research laboratory immunotherapy")
+    if pexels:
+        candidates.append({"url": pexels, "source": "pexels"})
 
-Manu Chakravarthy, Roche's head of cardiovascular and metabolism development, said the data supports moving to late-stage trials. "There was no hint of any plateau at week 48," he said.
+    img_url = None
+    img_attribution = "Pexels"
+    for c in candidates:
+        uploaded = upload_to_supabase(c["url"], f"{slug}.jpg")
+        if uploaded:
+            img_url = uploaded
+            img_attribution = "Wikimedia Commons" if c["source"] == "wikimedia_commons" else "Pexels"
+            break
 
-## An Obesity Pill That Does Not Damage the Liver
+    body = """A twice-daily pill developed by Oxford scientists has shrunk tumours by at least 30 per cent across six of the most common and treatment-resistant cancer types, according to early trial results presented at the American Society of Clinical Oncology's annual meeting in Chicago this week.
 
-Structure Therapeutics presented equally significant news from a different angle: its oral obesity drug aleniglipron showed no signs of liver injury, the safety concern that has haunted every company trying to make a GLP-1 pill. Patients on the once-daily tablet lost up to 39 pounds over 44 weeks, with only 10.4 per cent discontinuing treatment.
+The drug, called GRWD5769, was tested in 83 patients with cervical, bladder, liver, bowel, lung and head-and-neck cancers across trial sites in the United Kingdom, France, Spain and Australia. Every participant had already failed to respond to existing treatments — most had run out of options entirely. Crucially, immunotherapy had either never worked or had stopped working for all of them.
 
-The appeal of a pill over a weekly injection is obvious. For the millions of South Asians in the diaspora managing prediabetes or metabolic syndrome, swallowing a tablet is a lower barrier than injecting at home. Structure plans to begin its late-stage programme in the third quarter of 2026.
+## How the Drug Works
 
-## Zealand and Roche Bet on Gentler Side Effects
+Immunotherapy has transformed cancer care over the past decade by enlisting the body's own T-cells to hunt and destroy tumour cells. But the treatment fails in roughly two-thirds of patients because many tumours learn to hide from the immune system.
 
-Denmark's Zealand Pharma, working with Roche, presented tolerability data for petrelintide, an amylin-based drug that works differently from GLP-1 agents. Only 1.5 per cent of patients dropped out due to gastrointestinal side effects — the nausea and vomiting that plague existing treatments. While petrelintide's weight loss is more modest at 10.7 per cent over 42 weeks, its tolerability profile could make it a strong combination partner with other drugs.
+They do this by manipulating an enzyme called ERAP1 — endoplasmic reticulum aminopeptidase 1 — which alters the proteins displayed on the tumour's surface. Without the right markers, T-cells simply cannot recognise the cancer.
 
-## Why This Matters for South Asians
+GRWD5769, developed by Greywolf Therapeutics in Oxford, inhibits ERAP1 and strips away what researchers describe as the tumour's "invisibility cloak." Once exposed, the cancer becomes visible to T-cells again, allowing a standard immunotherapy drug, cemiplimab, to do its work.
 
-The urgency is not academic. A landmark study published this year in the Journal of the American Heart Association found that South Asian men had a 30.7 per cent prevalence of prediabetes at age 45, compared with 3.9 per cent among white men. By age 55, South Asian men and women were at least twice as likely to develop type 2 diabetes as their white counterparts — despite reporting healthier diets, lower alcohol use, and comparable exercise habits.
+The drug is taken in three-week cycles — three weeks on, three weeks off — to prevent T-cell exhaustion and generate alternating antigen profiles that broaden the immune response.
 
-The MASALA study at Northwestern University called this mismatch between healthy behaviour and clinical risk "surprising" and identified the 40s as "a critical window when risk is already high, but disease is still preventable."
+## The Numbers
 
-Current obesity drugs cost between $1,000 and $1,500 per month without insurance in the United States, putting them out of reach for many. If the new entrants reach market — and analysts expect the obesity drug market to exceed $100 billion annually within a decade — competition should drive prices down and expand access.
+Among the 83 patients in the phase 1b EMITT-1 trial, tumours shrank in 26. Fifteen of those experienced reductions of at least 30 per cent, with some shrinking by as much as 95 per cent.
+
+Disease was halted for at least six months in 18 per cent of cervical cancer patients, 32 per cent of liver cancer patients, 36 per cent of bladder cancer patients, 38 per cent of head-and-neck cancer patients, 51 per cent of bowel cancer patients and 55 per cent of lung cancer patients.
+
+The bowel cancer results are particularly significant. Microsatellite-stable colorectal cancer — the subtype studied — rarely responds to immunotherapy at all. The 51 per cent disease control rate in this group is, as one independent oncologist at the conference described it, "a clinically meaningful signal."
+
+## Why South Asians Should Pay Attention
+
+Cancer incidence among South Asians in the West has been rising steadily. Head-and-neck cancers, liver cancers and colorectal cancers are all disproportionately common in the diaspora — driven by dietary shifts, alcohol consumption patterns and delayed screening. The Indian subcontinent also has among the world's highest rates of cervical cancer.
+
+For the millions of NRIs who navigate between two healthcare systems, a pill-based treatment that can be taken at home rather than requiring intravenous infusions at a hospital represents a fundamental shift in how cancer could be managed.
 
 ## What Comes Next
 
-Roche plans to move enicepatide into Phase 3 trials. Structure will launch its late-stage programme for aleniglipron this quarter. Zealand and Roche are designing a Phase 3 strategy for petrelintide as both a standalone and combination therapy. The FDA is expected to review Eli Lilly's oral GLP-1, orforglipron, for approval in the coming weeks, which would be the first oral GLP-1 on the US market.
+Professor Fiona Thistlethwaite, the trial's principal investigator at the Christie NHS Foundation Trust in Manchester, called the results "very impressive" for a tablet-form drug. "It's early days, and we need further studies, but this is a new drug with a new mechanism that clearly helps immunotherapy perform more effectively," she said.
 
-For diaspora families with a history of diabetes, these developments are worth watching closely. The drugs are not yet available, but the science is moving faster than at any point in the last two decades."""
+Stage 2 cohort expansions are now underway, with a randomised phase 2 study planned next. If the drug maintains its safety-to-efficacy profile — the trial reported only one serious adverse event among all 83 patients — it could reach clinical practice within the next few years.
 
-article1 = {
-    "headline": "Three Obesity Drugs Just Stole the Show at ADA 2026. South Asians Should Pay Close Attention.",
-    "subheadline": "Roche's injection hit 22.7 per cent weight loss in 48 weeks. An oral pill showed no liver damage. A third drug barely caused nausea. The obesity treatment landscape is about to change.",
-    "body": article1_body,
-    "slug": "obesity-drugs-ada-2026-roche-enicepatide-structure-aleniglipron-south-asian-diabetes-20260606",
-    "category": "lifestyle-health",
-    "status": "published",
-    "is_editorial": False,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img1_url,
-    "image_caption": "Researchers present new obesity drug data at the American Diabetes Association annual meeting",
-    "image_attribution": img1_attr or "Pexels",
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com/legal/litigation/structures-experimental-obesity-pill-shows-no-signs-liver-injury-2026-06-05/"},
-        {"name": "Reuters", "url": "https://www.reuters.com/business/healthcare-pharmaceuticals/roche-obesity-drug-helps-patients-shed-227-weight-mid-stage-trial-2026-06-05/"},
-        {"name": "Journal of the American Heart Association (MASALA Study)", "url": "https://www.ahajournals.org/doi/10.1161/JAHA.124.038500"},
-        {"name": "Reuters — Zealand petrelintide tolerability", "url": "https://www.reuters.com/business/healthcare-pharmaceuticals/zealand-touts-promising-tolerability-data-obesity-drug-mid-stage-study-2026-06-05/"}
-    ])
-}
+Dr Samuel Godfrey of Cancer Research UK, who was not involved in the study, offered a measured endorsement. "It is unusual to see such outcomes in patients whose cancers have already stopped responding to treatment, particularly across several hard-to-treat cancer types," he said. "Larger trials will be needed to determine whether this approach can deliver lasting benefits."
 
-insert_article(article1)
+For a diaspora community with elevated cancer risks and strong ties to healthcare innovation on both sides of the Atlantic, this is a trial worth watching closely.
 
+---
 
-# ============================================================
-# ARTICLE 2: Lifestyle-Health — Gut Microbiome and Cancer
-# ============================================================
-print("\n" + "="*60)
-print("ARTICLE 2: Gut Microbiome and Cancer Immunotherapy")
-print("="*60)
+*Sources: ASCO 2026 presentation (EMITT-1 trial); The Guardian; MedicalBrief; The Times*"""
 
-img2_url, img2_attr = find_best_image(
-    commons_queries=["gut microbiome bacteria", "intestinal bacteria microscopy", "probiotics bacteria culture"],
-    pexels_query="gut bacteria microbiome health"
-)
+    article = {
+        "headline": "A British-Made Pill Just Shrank Tumours Across Six Cancer Types. Every Patient Had Run Out of Options.",
+        "subheadline": "The Oxford-developed drug GRWD5769 strips away cancer's 'invisibility cloak,' allowing immunotherapy to work in patients where it had failed. The ASCO results are early but remarkable.",
+        "body": body,
+        "slug": slug,
+        "category": "lifestyle-health",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": img_url,
+        "image_caption": "Cancer researchers at a clinical trial laboratory studying immunotherapy treatments",
+        "image_attribution": img_attribution,
+        "is_editorial": False,
+        "sources": json.dumps(["ASCO 2026 (EMITT-1 trial)", "The Guardian", "MedicalBrief", "The Times"]),
+    }
 
-article2_body = """A kidney cancer patient at University Hospitals Seidman Cancer Center in Cleveland will soon swallow a capsule of bacteria alongside their regular immunotherapy drugs. They will be the first participant in the first late-phase clinical trial testing whether a common probiotic can amplify cancer treatment.
-
-The trial, funded by the National Cancer Institute, will enrol nearly 700 people with advanced renal cell carcinoma across multiple hospitals. They will take CBM588, a strain of Clostridium butyricum that is already sold over the counter in Japan for gastrointestinal complaints, while receiving standard immunotherapy.
-
-"We're hoping to change the standard of care," said Dr Pedro Barata, one of three principal investigators on the study.
-
-## How Gut Bacteria Shape Cancer Treatment
-
-The science linking gut bacteria to cancer outcomes has advanced rapidly. The American Society of Clinical Oncology now lists nearly 100 ongoing studies testing ways to manipulate the gut microbiome to help treat cancer. A meta-analysis published in BMC Cancer, covering 22 studies and 3,274 patients, found that probiotic supplementation alongside immune checkpoint inhibitors improved progression-free survival by 37 per cent and overall survival by 47 per cent.
-
-The mechanism centres on a simple anatomical fact: the surface area of the human intestine is about 20 times larger than the area covered by skin, and it holds roughly a third of all the body's T-cells and B-cells. These immune cells are immersed in bacteria, and the gut serves as a proving ground where the immune system learns to distinguish invaders from healthy tissue.
-
-"You go from having an Amazon rainforest, with 300 or 400 different bacteria living in a finely developed ecosystem, and you go to having a single bug," said Dr Marcel van den Brink, president of City of Hope Cancer Center, describing what happens when aggressive antibiotics wipe out beneficial bacteria. "I mean, my God!"
-
-## The Fibre Connection
-
-A seminal 2021 study at MD Anderson Cancer Center found that patients eating a high-fibre diet responded better to melanoma immunotherapy: for every 5-gram increase in daily fibre intake, the risk of cancer progression or death fell 30 per cent. Certain gut bacteria metabolise fibre into short-chain fatty acids that improve T-cell survival, prevent harmful bacteria from proliferating, and suppress inflammation.
-
-Dr Robert Jenq, director of the Microbiome Programme at City of Hope, said these fatty acids "also prevent harmful bacteria, function as nutrition for the lining of the colon and seem to suppress inflammation."
-
-At the CHUM Microbiome Centre in Montreal, an intensive educational campaign reduced the proportion of lung cancer patients receiving antibiotics before immunotherapy from 20 per cent to 5 per cent, after research showed that heavy antibiotic use was independently associated with poor cancer outcomes.
-
-## What This Means for the Diaspora
-
-South Asians have one of the highest age-adjusted cancer mortality rates globally, and cancer incidence among the diaspora is rising as diets shift toward processed Western foods. But traditional Indian cuisine — dahi, idli, dosa, fermented pickles, kanji — is rich in naturally occurring probiotics and fermented foods that support microbial diversity.
-
-This does not mean eating curd will cure cancer. But the research suggests that maintaining a diverse, fibre-rich diet and avoiding unnecessary antibiotics may give the immune system a better foundation to fight disease, whether or not cancer treatment is involved.
-
-Dr Jenny Paredes at City of Hope is launching a trial that will track every bite that bone marrow transplant recipients eat during 40 days in hospital and 60 days at home, aiming to understand exactly how diet shapes the microbiome during treatment.
-
-## The Complexity Ahead
-
-The field faces enormous challenges. Even understanding how two bacterial strains interact does not predict what happens when a million coexist. Bacteria behave differently depending on which other bacteria are present, the condition of the gut, and even the time of day.
-
-"The complexity problem is humbling," said Dr Paul Frankel, a biostatistician at City of Hope. "The comforting thing is that we've been remarkably good at making progress without complete knowledge."
-
-For now, the practical advice from leading oncologists is straightforward: eat real food, prioritise fibre, avoid antibiotics unless they are clearly needed, and do not assume that over-the-counter probiotic supplements are a substitute for a healthy diet. The science is moving fast, but the ancient wisdom of feeding your gut well has never been more relevant."""
-
-article2 = {
-    "headline": "The First Major Trial of Probiotics for Cancer Treatment Just Began. The Science Behind It Is Rooted in Your Gut.",
-    "subheadline": "Nearly 700 patients will test whether a common Japanese probiotic can boost immunotherapy. South Asians, whose traditional diets are rich in fermented foods, have reason to watch closely.",
-    "body": article2_body,
-    "slug": "probiotics-cancer-immunotherapy-gut-microbiome-trial-cbm588-south-asian-diet-20260606",
-    "category": "lifestyle-health",
-    "status": "published",
-    "is_editorial": False,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img2_url,
-    "image_caption": "Illustration of gut bacteria and the human intestinal microbiome",
-    "image_attribution": img2_attr or "Wikimedia Commons",
-    "sources": json.dumps([
-        {"name": "CNN", "url": "https://www.cnn.com/2026/06/05/health/gut-microbiome-immunity-cancer-ghrc"},
-        {"name": "BMC Cancer (Meta-analysis)", "url": "https://link.springer.com/article/10.1186/s12885-025-13571-3"},
-        {"name": "Nature Medicine — CBM588 kidney cancer trial", "url": "https://www.nature.com/articles/s41591-022-01694-6"},
-        {"name": "MD Anderson Cancer Center — fiber and melanoma", "url": "https://www.science.org/doi/10.1126/science.aaz7015"}
-    ])
-}
-
-insert_article(article2)
+    return insert_article(article)
 
 
-# ============================================================
-# ARTICLE 3: Markets-Finance — US Jobs Report
-# ============================================================
-print("\n" + "="*60)
-print("ARTICLE 3: US Jobs Report May 2026")
-print("="*60)
+# ── ARTICLE 2: Strength Training ──
+def write_strength_training_article():
+    print("\n═══ Article 2: Strength Training Longevity ═══")
+    slug = "strength-training-90-minutes-week-lower-death-risk-13-percent-bjsm-south-asian-20260606"
 
-img3_url, img3_attr = find_best_image(
-    commons_queries=["US Bureau of Labor Statistics", "Wall Street New York Stock Exchange", "Federal Reserve building"],
-    pexels_query="stock market trading wall street"
-)
+    # Image sourcing
+    print("Sourcing image...")
+    candidates = []
 
-article3_body = """The American economy added 172,000 jobs in May, more than double the 85,000 economists expected and the third consecutive month of strong employment growth. The unemployment rate held steady at 4.3 per cent. For NRI investors, H-1B workers, and anyone sending money home, this single data release reshapes the financial landscape for the rest of 2026.
+    # Wikimedia Commons: weight training
+    commons = fetch_wikimedia_commons_images("weight training dumbbell exercise")
+    for c in commons[:2]:
+        candidates.append({"url": c["url"], "source": "wikimedia_commons"})
 
-## The Numbers That Changed Everything
+    commons2 = fetch_wikimedia_commons_images("resistance training gym")
+    for c in commons2[:2]:
+        candidates.append({"url": c["url"], "source": "wikimedia_commons"})
 
-May's payroll gain was not a fluke. The Bureau of Labor Statistics revised March upward to 214,000 (from 178,000) and April to 179,000 (from 115,000). Over the past three months, the economy has averaged 188,000 new jobs per month — nearly triple the pace of the same period in 2025, when average monthly gains were just 10,000.
+    pexels = fetch_pexels_image("strength training weights gym fitness")
+    if pexels:
+        candidates.append({"url": pexels, "source": "pexels"})
 
-The hiring was broad-based. Leisure and hospitality led with 70,000 new positions, likely driven by preparations for the FIFA World Cup. Local government added 55,000. Healthcare contributed another 35,000. Construction rose by 17,000.
+    img_url = None
+    img_attribution = "Pexels"
+    for c in candidates:
+        uploaded = upload_to_supabase(c["url"], f"{slug}.jpg")
+        if uploaded:
+            img_url = uploaded
+            img_attribution = "Wikimedia Commons" if c["source"] == "wikimedia_commons" else "Pexels"
+            break
 
-The weak spots were concentrated in finance, which lost 22,000 jobs and is down 107,000 since May 2025, and air transportation, which shed 8,700 positions following the collapse of Spirit Airlines.
+    body = """Ninety minutes of strength training a week — that is roughly 13 minutes a day — is enough to lower your risk of dying from any cause by 13 per cent, according to the largest and longest study ever conducted on the subject.
 
-Annual wage growth slowed to 3.4 per cent from 3.6 per cent in April. That sounds like good news for inflation, but household disposable income after inflation has now fallen for three straight months, and the personal saving rate is at a four-year low.
+The research, published in the British Journal of Sports Medicine on June 2, tracked 147,374 men and women over 30 years across three major US health studies. It is the most comprehensive evidence to date that lifting weights does not just build muscle. It extends life.
 
-## The Fed Is Now More Likely to Raise Rates Than Cut Them
+## The Sweet Spot
 
-This is the headline that matters most for anyone with money in US markets. Before the jobs report, traders placed roughly 50 per cent odds on a rate hike by December. After the report, those odds jumped to about 70 per cent. The probability of any rate cut this year is now negligible.
+The study found that people who did between 90 and 120 minutes of strength training per week had a 13 per cent lower risk of death from any cause compared to those who did none.
 
-The Federal Reserve's benchmark rate sits at 3.50 to 3.75 per cent. Kansas City Fed President Jeff Schmid said the central bank faces a choice between patience and raising rates to bring down inflation. San Francisco Fed President Mary Daly said policy is in a good place but the economy is too uncertain for forward guidance. The next FOMC statement comes on June 17.
+The protection was even stronger for specific diseases. Cardiovascular death risk — from heart attacks, strokes and related conditions — dropped by 19 per cent. Neurological disease mortality, including conditions like Alzheimer's and Parkinson's, fell by 27 per cent.
 
-For NRI investors in US equities, this is a headwind. Higher rates compress stock valuations, particularly in the technology sector. The Nasdaq fell 2.1 per cent on Friday, the S&P 500 dropped 1.1 per cent, and the Dow declined 0.3 per cent. Broadcom, already reeling from post-earnings selling, fell further alongside the broader chip sector.
+Crucially, no additional benefit was observed above 120 minutes per week. The curve flattened. Two hours was enough.
 
-## What This Means for H-1B Workers
+## What Counts as Strength Training
 
-The strong jobs data is a double-edged sword for Indian professionals on work visas. On one hand, broad-based hiring in healthcare, hospitality, and construction does not directly benefit the technology sector, where many H-1B holders work. Tech and finance, the two industries that employ the most Indian diaspora professionals, were the weakest performers in May.
+The researchers defined strength training broadly: any exercise that uses weights or bodyweight resistance. Push-ups, squats, lunges, dumbbell curls, resistance bands, kettlebells and weight machines all qualify. You do not need a gym membership or expensive equipment.
 
-On the other hand, a resilient overall economy reduces the risk of a recession-driven spike in layoffs. The labour force participation rate, at 61.8 per cent, has not recovered, partly because immigration enforcement has shrunk the available workforce. Economists estimate the economy now needs only zero to 50,000 jobs per month to keep up with working-age population growth — well below the current pace.
+This matters for the millions of deskbound NRIs in tech, finance and consulting who spend their working hours seated and their evenings too tired for a full workout. Thirteen minutes a day of bodyweight exercises — push-ups before coffee, squats during a call, lunges in the evening — meets the threshold.
 
-The median duration of unemployment rose to 11.6 weeks, the highest since November 2021. Younger, more educated workers are the ones struggling most to find new positions, according to Vanguard senior economist Adam Schickling.
+## The Combination Effect
 
-## Remittances and the Rupee
+The strongest finding may be the synergy between strength training and aerobic exercise. Participants who did high levels of both — think regular running or cycling combined with weight training — had the lowest mortality risk of any group in the study.
 
-A rising-rate environment in the US typically strengthens the dollar, which puts downward pressure on the rupee. The Reserve Bank of India held its repo rate at 5.25 per cent this week, and the rupee has been trading near historic lows around 96 to the dollar.
+The authors wrote that "engaging in sufficient aerobic or resistance training alone is linked to lower mortality," but added that the "lowest risk" of early death was observed only when participants did high levels of both.
 
-For NRIs sending money home, a stronger dollar means more rupees per remittance. But for those with NRE or NRO deposits in India, the gap between US and Indian rates narrows the relative attractiveness of parking money in Indian fixed deposits. With US Treasury yields rising and the two-year note hitting its highest level since February 2025, dollar-denominated savings and bonds are competing aggressively with rupee deposits.
+For South Asians, this is particularly relevant. The community carries a disproportionate burden of cardiovascular disease, Type 2 diabetes and metabolic syndrome. Exercise is one of the few interventions that addresses all three simultaneously. But the cultural emphasis has historically favoured walking and yoga over resistance training.
 
-## The Bottom Line
+## The Neurological Surprise
 
-The US labour market is stronger than anyone expected three months ago. That is good for economic stability but bad for anyone hoping for rate cuts. If you hold US equities — particularly tech stocks — brace for continued volatility. If you are sending money home, the exchange rate is working in your favour. And if you are on an H-1B and worried about layoffs, the macro picture is your friend even if your specific sector is not hiring aggressively.
+The 27 per cent reduction in neurological disease mortality was the study's most unexpected finding. Strength training has traditionally been associated with musculoskeletal benefits — stronger bones, better balance, reduced falls in older adults. Its protective effect on the brain is a more recent discovery.
 
-The next critical data point is the June CPI report, due in mid-July. If inflation stays elevated alongside strong employment, a December rate hike becomes the base case rather than a tail risk."""
+Emerging research suggests that resistance exercise stimulates the release of brain-derived neurotrophic factor (BDNF), a protein that supports the survival of existing neurons and encourages the growth of new ones. The effect appears to be distinct from what aerobic exercise provides, which may explain why the combination of both yields the strongest protection.
 
-article3 = {
-    "headline": "The US Just Added 172,000 Jobs. Rate Hike Odds Hit 70 Per Cent. Here Is What Every NRI Needs to Know.",
-    "subheadline": "May's payroll blowout was the third in a row. The Nasdaq fell 2.1 per cent. The dollar is strengthening. For H-1B workers, investors, and anyone sending money home, the calculus just shifted.",
-    "body": article3_body,
-    "slug": "us-jobs-report-may-2026-172000-rate-hike-70-percent-nri-h1b-remittances-20260606",
-    "category": "markets-finance",
-    "status": "published",
-    "is_editorial": False,
-    "published_at": datetime.now(timezone.utc).isoformat(),
-    "image_url": img3_url,
-    "image_caption": "The New York Stock Exchange on Wall Street reacted to strong US employment data",
-    "image_attribution": img3_attr or "Wikimedia Commons",
-    "sources": json.dumps([
-        {"name": "Reuters", "url": "https://www.reuters.com/business/world-at-work/us-posts-another-month-strong-job-gains-may-unemployment-rate-steady-43-2026-06-05/"},
-        {"name": "Bureau of Labor Statistics", "url": "https://www.bls.gov/news.release/empsit.nr0.htm"},
-        {"name": "Barron's", "url": "https://www.barrons.com/livecoverage/stock-market-today-060626"},
-        {"name": "CME FedWatch Tool", "url": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html"}
-    ])
-}
+For a diaspora population that is ageing rapidly in countries where dementia care is expensive and culturally isolating, this is data worth acting on.
 
-insert_article(article3)
+## The Practical Takeaway
 
-print("\n" + "="*60)
-print("DONE — All 3 articles processed")
-print("="*60)
+The study was observational, not a randomised trial, which means it cannot prove direct causation. Self-reported exercise data is also imperfect. But with 147,374 participants and 30 years of follow-up, the signal is robust.
+
+The message is simple: if you are doing zero strength training, starting any amount helps. If you are already active, adding 90 minutes of resistance work per week may be the highest-return health investment you can make. And if you are doing more than two hours, there is no measurable benefit to doing more.
+
+A pair of dumbbells and 13 minutes a day. The data suggests that may be enough to change your odds.
+
+---
+
+*Sources: British Journal of Sports Medicine (June 2, 2026); USA Today; Diabetes.co.uk; Knowridge Science*"""
+
+    article = {
+        "headline": "Ninety Minutes of Weight Training a Week Lowers Your Risk of Dying by 13 Per Cent. The Study Tracked 147,000 People for 30 Years.",
+        "subheadline": "The largest-ever study on strength training and longevity found a sweet spot of 90 to 120 minutes a week — with the biggest surprise being a 27 per cent drop in neurological disease deaths.",
+        "body": body,
+        "slug": slug,
+        "category": "lifestyle-health",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": img_url,
+        "image_caption": "A person performing dumbbell strength training exercises at a gym",
+        "image_attribution": img_attribution,
+        "is_editorial": False,
+        "sources": json.dumps(["British Journal of Sports Medicine", "USA Today", "Diabetes.co.uk", "Knowridge Science"]),
+    }
+
+    return insert_article(article)
+
+
+# ── ARTICLE 3: Fitch / Oil / India ──
+def write_fitch_oil_article():
+    print("\n═══ Article 3: Fitch Downgrade + Oil Shock ═══")
+    slug = "fitch-cuts-global-growth-oil-shock-hormuz-india-lpg-crisis-nri-20260606"
+
+    # Image sourcing
+    print("Sourcing image...")
+    candidates = []
+
+    # Wikimedia Commons: Strait of Hormuz or oil tanker
+    commons = fetch_wikimedia_commons_images("Strait of Hormuz oil tanker")
+    for c in commons[:2]:
+        candidates.append({"url": c["url"], "source": "wikimedia_commons"})
+
+    commons2 = fetch_wikimedia_commons_images("oil refinery India petroleum")
+    for c in commons2[:2]:
+        candidates.append({"url": c["url"], "source": "wikimedia_commons"})
+
+    pexels = fetch_pexels_image("oil tanker ship ocean petroleum")
+    if pexels:
+        candidates.append({"url": pexels, "source": "pexels"})
+
+    img_url = None
+    img_attribution = "Pexels"
+    for c in candidates:
+        uploaded = upload_to_supabase(c["url"], f"{slug}.jpg")
+        if uploaded:
+            img_url = uploaded
+            img_attribution = "Wikimedia Commons" if c["source"] == "wikimedia_commons" else "Pexels"
+            break
+
+    body = """Fitch Ratings cut its global growth forecast for 2026 on Friday, warning that the oil shock triggered by the US-Iran conflict and the 14-week closure of the Strait of Hormuz has inflicted broader damage on the world economy than initially expected. For India — and for the millions of NRIs whose financial lives straddle both sides of the equation — the numbers are getting harder to ignore.
+
+## The Fitch Downgrade
+
+The ratings agency now expects global growth of 2.4 per cent this year, down from its earlier projection of 2.6 per cent. It raised its average Brent crude forecast for 2026 to $87 per barrel, up sharply from $70 previously.
+
+The US economy is now expected to grow 1.9 per cent and the eurozone just 0.9 per cent. China was the lone exception — Fitch raised its forecast to 4.6 per cent after a stronger first quarter.
+
+"Forecast cuts have been widespread as higher inflation squeezes real wages, dampens consumption and raises companies' input costs," the Fitch report said. The agency expects the Federal Reserve and the Bank of England to hold rates through 2026 before cutting in 2027. The ECB may actually hike in June before reversing next year.
+
+Under an adverse scenario where oil averages $100 per barrel, US growth could drop to 0.8 per cent and eurozone growth to 0.3 per cent.
+
+## India's Acute Vulnerability
+
+India imports roughly 89 per cent of its crude oil, and before the Strait of Hormuz closure in early March, 45 per cent of those imports — along with half its LNG and 90 per cent of its LPG — passed through the strait.
+
+The impact has been immediate and tangible. According to the Atlantic Council, India's policymakers are scrambling to find replacement supplies for constrained energy flows. The Indian crude oil basket stood at $100.13 per barrel as of June 3, with the monthly average at $98.12 — levels not seen since 2022.
+
+LPG has been hit hardest. India sources nearly 90 per cent of its cooking gas from West Asia. On Thursday, a joint secretary at the Ministry of Petroleum told reporters that state-run oil marketing companies are absorbing an under-recovery of Rs 700 on every LPG cylinder sold, with cumulative daily losses running at Rs 550 crore.
+
+Goldman Sachs, in a separate note on Friday, estimated that global oil demand fell by 4 to 5 million barrels per day in April — a 4 to 5 per cent decline — driven by the Hormuz closure, weak Chinese consumption and soft European retail fuel sales. Brent settled at $93.09 on Friday, down nearly $2 on the day.
+
+## What This Means for NRIs
+
+The cascading effects hit NRIs from multiple directions.
+
+**The rupee.** Higher oil prices widen India's import bill and put downward pressure on the rupee. The currency has already hit historic lows against the dollar. Every $10 rise in crude adds roughly $20 billion to India's annual import bill and shaves 0.3 to 0.4 per cent off GDP growth while adding 0.4 per cent to inflation.
+
+**Remittances.** A weaker rupee means NRI remittances buy more in India — a temporary silver lining. But if inflation erodes purchasing power at home, the real value of those transfers shrinks.
+
+**Investments.** Indian equities have so far held up better than many emerging markets, buoyed by domestic flows and a strong fiscal year. But Fitch warned that if the adverse oil scenario materialises, equity markets could fall 10 per cent globally, and credit conditions would tighten. NRIs with significant exposure to Indian mutual funds, NRE deposits or real estate should be watching the oil price as closely as they watch the Sensex.
+
+**H-1B and immigration.** If US growth slows materially — Fitch's adverse case puts it at 0.8 per cent — hiring freezes and layoffs in tech could return. The last time oil-driven stagflation fears gripped the US, in 2022, the tech sector shed hundreds of thousands of jobs. Workers on H-1B visas, who have 60 days to find new employment if laid off, are the most exposed.
+
+## The One Bright Spot
+
+Fitch noted that one factor is cushioning the global drag: the surge in artificial intelligence spending. "The world is in the midst of a very pronounced boom in global spending on IT, and that is cushioning the impact on activity in the near term, particularly in Asia," said Brian Coulton, Fitch's chief economist.
+
+For India's IT sector and the NRI professionals who staff it, this is a double-edged reality. AI spending is keeping tech employment buoyant even as the broader macro picture darkens. How long that continues depends on whether corporate clients maintain AI budgets through a slowdown — a question no one can answer yet.
+
+The oil shock is no longer a short-term disruption. At 14 weeks and counting, with Fitch saying a Hormuz reopening is unlikely before July, it has become a structural feature of the global economy in 2026. Plan accordingly.
+
+---
+
+*Sources: Fitch Ratings (June 2026); Wall Street Journal; Reuters; Atlantic Council; LiveMint; Goldman Sachs*"""
+
+    article = {
+        "headline": "Fitch Just Cut Global Growth Forecasts. Oil Is Near $100. India's LPG Crisis Is Getting Worse. Here Is the Full Picture.",
+        "subheadline": "The 14-week Strait of Hormuz closure is no longer a short-term disruption. From the rupee to remittances to H-1B visa holders, every NRI is exposed.",
+        "body": body,
+        "slug": slug,
+        "category": "markets-finance",
+        "status": "published",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": img_url,
+        "image_caption": "An oil tanker navigating through shipping lanes critical to global energy supply",
+        "image_attribution": img_attribution,
+        "is_editorial": False,
+        "sources": json.dumps(["Fitch Ratings", "Wall Street Journal", "Reuters", "Atlantic Council", "LiveMint", "Goldman Sachs"]),
+    }
+
+    return insert_article(article)
+
+
+# ── Main ──
+if __name__ == "__main__":
+    print("=" * 60)
+    print("The Videshi — Lifestyle/Markets Writer Run")
+    print(f"Time: {datetime.now(timezone.utc).isoformat()}")
+    print("=" * 60)
+
+    results = []
+
+    r1 = write_grwd5769_article()
+    results.append(("GRWD5769 Cancer Pill", r1))
+
+    r2 = write_strength_training_article()
+    results.append(("Strength Training", r2))
+
+    r3 = write_fitch_oil_article()
+    results.append(("Fitch Oil Shock", r3))
+
+    print("\n" + "=" * 60)
+    print("RESULTS SUMMARY")
+    print("=" * 60)
+    for name, result in results:
+        status = "✓ SUCCESS" if result else "✗ FAILED"
+        print(f"  {status}: {name}")
+    
+    failed = sum(1 for _, r in results if not r)
+    if failed:
+        print(f"\n⚠ {failed} article(s) failed")
+        sys.exit(1)
+    else:
+        print("\n✓ All 3 articles published successfully")
