@@ -1,41 +1,38 @@
 #!/usr/bin/env python3
 """
-Lifestyle-Health + Markets-Finance writer for The Videshi.
-Generates 2 lifestyle-health articles and 1 markets-finance article.
+Videshi Lifestyle-Health & Markets-Finance Writer
+Generates 2 lifestyle-health + 1 markets-finance articles.
 """
 
-import json, os, sys, uuid, requests, io, time, urllib.parse
+import requests
+import json
+import os
+import subprocess
+import urllib.parse
 from datetime import datetime, timezone
 
 # Load env
 def load_env(filepath):
-    if not os.path.exists(filepath):
-        return
-    with open(filepath) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                key, val = line.split('=', 1)
-                val = val.strip().strip('"').strip("'")
-                os.environ[key] = val
+    try:
+        with open(os.path.expanduser(filepath)) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, val = line.split('=', 1)
+                    val = val.strip().strip('"').strip("'")
+                    os.environ[key] = val
+    except FileNotFoundError:
+        pass
 
-load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.pexels'))
+load_env('~/.env.supabase')
+load_env('~/workspace/.env.pexels')
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
-PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
-
-HEADERS = {
-    "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
-    "Content-Type": "application/json",
-    "Prefer": "return=representation"
-}
+SUPABASE_URL = os.environ.get('SUPABASE_URL')
+SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY')
+PEXELS_KEY = os.environ.get('PEXELS_API_KEY')
 
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia."""
+    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
     encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
@@ -62,7 +59,7 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         "gsrnamespace": "6",
         "gsrlimit": str(limit),
         "prop": "imageinfo",
-        "iiprop": "url|size|mime|extmetadata",
+        "iiprop": "url|size|mime",
         "iiurlwidth": "1200",
         "format": "json"
     }
@@ -90,420 +87,325 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
                     "title": page.get("title", ""),
                     "width": ii.get("width", 0),
                     "height": ii.get("height", 0),
-                    "mime": mime
                 })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+        print(f"  ⚠ Commons search error for '{search_query}': {e}")
     return []
 
 def fetch_pexels_image(query):
-    """Fetch a relevant image from Pexels using curl (urllib gets 403)."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
+    """Search Pexels for an image using curl (Python urllib gets 403)."""
     try:
-        import subprocess
-        result = subprocess.run([
-            'curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-            f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3&orientation=landscape'
-        ], capture_output=True, text=True, timeout=15)
+        result = subprocess.run(
+            ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
+             f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=5'],
+            capture_output=True, text=True, timeout=15
+        )
         if result.returncode == 0:
             data = json.loads(result.stdout)
-            photos = data.get('photos', [])
-            if photos:
-                url = photos[0]['src']['large2x']
-                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                return url
+            photos = data.get("photos", [])
+            for p in photos:
+                src = p.get("src", {})
+                url = src.get("large2x") or src.get("large") or src.get("original")
+                if url:
+                    print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                    return url
     except Exception as e:
-        print(f"  ⚠ Pexels error: {e}")
+        print(f"  ⚠ Pexels error for '{query}': {e}")
     return None
 
-def compress_image(img_bytes, max_width=1200, quality=80):
-    """Resize and compress image. Returns JPEG bytes."""
-    from PIL import Image
-    img = Image.open(io.BytesIO(img_bytes))
-    if img.mode in ('RGBA', 'P'):
-        img = img.convert('RGB')
-    if img.width > max_width:
-        ratio = max_width / img.width
-        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-    buf = io.BytesIO()
-    img.save(buf, format='JPEG', quality=quality, optimize=True)
-    return buf.getvalue()
-
-def upload_to_supabase_storage(img_url, filename, retry=True):
-    """Download image, compress, and upload to Supabase storage."""
+def validate_image(url):
+    """Validate an image URL returns HTTP 200 with image content type and >5KB."""
     try:
-        time.sleep(1)  # Rate limit courtesy
-        r = requests.get(img_url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com; editorial)"}, timeout=20)
-        if r.status_code != 200:
-            print(f"  ⚠ Failed to download image: HTTP {r.status_code}")
-            return None
-        content_type = r.headers.get('Content-Type', '')
-        if not content_type.startswith('image/'):
-            print(f"  ⚠ Not an image: {content_type}")
-            return None
-        if len(r.content) < 5000:
-            print(f"  ⚠ Image too small: {len(r.content)} bytes")
-            return None
-
-        compressed = compress_image(r.content)
-        compressed_kb = len(compressed) / 1024
-        print(f"  Image compressed: {len(r.content)/1024:.0f}KB → {compressed_kb:.0f}KB")
-
-        # Upload to Supabase storage
-        upload_url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-        upload_headers = {
-            "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
-            "Content-Type": "image/jpeg",
-            "x-upsert": "true"
-        }
-        up = requests.post(upload_url, headers=upload_headers, data=compressed, timeout=30)
-        if up.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed: {up.status_code} {up.text[:200]}")
-            return None
+        r = requests.head(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, allow_redirects=True)
+        ct = r.headers.get("Content-Type", "")
+        cl = int(r.headers.get("Content-Length", 0))
+        if r.status_code == 200 and "image" in ct and cl > 5000:
+            print(f"  ✓ Image validated: {url[:60]}... ({cl} bytes)")
+            return True
+        # Try GET as fallback (some servers don't support HEAD properly)
+        r2 = requests.get(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=10, stream=True)
+        ct2 = r2.headers.get("Content-Type", "")
+        cl2 = int(r2.headers.get("Content-Length", 0))
+        if r2.status_code == 200 and "image" in ct2:
+            # Read enough to check size
+            chunk = r2.raw.read(6000)
+            if len(chunk) >= 5000:
+                print(f"  ✓ Image validated via GET: {url[:60]}...")
+                return True
+        print(f"  ✗ Image validation failed: status={r.status_code}, ct={ct}, cl={cl}")
     except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
-        return None
+        print(f"  ⚠ Image validation error: {e}")
+    return False
+
+def find_best_image(person_name=None, commons_queries=None, pexels_query=None):
+    """Multi-source image search. Returns (url, attribution) or (None, None)."""
+    # Try Wikipedia person image first
+    if person_name:
+        url = fetch_wikipedia_person_image(person_name)
+        if url and validate_image(url):
+            return url, "Wikimedia Commons"
+
+    # Try Wikimedia Commons
+    if commons_queries:
+        for q in commons_queries:
+            results = fetch_wikimedia_commons_images(q, limit=5)
+            for r in results:
+                url = r.get("url") or r.get("original_url")
+                if url and validate_image(url):
+                    return url, "Wikimedia Commons"
+
+    # Try Pexels
+    if pexels_query:
+        url = fetch_pexels_image(pexels_query)
+        if url and validate_image(url):
+            return url, "Pexels"
+
+    return None, None
 
 def insert_article(article):
     """Insert article into Supabase."""
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    r = requests.post(url, headers=HEADERS, json=article, timeout=30)
+    headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "application/json",
+        "Prefer": "return=representation"
+    }
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=headers,
+        json=article,
+        timeout=15
+    )
     if r.status_code in (200, 201):
-        data = r.json()
-        art_id = data[0]['id'] if isinstance(data, list) else data.get('id')
-        print(f"  ✓ Article inserted: {art_id}")
-        return art_id
+        result = r.json()
+        if isinstance(result, list) and result:
+            print(f"  ✓ Published: {result[0].get('headline', '')[:60]}...")
+            return True
+        print(f"  ✓ Published (no return data)")
+        return True
     else:
-        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
-        return None
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
+        return False
 
-def source_best_image(person_names, topic_terms, slug):
-    """Multi-source image sourcing: Wikipedia → Wikimedia Commons → Pexels. Tries multiple candidates."""
-    candidates = []
+# ============================================================
+# ARTICLE 1: Lifestyle-Health — Obesity Drug Race at ADA 2026
+# ============================================================
+print("\n" + "="*60)
+print("ARTICLE 1: Obesity Drug Race at ADA 2026")
+print("="*60)
 
-    # Source 1: Wikipedia for person articles
-    for name in person_names:
-        wiki_img = fetch_wikipedia_person_image(name)
-        if wiki_img:
-            candidates.append({"url": wiki_img, "source": "wikimedia_commons", "relevance": "high", "caption_hint": name})
-            break
+img1_url, img1_attr = find_best_image(
+    commons_queries=["obesity drug GLP-1", "Roche pharmaceuticals", "American Diabetes Association meeting"],
+    pexels_query="medical research laboratory pharmaceutical"
+)
 
-    # Source 2: Wikimedia Commons
-    for term in topic_terms:
-        commons = fetch_wikimedia_commons_images(term)
-        for c in commons[:3]:
-            candidates.append({"url": c["url"], "source": "wikimedia_commons", "relevance": "medium", "caption_hint": term})
-        if commons:
-            break
+article1_body = """The American Diabetes Association's annual meeting in New Orleans this week has turned into a battleground for the next generation of obesity drugs. Three companies presented data that could reshape how South Asians — who develop type 2 diabetes at lower body weights and younger ages than any other ethnic group — manage weight and metabolic risk.
 
-    # Source 3: Pexels
-    for term in topic_terms:
-        pexels_img = fetch_pexels_image(term)
-        if pexels_img:
-            candidates.append({"url": pexels_img, "source": "pexels", "relevance": "low", "caption_hint": term})
-            break
+## Roche's Injection Hits 22.7 Per Cent Weight Loss in Under a Year
 
-    if not candidates:
-        print("  ⚠ No image candidates found")
-        return None, None, None
+The biggest headline came from Roche. Its experimental drug enicepatide, a once-weekly injection that mimics both GLP-1 and GIP hormones, helped patients lose 22.7 per cent of their body weight in just 48 weeks. Among those on the highest dose, more than a quarter lost at least 30 per cent. Critically, the weight-loss trajectory showed no sign of a plateau, meaning patients could lose even more with longer treatment.
 
-    # Try each candidate until one uploads successfully
-    for best in candidates:
-        filename = f"{slug}.jpg"
-        final_url = upload_to_supabase_storage(best["url"], filename)
-        if final_url:
-            attribution = "Wikimedia Commons" if best["source"] == "wikimedia_commons" else "Pexels"
-            return final_url, attribution, best.get("caption_hint", "")
-        print(f"  Trying next candidate...")
-        time.sleep(1)
+For context, Novo Nordisk's blockbuster Wegovy produces about 15 per cent weight loss over 68 weeks. Eli Lilly's Zepbound, currently the market leader for efficacy, delivered 25.5 per cent over 84 weeks. Roche achieved comparable results in roughly half the time.
 
-    print("  ⚠ All image candidates failed")
-    return None, None, None
+Manu Chakravarthy, Roche's head of cardiovascular and metabolism development, said the data supports moving to late-stage trials. "There was no hint of any plateau at week 48," he said.
+
+## An Obesity Pill That Does Not Damage the Liver
+
+Structure Therapeutics presented equally significant news from a different angle: its oral obesity drug aleniglipron showed no signs of liver injury, the safety concern that has haunted every company trying to make a GLP-1 pill. Patients on the once-daily tablet lost up to 39 pounds over 44 weeks, with only 10.4 per cent discontinuing treatment.
+
+The appeal of a pill over a weekly injection is obvious. For the millions of South Asians in the diaspora managing prediabetes or metabolic syndrome, swallowing a tablet is a lower barrier than injecting at home. Structure plans to begin its late-stage programme in the third quarter of 2026.
+
+## Zealand and Roche Bet on Gentler Side Effects
+
+Denmark's Zealand Pharma, working with Roche, presented tolerability data for petrelintide, an amylin-based drug that works differently from GLP-1 agents. Only 1.5 per cent of patients dropped out due to gastrointestinal side effects — the nausea and vomiting that plague existing treatments. While petrelintide's weight loss is more modest at 10.7 per cent over 42 weeks, its tolerability profile could make it a strong combination partner with other drugs.
+
+## Why This Matters for South Asians
+
+The urgency is not academic. A landmark study published this year in the Journal of the American Heart Association found that South Asian men had a 30.7 per cent prevalence of prediabetes at age 45, compared with 3.9 per cent among white men. By age 55, South Asian men and women were at least twice as likely to develop type 2 diabetes as their white counterparts — despite reporting healthier diets, lower alcohol use, and comparable exercise habits.
+
+The MASALA study at Northwestern University called this mismatch between healthy behaviour and clinical risk "surprising" and identified the 40s as "a critical window when risk is already high, but disease is still preventable."
+
+Current obesity drugs cost between $1,000 and $1,500 per month without insurance in the United States, putting them out of reach for many. If the new entrants reach market — and analysts expect the obesity drug market to exceed $100 billion annually within a decade — competition should drive prices down and expand access.
+
+## What Comes Next
+
+Roche plans to move enicepatide into Phase 3 trials. Structure will launch its late-stage programme for aleniglipron this quarter. Zealand and Roche are designing a Phase 3 strategy for petrelintide as both a standalone and combination therapy. The FDA is expected to review Eli Lilly's oral GLP-1, orforglipron, for approval in the coming weeks, which would be the first oral GLP-1 on the US market.
+
+For diaspora families with a history of diabetes, these developments are worth watching closely. The drugs are not yet available, but the science is moving faster than at any point in the last two decades."""
+
+article1 = {
+    "headline": "Three Obesity Drugs Just Stole the Show at ADA 2026. South Asians Should Pay Close Attention.",
+    "subheadline": "Roche's injection hit 22.7 per cent weight loss in 48 weeks. An oral pill showed no liver damage. A third drug barely caused nausea. The obesity treatment landscape is about to change.",
+    "body": article1_body,
+    "slug": "obesity-drugs-ada-2026-roche-enicepatide-structure-aleniglipron-south-asian-diabetes-20260606",
+    "category": "lifestyle-health",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": img1_url,
+    "image_caption": "Researchers present new obesity drug data at the American Diabetes Association annual meeting",
+    "image_attribution": img1_attr or "Pexels",
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com/legal/litigation/structures-experimental-obesity-pill-shows-no-signs-liver-injury-2026-06-05/"},
+        {"name": "Reuters", "url": "https://www.reuters.com/business/healthcare-pharmaceuticals/roche-obesity-drug-helps-patients-shed-227-weight-mid-stage-trial-2026-06-05/"},
+        {"name": "Journal of the American Heart Association (MASALA Study)", "url": "https://www.ahajournals.org/doi/10.1161/JAHA.124.038500"},
+        {"name": "Reuters — Zealand petrelintide tolerability", "url": "https://www.reuters.com/business/healthcare-pharmaceuticals/zealand-touts-promising-tolerability-data-obesity-drug-mid-stage-study-2026-06-05/"}
+    ])
+}
+
+insert_article(article1)
 
 
 # ============================================================
-# ARTICLE 1: Ultra-Processed Foods and Dementia Risk
+# ARTICLE 2: Lifestyle-Health — Gut Microbiome and Cancer
 # ============================================================
-def write_article_1():
-    print("\n" + "="*60)
-    print("ARTICLE 1: Ultra-Processed Foods and Dementia Risk")
-    print("="*60)
+print("\n" + "="*60)
+print("ARTICLE 2: Gut Microbiome and Cancer Immunotherapy")
+print("="*60)
 
-    slug = "ultra-processed-foods-dementia-58-percent-risk-harvard-south-asian-diaspora-20260604"
-    headline = "Ultra-Processed Foods Raise Dementia Risk by 58 Per Cent. South Asians in the West Are Eating More of Them Than Ever."
-    subheadline = "A Harvard-led study of 5,000 older Americans finds processed meats are the biggest driver. The findings land as the Indian diaspora shifts further from traditional diets."
+img2_url, img2_attr = find_best_image(
+    commons_queries=["gut microbiome bacteria", "intestinal bacteria microscopy", "probiotics bacteria culture"],
+    pexels_query="gut bacteria microbiome health"
+)
 
-    body = """The largest study to date on ultra-processed foods and cognitive decline has landed a stark finding: older Americans who ate the most ultra-processed foods had a 58 per cent higher risk of developing dementia compared with those who ate the least.
+article2_body = """A kidney cancer patient at University Hospitals Seidman Cancer Center in Cleveland will soon swallow a capsule of bacteria alongside their regular immunotherapy drugs. They will be the first participant in the first late-phase clinical trial testing whether a common probiotic can amplify cancer treatment.
 
-The research, published this week in a special issue of the American Journal of Public Health, tracked more than 5,000 adults over nearly a decade. Led by Dr Heejin Lee and Professor Cindy Leung at Harvard's T.H. Chan School of Public Health, the study found that those with the highest intake also had a 46 per cent higher risk of mild cognitive impairment and a 47 per cent higher risk of either outcome combined.
+The trial, funded by the National Cancer Institute, will enrol nearly 700 people with advanced renal cell carcinoma across multiple hospitals. They will take CBM588, a strain of Clostridium butyricum that is already sold over the counter in Japan for gastrointestinal complaints, while receiving standard immunotherapy.
 
-## Processed Meats Are the Worst Offenders
+"We're hoping to change the standard of care," said Dr Pedro Barata, one of three principal investigators on the study.
 
-When researchers broke down the data by food type, processed meats — bacon, hot dogs, deli ham, sausages — emerged as the single biggest contributor to dementia risk. The finding adds to a growing body of evidence that has already linked these products to colorectal cancer and cardiovascular disease.
+## How Gut Bacteria Shape Cancer Treatment
 
-"These associations held even after we adjusted for things like income, education, and a lot of lifestyle factors like smoking, physical activity, alcohol use, as well as baseline chronic disease risk," Leung said at a press briefing announcing the results.
+The science linking gut bacteria to cancer outcomes has advanced rapidly. The American Society of Clinical Oncology now lists nearly 100 ongoing studies testing ways to manipulate the gut microbiome to help treat cancer. A meta-analysis published in BMC Cancer, covering 22 studies and 3,274 patients, found that probiotic supplementation alongside immune checkpoint inhibitors improved progression-free survival by 37 per cent and overall survival by 47 per cent.
 
-The results are not limited to heavy consumers. Even moderate intake of ultra-processed foods was associated with elevated risk. "Just to say, 'well, I don't eat all my calories from ultra-processed foods, I'm safe' — it really shows there may not be a safe level," Leung warned.
+The mechanism centres on a simple anatomical fact: the surface area of the human intestine is about 20 times larger than the area covered by skin, and it holds roughly a third of all the body's T-cells and B-cells. These immune cells are immersed in bacteria, and the gut serves as a proving ground where the immune system learns to distinguish invaders from healthy tissue.
 
-## Why the Diaspora Should Pay Attention
+"You go from having an Amazon rainforest, with 300 or 400 different bacteria living in a finely developed ecosystem, and you go to having a single bug," said Dr Marcel van den Brink, president of City of Hope Cancer Center, describing what happens when aggressive antibiotics wipe out beneficial bacteria. "I mean, my God!"
 
-Ultra-processed foods now account for nearly 70 per cent of what sits on American grocery store shelves. For Indian families who have settled abroad, the dietary shift has been well documented. Traditional home-cooked meals built around fresh vegetables, whole grains, and legumes are gradually being replaced or supplemented by packaged snacks, frozen meals, and sugary drinks — precisely the categories flagged in this research.
+## The Fibre Connection
 
-A companion study in the same journal issue, led by Cornell University, found that more than 60 per cent of Americans now view ultra-processed foods as addictive and harmful, with perceived risks roughly equivalent to alcohol. The bipartisan consensus has researchers hopeful that policy action could follow.
+A seminal 2021 study at MD Anderson Cancer Center found that patients eating a high-fibre diet responded better to melanoma immunotherapy: for every 5-gram increase in daily fibre intake, the risk of cancer progression or death fell 30 per cent. Certain gut bacteria metabolise fibre into short-chain fatty acids that improve T-cell survival, prevent harmful bacteria from proliferating, and suppress inflammation.
 
-## The Biology Behind the Risk
+Dr Robert Jenq, director of the Microbiome Programme at City of Hope, said these fatty acids "also prevent harmful bacteria, function as nutrition for the lining of the colon and seem to suppress inflammation."
 
-Researchers believe the link operates through multiple pathways. Diets high in ultra-processed foods are strongly associated with obesity, Type 2 diabetes, and cardiovascular disease — all of which independently raise dementia risk. South Asians already face a disproportionate burden of these metabolic conditions, often developing them at lower body weights and younger ages than other ethnic groups.
+At the CHUM Microbiome Centre in Montreal, an intensive educational campaign reduced the proportion of lung cancer patients receiving antibiotics before immunotherapy from 20 per cent to 5 per cent, after research showed that heavy antibiotic use was independently associated with poor cancer outcomes.
 
-But the ingredients themselves may also play a role. Emulsifiers, high-fructose corn syrup, and artificial additives common in ultra-processed foods have been shown to disrupt gut health and promote chronic inflammation — a process increasingly linked to neurodegeneration.
+## What This Means for the Diaspora
 
-## What Minimally Processed Foods Can Do
+South Asians have one of the highest age-adjusted cancer mortality rates globally, and cancer incidence among the diaspora is rising as diets shift toward processed Western foods. But traditional Indian cuisine — dahi, idli, dosa, fermented pickles, kanji — is rich in naturally occurring probiotics and fermented foods that support microbial diversity.
 
-The study also delivered good news. Adults who ate the most minimally processed foods — fresh fruits, vegetables, whole grains, fish, and unprocessed meats — had a 41 per cent lower risk of dementia. That is the kind of traditional diet that many South Asian households still know how to prepare, even if they do so less often.
+This does not mean eating curd will cure cancer. But the research suggests that maintaining a diverse, fibre-rich diet and avoiding unnecessary antibiotics may give the immune system a better foundation to fight disease, whether or not cancer treatment is involved.
 
-## The Takeaway for NRI Families
+Dr Jenny Paredes at City of Hope is launching a trial that will track every bite that bone marrow transplant recipients eat during 40 days in hospital and 60 days at home, aiming to understand exactly how diet shapes the microbiome during treatment.
 
-The study does not prove that ultra-processed foods directly cause dementia. Observational research cannot establish that. But the pattern is consistent, the sample is large, and the effect size is substantial. For a diaspora community already at elevated metabolic risk, the findings are a pointed reminder that the convenience of processed food carries a cognitive price that may not reveal itself for decades.
+## The Complexity Ahead
 
-The traditional Indian pantry — dal, sabzi, roti, rice, seasonal fruits — is not just cultural heritage. Increasingly, it looks like a defence against the diseases of Western modernity.
+The field faces enormous challenges. Even understanding how two bacterial strains interact does not predict what happens when a million coexist. Bacteria behave differently depending on which other bacteria are present, the condition of the gut, and even the time of day.
 
-**Sources:** American Journal of Public Health (June 2026, special issue on ultra-processed foods); Harvard T.H. Chan School of Public Health; Cornell University; CNN Health"""
+"The complexity problem is humbling," said Dr Paul Frankel, a biostatistician at City of Hope. "The comforting thing is that we've been remarkably good at making progress without complete knowledge."
 
-    # Image sourcing
-    print("\nSourcing image...")
-    img_url, img_attr, _ = source_best_image(
-        [],
-        ["ultra processed food junk food", "processed food snacks packaging", "packaged food grocery store"],
-        slug
-    )
+For now, the practical advice from leading oncologists is straightforward: eat real food, prioritise fibre, avoid antibiotics unless they are clearly needed, and do not assume that over-the-counter probiotic supplements are a substitute for a healthy diet. The science is moving fast, but the ancient wisdom of feeding your gut well has never been more relevant."""
 
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "lifestyle-health",
-        "vertical": "culture",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps([
-            "https://ajph.aphapublications.org/",
-            "https://www.cnn.com/2026/06/03/health/ultraprocessed-food-scientists-fed-up/",
-            "https://news-medical.net/news/20260603/Americans-view-ultraprocessed-foods-as-addictive-and-harmful.aspx"
-        ]),
-        "is_editorial": False,
-        "image_url": img_url or "",
-        "image_caption": "Packaged ultra-processed foods on grocery store shelves in the United States",
-        "image_attribution": img_attr or ""
-    }
+article2 = {
+    "headline": "The First Major Trial of Probiotics for Cancer Treatment Just Began. The Science Behind It Is Rooted in Your Gut.",
+    "subheadline": "Nearly 700 patients will test whether a common Japanese probiotic can boost immunotherapy. South Asians, whose traditional diets are rich in fermented foods, have reason to watch closely.",
+    "body": article2_body,
+    "slug": "probiotics-cancer-immunotherapy-gut-microbiome-trial-cbm588-south-asian-diet-20260606",
+    "category": "lifestyle-health",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": img2_url,
+    "image_caption": "Illustration of gut bacteria and the human intestinal microbiome",
+    "image_attribution": img2_attr or "Wikimedia Commons",
+    "sources": json.dumps([
+        {"name": "CNN", "url": "https://www.cnn.com/2026/06/05/health/gut-microbiome-immunity-cancer-ghrc"},
+        {"name": "BMC Cancer (Meta-analysis)", "url": "https://link.springer.com/article/10.1186/s12885-025-13571-3"},
+        {"name": "Nature Medicine — CBM588 kidney cancer trial", "url": "https://www.nature.com/articles/s41591-022-01694-6"},
+        {"name": "MD Anderson Cancer Center — fiber and melanoma", "url": "https://www.science.org/doi/10.1126/science.aaz7015"}
+    ])
+}
 
-    art_id = insert_article(article)
-    return art_id
+insert_article(article2)
 
 
 # ============================================================
-# ARTICLE 2: Processed Meat and Cancer Risk (EPIC Study)
+# ARTICLE 3: Markets-Finance — US Jobs Report
 # ============================================================
-def write_article_2():
-    print("\n" + "="*60)
-    print("ARTICLE 2: Processed Meat and Stomach Cancer Risk")
-    print("="*60)
+print("\n" + "="*60)
+print("ARTICLE 3: US Jobs Report May 2026")
+print("="*60)
 
-    slug = "processed-meat-stomach-cancer-esophageal-epic-study-south-asian-diet-shift-20260604"
-    headline = "One Extra Slice of Deli Meat a Day Raises Stomach Cancer Risk by 9 Per Cent. The Diaspora Diet Is Drifting in the Wrong Direction."
-    subheadline = "A 14-year European study of 450,000 people links processed meat to stomach and oesophageal cancers. For NRI families eating more Western food, the data carries a specific warning."
+img3_url, img3_attr = find_best_image(
+    commons_queries=["US Bureau of Labor Statistics", "Wall Street New York Stock Exchange", "Federal Reserve building"],
+    pexels_query="stock market trading wall street"
+)
 
-    body = """A single extra serving of processed meat per day — one slice of ham, roughly 30 grams — raises the risk of stomach cancer by 9 per cent and oesophageal cancer by 13 per cent, according to the largest study of its kind ever conducted.
+article3_body = """The American economy added 172,000 jobs in May, more than double the 85,000 economists expected and the third consecutive month of strong employment growth. The unemployment rate held steady at 4.3 per cent. For NRI investors, H-1B workers, and anyone sending money home, this single data release reshapes the financial landscape for the rest of 2026.
 
-The findings come from the European Prospective Investigation into Cancer and Nutrition, known as EPIC, which tracked the health and diets of 450,112 people across Europe for an average of 14 years. The study included 131,426 men and 318,686 women.
+## The Numbers That Changed Everything
 
-## What the Numbers Show
+May's payroll gain was not a fluke. The Bureau of Labor Statistics revised March upward to 214,000 (from 178,000) and April to 179,000 (from 115,000). Over the past three months, the economy has averaged 188,000 new jobs per month — nearly triple the pace of the same period in 2025, when average monthly gains were just 10,000.
 
-During the follow-up period, 876 participants developed stomach cancer and 215 developed oesophageal adenocarcinoma — a cancer of the tube connecting the mouth to the stomach. After adjusting for lifestyle factors including smoking, alcohol use, and body weight, the dose-response relationship was clear.
+The hiring was broad-based. Leisure and hospitality led with 70,000 new positions, likely driven by preparations for the FIFA World Cup. Local government added 55,000. Healthcare contributed another 35,000. Construction rose by 17,000.
 
-Every additional 30 grams of processed meat per day was associated with:
+The weak spots were concentrated in finance, which lost 22,000 jobs and is down 107,000 since May 2025, and air transportation, which shed 8,700 positions following the collapse of Spirit Airlines.
 
-- A 9 per cent increase in overall stomach cancer risk
-- A 13 per cent increase in oesophageal adenocarcinoma risk
+Annual wage growth slowed to 3.4 per cent from 3.6 per cent in April. That sounds like good news for inflation, but household disposable income after inflation has now fallen for three straight months, and the personal saving rate is at a four-year low.
 
-White meat did not escape scrutiny either. An extra 20 grams of chicken or turkey per day was linked to a 12 per cent higher risk of cancer in the main body of the stomach.
+## The Fed Is Now More Likely to Raise Rates Than Cut Them
 
-Researchers separated tumours by location and type — distinguishing between the upper and lower parts of the stomach, and between intestinal-type tumours, which form more organised structures, and diffuse-type tumours, in which cells scatter throughout tissue. The processed meat association was consistent across categories.
+This is the headline that matters most for anyone with money in US markets. Before the jobs report, traders placed roughly 50 per cent odds on a rate hike by December. After the report, those odds jumped to about 70 per cent. The probability of any rate cut this year is now negligible.
 
-## A Dietary Transition in Progress
+The Federal Reserve's benchmark rate sits at 3.50 to 3.75 per cent. Kansas City Fed President Jeff Schmid said the central bank faces a choice between patience and raising rates to bring down inflation. San Francisco Fed President Mary Daly said policy is in a good place but the economy is too uncertain for forward guidance. The next FOMC statement comes on June 17.
 
-The EPIC study is European, but its implications travel. Processed meat consumption among Indian diaspora families in the United States, United Kingdom, and Canada has risen sharply over the past two decades. Weekend barbecues, school lunch boxes packed with deli meats, and breakfast routines that include bacon and sausage are now commonplace in NRI households — a departure from traditional vegetarian or semi-vegetarian diets that characterised previous generations.
+For NRI investors in US equities, this is a headwind. Higher rates compress stock valuations, particularly in the technology sector. The Nasdaq fell 2.1 per cent on Friday, the S&P 500 dropped 1.1 per cent, and the Dow declined 0.3 per cent. Broadcom, already reeling from post-earnings selling, fell further alongside the broader chip sector.
 
-The World Health Organisation classified processed meat as a Group 1 carcinogen in 2015, placing it alongside tobacco smoke and asbestos in terms of the certainty of evidence. The EPIC study extends that certainty into cancers of the upper digestive tract, where the data had previously been thinner.
+## What This Means for H-1B Workers
 
-## South Asians and Stomach Cancer
+The strong jobs data is a double-edged sword for Indian professionals on work visas. On one hand, broad-based hiring in healthcare, hospitality, and construction does not directly benefit the technology sector, where many H-1B holders work. Tech and finance, the two industries that employ the most Indian diaspora professionals, were the weakest performers in May.
 
-India has one of the lower stomach cancer rates globally, partly attributed to dietary patterns rich in vegetables, legumes, and spices with known anti-inflammatory properties. Turmeric, garlic, and ginger — staples of Indian cooking — have all been studied for their potential protective effects against gastrointestinal cancers.
+On the other hand, a resilient overall economy reduces the risk of a recession-driven spike in layoffs. The labour force participation rate, at 61.8 per cent, has not recovered, partly because immigration enforcement has shrunk the available workforce. Economists estimate the economy now needs only zero to 50,000 jobs per month to keep up with working-age population growth — well below the current pace.
 
-But diaspora populations do not retain those protections automatically. Second and third-generation NRIs who have adopted Western dietary patterns face a risk profile that increasingly resembles the host population. The EPIC findings suggest that processed meat is one of the clearest modifiable risk factors in that transition.
+The median duration of unemployment rose to 11.6 weeks, the highest since November 2021. Younger, more educated workers are the ones struggling most to find new positions, according to Vanguard senior economist Adam Schickling.
 
-## The Standard Serving Problem
+## Remittances and the Rupee
 
-A standard single slice of deli ham averages around 28 grams, according to USDA nutritional databases. That means even one sandwich a day puts a person at the threshold where risk begins to climb measurably. Two slices crosses it decisively.
+A rising-rate environment in the US typically strengthens the dollar, which puts downward pressure on the rupee. The Reserve Bank of India held its repo rate at 5.25 per cent this week, and the rupee has been trading near historic lows around 96 to the dollar.
 
-The study does not suggest that any single meal causes cancer. But risk is cumulative, and the follow-up period — 14 years — is long enough to capture the kind of slow, steady damage that processed meat inflicts on the digestive tract.
-
-## What Families Can Do
-
-The most practical takeaway is substitution, not deprivation. Swapping processed meats for fresh-cooked chicken, fish, paneer, or legume-based proteins eliminates the risk without sacrificing convenience entirely. For families already cooking Indian food at home, the traditional thali — dal, sabzi, roti, raita — is precisely the kind of meal that does not appear anywhere in the study's risk tables.
-
-**Sources:** European Prospective Investigation into Cancer and Nutrition (EPIC); Journal of Virology; Fox News Health; New York Post; USDA FoodData Central"""
-
-    # Image sourcing
-    print("\nSourcing image...")
-    img_url, img_attr, _ = source_best_image(
-        [],
-        ["processed meat deli cold cuts", "stomach cancer research medical", "processed food health risk"],
-        slug
-    )
-
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "lifestyle-health",
-        "vertical": "culture",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps([
-            "https://www.foxnews.com/health/one-extra-serving-processed-meat-day-linked-higher-cancer-risk",
-            "https://nypost.com/2026/06/04/health/one-extra-serving-of-processed-meat-a-day-linked-to-higher-cancer-risk/",
-            "https://www.who.int/news-room/questions-and-answers/item/cancer-carcinogenicity-of-the-consumption-of-red-meat-and-processed-meat"
-        ]),
-        "is_editorial": False,
-        "image_url": img_url or "",
-        "image_caption": "Assorted processed meats including deli ham, sausages, and bacon at a market counter",
-        "image_attribution": img_attr or ""
-    }
-
-    art_id = insert_article(article)
-    return art_id
-
-
-# ============================================================
-# ARTICLE 3: RBI MPC Decision — Markets-Finance
-# ============================================================
-def write_article_3():
-    print("\n" + "="*60)
-    print("ARTICLE 3: RBI MPC Decision June 5")
-    print("="*60)
-
-    slug = "rbi-mpc-june-2026-repo-rate-hold-rupee-oil-nri-remittances-20260604"
-    headline = "The RBI Decides on Rates Tomorrow. The Rupee Is at 95.75, Oil Is Near $97, and NRI Money Is Caught in the Middle."
-    subheadline = "Most economists expect a hold at 5.25 per cent, but traders are split on whether a surprise hike could come. What the decision means for remittances, property investments, and equity markets."
-
-    body = """The Reserve Bank of India's Monetary Policy Committee wraps up its three-day meeting on Friday, June 5, and will announce its decision at 10:00 a.m. IST. Governor Sanjay Malhotra faces a policy landscape that has grown considerably more complicated since the last meeting in April, when the committee held the repo rate steady at 5.25 per cent after a cumulative 125 basis points of cuts through 2025.
-
-## The Case for Holding
-
-Headline retail inflation remains well behaved. At 3.48 per cent in April, it sits comfortably below the RBI's 4 per cent target — the kind of number that would normally leave the door open for further easing. GDP growth remains resilient, and domestic consumption has held up despite global headwinds.
-
-Most economists expect the committee to hold rates unchanged. The consensus is that the RBI will maintain its neutral stance while monitoring incoming data, particularly on inflation and the external account.
-
-## The Case for a Surprise Hike
-
-But beneath the headline inflation number, the picture is less reassuring. Wholesale price inflation has surged to 8.3 per cent, driven primarily by fuel and power costs. Brent crude is trading near $97 a barrel as the Strait of Hormuz remains largely closed three months into the US-Iran conflict. A ceasefire between Israel and Lebanon, announced late Wednesday, has offered a glimmer of hope for a broader de-escalation, but oil markets remain sceptical that the strait will reopen soon.
-
-The rupee has weakened to 95.75 per dollar, having touched a lifetime low of 96.96 in mid-May before RBI intervention in spot and forward markets helped it recover. But traders warn that the relief may not last. If Friday's decision does not include measures to support the currency or attract dollar inflows, renewed pressure is expected.
-
-Reuters reports that while most economists expect a hold, traders are more evenly split on whether the RBI will opt for a 25 basis point hike. Three foreign exchange traders told Reuters that a rate hike combined with hawkish messaging could push the rupee toward 94.80, though the move may face resistance at that level.
-
-## What Is Happening at the Fed
-
-The RBI's dilemma is complicated further by what is happening in Washington. New Federal Reserve Chairman Kevin Warsh faces his first policy meeting in two weeks amid rising inflation pressures driven by the same oil shock. The Fed's Beige Book, released on Wednesday, described a stagflationary combination of weakening consumer demand and rising cost pressures across most US regions.
-
-Dallas Fed President Lorie Logan said on Wednesday that she is "increasingly concerned that higher interest rates could be necessary later this year," and futures markets now price a 75 per cent chance of a 25 basis point Fed rate hike before year-end. If the Fed tightens while the RBI holds, the interest rate differential narrows further, putting additional downward pressure on the rupee and on capital flows into India.
-
-## What It Means for NRI Investors
-
-**Remittances:** A weaker rupee means every dollar sent home buys more rupees — good news for families supporting relatives in India. But the volatility makes timing transfers difficult. If the RBI delivers a surprise hike and the rupee strengthens, NRIs who waited may get fewer rupees per dollar than they would today.
-
-**Property investments:** Indian real estate has been buoyant, but a rate hike would raise mortgage costs domestically, potentially cooling demand. NRIs looking to buy property in India face a double calculation: the rupee exchange rate on their initial investment and the interest rate on any domestic financing.
-
-**Equity markets:** A rate hike would create immediate selling pressure in rate-sensitive sectors — real estate, financials, and consumer discretionary. But if it is paired with measures to stabilise the rupee and attract foreign inflows, the medium-term impact on Indian equities could be neutral to positive.
-
-**Fixed income:** Indian government bonds currently yield around 7.10 per cent on the 10-year benchmark. A hike could push yields to the 7.15-7.20 per cent range, making NRI fixed-income instruments slightly more attractive. The recent scrapping of capital gains tax on foreign bond investments adds to the appeal.
+For NRIs sending money home, a stronger dollar means more rupees per remittance. But for those with NRE or NRO deposits in India, the gap between US and Indian rates narrows the relative attractiveness of parking money in Indian fixed deposits. With US Treasury yields rising and the two-year note hitting its highest level since February 2025, dollar-denominated savings and bonds are competing aggressively with rupee deposits.
 
 ## The Bottom Line
 
-The most likely outcome is a hold with hawkish commentary. But in a year where wholesale inflation is running at 8.3 per cent, oil is near $97, the rupee has lost 6.5 per cent, and the Fed is signalling higher rates, the RBI's room to stay patient is shrinking. For NRIs with money moving between India and the West, the next 24 hours are worth watching closely.
+The US labour market is stronger than anyone expected three months ago. That is good for economic stability but bad for anyone hoping for rate cuts. If you hold US equities — particularly tech stocks — brace for continued volatility. If you are sending money home, the exchange rate is working in your favour. And if you are on an H-1B and worried about layoffs, the macro picture is your friend even if your specific sector is not hiring aggressively.
 
-**Sources:** Reserve Bank of India; Reuters; The Hindu BusinessLine; Outlook Money; FXStreet"""
+The next critical data point is the June CPI report, due in mid-July. If inflation stays elevated alongside strong employment, a December rate hike becomes the base case rather than a tail risk."""
 
-    # Image sourcing
-    print("\nSourcing image...")
-    img_url, img_attr, _ = source_best_image(
-        ["Sanjay Malhotra RBI"],
-        ["Reserve Bank of India Mumbai", "Indian rupee currency", "RBI monetary policy"],
-        slug
-    )
+article3 = {
+    "headline": "The US Just Added 172,000 Jobs. Rate Hike Odds Hit 70 Per Cent. Here Is What Every NRI Needs to Know.",
+    "subheadline": "May's payroll blowout was the third in a row. The Nasdaq fell 2.1 per cent. The dollar is strengthening. For H-1B workers, investors, and anyone sending money home, the calculus just shifted.",
+    "body": article3_body,
+    "slug": "us-jobs-report-may-2026-172000-rate-hike-70-percent-nri-h1b-remittances-20260606",
+    "category": "markets-finance",
+    "status": "published",
+    "is_editorial": False,
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": img3_url,
+    "image_caption": "The New York Stock Exchange on Wall Street reacted to strong US employment data",
+    "image_attribution": img3_attr or "Wikimedia Commons",
+    "sources": json.dumps([
+        {"name": "Reuters", "url": "https://www.reuters.com/business/world-at-work/us-posts-another-month-strong-job-gains-may-unemployment-rate-steady-43-2026-06-05/"},
+        {"name": "Bureau of Labor Statistics", "url": "https://www.bls.gov/news.release/empsit.nr0.htm"},
+        {"name": "Barron's", "url": "https://www.barrons.com/livecoverage/stock-market-today-060626"},
+        {"name": "CME FedWatch Tool", "url": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html"}
+    ])
+}
 
-    article = {
-        "headline": headline,
-        "subheadline": subheadline,
-        "body": body,
-        "slug": slug,
-        "category": "markets-finance",
-        "vertical": "economy",
-        "status": "published",
-        "published_at": datetime.now(timezone.utc).isoformat(),
-        "sources": json.dumps([
-            "https://www.thehindubusinessline.com/money-and-banking/rbi-mpc-meet-june-2026/article69652345.ece",
-            "https://www.reuters.com/world/india/indian-rupee-dips-rbi-led-relief-may-fade-without-inflow-measures-2026-06-04/",
-            "https://www.outlookmoney.com/banking/rbi-likely-to-hold-repo-rate-in-june-mpc"
-        ]),
-        "is_editorial": False,
-        "image_url": img_url or "",
-        "image_caption": "The Reserve Bank of India headquarters in Mumbai ahead of the June 2026 monetary policy decision",
-        "image_attribution": img_attr or ""
-    }
+insert_article(article3)
 
-    art_id = insert_article(article)
-    return art_id
-
-
-# ============================================================
-# MAIN
-# ============================================================
-if __name__ == "__main__":
-    print(f"Starting lifestyle/markets writer at {datetime.now(timezone.utc).isoformat()}")
-    print(f"Supabase URL: {SUPABASE_URL[:50]}...")
-
-    results = []
-    for writer_fn in [write_article_1, write_article_2, write_article_3]:
-        try:
-            art_id = writer_fn()
-            results.append(art_id)
-        except Exception as e:
-            print(f"  ✗ Error: {e}")
-            import traceback
-            traceback.print_exc()
-            results.append(None)
-
-    print("\n" + "="*60)
-    print("SUMMARY")
-    print("="*60)
-    success = sum(1 for r in results if r)
-    print(f"  Articles inserted: {success}/{len(results)}")
-    for i, r in enumerate(results):
-        status = f"✓ {r}" if r else "✗ FAILED"
-        print(f"  Article {i+1}: {status}")
-
-    if success < len(results):
-        sys.exit(1)
+print("\n" + "="*60)
+print("DONE — All 3 articles processed")
+print("="*60)
