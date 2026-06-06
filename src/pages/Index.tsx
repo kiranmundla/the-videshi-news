@@ -24,12 +24,12 @@ const INDIA_NEWS = { slug: "news", label: "INDIA NEWS", limit: 18 };
 const WORLD_NEWS = { slug: "nri-world", label: "WORLD NEWS", limit: 12 };
 
 const CATEGORY_SECTIONS = [
-  { slug: "technology", label: "TECHNOLOGY", limit: 12 },
-  { slug: "markets-finance", label: "MARKETS & FINANCE", limit: 12 },
-  { slug: "sports", label: "SPORTS", limit: 12 },
-  { slug: "entertainment", label: "ENTERTAINMENT", limit: 12 },
-  { slug: "lifestyle-health", label: "LIFESTYLE & HEALTH", limit: 12 },
-  { slug: "food", label: "FOOD", limit: 12 },
+  { slug: "technology", label: "TECHNOLOGY", limit: 30 },
+  { slug: "markets-finance", label: "MARKETS & FINANCE", limit: 30 },
+  { slug: "sports", label: "SPORTS", limit: 30 },
+  { slug: "entertainment", label: "ENTERTAINMENT", limit: 30 },
+  { slug: "lifestyle-health", label: "LIFESTYLE & HEALTH", limit: 30 },
+  { slug: "food", label: "FOOD", limit: 30 },
 ];
 
 const CAROUSEL_CATEGORIES = ["news", "entertainment", "sports", "technology", "markets-finance"];
@@ -164,7 +164,7 @@ function HomeCategorySection({
       {hasMore && (
         <div className="flex justify-center mt-8">
           <button
-            onClick={() => setVisibleCount((v) => v + 9)}
+            onClick={() => setVisibleCount((v) => v + 6)}
             className="smallcaps tracking-[0.12em] text-[11px] text-foreground/60 border border-rule px-8 py-2.5 hover:border-foreground/40 hover:text-foreground/80 bg-transparent transition-colors"
           >
             MORE STORIES
