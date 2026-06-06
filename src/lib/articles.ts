@@ -306,12 +306,13 @@ export async function getRelatedArticles(
 }
 
 export async function searchArticles(query: string, limit = 30): Promise<Article[]> {
-  const q = `%${query}%`;
+  // PostgREST uses * as the URL-safe wildcard in .or() filter strings (not %)
+  const q = `*${query}*`;
   const { data, error } = await supabase
     .from("p2_articles")
     .select(P2_COLS)
     .eq("status", "published")
-    .or(`headline.ilike.${q},subheadline.ilike.${q}`)
+    .or(`headline.ilike.${q},subheadline.ilike.${q},body.ilike.${q}`)
     .order("published_at", { ascending: false })
     .limit(limit);
 
