@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""Sports writer — June 5, 2026 run. Generates 3 articles with proper images."""
+"""Sports writer for The Videshi — June 6, 2026 batch."""
 
 import json, os, sys, time, uuid, re, io
-import requests
 from datetime import datetime, timezone
 
 # Load env
@@ -12,40 +11,70 @@ def load_env(path):
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
-                    if line.startswith('export '):
-                        line = line[7:]
                     k, v = line.split('=', 1)
-                    v = v.strip().strip('"').strip("'")
-                    os.environ[k] = v
+                    os.environ[k.strip()] = v.strip().strip('"').strip("'")
 
 load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+import requests
+from PIL import Image
+
+SUPABASE_URL = os.environ['SUPABASE_URL']
+SUPABASE_KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-HEADERS_SB = {
+HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
     "Content-Type": "application/json",
     "Prefer": "return=representation"
 }
 
-UA = {"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
+def compress_image(img_bytes, max_width=1200, quality=80):
+    img = Image.open(io.BytesIO(img_bytes))
+    if img.mode in ('RGBA', 'P'):
+        img = img.convert('RGB')
+    if img.width > max_width:
+        ratio = max_width / img.width
+        img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format='JPEG', quality=quality, optimize=True)
+    return buf.getvalue()
 
-##############################################################################
-# Image sourcing functions
-##############################################################################
+def upload_to_supabase(img_bytes, filename):
+    """Upload image to Supabase storage bucket 'article-images'."""
+    compressed = compress_image(img_bytes)
+    size_kb = len(compressed) / 1024
+    print(f"  Compressed image: {size_kb:.0f} KB")
+    if size_kb < 10:
+        print("  ⚠ Image too small after compression, skipping")
+        return None
+
+    url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
+    headers = {
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type": "image/jpeg",
+        "x-upsert": "true"
+    }
+    r = requests.post(url, headers=headers, data=compressed, timeout=30)
+    if r.status_code in (200, 201):
+        public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
+        print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
+        return public_url
+    else:
+        print(f"  ⚠ Upload failed ({r.status_code}): {r.text[:200]}")
+        return None
 
 def fetch_wikipedia_person_image(person_name):
-    """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
-    encoded = requests.utils.quote(person_name.replace(' ', '_'))
+    """Fetch a person's actual photo from Wikipedia."""
+    import urllib.parse
+    encoded = urllib.parse.quote(person_name.replace(' ', '_'))
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers=UA, timeout=10
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10
         )
         if r.status_code == 200:
             data = r.json()
@@ -59,6 +88,7 @@ def fetch_wikipedia_person_image(person_name):
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
+    import urllib.parse
     params = {
         "action": "query",
         "generator": "search",
@@ -73,7 +103,9 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
     try:
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
-            params=params, headers=UA, timeout=15
+            params=params,
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=15
         )
         if r.status_code == 200:
             data = r.json()
@@ -95,388 +127,314 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
                     "mime": mime
                 })
             if results:
-                print(f"  ✓ Wikimedia Commons: {len(results)} images for '{search_query}'")
+                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
             return results
     except Exception as e:
         print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
     return []
 
 def fetch_pexels_image(query):
-    """Fetch a Pexels image using curl (urllib gets 403)."""
+    """Search Pexels for an image."""
+    if not PEXELS_KEY:
+        return None
     import subprocess
     try:
         result = subprocess.run(
-            ["curl", "-sS", "-H", f"Authorization: {PEXELS_KEY}",
-             f"https://api.pexels.com/v1/search?query={requests.utils.quote(query)}&per_page=3"],
+            ['curl', '-sS', f'https://api.pexels.com/v1/search?query={query}&per_page=3',
+             '-H', f'Authorization: {PEXELS_KEY}'],
             capture_output=True, text=True, timeout=15
         )
-        data = json.loads(result.stdout)
-        photos = data.get("photos", [])
-        if photos:
-            url = photos[0]["src"]["large2x"]
-            print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-            return url
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            if photos:
+                url = photos[0]["src"]["large2x"]
+                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                return url
     except Exception as e:
         print(f"  ⚠ Pexels error for '{query}': {e}")
     return None
 
-def download_and_compress_image(url, max_width=1200, quality=80):
-    """Download image, resize/compress, return JPEG bytes."""
-    from PIL import Image
+def download_image(url):
+    """Download image bytes from URL."""
     try:
-        r = requests.get(url, headers=UA, timeout=20)
-        if r.status_code != 200:
-            print(f"  ⚠ Image download failed: HTTP {r.status_code}")
-            return None
-        if len(r.content) < 5000:
-            print(f"  ⚠ Image too small: {len(r.content)} bytes")
-            return None
-        img = Image.open(io.BytesIO(r.content))
-        if img.mode in ('RGBA', 'P'):
-            img = img.convert('RGB')
-        if img.width > max_width:
-            ratio = max_width / img.width
-            img = img.resize((max_width, int(img.height * ratio)), Image.LANCZOS)
-        buf = io.BytesIO()
-        img.save(buf, format='JPEG', quality=quality, optimize=True)
-        compressed = buf.getvalue()
-        print(f"  ✓ Image compressed: {len(r.content)} → {len(compressed)} bytes, {img.width}x{img.height}")
-        return compressed
+        r = requests.get(url, headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}, timeout=20)
+        if r.status_code == 200 and r.headers.get('Content-Type', '').startswith('image'):
+            if len(r.content) > 5000:
+                return r.content
+            else:
+                print(f"  ⚠ Image too small: {len(r.content)} bytes")
     except Exception as e:
-        print(f"  ⚠ Image processing error: {e}")
-        return None
-
-def upload_to_supabase_storage(img_bytes, filename):
-    """Upload image bytes to Supabase storage bucket 'article-images'."""
-    url = f"{SUPABASE_URL}/storage/v1/object/article-images/{filename}"
-    headers = {
-        "apikey": SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Content-Type": "image/jpeg",
-        "x-upsert": "true"
-    }
-    try:
-        r = requests.post(url, headers=headers, data=img_bytes, timeout=30)
-        if r.status_code in (200, 201):
-            public_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
-            print(f"  ✓ Uploaded to Supabase: {public_url[:80]}...")
-            return public_url
-        else:
-            print(f"  ⚠ Upload failed: {r.status_code} {r.text[:200]}")
-    except Exception as e:
-        print(f"  ⚠ Upload error: {e}")
+        print(f"  ⚠ Download error: {e}")
     return None
 
-def source_image(person_name=None, topic_queries=None, pexels_query=None, slug="article"):
-    """Multi-source image pipeline. Returns (url, attribution) or (None, None)."""
+def source_image(person_name, topic_terms, slug):
+    """Multi-source image sourcing. Returns (supabase_url, attribution, caption) or Nones."""
     candidates = []
 
     # Source 1: Wikipedia person image
     if person_name:
         wiki_img = fetch_wikipedia_person_image(person_name)
         if wiki_img:
-            candidates.append({"url": wiki_img, "source": "wikipedia", "priority": 1})
+            candidates.append({"url": wiki_img, "source": "wikipedia", "person": person_name})
 
     # Source 2: Wikimedia Commons
-    if topic_queries:
-        for q in topic_queries:
-            commons = fetch_wikimedia_commons_images(q, limit=3)
-            for c in commons[:2]:
-                candidates.append({"url": c["url"], "source": "wikimedia_commons", "priority": 2})
-            if candidates:
-                break
-            time.sleep(1)
+    for term in topic_terms:
+        commons = fetch_wikimedia_commons_images(term)
+        for c in commons[:2]:
+            candidates.append({"url": c["url"], "source": "wikimedia_commons", "title": c.get("title", "")})
+        if commons:
+            break
 
-    # Source 3: Pexels
-    if pexels_query and PEXELS_KEY:
-        pex = fetch_pexels_image(pexels_query)
-        if pex:
-            candidates.append({"url": pex, "source": "pexels", "priority": 3})
-
-    # Pick best and upload
+    # Source 3: Pexels fallback
     if not candidates:
-        print("  ✗ No image candidates found")
-        return None, None
+        for term in topic_terms:
+            pex = fetch_pexels_image(term)
+            if pex:
+                candidates.append({"url": pex, "source": "pexels"})
+                break
 
-    # Sort by priority
-    candidates.sort(key=lambda x: x["priority"])
-
+    # Download and upload best candidate
     for cand in candidates:
-        img_bytes = download_and_compress_image(cand["url"])
+        print(f"  Trying {cand['source']}: {cand['url'][:80]}...")
+        img_bytes = download_image(cand["url"])
         if img_bytes:
             filename = f"{slug}.jpg"
-            final_url = upload_to_supabase_storage(img_bytes, filename)
-            if final_url:
+            sb_url = upload_to_supabase(img_bytes, filename)
+            if sb_url:
                 attr = "Wikimedia Commons" if cand["source"] in ("wikipedia", "wikimedia_commons") else "Pexels"
-                return final_url, attr
-
-    print("  ✗ All image candidates failed")
+                return sb_url, attr
+    
+    print("  ⚠ No image sourced")
     return None, None
 
-##############################################################################
-# Article insertion
-##############################################################################
-
 def insert_article(article):
-    """Insert article into Supabase p2_articles."""
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    r = requests.post(url, headers=HEADERS_SB, json=article, timeout=30)
+    """Insert article into Supabase."""
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article,
+        timeout=30
+    )
     if r.status_code in (200, 201):
         data = r.json()
-        art_id = data[0]["id"] if isinstance(data, list) else data.get("id")
-        print(f"  ✓ Article inserted: {art_id}")
+        art_id = data[0]["id"] if isinstance(data, list) and data else "unknown"
+        print(f"  ✓ Article inserted: {article['slug']} (id: {art_id})")
         return art_id
     else:
-        print(f"  ✗ Insert failed: {r.status_code} {r.text[:300]}")
+        print(f"  ✗ Insert failed ({r.status_code}): {r.text[:300]}")
         return None
 
-##############################################################################
-# Article definitions
-##############################################################################
 
-def write_articles():
-    now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    articles_written = 0
+# ============================================================
+# ARTICLES
+# ============================================================
 
-    # ========================================================================
-    # ARTICLE 1: Praggnanandhaa Wins Norway Chess 2026
-    # ========================================================================
-    print("\n=== Article 1: Praggnanandhaa Wins Norway Chess 2026 ===")
+articles = []
 
-    slug1 = "praggnanandhaa-wins-norway-chess-2026-carlsen-gukesh-oslo-champion-nri"
+# -------- ARTICLE 1: Kohli ruled out of Afghanistan ODIs --------
+print("\n=== Article 1: Kohli Out of Afghanistan ODIs ===")
 
-    body1 = """Rameshbabu Praggnanandhaa has won Norway Chess 2026, the biggest title of his career so far. The 20-year-old from Chennai beat world number one Magnus Carlsen in the classical game in the final round to finish on 18 points, one clear of Wesley So, who had led for most of the tournament.
+art1_slug = "virat-kohli-ruled-out-afghanistan-odi-series-hamstring-injury-gaikwad-replacement-nri"
+art1_headline = "Kohli Is Out. He Tore His Hamstring in the IPL Final He Refused to Leave. Now Gaikwad Gets His Chance."
+art1_subheadline = "India will be without both Kohli and possibly Rohit Sharma for the first-ever bilateral ODI series against Afghanistan, starting June 13 in Dharamsala."
 
-## Four Classical Wins in Ten Rounds
+art1_body = """Virat Kohli has been ruled out of India's three-match ODI series against Afghanistan with a hamstring injury sustained during the IPL 2026 final on May 31. The confirmation, first reported by PTI citing a BCCI source, ends weeks of speculation about the severity of the injury he carried through the final overs of Royal Challengers Bengaluru's title-clinching chase against Gujarat Titans.
 
-Praggnanandhaa's run through Oslo was relentless. He scored four classical victories in a six-player, double round-robin field that included the reigning world champion, the world number one, and three other top-fifteen players. In a format where most games end in a draw and head to armageddon, that is an extraordinary return.
+## The Injury He Played Through
 
-His most talked-about sequence came in the final three rounds. In round eight, he beat Carlsen with the white pieces. In round nine, he beat world champion Gukesh Dommaraju with the black pieces. In round ten, he beat Carlsen again, this time with black, to clinch the title.
+Those who watched the final at the Narendra Modi Stadium in Ahmedabad saw Kohli receive on-field treatment at least twice. He was visibly limping between runs. None of it stopped him from hitting an unbeaten 75 off 42 deliveries — including the winning six — to hand RCB their second consecutive IPL title. The 25-ball fifty was the fastest of his IPL career.
 
-No one else in the field managed more than two classical wins.
+But the price was steep. The hamstring tear, initially downplayed by the franchise, has now been confirmed as serious enough to rule him out of international duty for at least the Afghanistan series. The BCCI is yet to announce a formal replacement, though Ruturaj Gaikwad is widely expected to slot in at No. 3.
 
-## The Final Round
+## Gaikwad's Opportunity
 
-Going into the last day, So led with 15.5 points to Praggnanandhaa's 15, with Alireza Firouzja still alive at 14.5. Praggnanandhaa needed a result against Carlsen and got one. He seized the initiative in the middlegame and converted with confidence, earning the full three points.
+Gaikwad has been knocking on the door of India's ODI middle order for over a year. The Maharashtra batter captained Chennai Super Kings through IPL 2026 and ended the season with 487 runs at a strike rate above 140. His ability to anchor an innings while accelerating through the middle overs makes him the most natural replacement for Kohli's role in the batting order.
 
-So drew his classical game and won the armageddon to finish on 17 points. Firouzja also picked up 1.5 points to finish third on 15.5. It was not enough to catch Praggnanandhaa.
+If selected, it will be Gaikwad's chance to stake a permanent claim ahead of the all-important England tour in July and the 2027 ODI World Cup cycle.
 
-The final standings told the story of a tournament that belonged to one player from the moment he found his rhythm in the middle rounds.
+## Rohit's Fitness Still Unclear
 
-**Final Standings:**
+The bigger worry for Indian cricket may not be Kohli's absence but the uncertainty around Rohit Sharma. The former all-format captain also sustained a hamstring injury during IPL 2026, missed several matches for Mumbai Indians, and has not yet reported to the BCCI Centre of Excellence in Bengaluru for his mandatory fitness assessment.
 
-1. R Praggnanandhaa (India) — 18 points
-2. Wesley So (USA) — 17 points
-3. Alireza Firouzja (France) — 15.5 points
-4. Magnus Carlsen (Norway) — 13 points
-5. Vincent Keymer (Germany) — 11 points
-6. Gukesh Dommaraju (India) — 8 points
+Reports suggest Rohit is expected at the CoE on June 8 and will undergo batting sessions under lights before a decision on his availability for the opening ODI on June 13 in Dharamsala. If cleared, he could join the squad in Dharamsala on June 11, just two days before the first match.
 
-## Gukesh's Difficult Tournament
+If Rohit also misses out, India would face Afghanistan without both pillars of their batting lineup for the first time in a bilateral series. Shubman Gill would likely lead the side, with Yashasvi Jaiswal expected to open alongside him.
 
-For Gukesh, who won the World Championship just seven months ago, Norway Chess was a chastening experience. He finished last on 8 points, losing 11.3 Elo rating points and dropping to 25th in the live world rankings. Among Indian players, he is now only fifth, behind Arjun Erigaisi, Praggnanandhaa, Viswanathan Anand, and Nihal Sarin.
+## What It Means for NRI Fans
 
-His head-to-head record against Praggnanandhaa in Oslo was particularly painful: 0-3 across their two meetings, including two classical losses.
+For diaspora fans who planned their viewing around India's marquee names, the series has lost some star power. The Afghanistan series — the first-ever bilateral ODI contest between the two sides — will be played across Dharamsala (June 13), Lucknow (June 15), and Chennai (June 18), with most matches falling in late-night or early-morning windows for viewers in North America.
 
-## What It Means for the Diaspora
+But there is a silver lining. A Kohli-less, possibly Rohit-less India means younger players get the stage. Gaikwad, Jaiswal, Sudharsan — the next generation will have to carry the batting against an Afghan side that includes Rashid Khan's leg-spin and Fazalhaq Farooqi's left-arm pace.
 
-Praggnanandhaa's victory continues Indian chess's dominance of the elite circuit. India now has the world champion (Gukesh), the former world champion (Anand), and the Norway Chess champion (Praggnanandhaa), along with a deep bench of young talent that includes Arjun Erigaisi and Nihal Sarin.
+India's preparation for the 2027 ODI World Cup, to be hosted by South Africa, Zimbabwe, and Namibia, requires exactly this kind of stress-testing. The question is whether the selectors see it that way, or whether they would rather preserve their veterans for England.
 
-For NRI fans who have followed Praggnanandhaa's rise since he became the youngest international master in history at age ten, the Norway Chess title is confirmation that he belongs at the very top. He climbed four spots to 12th in the live ratings during the tournament and, at 20, has time and trajectory on his side.
+**Sources:** PTI, Times of India, CricTracker, InsideSport"""
 
-The $75,000 first prize is a nice bonus. The statement he made by beating Carlsen twice in classical chess at his home tournament is worth considerably more.
+# Source image for Kohli
+img1_url, img1_attr = source_image(
+    "Virat Kohli",
+    ["Virat Kohli cricket", "Virat Kohli batting IPL"],
+    art1_slug
+)
 
-## Sources
+articles.append({
+    "headline": art1_headline,
+    "subheadline": art1_subheadline,
+    "body": art1_body,
+    "slug": art1_slug,
+    "category": "sports",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": img1_url,
+    "image_caption": "Virat Kohli during the IPL 2026 season for Royal Challengers Bengaluru",
+    "image_attribution": img1_attr or "Wikimedia Commons",
+    "sources": json.dumps(["PTI", "Times of India", "CricTracker", "InsideSport"]),
+    "is_editorial": False
+})
 
-- Wikipedia: Norway Chess 2026 final standings
-- ChessBase: Round-by-round coverage
-- ESPN India: Indian sports roundup, June 5, 2026
-- Chess.com: Norway Chess Round 9 and Round 10 reports"""
+# -------- ARTICLE 2: Sindhu's losing streak to An Se Young --------
+print("\n=== Article 2: Sindhu 10-Match Losing Streak ===")
 
-    # Image sourcing
-    print("  Sourcing image...")
-    img_url1, img_attr1 = source_image(
-        person_name="Rameshbabu Praggnanandhaa",
-        topic_queries=["Praggnanandhaa chess", "Praggnanandhaa Norway Chess 2026"],
-        pexels_query="chess grandmaster tournament",
-        slug=slug1
-    )
+art2_slug = "pv-sindhu-an-se-young-10-match-losing-streak-indonesia-open-2026-exit-nri"
+art2_headline = "Sindhu Has Now Lost Ten Straight to An Se Young. The Gap Between Them Is No Longer Closing."
+art2_subheadline = "The double Olympic medallist fell 21-17, 21-15 in the Indonesia Open Round of 16 — her second consecutive loss to the world No. 1 in as many weeks."
 
-    art1 = {
-        "headline": "Praggnanandhaa Beat Carlsen in the Final Round. He Won Norway Chess. He Is Twenty.",
-        "subheadline": "The Chennai grandmaster scored four classical wins in ten rounds, beating the world champion and the world number one to claim the biggest title of his career in Oslo.",
-        "slug": slug1,
-        "body": body1.strip(),
-        "category": "sports",
-        "status": "published",
-        "published_at": now_utc,
-        "sources": json.dumps(["Wikipedia", "ChessBase", "ESPN India", "Chess.com"]),
-        "vertical": "sports",
-        "is_editorial": False,
-        "image_url": img_url1 or "",
-        "image_caption": "R Praggnanandhaa during a classical chess game at the tournament in Oslo",
-        "image_attribution": img_attr1 or ""
-    }
+art2_body = """PV Sindhu's campaign at the 2026 Indonesia Open ended in familiar fashion on Thursday. An Se Young, the world No. 1 and reigning Olympic champion from South Korea, defeated the Indian 21-17, 21-15 in the Round of 16 at Istora Senayan in Jakarta — extending her perfect record against Sindhu to ten consecutive victories.
 
-    if insert_article(art1):
-        articles_written += 1
+## A Contest That Keeps Slipping Away
 
-    time.sleep(2)
+The opening game offered hope. Sindhu matched An Se Young point for point through the early exchanges, the score locked at 10-10. She briefly moved ahead at 15-14, and the Jakarta crowd — which has long had a soft spot for the Indian — sensed an upset. But An Se Young found another gear. A brutal 41-shot rally went the Korean's way, and from there, the first game slipped to 21-17.
 
-    # ========================================================================
-    # ARTICLE 2: Rohit Sharma Fitness Doubt
-    # ========================================================================
-    print("\n=== Article 2: Rohit Sharma Fitness Doubt ===")
+The second game was less competitive. An built a 13-6 lead that Sindhu never threatened to recover from. The world No. 1 closed it out 21-15, advancing to the quarterfinals where she would meet China's Chen Yufei in the latest installment of their own rivalry.
 
-    slug2 = "rohit-sharma-fitness-doubt-afghanistan-odi-series-kohli-out-india-without-pillars-nri"
+For Sindhu, the defeat mirrored her quarterfinal loss to An at the Singapore Open the previous week. The pattern has become uncomfortable: competitive stretches followed by a decisive Korean surge that the Indian cannot match.
 
-    body2 = """India could be without both Rohit Sharma and Virat Kohli for the three-match ODI series against Afghanistan, starting June 13 in Dharamsala. Kohli has already been ruled out with a hamstring injury sustained in the IPL 2026 final. Now Rohit's participation is in serious doubt after he failed to report to the BCCI Centre of Excellence in Bengaluru for the mandatory fitness clearance.
+## What the Numbers Say
 
-## The Hamstring Problem
+In their ten meetings since An Se Young's rise to the top of the rankings, Sindhu has failed to take a single match. More tellingly, she has won just four games across those ten encounters — an average of fewer than one game won per match. The head-to-head is now so lopsided that their matchup barely registers as a contest in pre-tournament brackets.
 
-Rohit injured his hamstring during the IPL 2026 season while playing for the Mumbai Indians. He missed a stretch of matches midway through the campaign, and when he returned toward the end, it was only as an impact player. Mumbai finished ninth on the points table. His last IPL innings was a duck against the Rajasthan Royals at the Wankhede.
+For context, Sindhu is still ranked inside the world's top 15 and remains India's highest-profile women's singles player. But the gap between her and the sport's current elite — An Se Young, Chen Yufei, Akane Yamaguchi — has widened with each passing season.
 
-The selection committee, led by chief selector Ajit Agarkar, included Rohit in the Afghanistan ODI squad but made his selection conditional on passing a fitness test at the Centre of Excellence. As of June 5, that test has not happened.
+## India's Singles Crisis in Jakarta
 
-## Training in Mohali, Not Bengaluru
+Sindhu was not the only Indian to exit early. Ayush Shetty, the 21-year-old who has emerged as India's most promising men's singles player, fell to Hong Kong's Lee Cheuk Yiu 21-16, 13-21, 14-21 after winning the opening game comfortably. The defeat marked Shetty's third consecutive tournament without reaching a quarterfinal, raising questions about whether his rapid rise has plateaued.
 
-According to a Times of India report, Rohit has informed the Punjab Cricket Association that he intends to train at the IS Bindra Stadium in Mohali on June 8 and 9, ahead of the squad assembling in the city. He has asked for specific training slots. But Mohali is not Bengaluru, and the BCCI protocol for injured contracted players requires them to report to the Centre of Excellence for assessment, rehabilitation, and fitness clearance before rejoining the squad.
+Lakshya Sen, HS Prannoy, Kidambi Srikanth, Malvika Bansod, and Unnati Hooda had all exited in earlier rounds. India's entire singles contingent — six players across men's and women's draws — was eliminated before the quarterfinal stage of a Super 1000 event.
 
-The disconnect has raised questions about whether Rohit is in a position to play or is managing expectations ahead of a formal announcement.
+## The Doubles Bright Spot
 
-## India Without Its Two Pillars
+The one Indian pair still alive in Jakarta was Hariharan Amsakarunan and MR Arjun, who reached their maiden Super 1000 quarterfinal by beating Malaysia's Aaron Tai and Kang Khai Xing 16-21, 21-15, 21-19. Ranked 30th in the world, the young pair has quietly become India's most reliable men's doubles combination after Satwiksairaj Rankireddy and Chirag Shetty were upset earlier in the draw.
 
-If Rohit joins Kohli on the sidelines, India will enter their first bilateral ODI series against Afghanistan without the two batsmen who have defined their white-ball cricket for the better part of a decade.
+## The Bigger Question for NRI Fans
 
-Rohit, 38, now plays only ODI cricket after retiring from T20Is and Tests. His last ODI series as captain was the ICC Champions Trophy 2025, where he scored 76 in the final against New Zealand. His last ODI appearance produced just 61 runs across three innings. He ended 2025 as India's second-highest ODI run-scorer with 650 runs at an average of 50.
+Sindhu remains one of the most recognizable Indian athletes globally, and her struggles resonate deeply with diaspora fans who followed her Olympic journeys in Rio and Tokyo. The question now is not whether she can beat An Se Young — the evidence suggests she cannot — but whether she can remain competitive enough at the highest level to justify her place in the Indian team heading into the 2028 Los Angeles Olympics.
 
-Kohli, meanwhile, was in superb form during the IPL, scoring over 650 runs and hitting an unbeaten 75 off 42 balls in the final. His hamstring gave way in that very innings.
+At 31, time is not on her side. But Sindhu has defied expectations before. The Indonesia Open exit, painful as it is, may sharpen the urgency of her off-court preparation rather than signal the end.
 
-## A Depleted Squad
+**Sources:** Badminton World Federation, MyKhel, RevSportz, The Bridge"""
 
-The injury list does not end with the two senior batsmen. All-rounder Hardik Pandya, who suffered a back spasm during the IPL, is also undergoing assessment at the Centre of Excellence. His clearance is pending.
+# Source image for Sindhu
+img2_url, img2_attr = source_image(
+    "P. V. Sindhu",
+    ["PV Sindhu badminton", "Sindhu badminton India"],
+    art2_slug
+)
 
-Agarkar has already rested Jasprit Bumrah and Mohammed Siraj for workload management. Ravindra Jadeja and Axar Patel are also absent. In their place, the selectors have turned to fresh faces: Harsh Dubey, Prince Yadav, and Gurnoor Brar.
+articles.append({
+    "headline": art2_headline,
+    "subheadline": art2_subheadline,
+    "body": art2_body,
+    "slug": art2_slug,
+    "category": "sports",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": img2_url,
+    "image_caption": "PV Sindhu during a BWF World Tour event",
+    "image_attribution": img2_attr or "Wikimedia Commons",
+    "sources": json.dumps(["BWF", "MyKhel", "RevSportz", "The Bridge"]),
+    "is_editorial": False
+})
 
-Ruturaj Gaikwad has been named as Kohli's replacement. If Rohit also misses out, India will likely lean on the likes of Shubman Gill, Ishan Kishan — who was recently recalled after a three-year absence — and KL Rahul to carry the batting.
+# -------- ARTICLE 3: Women's T20 World Cup — India vs Pakistan preview --------
+print("\n=== Article 3: India vs Pakistan Women's T20 World Cup ===")
 
-## What NRI Fans Should Know
+art3_slug = "india-pakistan-women-t20-world-cup-2026-birmingham-edgbaston-june-14-preview-nri"
+art3_headline = "India Play Pakistan at Edgbaston on June 14. Harmanpreet Has Done This Before. This Time She Has Shafali Back."
+art3_subheadline = "The ICC Women's T20 World Cup begins June 12 in England. India, the reigning ODI world champions, open their campaign against their fiercest rivals in Birmingham."
 
-The Afghanistan ODI series starts June 13 in Dharamsala, followed by matches in Lucknow and Chennai. It follows the one-off Test against Afghanistan at the new Mullanpur stadium near Mohali, which begins June 6. An official announcement on Rohit's availability is expected before the squad assembles on June 9.
+art3_body = """The ICC Women's T20 World Cup 2026 starts on June 12 in England, and India will begin their campaign two days later against Pakistan at Edgbaston, Birmingham. It is the kind of fixture that writes its own script — high-stakes, high-pressure, and watched by millions across the subcontinent and the diaspora.
 
-For fans in the diaspora who tune in to ODI cricket specifically for Rohit and Kohli, the message is straightforward: prepare for the possibility of watching neither.
+## India's Squad and Form
 
-## Sources
+India enter the tournament as the reigning ODI World Cup champions, having lifted the trophy on home soil in 2025 with Shafali Verma's blazing 87 in the final. The T20 squad carries familiar names: Harmanpreet Kaur leads, Smriti Mandhana is vice-captain, and Shafali returns at the top of the order after a period of being dropped and recalled.
 
-- CricketAddictor: Rohit Sharma fitness clearance report
-- CricTracker: Rohit Sharma fitness concerns
-- Sportskeeda: Rohit Sharma Mohali training plan
-- Inside Sport India: Rohit fitness test status"""
+The full squad reads: Harmanpreet Kaur (c), Smriti Mandhana (vc), Shafali Verma, Jemimah Rodrigues, Bharti Fulmali, Deepti Sharma, Richa Ghosh (wk), Shree Charani, Yastika Bhatia (wk), Nandani Sharma, Arundhati Reddy, Renuka Singh, Kranti Gaud, Shreyanka Patil, Radha Yadav.
 
-    print("  Sourcing image...")
-    img_url2, img_attr2 = source_image(
-        person_name="Rohit Sharma",
-        topic_queries=["Rohit Sharma cricket", "Rohit Sharma batting"],
-        pexels_query="cricket batsman India",
-        slug=slug2
-    )
+Jemimah Rodrigues, who has been in outstanding form through 2026, told CricTracker she believes India have the firepower to go all the way. Mandhana, meanwhile, acknowledged after the recent England T20I series that the team still has "a lot to learn" — particularly in its bowling plans, after a Knight-Capsey partnership of 137 chased down 180 in the decisive match.
 
-    art2 = {
-        "headline": "Rohit Has Not Reported to the Centre of Excellence. He Wants to Train in Mohali Instead. India May Be Without Both Him and Kohli.",
-        "subheadline": "With Virat Kohli already ruled out of the Afghanistan ODI series, Rohit Sharma's failure to appear for the mandatory BCCI fitness test raises the prospect of India losing both batting pillars.",
-        "slug": slug2,
-        "body": body2.strip(),
-        "category": "sports",
-        "status": "published",
-        "published_at": now_utc,
-        "sources": json.dumps(["CricketAddictor", "CricTracker", "Sportskeeda", "Inside Sport India"]),
-        "vertical": "sports",
-        "is_editorial": False,
-        "image_url": img_url2 or "",
-        "image_caption": "Rohit Sharma during an international cricket match for India",
-        "image_attribution": img_attr2 or ""
-    }
+## The England Warm-Up
 
-    if insert_article(art2):
-        articles_written += 1
+India played a three-match T20I series against England before the World Cup. England won 2-1, with the hosts chasing down 181 in the decider. The series exposed India's bowling vulnerabilities — particularly the difficulty in containing established batters through the middle overs — but also showed encouraging signs from the batting unit. Yastika Bhatia's return to international cricket was a standout story, and Harmanpreet anchored the innings with an unbeaten 56 when early wickets fell.
 
-    time.sleep(2)
+## Pakistan's Challenge
 
-    # ========================================================================
-    # ARTICLE 3: India Lose 3-1 to Tajikistan
-    # ========================================================================
-    print("\n=== Article 3: India Lose 3-1 to Tajikistan ===")
+Pakistan, led by Fatima Sana, arrive with less fanfare but carry genuine threats. Their spin options — Tuba Hassan, Nashra Sandhu, Sadia Iqbal — are suited to English conditions that often assist slow bowlers, and Gull Feroza's keeping has added solidity to the middle order. The rivalry adds its own intensity: no India-Pakistan match, in any format, is ever treated as routine by either side.
 
-    slug3 = "india-lose-3-1-tajikistan-friendly-tursunzoda-khalid-jamil-world-cup-nri"
+## The Group and What Comes Next
 
-    body3 = """India lost 3-1 to Tajikistan in a FIFA international friendly at the TALCO Arena in Tursunzoda on Thursday. It was the latest in a string of poor results for Khalid Jamil's side, who now have a 20 percent win rate under the interim head coach after ten matches in charge.
+India are drawn in Group 1 alongside Australia, South Africa, Bangladesh, the Netherlands, and Pakistan. It is a formidable pool. Australia — led by Sophie Molineux after a generational transition — remain the benchmark. South Africa, with Laura Wolvaardt and Shabnim Ismail, are dangerous on any surface.
 
-## How the Match Unfolded
+India's fixtures after Pakistan include the Netherlands (June 17, Edgbaston), Australia (June 20, The Oval), Bangladesh (June 23, Edgbaston), and South Africa (June 26, Lord's). The top three teams from each group advance to the Super Six stage.
 
-Tajikistan took the lead early through Komron Boboev in the ninth minute, setting the tone for a match India would spend most of chasing. The hosts doubled their advantage through Ehson Karimov in the 62nd minute before Shahrom Panjshanbe made it 3-0 in the 68th.
+## What NRI Fans Need to Know
 
-India's consolation came from Farukh Choudhary in the 89th minute, a goal that did little to disguise the extent of the defeat. The final whistle at the TALCO Arena confirmed what the scoreline suggested: India were second-best in every phase.
+For diaspora viewers in North America, the schedule is relatively kind. Matches at Edgbaston and Lord's start at 10:30 AM local time (5:30 AM ET, 2:30 AM PT) — early but watchable compared to the midnight starts of the men's ODI World Cup in Australia. The tournament runs until July 5, with the final at Lord's.
 
-## A Pattern of Decline
+The ICC has confirmed broadcast partners across most territories, and the World Cup will be available on streaming platforms in the UK, Australia, and the subcontinent. Star Sports and JioCinema are expected to carry coverage in India, with Sky Sports in the UK.
 
-The result extends India's dismal run of form. Under Khalid Jamil, the senior men's team has won just two of their last ten matches. Their most recent competitive campaign, the AFC Asian Cup qualifiers, ended in humiliation. Despite being top seeds and favourites to qualify, India finished bottom of their group after losses to Bangladesh, Hong Kong, and Singapore.
+This is Harmanpreet's fifth T20 World Cup as captain. At 37, it could be her last. She has never won it. The closest India came was in 2020, when they reached the final at the MCG before Australia overwhelmed them. Six years later, the squad is deeper, the experience is greater, and the hunger is sharper.
 
-A trip to the Unity Cup 2026 offered no relief. India lost to Jamaica and Zimbabwe in consecutive matches. Now, a defeat to Tajikistan, a team ranked well below them in the FIFA standings, adds another chapter to a troubling narrative.
+**Sources:** ICC, CricTracker, Female Cricket, ESPN Cricinfo"""
 
-Khalid Jamil was appointed as interim manager after the departure of Igor Stimac. The results have not improved. The question of whether he will be given a permanent contract, or replaced before India's next meaningful fixtures, hangs over the program.
+# Source image for Harmanpreet or India women cricket
+img3_url, img3_attr = source_image(
+    "Harmanpreet Kaur",
+    ["Harmanpreet Kaur cricket India women", "India women cricket T20"],
+    art3_slug
+)
 
-## Context: The World Cup Begins in Six Days
+articles.append({
+    "headline": art3_headline,
+    "subheadline": art3_subheadline,
+    "body": art3_body,
+    "slug": art3_slug,
+    "category": "sports",
+    "status": "published",
+    "published_at": datetime.now(timezone.utc).isoformat(),
+    "image_url": img3_url,
+    "image_caption": "India captain Harmanpreet Kaur during an international T20 match",
+    "image_attribution": img3_attr or "Wikimedia Commons",
+    "sources": json.dumps(["ICC", "CricTracker", "Female Cricket", "ESPN Cricinfo"]),
+    "is_editorial": False
+})
 
-The timing of this defeat makes it sting more. The FIFA World Cup kicks off on June 11 in North America. India, as usual, are not in it. But the diaspora's connection to the tournament is stronger than ever: four players of Indian origin — Sarpreet Singh (New Zealand), Tahsin Mohammed Jamshid (Qatar), Nishan Velupillay (Australia), and Samuel Moutoussamy (DR Congo) — will represent other nations on football's biggest stage.
+# ============================================================
+# INSERT ALL ARTICLES
+# ============================================================
+print("\n=== Inserting articles ===")
+for i, art in enumerate(articles, 1):
+    print(f"\n--- Inserting article {i}: {art['slug']} ---")
+    if not art.get("image_url"):
+        print(f"  ⚠ No image for {art['slug']}, inserting without image")
+        art.pop("image_url", None)
+        art.pop("image_caption", None)
+        art.pop("image_attribution", None)
+    aid = insert_article(art)
+    if aid:
+        print(f"  ✓ Success: {art['headline'][:60]}...")
+    else:
+        print(f"  ✗ Failed: {art['headline'][:60]}...")
+    time.sleep(1)
 
-While those players prepare for World Cup group matches, the Indian senior team is losing 3-1 to Tajikistan in a friendly that few outside the most committed fans will have watched.
-
-## The Second Friendly
-
-India will face Tajikistan again on June 9 at the Central Stadium in Hisor. It is the last match before the international window closes. For Khalid Jamil, it represents an opportunity to salvage something from the trip. For the players, it is a chance to show the kind of fight that was absent in Tursunzoda.
-
-## What NRI Fans Are Asking
-
-The disconnect between Indian football's ambitions and its results is a recurring source of frustration for the diaspora. The AIFF has set targets for World Cup qualification. Grassroots programs have been funded. The Indian Super League has raised the standard of domestic football. But at the international level, the results are going backward.
-
-NRI fans who follow Indian football from abroad — and there are more of them than the AIFF's ticket sales suggest — are left with a familiar question: when does investment start translating into competitive performances? The loss to Tajikistan provides no answer.
-
-## Sources
-
-- Wikipedia: Tajikistan national football team results
-- ESPN India: Indian sports roundup, June 5, 2026
-- Khel Now: India vs Tajikistan preview and head-to-head
-- Oddslot: Match result tracker"""
-
-    print("  Sourcing image...")
-    img_url3, img_attr3 = source_image(
-        person_name="Khalid Jamil football",
-        topic_queries=["India national football team", "India football team 2026"],
-        pexels_query="football soccer match stadium",
-        slug=slug3
-    )
-
-    art3 = {
-        "headline": "India Lost 3-1 to Tajikistan. Khalid Jamil Has Won Two of His Ten Matches in Charge.",
-        "subheadline": "A ninth-minute goal set the tone in Tursunzoda as India conceded three before Farukh Choudhary's consolation. The World Cup starts in six days. India are going backward.",
-        "slug": slug3,
-        "body": body3.strip(),
-        "category": "sports",
-        "status": "published",
-        "published_at": now_utc,
-        "sources": json.dumps(["Wikipedia", "ESPN India", "Khel Now", "Oddslot"]),
-        "is_editorial": False,
-        "image_url": img_url3 or "",
-        "image_caption": "The Indian football team during an international match",
-        "image_attribution": img_attr3 or ""
-    }
-
-    if insert_article(art3):
-        articles_written += 1
-
-    print(f"\n{'='*60}")
-    print(f"Sports writer complete: {articles_written}/3 articles published")
-    print(f"{'='*60}")
-
-if __name__ == "__main__":
-    write_articles()
+print("\n=== Sports writer complete ===")
