@@ -1,10 +1,20 @@
 #!/usr/bin/env python3
-"""News writer for The Videshi - 2026-06-06 batch"""
+"""
+News writer for The Videshi - June 6, 2026 batch
+Topics:
+1. NITI Aayog semiconductor roadmap - India's ISM 2.0, $206B demand by 2035
+2. US-India trade deal: first tranche by mid-July (Piyush Goyal)
+3. Indian Americans meet DOJ/FBI on hate crimes against Hindus in Silicon Valley
+"""
 
-import json, os, re, sys, time, subprocess, urllib.parse, uuid
-from datetime import datetime, timezone
-
+import json
+import os
 import requests
+import subprocess
+import sys
+import time
+import urllib.parse
+from datetime import datetime, timezone
 
 # Load env
 def load_env(path):
@@ -14,25 +24,25 @@ def load_env(path):
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
                     key, _, val = line.partition('=')
+                    key = key.replace('export ', '').strip()
                     val = val.strip().strip('"').strip("'")
-                    os.environ.setdefault(key.strip(), val)
+                    os.environ[key] = val
 
 load_env(os.path.expanduser('~/.env.supabase'))
-load_env(os.path.expanduser('~/workspace/.env.supabase'))
 load_env(os.path.expanduser('~/workspace/.env.pexels'))
 
 SUPABASE_URL = os.environ.get('SUPABASE_URL', '')
 SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 PEXELS_KEY = os.environ.get('PEXELS_API_KEY', '')
 
-HEADERS_SB = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': f'Bearer {SUPABASE_KEY}',
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
+HEADERS = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=representation"
 }
 
-# ─── Image sourcing ───
+UA = "TheVideshi/1.0 (thevideshi.com)"
 
 def fetch_wikipedia_person_image(person_name):
     """Fetch a person's actual photo from Wikipedia. Returns image URL or None."""
@@ -40,22 +50,18 @@ def fetch_wikipedia_person_image(person_name):
     try:
         r = requests.get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            headers={"User-Agent": UA},
             timeout=10
         )
         if r.status_code == 200:
             data = r.json()
-            # Use thumbnail.source AS-IS (330px) — do NOT modify
-            img = data.get("thumbnail", {}).get("source")
-            if not img:
-                img = data.get("originalimage", {}).get("source")
+            img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if img:
                 print(f"  ✓ Wikipedia image found for '{person_name}': {img[:80]}...")
                 return img
     except Exception as e:
         print(f"  ⚠ Wikipedia API error for '{person_name}': {e}")
     return None
-
 
 def fetch_wikimedia_commons_images(search_query, limit=5):
     """Search Wikimedia Commons for CC-licensed images."""
@@ -74,7 +80,7 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
             params=params,
-            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            headers={"User-Agent": UA},
             timeout=15
         )
         if r.status_code == 200:
@@ -82,310 +88,382 @@ def fetch_wikimedia_commons_images(search_query, limit=5):
             pages = data.get("query", {}).get("pages", {})
             results = []
             for pid, page in pages.items():
-                info = page.get("imageinfo", [{}])[0]
-                url = info.get("thumburl") or info.get("url", "")
-                w = info.get("width", 0)
-                h = info.get("height", 0)
-                mime = info.get("mime", "")
-                if url and "image" in mime and w > 200:
-                    results.append({"url": url, "title": page.get("title", ""), "width": w, "height": h})
+                ii = page.get("imageinfo", [{}])[0]
+                mime = ii.get("mime", "")
+                if not mime.startswith("image/"):
+                    continue
+                if mime == "image/svg+xml" or ii.get("width", 0) < 300:
+                    continue
+                results.append({
+                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "original_url": ii.get("url", ""),
+                    "title": page.get("title", ""),
+                    "width": ii.get("width", 0),
+                    "height": ii.get("height", 0),
+                })
+            if results:
+                print(f"  ✓ Wikimedia Commons: {len(results)} images found for '{search_query}'")
             return results
     except Exception as e:
-        print(f"  ⚠ Wikimedia Commons error for '{search_query}': {e}")
+        print(f"  ⚠ Wikimedia Commons error: {e}")
     return []
 
-
 def fetch_pexels_image(query):
-    """Search Pexels for a relevant image. Returns URL or None."""
-    if not PEXELS_KEY:
-        print("  ⚠ No Pexels API key")
-        return None
+    """Search Pexels for an image using curl (Python urllib gets 403)."""
     try:
         result = subprocess.run(
-            ['curl', '-sS', '-H', f'Authorization: {PEXELS_KEY}',
-             f'https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3'],
+            ["curl", "-sS", f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=3",
+             "-H", f"Authorization: {PEXELS_KEY}"],
             capture_output=True, text=True, timeout=15
         )
-        data = json.loads(result.stdout)
-        photos = data.get("photos", [])
-        if photos:
-            url = photos[0].get("src", {}).get("large2x") or photos[0].get("src", {}).get("large")
-            if url:
-                print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
-                return url
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            photos = data.get("photos", [])
+            if photos:
+                url = photos[0].get("src", {}).get("large2x") or photos[0].get("src", {}).get("large")
+                if url:
+                    print(f"  ✓ Pexels image found for '{query}': {url[:80]}...")
+                    return url
     except Exception as e:
-        print(f"  ⚠ Pexels error for '{query}': {e}")
+        print(f"  ⚠ Pexels error: {e}")
     return None
 
-
 def validate_image(url):
-    """Verify image URL returns 200 with image content-type and >5KB."""
-    # Trust well-known image CDNs
-    trusted = ["upload.wikimedia.org", "images.pexels.com"]
-    if any(d in url for d in trusted):
-        print(f"  ✓ Trusted domain, skipping validation: {url[:60]}...")
-        return True
+    """Validate that an image URL returns HTTP 200 with content-type image/* and >5KB."""
     try:
+        # Use curl for validation to avoid issues
         result = subprocess.run(
-            ['curl', '-sS', '-I', '-L', '-A', 'TheVideshi/1.0', url],
+            ["curl", "-sS", "-I", "-L", "--max-time", "10", url],
             capture_output=True, text=True, timeout=15
         )
-        headers = result.stdout.lower()
-        if '200' in headers and 'image/' in headers:
+        output = result.stdout.lower()
+        if "200" in output and "content-type: image/" in output:
             # Check content-length
-            for line in headers.split('\n'):
-                if 'content-length' in line:
-                    cl = int(line.split(':')[1].strip())
-                    if cl > 5000:
+            for line in output.split('\n'):
+                if 'content-length:' in line:
+                    size = int(line.split(':')[1].strip())
+                    if size > 5000:
+                        print(f"  ✓ Image validated: {url[:60]}... ({size} bytes)")
                         return True
-            # No content-length but 200 + image type = assume ok
+                    else:
+                        print(f"  ✗ Image too small: {size} bytes")
+                        return False
+            # No content-length header but 200 + image content-type — accept it
+            print(f"  ✓ Image validated (no content-length): {url[:60]}...")
             return True
-        print(f"  ✗ Image validation failed for {url[:60]}...")
     except Exception as e:
-        print(f"  ✗ Image validation error: {e}")
+        print(f"  ⚠ Image validation error: {e}")
     return False
-
-
-def find_best_image(person_name=None, wiki_searches=None, pexels_query=None):
-    """Multi-source image search. Returns (url, attribution) or (None, None)."""
-    candidates = []
-
-    # 1. Wikipedia person image
-    if person_name:
-        img = fetch_wikipedia_person_image(person_name)
-        if img:
-            candidates.append((img, "Wikimedia Commons", "wikipedia"))
-
-    # 2. Wikimedia Commons search
-    if wiki_searches:
-        for q in wiki_searches:
-            results = fetch_wikimedia_commons_images(q, limit=3)
-            for r in results:
-                candidates.append((r["url"], "Wikimedia Commons", "commons"))
-            time.sleep(0.5)  # Rate limiting
-
-    # 3. Pexels
-    if pexels_query:
-        img = fetch_pexels_image(pexels_query)
-        if img:
-            candidates.append((img, "Pexels", "pexels"))
-
-    # Validate and pick best (prefer Wikipedia > Commons > Pexels)
-    for url, attr, source in candidates:
-        if validate_image(url):
-            print(f"  ★ Selected image from {source}: {url[:80]}...")
-            return url, attr
-
-    print("  ✗ No valid image found")
-    return None, None
-
-
-# ─── Article insertion ───
 
 def insert_article(article):
     """Insert an article into Supabase."""
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles"
-    r = requests.post(url, headers=HEADERS_SB, json=article, timeout=15)
+    r = requests.post(
+        f"{SUPABASE_URL}/rest/v1/p2_articles",
+        headers=HEADERS,
+        json=article,
+        timeout=30
+    )
     if r.status_code in (200, 201):
         result = r.json()
-        aid = result[0].get("id", "unknown") if isinstance(result, list) else result.get("id", "unknown")
-        print(f"  ✓ Inserted: {article['headline'][:60]}... (id: {aid})")
+        if isinstance(result, list) and result:
+            print(f"  ✓ Published: {result[0].get('headline', '')[:60]}...")
+            return True
+        print(f"  ✓ Published: {article['headline'][:60]}...")
         return True
     else:
         print(f"  ✗ Insert failed ({r.status_code}): {r.text[:200]}")
         return False
 
+def get_best_image(person_names=None, commons_queries=None, pexels_query=None):
+    """Multi-source image search. Returns (url, attribution) or (None, None)."""
+    candidates = []
 
-# ─── Articles ───
+    # Wikipedia person images
+    if person_names:
+        for name in person_names:
+            img = fetch_wikipedia_person_image(name)
+            if img and validate_image(img):
+                candidates.append((img, "Wikimedia Commons", f"wikipedia:{name}"))
 
-def write_articles():
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    # Wikimedia Commons
+    if commons_queries:
+        for q in commons_queries:
+            results = fetch_wikimedia_commons_images(q, limit=3)
+            for r in results:
+                url = r.get("url") or r.get("original_url")
+                if url and validate_image(url):
+                    candidates.append((url, "Wikimedia Commons", f"commons:{q}"))
+                    break  # Take first valid per query
+            time.sleep(1)  # Rate limit
 
-    articles = []
+    # Pexels fallback
+    if pexels_query and not candidates:
+        img = fetch_pexels_image(pexels_query)
+        if img and validate_image(img):
+            candidates.append((img, "Pexels", f"pexels:{pexels_query}"))
 
-    # ── Article 1: Cockroach Janta Party ──
-    print("\n=== Article 1: Cockroach Janta Party ===")
+    if candidates:
+        # Prefer Wikipedia/Commons over Pexels
+        wiki = [c for c in candidates if "Wikimedia" in c[1]]
+        if wiki:
+            return wiki[0][0], wiki[0][1]
+        return candidates[0][0], candidates[0][1]
 
-    cjp_body = """India's largest online youth protest movement came offline on Saturday when Abhijeet Dipke, the 30-year-old founder of the Cockroach Janta Party, landed in New Delhi to lead the group's first street demonstration at Jantar Mantar.
+    return None, None
 
-Dipke, who has lived in the United States for the past two years and holds a degree from Boston University, arrived at Indira Gandhi International Airport to a heavy security presence. His family and friends had publicly warned he could be arrested on arrival. He was not — police granted permission for the protest — but the fear itself spoke volumes about the political temperature.
 
-## How a Supreme Court Insult Sparked a Movement
+# ============================================================
+# ARTICLE 1: NITI Aayog Semiconductor Roadmap + ISM 2.0
+# ============================================================
+def write_article_1():
+    print("\n=== Article 1: NITI Aayog Semiconductor Roadmap ===")
 
-The movement was born from a single remark. On May 15, Chief Justice of India Surya Kant, during a Supreme Court hearing on fake professional degrees, compared confrontational activists and unemployed youth to "cockroaches" and "parasites of society." Within hours, India's Gen Z had reclaimed the slur. Dipke, a political communications strategist who had previously worked with the Aam Aadmi Party, launched the Cockroach Janta Party on May 16 as a satirical counter-punch. The name is a deliberate parody of the ruling Bharatiya Janata Party.
+    headline = "India Just Published Its Semiconductor Roadmap. The Target: Half the Country's Chip Demand by 2035."
+    subheadline = "NITI Aayog's 'Future of India's Semiconductor Industry' plan lays out a path from consumer to producer — with ISM 2.0, three Indian startups heading to France, and $206 billion in projected demand."
+    slug = "niti-aayog-semiconductor-roadmap-ism-2-chip-demand-206-billion-2035-20260606"
+    category = "news"
 
-In three weeks, the movement amassed roughly 22 million Instagram followers and over 350,000 sign-ups. It is now the largest online expression of dissent against Prime Minister Narendra Modi's 12-year-old government.
+    body = """India has spent decades as one of the world's largest consumers of semiconductors. Now the government wants to make them at home.
 
-## What the Protesters Want
+NITI Aayog's Frontier Tech Hub released a strategy document this week titled "Future of India's Semiconductor Industry," laying out a roadmap to capture a significant share of India's own chip demand within the next decade. The plan lands alongside the India Semiconductor Mission 2.0, announced in the 2026–27 Union Budget, which targets advanced manufacturing at 3-nanometre and 2-nanometre technology nodes.
 
-The CJP's demands go well beyond exam reform. At a press conference at the Constitution Club earlier this week, spokesperson Saurav Das laid out a detailed agenda: the resignation of Union Education Minister Dharmendra Pradhan over the NEET, CBSE, and CUET exam-paper leak scandals; a 50 percent reservation for women in Parliament and all Cabinet positions; a 20-year ban on elected officials who defect from one party to another; and an end to post-retirement rewards for chief justices, a practice the group sees as compromising judicial independence.
+## The Scale of the Bet
 
-The movement has also called for mandatory political and legal literacy — including RTI filing and public budget reading — in secondary school curricula.
+India's semiconductor demand is projected to reach $206 billion by 2035, according to the Ministry of Electronics and Information Technology. Under the new roadmap, domestic plants are expected to meet roughly half of that demand by fiscal year 2035 — a radical shift for a country that currently imports the vast majority of its chips.
 
-## The Government's Response
+Finance Minister Nirmala Sitharaman called the roadmap "a clear declaration of India's intent to move decisively from being a major consumer of chips to becoming an indispensable part of the global semiconductor value chain." The plan focuses on advanced packaging, compound semiconductors, wide-bandgap materials, and AI-native chip design — segments where India believes it can build defensible positions rather than chasing established leaders.
 
-Modi's government has not treated the movement lightly. The CJP's X account has been blocked within India, a decision the group has challenged in a Delhi court. Senior cabinet minister Kiren Rijiju accused the party of seeking followers from Pakistan and the "anti-India gang," framing it as a national security concern rather than a domestic grievance.
+## Factories Are Already Rising
 
-Dozens of police officers barricaded roads near Jantar Mantar on Saturday as protesters shouted slogans. Loudspeakers directed crowds to the designated protest site. The government's strategy appears to be containment through controlled permission rather than outright suppression — a calculus shaped, analysts say, by the knowledge that an arrest would almost certainly amplify the movement further.
+The strategy does not exist in a vacuum. Tata Electronics, in partnership with Taiwan's Powerchip Semiconductor Manufacturing Corp, is building a fabrication plant in Dholera, Gujarat, with an investment of approximately ₹91,000 crore. Micron Technology is constructing an assembly and test facility in Sanand. Foxconn has committed to chip packaging operations.
 
-Climate activist Sonam Wangchuk announced his support for the protest and said he would undertake a six-week fast if Dipke were arrested.
+Under ISM 1.0, the government allocated ₹76,000 crore in incentives. ISM 2.0 expands that with a focus on indigenous design capabilities, workforce development, and deeper integration into the global supply chain. The Design Linked Incentive scheme has already supported 24 startups and facilitated 16 tape-outs, including six chips fabricated at advanced foundry nodes.
 
-## Why NRIs Are Watching
+## The Diaspora Connection
 
-For Indian professionals abroad, the CJP represents a generational fault line that many recognize from their own families. The movement is fueled by two pressures that drive a significant share of Indian emigration: persistently high youth unemployment, which officially hovers above 40 percent for ages 15 to 29, and the recurring collapse of examination integrity that determines access to medicine, engineering, and civil service.
+For the estimated 1.5 million Indians working in the global semiconductor industry — many of them in design centres across Silicon Valley, Austin, and Munich — the roadmap signals a viable path home. Ashwini Vaishnaw, the IT Minister, framed the mission in generational terms: "As the Prime Minister guided us, this is a 20-year journey."
 
-Political analysts say the movement has begun to dent Modi's image even as his party continues to win state elections. The broader frustration — compounded by rising fuel prices and gas shortages from the Iran war — has given the CJP a constituency far wider than its satirical origins would suggest.
+Three Indian semiconductor startups — VerveSemi, AGNIT Semiconductors, and Netrasemi — have been selected to represent the country at Bharat Innovates 2026 in Nice, France, from June 14 to 16. It is the kind of showcase that would have been unthinkable five years ago, when Indian founders had to begin investor meetings by explaining what a semiconductor was.
 
-"This is a peaceful movement for the youth of the nation," spokesperson Ashutosh Ranka, an IIT Kanpur and LSE alumnus who previously worked at McKinsey in London, said at the protest. Dipke, he added, was "ready for a long and big day in India's politics."
+## Why It Matters Now
 
-Whether that day lasts beyond the news cycle depends on whether the CJP can convert viral momentum into sustained political pressure. For now, the cockroaches are on the streets, and the government is listening — even if it would rather not be."""
+The timing is shaped by geopolitics as much as economics. Global dependence on Taiwan for advanced chip fabrication has become a strategic vulnerability that every major economy is trying to hedge. The U.S. CHIPS Act, Europe's Chips Act, and Japan's semiconductor revival plan have all poured billions into onshoring production. India's entry into this race is late but not without advantages: a deep engineering talent pool, a growing domestic market, and a government willing to offer 20-year tax holidays for semiconductor ventures.
 
-    img1, attr1 = find_best_image(
-        person_name=None,
-        wiki_searches=["Jantar Mantar New Delhi protest", "India youth protest 2026"],
-        pexels_query="India protest demonstration youth"
+The risk is execution. India has announced chip ambitions before — a 2014 fab proposal never broke ground. The difference this time, proponents argue, is that actual construction is underway and real money is flowing.
+
+Intel signed a memorandum of understanding in late May to establish an advanced packaging glass-core substrate manufacturing facility in eastern India. Reliance and Adani have committed roughly $110 billion and $100 billion respectively to AI and data infrastructure. The ecosystem is no longer theoretical.
+
+Whether India can close the gap between roadmap and reality will depend on navigating power supply constraints, water availability for fabs, customs bottlenecks, and the sheer complexity of semiconductor manufacturing. But the direction of travel is unmistakable: India is building, not just buying."""
+
+    # Image sourcing
+    img_url, img_attr = get_best_image(
+        person_names=["Ashwini Vaishnaw"],
+        commons_queries=["India semiconductor fab", "NITI Aayog"],
+        pexels_query="semiconductor chip manufacturing"
     )
 
-    articles.append({
-        "headline": "India's Gen Z Just Took the Streets. The Government Blocked Their X Account.",
-        "subheadline": "The Cockroach Janta Party — born from a Supreme Court insult three weeks ago — brought 22 million followers offline for the first time at Jantar Mantar",
-        "body": cjp_body,
-        "slug": "cockroach-janta-party-jantar-mantar-protest-dipke-gen-z-modi-20260606",
-        "category": "news",
+    if not img_url:
+        print("  ⚠ No valid image found, trying additional search...")
+        img_url, img_attr = get_best_image(
+            pexels_query="microchip semiconductor wafer"
+        )
+
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": category,
+        "vertical": "technology",
         "status": "published",
-        "published_at": now,
-        "image_url": img1,
-        "image_caption": "Jantar Mantar in New Delhi, site of India's largest Gen Z protest",
-        "image_attribution": attr1 or "Wikimedia Commons",
-        "vertical": "politics",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": img_url or "",
+        "image_caption": "Ashwini Vaishnaw, India's IT Minister, has called the semiconductor mission a 20-year journey" if img_attr == "Wikimedia Commons" and img_url else "A semiconductor wafer during fabrication — India aims to produce half its chip demand domestically by 2035",
+        "image_attribution": img_attr or "",
         "is_editorial": False,
-        "sources": json.dumps(["Reuters", "CNN", "The Hindu Business Line", "Daily Jagran"])
-    })
+        "sources": json.dumps([
+            "NITI Aayog Frontier Tech Hub semiconductor roadmap release",
+            "Ministry of Electronics and Information Technology (MeitY)",
+            "Reuters India",
+            "YourStory Bharat Innovates 2026 coverage",
+            "DIGITIMES Asia"
+        ])
+    }
 
-    # ── Article 2: JD Vance / Henry Nowak / UK Sikh ──
-    print("\n=== Article 2: JD Vance / Henry Nowak case ===")
+    return insert_article(article)
 
-    vance_body = """JD Vance, the Vice President of the United States, on Friday inserted himself into a British murder case involving a British Sikh man of Indian heritage, calling it proof that Western civilisation is dying. The case has already sparked riots in Southampton. Now it is raising uncomfortable questions for Indian and Sikh communities across the West.
 
-## What Happened in Southampton
+# ============================================================
+# ARTICLE 2: US-India Trade Deal by Mid-July
+# ============================================================
+def write_article_2():
+    print("\n=== Article 2: US-India Trade Deal by Mid-July ===")
 
-In December 2025, Henry Nowak, an 18-year-old white university student, was walking home from a night of football with friends in the southern English city of Southampton when he encountered Vickrum Digwa, a 23-year-old British Sikh man wearing a turban and carrying a 21-centimetre dagger.
+    headline = "India and the US Are '99 Percent Done' on a Trade Deal. The First Tranche Could Land by Mid-July."
+    subheadline = "Commerce Minister Piyush Goyal says both sides are 'fast-moving towards closing all open ends' after a week of intensive talks in New Delhi — even as Washington slaps a new 12.5% tariff proposal on Indian imports."
+    slug = "us-india-trade-deal-first-tranche-mid-july-piyush-goyal-brendan-lynch-20260606"
+    category = "news"
 
-Digwa stabbed Nowak. When police arrived, Digwa told them Nowak had racially abused him — a claim later proven to be fabricated. Officers handcuffed the dying Nowak as a suspect while attending to his attacker. Bodycam footage showed Nowak repeatedly telling officers he had been stabbed and could not breathe. He died in handcuffs.
+    body = """India and the United States are on the verge of executing the first phase of a bilateral trade agreement, Commerce and Industry Minister Piyush Goyal said on Friday, putting a mid-July target on a deal that has been months in the making.
 
-On Monday, Digwa was sentenced to life in prison with a minimum 21-year term. The judge found that the racial abuse claim was false and that Digwa had been in the habit of carrying a second knife beyond the small ceremonial kirpan worn by observant Sikhs.
+"By sometime in the middle of next month or so, we should be in a position to execute a very, very vibrant first tranche," Goyal told reporters in Visakhapatnam after a seafood exports workshop. He described the initial phase as one that "will give preferential access to India over our competitors."
 
-## Vance Escalates
+## The Negotiations
 
-Vance's intervention came less than 24 hours after the US State Department issued its own rebuke, calling "ideological conditioning and two-tiered policing" symptoms of "civilizational decline."
+A U.S. trade delegation led by chief negotiator Brendan Lynch was in New Delhi from June 2 to 4 for intensive talks with India's chief negotiator Darpan Jain, an additional secretary in the Department of Commerce. The discussions covered trade in goods, non-tariff measures, customs facilitation, and economic security alignment.
 
-"Henry Nowak died the same way a civilization dies: abandoned, handcuffed by authorities who neither trusted nor cared for him, and accused of hate crimes he did not commit," Vance wrote on X. He blamed the killing on "the mass invasion of migrants, many of whom despise the West."
+The framework for the deal was announced during Prime Minister Narendra Modi's visit to Washington on February 3, and U.S. Ambassador to India Sergio Gor recently said that 99 percent of the details had been finalised. "Small commas and full stops are being discussed," Goyal said, adding that a higher-level U.S. delegation — likely led by U.S. Trade Representative Jamieson Greer — is expected in India by the end of June.
 
-Prime Minister Keir Starmer's office pushed back sharply, criticising "people trying to interfere in our democracy and seeking to stir up division on our streets." The Nowak family has asked that his death not be used to create further hatred.
+President Trump, speaking at the White House on Thursday, struck a conciliatory note: "For years, India took advantage of the United States... But we will get to a deal. I like your Prime Minister a lot."
 
-## The Facts That Complicate the Narrative
+## The Complication
 
-Both Nowak and Digwa were British citizens. Digwa was not an immigrant. The Sikh Federation has pointed out that while Sikhs across the Western world are permitted to carry a small kirpan as a religious article, Digwa was carrying a second, larger knife — and the judge explicitly stated the religious exemption made no difference to the verdict.
+The warm words contrast with a sharp move from Washington earlier in the week. On Wednesday, the U.S. proposed an additional 12.5 percent tariff on imports from India under Section 301 proceedings, citing the country's alleged failure to curb goods made with forced labour. India was among 60 economies named in the action.
 
-The case has nonetheless been seized by anti-immigration figures, including Nigel Farage and Elon Musk, who have amplified claims of a "two-tier policing system." On Tuesday, police in Southampton were pelted with chairs, cans, rocks, and flares during a demonstration attended by far-right figures.
+India's Commerce Ministry said it "remains engaged" with the U.S. on the Section 301 proceedings while pursuing the trade framework in parallel. The dual-track approach — negotiating a preferential deal while facing punitive tariffs — reflects the broader complexity of the U.S.-India trade relationship, which hit $191 billion in bilateral goods trade last year.
 
-## What This Means for the Diaspora
+## What NRIs Should Watch
 
-For Indian and Sikh communities in the UK and the United States, the case sits at an anxious intersection. The policing failure was real — officers made a catastrophic decision by believing an unverified claim of racism over a dying man's pleas. That failure has become legitimate grounds for institutional reform.
+For the Indian diaspora, particularly those in trade, manufacturing, and agriculture, the first tranche could have tangible effects. The deal is expected to lower barriers for Indian exports in sectors where the country has competitive advantages — textiles, seafood, pharmaceuticals, and IT services — while potentially opening India's market to more American agricultural products and defence equipment.
 
-But the political exploitation of the case has folded it into a broader anti-immigration narrative that makes no distinction between a British-born citizen and a recent arrival, between a convicted murderer and the millions of law-abiding South Asian families who have built lives in the West.
+The agreement also has implications for the rupee. With the currency under pressure from elevated oil prices and record foreign fund outflows triggered by the Iran war, a trade deal that boosts dollar inflows through exports could provide a stabilising anchor. The Reserve Bank of India held rates steady on Friday and separately announced measures to attract foreign capital, including scrapping capital gains tax on government bond interest for foreign institutional investors.
 
-The Sikh Federation UK issued a statement distancing the community from Digwa's actions, noting that carrying a weapon beyond a small kirpan violates Sikh religious teaching. Sikh community leaders in the US have expressed concern that the case — amplified by the Vice President of the United States — could increase hostility toward turbaned Sikhs who are already disproportionately targeted in hate crimes, often because they are mistaken for Muslims.
+## The Bigger Picture
 
-The risk for the diaspora is not abstract. In the wake of the State Department's statement, which was the first time the Trump administration publicly commented on the case, monitoring groups have reported a spike in anti-Sikh rhetoric online.
+The U.S. and India reached an initial understanding on a trade deal in February, but negotiations slowed after the Supreme Court struck down Trump's sweeping tariff measures. They gathered pace again this week, and both sides now appear to be racing against a political clock: Trump faces midterm pressures at home, while Modi's government wants to demonstrate that its diplomatic relationship with Washington yields economic results.
 
-For Indian professionals in the UK, the timing is particularly fraught. Net migration from India to Britain has fallen sharply since 2025 amid visa curbs, and the political climate around immigration has hardened across the political spectrum. A case that is fundamentally about one man's violence and one police force's failure is being refracted through the lens of civilisational conflict — and the Indian diaspora is caught in the glare."""
+The initial trade deal was once considered slow-moving by the standards of both governments. Goyal reframed it on Friday as something more like a sprint: "We had excellent discussions," he said. "We are fast-moving towards closing all the open ends."
 
-    img2, attr2 = find_best_image(
-        person_name="JD Vance",
-        wiki_searches=["Southampton England city", "Sikh community United Kingdom"],
-        pexels_query=None
+If the mid-July target holds, it would make this the fastest bilateral trade agreement India has executed since the India-Oman Comprehensive Economic Partnership Agreement, which was announced the same week and zeroed out tariffs on 98 percent of bilateral trade."""
+
+    # Image sourcing
+    img_url, img_attr = get_best_image(
+        person_names=["Piyush Goyal"],
+        commons_queries=["India US trade agreement", "Piyush Goyal minister"],
+        pexels_query="India USA trade flags"
     )
 
-    articles.append({
-        "headline": "JD Vance Called a British Murder Case a Sign of Civilisational Death. The Killer Was of Indian Heritage.",
-        "subheadline": "The Henry Nowak case has become a flashpoint for anti-immigration politics on both sides of the Atlantic — and the Indian diaspora is caught in the middle",
-        "body": vance_body,
-        "slug": "jd-vance-henry-nowak-uk-sikh-diaspora-two-tier-policing-20260606",
-        "category": "news",
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": category,
+        "vertical": "economy",
         "status": "published",
-        "published_at": now,
-        "image_url": img2,
-        "image_caption": "US Vice President JD Vance, who blamed the murder on civilisational decline and immigration",
-        "image_attribution": attr2 or "Wikimedia Commons",
-        "vertical": "politics",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": img_url or "",
+        "image_caption": "Commerce Minister Piyush Goyal confirmed the mid-July timeline for the first phase of the bilateral trade pact" if "Wikimedia" in (img_attr or "") else "India and the US are racing to finalise the first tranche of a bilateral trade agreement by mid-July",
+        "image_attribution": img_attr or "",
         "is_editorial": False,
-        "sources": json.dumps(["Reuters", "Fox News", "The Times (UK)", "AP"])
-    })
+        "sources": json.dumps([
+            "Reuters India",
+            "Press Trust of India via Outlook Business",
+            "Bloomberg Law",
+            "IANS via The Indian Eye",
+            "White House pool report"
+        ])
+    }
 
-    # ── Article 3: Himachal Pradesh Earthquake ──
-    print("\n=== Article 3: Himachal Pradesh Earthquake ===")
+    return insert_article(article)
 
-    quake_body = """A magnitude 5.0 earthquake struck Chamba district in Himachal Pradesh late on Friday night, sending tremors across North India and prompting residents in Dharamsala, Chandigarh, and parts of Punjab and Haryana to rush out of their homes.
 
-The National Centre for Seismology recorded the quake at 10:37 PM IST on June 5, placing its epicentre near the Kangra-Chamba border, approximately 40 kilometres northeast of Dharamsala. The earthquake occurred at a shallow depth of just five kilometres, which amplified the intensity of shaking felt at the surface.
+# ============================================================
+# ARTICLE 3: Indian Americans Meet DOJ/FBI on Hindu Hate Crimes
+# ============================================================
+def write_article_3():
+    print("\n=== Article 3: Indian Americans Meet DOJ/FBI on Hindu Hate Crimes ===")
 
-## Multiple Tremors in a Single Day
+    headline = "Silicon Valley's Indian Americans Just Took the Hate Crime Crisis to the FBI's Door"
+    subheadline = "Two dozen community leaders met senior DOJ, FBI, and local police officials this week in San Francisco, demanding action after a wave of vandalism targeting Hindu and Jain temples across California."
+    slug = "silicon-valley-indian-americans-doj-fbi-hate-crimes-hindu-temples-california-20260606"
+    category = "news"
 
-The Chamba quake was the second significant seismic event in India on Friday. Earlier in the afternoon, a 2.8 magnitude earthquake struck Mangan district in Sikkim at 4:07 PM IST, also at a depth of five kilometres. No casualties or structural damage have been reported from either event.
+    body = """A group of prominent Indian Americans in Silicon Valley held an extraordinary meeting this week with senior officials from the Department of Justice, the FBI, and local police departments to demand action on what they describe as a mounting crisis of hate crimes targeting the Hindu community in California.
 
-Kangra and Chamba districts fall within Seismic Zone 5, the highest-risk classification on India's seismic hazard map. The region sits along the Himalayan frontal thrust, where the Indian tectonic plate pushes beneath the Eurasian plate, making it one of the most earthquake-prone areas on the subcontinent.
+The meeting, organised by community leader Ajai Jain Bhutoria, brought together roughly two dozen Indian Americans at the table with Vincent Plair and Harpreet Singh Mokha from the DOJ's Community Relations Service, FBI field agents, and police officials from San Francisco, Milpitas, Fremont, and Newark.
 
-## Panic But No Casualties
+## A Pattern of Attacks
 
-Residents in Dharamsala and the surrounding hill towns reported several seconds of noticeable shaking that sent people running from multi-storey buildings. The tremor was also felt in Chandigarh, where one resident described a "slight tremor" while preparing for bed around 10 PM.
+The meeting follows a sharp escalation in anti-Hindu vandalism across the Bay Area. Three Hindu temples have been vandalised in three weeks, with graffiti targeting the community spray-painted on walls and entrances. At least one incident involved Khalistan-related slogans, raising concerns about the spillover of geopolitical tensions onto American soil.
 
-Local authorities have confirmed no reports of loss of life or significant property damage. Himachal Pradesh's disaster management cell said monitoring teams were deployed overnight to survey structures in the epicentral zone, particularly older buildings and heritage structures in the Chamba Valley that are more vulnerable to seismic stress.
+During the meeting, Indian Americans expressed what multiple attendees described as "deep displeasure and dissatisfaction" that law enforcement agencies have been unable to take meaningful action against individuals and groups they allege are using U.S. soil to promote activities hostile to India.
 
-## What the Diaspora Should Know
+The Department of Justice announced in late May that it had opened a civil rights investigation into the temple attacks, making it the first federal probe into anti-Hindu hate crimes in the Bay Area. But community members say the response has been too slow and the pattern too clear to dismiss as isolated incidents.
 
-Chamba and the Kangra Valley draw significant tourist traffic, including diaspora visitors during the summer months. The region is home to Dharamsala and McLeod Ganj, the seat of the Tibetan government-in-exile and a popular destination for NRI travellers. While Friday's earthquake caused no damage, seismologists have long warned that the central Himalayas are overdue for a major seismic event — the last significant earthquake in the region was the 1905 Kangra earthquake, a magnitude 7.8 event that killed over 20,000 people.
+## The National Context
 
-The Indian Meteorological Department has not issued any further alerts, and normal activity has resumed across the affected areas."""
+The Silicon Valley meeting reflects a broader anxiety across the Indian American community. Nationally, anti-Hindu hate crimes have risen sharply over the past two years, according to data compiled by the Hindu American Foundation. The organisation documented more than 180 incidents in 2025, ranging from temple vandalism and online threats to physical assaults — a figure that advocacy groups say significantly undercounts the actual number because many incidents go unreported.
 
-    img3, attr3 = find_best_image(
-        person_name=None,
-        wiki_searches=["Chamba Himachal Pradesh", "Dharamsala Himachal Pradesh landscape"],
-        pexels_query="Himachal Pradesh mountains India"
+California, home to the largest concentration of Indian Americans in the country, has been a particular flashpoint. The state's South Asian population spans religious, linguistic, and political lines, and tensions between Hindu and Sikh diaspora groups over the Khalistan movement have surfaced repeatedly in community spaces, city council meetings, and now, law enforcement briefings.
+
+## What the Community Is Asking For
+
+Attendees at the San Francisco meeting outlined several demands: faster federal investigation of the temple attacks, greater local police presence around places of worship, the designation of the vandalism as hate crimes rather than property damage, and a broader investigation into whether the attacks are coordinated.
+
+They also raised the question of foreign influence, arguing that some of the anti-India rhetoric circulating in diaspora communities is being amplified by networks operating from outside the United States. The DOJ officials reportedly took note of the concerns but made no specific commitments during the meeting.
+
+## Why It Matters for NRIs
+
+For the roughly 4.8 million Indian Americans in the United States — including more than 600,000 in California alone — the hate crime debate touches on questions of belonging, safety, and political representation. The community has become the wealthiest and most educated immigrant group in the country, with outsized influence in technology, medicine, and finance. But that economic success has not insulated it from targeted hostility.
+
+The meeting also underscores a generational shift. First-generation immigrants who might have quietly tolerated slights are now organising, meeting federal law enforcement, and demanding institutional accountability. Bhutoria, who has been involved in Democratic Party politics and community organising for years, framed the meeting as a turning point: the community is no longer willing to wait for the next incident before raising its voice.
+
+The DOJ's Community Relations Service, which was created under the Civil Rights Act of 1964, typically mediates disputes and builds trust between law enforcement and communities. Its involvement signals that the federal government recognises the severity of the situation — even if concrete enforcement actions have yet to follow.
+
+For Silicon Valley's Indian Americans, the message is clear: the temples are not just buildings. They are the community's most visible institutions, and an attack on them is experienced as an attack on the community itself."""
+
+    # Image sourcing
+    img_url, img_attr = get_best_image(
+        commons_queries=["Hindu temple California", "Hindu temple United States", "Silicon Valley Indian community"],
+        pexels_query="Hindu temple United States"
     )
 
-    articles.append({
-        "headline": "A 5.0 Earthquake Struck Himachal Pradesh on Friday Night. The Region Is Overdue for a Big One.",
-        "subheadline": "The shallow quake near Dharamsala sent tremors across North India but caused no casualties — seismologists warn the Himalayan frontal thrust remains a ticking clock",
-        "body": quake_body,
-        "slug": "himachal-pradesh-earthquake-chamba-dharamsala-seismic-zone-5-20260606",
-        "category": "news",
+    article = {
+        "headline": headline,
+        "subheadline": subheadline,
+        "slug": slug,
+        "body": body,
+        "category": category,
+        "vertical": "diaspora",
         "status": "published",
-        "published_at": now,
-        "image_url": img3,
-        "image_caption": "The Chamba Valley in Himachal Pradesh, near the epicentre of Friday's earthquake",
-        "image_attribution": attr3 or "Wikimedia Commons",
-        "vertical": "general",
+        "published_at": datetime.now(timezone.utc).isoformat(),
+        "image_url": img_url or "",
+        "image_caption": "A Hindu temple in California — three Bay Area temples have been vandalised in three weeks" if img_url else "",
+        "image_attribution": img_attr or "",
         "is_editorial": False,
-        "sources": json.dumps(["National Centre for Seismology", "ANI", "Inshorts", "Tech Word News"])
-    })
+        "sources": json.dumps([
+            "The Indian Eye San Francisco bureau",
+            "Department of Justice Community Relations Service",
+            "Hindu American Foundation hate crime data",
+            "FBI field office reports",
+            "Census Bureau American Community Survey"
+        ])
+    }
 
-    # ── Insert all articles ──
-    print("\n=== Inserting articles ===")
-    success = 0
-    for art in articles:
-        # Remove None image URLs
-        if art["image_url"] is None:
-            del art["image_url"]
-            del art["image_caption"]
-            del art["image_attribution"]
-        if insert_article(art):
-            success += 1
-        time.sleep(0.5)
-
-    print(f"\n✓ Done: {success}/{len(articles)} articles published")
-    return success
+    return insert_article(article)
 
 
+# ============================================================
+# MAIN
+# ============================================================
 if __name__ == "__main__":
-    write_articles()
+    print(f"News writer starting at {datetime.now(timezone.utc).isoformat()}")
+    print(f"Supabase URL: {SUPABASE_URL[:30]}...")
+
+    results = []
+    results.append(("Semiconductor Roadmap", write_article_1()))
+    results.append(("US-India Trade Deal", write_article_2()))
+    results.append(("Hindu Hate Crimes DOJ", write_article_3()))
+
+    print("\n=== SUMMARY ===")
+    for name, success in results:
+        status = "✓ Published" if success else "✗ Failed"
+        print(f"  {status}: {name}")
+
+    failed = sum(1 for _, s in results if not s)
+    if failed:
+        print(f"\n⚠ {failed} article(s) failed to publish")
+        sys.exit(1)
+    else:
+        print(f"\n✓ All {len(results)} articles published successfully")
