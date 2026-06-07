@@ -1,7 +1,7 @@
 {
   "_description": "Official X and Threads handles for social embed sourcing. Writers search these accounts for relevant posts to embed in article bodies. Organized by category with persons + organizations.",
-  "_updated": "2026-06-02",
-  "_usage": "When writing about a person or topic, check this registry. If a match exists, search their X/Threads for a recent relevant post and embed the URL on its own line in the article body. Prefer posts WITH photos/videos. Organization accounts are great for official announcements and event photos. The frontend auto-renders both X and Instagram/Threads embeds from bare URLs on their own line.",
+  "_updated": "2026-06-07",
+  "_usage": "When writing about a person or topic, check this registry. If a match exists, search their X/Threads/Instagram for a recent relevant post and embed the URL on its own line in the article body. Prefer posts WITH photos/videos. Organization accounts are great for official announcements and event photos. The frontend auto-renders X, Instagram, and Threads embeds from bare URLs on their own line.",
   "sports": {
     "persons": [
       {
@@ -19,12 +19,14 @@
       {
         "name": "MS Dhoni",
         "x": null,
-        "threads": "msdhoni"
+        "threads": "msdhoni",
+        "instagram": "mahi7781"
       },
       {
         "name": "Jasprit Bumrah",
         "x": "Jaspritbumrah93",
-        "threads": "jaspritbumrah93"
+        "threads": "jaspritbumrah93",
+        "instagram": "jaspritb1"
       },
       {
         "name": "Hardik Pandya",
@@ -41,79 +43,94 @@
       {
         "name": "Sourav Ganguly",
         "x": "SGanguly99",
-        "threads": null
+        "threads": null,
+        "instagram": "souravganguly"
       },
       {
         "name": "Neeraj Chopra",
         "x": "Neeraj_chopra1",
-        "threads": "neeraj____chopra"
+        "threads": "neeraj____chopra",
+        "instagram": "neeraj____chopra"
       },
       {
         "name": "PV Sindhu",
         "x": "Pvsindhu1",
-        "threads": "pvsindhu1"
+        "threads": "pvsindhu1",
+        "instagram": "pvsindhu1"
       },
       {
         "name": "Sania Mirza",
         "x": "MirzaSania",
-        "threads": "mirzasaniar"
+        "threads": "mirzasaniar",
+        "instagram": "mirzasaniar"
       },
       {
         "name": "D Gukesh",
         "x": "DGukesh",
-        "threads": "dgukesh"
+        "threads": "dgukesh",
+        "instagram": null
       },
       {
         "name": "Sunil Chhetri",
         "x": "chetrisunil11",
-        "threads": "chetrisunil11"
+        "threads": "chetrisunil11",
+        "instagram": "chetri_sunil11"
       },
       {
         "name": "Smriti Mandhana",
         "x": "Smriti_Mandhana",
-        "threads": "smriti_mandhana"
+        "threads": "smriti_mandhana",
+        "instagram": "smriti_mandhana"
       },
       {
         "name": "Rishabh Pant",
         "x": "RishabhPant17",
-        "threads": "rishabpant"
+        "threads": "rishabpant",
+        "instagram": "rishabpant"
       },
       {
         "name": "Shubman Gill",
         "x": "ShubmanGill",
-        "threads": "shubmangill"
+        "threads": "shubmangill",
+        "instagram": "shubmangill"
       },
       {
         "name": "Ravindra Jadeja",
         "x": "imjadeja",
-        "threads": "ravindra.jadeja"
+        "threads": "ravindra.jadeja",
+        "instagram": "royalnavghan"
       },
       {
         "name": "KL Rahul",
         "x": "klrahul",
-        "threads": "rahulkl"
+        "threads": "rahulkl",
+        "instagram": "klrahul"
       },
       {
         "name": "Manu Bhaker",
         "x": "realmanubhaker",
-        "threads": null
+        "threads": null,
+        "instagram": "bhakermanu"
       },
       {
         "name": "Nikhat Zareen",
         "x": "nikhat_zareen",
-        "threads": null
+        "threads": null,
+        "instagram": "zareennikhat"
       },
       {
         "name": "Gulveer Singh",
         "x": null,
         "threads": null,
-        "note": "Search @afiindia for posts about him"
+        "note": "Search @afiindia for posts about him",
+        "instagram": null
       },
       {
         "name": "Avinash Sable",
         "x": null,
         "threads": null,
-        "note": "Search @afiindia for posts about him"
+        "note": "Search @afiindia for posts about him",
+        "instagram": null
       }
     ],
     "organizations": [
@@ -121,79 +138,92 @@
         "name": "BCCI",
         "x": "BCCI",
         "threads": null,
-        "covers": "Indian cricket, team announcements, match photos"
+        "covers": "Indian cricket, team announcements, match photos",
+        "instagram": "indiancricketteam"
       },
       {
         "name": "IPL",
         "x": "IPL",
         "threads": null,
-        "covers": "IPL matches, stats, player highlights"
+        "covers": "IPL matches, stats, player highlights",
+        "instagram": "iplt20"
       },
       {
         "name": "ICC",
         "x": "ICC",
         "threads": null,
-        "covers": "International cricket"
+        "covers": "International cricket",
+        "instagram": "icc"
       },
       {
         "name": "Athletics Federation of India",
         "x": "afiindia",
         "threads": null,
-        "covers": "Indian athletics, track and field, marathon runners, national records"
+        "covers": "Indian athletics, track and field, marathon runners, national records",
+        "instagram": null
       },
       {
         "name": "Hockey India",
         "x": "TheHockeyIndia",
         "threads": null,
-        "covers": "Indian hockey team"
+        "covers": "Indian hockey team",
+        "instagram": null
       },
       {
         "name": "BAI Badminton",
         "x": "BAI_Media",
         "threads": null,
-        "covers": "Indian badminton"
+        "covers": "Indian badminton",
+        "instagram": null
       },
       {
         "name": "AIFF Football",
         "x": "IndianFootball",
         "threads": null,
-        "covers": "Indian football, ISL, national team"
+        "covers": "Indian football, ISL, national team",
+        "instagram": null
       },
       {
         "name": "SAI Sports Authority",
         "x": "Media_SAI",
         "threads": null,
-        "covers": "Government sports body, all Indian sports"
+        "covers": "Government sports body, all Indian sports",
+        "instagram": null
       },
       {
         "name": "Olympic India",
         "x": "WeAreTeamIndia",
         "threads": null,
-        "covers": "Indian Olympic athletes"
+        "covers": "Indian Olympic athletes",
+        "instagram": null
       },
       {
         "name": "FIDE Chess",
         "x": "FIDE_chess",
         "threads": null,
-        "covers": "International chess"
+        "covers": "International chess",
+        "instagram": null
       },
       {
         "name": "RCB",
         "x": "RCBTweets",
         "threads": null,
-        "covers": "Royal Challengers Bengaluru cricket"
+        "covers": "Royal Challengers Bengaluru cricket",
+        "instagram": "royalchallengers.bengaluru"
       },
       {
         "name": "CSK",
         "x": "ChennaiIPL",
         "threads": null,
-        "covers": "Chennai Super Kings cricket"
+        "covers": "Chennai Super Kings cricket",
+        "instagram": "chennaiipl"
       },
       {
         "name": "Mumbai Indians",
         "x": "mipaltan",
         "threads": null,
-        "covers": "Mumbai Indians cricket"
+        "covers": "Mumbai Indians cricket",
+        "instagram": "mumbaiindians"
       }
     ]
   },
@@ -202,42 +232,50 @@
       {
         "name": "Narendra Modi",
         "x": "narendramodi",
-        "threads": null
+        "threads": null,
+        "instagram": "narendramodi"
       },
       {
         "name": "Amit Shah",
         "x": "AmitShah",
-        "threads": null
+        "threads": null,
+        "instagram": "amitshah"
       },
       {
         "name": "Rahul Gandhi",
         "x": "RahulGandhi",
-        "threads": null
+        "threads": null,
+        "instagram": "rahulgandhi"
       },
       {
         "name": "S Jaishankar",
         "x": "DrSJaishankar",
-        "threads": null
+        "threads": null,
+        "instagram": "drsjaishankar"
       },
       {
         "name": "Nirmala Sitharaman",
         "x": "nsitharaman",
-        "threads": null
+        "threads": null,
+        "instagram": "nsitharaman"
       },
       {
         "name": "Yogi Adityanath",
         "x": "myogiadityanath",
-        "threads": null
+        "threads": null,
+        "instagram": "myogi_adityanath"
       },
       {
         "name": "Arvind Kejriwal",
         "x": "ArvindKejriwal",
-        "threads": null
+        "threads": null,
+        "instagram": "arvindkejriwal"
       },
       {
         "name": "Mamata Banerjee",
         "x": "MamataOfficial",
-        "threads": null
+        "threads": null,
+        "instagram": null
       }
     ],
     "organizations": [
@@ -304,19 +342,22 @@
         "name": "USCIS",
         "x": "USCIS",
         "threads": null,
-        "covers": "Visa processing, green card, citizenship updates"
+        "covers": "Visa processing, green card, citizenship updates",
+        "instagram": "uscis"
       },
       {
         "name": "Travel.gov",
         "x": "TravelGov",
         "threads": null,
-        "covers": "Visa appointments, travel advisories, passport"
+        "covers": "Visa appointments, travel advisories, passport",
+        "instagram": "statedept"
       },
       {
         "name": "US Embassy India",
         "x": "USAndIndia",
         "threads": null,
-        "covers": "US visa in India, bilateral relations"
+        "covers": "US visa in India, bilateral relations",
+        "instagram": null
       }
     ]
   },
@@ -325,55 +366,65 @@
       {
         "name": "Sundar Pichai",
         "x": "sundarpichai",
-        "threads": "sundarpichai"
+        "threads": "sundarpichai",
+        "instagram": "sundarpichai"
       },
       {
         "name": "Satya Nadella",
         "x": "satyanadella",
-        "threads": "satyanadella"
+        "threads": "satyanadella",
+        "instagram": "satyanadella"
       },
       {
         "name": "Sam Altman",
         "x": "sama",
-        "threads": null
+        "threads": null,
+        "instagram": null
       },
       {
         "name": "Elon Musk",
         "x": "elonmusk",
-        "threads": null
+        "threads": null,
+        "instagram": null
       },
       {
         "name": "Tim Cook",
         "x": "tim_cook",
-        "threads": null
+        "threads": null,
+        "instagram": "tim_cook"
       },
       {
         "name": "Mark Zuckerberg",
         "x": null,
-        "threads": "zuck"
+        "threads": "zuck",
+        "instagram": "zuck"
       },
       {
         "name": "Nandan Nilekani",
         "x": "NandanNilekani",
-        "threads": null
+        "threads": null,
+        "instagram": null
       },
       {
         "name": "Jensen Huang",
         "x": null,
         "threads": null,
-        "note": "Search @nvidia for posts about him"
+        "note": "Search @nvidia for posts about him",
+        "instagram": null
       },
       {
         "name": "Arvind Krishna",
         "x": null,
         "threads": null,
-        "note": "Search @IBM for posts about him"
+        "note": "Search @IBM for posts about him",
+        "instagram": null
       },
       {
         "name": "Shantanu Narayen",
         "x": null,
         "threads": null,
-        "note": "Search @Adobe for posts about him"
+        "note": "Search @Adobe for posts about him",
+        "instagram": null
       }
     ],
     "organizations": [
@@ -698,13 +749,15 @@
       {
         "name": "Gautam Adani",
         "x": "gautam_adani",
-        "threads": null
+        "threads": null,
+        "instagram": "gautam.adani"
       },
       {
         "name": "Mukesh Ambani",
         "x": null,
         "threads": null,
-        "note": "Search @RIL_Updates for posts"
+        "note": "Search @RIL_Updates for posts",
+        "instagram": null
       }
     ],
     "organizations": [
@@ -739,23 +792,27 @@
       {
         "name": "Rishi Sunak",
         "x": "RishiSunak",
-        "threads": null
+        "threads": null,
+        "instagram": "rishisunak"
       },
       {
         "name": "Vivek Ramaswamy",
         "x": "VivekGRamaswamy",
-        "threads": null
+        "threads": null,
+        "instagram": "vivekgramaswamy"
       },
       {
         "name": "Sriram Krishnan",
         "x": "sriramk",
-        "threads": null
+        "threads": null,
+        "instagram": "sriramk"
       },
       {
         "name": "Ajay Banga",
         "x": null,
         "threads": null,
-        "note": "Search @WorldBank for posts about him"
+        "note": "Search @WorldBank for posts about him",
+        "instagram": null
       }
     ],
     "organizations": [
@@ -780,25 +837,29 @@
         "name": "Incredible India",
         "x": "IncredibleIndia",
         "threads": null,
-        "covers": "India tourism, destinations"
+        "covers": "India tourism, destinations",
+        "instagram": "incredibleindia"
       },
       {
         "name": "Air India",
         "x": "airindia",
         "threads": null,
-        "covers": "Indian airline, routes, fleet"
+        "covers": "Indian airline, routes, fleet",
+        "instagram": "airindia"
       },
       {
         "name": "IndiGo",
         "x": "IndiGo6E",
         "threads": null,
-        "covers": "Indian airline"
+        "covers": "Indian airline",
+        "instagram": "indigo6e"
       },
       {
         "name": "IRCTC",
         "x": "IRCTCofficial",
         "threads": null,
-        "covers": "Indian railways, travel"
+        "covers": "Indian railways, travel",
+        "instagram": null
       }
     ]
   }
