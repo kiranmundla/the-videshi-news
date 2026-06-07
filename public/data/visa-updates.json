@@ -1,5 +1,23 @@
 [
   {
+    "id": "h1b-fake-degree-fraud-ring",
+    "date": "2026-06-06",
+    "label": "Jun 6, 2026",
+    "headline": "US busts India-linked H-1B fraud ring \u2014 100,000+ fake degree certificates seized",
+    "summary": "Federal authorities uncovered a major India-linked visa fraud operation, seizing over 100,000 fake degree certificates from institutions including Manav Bharti University. Degrees sold for as little as $1,400 were used to qualify for H-1B visas. ICE identified 10,000+ students linked to \"highly suspect employers\" through OPT. USCIS admitted it does not track degrees from flagged institutions \u2014 expect heightened credential scrutiny for Indian applicants.",
+    "severity": "high",
+    "source": "ICE / USCIS / Fox News"
+  },
+  {
+    "id": "chip-roy-h1b-overhaul-bill",
+    "date": "2026-06-04",
+    "label": "Jun 4, 2026",
+    "headline": "Bill introduced to end H-1B as green card pathway & eliminate OPT program",
+    "summary": "Rep. Chip Roy (R-TX) introduced the \"American White-Collar Worker Jobs Act of 2026\" \u2014 would replace the H-1B lottery with wage-based selection, end H-1B as a route to permanent residency, eliminate the OPT program for foreign graduates, and require employers to prove no qualified Americans are available before hiring H-1B workers. Still a bill, not law, but signals escalating Congressional pressure on the program.",
+    "severity": "high",
+    "source": "US Congress / Rep. Chip Roy"
+  },
+  {
     "id": "ustraveldocs-outage-jun26",
     "date": "2026-06-02",
     "label": "Jun 2, 2026",
