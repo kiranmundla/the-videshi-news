@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-06-08T20:15:47.205335+00:00",
+  "timestamp": "2026-06-08T20:46:11.572219+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 2,
   "unpublished": 0,
   "articles": [
     {
-      "id": "0b7c5b80-5878-44bd-a691-29a52cad1070",
-      "headline": "Seven Hundred and Fifty Dollars for a Two-Week Appointment \u2014 America Rolls Out a Fast Lane for Tourist Visas",
-      "slug": "750-expedited-visa-appointment-b1-b2-fifa-world-cup-20260608",
+      "id": "060b0d3c-d4ba-4a02-954f-3a97a11ccf87",
+      "headline": "CBSE Dumps the Vendor Behind Its Exam Scandal. IIT Has Built a Replacement.",
+      "slug": "cbse-drops-coempt-edutech-iit-kanpur-madras-new-secure-portal-osm-scandal-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of the new visa policy specifically for Indian families, making it relevant to the diaspora."
+          "note": "The article effectively connects the implications of the exam scandal to NRI families, highlighting the importance of CBSE scores for their children's admissions."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more statistics or data on visa application trends for Indian applicants to strengthen the argument.",
-          "Consider adding quotes from affected individuals or experts to provide personal perspectives on the policy."
+          "Consider adding quotes from NRI parents or students to enhance the diaspora perspective.",
+          "Include more details on how the new portal will specifically address the concerns raised by the previous vendor's failures."
         ],
         "verdict": "pass"
       },
@@ -43,6 +43,91 @@
         "promoted to published"
       ],
       "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cc7dd4fd-2c65-43b0-a016-ed9654a0bfd3",
+      "headline": "The Centre Just Cut Ujjwala Subsidised Cylinders from Nine to Four. Ten Crore Households Will Feel It.",
+      "slug": "ujjwala-subsidy-cut-9-to-4-cylinders-lpg-pmuy-10-crore-households-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the subsidy cut to the financial impact on NRI families supporting relatives in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more statistics or quotes from affected families to enhance emotional impact.",
+          "Consider adding expert opinions on the long-term implications of the subsidy cut."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8424b8fb-0e56-4975-9791-20b878c60806",
+      "headline": "India Just Launched a Fuel That Costs \u20b920 Less Per Litre. Your Car Cannot Use It.",
+      "slug": "india-e85-flex-fuel-launch-ethanol-20-rupees-cheaper-maruti-hero-wagoner-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "57ae6b2f-59ad-4a52-8f55-663b98b28bf7",
+            "headline": "India Has Raised Fuel Prices Four Times in Three Weeks. The "
+          },
+          {
+            "article_id": "7bb5204d-df99-4ae1-9a0b-845ca1025be9",
+            "headline": "India Launches E85 Fuel at \u20b920 Below Petrol. The Flex-Fuel E"
+          },
+          {
+            "article_id": "4e4b9d32-e75e-4d1f-8e68-719467c77e7a",
+            "headline": "India Eyes Venezuelan Oil Fields as Caracas Becomes Its Four"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects the ethanol economy to diaspora families and their investments in rural India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the topic of ethanol fuel or the launch event.",
+          "Consider adding more statistics or examples of how the ethanol economy impacts NRIs directly."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (627\u2192706 words)"
+      ],
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -59,24 +144,24 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's topic of H-1B visas or immigration."
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article discusses the impact of the ruling on Indian workers, which is highly relevant to the diaspora audience."
+          "note": "The article discusses the impact of the ruling on Indian workers, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the topic of H-1B visas or immigration.",
-          "Add quotes or reactions from Indian diaspora organizations to enhance the connection with the audience."
+          "Replace the hero image with one that is more relevant to the topic of immigration or H-1B visas.",
+          "Consider adding quotes from affected Indian workers or companies to enhance the human interest angle."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (624\u2192718 words)"
+        "Revised by gpt-4o-mini (718\u2192799 words)"
       ],
       "revised": true,
       "unpublished": false,

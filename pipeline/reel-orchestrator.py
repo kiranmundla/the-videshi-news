@@ -23,6 +23,8 @@ from pathlib import Path
 
 import requests
 
+from portrait_fix import detect_letterbox, fix_avatar_portrait, burn_captions_news_layout, normalize_audio_social
+
 # ─── Config ──────────────────────────────────────────────────────────────────
 
 PIPELINE_DIR = Path(__file__).parent
@@ -832,19 +834,40 @@ def run(args):
         kavya_dur = get_video_duration(raw_avatar)
         print(f"  Duration: {kavya_dur:.1f}s")
 
+        # 3e2. Detect & fix letterboxing (landscape-in-portrait from HeyGen)
+        letterbox_info = detect_letterbox(raw_avatar)
+        is_news_layout = False
+        if letterbox_info.get("is_letterboxed"):
+            fixed_avatar = BUILD_DIR / f"avatar-fixed-{video_id}.mp4"
+            if fix_avatar_portrait(raw_avatar, fixed_avatar, headline, letterbox_info):
+                working_avatar = fixed_avatar
+                is_news_layout = True
+                print("  📐 Applied news layout portrait fix")
+            else:
+                working_avatar = raw_avatar
+        else:
+            working_avatar = raw_avatar
+
         # 3f. Generate captions
         print("  Generating captions...")
-        srt_path = generate_captions_srt(raw_avatar, script)
+        srt_path = generate_captions_srt(working_avatar, script)
 
-        # 3g. Burn captions if available
+        # 3g. Burn captions (positioned for news layout if applicable)
         if srt_path:
             captioned = BUILD_DIR / f"avatar-captioned-{video_id}.mp4"
-            if burn_captions(raw_avatar, srt_path, captioned):
-                avatar_video = captioned
+            if is_news_layout:
+                # Use positioned captions in the navy zone
+                if burn_captions_news_layout(working_avatar, srt_path, captioned):
+                    avatar_video = captioned
+                else:
+                    avatar_video = working_avatar
             else:
-                avatar_video = raw_avatar
+                if burn_captions(working_avatar, srt_path, captioned):
+                    avatar_video = captioned
+                else:
+                    avatar_video = working_avatar
         else:
-            avatar_video = raw_avatar
+            avatar_video = working_avatar
 
         # 3h. Normalize avatar video
         normalized_avatar = BUILD_DIR / "avatar_normalized.mp4"
@@ -857,9 +880,14 @@ def run(args):
         concat_segments([hook_vid, normalized_avatar, end_card], assembled)
 
         # 3j. Add music
-        final = REELS_DIR / f"reel-{slug[:60]}-final.mp4"
+        music_mixed = REELS_DIR / f"reel-{slug[:60]}-music.mp4"
         print("  Adding music...")
-        add_music(assembled, final, category, kavya_duration=kavya_dur)
+        add_music(assembled, music_mixed, category, kavya_duration=kavya_dur)
+
+        # 3j2. Normalize audio to social media standard (-14 LUFS)
+        final = REELS_DIR / f"reel-{slug[:60]}-final.mp4"
+        if not normalize_audio_social(music_mixed, final):
+            final = music_mixed  # Fallback to non-normalized
 
         # 3k. Update avatar last_used
         update_avatar_last_used(avatar['id'])

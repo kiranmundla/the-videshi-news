@@ -390,8 +390,18 @@ def review_and_fix_reel(video_path, article_headline, avatar_name,
                     print(f"    ✅ Audio levels adjusted")
 
             elif area in ('AVATAR_VISIBILITY', 'FRAMING'):
-                # These require re-generation with different avatar — flag but can't auto-fix in-place
-                print(f"    ⚠️ {area} requires avatar re-selection (flagged)")
+                # Try portrait fix for letterboxed content
+                from portrait_fix import detect_letterbox, fix_avatar_portrait, burn_captions_news_layout
+                lb_info = detect_letterbox(str(fixed))
+                if lb_info.get("is_letterboxed"):
+                    out = BUILD_DIR / f"fix_portrait_iter{iteration}.mp4"
+                    if fix_avatar_portrait(str(fixed), str(out), article_headline, lb_info):
+                        fixed = out
+                        print(f"    ✅ Portrait fix applied (news layout)")
+                    else:
+                        print(f"    ⚠️ Portrait fix failed, flagging for re-selection")
+                else:
+                    print(f"    ⚠️ {area} requires avatar re-selection (flagged)")
 
             elif area == 'DURATION':
                 print(f"    ⚠️ Duration requires script re-generation (flagged)")
