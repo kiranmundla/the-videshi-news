@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-08T18:46:24.240460+00:00",
+  "timestamp": "2026-06-08T19:15:49.558999+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,35 +11,47 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e96a426c-11fe-4499-8eca-0edc9d4b007c",
-      "headline": "India's Inflation Just Crossed the RBI's Red Line. Fuel and Vegetables Did the Damage.",
-      "slug": "india-cpi-inflation-4-percent-may-2026-rbi-target-fuel-vegetables-heatwave-20260608",
+      "id": "c3cbd60f-c76a-4251-a566-40451840044c",
+      "headline": "Vicky Kaushal Has Blocked 18 Months of His Life for One Role. Nobody Else Exists.",
+      "slug": "vicky-kaushal-mahavatar-parashurama-18-months-shraddha-kapoor-maddock-nri-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "55c9efbb-3123-40f5-bc7e-09790849426c",
+            "headline": "Vicky Kaushal Has Blocked 18 Months for Mahavatar. Shraddha "
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZHiw5gCOCp/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to Vicky Kaushal's role in Mahavatar or the content of the article."
+          }
+        ],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to inflation or the specific topics of fuel and vegetables."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects inflation trends in India to the financial impact on the Indian diaspora, particularly regarding remittances."
+          "quality": 7,
+          "note": "The article discusses a prominent Indian actor and his significant role, which may resonate with the Indian diaspora interested in Bollywood."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts inflation or the specific commodities discussed.",
-          "Add more data or quotes from economists to strengthen the analysis of the inflation situation."
+          "Replace the irrelevant Instagram embed with a more relevant source or quote related to Vicky Kaushal's preparation for Mahavatar.",
+          "Consider adding a brief section on how this role might impact Vicky Kaushal's career trajectory or the broader Bollywood landscape."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZHiw5gCOCp/",
         "promoted to published"
       ],
       "revised": false,
@@ -47,45 +59,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "96ab2c27-72af-431b-ad04-0f9dd3dbeb69",
-      "headline": "Sensodyne's Parent Is Building a \u20b92,000 Crore Factory in India. It Will Be the Company's Largest Plant Anywhere.",
-      "slug": "haleon-sensodyne-india-factory-pithampur-madhya-pradesh-2000-crore-manufacturing-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects the investment to the products used by the Indian diaspora, highlighting the significance of local manufacturing."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of manufacturing or the specific products mentioned.",
-          "Consider adding quotes or insights from industry experts to enhance the depth of the article."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gpt-4o-mini (589\u2192643 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "331f3917-c726-4010-858d-89ddec9314b7",
-      "headline": "India Posted a Surprise $7.1 Billion Surplus Last Quarter. The Diaspora Sent the Money.",
-      "slug": "india-current-account-surplus-q4-fy26-remittances-nri-43-billion-rbi-20260608",
+      "id": "c271aedb-a935-4183-8a86-a9a9915216cf",
+      "headline": "Diljit Dosanjh, AR Rahman and Imtiaz Ali Are About to Break Your Heart. Main Vaapas Aaunga Arrives Friday.",
+      "slug": "main-vaapas-aaunga-diljit-dosanjh-imtiaz-ali-partition-love-story-friday-nri-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,69 +71,33 @@
         "overall_score": 8,
         "embed_issues": [
           {
-            "url": "https://x.com/RBI/status/2063955479244734503",
+            "url": "https://www.instagram.com/reel/DZTrvXJu0Ym/",
             "problem": "irrelevant",
-            "explanation": "The tweet from RBI does not directly relate to the topic of remittances or the current account surplus discussed in the article."
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes, making it less relevant to the article."
           }
         ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of the Reserve Bank of India is relevant to the article's topic but does not directly illustrate the concept of remittances or the diaspora's financial contributions."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the current account surplus to the diaspora's remittances, providing a nuanced view of the implications for NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant embed with a more relevant social media post that discusses remittances or the economic situation of the Indian diaspora.",
-          "Consider using an image that more directly represents the concept of remittances or the Indian diaspora's financial contributions."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://x.com/RBI/status/2063955479244734503",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "db00c3b6-7036-448a-bf0a-324947b30aed",
-      "headline": "IndiGo Just Pulled Six Asian Destinations Off the Board for Summer \u2014 Here's What NRIs Planning a Layover Trip Need to Know",
-      "slug": "indigo-suspends-six-asian-routes-summer-nri-impact-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the impact of route suspensions on NRIs, particularly in relation to travel plans and costs."
+          "quality": 9,
+          "note": "The article effectively connects the film's themes to the experiences of the diaspora, making it relatable for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how NRIs can adjust their travel plans in light of the changes.",
-          "Add a brief section on potential future trends in international travel for NRIs post-pandemic."
+          "Replace the irrelevant Instagram embed with a more relevant social media post or trailer related to the film.",
+          "Consider adding more quotes or reactions from diaspora audiences to strengthen the connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZTrvXJu0Ym/",
+        "Revised by gpt-4o-mini (680\u2192754 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
