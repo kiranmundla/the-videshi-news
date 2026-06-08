@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-08T13:45:35.858860+00:00",
+  "timestamp": "2026-06-08T14:15:41.307962+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,95 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2f140687-8aee-4d89-baff-5409895f0928",
-      "headline": "His Father Took Loans. His Coach Never Charged a Rupee. On Monday, Manav Suthar Broke a 46-Year Record.",
-      "slug": "manav-suthar-family-story-sri-ganganagar-debut-record-dilip-doshi-india-afghanistan-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b60cf121-dda2-4377-9946-fa022eca8876",
-            "headline": "Prasidh Krishna Had Not Played a Test in India for Three Yea"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of the cricket stadium is relevant but does not directly depict Manav Suthar or his record-breaking performance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the Indian diaspora by highlighting the achievements of an Indian cricketer and the support from his family, which resonates with many NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including quotes or reactions from Manav Suthar himself to provide a personal touch.",
-          "Add more context about the significance of the record-breaking performance in the broader landscape of Indian cricket."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "29caade0-82e1-423e-bc0a-5e696cb6f510",
-      "headline": "India Open Their T20 World Cup Against Pakistan on Saturday. Here Is Everything You Need to Know.",
-      "slug": "india-women-t20-world-cup-2026-england-preview-schedule-squad-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "207732e2-b903-4d0c-aed5-5ed3469ee558",
-            "headline": "Harmanpreet Lost the Series. She Is Not Worried About the Wo"
-          },
-          {
-            "article_id": "b48e0d84-ca80-4d8d-aa0f-4ce1c176a5c1",
-            "headline": "India Won the 50-Over World Cup Last Year. In Four Days, The"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image features Harmanpreet Kaur with a trophy, which is relevant to women's cricket but does not specifically match the T20 World Cup context."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of the tournament for the Indian diaspora in the UK, emphasizing accessibility and the excitement of the India-Pakistan match."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant hero image that directly relates to the T20 World Cup.",
-          "Add more context about the historical significance of the India-Pakistan matches in women's cricket."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ecf09f8e-7fd7-42f4-a7c1-8fbd26729aab",
-      "headline": "The World Cup Starts Wednesday. Five Million NRIs in North America Have Front-Row Seats.",
-      "slug": "fifa-world-cup-2026-nri-guide-north-america-attend-watch-diaspora",
+      "id": "9bb66790-8b0a-4489-9c5e-30f3cf5a27da",
+      "headline": "The Monsoon Just Hit Kerala \u2014 and NRIs Who Book Now Will Pay Half What They Would in December",
+      "slug": "monsoon-india-travel-nri-kerala-slow-season-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -115,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the significance of the World Cup for NRIs, especially in terms of location and community engagement."
+          "note": "The article effectively addresses NRIs by discussing travel opportunities and cost benefits during the monsoon season."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of community events or watch parties to enhance the diaspora connection.",
-          "Clarify the opening match details, as the article states Mexico vs South Africa, which is incorrect; it should be Mexico vs South Africa."
+          "Consider adding more personal anecdotes or testimonials from NRIs who have traveled during the monsoon to enhance relatability.",
+          "Include a section on cultural events or festivals that occur during the monsoon to further engage diaspora readers."
         ],
         "verdict": "pass"
       },
@@ -133,40 +47,175 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "bc63e541-0521-4593-b553-fae32142c207",
-      "headline": "Cocktail 2 Is the Most Anticipated Indian Film of the Year. The Internet Can't Pick a Side.",
-      "slug": "cocktail-2-imdb-most-anticipated-shahid-kriti-rashmika-trailer-june-19-nri-20260608",
+      "id": "6d2626b6-9a96-4e56-b8bb-583722149d53",
+      "headline": "IndiGo Wants to Fly You From Delhi to Bali on a Widebody \u2014 and It's Not Joking",
+      "slug": "indigo-fy30-widebody-a350-a321xlr-nri-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "45b898e7-2abc-40e0-8bad-103f10760fd7",
-            "headline": "Cocktail 2 Is the Most Anticipated Indian Film on IMDb. It H"
-          },
-          {
-            "article_id": "cae7688a-a90a-4dd0-9460-02a06dcb627c",
-            "headline": "Nine Films. Four Fridays. \u20b91,400 Crore on the Line. June Is "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not feature any of the main actors or scenes from the film, which may not align with the article's focus on 'Cocktail 2'."
+          "score": 7,
+          "issue": "The image depicts an IndiGo aircraft, which is relevant to the article's topic about IndiGo's expansion plans."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the film's global release and its appeal to diaspora audiences, but could delve deeper into cultural connections."
+          "quality": 8,
+          "note": "The article discusses IndiGo's evolving role in connecting NRIs to international destinations, highlighting its significance for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that features the main cast or a scene from 'Cocktail 2' to better match the article's content.",
-          "Expand on the diaspora angle by including quotes or insights from NRI audiences or critics."
+          "Include more specific examples of how the changes in IndiGo's service will directly impact NRI travelers.",
+          "Add quotes or insights from industry experts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "911a8a40-b1e3-4b5e-abb4-5f273b1b77ef",
+      "headline": "Delta Is Coming Back to India \u2014 and This Time It's Riding IndiGo's Network",
+      "slug": "delta-indigo-partnership-atlanta-delhi-nri-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to travel but does not specifically depict Delta or IndiGo."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the needs and interests of the Indian diaspora, particularly in the Southeastern US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific quotes from Delta or IndiGo executives to enhance credibility.",
+          "Add a section on potential impacts on ticket prices or competition in the market."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "960ae327-6540-4d84-8bc1-38ddaa7cf1ab",
+      "headline": "Modi Asked Indians to Stop Buying Gold. The NSE Just Built a Way to Own It Without Touching It.",
+      "slug": "nse-electronic-gold-receipts-egr-modi-gold-boycott-nri-guide-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of EGRs for NRIs, but could elaborate more on how this affects their investment strategies."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the implications of EGRs for NRIs, including potential investment strategies or benefits.",
+          "Include more data or examples of how EGRs have been received in the market since their launch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "be304f51-809f-4553-b1bc-620bee52be12",
+      "headline": "Night Owls Are Not Just Tired. They Are Lonelier, More Anxious, and Science Now Knows Why.",
+      "slug": "night-owls-nocturnal-loneliness-anxiety-sleep-2026-south-asian-diaspora-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the findings to the experiences of South Asians in the diaspora, highlighting structural reasons for late-night behaviors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from a mental health expert to enhance credibility.",
+          "Include specific examples of interventions that could help alleviate nocturnal loneliness."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4e50c4fd-f88d-4b87-b33d-d2da74324ede",
+      "headline": "Two Hours of Weights a Week Cut Dementia Death Risk by 27 Per Cent. Most South Asians Are Not Lifting.",
+      "slug": "harvard-strength-training-dementia-mortality-south-asian-diaspora-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the importance of resistance training to the health challenges faced by South Asians, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or testimonials from South Asians who have successfully integrated resistance training into their routines to enhance relatability.",
+          "Include specific recommendations for resistance training programs or resources tailored for South Asians to provide actionable guidance."
         ],
         "verdict": "pass"
       },
