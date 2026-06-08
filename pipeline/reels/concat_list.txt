@@ -1,3 +1,0 @@
-file 'hook_frame.mp4'
-file 'anchor_trimmed.mp4'
-file 'end_card_with_audio.mp4'

@@ -217,26 +217,62 @@ story_posted = False
 print(f"\n=== Generating Reel for: {reel_article['headline'][:60]}... ===")
 
 try:
-    # Step A: Generate reel video
-    result = subprocess.run(
-        ["python3", "generate-reel.py", "--slug", reel_article['slug'], "--upload"],
-        cwd=os.path.expanduser("~/workspace/the-videshi-news/pipeline"),
-        capture_output=True, text=True, timeout=180
-    )
-    print(f"generate-reel.py exit code: {result.returncode}")
-    if result.stdout:
-        print(f"STDOUT:\n{result.stdout[-2000:]}")
-    if result.stderr:
-        print(f"STDERR:\n{result.stderr[-1000:]}")
+    # Step A: Check for pre-built reel first, then fall back to generate-reel.py
+    import glob
+    slug_short = reel_article['slug'][:80]
+    reels_dir = os.path.expanduser("~/workspace/the-videshi-news/pipeline/reels")
+    prebuilt = sorted(glob.glob(os.path.join(reels_dir, f"reel-{slug_short}*.mp4")))
+    # Also check for partial slug matches (e.g. kavya reels with shorter slug fragments)
+    if not prebuilt:
+        # Try matching first 40 chars of slug for broader match
+        prebuilt = sorted(glob.glob(os.path.join(reels_dir, f"reel-{slug_short[:40]}*.mp4")))
 
-    # Parse the Supabase URL from output
     reel_url = None
-    for line in result.stdout.split('\n'):
-        if 'supabase.co/storage' in line and 'http' in line:
-            match = re.search(r'(https://[^\s]+supabase\.co/storage/[^\s]+)', line)
-            if match:
-                reel_url = match.group(1)
-                break
+
+    if prebuilt:
+        # Use pre-built reel — upload to Supabase directly
+        prebuilt_path = prebuilt[-1]  # newest if multiple
+        print(f"📦 Found pre-built reel: {os.path.basename(prebuilt_path)}")
+        print(f"   Uploading to Supabase storage...")
+        storage_name = f"reels/{os.path.basename(prebuilt_path)}"
+        with open(prebuilt_path, 'rb') as vf:
+            ur = requests.post(
+                f"{SUPABASE_URL}/storage/v1/object/article-images/{storage_name}",
+                headers={
+                    "apikey": SB_SERVICE_KEY,
+                    "Authorization": f"Bearer {SB_SERVICE_KEY}",
+                    "Content-Type": "video/mp4",
+                    "x-upsert": "true"
+                },
+                data=vf.read(),
+                timeout=120
+            )
+        if ur.status_code in (200, 201):
+            reel_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{storage_name}"
+            print(f"   ✅ Uploaded: {reel_url}")
+        else:
+            print(f"   ⚠️ Upload failed ({ur.status_code}), falling back to generate-reel.py")
+
+    if not reel_url:
+        # No pre-built reel or upload failed — generate fresh
+        result = subprocess.run(
+            ["python3", "generate-reel.py", "--slug", reel_article['slug'], "--upload"],
+            cwd=os.path.expanduser("~/workspace/the-videshi-news/pipeline"),
+            capture_output=True, text=True, timeout=180
+        )
+        print(f"generate-reel.py exit code: {result.returncode}")
+        if result.stdout:
+            print(f"STDOUT:\n{result.stdout[-2000:]}")
+        if result.stderr:
+            print(f"STDERR:\n{result.stderr[-1000:]}")
+
+        # Parse the Supabase URL from output
+        for line in result.stdout.split('\n'):
+            if 'supabase.co/storage' in line and 'http' in line:
+                match = re.search(r'(https://[^\s]+supabase\.co/storage/[^\s]+)', line)
+                if match:
+                    reel_url = match.group(1)
+                    break
 
     if not reel_url:
         print("ERROR: Could not find reel URL in generate-reel.py output")
