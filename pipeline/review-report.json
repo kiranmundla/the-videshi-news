@@ -1,11 +1,14 @@
 {
-  "timestamp": "2026-06-08T05:05:14.258371+00:00",
+  "timestamp": "2026-06-08T05:15:02.979488+00:00",
+  "mode": "fix",
   "stats": {
-    "pass": 8,
-    "flag": 2,
+    "pass": 6,
+    "flag": 3,
     "fail": 0,
     "error": 0
   },
+  "revisions": 2,
+  "unpublished": 0,
   "articles": [
     {
       "id": "c9f3933d-0672-4e91-a296-6df15ee650b3",
@@ -20,22 +23,24 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
+          "issue": "The image of Sonali Bendre does match the article's topic, but it is not directly related to the series 'Raakh'."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the diaspora by discussing the historical context of 1970s Delhi, which resonates with NRIs."
+          "note": "The article connects well with the diaspora by discussing the historical context of 1970s Delhi, which resonates with NRIs whose parents experienced that era."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to improve the image match score.",
-          "Add more direct quotes or insights from the creators or other cast members to enhance the depth of the article."
+          "Consider using a more relevant image that directly relates to the series 'Raakh'.",
+          "Expand on the diaspora angle by including quotes or perspectives from NRIs about their connection to the themes of the series."
         ],
         "verdict": "pass"
       },
       "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -51,22 +56,24 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "hero image not provided"
+          "issue": "The image features Akshay Kumar, which is relevant to the article, but it does not directly relate to the film 'Bhooth Bangla'."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the film's release on Netflix to the diaspora audience, emphasizing accessibility and the global nature of streaming."
+          "note": "The article effectively connects the film's release on Netflix to diaspora audiences, emphasizing accessibility and the cultural significance of the film."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a hero image that reflects the film or its themes.",
-          "Add more quotes or insights from the cast or crew to enhance the article's depth."
+          "Consider using an image that directly relates to 'Bhooth Bangla' for better visual alignment with the article's content.",
+          "Include more quotes or insights from the cast or crew to enhance the depth of the article."
         ],
         "verdict": "pass"
       },
       "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -98,11 +105,13 @@
         "duplicate_embeds": [],
         "suggestions": [
           "Include quotes from Nandni Sharma or her coach to add a personal touch.",
-          "Provide more context on the significance of the Women's T20 World Cup for Indian cricket."
+          "Provide more context on the significance of the Women's T20 World Cup for the Indian diaspora."
         ],
         "verdict": "pass"
       },
       "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -118,22 +127,24 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the FIFA World Cup or football, but it is a generic sports image."
+          "issue": "The image does not directly relate to the FIFA World Cup or football, which is the main topic of the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article provides detailed information on how NRIs can watch the World Cup, making it highly relevant for the diaspora."
+          "note": "The article provides detailed information on how NRIs can watch the World Cup, making it highly relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly represents the FIFA World Cup or football.",
-          "Add a brief section on the significance of the World Cup for Indian football fans to enhance engagement."
+          "Consider using a more relevant image that depicts football or the FIFA World Cup to enhance visual connection.",
+          "Add a brief section on the significance of the World Cup for Indian viewers to deepen the cultural context."
         ],
         "verdict": "pass"
       },
       "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -154,7 +165,7 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the return of an NRI to lead a significant protest in India, connecting well with the diaspora audience."
+          "note": "The article discusses the return of an NRI to lead a significant protest in India, connecting well with diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
@@ -164,7 +175,11 @@
         ],
         "verdict": "flag"
       },
-      "actions_taken": [],
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (724\u2192789 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -185,17 +200,19 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses a significant change in visa policy that directly impacts Indian professionals in the US, making it relevant to the diaspora."
+          "note": "The article directly addresses the concerns and benefits for Indian H-1B visa holders, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from Indian professionals regarding the new visa policy to enhance relatability.",
-          "Add a section on potential challenges or criticisms of the new visa renewal process."
+          "Include quotes or reactions from Indian professionals regarding the new visa renewal process to enhance relatability.",
+          "Add a section discussing potential long-term impacts of this policy on the Indian tech community in the U.S."
         ],
         "verdict": "pass"
       },
       "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -216,59 +233,19 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the impact of market conditions on NRI investors, making it relevant to the diaspora."
+          "note": "The article effectively connects the economic situation in India to the interests of NRI investors, discussing the impact on their portfolios and remittances."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRI investors can mitigate risks in the current market.",
-          "Include expert opinions or quotes to enhance credibility and depth."
+          "Consider adding more specific examples of how NRI investors can navigate the current market conditions.",
+          "Include quotes or insights from financial experts to enhance credibility and depth."
         ],
         "verdict": "pass"
       },
       "actions_taken": [],
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b3bbd346-c9f1-4ee1-9bf8-1005302fefa2",
-      "headline": "Seven Per Cent \u2014 The Hidden Provision That Would Slash Indian H-1B Visas by Ninety Per Cent",
-      "slug": "seven-percent-country-cap-h1b-india-chip-roy-bill-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "4dff9332-d5a1-4245-8a39-e8a554a40c2c",
-            "headline": "A New Bill Wants to Kill the H-1B Path to a Green Card. Indi"
-          }
-        ]
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://x.com/chiproytx/status/2062683867991900226",
-            "problem": "irrelevant",
-            "explanation": "The tweet from Chip Roy does not directly relate to the topic of H-1B visa caps or the implications for Indian workers."
-          }
-        ],
-        "image_match": {
-          "score": 4,
-          "issue": "The image of Chip Roy does not visually represent the topic of H-1B visas or the impact on Indian workers."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of H-1B visa changes on Indian nationals, which is highly relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the image with one that more directly relates to H-1B visas or Indian workers in the U.S.",
-          "Provide more context on how the proposed changes would affect the Indian diaspora specifically, perhaps including quotes or reactions from affected individuals or organizations."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -289,53 +266,67 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article discusses the challenges faced by Indian H-1B visa holders, directly relevant to the Indian diaspora in the US."
+          "note": "The article directly addresses the challenges faced by Indian H-1B holders, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
           "Replace the hero image with one that is more relevant to immigration or the PERM process.",
-          "Consider adding quotes or anecdotes from affected individuals to enhance the human interest aspect."
+          "Consider adding quotes or anecdotes from affected individuals to enhance the personal connection to the diaspora."
         ],
         "verdict": "flag"
       },
-      "actions_taken": [],
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (707\u2192602 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "53a9d3b2-776b-41df-824e-baee2c205682",
-      "headline": "Selena Gomez's Rare Beauty Just Landed in India. Good Luck Getting Your Hands on That Blush.",
-      "slug": "selena-gomez-rare-beauty-india-nykaa-soft-pinch-blush-diaspora-nri-20260608",
+      "id": "b3bbd346-c9f1-4ee1-9bf8-1005302fefa2",
+      "headline": "Seven Per Cent \u2014 The Hidden Provision That Would Slash Indian H-1B Visas by Ninety Per Cent",
+      "slug": "seven-percent-country-cap-h1b-india-chip-roy-bill-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "e3664b41-72f8-4fed-a8d9-507c0e0121d8",
-            "headline": "Selena Gomez's Rare Beauty Has Launched in India Through Nyk"
+            "article_id": "4dff9332-d5a1-4245-8a39-e8a554a40c2c",
+            "headline": "A New Bill Wants to Kill the H-1B Path to a Green Card. Indi"
           }
         ]
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://x.com/chiproytx/status/2062683867991900226",
+            "problem": "irrelevant",
+            "explanation": "The tweet from Chip Roy does not directly relate to the specific provisions of the bill discussed in the article."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image of Chip Roy does not visually represent the topic of H-1B visas or immigration, which may confuse readers."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the launch of Rare Beauty in India to the experiences of the Indian diaspora, particularly NRIs who have been purchasing the products abroad."
+          "quality": 9,
+          "note": "The article effectively highlights the impact of the proposed changes on Indian nationals and the Indian IT industry, making it highly relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote or perspective from an NRI consumer to enhance the diaspora connection.",
-          "Include more details about the impact of Rare Beauty's mental health initiative in India to strengthen the article's depth."
+          "Replace the hero image with one that more directly relates to H-1B visas or immigration to enhance relevance.",
+          "Consider including quotes or reactions from Indian diaspora members or organizations to strengthen the diaspora connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
-      "actions_taken": [],
+      "actions_taken": [
+        "Removed irrelevant embed: https://x.com/chiproytx/status/2062683867991900226"
+      ],
+      "revised": false,
+      "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
   ]
