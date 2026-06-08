@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-08T09:15:37.712770+00:00",
+  "timestamp": "2026-06-08T10:15:38.693124+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "80365fee-da08-4f50-8a4d-0a6be1d1e2aa",
-      "headline": "Peddi Just Crossed \u20b9233 Crore in Four Days. Ram Charan Doesn't Do Comebacks.",
-      "slug": "peddi-ram-charan-233-crore-worldwide-third-200-crore-film-nri-20260608",
+      "id": "76794acb-1911-4c48-bf32-a364844ce201",
+      "headline": "India Is Quietly Rebuilding Its Entire Oil Supply Chain. Venezuela and Brazil Are Replacing the Gulf.",
+      "slug": "india-oil-supply-chain-diversification-venezuela-brazil-africa-hormuz-nri-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,18 +24,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image features Ram Charan but does not directly relate to the film 'Peddi'."
+          "issue": "The image does not directly relate to the oil supply chain topic."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the film's performance in North America, appealing to the NRI audience."
+          "note": "The article effectively connects the oil supply chain changes to the financial implications for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to 'Peddi'.",
-          "Add more context about the film's themes or storyline to enhance engagement."
+          "Consider using a more relevant image that depicts oil supply chains or related themes.",
+          "Expand on the implications for NRIs to enhance the diaspora angle further."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "fe7e6ef0-9c25-4459-8f9a-163344176493",
-      "headline": "Bobby Deol Just Delivered the Performance of His Career. Bollywood Almost Didn't Notice.",
-      "slug": "bobby-deol-bandar-anurag-kashyap-dark-horse-crime-thriller-nri-20260608",
+      "id": "62b02efc-9647-4f9a-9b50-7984f963a78c",
+      "headline": "India's Heat Wave Has Killed Nearly 100 People in Three Days. UP and Bihar Are in Crisis.",
+      "slug": "india-heat-wave-96-dead-uttar-pradesh-bihar-2026-nri-diaspora-guide-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -60,95 +60,126 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Bobby Deol does not directly relate to the specific film discussed, 'Bandar', but it is relevant to his career."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with diaspora audiences by discussing Bobby Deol's evolution and the film's limited release in international markets."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to the film 'Bandar' for better relevance.",
-          "Add more context about the film's themes and its reception in the diaspora to enhance the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e3cf0dae-f4b8-4c68-8bec-94cf8dc6ddbb",
-      "headline": "Zuckerberg Says AI Spending Is Forcing Meta to 'Take Down' Its Workforce. His Flagship AI Model Just Stumbled.",
-      "slug": "zuckerberg-meta-ai-layoffs-muse-spark-stumble-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d53aca3c-6341-4a21-8416-6b66d9e34983",
-            "headline": "Meta Wants Tens of Billions From Shareholders to Build AI. Z"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of Zuckerberg is relevant to the article's topic on Meta and AI."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of layoffs on Indian engineers, connecting directly to the diaspora's concerns about job security and immigration."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Zuckerberg or other Meta executives to enhance credibility.",
-          "Add a brief section on how these layoffs and AI developments might affect the broader tech job market, especially for NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "30dc7d98-1dca-4a9a-b9c6-dd41c7eb46da",
-      "headline": "A New Bill Wants to Kill the H-1B-to-Green-Card Pipeline. Big Tech Should Be Nervous.",
-      "slug": "h1b-overhaul-bill-green-card-opt-tech-industry-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of the Capitol is relevant to the legislative topic but does not directly represent the H-1B visa issue."
+          "issue": "The image depicts a heat-related scene but lacks direct relevance to the specific crisis in UP and Bihar."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article discusses the impact of the proposed bill on Indian engineers and the Indian IT services industry, which is highly relevant to the NRI community."
+          "note": "The article effectively connects the heat wave crisis to the concerns of NRIs with family in affected regions, making it highly relevant."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to the H-1B visa or Indian engineers to enhance relevance.",
-          "Add quotes or perspectives from Indian engineers or diaspora members to strengthen the connection to the NRI community."
+          "Consider including specific statistics or quotes from diaspora members to enhance the personal connection.",
+          "Add more visuals or infographics to illustrate the impact of the heat wave on agriculture and health."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "893dee26-5186-4e65-8b85-3162ea29ecd0",
+      "headline": "GLP-1 Weight Loss Drugs Now Show They Can Slash Cancer Risk by Up to 50 Per Cent. South Asians Should Be Watching.",
+      "slug": "glp1-weight-loss-drugs-cancer-risk-reduction-asco-2026-south-asian-diaspora-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings on GLP-1 drugs to the health concerns of South Asians, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific statistics or quotes from South Asian health experts to strengthen the diaspora connection.",
+          "Add a section on how NRIs can access these medications or participate in related clinical trials."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e9bdcdbe-16a7-4d98-876d-5084fa8dd19a",
+      "headline": "India's Temple Circuit Gets Its First Luxury Hotel Chain \u2014 and NRI Families Are the Target Market",
+      "slug": "mandir-collection-luxury-temple-hotel-nri-pilgrimage-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant but does not specifically depict luxury or temple-related themes."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the needs and preferences of NRI families traveling for spiritual tourism."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more visuals or examples of the luxury offerings to enhance the appeal.",
+          "Add quotes or testimonials from potential customers or industry experts to strengthen the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "35221b28-98a7-43a5-a64e-1ccc3bc15b61",
+      "headline": "El Ni\u00f1o Is Coming Back \u2014 and It Could Wreck Your Fall India Trip",
+      "slug": "el-nino-2026-fall-india-trip-nri-travel-planning-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to travel but does not specifically depict India or the effects of El Ni\u00f1o."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses NRIs and their travel plans, making the content highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include specific examples of how El Ni\u00f1o has affected travel in India in previous years for context.",
+          "Consider adding a section on how NRIs can stay updated on weather changes leading up to their trips."
         ],
         "verdict": "pass"
       },
