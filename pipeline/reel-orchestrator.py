@@ -508,7 +508,7 @@ def burn_captions(video_path, srt_path, output_path):
         "-c:a", "copy",
         str(output_path)
     ]
-    result = subprocess.run(cmd, capture_output=True, timeout=120, text=True)
+    result = subprocess.run(cmd, capture_output=True, timeout=300, text=True)
     if result.returncode != 0:
         print(f"  ⚠️ Caption burn failed: {result.stderr[-200:]}")
         return False
@@ -541,36 +541,26 @@ def normalize_segment(input_path, output_path, fps=25, size="1080x1920"):
 
 
 def concat_segments(segments, output_path):
-    """Concatenate video segments via concat demuxer."""
-    # Convert to .ts for seamless concat
-    ts_files = []
+    """Concatenate video segments via filter_complex concat."""
+    inputs = []
+    filter_parts = []
     for i, seg in enumerate(segments):
-        ts_path = BUILD_DIR / f"seg_{i}.ts"
-        cmd = [
-            "ffmpeg", "-y", "-i", str(seg),
-            "-c:v", "copy", "-c:a", "copy",
-            "-bsf:v", "h264_mp4toannexb",
-            "-f", "mpegts",
-            str(ts_path)
-        ]
-        subprocess.run(cmd, capture_output=True, timeout=30)
-        ts_files.append(ts_path)
+        inputs.extend(["-i", str(seg)])
+        filter_parts.append(f"[{i}:v][{i}:a]")
 
-    # Concat
-    concat_str = "|".join(str(f) for f in ts_files)
+    filter_str = "".join(filter_parts) + f"concat=n={len(segments)}:v=1:a=1[v][a]"
+
     cmd = [
         "ffmpeg", "-y",
-        "-i", f"concat:{concat_str}",
-        "-c", "copy",
+        *inputs,
+        "-filter_complex", filter_str,
+        "-map", "[v]", "-map", "[a]",
+        "-c:v", "libx264", "-crf", "22", "-preset", "fast",
+        "-c:a", "aac", "-b:a", "192k",
         "-movflags", "+faststart",
         str(output_path)
     ]
-    subprocess.run(cmd, capture_output=True, timeout=120)
-
-    # Cleanup
-    for f in ts_files:
-        f.unlink(missing_ok=True)
-
+    result = subprocess.run(cmd, capture_output=True, timeout=300)
     return output_path.exists()
 
 
@@ -649,17 +639,18 @@ def upload_to_supabase(local_path, storage_name):
         return None
 
 
-def register_prebuilt_reel(article_id, video_url, caption, method, avatar_name=None):
+def register_prebuilt_reel(article, video_url, video_path, caption, method, avatar_name=None):
     """Insert into prebuilt_reels for posting pipeline."""
     payload = {
-        "article_id": article_id,
+        "article_id": article['id'],
+        "article_slug": article.get('slug', ''),
+        "headline": article.get('headline', ''),
+        "video_path": str(video_path),
         "video_url": video_url,
         "caption": caption,
         "status": "pending",
-        "method": method,
+        "source": method if method == 'heygen' else 'generated',
     }
-    if avatar_name:
-        payload["avatar_name"] = avatar_name
 
     r = requests.post(
         f"{SUPABASE_URL}/rest/v1/prebuilt_reels",
@@ -907,7 +898,7 @@ def run(args):
 
     # 5. Register in prebuilt_reels
     caption = build_caption(article)
-    register_prebuilt_reel(article['id'], public_url, caption, method, avatar_name)
+    register_prebuilt_reel(article, public_url, final, caption, method, avatar_name)
 
     # 6. Summary
     file_size = final.stat().st_size / (1024 * 1024)
