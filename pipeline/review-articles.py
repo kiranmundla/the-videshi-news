@@ -250,6 +250,85 @@ def check_duplicate_embeds(body):
     dupes = [url for url, count in Counter(all_urls).items() if count > 1]
     return dupes
 
+
+def verify_embed_urls(body, published_at=None):
+    """Verify that social media embed URLs are actually live and not hallucinated.
+    
+    Checks:
+    1. X/Twitter: react-tweet API returns data (not null)
+    2. X/Twitter: tweet timestamp is within 60 days of article publish date (catches hallucinated old IDs)
+    3. Instagram: oEmbed API returns valid response
+    
+    Returns list of {"url": ..., "problem": "broken"|"hallucinated_old", "detail": ...}
+    """
+    issues = []
+    
+    # ── Check X/Twitter embeds ──
+    x_urls = re.findall(r'https?://(?:www\.)?(?:twitter|x)\.com/\w+/status/(\d+)', body)
+    for tweet_id in x_urls:
+        url = f"https://x.com/status/{tweet_id}"
+        # Find full URL in body for removal
+        full_url_match = re.search(r'https?://(?:www\.)?(?:twitter|x)\.com/\w+/status/' + tweet_id, body)
+        full_url = full_url_match.group(0) if full_url_match else url
+        
+        try:
+            r = subprocess.run(
+                ["curl", "-s", "--connect-timeout", "5", "--max-time", "10",
+                 f"https://react-tweet.vercel.app/api/tweet/{tweet_id}"],
+                capture_output=True, text=True, timeout=15
+            )
+            data = json.loads(r.stdout)
+            
+            if data.get("data") is None:
+                issues.append({"url": full_url, "problem": "broken", "detail": "react-tweet returned null (deleted/protected/nonexistent)"})
+                continue
+            
+            # Check tweet age — hallucinated tweets often have IDs from years ago
+            if published_at:
+                try:
+                    # Twitter snowflake → timestamp
+                    tweet_epoch_ms = (int(tweet_id) >> 22) + 1288834974657
+                    tweet_date = datetime.fromtimestamp(tweet_epoch_ms / 1000, tz=timezone.utc)
+                    
+                    if isinstance(published_at, str):
+                        pub_date = datetime.fromisoformat(published_at.replace("Z", "+00:00"))
+                    else:
+                        pub_date = published_at
+                    
+                    age_days = (pub_date - tweet_date).days
+                    if age_days > 60:
+                        issues.append({
+                            "url": full_url,
+                            "problem": "hallucinated_old",
+                            "detail": f"Tweet is from {tweet_date.strftime('%Y-%m-%d')} — {age_days} days before article. Likely hallucinated."
+                        })
+                except Exception:
+                    pass  # Can't parse date, skip age check
+                    
+        except Exception as e:
+            # Network error — don't flag, just skip
+            print(f"  ⚠️  Could not verify tweet {tweet_id}: {e}")
+    
+    # ── Check Instagram embeds ──
+    ig_urls = re.findall(r'https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/([A-Za-z0-9_-]+)', body)
+    for shortcode in ig_urls:
+        full_url_match = re.search(r'https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/' + re.escape(shortcode) + r'[^\s]*', body)
+        full_url = full_url_match.group(0) if full_url_match else f"https://instagram.com/p/{shortcode}"
+        
+        try:
+            r = subprocess.run(
+                ["curl", "-s", "--connect-timeout", "5", "--max-time", "10", "-o", "/dev/null", "-w", "%{http_code}",
+                 f"https://www.instagram.com/p/{shortcode}/embed/"],
+                capture_output=True, text=True, timeout=15
+            )
+            status_code = r.stdout.strip()
+            if status_code in ("404", "410"):
+                issues.append({"url": full_url, "problem": "broken", "detail": f"Instagram embed returned {status_code}"})
+        except Exception as e:
+            print(f"  ⚠️  Could not verify IG {shortcode}: {e}")
+    
+    return issues
+
 def check_duplicate_images(article, recent_articles):
     """Check if this article's image is used by another recent article."""
     img = article.get("image_url", "")
@@ -459,6 +538,28 @@ def review_article(article, recent_articles, fix_mode=False):
     if dup_images:
         print(f"  🖼️  Same image used on: {[d['headline'] for d in dup_images]}")
     
+    # ── Pre-check 3: Verify embed URLs are live ──
+    broken_embeds = verify_embed_urls(body, article.get("published_at"))
+    result["pre_checks"]["broken_embeds"] = broken_embeds
+    if broken_embeds:
+        for be in broken_embeds:
+            print(f"  💀 Embed {be['problem']}: {be['url'][:60]} — {be['detail'][:60]}")
+        if fix_mode:
+            fixed_body = body
+            for be in broken_embeds:
+                url = be["url"]
+                # Remove the URL line and surrounding blank lines
+                fixed_body = re.sub(r'\n?\n?' + re.escape(url) + r'\n?\n?', '\n\n', fixed_body)
+            fixed_body = re.sub(r'\n{3,}', '\n\n', fixed_body)
+            if fixed_body != body:
+                status = sb_patch(article["id"], {"body": fixed_body})
+                if status in (200, 204):
+                    count = len(broken_embeds)
+                    result["actions_taken"].append(f"Removed {count} broken/hallucinated embed(s)")
+                    print(f"  ✅ Removed {count} broken/hallucinated embed(s)")
+                    body = fixed_body
+                    article["body"] = body
+    
     # ── Build article text for LLM review ──
     article_text = f"""HEADLINE: {headline}
 VERTICAL: {vertical}
@@ -607,7 +708,12 @@ def main():
             len([a for a in r.get("actions_taken", []) if "Removed" in a])
             for r in results
         )
+        total_broken_embeds = sum(
+            len(r.get("pre_checks", {}).get("broken_embeds", []))
+            for r in results
+        )
         print(f"  🔧 Mechanical fixes (embeds): {total_mechanical}")
+        print(f"  💀 Broken/hallucinated embeds found: {total_broken_embeds}")
         print(f"  📝 Articles revised: {revision_count}")
         print(f"  🗑️  Articles unpublished: {unpublish_count}")
     
