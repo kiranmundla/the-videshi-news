@@ -1,0 +1,342 @@
+{
+  "timestamp": "2026-06-08T05:05:14.258371+00:00",
+  "stats": {
+    "pass": 8,
+    "flag": 2,
+    "fail": 0,
+    "error": 0
+  },
+  "articles": [
+    {
+      "id": "c9f3933d-0672-4e91-a296-6df15ee650b3",
+      "headline": "Sonali Bendre Chose Raakh Because It Scared Her. You Should Watch It for the Same Reason.",
+      "slug": "raakh-prime-video-ali-fazal-sonali-bendre-prosit-roy-paatal-lok-june-12-nri-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess relevance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the diaspora by discussing the historical context of 1970s Delhi, which resonates with NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image description to improve the image match score.",
+          "Add more direct quotes or insights from the creators or other cast members to enhance the depth of the article."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d337a9ee-71f2-4d04-98b0-99397c2e99fd",
+      "headline": "Bhooth Bangla Just Hit Netflix. Akshay Kumar and Priyadarshan Finally Got Their Reunion Right.",
+      "slug": "bhooth-bangla-netflix-ott-akshay-kumar-priyadarshan-264-crore-horror-comedy-nri-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "hero image not provided"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the film's release on Netflix to the diaspora audience, emphasizing accessibility and the global nature of streaming."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a hero image that reflects the film or its themes.",
+          "Add more quotes or insights from the cast or crew to enhance the article's depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "689deaeb-de00-4761-baea-9dc9602cc324",
+      "headline": "She Took a WPL Hat-Trick in Her Second Match. Five Weeks Later, She Made Her India Debut. Now She's Going to the World Cup.",
+      "slug": "nandni-sharma-wpl-hat-trick-india-debut-t20-world-cup-2026-chandigarh-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b48e0d84-ca80-4d8d-aa0f-4ce1c176a5c1",
+            "headline": "India Won the 50-Over World Cup Last Year. In Four Days, The"
+          }
+        ]
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI cricket fans by highlighting the women's World Cup and its significance."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from Nandni Sharma or her coach to add a personal touch.",
+          "Provide more context on the significance of the Women's T20 World Cup for Indian cricket."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "be0a8768-eb20-4947-a38d-a39fe859de83",
+      "headline": "India Almost Missed the World Cup Entirely. Not as a Team. As a Country That Could Watch It.",
+      "slug": "zee-fifa-world-cup-2026-broadcast-india-unite8-sports-nri-viewing-guide",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the FIFA World Cup or football, but it is a generic sports image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article provides detailed information on how NRIs can watch the World Cup, making it highly relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents the FIFA World Cup or football.",
+          "Add a brief section on the significance of the World Cup for Indian football fans to enhance engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f6732e9c-8254-4adc-afd0-686b832ecfff",
+      "headline": "A 30-Year-Old Flew Home from Boston to Lead India's Biggest Youth Protest in a Decade",
+      "slug": "cockroach-janta-party-first-protest-jantar-mantar-22-million-followers-dipke-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 2,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the return of an NRI to lead a significant protest in India, connecting well with the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the protest or the main subject of the article.",
+          "Consider adding quotes or perspectives from diaspora members regarding the protest to enhance the connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [],
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "56ce3e73-f35b-4232-8aea-13aebb709575",
+      "headline": "The US Will Let 20,000 H-1B Holders Renew Visas Without Leaving the Country",
+      "slug": "us-h1b-domestic-visa-renewal-pilot-20000-indian-nationals-december-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses a significant change in visa policy that directly impacts Indian professionals in the US, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or reactions from Indian professionals regarding the new visa policy to enhance relatability.",
+          "Add a section on potential challenges or criticisms of the new visa renewal process."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b9a0b746-2450-49f6-ac52-6fd3a682052a",
+      "headline": "Indian Markets Open to a Sea of Red. Oil at $96, Asia Selling Off, and the Fed May Hike Rates.",
+      "slug": "indian-markets-crash-oil-96-asia-selloff-fed-rate-hike-june-2026",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the impact of market conditions on NRI investors, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRI investors can mitigate risks in the current market.",
+          "Include expert opinions or quotes to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b3bbd346-c9f1-4ee1-9bf8-1005302fefa2",
+      "headline": "Seven Per Cent \u2014 The Hidden Provision That Would Slash Indian H-1B Visas by Ninety Per Cent",
+      "slug": "seven-percent-country-cap-h1b-india-chip-roy-bill-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "4dff9332-d5a1-4245-8a39-e8a554a40c2c",
+            "headline": "A New Bill Wants to Kill the H-1B Path to a Green Card. Indi"
+          }
+        ]
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://x.com/chiproytx/status/2062683867991900226",
+            "problem": "irrelevant",
+            "explanation": "The tweet from Chip Roy does not directly relate to the topic of H-1B visa caps or the implications for Indian workers."
+          }
+        ],
+        "image_match": {
+          "score": 4,
+          "issue": "The image of Chip Roy does not visually represent the topic of H-1B visas or the impact on Indian workers."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of H-1B visa changes on Indian nationals, which is highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the image with one that more directly relates to H-1B visas or Indian workers in the U.S.",
+          "Provide more context on how the proposed changes would affect the Indian diaspora specifically, perhaps including quotes or reactions from affected individuals or organizations."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ce85cdcb-b2bc-401b-a365-88a0319c9cfa",
+      "headline": "Five Hundred and One Days \u2014 The PERM Queue That Could Force You Out of America",
+      "slug": "perm-501-day-processing-crisis-indian-h1b-green-card-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article discusses the challenges faced by Indian H-1B visa holders, directly relevant to the Indian diaspora in the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to immigration or the PERM process.",
+          "Consider adding quotes or anecdotes from affected individuals to enhance the human interest aspect."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [],
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "53a9d3b2-776b-41df-824e-baee2c205682",
+      "headline": "Selena Gomez's Rare Beauty Just Landed in India. Good Luck Getting Your Hands on That Blush.",
+      "slug": "selena-gomez-rare-beauty-india-nykaa-soft-pinch-blush-diaspora-nri-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "e3664b41-72f8-4fed-a8d9-507c0e0121d8",
+            "headline": "Selena Gomez's Rare Beauty Has Launched in India Through Nyk"
+          }
+        ]
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the launch of Rare Beauty in India to the experiences of the Indian diaspora, particularly NRIs who have been purchasing the products abroad."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote or perspective from an NRI consumer to enhance the diaspora connection.",
+          "Include more details about the impact of Rare Beauty's mental health initiative in India to strengthen the article's depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "llm_source": "gpt-4o-mini"
+    }
+  ]
+}
