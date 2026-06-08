@@ -26,3 +26,12 @@ __pycache__/
 pipeline/source-images.py
 pipeline/write-articles.py
 supabase/.temp/
+
+# Reel pipeline outputs (large binaries)
+pipeline/reels/*.mp4
+pipeline/reels/build/
+*.mp4
+reel-preview-*.jpg
+
+# Temporary writer scripts
+pipeline/travel-writer-*.py
