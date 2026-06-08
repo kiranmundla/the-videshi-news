@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-08T07:45:23.637089+00:00",
+  "timestamp": "2026-06-08T08:15:20.836988+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,36 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "207732e2-b903-4d0c-aed5-5ed3469ee558",
-      "headline": "Harmanpreet Lost the Series. She Is Not Worried About the World Cup.",
-      "slug": "harmanpreet-kaur-india-women-england-t20-series-loss-world-cup-2026-positives-nri",
+      "id": "8db56a79-15ca-4bd0-adcb-65c92f51d2c3",
+      "headline": "Two and a Quarter Billion Dollars \u2014 The H-1B Tab That Could End Indian IT's American Era",
+      "slug": "225-billion-h1b-fee-indian-it-infosys-tcs-cognizant-offshoring-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b48e0d84-ca80-4d8d-aa0f-4ce1c176a5c1",
-            "headline": "India Won the 50-Over World Cup Last Year. In Four Days, The"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the H-1B visa topic but is a generic tech-related image."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI readers by providing information on the T20 World Cup schedule and accessibility for viewers in the US."
+          "quality": 9,
+          "note": "The article effectively discusses the implications of H-1B fees on Indian professionals in the U.S. and the broader Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more quotes or insights from Harmanpreet Kaur to enhance the personal connection.",
-          "Add a brief section on how the Indian diaspora has been supporting women's cricket to strengthen the diaspora angle."
+          "Consider using a more relevant image that directly relates to the H-1B visa or Indian IT professionals.",
+          "Add a quote or perspective from an Indian professional currently in the U.S. to enhance the personal connection to the diaspora."
         ],
         "verdict": "pass"
       },
@@ -52,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9699a952-7c02-4629-bda5-8c70c0c81c09",
-      "headline": "Ashwin Was Named One of the 25 Greatest Cricketers of This Century. His Speech Was About Everyone Else.",
-      "slug": "ashwin-cricinfo-honours-awards-25-greatest-cricketers-21st-century-test-cricket-nri",
+      "id": "406ab7ee-1768-4ec8-b9cd-b4ab8413ec99",
+      "headline": "A Judge Just Called USCIS Lawless \u2014 and the Ruling Should Worry Every Indian Waiting in Line",
+      "slug": "federal-judge-uscis-39-country-ban-struck-down-india-precedent-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,18 +60,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to Ashwin's achievements but does not directly relate to the specific event mentioned in the article."
+          "issue": "The image does not directly relate to the topic of immigration or the specific ruling discussed."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Ashwin's legacy and concerns about cricket's future to the diaspora community's values and experiences."
+          "quality": 9,
+          "note": "The article effectively connects the ruling to the experiences of Indian nationals navigating the U.S. immigration system."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more recent statistics or achievements to enhance the article's relevance.",
-          "Add a quote or perspective from an NRI cricket fan to strengthen the diaspora connection."
+          "Consider using an image that more directly represents immigration or legal proceedings to enhance relevance.",
+          "Add quotes or perspectives from Indian nationals affected by the ruling to deepen the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -88,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b98f8de0-081c-4769-992b-74e15269e32b",
-      "headline": "Before Belfast, There Is Dambulla. India's Next Generation Starts Tomorrow.",
-      "slug": "india-a-tri-series-sri-lanka-sooryavanshi-tilak-varma-dambulla-june-2026-nri",
+      "id": "acde98bb-032c-440e-b1a5-ac87fac5afb2",
+      "headline": "Nine Per Cent and Falling \u2014 The Dallas Suburbs Indian Workers Built Are Emptying Out",
+      "slug": "dallas-collin-county-housing-crash-indian-h1b-buyers-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -101,18 +96,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Tilak Varma is relevant to the article as it discusses the India A squad and his role as captain, but it does not depict the Dambulla location or the match context."
+          "issue": "The image does not directly relate to the specific topic of Indian workers or the housing market in Dallas suburbs."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects with NRI readers by highlighting the live broadcast details and the significance of the matches for Indian cricket fans abroad."
+          "quality": 9,
+          "note": "The article effectively connects the housing market changes to the Indian diaspora, highlighting personal stories and statistics relevant to Indian Americans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a brief background on Dambulla for readers unfamiliar with the location.",
-          "Add quotes or insights from players or coaches to enhance the narrative and provide more depth."
+          "Consider including a more relevant image that depicts the Indian community or housing market in Dallas.",
+          "Add quotes or anecdotes from more diverse perspectives within the Indian community to enrich the narrative."
         ],
         "verdict": "pass"
       },
