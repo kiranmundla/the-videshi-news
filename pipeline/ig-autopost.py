@@ -209,52 +209,106 @@ def mark_instagrammed(article_id):
     else:
         print(f"  WARNING: Failed to mark instagrammed: {r.status_code} {r.text}")
 
-# ── Step 3: Post Reel for first article ──────────────────────────
-reel_article = batch[0]
+# ── Step 3: Check prebuilt_reels table first ─────────────────────
+import glob
+
+prebuilt_reel = None
+prebuilt_reel_url = None
+prebuilt_caption = None
+
+print("\n=== Checking prebuilt_reels table ===")
+try:
+    pr_resp = requests.get(
+        f"{SUPABASE_URL}/rest/v1/prebuilt_reels",
+        params={
+            "status": "eq.pending",
+            "order": "created_at.asc",
+            "limit": "1"
+        },
+        headers=headers,
+        timeout=15
+    )
+    if pr_resp.status_code == 200 and pr_resp.json():
+        prebuilt_reel = pr_resp.json()[0]
+        print(f"📦 Found prebuilt reel: {prebuilt_reel['headline']}")
+        print(f"   Source: {prebuilt_reel['source']}, Path: {prebuilt_reel['video_path']}")
+
+        # Upload video to Supabase storage if not already uploaded
+        if prebuilt_reel.get('video_url'):
+            prebuilt_reel_url = prebuilt_reel['video_url']
+            print(f"   Already uploaded: {prebuilt_reel_url}")
+        else:
+            local_path = os.path.expanduser(f"~/workspace/the-videshi-news/{prebuilt_reel['video_path']}")
+            if os.path.exists(local_path):
+                storage_name = f"reels/prebuilt-{prebuilt_reel['id']}.mp4"
+                # Mark uploading
+                requests.patch(
+                    f"{SUPABASE_URL}/rest/v1/prebuilt_reels?id=eq.{prebuilt_reel['id']}",
+                    headers={**headers, "Prefer": "return=minimal"},
+                    json={"status": "uploading", "updated_at": "now()"},
+                    timeout=15
+                )
+                with open(local_path, 'rb') as vf:
+                    ur = requests.post(
+                        f"{SUPABASE_URL}/storage/v1/object/article-images/{storage_name}",
+                        headers={
+                            "apikey": SB_SERVICE_KEY,
+                            "Authorization": f"Bearer {SB_SERVICE_KEY}",
+                            "Content-Type": "video/mp4",
+                            "x-upsert": "true"
+                        },
+                        data=vf.read(),
+                        timeout=120
+                    )
+                if ur.status_code in (200, 201):
+                    prebuilt_reel_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{storage_name}"
+                    # Save URL back to table
+                    requests.patch(
+                        f"{SUPABASE_URL}/rest/v1/prebuilt_reels?id=eq.{prebuilt_reel['id']}",
+                        headers={**headers, "Prefer": "return=minimal"},
+                        json={"video_url": prebuilt_reel_url, "updated_at": "now()"},
+                        timeout=15
+                    )
+                    print(f"   ✅ Uploaded: {prebuilt_reel_url}")
+                else:
+                    print(f"   ⚠️ Upload failed ({ur.status_code}): {ur.text[:200]}")
+            else:
+                print(f"   ⚠️ Video file not found: {local_path}")
+        prebuilt_caption = prebuilt_reel.get('caption')
+    else:
+        print("No pending prebuilt reels.")
+except Exception as e:
+    print(f"Prebuilt reels check failed (non-fatal): {e}")
+
+# ── Step 3b: Post Reel — prebuilt or generated ───────────────────
+# If we have a prebuilt reel, use its article; otherwise pick from batch
+if prebuilt_reel and prebuilt_reel_url:
+    # Use the prebuilt reel's linked article
+    reel_article_id = prebuilt_reel.get('article_id')
+    if reel_article_id:
+        ar = requests.get(
+            f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{reel_article_id}&select=*&limit=1",
+            headers=headers, timeout=15
+        )
+        if ar.status_code == 200 and ar.json():
+            reel_article = ar.json()[0]
+        else:
+            reel_article = batch[0]
+    else:
+        reel_article = batch[0]
+else:
+    reel_article = batch[0]
+
 reel_posted = False
 story_posted = False
 
-print(f"\n=== Generating Reel for: {reel_article['headline'][:60]}... ===")
+print(f"\n=== Posting Reel for: {reel_article['headline'][:60]}... ===")
 
 try:
-    # Step A: Check for pre-built reel first, then fall back to generate-reel.py
-    import glob
-    slug_short = reel_article['slug'][:80]
-    reels_dir = os.path.expanduser("~/workspace/the-videshi-news/pipeline/reels")
-    prebuilt = sorted(glob.glob(os.path.join(reels_dir, f"reel-{slug_short}*.mp4")))
-    # Also check for partial slug matches (e.g. kavya reels with shorter slug fragments)
-    if not prebuilt:
-        # Try matching first 40 chars of slug for broader match
-        prebuilt = sorted(glob.glob(os.path.join(reels_dir, f"reel-{slug_short[:40]}*.mp4")))
-
-    reel_url = None
-
-    if prebuilt:
-        # Use pre-built reel — upload to Supabase directly
-        prebuilt_path = prebuilt[-1]  # newest if multiple
-        print(f"📦 Found pre-built reel: {os.path.basename(prebuilt_path)}")
-        print(f"   Uploading to Supabase storage...")
-        storage_name = f"reels/{os.path.basename(prebuilt_path)}"
-        with open(prebuilt_path, 'rb') as vf:
-            ur = requests.post(
-                f"{SUPABASE_URL}/storage/v1/object/article-images/{storage_name}",
-                headers={
-                    "apikey": SB_SERVICE_KEY,
-                    "Authorization": f"Bearer {SB_SERVICE_KEY}",
-                    "Content-Type": "video/mp4",
-                    "x-upsert": "true"
-                },
-                data=vf.read(),
-                timeout=120
-            )
-        if ur.status_code in (200, 201):
-            reel_url = f"{SUPABASE_URL}/storage/v1/object/public/article-images/{storage_name}"
-            print(f"   ✅ Uploaded: {reel_url}")
-        else:
-            print(f"   ⚠️ Upload failed ({ur.status_code}), falling back to generate-reel.py")
+    reel_url = prebuilt_reel_url  # Will be None if no prebuilt
 
     if not reel_url:
-        # No pre-built reel or upload failed — generate fresh
+        # No prebuilt reel — generate fresh via generate-reel.py
         result = subprocess.run(
             ["python3", "generate-reel.py", "--slug", reel_article['slug'], "--upload"],
             cwd=os.path.expanduser("~/workspace/the-videshi-news/pipeline"),
@@ -275,7 +329,7 @@ try:
                     break
 
     if not reel_url:
-        print("ERROR: Could not find reel URL in generate-reel.py output")
+        print("ERROR: Could not find reel URL")
         raise Exception("No reel URL found")
 
     print(f"Reel video URL: {reel_url}")
@@ -308,7 +362,7 @@ try:
         print(f"No cover image found at {cover_local}")
 
     # Step B: Create Reel container
-    caption = build_caption(reel_article)
+    caption = prebuilt_caption if prebuilt_caption else build_caption(reel_article)
     print(f"\nCaption:\n{caption}\n")
 
     container_data = {
@@ -367,11 +421,45 @@ try:
         reel_posted = True
         print(f"✅ REEL POSTED — Media ID: {r2j['id']}")
         mark_instagrammed(reel_article['id'])
+        # Update prebuilt_reels table if this was a prebuilt reel
+        if prebuilt_reel:
+            try:
+                from datetime import datetime, timezone
+                now_ts = datetime.now(timezone.utc).isoformat()
+                requests.patch(
+                    f"{SUPABASE_URL}/rest/v1/prebuilt_reels?id=eq.{prebuilt_reel['id']}",
+                    headers={**headers, "Prefer": "return=minimal"},
+                    json={"status": "ig_posted", "ig_media_id": r2j['id'], "ig_posted_at": now_ts, "updated_at": now_ts},
+                    timeout=15
+                )
+                print(f"   📦 Prebuilt reel marked ig_posted")
+            except Exception as pe:
+                print(f"   ⚠️ Failed to update prebuilt_reels: {pe}")
     else:
         print(f"❌ Reel publish failed: {r2j}")
+        if prebuilt_reel:
+            try:
+                requests.patch(
+                    f"{SUPABASE_URL}/rest/v1/prebuilt_reels?id=eq.{prebuilt_reel['id']}",
+                    headers={**headers, "Prefer": "return=minimal"},
+                    json={"status": "failed", "updated_at": "now()"},
+                    timeout=15
+                )
+            except Exception:
+                pass
 
 except Exception as e:
     print(f"❌ Reel posting failed: {e}")
+    if prebuilt_reel:
+        try:
+            requests.patch(
+                f"{SUPABASE_URL}/rest/v1/prebuilt_reels?id=eq.{prebuilt_reel['id']}",
+                headers={**headers, "Prefer": "return=minimal"},
+                json={"status": "failed", "updated_at": "now()"},
+                timeout=15
+            )
+        except Exception:
+            pass
 
 # ── Step 4: Post Story for second article (or first if only one) ──
 print("\n=== Posting Story ===")

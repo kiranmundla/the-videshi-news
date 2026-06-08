@@ -288,6 +288,42 @@ for i, reel_filename in enumerate(to_upload):
         with open(LOG_PATH, 'w') as f:
             json.dump(yt_log, f, indent=2)
         
+        # Update prebuilt_reels table if this reel has an entry
+        try:
+            if article and article.get('id'):
+                pr_check = req.get(
+                    f"{SUPABASE_URL}/rest/v1/prebuilt_reels",
+                    params={
+                        "article_id": f"eq.{article['id']}",
+                        "select": "id,status",
+                        "limit": "1"
+                    },
+                    headers={"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"},
+                    timeout=15
+                )
+                if pr_check.status_code == 200 and pr_check.json():
+                    pr = pr_check.json()[0]
+                    new_status = "posted" if pr["status"] == "ig_posted" else "yt_posted"
+                    req.patch(
+                        f"{SUPABASE_URL}/rest/v1/prebuilt_reels?id=eq.{pr['id']}",
+                        headers={
+                            "apikey": SB_KEY,
+                            "Authorization": f"Bearer {SB_KEY}",
+                            "Content-Type": "application/json",
+                            "Prefer": "return=minimal"
+                        },
+                        json={
+                            "status": new_status,
+                            "yt_video_id": video_id,
+                            "yt_posted_at": datetime.utcnow().isoformat() + "Z",
+                            "updated_at": datetime.utcnow().isoformat() + "Z"
+                        },
+                        timeout=15
+                    )
+                    print(f"  📦 Prebuilt reel marked {new_status}")
+        except Exception as pe:
+            print(f"  ⚠️ prebuilt_reels update failed (non-fatal): {pe}")
+        
         uploaded_count += 1
         
         # Wait between uploads
