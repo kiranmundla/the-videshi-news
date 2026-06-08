@@ -1,51 +1,15 @@
 {
-  "timestamp": "2026-06-08T11:15:51.632769+00:00",
+  "timestamp": "2026-06-08T11:45:14.354727+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "fbfb4cc6-c44d-412e-bfe5-454622a29142",
-      "headline": "Varun Dhawan Just Confirmed He Turned Down Andhadhun. The Original Cast Was Him and Kangana.",
-      "slug": "varun-dhawan-andhadhun-kangana-ranaut-original-cast-sriram-raghavan-nri-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses a significant Bollywood film and its casting, which may resonate with the NRI audience interested in Indian cinema."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or reactions from Varun Dhawan or Kangana Ranaut to enhance the article's depth.",
-          "Add a brief section on the impact of Andhadhun on Bollywood to provide more context for diaspora readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "aba6d858-14a8-40aa-a8e9-b861d65bf7e3",
       "headline": "Salim Kumar Made You Laugh Until He Made You Cry. Malayalam Cinema Just Lost Its Most Versatile Soul.",
@@ -62,54 +26,6 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DZQxDNyzShb/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to Salim Kumar or his legacy, making it irrelevant to the article's subject."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Salim Kumar's impact on the Malayali diaspora, highlighting how his films resonated with them across the globe."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant tribute or video related to Salim Kumar.",
-          "Consider adding quotes or reactions from diaspora members to further enhance the connection to the NRI audience."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DZQxDNyzShb/",
-        "Revised by gpt-4o-mini (763\u2192833 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f5f4bc3b-3427-4f99-aa26-864f96b96e9e",
-      "headline": "India Won by an Innings and 300 Runs. It Is Their Biggest Test Victory in History.",
-      "slug": "india-beat-afghanistan-innings-300-runs-biggest-test-victory-mullanpur-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "5e75653c-8650-4b87-814a-0c0cc8b4f68c",
-            "headline": "Gill Now Has More WTC Centuries Than Any Indian in History. "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -117,14 +33,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the match and Suthar's debut to the pride of NRI fans, highlighting the impact on the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects Salim Kumar's impact on the Malayali diaspora, highlighting cultural ties and shared experiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or reactions from NRI fans to enhance the diaspora connection.",
-          "Include a brief historical context of India's cricketing achievements to engage readers further."
+          "Consider adding more quotes from diaspora members to enhance the emotional connection.",
+          "Include a brief mention of Salim Kumar's influence on younger generations of actors to provide a broader context."
         ],
         "verdict": "pass"
       },
