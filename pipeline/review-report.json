@@ -1,15 +1,137 @@
 {
-  "timestamp": "2026-06-08T13:16:09.958888+00:00",
+  "timestamp": "2026-06-08T13:45:35.858860+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 4,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "2f140687-8aee-4d89-baff-5409895f0928",
+      "headline": "His Father Took Loans. His Coach Never Charged a Rupee. On Monday, Manav Suthar Broke a 46-Year Record.",
+      "slug": "manav-suthar-family-story-sri-ganganagar-debut-record-dilip-doshi-india-afghanistan-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b60cf121-dda2-4377-9946-fa022eca8876",
+            "headline": "Prasidh Krishna Had Not Played a Test in India for Three Yea"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of the cricket stadium is relevant but does not directly depict Manav Suthar or his record-breaking performance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the Indian diaspora by highlighting the achievements of an Indian cricketer and the support from his family, which resonates with many NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including quotes or reactions from Manav Suthar himself to provide a personal touch.",
+          "Add more context about the significance of the record-breaking performance in the broader landscape of Indian cricket."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "29caade0-82e1-423e-bc0a-5e696cb6f510",
+      "headline": "India Open Their T20 World Cup Against Pakistan on Saturday. Here Is Everything You Need to Know.",
+      "slug": "india-women-t20-world-cup-2026-england-preview-schedule-squad-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "207732e2-b903-4d0c-aed5-5ed3469ee558",
+            "headline": "Harmanpreet Lost the Series. She Is Not Worried About the Wo"
+          },
+          {
+            "article_id": "b48e0d84-ca80-4d8d-aa0f-4ce1c176a5c1",
+            "headline": "India Won the 50-Over World Cup Last Year. In Four Days, The"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image features Harmanpreet Kaur with a trophy, which is relevant to women's cricket but does not specifically match the T20 World Cup context."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the significance of the tournament for the Indian diaspora in the UK, emphasizing accessibility and the excitement of the India-Pakistan match."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant hero image that directly relates to the T20 World Cup.",
+          "Add more context about the historical significance of the India-Pakistan matches in women's cricket."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ecf09f8e-7fd7-42f4-a7c1-8fbd26729aab",
+      "headline": "The World Cup Starts Wednesday. Five Million NRIs in North America Have Front-Row Seats.",
+      "slug": "fifa-world-cup-2026-nri-guide-north-america-attend-watch-diaspora",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the significance of the World Cup for NRIs, especially in terms of location and community engagement."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of community events or watch parties to enhance the diaspora connection.",
+          "Clarify the opening match details, as the article states Mexico vs South Africa, which is incorrect; it should be Mexico vs South Africa."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "bc63e541-0521-4593-b553-fae32142c207",
       "headline": "Cocktail 2 Is the Most Anticipated Indian Film of the Year. The Internet Can't Pick a Side.",
@@ -33,59 +155,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image does not feature any of the main actors or scenes from Cocktail 2, which may mislead readers."
+          "issue": "The image does not feature any of the main actors or scenes from the film, which may not align with the article's focus on 'Cocktail 2'."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article connects well with diaspora audiences by discussing the film's global release and familiar themes."
+          "note": "The article discusses the film's global release and its appeal to diaspora audiences, but could delve deeper into cultural connections."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one featuring the main cast of Cocktail 2 to better match the article's content.",
-          "Expand on the diaspora angle by including quotes or reactions from NRI audiences regarding their anticipation for the film."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gpt-4o-mini (737\u2192772 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "21bfe3ab-ce9f-475a-b2fb-db870047d9a0",
-      "headline": "Karisma Kapoor Went to Kolkata in Peak Summer and Came Back With the Role of Her Life.",
-      "slug": "karisma-kapoor-brown-zee5-ott-comeback-rita-detective-kolkata-nri-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "345a3ae4-c78c-46b0-a409-35d858faba8c",
-            "headline": "Karisma Kapoor Is Playing a Broken, Alcoholic Detective in K"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the show to diaspora audiences by highlighting its availability on ZEE5 and its cultural relevance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes from Karisma Kapoor or the director to enhance the personal connection to the performance.",
-          "Include a brief overview of the reception of ZEE5 among diaspora audiences to strengthen the diaspora angle."
+          "Consider using an image that features the main cast or a scene from 'Cocktail 2' to better match the article's content.",
+          "Expand on the diaspora angle by including quotes or insights from NRI audiences or critics."
         ],
         "verdict": "pass"
       },
