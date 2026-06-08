@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-08T12:45:29.097208+00:00",
+  "timestamp": "2026-06-08T13:16:09.958888+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,31 +11,81 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7f0f3b3d-e0bd-48b6-af2b-a7654d963932",
-      "headline": "The Supreme Court Just Killed India's $23 Billion Online Gaming Industry. The Tax Bill Alone Is Unsurvivable.",
-      "slug": "supreme-court-28-percent-gst-gaming-dream11-gameskraft-23-billion-industry-bust-20260608",
+      "id": "bc63e541-0521-4593-b553-fae32142c207",
+      "headline": "Cocktail 2 Is the Most Anticipated Indian Film of the Year. The Internet Can't Pick a Side.",
+      "slug": "cocktail-2-imdb-most-anticipated-shahid-kriti-rashmika-trailer-june-19-nri-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "45b898e7-2abc-40e0-8bad-103f10760fd7",
+            "headline": "Cocktail 2 Is the Most Anticipated Indian Film on IMDb. It H"
+          },
+          {
+            "article_id": "cae7688a-a90a-4dd0-9460-02a06dcb627c",
+            "headline": "Nine Films. Four Fridays. \u20b91,400 Crore on the Line. June Is "
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of the Supreme Court is relevant but does not directly illustrate the online gaming industry."
+          "score": 5,
+          "issue": "The image does not feature any of the main actors or scenes from Cocktail 2, which may mislead readers."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact on Indian-American and Indian-origin investors, making the diaspora connection relevant and significant."
+          "quality": 7,
+          "note": "The article connects well with diaspora audiences by discussing the film's global release and familiar themes."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how the rulings affect diaspora investors.",
-          "Consider adding a quote from an industry expert or investor to enhance credibility."
+          "Replace the hero image with one featuring the main cast of Cocktail 2 to better match the article's content.",
+          "Expand on the diaspora angle by including quotes or reactions from NRI audiences regarding their anticipation for the film."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gpt-4o-mini (737\u2192772 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "21bfe3ab-ce9f-475a-b2fb-db870047d9a0",
+      "headline": "Karisma Kapoor Went to Kolkata in Peak Summer and Came Back With the Role of Her Life.",
+      "slug": "karisma-kapoor-brown-zee5-ott-comeback-rita-detective-kolkata-nri-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "345a3ae4-c78c-46b0-a409-35d858faba8c",
+            "headline": "Karisma Kapoor Is Playing a Broken, Alcoholic Detective in K"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the show to diaspora audiences by highlighting its availability on ZEE5 and its cultural relevance."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes from Karisma Kapoor or the director to enhance the personal connection to the performance.",
+          "Include a brief overview of the reception of ZEE5 among diaspora audiences to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
@@ -43,42 +93,6 @@
         "promoted to published"
       ],
       "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c3f8e567-d9d3-4c41-8771-fa36b4904927",
-      "headline": "The Pentagon Called India a 'Critical Anchor.' Then India's Defence Secretary Held 12 Meetings in 48 Hours.",
-      "slug": "pentagon-hegseth-india-critical-anchor-shangri-la-dialogue-javelin-co-production-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses implications for the Indian diaspora in the US and Canada, but could elaborate more on how these developments affect them directly."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of India's defense and diplomatic engagements.",
-          "Expand on the diaspora angle by including specific examples of how the defense partnerships may impact Indian communities in the US and Canada."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (668\u2192755 words)"
-      ],
-      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
