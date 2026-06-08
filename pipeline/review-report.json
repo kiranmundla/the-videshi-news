@@ -1,27 +1,22 @@
 {
-  "timestamp": "2026-06-08T17:15:20.111149+00:00",
+  "timestamp": "2026-06-08T18:16:57.188366+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 9,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "1f389837-4c58-4d4a-9ca6-d59f4d1ad7cf",
-      "headline": "Fulmali Scored an Unbeaten Fifty. Radha and Shreyanka Took Seven Wickets Between Them. India's T20 World Cup Has Begun.",
-      "slug": "india-women-beat-west-indies-26-runs-t20-world-cup-warm-up-cardiff-fulmali-fifty-nri",
+      "id": "473a44be-7c51-4d4f-bda8-af4ece40344b",
+      "headline": "India Built a Digital Portal to Turn the Diaspora Into a $500 Billion Trade Engine. Here's How It Works.",
+      "slug": "india-usa-trade-facilitation-portal-mission-500-diaspora-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "59aaf8ce-c03b-4e5d-bb06-fa1a3aad8fd6",
-            "headline": "Mandhana Says India Have 'A Lot to Learn.' Edulji Says It St"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -29,18 +24,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image of Smriti Mandhana does not directly relate to the article's focus on Fulmali's performance."
+          "issue": "The image does not directly relate to the digital portal or trade facilitation topic."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Indian diaspora's pride in the national team's achievements and provides information on how they can watch the matches."
+          "quality": 9,
+          "note": "The article effectively highlights the role of the Indian diaspora in facilitating trade and connects well with NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that features Fulmali or highlights the T20 World Cup context more directly.",
-          "Add more quotes or perspectives from diaspora fans to enhance the connection."
+          "Consider using a more relevant image that represents the digital portal or trade facilitation.",
+          "Add a section that includes testimonials or case studies from diaspora members who have benefited from the portal."
         ],
         "verdict": "pass"
       },
@@ -52,9 +47,81 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d04f9fc0-5803-4f9c-bfd2-06eba1527545",
-      "headline": "The US Just Found a New Legal Route to Tariff India. This Time, It May Stick.",
-      "slug": "ustr-section-301-forced-labor-tariff-india-12-percent-greer-trade-deal-20260608",
+      "id": "4d6d9c0a-4167-403b-ab4d-b84d366fc044",
+      "headline": "India Gave Foreign Funds a Tax Holiday on Government Bonds. It Forgot About Its Own Diaspora.",
+      "slug": "india-gsec-tax-exemption-fpi-nri-investors-excluded-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of the Reserve Bank of India is relevant but does not directly illustrate the topic of foreign funds and NRIs."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of tax policies on NRIs, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to NRIs or government bonds to enhance visual relevance.",
+          "Include quotes or perspectives from NRI investors to provide a more personal touch and deepen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "926b0c75-2cc4-4a2f-a0be-2a70b54a6ed7",
+      "headline": "Banks Are the Only Vertical Keeping Indian IT Alive. The FY26 Numbers Prove It.",
+      "slug": "indian-it-bfsi-revenue-concentration-fy26-risk-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the topic of banking and finance but lacks a direct connection to IT."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of the Indian IT sector on the diaspora workforce, particularly those working in the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the Indian diaspora is affected by the trends in the IT sector.",
+          "Include a more direct connection between the image and the IT industry to enhance relevance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8e786059-b67d-4dc5-a5d6-b2e9de814d7c",
+      "headline": "OpenAI Is Turning ChatGPT Into a Superapp. Its 900 Million Users Are About to Find Out What That Means.",
+      "slug": "openai-chatgpt-superapp-codex-enterprise-ipo-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -65,18 +132,241 @@
         "embed_issues": [],
         "image_match": {
           "score": 6,
-          "issue": "image not directly related to the article's main topic"
+          "issue": "The image features Sam Altman, which is relevant, but it does not directly illustrate the concept of ChatGPT as a superapp."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses implications for the Indian diaspora in the US, UK, and Canada, making it relevant."
+          "note": "The article discusses the implications for Indian engineers and IT services, making it relevant for the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to the topic of tariffs and trade negotiations.",
-          "Add more quotes or perspectives from diaspora members to enhance the connection to the NRI audience."
+          "Consider adding more visuals or infographics that illustrate the concept of a superapp.",
+          "Include quotes or insights from Indian engineers or industry experts to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b6f3e5e5-7750-421b-a638-fdb89a78741a",
+      "headline": "Wipro Sinks to a Three-Year Low as Oil at $97, AI Selloff, and Middle East Turmoil Converge",
+      "slug": "wipro-three-year-low-oil-ai-selloff-nifty-it-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of stock declines on NRI investors, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from industry experts or analysts to enhance credibility.",
+          "Include a brief overview of how similar market conditions have affected the Indian tech sector in the past for context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "98a475dc-8361-42b4-a348-948c2cc9c9e4",
+      "headline": "Global Airlines Just Lost Half Their Expected Profits \u2014 and Your Flight Home Is Paying for It",
+      "slug": "iata-airline-profit-forecast-halved-nri-fares-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts an airplane, which is relevant to the travel topic, but lacks a direct connection to the specific content about airline profits and routes."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of NRIs regarding flight costs and routes, making it highly relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more specific image that reflects the impact of rising airline costs or the US-India travel corridor.",
+          "Add a section with tips or resources specifically for NRIs to navigate the changing airline landscape."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "db00c3b6-7036-448a-bf0a-324947b30aed",
+      "headline": "IndiGo Just Pulled Six Asian Destinations Off the Board for Summer \u2014 Here's What NRIs Planning a Layover Trip Need to Know",
+      "slug": "indigo-suspends-six-asian-routes-summer-nri-impact-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://x.com/IndiGo6E/status/2063220585854058855",
+            "problem": "irrelevant",
+            "explanation": "The tweet does not provide relevant information about the suspension of flights or the impact on NRIs."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of NRIs planning trips, providing practical advice and context."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant tweet embed with a more relevant source or data point related to the flight suspensions.",
+          "Consider adding a section on how these changes might affect travel plans for NRIs in the long term."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://x.com/IndiGo6E/status/2063220585854058855",
+        "Revised by gpt-4o-mini (662\u2192732 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e1d9a835-b450-4dda-8f6b-fea963043b15",
+      "headline": "Indian Banks Are Racing to Offer NRIs 5 Per Cent on Dollar Deposits. The RBI Is Picking Up the Tab.",
+      "slug": "rbi-fcnr-deposit-window-nri-5-percent-dollar-returns-banks-racing-guide-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs by discussing the benefits of FCNR deposits and the RBI's initiative to attract dollar inflows from the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a section on potential risks associated with FCNR deposits to provide a balanced view.",
+          "Include quotes or testimonials from NRIs who have benefited from similar schemes in the past to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1edf639b-c68f-4027-b121-32db85a93370",
+      "headline": "Eating Processed Food Every Day Raised Dementia Risk by 58 Per Cent. Your Dadi's Kitchen Was the Opposite.",
+      "slug": "harvard-ultraprocessed-food-dementia-risk-58-percent-south-asian-traditional-diet-protection",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the study's findings to the dietary habits of South Asian families, making it relevant for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a quote or anecdote from a South Asian family to personalize the impact of the study.",
+          "Add a section on how to incorporate traditional cooking methods into a busy lifestyle for diaspora families."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "05dc404a-f081-404e-b82e-57111cb66f51",
+      "headline": "A Pill Just Doubled Survival for Pancreatic Cancer. The KRAS Mutation It Targets Hits South Asians Hard.",
+      "slug": "daraxonrasib-pancreatic-cancer-kras-doubled-survival-asco-2026-south-asian-diabetes-risk",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to pancreatic cancer or the drug discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the drug's implications to the South Asian community's health challenges."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts pancreatic cancer or related medical themes.",
+          "Add a brief section on how the South Asian community can advocate for better screening and healthcare access."
         ],
         "verdict": "pass"
       },
