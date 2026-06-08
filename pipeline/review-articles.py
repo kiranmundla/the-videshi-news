@@ -1,29 +1,29 @@
 #!/usr/bin/env python3
 """
 Article Quality Reviewer for The Videshi.
-Dual-LLM review: GPT-4o-mini + Gemini 2.0 Flash.
+Dual-LLM review + auto-revision pipeline.
 
 Usage:
   python3 review-articles.py                    # Review last 3 hours of published articles
   python3 review-articles.py --hours 6          # Review last 6 hours
   python3 review-articles.py --id <article-id>  # Review a specific article
-  python3 review-articles.py --fix              # Auto-fix flagged issues (remove bad embeds, etc.)
+  python3 review-articles.py --fix              # Auto-revise flagged articles + remove bad embeds
   python3 review-articles.py --pre-publish      # Review articles in 'review' status before publishing
 
-Checks:
-  1. Social embed relevance (IG/X embeds match article topic)
-  2. Image-headline match (hero image fits the article subject)
-  3. Duplicate image detection (same image used on recent articles)
-  4. Editorial quality (diaspora angle, sources, structure)
-  5. Duplicate embed detection (same URL embedded twice)
-  6. Factual consistency (internal contradictions)
-
-Output: JSON report per article with pass/flag/fail per check.
+Pipeline:
+  1. Pre-checks (no LLM): duplicate embeds, duplicate images
+  2. LLM Review (GPT-4o-mini primary, Gemini 2.5 Flash fallback): score + feedback
+  3. Auto-revision (--fix mode):
+     - Score 7+  (pass)  → no changes
+     - Score 4-6 (flag)  → send article + feedback to Gemini for revision, patch in Supabase
+     - Score 1-3 (fail)  → unpublish (status → 'archived') if BOTH reviewers agree; else revise
+     - Irrelevant embeds → auto-removed
+     - Duplicate embeds  → auto-deduped
 """
 
 import json, os, sys, subprocess, time, re
 from datetime import datetime, timedelta, timezone
-from collections import defaultdict
+from collections import Counter
 
 # ── Load env ──
 def load_env(path):
@@ -68,7 +68,7 @@ def sb_patch(article_id, data):
     return int(r.stdout.strip())
 
 # ── LLM helpers ──
-def call_openai(prompt, article_text, model="gpt-4o-mini"):
+def call_openai(prompt, article_text, model="gpt-4o-mini", max_tokens=800):
     if not OPENAI_KEY:
         return None
     payload = {
@@ -77,7 +77,7 @@ def call_openai(prompt, article_text, model="gpt-4o-mini"):
             {"role": "system", "content": prompt},
             {"role": "user", "content": article_text}
         ],
-        "max_tokens": 800,
+        "max_tokens": max_tokens,
         "temperature": 0.1,
         "response_format": {"type": "json_object"}
     }
@@ -86,7 +86,7 @@ def call_openai(prompt, article_text, model="gpt-4o-mini"):
          "-H", f"Authorization: Bearer {OPENAI_KEY}",
          "-H", "Content-Type: application/json",
          "-d", json.dumps(payload)],
-        capture_output=True, text=True, timeout=60
+        capture_output=True, text=True, timeout=90
     )
     try:
         data = json.loads(r.stdout)
@@ -99,21 +99,21 @@ def call_openai(prompt, article_text, model="gpt-4o-mini"):
         print(f"  ⚠️  OpenAI parse error: {e}")
         return None
 
-def call_gemini(prompt, article_text, model="gemini-2.5-flash"):
+def call_gemini(prompt, article_text, model="gemini-2.5-flash", max_tokens=800):
     if not GEMINI_KEY:
         return None
     payload = {
         "contents": [{"parts": [{"text": f"{prompt}\n\n---\n\n{article_text}"}]}],
         "generationConfig": {
             "temperature": 0.1,
-            "maxOutputTokens": 800,
+            "maxOutputTokens": max_tokens,
             "responseMimeType": "application/json"
         }
     }
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_KEY}"
     r = subprocess.run(
         ["curl", "-s", url, "-H", "Content-Type: application/json", "-d", json.dumps(payload)],
-        capture_output=True, text=True, timeout=60
+        capture_output=True, text=True, timeout=90
     )
     try:
         data = json.loads(r.stdout)
@@ -126,8 +126,64 @@ def call_gemini(prompt, article_text, model="gemini-2.5-flash"):
         print(f"  ⚠️  Gemini parse error: {e}")
         return None
 
-# ── Review prompt ──
-REVIEW_PROMPT = """You are an editorial quality reviewer for The Videshi, an Indian diaspora news platform.
+def call_openai_text(prompt, article_text, model="gpt-4o-mini", max_tokens=2000):
+    """Call OpenAI without JSON mode — returns raw text (for article rewrites)."""
+    if not OPENAI_KEY:
+        return None
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": article_text}
+        ],
+        "max_tokens": max_tokens,
+        "temperature": 0.3,
+    }
+    r = subprocess.run(
+        ["curl", "-s", "https://api.openai.com/v1/chat/completions",
+         "-H", f"Authorization: Bearer {OPENAI_KEY}",
+         "-H", "Content-Type: application/json",
+         "-d", json.dumps(payload)],
+        capture_output=True, text=True, timeout=120
+    )
+    try:
+        data = json.loads(r.stdout)
+        if "error" in data:
+            print(f"  ⚠️  OpenAI rewrite error: {data['error']['message'][:80]}")
+            return None
+        return data["choices"][0]["message"]["content"]
+    except Exception as e:
+        print(f"  ⚠️  OpenAI rewrite parse error: {e}")
+        return None
+
+def call_gemini_text(prompt, article_text, model="gemini-2.5-flash", max_tokens=2000):
+    """Call Gemini without JSON mode — returns raw text (for article rewrites)."""
+    if not GEMINI_KEY:
+        return None
+    payload = {
+        "contents": [{"parts": [{"text": f"{prompt}\n\n---\n\n{article_text}"}]}],
+        "generationConfig": {
+            "temperature": 0.3,
+            "maxOutputTokens": max_tokens,
+        }
+    }
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_KEY}"
+    r = subprocess.run(
+        ["curl", "-s", url, "-H", "Content-Type: application/json", "-d", json.dumps(payload)],
+        capture_output=True, text=True, timeout=120
+    )
+    try:
+        data = json.loads(r.stdout)
+        if "error" in data:
+            print(f"  ⚠️  Gemini rewrite error: {data['error']['message'][:80]}")
+            return None
+        return data["candidates"][0]["content"]["parts"][0]["text"]
+    except Exception as e:
+        print(f"  ⚠️  Gemini rewrite parse error: {e}")
+        return None
+
+# ── Prompts ──
+REVIEW_PROMPT = """You are an editorial quality reviewer for The Videshi, an Indian diaspora news platform for NRIs.
 
 Review the article below and return a JSON object with these fields:
 
@@ -153,6 +209,37 @@ Rules:
 - Diaspora angle: does the article connect to NRI/diaspora readers? Is it forced or natural?
 - Be strict but fair. This is a real newsroom quality gate."""
 
+REVISE_PROMPT = """You are a senior editor at The Videshi, an Indian diaspora news platform for NRIs in the US, UK, and Canada.
+
+You are given an article and reviewer feedback. Your job is to REVISE the article to fix the flagged issues.
+
+RULES:
+- Keep the same headline, structure, and markdown format
+- Keep ALL social media embed URLs (lines starting with https://instagram.com or https://x.com) exactly as they are — do not remove, move, or modify them
+- Preserve the article's voice and factual content
+- Fix ONLY what the feedback asks for:
+  * If diaspora angle is weak → add 1-2 natural NRI-relevant sentences (how this affects Indians abroad, remittances, dual citizenship, travel, family ties, professional impact)
+  * If sources are thin → add context or attribution where possible
+  * If structure is weak → improve flow between sections
+  * If tone is off → adjust to professional but accessible news tone
+- Keep the article between 600-900 words
+- Output ONLY the revised article body in markdown. No preamble, no explanation, no "Here's the revised article" — just the article text.
+- Do NOT add fictional quotes or fabricated statistics"""
+
+SECOND_REVIEW_PROMPT = """You are an editorial quality reviewer for The Videshi, an Indian diaspora news platform.
+
+This article was flagged as "fail" by a first reviewer. Give your independent assessment.
+Return a JSON object with these fields:
+
+{
+  "overall_score": <1-10>,
+  "verdict": "pass" | "flag" | "fail",
+  "should_unpublish": true/false,
+  "reason": "brief explanation"
+}
+
+Only set should_unpublish to true if the article is genuinely harmful, completely off-topic, factually wrong in a dangerous way, or nonsensical. Most articles should be revised, not unpublished."""
+
 
 # ── Pre-checks (no LLM needed) ──
 def check_duplicate_embeds(body):
@@ -160,7 +247,6 @@ def check_duplicate_embeds(body):
     ig_urls = re.findall(r'https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/[A-Za-z0-9_-]+/?', body)
     x_urls = re.findall(r'https?://(?:www\.)?(?:twitter|x)\.com/\w+/status/\d+', body)
     all_urls = ig_urls + x_urls
-    from collections import Counter
     dupes = [url for url, count in Counter(all_urls).items() if count > 1]
     return dupes
 
@@ -175,9 +261,160 @@ def check_duplicate_images(article, recent_articles):
             dupes.append({"article_id": other["id"], "headline": other["headline"][:60]})
     return dupes
 
+
+# ── Revision engine ──
+def revise_article(article, review_result, fix_mode=False):
+    """Send article + feedback to LLM for revision. Returns revised body or None."""
+    if not fix_mode:
+        return None
+
+    headline = article["headline"]
+    body = article.get("body", "") or ""
+    vertical = article.get("vertical", "") or ""
+    
+    # Build feedback summary from review
+    feedback_parts = []
+    review = review_result.get("llm_review", {})
+    
+    if review.get("diaspora_angle", {}).get("quality", 10) < 7:
+        note = review["diaspora_angle"].get("note", "")
+        feedback_parts.append(f"DIASPORA ANGLE: Weak (score {review['diaspora_angle'].get('quality', '?')}/10). {note}")
+    
+    if review.get("image_match", {}).get("score", 10) < 6:
+        issue = review["image_match"].get("issue", "")
+        feedback_parts.append(f"IMAGE MATCH: Poor. {issue}")
+    
+    if review.get("factual_flags"):
+        feedback_parts.append(f"FACTUAL FLAGS: {'; '.join(review['factual_flags'][:3])}")
+    
+    if review.get("suggestions"):
+        feedback_parts.append(f"SUGGESTIONS: {'; '.join(review['suggestions'][:3])}")
+    
+    score = review.get("overall_score", 10)
+    feedback_parts.append(f"OVERALL SCORE: {score}/10")
+    
+    if not feedback_parts:
+        return None
+    
+    feedback = "\n".join(feedback_parts)
+    
+    article_text = f"""HEADLINE: {headline}
+VERTICAL: {vertical}
+
+REVIEWER FEEDBACK:
+{feedback}
+
+CURRENT ARTICLE BODY:
+{body}"""
+    
+    print(f"  🔄 Revising with Gemini 2.5 Flash...")
+    
+    # Use Gemini for revision (free tier), fall back to OpenAI
+    revised = call_gemini_text(REVISE_PROMPT, article_text, max_tokens=2500)
+    reviser = "gemini-2.5-flash"
+    
+    if not revised:
+        print(f"  🔄 Gemini unavailable, revising with GPT-4o-mini...")
+        revised = call_openai_text(REVISE_PROMPT, article_text, max_tokens=2500)
+        reviser = "gpt-4o-mini"
+    
+    if not revised:
+        print(f"  ❌ Revision failed — no LLM available")
+        return None
+    
+    # Basic sanity checks on the revised article
+    revised = revised.strip()
+    
+    # Remove any preamble the LLM might add
+    for prefix in ["Here's the revised article:", "Here is the revised article:", "Revised article:", "---"]:
+        if revised.lower().startswith(prefix.lower()):
+            revised = revised[len(prefix):].strip()
+    
+    # Check it's not drastically shorter (LLM sometimes truncates)
+    orig_words = len(body.split())
+    revised_words = len(revised.split())
+    if revised_words < orig_words * 0.5:
+        print(f"  ⚠️  Revision too short ({revised_words} words vs original {orig_words}).")
+        # Fallback to the other LLM
+        if reviser == "gemini-2.5-flash":
+            print(f"  🔄 Falling back to GPT-4o-mini for revision...")
+            revised = call_openai_text(REVISE_PROMPT, article_text, max_tokens=2500)
+            reviser = "gpt-4o-mini"
+        elif reviser == "gpt-4o-mini":
+            print(f"  🔄 Falling back to Gemini 2.5 Flash for revision...")
+            revised = call_gemini_text(REVISE_PROMPT, article_text, max_tokens=2500)
+            reviser = "gemini-2.5-flash"
+        if not revised:
+            print(f"  ❌ Fallback revision also failed. Skipping.")
+            return None
+        revised = revised.strip()
+        for prefix in ["Here's the revised article:", "Here is the revised article:", "Revised article:", "---"]:
+            if revised.lower().startswith(prefix.lower()):
+                revised = revised[len(prefix):].strip()
+        revised_words = len(revised.split())
+        if revised_words < orig_words * 0.5:
+            print(f"  ❌ Fallback also too short ({revised_words} words). Skipping.")
+            return None
+    
+    # Check embeds are preserved
+    orig_embeds = set(re.findall(r'https?://(?:www\.)?(?:instagram\.com|x\.com|twitter\.com)/\S+', body))
+    revised_embeds = set(re.findall(r'https?://(?:www\.)?(?:instagram\.com|x\.com|twitter\.com)/\S+', revised))
+    lost_embeds = orig_embeds - revised_embeds
+    if lost_embeds:
+        print(f"  ⚠️  Revision dropped embeds: {lost_embeds}. Re-appending them.")
+        for embed in lost_embeds:
+            revised += f"\n\n{embed}"
+    
+    # Patch in Supabase
+    status = sb_patch(article["id"], {"body": revised})
+    if status in (200, 204):
+        print(f"  ✅ Article revised by {reviser} ({revised_words} words)")
+        return {"reviser": reviser, "word_count": revised_words, "original_word_count": orig_words}
+    else:
+        print(f"  ❌ Supabase patch failed (HTTP {status})")
+        return None
+
+
+def handle_fail(article, review_openai, fix_mode=False):
+    """Handle a 'fail' verdict — get second opinion, revise or unpublish."""
+    if not fix_mode:
+        return "fail_no_action"
+    
+    headline = article["headline"]
+    body = article.get("body", "") or ""
+    
+    article_text = f"""HEADLINE: {headline}
+BODY:
+{body[:4000]}"""
+    
+    # Get second opinion from the OTHER model
+    print(f"  🔍 Getting second opinion for fail verdict...")
+    second = call_gemini(SECOND_REVIEW_PROMPT, article_text)
+    second_source = "gemini-2.5-flash"
+    if not second:
+        second = call_openai(SECOND_REVIEW_PROMPT, article_text)
+        second_source = "gpt-4o-mini"
+    
+    if second and second.get("should_unpublish") == True:
+        # Both agree: unpublish
+        status = sb_patch(article["id"], {"status": "archived"})
+        if status in (200, 204):
+            reason = second.get("reason", "consensus fail")
+            print(f"  🗑️  UNPUBLISHED (consensus: {reason})")
+            return f"unpublished: {reason}"
+        else:
+            print(f"  ❌ Failed to unpublish (HTTP {status})")
+            return "unpublish_failed"
+    else:
+        # Second reviewer disagrees — revise instead
+        if second:
+            print(f"  ↩️  Second reviewer says: {second.get('verdict','?')} (score {second.get('overall_score','?')}). Revising instead.")
+        return "revise"
+
+
 # ── Main review function ──
 def review_article(article, recent_articles, fix_mode=False):
-    """Review a single article with pre-checks + LLM review."""
+    """Review a single article with pre-checks + LLM review + auto-revision."""
     headline = article["headline"]
     body = article.get("body", "") or ""
     image_url = article.get("image_url", "") or ""
@@ -193,9 +430,11 @@ def review_article(article, recent_articles, fix_mode=False):
         "pre_checks": {},
         "llm_review": None,
         "actions_taken": [],
+        "revised": False,
+        "unpublished": False,
     }
     
-    # Pre-check 1: Duplicate embeds
+    # ── Pre-check 1: Duplicate embeds ──
     dup_embeds = check_duplicate_embeds(body)
     result["pre_checks"]["duplicate_embeds"] = dup_embeds
     if dup_embeds:
@@ -203,23 +442,24 @@ def review_article(article, recent_articles, fix_mode=False):
         if fix_mode:
             fixed_body = body
             for url in dup_embeds:
-                # Remove duplicate (keep first occurrence)
                 parts = fixed_body.split(url)
                 if len(parts) > 2:
-                    fixed_body = parts[0] + url + url.join(parts[2:])  # keep first, remove second
+                    fixed_body = parts[0] + url + url.join(parts[2:])
             if fixed_body != body:
                 status = sb_patch(article["id"], {"body": fixed_body})
                 if status in (200, 204):
-                    result["actions_taken"].append(f"Removed duplicate embed(s): {dup_embeds}")
+                    result["actions_taken"].append(f"Removed duplicate embed(s)")
                     print(f"  ✅ Fixed duplicate embeds")
+                    body = fixed_body
+                    article["body"] = body
     
-    # Pre-check 2: Duplicate images
+    # ── Pre-check 2: Duplicate images ──
     dup_images = check_duplicate_images(article, recent_articles)
     result["pre_checks"]["duplicate_images"] = dup_images
     if dup_images:
         print(f"  🖼️  Same image used on: {[d['headline'] for d in dup_images]}")
     
-    # Build article text for LLM review
+    # ── Build article text for LLM review ──
     article_text = f"""HEADLINE: {headline}
 VERTICAL: {vertical}
 IMAGE URL: {image_url}
@@ -228,13 +468,13 @@ IMAGE ENTITIES: {image_entities}
 BODY:
 {body[:4000]}"""
     
-    # LLM Review (try OpenAI first, then Gemini)
+    # ── LLM Review (GPT-4o-mini primary) ──
     llm_result = call_openai(REVIEW_PROMPT, article_text)
     llm_source = "gpt-4o-mini"
     
     if not llm_result:
         llm_result = call_gemini(REVIEW_PROMPT, article_text)
-        llm_source = "gemini-2.0-flash"
+        llm_source = "gemini-2.5-flash"
     
     if llm_result:
         result["llm_review"] = llm_result
@@ -243,23 +483,45 @@ BODY:
         verdict = llm_result.get("verdict", "?")
         print(f"  📊 Score: {score}/10 | Verdict: {verdict} ({llm_source})")
         
-        # Handle embed issues in fix mode
+        # ── Handle embed issues (remove irrelevant embeds) ──
         if fix_mode and llm_result.get("embed_issues"):
             for issue in llm_result["embed_issues"]:
                 if issue.get("problem") == "irrelevant" and issue.get("url"):
                     url = issue["url"]
-                    # Remove irrelevant embed from body
                     fixed = body.replace(f"\n\n{url}\n\n", "\n\n")
+                    if fixed == body:
+                        fixed = body.replace(f"\n{url}\n", "\n")
                     if fixed == body:
                         fixed = body.replace(url, "")
                     if fixed != body:
                         status = sb_patch(article["id"], {"body": fixed})
                         if status in (200, 204):
-                            result["actions_taken"].append(f"Removed irrelevant embed: {url}")
+                            result["actions_taken"].append(f"Removed irrelevant embed: {url[:60]}")
                             print(f"  ✅ Removed irrelevant embed: {url[:60]}")
-                            body = fixed  # update for subsequent fixes
+                            body = fixed
+                            article["body"] = body
         
-        # Print issues
+        # ── Handle verdict ──
+        if fix_mode and verdict == "fail":
+            fail_result = handle_fail(article, llm_result, fix_mode)
+            if fail_result.startswith("unpublished"):
+                result["unpublished"] = True
+                result["actions_taken"].append(fail_result)
+            elif fail_result == "revise":
+                # Revise instead of unpublish
+                rev = revise_article(article, result, fix_mode)
+                if rev:
+                    result["revised"] = True
+                    result["actions_taken"].append(f"Revised by {rev['reviser']} ({rev['original_word_count']}→{rev['word_count']} words)")
+        
+        elif fix_mode and verdict == "flag":
+            # Flagged articles get revised
+            rev = revise_article(article, result, fix_mode)
+            if rev:
+                result["revised"] = True
+                result["actions_taken"].append(f"Revised by {rev['reviser']} ({rev['original_word_count']}→{rev['word_count']} words)")
+        
+        # ── Print issues ──
         if llm_result.get("embed_issues"):
             for iss in llm_result["embed_issues"]:
                 print(f"  ⚠️  Embed: {iss.get('url','?')[:50]} — {iss.get('problem','?')}: {iss.get('explanation','')[:60]}")
@@ -302,7 +564,7 @@ def main():
         print("No articles found to review.")
         return
     
-    print(f"Found {len(articles)} articles to review")
+    print(f"{'🔧 FIX MODE' if fix_mode else '👀 REVIEW ONLY'} — Found {len(articles)} articles")
     
     # Also fetch recent articles for image dedup check
     recent_cutoff = (datetime.now(timezone.utc) - timedelta(days=3)).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -313,6 +575,8 @@ def main():
     # Review each article
     results = []
     stats = {"pass": 0, "flag": 0, "fail": 0, "error": 0}
+    revision_count = 0
+    unpublish_count = 0
     
     for article in articles:
         result = review_article(article, recent_articles, fix_mode)
@@ -323,7 +587,12 @@ def main():
             verdict = result["llm_review"].get("verdict", "error")
         stats[verdict] = stats.get(verdict, 0) + 1
         
-        time.sleep(0.5)  # rate limit
+        if result.get("revised"):
+            revision_count += 1
+        if result.get("unpublished"):
+            unpublish_count += 1
+        
+        time.sleep(0.5)  # rate limit between articles
     
     # Summary
     print(f"\n{'='*60}")
@@ -334,15 +603,23 @@ def main():
     print(f"  💀 Error: {stats['error']}")
     
     if fix_mode:
-        total_fixes = sum(len(r.get("actions_taken", [])) for r in results)
-        print(f"  🔧 Auto-fixes applied: {total_fixes}")
+        total_mechanical = sum(
+            len([a for a in r.get("actions_taken", []) if "Removed" in a])
+            for r in results
+        )
+        print(f"  🔧 Mechanical fixes (embeds): {total_mechanical}")
+        print(f"  📝 Articles revised: {revision_count}")
+        print(f"  🗑️  Articles unpublished: {unpublish_count}")
     
     # Save report
     report_path = os.path.expanduser("~/workspace/the-videshi-news/pipeline/review-report.json")
     with open(report_path, "w") as f:
         json.dump({
             "timestamp": datetime.now(timezone.utc).isoformat(),
+            "mode": "fix" if fix_mode else "review",
             "stats": stats,
+            "revisions": revision_count,
+            "unpublished": unpublish_count,
             "articles": results,
         }, f, indent=2, default=str)
     print(f"\nFull report: {report_path}")
