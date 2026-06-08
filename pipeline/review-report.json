@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-08T22:15:48.476375+00:00",
+  "timestamp": "2026-06-08T22:45:51.399180+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 5,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,81 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "040fe2bf-5c62-470e-8c4d-5a37f5768720",
-      "headline": "Wipro Just Hit a Three-Year Low. The AI Bubble That Inflated Indian IT Is Now Deflating It.",
-      "slug": "wipro-tcs-nifty-it-crash-ai-selloff-nasdaq-nri-tech-workers-stocks-20260608",
+      "id": "48734c23-6b1a-4fc0-9cf7-cba9930d3ef9",
+      "headline": "India Have Just Won by an Innings and 300 Runs. The ODI Series Will Be Harder.",
+      "slug": "india-afghanistan-odi-series-preview-dharamshala-rashid-khan-kishan-2026-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of HPCA Stadium is relevant as it is the venue for the upcoming ODIs, but it does not directly relate to the Test match victory mentioned in the headline."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI readers by discussing viewing times for the matches in different time zones, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more direct quotes or insights from players or coaches to enhance engagement.",
+          "Add a brief historical context about India and Afghanistan's cricketing rivalry to enrich the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e89cdfd9-00f1-4efe-8be3-86445f15d92a",
+      "headline": "His Last ODI Was Against Afghanistan. Three Years Later, His Comeback Is Against Them Too.",
+      "slug": "ishan-kishan-odi-comeback-india-afghanistan-series-2026-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Ishan Kishan is relevant to the article, but it lacks a direct connection to the specific context of his comeback against Afghanistan."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Kishan's story to the diaspora audience by highlighting the unpredictability of cricket careers and the global viewership of the upcoming matches."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific statistics or quotes from Kishan to enhance the narrative.",
+          "Add a brief section on how Kishan's performance could impact the Indian team's strategy in the upcoming World Cup."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6f863486-c862-4de0-8069-293ab6ba9371",
+      "headline": "Indian Graduates Who Go Home See Their Income Multiply 8.4 Times. A New Report Explains Why.",
+      "slug": "mpower-2026-report-indian-students-return-income-growth-135-billion-remittances-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -29,13 +101,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the impact of the Indian IT market on NRIs, discussing their investments and employment."
+          "note": "The article discusses the financial implications for Indian graduates returning home, which is relevant to NRIs and their families."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more data or quotes from industry experts to enhance credibility.",
-          "Include a brief analysis of potential future trends in the Indian IT sector to provide more context."
+          "Include quotes or testimonials from returning graduates to add a personal touch.",
+          "Provide more context on how the remittance figures compare to other countries for a broader perspective."
         ],
         "verdict": "pass"
       },
@@ -47,9 +119,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "70c499b9-a1e3-4cbb-9016-d22e6230238a",
-      "headline": "Laughter Rewires Your Child's Brain Faster Than Flashcards. The Science Says It Is Not Even Close.",
-      "slug": "laughter-brain-development-children-prefrontal-cortex-diaspora-parenting-20260608",
+      "id": "a8b85a90-1599-43c1-8e22-d8bea27e0239",
+      "headline": "Oil India Hits Gas Twice in the Andaman Sea. India's Most Promising Frontier Basin Just Got Real.",
+      "slug": "oil-india-andaman-sea-gas-discovery-vijayapuram-3-energy-security-hormuz-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +131,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects laughter's role in child development to the unique parenting challenges faced by the South Asian diaspora."
+          "note": "The article effectively connects the Andaman gas discoveries to the economic implications for NRIs, particularly regarding remittances and currency stability."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how laughter can be integrated into daily routines for diaspora families.",
-          "Add quotes or anecdotes from diaspora parents to enhance relatability."
+          "Replace the hero image with one that directly relates to oil and gas exploration or the Andaman Sea.",
+          "Clarify the timeline of events, particularly the mention of the year 2025, which seems to be a typographical error."
         ],
         "verdict": "pass"
       },
@@ -83,45 +155,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "517cca27-9ec4-476e-9f1c-10ed30c7e5f4",
-      "headline": "The Obesity Drug That Was Supposed to Fix Your Liver Just Lost One in Four Patients to Side Effects",
-      "slug": "survodutide-obesity-liver-drug-side-effects-south-asian-fatty-liver-masld-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the relevance of the drug's findings to the Indian diaspora, particularly regarding the high prevalence of MASLD among South Asians."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more context about the implications of the drug's side effects for the South Asian community.",
-          "Include quotes from experts or patients to enhance the narrative and provide personal perspectives."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "038539d1-3251-48fb-9dd7-370f4930c3be",
-      "headline": "India Just Went Digital With OCI Cards \u2014 and 14 Million Overseas Indians Need to Pay Attention",
-      "slug": "india-eoci-digital-card-citizenship-rules-nri-20260608",
+      "id": "e35ec907-a096-4297-b597-dbb1bce7274b",
+      "headline": "New York State Senate Asks Governor to Proclaim August 15 as India Independence Day",
+      "slug": "new-york-state-senate-resolution-august-15-india-independence-day-2026",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -132,99 +168,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 6,
-          "issue": "The image does not directly relate to the topic of OCI cards or digital immigration processes."
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses the concerns and changes relevant to NRIs, making it highly relevant for the diaspora audience."
+          "note": "The article effectively connects the resolution to the Indian diaspora's influence and recognition in New York."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents the OCI card or digital immigration to enhance relevance.",
-          "Add a section that discusses how these changes might impact the daily lives of NRIs beyond just the application process."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "dc7ce530-984c-4701-9fa9-c676d649efd6",
-      "headline": "Etihad Is Ordering Widebody Jets and Restoring Full Capacity \u2014 Here's What That Means for NRIs Routing Through Abu Dhabi",
-      "slug": "etihad-widebody-expansion-abu-dhabi-nri-india-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns and interests of NRIs traveling through Abu Dhabi, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an NRI traveler to personalize the impact of the changes.",
-          "Include more details on how these changes specifically benefit NRIs in terms of pricing or travel time."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8843536b-0b24-44eb-b124-2b23817c2ae3",
-      "headline": "Welcome To The Jungle Drops Its Trailer Wednesday. Bollywood's Most Insane Ensemble Is Finally Here.",
-      "slug": "welcome-to-the-jungle-trailer-june-11-akshay-suniel-paresh-ensemble-nri-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d337a9ee-71f2-4d04-98b0-99397c2e99fd",
-            "headline": "Bhooth Bangla Just Hit Netflix. Akshay Kumar and Priyadarsha"
-          },
-          {
-            "article_id": "77c75ce2-559e-4edf-84d5-eb50a5d0688d",
-            "headline": "Akshay Kumar Quietly Sold Two Mumbai Flats for 7.1 Crore. He"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "The hero image does not match the article's topic about the film 'Welcome To The Jungle'."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film to the nostalgia felt by the diaspora audience, making it relatable."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that features the cast of 'Welcome To The Jungle' or the film's promotional material.",
-          "Consider adding more details about the film's release strategy or promotional events specifically targeting the diaspora audience."
+          "Consider using a more relevant image that depicts Indian culture or the Indian community in New York to enhance the article's connection to the subject.",
+          "Include quotes or perspectives from Indian diaspora members to further enrich the narrative."
         ],
         "verdict": "pass"
       },
@@ -249,18 +204,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "irrelevant image"
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article discusses the impact of the ruling on Indian workers, making it highly relevant to the diaspora."
+          "note": "The article discusses the impact of the ruling on Indian workers and firms, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of H-1B visas or immigration.",
-          "Consider adding quotes or reactions from Indian professionals or organizations to enhance the diaspora connection."
+          "Replace the hero image with one that directly relates to immigration or H-1B visas to enhance relevance.",
+          "Consider adding quotes or reactions from Indian professionals or organizations to strengthen the diaspora connection."
         ],
         "verdict": "flag"
       },

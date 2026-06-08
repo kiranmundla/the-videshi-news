@@ -180,12 +180,16 @@ def check_visual_quality(video_path):
                 if avg_brightness < 10:
                     black_count += 1
                 
-                # Letterbox detection: check if top/bottom 15% are very dark
+                # Letterbox detection: check if top/bottom 15% are uniform (dark OR light)
                 top_band = arr[:int(h * 0.15)].mean()
                 bottom_band = arr[int(h * 0.85):].mean()
                 mid_band = arr[int(h * 0.25):int(h * 0.75)].mean()
                 
-                if top_band < 15 and bottom_band < 15 and mid_band > 30:
+                # Letterboxed if top+bottom are both very dark OR very bright, and middle has actual content
+                top_uniform = top_band < 15 or top_band > 240
+                bottom_uniform = bottom_band < 15 or bottom_band > 240
+                mid_has_content = 20 < mid_band < 235
+                if top_uniform and bottom_uniform and mid_has_content:
                     letterbox_count += 1
             
             total = len(frames)
@@ -240,6 +244,46 @@ def check_avatar_look(avatar_info):
         "passed": is_professional,
         "detail": f"{look_name}" + ("" if is_professional else " — outdoor/sport setting, not ideal for news")
     })
+    
+    return checks
+
+
+def check_content_fill(video_path):
+    """Verify the actual visual content fills the portrait frame properly.
+    
+    Uses portrait_fix.detect_letterbox() to check if the avatar content
+    is letterboxed (16:9 band inside 9:16 frame). This catches the case
+    where resolution is technically correct but the actual content is a
+    small horizontal strip with padding above/below.
+    """
+    checks = []
+    try:
+        from portrait_fix import detect_letterbox
+        lb_info = detect_letterbox(str(video_path), threshold=0.65)
+        
+        if lb_info.get("error"):
+            checks.append({
+                "name": "content_fill",
+                "passed": True,
+                "detail": f"Could not verify: {lb_info['error']}"
+            })
+        else:
+            is_letterboxed = lb_info.get("is_letterboxed", False)
+            content_ratio = lb_info.get("content_ratio", 1.0)
+            checks.append({
+                "name": "content_fill",
+                "passed": not is_letterboxed,
+                "detail": f"Content fills {content_ratio*100:.0f}% of frame" + (
+                    "" if not is_letterboxed 
+                    else f" — avatar is letterboxed in a {lb_info.get('content_height', '?')}px band, frame not filled"
+                )
+            })
+    except ImportError:
+        checks.append({
+            "name": "content_fill",
+            "passed": True,
+            "detail": "portrait_fix not available (non-blocking)"
+        })
     
     return checks
 
@@ -367,6 +411,9 @@ def run_quality_gate(video_path, article, avatar_info=None, script=None):
     print("  🔍 QA: Visual quality...")
     all_checks.extend(check_visual_quality(video_path))
     
+    print("  🔍 QA: Content fill...")
+    all_checks.extend(check_content_fill(video_path))
+    
     print("  🔍 QA: Avatar look...")
     all_checks.extend(check_avatar_look(avatar_info))
     
@@ -383,6 +430,7 @@ def run_quality_gate(video_path, article, avatar_info=None, script=None):
         "loudness": 5,
         "black_frames": 10,
         "letterboxing": 10,
+        "content_fill": 10,
         "avatar_facing": 10,
         "avatar_setting": 5,
         "content_alignment": 5,
@@ -393,7 +441,7 @@ def run_quality_gate(video_path, article, avatar_info=None, script=None):
     blocking_failures = []
     
     # These checks BLOCK publishing if they fail
-    blocking_checks = {"resolution", "aspect_ratio", "audio_stream", "avatar_facing", "letterboxing"}
+    blocking_checks = {"resolution", "aspect_ratio", "audio_stream", "avatar_facing", "letterboxing", "content_fill"}
     
     for check in all_checks:
         name = check["name"]

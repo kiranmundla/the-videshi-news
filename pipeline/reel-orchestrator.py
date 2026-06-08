@@ -846,20 +846,35 @@ def run(args):
         kavya_dur = get_video_duration(raw_avatar)
         print(f"  Duration: {kavya_dur:.1f}s")
 
-        # 3e2. Portrait mode — HeyGen renders native 9:16
-        working_avatar = raw_avatar
+        # 3e2. Portrait fix — HeyGen letterboxes 16:9 content in 9:16 frame
+        from portrait_fix import detect_letterbox, fix_avatar_portrait, burn_captions_news_layout
+        lb_info = detect_letterbox(raw_avatar)
+        if lb_info.get("is_letterboxed"):
+            portrait_fixed = BUILD_DIR / f"avatar-portrait-fixed-{video_id}.mp4"
+            headline = article.get('headline', '')
+            fix_avatar_portrait(raw_avatar, portrait_fixed, headline, lb_info)
+            working_avatar = portrait_fixed
+        else:
+            working_avatar = raw_avatar
 
         # 3f. Generate captions
         print("  Generating captions...")
         srt_path = generate_captions_srt(working_avatar, script)
 
-        # 3g. Burn captions (bottom of portrait frame)
+        # 3g. Burn captions (positioned for news layout if portrait-fixed)
         if srt_path:
             captioned = BUILD_DIR / f"avatar-captioned-{video_id}.mp4"
-            if burn_captions(working_avatar, srt_path, captioned):
-                avatar_video = captioned
+            if lb_info.get("is_letterboxed"):
+                # Use news-layout positioned captions (in the navy zone below avatar)
+                if burn_captions_news_layout(working_avatar, srt_path, captioned):
+                    avatar_video = captioned
+                else:
+                    avatar_video = working_avatar
             else:
-                avatar_video = working_avatar
+                if burn_captions(working_avatar, srt_path, captioned):
+                    avatar_video = captioned
+                else:
+                    avatar_video = working_avatar
         else:
             avatar_video = working_avatar
 
