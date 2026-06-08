@@ -1,128 +1,15 @@
 {
-  "timestamp": "2026-06-08T21:17:05.867478+00:00",
+  "timestamp": "2026-06-08T21:46:23.533475+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 3,
+    "pass": 1,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 3,
+  "revisions": 2,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "f9390533-a497-4a80-ba74-583688493b9b",
-      "headline": "India's Startup Founders Are Stuck Between Seed and Scale. Global AI Is Hoarding the Capital.",
-      "slug": "india-startup-series-a-funding-squeeze-ai-capital-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of startups or AI, but is visually appealing and relevant to technology."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the funding landscape for NRI investors and founders, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of NRI investors or companies to strengthen the diaspora connection.",
-          "Include a quote or perspective from an NRI founder to provide a personal touch and enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7b2ad390-8149-4d60-aa59-680522566b8e",
-      "headline": "Nvidia Just Built a PC Chip That Runs AI Models Locally. Apple Should Be Nervous.",
-      "slug": "nvidia-rtx-spark-arm-ai-pc-chip-apple-challenge-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the topic of Nvidia's new chip to Indian developers in Silicon Valley, highlighting their significance in the tech workforce."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or insights from Indian developers to strengthen the diaspora angle.",
-          "Include a brief comparison of Nvidia's RTX Spark with Apple's M-series chips to enhance the discussion on competition."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2172c6a8-731a-4a60-8da5-fa848c11de3f",
-      "headline": "Sriram Krishnan Is Leaving the White House. He Shaped America's AI Playbook.",
-      "slug": "sriram-krishnan-white-house-ai-advisor-exit-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f719ee15-daf5-4748-92cd-a473c7a4df4d",
-            "headline": "Sriram Krishnan Is Leaving the White House. He Shaped Americ"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to Sriram Krishnan or AI policy."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Krishnan's story to the Indian tech diaspora and its implications for Indian professionals in the US."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that features Sriram Krishnan or represents AI policy.",
-          "Add a quote or perspective from Krishnan regarding his future plans to enhance the personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "8843536b-0b24-44eb-b124-2b23817c2ae3",
       "headline": "Welcome To The Jungle Drops Its Trailer Wednesday. Bollywood's Most Insane Ensemble Is Finally Here.",
@@ -143,64 +30,35 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZMsRbuNhYs/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its trailer, making it irrelevant to the article's subject."
+          }
+        ],
         "image_match": {
           "score": 3,
-          "issue": "irrelevant"
+          "issue": "The hero image features Akshay Kumar receiving a National Award, which does not match the article's focus on the trailer for 'Welcome To The Jungle'."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the film to the diaspora audience by referencing nostalgia and communal experiences related to the franchise."
+          "note": "The article effectively connects with the diaspora by referencing the nostalgia associated with the original films and their cultural impact on family gatherings."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the film 'Welcome To The Jungle'.",
-          "Consider adding more details about the film's release strategy in international markets to enhance the diaspora angle."
+          "Replace the hero image with one that directly relates to 'Welcome To The Jungle' or its cast.",
+          "Consider providing more context or quotes from the trailer to enhance engagement."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (672\u2192695 words)"
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZMsRbuNhYs/",
+        "Revised by gpt-4o-mini (694\u2192715 words)"
       ],
       "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "30079fc7-a21a-4bc4-9bf3-24f85c2be5eb",
-      "headline": "The Odyssey IMAX Tickets Just Went Live in India. The Price Map Is Wild.",
-      "slug": "the-odyssey-nolan-imax-tickets-india-370-to-3000-price-map-nri-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the ticket pricing situation in India to the experiences of the Indian diaspora, particularly NRIs in the US."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or insights from industry experts to enhance credibility.",
-          "Include a brief section on the significance of IMAX technology in cinema to provide context for readers unfamiliar with it."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -230,8 +88,8 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "image does not relate to the article's topic about fuel and ethanol"
+          "score": 5,
+          "issue": "image does not directly relate to the topic of ethanol fuel or the launch event"
         },
         "diaspora_angle": {
           "present": true,
@@ -241,15 +99,15 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of ethanol fuel or the launch event.",
-          "Expand on the implications for NRIs with specific examples of potential investment opportunities in the ethanol sector."
+          "Consider using a more relevant image that depicts the ethanol fuel launch or flex-fuel vehicles.",
+          "Add more specific examples of how NRIs can engage with the ethanol economy or sustainable investments."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (706\u2192753 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -266,24 +124,24 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 4,
-          "issue": "The image does not directly relate to the article's topic of H-1B visas and immigration."
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article discusses the impact of the ruling on Indian workers and IT firms, making it highly relevant to the Indian diaspora."
+          "note": "The article discusses the impact of the ruling on Indian workers and IT firms, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the topic of H-1B visas or immigration.",
-          "Add quotes or reactions from Indian professionals or organizations to enhance the diaspora connection."
+          "Replace the hero image with one that is more relevant to the topic of immigration or H-1B visas.",
+          "Consider adding quotes or reactions from Indian professionals or organizations to enhance the diaspora perspective."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (799\u2192862 words)"
+        "Revised by gpt-4o-mini (862\u2192892 words)"
       ],
       "revised": true,
       "unpublished": false,
