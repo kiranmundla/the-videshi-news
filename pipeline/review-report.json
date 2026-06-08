@@ -1,15 +1,195 @@
 {
-  "timestamp": "2026-06-08T21:46:23.533475+00:00",
+  "timestamp": "2026-06-08T22:15:48.476375+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 2,
+    "pass": 6,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 2,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "040fe2bf-5c62-470e-8c4d-5a37f5768720",
+      "headline": "Wipro Just Hit a Three-Year Low. The AI Bubble That Inflated Indian IT Is Now Deflating It.",
+      "slug": "wipro-tcs-nifty-it-crash-ai-selloff-nasdaq-nri-tech-workers-stocks-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the impact of the Indian IT market on NRIs, discussing their investments and employment."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more data or quotes from industry experts to enhance credibility.",
+          "Include a brief analysis of potential future trends in the Indian IT sector to provide more context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "70c499b9-a1e3-4cbb-9016-d22e6230238a",
+      "headline": "Laughter Rewires Your Child's Brain Faster Than Flashcards. The Science Says It Is Not Even Close.",
+      "slug": "laughter-brain-development-children-prefrontal-cortex-diaspora-parenting-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects laughter's role in child development to the unique parenting challenges faced by the South Asian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how laughter can be integrated into daily routines for diaspora families.",
+          "Add quotes or anecdotes from diaspora parents to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "517cca27-9ec4-476e-9f1c-10ed30c7e5f4",
+      "headline": "The Obesity Drug That Was Supposed to Fix Your Liver Just Lost One in Four Patients to Side Effects",
+      "slug": "survodutide-obesity-liver-drug-side-effects-south-asian-fatty-liver-masld-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the relevance of the drug's findings to the Indian diaspora, particularly regarding the high prevalence of MASLD among South Asians."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more context about the implications of the drug's side effects for the South Asian community.",
+          "Include quotes from experts or patients to enhance the narrative and provide personal perspectives."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "038539d1-3251-48fb-9dd7-370f4930c3be",
+      "headline": "India Just Went Digital With OCI Cards \u2014 and 14 Million Overseas Indians Need to Pay Attention",
+      "slug": "india-eoci-digital-card-citizenship-rules-nri-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of OCI cards or digital immigration processes."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns and changes relevant to NRIs, making it highly relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the OCI card or digital immigration to enhance relevance.",
+          "Add a section that discusses how these changes might impact the daily lives of NRIs beyond just the application process."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dc7ce530-984c-4701-9fa9-c676d649efd6",
+      "headline": "Etihad Is Ordering Widebody Jets and Restoring Full Capacity \u2014 Here's What That Means for NRIs Routing Through Abu Dhabi",
+      "slug": "etihad-widebody-expansion-abu-dhabi-nri-india-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns and interests of NRIs traveling through Abu Dhabi, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a quote from an NRI traveler to personalize the impact of the changes.",
+          "Include more details on how these changes specifically benefit NRIs in terms of pricing or travel time."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "8843536b-0b24-44eb-b124-2b23817c2ae3",
       "headline": "Welcome To The Jungle Drops Its Trailer Wednesday. Bollywood's Most Insane Ensemble Is Finally Here.",
@@ -30,77 +210,21 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZMsRbuNhYs/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film or its trailer, making it irrelevant to the article's subject."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "The hero image features Akshay Kumar receiving a National Award, which does not match the article's focus on the trailer for 'Welcome To The Jungle'."
+          "issue": "The hero image does not match the article's topic about the film 'Welcome To The Jungle'."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects with the diaspora by referencing the nostalgia associated with the original films and their cultural impact on family gatherings."
+          "note": "The article effectively connects the film to the nostalgia felt by the diaspora audience, making it relatable."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that directly relates to 'Welcome To The Jungle' or its cast.",
-          "Consider providing more context or quotes from the trailer to enhance engagement."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZMsRbuNhYs/",
-        "Revised by gpt-4o-mini (694\u2192715 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8424b8fb-0e56-4975-9791-20b878c60806",
-      "headline": "India Just Launched a Fuel That Costs \u20b920 Less Per Litre. Your Car Cannot Use It.",
-      "slug": "india-e85-flex-fuel-launch-ethanol-20-rupees-cheaper-maruti-hero-wagoner-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "57ae6b2f-59ad-4a52-8f55-663b98b28bf7",
-            "headline": "India Has Raised Fuel Prices Four Times in Three Weeks. The "
-          },
-          {
-            "article_id": "7bb5204d-df99-4ae1-9a0b-845ca1025be9",
-            "headline": "India Launches E85 Fuel at \u20b920 Below Petrol. The Flex-Fuel E"
-          },
-          {
-            "article_id": "4e4b9d32-e75e-4d1f-8e68-719467c77e7a",
-            "headline": "India Eyes Venezuelan Oil Fields as Caracas Becomes Its Four"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "image does not directly relate to the topic of ethanol fuel or the launch event"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the ethanol economy to NRI interests, particularly in terms of investment and remittances."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts the ethanol fuel launch or flex-fuel vehicles.",
-          "Add more specific examples of how NRIs can engage with the ethanol economy or sustainable investments."
+          "Replace the hero image with one that features the cast of 'Welcome To The Jungle' or the film's promotional material.",
+          "Consider adding more details about the film's release strategy or promotional events specifically targeting the diaspora audience."
         ],
         "verdict": "pass"
       },
@@ -125,23 +249,23 @@
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "irrelevant"
+          "issue": "irrelevant image"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article discusses the impact of the ruling on Indian workers and IT firms, making it highly relevant to the diaspora."
+          "note": "The article discusses the impact of the ruling on Indian workers, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of immigration or H-1B visas.",
-          "Consider adding quotes or reactions from Indian professionals or organizations to enhance the diaspora perspective."
+          "Replace the hero image with one that is more relevant to the topic of H-1B visas or immigration.",
+          "Consider adding quotes or reactions from Indian professionals or organizations to enhance the diaspora connection."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (862\u2192892 words)"
+        "Revised by gpt-4o-mini (892\u2192892 words)"
       ],
       "revised": true,
       "unpublished": false,
