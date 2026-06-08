@@ -246,8 +246,18 @@ export default function CarDetailPage() {
                   lowPrice: car.msrp_low,
                   highPrice: car.msrp_high ?? car.msrp_low,
                   priceCurrency: "USD",
+                  offerCount: 1,
                 }
               : undefined,
+            ...(car.nri_take
+              ? {
+                  review: {
+                    "@type": "Review",
+                    author: { "@type": "Organization", name: "The Videshi" },
+                    reviewBody: car.nri_take,
+                  },
+                }
+              : {}),
           })}
         </script>
         <link rel="canonical" href={`https://www.thevideshi.com/cars/${slug}`} />

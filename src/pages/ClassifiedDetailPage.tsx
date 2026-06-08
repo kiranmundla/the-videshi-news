@@ -495,6 +495,7 @@ export default function ClassifiedDetailPage() {
       "@type": "Offer",
       price: item.price,
       priceCurrency: "USD",
+      offerCount: 1,
     };
   }
   if (item.category === "Jobs & Gigs") {
