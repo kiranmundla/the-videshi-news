@@ -215,6 +215,9 @@ def fetch_youtube_trailer(query):
 
 def validate_image_url(url):
     """Check that the URL returns a real image (not a 404 or tiny placeholder)."""
+    # Trust Wikimedia URLs — they're known good and rate-limit HEAD requests
+    if "upload.wikimedia.org" in url:
+        return True
     try:
         r = requests.head(url, headers=UA, timeout=10, allow_redirects=True)
         ct = r.headers.get("Content-Type", "")
