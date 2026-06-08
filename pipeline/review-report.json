@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-08T08:15:20.836988+00:00",
+  "timestamp": "2026-06-08T08:45:28.900827+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8db56a79-15ca-4bd0-adcb-65c92f51d2c3",
-      "headline": "Two and a Quarter Billion Dollars \u2014 The H-1B Tab That Could End Indian IT's American Era",
-      "slug": "225-billion-h1b-fee-indian-it-infosys-tcs-cognizant-offshoring-20260608",
+      "id": "e98bf286-3cc2-4160-8904-90e5f2586aa7",
+      "headline": "400,000 Students Applied to Recheck Their CBSE Scores. IIT Roorkee Blinked. The Supreme Court Is Next.",
+      "slug": "cbse-osm-aftermath-iit-roorkee-eligibility-supreme-court-400000-recheck-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the H-1B visa topic but is a generic tech-related image."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of H-1B fees on Indian professionals in the U.S. and the broader Indian diaspora."
+          "quality": 7,
+          "note": "The article discusses a student from Saudi Arabia, connecting to the diaspora experience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to the H-1B visa or Indian IT professionals.",
-          "Add a quote or perspective from an Indian professional currently in the U.S. to enhance the personal connection to the diaspora."
+          "Include more direct quotes from students or experts to enhance credibility.",
+          "Provide a brief background on the implications of the CBSE crisis for students abroad."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "406ab7ee-1768-4ec8-b9cd-b4ab8413ec99",
-      "headline": "A Judge Just Called USCIS Lawless \u2014 and the Ruling Should Worry Every Indian Waiting in Line",
-      "slug": "federal-judge-uscis-39-country-ban-struck-down-india-precedent-20260608",
+      "id": "882093b0-12f9-49d3-b11d-4790fa10d145",
+      "headline": "SpaceX Lists on Thursday at $1.77 Trillion. It Will Instantly Be the Ninth Most Valuable Company on Earth.",
+      "slug": "spacex-ipo-june-12-largest-ever-1-77-trillion-xai-starlink-india-investors-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or the specific ruling discussed."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the ruling to the experiences of Indian nationals navigating the U.S. immigration system."
+          "quality": 8,
+          "note": "The article effectively connects the SpaceX IPO to Indian investors and NRIs, discussing implications for their investments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents immigration or legal proceedings to enhance relevance.",
-          "Add quotes or perspectives from Indian nationals affected by the ruling to deepen the diaspora connection."
+          "Include more specific examples of how Indian investors can engage with the SpaceX IPO.",
+          "Add a brief overview of SpaceX's impact on the Indian tech landscape or potential collaborations."
         ],
         "verdict": "pass"
       },
@@ -83,9 +83,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "acde98bb-032c-440e-b1a5-ac87fac5afb2",
-      "headline": "Nine Per Cent and Falling \u2014 The Dallas Suburbs Indian Workers Built Are Emptying Out",
-      "slug": "dallas-collin-county-housing-crash-indian-h1b-buyers-20260608",
+      "id": "c5c50ca1-60ba-4462-ac22-64a5fc474d30",
+      "headline": "Iran Wants Up to $2 Million Per Tanker to Cross Hormuz. India Sends a Fifth of Its Oil Through That Strait.",
+      "slug": "iran-hormuz-toll-fee-2-million-tanker-india-oil-oman-transit-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,19 +95,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of Indian workers or the housing market in Dallas suburbs."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the housing market changes to the Indian diaspora, highlighting personal stories and statistics relevant to Indian Americans."
+          "quality": 8,
+          "note": "The article discusses the implications of Iranian tolls on oil imports for India, which is relevant to the Indian diaspora concerned about economic impacts."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a more relevant image that depicts the Indian community or housing market in Dallas.",
-          "Add quotes or anecdotes from more diverse perspectives within the Indian community to enrich the narrative."
+          "Include more direct quotes from Indian officials or experts to strengthen the connection to India's perspective.",
+          "Add a brief historical context about the Strait of Hormuz and its significance to Indian oil imports for better reader understanding."
         ],
         "verdict": "pass"
       },
