@@ -445,6 +445,31 @@ try:
             )
         raise Exception(f"Quality gate rejected: {reel_feedback}")
 
+    # Step B2: Video visual quality gate (GPT-4o + Gemini vision)
+    local_reel_path = os.path.expanduser(f"~/workspace/the-videshi-news/pipeline/reels/reel-{reel_article['slug'][:80]}.mp4")
+    if os.path.exists(local_reel_path):
+        print("  🎥 Running AI video visual review...")
+        try:
+            _vr = subprocess.run(
+                ["python3", os.path.expanduser("~/workspace/the-videshi-news/pipeline/review-reel-video.py"),
+                 local_reel_path, "--title", reel_article.get("headline", "")[:100], "--headline", reel_article.get("headline", "")],
+                capture_output=True, text=True, timeout=120
+            )
+            print(_vr.stdout[-500:] if len(_vr.stdout) > 500 else _vr.stdout)
+            if _vr.returncode == 1:
+                print("  ⛔ Reel failed video visual review — skipping post")
+                raise Exception("Video visual quality gate rejected")
+            elif _vr.returncode == 2:
+                print("  ⚠️ Video review error — proceeding with caution")
+        except subprocess.TimeoutExpired:
+            print("  ⚠️ Video review timed out — proceeding with caution")
+        except Exception as e:
+            if "quality gate rejected" in str(e).lower():
+                raise
+            print(f"  ⚠️ Video review error ({e}) — proceeding with caution")
+    else:
+        print(f"  ⚠️ Local reel not found for visual review, skipping video check")
+
     # Step C: Create Reel container
 
     container_data = {

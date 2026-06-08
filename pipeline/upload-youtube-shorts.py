@@ -139,7 +139,14 @@ reel_files = sorted(
     reverse=True
 )
 
-# Filter out already uploaded and test reels
+# Build set of already-uploaded article slugs for dedup
+_uploaded_slugs = set()
+for _entry in yt_log.values():
+    s = _entry.get("article_slug", "")
+    if s and s != "unknown":
+        _uploaded_slugs.add(s)
+
+# Filter out already uploaded, test reels, and slug-level duplicates
 unuploaded = []
 for f in reel_files:
     if f in yt_log:
@@ -330,13 +337,46 @@ for i, reel_filename in enumerate(to_upload):
     print(f"  📝 Title: {title}")
     print(f"  🏷️  Tags: {', '.join(tags[:5])}...")
 
-    # ── Quality gate ──
-    print("  🔍 Running AI quality review...")
-    yt_pass, yt_feedback = review_yt_quality(title, description, article)
-    print(f"  Review: {'✅ PASS' if yt_pass else '❌ FAIL'} — {yt_feedback}")
-    if not yt_pass:
-        print(f"  ⛔ Short failed quality review — skipping upload: {reel_filename}")
+    # ── Slug-level duplicate check ──
+    art_slug = article.get("slug", "") if article else ""
+    if art_slug and art_slug in _uploaded_slugs:
+        print(f"  ⛔ DUPLICATE — article slug '{art_slug}' already uploaded to YouTube. Skipping.")
+        # Track filename so we don't retry it every run
+        yt_log[reel_filename] = {
+            "video_id": "DUPLICATE_SKIPPED",
+            "article_slug": art_slug,
+            "uploaded_at": datetime.utcnow().isoformat() + "Z",
+            "url": "skipped_duplicate"
+        }
+        with open(LOG_PATH, 'w') as f:
+            json.dump(yt_log, f, indent=2)
         continue
+
+    # ── Text quality gate ──
+    print("  🔍 Running AI text review...")
+    yt_pass, yt_feedback = review_yt_quality(title, description, article)
+    print(f"  Text review: {'✅ PASS' if yt_pass else '❌ FAIL'} — {yt_feedback}")
+    if not yt_pass:
+        print(f"  ⛔ Short failed text quality review — skipping upload: {reel_filename}")
+        continue
+
+    # ── Video quality gate (GPT-4o + Gemini vision) ──
+    print("  🎥 Running AI video review...")
+    try:
+        import subprocess as _sp
+        _review_result = _sp.run(
+            ["python3", os.path.join(os.path.dirname(os.path.abspath(__file__)), "review-reel-video.py"),
+             reel_path, "--title", title, "--headline", article.get("headline", "") if article else ""],
+            capture_output=True, text=True, timeout=120
+        )
+        print(_review_result.stdout[-500:] if len(_review_result.stdout) > 500 else _review_result.stdout)
+        if _review_result.returncode == 1:
+            print(f"  ⛔ Video failed visual quality review — skipping upload: {reel_filename}")
+            continue
+        elif _review_result.returncode == 2:
+            print(f"  ⚠️ Video review error — proceeding with caution")
+    except Exception as e:
+        print(f"  ⚠️ Video review failed ({e}) — proceeding with caution")
     
     try:
         body = {
@@ -379,6 +419,10 @@ for i, reel_filename in enumerate(to_upload):
         }
         with open(LOG_PATH, 'w') as f:
             json.dump(yt_log, f, indent=2)
+        
+        # Track slug to prevent future duplicates in this run
+        if slug and slug != "unknown":
+            _uploaded_slugs.add(slug)
         
         # Update prebuilt_reels table if this reel has an entry
         try:
