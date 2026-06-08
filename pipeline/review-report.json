@@ -1,85 +1,19 @@
 {
-  "timestamp": "2026-06-08T05:15:02.979488+00:00",
+  "timestamp": "2026-06-08T07:45:23.637089+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 3,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 2,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "c9f3933d-0672-4e91-a296-6df15ee650b3",
-      "headline": "Sonali Bendre Chose Raakh Because It Scared Her. You Should Watch It for the Same Reason.",
-      "slug": "raakh-prime-video-ali-fazal-sonali-bendre-prosit-roy-paatal-lok-june-12-nri-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Sonali Bendre does match the article's topic, but it is not directly related to the series 'Raakh'."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the diaspora by discussing the historical context of 1970s Delhi, which resonates with NRIs whose parents experienced that era."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to the series 'Raakh'.",
-          "Expand on the diaspora angle by including quotes or perspectives from NRIs about their connection to the themes of the series."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d337a9ee-71f2-4d04-98b0-99397c2e99fd",
-      "headline": "Bhooth Bangla Just Hit Netflix. Akshay Kumar and Priyadarshan Finally Got Their Reunion Right.",
-      "slug": "bhooth-bangla-netflix-ott-akshay-kumar-priyadarshan-264-crore-horror-comedy-nri-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Akshay Kumar, which is relevant to the article, but it does not directly relate to the film 'Bhooth Bangla'."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's release on Netflix to diaspora audiences, emphasizing accessibility and the cultural significance of the film."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to 'Bhooth Bangla' for better visual alignment with the article's content.",
-          "Include more quotes or insights from the cast or crew to enhance the depth of the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "689deaeb-de00-4761-baea-9dc9602cc324",
-      "headline": "She Took a WPL Hat-Trick in Her Second Match. Five Weeks Later, She Made Her India Debut. Now She's Going to the World Cup.",
-      "slug": "nandni-sharma-wpl-hat-trick-india-debut-t20-world-cup-2026-chandigarh-nri",
+      "id": "207732e2-b903-4d0c-aed5-5ed3469ee558",
+      "headline": "Harmanpreet Lost the Series. She Is Not Worried About the World Cup.",
+      "slug": "harmanpreet-kaur-india-women-england-t20-series-loss-world-cup-2026-positives-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
@@ -87,7 +21,8 @@
             "article_id": "b48e0d84-ca80-4d8d-aa0f-4ce1c176a5c1",
             "headline": "India Won the 50-Over World Cup Last Year. In Four Days, The"
           }
-        ]
+        ],
+        "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
@@ -99,231 +34,90 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRI cricket fans by highlighting the women's World Cup and its significance."
+          "note": "The article connects well with NRI readers by providing information on the T20 World Cup schedule and accessibility for viewers in the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from Nandni Sharma or her coach to add a personal touch.",
-          "Provide more context on the significance of the Women's T20 World Cup for the Indian diaspora."
+          "Include more quotes or insights from Harmanpreet Kaur to enhance the personal connection.",
+          "Add a brief section on how the Indian diaspora has been supporting women's cricket to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [],
+      "actions_taken": [
+        "promoted to published"
+      ],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "be0a8768-eb20-4947-a38d-a39fe859de83",
-      "headline": "India Almost Missed the World Cup Entirely. Not as a Team. As a Country That Could Watch It.",
-      "slug": "zee-fifa-world-cup-2026-broadcast-india-unite8-sports-nri-viewing-guide",
+      "id": "9699a952-7c02-4629-bda5-8c70c0c81c09",
+      "headline": "Ashwin Was Named One of the 25 Greatest Cricketers of This Century. His Speech Was About Everyone Else.",
+      "slug": "ashwin-cricinfo-honours-awards-25-greatest-cricketers-21st-century-test-cricket-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": []
+        "duplicate_images": [],
+        "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the FIFA World Cup or football, which is the main topic of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article provides detailed information on how NRIs can watch the World Cup, making it highly relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts football or the FIFA World Cup to enhance visual connection.",
-          "Add a brief section on the significance of the World Cup for Indian viewers to deepen the cultural context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f6732e9c-8254-4adc-afd0-686b832ecfff",
-      "headline": "A 30-Year-Old Flew Home from Boston to Lead India's Biggest Youth Protest in a Decade",
-      "slug": "cockroach-janta-party-first-protest-jantar-mantar-22-million-followers-dipke-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
+          "issue": "The image is relevant to Ashwin's achievements but does not directly relate to the specific event mentioned in the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the return of an NRI to lead a significant protest in India, connecting well with diaspora readers."
+          "note": "The article effectively connects Ashwin's legacy and concerns about cricket's future to the diaspora community's values and experiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the protest or the main subject of the article.",
-          "Consider adding quotes or perspectives from diaspora members regarding the protest to enhance the connection."
+          "Consider including more recent statistics or achievements to enhance the article's relevance.",
+          "Add a quote or perspective from an NRI cricket fan to strengthen the diaspora connection."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (724\u2192789 words)"
+        "promoted to published"
       ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "56ce3e73-f35b-4232-8aea-13aebb709575",
-      "headline": "The US Will Let 20,000 H-1B Holders Renew Visas Without Leaving the Country",
-      "slug": "us-h1b-domestic-visa-renewal-pilot-20000-indian-nationals-december-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article directly addresses the concerns and benefits for Indian H-1B visa holders, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or reactions from Indian professionals regarding the new visa renewal process to enhance relatability.",
-          "Add a section discussing potential long-term impacts of this policy on the Indian tech community in the U.S."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b9a0b746-2450-49f6-ac52-6fd3a682052a",
-      "headline": "Indian Markets Open to a Sea of Red. Oil at $96, Asia Selling Off, and the Fed May Hike Rates.",
-      "slug": "indian-markets-crash-oil-96-asia-selloff-fed-rate-hike-june-2026",
+      "id": "b98f8de0-081c-4769-992b-74e15269e32b",
+      "headline": "Before Belfast, There Is Dambulla. India's Next Generation Starts Tomorrow.",
+      "slug": "india-a-tri-series-sri-lanka-sooryavanshi-tilak-varma-dambulla-june-2026-nri",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": []
+        "duplicate_images": [],
+        "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Tilak Varma is relevant to the article as it discusses the India A squad and his role as captain, but it does not depict the Dambulla location or the match context."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the economic situation in India to the interests of NRI investors, discussing the impact on their portfolios and remittances."
+          "note": "The article effectively connects with NRI readers by highlighting the live broadcast details and the significance of the matches for Indian cricket fans abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRI investors can navigate the current market conditions.",
-          "Include quotes or insights from financial experts to enhance credibility and depth."
+          "Consider including a brief background on Dambulla for readers unfamiliar with the location.",
+          "Add quotes or insights from players or coaches to enhance the narrative and provide more depth."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ce85cdcb-b2bc-401b-a365-88a0319c9cfa",
-      "headline": "Five Hundred and One Days \u2014 The PERM Queue That Could Force You Out of America",
-      "slug": "perm-501-day-processing-crisis-indian-h1b-green-card-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the challenges faced by Indian H-1B holders, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to immigration or the PERM process.",
-          "Consider adding quotes or anecdotes from affected individuals to enhance the personal connection to the diaspora."
-        ],
-        "verdict": "flag"
-      },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (707\u2192602 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b3bbd346-c9f1-4ee1-9bf8-1005302fefa2",
-      "headline": "Seven Per Cent \u2014 The Hidden Provision That Would Slash Indian H-1B Visas by Ninety Per Cent",
-      "slug": "seven-percent-country-cap-h1b-india-chip-roy-bill-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "4dff9332-d5a1-4245-8a39-e8a554a40c2c",
-            "headline": "A New Bill Wants to Kill the H-1B Path to a Green Card. Indi"
-          }
-        ]
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://x.com/chiproytx/status/2062683867991900226",
-            "problem": "irrelevant",
-            "explanation": "The tweet from Chip Roy does not directly relate to the specific provisions of the bill discussed in the article."
-          }
-        ],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of Chip Roy does not visually represent the topic of H-1B visas or immigration, which may confuse readers."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of the proposed changes on Indian nationals and the Indian IT industry, making it highly relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that more directly relates to H-1B visas or immigration to enhance relevance.",
-          "Consider including quotes or reactions from Indian diaspora members or organizations to strengthen the diaspora connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://x.com/chiproytx/status/2062683867991900226"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
