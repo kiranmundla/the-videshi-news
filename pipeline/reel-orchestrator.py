@@ -350,14 +350,26 @@ Return exactly 2 lines, nothing else."""
 def create_hook_frame(line1, line2, output_path):
     """Create 1080x1920 portrait hook frame PNG using ffmpeg."""
     # Escape text for ffmpeg drawtext
-    l1 = line1.replace("'", "'\\''").replace(":", "\\:")
-    l2 = line2.replace("'", "'\\''").replace(":", "\\:")
+    l1 = line1.replace("'", "'\\''").replace(":", "\\:").replace("$", "\\$")
+    l2 = line2.replace("'", "'\\''").replace(":", "\\:").replace("$", "\\$")
+
+    # Dynamic font size: shrink for longer text to prevent cutoff
+    # At fontsize 64, max ~16 chars fit in 1080px. Scale down for longer text.
+    l1_len = len(line1)
+    if l1_len > 30:
+        fs1 = 42
+    elif l1_len > 24:
+        fs1 = 48
+    elif l1_len > 18:
+        fs1 = 56
+    else:
+        fs1 = 64
 
     cmd = [
         "ffmpeg", "-y",
         "-f", "lavfi", "-i", f"color=c=#1a1a2e:s=1080x1920:d=1",
         "-vf",
-        f"drawtext=text='{l1}':fontsize=64:fontcolor=#d4af37:x=(w-text_w)/2:y=(h-text_h)/2-60:fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf,"
+        f"drawtext=text='{l1}':fontsize={fs1}:fontcolor=#d4af37:x=(w-text_w)/2:y=(h-text_h)/2-60:fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf,"
         f"drawtext=text='{l2}':fontsize=36:fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2+40:fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf,"
         f"drawtext=text='THE VIDESHI':fontsize=30:fontcolor=#d4af37:x=(w-text_w)/2:y=h-100:fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
         "-frames:v", "1",
@@ -695,11 +707,13 @@ def build_caption(article):
     category = (article.get('category') or '').lower()
     slug = article.get('slug', '')
 
+    article_url = f"https://thevideshi.com/articles/{slug}" if slug else "https://thevideshi.com"
+
     caption = f"""{headline}
 
 {subheadline}
 
-Full story at thevideshi.com (link in bio)
+Read the full story: {article_url}
 
 """
     # Category tags
@@ -811,9 +825,18 @@ def run(args):
     if method == 'avatar':
         print(f"\n🤖 Avatar: {avatar['avatar_name']} — {avatar['look_name']}")
 
-        # 3a. Generate script
-        print("  Generating anchor script...")
-        script = generate_anchor_script(article)
+        # 3a. Generate segmented script (ANCHOR + BROLL)
+        print("  Generating segmented anchor script...")
+        from broll_builder import generate_segmented_script, source_broll_images, map_segments_to_timeline, assemble_broll_reel, parse_srt
+        script_data = generate_segmented_script(article)
+        if not script_data:
+            # Fallback to plain script
+            print("  ⚠️ Segmented script failed, falling back to plain script")
+            script = generate_anchor_script(article)
+            script_data = None
+        else:
+            script = script_data["full_script"]
+        
         if not script:
             print("❌ Script generation failed")
             return
@@ -883,15 +906,61 @@ def run(args):
         print("  Generating captions...")
         srt_path = generate_captions_srt(raw_avatar, script)
 
-        # 3g. Burn captions — positioned for news layout caption zone
-        if srt_path:
-            captioned = BUILD_DIR / f"avatar-captioned-{video_id}.mp4"
-            if burn_captions_news_layout(working_avatar, srt_path, captioned):
-                avatar_video = captioned
+        # 3f2. B-Roll assembly (if we have segmented script)
+        if script_data and srt_path:
+            print("  🖼️ Sourcing B-roll images...")
+            segments = script_data["segments"]
+            
+            # Load Pexels key if available
+            pexels_env = Path.home() / "workspace" / ".env.pexels"
+            if pexels_env.exists():
+                with open(pexels_env) as f:
+                    for line in f:
+                        if line.startswith("PEXELS_API_KEY="):
+                            os.environ["PEXELS_API_KEY"] = line.strip().split("=", 1)[1]
+            
+            broll_images = source_broll_images(segments, article)
+            
+            # Map segments to SRT timeline
+            print("  ⏱️ Mapping segments to timeline...")
+            srt_entries = parse_srt(srt_path)
+            segments = map_segments_to_timeline(segments, srt_entries)
+            
+            # Assemble with B-roll interleaving
+            print("  🎬 Assembling B-roll interleaved reel...")
+            broll_assembled = BUILD_DIR / f"avatar-broll-{video_id}.mp4"
+            broll_result = assemble_broll_reel(
+                working_avatar, segments, broll_images,
+                headline, badge, str(broll_assembled)
+            )
+            
+            if broll_result:
+                # Burn captions onto the B-roll assembled version
+                from portrait_fix import burn_captions_news_layout
+                captioned = BUILD_DIR / f"avatar-captioned-{video_id}.mp4"
+                if burn_captions_news_layout(broll_assembled, srt_path, captioned):
+                    avatar_video = captioned
+                else:
+                    avatar_video = broll_assembled
+            else:
+                print("  ⚠️ B-roll assembly failed, falling back to anchor-only")
+                from portrait_fix import burn_captions_news_layout
+                captioned = BUILD_DIR / f"avatar-captioned-{video_id}.mp4"
+                if burn_captions_news_layout(working_avatar, srt_path, captioned):
+                    avatar_video = captioned
+                else:
+                    avatar_video = working_avatar
+        else:
+            # No B-roll — just burn captions on anchor
+            from portrait_fix import burn_captions_news_layout
+            if srt_path:
+                captioned = BUILD_DIR / f"avatar-captioned-{video_id}.mp4"
+                if burn_captions_news_layout(working_avatar, srt_path, captioned):
+                    avatar_video = captioned
+                else:
+                    avatar_video = working_avatar
             else:
                 avatar_video = working_avatar
-        else:
-            avatar_video = working_avatar
 
         # 3h. Normalize avatar video
         normalized_avatar = BUILD_DIR / "avatar_normalized.mp4"
