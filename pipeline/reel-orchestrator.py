@@ -402,8 +402,8 @@ def generate_heygen_video(script, avatar):
                 "speed": 1.0
             }
         }],
-        "dimension": {"width": 1080, "height": 1920},
-        "aspect_ratio": avatar.get('aspect_ratio', '9:16'),
+        "dimension": {"width": 1920, "height": 1080},
+        "aspect_ratio": "16:9",
         "test": False
     }
 
@@ -846,35 +846,54 @@ def run(args):
         kavya_dur = get_video_duration(raw_avatar)
         print(f"  Duration: {kavya_dur:.1f}s")
 
-        # 3e2. Portrait fix — HeyGen letterboxes 16:9 content in 9:16 frame
+        # 3e2. Portrait conversion — ALWAYS convert 16:9 HeyGen output to 9:16 news layout
+        #      HeyGen avatars are 16:9 source footage. We own the portrait conversion.
         from portrait_fix import detect_letterbox, fix_avatar_portrait, burn_captions_news_layout
+        portrait_fixed = BUILD_DIR / f"avatar-portrait-fixed-{video_id}.mp4"
+        headline = article.get('headline', '')
+        
+        # Detect content bounds (even though we know it's 16:9, this finds exact crop coordinates)
         lb_info = detect_letterbox(raw_avatar)
-        if lb_info.get("is_letterboxed"):
-            portrait_fixed = BUILD_DIR / f"avatar-portrait-fixed-{video_id}.mp4"
-            headline = article.get('headline', '')
-            fix_avatar_portrait(raw_avatar, portrait_fixed, headline, lb_info)
-            working_avatar = portrait_fixed
-        else:
-            working_avatar = raw_avatar
+        if not lb_info.get("is_letterboxed"):
+            # Force it — we know the content is 16:9 inside a 16:9 frame (no padding to detect)
+            # In this case the raw video IS the content, so we build the news layout from scratch
+            lb_info = {
+                "is_letterboxed": True,
+                "content_top": 0,
+                "content_bottom": 1079,
+                "content_height": 1080,
+                "frame_width": 1920,
+                "frame_height": 1080,
+            }
+        
+        # Get category-aware badge
+        badge_map = {
+            "news": "BREAKING",
+            "nri-world": "NRI WORLD",
+            "technology": "TECH",
+            "markets-finance": "MARKETS",
+            "sports": "SPORTS",
+            "entertainment": "ENTERTAINMENT",
+            "lifestyle-health": "LIFESTYLE",
+            "food": "FOOD",
+            "travel": "TRAVEL",
+        }
+        badge = badge_map.get(category, "THE VIDESHI")
+        
+        fix_avatar_portrait(raw_avatar, portrait_fixed, headline, lb_info, badge_text=badge)
+        working_avatar = portrait_fixed
 
         # 3f. Generate captions
         print("  Generating captions...")
-        srt_path = generate_captions_srt(working_avatar, script)
+        srt_path = generate_captions_srt(raw_avatar, script)
 
-        # 3g. Burn captions (positioned for news layout if portrait-fixed)
+        # 3g. Burn captions — positioned for news layout caption zone
         if srt_path:
             captioned = BUILD_DIR / f"avatar-captioned-{video_id}.mp4"
-            if lb_info.get("is_letterboxed"):
-                # Use news-layout positioned captions (in the navy zone below avatar)
-                if burn_captions_news_layout(working_avatar, srt_path, captioned):
-                    avatar_video = captioned
-                else:
-                    avatar_video = working_avatar
+            if burn_captions_news_layout(working_avatar, srt_path, captioned):
+                avatar_video = captioned
             else:
-                if burn_captions(working_avatar, srt_path, captioned):
-                    avatar_video = captioned
-                else:
-                    avatar_video = working_avatar
+                avatar_video = working_avatar
         else:
             avatar_video = working_avatar
 
