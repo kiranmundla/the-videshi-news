@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-08T10:46:40.105241+00:00",
+  "timestamp": "2026-06-08T11:15:51.632769+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 2,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "febd7619-ff78-479b-8366-d3237b2ed526",
-      "headline": "He Played Cricket as a Teenager. On Thursday in Rome, He Threw 92.62 Metres and Went Past Neeraj Chopra's Asian Record.",
-      "slug": "rumesh-tharanga-92-62m-rome-diamond-league-neeraj-chopra-asian-record-javelin-nri",
+      "id": "fbfb4cc6-c44d-412e-bfe5-454622a29142",
+      "headline": "Varun Dhawan Just Confirmed He Turned Down Andhadhun. The Original Cast Was Him and Kangana.",
+      "slug": "varun-dhawan-andhadhun-kangana-ranaut-original-cast-sriram-raghavan-nri-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Neeraj Chopra does not directly relate to Rumesh Pathirage's achievement."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the implications of Pathirage's achievement on Indian athletics, which is relevant to the Indian diaspora."
+          "note": "The article discusses a significant Bollywood film and its casting, which may resonate with the NRI audience interested in Indian cinema."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image of Rumesh Pathirage to better match the article's content.",
-          "Add more context on how this achievement impacts the Indian diaspora or Indian athletics community."
+          "Include quotes or reactions from Varun Dhawan or Kangana Ranaut to enhance the article's depth.",
+          "Add a brief section on the impact of Andhadhun on Bollywood to provide more context for diaspora readers."
         ],
         "verdict": "pass"
       },
@@ -47,43 +47,50 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "fdb1c300-3a4a-4a52-b547-143089cc2b5c",
-      "headline": "India Did Not Qualify for the World Cup. Four Players of Indian Origin Will Be There Anyway.",
-      "slug": "four-indian-origin-players-fifa-world-cup-2026-sarpreet-singh-tahsin-nri",
+      "id": "aba6d858-14a8-40aa-a8e9-b861d65bf7e3",
+      "headline": "Salim Kumar Made You Laugh Until He Made You Cry. Malayalam Cinema Just Lost Its Most Versatile Soul.",
+      "slug": "salim-kumar-malayalam-actor-national-award-dies-56-mammootty-tribute-nri-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "9690f1cd-74c4-4641-a3b7-c984bd933f64",
-            "headline": "Four Players of Indian Origin Will Take the Pitch at the FIF"
+            "article_id": "78d4bf19-3bca-4241-9bb3-36d5da0e4c60",
+            "headline": "Salim Kumar Is on a Ventilator. The Man Who Made Malayalam C"
           }
         ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZQxDNyzShb/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to Salim Kumar or his legacy, making it irrelevant to the article's subject."
+          }
+        ],
         "image_match": {
-          "score": 6,
-          "issue": "The image of Sarpreet Singh does not directly match the article's headline about Indian-origin players in the World Cup."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the players' Indian heritage to the diaspora's experience, highlighting their significance for Indian-origin fans."
+          "note": "The article effectively connects Salim Kumar's impact on the Malayali diaspora, highlighting how his films resonated with them across the globe."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant hero image that represents the theme of Indian-origin players in the World Cup.",
-          "Add more context about the significance of the World Cup for the Indian diaspora to enhance the emotional connection."
+          "Replace the irrelevant Instagram embed with a more relevant tribute or video related to Salim Kumar.",
+          "Consider adding quotes or reactions from diaspora members to further enhance the connection to the NRI audience."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Removed irrelevant embed: https://www.instagram.com/p/DZQxDNyzShb/",
+        "Revised by gpt-4o-mini (763\u2192833 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -103,85 +110,6 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZUftmpzxEv/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the match or the players discussed in the article."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the match to the NRI community by highlighting the next generation of Indian cricketers, which is relevant for diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant social media post that highlights the match or players.",
-          "Consider adding quotes or reactions from NRI fans to enhance the diaspora connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZUftmpzxEv/",
-        "Revised by gpt-4o-mini (647\u2192738 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e732541e-ea29-4168-bbd6-2f25f4cbe3fe",
-      "headline": "Israel Hit Iran's Petrochemical Lifeline. For India, It Means $97 Oil and No End in Sight.",
-      "slug": "israel-strikes-mahshahr-petrochemical-iran-brent-97-india-oil-crisis-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the article's focus on oil prices and geopolitical tensions."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of rising oil prices on India, which is relevant to the Indian diaspora concerned about economic implications."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or perspectives from Indian economic experts to enhance the diaspora connection.",
-          "Consider using an image that visually represents oil prices or geopolitical tensions in the Middle East."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "785a0e48-d919-4930-94e8-5dbac0357698",
-      "headline": "100,000 Fake Degrees. 28 Universities. The H-1B Fraud Bust Sending Shockwaves Through Indian America.",
-      "slug": "h1b-fraud-bust-100000-fake-degrees-manav-bharti-indian-diaspora-impact-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 9,
@@ -190,49 +118,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the impact of the H-1B fraud bust on Indian professionals in the U.S., making it relevant to the diaspora."
+          "note": "The article effectively connects the match and Suthar's debut to the pride of NRI fans, highlighting the impact on the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from more Indian professionals affected by the H-1B changes to enhance the personal angle.",
-          "Add a section discussing potential solutions or responses from the Indian government or educational institutions."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cef7e8a3-2a2f-4082-ab87-a7e1803c7360",
-      "headline": "The RBI Held Rates and Fired a \\$50 Billion Dollar Bazooka Instead. The Rupee Fell Anyway.",
-      "slug": "rbi-50-billion-dollar-defense-fcnr-nri-deposits-rupee-falls-oil-97-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the RBI's strategy to the Indian diaspora, particularly NRIs, highlighting their potential impact on the economy."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from economists or analysts to enhance credibility.",
-          "Include a brief explanation of the FCNR(B) scheme for readers unfamiliar with it."
+          "Consider adding more quotes or reactions from NRI fans to enhance the diaspora connection.",
+          "Include a brief historical context of India's cricketing achievements to engage readers further."
         ],
         "verdict": "pass"
       },
