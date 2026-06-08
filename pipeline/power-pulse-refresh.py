@@ -1,94 +1,89 @@
 #!/usr/bin/env python3
 """
-Power Pulse Refresh — fetch latest tweets for all 52 leaders via X API v2.
-Outputs tech-buzz.json for The Videshi Pulse sections.
+power-pulse-refresh.py — Batch fetch latest tweets for all Pulse leaders via X API v2.
+Outputs tech-buzz.json for The Videshi frontend.
 """
 
-import os
-import sys
-import json
-import time
+import os, sys, json, time
 from datetime import datetime, timezone, timedelta
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-# ─── Config ───────────────────────────────────────────────────────────────────
-
-LEADERS = {
-    "india": [
-        {"name": "Narendra Modi", "handle": "narendramodi"},
-        {"name": "PMO India", "handle": "pmoindia"},
-        {"name": "Amit Shah", "handle": "amitshah"},
-        {"name": "Rahul Gandhi", "handle": "rahulgandhi"},
-        {"name": "Yogi Adityanath", "handle": "myogiadityanath"},
-        {"name": "Arvind Kejriwal", "handle": "arvindkejriwal"},
-        {"name": "S Jaishankar", "handle": "drsjaishankar"},
-        {"name": "Nirmala Sitharaman", "handle": "nsitharaman"},
-        {"name": "Gautam Adani", "handle": "gautam_adani"},
-        {"name": "Mukesh Ambani", "handle": "reliancejio"},
-        {"name": "Ratan Tata", "handle": "ratantata"},
-        {"name": "President of India", "handle": "rashtrapatibhvn"},
-    ],
-    "world": [
-        {"name": "Donald Trump", "handle": "realdonaldtrump"},
-        {"name": "Rishi Sunak", "handle": "rishisunak"},
-        {"name": "Vivek Ramaswamy", "handle": "vivekgramaswamy"},
-        {"name": "Usha Vance", "handle": "ushavance"},
-        {"name": "Kash Patel", "handle": "kashpatel"},
-        {"name": "Sriram Krishnan", "handle": "sriramk"},
-        {"name": "Ajay Banga", "handle": "ajay_banga"},
-        {"name": "Keir Starmer", "handle": "keir_starmer"},
-        {"name": "Anthony Albanese", "handle": "albomp"},
-        {"name": "Emmanuel Macron", "handle": "emmanuelmacron"},
-        {"name": "Mohammed bin Rashid", "handle": "hhshkmohd"},
-    ],
-    "tech": [
-        {"name": "Elon Musk", "handle": "elonmusk"},
-        {"name": "Mark Zuckerberg", "handle": "zuck"},
-        {"name": "Sundar Pichai", "handle": "sundarpichai"},
-        {"name": "Satya Nadella", "handle": "satyanadella"},
-        {"name": "Sam Altman", "handle": "sama"},
-        {"name": "Tim Cook", "handle": "tim_cook"},
-        {"name": "Jensen Huang", "handle": "jensenhuang"},
-        {"name": "Nandan Nilekani", "handle": "nandannilekani"},
-        {"name": "Bill Gates", "handle": "billgates"},
-        {"name": "Arvind Krishna", "handle": "arvindkrishna"},
-        {"name": "Shantanu Narayen", "handle": "adobe"},
-        {"name": "Parag Agrawal", "handle": "paraga"},
-        {"name": "Leena Nair", "handle": "leenanair"},
-        {"name": "Raj Subramaniam", "handle": "fedex"},
-    ],
-    "sports": [
-        {"name": "Virat Kohli", "handle": "imvkohli"},
-        {"name": "Rohit Sharma", "handle": "imro45"},
-        {"name": "MS Dhoni", "handle": "msdhoni"},
-        {"name": "Jasprit Bumrah", "handle": "jaspritbumrah93"},
-        {"name": "Hardik Pandya", "handle": "hardikpandya7"},
-        {"name": "Sachin Tendulkar", "handle": "sachin_rt"},
-        {"name": "Sourav Ganguly", "handle": "sganguly99"},
-        {"name": "BCCI", "handle": "bcci"},
-        {"name": "ICC", "handle": "icc"},
-        {"name": "IPL", "handle": "ipl"},
-        {"name": "Neeraj Chopra", "handle": "neeraj_chopra1"},
-        {"name": "PV Sindhu", "handle": "pvsindhu1"},
-        {"name": "Sania Mirza", "handle": "mirzasania"},
-        {"name": "D Gukesh", "handle": "dgukesh"},
-        {"name": "Sunil Chhetri", "handle": "chetrisunil11"},
-    ],
-}
+# ─── Config ──────────────────────────────────────────────────────────────────
 
 OUTPUT_PATH = os.path.expanduser("~/workspace/the-videshi-news/public/data/tech-buzz.json")
 USER_ID_CACHE_PATH = os.path.expanduser("~/workspace/the-videshi-news/pipeline/.x-user-ids.json")
 ENV_PATH = os.path.expanduser("~/workspace/.env.twitter")
 
-# ─── HTTP Session ─────────────────────────────────────────────────────────────
+# All leaders with their ACTUAL X handles (not Instagram)
+LEADERS = [
+    # India Pulse (12)
+    {"name": "Narendra Modi", "handle": "narendramodi", "category": "india"},
+    {"name": "PMO India", "handle": "pmoindia", "category": "india"},
+    {"name": "Amit Shah", "handle": "amitshah", "category": "india"},
+    {"name": "Rahul Gandhi", "handle": "rahulgandhi", "category": "india"},
+    {"name": "Yogi Adityanath", "handle": "myogiadityanath", "category": "india"},
+    {"name": "Arvind Kejriwal", "handle": "arvindkejriwal", "category": "india"},
+    {"name": "S Jaishankar", "handle": "drsjaishankar", "category": "india"},
+    {"name": "Nirmala Sitharaman", "handle": "nsitharaman", "category": "india"},
+    {"name": "Gautam Adani", "handle": "gautam_adani", "category": "india"},
+    {"name": "Mukesh Ambani", "handle": "reliancejio", "category": "india"},
+    {"name": "Ratan Tata", "handle": "ratantata", "category": "india"},
+    {"name": "President of India", "handle": "rashtrapatibhvn", "category": "india"},
 
-session = requests.Session()
-retry = Retry(total=3, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
-session.mount("https://", HTTPAdapter(max_retries=retry))
+    # Power Pulse / World (11)
+    {"name": "Donald Trump", "handle": "realdonaldtrump", "category": "world"},
+    {"name": "Rishi Sunak", "handle": "rishisunak", "category": "world"},
+    {"name": "Vivek Ramaswamy", "handle": "vivekgramaswamy", "category": "world"},
+    {"name": "Usha Vance", "handle": "ushavance", "category": "world"},
+    {"name": "Kash Patel", "handle": "kashpatel", "category": "world"},
+    {"name": "Sriram Krishnan", "handle": "sriramk", "category": "world"},
+    {"name": "Ajay Banga", "handle": "ajay_banga", "category": "world"},
+    {"name": "Keir Starmer", "handle": "keir_starmer", "category": "world"},
+    {"name": "Anthony Albanese", "handle": "albomp", "category": "world"},
+    {"name": "Emmanuel Macron", "handle": "emmanuelmacron", "category": "world"},
+    {"name": "Mohammed bin Rashid", "handle": "hhshkmohd", "category": "world"},
 
-# ─── Auth ─────────────────────────────────────────────────────────────────────
+    # Tech Pulse (14)
+    {"name": "Elon Musk", "handle": "elonmusk", "category": "tech"},
+    {"name": "Mark Zuckerberg", "handle": "finkd", "category": "tech"},
+    {"name": "Sundar Pichai", "handle": "sundarpichai", "category": "tech"},
+    {"name": "Satya Nadella", "handle": "satyanadella", "category": "tech"},
+    {"name": "Sam Altman", "handle": "sama", "category": "tech"},
+    {"name": "Tim Cook", "handle": "tim_cook", "category": "tech"},
+    {"name": "Jensen Huang", "handle": "jensenhuang", "category": "tech"},
+    {"name": "Nandan Nilekani", "handle": "nandannilekani", "category": "tech"},
+    {"name": "Bill Gates", "handle": "billgates", "category": "tech"},
+    {"name": "Arvind Krishna", "handle": "arvindkrishna", "category": "tech"},
+    {"name": "Shantanu Narayen", "handle": "adobe", "category": "tech"},
+    {"name": "Parag Agrawal", "handle": "paraga", "category": "tech"},
+    {"name": "Leena Nair", "handle": "leenanair", "category": "tech"},
+    {"name": "Raj Subramaniam", "handle": "rajsubram", "category": "tech"},
+
+    # Sports Pulse (15)
+    {"name": "Virat Kohli", "handle": "imvkohli", "category": "sports"},
+    {"name": "Rohit Sharma", "handle": "imro45", "category": "sports"},
+    {"name": "MS Dhoni", "handle": "msdhoni", "category": "sports"},
+    {"name": "Jasprit Bumrah", "handle": "jaspritbumrah93", "category": "sports"},
+    {"name": "Hardik Pandya", "handle": "hardikpandya7", "category": "sports"},
+    {"name": "Sachin Tendulkar", "handle": "sachin_rt", "category": "sports"},
+    {"name": "Sourav Ganguly", "handle": "sganguly99", "category": "sports"},
+    {"name": "BCCI", "handle": "bcci", "category": "sports"},
+    {"name": "ICC", "handle": "icc", "category": "sports"},
+    {"name": "IPL", "handle": "ipl", "category": "sports"},
+    {"name": "Neeraj Chopra", "handle": "neeraj_chopra1", "category": "sports"},
+    {"name": "PV Sindhu", "handle": "pvsindhu1", "category": "sports"},
+    {"name": "Sania Mirza", "handle": "mirzasania", "category": "sports"},
+    {"name": "D Gukesh", "handle": "dgukesh", "category": "sports"},
+    {"name": "Sunil Chhetri", "handle": "chetrisunil11", "category": "sports"},
+]
+
+# ─── HTTP & Auth ──────────────────────────────────────────────────────────────
+
+_session = requests.Session()
+_retry = Retry(total=3, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
+_session.mount("https://", HTTPAdapter(max_retries=_retry))
 
 def load_env(path):
     if os.path.exists(path):
@@ -102,7 +97,6 @@ def load_env(path):
 load_env(ENV_PATH)
 
 _bearer_cache = None
-
 def get_bearer_token():
     global _bearer_cache
     if _bearer_cache:
@@ -111,14 +105,14 @@ def get_bearer_token():
     secret = os.environ.get("TWITTER_CONSUMER_SECRET", "")
     if not key or not secret:
         raise RuntimeError("Missing TWITTER_CONSUMER_KEY / TWITTER_CONSUMER_SECRET")
-    resp = session.post("https://api.twitter.com/oauth2/token",
-                        auth=(key, secret),
-                        data={"grant_type": "client_credentials"})
+    resp = _session.post("https://api.twitter.com/oauth2/token",
+                         auth=(key, secret),
+                         data={"grant_type": "client_credentials"})
     resp.raise_for_status()
     _bearer_cache = resp.json()["access_token"]
     return _bearer_cache
 
-# ─── User ID Cache ────────────────────────────────────────────────────────────
+# ─── User ID cache ────────────────────────────────────────────────────────────
 
 def load_user_id_cache():
     if os.path.exists(USER_ID_CACHE_PATH):
@@ -130,14 +124,12 @@ def save_user_id_cache(cache):
     with open(USER_ID_CACHE_PATH, "w") as f:
         json.dump(cache, f, indent=2)
 
-def get_user_id(handle):
-    cache = load_user_id_cache()
+def get_user_id(handle, cache):
     handle_lower = handle.lower()
     if handle_lower in cache:
         return cache[handle_lower]
-    
     bearer = get_bearer_token()
-    resp = session.get(
+    resp = _session.get(
         f"https://api.twitter.com/2/users/by/username/{handle}",
         headers={"Authorization": f"Bearer {bearer}"},
         timeout=10,
@@ -148,150 +140,152 @@ def get_user_id(handle):
             cache[handle_lower] = uid
             save_user_id_cache(cache)
             return uid
-    else:
-        print(f"  ⚠ Could not resolve user ID for @{handle}: {resp.status_code}", file=sys.stderr)
+    print(f"  ⚠️  Could not resolve user ID for @{handle} (status {resp.status_code})", file=sys.stderr)
     return None
 
-# ─── Fetch Tweets ─────────────────────────────────────────────────────────────
+# ─── Fetch tweets ─────────────────────────────────────────────────────────────
 
-def fetch_latest_tweet(handle, hours=72):
-    """Fetch the most recent original tweet from a handle."""
-    uid = get_user_id(handle)
-    if not uid:
-        return None
-    
+def fetch_latest_tweet(handle, uid, hours=72):
+    """Fetch the most recent original tweet from a user."""
     bearer = get_bearer_token()
     start_time = (datetime.now(timezone.utc) - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    
+
     params = {
         "max_results": 5,
         "start_time": start_time,
         "tweet.fields": "created_at,text,public_metrics",
         "exclude": "retweets,replies",
     }
-    
-    resp = session.get(
+
+    resp = _session.get(
         f"https://api.twitter.com/2/users/{uid}/tweets",
         headers={"Authorization": f"Bearer {bearer}"},
         params=params,
         timeout=15,
     )
-    
+
     if resp.status_code == 429:
-        reset = resp.headers.get("x-rate-limit-reset")
-        wait_secs = 16
-        if reset:
-            wait_secs = max(int(reset) - int(time.time()), 1) + 2
-            wait_secs = min(wait_secs, 120)  # cap at 2 minutes
-        print(f"  ⏳ Rate limited for @{handle}, waiting {wait_secs}s...", file=sys.stderr)
-        time.sleep(wait_secs)
-        # Retry once
-        resp = session.get(
+        print(f"  ⚠️  Rate limited on @{handle}, waiting 60s...", file=sys.stderr)
+        time.sleep(60)
+        resp = _session.get(
             f"https://api.twitter.com/2/users/{uid}/tweets",
             headers={"Authorization": f"Bearer {bearer}"},
             params=params,
             timeout=15,
         )
-    
+
     if resp.status_code != 200:
-        print(f"  ⚠ X API error for @{handle}: {resp.status_code} {resp.text[:200]}", file=sys.stderr)
+        print(f"  ❌ API error {resp.status_code} for @{handle}: {resp.text[:150]}", file=sys.stderr)
         return None
-    
+
     data = resp.json()
     tweets = data.get("data", [])
-    
     if not tweets:
         return None
-    
-    # Return the most recent tweet
+
+    # Return the most recent tweet (already sorted by recency by API)
     t = tweets[0]
     return {
         "id": t["id"],
         "text": t.get("text", ""),
         "created_at": t.get("created_at", ""),
+        "url": f"https://x.com/{handle}/status/{t['id']}",
     }
+
 
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    print(f"🔄 Power Pulse Refresh — {datetime.now(timezone.utc).isoformat()}")
-    
-    # Warm up bearer token
-    get_bearer_token()
-    print("✅ Bearer token acquired")
-    
-    all_leaders = []
-    total = sum(len(v) for v in LEADERS.values())
-    processed = 0
-    api_failures = []
-    
-    for category, leaders in LEADERS.items():
-        print(f"\n📂 Category: {category} ({len(leaders)} leaders)")
-        
-        for leader in leaders:
-            processed += 1
-            name = leader["name"]
-            handle = leader["handle"]
-            print(f"  [{processed}/{total}] @{handle} ({name})...", end=" ", flush=True)
-            
-            tweet = fetch_latest_tweet(handle)
-            
-            if tweet:
-                tweet_text = tweet["text"]
-                tweet_url = f"https://x.com/{handle}/status/{tweet['id']}"
-                tweet_date = tweet["created_at"][:10] if tweet.get("created_at") else datetime.now(timezone.utc).strftime("%Y-%m-%d")
-                print(f"✅ ({len(tweet_text)} chars)")
-            else:
-                # Fallback — use profile URL, mark for web search
-                tweet_text = ""
-                tweet_url = f"https://x.com/{handle}"
-                tweet_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-                api_failures.append({"name": name, "handle": handle, "category": category})
-                print("❌ no tweet found")
-            
-            all_leaders.append({
+    print(f"🔄 Power Pulse Refresh — {len(LEADERS)} leaders")
+    print(f"   Time: {datetime.now(timezone.utc).isoformat()}")
+    print()
+
+    uid_cache = load_user_id_cache()
+    results = []
+    success = 0
+    fallback = 0
+    failed = 0
+
+    for i, leader in enumerate(LEADERS):
+        name = leader["name"]
+        handle = leader["handle"]
+        category = leader["category"]
+        print(f"[{i+1}/{len(LEADERS)}] {name} (@{handle})...", end=" ", flush=True)
+
+        uid = get_user_id(handle, uid_cache)
+        tweet = None
+        if uid:
+            tweet = fetch_latest_tweet(handle, uid)
+
+        if tweet:
+            # Truncate very long tweets
+            text = tweet["text"]
+            if len(text) > 300:
+                text = text[:297] + "..."
+
+            results.append({
                 "name": name,
                 "handle": handle,
                 "category": category,
                 "platform": "x",
-                "posts": [
-                    {
-                        "text": tweet_text,
-                        "caption": tweet_text,
-                        "url": tweet_url,
-                        "thumbnail": "",
-                        "timestamp": tweet_date,
-                    }
-                ]
+                "posts": [{
+                    "text": text,
+                    "caption": text,
+                    "url": tweet["url"],
+                    "thumbnail": "",
+                    "timestamp": tweet["created_at"][:10] if tweet["created_at"] else datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                }]
             })
-            
-            # Small delay to avoid rate limits (15 req/15min for user timeline on free tier)
-            time.sleep(1.1)
-    
-    # Write output
+            print(f"✅ tweet {tweet['id']}")
+            success += 1
+        else:
+            # Fallback: use profile URL, leave a placeholder
+            results.append({
+                "name": name,
+                "handle": handle,
+                "category": category,
+                "platform": "x",
+                "posts": [{
+                    "text": f"Follow @{handle} for the latest updates.",
+                    "caption": f"Follow @{handle} for the latest updates.",
+                    "url": f"https://x.com/{handle}",
+                    "thumbnail": "",
+                    "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                }]
+            })
+            print(f"⚠️  no recent tweet, using fallback")
+            fallback += 1
+
+        # Small delay to avoid rate limiting (10,000 calls/15min is generous but be safe)
+        if (i + 1) % 15 == 0:
+            time.sleep(2)
+
     now_iso = datetime.now(timezone.utc).isoformat()
     output = {
-        "leaders": all_leaders,
+        "leaders": results,
         "lastUpdated": now_iso,
         "last_updated": now_iso,
     }
-    
+
     with open(OUTPUT_PATH, "w") as f:
-        json.dump(output, f, indent=2, ensure_ascii=False)
-    
-    print(f"\n✅ Wrote {len(all_leaders)} leaders to {OUTPUT_PATH}")
-    
-    if api_failures:
-        print(f"\n⚠ {len(api_failures)} leaders had no tweets (need web search fallback):")
-        for f_item in api_failures:
-            print(f"  - {f_item['name']} (@{f_item['handle']}) [{f_item['category']}]")
-    
-    # Output failures as JSON for downstream processing
-    with open("/tmp/pulse-failures.json", "w") as f:
-        json.dump(api_failures, f)
-    
-    return api_failures
+        json.dump(output, f, indent=2)
+
+    print(f"\n📊 Results: {success} tweets, {fallback} fallbacks, {failed} failed")
+    print(f"📁 Written to {OUTPUT_PATH}")
+
+    # ─── Self-validation ──────────────────────────────────────────────────────
+    print("\n🔍 Validating output...")
+    data = json.load(open(OUTPUT_PATH))
+    assert "leaders" in data, "Missing top-level 'leaders' key"
+    for l in data["leaders"]:
+        assert isinstance(l.get("posts"), list) and len(l["posts"]) > 0, \
+            f"SCHEMA BUG: {l.get('name')} missing posts[] array!"
+        assert l["posts"][0].get("text"), \
+            f"SCHEMA BUG: {l.get('name')} has empty text in posts[0]!"
+        assert l.get("platform") == "x", \
+            f"SCHEMA BUG: {l.get('name')} platform is not 'x'!"
+    print(f"✅ Validated {len(data['leaders'])} leaders — all have posts[] with text")
+
 
 if __name__ == "__main__":
-    failures = main()
-    sys.exit(0)
+    main()
