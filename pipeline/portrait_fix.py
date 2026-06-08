@@ -131,8 +131,13 @@ def fix_avatar_portrait(video_path, output_path, headline, letterbox_info=None,
         print("  ℹ️ No letterbox detected, skipping portrait fix")
         return False
     
-    ct = letterbox_info["content_top"]
-    ch = letterbox_info["content_height"]
+    ct = letterbox_info.get("content_top", 0)
+    ch = letterbox_info.get("content_height", 1080)
+    fw = letterbox_info.get("frame_width", 1080)
+    fh = letterbox_info.get("frame_height", 1920)
+    
+    # Detect if input is native 16:9 (1920x1080) vs letterboxed portrait (1080x1920)
+    is_native_landscape = fw == 1920 and fh == 1080
     
     # Word-wrap headline into max 3 lines
     headline_lines = _wrap_headline(headline, max_chars=28, max_lines=3)
@@ -180,13 +185,32 @@ def fix_avatar_portrait(video_path, output_path, headline, letterbox_info=None,
     
     drawtext_chain = ",\n    ".join(drawtext_parts)
     
-    filter_complex = f"""
+    # Avatar content zone: starts at y=340, gold accent lines above and below
+    avatar_y = 340
+    # Target content height: scale to fill 1080px wide, maintain aspect ratio
+    if is_native_landscape:
+        # Input is 1920x1080 — scale to 1080 wide → height = 607
+        scaled_h = 607
+        filter_complex = f"""
+    [1:v]scale=1080:{scaled_h}:flags=lanczos[content];
+    [0:v]setpts=PTS-STARTPTS[canvas];
+    [canvas][content]overlay=0:{avatar_y}:shortest=1[base];
+    [base]
+    drawbox=x=0:y={avatar_y - 5}:w=1080:h=3:c=#D4AF37:t=fill,
+    drawbox=x=0:y={avatar_y + scaled_h + 2}:w=1080:h=3:c=#D4AF37:t=fill,
+    drawbox=x=0:y=1840:w=1080:h=80:c=#0A1520:t=fill,
+    {drawtext_chain}
+    [out]
+    """
+    else:
+        # Input is letterboxed portrait (1080x1920) — crop content band out
+        filter_complex = f"""
     [1:v]crop=1080:{ch}:0:{ct}[content];
     [0:v]setpts=PTS-STARTPTS[canvas];
-    [canvas][content]overlay=0:340:shortest=1[base];
+    [canvas][content]overlay=0:{avatar_y}:shortest=1[base];
     [base]
-    drawbox=x=0:y=335:w=1080:h=3:c=#D4AF37:t=fill,
-    drawbox=x=0:y={340 + ch + 3}:w=1080:h=3:c=#D4AF37:t=fill,
+    drawbox=x=0:y={avatar_y - 5}:w=1080:h=3:c=#D4AF37:t=fill,
+    drawbox=x=0:y={avatar_y + ch + 2}:w=1080:h=3:c=#D4AF37:t=fill,
     drawbox=x=0:y=1840:w=1080:h=80:c=#0A1520:t=fill,
     {drawtext_chain}
     [out]

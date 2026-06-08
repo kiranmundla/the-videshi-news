@@ -848,23 +848,19 @@ def run(args):
 
         # 3e2. Portrait conversion — ALWAYS convert 16:9 HeyGen output to 9:16 news layout
         #      HeyGen avatars are 16:9 source footage. We own the portrait conversion.
-        from portrait_fix import detect_letterbox, fix_avatar_portrait, burn_captions_news_layout
+        from portrait_fix import fix_avatar_portrait, burn_captions_news_layout
         portrait_fixed = BUILD_DIR / f"avatar-portrait-fixed-{video_id}.mp4"
         headline = article.get('headline', '')
         
-        # Detect content bounds (even though we know it's 16:9, this finds exact crop coordinates)
-        lb_info = detect_letterbox(raw_avatar)
-        if not lb_info.get("is_letterboxed"):
-            # Force it — we know the content is 16:9 inside a 16:9 frame (no padding to detect)
-            # In this case the raw video IS the content, so we build the news layout from scratch
-            lb_info = {
-                "is_letterboxed": True,
-                "content_top": 0,
-                "content_bottom": 1079,
-                "content_height": 1080,
-                "frame_width": 1920,
-                "frame_height": 1080,
-            }
+        # Tell portrait_fix this is native 16:9 input
+        lb_info = {
+            "is_letterboxed": True,
+            "content_top": 0,
+            "content_bottom": 1079,
+            "content_height": 1080,
+            "frame_width": 1920,
+            "frame_height": 1080,
+        }
         
         # Get category-aware badge
         badge_map = {

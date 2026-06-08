@@ -1,352 +1,279 @@
-# Portrait Reel Strategy — Research Report
-## The Videshi: Robust 9:16 Avatar Reel Pipeline
+# HeyGen Portrait Reel Strategy — Definitive API Test Results
 
 **Date:** 2026-06-08  
-**Status:** Research complete, recommendations ready
+**Method:** Live API testing (7 generated videos + frame analysis) + API documentation research (v2 & v3 docs)  
+**Account:** The Videshi production HeyGen account  
 
 ---
 
-## 1. The Root Cause (Confirmed)
+## Executive Summary
 
-### HeyGen's Portrait Behavior with Kavya
+**BREAKTHROUGH FINDING:** HeyGen's v2 API supports `scale` (0.0–5.0), `offset` ({x,y} range -1.0 to 1.0), `avatar_style` ("closeUp"/"normal"), and `background` parameters on the character object. These enable **true full-frame 9:16 portrait video directly from HeyGen** — with zero letterboxing, no post-processing crop/scale needed.
 
-**Kavya's avatar looks were created from 16:9 (1280×720) source footage.** This was confirmed by:
+The previous assumption that HeyGen can only produce letterboxed portrait video is **WRONG**.
 
-1. **HeyGen avatar API** — preview videos for all Kavya looks are 1280×720 (16:9)
-2. **Raw output analysis** — when requesting 1080×1920 from HeyGen:
-   - Output file IS 1080×1920 (passes resolution checks)
-   - But the actual avatar content occupies only **rows 674–1245** (572px of 1920px = **29.8%** of the frame)
-   - Top/bottom padding: 674px each, brightness ~240 (near-white)
-   - Content aspect ratio within the frame: **1.89:1** (≈16:9)
-   - **HeyGen simply centers the 16:9 scene inside the 9:16 canvas and pads with white**
-
-### Why This Keeps Breaking
-
-The fundamental mismatch: **you can't get a true 9:16 full-frame video from 16:9 source footage** by changing API parameters. This is a physics/geometry problem, not a software bug. Every time we change `dimension` or `aspect_ratio` in the API payload, the same letterboxing occurs because the source footage hasn't changed.
+**Additionally:** The v3 API (`POST /v3/videos`) has a `fit` parameter ("contain"/"cover") that may achieve similar results with cleaner semantics, but v3 does NOT support multi-scene (`video_inputs[]`) — only v2 does. Since our pipeline uses multi-scene, **v2 is the correct API for now**.
 
 ---
 
-## 2. HeyGen API Capabilities (Research Findings)
+## API Versions
 
-### What the API Offers
+| API | Endpoint | Multi-Scene | Scale/Offset | Deprecation |
+|---|---|---|---|---|
+| **v2 (Studio)** | `POST /v2/video/generate` | ✅ `video_inputs[]` | ✅ `character.scale`, `character.offset` | Oct 31, 2026 |
+| **v3 (Current)** | `POST /v3/videos` | ❌ Single scene only | ❌ No manual scale/offset | Active, recommended for single-scene |
 
-The v2 `POST /v2/video/generate` endpoint accepts:
+**Our pipeline uses multi-scene → must use v2.** v3 has `fit: "cover"` which auto-scales to fill frame (worth testing when v3 gets multi-scene support).
 
+---
+
+## Kavya Avatar Inventory
+
+7 Kavya looks found in HeyGen account (all stock avatars, 1280×720 source footage):
+
+| Avatar ID | Name | Status |
+|---|---|---|
+| `Kavya_standing_indoor_front` | Indoor Front | **Active** |
+| `Kavya_sitting_sofa_front` | Sofa Front | **Active** |
+| `Kavya_standing_indoor_side` | Indoor Side | Inactive |
+| `Kavya_standing_outdoor_side` | Outdoor Side | Inactive |
+| `Kavya_standing_outdoorsport_front` | Outdoor Sport Front | Inactive |
+| `Kavya_standing_outdoorsport_side` | Outdoor Sport Side | Inactive |
+| `Kavya_sitting_sofa_side` | Sofa Side | Inactive |
+
+**Source footage:** All 1280×720 (16:9). Total avatars in account: 1,281 (all stock library).
+
+---
+
+## Live API Test Results (7 Videos Generated)
+
+### Test A — Default portrait (THE PROBLEM)
+```json
+{"dimension": {"width": 1080, "height": 1920}, "aspect_ratio": "9:16"}
+```
+- **Content fill: 29.6%** | Top padding: 675px | Bottom: 676px | White bars
+- **VERDICT: Massive letterboxing — unusable**
+
+### Test B — Portrait with conflicting aspect_ratio
+```json
+{"dimension": {"width": 1080, "height": 1920}, "aspect_ratio": "16:9"}
+```
+- **Content fill: 29.6%** — **IDENTICAL to Test A**
+- **VERDICT: `aspect_ratio` parameter is COMPLETELY IGNORED when `dimension` is set**
+
+### Test C — Landscape baseline (native format)
+```json
+{"dimension": {"width": 1920, "height": 1080}, "aspect_ratio": "16:9"}
+```
+- **Content fill: 93.8%** | Full-frame avatar
+- **VERDICT: Perfect baseline**
+
+### Test D — aspect_ratio only (no dimension)
+```json
+{"aspect_ratio": "9:16"}  // no dimension
+```
+- **Output: 1920×1080 LANDSCAPE** — HeyGen defaulted to landscape
+- **VERDICT: `aspect_ratio` alone does NOTHING**
+
+### Test E — Portrait + scale=2.0 ⭐
 ```json
 {
-  "video_inputs": [{
-    "character": {
-      "type": "avatar",
-      "avatar_id": "...",
-      "avatar_style": "normal"
-    },
-    "voice": { ... },
-    "background": {
-      "type": "color",     // or "image"
-      "value": "#0D1B2A"   // or URL for image
-    }
-  }],
   "dimension": {"width": 1080, "height": 1920},
-  "aspect_ratio": "9:16"
+  "character": {"scale": 2.0, "offset": {"x": 0, "y": 0}},
+  "background": {"type": "color", "value": "#000000"}
+}
+```
+- **Content fill: 59.3%** (1139px of 1920px) — exactly 2× baseline!
+- Black bars instead of white (background param works)
+- **VERDICT: `scale` WORKS! Linear scaling confirmed.**
+
+### Test G — Portrait + scale=3.4 ⭐⭐⭐ BREAKTHROUGH
+```json
+{
+  "dimension": {"width": 1080, "height": 1920},
+  "character": {"scale": 3.4, "offset": {"x": 0, "y": 0}},
+  "background": {"type": "color", "value": "#000000"}
+}
+```
+- **Content fill: 99.9% — FULL FRAME!**
+- Zoomed-in talking head: head to waist, centered, beautiful framing
+- **VERDICT: TRUE FULL-FRAME PORTRAIT! No letterboxing whatsoever.**
+
+### Test H — Portrait + scale + offset + navy bg ⭐⭐
+```json
+{
+  "dimension": {"width": 1080, "height": 1920},
+  "character": {"scale": 1.78, "offset": {"x": 0, "y": -0.3}},
+  "background": {"type": "color", "value": "#0a1628"}
+}
+```
+- **Content fill: 46.4%** from top (0 to row 891)
+- Avatar shifted UP, navy background fills bottom 54%
+- **VERDICT: `offset` WORKS! Can position avatar + use branded bg color below.**
+
+### Scale Behavior (Empirically Measured)
+
+| Scale | Content Fill | Content Height | Math |
+|---|---|---|---|
+| 1.0 (default) | 29.6% | 569px | Baseline |
+| 2.0 | 59.3% | 1139px | 569 × 2.0 = 1138 ✓ |
+| 3.4 | 99.9% | 1920px | 569 × 3.37 = 1918 ✓ |
+
+**Formula:** `content_height ≈ 569 × scale` (at 1080×1920)  
+**Full-frame scale:** `1920 / 569 ≈ 3.37` → use `3.4`
+
+---
+
+## All Confirmed API Parameters
+
+### V2 Character Object (what we use)
+
+| Parameter | Type | Range | Effect |
+|---|---|---|---|
+| `scale` | float | 0.0–5.0, default 1.0 | Avatar zoom/size in frame. Linear. |
+| `offset` | object | `{x: -1..1, y: -1..1}` | Position shift. Negative y = up. |
+| `avatar_style` | string | `"normal"`, `"closeUp"`, `"circle"` | Framing preset. **closeUp untested — may provide built-in zoom** |
+| `fit` | string | `"contain"`, `"cover"` | How avatar fits scene. **Cover may auto-fill frame** |
+| `matting` | boolean | | Remove avatar background (avatars created after May 2025) |
+
+### V2 Background Object
+
+| Parameter | Type | Effect |
+|---|---|---|
+| `type` | string | `"color"`, `"image"`, `"video"` |
+| `value` | string | Hex color for color type (default `#f6f6fc`) |
+| `url` | string | URL for image/video backgrounds |
+| `fit` | string | `"cover"`, `"contain"`, `"crop"`, `"none"` |
+
+### V3 API Parameters (for future reference when v3 gets multi-scene)
+
+| Parameter | Type | Effect |
+|---|---|---|
+| `aspect_ratio` | string | `"9:16"` for portrait |
+| `fit` | string | `"contain"` or `"cover"` — **cover should auto-fill frame** |
+| `remove_background` | boolean | Remove avatar's original background |
+| `background` | object | `{type: "color"/"image", value/url}` |
+| `resolution` | string | `"4k"`, `"1080p"`, `"720p"` |
+
+---
+
+## Three Viable Architectures
+
+### Option 1: Post-Process Pipeline (Original Plan)
+```
+HeyGen: 1920×1080 (16:9, no scale/offset)
+  → Full-quality landscape video
+  → portrait_fix.py crops/scales into branded 1080×1920 layout
+  → Header + avatar + gold accent + captions + branding
+```
+- **Pros:** Highest quality (native resolution), full layout control
+- **Cons:** Complex post-processing (373 lines), extra re-encoding pass
+
+### Option 2: HeyGen Native News Layout ⭐ RECOMMENDED
+```
+HeyGen: 1080×1920 with scale=2.0-2.5, offset={y: -0.12}, background=#0a1628
+  → Avatar fills upper ~50-70% of portrait frame
+  → Navy branded background fills lower portion
+  → Overlay: header bar at top, captions in navy zone, bottom branding
+```
+- **Pros:** HeyGen does heavy lifting, simple overlay post-processing, clean caption zone
+- **Cons:** 2-2.5× upscaling from 720p source, per-avatar tuning needed
+
+### Option 3: HeyGen Full Portrait (Social-First)
+```
+HeyGen: 1080×1920 with scale=3.4, background=#000000
+  → Full-frame zoomed portrait (talking head selfie style)
+  → Overlay captions at bottom over avatar content
+```
+- **Pros:** Simplest pipeline, most TikTok-native look
+- **Cons:** 3.4× upscaling, captions overlap content, no branding space
+
+---
+
+## Recommended Implementation (Option 2)
+
+### HeyGen API Payload
+```python
+payload = {
+    "dimension": {"width": 1080, "height": 1920},
+    "video_inputs": [{
+        "character": {
+            "type": "avatar",
+            "avatar_id": avatar_id,
+            "avatar_style": "normal",
+            "scale": avatar_record.get("portrait_scale", 2.5),
+            "offset": {
+                "x": avatar_record.get("portrait_offset_x", 0),
+                "y": avatar_record.get("portrait_offset_y", -0.12)
+            }
+        },
+        "voice": {
+            "type": "text",
+            "input_text": script,
+            "voice_id": voice_id
+        },
+        "background": {
+            "type": "color",
+            "value": avatar_record.get("portrait_bg_color", "#0a1628")
+        }
+    }]
 }
 ```
 
-Key parameters relevant to portrait:
-- **`dimension`** — sets output resolution (can be 1080×1920)
-- **`aspect_ratio`** — `"16:9"` or `"9:16"` (the Image-to-Video endpoint supports this explicitly)
-- **`background`** — can be `{ "type": "color", "value": "#hex" }` or `{ "type": "image", "value": "url" }`
-- **Background removal** — available for photo avatars and via HeyGen Studio UI; the v2 API's avatar `character` object doesn't expose a `remove_background` param directly for standard avatars
-
-### What Does NOT Exist in the API
-
-- No `scale`, `crop`, `zoom`, `framing`, or `layout` parameter for avatar video generation
-- No way to tell HeyGen "crop the 16:9 content to fill 9:16"
-- No way to force a look to render at a different native aspect ratio than its source footage
-- The `background` param replaces the background for looks that support it (photo avatars, certain generated looks), but **does not change the framing** of the avatar within the scene
-
-### How Other Workflows Handle It (n8n Community Patterns)
-
-Reviewed 6+ n8n workflow templates that create 9:16 HeyGen avatar videos. They all use one of two approaches:
-
-1. **Split-screen layout** — Avatar occupies the bottom portion, article/content imagery fills the top. The avatar is NOT full-frame.
-2. **Background removal + custom background** — Remove the avatar's original background, then composite the avatar cutout over a 9:16 background. This requires HeyGen's paid background removal feature.
-3. **Post-processing** — Generate 16:9 from HeyGen, then use ffmpeg to composite into a branded 9:16 layout with text, graphics, and the avatar band.
-
-**No one gets true full-frame 9:16 from a 16:9 avatar look.** The platform's own documentation says "In HeyGen, you'll most likely want to select vertical orientation" for social media, but this assumes you're using avatar looks designed for that format, or using background removal + layout features.
-
----
-
-## 3. Available Approaches (Ranked)
-
-### Option A: Request 16:9 from HeyGen → Post-Process to 9:16 News Layout ⭐ RECOMMENDED
-
-**How it works:**
-1. Request HeyGen video at **1920×1080 (16:9)** — this is what the avatar source footage is natively
-2. Use `portrait_fix.py`'s existing pipeline to compose into 9:16:
-   - Branded header (THE VIDESHI logo, badge, headline)
-   - Avatar content band (full-width, no letterboxing)
-   - Caption zone (navy area for positioned captions)
-   - Bottom branding bar (thevideshi.com)
-3. Captions use ASS format with precise positioning in the caption zone
-
-**Why this is the best approach:**
-- The avatar renders at **native quality** — no upscaling, no padding, no artificial cropping
-- The news layout looks **professional and intentional** — like a real TV news broadcast
-- The branded zones add value — headline context, branding, call to action
-- It's **deterministic** — no dependency on HeyGen's interpretation of portrait dimensions
-- It works for ALL of Kavya's existing looks without any changes to HeyGen
-- The `portrait_fix.py` module already implements this end-to-end
-
-**Layout:**
-```
-┌────────────────────┐
-│   THE VIDESHI       │  ← 30px from top
-│   BREAKING          │  ← gold badge
-│   Headline text     │  ← wrapped to 3 lines
-│   (3 lines max)     │
-├═════════════════════╡  ← gold accent line
-│                     │
-│   [Avatar 1080×607] │  ← full-width 16:9 content
-│                     │
-├═════════════════════╡  ← gold accent line
-│                     │
-│   [Caption zone]    │  ← navy, captions appear here
-│                     │
-├────────────────────┤
-│  thevideshi.com     │  ← bottom branding bar
-│  @thevideshi        │
-└────────────────────┘
-```
-Final output: 1080×1920 (9:16), full-screen on mobile.
-
-### Option B: Crop/Zoom 16:9 → 9:16 (Center-crop the avatar)
-
-**How it works:**
-1. Request 16:9 from HeyGen
-2. Center-crop horizontally to 607×1080 → scale to 1080×1920
-
-**Why NOT recommended:**
-- Cropping cuts off the avatar's scene context (furniture, background, setting)
-- For sitting avatars (Sofa Front), this might cut off hands/arms
-- Standing avatars lose the "grounding" of their environment
-- Significantly reduces visible area of the avatar
-- The cropped portion may look awkward or unprofessional
-- Quality loss from upscaling a 607px-wide crop to 1080px
-
-### Option C: HeyGen Background Removal + Custom Background
-
-**How it works:**
-1. Use HeyGen's background removal to isolate Kavya
-2. Composite her cutout over a custom 9:16 background
-
-**Why NOT recommended for now:**
-- Requires HeyGen's paid background removal feature
-- Not reliably available via the v2 API for standard avatar types (only photo avatars and Studio UI)
-- Background removal quality is inconsistent — artifacts at hair/clothing edges
-- Loses the professional "set" that the avatar looks were designed with
-- More API complexity and potential failure points
-
-### Option D: Create New Avatar Looks in 9:16
-
-**How it works:**
-1. Upload new avatar footage shot in 9:16 (portrait) format
-2. These would natively render full-frame in portrait
-
-**Why NOT recommended for now:**
-- Requires new source footage of the person behind Kavya
-- Significant cost and time investment
-- Worth exploring as a future enhancement once the pipeline is proven
-
----
-
-## 4. Implementation Recommendations
-
-### 4.1 The Pipeline Should ALWAYS Request 16:9 from HeyGen
-
-**This is the single most important architectural decision.** The `aspect_ratio` and `dimension` in the HeyGen payload should ALWAYS be:
-
-```python
-"dimension": {"width": 1920, "height": 1080},
-"aspect_ratio": "16:9"
-```
-
-**Never request 9:16 from HeyGen for these avatar looks.** This eliminates the root cause entirely — we get clean, native 16:9 footage every time, and our own pipeline handles the portrait conversion.
-
-The DB `aspect_ratio` column on `reel_avatars` should store the **source footage native aspect ratio**, not the desired output format. All Kavya looks should be `"16:9"`.
-
-### 4.2 Portrait Conversion is a Required Pipeline Step, Not Optional
-
-The orchestrator should treat portrait conversion as a mandatory step, not a conditional fix:
-
-```python
-# ALWAYS: Request 16:9 from HeyGen
-heygen_dimension = {"width": 1920, "height": 1080}
-heygen_aspect = "16:9"
-
-# ALWAYS: Convert to portrait news layout after download
-portrait_output = portrait_fix.convert_to_news_layout(
-    raw_avatar_path, 
-    output_path, 
-    headline,
-    category
-)
-```
-
-Remove the `detect_letterbox()` conditional. The conversion is always needed because we're always starting from 16:9 and need to end at 9:16.
-
-### 4.3 Category-Aware Badge Text
-
-The portrait layout should use category-appropriate badge text instead of always "BREAKING":
-
-```python
-CATEGORY_BADGES = {
-    "news": "BREAKING",
-    "nri-world": "NRI WORLD",
-    "technology": "TECH",
-    "markets-finance": "MARKETS",
-    "sports": "SPORTS",
-    "entertainment": "ENTERTAINMENT",
-    "lifestyle-health": "LIFESTYLE",
-    "food": "FOOD",
-    "travel": "TRAVEL",
-}
-```
-
-### 4.4 Hook Frame and End Card Must Match the Branded Layout
-
-The hook frame and end card should use the same navy (`#0D1B2A`) background and branding style as the portrait layout, so the entire reel has visual consistency. Currently they're independent — they should share the same design language.
-
-### 4.5 QA Gate Must Be Airtight
-
-The QA gate needs these checks to never let a bad reel through:
-
-| Check | Type | What It Catches |
-|-------|------|-----------------|
-| `resolution` | BLOCKING | Wrong output dimensions |
-| `aspect_ratio` | BLOCKING | Wrong aspect ratio |
-| `content_fill` | BLOCKING | Letterboxed/padded content that doesn't fill the frame |
-| `audio_stream` | BLOCKING | Missing audio |
-| `avatar_facing` | BLOCKING | Side-angle avatar looks |
-| `letterboxing` | BLOCKING | Any-color letterbox bars (black, white, or uniform color) |
-| `branded_layout` | NEW/BLOCKING | Verify the branded header zone exists (navy background, gold text) |
-| `duration` | Warning | Too short or too long |
-| `loudness` | Warning | Audio levels out of range |
-| `content_alignment` | Warning | Script doesn't match headline |
-
-**The `content_fill` check should use `portrait_fix.detect_letterbox()` as it does now, but it should be a BLOCKING check.** If the final output has letterboxing, the reel must not be published.
-
-**The letterboxing check in `check_visual_quality()` should detect ANY uniform padding** — not just dark. The current code (as recently patched) checks for both dark (`< 15`) and light (`> 240`), which is correct.
-
-**New check: `branded_layout`** — Extract a frame and verify that the top 15-20% of the frame has the expected navy background color (not white, not blank). This confirms the portrait conversion actually ran.
-
-### 4.6 End-to-End Validation
-
-After the full pipeline runs (including assembly, music, normalization), run a final ffprobe check:
-
-```python
-def validate_final_output(video_path):
-    """Hard validation that final output is correct before any upload."""
-    probe = ffprobe(video_path)
-    w, h = probe.width, probe.height
-    assert w == 1080 and h == 1920, f"Wrong resolution: {w}x{h}"
-    assert probe.duration >= 8, f"Too short: {probe.duration}s"
-    assert probe.has_audio, "No audio stream"
-    assert os.path.getsize(video_path) > 500_000, "File too small"
-    
-    # Visual check: top band should be navy (~#0D1B2A), not white/blank
-    frame = extract_frame(video_path, t=5)
-    top_brightness = frame[:200].mean()
-    assert top_brightness < 50, f"Top of frame is bright ({top_brightness}) — portrait layout not applied"
-```
-
----
-
-## 5. Summary: The Architecture
-
-```
-Article Selected
-      │
-      ▼
-  Generate Script
-      │
-      ▼
-  HeyGen API  ──────────  ALWAYS 1920×1080 (16:9)
-      │                    Never request 9:16
-      ▼
-  Raw 16:9 Avatar Video
-      │
-      ▼
-  Portrait Conversion  ──  ALWAYS runs (not conditional)
-      │                    Branded news layout
-      ▼                    Header + Avatar + Captions + Footer
-  1080×1920 Portrait
-      │
-      ▼
-  Burn Captions  ─────────  ASS format, positioned in caption zone
-      │
-      ▼
-  Assemble  ──────────────  Hook + Avatar + End Card
-      │                     All segments 1080×1920
-      ▼
-  Add Music + Normalize
-      │
-      ▼
-  QA Gate  ───────────────  BLOCKING checks:
-      │                     - Resolution 1080×1920
-      │                     - Content fills frame
-      │                     - No letterboxing
-      │                     - Branded layout present
-      │                     - Audio present
-      ▼
-  Upload (only if QA passes)
-```
-
-### Key Principles:
-1. **Request what HeyGen can deliver natively (16:9)**
-2. **Own the portrait conversion ourselves (deterministic, branded)**
-3. **QA gate blocks anything that doesn't look right**
-4. **Never assume — verify every step**
-
----
-
-## 6. Database Changes Needed
-
-Update all `reel_avatars` records to store the truth:
-
+### Database Schema Updates
 ```sql
-UPDATE reel_avatars SET aspect_ratio = '16:9';
--- aspect_ratio = source footage native format, NOT desired output
+ALTER TABLE reel_avatars ADD COLUMN portrait_scale FLOAT DEFAULT 2.5;
+ALTER TABLE reel_avatars ADD COLUMN portrait_offset_x FLOAT DEFAULT 0;
+ALTER TABLE reel_avatars ADD COLUMN portrait_offset_y FLOAT DEFAULT -0.12;
+ALTER TABLE reel_avatars ADD COLUMN portrait_bg_color TEXT DEFAULT '#0a1628';
 ```
 
-Add a column or config for desired output format:
-
-```sql
-ALTER TABLE reel_avatars ADD COLUMN output_format text DEFAULT '9:16';
--- output_format = what the pipeline produces after post-processing
-```
+### Untested Parameters Worth Trying (next test batch)
+1. `avatar_style: "closeUp"` — may provide built-in zoom without manual scale
+2. `character.fit: "cover"` — may auto-scale to fill frame
+3. `scale: 2.5` + `offset: {y: -0.12}` — the recommended combo (hit daily trial limit before testing)
+4. `character.matting: true` + custom background image — could place avatar on any portrait backdrop
 
 ---
 
-## 7. Files That Need Changes
+## Test Artifacts
 
-| File | Change |
-|------|--------|
-| `reel-orchestrator.py` | Request 16:9 from HeyGen. Always run portrait conversion. Use category-aware badges. |
-| `portrait_fix.py` | Add `convert_to_news_layout()` wrapper that doesn't need letterbox detection (it's always needed). Add category badge mapping. |
-| `reel_qa_gate.py` | Add `branded_layout` check. Make `content_fill` blocking. Ensure letterbox check catches all colors. |
-| `reel_avatars` DB | Set all `aspect_ratio` to `16:9` (source native). |
-| Hook frame / end card | Match navy branding style of portrait layout. |
+All test videos and extracted frames saved to:
+```
+the-videshi-news/pipeline/heygen-tests/
+├── kavya_indoor_preview.mp4     # Original preview (1280×720 source)
+├── test_A.mp4 + test_A_frame.jpg   # Default portrait (letterboxed)
+├── test_B.mp4 + test_B_frame.jpg   # Portrait + 16:9 aspect (identical to A)
+├── test_C.mp4 + test_C_frame.jpg   # Landscape baseline (full frame)
+├── test_D.mp4 + test_D_frame.jpg   # aspect_ratio only (defaulted landscape)
+├── test_E.mp4 + test_E_frame.jpg   # scale=2.0 (59.3% fill)
+├── test_G.mp4 + test_G_frame.jpg   # scale=3.4 (99.9% FULL FRAME!)
+└── test_H.mp4 + test_H_frame.jpg   # scale=1.78 + offset (shifted up, navy bg)
+```
+
+### HeyGen Video IDs
+| Test | Video ID | Config Summary |
+|---|---|---|
+| A | `8906278f16c448cf91dbb993d338def1` | Default portrait |
+| B | `2a173019ad774538b85db85b686e1141` | Portrait + 16:9 ar |
+| C | `c9272dae6d3f41298689846bca89a72e` | Landscape baseline |
+| D | `079df35e521347bfb2c0a9f6e91b9a6c` | ar only (→ landscape) |
+| E | `5da24b70b75547ffa2594f2ebaa74589` | scale=2.0 |
+| G | `96d4fe2f746449878b9f39c4549b7b49` | scale=3.4 (FULL!) |
+| H | `93bf7efde2b744efa75611b737e7c869` | scale=1.78 + offset |
+
+**Daily trial limit:** 8 test videos/day (hit after 8 tests — Tests I & J were rejected).
 
 ---
 
-## 8. Why This Won't Break Again
+## Critical Notes
 
-The previous approach was fragile because it depended on **HeyGen producing the right output directly**. The correct approach is:
+1. **`scale` and `offset` ARE documented** in HeyGen's v2 API schema (found in v2 docs), but are not prominently featured in tutorials or help articles. They are stable, supported parameters.
 
-1. **We control the output format** — HeyGen gives us raw footage, we shape it
-2. **The pipeline is deterministic** — same input always produces same output
-3. **The QA gate catches regressions** — if something goes wrong, the reel is blocked before anyone sees it
-4. **No conditional logic** — portrait conversion always runs, not "if letterboxed"
-5. **Single source of truth** — avatar DB says 16:9 (the truth), pipeline converts to 9:16 (the goal)
+2. **v2 API deprecation deadline: October 31, 2026.** Multi-scene (`video_inputs[]`) has NOT been ported to v3 yet, so v2 is required for our pipeline. When v3 gets multi-scene, test `fit: "cover"` + `aspect_ratio: "9:16"` as a cleaner alternative.
 
-The root cause of the recurring breakage was treating the HeyGen dimension parameter as the solution. It's not. The solution is owning the portrait conversion ourselves.
+3. **Source quality:** Kavya's 1280×720 source at scale 2.5 means the avatar region is approximately 512×288 upscaled. Acceptable for mobile viewing. A custom portrait-shot avatar would eliminate this entirely.
+
+4. **Per-avatar tuning:** Different Kavya looks need different scale/offset values. Store in DB per-look.
+
+5. **`avatar_style: "closeUp"` is untested** — this built-in zoom preset might provide good framing without manual scale tuning. Priority for next test batch.
