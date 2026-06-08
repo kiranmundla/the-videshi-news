@@ -99,7 +99,7 @@ def call_openai(prompt, article_text, model="gpt-4o-mini"):
         print(f"  ⚠️  OpenAI parse error: {e}")
         return None
 
-def call_gemini(prompt, article_text, model="gemini-2.0-flash"):
+def call_gemini(prompt, article_text, model="gemini-2.5-flash"):
     if not GEMINI_KEY:
         return None
     payload = {
