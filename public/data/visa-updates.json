@@ -103,6 +103,15 @@
     "source": "ICE / DHS"
   },
   {
+    "id": "dhs-duration-of-status-elimination",
+    "date": "2026-05-05",
+    "label": "May 5, 2026",
+    "headline": "DHS finalizes rule to eliminate \"Duration of Status\" for F-1 & J-1 visas \u2014 4-year cap on student stays",
+    "summary": "DHS sent its final rule to OMB that will replace the open-ended \"Duration of Status\" (D/S) framework for F-1 students and J-1 exchange visitors with fixed 4-year admission periods. Students needing more time must file formal USCIS extensions. F-1 grace period also cut from 60 to 30 days. Rule takes effect 60 days after Federal Register publication \u2014 expected imminently. Experts warn thousands of Indian students could lose flexibility for OPT/CPT extensions and face unlawful presence accrual if they overstay.",
+    "severity": "high",
+    "source": "DHS / NAFSA / OMB"
+  },
+  {
     "id": "kolkata-priority-50",
     "date": "2026-01-01",
     "label": "2026",
