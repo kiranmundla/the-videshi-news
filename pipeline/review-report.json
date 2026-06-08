@@ -1,19 +1,73 @@
 {
-  "timestamp": "2026-06-08T16:15:19.328860+00:00",
+  "timestamp": "2026-06-08T16:46:18.385704+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 3,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 2,
   "unpublished": 0,
   "articles": [
     {
-      "id": "a4c80629-8cc7-4d96-b34f-f9ef3e07213b",
-      "headline": "The Last Side Door Is Closing \u2014 Day-1 CPT Was Keeping Thousands of Indian STEM Workers in America",
-      "slug": "day-1-cpt-closing-dhs-duration-status-indian-stem-workers-20260608",
+      "id": "1f389837-4c58-4d4a-9ca6-d59f4d1ad7cf",
+      "headline": "Fulmali Scored an Unbeaten Fifty. Radha and Shreyanka Took Seven Wickets Between Them. India's T20 World Cup Has Begun.",
+      "slug": "india-women-beat-west-indies-26-runs-t20-world-cup-warm-up-cardiff-fulmali-fifty-nri",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "59aaf8ce-c03b-4e5d-bb06-fa1a3aad8fd6",
+            "headline": "Mandhana Says India Have 'A Lot to Learn.' Edulji Says It St"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://x.com/BCCIWomen/status/2063977204942524420",
+            "problem": "irrelevant",
+            "explanation": "The tweet does not appear to be directly related to the match or players discussed in the article."
+          },
+          {
+            "url": "https://www.instagram.com/p/DZRJjFcAb1B/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to connect with the content of the article regarding the T20 World Cup match."
+          }
+        ],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Smriti Mandhana does not directly relate to the article's focus on Fulmali's performance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights viewing options for the Indian diaspora and the significance of the matches in the UK."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant embeds with content that directly relates to the match or players discussed.",
+          "Consider using an image that features Fulmali or highlights the T20 World Cup context more closely."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://x.com/BCCIWomen/status/2063977204942524420",
+        "Removed irrelevant embed: https://www.instagram.com/p/DZRJjFcAb1B/",
+        "Revised by gpt-4o-mini (638\u2192712 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f9659173-768a-49e4-bf72-46afe2a4ee60",
+      "headline": "Kohli Tore His Hamstring in the IPL Final. He Played Through It. Now He Will Miss All Three Afghanistan ODIs.",
+      "slug": "virat-kohli-hamstring-injury-ruled-out-afghanistan-odi-series-jaiswal-replaces-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -24,18 +78,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or Day-1 CPT."
+          "issue": "The image of Virat Kohli is relevant but does not depict him in action related to the injury or the IPL final."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of Indian STEM workers in the U.S., making it highly relevant to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects with NRI readers by discussing Kohli's absence in the context of the Afghanistan ODIs and its implications for fans abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the theme of immigration or the struggles of Indian STEM workers.",
-          "Add quotes or testimonials from affected individuals to enhance the emotional impact and personal connection."
+          "Consider using an action shot of Kohli during the IPL final or a related match for the hero image.",
+          "Expand on the implications of Kohli's absence for the Indian team and its performance in the upcoming series."
         ],
         "verdict": "pass"
       },
@@ -47,9 +101,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6cde4ab6-ec34-4371-9235-73b765d48739",
-      "headline": "Ten Thousand Ghost Jobs \u2014 ICE Exposes a Shadow OPT Industry and Congress Wants the Programme Dead",
-      "slug": "opt-fraud-10000-ghost-jobs-ice-chip-roy-kill-bill-indian-students-20260608",
+      "id": "553c4cf2-fd15-4815-957c-dda057e95bcd",
+      "headline": "India Crossed 150 GW of Solar Power. Then It Had to Switch Off a Sixth of It.",
+      "slug": "india-150-gw-solar-milestone-curtailment-paradox-grid-overload-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +113,104 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of immigration or the OPT program."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of changes to the OPT program on Indian students, which is highly relevant to the NRI community."
+          "quality": 7,
+          "note": "The article discusses India's solar power achievements and challenges, which may resonate with NRIs interested in India's renewable energy progress."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the theme of immigration or the OPT program.",
-          "Add quotes or perspectives from affected Indian students to enhance the personal connection to the diaspora."
+          "Include quotes or perspectives from diaspora experts in renewable energy to enhance the diaspora angle.",
+          "Add a section discussing the implications of India's solar power developments on global energy markets, which could engage a broader audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d04f9fc0-5803-4f9c-bfd2-06eba1527545",
+      "headline": "The US Just Found a New Legal Route to Tariff India. This Time, It May Stick.",
+      "slug": "ustr-section-301-forced-labor-tariff-india-12-percent-greer-trade-deal-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "image does not directly relate to the article's topic of tariffs and trade negotiations"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses US-India trade relations, which is relevant to the Indian diaspora involved in business and trade."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to trade negotiations or tariffs to enhance relevance.",
+          "Add quotes or perspectives from Indian diaspora members involved in trade to strengthen the diaspora angle."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (748\u2192504 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8b8ee11a-4b6f-4f4e-8d04-a83539684763",
+      "headline": "India and Canada Just Agreed to Triple Their Trade to $50 Billion. The Largest-Ever Indian Delegation Flew to Ottawa to Seal It.",
+      "slug": "india-canada-50-billion-trade-target-cepa-goyal-carney-largest-delegation-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "d9c077a6-daa5-481b-96e6-b8071768c971",
+            "headline": "Ninety-Nine Percent Done \u2014 The India-US Trade Deal That Hasn"
+          },
+          {
+            "article_id": "ee5696fe-c466-4055-88d8-4bfeb21a5fdf",
+            "headline": "India Sent 112 Companies to Canada in Its Largest-Ever Trade"
+          },
+          {
+            "article_id": "018efc96-cc18-44b0-b3c4-4c64a4bc58df",
+            "headline": "India and the US Are '99 Percent Done' on a Trade Deal. The "
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Piyush Goyal is relevant as he is a key figure in the trade discussions, but it could be more directly related to the trade agreement itself."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the significance of the trade agreement for the Indian diaspora in Canada, emphasizing their role in strengthening ties between the two nations."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including quotes or reactions from members of the Indian diaspora in Canada to further enhance the diaspora angle.",
+          "Add more context on how the trade agreement could impact specific sectors or communities within the Indian diaspora."
         ],
         "verdict": "pass"
       },
