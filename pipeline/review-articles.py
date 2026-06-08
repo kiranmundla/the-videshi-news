@@ -492,7 +492,7 @@ BODY:
 
 
 # ── Main review function ──
-def review_article(article, recent_articles, fix_mode=False):
+def review_article(article, recent_articles, fix_mode=False, pre_publish=False):
     """Review a single article with pre-checks + LLM review + auto-revision."""
     headline = article["headline"]
     body = article.get("body", "") or ""
@@ -603,7 +603,18 @@ BODY:
                             article["body"] = body
         
         # ── Handle verdict ──
-        if fix_mode and verdict == "fail":
+        if fix_mode and verdict == "pass":
+            # Pre-publish gate: promote passing articles to published
+            if pre_publish and article.get("status") == "review":
+                now_ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                status = sb_patch(article["id"], {"status": "published", "published_at": now_ts})
+                if status in (200, 204):
+                    result["actions_taken"].append("promoted to published")
+                    print(f"  ✅ Promoted to published (score {score})")
+                else:
+                    print(f"  ⚠️ Failed to promote (HTTP {status})")
+
+        elif fix_mode and verdict == "fail":
             fail_result = handle_fail(article, llm_result, fix_mode)
             if fail_result.startswith("unpublished"):
                 result["unpublished"] = True
@@ -621,6 +632,9 @@ BODY:
             if rev:
                 result["revised"] = True
                 result["actions_taken"].append(f"Revised by {rev['reviser']} ({rev['original_word_count']}→{rev['word_count']} words)")
+                # In pre-publish mode, revised flagged articles stay in 'review' for re-check next cycle
+                if pre_publish and article.get("status") == "review":
+                    print(f"  🔄 Stays in review — will be re-checked next cycle")
         
         # ── Print issues ──
         if llm_result.get("embed_issues"):
@@ -680,7 +694,7 @@ def main():
     unpublish_count = 0
     
     for article in articles:
-        result = review_article(article, recent_articles, fix_mode)
+        result = review_article(article, recent_articles, fix_mode, pre_publish=pre_publish)
         results.append(result)
         
         verdict = "error"

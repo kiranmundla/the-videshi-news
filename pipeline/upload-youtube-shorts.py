@@ -13,6 +13,90 @@ from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
+
+# ── Load AI review keys ───────────────────────────────────────────
+def _load_env(path):
+    env = {}
+    try:
+        with open(os.path.expanduser(path)) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    env[k] = v.strip().strip('"').strip("'")
+    except FileNotFoundError:
+        pass
+    return env
+
+_ai_env = _load_env("~/workspace/.env.openai")
+_gemini_env = _load_env("~/workspace/.env.google-ai")
+_OPENAI_KEY = _ai_env.get("OPENAI_API_KEY", "")
+_GEMINI_KEY = _gemini_env.get("GOOGLE_AI_API_KEY", "")
+
+
+def review_yt_quality(title, description, article):
+    """AI quality gate for YouTube Shorts — checks title/description before upload.
+    Returns (pass: bool, feedback: str)."""
+    prompt = f"""You are a YouTube editor for The Videshi, an Indian diaspora news platform.
+Review this YouTube Short title and description before upload.
+
+TITLE: {title}
+ARTICLE HEADLINE: {article.get('headline', 'N/A') if article else 'N/A'}
+CATEGORY: {article.get('category', 'N/A') if article else 'N/A'}
+
+DESCRIPTION (first 500 chars):
+{description[:500]}
+
+Score 1-10 and check:
+1. Title is factually consistent with the article (no contradictions)
+2. Title is under 100 chars and engaging but not clickbait
+3. Description has relevant hashtags including #Shorts
+4. No broken formatting
+5. No hallucinated claims
+
+Respond in JSON: {{"score": N, "pass": true/false, "issues": ["issue1"]}}
+Score 7+ = pass."""
+
+    for api_name, call_fn in [("GPT-4o-mini", lambda: _call_openai(prompt)), ("Gemini", lambda: _call_gemini(prompt))]:
+        try:
+            result = call_fn()
+            if result:
+                return result.get("pass", True), f"{api_name} score {result.get('score','?')}: {result.get('issues', [])}"
+        except Exception as e:
+            print(f"  ⚠️ {api_name} review failed: {e}")
+
+    return True, "AI review unavailable — passing by default"
+
+
+def _call_openai(prompt):
+    if not _OPENAI_KEY:
+        return None
+    r = req.post(
+        "https://api.openai.com/v1/chat/completions",
+        headers={"Authorization": f"Bearer {_OPENAI_KEY}", "Content-Type": "application/json"},
+        json={"model": "gpt-4o-mini", "messages": [{"role": "user", "content": prompt}],
+              "temperature": 0.3, "response_format": {"type": "json_object"}},
+        timeout=30
+    )
+    if r.status_code == 200:
+        return json.loads(r.json()["choices"][0]["message"]["content"])
+    return None
+
+
+def _call_gemini(prompt):
+    if not _GEMINI_KEY:
+        return None
+    r = req.post(
+        f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={_GEMINI_KEY}",
+        headers={"Content-Type": "application/json"},
+        json={"contents": [{"parts": [{"text": prompt}]}],
+              "generationConfig": {"responseMimeType": "application/json", "temperature": 0.3}},
+        timeout=30
+    )
+    if r.status_code == 200:
+        return json.loads(r.json()["candidates"][0]["content"]["parts"][0]["text"])
+    return None
+
 # --- Load env files ---
 def load_env(path):
     env = {}
@@ -245,6 +329,14 @@ for i, reel_filename in enumerate(to_upload):
     title, description, tags, slug = build_metadata(article, reel_filename)
     print(f"  📝 Title: {title}")
     print(f"  🏷️  Tags: {', '.join(tags[:5])}...")
+
+    # ── Quality gate ──
+    print("  🔍 Running AI quality review...")
+    yt_pass, yt_feedback = review_yt_quality(title, description, article)
+    print(f"  Review: {'✅ PASS' if yt_pass else '❌ FAIL'} — {yt_feedback}")
+    if not yt_pass:
+        print(f"  ⛔ Short failed quality review — skipping upload: {reel_filename}")
+        continue
     
     try:
         body = {

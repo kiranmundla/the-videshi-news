@@ -37,6 +37,71 @@ IG_APP_SECRET = ig_env["INSTAGRAM_APP_SECRET"]
 SB_SERVICE_KEY = sb_env["SUPABASE_SERVICE_ROLE_KEY"]
 SUPABASE_URL = "https://lboecaekpynbpyijrbfz.supabase.co"
 
+# ── Load AI review keys ───────────────────────────────────────────
+ai_env = load_env_file("~/workspace/.env.openai")
+gemini_env = load_env_file("~/workspace/.env.google-ai")
+OPENAI_KEY = ai_env.get("OPENAI_API_KEY", "")
+GEMINI_KEY = gemini_env.get("GOOGLE_AI_API_KEY", "")
+
+
+def review_reel_quality(article, caption):
+    """AI quality gate for reels — checks caption + headline before posting.
+    Returns (pass: bool, feedback: str)."""
+    prompt = f"""You are a social media editor for The Videshi, an Indian diaspora news platform.
+Review this Instagram Reel caption and article headline for quality before posting.
+
+HEADLINE: {article.get('headline', 'N/A')}
+CATEGORY: {article.get('category', 'N/A')}
+
+CAPTION:
+{caption}
+
+Score 1-10 and check:
+1. Caption is factually consistent with headline (no contradictions)
+2. No broken hashtags or formatting issues
+3. Tone is professional but engaging (not clickbait)
+4. Hashtags are relevant to the topic
+5. No hallucinated claims not supported by the headline
+
+Respond in JSON: {{"score": N, "pass": true/false, "issues": ["issue1"], "suggestion": "optional fix"}}
+Score 7+ = pass. Below 7 = fail with issues."""
+
+    # Try GPT-4o-mini first
+    if OPENAI_KEY:
+        try:
+            r = requests.post(
+                "https://api.openai.com/v1/chat/completions",
+                headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
+                json={"model": "gpt-4o-mini", "messages": [{"role": "user", "content": prompt}],
+                      "temperature": 0.3, "response_format": {"type": "json_object"}},
+                timeout=30
+            )
+            if r.status_code == 200:
+                result = json.loads(r.json()["choices"][0]["message"]["content"])
+                return result.get("pass", True), f"GPT-4o-mini score {result.get('score','?')}: {result.get('issues', [])}"
+        except Exception as e:
+            print(f"  ⚠️ OpenAI review failed: {e}")
+
+    # Fallback to Gemini
+    if GEMINI_KEY:
+        try:
+            r = requests.post(
+                f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_KEY}",
+                headers={"Content-Type": "application/json"},
+                json={"contents": [{"parts": [{"text": prompt}]}],
+                      "generationConfig": {"responseMimeType": "application/json", "temperature": 0.3}},
+                timeout=30
+            )
+            if r.status_code == 200:
+                text = r.json()["candidates"][0]["content"]["parts"][0]["text"]
+                result = json.loads(text)
+                return result.get("pass", True), f"Gemini score {result.get('score','?')}: {result.get('issues', [])}"
+        except Exception as e:
+            print(f"  ⚠️ Gemini review failed: {e}")
+
+    # If both fail, pass by default (don't block posting on API issues)
+    return True, "AI review unavailable — passing by default"
+
 # ── Step 1: Refresh token ─────────────────────────────────────────
 print("=== Refreshing Instagram token ===")
 try:
@@ -361,9 +426,26 @@ try:
     else:
         print(f"No cover image found at {cover_local}")
 
-    # Step B: Create Reel container
+    # Step B: Quality gate — AI review before posting
     caption = prebuilt_caption if prebuilt_caption else build_caption(reel_article)
     print(f"\nCaption:\n{caption}\n")
+
+    print("🔍 Running AI quality review...")
+    reel_pass, reel_feedback = review_reel_quality(reel_article, caption)
+    print(f"  Review: {'✅ PASS' if reel_pass else '❌ FAIL'} — {reel_feedback}")
+
+    if not reel_pass:
+        print("  ⛔ Reel failed quality review — skipping post")
+        if prebuilt_reel:
+            requests.patch(
+                f"{SUPABASE_URL}/rest/v1/prebuilt_reels?id=eq.{prebuilt_reel['id']}",
+                headers={**headers, "Prefer": "return=minimal"},
+                json={"status": "failed", "updated_at": "now()"},
+                timeout=15
+            )
+        raise Exception(f"Quality gate rejected: {reel_feedback}")
+
+    # Step C: Create Reel container
 
     container_data = {
         "video_url": reel_url,
