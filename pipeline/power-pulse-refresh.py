@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """
-Power Pulse Refresh — fetch latest tweets for all leaders via X API v2.
+Power Pulse Refresh — fetch latest tweets for all 52 leaders via X API v2.
+Outputs tech-buzz.json for The Videshi Pulse sections.
 """
 
-import os, sys, json, time
+import os
+import sys
+import json
+import time
 from datetime import datetime, timezone, timedelta
 import requests
 from requests.adapters import HTTPAdapter
@@ -50,10 +54,10 @@ LEADERS = {
         {"name": "Nandan Nilekani", "handle": "nandannilekani"},
         {"name": "Bill Gates", "handle": "billgates"},
         {"name": "Arvind Krishna", "handle": "arvindkrishna"},
-        {"name": "Shantanu Narayen", "handle": "shantanunarayen"},
+        {"name": "Shantanu Narayen", "handle": "adobe"},
         {"name": "Parag Agrawal", "handle": "paraga"},
         {"name": "Leena Nair", "handle": "leenanair"},
-        {"name": "Raj Subramaniam", "handle": "rajsubramaniam"},
+        {"name": "Raj Subramaniam", "handle": "fedex"},
     ],
     "sports": [
         {"name": "Virat Kohli", "handle": "imvkohli"},
@@ -74,7 +78,17 @@ LEADERS = {
     ],
 }
 
-# ─── Setup ─────────────────────────────────────────────────────────────────────
+OUTPUT_PATH = os.path.expanduser("~/workspace/the-videshi-news/public/data/tech-buzz.json")
+USER_ID_CACHE_PATH = os.path.expanduser("~/workspace/the-videshi-news/pipeline/.x-user-ids.json")
+ENV_PATH = os.path.expanduser("~/workspace/.env.twitter")
+
+# ─── HTTP Session ─────────────────────────────────────────────────────────────
+
+session = requests.Session()
+retry = Retry(total=3, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
+session.mount("https://", HTTPAdapter(max_retries=retry))
+
+# ─── Auth ─────────────────────────────────────────────────────────────────────
 
 def load_env(path):
     if os.path.exists(path):
@@ -85,162 +99,199 @@ def load_env(path):
                     k, v = line.split('=', 1)
                     os.environ.setdefault(k.strip(), v.strip())
 
-load_env(os.path.expanduser("~/workspace/.env.twitter"))
+load_env(ENV_PATH)
 
-sess = requests.Session()
-retry = Retry(total=3, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
-sess.mount("https://", HTTPAdapter(max_retries=retry))
+_bearer_cache = None
 
-_bearer = None
-def get_bearer():
-    global _bearer
-    if _bearer:
-        return _bearer
+def get_bearer_token():
+    global _bearer_cache
+    if _bearer_cache:
+        return _bearer_cache
     key = os.environ.get("TWITTER_CONSUMER_KEY", "")
     secret = os.environ.get("TWITTER_CONSUMER_SECRET", "")
-    resp = sess.post("https://api.twitter.com/oauth2/token",
-                     auth=(key, secret),
-                     data={"grant_type": "client_credentials"})
+    if not key or not secret:
+        raise RuntimeError("Missing TWITTER_CONSUMER_KEY / TWITTER_CONSUMER_SECRET")
+    resp = session.post("https://api.twitter.com/oauth2/token",
+                        auth=(key, secret),
+                        data={"grant_type": "client_credentials"})
     resp.raise_for_status()
-    _bearer = resp.json()["access_token"]
-    return _bearer
+    _bearer_cache = resp.json()["access_token"]
+    return _bearer_cache
 
-# ─── User ID cache ─────────────────────────────────────────────────────────────
+# ─── User ID Cache ────────────────────────────────────────────────────────────
 
-CACHE_PATH = os.path.expanduser("~/workspace/the-videshi-news/pipeline/.x-user-ids.json")
-
-def load_cache():
-    if os.path.exists(CACHE_PATH):
-        with open(CACHE_PATH) as f:
+def load_user_id_cache():
+    if os.path.exists(USER_ID_CACHE_PATH):
+        with open(USER_ID_CACHE_PATH) as f:
             return json.load(f)
     return {}
 
-def save_cache(c):
-    with open(CACHE_PATH, "w") as f:
-        json.dump(c, f, indent=2)
+def save_user_id_cache(cache):
+    with open(USER_ID_CACHE_PATH, "w") as f:
+        json.dump(cache, f, indent=2)
 
 def get_user_id(handle):
-    cache = load_cache()
-    h = handle.lower()
-    if h in cache:
-        return cache[h]
-    # lookup
-    token = get_bearer()
-    resp = sess.get(f"https://api.twitter.com/2/users/by/username/{handle}",
-                    headers={"Authorization": f"Bearer {token}"})
+    cache = load_user_id_cache()
+    handle_lower = handle.lower()
+    if handle_lower in cache:
+        return cache[handle_lower]
+    
+    bearer = get_bearer_token()
+    resp = session.get(
+        f"https://api.twitter.com/2/users/by/username/{handle}",
+        headers={"Authorization": f"Bearer {bearer}"},
+        timeout=10,
+    )
     if resp.status_code == 200:
-        data = resp.json().get("data")
-        if data:
-            uid = data["id"]
-            cache[h] = uid
-            save_cache(cache)
+        uid = resp.json().get("data", {}).get("id")
+        if uid:
+            cache[handle_lower] = uid
+            save_user_id_cache(cache)
             return uid
-    print(f"  ⚠️  Could not resolve user ID for @{handle}: {resp.status_code} {resp.text[:200]}", file=sys.stderr)
+    else:
+        print(f"  ⚠ Could not resolve user ID for @{handle}: {resp.status_code}", file=sys.stderr)
     return None
 
-# ─── Fetch tweets ──────────────────────────────────────────────────────────────
+# ─── Fetch Tweets ─────────────────────────────────────────────────────────────
 
-def fetch_recent_tweets(handle, hours=72):
+def fetch_latest_tweet(handle, hours=72):
+    """Fetch the most recent original tweet from a handle."""
     uid = get_user_id(handle)
     if not uid:
-        return []
+        return None
     
-    token = get_bearer()
-    start = (datetime.now(timezone.utc) - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    bearer = get_bearer_token()
+    start_time = (datetime.now(timezone.utc) - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
     
     params = {
         "max_results": 5,
-        "start_time": start,
+        "start_time": start_time,
         "tweet.fields": "created_at,text,public_metrics",
         "exclude": "retweets,replies",
     }
     
-    resp = sess.get(f"https://api.twitter.com/2/users/{uid}/tweets",
-                    headers={"Authorization": f"Bearer {token}"},
-                    params=params)
+    resp = session.get(
+        f"https://api.twitter.com/2/users/{uid}/tweets",
+        headers={"Authorization": f"Bearer {bearer}"},
+        params=params,
+        timeout=15,
+    )
     
     if resp.status_code == 429:
-        print(f"  ⚠️  Rate limited on @{handle}", file=sys.stderr)
-        return []
+        reset = resp.headers.get("x-rate-limit-reset")
+        wait_secs = 16
+        if reset:
+            wait_secs = max(int(reset) - int(time.time()), 1) + 2
+            wait_secs = min(wait_secs, 120)  # cap at 2 minutes
+        print(f"  ⏳ Rate limited for @{handle}, waiting {wait_secs}s...", file=sys.stderr)
+        time.sleep(wait_secs)
+        # Retry once
+        resp = session.get(
+            f"https://api.twitter.com/2/users/{uid}/tweets",
+            headers={"Authorization": f"Bearer {bearer}"},
+            params=params,
+            timeout=15,
+        )
     
     if resp.status_code != 200:
-        print(f"  ⚠️  Error fetching @{handle}: {resp.status_code} {resp.text[:200]}", file=sys.stderr)
-        return []
+        print(f"  ⚠ X API error for @{handle}: {resp.status_code} {resp.text[:200]}", file=sys.stderr)
+        return None
     
     data = resp.json()
     tweets = data.get("data", [])
-    return tweets
+    
+    if not tweets:
+        return None
+    
+    # Return the most recent tweet
+    t = tweets[0]
+    return {
+        "id": t["id"],
+        "text": t.get("text", ""),
+        "created_at": t.get("created_at", ""),
+    }
 
-# ─── Main ──────────────────────────────────────────────────────────────────────
+# ─── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    results = []
+    print(f"🔄 Power Pulse Refresh — {datetime.now(timezone.utc).isoformat()}")
+    
+    # Warm up bearer token
+    get_bearer_token()
+    print("✅ Bearer token acquired")
+    
+    all_leaders = []
     total = sum(len(v) for v in LEADERS.values())
-    done = 0
-    rate_limited = False
+    processed = 0
+    api_failures = []
     
     for category, leaders in LEADERS.items():
+        print(f"\n📂 Category: {category} ({len(leaders)} leaders)")
+        
         for leader in leaders:
-            done += 1
+            processed += 1
             name = leader["name"]
             handle = leader["handle"]
-            print(f"[{done}/{total}] {name} (@{handle}) [{category}]...")
+            print(f"  [{processed}/{total}] @{handle} ({name})...", end=" ", flush=True)
             
-            tweets = []
-            if not rate_limited:
-                tweets = fetch_recent_tweets(handle)
-                if not tweets:
-                    # Check if we're being rate limited globally
-                    pass
-                time.sleep(0.3)  # gentle rate limiting
+            tweet = fetch_latest_tweet(handle)
             
-            tweet_text = ""
-            tweet_url = f"https://x.com/{handle}"
-            tweet_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-            
-            if tweets:
-                # Pick the most engaging tweet (highest engagement)
-                best = max(tweets, key=lambda t: (
-                    t.get("public_metrics", {}).get("like_count", 0) +
-                    t.get("public_metrics", {}).get("retweet_count", 0) * 2
-                ))
-                tweet_text = best.get("text", "").strip()
-                tweet_id = best.get("id", "")
-                if tweet_id:
-                    tweet_url = f"https://x.com/{handle}/status/{tweet_id}"
-                created = best.get("created_at", "")
-                if created:
-                    tweet_date = created[:10]
-                
-                # Clean up tweet text - remove t.co URLs at end
-                import re
-                tweet_text = re.sub(r'\s*https://t\.co/\S+$', '', tweet_text).strip()
-                
-                print(f"  ✅ Got tweet: {tweet_text[:80]}...")
+            if tweet:
+                tweet_text = tweet["text"]
+                tweet_url = f"https://x.com/{handle}/status/{tweet['id']}"
+                tweet_date = tweet["created_at"][:10] if tweet.get("created_at") else datetime.now(timezone.utc).strftime("%Y-%m-%d")
+                print(f"✅ ({len(tweet_text)} chars)")
             else:
-                print(f"  ❌ No tweets found")
+                # Fallback — use profile URL, mark for web search
+                tweet_text = ""
+                tweet_url = f"https://x.com/{handle}"
+                tweet_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+                api_failures.append({"name": name, "handle": handle, "category": category})
+                print("❌ no tweet found")
             
-            results.append({
+            all_leaders.append({
                 "name": name,
                 "handle": handle,
                 "category": category,
                 "platform": "x",
-                "tweet_text": tweet_text,
-                "tweet_url": tweet_url,
-                "tweet_date": tweet_date,
+                "posts": [
+                    {
+                        "text": tweet_text,
+                        "caption": tweet_text,
+                        "url": tweet_url,
+                        "thumbnail": "",
+                        "timestamp": tweet_date,
+                    }
+                ]
             })
+            
+            # Small delay to avoid rate limits (15 req/15min for user timeline on free tier)
+            time.sleep(1.1)
     
-    # Save intermediate results
-    out_path = os.path.expanduser("~/workspace/the-videshi-news/pipeline/pulse-raw-results.json")
-    with open(out_path, "w") as f:
-        json.dump(results, f, indent=2)
+    # Write output
+    now_iso = datetime.now(timezone.utc).isoformat()
+    output = {
+        "leaders": all_leaders,
+        "lastUpdated": now_iso,
+        "last_updated": now_iso,
+    }
     
-    print(f"\n✅ Done. {len(results)} leaders processed.")
-    print(f"   Results saved to {out_path}")
+    with open(OUTPUT_PATH, "w") as f:
+        json.dump(output, f, indent=2, ensure_ascii=False)
     
-    # Count successes
-    with_tweets = sum(1 for r in results if r["tweet_text"])
-    print(f"   {with_tweets}/{len(results)} have tweets")
+    print(f"\n✅ Wrote {len(all_leaders)} leaders to {OUTPUT_PATH}")
+    
+    if api_failures:
+        print(f"\n⚠ {len(api_failures)} leaders had no tweets (need web search fallback):")
+        for f_item in api_failures:
+            print(f"  - {f_item['name']} (@{f_item['handle']}) [{f_item['category']}]")
+    
+    # Output failures as JSON for downstream processing
+    with open("/tmp/pulse-failures.json", "w") as f:
+        json.dump(api_failures, f)
+    
+    return api_failures
 
 if __name__ == "__main__":
-    main()
+    failures = main()
+    sys.exit(0)
