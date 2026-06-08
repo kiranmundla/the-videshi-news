@@ -24,9 +24,9 @@ from pathlib import Path
 # Thresholds
 MIN_DURATION = 8       # seconds
 MAX_DURATION = 90      # seconds
-TARGET_WIDTH = 1920
-TARGET_HEIGHT = 1080
-TARGET_ASPECT = "16:9"
+TARGET_WIDTH = 1080
+TARGET_HEIGHT = 1920
+TARGET_ASPECT = "9:16"
 MAX_FILE_SIZE_MB = 50
 MIN_FILE_SIZE_MB = 0.5
 MIN_LOUDNESS_LUFS = -20
@@ -75,11 +75,11 @@ def check_technical(video_path):
     # Aspect ratio
     if width > 0 and height > 0:
         ratio = width / height
-        aspect_ok = abs(ratio - 16/9) < 0.05
+        aspect_ok = abs(ratio - 9/16) < 0.05
         checks.append({
             "name": "aspect_ratio",
             "passed": aspect_ok,
-            "detail": f"{ratio:.2f}" + ("" if aspect_ok else f" (expected ~1.78 for 16:9)")
+            "detail": f"{ratio:.2f}" + ("" if aspect_ok else f" (expected ~0.56 for 9:16)")
         })
     
     # Duration
@@ -205,7 +205,7 @@ def check_visual_quality(video_path):
             checks.append({
                 "name": "letterboxing",
                 "passed": lb_ok,
-                "detail": f"{letterbox_count}/{total} frames" + ("" if lb_ok else " — landscape-in-portrait detected")
+                "detail": f"{letterbox_count}/{total} frames" + ("" if lb_ok else " — letterboxing detected")
             })
             
         except ImportError:

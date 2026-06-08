@@ -348,18 +348,18 @@ Return exactly 2 lines, nothing else."""
 
 
 def create_hook_frame(line1, line2, output_path):
-    """Create 1920x1080 landscape hook frame PNG using ffmpeg."""
+    """Create 1080x1920 portrait hook frame PNG using ffmpeg."""
     # Escape text for ffmpeg drawtext
     l1 = line1.replace("'", "'\\''").replace(":", "\\:")
     l2 = line2.replace("'", "'\\''").replace(":", "\\:")
 
     cmd = [
         "ffmpeg", "-y",
-        "-f", "lavfi", "-i", f"color=c=#1a1a2e:s=1920x1080:d=1",
+        "-f", "lavfi", "-i", f"color=c=#1a1a2e:s=1080x1920:d=1",
         "-vf",
-        f"drawtext=text='{l1}':fontsize=72:fontcolor=#d4af37:x=(w-text_w)/2:y=(h-text_h)/2-50:fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf,"
-        f"drawtext=text='{l2}':fontsize=40:fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2+50:fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf,"
-        f"drawtext=text='THE VIDESHI':fontsize=32:fontcolor=#d4af37:x=(w-text_w)/2:y=h-80:fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        f"drawtext=text='{l1}':fontsize=64:fontcolor=#d4af37:x=(w-text_w)/2:y=(h-text_h)/2-60:fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf,"
+        f"drawtext=text='{l2}':fontsize=36:fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2+40:fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf,"
+        f"drawtext=text='THE VIDESHI':fontsize=30:fontcolor=#d4af37:x=(w-text_w)/2:y=h-100:fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
         "-frames:v", "1",
         str(output_path)
     ]
@@ -375,7 +375,7 @@ def create_hook_video(hook_png, output_path, duration=3, fps=25):
         "-f", "lavfi", "-i", f"anullsrc=r=48000:cl=stereo",
         "-t", str(duration),
         "-c:v", "libx264", "-tune", "stillimage", "-pix_fmt", "yuv420p",
-        "-r", str(fps), "-s", "1920x1080",
+        "-r", str(fps), "-s", "1080x1920",
         "-c:a", "aac", "-b:a", "128k",
         "-shortest",
         str(output_path)
@@ -402,8 +402,8 @@ def generate_heygen_video(script, avatar):
                 "speed": 1.0
             }
         }],
-        "dimension": {"width": 1920, "height": 1080},
-        "aspect_ratio": avatar.get('aspect_ratio', '16:9'),
+        "dimension": {"width": 1080, "height": 1920},
+        "aspect_ratio": avatar.get('aspect_ratio', '9:16'),
         "test": False
     }
 
@@ -496,11 +496,11 @@ def generate_captions_srt(video_path, script_text):
 
 def burn_captions(video_path, srt_path, output_path):
     """Burn SRT captions into video with branded styling."""
-    # Gold text on semi-transparent navy bar
+    # Gold text on semi-transparent navy bar — positioned for portrait (9:16) frame
     style = (
-        "FontName=DejaVu Sans,FontSize=20,PrimaryColour=&H0037AFD4,"
+        "FontName=DejaVu Sans,FontSize=22,PrimaryColour=&H0037AFD4,"
         "OutlineColour=&H802E1A1A,BackColour=&H802E1A1A,"
-        "Bold=1,Outline=1,Shadow=0,MarginV=80,Alignment=2"
+        "Bold=1,Outline=1,Shadow=0,MarginV=160,Alignment=2"
     )
 
     cmd = [
@@ -530,7 +530,7 @@ def get_video_duration(path):
     return float(data['format']['duration'])
 
 
-def normalize_segment(input_path, output_path, fps=25, size="1920x1080"):
+def normalize_segment(input_path, output_path, fps=25, size="1080x1920"):
     """Normalize video segment to consistent format."""
     cmd = [
         "ffmpeg", "-y", "-i", str(input_path),
@@ -732,7 +732,7 @@ def get_or_create_end_card():
     png = BUILD_DIR / "end_card.png"
     cmd_png = [
         "ffmpeg", "-y",
-        "-f", "lavfi", "-i", "color=c=#1a1a2e:s=1920x1080:d=1",
+        "-f", "lavfi", "-i", "color=c=#1a1a2e:s=1080x1920:d=1",
         "-vf",
         "drawtext=text='THE VIDESHI':fontsize=56:fontcolor=#d4af37:x=(w-text_w)/2:y=(h/2)-60:fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf,"
         "drawtext=text='thevideshi.com':fontsize=32:fontcolor=white:x=(w-text_w)/2:y=(h/2)+20:fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf,"
@@ -746,7 +746,7 @@ def get_or_create_end_card():
         "-loop", "1", "-i", str(png),
         "-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo",
         "-t", "3", "-c:v", "libx264", "-tune", "stillimage",
-        "-pix_fmt", "yuv420p", "-r", "25", "-s", "1920x1080",
+        "-pix_fmt", "yuv420p", "-r", "25", "-s", "1080x1920",
         "-c:a", "aac", "-b:a", "128k", "-shortest",
         str(end_card)
     ]
@@ -846,14 +846,14 @@ def run(args):
         kavya_dur = get_video_duration(raw_avatar)
         print(f"  Duration: {kavya_dur:.1f}s")
 
-        # 3e2. Landscape mode — no letterbox fix needed (HeyGen renders native 16:9)
+        # 3e2. Portrait mode — HeyGen renders native 9:16
         working_avatar = raw_avatar
 
         # 3f. Generate captions
         print("  Generating captions...")
         srt_path = generate_captions_srt(working_avatar, script)
 
-        # 3g. Burn captions (bottom of landscape frame)
+        # 3g. Burn captions (bottom of portrait frame)
         if srt_path:
             captioned = BUILD_DIR / f"avatar-captioned-{video_id}.mp4"
             if burn_captions(working_avatar, srt_path, captioned):
