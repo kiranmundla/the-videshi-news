@@ -1,96 +1,19 @@
 {
-  "timestamp": "2026-06-08T19:45:35.194855+00:00",
+  "timestamp": "2026-06-08T20:15:47.205335+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "b030b65f-8c9b-44b3-b675-558b9fb4b116",
-      "headline": "India Beat Afghanistan by an Innings and 300 Runs. It Is the Biggest Test Victory in Their History.",
-      "slug": "india-beat-afghanistan-innings-300-runs-biggest-test-victory-history-suthar-gill-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "5e75653c-8650-4b87-814a-0c0cc8b4f68c",
-            "headline": "Gill Now Has More WTC Centuries Than Any Indian in History. "
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Shubman Gill is relevant as he played a significant role in the match, but it does not depict the match's outcome or the broader context of the victory."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects to the Indian diaspora by highlighting a significant achievement in Indian cricket, which is a point of pride for many NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including quotes from diaspora fans or cricket analysts to enhance the connection with NRI readers.",
-          "Add a brief section on how this victory impacts India's standing in international cricket, which may interest diaspora readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "86fc2d89-4e34-45ff-ac27-f22a5561391f",
-      "headline": "India Has Never Played at a World Cup. This Month, Four Players with Indian Roots Will.",
-      "slug": "four-indian-origin-players-fifa-world-cup-2026-sarpreet-singh-tahsin-velupillay-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Sarpreet Singh is relevant to the article's topic, but it does not represent all four players mentioned."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the connection of the players to the Indian diaspora, particularly through personal stories and backgrounds."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include images or references for the other three players to enhance visual representation.",
-          "Add a concluding section that ties the players' achievements back to the significance for the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d55ac5a5-9004-437d-9896-003d6ea22a54",
-      "headline": "Shreyas Iyer Is India's New T20I Captain. Suryakumar Yadav Has Been Dropped Entirely.",
-      "slug": "shreyas-iyer-india-t20i-captain-suryakumar-yadav-dropped-ireland-england-2026-nri",
+      "id": "0b7c5b80-5878-44bd-a691-29a52cad1070",
+      "headline": "Seven Hundred and Fifty Dollars for a Two-Week Appointment \u2014 America Rolls Out a Fast Lane for Tourist Visas",
+      "slug": "750-expedited-visa-appointment-b1-b2-fifa-world-cup-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -106,13 +29,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRI readers by discussing the implications of the captaincy change and upcoming matches that are accessible to them."
+          "note": "The article discusses the implications of the new visa policy specifically for Indian families, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more quotes from players or analysts to enhance the narrative.",
-          "Add a brief section on how Iyer's leadership style may differ from Yadav's to provide deeper insights."
+          "Include more statistics or data on visa application trends for Indian applicants to strengthen the argument.",
+          "Consider adding quotes from affected individuals or experts to provide personal perspectives on the policy."
         ],
         "verdict": "pass"
       },
@@ -124,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c271aedb-a935-4183-8a86-a9a9915216cf",
-      "headline": "Diljit Dosanjh, AR Rahman and Imtiaz Ali Are About to Break Your Heart. Main Vaapas Aaunga Arrives Friday.",
-      "slug": "main-vaapas-aaunga-diljit-dosanjh-imtiaz-ali-partition-love-story-friday-nri-20260608",
+      "id": "e5507cff-4dce-4f86-8010-82aa4f316b40",
+      "headline": "The Hundred-Thousand-Dollar Wall Just Fell \u2014 A Federal Judge Says Trump's H-1B Fee Is an Illegal Tax",
+      "slug": "100k-h1b-fee-struck-down-judge-sorokin-illegal-tax-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -136,26 +59,26 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not directly relate to the article's topic of H-1B visas or immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the film's themes to the experiences of the diaspora, making it relatable and poignant."
+          "note": "The article discusses the impact of the ruling on Indian workers, which is highly relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from the cast or crew to enhance the article's depth.",
-          "Include a brief overview of the film's reception in India to provide a more comprehensive perspective."
+          "Consider using a more relevant image that reflects the topic of H-1B visas or immigration.",
+          "Add quotes or reactions from Indian diaspora organizations to enhance the connection with the audience."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Revised by gpt-4o-mini (624\u2192718 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
