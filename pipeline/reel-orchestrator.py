@@ -536,7 +536,7 @@ def normalize_segment(input_path, output_path, fps=25, size="1080x1920"):
         "-preset", "fast",
         str(output_path)
     ]
-    subprocess.run(cmd, capture_output=True, timeout=60)
+    subprocess.run(cmd, capture_output=True, timeout=300)
     return output_path.exists()
 
 
@@ -561,12 +561,11 @@ def concat_segments(segments, output_path):
     cmd = [
         "ffmpeg", "-y",
         "-i", f"concat:{concat_str}",
-        "-c:v", "libx264", "-crf", "20",
-        "-c:a", "aac", "-b:a", "192k",
+        "-c", "copy",
         "-movflags", "+faststart",
         str(output_path)
     ]
-    subprocess.run(cmd, capture_output=True, timeout=60)
+    subprocess.run(cmd, capture_output=True, timeout=120)
 
     # Cleanup
     for f in ts_files:
