@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-08T14:15:41.307962+00:00",
+  "timestamp": "2026-06-08T14:46:04.938353+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,120 +11,17 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9bb66790-8b0a-4489-9c5e-30f3cf5a27da",
-      "headline": "The Monsoon Just Hit Kerala \u2014 and NRIs Who Book Now Will Pay Half What They Would in December",
-      "slug": "monsoon-india-travel-nri-kerala-slow-season-20260608",
+      "id": "5166dbda-3d7d-4c20-9f38-a1b8b6069631",
+      "headline": "The EU Just Sanctioned Iran Over Hormuz. Hours Later, the Houthis Declared a Total Ban on Israeli Shipping in the Red Sea.",
+      "slug": "eu-sanctions-iran-hormuz-houthis-red-sea-ban-india-shipping-trade-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRIs by discussing travel opportunities and cost benefits during the monsoon season."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more personal anecdotes or testimonials from NRIs who have traveled during the monsoon to enhance relatability.",
-          "Include a section on cultural events or festivals that occur during the monsoon to further engage diaspora readers."
+        "duplicate_images": [
+          {
+            "article_id": "c5c50ca1-60ba-4462-ac22-64a5fc474d30",
+            "headline": "Iran Wants Up to $2 Million Per Tanker to Cross Hormuz. Indi"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6d2626b6-9a96-4e56-b8bb-583722149d53",
-      "headline": "IndiGo Wants to Fly You From Delhi to Bali on a Widebody \u2014 and It's Not Joking",
-      "slug": "indigo-fy30-widebody-a350-a321xlr-nri-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts an IndiGo aircraft, which is relevant to the article's topic about IndiGo's expansion plans."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses IndiGo's evolving role in connecting NRIs to international destinations, highlighting its significance for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how the changes in IndiGo's service will directly impact NRI travelers.",
-          "Add quotes or insights from industry experts to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "911a8a40-b1e3-4b5e-abb4-5f273b1b77ef",
-      "headline": "Delta Is Coming Back to India \u2014 and This Time It's Riding IndiGo's Network",
-      "slug": "delta-indigo-partnership-atlanta-delhi-nri-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to travel but does not specifically depict Delta or IndiGo."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the needs and interests of the Indian diaspora, particularly in the Southeastern US."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include specific quotes from Delta or IndiGo executives to enhance credibility.",
-          "Add a section on potential impacts on ticket prices or competition in the market."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "960ae327-6540-4d84-8bc1-38ddaa7cf1ab",
-      "headline": "Modi Asked Indians to Stop Buying Gold. The NSE Just Built a Way to Own It Without Touching It.",
-      "slug": "nse-electronic-gold-receipts-egr-modi-gold-boycott-nri-guide-20260608",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
@@ -137,13 +34,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the implications of EGRs for NRIs, but could elaborate more on how this affects their investment strategies."
+          "note": "The article discusses maritime trade routes critical to India's economy, which is relevant to the Indian diaspora's interests."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the implications of EGRs for NRIs, including potential investment strategies or benefits.",
-          "Include more data or examples of how EGRs have been received in the market since their launch."
+          "Include more direct quotes from Indian officials to enhance the connection to India's perspective.",
+          "Add a brief section on how these developments might affect Indian expatriates or businesses abroad."
         ],
         "verdict": "pass"
       },
@@ -155,31 +52,40 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "be304f51-809f-4553-b1bc-620bee52be12",
-      "headline": "Night Owls Are Not Just Tired. They Are Lonelier, More Anxious, and Science Now Knows Why.",
-      "slug": "night-owls-nocturnal-loneliness-anxiety-sleep-2026-south-asian-diaspora-20260608",
+      "id": "57ae6b2f-59ad-4a52-8f55-663b98b28bf7",
+      "headline": "India Has Raised Fuel Prices Four Times in Three Weeks. The Oil Minister Says They Will Fall.",
+      "slug": "hardeep-puri-fuel-prices-will-fall-four-hikes-76-days-reserves-iran-oil-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "7bb5204d-df99-4ae1-9a0b-845ca1025be9",
+            "headline": "India Launches E85 Fuel at \u20b920 Below Petrol. The Flex-Fuel E"
+          },
+          {
+            "article_id": "4e4b9d32-e75e-4d1f-8e68-719467c77e7a",
+            "headline": "India Eyes Venezuelan Oil Fields as Caracas Becomes Its Four"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image features Hardeep Singh Puri with PM Modi, which is relevant but not directly related to the fuel price topic."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the findings to the experiences of South Asians in the diaspora, highlighting structural reasons for late-night behaviors."
+          "note": "The article effectively connects the fuel price situation to the implications for the Indian diaspora, particularly regarding remittances and inflation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a mental health expert to enhance credibility.",
-          "Include specific examples of interventions that could help alleviate nocturnal loneliness."
+          "Consider using a more directly relevant image that depicts fuel prices or consumers affected by the price hikes.",
+          "Add a brief section summarizing the potential impact on NRIs in terms of specific sectors or goods that may be affected by rising fuel prices."
         ],
         "verdict": "pass"
       },
@@ -191,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4e50c4fd-f88d-4b87-b33d-d2da74324ede",
-      "headline": "Two Hours of Weights a Week Cut Dementia Death Risk by 27 Per Cent. Most South Asians Are Not Lifting.",
-      "slug": "harvard-strength-training-dementia-mortality-south-asian-diaspora-20260608",
+      "id": "c7bc8de3-6822-4888-9c46-43cbb1c861f3",
+      "headline": "SEBI Says 99.8% of Rajesh Exports' Subsidiary Revenue Was Fabricated. The Number Is \u20b915.15 Lakh Crore.",
+      "slug": "sebi-rajesh-exports-15-lakh-crore-revenue-fraud-valcambi-swiss-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -209,13 +115,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the importance of resistance training to the health challenges faced by South Asians, making it relevant for the diaspora."
+          "note": "The article discusses implications for NRI investors, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or testimonials from South Asians who have successfully integrated resistance training into their routines to enhance relatability.",
-          "Include specific recommendations for resistance training programs or resources tailored for South Asians to provide actionable guidance."
+          "Include quotes from financial analysts or experts to provide additional context.",
+          "Add a brief background on Rajesh Exports for readers unfamiliar with the company."
         ],
         "verdict": "pass"
       },
