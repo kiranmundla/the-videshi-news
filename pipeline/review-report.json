@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-08T08:45:28.900827+00:00",
+  "timestamp": "2026-06-08T09:15:37.712770+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e98bf286-3cc2-4160-8904-90e5f2586aa7",
-      "headline": "400,000 Students Applied to Recheck Their CBSE Scores. IIT Roorkee Blinked. The Supreme Court Is Next.",
-      "slug": "cbse-osm-aftermath-iit-roorkee-eligibility-supreme-court-400000-recheck-20260608",
+      "id": "80365fee-da08-4f50-8a4d-0a6be1d1e2aa",
+      "headline": "Peddi Just Crossed \u20b9233 Crore in Four Days. Ram Charan Doesn't Do Comebacks.",
+      "slug": "peddi-ram-charan-233-crore-worldwide-third-200-crore-film-nri-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image features Ram Charan but does not directly relate to the film 'Peddi'."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses a student from Saudi Arabia, connecting to the diaspora experience."
+          "quality": 8,
+          "note": "The article effectively discusses the film's performance in North America, appealing to the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from students or experts to enhance credibility.",
-          "Provide a brief background on the implications of the CBSE crisis for students abroad."
+          "Consider using a more relevant image that directly relates to 'Peddi'.",
+          "Add more context about the film's themes or storyline to enhance engagement."
         ],
         "verdict": "pass"
       },
@@ -47,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "882093b0-12f9-49d3-b11d-4790fa10d145",
-      "headline": "SpaceX Lists on Thursday at $1.77 Trillion. It Will Instantly Be the Ninth Most Valuable Company on Earth.",
-      "slug": "spacex-ipo-june-12-largest-ever-1-77-trillion-xai-starlink-india-investors-20260608",
+      "id": "fe7e6ef0-9c25-4459-8f9a-163344176493",
+      "headline": "Bobby Deol Just Delivered the Performance of His Career. Bollywood Almost Didn't Notice.",
+      "slug": "bobby-deol-bandar-anurag-kashyap-dark-horse-crime-thriller-nri-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -59,19 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Bobby Deol does not directly relate to the specific film discussed, 'Bandar', but it is relevant to his career."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the SpaceX IPO to Indian investors and NRIs, discussing implications for their investments."
+          "note": "The article connects well with diaspora audiences by discussing Bobby Deol's evolution and the film's limited release in international markets."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how Indian investors can engage with the SpaceX IPO.",
-          "Add a brief overview of SpaceX's impact on the Indian tech landscape or potential collaborations."
+          "Consider using an image that directly relates to the film 'Bandar' for better relevance.",
+          "Add more context about the film's themes and its reception in the diaspora to enhance the connection."
         ],
         "verdict": "pass"
       },
@@ -83,9 +83,50 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c5c50ca1-60ba-4462-ac22-64a5fc474d30",
-      "headline": "Iran Wants Up to $2 Million Per Tanker to Cross Hormuz. India Sends a Fifth of Its Oil Through That Strait.",
-      "slug": "iran-hormuz-toll-fee-2-million-tanker-india-oil-oman-transit-20260608",
+      "id": "e3cf0dae-f4b8-4c68-8bec-94cf8dc6ddbb",
+      "headline": "Zuckerberg Says AI Spending Is Forcing Meta to 'Take Down' Its Workforce. His Flagship AI Model Just Stumbled.",
+      "slug": "zuckerberg-meta-ai-layoffs-muse-spark-stumble-20260608",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "d53aca3c-6341-4a21-8416-6b66d9e34983",
+            "headline": "Meta Wants Tens of Billions From Shareholders to Build AI. Z"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of Zuckerberg is relevant to the article's topic on Meta and AI."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of layoffs on Indian engineers, connecting directly to the diaspora's concerns about job security and immigration."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Zuckerberg or other Meta executives to enhance credibility.",
+          "Add a brief section on how these layoffs and AI developments might affect the broader tech job market, especially for NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "30dc7d98-1dca-4a9a-b9c6-dd41c7eb46da",
+      "headline": "A New Bill Wants to Kill the H-1B-to-Green-Card Pipeline. Big Tech Should Be Nervous.",
+      "slug": "h1b-overhaul-bill-green-card-opt-tech-industry-20260608",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -95,19 +136,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of the Capitol is relevant to the legislative topic but does not directly represent the H-1B visa issue."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of Iranian tolls on oil imports for India, which is relevant to the Indian diaspora concerned about economic impacts."
+          "quality": 9,
+          "note": "The article discusses the impact of the proposed bill on Indian engineers and the Indian IT services industry, which is highly relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Indian officials or experts to strengthen the connection to India's perspective.",
-          "Add a brief historical context about the Strait of Hormuz and its significance to Indian oil imports for better reader understanding."
+          "Consider using an image that directly relates to the H-1B visa or Indian engineers to enhance relevance.",
+          "Add quotes or perspectives from Indian engineers or diaspora members to strengthen the connection to the NRI community."
         ],
         "verdict": "pass"
       },
