@@ -1,129 +1,62 @@
 {
-  "timestamp": "2026-06-09T06:46:12.779681+00:00",
+  "timestamp": "2026-06-09T07:15:59.972086+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 2,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 2,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "498a1d4e-48dd-4bdd-9b67-251e05305e92",
-      "headline": "New York's State Senate Just Voted to Proclaim August 15 as India Independence Day.",
-      "slug": "new-york-senate-india-independence-day-resolution-j1935-august-15-indian-american-20260609",
+      "id": "6b03a13b-d2dd-40b7-b064-ba7a639d0e88",
+      "headline": "Peddi Made \u20b9250 Crore in Five Days. The Conversation It Started Is Worth More.",
+      "slug": "peddi-janhvi-kapoor-objectification-controversy-industry-backlash-ram-charan-nri-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of the New York State Senate chamber is relevant but does not directly depict the celebration of India Independence Day."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the contributions of the Indian-American community and connects the resolution to broader diaspora engagement."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a quote or perspective from a prominent NRI figure to enhance the diaspora connection.",
-          "Add a brief historical context about India's Independence Day for readers who may not be familiar."
+        "overall_score": 6,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZMi_VhCGaF/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the main topic of the article, which focuses on the film 'Peddi' and its controversy."
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4c33a5d3-e72a-438e-9b53-2fc9b9c5f548",
-      "headline": "India Is Buying Oil from Venezuela, Brazil, Angola and Nigeria. The Hormuz Shift May Be Permanent.",
-      "slug": "india-oil-diversification-latin-america-africa-venezuela-brazil-hormuz-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image does not directly relate to the article's focus on oil imports and geopolitical shifts."
+          "issue": "The image of Ram Charan at a trailer launch does not directly match the article's focus on the controversy surrounding the film's portrayal of women."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses India's economic strategies and implications for NRIs, particularly in relation to currency stability and investment opportunities."
+          "note": "The article discusses a significant cultural issue in Indian cinema that resonates with the diaspora, particularly regarding gender representation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how these changes in oil sourcing impact NRIs financially.",
-          "Consider using a more relevant image that depicts oil trade or geopolitical discussions."
+          "Replace the irrelevant Instagram embed with a more relevant source that discusses the film's controversy.",
+          "Consider using an image that directly relates to the film's themes or the controversy discussed in the article."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (693\u2192789 words)"
+        "Removed irrelevant embed: https://www.instagram.com/p/DZMi_VhCGaF/",
+        "Revised by gpt-4o-mini (781\u2192829 words)"
       ],
       "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "23506f74-b7e8-4c04-b352-99663d08295b",
-      "headline": "A US Fighter Jet Hit an Oil Tanker in the Gulf of Oman. All 24 Sailors on Board Were Indian.",
-      "slug": "mt-marivex-us-strike-oil-tanker-24-indian-sailors-oman-rescue-hormuz-blockade-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of the F/A-18 Super Hornet is relevant to the article's topic about a U.S. fighter jet, but it does not directly depict the oil tanker or the incident itself."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the safety of Indian sailors and the implications for the Indian government, which is relevant to the Indian diaspora."
-        },
-        "factual_flags": [
-          "Confusion regarding the vessel's registration as identified by Sharma and other sources."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Clarify the discrepancy regarding the vessel's registration to avoid confusion.",
-          "Include more direct quotes from Indian officials to enhance credibility and engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "43ad7055-f224-4b4c-877b-00f825f5912f",
-      "headline": "Air India Just Teamed Up With Saudi Arabia's Brand-New Airline \u2014 and NRIs on Both Sides Should Pay Attention",
-      "slug": "air-india-riyadh-air-mou-codeshare-nri-saudi-20260609",
+      "id": "3b54ce08-2a87-44b7-a5a3-02240dcf8320",
+      "headline": "Shraddha Kapoor Is Playing Maharashtra's Most Legendary Dancer. Nobody Saw This Coming.",
+      "slug": "shraddha-kapoor-eetha-vithabai-tamasha-biopic-august-rakshabandhan-maddock-nri-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -131,7 +64,13 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DY2e3sEIqce/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to Shraddha Kapoor's role or the film 'Eetha', making it irrelevant to the article's subject."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -139,80 +78,21 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the benefits of the partnership for NRIs, making it relevant and engaging for the diaspora audience."
+          "note": "The article effectively connects the film's themes to the diaspora audience, highlighting the cultural significance of Tamasha and Lavani."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from NRIs to enhance the personal connection to the topic.",
-          "Add a brief section on how this partnership might affect ticket prices or travel frequency for NRIs."
+          "Replace the irrelevant Instagram embed with a more relevant source, such as a trailer or promotional material for 'Eetha'.",
+          "Consider adding quotes or insights from Shraddha Kapoor or the director to enhance the article's depth."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DY2e3sEIqce/",
         "promoted to published"
       ],
       "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "84d21e09-0d8e-44bc-9c2b-145164c4acf6",
-      "headline": "India Is Sending 120 Deep-Tech Startups to France. This Is Not a Trade Mission.",
-      "slug": "india-bharat-innovates-deep-tech-france-space-ai-semiconductor-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/isro/status/1798365851219665243",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/iitmadras/status/1798305094901309855",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/sarvam_ai/status/1765089063229679072",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ]
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://instagram.com/p/C71j_57P9yR/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the deep-tech startups or the Bharat Innovates event."
-          }
-        ],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of a rocket launch does not directly match the article's focus on deep-tech startups and their innovations."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the developments in India's deep-tech sector to opportunities for NRI professionals and investors, highlighting a sense of national pride."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant link or remove it altogether.",
-          "Consider using an image that better represents the theme of deep-tech startups or the Bharat Innovates event."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed 3 broken/hallucinated embed(s)",
-        "Removed irrelevant embed: https://instagram.com/p/C71j_57P9yR/",
-        "Revised by gemini-2.5-flash (709\u2192709 words)"
-      ],
-      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
