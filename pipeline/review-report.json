@@ -1,68 +1,38 @@
 {
-  "timestamp": "2026-06-09T10:46:17.826563+00:00",
+  "timestamp": "2026-06-09T11:16:22.253796+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 2,
+    "pass": 0,
+    "flag": 3,
     "fail": 0,
     "error": 0
   },
-  "revisions": 2,
+  "revisions": 3,
   "unpublished": 0,
   "articles": [
     {
-      "id": "9b56ad68-3a93-40bf-b2f0-b271f46cbbc9",
-      "headline": "He Is Fifteen. He Won the Orange Cap. Now He Is in India's Asian Games Squad.",
-      "slug": "vaibhav-sooryavanshi-15-asian-games-2026-squad-ipl-orange-cap-youngest-nri",
+      "id": "7ec89845-2324-4116-b13e-3ad9a93fc679",
+      "headline": "Lagaan Returns to Cinemas This Thursday. Twenty-Five Years Later, It Still Makes You Believe.",
+      "slug": "lagaan-25th-anniversary-re-release-aamir-khan-reunion-oscar-cricket-nri-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "85657348-1d02-471b-b303-93a5e4792581",
-            "headline": "He Is 15. His Mother Wakes at 3 AM for His Cricket. The BCCI"
+            "article_id": "8925f71a-59ee-4aa9-a143-8185c2ec60d9",
+            "headline": "Lagaan Returns to Theatres for Three Days Only. Twenty-Five "
           }
         ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Vaibhav Sooryavanshi meeting PM Modi, which is somewhat relevant but does not directly relate to his cricket achievements or the Asian Games."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the significance of the Asian Games for the Indian diaspora in Japan, highlighting the community's opportunity to watch India play live."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to Sooryavanshi's cricket achievements or the Asian Games.",
-          "Expand on the impact of Sooryavanshi's achievements on the perception of young talent in Indian cricket for a more engaging narrative."
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZHaOT0gGnv/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's focus on the re-release of Lagaan."
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "dcdf9ba3-04b0-4614-ae65-fc81ff3fa013",
-      "headline": "He Left India at 23 to Study Computer Science. Now an Oscar-Winning Producer Has Made a Film About His Cricket.",
-      "slug": "saurabh-netravalkar-documentary-long-game-willow-tv-oracle-usa-cricket-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -70,145 +40,21 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects Netravalkar's journey to the experiences of NRIs, highlighting themes of persistence and identity."
+          "note": "The article effectively connects Lagaan's significance to NRIs, highlighting its cultural impact and relevance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Netravalkar's colleagues or friends to provide more personal insights into his dual life.",
-          "Include more details about the documentary's reception or critical reviews to enhance the article's depth."
+          "Replace the irrelevant Instagram embed with a more relevant link, perhaps to a trailer or a related news article.",
+          "Consider adding quotes or reactions from diaspora audiences regarding Lagaan's impact to enhance the connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZHaOT0gGnv/",
+        "Revised by gpt-4o-mini (757\u2192826 words)"
       ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8b151d97-cacc-465e-ad1d-d6842aa78ae1",
-      "headline": "India and the US Expect a Trade Deal Within Weeks. The Tariff Threat Still Looms.",
-      "slug": "india-us-trade-deal-section-301-tariff-guarantee-piyush-goyal-june-2026",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d9c077a6-daa5-481b-96e6-b8071768c971",
-            "headline": "Ninety-Nine Percent Done \u2014 The India-US Trade Deal That Hasn"
-          },
-          {
-            "article_id": "8b8ee11a-4b6f-4f4e-8d04-a83539684763",
-            "headline": "India and Canada Just Agreed to Triple Their Trade to $50 Bi"
-          },
-          {
-            "article_id": "018efc96-cc18-44b0-b3c4-4c64a4bc58df",
-            "headline": "India and the US Are '99 Percent Done' on a Trade Deal. The "
-          },
-          {
-            "article_id": "c981d59c-bd4c-4a87-ba94-51dd1ad426df",
-            "headline": "India Sent Its Largest-Ever Business Delegation to Canada. H"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Piyush Goyal is relevant as he is a key figure in trade negotiations, but it could be more directly related to the specific trade deal discussed."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses trade relations that impact the Indian diaspora, particularly in terms of economic opportunities and trade policies."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or perspectives from diaspora members or businesses affected by the trade deal to enhance the diaspora angle.",
-          "Consider adding a brief section on how the trade deal could impact Indian expatriates in the US."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2c2cb3c4-99a5-4289-bf5a-b1d1a2bf7adf",
-      "headline": "NASA's Chief Just Arrived in India. An Indian Astronaut Is Headed to the ISS.",
-      "slug": "nasa-isro-bill-nelson-india-astronaut-iss-chandrayaan-3-goddard-award-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image of NASA Administrator Bill Nelson is relevant to the article as it discusses his visit to India."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects to the Indian diaspora by highlighting India's growing role in space exploration and collaboration with the US, which is of interest to NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from Indian officials to provide a more balanced perspective.",
-          "Add a section on how these developments may impact the Indian diaspora in the US."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "241047c0-3e27-44e2-8bf7-57fecd17d4e3",
-      "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. Indian Tech Exhaled.",
-      "slug": "h1b-100k-fee-struck-down-judge-sorokin-indian-tech-workers-visa-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of H-1B visas or immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of the ruling on Indian workers and IT firms, making it highly relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to H-1B visas or Indian tech workers to enhance relevance.",
-          "Add quotes or reactions from Indian tech industry leaders to provide more depth and perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -226,7 +72,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "The image of the Bombay Stock Exchange does not directly relate to the topic of AI economy and market capitalisation."
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
@@ -236,13 +82,13 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with something more relevant to AI or technology to better match the article's focus.",
+          "Replace the hero image with one that directly relates to AI or technology to better match the article's focus.",
           "Expand on the NRI perspective to provide more insights on how these market changes specifically affect Indian Americans."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (679\u2192723 words)"
+        "Revised by gemini-2.5-flash (723\u2192707 words)"
       ],
       "revised": true,
       "unpublished": false,
@@ -267,13 +113,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects Arjun's journey to the experiences of NRIs, discussing family expectations and identity."
+          "note": "The article effectively connects Arjun's performance to the experiences of NRIs, discussing family expectations and identity."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
           "Replace the hero image with one that features Arjun Tendulkar or is directly related to the T20 Mumbai League.",
-          "Consider adding quotes from Arjun or his teammates to enhance the narrative and provide personal insights."
+          "Consider adding quotes from Arjun or his coach to enhance the narrative and provide personal insights."
         ],
         "verdict": "flag"
       },
