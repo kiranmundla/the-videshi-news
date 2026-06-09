@@ -1,55 +1,55 @@
 {
-  "timestamp": "2026-06-09T08:45:43.267927+00:00",
+  "timestamp": "2026-06-09T09:16:47.132582+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
+    "pass": 1,
+    "flag": 4,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 4,
   "unpublished": 0,
   "articles": [
     {
-      "id": "68e8251c-e7d8-4893-a53f-2e4aae30d575",
-      "headline": "India's Goldilocks Economy Is Over. The Iran War Broke It.",
-      "slug": "india-economy-iran-war-cost-gdp-growth-slowdown-supply-shocks-20260609",
+      "id": "fa784254-f3a1-4f40-bad0-451fde805d20",
+      "headline": "India Just Got Demoted. Taiwan and South Korea Stole Its Place in the Global AI Economy.",
+      "slug": "india-overtaken-taiwan-south-korea-ai-fpi-exodus-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": null
+          "score": 3,
+          "issue": "The hero image of the Bombay Stock Exchange does not directly relate to the article's focus on AI and market capitalisation."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses measures taken by the RBI to attract NRI capital, which is relevant to the diaspora."
+          "note": "The article discusses the implications for NRIs, particularly in relation to their investment portfolios."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from diaspora members or experts to strengthen the connection to NRI readers.",
-          "Add a section discussing potential impacts on NRIs living in Gulf countries due to the economic changes."
+          "Replace the hero image with one that better represents the AI economy or the tech sector.",
+          "Expand on the NRI perspective to provide more actionable insights or advice for Indian Americans."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Revised by gpt-4o-mini (673\u2192739 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "be81db53-6c03-446c-bb3f-72476849333a",
-      "headline": "Your Biscuit Packet Is Smaller. Your Petrol Bill Is Higher. India Inc Is Passing the War to You.",
-      "slug": "india-inc-shrinkflation-price-hikes-iran-war-consumer-squeeze-20260609",
+      "id": "58b14609-a26c-4dec-8b92-dacb453203e9",
+      "headline": "A $1.3 Trillion Chip Rout, Then a Monday Bounce. NRI Portfolios Felt Every Dollar.",
+      "slug": "chip-selloff-1-trillion-rebound-nri-investors-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -57,43 +57,69 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://x.com/intel/status/2063999492425134329",
+            "problem": "irrelevant",
+            "explanation": "The tweet from Intel does not provide relevant context or information directly related to the article's focus on the semiconductor market's impact on NRI portfolios."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not specifically depict semiconductors or technology, which could enhance the article's relevance."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses economic impacts that resonate with the Indian diaspora, particularly regarding inflation and cost of living."
+          "quality": 9,
+          "note": "The article effectively connects the semiconductor market's fluctuations to the financial impact on Indian American investors, making it highly relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or anecdotes from consumers to enhance relatability.",
-          "Add a section on how the diaspora can support or adapt to these economic changes."
+          "Replace the irrelevant Intel tweet with a more relevant social media post that discusses the semiconductor market or NRI investments.",
+          "Consider using an image that directly relates to semiconductors or technology to better match the article's content."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Removed irrelevant embed: https://x.com/intel/status/2063999492425134329",
+        "Revised by gpt-4o-mini (585\u2192652 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "82773677-fa7c-40d5-b72e-31a6ad44580a",
-      "headline": "The US Just Moved the EB-2 India Green Card Line Backward by 10 Months. Thousands Are Stuck Again.",
-      "slug": "eb2-india-retrogression-june-2026-green-card-10-months-backward",
+      "id": "c614e23a-33ed-4d07-935b-4f6e63311d01",
+      "headline": "Sundar Pichai Is Paying Elon Musk $920 Million a Month to Rent GPUs. That's the AI Economy Now.",
+      "slug": "google-spacex-920m-gpu-deal-pichai-musk-ipo-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "145abe18-fa8f-485e-acc8-bcbc84068775",
+            "headline": "Google Is Quietly Gutting Its Cybersecurity Teams. Sundar Pi"
+          },
+          {
+            "article_id": "1fbc6afa-3d22-4b48-8e68-b7405af36b82",
+            "headline": "Google Just Brought AI to the World's Cheapest Phones. India"
+          },
+          {
+            "article_id": "8212dd4f-5523-4112-b656-b20811f3ee40",
+            "headline": "Sundar Pichai Just Raised $80 Billion. Warren Buffett Wrote "
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://x.com/sundarpichai/status/2062203848673161267",
+            "problem": "irrelevant",
+            "explanation": "The tweet does not appear to be directly related to the main topic of the article regarding the GPU rental deal between Sundar Pichai and Elon Musk."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -101,20 +127,64 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of EB-2 visa retrogression on Indian professionals, directly relevant to the NRI community."
+          "note": "The article effectively connects the deal to Indian Americans in tech, highlighting Sundar Pichai's background and the implications for NRI investors."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from affected individuals to add a personal touch.",
-          "Provide more context on the legislative efforts to change the per-country cap for better understanding."
+          "Replace the irrelevant tweet embed with a more relevant source or commentary on the GPU rental deal.",
+          "Consider adding more context on how this deal impacts the broader AI landscape, especially for Indian tech companies."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://x.com/sundarpichai/status/2062203848673161267",
         "promoted to published"
       ],
       "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "06b14d72-b244-44e6-ab9f-84a356bed732",
+      "headline": "Malayalam Cinema's Two Hottest Directors Made a Film Together. It Just Played Cannes.",
+      "slug": "balan-the-boy-chidambaram-jithu-madhavan-cannes-malayalam-multilingual-june-19-nri-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DZKZRY7oBC6/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to relate directly to the film or its themes, making it less relevant to the article's focus."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is a poster for 'Manjummel Boys', which is relevant but not directly related to 'Balan: The Boy'."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the film's multilingual release and its significance for diaspora audiences, making it relatable."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant social media post related to 'Balan: The Boy'.",
+          "Consider using a hero image that directly represents 'Balan: The Boy' instead of 'Manjummel Boys' for better alignment with the article's focus."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZKZRY7oBC6/",
+        "Revised by gpt-4o-mini (737\u2192762 words)"
+      ],
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -137,7 +207,7 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects Arjun's performance to the experiences of NRIs, discussing familial expectations and identity."
+          "note": "The article effectively connects Arjun's journey to the experiences of NRIs, discussing family expectations and identity."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
@@ -148,7 +218,7 @@
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gpt-4o-mini (674\u2192705 words)"
+        "Revised by gpt-4o-mini (705\u2192730 words)"
       ],
       "revised": true,
       "unpublished": false,
