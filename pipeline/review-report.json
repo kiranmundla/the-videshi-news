@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-09T15:45:24.933116+00:00",
+  "timestamp": "2026-06-09T16:15:17.975067+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,36 +11,31 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b2f7e1c9-b400-47c5-977b-c9a87ebe11c7",
-      "headline": "Shah Rukh Khan Said No to Jailer 2. Hrithik Roshan Said Tell Me More.",
-      "slug": "hrithik-roshan-jailer-2-cameo-rajinikanth-srk-king-nri-20260609",
+      "id": "c396900a-27d9-4070-9d39-41bcdc77900f",
+      "headline": "Fourteen Thousand Dollars More Per Position \u2014 The Wage Hike That Could Price India Out of H-1B",
+      "slug": "dol-prevailing-wage-hike-h1b-indian-workers-perm-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0809b36f-af6c-4cf8-a786-c8c1f20da015",
-            "headline": "Hrithik Roshan Wanted \u20b9500 Crore for Krrish 4. His Father Ju"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image features Hrithik Roshan, which is relevant to the article, but does not directly relate to Shah Rukh Khan's decision."
+          "score": 9,
+          "issue": "The image is relevant to the topic of immigration and H-1B visas, depicting employment-based immigrant petitions."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the excitement of *Jailer 2* to the Indian diaspora, highlighting cultural ties and implications for remittances."
+          "note": "The article discusses changes to H-1B visa policies that directly affect Indian workers, making it highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a quote or statement from Shah Rukh Khan or Hrithik Roshan for added credibility.",
-          "Add more context about the significance of *Jailer 2* in the current cinematic landscape to enhance reader engagement."
+          "Include quotes or insights from immigration experts or affected individuals to enhance the article's depth.",
+          "Add a section discussing potential responses or adaptations by Indian tech firms to these changes."
         ],
         "verdict": "pass"
       },
@@ -52,9 +47,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a9545122-7202-44f3-8b4e-dc439e9e6947",
-      "headline": "He Won the World Championship Six Months Ago. In Oslo, He Finished Last.",
-      "slug": "gukesh-dommaraju-last-place-norway-chess-2026-form-crisis-world-champion-title-defence-nri",
+      "id": "eb840e15-396f-4ccc-bc5b-4797259164d1",
+      "headline": "Your Odds Just Changed \u2014 Inside the First Wage-Weighted H-1B Lottery",
+      "slug": "fy2027-wage-weighted-h1b-lottery-indian-workers-odds-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -64,19 +59,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not match the article's focus on Gukesh's recent performance in chess."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Gukesh's performance to the aspirations and emotional investment of the Indian diaspora."
+          "quality": 8,
+          "note": "The article discusses changes to the H-1B lottery system, which directly impacts Indian professionals and the diaspora community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts Gukesh in action or at the Norway Chess tournament.",
-          "Add quotes or reactions from diaspora chess communities to enhance the connection further."
+          "Include more direct quotes or insights from immigration experts to enhance credibility.",
+          "Add a section on potential future implications for Indian professionals in the U.S. job market."
         ],
         "verdict": "pass"
       },
