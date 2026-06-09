@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-09T22:15:41.643931+00:00",
+  "timestamp": "2026-06-09T22:45:55.336428+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 5,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "35e4af9c-80b5-4ba1-a93a-75a15b844199",
-      "headline": "323 Million Americans Visited a National Park Last Year \u2014 Here's Why NRI Families Should Join Them This Summer",
-      "slug": "national-parks-road-trip-nri-families-summer-guide-20260609",
+      "id": "879434b7-ad83-4531-884b-5ec55a890df1",
+      "headline": "The World Is Running Out of Oil Reserves. India Cannot Afford to Wait.",
+      "slug": "eia-oil-inventories-multi-decade-lows-india-energy-crisis-hormuz-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -23,19 +23,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image depicts an oil-related theme, but it lacks specific relevance to the article's focus on India's oil crisis."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively targets NRI families by providing practical travel tips and highlighting national parks that are accessible from major NRI population centers."
+          "note": "The article discusses India's oil dependency and economic implications, which are relevant to the Indian diaspora concerned about their homeland's economic stability."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how NRI families can connect with local cultures or communities while visiting the parks.",
-          "Add a section on safety tips or considerations for families traveling with children in national parks."
+          "Include more specific data or quotes from Indian officials to strengthen the connection to India's situation.",
+          "Consider adding a section on how the diaspora can contribute or respond to India's oil crisis."
         ],
         "verdict": "pass"
       },
@@ -47,36 +47,74 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "187261cd-373f-45b5-bbc9-207ea4fc8e25",
-      "headline": "India's Newest Airport Opens Next Week \u2014 and It Could Change How NRIs Get Home",
-      "slug": "noida-jewar-airport-opens-june-15-nri-gateway-20260609",
+      "id": "16feed14-5182-4709-ae04-f434fba3b2a1",
+      "headline": "Germany and France Just Scrapped the Transit Visa for Indians. Here's Why It Matters.",
+      "slug": "germany-france-scrap-transit-visa-indians-frankfurt-paris-travel-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
           {
-            "article_id": "cda7c341-115c-461d-aa53-a5c76dd989f0",
-            "headline": "Delhi's Second Airport Opens for Business Next Week \u2014 and NR"
+            "url": "https://www.instagram.com/p/DZG_iULDCbs/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be related to the topic of transit visas for Indians traveling through Germany and France."
           }
         ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "The image does not relate to the article's topic about transit visas or travel."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses how the new airport will improve connectivity for NRIs, making it relevant to the diaspora audience."
+          "quality": 9,
+          "note": "The article effectively addresses the impact of the visa changes on NRIs and Indian travelers, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from officials or experts to enhance credibility.",
-          "Include more details on the expected impact of the airport on ticket prices or travel times for NRIs."
+          "Replace the hero image with one that is more relevant to travel or the topic of visas.",
+          "Consider adding quotes or reactions from Indian travelers or travel industry experts to enhance the article's engagement."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DZG_iULDCbs/",
+        "Revised by gpt-4o-mini (723\u2192808 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "67ee0356-182c-4f9f-b8a2-425a88e9b78e",
+      "headline": "Iran Walked Away From the Table. India's Oil Clock Just Started Ticking Faster.",
+      "slug": "iran-suspends-ceasefire-talks-us-strikes-qeshm-india-oil-inventories-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image depicts a U.S. Navy ship in the Strait of Hormuz, which is relevant to the article's topic about Iran and oil trade, but it could be more directly related to India's oil crisis."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications for India's economy and Indian workers in the Gulf, which connects well with the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or perspectives from Indian officials or experts to strengthen the connection to India's situation.",
+          "Add a brief overview of how the Indian diaspora in the Gulf is affected by the oil crisis to enhance the diaspora angle."
         ],
         "verdict": "pass"
       },
@@ -88,9 +126,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7f87a941-ded8-4590-ac70-60f288c60a43",
-      "headline": "SpaceX Is About to Become the Biggest IPO in History. Here Is What Every NRI Investor Needs to Know.",
-      "slug": "spacex-ipo-1-77-trillion-nasdaq-june-12-nri-investor-guide-retail-shares-20260609",
+      "id": "a16dc21c-0bbe-4309-bd14-c1dab2a94a69",
+      "headline": "Lord's Got a Demerit Point. The 'Home of Cricket' Produced the Shortest Completed Test Since 1888.",
+      "slug": "lords-cricket-ground-demerit-point-unsatisfactory-pitch-england-new-zealand-test-2026-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -106,13 +144,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the interests of NRI investors by discussing the implications of SpaceX's IPO for retail investors, particularly within the Indian diaspora."
+          "note": "The article connects to Indian fans and the implications for India's matches in the World Test Championship."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how NRIs can participate in the IPO process.",
-          "Add a section on potential risks specific to NRI investors, such as currency fluctuations or regulatory considerations."
+          "Include quotes or reactions from Indian players or fans to enhance the diaspora connection.",
+          "Add a brief historical context about Lord's and its significance to Indian cricket."
         ],
         "verdict": "pass"
       },
@@ -124,9 +162,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "10832006-cce9-4fb2-972b-e6a086c73b89",
-      "headline": "Your Brain Starts Changing After Just Two Minutes of Meditation. A Harvard Study Says the Peak Comes at Seven.",
-      "slug": "harvard-meditation-brain-eeg-two-minutes-seven-peak-subramaniam-isha-diaspora-20260609",
+      "id": "be4a3d3b-8273-4e30-b7c9-45c03d211c46",
+      "headline": "Bangladesh Beat Australia at Home in an ODI for the First Time. The Margin Was 86 Runs.",
+      "slug": "bangladesh-beat-australia-first-home-odi-win-mosaddek-hossain-nahid-rana-dhaka-2026-nri",
       "pre_checks": {
         "duplicate_embeds": [],
         "duplicate_images": [],
@@ -142,13 +180,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the study's findings to the South Asian diaspora's cultural practices, making it relevant and personal."
+          "note": "The article effectively connects the significance of the victory to the Bangladeshi diaspora, highlighting its importance beyond just cricket."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from the study or researchers to enhance credibility.",
-          "Include practical tips for readers on how to incorporate the findings into their meditation practice."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more context about the historical significance of the match for readers unfamiliar with Bangladesh's cricketing history."
         ],
         "verdict": "pass"
       },
@@ -174,35 +212,36 @@
         "broken_embeds": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [
           {
-            "url": "https://www.youtube.com/watch?v=example",
-            "problem": "broken",
-            "explanation": "The YouTube link provided is a placeholder and does not lead to actual content."
+            "url": "https://www.youtube.com/watch?v=HaiJawaniTrailer",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is for the trailer of the film, which is relevant to the article's subject."
           }
         ],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's release and its implications for NRIs, discussing ticket costs and streaming preferences."
+          "quality": 8,
+          "note": "The article effectively connects the film's release and its implications for NRIs, discussing ticket prices and streaming habits."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the broken YouTube link with a relevant video or remove it entirely.",
-          "Consider adding quotes from Varun Dhawan or David Dhawan for a more personal touch."
+          "Consider adding more direct quotes from critics or audience reactions to enhance the article's depth.",
+          "Include a brief overview of David Dhawan's impact on Bollywood to provide context for readers unfamiliar with his work."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (809\u2192739 words)"
+        "Removed irrelevant embed: https://www.youtube.com/watch?v=HaiJawaniTrailer",
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
