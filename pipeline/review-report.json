@@ -1,48 +1,112 @@
 {
-  "timestamp": "2026-06-09T16:45:59.491868+00:00",
+  "timestamp": "2026-06-09T17:16:14.834414+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 1,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 2,
   "unpublished": 0,
   "articles": [
     {
-      "id": "7b7eb8d3-e990-41d3-8890-8e6f8963122f",
-      "headline": "Siraj Is Rested. Prasidh Krishna Will Bowl in Ireland and England.",
-      "slug": "siraj-rested-prasidh-krishna-replacement-ireland-england-t20i-shreyas-iyer-nri",
+      "id": "38008ad9-40c3-456e-92e2-4ed0c9d04757",
+      "headline": "Mammootty Gets the Padma Bhushan. R Madhavan Gets the Padma Shri. Indian Cinema's Finest Are Finally Being Honoured.",
+      "slug": "mammootty-padma-bhushan-r-madhavan-padma-shri-satish-shah-ceremony-june-23-nri-20260609",
       "pre_checks": {
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "40715c8b-f492-4ab5-a519-7e8f4b2510e8",
+            "headline": "Mammootty and Mohanlal Reunited After 18 Years. The Film Flo"
+          }
+        ],
         "broken_embeds": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZGHehTTOOF/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel is not directly relevant to the article's main focus on the Padma Awards and the actors' achievements."
+          }
+        ],
         "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article mentions where NRI viewers can watch the matches, connecting it to the diaspora audience."
+          "quality": 8,
+          "note": "The article effectively connects the achievements of the actors to the emotional resonance felt by the NRI community, particularly highlighting Mammootty's impact on the Malayalam diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features Mohammad Siraj or Prasidh Krishna to better match the article's content.",
-          "Consider adding more context about the significance of the matches for the Indian team and its diaspora audience."
+          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
+          "Consider adding quotes or reactions from the diaspora community regarding the awards to enhance the connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZGHehTTOOF/",
+        "Revised by gpt-4o-mini (795\u2192913 words)"
       ],
-      "revised": false,
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ab9a50a2-1db1-413a-84f0-13d7b45ebab2",
+      "headline": "Akshay Kumar Is Making India's First Alien Thriller. The Creature Designer Built the Actual Xenomorph.",
+      "slug": "akshay-kumar-samuk-alien-thriller-alec-gillis-practical-fx-bollywood-nri-20260609",
+      "pre_checks": {
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "8843536b-0b24-44eb-b124-2b23817c2ae3",
+            "headline": "Welcome To The Jungle Drops Its Trailer Wednesday. Bollywood"
+          },
+          {
+            "article_id": "d337a9ee-71f2-4d04-98b0-99397c2e99fd",
+            "headline": "Bhooth Bangla Just Hit Netflix. Akshay Kumar and Priyadarsha"
+          }
+        ],
+        "broken_embeds": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DZCCqiQteJA/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film 'Samuk' or its themes, making it irrelevant to the article."
+          }
+        ],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Akshay Kumar does not directly relate to the alien thriller theme of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects with NRI audiences by addressing their interest in Hollywood-style creature features and the significance of this film in the context of Indian cinema."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant source, such as a trailer or promotional material for 'Samuk'.",
+          "Consider using an image that better represents the alien thriller theme or the film's production."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DZCCqiQteJA/",
+        "Revised by gpt-4o-mini (727\u2192810 words)"
+      ],
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -64,127 +128,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects with NRI cricket fans by discussing the significance of Rohit and Pandya's fitness for upcoming matches."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that features Rohit Sharma or is directly related to the cricket series to enhance relevance.",
-          "Consider adding quotes from Rohit Sharma or Hardik Pandya regarding their fitness and readiness to engage readers further."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gpt-4o-mini (545\u2192627 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f1c91156-e273-47b9-b0fe-f7377830b2cc",
-      "headline": "The US and Iran Say a Deal Is Days Away. India Needs It More Than Anyone at the Table.",
-      "slug": "us-iran-deal-hormuz-india-oil-relief-ceasefire-60-days-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical situation to the interests of NRIs, particularly regarding oil prices and economic stability."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Add more direct quotes from Indian officials to strengthen the connection to India's perspective.",
-          "Include a brief overview of the potential impact on Indian expatriates in the Gulf region."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "091f1a72-16a4-4be6-9683-e9fe5021d601",
-      "headline": "TCS Will Have Half a Million AI Agents Within Three Years. Hiring Will Shrink.",
-      "slug": "tcs-half-million-ai-agents-chandrasekaran-agm-hiring-slowdown-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of N. Chandrasekaran is relevant but does not directly illustrate the topic of AI agents."
-        },
-        "diaspora_angle": {
-          "present": true,
           "quality": 9,
-          "note": "The article effectively connects the implications of TCS's AI strategy to the concerns of NRIs in the IT sector."
+          "note": "The article effectively connects the significance of Rohit Sharma's fitness to NRI cricket fans and their engagement with the Indian cricket team."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant hero image that visually represents AI technology or its impact on the workforce.",
-          "Add quotes or perspectives from diaspora professionals to enhance the connection with NRI readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "be4e0584-65b9-4788-9258-82e8d316a520",
-      "headline": "Modi Heads to France and Slovakia This Week. It Is India's First PM Visit to Bratislava Ever.",
-      "slug": "modi-france-slovakia-visit-g7-bharat-innovates-first-ever-bratislava-20260609",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "4636ec34-9f32-4b77-ad33-2863967795ae",
-            "headline": "Modi Convenes Economic War Room as West Asia Crisis Tests In"
-          }
-        ],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the significance of Modi's visit for the Indian diaspora in Slovakia and France, making it relevant for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Modi or French/Slovak officials to enhance the article's depth.",
-          "Include more specific examples of how the diaspora can benefit from the startup event in Nice."
+          "Replace the hero image with one that features Rohit Sharma in action or during a match to better match the article's focus.",
+          "Consider adding more quotes or insights from Rohit Sharma or the coaching staff to enhance the article's depth."
         ],
         "verdict": "pass"
       },
