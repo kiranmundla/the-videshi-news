@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-06-09T17:16:14.834414+00:00",
+  "timestamp": "2026-06-09T17:45:15.724713+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 2,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 2,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
@@ -26,35 +26,28 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZGHehTTOOF/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel is not directly relevant to the article's main focus on the Padma Awards and the actors' achievements."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the achievements of the actors to the emotional resonance felt by the NRI community, particularly highlighting Mammootty's impact on the Malayalam diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the achievements of Mammootty and R Madhavan to the emotional sentiments of the NRI community, highlighting their cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
-          "Consider adding quotes or reactions from the diaspora community regarding the awards to enhance the connection."
+          "Consider adding quotes or reactions from NRIs to enhance the diaspora connection.",
+          "Include more context about the Padma Awards for readers unfamiliar with their significance."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZGHehTTOOF/",
-        "Revised by gpt-4o-mini (795\u2192913 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -78,64 +71,21 @@
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DZCCqiQteJA/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film 'Samuk' or its themes, making it irrelevant to the article."
-          }
-        ],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of Akshay Kumar does not directly relate to the alien thriller theme of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects with NRI audiences by addressing their interest in Hollywood-style creature features and the significance of this film in the context of Indian cinema."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source, such as a trailer or promotional material for 'Samuk'.",
-          "Consider using an image that better represents the alien thriller theme or the film's production."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZCCqiQteJA/",
-        "Revised by gpt-4o-mini (727\u2192810 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "bac46e4b-0c90-4048-9c78-fba239d82eaa",
-      "headline": "Rohit Sharma Cleared Fit. He Will Play Against Afghanistan on Saturday.",
-      "slug": "rohit-sharma-fitness-cleared-afghanistan-odi-series-dharamsala-pandya-coe-nri",
-      "pre_checks": {
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": []
-      },
-      "llm_review": {
-        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
+          "score": 6,
+          "issue": "The image of Akshay Kumar does not directly relate to the alien thriller theme."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the significance of Rohit Sharma's fitness to NRI cricket fans and their engagement with the Indian cricket team."
+          "note": "The article effectively connects the film's genre shift to the interests of the NRI audience, highlighting cultural ties and expectations."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features Rohit Sharma in action or during a match to better match the article's focus.",
-          "Consider adding more quotes or insights from Rohit Sharma or the coaching staff to enhance the article's depth."
+          "Consider using a more relevant hero image that reflects the alien thriller theme.",
+          "Expand on the potential impact of the film on the Indian film industry and diaspora audiences."
         ],
         "verdict": "pass"
       },
